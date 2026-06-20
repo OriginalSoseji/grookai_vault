@@ -1,0 +1,3368 @@
+{
+  "package_id": "TCGMAP-05A-CACHED-TCGCSV-TCGPLAYER-MAPPING-INSERTS",
+  "generated_at": "2026-06-19T06:46:36.875Z",
+  "pass": true,
+  "approval_text": "Approve real TCGMAP-05A-CACHED-TCGCSV-TCGPLAYER-MAPPING-INSERTS apply only.",
+  "readiness_report": "docs\\audits\\tcg_mapping_v1\\tcgmap05_cached_tcgcsv_readiness_v1.json",
+  "dry_run_report": "docs\\audits\\tcg_mapping_v1\\tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1.json",
+  "readiness_fingerprint_sha256": "bee892d14f83b1a9ace7d35c4599b68f2ceb24d43ea010b7a4a19f104b98cbb7",
+  "target_fingerprint_sha256": "88874689034c1e4807322b6d5d64347a01964a80b89a22f40894f566bcb6e0b5",
+  "target_rows": 153,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "parent_writes": false,
+  "child_writes": false,
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-19T06:46:35.650Z",
+      "scoped_rows": [],
+      "scoped_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "global_counts": {
+        "active_tcgplayer_rows": 17912,
+        "active_tcgplayer_card_prints": 17912,
+        "active_tcgplayer_external_ids": 17912
+      },
+      "global_hash_sha256": "274e2d93040db922f91c5ea61722d8bc33668c79a3a31516e97e0c6e6c8189ac"
+    },
+    "guard": {
+      "target_count": 153,
+      "distinct_card_print_count": 153,
+      "distinct_external_id_count": 153,
+      "non_tcgplayer_source_count": 0,
+      "missing_external_id_count": 0,
+      "missing_source_url_count": 0,
+      "missing_parent_count": 0,
+      "active_card_mapping_collision_count": 0,
+      "external_id_collision_count": 0,
+      "batch_duplicate_card_print_count": 0,
+      "batch_duplicate_external_id_count": 0,
+      "target_fingerprint_sha256": "88874689034c1e4807322b6d5d64347a01964a80b89a22f40894f566bcb6e0b5"
+    },
+    "apply_proof": {
+      "inserted_rows": 153,
+      "target_active_rows": 153,
+      "active_external_id_collision_groups": 0,
+      "active_card_print_multi_mapping_groups": 0
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-19T06:46:36.875Z",
+      "scoped_rows": [
+        {
+          "id": "130089",
+          "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+          "source": "tcgplayer",
+          "external_id": "106358",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/106358/pokemon-base-set-2-pokemon-trader",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106358_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130090",
+          "card_print_id": "1025562c-fc2e-447c-9cc5-feb58d205ace",
+          "source": "tcgplayer",
+          "external_id": "106359",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/106359/pokemon-base-set-2-pokemon-center",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106359_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130091",
+          "card_print_id": "d627fea9-45ac-4cac-8195-0ade9f427cb8",
+          "source": "tcgplayer",
+          "external_id": "106360",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/106360/pokemon-base-set-2-pokedex",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106360_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130092",
+          "card_print_id": "15c7182b-18e4-4352-be8b-8b76b43f93d9",
+          "source": "tcgplayer",
+          "external_id": "106361",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/106361/pokemon-base-set-2-poke-ball",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106361_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130236",
+          "card_print_id": "5ecfa904-8294-4b51-942b-c040b2875957",
+          "source": "tcgplayer",
+          "external_id": "146724",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/146724/pokemon-shining-legends-pokemon-catcher",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 2054,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/146724_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\2054_products.json"
+          }
+        },
+        {
+          "id": "130235",
+          "card_print_id": "a85eaaeb-3383-488d-8975-7915936a6ae6",
+          "source": "tcgplayer",
+          "external_id": "146730",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/146730/pokemon-shining-legends-pokemon-breeder",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 2054,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/146730_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\2054_products.json"
+          }
+        },
+        {
+          "id": "130237",
+          "card_print_id": "09bd2b63-3ff5-474e-b239-066499b14d2b",
+          "source": "tcgplayer",
+          "external_id": "223059",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/223059/pokemon-champions-path-poke-ball",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 2685,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/223059_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\2685_products.json"
+          }
+        },
+        {
+          "id": "130238",
+          "card_print_id": "4e130e1c-dc8f-41a3-8fb1-a660047e5b62",
+          "source": "tcgplayer",
+          "external_id": "223060",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/223060/pokemon-champions-path-pokemon-center-lady",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 2685,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/223060_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\2685_products.json"
+          }
+        },
+        {
+          "id": "130087",
+          "card_print_id": "0da2772e-4ddd-421b-a5b4-96ab56363dbc",
+          "source": "tcgplayer",
+          "external_id": "42552",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42552_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130088",
+          "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+          "source": "tcgplayer",
+          "external_id": "42555",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/42555/pokemon-base-set-2-pokemon-breeder",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 605,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42555_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json"
+          }
+        },
+        {
+          "id": "130086",
+          "card_print_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+          "source": "tcgplayer",
+          "external_id": "45167",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/45167/pokemon-jungle-poke-ball",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 635,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/45167_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\635_products.json"
+          }
+        },
+        {
+          "id": "130102",
+          "card_print_id": "a5798f48-bf29-4650-93a3-75558a817afc",
+          "source": "tcgplayer",
+          "external_id": "83457",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83457/pokemon-supreme-victors-absol-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83457_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130145",
+          "card_print_id": "81243685-62bc-4224-a20a-206a4bea6f8d",
+          "source": "tcgplayer",
+          "external_id": "83523",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83523/pokemon-supreme-victors-altaria-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83523_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130146",
+          "card_print_id": "61a7cd22-388a-492b-ad84-69151f444b28",
+          "source": "tcgplayer",
+          "external_id": "83587",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83587/pokemon-supreme-victors-arcanine",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83587_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130116",
+          "card_print_id": "8cf66125-56f7-4e27-a1fd-08025fae50f0",
+          "source": "tcgplayer",
+          "external_id": "83650",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83650/pokemon-supreme-victors-articuno-16",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83650_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130232",
+          "card_print_id": "35fd372e-ab7e-43d8-be95-4413ab76f935",
+          "source": "tcgplayer",
+          "external_id": "83651",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83651/pokemon-supreme-victors-articuno-148",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Secret Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83651_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130181",
+          "card_print_id": "a9d68360-e4b4-4c08-a29e-56900fb18c94",
+          "source": "tcgplayer",
+          "external_id": "83717",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83717/pokemon-supreme-victors-baltoy",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83717_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130225",
+          "card_print_id": "7bdc0bc2-a0ae-4dd0-a901-8ac7226591d1",
+          "source": "tcgplayer",
+          "external_id": "83742",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83742/pokemon-supreme-victors-battle-tower",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83742_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130182",
+          "card_print_id": "7bb48936-2659-4111-bfc4-bc868bd2dbd9",
+          "source": "tcgplayer",
+          "external_id": "83790",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83790/pokemon-supreme-victors-beldum",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83790_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130147",
+          "card_print_id": "a387ce7a-5d78-4253-b87c-9841e1aa0e3d",
+          "source": "tcgplayer",
+          "external_id": "83819",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83819/pokemon-supreme-victors-bibarel",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83819_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130183",
+          "card_print_id": "d6aaf090-a6c2-4104-9037-ac74f7c963e8",
+          "source": "tcgplayer",
+          "external_id": "83828",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83828/pokemon-supreme-victors-bidoof",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83828_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130103",
+          "card_print_id": "8d2ca1ec-3b80-4d17-87ad-bc4ed1b35024",
+          "source": "tcgplayer",
+          "external_id": "83914",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83914/pokemon-supreme-victors-blaziken-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83914_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130148",
+          "card_print_id": "d85a2b37-16ed-4844-867b-d668a0e8b8c3",
+          "source": "tcgplayer",
+          "external_id": "83958",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/83958/pokemon-supreme-victors-breloom",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83958_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130184",
+          "card_print_id": "16b2fc2a-cede-43a6-870f-9f48422d752e",
+          "source": "tcgplayer",
+          "external_id": "84021",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84021/pokemon-supreme-victors-buizel",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84021_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130185",
+          "card_print_id": "73f495e9-6ddf-4cbf-934e-292adc3bc018",
+          "source": "tcgplayer",
+          "external_id": "84035",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84035/pokemon-supreme-victors-bulbasaur",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84035_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130186",
+          "card_print_id": "a13895d5-742c-4f50-9041-fa26b5878e3f",
+          "source": "tcgplayer",
+          "external_id": "84043",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84043/pokemon-supreme-victors-buneary",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84043_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130117",
+          "card_print_id": "5fe6c6c7-be09-4d88-af91-ce0158248a72",
+          "source": "tcgplayer",
+          "external_id": "84094",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84094/pokemon-supreme-victors-camerupt",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84094_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130118",
+          "card_print_id": "6017a435-4e91-44be-8035-6efcbe832ee6",
+          "source": "tcgplayer",
+          "external_id": "84097",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84097/pokemon-supreme-victors-camerupt-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84097_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130149",
+          "card_print_id": "3c67af7b-4e64-41ef-86d8-0219162f1ea7",
+          "source": "tcgplayer",
+          "external_id": "84103",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84103/pokemon-supreme-victors-carnivine",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84103_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130226",
+          "card_print_id": "298ffcc8-fdda-4885-aaaa-4bc9cb9db891",
+          "source": "tcgplayer",
+          "external_id": "84161",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84161/pokemon-supreme-victors-champions-room",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84161_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130119",
+          "card_print_id": "009b0d24-d48e-4946-a392-1bae3406e208",
+          "source": "tcgplayer",
+          "external_id": "84200",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84200/pokemon-supreme-victors-charizard-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84200_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130101",
+          "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+          "source": "tcgplayer",
+          "external_id": "84238",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84238/pokemon-rising-rivals-charons-choice",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Ultra Rare",
+            "source_group_id": 1367,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84238_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json"
+          }
+        },
+        {
+          "id": "130187",
+          "card_print_id": "a78d0d59-f376-4b6e-9603-4cf2d28022f6",
+          "source": "tcgplayer",
+          "external_id": "84242",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84242/pokemon-supreme-victors-chatot",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84242_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130150",
+          "card_print_id": "23623429-150e-46f7-ad1f-3093cb4e9732",
+          "source": "tcgplayer",
+          "external_id": "84245",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84245/pokemon-supreme-victors-chatot-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84245_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130151",
+          "card_print_id": "1b5c1cd5-0fd9-447d-b2d9-49cfda472dff",
+          "source": "tcgplayer",
+          "external_id": "84254",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84254/pokemon-supreme-victors-cherrim",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84254_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130188",
+          "card_print_id": "3fae8620-65d8-44ff-9931-21178681a496",
+          "source": "tcgplayer",
+          "external_id": "84262",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84262/pokemon-supreme-victors-cherubi",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84262_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130189",
+          "card_print_id": "b1a663b6-1743-4b11-8bd7-b2150720c67a",
+          "source": "tcgplayer",
+          "external_id": "84290",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84290/pokemon-supreme-victors-chimchar",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84290_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130120",
+          "card_print_id": "4d9fc663-8fef-4da5-a6b8-f510e5699ed4",
+          "source": "tcgplayer",
+          "external_id": "84296",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84296/pokemon-supreme-victors-chimecho",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84296_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130190",
+          "card_print_id": "f9d8d321-75d6-46ac-ab39-6e4f22165d7d",
+          "source": "tcgplayer",
+          "external_id": "84315",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84315/pokemon-supreme-victors-chingling",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84315_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130121",
+          "card_print_id": "b77b0f9a-67a2-47ba-b4b6-4c7a545c7998",
+          "source": "tcgplayer",
+          "external_id": "84338",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84338/pokemon-supreme-victors-claydol",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84338_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130191",
+          "card_print_id": "42a66a84-e424-4339-bd71-402102187781",
+          "source": "tcgplayer",
+          "external_id": "84396",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84396/pokemon-supreme-victors-combee",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84396_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130192",
+          "card_print_id": "21f808fa-7feb-40f0-8234-4f4968169ac3",
+          "source": "tcgplayer",
+          "external_id": "84436",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84436/pokemon-supreme-victors-corphish",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84436_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130122",
+          "card_print_id": "d9dd2533-779b-4112-bf2c-7a319af9f6bb",
+          "source": "tcgplayer",
+          "external_id": "84466",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84466/pokemon-supreme-victors-crawdaunt-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84466_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130193",
+          "card_print_id": "bd7a3d1c-3704-441b-9491-6bb1281d16be",
+          "source": "tcgplayer",
+          "external_id": "84477",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84477/pokemon-supreme-victors-croagunk",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84477_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130227",
+          "card_print_id": "4e801484-b07b-41cf-8b65-b250b3ac795a",
+          "source": "tcgplayer",
+          "external_id": "84556",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84556/pokemon-supreme-victors-cynthias-guidance",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84556_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130228",
+          "card_print_id": "0f3fcadd-3408-4292-99d1-08354b807a36",
+          "source": "tcgplayer",
+          "external_id": "84558",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84558/pokemon-supreme-victors-cyruss-initiative",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84558_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130123",
+          "card_print_id": "7126b46e-2d9d-4906-bee1-13f59f5d50c8",
+          "source": "tcgplayer",
+          "external_id": "84791",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84791/pokemon-supreme-victors-dewgong",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84791_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130124",
+          "card_print_id": "6b418419-525d-4ed3-a2ae-39b214a4fd4c",
+          "source": "tcgplayer",
+          "external_id": "84853",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84853/pokemon-supreme-victors-dodrio",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84853_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130194",
+          "card_print_id": "402928d7-7531-4873-8ba4-53fe86d201da",
+          "source": "tcgplayer",
+          "external_id": "84864",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84864/pokemon-supreme-victors-doduo",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84864_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130152",
+          "card_print_id": "f51a7c59-3918-4d17-b9f2-45daeefeae1f",
+          "source": "tcgplayer",
+          "external_id": "84920",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84920/pokemon-supreme-victors-dragonite-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84920_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130153",
+          "card_print_id": "834c7b08-0343-4945-b907-20edc73ef686",
+          "source": "tcgplayer",
+          "external_id": "84947",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84947/pokemon-supreme-victors-drifblim",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84947_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130104",
+          "card_print_id": "bc5bd4b4-e4d5-49ae-ae15-59ac3fac28d4",
+          "source": "tcgplayer",
+          "external_id": "84952",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84952/pokemon-supreme-victors-drifblim-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84952_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130195",
+          "card_print_id": "bc2e4afe-69cd-444b-883b-fc5734a5b2c3",
+          "source": "tcgplayer",
+          "external_id": "84959",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/84959/pokemon-supreme-victors-drifloon",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84959_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130105",
+          "card_print_id": "6675e9ee-5c7a-4327-858d-d50c36b5b28f",
+          "source": "tcgplayer",
+          "external_id": "85125",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85125/pokemon-supreme-victors-electivire-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85125_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130125",
+          "card_print_id": "fd676d83-4f81-4bc8-854f-f8fe6dcd288a",
+          "source": "tcgplayer",
+          "external_id": "85373",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85373/pokemon-supreme-victors-exploud",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85373_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130196",
+          "card_print_id": "af9a19ca-b029-4928-a79f-f2e762537a9f",
+          "source": "tcgplayer",
+          "external_id": "85405",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85405/pokemon-supreme-victors-feebas",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85405_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130154",
+          "card_print_id": "2a321826-a19e-4c8e-8e4b-46cc667da4f8",
+          "source": "tcgplayer",
+          "external_id": "85514",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85514/pokemon-supreme-victors-floatzel",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85514_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130099",
+          "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+          "source": "tcgplayer",
+          "external_id": "85576",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85576/pokemon-rising-rivals-frost-rotom",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Ultra Rare",
+            "source_group_id": 1367,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85576_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json"
+          }
+        },
+        {
+          "id": "130106",
+          "card_print_id": "2b1d020a-02f8-4438-8163-10db7bfb1774",
+          "source": "tcgplayer",
+          "external_id": "85623",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85623/pokemon-supreme-victors-garchomp",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85623_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130197",
+          "card_print_id": "77f723d0-4111-4376-819e-3e76861563a1",
+          "source": "tcgplayer",
+          "external_id": "85692",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85692/pokemon-supreme-victors-geodude",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85692_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130198",
+          "card_print_id": "436048aa-c41e-47a5-a2f4-ab3348a07539",
+          "source": "tcgplayer",
+          "external_id": "85809",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85809/pokemon-supreme-victors-goldeen",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85809_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130199",
+          "card_print_id": "2689228e-16bb-4f31-9f4a-a65affed071c",
+          "source": "tcgplayer",
+          "external_id": "85959",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/85959/pokemon-supreme-victors-growlithe",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85959_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130155",
+          "card_print_id": "116e7b8a-ff1a-4bd2-9b7e-e015ad447046",
+          "source": "tcgplayer",
+          "external_id": "86081",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86081/pokemon-supreme-victors-hippopotas",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86081_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130126",
+          "card_print_id": "1bd0cf49-3b22-420f-bb12-adcc5f72a7ed",
+          "source": "tcgplayer",
+          "external_id": "86160",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86160/pokemon-supreme-victors-honchkrow",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86160_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130156",
+          "card_print_id": "e8bbec2b-b369-45f9-b5fa-fb9ba60fd8a2",
+          "source": "tcgplayer",
+          "external_id": "86303",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86303/pokemon-supreme-victors-ivysaur",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86303_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130200",
+          "card_print_id": "b2d13107-553e-41ec-8188-9f931178c789",
+          "source": "tcgplayer",
+          "external_id": "86529",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86529/pokemon-supreme-victors-kricketot",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86529_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130127",
+          "card_print_id": "f98c32dc-ede3-45bb-b03b-c370937cb2dc",
+          "source": "tcgplayer",
+          "external_id": "86715",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86715/pokemon-supreme-victors-lickilicky-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86715_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130157",
+          "card_print_id": "09ec3387-01f9-42b7-b561-8a3782cb2b7c",
+          "source": "tcgplayer",
+          "external_id": "86826",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86826/pokemon-supreme-victors-lopunny",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86826_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130158",
+          "card_print_id": "7ed636c2-0dbe-49aa-864b-24c9d3b8fdbb",
+          "source": "tcgplayer",
+          "external_id": "86844",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86844/pokemon-supreme-victors-loudred",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86844_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130128",
+          "card_print_id": "8fd39753-8e91-4445-b71c-3d8c8e2600cc",
+          "source": "tcgplayer",
+          "external_id": "86887",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86887/pokemon-supreme-victors-lucario-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86887_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130129",
+          "card_print_id": "0240b3e6-a42a-4b2a-bdf0-58662fb6f281",
+          "source": "tcgplayer",
+          "external_id": "86927",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/86927/pokemon-supreme-victors-lunatone",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/86927_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130201",
+          "card_print_id": "78c06caf-60db-4074-9620-7de6a4ca5752",
+          "source": "tcgplayer",
+          "external_id": "87031",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87031/pokemon-supreme-victors-magikarp",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87031_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130159",
+          "card_print_id": "d52eabdb-55f1-4011-90ff-a56c8167e033",
+          "source": "tcgplayer",
+          "external_id": "87049",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87049/pokemon-supreme-victors-magmar",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87049_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130107",
+          "card_print_id": "83fa0d94-4ce6-4d56-b766-21e9d923cbd5",
+          "source": "tcgplayer",
+          "external_id": "87058",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87058/pokemon-supreme-victors-magmortar",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87058_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130202",
+          "card_print_id": "b8bf9ec7-390f-42a5-9b18-ae77fef48efb",
+          "source": "tcgplayer",
+          "external_id": "87084",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87084/pokemon-supreme-victors-magnemite",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87084_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130160",
+          "card_print_id": "71d7fbf1-56c8-4d7c-a185-5a34e76e6daa",
+          "source": "tcgplayer",
+          "external_id": "87168",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87168/pokemon-supreme-victors-manectric-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87168_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130203",
+          "card_print_id": "a0dd729f-8e3f-49a4-a887-7439e8d68ed7",
+          "source": "tcgplayer",
+          "external_id": "87175",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87175/pokemon-supreme-victors-mankey",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87175_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130161",
+          "card_print_id": "d61065b5-994d-4f1f-b923-b0e4cc15c1fc",
+          "source": "tcgplayer",
+          "external_id": "87240",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87240/pokemon-supreme-victors-marshtomp",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87240_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130162",
+          "card_print_id": "4d74ef6d-60f6-4cce-ada7-d1ad39fbdcfd",
+          "source": "tcgplayer",
+          "external_id": "87249",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87249/pokemon-supreme-victors-masquerain",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87249_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130130",
+          "card_print_id": "7b3cf251-7d11-406a-abf6-c9b980b6316b",
+          "source": "tcgplayer",
+          "external_id": "87262",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87262/pokemon-supreme-victors-mawile",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87262_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130131",
+          "card_print_id": "70464bf7-cfd2-451f-aba5-914884fd11dd",
+          "source": "tcgplayer",
+          "external_id": "87276",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87276/pokemon-supreme-victors-medicham",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87276_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130204",
+          "card_print_id": "06b014ba-4401-4a6d-95cc-a9ad51e23169",
+          "source": "tcgplayer",
+          "external_id": "87285",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87285/pokemon-supreme-victors-meditite",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87285_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130205",
+          "card_print_id": "b682f8f6-a00a-4a67-9298-efbe074f207e",
+          "source": "tcgplayer",
+          "external_id": "87321",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87321/pokemon-supreme-victors-meowth",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87321_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130108",
+          "card_print_id": "a8ea67dd-9667-4755-a523-d88dc44fb959",
+          "source": "tcgplayer",
+          "external_id": "87339",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87339/pokemon-supreme-victors-metagross",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87339_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130163",
+          "card_print_id": "a431b86d-7588-4211-804e-b05f3f502a66",
+          "source": "tcgplayer",
+          "external_id": "87380",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87380/pokemon-supreme-victors-metang",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87380_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130206",
+          "card_print_id": "d7f24309-71e1-48c6-84f2-b4a2657c0f76",
+          "source": "tcgplayer",
+          "external_id": "87471",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87471/pokemon-supreme-victors-mime-jr",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87471_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130164",
+          "card_print_id": "8bd8f4b8-5b4a-4123-85da-de20f5e16027",
+          "source": "tcgplayer",
+          "external_id": "87490",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87490/pokemon-supreme-victors-minun",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87490_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130132",
+          "card_print_id": "07430ced-256a-405f-83db-e0277e6b5dd2",
+          "source": "tcgplayer",
+          "external_id": "87562",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87562/pokemon-supreme-victors-moltres-36",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87562_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130233",
+          "card_print_id": "6d781ee3-c936-43e8-9d11-35e7fce4dc53",
+          "source": "tcgplayer",
+          "external_id": "87563",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87563/pokemon-supreme-victors-moltres-149",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Secret Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87563_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130100",
+          "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+          "source": "tcgplayer",
+          "external_id": "87584",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87584/pokemon-rising-rivals-mow-rotom",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Ultra Rare",
+            "source_group_id": 1367,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87584_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json"
+          }
+        },
+        {
+          "id": "130133",
+          "card_print_id": "771d23a1-0073-442d-b44b-f5be74353fa2",
+          "source": "tcgplayer",
+          "external_id": "87593",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87593/pokemon-supreme-victors-mr-mime",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87593_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130207",
+          "card_print_id": "ee0bfb08-e82e-42ae-bc38-522bfcb5b714",
+          "source": "tcgplayer",
+          "external_id": "87615",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87615/pokemon-supreme-victors-mudkip",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87615_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130165",
+          "card_print_id": "83430e16-3194-436a-90c3-cf07ac6236a9",
+          "source": "tcgplayer",
+          "external_id": "87654",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87654/pokemon-supreme-victors-murkrow",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87654_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130229",
+          "card_print_id": "d74fff2e-b1be-4905-841b-9c01688be911",
+          "source": "tcgplayer",
+          "external_id": "87754",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87754/pokemon-supreme-victors-night-teleporter",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87754_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130208",
+          "card_print_id": "60b496a4-f2c2-4594-88ba-2ec3917137f4",
+          "source": "tcgplayer",
+          "external_id": "87761",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87761/pokemon-supreme-victors-nincada",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87761_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130166",
+          "card_print_id": "c963f705-289e-4b58-acc1-618edfe2afe9",
+          "source": "tcgplayer",
+          "external_id": "87787",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87787/pokemon-supreme-victors-ninjask",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87787_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130167",
+          "card_print_id": "578de70e-3fd5-4407-8b2d-0b1517ee1f36",
+          "source": "tcgplayer",
+          "external_id": "87815",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87815/pokemon-supreme-victors-numel",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87815_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130209",
+          "card_print_id": "9acaeee6-1cff-41fe-a06e-cb40af3da40f",
+          "source": "tcgplayer",
+          "external_id": "87903",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87903/pokemon-supreme-victors-pachirisu",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87903_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130230",
+          "card_print_id": "65048b5b-a1c0-42d8-b46b-238e02323639",
+          "source": "tcgplayer",
+          "external_id": "87921",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87921/pokemon-supreme-victors-palmers-contribution",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87921_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130210",
+          "card_print_id": "f7c5b01d-a9ef-443d-8681-9bfa5a4d9786",
+          "source": "tcgplayer",
+          "external_id": "87952",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87952/pokemon-supreme-victors-paras",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87952_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130134",
+          "card_print_id": "52165d9a-5056-4702-ba6d-f797d28232a6",
+          "source": "tcgplayer",
+          "external_id": "87959",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/87959/pokemon-supreme-victors-parasect",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87959_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130211",
+          "card_print_id": "c7c17baf-5364-4240-95be-8d46875ca969",
+          "source": "tcgplayer",
+          "external_id": "88093",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88093/pokemon-supreme-victors-pikachu",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88093_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130168",
+          "card_print_id": "c51c267b-986f-43c4-b4a0-e9e16d85ab53",
+          "source": "tcgplayer",
+          "external_id": "88138",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88138/pokemon-supreme-victors-pinsir",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88138_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130212",
+          "card_print_id": "7988b2a0-a72b-494c-9eeb-d6a1590825ff",
+          "source": "tcgplayer",
+          "external_id": "88151",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88151/pokemon-supreme-victors-piplup",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88151_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130169",
+          "card_print_id": "0556fb00-11b6-4f11-a35a-3deab7759f1a",
+          "source": "tcgplayer",
+          "external_id": "88170",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88170/pokemon-supreme-victors-plusle",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88170_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130093",
+          "card_print_id": "c2ea72e9-452d-4672-81a1-9fc80abe61a5",
+          "source": "tcgplayer",
+          "external_id": "88184",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88184/pokemon-unseen-forces-poke-ball",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1398,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88184_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json"
+          }
+        },
+        {
+          "id": "130097",
+          "card_print_id": "f90203f5-f02f-4818-9d34-2506b38e77d8",
+          "source": "tcgplayer",
+          "external_id": "88234",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88234/pokemon-team-rocket-returns-pokemon-retriever",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1428,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88234_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json"
+          }
+        },
+        {
+          "id": "130094",
+          "card_print_id": "093401fb-a48c-4d6e-8489-8616aa6a778f",
+          "source": "tcgplayer",
+          "external_id": "88235",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88235/pokemon-unseen-forces-pokemon-reversal",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1398,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88235_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json"
+          }
+        },
+        {
+          "id": "130135",
+          "card_print_id": "3cd61474-6984-4433-b67a-1b07cfd48b27",
+          "source": "tcgplayer",
+          "external_id": "88364",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88364/pokemon-supreme-victors-primeape",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88364_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130170",
+          "card_print_id": "8449707d-6530-4fae-a0de-5eeef71979c2",
+          "source": "tcgplayer",
+          "external_id": "88515",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88515/pokemon-supreme-victors-raichu",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88515_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130171",
+          "card_print_id": "2d58d0ab-39c9-4f51-96c2-43bd09ad9584",
+          "source": "tcgplayer",
+          "external_id": "88609",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88609/pokemon-supreme-victors-raticate-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88609_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130109",
+          "card_print_id": "90740ca1-cb80-4c1a-acf8-80364a299cb5",
+          "source": "tcgplayer",
+          "external_id": "88639",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88639/pokemon-supreme-victors-rayquaza-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88639_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130110",
+          "card_print_id": "940012d3-e7be-41e7-84f3-9e778341b750",
+          "source": "tcgplayer",
+          "external_id": "88668",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88668/pokemon-supreme-victors-regigigas-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88668_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130172",
+          "card_print_id": "f6f062df-a2d0-4908-a553-e7d8d9a15a6b",
+          "source": "tcgplayer",
+          "external_id": "88688",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88688/pokemon-supreme-victors-relicanth",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88688_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130173",
+          "card_print_id": "600066dc-da8f-4850-84f0-f55f46d84b67",
+          "source": "tcgplayer",
+          "external_id": "88735",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88735/pokemon-supreme-victors-rhydon",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88735_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130213",
+          "card_print_id": "9a20ba24-0fc6-46f6-9809-fe039f2e335a",
+          "source": "tcgplayer",
+          "external_id": "88743",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88743/pokemon-supreme-victors-rhyhorn",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88743_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130111",
+          "card_print_id": "3e2f8135-6dc1-4c4e-90e1-dc994925ae46",
+          "source": "tcgplayer",
+          "external_id": "88746",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88746/pokemon-supreme-victors-rhyperior",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88746_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130098",
+          "card_print_id": "a9a37e78-6136-4fe7-b03a-74216741f13d",
+          "source": "tcgplayer",
+          "external_id": "88784",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1428,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88784_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json"
+          }
+        },
+        {
+          "id": "130214",
+          "card_print_id": "cb06404e-b2dc-43e8-96d9-9249eaef09bd",
+          "source": "tcgplayer",
+          "external_id": "88822",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88822/pokemon-supreme-victors-roselia",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88822_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130174",
+          "card_print_id": "a2e5a7dc-1101-4d3d-967d-a05f1853e941",
+          "source": "tcgplayer",
+          "external_id": "88829",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88829/pokemon-supreme-victors-roserade",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88829_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130136",
+          "card_print_id": "f4ba12c4-2d2e-41cb-8881-5319f2e75b5c",
+          "source": "tcgplayer",
+          "external_id": "88833",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88833/pokemon-supreme-victors-roserade-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88833_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130175",
+          "card_print_id": "23f1f413-eac9-443f-99d7-8a7d464710b1",
+          "source": "tcgplayer",
+          "external_id": "88838",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88838/pokemon-supreme-victors-rotom",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88838_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130137",
+          "card_print_id": "f299ece0-02e0-470e-b482-b51babd92d85",
+          "source": "tcgplayer",
+          "external_id": "88859",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88859/pokemon-supreme-victors-sableye-g",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88859_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130215",
+          "card_print_id": "255eae23-3e2a-4789-9977-4877734a08fb",
+          "source": "tcgplayer",
+          "external_id": "88925",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88925/pokemon-supreme-victors-sandshrew",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88925_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130138",
+          "card_print_id": "5c55e009-fe5d-4cf6-82b2-5098dfcd6a44",
+          "source": "tcgplayer",
+          "external_id": "88933",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/88933/pokemon-supreme-victors-sandslash",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88933_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130139",
+          "card_print_id": "7c348b2c-efad-4179-9507-4f013444659a",
+          "source": "tcgplayer",
+          "external_id": "89028",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89028/pokemon-supreme-victors-seaking",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89028_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130216",
+          "card_print_id": "973ddbaf-006a-477b-8345-5f75e404a6cf",
+          "source": "tcgplayer",
+          "external_id": "89054",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89054/pokemon-supreme-victors-seel",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89054_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130140",
+          "card_print_id": "e06336fa-0bcd-465e-a448-402d29fdf135",
+          "source": "tcgplayer",
+          "external_id": "89120",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89120/pokemon-supreme-victors-shedinja",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89120_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130217",
+          "card_print_id": "36f0d5f0-5625-4bdf-bf79-fe6626b7adcd",
+          "source": "tcgplayer",
+          "external_id": "89176",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89176/pokemon-supreme-victors-shinx",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89176_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130218",
+          "card_print_id": "979fbddb-1333-4e55-b8dc-d154ed1a54a6",
+          "source": "tcgplayer",
+          "external_id": "89186",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89186/pokemon-supreme-victors-shroomish",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89186_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130219",
+          "card_print_id": "af9124bb-5ea5-4a07-8d84-c677af864c45",
+          "source": "tcgplayer",
+          "external_id": "89275",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89275/pokemon-supreme-victors-skorupi",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89275_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130141",
+          "card_print_id": "4380f8fb-12d4-4f21-95fc-122d6e342512",
+          "source": "tcgplayer",
+          "external_id": "89429",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89429/pokemon-supreme-victors-solrock",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89429_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130142",
+          "card_print_id": "c670ad70-2972-4fb6-93f2-4381bdf60b1a",
+          "source": "tcgplayer",
+          "external_id": "89463",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89463/pokemon-supreme-victors-spinda",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89463_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130176",
+          "card_print_id": "1666ba3e-f74d-4d64-ad51-d17fd70028af",
+          "source": "tcgplayer",
+          "external_id": "89469",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89469/pokemon-supreme-victors-spiritomb-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89469_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130112",
+          "card_print_id": "1140ba95-7f24-4e4c-9989-0e193a834c65",
+          "source": "tcgplayer",
+          "external_id": "89511",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89511/pokemon-supreme-victors-staraptor-fb",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89511_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130177",
+          "card_print_id": "7998a0fe-f940-4ef2-97ce-5bae8424a0e9",
+          "source": "tcgplayer",
+          "external_id": "89517",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89517/pokemon-supreme-victors-staravia",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89517_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130220",
+          "card_print_id": "dff4e7f4-9eee-4beb-9b38-d7fc640a17a3",
+          "source": "tcgplayer",
+          "external_id": "89525",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89525/pokemon-supreme-victors-starly",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89525_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130221",
+          "card_print_id": "0b7e37ef-d77d-453a-af96-62461ab1ec86",
+          "source": "tcgplayer",
+          "external_id": "89651",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89651/pokemon-supreme-victors-surskit",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89651_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130113",
+          "card_print_id": "4a729b26-d8a7-4866-a21c-7b8bbf36f99b",
+          "source": "tcgplayer",
+          "external_id": "89681",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89681/pokemon-supreme-victors-swampert",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89681_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130095",
+          "card_print_id": "95465425-e352-4b28-b0a1-13cfc30c06a7",
+          "source": "tcgplayer",
+          "external_id": "89773",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89773/pokemon-team-magma-vs-team-aqua-team-aqua-technical-machine-01",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1377,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89773_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json"
+          }
+        },
+        {
+          "id": "130096",
+          "card_print_id": "4d4e26bf-1914-45c1-98a0-04cf6120ac74",
+          "source": "tcgplayer",
+          "external_id": "89817",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89817/pokemon-team-magma-vs-team-aqua-team-magma-technical-machine-01",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1377,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89817_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json"
+          }
+        },
+        {
+          "id": "130178",
+          "card_print_id": "475a24d1-4b1e-4318-b0db-9ec2c88bdfbb",
+          "source": "tcgplayer",
+          "external_id": "89926",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/89926/pokemon-supreme-victors-togekiss-c",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89926_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130222",
+          "card_print_id": "621536a3-d38a-4f22-9417-ce5e846a7960",
+          "source": "tcgplayer",
+          "external_id": "90079",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90079/pokemon-supreme-victors-turtwig",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90079_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130114",
+          "card_print_id": "05b98b9a-6f7a-467e-ab8b-686a64bc7b77",
+          "source": "tcgplayer",
+          "external_id": "90321",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90321/pokemon-supreme-victors-venusaur",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90321_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130231",
+          "card_print_id": "b6bccc67-06e0-4f61-bc0a-ed94bc7b7c75",
+          "source": "tcgplayer",
+          "external_id": "90427",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90427/pokemon-supreme-victors-vs-seeker",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90427_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130179",
+          "card_print_id": "3431714a-c296-4470-a44b-80c071ce0f59",
+          "source": "tcgplayer",
+          "external_id": "90454",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90454/pokemon-supreme-victors-wailmer",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90454_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130143",
+          "card_print_id": "5966c63d-fa8c-4440-8e46-b5d2c92a4a5c",
+          "source": "tcgplayer",
+          "external_id": "90460",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90460/pokemon-supreme-victors-wailord",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90460_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130223",
+          "card_print_id": "25f9b6c9-1135-420e-8003-a116460c4b1d",
+          "source": "tcgplayer",
+          "external_id": "90584",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90584/pokemon-supreme-victors-whismur",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90584_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130180",
+          "card_print_id": "84e74dd8-270f-4feb-9ecf-e12f7bdd74be",
+          "source": "tcgplayer",
+          "external_id": "90686",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90686/pokemon-supreme-victors-yanma",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Uncommon",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90686_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130115",
+          "card_print_id": "17c751d0-306a-48c8-a8a2-a442bdeef0de",
+          "source": "tcgplayer",
+          "external_id": "90692",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90692/pokemon-supreme-victors-yanmega",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Holo Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90692_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130144",
+          "card_print_id": "ecd177a5-77cd-4236-b8e0-87775f7f9664",
+          "source": "tcgplayer",
+          "external_id": "90718",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90718/pokemon-supreme-victors-zapdos-48",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90718_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130234",
+          "card_print_id": "f0b5ef9c-bbb7-4cd1-9e51-5a543b59aeef",
+          "source": "tcgplayer",
+          "external_id": "90719",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90719/pokemon-supreme-victors-zapdos-150",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Secret Rare",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90719_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        },
+        {
+          "id": "130224",
+          "card_print_id": "df3c5d93-cdcf-42cd-873b-944dfd1cb954",
+          "source": "tcgplayer",
+          "external_id": "90775",
+          "active": true,
+          "synced_at": "2026-06-19T06:46:37.042Z",
+          "meta": {
+            "match_rule": "normalized_set_name+number+name",
+            "source_url": "https://www.tcgplayer.com/product/90775/pokemon-supreme-victors-zubat",
+            "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1",
+            "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+            "source_rarity": "Common",
+            "source_group_id": 1384,
+            "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/90775_200w.jpg",
+            "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json"
+          }
+        }
+      ],
+      "scoped_hash_sha256": "d0104edeb3649404f86a6c6732becf21e2614a15c44823a83d0155bd434f6f93",
+      "global_counts": {
+        "active_tcgplayer_rows": 18065,
+        "active_tcgplayer_card_prints": 18065,
+        "active_tcgplayer_external_ids": 18065
+      },
+      "global_hash_sha256": "867e7c14b2a23e0b20f64efc697fb0cec98dcd7fb02704c8832740a32d4dab99"
+    }
+  },
+  "sample_rows": [
+    {
+      "card_print_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+      "source": "tcgplayer",
+      "external_id": "45167",
+      "set_code": "base2",
+      "number": "64",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/45167/pokemon-jungle-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\635_products.json",
+      "source_group_id": 635,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/45167/pokemon-jungle-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\635_products.json",
+        "source_group_id": 635,
+        "source_rarity": "Common",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/45167_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "0da2772e-4ddd-421b-a5b4-96ab56363dbc",
+      "source": "tcgplayer",
+      "external_id": "42552",
+      "set_code": "base4",
+      "number": "102",
+      "name": "Imposter Professor Oak",
+      "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42552_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+      "source": "tcgplayer",
+      "external_id": "42555",
+      "set_code": "base4",
+      "number": "105",
+      "name": "Pokémon Breeder",
+      "source_url": "https://www.tcgplayer.com/product/42555/pokemon-base-set-2-pokemon-breeder",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/42555/pokemon-base-set-2-pokemon-breeder",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42555_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+      "source": "tcgplayer",
+      "external_id": "106358",
+      "set_code": "base4",
+      "number": "106",
+      "name": "Pokémon Trader",
+      "source_url": "https://www.tcgplayer.com/product/106358/pokemon-base-set-2-pokemon-trader",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106358/pokemon-base-set-2-pokemon-trader",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106358_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "1025562c-fc2e-447c-9cc5-feb58d205ace",
+      "source": "tcgplayer",
+      "external_id": "106359",
+      "set_code": "base4",
+      "number": "114",
+      "name": "Pokémon Center",
+      "source_url": "https://www.tcgplayer.com/product/106359/pokemon-base-set-2-pokemon-center",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106359/pokemon-base-set-2-pokemon-center",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106359_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "d627fea9-45ac-4cac-8195-0ade9f427cb8",
+      "source": "tcgplayer",
+      "external_id": "106360",
+      "set_code": "base4",
+      "number": "115",
+      "name": "Pokédex",
+      "source_url": "https://www.tcgplayer.com/product/106360/pokemon-base-set-2-pokedex",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106360/pokemon-base-set-2-pokedex",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106360_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "15c7182b-18e4-4352-be8b-8b76b43f93d9",
+      "source": "tcgplayer",
+      "external_id": "106361",
+      "set_code": "base4",
+      "number": "121",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/106361/pokemon-base-set-2-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106361/pokemon-base-set-2-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Common",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106361_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "c2ea72e9-452d-4672-81a1-9fc80abe61a5",
+      "source": "tcgplayer",
+      "external_id": "88184",
+      "set_code": "ex10",
+      "number": "87",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/88184/pokemon-unseen-forces-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+      "source_group_id": 1398,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88184/pokemon-unseen-forces-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+        "source_group_id": 1398,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88184_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "093401fb-a48c-4d6e-8489-8616aa6a778f",
+      "source": "tcgplayer",
+      "external_id": "88235",
+      "set_code": "ex10",
+      "number": "88",
+      "name": "Pokémon Reversal",
+      "source_url": "https://www.tcgplayer.com/product/88235/pokemon-unseen-forces-pokemon-reversal",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+      "source_group_id": 1398,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88235/pokemon-unseen-forces-pokemon-reversal",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+        "source_group_id": 1398,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88235_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "95465425-e352-4b28-b0a1-13cfc30c06a7",
+      "source": "tcgplayer",
+      "external_id": "89773",
+      "set_code": "ex4",
+      "number": "79",
+      "name": "Team Aqua Technical Machine 01",
+      "source_url": "https://www.tcgplayer.com/product/89773/pokemon-team-magma-vs-team-aqua-team-aqua-technical-machine-01",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+      "source_group_id": 1377,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/89773/pokemon-team-magma-vs-team-aqua-team-aqua-technical-machine-01",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+        "source_group_id": 1377,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89773_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "4d4e26bf-1914-45c1-98a0-04cf6120ac74",
+      "source": "tcgplayer",
+      "external_id": "89817",
+      "set_code": "ex4",
+      "number": "84",
+      "name": "Team Magma Technical Machine 01",
+      "source_url": "https://www.tcgplayer.com/product/89817/pokemon-team-magma-vs-team-aqua-team-magma-technical-machine-01",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+      "source_group_id": 1377,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/89817/pokemon-team-magma-vs-team-aqua-team-magma-technical-machine-01",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+        "source_group_id": 1377,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89817_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "f90203f5-f02f-4818-9d34-2506b38e77d8",
+      "source": "tcgplayer",
+      "external_id": "88234",
+      "set_code": "ex7",
+      "number": "84",
+      "name": "Pokémon Retriever",
+      "source_url": "https://www.tcgplayer.com/product/88234/pokemon-team-rocket-returns-pokemon-retriever",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+      "source_group_id": 1428,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88234/pokemon-team-rocket-returns-pokemon-retriever",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+        "source_group_id": 1428,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88234_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a9a37e78-6136-4fe7-b03a-74216741f13d",
+      "source": "tcgplayer",
+      "external_id": "88784",
+      "set_code": "ex7",
+      "number": "89",
+      "name": "Rocket's Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+      "source_group_id": 1428,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+        "source_group_id": 1428,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88784_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "source": "tcgplayer",
+      "external_id": "85576",
+      "set_code": "pl2",
+      "number": "RT2",
+      "name": "Frost Rotom",
+      "source_url": "https://www.tcgplayer.com/product/85576/pokemon-rising-rivals-frost-rotom",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85576/pokemon-rising-rivals-frost-rotom",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85576_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "source": "tcgplayer",
+      "external_id": "87584",
+      "set_code": "pl2",
+      "number": "RT4",
+      "name": "Mow Rotom",
+      "source_url": "https://www.tcgplayer.com/product/87584/pokemon-rising-rivals-mow-rotom",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87584/pokemon-rising-rivals-mow-rotom",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87584_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "source": "tcgplayer",
+      "external_id": "84238",
+      "set_code": "pl2",
+      "number": "RT6",
+      "name": "Charon's Choice",
+      "source_url": "https://www.tcgplayer.com/product/84238/pokemon-rising-rivals-charons-choice",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/84238/pokemon-rising-rivals-charons-choice",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84238_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a5798f48-bf29-4650-93a3-75558a817afc",
+      "source": "tcgplayer",
+      "external_id": "83457",
+      "set_code": "pl3",
+      "number": "1",
+      "name": "Absol G",
+      "source_url": "https://www.tcgplayer.com/product/83457/pokemon-supreme-victors-absol-g",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/83457/pokemon-supreme-victors-absol-g",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83457_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "8d2ca1ec-3b80-4d17-87ad-bc4ed1b35024",
+      "source": "tcgplayer",
+      "external_id": "83914",
+      "set_code": "pl3",
+      "number": "2",
+      "name": "Blaziken FB",
+      "source_url": "https://www.tcgplayer.com/product/83914/pokemon-supreme-victors-blaziken-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/83914/pokemon-supreme-victors-blaziken-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83914_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "bc5bd4b4-e4d5-49ae-ae15-59ac3fac28d4",
+      "source": "tcgplayer",
+      "external_id": "84952",
+      "set_code": "pl3",
+      "number": "3",
+      "name": "Drifblim FB",
+      "source_url": "https://www.tcgplayer.com/product/84952/pokemon-supreme-victors-drifblim-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/84952/pokemon-supreme-victors-drifblim-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84952_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "6675e9ee-5c7a-4327-858d-d50c36b5b28f",
+      "source": "tcgplayer",
+      "external_id": "85125",
+      "set_code": "pl3",
+      "number": "4",
+      "name": "Electivire FB",
+      "source_url": "https://www.tcgplayer.com/product/85125/pokemon-supreme-victors-electivire-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85125/pokemon-supreme-victors-electivire-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85125_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "2b1d020a-02f8-4438-8163-10db7bfb1774",
+      "source": "tcgplayer",
+      "external_id": "85623",
+      "set_code": "pl3",
+      "number": "5",
+      "name": "Garchomp",
+      "source_url": "https://www.tcgplayer.com/product/85623/pokemon-supreme-victors-garchomp",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85623/pokemon-supreme-victors-garchomp",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85623_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "83fa0d94-4ce6-4d56-b766-21e9d923cbd5",
+      "source": "tcgplayer",
+      "external_id": "87058",
+      "set_code": "pl3",
+      "number": "6",
+      "name": "Magmortar",
+      "source_url": "https://www.tcgplayer.com/product/87058/pokemon-supreme-victors-magmortar",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87058/pokemon-supreme-victors-magmortar",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87058_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a8ea67dd-9667-4755-a523-d88dc44fb959",
+      "source": "tcgplayer",
+      "external_id": "87339",
+      "set_code": "pl3",
+      "number": "7",
+      "name": "Metagross",
+      "source_url": "https://www.tcgplayer.com/product/87339/pokemon-supreme-victors-metagross",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87339/pokemon-supreme-victors-metagross",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87339_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "90740ca1-cb80-4c1a-acf8-80364a299cb5",
+      "source": "tcgplayer",
+      "external_id": "88639",
+      "set_code": "pl3",
+      "number": "8",
+      "name": "Rayquaza C",
+      "source_url": "https://www.tcgplayer.com/product/88639/pokemon-supreme-victors-rayquaza-c",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88639/pokemon-supreme-victors-rayquaza-c",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88639_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "940012d3-e7be-41e7-84f3-9e778341b750",
+      "source": "tcgplayer",
+      "external_id": "88668",
+      "set_code": "pl3",
+      "number": "9",
+      "name": "Regigigas FB",
+      "source_url": "https://www.tcgplayer.com/product/88668/pokemon-supreme-victors-regigigas-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88668/pokemon-supreme-victors-regigigas-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88668_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    }
+  ]
+}

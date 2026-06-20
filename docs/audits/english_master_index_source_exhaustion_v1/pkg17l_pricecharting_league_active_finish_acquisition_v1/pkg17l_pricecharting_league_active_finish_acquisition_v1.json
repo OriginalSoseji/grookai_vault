@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:02:04.475Z",
+  "generated_at": "2026-06-20T04:58:16.395Z",
   "version": "pkg17l_pricecharting_league_active_finish_acquisition_v1",
   "package_id": "PKG-17L-PRICECHARTING-LEAGUE-ACTIVE-FINISH-ACQUISITION",
   "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
@@ -12,50 +12,54 @@
   "cleanup_performed": false,
   "quarantine_performed": false,
   "write_ready_now": 0,
-  "fingerprint_sha256": "22f32c09813586a66814267701031605becbefd74be0d4a42bbfe7b91db5f617",
+  "fingerprint_sha256": "3086d5759833ffa8abb9332862c209692b2f55ecca74f4342143bc6e9b063972",
   "summary": {
-    "target_rows": 78,
+    "target_rows": 89,
     "csv_rows_reviewed": 75855,
     "candidate_rows": 0,
-    "blocked_rows": 78,
+    "blocked_rows": 89,
     "fixture_records_written": 0,
     "by_status": {
-      "blocked_no_pricecharting_exact_league_active_finish": 78
+      "blocked_no_pricecharting_exact_league_active_finish": 89
     },
     "by_finish": {},
     "by_set": {
+      "bw1": 4,
       "sm7": 4,
       "sm8": 4,
       "xy1": 4,
       "xy3": 4,
+      "bw3": 3,
+      "bw8": 3,
       "dv1": 3,
-      "hgss2": 3,
-      "pl2": 3,
+      "hgss1": 3,
       "sm1": 3,
       "sm3": 3,
       "xy2": 3,
-      "bw3": 2,
+      "xy8": 3,
+      "bw11": 2,
       "bw5": 2,
-      "bw8": 2,
       "bw9": 2,
       "dp1": 2,
       "ex8": 2,
-      "hgss1": 2,
+      "hgss2": 2,
       "hgss3": 2,
       "hgss4": 2,
+      "pl3": 2,
+      "pl4": 2,
       "sm2": 2,
       "sm5": 2,
       "sm6": 2,
       "xy11": 2,
-      "bw1": 1,
       "bw10": 1,
-      "bw11": 1,
+      "bw2": 1,
       "bw7": 1,
       "ex12": 1,
       "ex14": 1,
       "ex5": 1,
       "ex9": 1,
-      "pl3": 1,
+      "pl1": 1,
+      "pl2": 1,
       "sm4": 1,
       "swsh1": 1,
       "swsh4": 1,
@@ -63,15 +67,77 @@
       "xy10": 1,
       "xy12": 1,
       "xy4": 1,
-      "xy8": 1,
       "xy9": 1
     },
     "by_variant_key": {
-      "league_stamp": 70,
+      "league_stamp": 81,
       "league_cup_staff_stamp": 8
     }
   },
   "rows": [
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "53",
+      "card_name": "Whirlipede",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 378,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 9
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "79",
+      "card_name": "Watchog",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 385,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 2
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "81",
+      "card_name": "Lillipup",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 385,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 2
+      }
+    },
     {
       "source_report": "PKG-15J",
       "set_key": "bw1",
@@ -135,6 +201,47 @@
     },
     {
       "source_report": "PKG-15J",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "109",
+      "card_name": "Bianca",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 387,
+        "missing_explicit_active_finish": 1
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "82",
+      "card_name": "Unfezant",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 384,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
       "set_key": "bw3",
       "set_name": "Noble Victories",
       "card_number": "8",
@@ -171,6 +278,27 @@
       "near_miss_reasons": {
         "number_mismatch": 385,
         "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 384,
+        "name_mismatch": 3,
+        "missing_explicit_active_finish": 1
       }
     },
     {
@@ -253,6 +381,26 @@
       "near_miss_reasons": {
         "number_mismatch": 384,
         "name_mismatch": 3,
+        "missing_explicit_active_finish": 1
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "120",
+      "card_name": "Escape Rope",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 387,
         "missing_explicit_active_finish": 1
       }
     },
@@ -541,6 +689,27 @@
       "source_report": "PKG-15J",
       "set_key": "hgss1",
       "set_name": "HeartGold & SoulSilver",
+      "card_number": "39",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 384,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
       "card_number": "97",
       "card_name": "Pokémon Collector",
       "variant_key": "league_stamp",
@@ -597,27 +766,6 @@
       "near_miss_reasons": {
         "number_mismatch": 384,
         "name_mismatch": 3,
-        "missing_explicit_active_finish": 1
-      }
-    },
-    {
-      "source_report": "PKG-15J",
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "21",
-      "card_name": "Poliwrath",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "queue_status": "active_finish_required",
-      "blockers": [],
-      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
-      "write_ready_now": 0,
-      "status": "blocked_no_pricecharting_exact_league_active_finish",
-      "block_reason": "no_exact_product_with_explicit_active_finish",
-      "near_miss_reasons": {
-        "number_mismatch": 385,
-        "name_mismatch": 2,
         "missing_explicit_active_finish": 1
       }
     },
@@ -727,10 +875,10 @@
     },
     {
       "source_report": "PKG-15J",
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "89",
-      "card_name": "Bebe's Search",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "104",
+      "card_name": "Broken Time-Space",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
       "finish_key": null,
@@ -741,8 +889,7 @@
       "status": "blocked_no_pricecharting_exact_league_active_finish",
       "block_reason": "no_exact_product_with_explicit_active_finish",
       "near_miss_reasons": {
-        "number_mismatch": 386,
-        "name_mismatch": 1,
+        "number_mismatch": 387,
         "missing_explicit_active_finish": 1
       }
     },
@@ -767,26 +914,6 @@
     },
     {
       "source_report": "PKG-15J",
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "98",
-      "card_name": "Volkner's Philosophy",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "queue_status": "active_finish_required",
-      "blockers": [],
-      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
-      "write_ready_now": 0,
-      "status": "blocked_no_pricecharting_exact_league_active_finish",
-      "block_reason": "no_exact_product_with_explicit_active_finish",
-      "near_miss_reasons": {
-        "number_mismatch": 387,
-        "name_mismatch": 1
-      }
-    },
-    {
-      "source_report": "PKG-15J",
       "set_key": "pl3",
       "set_name": "Supreme Victors",
       "card_number": "5",
@@ -803,6 +930,68 @@
       "near_miss_reasons": {
         "number_mismatch": 385,
         "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "26",
+      "card_name": "Dusknoir FB",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 385,
+        "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "32",
+      "card_name": "Spiritomb",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 384,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 3
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "87",
+      "card_name": "Expert Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 385,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 2
       }
     },
     {
@@ -1660,6 +1849,47 @@
         "number_mismatch": 383,
         "league_variant_mismatch": 4,
         "name_mismatch": 1
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 387,
+        "missing_explicit_active_finish": 1
+      }
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "status": "blocked_no_pricecharting_exact_league_active_finish",
+      "block_reason": "no_exact_product_with_explicit_active_finish",
+      "near_miss_reasons": {
+        "number_mismatch": 385,
+        "missing_explicit_active_finish": 1,
+        "name_mismatch": 2
       }
     },
     {

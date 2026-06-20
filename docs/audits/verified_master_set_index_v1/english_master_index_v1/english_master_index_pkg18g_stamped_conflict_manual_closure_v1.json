@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:06:16.410Z",
+  "generated_at": "2026-06-20T05:03:29.325Z",
   "version": "english_master_index_pkg18g_stamped_conflict_manual_closure_v1",
   "package_id": "PKG-18G-STAMPED-CONFLICT-MANUAL-CLOSURE",
   "audit_only": true,
@@ -14,7 +14,7 @@
     "execution_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
     "same_finish_split_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg16b_same_finish_stamped_split_readiness_v1.json"
   },
-  "fingerprint_sha256": "8673c803aebf5b4a811e872460e6d6bbdd77f2737c1e310984455a5e05994bab",
+  "fingerprint_sha256": "d4196d12d6603cc20eef4cb720c0f1664f12a82c38f66df8a64f0e696b946d20",
   "summary": {
     "conflict_rows": 3,
     "write_ready_rows": 0,

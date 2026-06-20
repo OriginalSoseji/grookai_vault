@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:56:42.725Z",
+  "generated_at": "2026-06-20T05:03:29.024Z",
   "version": "english_master_index_pkg18ab_stamped_no_write_governance_closure_v1",
   "package_id": "PKG-18AB-STAMPED-NO-WRITE-GOVERNANCE-CLOSURE",
   "audit_only": true,
@@ -11,12 +11,12 @@
   "global_apply_performed": false,
   "write_ready_now": 0,
   "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
-  "fingerprint_sha256": "87281bb0286957418f59db0d1d3f1d7d7682f95695ccbd6c4a69df58626b8579",
+  "fingerprint_sha256": "8161858ec1069cf0baa95f19c1ba7a8bdbaf3c4e7a3712f1279e13813d0bdbe0",
   "summary": {
     "closed_rows": 242,
     "generic_stamped_suppression_rows": 180,
     "battle_academy_display_metadata_rows": 62,
-    "remaining_future_guarded_rows": 334,
+    "remaining_future_guarded_rows": 263,
     "remaining_blocked_rows": 3,
     "by_execution_bucket": {
       "bucket_01_no_write_generic_stamped_suppression": 180,

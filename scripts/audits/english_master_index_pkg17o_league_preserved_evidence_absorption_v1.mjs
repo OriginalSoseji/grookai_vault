@@ -32,6 +32,7 @@ const FIXTURE_FAMILY_ALLOWLIST = [
   'generated_pkg17l_pricecharting_league_active_finish_acquisition_v1',
   'generated_pkg17m_skarmory_league_active_finish_second_source_v1',
   'generated_pkg17p_pokemonflashfire_league_reverse_source_v1',
+  'generated_pkg17s_league_reverse_second_source_v1',
 ];
 
 async function readJson(filePath) {

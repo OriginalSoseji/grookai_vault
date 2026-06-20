@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T22:36:44.289Z",
+  "generated_at": "2026-06-20T04:58:15.601Z",
   "version": "english_master_index_pkg17i4_pricecharting_stamp_label_readiness_v1",
   "package_id": "PKG-17I4-PRICECHARTING-STAMP-LABEL-READINESS",
   "future_package_id": "PKG-17J-PRICECHARTING-STAMPED-PARENT-IDENTITY-CANDIDATES",
@@ -17,7 +17,7 @@
     "fixture": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_stamp_label_v1/pricecharting_stamp_label_candidates_v1.json",
     "acquisition_report": "docs/audits/english_master_index_source_exhaustion_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1.json"
   },
-  "fingerprint_sha256": "3bc3ff05940b3933b21c82a2b1bdaff252e4cc08ca5756d0c28c2f003b21a02a",
+  "fingerprint_sha256": "75585c4b224ba07bc721563f5581679f9bc808421b9d9aa1843a340613f8fee8",
   "summary": {
     "candidate_source_rows": 42,
     "live_rows_returned": 42,
@@ -30,9 +30,11 @@
     },
     "by_blocker": {
       "active_finish_required": 39,
-      "base_parent_missing": 3,
-      "base_parent_missing_target_child_finish": 3,
-      "identity_projection_unavailable": 3
+      "identity_hash_collision": 17,
+      "target_stamped_parent_already_exists_review": 17,
+      "base_parent_missing": 5,
+      "identity_projection_unavailable": 5,
+      "base_parent_missing_target_child_finish": 3
     },
     "by_set": {
       "g1": 6,
@@ -163,11 +165,10 @@
       "base_parent_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -175,7 +176,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "744295be3d4a58381606859609872874101827c377675429f2f841019f4cd561",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -185,7 +186,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:bw10:14:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -204,11 +207,10 @@
       "base_parent_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -216,7 +218,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "9bc89cacb0a106d4dbd3ad1886c2d3a940ff00801eac29edcbf024ba18602bdf",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -226,7 +228,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:bw11:17:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -245,11 +249,10 @@
       "base_parent_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -257,7 +260,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "de945291da002018b96c0f67f61a8dce6e0d9478a390fe370df960fd280b59b8",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -267,7 +270,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:bw5:1:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -286,7 +291,6 @@
       "base_parent_id": "73f887b2-19b3-4b88-919e-759095b825fb",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
@@ -327,9 +331,7 @@
       "base_parent_id": "1d89261d-4cf6-40a1-a049-58e9e6112904",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
+        "holo"
       ],
       "target_parent_count": 0,
       "target_child_finish_count": 0,
@@ -368,7 +370,6 @@
       "base_parent_id": "0aecc1d0-bf98-4f0b-9cf8-d2018a07edd8",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
@@ -409,11 +410,10 @@
       "base_parent_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -421,7 +421,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "6a56146aa580ff54747d0f72dd5aa7cff26f0969139af741d3e8055ded14fa7b",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -431,7 +431,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:22:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -450,11 +452,10 @@
       "base_parent_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -462,7 +463,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "2b78993c3204dcd7bb799e9c6d3ede80091d8464aefb68e25451d39c82f84f7f",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 1,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -472,7 +473,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:26:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -491,11 +494,10 @@
       "base_parent_id": "3365d632-e982-4453-b230-65678c59d839",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -503,7 +505,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "f73f6f39432e6bc2e2c80846beb28ce997981022e49b18a56d01b47974a167fb",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -513,7 +515,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:32:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -532,11 +536,10 @@
       "base_parent_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -544,7 +547,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "30481f03446d53ef034d86d6f822fdb6cb912e2c0638790a385615881ee1f851",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -554,7 +557,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:50:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -573,11 +578,10 @@
       "base_parent_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -585,7 +589,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "94bf465eee6c8e8f3003633d0ef071d523e4bac9a9d60afbee99cc1e77cbcdd4",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -595,7 +599,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:53:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -614,11 +620,10 @@
       "base_parent_id": "14d43149-7879-4527-b129-66a9b40d0e24",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -626,7 +631,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "9231e96f0524947fd1e71e8d7de9d3a6ee1b1454b8640c2da043973f4caa19ea",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -636,7 +641,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:g1:8:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -696,7 +703,6 @@
       "base_candidate_count": 1,
       "base_child_finishes": [
         "cracked_ice",
-        "holo",
         "normal",
         "reverse"
       ],
@@ -737,11 +743,10 @@
       "base_parent_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -749,7 +754,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "6ccffcabe9f6b717505765d763ab22623131fcea79e3c07ed11e213c81321b30",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 4,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -759,7 +764,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:sm1:28:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -778,11 +785,10 @@
       "base_parent_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -790,7 +796,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "714c21626ab682b4b680d268644efea88bf7fe44ac535207ec6d0d444a5d4625",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 4,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -800,7 +806,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:sm1:64:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -819,11 +827,10 @@
       "base_parent_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -831,7 +838,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "f7bf83db87f0cb6d9b9d8065c0f9fb4287dfb6f502360a50d9d97d9a6cdf7843",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -841,7 +848,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:sm3:110:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -860,11 +869,10 @@
       "base_parent_id": "9608bbff-c551-48ee-916e-ad932d756870",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -872,7 +880,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "e8b5da5fbb5d504221759de991c02e49839128312673f49619f2da8244918b10",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -882,7 +890,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:sm4:71:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -902,7 +912,6 @@
       "base_candidate_count": 1,
       "base_child_finishes": [
         "holo",
-        "normal",
         "reverse"
       ],
       "target_parent_count": 0,
@@ -956,7 +965,7 @@
       "identity_key_hash": "9f5c9ebaa16df17efa13f2860a4b219d836dcf7164c73b7276fdbe2a87d74652",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 3,
+      "base_parent_external_mapping_count": 4,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/tinkaton-gamestop-105",
@@ -997,7 +1006,7 @@
       "identity_key_hash": "59a33a10db55f47bd4fff76dc8856ba2a8ac5423b587094d3dd78b731b7ce16d",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 3,
+      "base_parent_external_mapping_count": 4,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/baxcalibur-prize-pack-60",
@@ -1039,7 +1048,7 @@
       "identity_key_hash": "947367880f29f9551b43d4cf17a848a9d155381c6a42c1b63145642c98beef01",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/miraidon-prize-pack-121",
@@ -1159,7 +1168,7 @@
       "identity_key_hash": "4d35160549308231b909f9e2bd28d35b1170caf75909be6ec01ff65528aed553",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-reshiram-prize-pack-cosmos-holo-116",
@@ -1199,7 +1208,7 @@
       "identity_key_hash": "f9e020b6d39c88de3239a7836003a4ddd2d640e86dbb9d2c2cb52eb42b659154",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-prize-pack-cosmo-holo-150",
@@ -1239,7 +1248,7 @@
       "identity_key_hash": "ee2706079af78ff6cdec5e6d5a49d95682fbed5e1be0e915bf8613353173dfbe",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 1,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-darmanitan-prize-pack-27",
@@ -1280,7 +1289,7 @@
       "identity_key_hash": "ad7e31fefe3b963651bdab399a07ba9bfcb317932e1a0207fb2c1b49575e0836",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ionos-kilowattrel-prize-pack-55",
@@ -1320,7 +1329,7 @@
       "identity_key_hash": "4ceb09280faf1652648cd7bb7c8f5334fa79c118ab7c42f509b8a25830d22253",
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 2,
+      "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
       "source_kind": "marketplace_checklist",
       "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/lillies-ribombee-prize-pack-cosmos-holo-67",
@@ -1388,9 +1397,7 @@
       "base_parent_id": "d759b73d-9d7a-4199-b661-e48dea9522e2",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
+        "holo"
       ],
       "target_parent_count": 0,
       "target_child_finish_count": 0,
@@ -1426,21 +1433,17 @@
       "finish_key": null,
       "target_parent_id": "26b142ad-b950-4445-85f3-fcb13a73973a",
       "target_child_id": null,
-      "base_parent_id": "70f39107-7bba-412a-8303-1fc923038a08",
-      "base_candidate_count": 1,
-      "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
+      "base_parent_id": null,
+      "base_candidate_count": 0,
+      "base_child_finishes": [],
       "target_parent_count": 0,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
-      "ready_identity_projection": true,
-      "identity_domain": "pokemon_eng_standard",
-      "identity_key_version": "pokemon_eng_standard:v1",
-      "identity_key_hash": "4526ccca2af10e96f12cf8069fd22553efd613867702c8a44e2825755af9735d",
+      "ready_identity_projection": false,
+      "identity_domain": null,
+      "identity_key_version": null,
+      "identity_key_hash": null,
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 0,
@@ -1451,7 +1454,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:svp:91:staff_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "base_parent_missing",
+        "identity_projection_unavailable"
       ],
       "write_ready_now": 0
     },
@@ -1467,21 +1472,17 @@
       "finish_key": null,
       "target_parent_id": "529a02eb-7353-4c0d-9f2c-d1c747373099",
       "target_child_id": null,
-      "base_parent_id": "7195cbfe-f3ee-447e-9fcf-53dd2828663c",
-      "base_candidate_count": 1,
-      "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
+      "base_parent_id": null,
+      "base_candidate_count": 0,
+      "base_child_finishes": [],
       "target_parent_count": 0,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
-      "ready_identity_projection": true,
-      "identity_domain": "pokemon_eng_standard",
-      "identity_key_version": "pokemon_eng_standard:v1",
-      "identity_key_hash": "312d630e85e970b70fa05377ed91afeeb24dac374eb908128439704ef4a30151",
+      "ready_identity_projection": false,
+      "identity_domain": null,
+      "identity_key_version": null,
+      "identity_key_hash": null,
       "identity_hash_collision_count": 0,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 0,
@@ -1492,7 +1493,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:svp:92:staff_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "base_parent_missing",
+        "identity_projection_unavailable"
       ],
       "write_ready_now": 0
     },
@@ -1551,11 +1554,10 @@
       "base_parent_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -1563,7 +1565,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "18c15b00272f33253c4b65a6304278f82c9fd22fb215ed9320a65ace6e26b671",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -1573,7 +1575,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:xy12:41:toys_r_us_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -1592,11 +1596,10 @@
       "base_parent_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -1604,7 +1607,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "aec29005a79064d22d175b9e280b144c065b3e2a515b668d8b86b07780593c55",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 4,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -1614,7 +1617,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:xy2:80:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -1633,11 +1638,10 @@
       "base_parent_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -1645,7 +1649,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "e6b271c4d8d424955f6a41e12ccb9b1f0a705924f395fb3154ed138d37d96ec5",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -1655,7 +1659,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:xy5:20:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -1674,11 +1680,10 @@
       "base_parent_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
         "normal",
         "reverse"
       ],
-      "target_parent_count": 0,
+      "target_parent_count": 1,
       "target_child_finish_count": 0,
       "forbidden_stamped_child_count": 0,
       "active_finish_exists": false,
@@ -1686,7 +1691,7 @@
       "identity_domain": "pokemon_eng_standard",
       "identity_key_version": "pokemon_eng_standard:v1",
       "identity_key_hash": "a79de389f3f038750f63eb88d0ca8f4259320cdce2faf815b9c1fe2e4b3c599f",
-      "identity_hash_collision_count": 0,
+      "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_parent_external_mapping_count": 3,
       "source_key": "pricecharting_csv_product_stamp_label",
@@ -1696,7 +1701,9 @@
       "raw_snapshot_ref": "pricecharting_stamp_label:xy6:67:build_a_bear_workshop_stamp",
       "readiness_status": "label_candidate_only_active_finish_required",
       "blockers": [
-        "active_finish_required"
+        "active_finish_required",
+        "target_stamped_parent_already_exists_review",
+        "identity_hash_collision"
       ],
       "write_ready_now": 0
     },
@@ -1715,9 +1722,7 @@
       "base_parent_id": "173cb0eb-c65d-42b6-ba2d-c52f86e55e06",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
+        "normal"
       ],
       "target_parent_count": 0,
       "target_child_finish_count": 0,
@@ -1756,9 +1761,7 @@
       "base_parent_id": "c30bcfc5-c1e1-4129-9261-301300a4833f",
       "base_candidate_count": 1,
       "base_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
+        "normal"
       ],
       "target_parent_count": 0,
       "target_child_finish_count": 0,

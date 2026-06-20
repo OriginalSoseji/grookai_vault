@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:52:52.628Z",
+  "generated_at": "2026-06-20T05:03:27.382Z",
   "version": "english_master_index_pkg18_stamped_completion_governance_plan_v1",
   "package_id": "PKG-18-STAMPED-COMPLETION-GOVERNANCE-PLAN",
   "audit_only": true,
@@ -16,58 +16,59 @@
     "variant_family_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17k_stamped_active_finish_variant_family_plan_v1.json",
     "league_absorption": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17o_league_preserved_evidence_absorption_v1.json"
   },
-  "fingerprint_sha256": "5cffb65e20841afa61b0d3108b4530e0bd1ee6f06f8d670ad78df06e77f770ba",
+  "fingerprint_sha256": "191a91b8ff55542fd8147c458df8387229cade0eaeb36bf897d321d5ff6dfa99",
   "summary": {
-    "remaining_queue_rows": 579,
+    "remaining_queue_rows": 567,
     "governance_rules": 13,
     "bulk_lanes": 7,
     "deterministic_no_source_rows": 301,
-    "source_required_rows": 275,
+    "source_required_rows": 263,
     "manual_conflict_rows": 3,
     "by_queue_status": {
-      "active_finish_required": 312,
+      "active_finish_required": 289,
       "stamp_identity_label_needed": 178,
       "base_parent_missing": 45,
       "blocked_second_independent_source_needed": 18,
       "base_parent_ambiguous": 14,
+      "existing_stamped_parent_collision_review": 11,
       "blocked_battle_academy_display_metadata_strategy": 5,
       "active_finish_required_with_dependency_awareness": 4,
       "blocked_conflicting_finish_observation": 3
     },
     "by_variant_family": {
       "generic_or_unknown": 199,
-      "league": 80,
-      "prize_pack": 75,
+      "league": 92,
       "battle_academy": 67,
-      "championship_or_staff": 43,
+      "prize_pack": 63,
+      "championship_or_staff": 53,
       "small_custom_stamp": 36,
-      "halloween": 31,
       "professor_program": 20,
       "prerelease": 16,
+      "halloween": 9,
       "wotc_legacy_stamp": 7,
       "player_rewards_crosshatch": 5
     },
     "by_governance_rule": {
       "generic_stamped_suppression_rule": 180,
-      "league_crosshatch_finish_alias_rule": 84,
-      "prize_pack_finish_label_mapping_rule": 63,
+      "league_crosshatch_finish_alias_rule": 96,
       "battle_academy_display_metadata_rule": 62,
+      "prize_pack_finish_label_mapping_rule": 51,
       "base_parent_required_before_stamped_identity_rule": 45,
+      "event_staff_stamp_hierarchy_rule": 36,
       "small_custom_stamp_source_rule": 32,
-      "halloween_stamp_display_identity_rule": 28,
-      "event_staff_stamp_hierarchy_rule": 26,
       "second_source_rule_preserved": 18,
       "canonical_base_parent_selection_rule": 14,
       "prerelease_stamp_identity_rule": 12,
       "professor_program_stamp_identity_rule": 12,
+      "halloween_stamp_display_identity_rule": 6,
       "manual_conflict_adjudication_rule": 3
     },
     "by_completion_lane": {
       "lane_e_variant_family_finish_acquisition": 194,
       "lane_a_governance_suppression_no_write": 180,
-      "lane_d_prize_pack_finish_mapping": 63,
       "lane_b_display_metadata_strategy_no_printing_write": 62,
       "lane_c_base_parent_resolution": 59,
+      "lane_d_prize_pack_finish_mapping": 51,
       "lane_f_second_source_acquisition": 18,
       "lane_g_conflict_adjudication": 3
     }
@@ -142,23 +143,24 @@
     },
     {
       "rule_id": "league_crosshatch_finish_alias_rule",
-      "row_count": 84,
+      "row_count": 96,
       "determinism": "bounded_alias_rule",
       "can_reduce_queue_without_source": false,
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "description": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "by_status": {
-        "active_finish_required": 83,
-        "active_finish_required_with_dependency_awareness": 1
+        "active_finish_required": 94,
+        "active_finish_required_with_dependency_awareness": 1,
+        "existing_stamped_parent_collision_review": 1
       },
       "by_variant_family": {
-        "league": 79,
+        "league": 91,
         "player_rewards_crosshatch": 5
       },
       "top_variant_keys": [
         {
           "key": "league_stamp",
-          "count": 71
+          "count": 83
         },
         {
           "key": "league_cup_staff_stamp",
@@ -175,7 +177,11 @@
       ],
       "top_sets": [
         {
-          "key": "hgss2",
+          "key": "bw1",
+          "count": 5
+        },
+        {
+          "key": "hgss1",
           "count": 4
         },
         {
@@ -195,86 +201,20 @@
           "count": 4
         },
         {
+          "key": "bw3",
+          "count": 3
+        },
+        {
+          "key": "bw8",
+          "count": 3
+        },
+        {
           "key": "dv1",
           "count": 3
         },
         {
-          "key": "hgss1",
+          "key": "hgss2",
           "count": 3
-        },
-        {
-          "key": "pl2",
-          "count": 3
-        },
-        {
-          "key": "sm1",
-          "count": 3
-        },
-        {
-          "key": "sm3",
-          "count": 3
-        }
-      ]
-    },
-    {
-      "rule_id": "prize_pack_finish_label_mapping_rule",
-      "row_count": 63,
-      "determinism": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "description": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "by_status": {
-        "active_finish_required": 63
-      },
-      "by_variant_family": {
-        "prize_pack": 63
-      },
-      "top_variant_keys": [
-        {
-          "key": "prize_pack_stamp",
-          "count": 63
-        }
-      ],
-      "top_sets": [
-        {
-          "key": "swsh5",
-          "count": 17
-        },
-        {
-          "key": "swsh1",
-          "count": 10
-        },
-        {
-          "key": "swsh6",
-          "count": 9
-        },
-        {
-          "key": "swsh9",
-          "count": 8
-        },
-        {
-          "key": "swsh7",
-          "count": 7
-        },
-        {
-          "key": "swsh2",
-          "count": 4
-        },
-        {
-          "key": "swsh3",
-          "count": 2
-        },
-        {
-          "key": "swshp",
-          "count": 2
-        },
-        {
-          "key": "bw2",
-          "count": 1
-        },
-        {
-          "key": "bw9",
-          "count": 1
         }
       ]
     },
@@ -338,6 +278,68 @@
         },
         {
           "key": "sm10",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "rule_id": "prize_pack_finish_label_mapping_rule",
+      "row_count": 51,
+      "determinism": "needs_governed_mapping",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
+      "description": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
+      "by_status": {
+        "active_finish_required": 51
+      },
+      "by_variant_family": {
+        "prize_pack": 51
+      },
+      "top_variant_keys": [
+        {
+          "key": "prize_pack_stamp",
+          "count": 51
+        }
+      ],
+      "top_sets": [
+        {
+          "key": "swsh5",
+          "count": 14
+        },
+        {
+          "key": "swsh1",
+          "count": 8
+        },
+        {
+          "key": "swsh6",
+          "count": 8
+        },
+        {
+          "key": "swsh9",
+          "count": 5
+        },
+        {
+          "key": "swsh2",
+          "count": 4
+        },
+        {
+          "key": "swsh7",
+          "count": 4
+        },
+        {
+          "key": "swsh3",
+          "count": 2
+        },
+        {
+          "key": "swshp",
+          "count": 2
+        },
+        {
+          "key": "bw2",
+          "count": 1
+        },
+        {
+          "key": "bw9",
           "count": 1
         }
       ]
@@ -420,6 +422,106 @@
         },
         {
           "key": "sv02",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "rule_id": "event_staff_stamp_hierarchy_rule",
+      "row_count": 36,
+      "determinism": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "description": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "by_status": {
+        "active_finish_required": 25,
+        "existing_stamped_parent_collision_review": 10,
+        "active_finish_required_with_dependency_awareness": 1
+      },
+      "by_variant_family": {
+        "championship_or_staff": 36
+      },
+      "top_variant_keys": [
+        {
+          "key": "regional_championships_stamp",
+          "count": 10
+        },
+        {
+          "key": "staff_stamp",
+          "count": 7
+        },
+        {
+          "key": "city_championships_stamp",
+          "count": 3
+        },
+        {
+          "key": "finalist_stamp",
+          "count": 3
+        },
+        {
+          "key": "national_championships_stamp",
+          "count": 3
+        },
+        {
+          "key": "quarter_finalist_stamp",
+          "count": 3
+        },
+        {
+          "key": "championship_staff_stamp",
+          "count": 2
+        },
+        {
+          "key": "regional_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "key": "world_championships_stamp",
+          "count": 2
+        },
+        {
+          "key": "asia_championship_stamp",
+          "count": 1
+        }
+      ],
+      "top_sets": [
+        {
+          "key": "sv10",
+          "count": 4
+        },
+        {
+          "key": "bw5",
+          "count": 3
+        },
+        {
+          "key": "xy1",
+          "count": 3
+        },
+        {
+          "key": "bwp",
+          "count": 2
+        },
+        {
+          "key": "dp6",
+          "count": 2
+        },
+        {
+          "key": "sm1",
+          "count": 2
+        },
+        {
+          "key": "svp",
+          "count": 2
+        },
+        {
+          "key": "xy8",
+          "count": 2
+        },
+        {
+          "key": "bw3",
+          "count": 1
+        },
+        {
+          "key": "dp1",
           "count": 1
         }
       ]
@@ -519,167 +621,6 @@
         },
         {
           "key": "me02",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "rule_id": "halloween_stamp_display_identity_rule",
-      "row_count": 28,
-      "determinism": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "description": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "by_status": {
-        "active_finish_required": 28
-      },
-      "by_variant_family": {
-        "halloween": 28
-      },
-      "top_variant_keys": [
-        {
-          "key": "pikachu_jack_o_lantern_stamp",
-          "count": 27
-        },
-        {
-          "key": "pikachu_pumpkin_stamp",
-          "count": 1
-        }
-      ],
-      "top_sets": [
-        {
-          "key": "swsh11",
-          "count": 4
-        },
-        {
-          "key": "swsh4",
-          "count": 4
-        },
-        {
-          "key": "swsh2",
-          "count": 3
-        },
-        {
-          "key": "swsh3",
-          "count": 3
-        },
-        {
-          "key": "swsh1",
-          "count": 2
-        },
-        {
-          "key": "swsh10",
-          "count": 2
-        },
-        {
-          "key": "swsh5",
-          "count": 2
-        },
-        {
-          "key": "swsh6",
-          "count": 2
-        },
-        {
-          "key": "swsh9",
-          "count": 2
-        },
-        {
-          "key": "sv05",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "rule_id": "event_staff_stamp_hierarchy_rule",
-      "row_count": 26,
-      "determinism": "variant_normalization_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_identity_after second source",
-      "description": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
-      "by_status": {
-        "active_finish_required": 25,
-        "active_finish_required_with_dependency_awareness": 1
-      },
-      "by_variant_family": {
-        "championship_or_staff": 26
-      },
-      "top_variant_keys": [
-        {
-          "key": "staff_stamp",
-          "count": 7
-        },
-        {
-          "key": "regional_championships_stamp",
-          "count": 4
-        },
-        {
-          "key": "finalist_stamp",
-          "count": 3
-        },
-        {
-          "key": "quarter_finalist_stamp",
-          "count": 3
-        },
-        {
-          "key": "championship_staff_stamp",
-          "count": 2
-        },
-        {
-          "key": "national_championships_stamp",
-          "count": 2
-        },
-        {
-          "key": "regional_championships_staff_stamp",
-          "count": 2
-        },
-        {
-          "key": "world_championships_stamp",
-          "count": 2
-        },
-        {
-          "key": "asia_championship_stamp",
-          "count": 1
-        }
-      ],
-      "top_sets": [
-        {
-          "key": "sv10",
-          "count": 4
-        },
-        {
-          "key": "bwp",
-          "count": 2
-        },
-        {
-          "key": "dp6",
-          "count": 2
-        },
-        {
-          "key": "svp",
-          "count": 2
-        },
-        {
-          "key": "bw3",
-          "count": 1
-        },
-        {
-          "key": "bw5",
-          "count": 1
-        },
-        {
-          "key": "dpp",
-          "count": 1
-        },
-        {
-          "key": "hgss2",
-          "count": 1
-        },
-        {
-          "key": "sm1",
-          "count": 1
-        },
-        {
-          "key": "sm3",
           "count": 1
         }
       ]
@@ -963,6 +904,40 @@
       ]
     },
     {
+      "rule_id": "halloween_stamp_display_identity_rule",
+      "row_count": 6,
+      "determinism": "source_required_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "no_write_without_exact_sources",
+      "description": "Keep source-law requirements active; use rule only for classification and package routing.",
+      "by_status": {
+        "active_finish_required": 6
+      },
+      "by_variant_family": {
+        "halloween": 6
+      },
+      "top_variant_keys": [
+        {
+          "key": "pikachu_jack_o_lantern_stamp",
+          "count": 6
+        }
+      ],
+      "top_sets": [
+        {
+          "key": "swsh11",
+          "count": 4
+        },
+        {
+          "key": "sv05",
+          "count": 1
+        },
+        {
+          "key": "svp",
+          "count": 1
+        }
+      ]
+    },
+    {
       "rule_id": "manual_conflict_adjudication_rule",
       "row_count": 3,
       "determinism": "source_required_rule",
@@ -1234,44 +1209,44 @@
     },
     {
       "lane_id": "lane_d_prize_pack_finish_mapping",
-      "row_count": 63,
+      "row_count": 51,
       "write_authorized_now": false,
       "recommended_next_artifact": "PKG-18D Prize Pack finish label mapping adjudication; then bulk readiness if conflicts close.",
       "by_rule": {
-        "prize_pack_finish_label_mapping_rule": 63
+        "prize_pack_finish_label_mapping_rule": 51
       },
       "by_status": {
-        "active_finish_required": 63
+        "active_finish_required": 51
       },
       "top_variant_keys": [
         {
           "key": "prize_pack_stamp",
-          "count": 63
+          "count": 51
         }
       ],
       "top_sets": [
         {
           "key": "swsh5",
-          "count": 17
+          "count": 14
         },
         {
           "key": "swsh1",
-          "count": 10
-        },
-        {
-          "key": "swsh6",
-          "count": 9
-        },
-        {
-          "key": "swsh9",
           "count": 8
         },
         {
-          "key": "swsh7",
-          "count": 7
+          "key": "swsh6",
+          "count": 8
+        },
+        {
+          "key": "swsh9",
+          "count": 5
         },
         {
           "key": "swsh2",
+          "count": 4
+        },
+        {
+          "key": "swsh7",
           "count": 4
         },
         {
@@ -1298,25 +1273,22 @@
       "write_authorized_now": false,
       "recommended_next_artifact": "PKG-18E variant-family source acquisition in bulk; produce large guarded packages only for exact two-source rows.",
       "by_rule": {
-        "league_crosshatch_finish_alias_rule": 84,
+        "league_crosshatch_finish_alias_rule": 96,
+        "event_staff_stamp_hierarchy_rule": 36,
         "small_custom_stamp_source_rule": 32,
-        "halloween_stamp_display_identity_rule": 28,
-        "event_staff_stamp_hierarchy_rule": 26,
         "prerelease_stamp_identity_rule": 12,
-        "professor_program_stamp_identity_rule": 12
+        "professor_program_stamp_identity_rule": 12,
+        "halloween_stamp_display_identity_rule": 6
       },
       "by_status": {
-        "active_finish_required": 191,
+        "active_finish_required": 180,
+        "existing_stamped_parent_collision_review": 11,
         "active_finish_required_with_dependency_awareness": 3
       },
       "top_variant_keys": [
         {
           "key": "league_stamp",
-          "count": 71
-        },
-        {
-          "key": "pikachu_jack_o_lantern_stamp",
-          "count": 27
+          "count": 83
         },
         {
           "key": "prerelease_stamp",
@@ -1327,12 +1299,20 @@
           "count": 12
         },
         {
+          "key": "regional_championships_stamp",
+          "count": 10
+        },
+        {
           "key": "league_cup_staff_stamp",
           "count": 8
         },
         {
           "key": "staff_stamp",
           "count": 7
+        },
+        {
+          "key": "pikachu_jack_o_lantern_stamp",
+          "count": 6
         },
         {
           "key": "play_pok_mon_thank_you_stamp",
@@ -1345,20 +1325,16 @@
         {
           "key": "player_rewards_crosshatch_stamp",
           "count": 4
-        },
-        {
-          "key": "regional_championships_stamp",
-          "count": 4
         }
       ],
       "top_sets": [
         {
-          "key": "swsh3",
+          "key": "swshp",
           "count": 9
         },
         {
-          "key": "swshp",
-          "count": 9
+          "key": "bw1",
+          "count": 8
         },
         {
           "key": "dv1",
@@ -1369,27 +1345,27 @@
           "count": 7
         },
         {
+          "key": "xy1",
+          "count": 7
+        },
+        {
           "key": "sm8",
           "count": 6
         },
         {
-          "key": "swsh4",
+          "key": "swsh3",
           "count": 6
         },
         {
-          "key": "bw1",
+          "key": "bw5",
           "count": 5
         },
         {
-          "key": "hgss2",
+          "key": "hgss1",
           "count": 5
         },
         {
-          "key": "swsh1",
-          "count": 5
-        },
-        {
-          "key": "swsh11",
+          "key": "sm1",
           "count": 5
         }
       ]
@@ -2387,6 +2363,26 @@
     {
       "set_key": "dp1",
       "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
       "card_number": "99",
       "card_name": "Skorupi",
       "queue_status": "stamp_identity_label_needed",
@@ -2977,6 +2973,24 @@
       ]
     },
     {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "104",
+      "card_name": "Broken Time-Space",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
       "set_key": "pop9",
       "set_name": "POP Series 9",
       "card_number": "15",
@@ -2999,44 +3013,8 @@
     {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
-      "card_number": "89",
-      "card_name": "Bebe's Search",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": []
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
       "card_number": "96",
       "card_name": "Team Galactic's Invention G-109 SP Radar",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": []
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "98",
-      "card_name": "Volkner's Philosophy",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -3055,6 +3033,24 @@
       "set_name": "Supreme Victors",
       "card_number": "5",
       "card_name": "Garchomp",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "26",
+      "card_name": "Dusknoir FB",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -3098,6 +3094,60 @@
       "stamp_label": "PokéBall Stamped, Player Rewards Promo; 2009 2010",
       "finish_key": null,
       "variant_family": "player_rewards_crosshatch",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "32",
+      "card_name": "Spiritomb",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "87",
+      "card_name": "Expert Belt",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "39",
+      "card_name": "Delibird",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
       "governance_rule_id": "league_crosshatch_finish_alias_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "bounded_alias_rule",
@@ -3203,24 +3253,6 @@
       "set_name": "HS—Unleashed",
       "card_number": "7",
       "card_name": "Politoed",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": []
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "21",
-      "card_name": "Poliwrath",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -3711,6 +3743,60 @@
     {
       "set_key": "bw1",
       "set_name": "Black & White",
+      "card_number": "53",
+      "card_name": "Whirlipede",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "79",
+      "card_name": "Watchog",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "81",
+      "card_name": "Lillipup",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
       "card_number": "105",
       "card_name": "Grass Energy",
       "queue_status": "active_finish_required",
@@ -3863,6 +3949,24 @@
     {
       "set_key": "bw2",
       "set_name": "Emerging Powers",
+      "card_number": "82",
+      "card_name": "Unfezant",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
       "card_number": "95",
       "card_name": "Pokémon Catcher",
       "queue_status": "active_finish_required",
@@ -3901,6 +4005,24 @@
       "set_name": "Noble Victories",
       "card_number": "11",
       "card_name": "Shelmet",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -4009,6 +4131,26 @@
     {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
       "card_number": "60",
       "card_name": "Umbreon",
       "queue_status": "stamp_identity_label_needed",
@@ -4024,6 +4166,26 @@
       "recommended_action": "Generic stamped claims are not canonical identity. They remain blocked until exact stamp label is known.",
       "blockers": [
         "stamp_identity_generic_stamped_only"
+      ]
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
       ]
     },
     {
@@ -4175,6 +4337,24 @@
       "set_name": "Plasma Storm",
       "card_number": "118",
       "card_name": "Colress",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "120",
+      "card_name": "Escape Rope",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -4395,6 +4575,24 @@
       "blockers": []
     },
     {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "109",
+      "card_name": "Bianca",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
       "set_key": "xy1",
       "set_name": "XY",
       "card_number": "56",
@@ -4429,6 +4627,46 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": []
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
     },
     {
       "set_key": "xy1",
@@ -4767,6 +5005,42 @@
     {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": []
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
       "card_number": "138",
       "card_name": "Giovanni's Scheme",
       "queue_status": "active_finish_required",
@@ -4781,6 +5055,26 @@
       "write_effect": "can_unlock_bulk_identity_after second source",
       "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
       "blockers": []
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
     },
     {
       "set_key": "xy9",
@@ -4975,6 +5269,26 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": []
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
     },
     {
       "set_key": "xy11",
@@ -5391,6 +5705,26 @@
     {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
       "card_number": "132",
       "card_name": "Switch",
       "queue_status": "active_finish_required",
@@ -5783,6 +6117,26 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
       "card_number": "122",
       "card_name": "Escape Board",
       "queue_status": "active_finish_required",
@@ -5833,6 +6187,46 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": []
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ]
     },
     {
       "set_key": "sm6",
@@ -6857,42 +7251,6 @@
     {
       "set_key": "swsh1",
       "set_name": "Sword & Shield",
-      "card_number": "89",
-      "card_name": "Sinistea",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "90",
-      "card_name": "Polteageist",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
       "card_number": "117",
       "card_name": "Galarian Zigzagoon",
       "queue_status": "active_finish_required",
@@ -6960,42 +7318,6 @@
       "can_reduce_queue_without_source": true,
       "write_effect": "defer_card_printing_writes",
       "recommended_action": "Battle Academy deck marks are display/deck metadata unless exact separate physical printing evidence proves otherwise. Never create child finish_key=stamped.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "162",
-      "card_name": "Energy Switch",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "164",
-      "card_name": "Great Ball",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
       "blockers": []
     },
     {
@@ -7181,60 +7503,6 @@
     {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
-      "card_number": "31",
-      "card_name": "Litwick",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "32",
-      "card_name": "Lampent",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "102",
-      "card_name": "Galarian Runerigus",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
       "card_number": "109",
       "card_name": "Falinks",
       "queue_status": "active_finish_required",
@@ -7399,24 +7667,6 @@
     {
       "set_key": "swsh3",
       "set_name": "Darkness Ablaze",
-      "card_number": "82",
-      "card_name": "Sinistea",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
       "card_number": "83",
       "card_name": "Polteageist",
       "queue_status": "active_finish_required",
@@ -7425,42 +7675,6 @@
       "finish_key": null,
       "variant_family": "small_custom_stamp",
       "governance_rule_id": "small_custom_stamp_source_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "102",
-      "card_name": "Spinarak",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "103",
-      "card_name": "Ariados",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -7680,24 +7894,6 @@
     {
       "set_key": "swsh4",
       "set_name": "Vivid Voltage",
-      "card_number": "19",
-      "card_name": "Dhelmise",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
       "card_number": "53",
       "card_name": "Blitzle",
       "queue_status": "active_finish_required",
@@ -7729,60 +7925,6 @@
       "can_reduce_queue_without_source": true,
       "write_effect": "defer_card_printing_writes",
       "recommended_action": "Battle Academy deck marks are display/deck metadata unless exact separate physical printing evidence proves otherwise. Never create child finish_key=stamped.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "69",
-      "card_name": "Duskull",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "70",
-      "card_name": "Dusclops",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "95",
-      "card_name": "Lycanroc",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
       "blockers": []
     },
     {
@@ -7938,24 +8080,6 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "card_number": "69",
-      "card_name": "Cubone",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
       "card_number": "82",
       "card_name": "Sandaconda",
       "queue_status": "active_finish_required",
@@ -7964,24 +8088,6 @@
       "finish_key": null,
       "variant_family": "small_custom_stamp",
       "governance_rule_id": "small_custom_stamp_source_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "93",
-      "card_name": "Murkrow",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -8172,60 +8278,6 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "card_number": "136",
-      "card_name": "Tool Jammer",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "137",
-      "card_name": "Tower of Darkness",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "138",
-      "card_name": "Tower of Waters",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
       "card_number": "139",
       "card_name": "Urn of Vitality",
       "queue_status": "active_finish_required",
@@ -8316,60 +8368,6 @@
       "blockers": [
         "stamp_identity_generic_stamped_only"
       ]
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "55",
-      "card_name": "Gastly",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "56",
-      "card_name": "Haunter",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "64",
-      "card_name": "Cresselia",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
     },
     {
       "set_key": "swsh6",
@@ -8670,60 +8668,6 @@
     {
       "set_key": "swsh7",
       "set_name": "Evolving Skies",
-      "card_number": "144",
-      "card_name": "Crystal Cave",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "146",
-      "card_name": "Dream Ball",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "154",
-      "card_name": "Rescue Carrier",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
       "card_number": "161",
       "card_name": "Stormy Mountains",
       "queue_status": "active_finish_required",
@@ -8737,24 +8681,6 @@
       "can_reduce_queue_without_source": false,
       "write_effect": "blocked_until_standard_set_vs_foil_mapping",
       "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "16",
-      "card_name": "Phantump",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
       "blockers": []
     },
     {
@@ -9104,42 +9030,6 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "card_number": "60",
-      "card_name": "Duskull",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "61",
-      "card_name": "Dusclops",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_pumpkin_stamp",
-      "stamp_label": "Pikachu Pumpkin Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
       "card_number": "126",
       "card_name": "Tornadus",
       "queue_status": "active_finish_required",
@@ -9176,44 +9066,8 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "card_number": "134",
-      "card_name": "Cheren's Care",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
       "card_number": "137",
       "card_name": "Collapsed Stadium",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "138",
-      "card_name": "Cynthia's Ambition",
       "queue_status": "active_finish_required",
       "variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
@@ -9256,60 +9110,6 @@
       "finish_key": null,
       "variant_family": "professor_program",
       "governance_rule_id": "professor_program_stamp_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "148",
-      "card_name": "Roseanne's Backup",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "58",
-      "card_name": "Misdreavus",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "103",
-      "card_name": "Nickit",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -9526,24 +9326,6 @@
       "blockers": [
         "stamp_identity_generic_stamped_only"
       ]
-    },
-    {
-      "set_key": "swsh12",
-      "set_name": "Silver Tempest",
-      "card_number": "103",
-      "card_name": "Zubat",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": []
     },
     {
       "set_key": "swsh12",

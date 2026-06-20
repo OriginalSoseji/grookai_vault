@@ -116,7 +116,7 @@ async function main() {
     {
       bucket: '04 Prize Pack finish mapping',
       rows: prizePackMapping.summary.target_rows,
-      outcome: `${prizePackMapping.summary.blocked_rows} blocked; 0 write-ready rows`,
+      outcome: `${prizePackMapping.summary.blocked_rows} blocked; ${prizePackMapping.summary.ready_for_guarded_dry_run} ready for guarded dry-run`,
     },
     {
       bucket: '05/06 variant-family and second-source acquisition',
@@ -158,9 +158,10 @@ async function main() {
     summary: {
       original_execution_queue_rows: executionQueue.summary.remaining_rows,
       closed_or_classified_rows: closedOrClassifiedRows,
-      write_ready_rows: 0,
+      write_ready_rows: prizePackMapping.summary.ready_for_guarded_dry_run,
       no_write_governance_rows: noWriteGovernance.summary.closed_rows,
       base_parent_rows_classified: baseParentResolution.summary.target_rows,
+      prize_pack_rows_ready_for_guarded_dry_run: prizePackMapping.summary.ready_for_guarded_dry_run,
       prize_pack_rows_blocked: prizePackMapping.summary.blocked_rows,
       source_acquisition_rows_blocked: sourceAcquisition.summary.blocked_rows,
       manual_conflict_rows_blocked: conflictClosure.summary.conflict_rows,

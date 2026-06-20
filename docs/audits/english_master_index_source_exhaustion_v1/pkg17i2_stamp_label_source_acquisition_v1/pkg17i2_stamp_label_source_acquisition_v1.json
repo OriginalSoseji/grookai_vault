@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:02:03.534Z",
+  "generated_at": "2026-06-20T04:58:09.447Z",
   "version": "pkg17i2_stamp_label_source_acquisition_v1",
   "package_id": "PKG-17I2-STAMP-LABEL-SOURCE-ACQUISITION",
   "audit_only": true,
@@ -15,7 +15,7 @@
     "docs/audits/english_master_index_source_exhaustion_v1",
     "docs/checkpoints/warehouse"
   ],
-  "fingerprint_sha256": "f9fa877413a80d60f00f75ae188324b9e0877d5e1a72c60ef2ef37f087cc7ed1",
+  "fingerprint_sha256": "ac0aef7a548ad1c69d0409dffb1598c6d99564f7af3f46615bbf2dc337b57238",
   "summary": {
     "target_rows": 178,
     "candidate_objects_matched": 49,

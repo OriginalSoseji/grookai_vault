@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-06-19T16:15:03.060Z",
+  "package_id": "MISSING-PROMO-04B-MEOWTH-GOLD-BORDER-PARENT-CHILD-INSERT",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/remaining_special_gap_source_acquisition_v1.json",
+  "package_fingerprint_sha256": "3a6cad8af88898376842fa81661236c570752cd15725d5c03b15b5afb6230986",
+  "sql_hash_sha256": "68abddb89308f90a68f2e16acf9a8740acd5bd3584bab899da169ef07c2b3ca6",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "target": {
+    "candidate_key": "jungle_meowth_gold_border",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "card_number": "56",
+    "card_name": "Meowth",
+    "variant_key": "gold_border",
+    "printed_identity_modifier": "gold_border",
+    "finish_key": "normal",
+    "gv_id_suffix": "GOLD-BORDER",
+    "target_parent_id": "deed5f22-63ef-4b4a-a312-fb91e6103461",
+    "target_child_id": "6e8275ea-8bd2-4350-8b0c-38900b47acc9",
+    "target_parent_gv_id": "GV-PK-JU-56-GOLD-BORDER",
+    "target_printing_gv_id": "GV-PK-JU-56-GOLD-BORDER-STD",
+    "base_parent_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+    "base_parent_gv_id": "GV-PK-JU-56",
+    "base_child_finishes": [
+      "normal"
+    ]
+  },
+  "source_finding": {
+    "key": "jungle_meowth_gold_border",
+    "current_index_status": "candidate_needs_second_source",
+    "recommended_status": "ready_for_guarded_parent_child_insert_dry_run",
+    "recommended_next_step": "Build a guarded dry-run for one gold_border parent and one normal child under base2/Jungle #56.",
+    "set_code": "base2",
+    "number": "56",
+    "name": "Meowth",
+    "variant_key": "gold_border",
+    "finish_key": "normal",
+    "master_index_delta_safe": true,
+    "evidence": [
+      {
+        "source_key": "bulbapedia_meowth_jungle_56",
+        "source_kind": "human_readable_checklist",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Meowth_%28Jungle_56%29",
+        "evidence_label": "Bulbapedia Meowth Jungle 56 release information",
+        "proves": [
+          "card_identity",
+          "gold_border_variant",
+          "fruit_roll_promotion"
+        ]
+      },
+      {
+        "source_key": "pricecharting_meowth_gold_border_56",
+        "source_kind": "marketplace_checklist",
+        "source_url": "https://www.pricecharting.com/game/pokemon-jungle/meowth-gold-border-56",
+        "evidence_label": "PriceCharting Meowth Gold Border #56 product lane",
+        "proves": [
+          "card_identity",
+          "set_number",
+          "gold_border_variant"
+        ]
+      },
+      {
+        "source_key": "tcgplayer_meowth_gold_bordered_promo",
+        "source_kind": "marketplace_checklist",
+        "source_url": "https://www.tcgplayer.com/product/126211/pokemon-miscellaneous-cards-and-products-meowth-56-64-gold-bordered-promo",
+        "evidence_label": "TCGplayer Meowth 56/64 Gold Bordered Promo product page",
+        "proves": [
+          "card_identity",
+          "set_number",
+          "gold_border_variant"
+        ]
+      },
+      {
+        "source_key": "pkmncards_meowth_jungle_56",
+        "source_kind": "collector_reference",
+        "source_url": "https://pkmncards.com/card/meowth-jungle-ju-56/",
+        "evidence_label": "PkmnCards Meowth Jungle #56 variant note",
+        "proves": [
+          "card_identity",
+          "gold_border_variant",
+          "promotion_context"
+        ]
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "meowth_gold_border_parent_child_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "active_finish_count": 1,
+      "target_parent_collision_count": 0,
+      "target_child_collision_count": 0,
+      "same_identity_parent_collision_count": 0,
+      "ready_identity_projection_count": 1,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "MISSING-PROMO-04B-MEOWTH-GOLD-BORDER-PARENT-CHILD-INSERT",
+      "package_fingerprint": "3a6cad8af88898376842fa81661236c570752cd15725d5c03b15b5afb6230986",
+      "inserted_parent_rows": 1,
+      "inserted_identity_rows": 1,
+      "inserted_child_rows": 1,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 1,
+      "identity_inserts": 1,
+      "child_inserts": 1,
+      "deletes": 0,
+      "merges": 0,
+      "external_mapping_writes": 0,
+      "pricing_writes": 0,
+      "image_writes": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-19T16:15:01.996Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1
+      },
+      "hash_sha256": "72ee7c3aec09d453bc21bf31b880dbc40fcdd20d51a0e296098b94748c97525b"
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-19T16:15:02.823Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "6e8275ea-8bd2-4350-8b0c-38900b47acc9",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "gold_border",
+          "printed_identity_modifier": "gold_border",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b49977ba-613f-4617-950c-9a0cadee6d6f",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "gold_border",
+          "printed_identity_modifier": "gold_border",
+          "finish_key": null,
+          "identity_key_hash": "242c54753488a43ec008f8ce866afa05b5640ce1b32a5d0299d3d359d132edd3"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "deed5f22-63ef-4b4a-a312-fb91e6103461",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "gold_border",
+          "printed_identity_modifier": "gold_border",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1,
+        "target_child": 1,
+        "target_identity": 1,
+        "target_parent": 1
+      },
+      "hash_sha256": "253d0edbcf1feddf2bb1bba3e8e16950815c7c8f9ff396a6d6931ff9980f9b65"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T16:15:02.977Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+          "set_code": "base2",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1
+      },
+      "hash_sha256": "72ee7c3aec09d453bc21bf31b880dbc40fcdd20d51a0e296098b94748c97525b"
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "0a8f83c7e7c05868bd63c5d761a1b840bf4c3550a189d18c06a88758e0e5bd3c",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real MISSING-PROMO-04B-MEOWTH-GOLD-BORDER-PARENT-CHILD-INSERT apply only. Fingerprint: 3a6cad8af88898376842fa81661236c570752cd15725d5c03b15b5afb6230986. SQL hash: 68abddb89308f90a68f2e16acf9a8740acd5bd3584bab899da169ef07c2b3ca6. Scope: 1 Jungle Meowth Gold Border parent insert, 1 active identity insert, 1 normal child printing insert; set base2/Jungle; variant_key=gold_border; printed_identity_modifier=gold_border. Dry-run proof: 72ee7c3aec09d453bc21bf31b880dbc40fcdd20d51a0e296098b94748c97525b == 72ee7c3aec09d453bc21bf31b880dbc40fcdd20d51a0e296098b94748c97525b. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No external mapping writes. No pricing writes. No image writes."
+}

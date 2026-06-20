@@ -1,0 +1,1086 @@
+{
+  "contract": "TCGMAP03_ACQUISITION_PLAN_V1",
+  "generated_at": "2026-06-19T06:48:25.859Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "scope": "English physical card_prints missing active tcgplayer external_mappings",
+  "totals": {
+    "missing_tcgplayer_parent_rows": 4819,
+    "justtcg_only_parent_rows": 2388,
+    "tcgdex_only_parent_rows": 1594,
+    "no_pricing_mapping_parent_rows": 837,
+    "ready_from_justtcg_preserved_tcgplayer_id": 0,
+    "justtcg_without_preserved_tcgplayer_id": 2394,
+    "blocked_external_id_collision_rows": 0,
+    "blocked_multi_justtcg_parent_rows": 0,
+    "blocked_batch_duplicate_tcgplayer_id_rows": 0
+  },
+  "justtcg_preserved_id_buckets": [
+    {
+      "classification": "justtcg_without_preserved_tcgplayer_id",
+      "rows": 2394,
+      "parents": 2388,
+      "sets": 71
+    }
+  ],
+  "ready_by_set": [],
+  "remaining_gap_by_set": [
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "parent_rows": 324,
+      "child_printings": 326,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "parent_rows": 302,
+      "child_printings": 467,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "parent_rows": 272,
+      "child_printings": 421,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "parent_rows": 248,
+      "child_printings": 326,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "parent_rows": 231,
+      "child_printings": 235,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "parent_rows": 194,
+      "child_printings": 456,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv10.5b",
+      "set_name": "Black Bolt",
+      "parent_rows": 180,
+      "child_printings": 253,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "parent_rows": 172,
+      "child_printings": 78,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "me03",
+      "set_name": "Perfect Order",
+      "parent_rows": 126,
+      "child_printings": 203,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "parent_rows": 122,
+      "child_printings": 122,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "parent_rows": 112,
+      "child_printings": 154,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "parent_rows": 100,
+      "child_printings": 155,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm115",
+      "set_name": "Hidden Fates",
+      "parent_rows": 95,
+      "child_printings": 96,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh10.5",
+      "set_name": "Pokémon GO",
+      "parent_rows": 88,
+      "child_printings": 146,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "parent_rows": 75,
+      "child_printings": 60,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "parent_rows": 73,
+      "child_printings": 75,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "parent_rows": 70,
+      "child_printings": 70,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "parent_rows": 63,
+      "child_printings": 42,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "parent_rows": 56,
+      "child_printings": 0,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "parent_rows": 54,
+      "child_printings": 3,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex13",
+      "set_name": "Holon Phantoms",
+      "parent_rows": 52,
+      "child_printings": 101,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "parent_rows": 52,
+      "child_printings": 48,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "parent_rows": 45,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "g1",
+      "set_name": "Generations",
+      "parent_rows": 42,
+      "child_printings": 42,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "parent_rows": 42,
+      "child_printings": 10,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "parent_rows": 39,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "parent_rows": 37,
+      "child_printings": 2,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "parent_rows": 37,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "parent_rows": 36,
+      "child_printings": 0,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "parent_rows": 34,
+      "child_printings": 34,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "parent_rows": 34,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "parent_rows": 32,
+      "child_printings": 42,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "parent_rows": 32,
+      "child_printings": 0,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "parent_rows": 30,
+      "child_printings": 30,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "parent_rows": 30,
+      "child_printings": 30,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "parent_rows": 30,
+      "child_printings": 30,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "parent_rows": 30,
+      "child_printings": 30,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "parent_rows": 29,
+      "child_printings": 67,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "parent_rows": 29,
+      "child_printings": 7,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "parent_rows": 28,
+      "child_printings": 69,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "parent_rows": 28,
+      "child_printings": 28,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "parent_rows": 25,
+      "child_printings": 50,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "hsp",
+      "set_name": "HGSS Black Star Promos",
+      "parent_rows": 25,
+      "child_printings": 27,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "parent_rows": 25,
+      "child_printings": 25,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "parent_rows": 25,
+      "child_printings": 10,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "parent_rows": 24,
+      "child_printings": 0,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "swsh1",
+      "set_name": "Sword & Shield",
+      "parent_rows": 22,
+      "child_printings": 13,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "parent_rows": 21,
+      "child_printings": 3,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv01",
+      "set_name": "Scarlet & Violet",
+      "parent_rows": 20,
+      "child_printings": 3,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv09",
+      "set_name": "Journey Together",
+      "parent_rows": 20,
+      "child_printings": 2,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "swsh5",
+      "set_name": "Battle Styles",
+      "parent_rows": 20,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "base2",
+      "set_name": "Jungle",
+      "parent_rows": 19,
+      "child_printings": 17,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "pl4",
+      "set_name": "Arceus",
+      "parent_rows": 18,
+      "child_printings": 23,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "parent_rows": 18,
+      "child_printings": 16,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "hgss2",
+      "set_name": "HS—Unleashed",
+      "parent_rows": 17,
+      "child_printings": 18,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "parent_rows": 17,
+      "child_printings": 16,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm1",
+      "set_name": "Sun & Moon",
+      "parent_rows": 17,
+      "child_printings": 16,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "parent_rows": 17,
+      "child_printings": 10,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex14",
+      "set_name": "Crystal Guardians",
+      "parent_rows": 16,
+      "child_printings": 23,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "ru1",
+      "set_name": "Pokémon Rumble",
+      "parent_rows": 16,
+      "child_printings": 19,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "parent_rows": 15,
+      "child_printings": 19,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "parent_rows": 15,
+      "child_printings": 15,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "parent_rows": 15,
+      "child_printings": 15,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "mcd22",
+      "set_name": "McDonald's Collection 2022",
+      "parent_rows": 15,
+      "child_printings": 15,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "parent_rows": 15,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh2",
+      "set_name": "Rebel Clash",
+      "parent_rows": 15,
+      "child_printings": 10,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex15",
+      "set_name": "Dragon Frontiers",
+      "parent_rows": 14,
+      "child_printings": 24,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "parent_rows": 14,
+      "child_printings": 24,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "ecard2",
+      "set_name": "Aquapolis",
+      "parent_rows": 14,
+      "child_printings": 23,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ecard3",
+      "set_name": "Skyridge",
+      "parent_rows": 14,
+      "child_printings": 20,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw5",
+      "set_name": "Dark Explorers",
+      "parent_rows": 14,
+      "child_printings": 15,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "parent_rows": 13,
+      "child_printings": 29,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "parent_rows": 13,
+      "child_printings": 22,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "parent_rows": 13,
+      "child_printings": 18,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "parent_rows": 12,
+      "child_printings": 15,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-ex-p",
+      "set_name": "EX trainer Kit 2 (Plusle)",
+      "parent_rows": 12,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "parent_rows": 12,
+      "child_printings": 11,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "dp5",
+      "set_name": "Majestic Dawn",
+      "parent_rows": 11,
+      "child_printings": 5,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "parent_rows": 11,
+      "child_printings": 4,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "parent_rows": 11,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "bw6",
+      "set_name": "Dragons Exalted",
+      "parent_rows": 10,
+      "child_printings": 16,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm9",
+      "set_name": "Team Up",
+      "parent_rows": 10,
+      "child_printings": 16,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "parent_rows": 10,
+      "child_printings": 14,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "pop5",
+      "set_name": "POP Series 5",
+      "parent_rows": 10,
+      "child_printings": 13,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "hgss3",
+      "set_name": "HS—Undaunted",
+      "parent_rows": 10,
+      "child_printings": 12,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "tk-ex-latia",
+      "set_name": "EX trainer Kit (Latias)",
+      "parent_rows": 10,
+      "child_printings": 10,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-ex-latio",
+      "set_name": "EX trainer Kit (Latios)",
+      "parent_rows": 10,
+      "child_printings": 10,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xy2",
+      "set_name": "Flashfire",
+      "parent_rows": 9,
+      "child_printings": 15,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw10",
+      "set_name": "Plasma Blast",
+      "parent_rows": 9,
+      "child_printings": 14,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "parent_rows": 9,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw8",
+      "set_name": "Plasma Storm",
+      "parent_rows": 9,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "parent_rows": 9,
+      "child_printings": 8,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "parent_rows": 9,
+      "child_printings": 5,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "bp",
+      "set_name": "Best of Game",
+      "parent_rows": 9,
+      "child_printings": 4,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "parent_rows": 9,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "parent_rows": 9,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "mee",
+      "set_name": "Mega Evolution Energy",
+      "parent_rows": 8,
+      "child_printings": 16,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "parent_rows": 8,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "hgss4",
+      "set_name": "HS—Triumphant",
+      "parent_rows": 8,
+      "child_printings": 9,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xy11",
+      "set_name": "Steam Siege",
+      "parent_rows": 8,
+      "child_printings": 8,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "xy12",
+      "set_name": "Evolutions",
+      "parent_rows": 8,
+      "child_printings": 6,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "parent_rows": 8,
+      "child_printings": 6,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "dpp",
+      "set_name": "DP Black Star Promos",
+      "parent_rows": 8,
+      "child_printings": 5,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bog",
+      "set_name": "Best of game",
+      "parent_rows": 8,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh4",
+      "set_name": "Vivid Voltage",
+      "parent_rows": 8,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "parent_rows": 8,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm11",
+      "set_name": "Unified Minds",
+      "parent_rows": 7,
+      "child_printings": 14,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "bw7",
+      "set_name": "Boundaries Crossed",
+      "parent_rows": 7,
+      "child_printings": 6,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "parent_rows": 7,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "parent_rows": 7,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "parent_rows": 6,
+      "child_printings": 12,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "parent_rows": 6,
+      "child_printings": 6,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xya",
+      "set_name": "Yello A Alternate",
+      "parent_rows": 6,
+      "child_printings": 6,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "parent_rows": 6,
+      "child_printings": 4,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "parent_rows": 6,
+      "child_printings": 3,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "parent_rows": 6,
+      "child_printings": 2,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "dp6",
+      "set_name": "Legends Awakened",
+      "parent_rows": 6,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "xy1",
+      "set_name": "XY",
+      "parent_rows": 6,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "parent_rows": 5,
+      "child_printings": 5,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "parent_rows": 5,
+      "child_printings": 5,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "parent_rows": 5,
+      "child_printings": 5,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "parent_rows": 5,
+      "child_printings": 5,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "dp3",
+      "set_name": "Secret Wonders",
+      "parent_rows": 5,
+      "child_printings": 2,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "parent_rows": 5,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "cel25",
+      "set_name": "Celebrations",
+      "parent_rows": 4,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "parent_rows": 4,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "parent_rows": 4,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "parent_rows": 4,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "gym2",
+      "set_name": "Gym Challenge",
+      "parent_rows": 4,
+      "child_printings": 3,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "parent_rows": 4,
+      "child_printings": 2,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "swsh3.5",
+      "set_name": "Champion's Path",
+      "parent_rows": 4,
+      "child_printings": 2,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "base5",
+      "set_name": "Team Rocket",
+      "parent_rows": 4,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "dp4",
+      "set_name": "Great Encounters",
+      "parent_rows": 4,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex5",
+      "set_name": "Hidden Legends",
+      "parent_rows": 4,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex9",
+      "set_name": "Emerald",
+      "parent_rows": 4,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "parent_rows": 4,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sv10.5w",
+      "set_name": "White Flare",
+      "parent_rows": 4,
+      "child_printings": 0,
+      "primary_gap_lane": "justtcg_remaining"
+    },
+    {
+      "set_code": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "parent_rows": 3,
+      "child_printings": 6,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "swsh4.5",
+      "set_name": "Shining Fates",
+      "parent_rows": 3,
+      "child_printings": 5,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "pop4",
+      "set_name": "POP Series 4",
+      "parent_rows": 3,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "sm75",
+      "set_name": "Dragon Majesty",
+      "parent_rows": 3,
+      "child_printings": 4,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "parent_rows": 3,
+      "child_printings": 3,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-ex-m",
+      "set_name": "EX trainer Kit 2 (Minun)",
+      "parent_rows": 3,
+      "child_printings": 3,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "parent_rows": 3,
+      "child_printings": 3,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "xy6",
+      "set_name": "Roaring Skies",
+      "parent_rows": 3,
+      "child_printings": 3,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "base4",
+      "set_name": "Base Set 2",
+      "parent_rows": 3,
+      "child_printings": 2,
+      "primary_gap_lane": "tcgdex_only_remaining"
+    },
+    {
+      "set_code": "base3",
+      "set_name": "Fossil",
+      "parent_rows": 3,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "parent_rows": 3,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "xy3",
+      "set_name": "Furious Fists",
+      "parent_rows": 3,
+      "child_printings": 1,
+      "primary_gap_lane": "no_mapping_remaining"
+    },
+    {
+      "set_code": "ex2",
+      "set_name": "Sandstorm",
+      "parent_rows": 3,
+      "child_printings": 0,
+      "primary_gap_lane": "no_mapping_remaining"
+    }
+  ],
+  "ready_rows": [],
+  "recommended_next_package": null,
+  "fingerprint_sha256": "a6bd64ac39a4301ab4464c781e03ba4351e46369c0c73aa98f2cb678a5289e1d"
+}

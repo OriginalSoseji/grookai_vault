@@ -1,0 +1,232 @@
+{
+  "package_id": "MISSING-PROMO-04D-ANCIENT-MEW-SET-LANE-GOVERNANCE",
+  "generated_at": "2026-06-19T16:43:40.960Z",
+  "governance_status": "set_lane_governed_ready_for_guarded_dry_run",
+  "readiness_blockers": [],
+  "recommended_set_lane": {
+    "set_code": "misc",
+    "set_name": "Miscellaneous Cards & Products",
+    "printed_set_abbrev": "MISC",
+    "identity_domain_default": "pokemon_eng_standard",
+    "lane_type": "english_physical_miscellaneous_promotional_cards",
+    "source_aliases": {
+      "bulbapedia": "Miscellaneous Promotional cards",
+      "pkmncards": "Miscellaneous",
+      "tcgplayer": "Miscellaneous Cards & Products",
+      "pricecharting": "Pokemon Promo"
+    },
+    "governance_decision": "Create a dedicated miscellaneous/movie-promo set lane instead of forcing Ancient Mew into basep/Wizards Black Star Promos."
+  },
+  "recommended_card_fact": {
+    "set_code": "misc",
+    "set_name": "Miscellaneous Cards & Products",
+    "name": "Ancient Mew",
+    "number": "1",
+    "number_governance": "catalog_assigned_number_not_physical_printed_number",
+    "rarity": "Promo",
+    "finish_key": "cosmos",
+    "variant_key": null,
+    "printed_identity_modifier": null,
+    "language": "English",
+    "physical_only": true,
+    "recommended_gv_id": "GV-PK-MISC-001",
+    "recommended_printing_gv_id": "GV-PK-MISC-001-COSMOS",
+    "source_count": 5,
+    "master_index_status": "master_verified_pending_set_lane_insert"
+  },
+  "sources": [
+    {
+      "source_key": "bulbapedia_ancient_mew_power_of_one",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Mew_%28The_Power_of_One_promo%29",
+      "evidence_label": "Ancient Mew The Power of One promo release information",
+      "supports": [
+        "card_identity",
+        "miscellaneous_promotional_cards_lane",
+        "movie_2000_distribution",
+        "english_physical_release"
+      ]
+    },
+    {
+      "source_key": "pkmncards_ancient_mew_miscellaneous",
+      "source_kind": "collector_reference",
+      "source_url": "https://pkmncards.com/card/ancient-mew-miscellaneous/",
+      "evidence_label": "PkmnCards Ancient Mew Miscellaneous card page",
+      "supports": [
+        "card_identity",
+        "miscellaneous_lane",
+        "card_content"
+      ]
+    },
+    {
+      "source_key": "pkmncards_miscellaneous_set",
+      "source_kind": "collector_reference",
+      "source_url": "https://pkmncards.com/set/miscellaneous/",
+      "evidence_label": "PkmnCards Miscellaneous set lane",
+      "supports": [
+        "miscellaneous_lane",
+        "card_identity"
+      ]
+    },
+    {
+      "source_key": "tcgplayer_ancient_mew_misc_products",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/108589/pokemon-miscellaneous-cards-and-products-ancient-mew",
+      "evidence_label": "TCGplayer Ancient Mew Miscellaneous Cards and Products product page",
+      "supports": [
+        "card_identity",
+        "miscellaneous_cards_and_products_lane",
+        "market_lane"
+      ]
+    },
+    {
+      "source_key": "pricecharting_ancient_mew_pokemon_promo",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/ancient-mew",
+      "evidence_label": "PriceCharting Ancient Mew Pokemon Promo market page",
+      "supports": [
+        "card_identity",
+        "promo_market_lane",
+        "holo_product_identity"
+      ]
+    }
+  ],
+  "adjacent_variant_boundaries": [
+    {
+      "candidate_key": "ancient_mew_japanese_exclusive_print",
+      "status": "future_variant_governance_required",
+      "source_url": "https://www.tcgplayer.com/product/482427/pokemon-miscellaneous-cards-and-products-ancient-mew-japanese-exclusive-print",
+      "evidence_label": "TCGplayer Japanese Exclusive Print product page",
+      "reason": "Do not merge this into the English movie-promo row. It needs separate language/variant governance."
+    },
+    {
+      "candidate_key": "ancient_mew_i_nintedo_error",
+      "status": "future_variant_governance_required",
+      "source_url": "https://www.elitefourum.com/t/ancient-mew-variants-and-versions-differences/40111",
+      "evidence_label": "Elite Fourum Ancient Mew variant comparison",
+      "reason": "Collector evidence identifies Japanese Nintedo/corrected and Ancient Mew I/II distinctions. These are not the current English physical row."
+    }
+  ],
+  "live_db_summary": {
+    "recommended_set_exists": 0,
+    "existing_ancient_mew_parent_rows": 0,
+    "exact_recommended_parent_exists": 0,
+    "active_cosmos_finish_rows": 1,
+    "similar_set_candidate_rows": 13
+  },
+  "live_db_existing_set_candidates": [
+    {
+      "id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+      "code": "basep",
+      "name": "Wizards Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "code": "bwp",
+      "name": "BW Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "29a1b09d-d46c-49fc-a270-373c00f778b2",
+      "code": "dpp",
+      "name": "DP Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "26da979a-6233-4a52-851e-e18b789d85a8",
+      "code": "hgssp",
+      "name": "HGSS Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "53102b1c-6c9d-44db-ba83-a3210be88e31",
+      "code": "hsp",
+      "name": "HGSS Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+      "code": "mep",
+      "name": "MEP Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+      "code": "np",
+      "name": "Nintendo Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "9d42f9e7-972c-458f-b770-aba7e6cb4111",
+      "code": "P-A",
+      "name": "Promos-A",
+      "identity_domain_default": "tcg_pocket_excluded"
+    },
+    {
+      "id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "code": "smp",
+      "name": "SM Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "code": "svp",
+      "name": "Scarlet & Violet Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+      "code": "swshp",
+      "name": "SWSH Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "4dc3185f-c0b1-40ab-8099-894b450f6e6b",
+      "code": "wp",
+      "name": "W Promotional",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "code": "xyp",
+      "name": "XY Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "live_db_existing_ancient_mew_rows": [],
+  "live_db_finish_rows": [
+    {
+      "key": "cosmos",
+      "label": "Cosmos Holo",
+      "is_active": true
+    },
+    {
+      "key": "holo",
+      "label": "Holo",
+      "is_active": true
+    },
+    {
+      "key": "normal",
+      "label": "Normal",
+      "is_active": true
+    }
+  ],
+  "next_package_recommendation": {
+    "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERT-DRY-RUN",
+    "scope": "guarded dry-run only unless separately approved",
+    "expected_set_inserts": 1,
+    "expected_parent_inserts": 1,
+    "expected_child_inserts": 1,
+    "expected_finish_key": "cosmos",
+    "expected_external_mapping_writes": 0,
+    "expected_pricing_writes": 0,
+    "expected_image_writes": 0
+  },
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_performed": false,
+  "fingerprint_sha256": "3ca75e62877ff3c11f7f9fd992ae085c5fc2e4a26a0ab485b9b552da9133f4cf"
+}

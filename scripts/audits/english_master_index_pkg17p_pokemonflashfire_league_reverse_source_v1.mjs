@@ -34,6 +34,21 @@ const SOURCE_ROWS = [
   ['pl4', '87', 'Expert Belt', 'https://pokemonflashfire.com/product/expert-belt-8799-reverse-holo-pokemon-league-promo/', 'Expert Belt 87/99 Reverse Holo Pokemon League Promo'],
   ['xy8', '101', 'Flabébé', 'https://pokemonflashfire.com/product/flabebe-101162-reverse-holo-pokemon-league-promo/', 'Flabebe 101/162 Reverse Holo Pokemon League Promo'],
   ['xy8', '102', 'Floette', 'https://pokemonflashfire.com/product/floette-102162-reverse-holo-pokemon-league-promo/', 'Floette 102/162 Reverse Holo Pokemon League Promo'],
+  ['pl2', '89', "Bebe's Search", 'https://pokemonflashfire.com/product/bebes-search-89111-reverse-holo-pokemon-league-promo/', "Bebe's Search 89/111 Reverse Holo Pokemon League Promo"],
+  ['pl2', '98', "Volkner's Philosophy", 'https://pokemonflashfire.com/product/volkners-philosophy-98111-reverse-holo-pokemon-league-promo/', "Volkner's Philosophy 98/111 Reverse Holo Pokemon League Promo"],
+  ['pl2', '33', 'Snorlax', 'https://pokemonflashfire.com/product/snorlax-33111-reverse-holo-pokemon-league-promo/', 'Snorlax 33/111 Reverse Holo Pokemon League Promo'],
+  ['pl3', '5', 'Garchomp', 'https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/', 'Garchomp 5/147 2010 Reverse Holo Pokemon League Promo'],
+  ['hgss2', '7', 'Politoed', 'https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/', 'Politoed 7/95 Reverse Holo Pokemon League Promo'],
+  ['hgss2', '21', 'Poliwrath', 'https://pokemonflashfire.com/product/poliwrath-2195-reverse-holo-pokemon-league-promo/', 'Poliwrath 21/95 Reverse Holo Pokemon League Promo'],
+  ['hgss2', '82', 'Rare Candy', 'https://pokemonflashfire.com/product/rare-candy-8295-reverse-holo-pokemon-league-promo/', 'Rare Candy 82/95 Reverse Holo Pokemon League Promo'],
+  ['hgss1', '97', 'Pokémon Collector', 'https://pokemonflashfire.com/product/pokemon-collector-97123-reverse-holo-pokemon-league-promo/', 'Pokemon Collector 97/123 Reverse Holo Pokemon League Promo'],
+  ['bw11', '36', 'Pokemon Catcher', 'https://pokemonflashfire.com/product/pokemon-catcher-3639-reverse-holo-pokemon-league-promo/', 'Pokemon Catcher 36/39 Reverse Holo Pokemon League Promo'],
+  ['pl2', '43', 'Uxie', 'https://pokemonflashfire.com/product/uxie-43146-reverse-holo-pokemon-league-promo/', 'Uxie 43/146 Reverse Holo Pokemon League Promo'],
+  ['pl2', '97', 'Underground Expedition', 'https://pokemonflashfire.com/product/underground-expedition-97111-reverse-holo-pokemon-league-promo/', 'Underground Expedition 97/111 Reverse Holo Pokemon League Promo'],
+  ['pl2', '102', 'Upper Energy', 'https://pokemonflashfire.com/product/upper-energy-102111-reverse-holo-pokemon-league-promo/', 'Upper Energy 102/111 Reverse Holo Pokemon League Promo'],
+  ['pl3', '136', "Cynthia's Guidance", 'https://pokemonflashfire.com/product/cynthias-guidance-136147-reverse-holo-pokemon-league-promo/', "Cynthia's Guidance 136/147 Reverse Holo Pokemon League Promo"],
+  ['pl3', '56', 'Dragonite FB', 'https://pokemonflashfire.com/product/dragonite-fb-56147-reverse-holo-pokemon-league-promo/', 'Dragonite FB 56/147 Reverse Holo Pokemon League Promo'],
+  ['dp6', '125', "Roseanne's Research", 'https://pokemonflashfire.com/product/roseannes-research-125132-reverse-holo-pokemon-league-promo/', "Roseanne's Research 125/132 Reverse Holo Pokemon League Promo"],
 ];
 
 async function readJson(filePath) {

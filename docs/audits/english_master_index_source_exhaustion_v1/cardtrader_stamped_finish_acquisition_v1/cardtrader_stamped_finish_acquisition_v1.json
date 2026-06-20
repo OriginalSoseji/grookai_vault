@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_cardtrader_stamped_finish_acquisition_v1",
-  "generated_at": "2026-06-13T00:02:18.485Z",
+  "generated_at": "2026-06-20T04:58:36.227Z",
   "audit_only": true,
   "db_writes_performed": false,
   "durable_db_writes_performed": false,
@@ -15,37 +15,37 @@
   "blocked_rule": "Battle Academy deck-mark rows and Prize Pack source-family rows are review-only because they do not safely prove the target stamped identity.",
   "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
   "summary": {
-    "target_rows": 339,
+    "target_rows": 298,
     "cardtrader_blueprint_rows": 75009,
     "parsed_blueprint_finish_rows": 11094,
     "records_generated": 0,
     "fixture_files_written": 0,
     "by_status": {
-      "no_exact_cardtrader_match": 339
+      "no_exact_cardtrader_match": 298
     },
     "by_finish": {},
     "by_variant": {
-      "league_stamp": 87,
       "prize_pack_stamp": 63,
       "battle_academy_deck_mark": 57,
+      "league_stamp": 56,
       "pikachu_jack_o_lantern_stamp": 27,
       "prerelease_stamp": 12,
       "professor_program_stamp": 12,
-      "regional_championships_stamp": 10,
       "league_cup_staff_stamp": 8,
       "staff_stamp": 7,
       "play_pok_mon_thank_you_stamp": 5,
       "dragon_vault_stamp": 4,
       "player_rewards_crosshatch_stamp": 4,
-      "city_championships_stamp": 3,
+      "regional_championships_stamp": 4,
       "finalist_stamp": 3,
-      "national_championships_stamp": 3,
       "play_pokemon_stamp": 3,
-      "quarter_finalist_stamp": 3,
       "championship_staff_stamp": 2,
       "destined_rivals_stamp": 2,
       "eb_games_stamp": 2,
+      "national_championships_stamp": 2,
+      "quarter_finalist_stamp": 2,
       "regional_championships_staff_stamp": 2,
+      "world_championships_stamp": 2,
       "alolan_raichu_half_deck_14_stamp": 1,
       "asia_championship_stamp": 1,
       "games_expo_stamped_2007": 1,
@@ -64,8 +64,7 @@
       "team_up_stamp": 1,
       "thank_you_stamp": 1,
       "unbroken_bonds_stamp": 1,
-      "vivid_voltage_stamp": 1,
-      "world_championships_stamp": 1
+      "vivid_voltage_stamp": 1
     }
   },
   "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_stamped_finish_v1",
@@ -101,138 +100,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-black-and-white/tepig-crosshatch-league-promo-15",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "53",
-      "card_name": "Whirlipede",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "68600d39-7fbd-4d1e-97ae-684955e53e05"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-black-and-white/whirlipede-league-promo-53",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "79",
-      "card_name": "Watchog",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-black-and-white/watchog-league-promo-79",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "81",
-      "card_name": "Lillipup",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "23f77e4a-186b-46f5-bdee-e832ca467f12"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-black-and-white/lillipup-league-promo-81",
         "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
       ],
       "preserved_evidence_labels": [
@@ -330,50 +197,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact product page identifies Black & White 106/114 Fire Energy with Play! Pokemon League Promo label. Accepted as stamped only for this exact card-level product page."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "107",
-      "card_name": "Water Energy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "ee6d4612-b3d7-41c3-a34a-de919ecd221a"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-black-and-white/water-energy-league-play-107",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -498,94 +321,6 @@
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-legendary-treasures/deino-1st-place-league-97",
         "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw11",
-      "set_name": "Legendary Treasures",
-      "card_number": "109",
-      "card_name": "Bianca",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "f5517ff1-034f-4388-89d2-0bc1f4ca5944"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-legendary-treasures/bianca-league-109",
-        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw2",
-      "set_name": "Emerging Powers",
-      "card_number": "82",
-      "card_name": "Unfezant",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "d5e557e6-186e-4c57-95f6-85373517711b"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-emerging-powers/unfezant-league-82",
-        "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
@@ -726,50 +461,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw3",
-      "set_name": "Noble Victories",
-      "card_number": "32",
-      "card_name": "Cryogonal",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "e6a84ebc-2184-42db-ad04-f19c762133f6"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-noble-victories/cryogonal-league-32",
-        "https://www.thepricedex.com/set/bw3/noble-victories/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -954,94 +645,6 @@
       "source_urls": []
     },
     {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "37",
-      "card_name": "Jolteon",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "852d5fe5-3318-4aad-8443-0711a0df017d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
-        "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "84",
-      "card_name": "Eevee",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "cafec93e-cdb3-43e6-9f72-dcf6c6acc7d0"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-dark-explorers/eevee-city-championship-staff-84",
-        "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
       "set_key": "bw7",
       "set_name": "Boundaries Crossed",
       "card_number": "38",
@@ -1114,50 +717,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-plasma-storm/colress-league-promo-118",
-        "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "bw8",
-      "set_name": "Plasma Storm",
-      "card_number": "120",
-      "card_name": "Escape Rope",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "9563479b-7524-48ef-a1cb-612e4afeed08"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-plasma-storm/escape-rope-league-promo-120",
         "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
       ],
       "preserved_evidence_labels": [
@@ -1439,50 +998,6 @@
       "source_urls": []
     },
     {
-      "set_key": "bwp",
-      "set_name": "BW Black Star Promos",
-      "card_number": "BW95",
-      "card_name": "Champions Festival",
-      "proposed_variant_key": "quarter_finalist_stamp",
-      "stamp_label": "Quarter Finalist Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "9b38b12d-7d50-45ff-8bab-aa409a4779a7"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-promo/champions-festival-quarter-finalist-bw95",
-        "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
       "set_key": "col1",
       "set_name": "Call of Legends",
       "card_number": "88",
@@ -1607,52 +1122,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "card_number": "98",
-      "card_name": "Shinx",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "3b6f4dbd-177d-4778-b023-f49d0b9fd24d"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "bulbapedia_card_page_release_info",
-        "bulbapedia_set_list",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://bulbapedia.bulbagarden.net/wiki/Shinx_(Diamond_%26_Pearl_98)",
-        "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Bulbapedia card page release information stamp/logo variant",
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "bulbapedia_set_list preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted bulbapedia_set_list evidence under the same source authority; it is not a new independent source.",
-        "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A special variant was released as a participation prize for the 2007-2008 City Championships, featuring the event logo."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -2894,49 +2363,6 @@
     {
       "set_key": "hgss1",
       "set_name": "HeartGold & SoulSilver",
-      "card_number": "39",
-      "card_name": "Delibird",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "5fb7382a-f366-42ed-bd64-6a9c91e98a32"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/delibird-league-promo-39",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
       "card_number": "40",
       "card_name": "Donphan",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
@@ -2962,49 +2388,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/donphan-crosshatch-league-40",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "97",
-      "card_name": "Pokémon Collector",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "98252aa5-6f5b-498d-9a88-2f27866a83a3"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/pokemon-collector-league-promo-97",
         "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
       ],
       "preserved_evidence_labels": [
@@ -3057,49 +2440,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "103",
-      "card_name": "Double Colorless Energy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "8bf506b0-41d1-4a80-b49a-d0a1ff54bc0e"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/double-colorless-energy-league-103",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -3277,49 +2617,6 @@
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
         "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "82",
-      "card_name": "Rare Candy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "5e929ce1-6b74-4e9d-bd36-11698f96a576"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-unleashed/rare-candy-league-promo-82",
-        "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -3590,49 +2887,6 @@
       "source_urls": []
     },
     {
-      "set_key": "pl1",
-      "set_name": "Platinum",
-      "card_number": "104",
-      "card_name": "Broken Time-Space",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "db232ebe-fb95-44df-b0fe-3e38794e4c14"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-platinum/broken-time-space-league-104",
-        "https://www.thepricedex.com/set/pl1/platinum/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
       "card_number": "89",
@@ -3707,9 +2961,11 @@
       ],
       "preserved_evidence_labels": [
         "PokeScope pl2-96 lists Team Galactic's Invention G-109 SP Radar, Rising Rivals #96/111, with League Stamp variant",
+        "PokeScope preserved finish evidence from last promoted Master Index",
         "ThePriceDex preserved finish evidence from last promoted Master Index"
       ],
       "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted PokeScope evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact page identifies Team Galactic's Invention G-109 SP Radar, Rising Rivals, Identifier pl2-96, Card Number 96/111, and League Stamp variant."
       ],
@@ -3750,9 +3006,11 @@
       ],
       "preserved_evidence_labels": [
         "PokeScope pl2-98 lists Volkner's Philosophy, Rising Rivals #98/111, with League Stamp variant",
+        "PokeScope preserved finish evidence from last promoted Master Index",
         "ThePriceDex preserved finish evidence from last promoted Master Index"
       ],
       "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted PokeScope evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact page identifies Volkner's Philosophy, Rising Rivals, Identifier pl2-98, Card Number 98/111, and League Stamp variant."
       ],
@@ -3808,96 +3066,6 @@
     {
       "set_key": "pl3",
       "set_name": "Supreme Victors",
-      "card_number": "26",
-      "card_name": "Dusknoir FB",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "899905ba-d076-4021-b408-85c210ecd4ac"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "elitefourum_alternate_checklist",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
-        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Elite Fourum alternate checklist: 26/147 Dusknoir FB [PokéBall Stamped, League Promo; 2009-2010]",
-        "ThePriceDex preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
-      "card_number": "83",
-      "card_name": "Skarmory FB",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "e155c180-ac03-461e-ab3e-a7024f268713"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "elitefourum_alternate_checklist",
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
-        "https://www.pricecharting.com/game/pokemon-supreme-victors/skarmory-fb-league-promo-83",
-        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Elite Fourum alternate checklist: 83/147 Skarmory FB [PokéBall Stamped, League Promo; 2009-2010]",
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
       "card_number": "136",
       "card_name": "Cynthia's Guidance",
       "proposed_variant_key": "pok_ball_stamped_player_rewards_promo_2009_2010",
@@ -3939,100 +3107,6 @@
       "source_urls": []
     },
     {
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "32",
-      "card_name": "Spiritomb",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "f9b8c712-2eec-44a6-9741-b6620b72b19f"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "elitefourum_alternate_checklist",
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
-        "https://www.pricecharting.com/game/pokemon-arceus/spiritomb-league-32",
-        "https://www.thepricedex.com/set/pl4/arceus/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Elite Fourum alternate checklist: 32/99 Spiritomb [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "87",
-      "card_name": "Expert Belt",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "379e8680-8572-456b-b818-1610544a188a"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "elitefourum_alternate_checklist",
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
-        "https://www.pricecharting.com/game/pokemon-arceus/expert-belt-league-87",
-        "https://www.thepricedex.com/set/pl4/arceus/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Elite Fourum alternate checklist: 87/99 Expert Belt [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
       "card_number": "20",
@@ -4061,51 +3135,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-sun-and-moon/tsareena-1st-place-league-20",
-        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "41",
-      "card_name": "Primarina",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "1c95adbc-a1d1-4b2d-8923-00660f7bd300"
-      ],
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-sun-and-moon/primarina-league-41",
         "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
       ],
       "preserved_evidence_labels": [
@@ -4335,50 +3364,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact Battle Academy deck-list card matched to an existing remaining stamped gap. Evidence phrase: cards within the decks are reprints but have colored silhouettes; Cinderace and Pikachu decks also have a number next to the silhouette."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "128",
-      "card_name": "Professor Kukui",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "1685b1e6-345a-4fb9-be34-06ae26afa4c4"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-sun-and-moon/professor-kukui-regional-championship-staff-128",
-        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -5402,50 +4387,6 @@
     {
       "set_key": "sm3",
       "set_name": "Burning Shadows",
-      "card_number": "94",
-      "card_name": "Diancie",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "0b6a725e-21cf-4be0-b208-2b3f10c7c638"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-burning-shadows/diancie-league-94",
-        "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
       "card_number": "113",
       "card_name": "Bodybuilding Dumbbells",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -5754,50 +4695,6 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
-      "card_number": "119",
-      "card_name": "Cynthia",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "df41a6f4-63cf-49c9-8cc6-9ea350726e64"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-ultra-prism/cynthia-regional-championship-staff-119",
-        "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
       "card_number": "122",
       "card_name": "Escape Board",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -5877,138 +4774,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact Battle Academy deck-list card matched to an existing remaining stamped gap. Evidence phrase: cards within the decks are reprints but have colored silhouettes; Cinderace and Pikachu decks also have a number next to the silhouette."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "77",
-      "card_name": "Buzzwole",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "c2eaf168-5e90-47bf-8212-a71b00e03c4d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-forbidden-light/buzzwole-league-77",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "102",
-      "card_name": "Beast Ring",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "5cebfdd2-8535-4206-89dd-1c7d1a848515"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-forbidden-light/beast-ring-pokemon-league-102",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "105",
-      "card_name": "Diantha",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "6f66ce37-7cf5-4489-98cb-d303aae15304"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -6132,50 +4897,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-celestial-storm/magcargo-1st-place-league-24",
-        "https://www.thepricedex.com/set/sm7/celestial-storm/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm7",
-      "set_name": "Celestial Storm",
-      "card_number": "95",
-      "card_name": "Metagross",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "ecffdb98-4ec7-46a9-a9dd-ee0ae74aa33e"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-celestial-storm/metagross-league-promo-95",
         "https://www.thepricedex.com/set/sm7/celestial-storm/price-list"
       ],
       "preserved_evidence_labels": [
@@ -6548,50 +5269,6 @@
     {
       "set_key": "sm8",
       "set_name": "Lost Thunder",
-      "card_number": "108",
-      "card_name": "Naganadel",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "98523900-a917-42be-813b-92392858d84c"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-lost-thunder/naganadel-league-108",
-        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
       "card_number": "172",
       "card_name": "Electropower",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -6618,50 +5295,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-lost-thunder/electropower-league-cup-staff-172",
-        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "181",
-      "card_name": "Lost Blender",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "4b53f358-860d-4ad6-9161-886f23d8f89d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-lost-thunder/lost-blender-league-181",
         "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
       ],
       "preserved_evidence_labels": [
@@ -7471,6 +6104,49 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact promo-family evidence accepted only when PriceCharting console is Pokemon Promo, card number and name match the target promo fact, finish label is explicit for non-normal rows, and only one matching product exists."
+      ],
+      "status": "no_exact_cardtrader_match",
+      "candidate_count": 0,
+      "candidate_titles": [],
+      "source_urls": []
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
+      "base_parent_ids": [
+        "987aefdb-3a1b-4959-a479-74449b8f613f"
+      ],
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": null,
+      "routing_status": "blocked_missing_exact_finish_phrase",
+      "blockers": [
+        "missing_exact_finish_phrase"
+      ],
+      "finish_claims": [],
+      "supporting_finish_claims": [],
+      "preserved_evidence_sources": [
+        "pricecharting_svp_winner_variant",
+        "thepricedex_price_list"
+      ],
+      "preserved_evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225",
+        "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+      ],
+      "preserved_evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_svp_winner_variant preserved finish evidence from last promoted Master Index"
+      ],
+      "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+        "Audit-only preservation row. This preserves previously promoted pricecharting_svp_winner_variant evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -13760,94 +12436,6 @@
     {
       "set_key": "xy1",
       "set_name": "XY",
-      "card_number": "83",
-      "card_name": "Honedge",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "94a1987b-3ff0-4aea-a58c-aaa0903d1c61"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-staff-83",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "84",
-      "card_name": "Doublade",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "3475e89a-9d54-4b8e-b096-f01eb9110230"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-xy/doublade-regional-championship-staff-84",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
       "card_number": "85",
       "card_name": "Aegislash",
       "proposed_variant_key": "regional_championships_stamp",
@@ -13874,50 +12462,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-xy/aegislash-regional-championship-staff-85",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "121",
-      "card_name": "Muscle Band",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "c236da93-d326-45d1-8cde-719d74cbffaa"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-xy/muscle-band-league-121",
         "https://www.thepricedex.com/set/xy1/xy/price-list"
       ],
       "preserved_evidence_labels": [
@@ -14007,50 +12551,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-1st-place-pokemon-league-63",
-        "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy10",
-      "set_name": "Fates Collide",
-      "card_number": "94",
-      "card_name": "Chaos Tower",
-      "proposed_variant_key": "national_championships_stamp",
-      "stamp_label": "National Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "b0eea10e-ebda-45ca-9714-6db5c03b349d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
         "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
       ],
       "preserved_evidence_labels": [
@@ -14243,138 +12743,6 @@
       "source_urls": []
     },
     {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "89",
-      "card_name": "Fiery Torch",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "edee6376-89df-4746-9f47-4619fb34e0a2"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-flashfire/fiery-torch-league-89",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "91",
-      "card_name": "Magnetic Storm",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "ea56ee1d-d654-4932-82d4-0630e13fb5ee"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-flashfire/magnetic-storm-league-91",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "94",
-      "card_name": "Pokémon Fan Club",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "6b0bbf9a-7e02-4e97-a04d-48a7890058e8"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-flashfire/pokemon-fan-club-league-94",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
       "set_key": "xy3",
       "set_name": "Furious Fists",
       "card_number": "8",
@@ -14500,50 +12868,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy3",
-      "set_name": "Furious Fists",
-      "card_number": "88",
-      "card_name": "Battle Reporter",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "5f3c1563-4c56-4593-9e75-6db89a01d9a2"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-furious-fists/battle-reporter-league-88",
-        "https://www.thepricedex.com/set/xy3/furious-fists/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ],
       "status": "no_exact_cardtrader_match",
       "candidate_count": 0,
@@ -14688,94 +13012,6 @@
     {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
-      "card_number": "101",
-      "card_name": "Flabébé",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "4f5f59ea-417a-443b-beaf-5d13bf1223e5"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-breakthrough/flabebe-league-promo-101",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "102",
-      "card_name": "Floette",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "d65a9c23-da54-4eb5-995f-071fb8c24c67"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-breakthrough/floette-league-stamp-102",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
       "card_number": "138",
       "card_name": "Giovanni's Scheme",
       "proposed_variant_key": "regional_championships_stamp",
@@ -14802,50 +13038,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-breakthrough/giovannis-scheme-regional-championships-138",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ],
-      "status": "no_exact_cardtrader_match",
-      "candidate_count": 0,
-      "candidate_titles": [],
-      "source_urls": []
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "145",
-      "card_name": "Parallel City",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "73ebda40-d6b9-4ca9-91a7-1e03cd15bf4b"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-staff-145",
         "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
       ],
       "preserved_evidence_labels": [

@@ -12,7 +12,7 @@ Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were
 
 ## Summary
 
-- target_rows: 339
+- target_rows: 298
 - cardtrader_blueprint_rows: 75009
 - parsed_blueprint_finish_rows: 11094
 - records_generated: 0
@@ -21,7 +21,7 @@ Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were
 
 | status | rows |
 | --- | --- |
-| no_exact_cardtrader_match | 339 |
+| no_exact_cardtrader_match | 298 |
 
 ## Accepted Exact Matches
 
@@ -32,41 +32,29 @@ No exact matches were accepted.
 | set | number | name | variant | status | candidate_count |
 | --- | --- | --- | --- | --- | --- |
 | bw1 | 15 | Tepig | player_rewards_crosshatch_stamp | no_exact_cardtrader_match | 0 |
-| bw1 | 53 | Whirlipede | league_stamp | no_exact_cardtrader_match | 0 |
-| bw1 | 79 | Watchog | league_stamp | no_exact_cardtrader_match | 0 |
-| bw1 | 81 | Lillipup | league_stamp | no_exact_cardtrader_match | 0 |
 | bw1 | 105 | Grass Energy | play_pokemon_stamp | no_exact_cardtrader_match | 0 |
 | bw1 | 106 | Fire Energy | play_pokemon_stamp | no_exact_cardtrader_match | 0 |
-| bw1 | 107 | Water Energy | league_stamp | no_exact_cardtrader_match | 0 |
 | bw1 | 111 | Darkness Energy | play_pokemon_stamp | no_exact_cardtrader_match | 0 |
 | bw10 | 5 | Tropius | league_stamp | no_exact_cardtrader_match | 0 |
 | bw11 | 97 | Deino | league_stamp | no_exact_cardtrader_match | 0 |
-| bw11 | 109 | Bianca | league_stamp | no_exact_cardtrader_match | 0 |
-| bw2 | 82 | Unfezant | league_stamp | no_exact_cardtrader_match | 0 |
 | bw2 | 95 | Pokémon Catcher | prize_pack_stamp | no_exact_cardtrader_match | 0 |
 | bw3 | 8 | Karrablast | league_stamp | no_exact_cardtrader_match | 0 |
 | bw3 | 11 | Shelmet | league_stamp | no_exact_cardtrader_match | 0 |
-| bw3 | 32 | Cryogonal | league_stamp | no_exact_cardtrader_match | 0 |
 | bw3 | 80 | Escavalier | national_championships_stamp | no_exact_cardtrader_match | 0 |
 | bw5 | 4 | Scyther | league_stamp | no_exact_cardtrader_match | 0 |
 | bw5 | 12 | Flareon | league_stamp | no_exact_cardtrader_match | 0 |
 | bw5 | 25 | Vaporeon | championship_staff_stamp | no_exact_cardtrader_match | 0 |
-| bw5 | 37 | Jolteon | regional_championships_stamp | no_exact_cardtrader_match | 0 |
-| bw5 | 84 | Eevee | city_championships_stamp | no_exact_cardtrader_match | 0 |
 | bw7 | 38 | Delibird | league_stamp | no_exact_cardtrader_match | 0 |
 | bw8 | 118 | Colress | league_stamp | no_exact_cardtrader_match | 0 |
-| bw8 | 120 | Escape Rope | league_stamp | no_exact_cardtrader_match | 0 |
 | bw8 | 123 | Hypnotoxic Laser | league_stamp | no_exact_cardtrader_match | 0 |
 | bw9 | 11 | Leafeon | league_stamp | no_exact_cardtrader_match | 0 |
 | bw9 | 23 | Glaceon | league_stamp | no_exact_cardtrader_match | 0 |
 | bw9 | 100 | Frozen City | prize_pack_stamp | no_exact_cardtrader_match | 0 |
 | bwp | BW50 | Tropical Beach | finalist_stamp | no_exact_cardtrader_match | 0 |
 | bwp | BW75 | Metagross | prerelease_stamp | no_exact_cardtrader_match | 0 |
-| bwp | BW95 | Champions Festival | quarter_finalist_stamp | no_exact_cardtrader_match | 0 |
 | col1 | 88 | Grass Energy | player_rewards_crosshatch_stamp | no_exact_cardtrader_match | 0 |
 | dp1 | 3 | Electivire | league_stamp | no_exact_cardtrader_match | 0 |
 | dp1 | 7 | Luxray | league_stamp | no_exact_cardtrader_match | 0 |
-| dp1 | 98 | Shinx | city_championships_stamp | no_exact_cardtrader_match | 0 |
 | dp3 | 122 | Professor Oak's Visit | professor_program_stamp | no_exact_cardtrader_match | 0 |
 | dp6 | 2 | Dragonite | staff_stamp | no_exact_cardtrader_match | 0 |
 | dp6 | 130 | Buck's Training | staff_stamp | no_exact_cardtrader_match | 0 |
@@ -95,19 +83,31 @@ No exact matches were accepted.
 | ex9 | 3 | Exploud | league_stamp | no_exact_cardtrader_match | 0 |
 | ex9 | 60 | Pikachu | san_diego_comic_con_international_stamped_2005 | no_exact_cardtrader_match | 0 |
 | ex9 | 70 | Treecko | indianapolis_gencon_stamped_2005 | no_exact_cardtrader_match | 0 |
-| hgss1 | 39 | Delibird | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss1 | 40 | Donphan | player_rewards_crosshatch_stamp | no_exact_cardtrader_match | 0 |
-| hgss1 | 97 | Pokémon Collector | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss1 | 100 | Professor Elm's Training Method | professor_program_stamp | no_exact_cardtrader_match | 0 |
-| hgss1 | 103 | Double Colorless Energy | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss2 | 7 | Politoed | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss2 | 21 | Poliwrath | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss2 | 24 | Steelix | player_rewards_crosshatch_stamp | no_exact_cardtrader_match | 0 |
 | hgss2 | 37 | Poliwhirl | staff_stamp | no_exact_cardtrader_match | 0 |
-| hgss2 | 82 | Rare Candy | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss3 | 79 | Darkness Energy | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss3 | 80 | Metal Energy | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss4 | 20 | Electivire | prerelease_stamp | no_exact_cardtrader_match | 0 |
 | hgss4 | 85 | Black Belt | league_stamp | no_exact_cardtrader_match | 0 |
 | hgss4 | 88 | Seeker | league_stamp | no_exact_cardtrader_match | 0 |
 | me02 | 26 | Suicune | eb_games_stamp | no_exact_cardtrader_match | 0 |
+| pl2 | 89 | Bebe's Search | league_stamp | no_exact_cardtrader_match | 0 |
+| pl2 | 96 | Team Galactic's Invention G-109 SP Radar | league_stamp | no_exact_cardtrader_match | 0 |
+| pl2 | 98 | Volkner's Philosophy | league_stamp | no_exact_cardtrader_match | 0 |
+| pl3 | 5 | Garchomp | league_stamp | no_exact_cardtrader_match | 0 |
+| pl3 | 136 | Cynthia's Guidance | pok_ball_stamped_player_rewards_promo_2009_2010 | no_exact_cardtrader_match | 0 |
+| sm1 | 20 | Tsareena | league_stamp | no_exact_cardtrader_match | 0 |
+| sm1 | 119 | Great Ball | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm1 | 120 | Hau | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm1 | 123 | Nest Ball | league_cup_staff_stamp | no_exact_cardtrader_match | 0 |
+| sm1 | 126 | Pokémon Catcher | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm1 | 127 | Potion | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm1 | 132 | Switch | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm1 | 135 | Ultra Ball | championship_staff_stamp | no_exact_cardtrader_match | 0 |
+| sm10 | 129 | Melmetal | unbroken_bonds_stamp | no_exact_cardtrader_match | 0 |
+| sm10 | 189 | Welder | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |
+| sm11 | 34 | Salazzle | battle_academy_deck_mark | no_exact_cardtrader_match | 0 |

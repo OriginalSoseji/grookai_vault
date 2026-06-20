@@ -15,26 +15,30 @@ Audit-only pass over existing preserved League evidence and the local PriceChart
 
 | metric | value |
 | --- | --- |
-| league_active_finish_targets | 78 |
-| preserved_evidence_rows_scanned | 1900 |
-| rows_with_any_preserved_match | 73 |
-| two_source_exact_active_finish_ready_for_guarded_dry_run | 0 |
-| crosshatch_alias_governance_required_before_dry_run | 0 |
-| single_source_exact_active_finish_second_source_needed | 16 |
-| no_preserved_source_match | 21 |
+| league_active_finish_targets | 89 |
+| preserved_evidence_rows_scanned | 1895 |
+| rows_with_any_preserved_match | 100 |
+| two_source_exact_active_finish_ready_for_guarded_dry_run | 2 |
+| crosshatch_alias_governance_required_before_dry_run | 2 |
+| single_source_exact_active_finish_second_source_needed | 28 |
+| no_preserved_source_match | 20 |
 
 ## By Readiness Status
 
 | status | count |
 | --- | --- |
-| blocked_no_explicit_active_finish | 56 |
-| no_preserved_source_match | 21 |
-| single_source_exact_active_finish_second_source_needed | 16 |
-| crosshatch_alias_review_only | 1 |
+| blocked_no_explicit_active_finish | 68 |
+| single_source_exact_active_finish_second_source_needed | 28 |
+| no_preserved_source_match | 20 |
+| crosshatch_alias_governance_required_before_dry_run | 2 |
+| two_source_exact_active_finish_ready_for_guarded_dry_run | 2 |
 
 ## Two-Source Exact Active Finish Ready
 
-None.
+| set | number | name | variant | finish | source families |
+| --- | --- | --- | --- | --- | --- |
+| hgss1 | 97 | Pokémon Collector | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
+| hgss2 | 82 | Rare Candy | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
 
 ## Crosshatch Alias Governance Required
 
@@ -42,16 +46,27 @@ These are not package-ready until the finish taxonomy explicitly maps the source
 
 | set | number | name | variant | finish | exact families | alias families |
 | --- | --- | --- | --- | --- | --- | --- |
-| pl3 | 5 | Garchomp | league_stamp | reverse |  | pricecharting |
+| pl3 | 5 | Garchomp | league_stamp | reverse | pokemonflashfire_league_reverse_exact | pricecharting |
+| pl3 | 26 | Dusknoir FB | league_stamp | reverse | pokecardvalues | pricecharting |
 
 ## Single-Source Exact Active Finish Rows
 
 | set | number | name | variant | finish | source families |
 | --- | --- | --- | --- | --- | --- |
+| bw1 | 53 | Whirlipede | league_stamp | reverse | pokecardvalues |
+| bw1 | 79 | Watchog | league_stamp | reverse | pokecardvalues |
+| bw1 | 81 | Lillipup | league_stamp | reverse | pokecardvalues |
 | bw1 | 107 | Water Energy | league_stamp | reverse | pokecardvalues |
-| hgss1 | 97 | Pokémon Collector | league_stamp | reverse | pokecardvalues |
+| bw11 | 109 | Bianca | league_stamp | reverse | pokecardvalues |
+| bw2 | 82 | Unfezant | league_stamp | reverse | pokecardvalues |
+| bw3 | 32 | Cryogonal | league_stamp | reverse | pokecardvalues |
+| bw8 | 120 | Escape Rope | league_stamp | reverse | pokecardvalues |
+| hgss1 | 39 | Delibird | league_stamp | reverse | pokecardvalues |
 | hgss1 | 103 | Double Colorless Energy | league_stamp | reverse | pokecardvalues |
-| hgss2 | 82 | Rare Candy | league_stamp | reverse | pokecardvalues |
+| hgss2 | 7 | Politoed | league_stamp | reverse | pokemonflashfire_league_reverse_exact |
+| pl1 | 104 | Broken Time-Space | league_stamp | reverse | pokecardvalues |
+| pl4 | 32 | Spiritomb | league_stamp | reverse | pokecardvalues |
+| pl4 | 87 | Expert Belt | league_stamp | reverse | pokecardvalues |
 | sm1 | 41 | Primarina | league_stamp | reverse | pokecardvalues |
 | sm3 | 94 | Diancie | league_stamp | reverse | pokecardvalues |
 | sm6 | 77 | Buzzwole | league_stamp | reverse | pokecardvalues |
@@ -64,6 +79,8 @@ These are not package-ready until the finish taxonomy explicitly maps the source
 | xy2 | 91 | Magnetic Storm | league_stamp | reverse | pokecardvalues |
 | xy2 | 94 | Pokémon Fan Club | league_stamp | reverse | pokecardvalues |
 | xy3 | 88 | Battle Reporter | league_stamp | reverse | pokecardvalues |
+| xy8 | 101 | Flabébé | league_stamp | reverse | pokecardvalues |
+| xy8 | 102 | Floette | league_stamp | reverse | pokecardvalues |
 
 ## Guardrail
 

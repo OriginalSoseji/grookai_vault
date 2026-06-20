@@ -18,7 +18,7 @@ Audit-only extraction from the local PriceCharting Pokemon Cards CSV. Rows are c
 - blocked_rows: 136
 - csv_rows_reviewed: 73212
 - fixture_records_written: 42
-- fingerprint_sha256: `3e50fec1740185366c585baa61c8db88d17b5bf4add860395cdc0214b4c31b37`
+- fingerprint_sha256: `8e77f0e72aecae4a1e599f49b764a4a10b51cfe274133a09f24aa9e69e7d812a`
 
 | status | rows |
 | --- | --- |

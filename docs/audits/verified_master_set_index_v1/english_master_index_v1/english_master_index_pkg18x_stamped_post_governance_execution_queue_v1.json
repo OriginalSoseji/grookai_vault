@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:55:05.542Z",
+  "generated_at": "2026-06-20T05:03:28.939Z",
   "version": "english_master_index_pkg18x_stamped_post_governance_execution_queue_v1",
   "package_id": "PKG-18X-STAMPED-POST-GOVERNANCE-EXECUTION-QUEUE",
   "audit_only": true,
@@ -11,25 +11,29 @@
   "global_apply_performed": false,
   "write_ready_now": 0,
   "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18_stamped_completion_governance_plan_v1.json",
-  "fingerprint_sha256": "ebab4dcda238b4f2305a3e629520b9ff762c379bf5da427efd251fe832f71024",
+  "closure_artifacts": {
+    "base_parent_resolution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.json"
+  },
+  "fingerprint_sha256": "07e71f016ce662bc6373926d97b122ffa4f9fe2912f473a7dad9a42c2a9d6246",
   "summary": {
-    "remaining_rows": 579,
-    "execution_buckets": 7,
-    "no_db_write_expected_rows": 242,
-    "future_guarded_write_possible_rows": 334,
+    "remaining_rows": 567,
+    "execution_buckets": 8,
+    "no_db_write_expected_rows": 301,
+    "future_guarded_write_possible_rows": 263,
     "blocked_no_write_rows": 3,
     "by_execution_bucket": {
       "bucket_05_variant_family_source_acquisition_bulk": 194,
       "bucket_01_no_write_generic_stamped_suppression": 180,
-      "bucket_04_prize_pack_finish_mapping_bulk": 63,
       "bucket_02_no_printing_write_battle_academy_display_metadata": 62,
-      "bucket_03_base_parent_resolution_bulk": 59,
+      "bucket_04_prize_pack_finish_mapping_bulk": 51,
+      "bucket_03a_base_parent_closed_stale_no_write": 50,
       "bucket_06_second_source_acquisition_bulk": 18,
+      "bucket_03b_base_parent_blocked_no_write": 9,
       "bucket_07_conflict_adjudication_manual": 3
     },
     "by_write_class": {
-      "future_guarded_write_possible_after_readiness": 4,
-      "no_db_write_expected": 2,
+      "no_db_write_expected": 4,
+      "future_guarded_write_possible_after_readiness": 3,
       "blocked_no_write": 1
     }
   },
@@ -974,37 +978,37 @@
       ]
     },
     {
-      "bucket_id": "bucket_03_base_parent_resolution_bulk",
-      "row_count": 59,
-      "write_class": "future_guarded_write_possible_after_readiness",
-      "recommended_action": "Run one DB read-only base-parent resolver, then create large guarded packages for insert/selection rows only.",
+      "bucket_id": "bucket_03a_base_parent_closed_stale_no_write",
+      "row_count": 50,
+      "write_class": "no_db_write_expected",
+      "recommended_action": "Closed by current base-parent resolver. Do not build a base-parent package for these stale rows.",
       "immediate_apply_authorized": false,
       "by_rule": {
-        "base_parent_required_before_stamped_identity_rule": 45,
+        "base_parent_required_before_stamped_identity_rule": 36,
         "canonical_base_parent_selection_rule": 14
       },
       "by_status": {
-        "base_parent_missing": 45,
+        "base_parent_missing": 36,
         "base_parent_ambiguous": 14
       },
       "by_variant_family": {
-        "generic_or_unknown": 19,
+        "generic_or_unknown": 12,
         "prize_pack": 12,
         "professor_program": 8,
         "wotc_legacy_stamp": 7,
-        "battle_academy": 5,
+        "battle_academy": 3,
         "halloween": 3,
         "prerelease": 3,
         "small_custom_stamp": 2
       },
       "top_variant_keys": [
         {
-          "key": "unknown",
-          "count": 18
-        },
-        {
           "key": "prize_pack_stamp",
           "count": 12
+        },
+        {
+          "key": "unknown",
+          "count": 11
         },
         {
           "key": "professor_program_stamp",
@@ -1016,7 +1020,7 @@
         },
         {
           "key": "battle_academy_deck_mark",
-          "count": 5
+          "count": 3
         },
         {
           "key": "pikachu_jack_o_lantern_stamp",
@@ -1053,10 +1057,6 @@
           "count": 7
         },
         {
-          "key": "wp",
-          "count": 7
-        },
-        {
           "key": "swsh3.5",
           "count": 4
         },
@@ -1078,6 +1078,10 @@
         },
         {
           "key": "base2",
+          "count": 2
+        },
+        {
+          "key": "gym1",
           "count": 2
         }
       ],
@@ -1102,7 +1106,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base2",
@@ -1124,7 +1131,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base2",
@@ -1146,7 +1156,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base3",
@@ -1168,7 +1181,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base5",
@@ -1190,7 +1206,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base5",
@@ -1212,7 +1231,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "base5",
@@ -1234,7 +1256,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "gym1",
@@ -1256,7 +1281,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "gym1",
@@ -1278,7 +1306,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "gym2",
@@ -1300,49 +1331,10 @@
             "base_parent_count_2",
             "stamped_variant_collision_1"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
-        },
-        {
-          "set_key": "sm7.5",
-          "set_name": "Dragon Majesty",
-          "card_number": "3",
-          "card_name": "Charizard",
-          "queue_status": "base_parent_missing",
-          "variant_key": "battle_academy_deck_mark",
-          "stamp_label": "Battle Academy Deck Mark",
-          "finish_key": null,
-          "variant_family": "battle_academy",
-          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
-          "completion_lane": "lane_c_base_parent_resolution",
-          "deterministic_rule_class": "deterministic_ordering_rule",
-          "can_reduce_queue_without_source": true,
-          "write_effect": "requires_base_parent_package_first",
-          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
-          "blockers": [
-            "base_parent_count_0"
-          ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
-        },
-        {
-          "set_key": "sm7.5",
-          "set_name": "Dragon Majesty",
-          "card_number": "55",
-          "card_name": "Kangaskhan",
-          "queue_status": "base_parent_missing",
-          "variant_key": "battle_academy_deck_mark",
-          "stamp_label": "Battle Academy Deck Mark",
-          "finish_key": null,
-          "variant_family": "battle_academy",
-          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
-          "completion_lane": "lane_c_base_parent_resolution",
-          "deterministic_rule_class": "deterministic_ordering_rule",
-          "can_reduce_queue_without_source": true,
-          "write_effect": "requires_base_parent_package_first",
-          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
-          "blockers": [
-            "base_parent_count_0"
-          ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh3.5",
@@ -1363,7 +1355,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh3.5",
@@ -1385,7 +1380,10 @@
             "stamp_identity_generic_stamped_only",
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh3.5",
@@ -1406,7 +1404,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh3.5",
@@ -1427,7 +1428,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh4.5",
@@ -1448,7 +1452,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh4.5",
@@ -1469,7 +1476,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh4.5",
@@ -1490,7 +1500,10 @@
           "blockers": [
             "base_parent_count_0"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
         },
         {
           "set_key": "swsh11",
@@ -1511,54 +1524,374 @@
           "blockers": [
             "base_parent_count_2"
           ],
-          "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
+        },
+        {
+          "set_key": "swsh11",
+          "set_name": "Lost Origin",
+          "card_number": "26",
+          "card_name": "Chandelure",
+          "queue_status": "base_parent_ambiguous",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "finish_key": null,
+          "variant_family": "halloween",
+          "governance_rule_id": "canonical_base_parent_selection_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_resolution_rule_after_readback",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "readiness_or_dependency_transfer_only",
+          "recommended_action": "When multiple base parents exist, select the canonical unstamped base parent by set, number, name, empty variant, active identity, and matching base finish lane.",
+          "blockers": [
+            "base_parent_count_2"
+          ],
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
+        },
+        {
+          "set_key": "swsh11",
+          "set_name": "Lost Origin",
+          "card_number": "64",
+          "card_name": "Gastly",
+          "queue_status": "base_parent_ambiguous",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "finish_key": null,
+          "variant_family": "halloween",
+          "governance_rule_id": "canonical_base_parent_selection_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_resolution_rule_after_readback",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "readiness_or_dependency_transfer_only",
+          "recommended_action": "When multiple base parents exist, select the canonical unstamped base parent by set, number, name, empty variant, active identity, and matching base finish lane.",
+          "blockers": [
+            "base_parent_count_2"
+          ],
+          "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+          "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+          "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+          "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
+        }
+      ]
+    },
+    {
+      "bucket_id": "bucket_03b_base_parent_blocked_no_write",
+      "row_count": 9,
+      "write_class": "no_db_write_expected",
+      "recommended_action": "Keep blocked until active base finish evidence or parent identity collision is resolved.",
+      "immediate_apply_authorized": false,
+      "by_rule": {
+        "base_parent_required_before_stamped_identity_rule": 9
+      },
+      "by_status": {
+        "base_parent_missing": 9
+      },
+      "by_variant_family": {
+        "generic_or_unknown": 7,
+        "battle_academy": 2
+      },
+      "top_variant_keys": [
+        {
+          "key": "unknown",
+          "count": 7
+        },
+        {
+          "key": "battle_academy_deck_mark",
+          "count": 2
+        }
+      ],
+      "top_sets": [
+        {
+          "key": "wp",
+          "count": 7
+        },
+        {
+          "key": "sm7.5",
+          "count": 2
+        }
+      ],
+      "sample_rows": [
+        {
+          "set_key": "sm7.5",
+          "set_name": "Dragon Majesty",
+          "card_number": "3",
+          "card_name": "Charizard",
+          "queue_status": "base_parent_missing",
+          "variant_key": "battle_academy_deck_mark",
+          "stamp_label": "Battle Academy Deck Mark",
+          "finish_key": null,
+          "variant_family": "battle_academy",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "base_parent_count_0"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "sm7.5",
+          "set_name": "Dragon Majesty",
+          "card_number": "55",
+          "card_name": "Kangaskhan",
+          "queue_status": "base_parent_missing",
+          "variant_key": "battle_academy_deck_mark",
+          "stamp_label": "Battle Academy Deck Mark",
+          "finish_key": null,
+          "variant_family": "battle_academy",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "base_parent_count_0"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR JU 60",
+          "card_name": "Pikachu",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR FO 50",
+          "card_name": "Kabuto",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR B2 63",
+          "card_name": "Wartortle",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR TR 19",
+          "card_name": "Dark Arbok",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR TR 32",
+          "card_name": "Dark Charmeleon",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR GH 54",
+          "card_name": "Misty's Psyduck",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "card_number": "WPR GC 37",
+          "card_name": "Brock's Vulpix",
+          "queue_status": "base_parent_missing",
+          "variant_key": null,
+          "stamp_label": null,
+          "finish_key": null,
+          "variant_family": "generic_or_unknown",
+          "governance_rule_id": "base_parent_required_before_stamped_identity_rule",
+          "completion_lane": "lane_c_base_parent_resolution",
+          "deterministic_rule_class": "deterministic_ordering_rule",
+          "can_reduce_queue_without_source": true,
+          "write_effect": "requires_base_parent_package_first",
+          "recommended_action": "Stamped identity may only attach to an existing canonical unstamped base parent.",
+          "blockers": [
+            "stamp_identity_missing_stamp_phrase",
+            "base_parent_count_0",
+            "no_preserved_fixture_evidence"
+          ],
+          "base_parent_closure_status": "blocked_active_finish_required",
+          "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+          "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+          "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
         }
       ]
     },
     {
       "bucket_id": "bucket_04_prize_pack_finish_mapping_bulk",
-      "row_count": 63,
+      "row_count": 51,
       "write_class": "future_guarded_write_possible_after_readiness",
       "recommended_action": "Adjudicate Prize Pack finish label mapping once, then run bulk readiness for exact mapped rows.",
       "immediate_apply_authorized": false,
       "by_rule": {
-        "prize_pack_finish_label_mapping_rule": 63
+        "prize_pack_finish_label_mapping_rule": 51
       },
       "by_status": {
-        "active_finish_required": 63
+        "active_finish_required": 51
       },
       "by_variant_family": {
-        "prize_pack": 63
+        "prize_pack": 51
       },
       "top_variant_keys": [
         {
           "key": "prize_pack_stamp",
-          "count": 63
+          "count": 51
         }
       ],
       "top_sets": [
         {
           "key": "swsh5",
-          "count": 17
+          "count": 14
         },
         {
           "key": "swsh1",
-          "count": 10
-        },
-        {
-          "key": "swsh6",
-          "count": 9
-        },
-        {
-          "key": "swsh9",
           "count": 8
         },
         {
-          "key": "swsh7",
-          "count": 7
+          "key": "swsh6",
+          "count": 8
+        },
+        {
+          "key": "swsh9",
+          "count": 5
         },
         {
           "key": "swsh2",
+          "count": 4
+        },
+        {
+          "key": "swsh7",
           "count": 4
         },
         {
@@ -1698,44 +2031,6 @@
           "set_name": "Sword & Shield",
           "card_number": "159",
           "card_name": "Crushing Hammer",
-          "queue_status": "active_finish_required",
-          "variant_key": "prize_pack_stamp",
-          "stamp_label": "Prize Pack Stamp",
-          "finish_key": null,
-          "variant_family": "prize_pack",
-          "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-          "completion_lane": "lane_d_prize_pack_finish_mapping",
-          "deterministic_rule_class": "needs_governed_mapping",
-          "can_reduce_queue_without_source": false,
-          "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-          "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-          "blockers": [],
-          "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-        },
-        {
-          "set_key": "swsh1",
-          "set_name": "Sword & Shield",
-          "card_number": "162",
-          "card_name": "Energy Switch",
-          "queue_status": "active_finish_required",
-          "variant_key": "prize_pack_stamp",
-          "stamp_label": "Prize Pack Stamp",
-          "finish_key": null,
-          "variant_family": "prize_pack",
-          "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-          "completion_lane": "lane_d_prize_pack_finish_mapping",
-          "deterministic_rule_class": "needs_governed_mapping",
-          "can_reduce_queue_without_source": false,
-          "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-          "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-          "blockers": [],
-          "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-        },
-        {
-          "set_key": "swsh1",
-          "set_name": "Sword & Shield",
-          "card_number": "164",
-          "card_name": "Great Ball",
           "queue_status": "active_finish_required",
           "variant_key": "prize_pack_stamp",
           "stamp_label": "Prize Pack Stamp",
@@ -1958,6 +2253,44 @@
           "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
           "blockers": [],
           "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
+        },
+        {
+          "set_key": "swsh4",
+          "set_name": "Vivid Voltage",
+          "card_number": "157",
+          "card_name": "Nessa",
+          "queue_status": "active_finish_required",
+          "variant_key": "prize_pack_stamp",
+          "stamp_label": "Prize Pack Stamp",
+          "finish_key": null,
+          "variant_family": "prize_pack",
+          "governance_rule_id": "prize_pack_finish_label_mapping_rule",
+          "completion_lane": "lane_d_prize_pack_finish_mapping",
+          "deterministic_rule_class": "needs_governed_mapping",
+          "can_reduce_queue_without_source": false,
+          "write_effect": "blocked_until_standard_set_vs_foil_mapping",
+          "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
+          "blockers": [],
+          "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
+        },
+        {
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "8",
+          "card_name": "Cherrim",
+          "queue_status": "active_finish_required",
+          "variant_key": "prize_pack_stamp",
+          "stamp_label": "Prize Pack Stamp",
+          "finish_key": null,
+          "variant_family": "prize_pack",
+          "governance_rule_id": "prize_pack_finish_label_mapping_rule",
+          "completion_lane": "lane_d_prize_pack_finish_mapping",
+          "deterministic_rule_class": "needs_governed_mapping",
+          "can_reduce_queue_without_source": false,
+          "write_effect": "blocked_until_standard_set_vs_foil_mapping",
+          "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
+          "blockers": [],
+          "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
         }
       ]
     },
@@ -1968,34 +2301,31 @@
       "recommended_action": "Run broad source acquisition by family, then create one or more large guarded dry-run buckets for exact two-source rows.",
       "immediate_apply_authorized": false,
       "by_rule": {
-        "league_crosshatch_finish_alias_rule": 84,
+        "league_crosshatch_finish_alias_rule": 96,
+        "event_staff_stamp_hierarchy_rule": 36,
         "small_custom_stamp_source_rule": 32,
-        "halloween_stamp_display_identity_rule": 28,
-        "event_staff_stamp_hierarchy_rule": 26,
         "prerelease_stamp_identity_rule": 12,
-        "professor_program_stamp_identity_rule": 12
+        "professor_program_stamp_identity_rule": 12,
+        "halloween_stamp_display_identity_rule": 6
       },
       "by_status": {
-        "active_finish_required": 191,
+        "active_finish_required": 180,
+        "existing_stamped_parent_collision_review": 11,
         "active_finish_required_with_dependency_awareness": 3
       },
       "by_variant_family": {
-        "league": 79,
+        "league": 91,
+        "championship_or_staff": 36,
         "small_custom_stamp": 32,
-        "halloween": 28,
-        "championship_or_staff": 26,
         "prerelease": 12,
         "professor_program": 12,
+        "halloween": 6,
         "player_rewards_crosshatch": 5
       },
       "top_variant_keys": [
         {
           "key": "league_stamp",
-          "count": 71
-        },
-        {
-          "key": "pikachu_jack_o_lantern_stamp",
-          "count": 27
+          "count": 83
         },
         {
           "key": "prerelease_stamp",
@@ -2006,12 +2336,20 @@
           "count": 12
         },
         {
+          "key": "regional_championships_stamp",
+          "count": 10
+        },
+        {
           "key": "league_cup_staff_stamp",
           "count": 8
         },
         {
           "key": "staff_stamp",
           "count": 7
+        },
+        {
+          "key": "pikachu_jack_o_lantern_stamp",
+          "count": 6
         },
         {
           "key": "play_pok_mon_thank_you_stamp",
@@ -2024,20 +2362,16 @@
         {
           "key": "player_rewards_crosshatch_stamp",
           "count": 4
-        },
-        {
-          "key": "regional_championships_stamp",
-          "count": 4
         }
       ],
       "top_sets": [
         {
-          "key": "swsh3",
+          "key": "swshp",
           "count": 9
         },
         {
-          "key": "swshp",
-          "count": 9
+          "key": "bw1",
+          "count": 8
         },
         {
           "key": "dv1",
@@ -2048,27 +2382,27 @@
           "count": 7
         },
         {
+          "key": "xy1",
+          "count": 7
+        },
+        {
           "key": "sm8",
           "count": 6
         },
         {
-          "key": "swsh4",
+          "key": "swsh3",
           "count": 6
         },
         {
-          "key": "bw1",
+          "key": "bw5",
           "count": 5
         },
         {
-          "key": "hgss2",
+          "key": "hgss1",
           "count": 5
         },
         {
-          "key": "swsh1",
-          "count": 5
-        },
-        {
-          "key": "swsh11",
+          "key": "sm1",
           "count": 5
         }
       ],
@@ -2435,13 +2769,13 @@
           "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
         },
         {
-          "set_key": "dpp",
-          "set_name": "DP Black Star Promos",
-          "card_number": "DP25",
-          "card_name": "Tropical Wind",
-          "queue_status": "active_finish_required",
-          "variant_key": "finalist_stamp",
-          "stamp_label": "Finalist Stamp",
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "98",
+          "card_name": "Shinx",
+          "queue_status": "existing_stamped_parent_collision_review",
+          "variant_key": "city_championships_stamp",
+          "stamp_label": "City Championships Stamp",
           "finish_key": null,
           "variant_family": "championship_or_staff",
           "governance_rule_id": "event_staff_stamp_hierarchy_rule",
@@ -2450,7 +2784,9 @@
           "can_reduce_queue_without_source": false,
           "write_effect": "can_unlock_bulk_identity_after second source",
           "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
-          "blockers": [],
+          "blockers": [
+            "stamped_variant_collision_1"
+          ],
           "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
         }
       ]
@@ -3196,7 +3532,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "base2",
@@ -3218,7 +3557,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "base2",
@@ -3240,7 +3582,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "basep",
@@ -3283,7 +3628,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "base5",
@@ -3305,7 +3653,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "base5",
@@ -3327,7 +3678,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "base5",
@@ -3349,7 +3703,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "gym1",
@@ -3371,7 +3728,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "gym1",
@@ -3393,7 +3753,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "gym2",
@@ -3415,7 +3778,10 @@
         "base_parent_count_2",
         "stamped_variant_collision_1"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "bog",
@@ -3945,6 +4311,27 @@
         "stamp_identity_generic_stamped_only"
       ],
       "execution_bucket": "bucket_01_no_write_generic_stamped_suppression"
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
       "set_key": "dp1",
@@ -4569,6 +4956,25 @@
       "execution_bucket": "bucket_01_no_write_generic_stamped_suppression"
     },
     {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "104",
+      "card_name": "Broken Time-Space",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
       "set_key": "pop9",
       "set_name": "POP Series 9",
       "card_number": "15",
@@ -4592,46 +4998,8 @@
     {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
-      "card_number": "89",
-      "card_name": "Bebe's Search",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
       "card_number": "96",
       "card_name": "Team Galactic's Invention G-109 SP Radar",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "98",
-      "card_name": "Volkner's Philosophy",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -4651,6 +5019,25 @@
       "set_name": "Supreme Victors",
       "card_number": "5",
       "card_name": "Garchomp",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "26",
+      "card_name": "Dusknoir FB",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -4696,6 +5083,63 @@
       "stamp_label": "PokéBall Stamped, Player Rewards Promo; 2009 2010",
       "finish_key": null,
       "variant_family": "player_rewards_crosshatch",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "32",
+      "card_name": "Spiritomb",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "87",
+      "card_name": "Expert Belt",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "39",
+      "card_name": "Delibird",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
       "governance_rule_id": "league_crosshatch_finish_alias_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "bounded_alias_rule",
@@ -4807,25 +5251,6 @@
       "set_name": "HS—Unleashed",
       "card_number": "7",
       "card_name": "Politoed",
-      "queue_status": "active_finish_required",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "variant_family": "league",
-      "governance_rule_id": "league_crosshatch_finish_alias_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "bounded_alias_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
-      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "21",
-      "card_name": "Poliwrath",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -5342,6 +5767,63 @@
     {
       "set_key": "bw1",
       "set_name": "Black & White",
+      "card_number": "53",
+      "card_name": "Whirlipede",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "79",
+      "card_name": "Watchog",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "81",
+      "card_name": "Lillipup",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
       "card_number": "105",
       "card_name": "Grass Energy",
       "queue_status": "active_finish_required",
@@ -5502,6 +5984,25 @@
     {
       "set_key": "bw2",
       "set_name": "Emerging Powers",
+      "card_number": "82",
+      "card_name": "Unfezant",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
       "card_number": "95",
       "card_name": "Pokémon Catcher",
       "queue_status": "active_finish_required",
@@ -5542,6 +6043,25 @@
       "set_name": "Noble Victories",
       "card_number": "11",
       "card_name": "Shelmet",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -5656,6 +6176,27 @@
     {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
       "card_number": "60",
       "card_name": "Umbreon",
       "queue_status": "stamp_identity_label_needed",
@@ -5673,6 +6214,27 @@
         "stamp_identity_generic_stamped_only"
       ],
       "execution_bucket": "bucket_01_no_write_generic_stamped_suppression"
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
       "set_key": "dv1",
@@ -5831,6 +6393,25 @@
       "set_name": "Plasma Storm",
       "card_number": "118",
       "card_name": "Colress",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "120",
+      "card_name": "Escape Rope",
       "queue_status": "active_finish_required",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
@@ -6063,6 +6644,25 @@
       "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "109",
+      "card_name": "Bianca",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
       "set_key": "xy1",
       "set_name": "XY",
       "card_number": "56",
@@ -6098,6 +6698,48 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
       "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
@@ -6455,6 +7097,44 @@
     {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "queue_status": "active_finish_required",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
       "card_number": "138",
       "card_name": "Giovanni's Scheme",
       "queue_status": "active_finish_required",
@@ -6469,6 +7149,27 @@
       "write_effect": "can_unlock_bulk_identity_after second source",
       "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
       "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
       "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
@@ -6673,6 +7374,27 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
       "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
@@ -7112,6 +7834,27 @@
     {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
       "card_number": "132",
       "card_name": "Switch",
       "queue_status": "active_finish_required",
@@ -7525,6 +8268,27 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
       "card_number": "122",
       "card_name": "Escape Board",
       "queue_status": "active_finish_required",
@@ -7577,6 +8341,48 @@
       "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
       "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
       "blockers": [],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "variant_family": "league",
+      "governance_rule_id": "league_crosshatch_finish_alias_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "bounded_alias_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_readiness_when exact sources exist",
+      "recommended_action": "For League/Player Rewards contexts, Crosshatch Holo is a governed source label that may map to the active reverse lane only when exact set/card/stamp evidence exists.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
+      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "queue_status": "existing_stamped_parent_collision_review",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": null,
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "event_staff_stamp_hierarchy_rule",
+      "completion_lane": "lane_e_variant_family_finish_acquisition",
+      "deterministic_rule_class": "variant_normalization_rule",
+      "can_reduce_queue_without_source": false,
+      "write_effect": "can_unlock_bulk_identity_after second source",
+      "recommended_action": "Event and staff stamps normalize into controlled hierarchy: event stamp, staff event stamp, league staff stamp, finalist placement.",
+      "blockers": [
+        "stamped_variant_collision_1"
+      ],
       "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
@@ -7712,7 +8518,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "sm7.5",
@@ -7733,7 +8542,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "sm8",
@@ -8658,44 +9470,6 @@
     {
       "set_key": "swsh1",
       "set_name": "Sword & Shield",
-      "card_number": "89",
-      "card_name": "Sinistea",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "90",
-      "card_name": "Polteageist",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
       "card_number": "117",
       "card_name": "Galarian Zigzagoon",
       "queue_status": "active_finish_required",
@@ -8768,44 +9542,6 @@
       "recommended_action": "Battle Academy deck marks are display/deck metadata unless exact separate physical printing evidence proves otherwise. Never create child finish_key=stamped.",
       "blockers": [],
       "execution_bucket": "bucket_02_no_printing_write_battle_academy_display_metadata"
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "162",
-      "card_name": "Energy Switch",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "164",
-      "card_name": "Great Ball",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
     },
     {
       "set_key": "swsh1",
@@ -9000,63 +9736,6 @@
     {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
-      "card_number": "31",
-      "card_name": "Litwick",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "32",
-      "card_name": "Lampent",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "102",
-      "card_name": "Galarian Runerigus",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
       "card_number": "109",
       "card_name": "Falinks",
       "queue_status": "active_finish_required",
@@ -9230,25 +9909,6 @@
     {
       "set_key": "swsh3",
       "set_name": "Darkness Ablaze",
-      "card_number": "82",
-      "card_name": "Sinistea",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
       "card_number": "83",
       "card_name": "Polteageist",
       "queue_status": "active_finish_required",
@@ -9257,44 +9917,6 @@
       "finish_key": null,
       "variant_family": "small_custom_stamp",
       "governance_rule_id": "small_custom_stamp_source_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "102",
-      "card_name": "Spinarak",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "103",
-      "card_name": "Ariados",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -9457,7 +10079,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh3.5",
@@ -9479,7 +10104,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh3.5",
@@ -9500,7 +10128,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh3.5",
@@ -9521,26 +10152,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "19",
-      "card_name": "Dhelmise",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh4",
@@ -9579,63 +10194,6 @@
       "recommended_action": "Battle Academy deck marks are display/deck metadata unless exact separate physical printing evidence proves otherwise. Never create child finish_key=stamped.",
       "blockers": [],
       "execution_bucket": "bucket_02_no_printing_write_battle_academy_display_metadata"
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "69",
-      "card_name": "Duskull",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "70",
-      "card_name": "Dusclops",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "95",
-      "card_name": "Lycanroc",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
       "set_key": "swsh4",
@@ -9713,7 +10271,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh4.5",
@@ -9734,7 +10295,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh4.5",
@@ -9755,7 +10319,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh5",
@@ -9798,25 +10365,6 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "card_number": "69",
-      "card_name": "Cubone",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
       "card_number": "82",
       "card_name": "Sandaconda",
       "queue_status": "active_finish_required",
@@ -9825,25 +10373,6 @@
       "finish_key": null,
       "variant_family": "small_custom_stamp",
       "governance_rule_id": "small_custom_stamp_source_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "93",
-      "card_name": "Murkrow",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -10045,63 +10574,6 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "card_number": "136",
-      "card_name": "Tool Jammer",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "137",
-      "card_name": "Tower of Darkness",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "138",
-      "card_name": "Tower of Waters",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
       "card_number": "139",
       "card_name": "Urn of Vitality",
       "queue_status": "active_finish_required",
@@ -10197,63 +10669,6 @@
         "stamp_identity_generic_stamped_only"
       ],
       "execution_bucket": "bucket_01_no_write_generic_stamped_suppression"
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "55",
-      "card_name": "Gastly",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "56",
-      "card_name": "Haunter",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "64",
-      "card_name": "Cresselia",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
     },
     {
       "set_key": "swsh6",
@@ -10570,63 +10985,6 @@
     {
       "set_key": "swsh7",
       "set_name": "Evolving Skies",
-      "card_number": "144",
-      "card_name": "Crystal Cave",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "146",
-      "card_name": "Dream Ball",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "154",
-      "card_name": "Rescue Carrier",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
       "card_number": "161",
       "card_name": "Stormy Mountains",
       "queue_status": "active_finish_required",
@@ -10642,25 +11000,6 @@
       "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
       "blockers": [],
       "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "16",
-      "card_name": "Phantump",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
       "set_key": "swsh8",
@@ -11028,44 +11367,6 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "card_number": "60",
-      "card_name": "Duskull",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "61",
-      "card_name": "Dusclops",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_pumpkin_stamp",
-      "stamp_label": "Pikachu Pumpkin Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
       "card_number": "126",
       "card_name": "Tornadus",
       "queue_status": "active_finish_required",
@@ -11104,46 +11405,8 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "card_number": "134",
-      "card_name": "Cheren's Care",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
       "card_number": "137",
       "card_name": "Collapsed Stadium",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "138",
-      "card_name": "Cynthia's Ambition",
       "queue_status": "active_finish_required",
       "variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
@@ -11188,63 +11451,6 @@
       "finish_key": null,
       "variant_family": "professor_program",
       "governance_rule_id": "professor_program_stamp_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "148",
-      "card_name": "Roseanne's Backup",
-      "queue_status": "active_finish_required",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "finish_key": null,
-      "variant_family": "prize_pack",
-      "governance_rule_id": "prize_pack_finish_label_mapping_rule",
-      "completion_lane": "lane_d_prize_pack_finish_mapping",
-      "deterministic_rule_class": "needs_governed_mapping",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "blocked_until_standard_set_vs_foil_mapping",
-      "recommended_action": "Prize Pack source labels must map Standard Set, Standard Set Foil, H, and Reverse Holo to active finishes at card level before promotion.",
-      "blockers": [],
-      "execution_bucket": "bucket_04_prize_pack_finish_mapping_bulk"
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "58",
-      "card_name": "Misdreavus",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "103",
-      "card_name": "Nickit",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
       "completion_lane": "lane_e_variant_family_finish_acquisition",
       "deterministic_rule_class": "source_required_rule",
       "can_reduce_queue_without_source": false,
@@ -11312,7 +11518,10 @@
       "blockers": [
         "base_parent_count_2"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh11",
@@ -11371,7 +11580,10 @@
       "blockers": [
         "base_parent_count_2"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh11",
@@ -11413,7 +11625,10 @@
       "blockers": [
         "base_parent_count_2"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh11",
@@ -11473,25 +11688,6 @@
         "stamp_identity_generic_stamped_only"
       ],
       "execution_bucket": "bucket_01_no_write_generic_stamped_suppression"
-    },
-    {
-      "set_key": "swsh12",
-      "set_name": "Silver Tempest",
-      "card_number": "103",
-      "card_name": "Zubat",
-      "queue_status": "active_finish_required",
-      "variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "finish_key": null,
-      "variant_family": "halloween",
-      "governance_rule_id": "halloween_stamp_display_identity_rule",
-      "completion_lane": "lane_e_variant_family_finish_acquisition",
-      "deterministic_rule_class": "source_required_rule",
-      "can_reduce_queue_without_source": false,
-      "write_effect": "no_write_without_exact_sources",
-      "recommended_action": "Keep source-law requirements active; use rule only for classification and package routing.",
-      "blockers": [],
-      "execution_bucket": "bucket_05_variant_family_source_acquisition_bulk"
     },
     {
       "set_key": "swsh12",
@@ -12172,7 +12368,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12194,7 +12393,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12215,7 +12417,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12236,7 +12441,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12257,7 +12465,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12278,7 +12489,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "swsh12.5",
@@ -12299,7 +12513,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sve",
@@ -12695,7 +12912,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv02",
@@ -12759,7 +12979,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12780,7 +13003,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12801,7 +13027,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12823,7 +13052,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12844,7 +13076,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12865,7 +13100,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12887,7 +13125,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv03.5",
@@ -12908,7 +13149,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv05",
@@ -13095,7 +13339,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_stamped_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv06.5",
@@ -13117,7 +13364,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv06.5",
@@ -13138,7 +13388,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv07",
@@ -13244,7 +13497,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13266,7 +13522,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13288,7 +13547,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13310,7 +13572,10 @@
         "stamp_identity_generic_stamped_only",
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13331,7 +13596,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13352,7 +13620,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13373,7 +13644,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13394,7 +13668,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13415,7 +13692,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv08.5",
@@ -13436,7 +13716,10 @@
       "blockers": [
         "base_parent_count_0"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "sv09",
@@ -13842,7 +14125,10 @@
       "blockers": [
         "base_parent_count_2"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "closed_as_stale_return_to_stamped_flow",
+      "base_parent_readiness_status": "stale_unstamped_base_parent_now_exists",
+      "base_parent_closure_action": "Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.",
+      "execution_bucket": "bucket_03a_base_parent_closed_stale_no_write"
     },
     {
       "set_key": "me01",
@@ -13926,7 +14212,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -13949,7 +14238,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -13972,7 +14264,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -13995,7 +14290,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -14018,7 +14316,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -14041,7 +14342,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "wp",
@@ -14064,7 +14368,10 @@
         "base_parent_count_0",
         "no_preserved_fixture_evidence"
       ],
-      "execution_bucket": "bucket_03_base_parent_resolution_bulk"
+      "base_parent_closure_status": "blocked_active_finish_required",
+      "base_parent_readiness_status": "blocked_missing_or_inactive_base_finish",
+      "base_parent_closure_action": "Acquire exact active finish evidence before considering a parent/child package.",
+      "execution_bucket": "bucket_03b_base_parent_blocked_no_write"
     },
     {
       "set_key": "bw3",

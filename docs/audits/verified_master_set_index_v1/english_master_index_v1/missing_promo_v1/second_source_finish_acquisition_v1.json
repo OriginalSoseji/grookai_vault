@@ -1,0 +1,97 @@
+{
+  "package_id": "MISSING-PROMO-04K-SECOND-SOURCE-FINISH-ACQUISITION",
+  "generated_at": "2026-06-20T00:49:09.146Z",
+  "mode": "read_only_second_source_acquisition",
+  "fingerprint_sha256": "452ecf54c82bdf1a2688377b64baf6f7b48c4fb0461c63ae475cc9ee7c5cda82",
+  "input_artifacts": {
+    "live_capture_human_review": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/live_capture_human_review_v1.json"
+  },
+  "summary": {
+    "acquired_finish_rows": 2,
+    "approved_for_guarded_dry_run": 2,
+    "by_finish": {
+      "holo": 1,
+      "normal": 1
+    },
+    "by_family": {
+      "championship_stamp": 1,
+      "league_stamp": 1
+    }
+  },
+  "acquired_finish_rows": [
+    {
+      "parent_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+      "set_code": "dp1",
+      "number": "98",
+      "name": "Shinx",
+      "variant_key": "city_championships_stamp",
+      "family": "championship_stamp",
+      "finish_key": "normal",
+      "evidence_status": "approved_for_guarded_dry_run",
+      "acquisition_reason": "Resolved live reverse ambiguity by using exact non-holo City Championships sources for the stamped variant.",
+      "evidence_sources": [
+        {
+          "source_key": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+          "evidence_label": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pokumon",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+          "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/shinx-city-championships-98",
+          "evidence_label": "Shinx #98/130 Diamond & Pearl Non-Holo City Championships listing title evidence",
+          "evidence_type": "finish_presence"
+        }
+      ],
+      "review_artifact_parent_present": true
+    },
+    {
+      "parent_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+      "set_code": "swsh9",
+      "number": "123",
+      "name": "Arceus VSTAR",
+      "variant_key": "league_stamp",
+      "family": "league_stamp",
+      "finish_key": "holo",
+      "evidence_status": "approved_for_guarded_dry_run",
+      "acquisition_reason": "Second source acquired: Magic Madhouse exact Prize Pack League Promo product page identifies the card and rarity as Rare Holo VSTAR.",
+      "evidence_sources": [
+        {
+          "source_key": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/arceus-vstar-league-promo-123",
+          "evidence_label": "Arceus VSTAR [League Promo] #123 sale title: Pokemon Brilliant Stars Holo Ultra Rare League Promo 123/172",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "magic_madhouse",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-123-172-arceus-vstar-prize-pack-league-promo",
+          "evidence_label": "Brilliant Stars 123/172 Arceus VSTAR (Prize Pack League Promo); rarity Rare Holo VSTAR",
+          "evidence_type": "finish_presence"
+        }
+      ],
+      "review_artifact_parent_present": true
+    }
+  ],
+  "recommended_next_package": {
+    "package_id": "MISSING-PROMO-04L-SECOND-SOURCE-FINISH-CHILD-INSERT-DRY-RUN",
+    "mode": "guarded_rollback_dry_run",
+    "scope": "2 child-only card_printing candidates from second-source finish acquisition.",
+    "real_apply_authorized": false
+  },
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_performed": false
+}

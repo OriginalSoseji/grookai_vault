@@ -18,11 +18,11 @@ const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg17r_league_rever
 
 const PACKAGE_ID = 'PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS';
 const CREATED_BY = 'pkg17r_league_reverse_bulk_real_apply_v1';
-const EXPECTED_PACKAGE_FINGERPRINT = 'a1a1f102c7576b94a86cc30e9851e58a7032f3c0feaa5f2ee2e10f59e15f9fba';
-const EXPECTED_DRY_RUN_PROOF = '9e318aac9d54ab56bd38140f371154302909e04b7efa308b72d7f39fd9bee9f3';
-const EXPECTED_PRE_APPLY_HASH = '0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e';
-const EXPECTED_TARGET_COUNT = 14;
-const APPROVAL_TEXT = 'Approve real PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS apply only. Fingerprint: a1a1f102c7576b94a86cc30e9851e58a7032f3c0feaa5f2ee2e10f59e15f9fba. Scope: 14 stamped parent inserts, 14 identity inserts, 14 child printing inserts; finishes reverse=14; stamp labels League Stamp=14; sets bw1=3, pl4=2, xy8=2, bw11=1, bw2=1, bw3=1, bw8=1, hgss1=1, pl1=1, pl3=1. Dry-run proof: 0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e == 0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.';
+const EXPECTED_PACKAGE_FINGERPRINT = '2b5c34647974bf55ae8eaa5d1aff3b829ca44c652626462000a092566d9479ab';
+const EXPECTED_DRY_RUN_PROOF = '21657e072868040f6617429fa92e4ec70b80777305c9ba544ff2eb1335e4bc13';
+const EXPECTED_PRE_APPLY_HASH = '1dd601fb085d868f8d1f9c5d88cb57b6f1b228e78c84fa3cbd0adbbe0cd241c6';
+const EXPECTED_TARGET_COUNT = 3;
+const APPROVAL_TEXT = 'Approve real PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS apply only. Fingerprint: 2b5c34647974bf55ae8eaa5d1aff3b829ca44c652626462000a092566d9479ab. Scope: 3 stamped parent inserts, 3 identity inserts, 3 child printing inserts; finishes reverse=3; stamp labels League Stamp=3; sets pl2=2, hgss2=1. Dry-run proof: 1dd601fb085d868f8d1f9c5d88cb57b6f1b228e78c84fa3cbd0adbbe0cd241c6 == 1dd601fb085d868f8d1f9c5d88cb57b6f1b228e78c84fa3cbd0adbbe0cd241c6. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.';
 
 function connectionString() {
   return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;

@@ -1,0 +1,753 @@
+{
+  "generated_at": "2026-06-20T05:04:49.556Z",
+  "version": "english_master_index_stamped_special_overnight_source_pass_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "checkpoint": "docs/checkpoints/master_index/STAMPED_SPECIAL_OVERNIGHT_SOURCE_ACQUISITION_CHECKPOINT_20260619.md",
+    "current_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+    "execution_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
+    "completion_rollup": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18z_stamped_completion_rollup_v1.json",
+    "active_finish_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1.json",
+    "stamp_label_pricecharting": "docs/audits/english_master_index_source_exhaustion_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1.json",
+    "stamp_label_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17i4_pricecharting_stamp_label_readiness_v1.json",
+    "variant_family_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17k_stamped_active_finish_variant_family_plan_v1.json",
+    "league_preserved": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17o_league_preserved_evidence_absorption_v1.json",
+    "league_pokemonflashfire": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17p_pokemonflashfire_league_reverse_source_v1.json",
+    "league_second_source": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17s_league_reverse_second_source_v1.json",
+    "league_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17q_league_reverse_bulk_readiness_v1.json",
+    "halloween_pricecharting": "docs/audits/english_master_index_source_exhaustion_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1.json",
+    "halloween_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18i_halloween_active_finish_readiness_v1.json",
+    "current_pricecharting_stamped_finish": "docs/audits/english_master_index_source_exhaustion_v1/pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1/pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1.json",
+    "prize_pack_pricecharting": "docs/audits/english_master_index_source_exhaustion_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1.json",
+    "prize_pack_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18l_prize_pack_active_finish_readiness_v1.json",
+    "sv03_bulbapedia": "docs/audits/english_master_index_source_exhaustion_v1/sv03_bulbapedia_additional_stamped_active_finish_v1/sv03_bulbapedia_additional_stamped_active_finish_v1.json",
+    "sv03_product_family": "docs/audits/english_master_index_source_exhaustion_v1/sv03_product_family_stamped_finish_review_v1/sv03_product_family_stamped_finish_review_v1.json",
+    "sv03_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_parent_active_finish_readiness_queue_v1.json",
+    "sv03_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_lane_closure_v1.json",
+    "source_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json"
+  },
+  "fingerprint_sha256": "ef5b5cf0e35aebac23cafb829af640880e9063c9c1e58beb96bd0d8496170309",
+  "baseline": {
+    "checkpoint": "docs/checkpoints/master_index/STAMPED_SPECIAL_OVERNIGHT_SOURCE_ACQUISITION_CHECKPOINT_20260619.md",
+    "checkpoint_exists": true,
+    "starting_remaining_rows": 567,
+    "starting_no_write_or_governance_rows": 301,
+    "starting_source_required_rows": 263,
+    "starting_manual_conflict_rows": 3
+  },
+  "current": {
+    "current_remaining_rows": 567,
+    "current_no_write_or_governance_rows": 301,
+    "current_source_required_rows": 263,
+    "current_manual_conflict_rows": 3,
+    "rollup_closed_or_classified_rows": 579,
+    "rollup_source_acquisition_rows_blocked": 212
+  },
+  "source_attempts": {
+    "active_finish_bulk": {
+      "artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1.json",
+      "status": "completed",
+      "notable_result": "0 useful unabsorbed matches; 4 accepted delta records",
+      "summary": {
+        "active_finish_required_queue_rows": 289,
+        "source_lanes_attempted": 4,
+        "raw_source_records_generated": 31,
+        "accepted_exact_source_rows": 31,
+        "useful_current_gap_matches": 0,
+        "accepted_delta_records": 4,
+        "accepted_delta_statuses": [
+          "candidate_second_finish_source"
+        ],
+        "source_delta_summary": {
+          "sources_reviewed": 46,
+          "candidate_records_loaded": 106904,
+          "matched_gap_facts": 113,
+          "useful_candidate_matches": 0,
+          "already_in_current_index": 101080,
+          "unmatched_candidate_records": 5711,
+          "useful_unabsorbed_source_lanes": 0,
+          "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
+        },
+        "remaining_requires_new_source_or_review": 289,
+        "remaining_queue_by_status": {
+          "active_finish_required": 289,
+          "stamp_identity_label_needed": 178,
+          "base_parent_missing": 45,
+          "blocked_second_independent_source_needed": 18,
+          "base_parent_ambiguous": 14,
+          "existing_stamped_parent_collision_review": 11,
+          "blocked_battle_academy_display_metadata_strategy": 5,
+          "active_finish_required_with_dependency_awareness": 4,
+          "blocked_conflicting_finish_observation": 3
+        },
+        "remaining_active_finish_by_set": {
+          "swsh1": 17,
+          "swsh8": 17,
+          "swsh5": 16,
+          "swshp": 12,
+          "sm8": 10,
+          "sm1": 9,
+          "swsh3": 9,
+          "bw1": 8,
+          "sm115": 8,
+          "swsh6": 8,
+          "dv1": 7,
+          "sm11": 6,
+          "swsh2": 6,
+          "swsh9": 6,
+          "hgss1": 5,
+          "sm3": 5,
+          "sm5": 5,
+          "sv10": 5,
+          "svp": 5,
+          "swsh11": 5,
+          "swsh4": 5,
+          "swsh7": 5,
+          "xy1": 5,
+          "bw3": 4,
+          "hgss2": 4,
+          "sm7": 4,
+          "xy3": 4,
+          "xy8": 4,
+          "bw5": 3,
+          "bw8": 3,
+          "bw9": 3,
+          "bwp": 3,
+          "ex8": 3,
+          "ex9": 3,
+          "hgss4": 3,
+          "pl3": 3,
+          "sm6": 3,
+          "smp": 3,
+          "xy2": 3,
+          "bw11": 2,
+          "bw2": 2,
+          "dp1": 2,
+          "dp6": 2,
+          "ex11": 2,
+          "ex12": 2,
+          "ex6": 2,
+          "hgss3": 2,
+          "pl4": 2,
+          "sm10": 2,
+          "sm2": 2,
+          "sm4": 2,
+          "sm9": 2,
+          "xy11": 2,
+          "xy12": 2,
+          "xy9": 2,
+          "bw10": 1,
+          "bw7": 1,
+          "col1": 1,
+          "dp3": 1,
+          "dpp": 1,
+          "ex14": 1,
+          "ex15": 1,
+          "ex4": 1,
+          "ex5": 1,
+          "me02": 1,
+          "pl1": 1,
+          "pl2": 1,
+          "sv02": 1,
+          "sv05": 1,
+          "sve": 1,
+          "swsh12": 1,
+          "xy10": 1,
+          "xy4": 1,
+          "xy6": 1,
+          "xyp": 1
+        },
+        "remaining_active_finish_by_variant_key": {
+          "league_stamp": 81,
+          "battle_academy_deck_mark": 56,
+          "prize_pack_stamp": 51,
+          "prerelease_stamp": 12,
+          "professor_program_stamp": 12,
+          "league_cup_staff_stamp": 8,
+          "pikachu_jack_o_lantern_stamp": 6,
+          "staff_stamp": 6,
+          "play_pok_mon_thank_you_stamp": 5,
+          "dragon_vault_stamp": 4,
+          "player_rewards_crosshatch_stamp": 4,
+          "regional_championships_stamp": 4,
+          "finalist_stamp": 3,
+          "play_pokemon_stamp": 3,
+          "quarter_finalist_stamp": 3,
+          "championship_staff_stamp": 2,
+          "destined_rivals_stamp": 2,
+          "eb_games_stamp": 2,
+          "national_championships_stamp": 2,
+          "regional_championships_staff_stamp": 2,
+          "stamped": 2,
+          "world_championships_stamp": 2,
+          "alolan_raichu_half_deck_14_stamp": 1,
+          "asia_championship_stamp": 1,
+          "games_expo_stamped_2007": 1,
+          "gym_challenge_stamped_2006_2007": 1,
+          "indianapolis_gencon_stamped_2005": 1,
+          "legendary_pok_mon_stamp": 1,
+          "lost_origin_stamp": 1,
+          "mcdonalds_stamp": 1,
+          "origins_game_fair_stamped_200": 1,
+          "pok_ball_stamped_player_rewards_promo_2009_2010": 1,
+          "pokemon_10th_anniversary_stamped": 1,
+          "san_diego_comic_con_international_stamped_2005": 1,
+          "silver_tempest_stamp": 1,
+          "team_up_stamp": 1,
+          "thank_you_stamp": 1,
+          "unbroken_bonds_stamp": 1,
+          "vivid_voltage_stamp": 1
+        }
+      }
+    },
+    "pricecharting_stamp_labels": {
+      "artifact": "docs/audits/english_master_index_source_exhaustion_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1/pkg17i3_pricecharting_stamp_label_acquisition_v1.json",
+      "status": "review_only",
+      "notable_result": "42 label candidates; readiness still blocked by active finish/base parent",
+      "summary": {
+        "target_rows": 178,
+        "csv_rows_reviewed": 73212,
+        "candidate_rows": 42,
+        "blocked_rows": 136,
+        "fixture_records_written": 42,
+        "by_status": {
+          "blocked_no_pricecharting_stamp_label_candidate": 128,
+          "candidate_pricecharting_exact_stamp_label": 42,
+          "blocked_conflicting_pricecharting_stamp_label_candidates": 8
+        },
+        "by_candidate_stamp_label": {
+          "Prize Pack Stamp": 10,
+          "Staff Stamp": 9,
+          "Toys R Us Stamp": 9,
+          "Build-A-Bear Workshop Stamp": 8,
+          "League Stamp": 3,
+          "Winner Stamp": 2,
+          "GameStop Stamp": 1
+        },
+        "by_set": {
+          "svp": 26,
+          "sv02": 18,
+          "sv09": 11,
+          "dp2": 9,
+          "dp1": 7,
+          "sv05": 7,
+          "bwp": 6,
+          "col1": 6,
+          "dp5": 6,
+          "g1": 6,
+          "mep": 6,
+          "bw1": 4,
+          "sm1": 4,
+          "sv07": 4,
+          "dp4": 3,
+          "sm12": 3,
+          "sm4": 3,
+          "smp": 3,
+          "swsh6": 3,
+          "swsh7": 3,
+          "bog": 2,
+          "bw5": 2,
+          "dp3": 2,
+          "me01": 2,
+          "sm3": 2,
+          "swsh3": 2,
+          "xy7": 2,
+          "xyp": 2,
+          "basep": 1,
+          "bw10": 1,
+          "bw11": 1,
+          "dp6": 1,
+          "ex3": 1,
+          "hgss1": 1,
+          "np": 1,
+          "pl1": 1,
+          "pl3": 1,
+          "pop6": 1,
+          "pop9": 1,
+          "sm2": 1,
+          "sm5": 1,
+          "sv10": 1,
+          "swsh1": 1,
+          "swsh10": 1,
+          "swsh11": 1,
+          "swsh12": 1,
+          "swsh8": 1,
+          "xy12": 1,
+          "xy2": 1,
+          "xy5": 1,
+          "xy6": 1,
+          "xy9": 1
+        },
+        "by_block_reason": {
+          "no_exact_product_with_stamp_label": 128,
+          "conflicting_stamp_labels": 8
+        }
+      }
+    },
+    "league_sources": {
+      "artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17p_pokemonflashfire_league_reverse_source_v1.json",
+      "status": "completed",
+      "notable_result": "18 PokemonFlashfire matches; readiness has 0 insert candidates",
+      "summary": {
+        "pokemonflashfire": {
+          "source_rows_reviewed": 29,
+          "current_queue_matches": 18,
+          "fixture_records_written": 18,
+          "skipped_rows": 11
+        },
+        "preserved": {
+          "league_active_finish_targets": 89,
+          "preserved_evidence_rows_scanned": 1895,
+          "rows_with_any_preserved_match": 100,
+          "two_source_exact_active_finish_ready_for_guarded_dry_run": 2,
+          "crosshatch_alias_governance_required_before_dry_run": 2,
+          "single_source_exact_active_finish_second_source_needed": 28,
+          "no_preserved_source_match": 20,
+          "by_readiness_status": {
+            "blocked_no_explicit_active_finish": 68,
+            "single_source_exact_active_finish_second_source_needed": 28,
+            "no_preserved_source_match": 20,
+            "crosshatch_alias_governance_required_before_dry_run": 2,
+            "two_source_exact_active_finish_ready_for_guarded_dry_run": 2
+          },
+          "by_set": {
+            "bw1": 8,
+            "hgss1": 6,
+            "sm8": 6,
+            "xy2": 6,
+            "sm7": 5,
+            "xy1": 5,
+            "xy3": 5,
+            "xy8": 5,
+            "bw3": 4,
+            "bw8": 4,
+            "hgss2": 4,
+            "pl4": 4,
+            "sm1": 4,
+            "sm3": 4,
+            "bw11": 3,
+            "dv1": 3,
+            "pl3": 3,
+            "sm6": 3,
+            "bw2": 2,
+            "bw5": 2,
+            "bw9": 2,
+            "dp1": 2,
+            "ex8": 2,
+            "hgss3": 2,
+            "hgss4": 2,
+            "pl1": 2,
+            "sm2": 2,
+            "sm5": 2,
+            "swsh4": 2,
+            "xy11": 2,
+            "bw10": 1,
+            "bw7": 1,
+            "ex12": 1,
+            "ex14": 1,
+            "ex5": 1,
+            "ex9": 1,
+            "pl2": 1,
+            "sm4": 1,
+            "swsh1": 1,
+            "swsh7": 1,
+            "xy10": 1,
+            "xy12": 1,
+            "xy4": 1,
+            "xy9": 1
+          },
+          "by_finish": {
+            "reverse": 32
+          }
+        },
+        "readiness": {
+          "target_rows": 2,
+          "future_guarded_parent_identity_insert_candidates": 0,
+          "blocked_or_review_rows": 2,
+          "by_readiness_status": {
+            "blocked_or_review": 2
+          },
+          "by_set": {
+            "hgss1": 1,
+            "hgss2": 1
+          },
+          "by_finish": {
+            "reverse": 2
+          }
+        }
+      }
+    },
+    "halloween_sources": {
+      "artifact": "docs/audits/english_master_index_source_exhaustion_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1.json",
+      "status": "blocked_after_readiness",
+      "notable_result": "4 candidates; 0 insert candidates after readiness",
+      "summary": {
+        "acquisition": {
+          "target_rows": 6,
+          "csv_rows_reviewed": 75855,
+          "trick_or_trade_product_rows_reviewed": 60,
+          "candidate_rows": 4,
+          "blocked_rows": 2,
+          "fixture_records_written": 4,
+          "by_status": {
+            "candidate_pricecharting_halloween_active_finish": 4,
+            "blocked_no_pricecharting_halloween_active_finish": 2
+          },
+          "by_finish": {
+            "normal": 4
+          },
+          "by_set": {
+            "swsh11": 4,
+            "sv05": 1,
+            "svp": 1
+          },
+          "by_variant_key": {
+            "pikachu_jack_o_lantern_stamp": 6
+          }
+        },
+        "readiness": {
+          "source_candidate_rows": 4,
+          "future_guarded_parent_identity_insert_candidates": 0,
+          "blocked_or_review_rows": 4,
+          "by_readiness_status": {
+            "blocked_or_review": 4
+          },
+          "by_blocker": {
+            "base_parent_missing": 4,
+            "base_parent_missing_target_child_finish": 4
+          },
+          "by_finish": {
+            "normal": 4
+          },
+          "by_set": {
+            "swsh11": 4
+          }
+        }
+      }
+    },
+    "prize_pack_sources": {
+      "artifact": "docs/audits/english_master_index_source_exhaustion_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1.json",
+      "status": "blocked",
+      "notable_result": "0 second-source ready; 31 single-source review rows",
+      "summary": {
+        "pricecharting": {
+          "target_rows": 63,
+          "pricecharting_prize_pack_products": 566,
+          "ready_second_source_pricecharting_corroborated": 0,
+          "review_pricecharting_single_source_only": 31,
+          "review_conflicting_pricecharting_finish_titles": 0,
+          "blocked_no_exact_pricecharting_prize_pack_match": 32,
+          "by_status": {
+            "blocked_no_exact_pricecharting_prize_pack_match": 32,
+            "review_pricecharting_single_source_only": 31
+          },
+          "by_ready_finish": {},
+          "by_ready_set": {},
+          "fixture_files_written": 0
+        },
+        "readiness": {
+          "source_candidate_rows": 0,
+          "future_guarded_parent_identity_insert_candidates": 0,
+          "blocked_or_review_rows": 0,
+          "by_readiness_status": {},
+          "by_blocker": {},
+          "by_finish": {},
+          "by_set": {}
+        }
+      }
+    },
+    "sv03_sources": {
+      "artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_parent_active_finish_readiness_queue_v1.json",
+      "status": "review_only",
+      "notable_result": "10 review-ready rows; 0 write-ready now",
+      "summary": {
+        "bulbapedia": {
+          "target_rows": 18,
+          "bulbapedia_entries_matched": 18,
+          "accepted_active_finish_identity_candidates": 4,
+          "fixture_records_generated": 4,
+          "write_ready_now": 0,
+          "by_status": {
+            "identity_only_no_active_finish": 14,
+            "accepted_active_finish_and_stamped_identity_review_candidate": 3,
+            "active_finish_only_identity_not_proven": 1
+          },
+          "by_accepted_finish": {
+            "cosmos": 2,
+            "reverse": 2
+          }
+        },
+        "product_family": {
+          "target_rows": 16,
+          "review_candidate_rows": 9,
+          "blocked_rows": 7,
+          "write_ready_now": 0,
+          "by_status": {
+            "review_candidate_found": 9,
+            "blocked_no_product_family_active_finish_closure": 7
+          },
+          "by_observation_status": {
+            "blocked_battle_academy_identity_only_no_active_finish": 4,
+            "blocked_ex_regular_foil_pattern_requires_active_finish_mapping": 4,
+            "review_candidate_holo_from_ex_regular_holographic_card_page": 4,
+            "blocked_standard_set_no_foil_finish_claim": 3,
+            "review_candidate_normal_from_trick_or_trade_non_holo_rarity": 2,
+            "review_candidate_cosmos_from_prize_pack_rule": 1,
+            "review_candidate_holo_from_holiday_regular_holographic_card_page": 1,
+            "review_candidate_holo_from_trick_or_trade_holo_rarity": 1
+          },
+          "by_proposed_finish": {
+            "holo": 6,
+            "normal": 2,
+            "cosmos": 1
+          }
+        },
+        "readiness": {
+          "target_rows": 23,
+          "review_ready_rows": 10,
+          "blocked_rows": 13,
+          "conflict_rows": 1,
+          "write_ready_now": 0,
+          "by_readiness_status": {
+            "blocked_active_finish_not_proven": 12,
+            "review_ready_product_family_only": 7,
+            "review_ready_same_row_source_only": 2,
+            "blocked_conflicting_active_finish_candidates": 1,
+            "review_ready_multi_lane_active_finish": 1
+          },
+          "by_proposed_finish": {
+            "holo": 6,
+            "cosmos": 2,
+            "normal": 2,
+            "reverse": 2
+          }
+        },
+        "closure": {
+          "target_rows": 3,
+          "closed_rows": 3,
+          "open_rows": 0,
+          "missing_target_child_finish": 0,
+          "forbidden_stamped_child_finishes": 0,
+          "identity_rows_backfilled": 3,
+          "child_rows_inserted": 3,
+          "parent_writes_after_identity_backfill": 0,
+          "identity_writes_after_identity_backfill": 0,
+          "delete_rows": 0,
+          "merge_rows": 0,
+          "write_ready_now": 0,
+          "by_closure_status": {
+            "closed_verified_in_db": 3
+          },
+          "by_finish": {
+            "cosmos": 1,
+            "holo": 2
+          }
+        }
+      }
+    },
+    "source_closure": {
+      "artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json",
+      "status": "completed",
+      "notable_result": "212 blocked rows; 0 write-ready rows",
+      "summary": {
+        "target_rows": 212,
+        "write_ready_rows": 0,
+        "blocked_rows": 212,
+        "useful_candidate_matches": 0,
+        "useful_unabsorbed_source_lanes": 0,
+        "candidate_records_loaded": 106904,
+        "by_execution_bucket": {
+          "bucket_05_variant_family_source_acquisition_bulk": 194,
+          "bucket_06_second_source_acquisition_bulk": 18
+        },
+        "by_closure_status": {
+          "blocked_no_exact_active_finish_source_after_bulk_attempt": 96,
+          "blocked_event_staff_source_needed": 36,
+          "blocked_variant_family_exact_source_needed": 32,
+          "blocked_second_independent_source_needed": 18,
+          "blocked_prerelease_source_needed": 12,
+          "blocked_professor_program_source_needed": 12,
+          "blocked_halloween_source_needed": 6
+        },
+        "by_variant_family": {
+          "league": 92,
+          "championship_or_staff": 51,
+          "small_custom_stamp": 33,
+          "prerelease": 13,
+          "professor_program": 12,
+          "halloween": 6,
+          "player_rewards_crosshatch": 5
+        },
+        "by_variant_key": {
+          "league_stamp": 83,
+          "prerelease_stamp": 12,
+          "professor_program_stamp": 12,
+          "regional_championships_stamp": 11,
+          "league_cup_staff_stamp": 8,
+          "regional_championships_staff_stamp": 7,
+          "staff_stamp": 7,
+          "pikachu_jack_o_lantern_stamp": 6,
+          "play_pok_mon_thank_you_stamp": 5,
+          "dragon_vault_stamp": 4,
+          "national_championships_stamp": 4,
+          "player_rewards_crosshatch_stamp": 4,
+          "city_championships_staff_stamp": 3,
+          "city_championships_stamp": 3,
+          "eb_games_stamp": 3,
+          "finalist_stamp": 3,
+          "play_pokemon_stamp": 3,
+          "quarter_finalist_stamp": 3,
+          "championship_staff_stamp": 2,
+          "destined_rivals_stamp": 2,
+          "national_championships_staff_stamp": 2,
+          "states_championships_staff_stamp": 2,
+          "world_championships_stamp": 2,
+          "alolan_raichu_half_deck_14_stamp": 1,
+          "asia_championship_stamp": 1,
+          "europe_championships_staff_stamp": 1,
+          "games_expo_stamped_2007": 1,
+          "gym_challenge_stamped_2006_2007": 1,
+          "indianapolis_gencon_stamped_2005": 1,
+          "league_staff_stamp": 1,
+          "legendary_pok_mon_stamp": 1,
+          "lost_origin_stamp": 1,
+          "mcdonalds_stamp": 1,
+          "origins_game_fair_stamped_200": 1,
+          "pok_ball_stamped_player_rewards_promo_2009_2010": 1,
+          "pokemon_10th_anniversary_stamped": 1,
+          "pokemon_rocks_america_stamped_2005": 1,
+          "san_diego_comic_con_international_stamped_2005": 1,
+          "silver_tempest_stamp": 1,
+          "staff_prerelease_stamp": 1,
+          "team_up_stamp": 1,
+          "thank_you_stamp": 1,
+          "unbroken_bonds_stamp": 1,
+          "vivid_voltage_stamp": 1
+        },
+        "by_set": {
+          "swshp": 9,
+          "xy1": 9,
+          "bw1": 8,
+          "bw5": 8,
+          "dv1": 7,
+          "sm1": 7,
+          "sv10": 7,
+          "bw3": 6,
+          "dp1": 6,
+          "sm6": 6,
+          "sm8": 6,
+          "swsh3": 6,
+          "xy8": 6,
+          "hgss1": 5,
+          "swsh11": 5,
+          "hgss2": 4,
+          "sm3": 4,
+          "sm5": 4,
+          "sm7": 4,
+          "xy3": 4,
+          "bw8": 3,
+          "bwp": 3,
+          "ex8": 3,
+          "ex9": 3,
+          "hgss4": 3,
+          "pl3": 3,
+          "sm4": 3,
+          "svp": 3,
+          "swsh1": 3,
+          "xy10": 3,
+          "xy2": 3,
+          "bw11": 2,
+          "bw9": 2,
+          "dp6": 2,
+          "ex11": 2,
+          "ex12": 2,
+          "ex6": 2,
+          "hgss3": 2,
+          "me02": 2,
+          "pl4": 2,
+          "sm2": 2,
+          "smp": 2,
+          "swsh2": 2,
+          "swsh4": 2,
+          "swsh8": 2,
+          "xy11": 2,
+          "xy12": 2,
+          "xy9": 2,
+          "bw10": 1,
+          "bw2": 1,
+          "bw7": 1,
+          "col1": 1,
+          "dp3": 1,
+          "dpp": 1,
+          "ex10": 1,
+          "ex14": 1,
+          "ex15": 1,
+          "ex4": 1,
+          "ex5": 1,
+          "pl1": 1,
+          "pl2": 1,
+          "sm10": 1,
+          "sm9": 1,
+          "sv02": 1,
+          "sv05": 1,
+          "swsh12": 1,
+          "swsh5": 1,
+          "swsh7": 1,
+          "swsh9": 1,
+          "xy4": 1,
+          "xy6": 1,
+          "xyp": 1
+        }
+      }
+    }
+  },
+  "discovered_sources": [
+    {
+      "source_name": "Pokumon crosshatch category",
+      "source_url": "https://pokumon.com/holofoil/crosshatch/",
+      "source_kind": "collector_reference",
+      "attempted": true,
+      "result": "review_only",
+      "reason": "Static category text exposes names/counts and category families, but not enough exact set + number + active finish detail for direct fixture promotion."
+    },
+    {
+      "source_name": "JudgeBall Play! Pokemon promo cards",
+      "source_url": "https://www.judgeball.com/archives/professor-promo-cards/",
+      "source_kind": "collector_reference",
+      "attempted": true,
+      "result": "identity_only",
+      "reason": "Page gives useful Professor Program identity context but does not prove exact child finish for active-finish rows."
+    },
+    {
+      "source_name": "PikaStocks Professor Program Promos",
+      "source_url": "https://www.pikastocks.com/sets/115-professor-program-promos",
+      "source_kind": "collector_reference",
+      "attempted": true,
+      "result": "identity_or_market_context_only",
+      "reason": "Accessible, but current pass did not find direct exact finish proof usable for child-printing promotion."
+    },
+    {
+      "source_name": "Bulbapedia Prerelease cards",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prerelease_cards_(TCG)",
+      "source_kind": "human_readable_checklist",
+      "attempted": true,
+      "result": "identity_context_only",
+      "reason": "Useful for prerelease card identity and history. Finish still requires exact row-level evidence before child printing promotion."
+    },
+    {
+      "source_name": "Enhanced Cardmarket prerelease list",
+      "source_url": "https://enhanced-cardmarket.mave.me/prerelease",
+      "source_kind": "marketplace_checklist",
+      "attempted": true,
+      "result": "not_static_parseable_for_targets",
+      "reason": "The static HTML did not expose target rows in a way that safely maps to current queue rows."
+    }
+  ]
+}

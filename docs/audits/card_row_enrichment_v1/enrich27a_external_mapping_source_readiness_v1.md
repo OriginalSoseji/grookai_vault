@@ -5,24 +5,24 @@
 - Audit only: true
 - DB writes performed: false
 - Migrations created: false
-- Fingerprint: `eb49b869b19ea92958acb51f30f1f3239ca3279331869c248cbae6c1c1fe3d8c`
+- Fingerprint: `6fda31bba6b3f32d0d0276430f77c0fd0590e583657a1870a3a23d1a332bf73a`
 
 ## Totals
 
 | metric | rows |
 | --- | --- |
-| payload_source_mentions | 808 |
-| distinct_parent_rows | 704 |
+| payload_source_mentions | 857 |
+| distinct_parent_rows | 729 |
 | write_ready_source_mentions | 0 |
 | write_ready_parent_rows | 0 |
-| blocked_source_mentions | 808 |
+| blocked_source_mentions | 857 |
 
 ## Classification
 
 | classification | rows |
 | --- | --- |
-| blocked_unknown_or_non_direct_source_key | 690 |
-| blocked_existing_source_external_collision | 118 |
+| blocked_unknown_or_non_direct_source_key | 715 |
+| blocked_existing_source_external_collision | 142 |
 
 ## Ready By Source
 

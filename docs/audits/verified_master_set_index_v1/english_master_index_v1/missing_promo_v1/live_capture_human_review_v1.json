@@ -1,0 +1,27 @@
+{
+  "package_id": "MISSING-PROMO-04J-LIVE-CAPTURE-HUMAN-REVIEW",
+  "generated_at": "2026-06-20T01:46:16.210Z",
+  "mode": "read_only_human_review_governance",
+  "fingerprint_sha256": "ed37752945ea6e60f1b5fa6cc8ff9c6a5060802ce0ca1782e61413a74c962221",
+  "input_artifacts": {
+    "live_finish_snapshot_capture": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/live_finish_snapshot_capture_v1.json",
+    "enrichment_residual_blocker_audit": "docs/audits/card_row_enrichment_v1/card_row_enrichment_residual_blocker_audit_v1.json"
+  },
+  "summary": {
+    "reviewed_candidates": 0,
+    "by_review_status": {},
+    "approved_for_dry_run_count": 0
+  },
+  "review_rows": [],
+  "recommended_next_package": {
+    "package_id": "MISSING-PROMO-04K-SECOND-SOURCE-FINISH-ACQUISITION",
+    "mode": "read_only_source_acquisition",
+    "scope": "Resolve blocked review candidates and continue exact finish acquisition for remaining special/stamped parents.",
+    "real_apply_authorized": false
+  },
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_performed": false
+}

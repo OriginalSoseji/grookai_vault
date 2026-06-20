@@ -15,6 +15,8 @@ const PKG17I1_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17i1_stamped_
 const PKG17J_POST_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17j_pricecharting_stamped_parent_identity_post_apply_reconciliation_v1.json');
 const PKG17N_POST_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17n_skarmory_league_reverse_post_apply_reconciliation_v1.json');
 const PKG17R_POST_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17r_league_reverse_bulk_post_apply_reconciliation_v1.json');
+const PKG18J_REAL_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18j_halloween_stamped_parent_insert_real_apply_v1.json');
+const PKG18M_REAL_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18m_prize_pack_stamped_parent_insert_real_apply_v1.json');
 const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.json');
 const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.md');
 
@@ -94,6 +96,12 @@ function verifiedPostApplyKeys(postApplyReports) {
   for (const report of postApplyReports) {
     for (const row of report?.rows ?? []) {
       if (row.reconciliation_status === 'verified_applied') {
+        keys.add(collisionClosureKey(row));
+        keys.add(collisionClosureKey({ ...row, proposed_variant_key: null, variant_key: null, target_variant_key: null }));
+      }
+    }
+    if (report?.committed === true && report?.db_writes_performed === true && report?.deletes_performed === false) {
+      for (const row of report?.scope?.targets ?? []) {
         keys.add(collisionClosureKey(row));
         keys.add(collisionClosureKey({ ...row, proposed_variant_key: null, variant_key: null, target_variant_key: null }));
       }
@@ -316,16 +324,18 @@ ${markdownTable(['variant_key', 'rows'], variantRows)}
 }
 
 async function main() {
-  const [pkg15j, pkg16b, pkg17i1, pkg17jPostApply, pkg17nPostApply, pkg17rPostApply] = await Promise.all([
+  const [pkg15j, pkg16b, pkg17i1, pkg17jPostApply, pkg17nPostApply, pkg17rPostApply, pkg18jRealApply, pkg18mRealApply] = await Promise.all([
     readJson(PKG15J_JSON),
     readJson(PKG16B_JSON),
     readJsonIfExists(PKG17I1_JSON),
     readJsonIfExists(PKG17J_POST_APPLY_JSON),
     readJsonIfExists(PKG17N_POST_APPLY_JSON),
     readJsonIfExists(PKG17R_POST_APPLY_JSON),
+    readJsonIfExists(PKG18J_REAL_APPLY_JSON),
+    readJsonIfExists(PKG18M_REAL_APPLY_JSON),
   ]);
   const closedStampedCollisionRows = closedCollisionKeys(pkg17i1).size;
-  const postApplyReports = [pkg17jPostApply, pkg17nPostApply, pkg17rPostApply];
+  const postApplyReports = [pkg17jPostApply, pkg17nPostApply, pkg17rPostApply, pkg18jRealApply, pkg18mRealApply];
   const verifiedPostApplyRowsExcluded = verifiedPostApplyKeys(postApplyReports).size;
   const pkg15jRows = queueRowsFromPkg15J(pkg15j, pkg17i1, postApplyReports);
   const pkg16bRows = queueRowsFromPkg16B(pkg16b);
@@ -339,6 +349,8 @@ async function main() {
     pkg17j_post_apply_fingerprint: pkg17jPostApply?.fingerprint_sha256 ?? null,
     pkg17n_post_apply_fingerprint: pkg17nPostApply?.fingerprint_sha256 ?? null,
     pkg17r_post_apply_fingerprint: pkg17rPostApply?.fingerprint_sha256 ?? null,
+    pkg18j_real_apply_fingerprint: pkg18jRealApply?.package_fingerprint_sha256 ?? null,
+    pkg18m_real_apply_fingerprint: pkg18mRealApply?.package_fingerprint_sha256 ?? null,
     closedStampedCollisionRows,
     verifiedPostApplyRowsExcluded,
     byQueueStatus,

@@ -7,6 +7,7 @@ import { DEFAULT_OUTPUT_DIR, markdownTable } from './verified_master_set_index_v
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const PKG18_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18_stamped_completion_governance_plan_v1.json');
+const PKG18C_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.json');
 const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json');
 const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.md');
 
@@ -57,7 +58,31 @@ function rel(filePath) {
   return path.relative(ROOT, filePath).replaceAll('\\', '/');
 }
 
+function rowKey(row) {
+  return [
+    row.set_key,
+    row.card_number,
+    row.card_name,
+    row.variant_key ?? row.stamped_variant_key,
+    row.finish_key ?? row.target_base_finish_key,
+  ].map((value) => String(value ?? '').trim().toLowerCase()).join('|');
+}
+
+function baseParentClosureByKey(pkg18c) {
+  const byKey = new Map();
+  for (const row of pkg18c.rows ?? []) {
+    byKey.set(rowKey(row), row);
+  }
+  return byKey;
+}
+
 function executionBucket(row) {
+  if (row.base_parent_closure_status === 'closed_as_stale_return_to_stamped_flow') {
+    return 'bucket_03a_base_parent_closed_stale_no_write';
+  }
+  if (row.base_parent_closure_status) {
+    return 'bucket_03b_base_parent_blocked_no_write';
+  }
   switch (row.governance_rule_id) {
     case 'generic_stamped_suppression_rule':
       return 'bucket_01_no_write_generic_stamped_suppression';
@@ -93,6 +118,10 @@ function bucketAction(bucketId) {
       return 'Adopt display metadata strategy. Do not create card_printing rows for deck marks.';
     case 'bucket_03_base_parent_resolution_bulk':
       return 'Run one DB read-only base-parent resolver, then create large guarded packages for insert/selection rows only.';
+    case 'bucket_03a_base_parent_closed_stale_no_write':
+      return 'Closed by current base-parent resolver. Do not build a base-parent package for these stale rows.';
+    case 'bucket_03b_base_parent_blocked_no_write':
+      return 'Keep blocked until active base finish evidence or parent identity collision is resolved.';
     case 'bucket_04_prize_pack_finish_mapping_bulk':
       return 'Adjudicate Prize Pack finish label mapping once, then run bulk readiness for exact mapped rows.';
     case 'bucket_05_variant_family_source_acquisition_bulk':
@@ -182,11 +211,21 @@ No real DB apply is authorized by this queue.
 }
 
 async function main() {
-  const pkg18 = await readJson(PKG18_JSON);
-  const rows = (pkg18.rows ?? []).map((row) => ({
-    ...row,
-    execution_bucket: executionBucket(row),
-  }));
+  const [pkg18, pkg18c] = await Promise.all([readJson(PKG18_JSON), readJson(PKG18C_JSON)]);
+  const baseParentClosures = baseParentClosureByKey(pkg18c);
+  const rows = (pkg18.rows ?? []).map((row) => {
+    const closure = baseParentClosures.get(rowKey(row));
+    return {
+      ...row,
+      base_parent_closure_status: closure?.closure_status,
+      base_parent_readiness_status: closure?.readiness_status,
+      base_parent_closure_action: closure?.recommended_next_action,
+      execution_bucket: executionBucket({
+        ...row,
+        base_parent_closure_status: closure?.closure_status,
+      }),
+    };
+  });
   const executionBuckets = buildBuckets(rows);
   const noDbWriteRows = executionBuckets
     .filter((bucket) => bucket.write_class === 'no_db_write_expected')
@@ -196,6 +235,7 @@ async function main() {
     .reduce((sum, bucket) => sum + bucket.row_count, 0);
   const payload = {
     pkg18_fingerprint: pkg18.fingerprint_sha256,
+    pkg18c_fingerprint: pkg18c.fingerprint_sha256,
     executionBuckets,
   };
   const report = {
@@ -211,6 +251,9 @@ async function main() {
     global_apply_performed: false,
     write_ready_now: 0,
     source_artifact: rel(PKG18_JSON),
+    closure_artifacts: {
+      base_parent_resolution: rel(PKG18C_JSON),
+    },
     fingerprint_sha256: sha256(stableJson(payload)),
     summary: {
       remaining_rows: rows.length,

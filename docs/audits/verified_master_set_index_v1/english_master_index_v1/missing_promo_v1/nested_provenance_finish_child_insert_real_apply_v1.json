@@ -1,0 +1,187 @@
+{
+  "package_id": "MISSING-PROMO-04N-NESTED-PROVENANCE-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-20T02:04:53.244Z",
+  "mode": "real_apply",
+  "apply_status": "applied",
+  "input_artifacts": {
+    "nested_provenance_finish_child_insert_guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/nested_provenance_finish_child_insert_guarded_dry_run_v1.json"
+  },
+  "package_fingerprint_sha256": "fd26d97363c7f238a689d55e3457b7673b4ff2fdd88a26ed49cb5ef47e57f2bb",
+  "sql_hash_sha256": "361bf3d975b7e45793f11a0d740c22390551c69ae9017e52123f866a5af4d274",
+  "approved_dry_run_proof_sha256": "a00e3f14f5ab95405bff31f779be197d7ded20c4d47de5f0a8f58f4504cb79f8",
+  "targets": [
+    {
+      "parent_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+      "target_child_id": "815ca039-7a91-489b-8372-a265e0c7e9b8",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP-RH",
+      "set_code": "bw5",
+      "number": "37",
+      "name": "Jolteon",
+      "variant_key": "regional_championships_stamp",
+      "printed_identity_modifier": null,
+      "family": "championship_stamp",
+      "evidence_mode": "nested_provenance_exact_finish",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04N-NESTED-PROVENANCE-FINISH-CHILD-INSERTS",
+        "nested_provenance_extraction_package_id": "MISSING-PROMO-04M-NESTED-PROVENANCE-FINISH-EXTRACTION",
+        "nested_provenance_extraction_fingerprint_sha256": "1a749098e1a1c73fe792058da0953a5fdc09add7adde82ccf54ce7434db0bbf8",
+        "evidence_mode": "nested_provenance_exact_finish",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+          "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37"
+        ],
+        "evidence_labels": [
+          "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo",
+          "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane."
+        ],
+        "evidence_sources": [
+          {
+            "source_key": "pokecardvalues_same_finish_ambiguous",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+            "evidence_label": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo",
+            "evidence_type": "finish_presence",
+            "finish_key": "reverse"
+          },
+          {
+            "source_key": "pricecharting_product_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+            "evidence_label": "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane.",
+            "evidence_type": "finish_presence",
+            "finish_key": "reverse"
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "target_count": 1,
+    "inserted_child_rows": 1,
+    "matching_post_apply_child_rows": 1,
+    "by_finish": {
+      "reverse": 1
+    },
+    "by_family": {
+      "championship_stamp": 1
+    }
+  },
+  "guard": {
+    "target_count": 1,
+    "parent_count": 1,
+    "child_id_count": 1,
+    "printing_gv_id_count": 1,
+    "missing_parent_count": 0,
+    "inactive_finish_count": 0,
+    "child_id_collision_count": 0,
+    "printing_gv_id_collision_count": 0,
+    "existing_finish_collision_count": 0,
+    "active_identity_count": 1,
+    "forbidden_stamped_finish_count": 0
+  },
+  "inserted_rows": [
+    {
+      "id": "815ca039-7a91-489b-8372-a265e0c7e9b8",
+      "card_print_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP-RH"
+    }
+  ],
+  "before_snapshot": {
+    "captured_at": "2026-06-20T02:04:52.536Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "6798ffe6-47b1-41af-adf0-fe2a1a6605ad",
+        "set_code": "bw5",
+        "number": "37",
+        "name": "Jolteon",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+        "set_code": "bw5",
+        "number": "37",
+        "name": "Jolteon",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 1,
+      "target_parent": 1
+    },
+    "hash_sha256": "97010e5caf1c7c979440074106e56265ff27165ac0e6503a8caadce3f792f184"
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-20T02:04:53.244Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "6798ffe6-47b1-41af-adf0-fe2a1a6605ad",
+        "set_code": "bw5",
+        "number": "37",
+        "name": "Jolteon",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "815ca039-7a91-489b-8372-a265e0c7e9b8",
+        "set_code": "bw5",
+        "number": "37",
+        "name": "Jolteon",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP-RH"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+        "set_code": "bw5",
+        "number": "37",
+        "name": "Jolteon",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-BW5-37-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 1,
+      "target_child": 1,
+      "target_parent": 1
+    },
+    "hash_sha256": "3131064887c4345ec159cebf35f1893c7d1d2c70f94d8aaf58d563e65e6510b4"
+  },
+  "post_apply_proof_sha256": "3131064887c4345ec159cebf35f1893c7d1d2c70f94d8aaf58d563e65e6510b4",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "parent_writes_performed": false,
+  "identity_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false
+}

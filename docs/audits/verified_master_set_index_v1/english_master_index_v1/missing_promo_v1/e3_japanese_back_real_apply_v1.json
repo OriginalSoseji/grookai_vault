@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-06-19T16:36:27.283Z",
+  "package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+  "mode": "real_apply",
+  "dry_run_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/e3_japanese_back_guarded_dry_run_v1.json",
+  "required_approval_text": "Approve real MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS apply only. Fingerprint: cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2. SQL hash: ef51193a828361d9c56d46ada8f5548b5ac9f99573fc554cfb60fb3b1ec7df42. Scope: 2 E3 Japanese-back parent inserts, 2 active identity inserts, 2 normal child printing inserts for ecard1/Expedition Hoppip #112 and corrected Pichu #58; variant_key=japanese_card_back; printed_identity_modifier=japanese_card_back; stale Pichu #22 holo candidate excluded. Dry-run proof: 583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a == 583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No external mapping writes. No pricing writes. No image writes.",
+  "package_fingerprint_sha256": "cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2",
+  "sql_hash_sha256": "ef51193a828361d9c56d46ada8f5548b5ac9f99573fc554cfb60fb3b1ec7df42",
+  "db_writes_performed": true,
+  "parent_writes_performed": true,
+  "identity_writes_performed": true,
+  "child_writes_performed": true,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "migrations_created": false,
+  "global_apply_performed": false,
+  "unsupported_cleanup_performed": false,
+  "execution": {
+    "apply_status": "applied",
+    "guard": {
+      "target_count": 2,
+      "target_parent_count": 2,
+      "target_child_count": 2,
+      "base_parent_count": 2,
+      "base_finish_count": 2,
+      "active_finish_count": 2,
+      "target_parent_collision_count": 0,
+      "target_child_collision_count": 0,
+      "same_identity_parent_collision_count": 0,
+      "ready_identity_projection_count": 2,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+      "package_fingerprint": "cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2",
+      "target_rows": 2,
+      "inserted_parent_rows": 2,
+      "inserted_identity_rows": 2,
+      "inserted_child_rows": 2,
+      "forbidden_stamped_child_rows": 0,
+      "stale_pichu_22_rows": 0,
+      "external_mapping_rows": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-19T16:36:26.243Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 2
+      },
+      "hash_sha256": "583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-19T16:36:27.203Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8b288ad2-dd82-4fbd-8673-589c2624cb8f",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "cfb83971-2d5f-4d98-a4d7-4f1779cf44c0",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "f8fd6a6b-17b0-4ecc-baff-980a41e16bdf",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": "3677d9abf25ad8b51daee3640fc0219facbe2209da763a331efc8fa1893121d5"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "936b5454-f4ec-45e2-b5a8-50d8e0d8a1d4",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": "cce405c1f7d905408ad5d30f280b004ec36d047c8e6ea3d6141ecc79d5e11c9a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "36da4f82-b99e-4cf9-8df8-422d0f53f7cb",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2e9fa4e0-1546-488c-96b2-d9bab41cdb2f",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 2,
+        "target_child": 2,
+        "target_identity": 2,
+        "target_parent": 2
+      },
+      "hash_sha256": "24b3e76634b7152653f1cf560623aa7068e94b925103b42e1b6a2578e04703c0"
+    },
+    "write_counts": {
+      "parent_inserts": 2,
+      "identity_inserts": 2,
+      "child_inserts": 2,
+      "deletes": 0,
+      "merges": 0,
+      "external_mapping_writes": 0,
+      "pricing_writes": 0,
+      "image_writes": 0
+    },
+    "post_apply_proof_sha256": "b9d27c1f254d9223b7f5889ba71afbbd5be7d5604cdc68caf99d1ac095581c80"
+  }
+}

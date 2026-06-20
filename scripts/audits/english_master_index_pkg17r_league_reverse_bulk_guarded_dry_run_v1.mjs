@@ -18,7 +18,7 @@ const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg17r_league_rever
 
 const PACKAGE_ID = 'PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS';
 const CREATED_BY = 'pkg17r_league_reverse_bulk_guarded_dry_run_v1';
-const EXPECTED_TARGET_COUNT = 14;
+const EXPECTED_TARGET_COUNT = 3;
 
 function connectionString() {
   return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T20:10:18.029Z",
+  "generated_at": "2026-06-20T02:43:38.766Z",
   "version": "english_master_index_pkg11b_stamped_finish_routing_readiness_v1",
   "package_id": "PKG-11B-STAMPED-FINISH-ROUTING-READINESS",
   "audit_only": true,
@@ -8,7 +8,7 @@
   "migrations_created": false,
   "cleanup_performed": false,
   "quarantine_performed": false,
-  "write_ready_now": 0,
+  "write_ready_now": 31,
   "source_artifacts": {
     "stamped_identity_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_identity_readiness_v1.json",
     "generic_variant_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15b_stamped_generic_variant_adjudication_v1.json",
@@ -23,19 +23,23 @@
     "tcgcsv_prize_pack_title_finish_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_prize_pack_title_finish_acquisition_v1/tcgcsv_prize_pack_title_finish_acquisition_v1.json",
     "same_finish_ambiguous_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15i_stamped_same_finish_ambiguous_adjudication_v1.json"
   },
-  "fingerprint_sha256": "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+  "fingerprint_sha256": "c4c04c033b13eedc02d02f0f5aabe2f8e9578e09ab30126f8373e76c21bd6ac4",
   "summary": {
-    "candidate_rows_reviewed": 341,
-    "exact_label_routed_rows": 0,
+    "candidate_rows_reviewed": 331,
+    "exact_label_routed_rows": 31,
     "exact_label_external_finish_rows": 0,
     "single_base_finish_rows": 0,
-    "blocked_rows": 341,
+    "blocked_rows": 300,
     "already_adjudicated_rows_suppressed": 0,
     "by_routing_status": {
-      "blocked_missing_exact_finish_phrase": 339,
+      "blocked_missing_exact_finish_phrase": 298,
+      "ready_finish_routed_exact_label": 31,
       "blocked_generic_stamped_variant_key": 2
     },
-    "by_target_finish_key": {},
+    "by_target_finish_key": {
+      "reverse": 30,
+      "normal": 1
+    },
     "by_set": {
       "swsh1": 21,
       "swsh5": 21,
@@ -44,8 +48,8 @@
       "swshp": 12,
       "swsh6": 11,
       "swsh9": 11,
-      "sm1": 10,
       "sm8": 10,
+      "sm1": 9,
       "sm115": 9,
       "swsh2": 9,
       "swsh4": 9,
@@ -53,33 +57,33 @@
       "swsh7": 8,
       "dv1": 7,
       "sv10": 7,
-      "xy1": 7,
       "sm11": 6,
-      "sm5": 6,
-      "bw5": 5,
       "hgss1": 5,
       "hgss2": 5,
       "sm3": 5,
-      "sm6": 5,
+      "sm5": 5,
+      "svp": 5,
       "swsh11": 5,
-      "xy8": 5,
+      "xy1": 5,
       "bw3": 4,
       "pl3": 4,
       "sm7": 4,
-      "svp": 4,
       "xy3": 4,
+      "xy8": 4,
+      "bw5": 3,
       "bw8": 3,
       "bw9": 3,
       "bwp": 3,
-      "dp1": 3,
       "ex8": 3,
       "ex9": 3,
       "hgss4": 3,
       "pl2": 3,
+      "sm6": 3,
       "smp": 3,
       "xy2": 3,
       "bw11": 2,
       "bw2": 2,
+      "dp1": 2,
       "dp6": 2,
       "ex11": 2,
       "ex12": 2,
@@ -92,7 +96,6 @@
       "sm9": 2,
       "swsh10": 2,
       "swsh12": 2,
-      "xy10": 2,
       "xy11": 2,
       "xy12": 2,
       "xy9": 2,
@@ -111,6 +114,7 @@
       "sv02": 1,
       "sv05": 1,
       "sve": 1,
+      "xy10": 1,
       "xy4": 1,
       "xy6": 1,
       "xyp": 1
@@ -118,10 +122,10 @@
   },
   "recommended_next_package": {
     "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
-    "candidate_rows": 0,
+    "candidate_rows": 31,
     "allowed_write_shape": "insert stamped canonical parent rows with child finish only when routed by exact evidence label or a single existing base finish",
     "forbidden_write_shape": "do not activate stamped finish; do not route generic stamped labels; do not delete or merge base rows",
-    "status": "blocked_no_routable_rows"
+    "status": "ready_for_guarded_dry_run"
   },
   "rows": [
     {
@@ -883,48 +887,6 @@
       ]
     },
     {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "card_number": "98",
-      "card_name": "Shinx",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "3b6f4dbd-177d-4778-b023-f49d0b9fd24d"
-      ],
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "bulbapedia_card_page_release_info",
-        "bulbapedia_set_list",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://bulbapedia.bulbagarden.net/wiki/Shinx_(Diamond_%26_Pearl_98)",
-        "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "Bulbapedia card page release information stamp/logo variant",
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "bulbapedia_set_list preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted bulbapedia_set_list evidence under the same source authority; it is not a new independent source.",
-        "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A special variant was released as a participation prize for the 2007-2008 City Championships, featuring the event logo."
-      ]
-    },
-    {
       "set_key": "dpp",
       "set_name": "DP Black Star Promos",
       "card_number": "DP25",
@@ -1099,28 +1061,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-platinum/broken-time-space-league-104",
-        "https://www.thepricedex.com/set/pl1/platinum/price-list"
+        "https://www.thepricedex.com/set/pl1/platinum/price-list",
+        "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1194,9 +1180,11 @@
       ],
       "preserved_evidence_labels": [
         "PokeScope pl2-96 lists Team Galactic's Invention G-109 SP Radar, Rising Rivals #96/111, with League Stamp variant",
+        "PokeScope preserved finish evidence from last promoted Master Index",
         "ThePriceDex preserved finish evidence from last promoted Master Index"
       ],
       "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted PokeScope evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact page identifies Team Galactic's Invention G-109 SP Radar, Rising Rivals, Identifier pl2-96, Card Number 96/111, and League Stamp variant."
       ]
@@ -1233,9 +1221,11 @@
       ],
       "preserved_evidence_labels": [
         "PokeScope pl2-98 lists Volkner's Philosophy, Rising Rivals #98/111, with League Stamp variant",
+        "PokeScope preserved finish evidence from last promoted Master Index",
         "ThePriceDex preserved finish evidence from last promoted Master Index"
       ],
       "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted PokeScope evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact page identifies Volkner's Philosophy, Rising Rivals, Identifier pl2-98, Card Number 98/111, and League Stamp variant."
       ]
@@ -1295,28 +1285,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "elitefourum_alternate_checklist",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
-        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list",
+        "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/"
       ],
       "preserved_evidence_labels": [
         "Elite Fourum alternate checklist: 26/147 Dusknoir FB [PokéBall Stamped, League Promo; 2009-2010]",
-        "ThePriceDex preserved finish evidence from last promoted Master Index"
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1334,32 +1348,56 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "elitefourum_alternate_checklist",
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
         "https://www.pricecharting.com/game/pokemon-supreme-victors/skarmory-fb-league-promo-83",
-        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+        "https://www.thepricedex.com/set/pl3/supreme-victors/price-list",
+        "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/"
       ],
       "preserved_evidence_labels": [
         "Elite Fourum alternate checklist: 83/147 Skarmory FB [PokéBall Stamped, League Promo; 2009-2010]",
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1416,32 +1454,56 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "elitefourum_alternate_checklist",
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
         "https://www.pricecharting.com/game/pokemon-arceus/spiritomb-league-32",
-        "https://www.thepricedex.com/set/pl4/arceus/price-list"
+        "https://www.thepricedex.com/set/pl4/arceus/price-list",
+        "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/"
       ],
       "preserved_evidence_labels": [
         "Elite Fourum alternate checklist: 32/99 Spiritomb [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1459,32 +1521,56 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "elitefourum_alternate_checklist",
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
         "https://www.pricecharting.com/game/pokemon-arceus/expert-belt-league-87",
-        "https://www.thepricedex.com/set/pl4/arceus/price-list"
+        "https://www.thepricedex.com/set/pl4/arceus/price-list",
+        "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/"
       ],
       "preserved_evidence_labels": [
         "Elite Fourum alternate checklist: 87/99 Expert Belt [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
-        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+        "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1502,28 +1588,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/delibird-league-promo-39",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list",
+        "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1580,28 +1690,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/pokemon-collector-league-promo-97",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list",
+        "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1658,28 +1792,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/double-colorless-energy-league-103",
-        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list",
+        "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -1858,28 +2016,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-unleashed/rare-candy-league-promo-82",
-        "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+        "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list",
+        "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2217,28 +2399,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "normal",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "normal",
+          "reason": "explicit_non_holo_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo"
+        },
+        {
+          "finish_key": "normal",
+          "reason": "explicit_non_holo_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "normal",
+          "reason": "explicit_non_holo_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo"
+        },
+        {
+          "finish_key": "normal",
+          "reason": "explicit_non_holo_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-promo/champions-festival-quarter-finalist-bw95",
-        "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+        "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list",
+        "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2298,28 +2504,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-black-and-white/whirlipede-league-promo-53",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        "https://www.thepricedex.com/set/bw1/black-and-white/price-list",
+        "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2338,28 +2568,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-black-and-white/watchog-league-promo-79",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        "https://www.thepricedex.com/set/bw1/black-and-white/price-list",
+        "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2378,28 +2632,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-black-and-white/lillipup-league-promo-81",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        "https://www.thepricedex.com/set/bw1/black-and-white/price-list",
+        "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2498,28 +2776,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-black-and-white/water-energy-league-play-107",
-        "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        "https://www.thepricedex.com/set/bw1/black-and-white/price-list",
+        "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2578,28 +2880,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-emerging-powers/unfezant-league-82",
-        "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
+        "https://www.thepricedex.com/set/bw2/emerging-powers/price-list",
+        "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2738,28 +3064,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-noble-victories/cryogonal-league-32",
-        "https://www.thepricedex.com/set/bw3/noble-victories/price-list"
+        "https://www.thepricedex.com/set/bw3/noble-victories/price-list",
+        "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -2912,86 +3262,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-dark-explorers/vaporeon-championship-staff-25",
-        "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "37",
-      "card_name": "Jolteon",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "852d5fe5-3318-4aad-8443-0711a0df017d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
-        "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "84",
-      "card_name": "Eevee",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "cafec93e-cdb3-43e6-9f72-dcf6c6acc7d0"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-dark-explorers/eevee-city-championship-staff-84",
         "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
       ],
       "preserved_evidence_labels": [
@@ -3380,28 +3650,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-plasma-storm/escape-rope-league-promo-120",
-        "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+        "https://www.thepricedex.com/set/bw8/plasma-storm/price-list",
+        "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -3701,28 +3995,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-legendary-treasures/bianca-league-109",
-        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list",
+        "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -3808,86 +4126,6 @@
     {
       "set_key": "xy1",
       "set_name": "XY",
-      "card_number": "83",
-      "card_name": "Honedge",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "94a1987b-3ff0-4aea-a58c-aaa0903d1c61"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-staff-83",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "84",
-      "card_name": "Doublade",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "3475e89a-9d54-4b8e-b096-f01eb9110230"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-xy/doublade-regional-championship-staff-84",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
       "card_number": "85",
       "card_name": "Aegislash",
       "proposed_variant_key": "regional_championships_stamp",
@@ -3941,28 +4179,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-xy/muscle-band-league-121",
-        "https://www.thepricedex.com/set/xy1/xy/price-list"
+        "https://www.thepricedex.com/set/xy1/xy/price-list",
+        "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4021,28 +4283,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-flashfire/fiery-torch-league-89",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+        "https://www.thepricedex.com/set/xy2/flashfire/price-list",
+        "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4061,28 +4347,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-flashfire/magnetic-storm-league-91",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+        "https://www.thepricedex.com/set/xy2/flashfire/price-list",
+        "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4101,28 +4411,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-flashfire/pokemon-fan-club-league-94",
-        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+        "https://www.thepricedex.com/set/xy2/flashfire/price-list",
+        "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4261,28 +4595,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-furious-fists/battle-reporter-league-88",
-        "https://www.thepricedex.com/set/xy3/furious-fists/price-list"
+        "https://www.thepricedex.com/set/xy3/furious-fists/price-list",
+        "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4424,28 +4782,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-breakthrough/flabebe-league-promo-101",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
+        "https://www.thepricedex.com/set/xy8/breakthrough/price-list",
+        "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4464,28 +4846,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-breakthrough/floette-league-stamp-102",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
+        "https://www.thepricedex.com/set/xy8/breakthrough/price-list",
+        "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -4517,46 +4923,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-breakthrough/giovannis-scheme-regional-championships-138",
-        "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "145",
-      "card_name": "Parallel City",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "73ebda40-d6b9-4ca9-91a7-1e03cd15bf4b"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-staff-145",
         "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
       ],
       "preserved_evidence_labels": [
@@ -4680,46 +5046,6 @@
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-1st-place-pokemon-league-63",
-        "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "xy10",
-      "set_name": "Fates Collide",
-      "card_number": "94",
-      "card_name": "Chaos Tower",
-      "proposed_variant_key": "national_championships_stamp",
-      "stamp_label": "National Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "b0eea10e-ebda-45ca-9714-6db5c03b349d"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
         "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
       ],
       "preserved_evidence_labels": [
@@ -5071,28 +5397,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-sun-and-moon/primarina-league-41",
-        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list",
+        "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -5293,46 +5643,6 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact Battle Academy deck-list card matched to an existing remaining stamped gap. Evidence phrase: cards within the decks are reprints but have colored silhouettes; Cinderace and Pikachu decks also have a number next to the silhouette."
-      ]
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "128",
-      "card_name": "Professor Kukui",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "1685b1e6-345a-4fb9-be34-06ae26afa4c4"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-sun-and-moon/professor-kukui-regional-championship-staff-128",
-        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
       ]
     },
     {
@@ -5592,28 +5902,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-burning-shadows/diancie-league-94",
-        "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
+        "https://www.thepricedex.com/set/sm3/burning-shadows/price-list",
+        "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -5899,46 +6233,6 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
-      "card_number": "119",
-      "card_name": "Cynthia",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "df41a6f4-63cf-49c9-8cc6-9ea350726e64"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-ultra-prism/cynthia-regional-championship-staff-119",
-        "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
       "card_number": "122",
       "card_name": "Escape Board",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -6032,108 +6326,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-forbidden-light/buzzwole-league-77",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list",
+        "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "102",
-      "card_name": "Beast Ring",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "5cebfdd2-8535-4206-89dd-1c7d1a848515"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-forbidden-light/beast-ring-pokemon-league-102",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
-      ]
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "105",
-      "card_name": "Diantha",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
-      "base_parent_ids": [
-        "6f66ce37-7cf5-4489-98cb-d303aae15304"
-      ],
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
-      ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
-      "preserved_evidence_sources": [
-        "pricecharting_csv_product",
-        "thepricedex_price_list"
-      ],
-      "preserved_evidence_urls": [
-        "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
-        "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
-      ],
-      "preserved_evidence_labels": [
-        "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
-      ],
-      "preserved_evidence_notes": [
-        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -6272,28 +6510,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-celestial-storm/metagross-league-promo-95",
-        "https://www.thepricedex.com/set/sm7/celestial-storm/price-list"
+        "https://www.thepricedex.com/set/sm7/celestial-storm/price-list",
+        "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -6634,28 +6896,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-lost-thunder/naganadel-league-108",
-        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list",
+        "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -6714,28 +7000,52 @@
         "normal",
         "reverse"
       ],
-      "target_finish_key": null,
-      "routing_status": "blocked_missing_exact_finish_phrase",
-      "blockers": [
-        "missing_exact_finish_phrase"
+      "target_finish_key": "reverse",
+      "routing_status": "ready_finish_routed_exact_label",
+      "blockers": [],
+      "finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/"
+        }
       ],
-      "finish_claims": [],
-      "supporting_finish_claims": [],
+      "supporting_finish_claims": [
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "finish_key": "reverse",
+          "reason": "explicit_reverse_label",
+          "evidence_text": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/"
+        }
+      ],
       "preserved_evidence_sources": [
         "pricecharting_csv_product",
-        "thepricedex_price_list"
+        "thepricedex_price_list",
+        "pokecardvalues_stamped_finish"
       ],
       "preserved_evidence_urls": [
         "https://www.pricecharting.com/game/pokemon-lost-thunder/lost-blender-league-181",
-        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list",
+        "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/"
       ],
       "preserved_evidence_labels": [
         "ThePriceDex preserved finish evidence from last promoted Master Index",
-        "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo"
       ],
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
-        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source."
+        "Audit-only preservation row. This preserves previously promoted pricecharting_csv_product evidence under the same source authority; it is not a new independent source.",
+        "Exact active finish evidence accepted only when Poke Card Values had one matching set/card/number/stamp-family product title."
       ]
     },
     {
@@ -13331,6 +13641,45 @@
       "preserved_evidence_notes": [
         "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
         "Exact promo-family evidence accepted only when PriceCharting console is Pokemon Promo, card number and name match the target promo fact, finish label is explicit for non-normal rows, and only one matching product exists."
+      ]
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "source_readiness_status": "ready_for_guarded_parent_identity_insert",
+      "base_parent_ids": [
+        "987aefdb-3a1b-4959-a479-74449b8f613f"
+      ],
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": null,
+      "routing_status": "blocked_missing_exact_finish_phrase",
+      "blockers": [
+        "missing_exact_finish_phrase"
+      ],
+      "finish_claims": [],
+      "supporting_finish_claims": [],
+      "preserved_evidence_sources": [
+        "pricecharting_svp_winner_variant",
+        "thepricedex_price_list"
+      ],
+      "preserved_evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225",
+        "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+      ],
+      "preserved_evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_svp_winner_variant preserved finish evidence from last promoted Master Index"
+      ],
+      "preserved_evidence_notes": [
+        "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+        "Audit-only preservation row. This preserves previously promoted pricecharting_svp_winner_variant evidence under the same source authority; it is not a new independent source."
       ]
     },
     {

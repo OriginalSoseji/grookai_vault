@@ -18,19 +18,21 @@ Audit-only closure for Prize Pack stamped active-finish mapping.
 | --- | --- |
 | target_rows | 63 |
 | ready_for_guarded_dry_run | 0 |
-| blocked_rows | 63 |
-| single_source_rows | 34 |
+| applied_real_apply_verified | 12 |
+| blocked_rows | 51 |
+| single_source_rows | 22 |
 | conflicting_rows | 25 |
 | no_exact_match_rows | 4 |
 | cross_source_records_generated | 0 |
-| fingerprint_sha256 | `cb1732d8101c3e963f50ae3ac0575123c2e18f1c3d943b07ac13625411473490` |
+| fingerprint_sha256 | `bbac3b70b834fc3aba4493429f4555831efd10b58b3699c85fe1df733cb1d4bb` |
 
 ## Closure Status Counts
 
 | closure_status | rows |
 | --- | --- |
-| blocked_second_independent_source_needed | 34 |
 | blocked_conflicting_finish_evidence | 25 |
+| blocked_second_independent_source_needed | 22 |
+| applied_real_apply_verified | 12 |
 | blocked_no_exact_source_match | 4 |
 
 ## Source Attempt Inputs
@@ -39,5 +41,7 @@ Audit-only closure for Prize Pack stamped active-finish mapping.
 | --- | --- |
 | docs/audits/english_master_index_source_exhaustion_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json | 40234be324648f2c95a709a008564b993537b365ad2c6cbe551144b913a36a99 |
 | docs/audits/english_master_index_source_exhaustion_v1/prize_pack_current_gap_cross_source_v1/prize_pack_current_gap_cross_source_v1.json | 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 |
+| docs/audits/english_master_index_source_exhaustion_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1.json | 4dc6607ef045bea894dd943be0e0f151ede54ce6b8a55cbeac00c87f395a10ec |
+| docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18m_prize_pack_stamped_parent_insert_real_apply_v1.json | 2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d |
 
-No Prize Pack row is write-ready from the current source set. Continue only if a new independent exact source is added.
+Prize Pack rows are dry-run-ready only when current source evidence and PKG-18K PriceCharting corroboration agree on the exact active finish.

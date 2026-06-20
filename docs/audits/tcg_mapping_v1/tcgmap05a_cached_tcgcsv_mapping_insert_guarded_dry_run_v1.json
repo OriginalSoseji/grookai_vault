@@ -1,0 +1,627 @@
+{
+  "package_id": "TCGMAP-05A-CACHED-TCGCSV-TCGPLAYER-MAPPING-INSERTS",
+  "generated_at": "2026-06-19T06:44:04.157Z",
+  "pass": true,
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "rollback_only": true,
+  "readiness_report": "docs\\audits\\tcg_mapping_v1\\tcgmap05_cached_tcgcsv_readiness_v1.json",
+  "readiness_fingerprint_sha256": "bee892d14f83b1a9ace7d35c4599b68f2ceb24d43ea010b7a4a19f104b98cbb7",
+  "target_rows": 153,
+  "target_fingerprint_sha256": "88874689034c1e4807322b6d5d64347a01964a80b89a22f40894f566bcb6e0b5",
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-19T06:44:03.138Z",
+      "scoped_rows": [],
+      "scoped_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "global_counts": {
+        "active_tcgplayer_rows": 17912,
+        "active_tcgplayer_card_prints": 17912,
+        "active_tcgplayer_external_ids": 17912
+      },
+      "global_hash_sha256": "274e2d93040db922f91c5ea61722d8bc33668c79a3a31516e97e0c6e6c8189ac"
+    },
+    "guard": {
+      "target_count": 153,
+      "distinct_card_print_count": 153,
+      "distinct_external_id_count": 153,
+      "non_tcgplayer_source_count": 0,
+      "missing_external_id_count": 0,
+      "missing_source_url_count": 0,
+      "missing_parent_count": 0,
+      "active_card_mapping_collision_count": 0,
+      "external_id_collision_count": 0,
+      "batch_duplicate_card_print_count": 0,
+      "batch_duplicate_external_id_count": 0,
+      "target_fingerprint_sha256": "88874689034c1e4807322b6d5d64347a01964a80b89a22f40894f566bcb6e0b5"
+    },
+    "inside_transaction_proof": {
+      "inserted_rows": 153,
+      "inserted_active_rows": 153,
+      "active_external_id_collision_groups": 0,
+      "active_card_print_multi_mapping_groups": 0
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T06:44:04.157Z",
+      "scoped_rows": [],
+      "scoped_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "global_counts": {
+        "active_tcgplayer_rows": 17912,
+        "active_tcgplayer_card_prints": 17912,
+        "active_tcgplayer_external_ids": 17912
+      },
+      "global_hash_sha256": "274e2d93040db922f91c5ea61722d8bc33668c79a3a31516e97e0c6e6c8189ac"
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "blocked_buckets": [
+    {
+      "key": "blocked_existing_tcgplayer_external_id_collision",
+      "rows": 244,
+      "parents": 244,
+      "sets": 42
+    },
+    {
+      "key": "blocked_batch_duplicate_tcgplayer_id",
+      "rows": 22,
+      "parents": 22,
+      "sets": 1
+    }
+  ],
+  "sample_rows": [
+    {
+      "card_print_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+      "source": "tcgplayer",
+      "external_id": "45167",
+      "set_code": "base2",
+      "number": "64",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/45167/pokemon-jungle-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\635_products.json",
+      "source_group_id": 635,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/45167/pokemon-jungle-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\635_products.json",
+        "source_group_id": 635,
+        "source_rarity": "Common",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/45167_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "0da2772e-4ddd-421b-a5b4-96ab56363dbc",
+      "source": "tcgplayer",
+      "external_id": "42552",
+      "set_code": "base4",
+      "number": "102",
+      "name": "Imposter Professor Oak",
+      "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42552_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+      "source": "tcgplayer",
+      "external_id": "42555",
+      "set_code": "base4",
+      "number": "105",
+      "name": "Pokémon Breeder",
+      "source_url": "https://www.tcgplayer.com/product/42555/pokemon-base-set-2-pokemon-breeder",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/42555/pokemon-base-set-2-pokemon-breeder",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/42555_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+      "source": "tcgplayer",
+      "external_id": "106358",
+      "set_code": "base4",
+      "number": "106",
+      "name": "Pokémon Trader",
+      "source_url": "https://www.tcgplayer.com/product/106358/pokemon-base-set-2-pokemon-trader",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106358/pokemon-base-set-2-pokemon-trader",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106358_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "1025562c-fc2e-447c-9cc5-feb58d205ace",
+      "source": "tcgplayer",
+      "external_id": "106359",
+      "set_code": "base4",
+      "number": "114",
+      "name": "Pokémon Center",
+      "source_url": "https://www.tcgplayer.com/product/106359/pokemon-base-set-2-pokemon-center",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106359/pokemon-base-set-2-pokemon-center",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106359_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "d627fea9-45ac-4cac-8195-0ade9f427cb8",
+      "source": "tcgplayer",
+      "external_id": "106360",
+      "set_code": "base4",
+      "number": "115",
+      "name": "Pokédex",
+      "source_url": "https://www.tcgplayer.com/product/106360/pokemon-base-set-2-pokedex",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106360/pokemon-base-set-2-pokedex",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106360_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "15c7182b-18e4-4352-be8b-8b76b43f93d9",
+      "source": "tcgplayer",
+      "external_id": "106361",
+      "set_code": "base4",
+      "number": "121",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/106361/pokemon-base-set-2-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+      "source_group_id": 605,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/106361/pokemon-base-set-2-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\605_products.json",
+        "source_group_id": 605,
+        "source_rarity": "Common",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/106361_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "c2ea72e9-452d-4672-81a1-9fc80abe61a5",
+      "source": "tcgplayer",
+      "external_id": "88184",
+      "set_code": "ex10",
+      "number": "87",
+      "name": "Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/88184/pokemon-unseen-forces-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+      "source_group_id": 1398,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88184/pokemon-unseen-forces-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+        "source_group_id": 1398,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88184_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "093401fb-a48c-4d6e-8489-8616aa6a778f",
+      "source": "tcgplayer",
+      "external_id": "88235",
+      "set_code": "ex10",
+      "number": "88",
+      "name": "Pokémon Reversal",
+      "source_url": "https://www.tcgplayer.com/product/88235/pokemon-unseen-forces-pokemon-reversal",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+      "source_group_id": 1398,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88235/pokemon-unseen-forces-pokemon-reversal",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1398_products.json",
+        "source_group_id": 1398,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88235_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "95465425-e352-4b28-b0a1-13cfc30c06a7",
+      "source": "tcgplayer",
+      "external_id": "89773",
+      "set_code": "ex4",
+      "number": "79",
+      "name": "Team Aqua Technical Machine 01",
+      "source_url": "https://www.tcgplayer.com/product/89773/pokemon-team-magma-vs-team-aqua-team-aqua-technical-machine-01",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+      "source_group_id": 1377,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/89773/pokemon-team-magma-vs-team-aqua-team-aqua-technical-machine-01",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+        "source_group_id": 1377,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89773_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "4d4e26bf-1914-45c1-98a0-04cf6120ac74",
+      "source": "tcgplayer",
+      "external_id": "89817",
+      "set_code": "ex4",
+      "number": "84",
+      "name": "Team Magma Technical Machine 01",
+      "source_url": "https://www.tcgplayer.com/product/89817/pokemon-team-magma-vs-team-aqua-team-magma-technical-machine-01",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+      "source_group_id": 1377,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/89817/pokemon-team-magma-vs-team-aqua-team-magma-technical-machine-01",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1377_products.json",
+        "source_group_id": 1377,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/89817_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "f90203f5-f02f-4818-9d34-2506b38e77d8",
+      "source": "tcgplayer",
+      "external_id": "88234",
+      "set_code": "ex7",
+      "number": "84",
+      "name": "Pokémon Retriever",
+      "source_url": "https://www.tcgplayer.com/product/88234/pokemon-team-rocket-returns-pokemon-retriever",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+      "source_group_id": 1428,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88234/pokemon-team-rocket-returns-pokemon-retriever",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+        "source_group_id": 1428,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88234_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a9a37e78-6136-4fe7-b03a-74216741f13d",
+      "source": "tcgplayer",
+      "external_id": "88784",
+      "set_code": "ex7",
+      "number": "89",
+      "name": "Rocket's Poké Ball",
+      "source_url": "https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+      "source_group_id": 1428,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1428_products.json",
+        "source_group_id": 1428,
+        "source_rarity": "Uncommon",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88784_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "source": "tcgplayer",
+      "external_id": "85576",
+      "set_code": "pl2",
+      "number": "RT2",
+      "name": "Frost Rotom",
+      "source_url": "https://www.tcgplayer.com/product/85576/pokemon-rising-rivals-frost-rotom",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85576/pokemon-rising-rivals-frost-rotom",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85576_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "source": "tcgplayer",
+      "external_id": "87584",
+      "set_code": "pl2",
+      "number": "RT4",
+      "name": "Mow Rotom",
+      "source_url": "https://www.tcgplayer.com/product/87584/pokemon-rising-rivals-mow-rotom",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87584/pokemon-rising-rivals-mow-rotom",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87584_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "source": "tcgplayer",
+      "external_id": "84238",
+      "set_code": "pl2",
+      "number": "RT6",
+      "name": "Charon's Choice",
+      "source_url": "https://www.tcgplayer.com/product/84238/pokemon-rising-rivals-charons-choice",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+      "source_group_id": 1367,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/84238/pokemon-rising-rivals-charons-choice",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1367_products.json",
+        "source_group_id": 1367,
+        "source_rarity": "Ultra Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84238_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a5798f48-bf29-4650-93a3-75558a817afc",
+      "source": "tcgplayer",
+      "external_id": "83457",
+      "set_code": "pl3",
+      "number": "1",
+      "name": "Absol G",
+      "source_url": "https://www.tcgplayer.com/product/83457/pokemon-supreme-victors-absol-g",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/83457/pokemon-supreme-victors-absol-g",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83457_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "8d2ca1ec-3b80-4d17-87ad-bc4ed1b35024",
+      "source": "tcgplayer",
+      "external_id": "83914",
+      "set_code": "pl3",
+      "number": "2",
+      "name": "Blaziken FB",
+      "source_url": "https://www.tcgplayer.com/product/83914/pokemon-supreme-victors-blaziken-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/83914/pokemon-supreme-victors-blaziken-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/83914_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "bc5bd4b4-e4d5-49ae-ae15-59ac3fac28d4",
+      "source": "tcgplayer",
+      "external_id": "84952",
+      "set_code": "pl3",
+      "number": "3",
+      "name": "Drifblim FB",
+      "source_url": "https://www.tcgplayer.com/product/84952/pokemon-supreme-victors-drifblim-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/84952/pokemon-supreme-victors-drifblim-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/84952_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "6675e9ee-5c7a-4327-858d-d50c36b5b28f",
+      "source": "tcgplayer",
+      "external_id": "85125",
+      "set_code": "pl3",
+      "number": "4",
+      "name": "Electivire FB",
+      "source_url": "https://www.tcgplayer.com/product/85125/pokemon-supreme-victors-electivire-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85125/pokemon-supreme-victors-electivire-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85125_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "2b1d020a-02f8-4438-8163-10db7bfb1774",
+      "source": "tcgplayer",
+      "external_id": "85623",
+      "set_code": "pl3",
+      "number": "5",
+      "name": "Garchomp",
+      "source_url": "https://www.tcgplayer.com/product/85623/pokemon-supreme-victors-garchomp",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/85623/pokemon-supreme-victors-garchomp",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/85623_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "83fa0d94-4ce6-4d56-b766-21e9d923cbd5",
+      "source": "tcgplayer",
+      "external_id": "87058",
+      "set_code": "pl3",
+      "number": "6",
+      "name": "Magmortar",
+      "source_url": "https://www.tcgplayer.com/product/87058/pokemon-supreme-victors-magmortar",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87058/pokemon-supreme-victors-magmortar",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87058_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "a8ea67dd-9667-4755-a523-d88dc44fb959",
+      "source": "tcgplayer",
+      "external_id": "87339",
+      "set_code": "pl3",
+      "number": "7",
+      "name": "Metagross",
+      "source_url": "https://www.tcgplayer.com/product/87339/pokemon-supreme-victors-metagross",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/87339/pokemon-supreme-victors-metagross",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/87339_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "90740ca1-cb80-4c1a-acf8-80364a299cb5",
+      "source": "tcgplayer",
+      "external_id": "88639",
+      "set_code": "pl3",
+      "number": "8",
+      "name": "Rayquaza C",
+      "source_url": "https://www.tcgplayer.com/product/88639/pokemon-supreme-victors-rayquaza-c",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88639/pokemon-supreme-victors-rayquaza-c",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88639_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    },
+    {
+      "card_print_id": "940012d3-e7be-41e7-84f3-9e778341b750",
+      "source": "tcgplayer",
+      "external_id": "88668",
+      "set_code": "pl3",
+      "number": "9",
+      "name": "Regigigas FB",
+      "source_url": "https://www.tcgplayer.com/product/88668/pokemon-supreme-victors-regigigas-fb",
+      "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+      "source_group_id": 1384,
+      "match_rule": "normalized_set_name+number+name",
+      "meta": {
+        "derived_from": "preserved_tcgcsv_tcgplayer_product_cache",
+        "source_url": "https://www.tcgplayer.com/product/88668/pokemon-supreme-victors-regigigas-fb",
+        "source_cache_file": "docs\\audits\\english_master_index_source_exhaustion_v1\\tcgcsv_acquisition_v1\\cache\\1384_products.json",
+        "source_group_id": 1384,
+        "source_rarity": "Holo Rare",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/88668_200w.jpg",
+        "match_rule": "normalized_set_name+number+name",
+        "promoted_by": "tcg_mapping_tcgmap05a_cached_tcgcsv_mapping_insert_guarded_dry_run_v1"
+      }
+    }
+  ]
+}

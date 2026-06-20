@@ -20,9 +20,9 @@ Audit-only closure artifact for stamped rows that should not enter DB write-read
 | closed_rows | 242 |
 | generic_stamped_suppression_rows | 180 |
 | battle_academy_display_metadata_rows | 62 |
-| remaining_future_guarded_rows | 334 |
+| remaining_future_guarded_rows | 263 |
 | remaining_blocked_rows | 3 |
-| fingerprint_sha256 | `87281bb0286957418f59db0d1d3f1d7d7682f95695ccbd6c4a69df58626b8579` |
+| fingerprint_sha256 | `8161858ec1069cf0baa95f19c1ba7a8bdbaf3c4e7a3712f1279e13813d0bdbe0` |
 
 ## Closed Buckets
 

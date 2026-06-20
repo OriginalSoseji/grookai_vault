@@ -1,0 +1,528 @@
+{
+  "generated_at": "2026-06-19T16:25:23.318Z",
+  "package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/remaining_special_gap_source_acquisition_v1.json",
+  "package_fingerprint_sha256": "cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2",
+  "sql_hash_sha256": "ef51193a828361d9c56d46ada8f5548b5ac9f99573fc554cfb60fb3b1ec7df42",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "scope": {
+    "target_rows": 2,
+    "by_set": {
+      "ecard1": 2
+    },
+    "by_finish": {
+      "normal": 2
+    },
+    "by_variant": {
+      "japanese_card_back": 2
+    }
+  },
+  "targets": [
+    {
+      "candidate_key": "expedition_hoppip_japanese_back",
+      "set_code": "ecard1",
+      "set_name": "Expedition",
+      "card_number": "112",
+      "card_name": "Hoppip",
+      "variant_key": "japanese_card_back",
+      "printed_identity_modifier": "japanese_card_back",
+      "finish_key": "normal",
+      "gv_id_suffix": "JAPANESE-BACK",
+      "target_parent_id": "36da4f82-b99e-4cf9-8df8-422d0f53f7cb",
+      "target_child_id": "8b288ad2-dd82-4fbd-8673-589c2624cb8f",
+      "target_parent_gv_id": "GV-PK-EX-112-JAPANESE-BACK",
+      "target_printing_gv_id": "GV-PK-EX-112-JAPANESE-BACK-STD",
+      "base_parent_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+      "base_parent_gv_id": "GV-PK-EX-112",
+      "base_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "evidence_payload": {
+        "source_package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+        "source_candidate_key": "expedition_hoppip_japanese_back",
+        "classification": "e3_japanese_back_special_print",
+        "variant_key": "japanese_card_back",
+        "printed_identity_modifier": "japanese_card_back",
+        "finish_key": "normal",
+        "correction_reason": null,
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Hoppip_%28Expedition_112%29",
+          "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-hoppip-112-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37009.s",
+          "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/hoppip/2088678"
+        ],
+        "evidence_labels": [
+          "Bulbapedia Hoppip Expedition 112 release information",
+          "Heritage Hoppip 112 Expedition E3 Convention Promo Japanese Back lot",
+          "PSA Hoppip E3 Convention Promo-Japanese Back index"
+        ],
+        "preserved_evidence_sources": [
+          "bulbapedia_hoppip_expedition_112",
+          "heritage_hoppip_e3_japanese_back",
+          "psa_hoppip_e3_japanese_back"
+        ],
+        "evidence": [
+          {
+            "source_key": "bulbapedia_hoppip_expedition_112",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hoppip_%28Expedition_112%29",
+            "evidence_label": "Bulbapedia Hoppip Expedition 112 release information",
+            "proves": [
+              "card_identity",
+              "e3_2002_early_print",
+              "japanese_card_back",
+              "non_holo"
+            ]
+          },
+          {
+            "source_key": "heritage_hoppip_e3_japanese_back",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-hoppip-112-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37009.s",
+            "evidence_label": "Heritage Hoppip 112 Expedition E3 Convention Promo Japanese Back lot",
+            "proves": [
+              "card_identity",
+              "set_number",
+              "e3_convention_promo",
+              "japanese_card_back"
+            ]
+          },
+          {
+            "source_key": "psa_hoppip_e3_japanese_back",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/hoppip/2088678",
+            "evidence_label": "PSA Hoppip E3 Convention Promo-Japanese Back index",
+            "proves": [
+              "card_identity",
+              "japanese_card_back",
+              "grading_population_lane"
+            ]
+          }
+        ]
+      },
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Hoppip_%28Expedition_112%29",
+        "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-hoppip-112-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37009.s",
+        "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/hoppip/2088678"
+      ],
+      "evidence": [
+        {
+          "source_key": "bulbapedia_hoppip_expedition_112",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hoppip_%28Expedition_112%29",
+          "evidence_label": "Bulbapedia Hoppip Expedition 112 release information",
+          "proves": [
+            "card_identity",
+            "e3_2002_early_print",
+            "japanese_card_back",
+            "non_holo"
+          ]
+        },
+        {
+          "source_key": "heritage_hoppip_e3_japanese_back",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-hoppip-112-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37009.s",
+          "evidence_label": "Heritage Hoppip 112 Expedition E3 Convention Promo Japanese Back lot",
+          "proves": [
+            "card_identity",
+            "set_number",
+            "e3_convention_promo",
+            "japanese_card_back"
+          ]
+        },
+        {
+          "source_key": "psa_hoppip_e3_japanese_back",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/hoppip/2088678",
+          "evidence_label": "PSA Hoppip E3 Convention Promo-Japanese Back index",
+          "proves": [
+            "card_identity",
+            "japanese_card_back",
+            "grading_population_lane"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_key": "expedition_pichu_japanese_back",
+      "corrected_from": "ecard1 Pichu #22 holo candidate",
+      "correction_reason": "Source-backed E3 Japanese-back Pichu evidence points to #58 non-holo, not #22 holo.",
+      "set_code": "ecard1",
+      "set_name": "Expedition",
+      "card_number": "58",
+      "card_name": "Pichu",
+      "variant_key": "japanese_card_back",
+      "printed_identity_modifier": "japanese_card_back",
+      "finish_key": "normal",
+      "gv_id_suffix": "JAPANESE-BACK",
+      "target_parent_id": "2e9fa4e0-1546-488c-96b2-d9bab41cdb2f",
+      "target_child_id": "cfb83971-2d5f-4d98-a4d7-4f1779cf44c0",
+      "target_parent_gv_id": "GV-PK-EX-58-JAPANESE-BACK",
+      "target_printing_gv_id": "GV-PK-EX-58-JAPANESE-BACK-STD",
+      "base_parent_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+      "base_parent_gv_id": "GV-PK-EX-58",
+      "base_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "evidence_payload": {
+        "source_package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+        "source_candidate_key": "expedition_pichu_japanese_back",
+        "classification": "e3_japanese_back_special_print",
+        "variant_key": "japanese_card_back",
+        "printed_identity_modifier": "japanese_card_back",
+        "finish_key": "normal",
+        "correction_reason": "Source-backed E3 Japanese-back Pichu evidence points to #58 non-holo, not #22 holo.",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pichu_%28Expedition_22%29",
+          "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-pichu-58-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37008.s",
+          "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/pichu/auction/-2121678752405558364",
+          "https://pokumon.com/card/japanese-back-pichu-58-165-e3-convention-special-print/"
+        ],
+        "evidence_labels": [
+          "Bulbapedia Pichu Expedition release information",
+          "Heritage Pichu 58 Expedition E3 Convention Promo Japanese Back lot",
+          "PSA Pichu #58 E3 Convention Promo-Japanese Back index",
+          "Pokumon Japanese Back Pichu 58/165 E3 Convention Special Print"
+        ],
+        "preserved_evidence_sources": [
+          "bulbapedia_pichu_expedition_22",
+          "heritage_pichu_e3_japanese_back",
+          "psa_pichu_58_e3_japanese_back",
+          "pokumon_pichu_58_japanese_back"
+        ],
+        "evidence": [
+          {
+            "source_key": "bulbapedia_pichu_expedition_22",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pichu_%28Expedition_22%29",
+            "evidence_label": "Bulbapedia Pichu Expedition release information",
+            "proves": [
+              "card_identity",
+              "e3_2002_early_print",
+              "japanese_card_back",
+              "non_holo_pichu"
+            ]
+          },
+          {
+            "source_key": "heritage_pichu_e3_japanese_back",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-pichu-58-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37008.s",
+            "evidence_label": "Heritage Pichu 58 Expedition E3 Convention Promo Japanese Back lot",
+            "proves": [
+              "card_identity",
+              "set_number",
+              "e3_convention_promo",
+              "japanese_card_back"
+            ]
+          },
+          {
+            "source_key": "psa_pichu_58_e3_japanese_back",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/pichu/auction/-2121678752405558364",
+            "evidence_label": "PSA Pichu #58 E3 Convention Promo-Japanese Back index",
+            "proves": [
+              "card_identity",
+              "set_number",
+              "japanese_card_back",
+              "grading_population_lane"
+            ]
+          },
+          {
+            "source_key": "pokumon_pichu_58_japanese_back",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/japanese-back-pichu-58-165-e3-convention-special-print/",
+            "evidence_label": "Pokumon Japanese Back Pichu 58/165 E3 Convention Special Print",
+            "proves": [
+              "card_identity",
+              "set_number",
+              "japanese_card_back",
+              "special_print_context"
+            ]
+          }
+        ]
+      },
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pichu_%28Expedition_22%29",
+        "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-pichu-58-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37008.s",
+        "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/pichu/auction/-2121678752405558364",
+        "https://pokumon.com/card/japanese-back-pichu-58-165-e3-convention-special-print/"
+      ],
+      "evidence": [
+        {
+          "source_key": "bulbapedia_pichu_expedition_22",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pichu_%28Expedition_22%29",
+          "evidence_label": "Bulbapedia Pichu Expedition release information",
+          "proves": [
+            "card_identity",
+            "e3_2002_early_print",
+            "japanese_card_back",
+            "non_holo_pichu"
+          ]
+        },
+        {
+          "source_key": "heritage_pichu_e3_japanese_back",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://comics.ha.com/itm/memorabilia/trading-cards/pokemon-pichu-58-expedition-e3-convention-promo-psa-trading-card-game-gem-mint-10-the-pokemon-company-2002-japanese-back/a/7410-37008.s",
+          "evidence_label": "Heritage Pichu 58 Expedition E3 Convention Promo Japanese Back lot",
+          "proves": [
+            "card_identity",
+            "set_number",
+            "e3_convention_promo",
+            "japanese_card_back"
+          ]
+        },
+        {
+          "source_key": "psa_pichu_58_e3_japanese_back",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.psacard.com/auctionprices/tcg-cards/2002-pokemon-expedition/pichu/auction/-2121678752405558364",
+          "evidence_label": "PSA Pichu #58 E3 Convention Promo-Japanese Back index",
+          "proves": [
+            "card_identity",
+            "set_number",
+            "japanese_card_back",
+            "grading_population_lane"
+          ]
+        },
+        {
+          "source_key": "pokumon_pichu_58_japanese_back",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/japanese-back-pichu-58-165-e3-convention-special-print/",
+          "evidence_label": "Pokumon Japanese Back Pichu 58/165 E3 Convention Special Print",
+          "proves": [
+            "card_identity",
+            "set_number",
+            "japanese_card_back",
+            "special_print_context"
+          ]
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "dry_run_status": "e3_japanese_back_parent_child_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 2,
+      "target_parent_count": 2,
+      "target_child_count": 2,
+      "base_parent_count": 2,
+      "base_finish_count": 2,
+      "active_finish_count": 2,
+      "target_parent_collision_count": 0,
+      "target_child_collision_count": 0,
+      "same_identity_parent_collision_count": 0,
+      "ready_identity_projection_count": 2,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS",
+      "package_fingerprint": "cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2",
+      "target_rows": 2,
+      "inserted_parent_rows": 2,
+      "inserted_identity_rows": 2,
+      "inserted_child_rows": 2,
+      "forbidden_stamped_child_rows": 0,
+      "stale_pichu_22_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 2,
+      "identity_inserts": 2,
+      "child_inserts": 2,
+      "deletes": 0,
+      "merges": 0,
+      "external_mapping_writes": 0,
+      "pricing_writes": 0,
+      "image_writes": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-19T16:25:22.124Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 2
+      },
+      "hash_sha256": "583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a"
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-19T16:25:23.089Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8b288ad2-dd82-4fbd-8673-589c2624cb8f",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "cfb83971-2d5f-4d98-a4d7-4f1779cf44c0",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "fd6e0219-b13e-48a4-a131-a043c0f20f91",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": "3677d9abf25ad8b51daee3640fc0219facbe2209da763a331efc8fa1893121d5"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "03034702-2300-4d3f-8a4f-92ce319457dc",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": "cce405c1f7d905408ad5d30f280b004ec36d047c8e6ea3d6141ecc79d5e11c9a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "36da4f82-b99e-4cf9-8df8-422d0f53f7cb",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2e9fa4e0-1546-488c-96b2-d9bab41cdb2f",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "japanese_card_back",
+          "printed_identity_modifier": "japanese_card_back",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 2,
+        "target_child": 2,
+        "target_identity": 2,
+        "target_parent": 2
+      },
+      "hash_sha256": "1a3cb50ad8bd76f2c3ae82b12c5481b0f1b464f628fc835422e06239e27b0586"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T16:25:23.239Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3d2e174e-ed44-4a72-a58f-7f48dea42b60",
+          "set_code": "ecard1",
+          "number": "112",
+          "number_plain": "112",
+          "name": "Hoppip",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "cac4a8a6-8baf-4d28-a015-4c3545255aa9",
+          "set_code": "ecard1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 2
+      },
+      "hash_sha256": "583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a"
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "0710338cb1fc3bfa6acc984ae95b71b3dc5512e5c5d67d3266de451925d60dc1",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real MISSING-PROMO-04C-E3-JAPANESE-BACK-PARENT-CHILD-INSERTS apply only. Fingerprint: cd9334d4d64cb920c3ff69dc4166b3beb5171e03b46db1d8058cb93c368003f2. SQL hash: ef51193a828361d9c56d46ada8f5548b5ac9f99573fc554cfb60fb3b1ec7df42. Scope: 2 E3 Japanese-back parent inserts, 2 active identity inserts, 2 normal child printing inserts for ecard1/Expedition Hoppip #112 and corrected Pichu #58; variant_key=japanese_card_back; printed_identity_modifier=japanese_card_back; stale Pichu #22 holo candidate excluded. Dry-run proof: 583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a == 583533f7031eb5c7297642e5d83fa2d64b2bf4f4f6a5610264b3ef5dedb9143a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No external mapping writes. No pricing writes. No image writes."
+}

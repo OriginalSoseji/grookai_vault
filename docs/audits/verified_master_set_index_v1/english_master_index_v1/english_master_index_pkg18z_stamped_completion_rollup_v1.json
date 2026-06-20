@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:07:14.974Z",
+  "generated_at": "2026-06-20T05:03:29.406Z",
   "version": "english_master_index_pkg18z_stamped_completion_rollup_v1",
   "package_id": "PKG-18Z-STAMPED-COMPLETION-ROLLUP",
   "audit_only": true,
@@ -18,14 +18,15 @@
     "source_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json",
     "conflict_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g_stamped_conflict_manual_closure_v1.json"
   },
-  "fingerprint_sha256": "c62476d8b98a186d9b671e1de9928cc4884179c78d7a2fee725576ffdf366175",
+  "fingerprint_sha256": "650eb0dd9097c498d1b4bd3b48dbd19b307beab05933846cfbb3d6e4a5e61664",
   "summary": {
-    "original_execution_queue_rows": 579,
+    "original_execution_queue_rows": 567,
     "closed_or_classified_rows": 579,
     "write_ready_rows": 0,
     "no_write_governance_rows": 242,
     "base_parent_rows_classified": 59,
-    "prize_pack_rows_blocked": 63,
+    "prize_pack_rows_ready_for_guarded_dry_run": 0,
+    "prize_pack_rows_blocked": 51,
     "source_acquisition_rows_blocked": 212,
     "manual_conflict_rows_blocked": 3
   },
@@ -38,12 +39,12 @@
     {
       "bucket": "03 base-parent resolution",
       "rows": 59,
-      "outcome": "35 stale-return rows; 24 blocked; 0 insert candidates"
+      "outcome": "50 stale-return rows; 9 blocked; 0 insert candidates"
     },
     {
       "bucket": "04 Prize Pack finish mapping",
       "rows": 63,
-      "outcome": "63 blocked; 0 write-ready rows"
+      "outcome": "51 blocked; 0 ready for guarded dry-run"
     },
     {
       "bucket": "05/06 variant-family and second-source acquisition",

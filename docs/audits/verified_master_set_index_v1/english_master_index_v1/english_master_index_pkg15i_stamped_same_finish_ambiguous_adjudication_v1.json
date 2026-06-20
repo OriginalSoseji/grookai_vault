@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T19:49:06.311Z",
+  "generated_at": "2026-06-20T03:25:37.490Z",
   "version": "english_master_index_pkg15i_stamped_same_finish_ambiguous_adjudication_v1",
   "package_id": "PKG-15I-STAMPED-SAME-FINISH-AMBIGUOUS-ADJUDICATION",
   "audit_only": true,
@@ -8,31 +8,29 @@
   "migrations_created": false,
   "cleanup_performed": false,
   "quarantine_performed": false,
-  "write_ready_now": 2,
+  "write_ready_now": 0,
   "source_artifacts": {
     "pokecardvalues_stamped_finish_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pokecardvalues_stamped_finish_acquisition_v1/pokecardvalues_stamped_finish_acquisition_v1.json"
   },
   "summary": {
-    "reviewed_rows": 21,
-    "same_finish_supported_rows": 21,
+    "reviewed_rows": 22,
+    "same_finish_supported_rows": 22,
     "by_adjudication_status": {
-      "blocked_identity_granularity_required": 19,
-      "ready_for_guarded_battle_academy_deck_mark_display_metadata_route": 2
+      "blocked_identity_granularity_required": 22
     },
     "by_target_finish_key": {
-      "reverse": 16,
-      "normal": 4,
+      "reverse": 18,
+      "normal": 3,
       "holo": 1
     },
     "by_variant": {
-      "regional_championships_stamp": 9,
+      "regional_championships_stamp": 8,
+      "league_stamp": 4,
       "city_championships_stamp": 3,
-      "battle_academy_deck_mark": 2,
       "championship_staff_stamp": 2,
+      "finalist_stamp": 2,
       "national_championships_stamp": 2,
-      "eb_games_stamp": 1,
-      "league_stamp": 1,
-      "staff_stamp": 1
+      "eb_games_stamp": 1
     }
   },
   "governance_blocker": "identity_granularity_required_before_write",
@@ -167,34 +165,38 @@
       "governance_rule": null
     },
     {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "card_number": "52",
-      "card_name": "Luxio",
-      "proposed_variant_key": "staff_stamp",
-      "stamp_label": "Staff Stamp",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "proposed_variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
       "base_parent_child_finishes": [
+        "holo",
         "normal",
         "reverse"
       ],
       "target_finish_key": "normal",
-      "source_match_count": 2,
+      "source_match_count": 3,
       "source_variant_labels": [
-        "Staff Prerelease Promo",
-        "Staff States Championships Promo"
+        "Finalist Worlds Promo",
+        "Quarter-Finalist Worlds Promo Promo",
+        "Semi-Finalist Worlds Promo Promo"
       ],
       "source_urls": [
-        "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-prerelease-diamond-pearl/dp1-52-2-82/",
-        "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-states-championships-diamond-pearl/dp1-52-2-84/"
+        "https://pokecardvalues.co.uk/cards/tropical-beach-bw50-non-holo-finalist-worlds-bw-black-star-promos/bwp-BW50-2-31/",
+        "https://pokecardvalues.co.uk/cards/tropical-beach-bw50-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW50-2-56/",
+        "https://pokecardvalues.co.uk/cards/tropical-beach-bw50-non-holo-semi-finalist-worlds-promo-bw-black-star-promos/bwp-BW50-2-62/"
       ],
       "source_titles": [
-        "Luxio - 52/130 - Non-Holo - Staff Prerelease - Promo",
-        "Luxio - 52/130 - Non-Holo - Staff States Championships - Promo"
+        "Tropical Beach - BW50 - Non-Holo - Semi-Finalist Worlds Promo - Promo",
+        "Tropical Beach - BW50 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+        "Tropical Beach - BW50 - Non-Holo - Finalist Worlds - Promo"
       ],
       "same_finish_supported": true,
       "identity_granularity": "multiple_source_variant_labels",
       "adjudication_status": "blocked_identity_granularity_required",
-      "recommendation": "Potentially routable only if Grookai governance intentionally treats Staff Prerelease and Staff States Championship labels as one generic staff-stamp parent.",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
       "governance_rule": null
     },
     {
@@ -453,29 +455,30 @@
       "governance_rule": null
     },
     {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "150",
-      "card_name": "Roxanne",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "113",
+      "card_name": "Mysterious Treasure",
+      "proposed_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
       "base_parent_child_finishes": [
+        "holo",
         "normal",
         "reverse"
       ],
       "target_finish_key": "reverse",
       "source_match_count": 2,
       "source_variant_labels": [
-        "Regional Championships Promo",
-        "Staff Regional Championships Promo"
+        "League Promo Promo",
+        "Staff League Promo Promo"
       ],
       "source_urls": [
-        "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Regional-Championships-Astral-Radiance/swsh10-150-3-60/",
-        "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Staff-Regional-Championships-Astral-Radiance/swsh10-150-3-83/"
+        "https://pokecardvalues.co.uk/cards/mysterious-treasure-113-131-reverse-holo-league-promo-forbidden-light/sm6-113-3-41/",
+        "https://pokecardvalues.co.uk/cards/mysterious-treasure-113-131-reverse-holo-staff-league-promo-forbidden-light/sm6-113-3-78/"
       ],
       "source_titles": [
-        "Roxanne - 150/189 - Reverse Holo - Regional Championships - Promo",
-        "Roxanne - 150/189 - Reverse Holo - Staff Regional Championships - Promo"
+        "Mysterious Treasure - 113/131 - Reverse Holo - League Promo - Promo",
+        "Mysterious Treasure - 113/131 - Reverse Holo - Staff League Promo - Promo"
       ],
       "same_finish_supported": true,
       "identity_granularity": "multiple_source_variant_labels",
@@ -484,69 +487,36 @@
       "governance_rule": null
     },
     {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "23",
-      "card_name": "Larvesta",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "proposed_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
       "base_parent_child_finishes": [
+        "holo",
         "normal",
         "reverse"
       ],
-      "target_finish_key": "normal",
-      "source_match_count": 3,
-      "source_variant_labels": [
-        "19 Battle Academy Stamp Promo",
-        "36 Battle Academy Stamp Promo",
-        "46 Battle Academy Stamp Promo"
-      ],
-      "source_urls": [
-        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-19-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-108/",
-        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-36-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-109/",
-        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-46-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-110/"
-      ],
-      "source_titles": [
-        "Larvesta - 023/198 - Non-Holo - 19 - Battle Academy Stamp - Promo",
-        "Larvesta - 023/198 - Non-Holo - 36 - Battle Academy Stamp - Promo",
-        "Larvesta - 023/198 - Non-Holo - 46 - Battle Academy Stamp - Promo"
-      ],
-      "same_finish_supported": true,
-      "identity_granularity": "multiple_source_variant_labels",
-      "adjudication_status": "ready_for_guarded_battle_academy_deck_mark_display_metadata_route",
-      "recommendation": "Routable: individual Battle Academy deck numbers are display metadata for this parent identity because every exact source product supports the same Non-Holo active finish.",
-      "governance_rule": "Battle Academy deck numbers remain display metadata. They do not create separate canonical parent identities when every exact source row supports the same Non-Holo active finish for the same set/card/number/name."
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "24",
-      "card_name": "Volcarona",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "target_finish_key": "normal",
+      "target_finish_key": "reverse",
       "source_match_count": 2,
       "source_variant_labels": [
-        "27 Battle Academy Stamp Promo",
-        "44 Battle Academy Stamp Promo"
+        "League Promo Promo",
+        "Staff League Promo Promo"
       ],
       "source_urls": [
-        "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-27-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-111/",
-        "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-44-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-112/"
+        "https://pokecardvalues.co.uk/cards/rare-candy-142-168-reverse-holo-league-promo-celestial-storm/sm7-142-3-41/",
+        "https://pokecardvalues.co.uk/cards/rare-candy-142-168-reverse-holo-staff-league-promo-celestial-storm/sm7-142-3-78/"
       ],
       "source_titles": [
-        "Volcarona - 024/198 - Non-Holo - 27 - Battle Academy Stamp - Promo",
-        "Volcarona - 024/198 - Non-Holo - 44 - Battle Academy Stamp - Promo"
+        "Rare Candy - 142/168 - Reverse Holo - League Promo - Promo",
+        "Rare Candy - 142/168 - Reverse Holo - Staff League Promo - Promo"
       ],
       "same_finish_supported": true,
       "identity_granularity": "multiple_source_variant_labels",
-      "adjudication_status": "ready_for_guarded_battle_academy_deck_mark_display_metadata_route",
-      "recommendation": "Routable: individual Battle Academy deck numbers are display metadata for this parent identity because every exact source product supports the same Non-Holo active finish.",
-      "governance_rule": "Battle Academy deck numbers remain display metadata. They do not create separate canonical parent identities when every exact source row supports the same Non-Holo active finish for the same set/card/number/name."
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
     },
     {
       "set_key": "xy1",
@@ -677,6 +647,38 @@
       "governance_rule": null
     },
     {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "card_number": "103",
+      "card_name": "Ninja Boy",
+      "proposed_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "League Promo Promo",
+        "Staff League Promo Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/ninja-boy-103-114-reverse-holo-league-promo-steam-siege/xy11-103-3-41/",
+        "https://pokecardvalues.co.uk/cards/ninja-boy-103-114-reverse-holo-staff-league-promo-steam-siege/xy11-103-3-78/"
+      ],
+      "source_titles": [
+        "Ninja Boy - 103/114 - Reverse Holo - League Promo - Promo",
+        "Ninja Boy - 103/114 - Reverse Holo - Staff League Promo - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
       "card_number": "145",
@@ -707,7 +709,39 @@
       "adjudication_status": "blocked_identity_granularity_required",
       "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
       "governance_rule": null
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "proposed_variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "normal",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Quarter-Finalist Worlds Promo Promo",
+        "Semi-Finalist Worlds Promo Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/champions-festival-xy27-non-holo-quarter-finalist-worlds-promo-xy-black-star-promos/xyp-XY27-2-56/",
+        "https://pokecardvalues.co.uk/cards/champions-festival-xy27-non-holo-semi-finalist-worlds-promo-xy-black-star-promos/xyp-XY27-2-62/"
+      ],
+      "source_titles": [
+        "Champions Festival - XY27 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+        "Champions Festival - XY27 - Non-Holo - Semi-Finalist Worlds Promo - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
     }
   ],
-  "fingerprint_sha256": "48d6e2a1f5da4b960a0ef8dc7eade4769139e0681de5449b7187b0c09846eea8"
+  "fingerprint_sha256": "f9978a7a3d3976f2c0f42dfe09b12e682aeb7e03732bf64fcccd41ff3fd0e6fc"
 }

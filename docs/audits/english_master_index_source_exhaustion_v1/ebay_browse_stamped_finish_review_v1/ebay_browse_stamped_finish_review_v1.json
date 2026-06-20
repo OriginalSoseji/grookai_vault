@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T20:27:47.071Z",
+  "generated_at": "2026-06-20T02:08:35.182Z",
   "version": "ebay_browse_stamped_finish_review_v1",
   "package_id": "PKG-15L-EBAY-BROWSE-STAMPED-FINISH-REVIEW",
   "audit_only": true,
@@ -11,46 +11,39 @@
   "write_ready_now": 0,
   "source_policy": "eBay Browse listing titles are volatile review evidence only; they are not automatically promoted into Master Index truth.",
   "runtime_environment": {
-    "node_tls_reject_unauthorized": "0",
-    "local_tls_override_used": true,
-    "tls_note": "Local Node TLS verification was disabled for this bounded audit run because Node could not verify the local certificate chain. This is not the script default and must not be promoted into source policy."
+    "node_tls_reject_unauthorized": null,
+    "local_tls_override_used": false,
+    "tls_note": "Default Node TLS verification was used."
   },
   "input_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15k_stamped_identity_expansion_candidates_v1.json",
   "source_query_limits": {
-    "row_limit": 23,
+    "row_limit": 25,
     "listing_limit": 5,
     "dry_run": false
   },
   "summary": {
-    "rows_available_from_pkg15k": 23,
-    "rows_targeted": 23,
-    "browse_queries_attempted": 23,
-    "browse_queries_succeeded": 23,
-    "exact_title_match_rows": 3,
-    "exact_title_matches": 4,
-    "partial_title_match_rows": 1,
+    "rows_available_from_pkg15k": 14,
+    "rows_targeted": 14,
+    "browse_queries_attempted": 14,
+    "browse_queries_succeeded": 0,
+    "exact_title_match_rows": 0,
+    "exact_title_matches": 0,
+    "partial_title_match_rows": 0,
     "by_review_status": {
-      "no_usable_title_evidence": 19,
-      "exact_title_review_candidate_not_promotable": 3,
-      "partial_title_review_only": 1
+      "source_error": 14
     },
     "by_set": {
-      "dp1": 4,
       "bw5": 3,
-      "xy1": 3,
+      "dp1": 3,
       "bw3": 2,
       "me02": 2,
-      "sm1": 2,
-      "sm6": 2,
-      "sm4": 1,
-      "sm5": 1,
-      "swsh10": 1,
-      "xy10": 1,
-      "xy8": 1
+      "xy1": 2,
+      "sm1": 1,
+      "sm4": 1
     },
     "by_finish_key": {
-      "reverse": 17,
-      "normal": 4,
+      "reverse": 9,
+      "normal": 3,
       "holo": 2
     }
   },
@@ -64,31 +57,14 @@
       "expanded_stamp_label": "National Championships Staff Stamp",
       "finish_key": "reverse",
       "query": "Escavalier 80 Noble Victories National Championships Staff reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 2,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon ESCAVALIER STAFF 2011 NATIONAL Championships Promo 80/101",
-          "item_web_url": "https://www.ebay.com/itm/800055656999?_skw=Escavalier+80+Noble+Victories+National+Championships+Staff+reverse+holo+Pokemon&hash=itemba47088227:g:BqcAAeSwi4Boo5e8",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokémon TCG Escavalier Holo Rare Card 80/101 Noble Victories Championship Staff",
-          "item_web_url": "https://www.ebay.com/itm/377014384482?_skw=Escavalier+80+Noble+Victories+National+Championships+Staff+reverse+holo+Pokemon&hash=item57c7cef762:g:THkAAeSwPa9pq0v1",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "bw3",
@@ -99,40 +75,14 @@
       "expanded_stamp_label": "National Championships Stamp",
       "finish_key": "reverse",
       "query": "Escavalier 80 Noble Victories National Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 4,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon Escavalier #80/101 Championships Holo",
-          "item_web_url": "https://www.ebay.com/itm/397840433784?_skw=Escavalier+80+Noble+Victories+National+Championships+reverse+holo+Pokemon&hash=item5ca1234278:g:8IwAAeSw8iBp3rcs",
-          "rejection_reasons": [
-            "set_name",
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Nintendo Pokemon TCG Escavalier Noble Victories 80/101 Championship Card",
-          "item_web_url": "https://www.ebay.com/itm/206320223096?_skw=Escavalier+80+Noble+Victories+National+Championships+reverse+holo+Pokemon&hash=item3009a4c378:g:PGYAAeSwJTtqIKtb",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Escavalier (Championship Series) 80/101 Reverse Holo NM/M 610b-1",
-          "item_web_url": "https://www.ebay.com/itm/188494354295?_skw=Escavalier+80+Noble+Victories+National+Championships+reverse+holo+Pokemon&hash=item2be3239777:g:GQYAAeSw6SVqKeUG",
-          "rejection_reasons": [
-            "set_name",
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "bw5",
@@ -143,14 +93,14 @@
       "expanded_stamp_label": "Regional Championships Staff Stamp",
       "finish_key": "reverse",
       "query": "Jolteon 37 Dark Explorers Regional Championships Staff reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 0,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
       "rejected_title_samples": [],
-      "review_status": "no_usable_title_evidence"
+      "review_status": "source_error"
     },
     {
       "set_key": "bw5",
@@ -161,36 +111,14 @@
       "expanded_stamp_label": "Regional Championships Stamp",
       "finish_key": "reverse",
       "query": "Jolteon 37 Dark Explorers Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Jolteon 37/108 Dark Explorers Reverse Holo",
-          "item_web_url": "https://www.ebay.com/itm/206298733363?_skw=Jolteon+37+Dark+Explorers+Regional+Championships+reverse+holo+Pokemon&hash=item30085cdb33:g:RHcAAeSwcRVqFJaj",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Jolteon Dark Explorers 37/108 Reverse Holo Pokemon NM",
-          "item_web_url": "https://www.ebay.com/itm/236867074006?_skw=Jolteon+37+Dark+Explorers+Regional+Championships+reverse+holo+Pokemon&hash=item372660b7d6:g:OncAAeSwii1qJ504",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Jolteon Dark Explorers 37/108 Regular & Reverse Holo Pokemon",
-          "item_web_url": "https://www.ebay.com/itm/127907890106?_skw=Jolteon+37+Dark+Explorers+Regional+Championships+reverse+holo+Pokemon&hash=item1dc7e783ba:g:xkcAAeSwFhpqJPOy",
-          "rejection_reasons": [
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "bw5",
@@ -201,37 +129,14 @@
       "expanded_stamp_label": "City Championships Stamp",
       "finish_key": "reverse",
       "query": "Eevee 84 Dark Explorers City Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Eevee 84/108 Dark Explorers Cross Hatch Holo City Championships Pokemon CGC 8 NM",
-          "item_web_url": "https://www.ebay.com/itm/157936004907?_skw=Eevee+84+Dark+Explorers+City+Championships+reverse+holo+Pokemon&hash=item24c5b82f2b:g:590AAOSw8dlmlJnq",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Eevee 83/108 Reverse Holo MP Pokemon TCG Dark Explorers",
-          "item_web_url": "https://www.ebay.com/itm/137402407378?_skw=Eevee+84+Dark+Explorers+City+Championships+reverse+holo+Pokemon&hash=item1ffdd259d2:g:zMQAAeSwevdqKkKC",
-          "rejection_reasons": [
-            "card_number",
-            "variant"
-          ]
-        },
-        {
-          "title": "Eevee (Dark Explorers) Pokemon Black & White City Championships Staff Promo #84",
-          "item_web_url": "https://www.ebay.com/itm/318422390035?_skw=Eevee+84+Dark+Explorers+City+Championships+reverse+holo+Pokemon&hash=item4a23741513:g:nbUAAeSw4sRqJYuL",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "dp1",
@@ -242,22 +147,14 @@
       "expanded_stamp_label": "Staff Prerelease Stamp",
       "finish_key": "normal",
       "query": "Luxio 52 Diamond & Pearl Staff Prerelease non holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 1,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "2007 POKEMON DIAMOND & PEARL PRERELEASE-STAFF #52 LUXIO PSA 9",
-          "item_web_url": "https://www.ebay.com/itm/298330506798?_skw=Luxio+52+Diamond+%26+Pearl+Staff+Prerelease+non+holo+Pokemon&hash=item4575e2462e:g:jPIAAeSwAU9qC4nL",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "dp1",
@@ -268,41 +165,14 @@
       "expanded_stamp_label": "States Championships Staff Stamp",
       "finish_key": "normal",
       "query": "Luxio 52 Diamond & Pearl States Championships Staff non holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 3,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "2007 POKEMON DIAMOND & PEARL PRERELEASE-STAFF #52 LUXIO PSA 9",
-          "item_web_url": "https://www.ebay.com/itm/298330506798?_skw=Luxio+52+Diamond+%26+Pearl+States+Championships+Staff+non+holo+Pokemon&hash=item4575e2462e:g:jPIAAeSwAU9qC4nL",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon SEALED Luxio 52/130 State Province Territory Champs STAFF Promo Pack!!",
-          "item_web_url": "https://www.ebay.com/itm/267158368989?_skw=Luxio+52+Diamond+%26+Pearl+States+Championships+Staff+non+holo+Pokemon&hash=item3e33e132dd:g:MuwAAeSwPIZp6P8E",
-          "rejection_reasons": [
-            "set_name",
-            "variant",
-            "active_finish",
-            "unsafe_terms_absent"
-          ]
-        },
-        {
-          "title": "Pokemon TCG Luxio 52/130 State Province Territory Championships STAFF Promo",
-          "item_web_url": "https://www.ebay.com/itm/178041275440?_skw=Luxio+52+Diamond+%26+Pearl+States+Championships+Staff+non+holo+Pokemon&hash=item2974164430:g:JZYAAeSwm6Zp2tOy",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "dp1",
@@ -313,75 +183,14 @@
       "expanded_stamp_label": "City Championships Staff Stamp",
       "finish_key": "normal",
       "query": "Shinx 98 Diamond & Pearl City Championships Staff non holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 2,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "2007 Pokemon: SHINX 98/130 - [City Championships STAFF] [Diamond Pearl] - PSA 6",
-          "item_web_url": "https://www.ebay.com/itm/278022693503?_skw=Shinx+98+Diamond+%26+Pearl+City+Championships+Staff+non+holo+Pokemon&hash=item40bb71a27f:g:tF8AAeSw10RqFO2n",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon Shinx 98/130 STAFF City Championships Promo Pack SEALED!!",
-          "item_web_url": "https://www.ebay.com/itm/266125930979?_skw=Shinx+98+Diamond+%26+Pearl+City+Championships+Staff+non+holo+Pokemon&hash=item3df65771e3:g:f2gAAeSwhLRp6PzB",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish",
-            "unsafe_terms_absent"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "card_number": "98",
-      "card_name": "Shinx",
-      "expanded_variant_key": "city_championships_stamp",
-      "expanded_stamp_label": "City Championships Stamp",
-      "finish_key": "normal",
-      "query": "Shinx 98 Diamond & Pearl City Championships non holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Shinx 98/130 Diamond and Pearl 2007 Reverse Holo Pokémon TCG",
-          "item_web_url": "https://www.ebay.com/itm/358530179781?_skw=Shinx+98+Diamond+%26+Pearl+City+Championships+non+holo+Pokemon&hash=item537a1062c5:g:ufQAAeSwLGBp~MYS",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Shinx 98/130 Diamond and Pearl Reverse Holo Stamped Pokemon Card 2007 dmg",
-          "item_web_url": "https://www.ebay.com/itm/406984435705?_skw=Shinx+98+Diamond+%26+Pearl+City+Championships+non+holo+Pokemon&hash=item5ec229a7f9:g:-eEAAeSw80RqJvTG",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Shinx - Holo Promo Diamond and Pearl Promos DP15 HP",
-          "item_web_url": "https://www.ebay.com/itm/406972291367?_skw=Shinx+98+Diamond+%26+Pearl+City+Championships+non+holo+Pokemon&hash=item5ec1705927:g:J1sAAeSwRfVqIMl0",
-          "rejection_reasons": [
-            "card_number",
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "me02",
@@ -392,36 +201,14 @@
       "expanded_stamp_label": "EB Games Stamp",
       "finish_key": "holo",
       "query": "Suicune 26 Phantasmal Flames EB Games holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon Suicune 026/094 EB Games Exclusive Stamped Promo Card Phantasmal Flames",
-          "item_web_url": "https://www.ebay.com/itm/297939249551?_skw=Suicune+26+Phantasmal+Flames+EB+Games+holo+Pokemon&hash=item455e90298f:g:7ewAAeSwuutpaaCS",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon TCG Suicune 26/94 Phantasmal Flames Holo NM",
-          "item_web_url": "https://www.ebay.com/itm/377248402709?_skw=Suicune+26+Phantasmal+Flames+EB+Games+holo+Pokemon&hash=item57d5c1cd15:g:6A0AAeSwWpJqKEo~",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Pokemon TCG Suicune 26/94 Phantasmal Flames Holo NM",
-          "item_web_url": "https://www.ebay.com/itm/287290261643?_skw=Suicune+26+Phantasmal+Flames+EB+Games+holo+Pokemon&hash=item42e3d5808b:g:390AAeSwpzNp6ope",
-          "rejection_reasons": [
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "me02",
@@ -432,51 +219,14 @@
       "expanded_stamp_label": "GameStop Stamp",
       "finish_key": "holo",
       "query": "Suicune 26 Phantasmal Flames GameStop holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 1,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
+      "exact_title_match_count": 0,
       "partial_title_match_count": 0,
-      "exact_title_matches": [
-        {
-          "title": "🔥Pokémon TCG Suicune 026/094 Me02 Phantasmal Flames Holo GameStop Stamped Promo",
-          "item_web_url": "https://www.ebay.com/itm/236866753763?_skw=Suicune+26+Phantasmal+Flames+GameStop+holo+Pokemon&hash=item37265bd4e3:g:~gEAAeSwmKFqJ2L3",
-          "item_id": "v1|236866753763|0",
-          "condition": "Ungraded",
-          "validation_checks": {
-            "card_name": true,
-            "card_number": true,
-            "set_name": true,
-            "variant": true,
-            "active_finish": true,
-            "unsafe_terms_absent": true
-          }
-        }
-      ],
+      "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Suicune - Phantasmal Flames 026/094 Sealed Gamestop Promo Pokemon Cosmos Holo",
-          "item_web_url": "https://www.ebay.com/itm/236730567314?_skw=Suicune+26+Phantasmal+Flames+GameStop+holo+Pokemon&hash=item371e3dca92:g:9nQAAeSwN8NphK02",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "EB Games Suicune 026/094 Phantasmal Flames Stamped GameStop Promo Set SEALED",
-          "item_web_url": "https://www.ebay.com/itm/206145146679?_skw=Suicune+26+Phantasmal+Flames+GameStop+holo+Pokemon&hash=item2fff354f37:g:ZqAAAeSwdWNpuN8K",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Suicune - Phantasmal Flames 026/094 Sealed Gamestop Promo Pokemon Cosmos Holo",
-          "item_web_url": "https://www.ebay.com/itm/227348888824?_skw=Suicune+26+Phantasmal+Flames+GameStop+holo+Pokemon&hash=item34ef0cbcf8:g:JDAAAeSwhANqCyjW&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGb65G%2BWcX5Pxeza9eBfnWEDVPWLP%2FL205NeQ0G7PSn0elPhR87gA1vWEy7U63HY9L6ZtGAm55FpEpKOsZhxSFfPX9fsRCK9SDpdJ82oFfBmtuC%2Bnwzhka5715zbwNb7TYzyelL55EspUsrRIGirF%2B%2B%2Bix%2FIdJBR18ONoFiGGOVQCbIn34%2BlVuNc8JQpNmzgvGuQwiWLSirE0afO%2Bxorl6zV328cdrGmhvErrz8Ic%2FXx3RchRRU8cF4jnucQjzF8j%2BaCoY9TTMo5Dqr7OE1yzRbalKNnzpQHYzNm%2Bo7tg1EJEvoW8QYBRRa821295pHa5rQkaj4thxhfoAAfAuw2VxdR",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "exact_title_review_candidate_not_promotable"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "sm1",
@@ -487,91 +237,14 @@
       "expanded_stamp_label": "Europe Championships Staff Stamp",
       "finish_key": "reverse",
       "query": "Ultra Ball 135 Sun & Moon Europe Championships Staff reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon Ultra Ball 150/172 Oceania International Championships STAFF Promo DMG",
-          "item_web_url": "https://www.ebay.com/itm/267600259050?_skw=Ultra+Ball+135+Sun+%26+Moon+Europe+Championships+Staff+reverse+holo+Pokemon&hash=item3e4e37e7ea:g:UI8AAeSwt4xpsIrG",
-          "rejection_reasons": [
-            "card_number",
-            "set_name",
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Ultra Ball (North American International Championships) Staff - 150/172 - NM",
-          "item_web_url": "https://www.ebay.com/itm/198171984525?_skw=Ultra+Ball+135+Sun+%26+Moon+Europe+Championships+Staff+reverse+holo+Pokemon&hash=item2e23f8828d:g:xgcAAeSw5GFpsHB1",
-          "rejection_reasons": [
-            "card_number",
-            "set_name",
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "4x Pokemon STAFF Ultra Ball 131/132 EUIC Promo Europe International Championship",
-          "item_web_url": "https://www.ebay.com/itm/267638070571?_skw=Ultra+Ball+135+Sun+%26+Moon+Europe+Championships+Staff+reverse+holo+Pokemon&hash=item3e5078dd2b:g:uLwAAeSwIgJp3Ts8",
-          "rejection_reasons": [
-            "card_number",
-            "set_name",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "135",
-      "card_name": "Ultra Ball",
-      "expanded_variant_key": "oceania_championships_staff_stamp",
-      "expanded_stamp_label": "Oceania Championships Staff Stamp",
-      "finish_key": "reverse",
-      "query": "Ultra Ball 135 Sun & Moon Oceania Championships Staff reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon Ultra Ball 150/172 Oceania International Championships STAFF Promo DMG",
-          "item_web_url": "https://www.ebay.com/itm/267600259050?_skw=Ultra+Ball+135+Sun+%26+Moon+Oceania+Championships+Staff+reverse+holo+Pokemon&hash=item3e4e37e7ea:g:UI8AAeSwt4xpsIrG",
-          "rejection_reasons": [
-            "card_number",
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon Ultra Ball 135/149 Oceania Championships Promo Holofoil NM!!",
-          "item_web_url": "https://www.ebay.com/itm/256609345670?_skw=Ultra+Ball+135+Sun+%26+Moon+Oceania+Championships+Staff+reverse+holo+Pokemon&hash=item3bbf1be086:g:aVMAAOSwKdJmw7Bd",
-          "rejection_reasons": [
-            "set_name",
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "4x Pokemon STAFF Ultra Ball 131/132 EUIC Promo Europe International Championship",
-          "item_web_url": "https://www.ebay.com/itm/267638070571?_skw=Ultra+Ball+135+Sun+%26+Moon+Oceania+Championships+Staff+reverse+holo+Pokemon&hash=item3e5078dd2b:g:uLwAAeSwIgJp3Ts8",
-          "rejection_reasons": [
-            "card_number",
-            "set_name",
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "sm4",
@@ -582,248 +255,14 @@
       "expanded_stamp_label": "Regional Championships Stamp",
       "finish_key": "reverse",
       "query": "Gladion 95 Crimson Invasion Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 1,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [
-        {
-          "title": "Crimson Invasion Gladion 95/111 Reverse Holo Regional Championships CGC 8",
-          "item_web_url": "https://www.ebay.com/itm/358403908418?_skw=Gladion+95+Crimson+Invasion+Regional+Championships+reverse+holo+Pokemon&hash=item537289a342:g:mrwAAeSwb1ZpzIm9",
-          "item_id": "v1|358403908418|0",
-          "condition": "Graded",
-          "validation_checks": {
-            "card_name": true,
-            "card_number": true,
-            "set_name": true,
-            "variant": true,
-            "active_finish": true,
-            "unsafe_terms_absent": true
-          }
-        }
-      ],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "GLADION (REGIONAL CHAMPIONSHIPS) 95/111 HOLO LEAGUE & CHAMPIONSHIP POKEMON NM",
-          "item_web_url": "https://www.ebay.com/itm/800061557911?_skw=Gladion+95+Crimson+Invasion+Regional+Championships+reverse+holo+Pokemon&hash=itemba47628c97:g:a4sAAeSwqClqEppk",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon - Gladion #95/111 - SM - Crimson Invasion Reverse Holo",
-          "item_web_url": "https://www.ebay.com/itm/389195587281?_skw=Gladion+95+Crimson+Invasion+Regional+Championships+reverse+holo+Pokemon&hash=item5a9ddd5ed1:g:mvQAAeSwyJxpDS~x",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Gladion Reverse Holo Uncommon SM - Crimson Invasion 95/111 Pokemon",
-          "item_web_url": "https://www.ebay.com/itm/206154474914?_skw=Gladion+95+Crimson+Invasion+Regional+Championships+reverse+holo+Pokemon&hash=item2fffc3a5a2:g:xuMAAeSw4xBpvcRp",
-          "rejection_reasons": [
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "exact_title_review_candidate_not_promotable"
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
-      "card_number": "119",
-      "card_name": "Cynthia",
-      "expanded_variant_key": "regional_championships_stamp",
-      "expanded_stamp_label": "Regional Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Cynthia 119 Ultra Prism Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Cynthia 119/156 Uncommon Ultra Prism Pokemon Reverse Holo NM",
-          "item_web_url": "https://www.ebay.com/itm/206295098212?_skw=Cynthia+119+Ultra+Prism+Regional+Championships+reverse+holo+Pokemon&hash=item3008256364:g:LYUAAeSw6YZqEm7L",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Cynthia 119/156 – Pokémon Regional Championships Promo",
-          "item_web_url": "https://www.ebay.com/itm/397771042163?_skw=Cynthia+119+Ultra+Prism+Regional+Championships+reverse+holo+Pokemon&hash=item5c9d006d73:g:B0MAAeSwWlholDek",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Cynthia 119/156 Uncommon Ultra Prism Pokemon Lightly Played",
-          "item_web_url": "https://www.ebay.com/itm/188445314632?_skw=Cynthia+119+Ultra+Prism+Regional+Championships+reverse+holo+Pokemon&hash=item2be0374e48:g:RW8AAeSwJ6NqG1dS",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "102",
-      "card_name": "Beast Ring",
-      "expanded_variant_key": "league_stamp",
-      "expanded_stamp_label": "League Stamp",
-      "finish_key": "reverse",
-      "query": "Beast Ring 102 Forbidden Light League reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 2,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [
-        {
-          "title": "Beast Ring 102/131 Reverse Holo League Promo Forbidden Light NM w/eBay Shipping",
-          "item_web_url": "https://www.ebay.com/itm/185118359259?_skw=Beast+Ring+102+Forbidden+Light+League+reverse+holo+Pokemon&hash=item2b19e9fedb:g:Qr0AAOSwW-xhcCkd",
-          "item_id": "v1|185118359259|0",
-          "condition": "Ungraded",
-          "validation_checks": {
-            "card_name": true,
-            "card_number": true,
-            "set_name": true,
-            "variant": true,
-            "active_finish": true,
-            "unsafe_terms_absent": true
-          }
-        },
-        {
-          "title": "Pokemon BEAST RING 102/131 Reverse Holo League Promo (Forbidden Light) LP/Light",
-          "item_web_url": "https://www.ebay.com/itm/205386208845?_skw=Beast+Ring+102+Forbidden+Light+League+reverse+holo+Pokemon&hash=item2fd1f8d64d:g:mZIAAOSwknNn6Hui",
-          "item_id": "v1|205386208845|0",
-          "condition": "Ungraded",
-          "validation_checks": {
-            "card_name": true,
-            "card_number": true,
-            "set_name": true,
-            "variant": true,
-            "active_finish": true,
-            "unsafe_terms_absent": true
-          }
-        }
-      ],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon: Beast Ring League Promo - 102/131 - Forbidden Light Holo LP",
-          "item_web_url": "https://www.ebay.com/itm/389513875399?_skw=Beast+Ring+102+Forbidden+Light+League+reverse+holo+Pokemon&hash=item5ab0d60fc7:g:8qkAAeSwb39pbm~4",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon: Beast Ring League Promo - 102/131 - Forbidden Light Holo LP",
-          "item_web_url": "https://www.ebay.com/itm/365950160328?_skw=Beast+Ring+102+Forbidden+Light+League+reverse+holo+Pokemon&hash=item5534544dc8:g:DDcAAeSw7CppARKS&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGa7Ate3o11zuhAqbnE%2Bi2qthd9AJKTidtCbnRHl33t5LoH7u5ebYYVwoDQGvSA%2BFpu7Fep8fseG0bQK5IMAXmWcAyHVuyKDOAI3hb0in2IRK0T4Ul0jicQ5xHzNrdBoT0Th%2B7G7HM52gzMW4pZM%2Bc3mXFlmZWILXN17eQCmvYYyFG8FuntNdKrMrsPetfYoNGJgk51FNSNXorcH0yDNZHZqDmOBPVj44vKssKf9wVJWqZGcU9Cz4PmwZ%2F4JQozdHaHJWbEqVjZKCCJGo8ANw5C8vb4%2FVIji%2BDjqskOKcS9QMV9Py1MRHaqLGBCjsRNZCbf%2FeI0%2BgmqvlicWK1WBdXfR",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        },
-        {
-          "title": "2019 Pokémon Forbidden Light BEAST RING #102A/131 Staff Promo 💎 DSG 8 NM/Mint",
-          "item_web_url": "https://www.ebay.com/itm/127394652386?_skw=Beast+Ring+102+Forbidden+Light+League+reverse+holo+Pokemon&hash=item1da95020e2:g:3MoAAeSwJAxo1bw4&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZGdUCYcPCJu%2BiN%2BAY10SiOZ0Va3gkChJ%2FpFUH9f7AUAZ6JrREIDYV6C5fiXUBQ64Yq4mAbzYaPIECeGLp7vEKki7kv5tNxz5hoaiRMd0AuEvjli0zRhGJGEpWFD%2F53Rp7GUA6Q96lrSdPFwQ6p7x%2B%2BklXhgk3AWsS7WtYGo0sSoBa9Lhnj2OrdT21H1PZCsqiCY3BM52CruJ%2F7YeCCZpWRLEgMnwFrP0ScEisjTHPtEULS3gMYTMX8Ldt754s9TuyQ3RgGhYQeFiTQKm6HCKAAC8tW0eww4PvN%2FE%2FmSPSQrNP7CRbkiL9Qw8QGGMpa%2BxoY%2BW1UQ6YTJqg4%2FpLH5O9b4bn0lwDrZvMTCzxDSMgu9g%3D%3D",
-          "rejection_reasons": [
-            "card_number",
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "exact_title_review_candidate_not_promotable"
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "105",
-      "card_name": "Diantha",
-      "expanded_variant_key": "regional_championships_stamp",
-      "expanded_stamp_label": "Regional Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Diantha 105 Forbidden Light Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "✨ FAIRY GODDESS DIANTHA ✨ Forbidden Light Pokémon 105 | Regional Rare | NM-Mint ",
-          "item_web_url": "https://www.ebay.com/itm/156246308192?_skw=Diantha+105+Forbidden+Light+Regional+Championships+reverse+holo+Pokemon&hash=item2461017560:g:8d0AAOSw2yxmLXgO",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Diantha - 105/131 (Regional Championship Promo) NM, English Pokemon Promos",
-          "item_web_url": "https://www.ebay.com/itm/278035689986?_skw=Diantha+105+Forbidden+Light+Regional+Championships+reverse+holo+Pokemon&hash=item40bc37f202:g:VjIAAeSw3z9qGh8s",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Forbidden Light Diantha 105/131 Reverse Regional - STAFF CGC 7",
-          "item_web_url": "https://www.ebay.com/itm/358403908649?_skw=Diantha+105+Forbidden+Light+Regional+Championships+reverse+holo+Pokemon&hash=item537289a429:g:D0EAAeSwjb1pzIml",
-          "rejection_reasons": [
-            "variant",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "150",
-      "card_name": "Roxanne",
-      "expanded_variant_key": "regional_championships_stamp",
-      "expanded_stamp_label": "Regional Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Roxanne 150 Astral Radiance Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon - ROXANNE - 150/189  - Astral Radiance - Reverse Holo - NM/M",
-          "item_web_url": "https://www.ebay.com/itm/335975730731?_skw=Roxanne+150+Astral+Radiance+Regional+Championships+reverse+holo+Pokemon&hash=item4e39b6ce2b:g:hT8AAOSwJ-9oMJor",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Roxanne 150/189 Uncommon Astral Radiance Pokemon Reverse Holo Near Mint",
-          "item_web_url": "https://www.ebay.com/itm/358628393251?_skw=Roxanne+150+Astral+Radiance+Regional+Championships+reverse+holo+Pokemon&hash=item537feb0123:g:EXwAAeSwe0VqHn~n",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "ROXANNE 150/189 ASTRAL RADIANCE POKEMON (REVERSE HOLO, NM)",
-          "item_web_url": "https://www.ebay.com/itm/297333422229?_skw=Roxanne+150+Astral+Radiance+Regional+Championships+reverse+holo+Pokemon&hash=item453a73f895:g:WlAAAeSwP9RoL4wa",
-          "rejection_reasons": [
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "xy1",
@@ -834,93 +273,14 @@
       "expanded_stamp_label": "Regional Championships Staff Stamp",
       "finish_key": "reverse",
       "query": "Honedge 83 XY Regional Championships Staff reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 2,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Pokemon 2014 Honedge 83/146 Regional Championships Promo STAFF Crosshatch",
-          "item_web_url": "https://www.ebay.com/itm/205656595624?_skw=Honedge+83+XY+Regional+Championships+Staff+reverse+holo+Pokemon&hash=item2fe2169ca8:g:aqIAAeSwxhNok7OR",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokémon TCG STAFF STAMPED Reverse Valley 110/122 Regional Championship Promo 🔥",
-          "item_web_url": "https://www.ebay.com/itm/336600411482?_skw=Honedge+83+XY+Regional+Championships+Staff+reverse+holo+Pokemon&hash=item4e5ef2ad5a:g:A~AAAeSwANdqE8IK",
-          "rejection_reasons": [
-            "card_name",
-            "card_number",
-            "set_name",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "83",
-      "card_name": "Honedge",
-      "expanded_variant_key": "regional_championships_stamp",
-      "expanded_stamp_label": "Regional Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Honedge 83 XY Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 3,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 1,
-      "exact_title_matches": [],
-      "partial_title_matches": [
-        {
-          "title": "Honedge - 83/146 (Regional Championships) Reverse Holo Promo",
-          "item_web_url": "https://www.ebay.com/itm/336519476822?_skw=Honedge+83+XY+Regional+Championships+reverse+holo+Pokemon&hash=item4e5a1fb656:g:UiAAAeSwQONp0eEa",
-          "item_id": "v1|336519476822|0",
-          "condition": "Ungraded",
-          "validation_checks": {
-            "card_name": true,
-            "card_number": true,
-            "set_name": false,
-            "variant": true,
-            "active_finish": true,
-            "unsafe_terms_absent": true
-          },
-          "missing_checks": [
-            "set_name"
-          ]
-        }
-      ],
-      "rejected_title_samples": [
-        {
-          "title": "Honedge - 83/146 (Regional Championships) Reverse Holo Promo",
-          "item_web_url": "https://www.ebay.com/itm/336519476822?_skw=Honedge+83+XY+Regional+Championships+reverse+holo+Pokemon&hash=item4e5a1fb656:g:UiAAAeSwQONp0eEa",
-          "rejection_reasons": [
-            "set_name"
-          ]
-        },
-        {
-          "title": "Honedge 83/146 NM Pokémon TCG Regional Championships Promo",
-          "item_web_url": "https://www.ebay.com/itm/127901728588?_skw=Honedge+83+XY+Regional+Championships+reverse+holo+Pokemon&hash=item1dc7897f4c:g:fbAAAeSwEg9qIHmR",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Honedge 83/146 Regional Championships - Cross. Holo",
-          "item_web_url": "https://www.ebay.com/itm/287201399631?_skw=Honedge+83+XY+Regional+Championships+reverse+holo+Pokemon&hash=item42de89934f:g:rtUAAeSwMzhptFhN",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "partial_title_review_only"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     },
     {
       "set_key": "xy1",
@@ -931,119 +291,15 @@
       "expanded_stamp_label": "Regional Championships Stamp",
       "finish_key": "reverse",
       "query": "Doublade 84 XY Regional Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 4,
+      "search_status": "source_error",
+      "search_error": "fetch failed (UNABLE_TO_VERIFY_LEAF_SIGNATURE: unable to verify the first certificate)",
       "exact_title_match_count": 0,
       "partial_title_match_count": 0,
       "exact_title_matches": [],
       "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Doublade 84/146 NM Pokémon TCG Regional Championships Promo ",
-          "item_web_url": "https://www.ebay.com/itm/127861397134?_skw=Doublade+84+XY+Regional+Championships+reverse+holo+Pokemon&hash=item1dc522168e:g:QPgAAeSw-BhqA4F2",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "Pokemon Doublade 84/146 Regional Championships STAFF Promo Holofoil DAMAGED",
-          "item_web_url": "https://www.ebay.com/itm/267622062020?_skw=Doublade+84+XY+Regional+Championships+reverse+holo+Pokemon&hash=item3e4f8497c4:g:~pMAAeSwuC9pxuto",
-          "rejection_reasons": [
-            "set_name",
-            "active_finish"
-          ]
-        },
-        {
-          "title": "2014 Pokemon Doublade XY Regional Championship Holo Promo 84/146 CGC 9",
-          "item_web_url": "https://www.ebay.com/itm/326852511012?_skw=Doublade+84+XY+Regional+Championships+reverse+holo+Pokemon&hash=item4c19ed8524:g:5EoAAeSwuEJpDSeW",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "xy10",
-      "set_name": "Fates Collide",
-      "card_number": "94",
-      "card_name": "Chaos Tower",
-      "expanded_variant_key": "national_championships_stamp",
-      "expanded_stamp_label": "National Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Chaos Tower 94 Fates Collide National Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Chaos Tower 94/124 Fates Collide Pokemon Reverse Holo NM",
-          "item_web_url": "https://www.ebay.com/itm/366470228616?_skw=Chaos+Tower+94+Fates+Collide+National+Championships+reverse+holo+Pokemon&hash=item555353ea88:g:KPMAAeSwH6NqKcbq",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Chaos Tower Reverse Holo Uncommon XY - Fates Collide 94/124 NM",
-          "item_web_url": "https://www.ebay.com/itm/147336347803?_skw=Chaos+Tower+94+Fates+Collide+National+Championships+reverse+holo+Pokemon&hash=item224dee409b:g:QxEAAeSw5GNqF9vQ",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Chaos Tower 94/124 Uncommon XY Fates Collide Pokemon Reverse Holo Lightly Played",
-          "item_web_url": "https://www.ebay.com/itm/198414891783?_skw=Chaos+Tower+94+Fates+Collide+National+Championships+reverse+holo+Pokemon&hash=item2e3272fb07:g:qpUAAeSwDFxp1etW",
-          "rejection_reasons": [
-            "variant"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "145",
-      "card_name": "Parallel City",
-      "expanded_variant_key": "city_championships_stamp",
-      "expanded_stamp_label": "City Championships Stamp",
-      "finish_key": "reverse",
-      "query": "Parallel City 145 BREAKthrough City Championships reverse holo Pokemon",
-      "search_status": "ok",
-      "listings_reviewed": 5,
-      "exact_title_match_count": 0,
-      "partial_title_match_count": 0,
-      "exact_title_matches": [],
-      "partial_title_matches": [],
-      "rejected_title_samples": [
-        {
-          "title": "Parallel City 145/162 Breakthrough Reverse Holo",
-          "item_web_url": "https://www.ebay.com/itm/227358629551?_skw=Parallel+City+145+BREAKthrough+City+Championships+reverse+holo+Pokemon&hash=item34efa15eaf:g:6YwAAeSwBe1qFQK6",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Parallel City Reverse Holo XY - BREAKthrough 145/162 MP Pokémon TCG",
-          "item_web_url": "https://www.ebay.com/itm/137358243647?_skw=Parallel+City+145+BREAKthrough+City+Championships+reverse+holo+Pokemon&hash=item1ffb30773f:g:wVIAAeSwMrpqGc0y",
-          "rejection_reasons": [
-            "variant"
-          ]
-        },
-        {
-          "title": "Pokemon Card - Parallel City 145/162 - BREAKthrough - World Championships 2016",
-          "item_web_url": "https://www.ebay.com/itm/136822762982?_skw=Parallel+City+145+BREAKthrough+City+Championships+reverse+holo+Pokemon&hash=item1fdb45ade6:g:xHkAAeSwF0RpNBmJ",
-          "rejection_reasons": [
-            "active_finish"
-          ]
-        }
-      ],
-      "review_status": "no_usable_title_evidence"
+      "rejected_title_samples": [],
+      "review_status": "source_error"
     }
   ],
-  "fingerprint_sha256": "c4a72a4356214c32f09fd5dffd47e7df2a88517d27c4800d8612fbba7f3bfb4e"
+  "fingerprint_sha256": "ede5bcb9ff469f50d75a5598c1fa020005315de7d7414e4da6caa2699fc1a425"
 }

@@ -1,0 +1,3867 @@
+{
+  "contract": "TCGMAP02_PRICING_READINESS_V1",
+  "generated_at": "2026-06-19T14:43:26.510Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "scope": "card_prints.identity_domain = pokemon_eng_standard",
+  "totals": {
+    "english_physical_parent_rows": 22884,
+    "parents_with_tcgplayer": 20056,
+    "parents_with_justtcg": 19753,
+    "parents_with_tcgplayer_and_justtcg": 18459,
+    "parents_with_justtcg_only": 1294,
+    "parents_with_neither_tcgplayer_nor_justtcg": 1534,
+    "parents_with_pricecharting": 0,
+    "parents_with_tcgdex": 20651,
+    "child_printings_total": 37646,
+    "child_printings_under_tcgplayer_parent": 34908,
+    "child_printings_without_tcgplayer_parent": 2738
+  },
+  "readiness_buckets": [
+    {
+      "pricing_readiness_status": "tcgplayer_parent_reference_variant_split_required",
+      "parent_rows": 13804,
+      "child_printings": 28706,
+      "sets": 138
+    },
+    {
+      "pricing_readiness_status": "tcgplayer_parent_price_direct_single_child",
+      "parent_rows": 6252,
+      "child_printings": 6202,
+      "sets": 170
+    },
+    {
+      "pricing_readiness_status": "justtcg_only",
+      "parent_rows": 1294,
+      "child_printings": 1339,
+      "sets": 60
+    },
+    {
+      "pricing_readiness_status": "no_pricing_mapping",
+      "parent_rows": 774,
+      "child_printings": 307,
+      "sets": 116
+    },
+    {
+      "pricing_readiness_status": "tcgdex_only_no_tcgplayer_product",
+      "parent_rows": 760,
+      "child_printings": 1092,
+      "sets": 89
+    }
+  ],
+  "variant_split_risk_by_set": [
+    {
+      "set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "parent_rows": 545,
+      "child_printings": 1105,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm11",
+      "set_name": "Unified Minds",
+      "parent_rows": 525,
+      "child_printings": 1089,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "me02.5",
+      "set_name": "Ascended Heroes",
+      "parent_rows": 503,
+      "child_printings": 1461,
+      "finish_keys": "cosmos, holo, normal, pokeball, reverse, rocket_reverse"
+    },
+    {
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "parent_rows": 475,
+      "child_printings": 985,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "parent_rows": 468,
+      "child_printings": 962,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "parent_rows": 459,
+      "child_printings": 959,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "parent_rows": 440,
+      "child_printings": 1120,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sm9",
+      "set_name": "Team Up",
+      "parent_rows": 387,
+      "child_printings": 797,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "parent_rows": 372,
+      "child_printings": 808,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv01",
+      "set_name": "Scarlet & Violet",
+      "parent_rows": 371,
+      "child_printings": 745,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "parent_rows": 367,
+      "child_printings": 755,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "parent_rows": 349,
+      "child_printings": 731,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm1",
+      "set_name": "Sun & Moon",
+      "parent_rows": 347,
+      "child_printings": 759,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "parent_rows": 347,
+      "child_printings": 751,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "parent_rows": 346,
+      "child_printings": 744,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh1",
+      "set_name": "Sword & Shield",
+      "parent_rows": 345,
+      "child_printings": 775,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "parent_rows": 345,
+      "child_printings": 711,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "parent_rows": 333,
+      "child_printings": 675,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "parent_rows": 331,
+      "child_printings": 677,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ecard1",
+      "set_name": "Expedition Base Set",
+      "parent_rows": 326,
+      "child_printings": 652,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "parent_rows": 324,
+      "child_printings": 648,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "parent_rows": 319,
+      "child_printings": 677,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh2",
+      "set_name": "Rebel Clash",
+      "parent_rows": 314,
+      "child_printings": 672,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "parent_rows": 313,
+      "child_printings": 655,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "parent_rows": 312,
+      "child_printings": 678,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy5",
+      "set_name": "Primal Clash",
+      "parent_rows": 309,
+      "child_printings": 639,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "parent_rows": 302,
+      "child_printings": 616,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ecard2",
+      "set_name": "Aquapolis",
+      "parent_rows": 301,
+      "child_printings": 611,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "parent_rows": 300,
+      "child_printings": 666,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh4",
+      "set_name": "Vivid Voltage",
+      "parent_rows": 300,
+      "child_printings": 648,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "parent_rows": 300,
+      "child_printings": 618,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "parent_rows": 294,
+      "child_printings": 690,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw7",
+      "set_name": "Boundaries Crossed",
+      "parent_rows": 294,
+      "child_printings": 634,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv09",
+      "set_name": "Journey Together",
+      "parent_rows": 294,
+      "child_printings": 612,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "parent_rows": 289,
+      "child_printings": 587,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "ecard3",
+      "set_name": "Skyridge",
+      "parent_rows": 288,
+      "child_printings": 576,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "dp6",
+      "set_name": "Legends Awakened",
+      "parent_rows": 287,
+      "child_printings": 603,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "parent_rows": 283,
+      "child_printings": 603,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "parent_rows": 282,
+      "child_printings": 576,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy1",
+      "set_name": "XY",
+      "parent_rows": 279,
+      "child_printings": 613,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "parent_rows": 274,
+      "child_printings": 566,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw8",
+      "set_name": "Plasma Storm",
+      "parent_rows": 268,
+      "child_printings": 554,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "parent_rows": 267,
+      "child_printings": 569,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "dp3",
+      "set_name": "Secret Wonders",
+      "parent_rows": 265,
+      "child_printings": 551,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "parent_rows": 261,
+      "child_printings": 607,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "parent_rows": 261,
+      "child_printings": 549,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "parent_rows": 260,
+      "child_printings": 574,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "parent_rows": 259,
+      "child_printings": 555,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "parent_rows": 259,
+      "child_printings": 551,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh5",
+      "set_name": "Battle Styles",
+      "parent_rows": 253,
+      "child_printings": 527,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "parent_rows": 252,
+      "child_printings": 522,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw6",
+      "set_name": "Dragons Exalted",
+      "parent_rows": 251,
+      "child_printings": 541,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "me04",
+      "set_name": "Chaos Rising",
+      "parent_rows": 246,
+      "child_printings": 504,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "parent_rows": 243,
+      "child_printings": 495,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "parent_rows": 242,
+      "child_printings": 498,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "parent_rows": 240,
+      "child_printings": 512,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "parent_rows": 238,
+      "child_printings": 544,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "parent_rows": 234,
+      "child_printings": 498,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "parent_rows": 230,
+      "child_printings": 506,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy3",
+      "set_name": "Furious Fists",
+      "parent_rows": 226,
+      "child_printings": 496,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "parent_rows": 225,
+      "child_printings": 453,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "parent_rows": 222,
+      "child_printings": 462,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "parent_rows": 222,
+      "child_printings": 458,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "parent_rows": 219,
+      "child_printings": 461,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "base6",
+      "set_name": "Legendary Collection",
+      "parent_rows": 219,
+      "child_printings": 447,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "bw5",
+      "set_name": "Dark Explorers",
+      "parent_rows": 217,
+      "child_printings": 457,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "parent_rows": 213,
+      "child_printings": 455,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex11",
+      "set_name": "Delta Species",
+      "parent_rows": 212,
+      "child_printings": 424,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "parent_rows": 209,
+      "child_printings": 471,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy11",
+      "set_name": "Steam Siege",
+      "parent_rows": 208,
+      "child_printings": 434,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "dp4",
+      "set_name": "Great Encounters",
+      "parent_rows": 208,
+      "child_printings": 428,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy2",
+      "set_name": "Flashfire",
+      "parent_rows": 206,
+      "child_printings": 432,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy6",
+      "set_name": "Roaring Skies",
+      "parent_rows": 205,
+      "child_printings": 435,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "parent_rows": 205,
+      "child_printings": 427,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex10",
+      "set_name": "Unseen Forces",
+      "parent_rows": 205,
+      "child_printings": 425,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "bw2",
+      "set_name": "Emerging Powers",
+      "parent_rows": 204,
+      "child_printings": 434,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "parent_rows": 204,
+      "child_printings": 408,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "bw10",
+      "set_name": "Plasma Blast",
+      "parent_rows": 197,
+      "child_printings": 417,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "parent_rows": 197,
+      "child_printings": 409,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex7",
+      "set_name": "Team Rocket Returns",
+      "parent_rows": 196,
+      "child_printings": 412,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "parent_rows": 196,
+      "child_printings": 406,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex8",
+      "set_name": "Deoxys",
+      "parent_rows": 196,
+      "child_printings": 404,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "dp5",
+      "set_name": "Majestic Dawn",
+      "parent_rows": 195,
+      "child_printings": 399,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "parent_rows": 192,
+      "child_printings": 396,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "xy12",
+      "set_name": "Evolutions",
+      "parent_rows": 191,
+      "child_printings": 409,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex13",
+      "set_name": "Holon Phantoms",
+      "parent_rows": 188,
+      "child_printings": 382,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ex5",
+      "set_name": "Hidden Legends",
+      "parent_rows": 187,
+      "child_printings": 383,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ex2",
+      "set_name": "Sandstorm",
+      "parent_rows": 187,
+      "child_printings": 377,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "xy7",
+      "set_name": "Ancient Origins",
+      "parent_rows": 186,
+      "child_printings": 410,
+      "finish_keys": "cosmos, cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex16",
+      "set_name": "Power Keepers",
+      "parent_rows": 186,
+      "child_printings": 384,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex9",
+      "set_name": "Emerald",
+      "parent_rows": 184,
+      "child_printings": 386,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "parent_rows": 184,
+      "child_printings": 374,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "hgss4",
+      "set_name": "HS—Triumphant",
+      "parent_rows": 182,
+      "child_printings": 386,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "pl4",
+      "set_name": "Arceus",
+      "parent_rows": 182,
+      "child_printings": 370,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "ex14",
+      "set_name": "Crystal Guardians",
+      "parent_rows": 180,
+      "child_printings": 372,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "hgss2",
+      "set_name": "HS—Unleashed",
+      "parent_rows": 177,
+      "child_printings": 383,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "me02",
+      "set_name": "Phantasmal Flames",
+      "parent_rows": 174,
+      "child_printings": 366,
+      "finish_keys": "cosmos, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex15",
+      "set_name": "Dragon Frontiers",
+      "parent_rows": 170,
+      "child_printings": 340,
+      "finish_keys": "holo, normal, reverse"
+    },
+    {
+      "set_code": "hgss3",
+      "set_name": "HS—Undaunted",
+      "parent_rows": 169,
+      "child_printings": 363,
+      "finish_keys": "cracked_ice, holo, normal, reverse"
+    },
+    {
+      "set_code": "ex12",
+      "set_name": "Legend Maker",
+      "parent_rows": 164,
+      "child_printings": 328,
+      "finish_keys": "holo, normal, reverse"
+    }
+  ],
+  "remaining_unmapped_by_set": [
+    {
+      "set_code": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "parent_rows": 248,
+      "child_printings": 326
+    },
+    {
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "parent_rows": 194,
+      "child_printings": 456
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "parent_rows": 171,
+      "child_printings": 77
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "parent_rows": 132,
+      "child_printings": 187
+    },
+    {
+      "set_code": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "parent_rows": 112,
+      "child_printings": 154
+    },
+    {
+      "set_code": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "parent_rows": 100,
+      "child_printings": 155
+    },
+    {
+      "set_code": "sv10.5b",
+      "set_name": "Black Bolt",
+      "parent_rows": 88,
+      "child_printings": 164
+    },
+    {
+      "set_code": "swsh10.5",
+      "set_name": "Pokémon GO",
+      "parent_rows": 88,
+      "child_printings": 146
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "parent_rows": 65,
+      "child_printings": 66
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "parent_rows": 56,
+      "child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "parent_rows": 53,
+      "child_printings": 31
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "parent_rows": 53,
+      "child_printings": 1
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "parent_rows": 45,
+      "child_printings": 0
+    },
+    {
+      "set_code": "g1",
+      "set_name": "Generations",
+      "parent_rows": 42,
+      "child_printings": 42
+    },
+    {
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "parent_rows": 41,
+      "child_printings": 45
+    },
+    {
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "parent_rows": 39,
+      "child_printings": 0
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "parent_rows": 38,
+      "child_printings": 0
+    },
+    {
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "parent_rows": 37,
+      "child_printings": 24
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "parent_rows": 37,
+      "child_printings": 0
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "parent_rows": 36,
+      "child_printings": 0
+    },
+    {
+      "set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "parent_rows": 36,
+      "child_printings": 0
+    },
+    {
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "parent_rows": 34,
+      "child_printings": 34
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "parent_rows": 34,
+      "child_printings": 0
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "parent_rows": 32,
+      "child_printings": 0
+    },
+    {
+      "set_code": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "parent_rows": 28,
+      "child_printings": 28
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "parent_rows": 28,
+      "child_printings": 4
+    },
+    {
+      "set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "parent_rows": 27,
+      "child_printings": 67
+    },
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "parent_rows": 27,
+      "child_printings": 32
+    },
+    {
+      "set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "parent_rows": 25,
+      "child_printings": 50
+    },
+    {
+      "set_code": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "parent_rows": 25,
+      "child_printings": 25
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "parent_rows": 24,
+      "child_printings": 0
+    },
+    {
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "parent_rows": 23,
+      "child_printings": 24
+    },
+    {
+      "set_code": "swsh1",
+      "set_name": "Sword & Shield",
+      "parent_rows": 22,
+      "child_printings": 13
+    },
+    {
+      "set_code": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "parent_rows": 21,
+      "child_printings": 52
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "parent_rows": 21,
+      "child_printings": 5
+    },
+    {
+      "set_code": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "parent_rows": 20,
+      "child_printings": 19
+    },
+    {
+      "set_code": "sv01",
+      "set_name": "Scarlet & Violet",
+      "parent_rows": 20,
+      "child_printings": 3
+    },
+    {
+      "set_code": "swsh5",
+      "set_name": "Battle Styles",
+      "parent_rows": 20,
+      "child_printings": 0
+    },
+    {
+      "set_code": "base2",
+      "set_name": "Jungle",
+      "parent_rows": 19,
+      "child_printings": 17
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "parent_rows": 19,
+      "child_printings": 2
+    },
+    {
+      "set_code": "sv09",
+      "set_name": "Journey Together",
+      "parent_rows": 19,
+      "child_printings": 1
+    },
+    {
+      "set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "parent_rows": 17,
+      "child_printings": 14
+    },
+    {
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "parent_rows": 16,
+      "child_printings": 15
+    },
+    {
+      "set_code": "sm1",
+      "set_name": "Sun & Moon",
+      "parent_rows": 15,
+      "child_printings": 12
+    },
+    {
+      "set_code": "ecard2",
+      "set_name": "Aquapolis",
+      "parent_rows": 14,
+      "child_printings": 23
+    },
+    {
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "parent_rows": 14,
+      "child_printings": 17
+    },
+    {
+      "set_code": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "parent_rows": 14,
+      "child_printings": 6
+    },
+    {
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "parent_rows": 13,
+      "child_printings": 18
+    },
+    {
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "parent_rows": 13,
+      "child_printings": 8
+    },
+    {
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "parent_rows": 12,
+      "child_printings": 23
+    },
+    {
+      "set_code": "tk-ex-p",
+      "set_name": "EX trainer Kit 2 (Plusle)",
+      "parent_rows": 12,
+      "child_printings": 12
+    },
+    {
+      "set_code": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "parent_rows": 12,
+      "child_printings": 11
+    },
+    {
+      "set_code": "ecard3",
+      "set_name": "Skyridge",
+      "parent_rows": 11,
+      "child_printings": 17
+    },
+    {
+      "set_code": "dp5",
+      "set_name": "Majestic Dawn",
+      "parent_rows": 11,
+      "child_printings": 5
+    },
+    {
+      "set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "parent_rows": 11,
+      "child_printings": 4
+    },
+    {
+      "set_code": "swsh2",
+      "set_name": "Rebel Clash",
+      "parent_rows": 11,
+      "child_printings": 4
+    },
+    {
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "parent_rows": 11,
+      "child_printings": 0
+    },
+    {
+      "set_code": "tk-ex-latia",
+      "set_name": "EX trainer Kit (Latias)",
+      "parent_rows": 10,
+      "child_printings": 10
+    },
+    {
+      "set_code": "tk-ex-latio",
+      "set_name": "EX trainer Kit (Latios)",
+      "parent_rows": 10,
+      "child_printings": 10
+    },
+    {
+      "set_code": "bp",
+      "set_name": "Best of Game",
+      "parent_rows": 9,
+      "child_printings": 4
+    },
+    {
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "parent_rows": 9,
+      "child_printings": 4
+    },
+    {
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "parent_rows": 9,
+      "child_printings": 0
+    },
+    {
+      "set_code": "mee",
+      "set_name": "Mega Evolution Energy",
+      "parent_rows": 8,
+      "child_printings": 16
+    },
+    {
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "parent_rows": 8,
+      "child_printings": 12
+    },
+    {
+      "set_code": "bog",
+      "set_name": "Best of game",
+      "parent_rows": 8,
+      "child_printings": 4
+    },
+    {
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "parent_rows": 8,
+      "child_printings": 1
+    },
+    {
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "parent_rows": 8,
+      "child_printings": 0
+    },
+    {
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "parent_rows": 7,
+      "child_printings": 17
+    },
+    {
+      "set_code": "ex13",
+      "set_name": "Holon Phantoms",
+      "parent_rows": 7,
+      "child_printings": 11
+    },
+    {
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "parent_rows": 7,
+      "child_printings": 6
+    },
+    {
+      "set_code": "dpp",
+      "set_name": "DP Black Star Promos",
+      "parent_rows": 7,
+      "child_printings": 5
+    },
+    {
+      "set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "parent_rows": 7,
+      "child_printings": 4
+    },
+    {
+      "set_code": "bw5",
+      "set_name": "Dark Explorers",
+      "parent_rows": 7,
+      "child_printings": 1
+    },
+    {
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "parent_rows": 7,
+      "child_printings": 0
+    },
+    {
+      "set_code": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "parent_rows": 7,
+      "child_printings": 0
+    },
+    {
+      "set_code": "swsh4",
+      "set_name": "Vivid Voltage",
+      "parent_rows": 7,
+      "child_printings": 0
+    },
+    {
+      "set_code": "pl4",
+      "set_name": "Arceus",
+      "parent_rows": 6,
+      "child_printings": 11
+    },
+    {
+      "set_code": "ex15",
+      "set_name": "Dragon Frontiers",
+      "parent_rows": 6,
+      "child_printings": 8
+    },
+    {
+      "set_code": "sm9",
+      "set_name": "Team Up",
+      "parent_rows": 6,
+      "child_printings": 8
+    },
+    {
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "parent_rows": 6,
+      "child_printings": 6
+    },
+    {
+      "set_code": "xya",
+      "set_name": "Yello A Alternate",
+      "parent_rows": 6,
+      "child_printings": 6
+    },
+    {
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "parent_rows": 6,
+      "child_printings": 3
+    },
+    {
+      "set_code": "xy12",
+      "set_name": "Evolutions",
+      "parent_rows": 6,
+      "child_printings": 3
+    },
+    {
+      "set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "parent_rows": 6,
+      "child_printings": 2
+    },
+    {
+      "set_code": "dp6",
+      "set_name": "Legends Awakened",
+      "parent_rows": 6,
+      "child_printings": 1
+    },
+    {
+      "set_code": "xy1",
+      "set_name": "XY",
+      "parent_rows": 6,
+      "child_printings": 0
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "parent_rows": 5,
+      "child_printings": 5
+    },
+    {
+      "set_code": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "parent_rows": 5,
+      "child_printings": 5
+    },
+    {
+      "set_code": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "parent_rows": 5,
+      "child_printings": 5
+    },
+    {
+      "set_code": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "parent_rows": 5,
+      "child_printings": 5
+    },
+    {
+      "set_code": "xy11",
+      "set_name": "Steam Siege",
+      "parent_rows": 5,
+      "child_printings": 4
+    },
+    {
+      "set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "parent_rows": 5,
+      "child_printings": 4
+    },
+    {
+      "set_code": "dp3",
+      "set_name": "Secret Wonders",
+      "parent_rows": 5,
+      "child_printings": 2
+    },
+    {
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "parent_rows": 5,
+      "child_printings": 1
+    },
+    {
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "parent_rows": 5,
+      "child_printings": 1
+    },
+    {
+      "set_code": "hgss2",
+      "set_name": "HS—Unleashed",
+      "parent_rows": 5,
+      "child_printings": 0
+    },
+    {
+      "set_code": "bw6",
+      "set_name": "Dragons Exalted",
+      "parent_rows": 4,
+      "child_printings": 4
+    },
+    {
+      "set_code": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "parent_rows": 4,
+      "child_printings": 4
+    },
+    {
+      "set_code": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "parent_rows": 4,
+      "child_printings": 4
+    },
+    {
+      "set_code": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "parent_rows": 4,
+      "child_printings": 4
+    }
+  ],
+  "samples": {
+    "direct_parent_price_ready": [
+      {
+        "card_print_id": "8b2e2e93-daa0-49e6-ba81-4a4c8ad06c3b",
+        "set_code": "me04",
+        "set_name": "Chaos Rising",
+        "number": "109",
+        "name": "Jumbo Ice Cream",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "e1cc5f45-d686-4c19-9a26-5c233363b6f7",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "003",
+        "name": "Erika's Vileplume ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "678c61e8-b014-43fc-8232-41a550280955",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "010",
+        "name": "Mega Meganium ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "ff284a4d-1269-4a8e-bdd5-d069afb1e4e1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "022",
+        "name": "Mega Charizard Y ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "918ad817-78eb-4048-b8f1-fd1a6b5e3230",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "026",
+        "name": "Ethan's Ho-Oh ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "900c11ce-d781-40ab-96be-29e8470908c1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "031",
+        "name": "Mega Emboar ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "a5fce2d7-b77f-428a-b8bc-afafc9b2ea13",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "038",
+        "name": "Cinderace ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d922650b-8764-4329-b96e-fc9f6fa2cd35",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "043",
+        "name": "Mega Feraligatr ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d4db8254-6ac2-4528-8d2e-01b94f3466a7",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "047",
+        "name": "Mega Froslass ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "eb8bcdb9-5a04-475a-9171-f37398206cc5",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "048",
+        "name": "Regice ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "478a948c-421c-4a26-ba86-b5cbfa73a5f5",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "057",
+        "name": "Pikachu ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "244e9d64-8b4b-48e0-9e86-5fbe0864f947",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "058",
+        "name": "Voltorb ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "44d2f4a3-77b0-43c6-8b83-9f0eabb14a99",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "061",
+        "name": "Mega Eelektross ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "7003dbd0-eb08-446f-97e9-6ac33bbe4d98",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "068",
+        "name": "Hop's Pincurchin ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "b642720d-14d4-4c45-80d8-ac64020ac6ec",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "070",
+        "name": "Iono's Bellibolt ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "46f3ed97-54e0-4945-9cc6-79fee2f1eb44",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "073",
+        "name": "Miraidon ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "51c87d2d-de42-4577-9208-83dada92abab",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "076",
+        "name": "Lillie's Clefairy ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "079",
+        "name": "Team Rocket's Mewtwo ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "743a9abd-9bf3-4ba3-8c2b-5723bb4e9bbf",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "084",
+        "name": "Azumarill ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "b017319e-481c-42c7-aa64-5b23fdf4ab92",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "089",
+        "name": "Mega Gardevoir ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "636a8333-cfe4-4cab-b979-e693f13cd345",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "107",
+        "name": "Regirock ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "18fee7b1-f558-4a70-863c-d809f8544fe3",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "111",
+        "name": "Cynthia's Garchomp ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "684acc98-9e90-4849-b6e1-f201cd8f9109",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "113",
+        "name": "Mega Lucario ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "355e1d3d-f691-4dd2-9992-0121edcc0aee",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "114",
+        "name": "Stunfisk ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "1cfe773f-81ee-4f4b-9e58-8967b9b16da3",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "116",
+        "name": "Mega Hawlucha ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5b2c4b6f-0ea1-4e86-92e3-62d90e32ee14",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "121",
+        "name": "Koraidon ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "1417aea2-b78e-4e67-af57-8c82d22c4c74",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "125",
+        "name": "Mega Gengar ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "66d00953-c1fe-4fd3-81aa-f60ab8d75cb6",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "135",
+        "name": "Mega Scrafty ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "8abb5996-7eee-438c-aa65-e4b4043f1457",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "137",
+        "name": "N's Zoroark ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "7d5a452c-2a14-400f-896b-825ef3bf7d64",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "139",
+        "name": "Mandibuzz ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "067275ed-8e3f-4e91-95d8-2832c923c3c0",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "142",
+        "name": "Fezandipiti ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "94b0ba73-4e1f-444a-b3d8-09def0e57e3c",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "145",
+        "name": "Registeel ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "fe6b8e5c-d72f-4951-b210-efc61981b027",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "149",
+        "name": "Togedemaru ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "ade5f798-4ae2-4dcb-bf4d-b77cb5c2f5f0",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "152",
+        "name": "Mega Dragonite ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "61afd916-87d7-4da9-8736-90e0793fa0d5",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "160",
+        "name": "Dragapult ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "3f75cc3c-2aac-4238-8623-8f7a7729f2d0",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "162",
+        "name": "Team Rocket's Kangaskhan ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "48c27e33-bc6f-44af-9fdd-1e1c73d0261c",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "164",
+        "name": "Larry's Dudunsparce ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "63085cd2-705b-4925-ba96-0003c7a7016f",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "167",
+        "name": "Zangoose ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "a222fca4-b100-4dac-8980-b890567e4362",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "172",
+        "name": "Mega Audino ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "af4a55bb-b975-4bc4-9658-af06638fb2b0",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "179",
+        "name": "Terapagos ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "2dcad30a-ccaa-4f40-b8d0-b80334b36326",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "218",
+        "name": "Erika's Tangela",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "c8536b6a-5817-44ae-8d13-0892cb64a4fb",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "219",
+        "name": "Beautifly",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d7176870-b59a-4b91-b425-6a83fe86d80a",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "220",
+        "name": "Dustox",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "57f9fe31-12c6-4ee7-aab9-a28a3fd6875b",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "221",
+        "name": "Budew",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "ff69fadf-12f5-40dc-a30d-be691e8ea0e4",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "222",
+        "name": "Ethan's Magcargo",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "49a6129e-4e8e-40b8-9ac2-7d169efbba36",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "223",
+        "name": "Numel",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "f2122c06-de3d-42d4-b712-9d2074946ce8",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "224",
+        "name": "Salazzle",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5158c98b-f10f-46a9-ac29-8aa3f6b18f6e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "225",
+        "name": "Scorbunny",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "742c1f82-0d1a-465c-a047-a98f8c0f09a6",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "226",
+        "name": "Psyduck",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5a18d2f1-c631-47d9-855b-c91032aee858",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "227",
+        "name": "Snorunt",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "8c5d85dc-4dad-4bfd-839f-b9aaf4926f6c",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "228",
+        "name": "Weavile",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d9f42fdf-5a0f-4223-9b2a-21c052e0029f",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "229",
+        "name": "Heliolisk",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "47ee5e0e-3bf5-4266-98d4-1ed507c5cab4",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "230",
+        "name": "Vikavolt",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "cd7b073c-b379-4bac-b208-95916d7971ae",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "231",
+        "name": "Iono's Wattrel",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "19cc9759-3d92-4b21-8932-131685bcd5a4",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "232",
+        "name": "Marill",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "6b64d517-4185-4060-92ca-a892c50ded73",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "233",
+        "name": "Misdreavus",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "4ecf044f-dd6d-4cf4-902b-f0334763f6dc",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "234",
+        "name": "Banette",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "9f37df59-f3b0-4498-afc5-f8aab92ec8de",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "235",
+        "name": "Togekiss",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "426204e3-bae9-4008-af33-4d42467a8533",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "236",
+        "name": "Slurpuff",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "907dc35a-e2da-4683-b297-cb1a0cbc0df8",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "237",
+        "name": "Hop's Trevenant",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "3f630bc4-00aa-4a71-a26f-f9ba3ef7e2c3",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "238",
+        "name": "Team Rocket's Mimikyu",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "cdea2f58-933a-4483-82d2-7952d38870e3",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "239",
+        "name": "Team Rocket's Dugtrio",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "86d8eaea-379c-4f4b-a271-f036f2214a8e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "240",
+        "name": "Hitmontop",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5f4b8167-476a-4ff0-93ff-b7b87bfe589e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "241",
+        "name": "Medicham",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5f1ddf1c-8f5b-44fb-9608-fea8dd9e833b",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "242",
+        "name": "Carbink",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "204273dc-10bc-4f8b-a97a-15c865865b71",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "243",
+        "name": "Mightyena",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "757f5fa4-714f-4d11-8c13-e2fed076abb6",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "244",
+        "name": "Cynthia's Spiritomb",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "41025855-8e5d-4735-b293-a51c8e60dc82",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "245",
+        "name": "Galarian Obstagoon",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "88dc9db6-9fbb-4ccc-877c-04a64009000f",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "246",
+        "name": "Mawile",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "1fc88c9d-31a6-4d16-a679-cbf838669f92",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "247",
+        "name": "Dreepy",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "6b037761-e0db-44e7-98ce-70bea0cfd777",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "248",
+        "name": "Drakloak",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "ccb16d2f-20bf-4fda-b146-cd92764646a1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "249",
+        "name": "Larry's Staraptor",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "7b2fea48-9c28-4554-a826-d33c636c969a",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "250",
+        "name": "Fan Rotom",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "8e5c7bf3-30c0-4be9-b246-18a612494211",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "251",
+        "name": "Sprigatito ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5a904dd8-b9d2-4d27-af51-07b841e7cbe9",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "252",
+        "name": "Stunfisk ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "5b2758e3-203b-4d22-862c-d49fa759976e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "253",
+        "name": "Mega Audino ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "69ea10c0-4b2b-4c0f-a150-4bdfe66cf435",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "254",
+        "name": "Anthea & Concordia",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "9a42a661-4cad-4142-b897-e2a2ce81304e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "255",
+        "name": "Black Belt's Training",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "1b4ca670-7f7c-418b-a308-effab92695bc",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "256",
+        "name": "Boss's Orders",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "a0f006d9-7ed6-48d3-8566-9e9b28dac02b",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "257",
+        "name": "Canari",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "27b72987-02ac-43b8-8113-6637a974322c",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "258",
+        "name": "Cheren",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "cb52ceed-bdbd-4327-bc23-503e633fb2d1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "259",
+        "name": "Counter Gain",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d8cda986-d8d3-4e60-ac7f-cc8e048f86a1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "260",
+        "name": "Glass Trumpet",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "f72138c9-993e-46b2-9c76-472082f95c0b",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "261",
+        "name": "Jamming Tower",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "21e20809-ef7e-49f6-b38b-9cca29326540",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "262",
+        "name": "N's PP Up",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "bd387411-39b1-4707-bb89-a94249b569b8",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "263",
+        "name": "Team Rocket's Transceiver",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "8ed32bff-dfda-4d1c-97af-94f951fe50d4",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "264",
+        "name": "Ultra Ball",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "c4fdbf1c-fb32-4b50-adac-71fcff2bfc45",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "265",
+        "name": "Mega Froslass ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "90a8d9ae-474e-48d3-a881-84f5dc2837f2",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "266",
+        "name": "Mega Eelektross ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "b1bf1297-ec67-492f-b235-34b0294e8666",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "267",
+        "name": "Mega Diancie ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d0e9fcef-052f-4e8a-b9ed-cdfe5db4e848",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "268",
+        "name": "Mega Hawlucha ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "dd5eb00d-e50f-4fbd-88e8-5dd7c460f10f",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "269",
+        "name": "Mega Gengar ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "7e389e16-3b7b-4f1f-a73d-abaab21d1c06",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "270",
+        "name": "Mega Scrafty ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "a9401b48-61d8-4c25-bce6-cf937e4ecc7e",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "271",
+        "name": "Mega Dragonite ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "82620565-74fa-40fd-a071-b562d0af0295",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "272",
+        "name": "Mega Meganium ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "a0f0b36c-468b-4f7a-a11e-6f4a792638e1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "273",
+        "name": "Mega Emboar ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "4386096d-d8bb-406a-8024-b81f8161e7d6",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "274",
+        "name": "Mega Feraligatr ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "d92640fb-1c02-4022-b751-48988bfadca2",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "275",
+        "name": "Mega Froslass ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "737f427f-f6d8-405b-a5ac-bbdc5d349b04",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "276",
+        "name": "Pikachu ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      },
+      {
+        "card_print_id": "f5a71d5a-110a-4488-b0c2-2b8ca98635fd",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "277",
+        "name": "Pikachu ex",
+        "child_printings": 1,
+        "finish_keys": [
+          "holo"
+        ]
+      }
+    ],
+    "variant_split_required": [
+      {
+        "card_print_id": "8497d1b0-a635-4a0b-a682-9591ff32b8a0",
+        "set_code": "bw4",
+        "set_name": "Next Destinies",
+        "number": "46",
+        "name": "Luxray",
+        "child_printings": 5,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "dc19feb4-ef22-489d-92a0-2b8a2f6e0156",
+        "set_code": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "number": "20",
+        "name": "Feraligatr",
+        "child_printings": 5,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ca13aea4-f970-4f02-bdb9-3ac1faeef613",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "19",
+        "name": "Emboar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "59acb9c9-179e-45ff-bc19-d2f1632dc24f",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "31",
+        "name": "Samurott",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ec407506-c7dc-4fbd-8052-4848e2248bd7",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "5",
+        "name": "Serperior",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "0aaecaee-d0de-493a-af17-683a3fd1b38b",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "71",
+        "name": "Zoroark",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "33fa423d-19cc-46a4-a3ff-09bac0c836ee",
+        "set_code": "bw10",
+        "set_name": "Plasma Blast",
+        "number": "16",
+        "name": "Blastoise",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "59e62682-48db-40c3-863f-c181860b877d",
+        "set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "number": "90",
+        "name": "Zoroark",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "fad43142-6bff-48ec-b2a0-a1a6b8e51251",
+        "set_code": "bw2",
+        "set_name": "Emerging Powers",
+        "number": "30",
+        "name": "Beartic",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "holo",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "50f05b2e-a89f-4bd6-8725-c2a3454e0dee",
+        "set_code": "bw3",
+        "set_name": "Noble Victories",
+        "number": "84",
+        "name": "Cobalion",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "d4cbdb1c-40ad-4469-a58b-be827ee8e3ea",
+        "set_code": "bw4",
+        "set_name": "Next Destinies",
+        "number": "20",
+        "name": "Chandelure",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "8dcb6716-734c-4e0f-870a-a47a2ccaec5c",
+        "set_code": "bw5",
+        "set_name": "Dark Explorers",
+        "number": "66",
+        "name": "Krookodile",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "set_name": "Dragons Exalted",
+        "number": "28",
+        "name": "Milotic",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "set_name": "Dragons Exalted",
+        "number": "91",
+        "name": "Garchomp",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "set_name": "Dragons Exalted",
+        "number": "98",
+        "name": "Hydreigon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "2ed1ec29-d8bb-4933-bec2-ee9a48de871b",
+        "set_code": "bw7",
+        "set_name": "Boundaries Crossed",
+        "number": "41",
+        "name": "Samurott",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "61800823-eef1-4db4-a539-c4f508734134",
+        "set_code": "bw7",
+        "set_name": "Boundaries Crossed",
+        "number": "54",
+        "name": "Electivire",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "056cfddc-888b-425f-a876-7cb499b3d6d6",
+        "set_code": "col1",
+        "set_name": "Call of Legends",
+        "number": "14",
+        "name": "Lucario",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "7b071c37-8c72-4364-8df6-9b450c4ddf1c",
+        "set_code": "dp1",
+        "set_name": "Diamond & Pearl",
+        "number": "112",
+        "name": "Professor Rowan",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "c9c6edad-1ca7-4a9f-b45c-b88a83a17988",
+        "set_code": "dp1",
+        "set_name": "Diamond & Pearl",
+        "number": "76",
+        "name": "Chimchar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "2d26dcd1-d42b-4e77-9654-7f9b4297b916",
+        "set_code": "dp1",
+        "set_name": "Diamond & Pearl",
+        "number": "93",
+        "name": "Piplup",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "set_name": "Mysterious Treasures",
+        "number": "109",
+        "name": "Bebe's Search",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "38b1c885-c206-4b33-bcff-518df070c964",
+        "set_code": "dp6",
+        "set_name": "Legends Awakened",
+        "number": "131",
+        "name": "Cynthia's Feelings",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "a8f079f8-c1f1-40bd-bc10-e735077c8106",
+        "set_code": "dp7",
+        "set_name": "Stormfront",
+        "number": "30",
+        "name": "Tyranitar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "b0ae3b0a-ca78-4e05-8e1b-0ecd892455ae",
+        "set_code": "ex1",
+        "set_name": "Ruby & Sapphire",
+        "number": "93",
+        "name": "Darkness Energy",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "76377ebb-e4a7-4c75-8ba9-34b8e5612b6b",
+        "set_code": "ex7",
+        "set_name": "Team Rocket Returns",
+        "number": "15",
+        "name": "Dark Dragonite",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "61bfff2c-ecad-4b47-833d-44b2454153cd",
+        "set_code": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "number": "26",
+        "name": "Meganium",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "127526a1-a4c1-4066-ae0f-264e08d71984",
+        "set_code": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "number": "32",
+        "name": "Typhlosion",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "06cc830b-224c-4e44-af95-f659629af099",
+        "set_code": "hgss2",
+        "set_name": "HS—Unleashed",
+        "number": "13",
+        "name": "Blastoise",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "06942dd7-c0b9-4a82-b350-fd2217eeb8fd",
+        "set_code": "hgss3",
+        "set_name": "HS—Undaunted",
+        "number": "10",
+        "name": "Umbreon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "c8e21b24-e0c4-445d-94d5-550515efc1cb",
+        "set_code": "hgss3",
+        "set_name": "HS—Undaunted",
+        "number": "2",
+        "name": "Espeon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "8b5f650a-89af-48b2-9866-90dabf98cd20",
+        "set_code": "hgss4",
+        "set_name": "HS—Triumphant",
+        "number": "5",
+        "name": "Mamoswine",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "06bbd030-1b9c-4f93-9180-72f7cd5b3626",
+        "set_code": "hgss4",
+        "set_name": "HS—Triumphant",
+        "number": "6",
+        "name": "Nidoking",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "569f605f-b7e2-4e7d-9182-459287edda7a",
+        "set_code": "me01",
+        "set_name": "Mega Evolution",
+        "number": "058",
+        "name": "Ralts",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "4800e647-2f2b-4ebc-931e-ef4b672788e2",
+        "set_code": "me01",
+        "set_name": "Mega Evolution",
+        "number": "059",
+        "name": "Kirlia",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6a389901-dd1b-480a-88fc-ca3d1ee02128",
+        "set_code": "me01",
+        "set_name": "Mega Evolution",
+        "number": "076",
+        "name": "Riolu",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "215de1c5-7e95-4c04-825e-9ebffe93f242",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "007",
+        "name": "Erika's Tangela",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "857b434d-0bac-4a5c-851f-68d15c95a10b",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "008",
+        "name": "Chikorita",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "0731f896-0270-4ebc-9189-a35d9da01eac",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "020",
+        "name": "Charmander",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6bc7a2a9-4aaa-4ea9-b492-c7b2b5f1b5d1",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "029",
+        "name": "Tepig",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "e850d173-3eb6-4740-8607-a67d8f03f85d",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "041",
+        "name": "Totodile",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ac92414e-217c-46fe-b89f-d3b98b04a71d",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "123",
+        "name": "Gastly",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "a9b199f0-e294-4780-a8b6-c57a041c5063",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "175",
+        "name": "Larry's Komala",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "pokeball",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "55fc291a-fc74-4e85-af01-3f6e5024827b",
+        "set_code": "pop8",
+        "set_name": "POP Series 8",
+        "number": "12",
+        "name": "Chimchar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "0c94f0e6-2d3d-442a-8d6f-934256e2e3cc",
+        "set_code": "pop8",
+        "set_name": "POP Series 8",
+        "number": "16",
+        "name": "Riolu",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "4b816afd-4f4f-488d-be21-e237a1176373",
+        "set_code": "pop8",
+        "set_name": "POP Series 8",
+        "number": "6",
+        "name": "Cherrim",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "54c2f783-f42d-4ec1-bd0c-b0a37185b64d",
+        "set_code": "pop8",
+        "set_name": "POP Series 8",
+        "number": "7",
+        "name": "Carnivine",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "f6fbdfb5-5e82-4daa-a2f4-89fb84d7cc02",
+        "set_code": "sm1",
+        "set_name": "Sun & Moon",
+        "number": "56",
+        "name": "Crobat",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "959ffbe4-673f-4349-9d95-423c262bb469",
+        "set_code": "sm10",
+        "set_name": "Unbroken Bonds",
+        "number": "75",
+        "name": "Mewtwo",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "b52489d9-28a7-4dc1-8687-f1c458863db3",
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "number": "114",
+        "name": "Garchomp",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "1f6e9c59-4ace-4d56-8481-b57d0584177b",
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "number": "151",
+        "name": "Dragonite",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6a88e7c6-80be-4036-989b-0d01a904e29c",
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "number": "184",
+        "name": "Silvally",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ddf3c537-bbbe-478c-acb5-2634022c6db7",
+        "set_code": "sm3.5",
+        "set_name": "Shining Legends",
+        "number": "28",
+        "name": "Pikachu",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "set_name": "Lost Thunder",
+        "number": "97",
+        "name": "Giratina",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "02b25c10-0005-46ee-aa82-d75daa461b6e",
+        "set_code": "sm9",
+        "set_name": "Team Up",
+        "number": "14",
+        "name": "Charizard",
+        "child_printings": 4,
+        "finish_keys": [
+          "cracked_ice",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "set_name": "Obsidian Flames",
+        "number": "062",
+        "name": "Palafin",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "set_name": "Obsidian Flames",
+        "number": "085",
+        "name": "Togekiss",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "a9f98663-ab89-4f94-bad1-7df917677c13",
+        "set_code": "sv05",
+        "set_name": "Temporal Forces",
+        "number": "062",
+        "name": "Iron Thorns",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+        "set_code": "sv05",
+        "set_name": "Temporal Forces",
+        "number": "119",
+        "name": "Koraidon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+        "set_code": "sv05",
+        "set_name": "Temporal Forces",
+        "number": "121",
+        "name": "Miraidon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "e60efc97-6e90-426e-a681-61b33a026bb2",
+        "set_code": "sv10",
+        "set_name": "Destined Rivals",
+        "number": "51",
+        "name": "Team Rocket's Articuno",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "09cdff39-a3f8-4b9d-ab2e-0b337e8b5eb1",
+        "set_code": "sv10",
+        "set_name": "Destined Rivals",
+        "number": "96",
+        "name": "Team Rocket's Tyranitar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "b9af3b2f-7c98-46c7-ba23-1b12dd41be1a",
+        "set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "number": "026",
+        "name": "Varoom",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "733c241e-8ac0-4426-a2cc-48ae987433ac",
+        "set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "number": "047",
+        "name": "Charmander",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6a1b706e-06cf-4ac6-a0f9-1e0d4df5690f",
+        "set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "number": "048",
+        "name": "Squirtle",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "e5bb0c0c-ba94-447a-87f9-ac33b00b1bdb",
+        "set_code": "swsh1",
+        "set_name": "Sword & Shield",
+        "number": "119",
+        "name": "Galarian Obstagoon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "36dd01b9-ccd6-4e0f-b88a-03701fe3449d",
+        "set_code": "swsh1",
+        "set_name": "Sword & Shield",
+        "number": "14",
+        "name": "Rillaboom",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "e635919f-3549-4cf1-a576-0a72d56eb18d",
+        "set_code": "swsh1",
+        "set_name": "Sword & Shield",
+        "number": "34",
+        "name": "Cinderace",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "1bb8e700-dd86-4a47-a8a4-453722e779b9",
+        "set_code": "swsh1",
+        "set_name": "Sword & Shield",
+        "number": "58",
+        "name": "Inteleon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "cdac7efe-bce5-4237-8434-87da9114f69d",
+        "set_code": "swsh1",
+        "set_name": "Sword & Shield",
+        "number": "76",
+        "name": "Boltund",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "099a7c00-8203-4092-ac48-63431d5e2a70",
+        "set_code": "swsh10",
+        "set_name": "Astral Radiance",
+        "number": "45",
+        "name": "Keldeo",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ed17c9af-732c-4eb7-9e03-d0b9a1ce7d9f",
+        "set_code": "swsh2",
+        "set_name": "Rebel Clash",
+        "number": "95",
+        "name": "Galarian Sirfetch'd",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "84243b89-8306-4401-bac1-01497f6a7f15",
+        "set_code": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "number": "105",
+        "name": "Darkrai",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+        "set_code": "swsh4.5",
+        "set_name": "Shining Fates",
+        "number": "60",
+        "name": "Professor's Research",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "a6e8cfa7-8880-47fa-9631-22c723d060ab",
+        "set_code": "swsh6",
+        "set_name": "Chilling Reign",
+        "number": "43",
+        "name": "Inteleon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "5bb99234-051e-4462-ad1d-560cf9417b79",
+        "set_code": "swsh6",
+        "set_name": "Chilling Reign",
+        "number": "52",
+        "name": "Thundurus",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "12451c1a-3597-40c1-aaba-919749cef7ea",
+        "set_code": "swsh8",
+        "set_name": "Fusion Strike",
+        "number": "130",
+        "name": "Dragapult",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "9f7b802d-1371-4278-a235-112831588fb5",
+        "set_code": "swsh9",
+        "set_name": "Brilliant Stars",
+        "number": "132",
+        "name": "Boss's Orders",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+        "set_code": "swsh9",
+        "set_name": "Brilliant Stars",
+        "number": "21",
+        "name": "Moltres",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "21d27e38-bc69-41b3-8127-de0977436ede",
+        "set_code": "xy1",
+        "set_name": "XY",
+        "number": "26",
+        "name": "Delphox",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ad815e93-7ca8-40f5-9e90-1dc85d66e674",
+        "set_code": "xy1",
+        "set_name": "XY",
+        "number": "43",
+        "name": "Raichu",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "59ae0f12-340e-4db3-9438-8b45add133c8",
+        "set_code": "xy2",
+        "set_name": "Flashfire",
+        "number": "70",
+        "name": "Druddigon",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "1a9e6fbc-f7a3-4e1e-a2d5-b87e52bcc6e2",
+        "set_code": "xy3",
+        "set_name": "Furious Fists",
+        "number": "46",
+        "name": "Machamp",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "95721191-f1f9-40c2-8f86-fa0a6c407140",
+        "set_code": "xy4",
+        "set_name": "Phantom Forces",
+        "number": "12",
+        "name": "Pyroar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "08674e72-ea29-4351-b4d5-8ac47f8da171",
+        "set_code": "xy4",
+        "set_name": "Phantom Forces",
+        "number": "17",
+        "name": "Feraligatr",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "eb0ee88c-4088-4bdf-a6d7-4cb732f76ed0",
+        "set_code": "xy6",
+        "set_name": "Roaring Skies",
+        "number": "52",
+        "name": "Dragonite",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6438ff7e-f25f-469f-a744-debd3a1a52f7",
+        "set_code": "xy6",
+        "set_name": "Roaring Skies",
+        "number": "57",
+        "name": "Salamence",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "363671be-a315-4303-92a2-f74706b4827a",
+        "set_code": "xy7",
+        "set_name": "Ancient Origins",
+        "number": "21",
+        "name": "Gyarados",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "931b65ef-a921-4a31-ab9e-353c5ee539e8",
+        "set_code": "xy8",
+        "set_name": "BREAKthrough",
+        "number": "107",
+        "name": "Xerneas",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "52f8bfe2-bb19-40b3-bbca-66ab7232cd31",
+        "set_code": "xy8",
+        "set_name": "BREAKthrough",
+        "number": "60",
+        "name": "Gengar",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "9e8889e2-2b21-40f1-b852-7698144be639",
+        "set_code": "xy8",
+        "set_name": "BREAKthrough",
+        "number": "91",
+        "name": "Zoroark",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "ad868cdd-6061-4415-bd7f-379f04856d4a",
+        "set_code": "xy9",
+        "set_name": "BREAKpoint",
+        "number": "21",
+        "name": "Slowking",
+        "child_printings": 4,
+        "finish_keys": [
+          "cosmos",
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+        "set_code": "base6",
+        "set_name": "Legendary Collection",
+        "number": "3",
+        "name": "Charizard",
+        "child_printings": 3,
+        "finish_keys": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "f443a31c-1740-4dde-9319-a779dd857646",
+        "set_code": "base6",
+        "set_name": "Legendary Collection",
+        "number": "4",
+        "name": "Dark Blastoise",
+        "child_printings": 3,
+        "finish_keys": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "554c3973-f5c2-41d4-9b0a-90779ca68ec8",
+        "set_code": "base6",
+        "set_name": "Legendary Collection",
+        "number": "7",
+        "name": "Dark Raichu",
+        "child_printings": 3,
+        "finish_keys": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "cb354025-1f27-484a-8175-df4ba23b9f2b",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "1",
+        "name": "Snivy",
+        "child_printings": 3,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "2504c339-def5-471c-96bc-0120752883ec",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "15",
+        "name": "Tepig",
+        "child_printings": 3,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "2e3467ee-2dfe-4c58-858c-6091260875ec",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "17",
+        "name": "Pignite",
+        "child_printings": 3,
+        "finish_keys": [
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "cfce0cf8-6a23-420f-a5ff-4abfd4c11216",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "27",
+        "name": "Oshawott",
+        "child_printings": 3,
+        "finish_keys": [
+          "cosmos",
+          "normal",
+          "reverse"
+        ]
+      },
+      {
+        "card_print_id": "e5d1374d-f51a-4c1e-a067-99ad28994e24",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "number": "29",
+        "name": "Dewott",
+        "child_printings": 3,
+        "finish_keys": [
+          "cracked_ice",
+          "normal",
+          "reverse"
+        ]
+      }
+    ]
+  },
+  "tcgmap01a_impact": {
+    "inserted_rows": 3066,
+    "active_tcgplayer_before_tcgmap01a": 14118,
+    "active_tcgplayer_after_tcgmap01a": 17184,
+    "target_fingerprint_sha256": "30cfdb7d896b8c2eb969caf326468f37b7bd5e1badd35d85d7b5f9f3b855b7a6"
+  },
+  "fingerprint_sha256": "fd1764b115a85ab46019b0b2ca6070f97c70623efec0d0eb2e17495b13974f1d"
+}

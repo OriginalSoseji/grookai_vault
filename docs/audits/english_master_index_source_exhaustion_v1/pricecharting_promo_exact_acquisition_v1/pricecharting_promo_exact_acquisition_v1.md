@@ -2,16 +2,16 @@
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
-Generated: 2026-06-08T12:48:21.202Z
+Generated: 2026-06-20T02:09:52.124Z
 
 ## Summary
 
 | Metric | Value |
 | --- | --- |
-| target_facts | 5 |
+| target_facts | 0 |
 | records_generated | 0 |
 | fixture_files_written | 0 |
-| by_status | {"no_exact_promo_match":5} |
+| by_status | {} |
 | validated_by_set | {} |
 
 ## Validated Rows

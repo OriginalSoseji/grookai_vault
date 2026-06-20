@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:01:21.356Z",
+  "generated_at": "2026-06-20T05:03:29.104Z",
   "version": "english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1",
   "package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
   "audit_only": true,
@@ -12,24 +12,31 @@
   "write_ready_now": 0,
   "source_artifacts": {
     "pkg17h_current_queue_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json",
-    "cross_source_current_gap": "docs/audits/english_master_index_source_exhaustion_v1/prize_pack_current_gap_cross_source_v1/prize_pack_current_gap_cross_source_v1.json"
+    "cross_source_current_gap": "docs/audits/english_master_index_source_exhaustion_v1/prize_pack_current_gap_cross_source_v1/prize_pack_current_gap_cross_source_v1.json",
+    "pkg18k_pricecharting_corroboration": "docs/audits/english_master_index_source_exhaustion_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1/pkg18k_pricecharting_prize_pack_finish_corroboration_v1.json",
+    "pkg18m_real_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18m_prize_pack_stamped_parent_insert_real_apply_v1.json"
   },
   "source_fingerprints": {
     "pkg17h_current_queue_acquisition": "40234be324648f2c95a709a008564b993537b365ad2c6cbe551144b913a36a99",
-    "cross_source_current_gap": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    "cross_source_current_gap": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "pkg18k_pricecharting_corroboration": "4dc6607ef045bea894dd943be0e0f151ede54ce6b8a55cbeac00c87f395a10ec",
+    "pkg18m_real_apply": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d"
   },
-  "fingerprint_sha256": "cb1732d8101c3e963f50ae3ac0575123c2e18f1c3d943b07ac13625411473490",
+  "fingerprint_sha256": "bbac3b70b834fc3aba4493429f4555831efd10b58b3699c85fe1df733cb1d4bb",
   "summary": {
     "target_rows": 63,
     "ready_for_guarded_dry_run": 0,
-    "blocked_rows": 63,
-    "single_source_rows": 34,
+    "applied_real_apply_verified": 12,
+    "blocked_rows": 51,
+    "single_source_rows": 22,
     "conflicting_rows": 25,
     "no_exact_match_rows": 4,
     "cross_source_records_generated": 0,
+    "pricecharting_corroborated_rows": 0,
     "by_closure_status": {
-      "blocked_second_independent_source_needed": 34,
       "blocked_conflicting_finish_evidence": 25,
+      "blocked_second_independent_source_needed": 22,
+      "applied_real_apply_verified": 12,
       "blocked_no_exact_source_match": 4
     },
     "by_set": {
@@ -61,6 +68,12 @@
       "evidence_count": 0,
       "source_families": [],
       "finish_counts": {},
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -76,6 +89,12 @@
       "evidence_count": 0,
       "source_families": [],
       "finish_counts": {},
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -96,6 +115,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "justinbasil_prize_pack_active_finish_current_queue",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.justinbasil.com/set-lists/pps6",
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "13",
+          "card_name": "Basic Psychic Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "JustInBasil Prize Pack Series 6: S, H supports non-holo normal Basic Psychic Energy SVE 13",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "justinbasil_prize_pack_active_finish_current_queue:pps6:sve:13:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "justinbasil_prize_pack_active_finish_current_queue",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.justinbasil.com/set-lists/pps6",
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "13",
+          "card_name": "Basic Psychic Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "JustInBasil Prize Pack Series 6: S, H supports cosmos holofoil Basic Psychic Energy SVE 13",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "justinbasil_prize_pack_active_finish_current_queue:pps6:sve:13:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -115,6 +175,30 @@
       "finish_counts": {
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "117",
+          "card_name": "Galarian Zigzagoon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Galarian Zigzagoon 117 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:117:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -135,6 +219,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "156",
+          "card_name": "Air Balloon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Air Balloon 156 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:156:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "156",
+          "card_name": "Air Balloon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Air Balloon 156 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:156:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -155,6 +280,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Crushing Hammer 159 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:159:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Crushing Hammer 159 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:159:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Crushing Hammer 159 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:159:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Crushing Hammer 159 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:159:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -166,7 +366,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -174,7 +374,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "162",
+          "card_name": "Energy Switch",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Energy Switch 162 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:162:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "162",
+          "card_name": "Energy Switch",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Energy Switch 162 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:162:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh1",
@@ -185,7 +426,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -193,7 +434,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "164",
+          "card_name": "Great Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Great Ball 164 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:164:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "164",
+          "card_name": "Great Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Great Ball 164 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:164:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh1",
@@ -213,6 +495,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Marnie 169 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:169:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Marnie 169 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:169:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -233,6 +556,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "170",
+          "card_name": "Metal Saucer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Metal Saucer 170 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:170:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "170",
+          "card_name": "Metal Saucer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Metal Saucer 170 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:170:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -253,6 +617,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "171",
+          "card_name": "Ordinary Rod",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Ordinary Rod 171 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:171:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "171",
+          "card_name": "Ordinary Rod",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Ordinary Rod 171 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:171:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -273,6 +678,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Rare Candy 180 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:180:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Rare Candy 180 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:180:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Rare Candy 180 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:180:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Rare Candy 180 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:180:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -293,6 +773,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "186",
+          "card_name": "Aurora Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Aurora Energy 186 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:186:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "186",
+          "card_name": "Aurora Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Aurora Energy 186 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:186:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -312,6 +833,30 @@
       "finish_counts": {
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "109",
+          "card_name": "Falinks",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Falinks 109 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:109:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -332,6 +877,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "165",
+          "card_name": "Scoop Up Net",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Scoop Up Net 165 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:165:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "165",
+          "card_name": "Scoop Up Net",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Scoop Up Net 165 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:165:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -352,6 +938,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "171",
+          "card_name": "Capture Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Capture Energy 171 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:171:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "171",
+          "card_name": "Capture Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Capture Energy 171 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:171:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -372,6 +999,47 @@
         "cosmos": 1,
         "normal": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "174",
+          "card_name": "Twin Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Twin Energy 174 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:174:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "174",
+          "card_name": "Twin Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Twin Energy 174 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh2:174:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -391,6 +1059,30 @@
       "finish_counts": {
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh3",
+          "set_name": "Darkness Ablaze",
+          "card_number": "159",
+          "card_name": "Bird Keeper",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Bird Keeper 159 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh3:159:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -410,6 +1102,30 @@
       "finish_counts": {
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh3",
+          "set_name": "Darkness Ablaze",
+          "card_number": "160",
+          "card_name": "Cape of Toughness",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Cape of Toughness 160 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh3:160:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -429,6 +1145,30 @@
       "finish_counts": {
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh4",
+          "set_name": "Vivid Voltage",
+          "card_number": "157",
+          "card_name": "Nessa",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Nessa 157 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh4:157:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -448,6 +1188,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "8",
+          "card_name": "Cherrim",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Cherrim 8 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:8:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "8",
+          "card_name": "Cherrim",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cherrim 8 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:8:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -468,6 +1249,64 @@
         "normal": 2,
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Octillery 37 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:37:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Octillery 37 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:37:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Octillery 37 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:37:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -488,6 +1327,64 @@
         "normal": 2,
         "cosmos": 1
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Houndoom 96 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:96:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Houndoom 96 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:96:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Houndoom 96 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:96:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -507,6 +1404,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "102",
+          "card_name": "Bronzong",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Bronzong 102 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:102:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "102",
+          "card_name": "Bronzong",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Bronzong 102 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:102:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -526,6 +1464,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "121",
+          "card_name": "Bruno",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Bruno 121 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:121:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "121",
+          "card_name": "Bruno",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Bruno 121 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:121:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -546,6 +1525,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Cheryl 123 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:123:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Cheryl 123 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:123:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cheryl 123 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:123:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cheryl 123 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:123:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -566,6 +1620,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Escape Rope 125 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:125:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Escape Rope 125 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:125:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Escape Rope 125 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:125:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Escape Rope 125 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:125:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -585,6 +1714,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "127",
+          "card_name": "Fan of Waves",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Fan of Waves 127 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:127:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "127",
+          "card_name": "Fan of Waves",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Fan of Waves 127 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:127:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -604,6 +1774,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "128",
+          "card_name": "Korrina's Focus",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Korrina's Focus 128 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:128:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "128",
+          "card_name": "Korrina's Focus",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Korrina's Focus 128 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:128:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -624,6 +1835,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Level Ball 129 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:129:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Level Ball 129 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:129:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Level Ball 129 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:129:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Level Ball 129 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:129:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -643,6 +1929,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "130",
+          "card_name": "Phoebe",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Phoebe 130 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:130:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "130",
+          "card_name": "Phoebe",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Phoebe 130 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:130:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -654,7 +1981,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -662,7 +1989,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "136",
+          "card_name": "Tool Jammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Tool Jammer 136 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:136:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "136",
+          "card_name": "Tool Jammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Tool Jammer 136 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:136:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh5",
@@ -673,7 +2041,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -681,7 +2049,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "137",
+          "card_name": "Tower of Darkness",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Tower of Darkness 137 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:137:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "137",
+          "card_name": "Tower of Darkness",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Tower of Darkness 137 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:137:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh5",
@@ -692,7 +2101,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -700,7 +2109,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "138",
+          "card_name": "Tower of Waters",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Tower of Waters 138 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:138:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "138",
+          "card_name": "Tower of Waters",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Tower of Waters 138 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:138:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh5",
@@ -719,6 +2169,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "139",
+          "card_name": "Urn of Vitality",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Urn of Vitality 139 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:139:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "139",
+          "card_name": "Urn of Vitality",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Urn of Vitality 139 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:139:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -739,6 +2230,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Rapid Strike Energy 140 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:140:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Rapid Strike Energy 140 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:140:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Rapid Strike Energy 140 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:140:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Rapid Strike Energy 140 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:140:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -759,6 +2325,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Single Strike Energy 141 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:141:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Single Strike Energy 141 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:141:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Single Strike Energy 141 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:141:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Single Strike Energy 141 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:141:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -770,7 +2411,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -778,7 +2419,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "64",
+          "card_name": "Cresselia",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Cresselia 64 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:64:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "64",
+          "card_name": "Cresselia",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cresselia 64 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:64:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh6",
@@ -798,6 +2480,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Malamar 70 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:70:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Malamar 70 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:70:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Malamar 70 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:70:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Malamar 70 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:70:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -817,6 +2574,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "136",
+          "card_name": "Echoing Horn",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Echoing Horn 136 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:136:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "136",
+          "card_name": "Echoing Horn",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Echoing Horn 136 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:136:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -837,6 +2635,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Fog Crystal 140 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:140:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Fog Crystal 140 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:140:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Fog Crystal 140 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:140:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Fog Crystal 140 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:140:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -856,6 +2729,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "145",
+          "card_name": "Klara",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Klara 145 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:145:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "145",
+          "card_name": "Klara",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Klara 145 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:145:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -875,6 +2789,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "146",
+          "card_name": "Melony",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Melony 146 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:146:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "146",
+          "card_name": "Melony",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Melony 146 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:146:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -895,6 +2850,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Path to the Peak 148 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:148:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Path to the Peak 148 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:148:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Path to the Peak 148 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:148:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Path to the Peak 148 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:148:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -914,6 +2944,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "149",
+          "card_name": "Peonia",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Peonia 149 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:149:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "149",
+          "card_name": "Peonia",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Peonia 149 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:149:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -933,6 +3004,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "150",
+          "card_name": "Peony",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Peony 150 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:150:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "150",
+          "card_name": "Peony",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Peony 150 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:150:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -952,6 +3064,47 @@
       "finish_counts": {
         "cosmos": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "94",
+          "card_name": "Umbreon V",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Umbreon V 94 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:94:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "94",
+          "card_name": "Umbreon V",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Umbreon V 94 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:94:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -971,6 +3124,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "103",
+          "card_name": "Zoroark",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Zoroark 103 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:103:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "103",
+          "card_name": "Zoroark",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Zoroark 103 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:103:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -990,6 +3184,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "142",
+          "card_name": "Boost Shake",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Boost Shake 142 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:142:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "142",
+          "card_name": "Boost Shake",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Boost Shake 142 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:142:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1001,7 +3236,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1009,7 +3244,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "144",
+          "card_name": "Crystal Cave",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Crystal Cave 144 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:144:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "144",
+          "card_name": "Crystal Cave",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Crystal Cave 144 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:144:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh7",
@@ -1020,7 +3296,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1028,7 +3304,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "146",
+          "card_name": "Dream Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Dream Ball 146 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:146:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "146",
+          "card_name": "Dream Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Dream Ball 146 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:146:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh7",
@@ -1039,7 +3356,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1047,7 +3364,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "154",
+          "card_name": "Rescue Carrier",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Rescue Carrier 154 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:154:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "154",
+          "card_name": "Rescue Carrier",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Rescue Carrier 154 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:154:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh7",
@@ -1067,6 +3425,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Stormy Mountains 161 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:161:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 1: Stormy Mountains 161 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:161:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Stormy Mountains 161 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:161:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Stormy Mountains 161 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:161:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1087,6 +3520,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Manaphy 41 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:41:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Manaphy 41 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:41:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Manaphy 41 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:41:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Manaphy 41 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:41:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1106,6 +3614,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "126",
+          "card_name": "Tornadus",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Tornadus 126 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:126:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "126",
+          "card_name": "Tornadus",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Tornadus 126 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:126:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1126,6 +3675,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "132",
+          "card_name": "Boss's Orders",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Boss's Orders 132 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:132:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "132",
+          "card_name": "Boss's Orders",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Boss's Orders 132 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:132:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "132",
+          "card_name": "Boss's Orders",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Boss's Orders 132 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:132:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "132",
+          "card_name": "Boss's Orders",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Boss's Orders 132 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:132:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1137,7 +3761,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1145,7 +3769,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "134",
+          "card_name": "Cheren's Care",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cheren's Care 134 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:134:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "134",
+          "card_name": "Cheren's Care",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Cheren's Care 134 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:134:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh9",
@@ -1164,6 +3829,47 @@
       "finish_counts": {
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "137",
+          "card_name": "Collapsed Stadium",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Collapsed Stadium 137 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:137:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "137",
+          "card_name": "Collapsed Stadium",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Collapsed Stadium 137 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:137:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1175,7 +3881,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1183,7 +3889,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "138",
+          "card_name": "Cynthia's Ambition",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Cynthia's Ambition 138 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:138:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "138",
+          "card_name": "Cynthia's Ambition",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Cynthia's Ambition 138 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:138:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swsh9",
@@ -1203,6 +3950,81 @@
         "cosmos": 2,
         "normal": 2
       },
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Magma Basin 144 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:144:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Magma Basin 144 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:144:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Magma Basin 144 Standard Set Foil supports cosmos holofoil",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:144:cosmos:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Magma Basin 144 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:144:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1214,7 +4036,7 @@
       "stamp_label": "Prize Pack Stamp",
       "accepted_finish_key": "normal",
       "acquisition_status": "review_only_single_source_family",
-      "closure_status": "blocked_second_independent_source_needed",
+      "closure_status": "applied_real_apply_verified",
       "evidence_count": 2,
       "source_families": [
         "bulbapedia_prize_pack_active_finish_current_queue"
@@ -1222,7 +4044,48 @@
       "finish_counts": {
         "normal": 2
       },
-      "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 2: Roseanne's Backup 148 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:148:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Bulbapedia Prize Pack Series 3: Roseanne's Backup 148 Standard Set supports non-holo normal",
+          "language": "en",
+          "retrieved_at": "2026-06-20T03:55:36.451Z",
+          "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:148:normal:prize_pack_stamp",
+          "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported."
+        }
+      ],
+      "required_next_evidence": null
     },
     {
       "set_key": "swshp",
@@ -1237,6 +4100,12 @@
       "evidence_count": 0,
       "source_families": [],
       "finish_counts": {},
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     },
     {
@@ -1252,6 +4121,12 @@
       "evidence_count": 0,
       "source_families": [],
       "finish_counts": {},
+      "pricecharting_corroboration_status": null,
+      "pricecharting_finish_key": null,
+      "pricecharting_matches": [],
+      "applied_package_id": null,
+      "applied_package_fingerprint_sha256": null,
+      "evidence": [],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish."
     }
   ]

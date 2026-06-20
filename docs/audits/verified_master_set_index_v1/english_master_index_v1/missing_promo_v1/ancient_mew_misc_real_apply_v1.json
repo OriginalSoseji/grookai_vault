@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-06-19T16:53:08.572Z",
+  "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS",
+  "mode": "real_apply",
+  "dry_run_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/ancient_mew_misc_guarded_dry_run_v1.json",
+  "required_approval_text": "Approve real MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS apply only. Fingerprint: b8078b77231bc0a9c1241412669ace89de0ca62fe43d79a30677d47840a3763b. SQL hash: 1b94ebf95b31279f858f161e645d58bdf1f018abd8b6d564fd7c25b5f7ce0595. Scope: 1 misc set insert, 1 Ancient Mew parent insert, 1 active identity insert, 1 cosmos child printing insert; set misc/Miscellaneous Cards & Products; gv_id GV-PK-MISC-001; printing_gv_id GV-PK-MISC-001-COSMOS. Dry-run proof: 89dfd2b9d0a3e2c4c536a49f2fc9eb4dec2afaf4aecee76c90538468df9d9cb5 == 89dfd2b9d0a3e2c4c536a49f2fc9eb4dec2afaf4aecee76c90538468df9d9cb5. No external mappings. No pricing writes. No image writes. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "package_fingerprint_sha256": "b8078b77231bc0a9c1241412669ace89de0ca62fe43d79a30677d47840a3763b",
+  "sql_hash_sha256": "1b94ebf95b31279f858f161e645d58bdf1f018abd8b6d564fd7c25b5f7ce0595",
+  "db_writes_performed": true,
+  "set_writes_performed": true,
+  "parent_writes_performed": true,
+  "identity_writes_performed": true,
+  "child_writes_performed": true,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "migrations_created": false,
+  "global_apply_performed": false,
+  "unsupported_cleanup_performed": false,
+  "execution": {
+    "apply_status": "applied",
+    "guard": {
+      "target_rows": 1,
+      "set_collision_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "active_finish_count": 1,
+      "expected_shape_count": 1
+    },
+    "projection_guard": {
+      "ready_projection_count": 1,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS",
+      "package_fingerprint": "b8078b77231bc0a9c1241412669ace89de0ca62fe43d79a30677d47840a3763b",
+      "target_rows": 1,
+      "inserted_set_rows": 1,
+      "inserted_parent_rows": 1,
+      "inserted_identity_rows": 1,
+      "inserted_child_rows": 1,
+      "external_mapping_rows": 0,
+      "matching_cosmos_child_rows": 1
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-19T16:53:07.308Z",
+      "rows": [],
+      "counts": {},
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-19T16:53:08.496Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "d91be6d3-58f8-4ebc-a3e7-e9b58b391e8d",
+          "set_code": "misc",
+          "card_number": "1",
+          "name": "Ancient Mew",
+          "finish_key": "cosmos",
+          "gv_id": "GV-PK-MISC-001",
+          "printing_gv_id": "GV-PK-MISC-001-COSMOS",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5b957816-23f1-4e7d-b39d-59d732c85e90",
+          "set_code": "misc",
+          "card_number": "1",
+          "name": "Ancient Mew",
+          "finish_key": null,
+          "gv_id": "GV-PK-MISC-001",
+          "printing_gv_id": null,
+          "identity_key_hash": "0717447235d4dd098a15e933b1514d170eaf5a7cdecec525511bb25179541832"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+          "set_code": "misc",
+          "card_number": "1",
+          "name": "Ancient Mew",
+          "finish_key": null,
+          "gv_id": "GV-PK-MISC-001",
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "f5b23e9a-7af6-46e7-a8a6-5b67b8df5030",
+          "set_code": "misc",
+          "card_number": null,
+          "name": "Miscellaneous Cards & Products",
+          "finish_key": null,
+          "gv_id": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "target_child": 1,
+        "target_identity": 1,
+        "target_parent": 1,
+        "target_set": 1
+      },
+      "hash_sha256": "13b4cc65b50d8a5d2501db9844330ec9ee2c54c246e86b7eefddf7d71d2a8a49"
+    },
+    "write_counts": {
+      "set_inserts": 1,
+      "parent_inserts": 1,
+      "identity_inserts": 1,
+      "child_inserts": 1,
+      "external_mapping_inserts": 0,
+      "pricing_writes": 0,
+      "image_writes": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "post_apply_proof_sha256": "f8f011248ceec407e549bd9c118949f6af621e1c3ad4be832641b2d38a294440"
+  }
+}

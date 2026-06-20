@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:03:51.944Z",
+  "generated_at": "2026-06-20T03:55:36.459Z",
   "version": "english_master_index_pkg17i_stamped_remaining_blocker_triage_v1",
   "package_id": "PKG-17I-STAMPED-REMAINING-BLOCKER-TRIAGE",
   "audit_only": true,
@@ -16,21 +16,22 @@
     "base_parent_resolution_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json",
     "prize_pack_current_queue_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json"
   },
-  "fingerprint_sha256": "74f02db91953ec31a50aea5f5d278752f61ddde672f6344c885a4662d220fc61",
+  "fingerprint_sha256": "d3d275be8f482e3d2a9fa15fa1c288ac88d88becb38f62d51e77f1b0f904759f",
   "summary": {
-    "queue_rows": 579,
+    "queue_rows": 590,
     "current_queue_by_status": {
       "active_finish_required": 312,
       "stamp_identity_label_needed": 178,
       "base_parent_missing": 45,
       "blocked_second_independent_source_needed": 18,
       "base_parent_ambiguous": 14,
+      "existing_stamped_parent_collision_review": 11,
       "blocked_battle_academy_display_metadata_strategy": 5,
       "active_finish_required_with_dependency_awareness": 4,
       "blocked_conflicting_finish_observation": 3
     },
-    "decision_bucket_count": 8,
-    "decision_bucket_memberships": 642,
+    "decision_bucket_count": 9,
+    "decision_bucket_memberships": 653,
     "decision_bucket_memberships_note": "Decision buckets include sub-analyses such as Prize Pack current queue, so memberships can exceed unique queue rows.",
     "immediate_write_ready_rows": 0,
     "stamped_finish_key_rows_allowed": 0,
@@ -299,7 +300,7 @@
       "rows": 59,
       "current_result": "no_insert_candidates_after_live_db_read",
       "write_ready_now": 0,
-      "evidence_status": "0 parent insert candidates; 35 stale/return rows; 24 blocked rows.",
+      "evidence_status": "0 parent insert candidates; 50 stale/return rows; 9 blocked rows.",
       "top_sets": [
         {
           "key": "sv08.5",
@@ -344,27 +345,79 @@
       ],
       "top_variant_keys": [
         {
+          "key": "stale_unstamped_base_parent_now_exists",
+          "count": 30
+        },
+        {
           "key": "stale_stamped_parent_now_exists",
           "count": 20
         },
         {
           "key": "blocked_missing_or_inactive_base_finish",
-          "count": 19
-        },
-        {
-          "key": "stale_unstamped_base_parent_now_exists",
-          "count": 15
-        },
-        {
-          "key": "blocked_multiple_base_parent_candidates",
-          "count": 4
-        },
-        {
-          "key": "blocked_same_number_different_name",
-          "count": 1
+          "count": 9
         }
       ],
       "recommended_next_action": "Regenerate queue after recent writes and route stale rows back through stamped readiness before preparing any parent package."
+    },
+    {
+      "bucket_id": "existing_stamped_parent_collision_review",
+      "rows": 11,
+      "current_result": "manual_collision_review_required",
+      "write_ready_now": 0,
+      "evidence_status": "Existing stamped parent collision must be checked for already-closed identity or child finish gaps.",
+      "top_sets": [
+        {
+          "key": "bw5",
+          "count": 2
+        },
+        {
+          "key": "sm6",
+          "count": 2
+        },
+        {
+          "key": "xy1",
+          "count": 2
+        },
+        {
+          "key": "dp1",
+          "count": 1
+        },
+        {
+          "key": "sm1",
+          "count": 1
+        },
+        {
+          "key": "sm5",
+          "count": 1
+        },
+        {
+          "key": "xy10",
+          "count": 1
+        },
+        {
+          "key": "xy8",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "regional_championships_stamp",
+          "count": 6
+        },
+        {
+          "key": "city_championships_stamp",
+          "count": 3
+        },
+        {
+          "key": "league_stamp",
+          "count": 1
+        },
+        {
+          "key": "national_championships_stamp",
+          "count": 1
+        }
+      ],
+      "recommended_next_action": "Build a read-only collision closure report before any dependency transfer, delete, or child insert package."
     },
     {
       "bucket_id": "blocked_second_independent_source_needed",
@@ -516,6 +569,14 @@
     }
   ],
   "next_work_plan": [
+    {
+      "priority": 1,
+      "package_id": "PKG-17I1-STAMPED-COLLISION-CLOSURE-READINESS",
+      "action_type": "read_only_readiness",
+      "target_bucket": "existing_stamped_parent_collision_review",
+      "reason": "Smallest unresolved structural bucket; can often close rows by proving existing stamped parents already have the right identity/child finish.",
+      "write_authorized": false
+    },
     {
       "priority": 2,
       "package_id": "PKG-17I2-STAMP-LABEL-SOURCE-ACQUISITION",

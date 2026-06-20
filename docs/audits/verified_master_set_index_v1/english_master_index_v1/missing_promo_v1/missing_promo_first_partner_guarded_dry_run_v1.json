@@ -1,0 +1,1184 @@
+{
+  "package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+  "generated_at": "2026-06-19T14:59:37.383Z",
+  "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+  "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+  "package_fingerprint_sha256": "4e49decebcbfd1e5ef60a2d23977e7085607711d80865ef01ea96951ec65c3dc",
+  "sql_hash_sha256": "60c15417e0527277398e14b58998c99498110a4b90ee545e179d56330acbfe93",
+  "scope": {
+    "target_parent_rows": 18,
+    "target_child_rows": 18,
+    "target_identity_rows": 18,
+    "target_external_mapping_rows": 0,
+    "by_series": {
+      "First Partner Illustration Collection Series 2": 9,
+      "First Partner Illustration Collection Series 3": 9
+    },
+    "by_finish": {
+      "holo": 18
+    },
+    "targets": [
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "046",
+        "name": "Chikorita",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-046",
+        "printing_gv_id": "GV-PK-MEP-046-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "046",
+          "name": "Chikorita",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-046",
+          "printing_gv_id": "GV-PK-MEP-046-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "91e7feba-1022-4c64-b03c-5a1139baa447",
+        "child_id": "86656169-01ef-438d-ba52-5efb490d752b",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "047",
+        "name": "Cyndaquil",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-047",
+        "printing_gv_id": "GV-PK-MEP-047-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "047",
+          "name": "Cyndaquil",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-047",
+          "printing_gv_id": "GV-PK-MEP-047-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "585e9ae4-72ed-41ba-9655-3e8af3dfed48",
+        "child_id": "0cd11eaa-0954-4cef-86be-e9e44776ceec",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "048",
+        "name": "Totodile",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-048",
+        "printing_gv_id": "GV-PK-MEP-048-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "048",
+          "name": "Totodile",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-048",
+          "printing_gv_id": "GV-PK-MEP-048-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "71c6ffe0-f844-4779-b245-dba313266056",
+        "child_id": "b14fc497-2fc1-482b-837e-0fe5ad32ca86",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "049",
+        "name": "Snivy",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-049",
+        "printing_gv_id": "GV-PK-MEP-049-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "049",
+          "name": "Snivy",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-049",
+          "printing_gv_id": "GV-PK-MEP-049-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "0ffb2971-7581-4412-85f6-06d87b317b7c",
+        "child_id": "05524fe1-7184-4ea8-ab51-14519de56384",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "050",
+        "name": "Tepig",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-050",
+        "printing_gv_id": "GV-PK-MEP-050-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "050",
+          "name": "Tepig",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-050",
+          "printing_gv_id": "GV-PK-MEP-050-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "81007ef0-68b3-4179-9144-f1c3da194515",
+        "child_id": "6343e1de-3a86-4ff3-a3da-e6d75ada2178",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "051",
+        "name": "Oshawott",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-051",
+        "printing_gv_id": "GV-PK-MEP-051-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "051",
+          "name": "Oshawott",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-051",
+          "printing_gv_id": "GV-PK-MEP-051-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "441ff695-8227-4b6d-99c5-b086402e6215",
+        "child_id": "d02f8947-aa73-409b-8657-5746baef7c48",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "052",
+        "name": "Grookey",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-052",
+        "printing_gv_id": "GV-PK-MEP-052-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "052",
+          "name": "Grookey",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-052",
+          "printing_gv_id": "GV-PK-MEP-052-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "012f3cc7-4435-496a-9317-4967c5db0717",
+        "child_id": "abcc7798-30d1-4e35-a89c-afd41360a7c3",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "053",
+        "name": "Scorbunny",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-053",
+        "printing_gv_id": "GV-PK-MEP-053-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "053",
+          "name": "Scorbunny",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-053",
+          "printing_gv_id": "GV-PK-MEP-053-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "3bc8fa1b-6ee0-45c1-8878-69f67a16ece0",
+        "child_id": "0d1efcda-6719-49b6-8eb7-50e97f780fb9",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 2",
+        "number": "054",
+        "name": "Sobble",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-054",
+        "printing_gv_id": "GV-PK-MEP-054-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "054",
+          "name": "Sobble",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-054",
+          "printing_gv_id": "GV-PK-MEP-054-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "bbb8ec10-752b-4365-ba6e-175c72cfafec",
+        "child_id": "7a47f22b-443a-4d50-99a7-6d7a55755f20",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 2",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "055",
+        "name": "Treecko",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-055",
+        "printing_gv_id": "GV-PK-MEP-055-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "055",
+          "name": "Treecko",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-055",
+          "printing_gv_id": "GV-PK-MEP-055-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "a2c2cf77-f690-4e11-aa78-a3a380dfcc49",
+        "child_id": "e9fe897b-339e-46ed-a106-fe479e9e1069",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "056",
+        "name": "Torchic",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-056",
+        "printing_gv_id": "GV-PK-MEP-056-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "056",
+          "name": "Torchic",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-056",
+          "printing_gv_id": "GV-PK-MEP-056-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "b1091ad7-fe30-4542-b25a-11babdcff849",
+        "child_id": "a60208ed-3178-4142-8fc0-b1dab73889bb",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "057",
+        "name": "Mudkip",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-057",
+        "printing_gv_id": "GV-PK-MEP-057-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "057",
+          "name": "Mudkip",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-057",
+          "printing_gv_id": "GV-PK-MEP-057-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "703b2dbb-6c88-4813-b352-86e51f7b29bd",
+        "child_id": "015eea37-c937-4d65-994c-f738357aa089",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "058",
+        "name": "Chespin",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-058",
+        "printing_gv_id": "GV-PK-MEP-058-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "058",
+          "name": "Chespin",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-058",
+          "printing_gv_id": "GV-PK-MEP-058-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "56b0ae7e-01f0-40a1-ba67-545f5fda47c2",
+        "child_id": "843dd9c7-6c96-4ab3-80ad-161354c9bfee",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "059",
+        "name": "Fennekin",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-059",
+        "printing_gv_id": "GV-PK-MEP-059-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "059",
+          "name": "Fennekin",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-059",
+          "printing_gv_id": "GV-PK-MEP-059-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "dda4a838-b557-4a55-a88e-a42bdb7ec91e",
+        "child_id": "c515cb02-3dd3-41d4-b4b5-52458f8f3ef0",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "060",
+        "name": "Froakie",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-060",
+        "printing_gv_id": "GV-PK-MEP-060-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "060",
+          "name": "Froakie",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-060",
+          "printing_gv_id": "GV-PK-MEP-060-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "8b4dc72a-4715-4449-a8f8-26566255741f",
+        "child_id": "9cde24e6-e69c-4269-9926-d46304054e11",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "061",
+        "name": "Sprigatito",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-061",
+        "printing_gv_id": "GV-PK-MEP-061-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "061",
+          "name": "Sprigatito",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-061",
+          "printing_gv_id": "GV-PK-MEP-061-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "ddceced6-4236-46e0-aa1e-b8b1eef6b659",
+        "child_id": "a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "062",
+        "name": "Fuecoco",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-062",
+        "printing_gv_id": "GV-PK-MEP-062-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "062",
+          "name": "Fuecoco",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-062",
+          "printing_gv_id": "GV-PK-MEP-062-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "7beeb8aa-8c81-4811-a3cb-bc3677803b69",
+        "child_id": "6faccbb7-c455-4a84-87d1-962ae99be91f",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      },
+      {
+        "series": "First Partner Illustration Collection Series 3",
+        "number": "063",
+        "name": "Quaxly",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "finish_key": "holo",
+        "rarity": "None",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-063",
+        "printing_gv_id": "GV-PK-MEP-063-HOLO",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+        ],
+        "sources": [
+          "bulbapedia_set_list",
+          "official_pokemon_product_gallery"
+        ],
+        "db_precheck": {
+          "set_key": "mep",
+          "number": "063",
+          "name": "Quaxly",
+          "finish_key": "holo",
+          "gv_id": "GV-PK-MEP-063",
+          "printing_gv_id": "GV-PK-MEP-063-HOLO",
+          "live_set_rows": 1,
+          "active_finish_rows": 1,
+          "parent_exact_rows": 0,
+          "gv_id_collision_rows": 0,
+          "printing_gv_id_collision_rows": 0,
+          "child_exact_rows": 0,
+          "identity_projection_status": "ready",
+          "identity_hash_collision_rows": 0
+        },
+        "readiness_status": "ready_for_guarded_dry_run",
+        "blockers": [],
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "parent_id": "206efaa9-0a89-4fc9-a528-946fa2bdcbb3",
+        "child_id": "be5ffa44-fb2b-4af8-ad76-9eb734b5d836",
+        "evidence_payload": {
+          "source": "verified_master_set_index_v1",
+          "source_package_id": "MISSING-PROMO-01B-FIRST-PARTNER-PARENT-CHILD-INSERTS",
+          "source_readiness_package_id": "MISSING-PROMO-01A-FIRST-PARTNER-AND-ANCIENT-MEW-READINESS",
+          "source_readiness_fingerprint_sha256": "a4b0cd48c110f82a4fdef986ca0a38e9897a0995bfaf5112f51fd0c770ec8ddc",
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-2",
+            "https://www.pokemon.com/us/pokemon-tcg/product-gallery/first-partner-illustration-collection-series-3"
+          ],
+          "evidence_sources": [
+            "bulbapedia_set_list",
+            "official_pokemon_product_gallery"
+          ],
+          "product_family": "First Partner Illustration Collection Series 3",
+          "note": "Source-backed MEP First Partner Illustration Collection promo identity."
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "missing_promo_first_partner_parent_child_insert_completed_rolled_back_no_durable_change",
+    "before_snapshot": {
+      "captured_at": "2026-06-19T14:59:36.194Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "number": null,
+          "name": "MEP Black Star Promos",
+          "gv_id": null,
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_hash": null
+        }
+      ],
+      "hash_sha256": "56ce344388eda0875590a7937e7bae96be65cf81c25e2dea9dee63a147c72861",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T14:59:37.383Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "number": null,
+          "name": "MEP Black Star Promos",
+          "gv_id": null,
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_hash": null
+        }
+      ],
+      "hash_sha256": "56ce344388eda0875590a7937e7bae96be65cf81c25e2dea9dee63a147c72861",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "rollback_verified": true,
+    "guard": {
+      "target_count": 18,
+      "parent_id_count": 18,
+      "child_id_count": 18,
+      "inactive_finish_count": 0,
+      "parent_collision_count": 0,
+      "gv_id_collision_count": 0,
+      "printing_gv_id_collision_count": 0,
+      "ready_identity_projection_count": 18,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "target_rows": 18,
+      "inserted_parent_rows": 18,
+      "inserted_identity_rows": 18,
+      "inserted_child_rows": 18,
+      "external_mapping_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 18,
+      "identity_inserts": 18,
+      "child_inserts": 18,
+      "external_mapping_inserts": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "dry_run_proof_sha256": "666b084e30148cbe62d060dffbd4d33f916e272374b973f347444ba4d458a764",
+    "stop_findings": []
+  },
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false
+}

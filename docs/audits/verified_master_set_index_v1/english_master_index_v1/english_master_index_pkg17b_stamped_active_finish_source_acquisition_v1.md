@@ -13,21 +13,21 @@ Audit-only source acquisition pass for stamped rows that still need exact active
 
 ## Summary
 
-- active_finish_required_queue_rows: 312
+- active_finish_required_queue_rows: 289
 - source_lanes_attempted: 4
 - raw_source_records_generated: 31
 - accepted_exact_source_rows: 31
 - useful_current_gap_matches: 0
 - accepted_delta_records: 4
-- remaining_requires_new_source_or_review: 312
-- fingerprint_sha256: `5ffd0c1c42d7dbe33d72b789c3abdda65ae98f9aa5618ae0478726e517a12b97`
+- remaining_requires_new_source_or_review: 289
+- fingerprint_sha256: `02b60270042d2ff4539421b9c2792d24fa4e316302f9aa3e137ec23089ba28a6`
 
 ## Source Lanes
 
 | source | targets | raw records | accepted exact | useful gaps | already indexed | blocked/ambiguous |
 | --- | --- | --- | --- | --- | --- | --- |
 | pricecharting_stamped_active_finish | 339 | 0 | 0 | 0 | 0 | 6 |
-| cardtrader_stamped_finish | 339 | 0 | 0 | 0 | 1 | 0 |
+| cardtrader_stamped_finish | 339 | 0 | 0 | 0 | 2 | 0 |
 | pokecardvalues_stamped_finish | 339 | 31 | 31 | 0 | 31 | 22 |
 | tcgcsv_stamped_subtype | 339 | 0 | 0 | 0 | 15 | 339 |
 
@@ -39,11 +39,12 @@ No useful current gap matches found.
 
 | status | rows |
 | --- | --- |
-| active_finish_required | 312 |
+| active_finish_required | 289 |
 | stamp_identity_label_needed | 178 |
 | base_parent_missing | 45 |
 | blocked_second_independent_source_needed | 18 |
 | base_parent_ambiguous | 14 |
+| existing_stamped_parent_collision_review | 11 |
 | blocked_battle_academy_display_metadata_strategy | 5 |
 | active_finish_required_with_dependency_awareness | 4 |
 | blocked_conflicting_finish_observation | 3 |

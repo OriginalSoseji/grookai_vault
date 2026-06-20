@@ -1,10 +1,10 @@
 # PKG-11B Stamped Parent Identity Guarded Dry Run Checkpoint V1
 
 - Package: `PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED`
-- Fingerprint: `60571a2325e9415a808667ad7fa9d825bbfcd0910d796bbaff0f436943d6e884`
-- Target rows: 11
-- Target finishes: {"holo":6,"normal":2,"reverse":3}
-- Dry-run proof: `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945` == `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`
+- Fingerprint: `3115f50c667f7ec60fb3e6adda5fac2d8e44aedaf94947bf9fa07baefca34fa3`
+- Target rows: 31
+- Target finishes: {"normal":1,"reverse":30}
+- Dry-run proof: `d85865c9132ad09dcc8d8bb960fd81c8ac7df77eff35b59d1c1931079709004c` == `d85865c9132ad09dcc8d8bb960fd81c8ac7df77eff35b59d1c1931079709004c`
 - Rollback verified: true
 - DB write committed: false
 - Migrations created: false

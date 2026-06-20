@@ -1,0 +1,30 @@
+{
+  "package_id": "MISSING-PROMO-04N-NESTED-PROVENANCE-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-20T02:05:58.997Z",
+  "mode": "guarded_rollback_dry_run",
+  "input_artifacts": {
+    "nested_provenance_finish_extraction": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/nested_provenance_finish_extraction_v1.json"
+  },
+  "package_fingerprint_sha256": "c8da7b645ca7c9e5752728e1b2f9ca98c0f95bdb743ee8c4ce4b99a270a0394c",
+  "sql_hash_sha256": "361bf3d975b7e45793f11a0d740c22390551c69ae9017e52123f866a5af4d274",
+  "dry_run_proof_sha256": "not_applicable_no_ready_targets",
+  "rollback_proof_sha256": "not_applicable_no_ready_targets",
+  "summary": {
+    "target_count": 0,
+    "by_finish": {},
+    "by_family": {},
+    "inserted_rows_in_rollback_transaction": 0,
+    "durable_after_snapshot_matches_before_snapshot": null,
+    "transient_after_snapshot_differs_from_before_snapshot": null
+  },
+  "guard": null,
+  "targets": [],
+  "dry_run": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_performed": false,
+  "recommended_real_apply_approval_text": "No real apply recommended: no ready targets."
+}

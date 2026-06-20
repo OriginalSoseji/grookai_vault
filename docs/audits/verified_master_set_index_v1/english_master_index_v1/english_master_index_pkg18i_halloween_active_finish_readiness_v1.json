@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-06-20T04:59:01.164Z",
+  "version": "english_master_index_pkg18i_halloween_active_finish_readiness_v1",
+  "package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+  "future_package_id": "PKG-18J-HALLOWEEN-STAMPED-PARENT-INSERTS",
+  "source_artifact": "docs/audits/english_master_index_source_exhaustion_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1/pkg18h_pricecharting_halloween_active_finish_acquisition_v1.json",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_read_error": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "fingerprint_sha256": "842062fbf12e6ef8667f359ef9b0e13af12be311fd57102648cdd1237047de42",
+  "summary": {
+    "source_candidate_rows": 4,
+    "future_guarded_parent_identity_insert_candidates": 0,
+    "blocked_or_review_rows": 4,
+    "by_readiness_status": {
+      "blocked_or_review": 4
+    },
+    "by_blocker": {
+      "base_parent_missing": 4,
+      "base_parent_missing_target_child_finish": 4
+    },
+    "by_finish": {
+      "normal": 4
+    },
+    "by_set": {
+      "swsh11": 4
+    }
+  },
+  "rows": [
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "16",
+      "card_name": "Phantump",
+      "finish_key": "normal",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/phantump-16",
+      "base_parent_id": null,
+      "target_parent_id": "8b9bcad7-75a3-4c2e-9fab-2b435c037d0c",
+      "target_child_id": "89291544-e8d2-4d5a-a172-1a06aefcd290",
+      "live_base_parent_child_finishes": [],
+      "existing_variant_parent_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "readiness_status": "blocked_or_review",
+      "blockers": [
+        "base_parent_missing",
+        "base_parent_missing_target_child_finish"
+      ],
+      "evidence": {
+        "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+        "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/phantump-16",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "console_name": "Pokemon Trick or Trade 2022",
+        "product_name": "Phantump #16",
+        "source_status": "candidate_pricecharting_halloween_active_finish",
+        "evidence_label": "PriceCharting Trick or Trade exact product title: Phantump #16",
+        "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+        "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+        "active_child_finish_key": "normal",
+        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+      }
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "24",
+      "card_name": "Litwick",
+      "finish_key": "normal",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/litwick-24",
+      "base_parent_id": null,
+      "target_parent_id": "37688db9-fe5f-4656-83c9-e0de5ab14393",
+      "target_child_id": "89f36883-8f01-4f27-8220-85c6767eefc5",
+      "live_base_parent_child_finishes": [],
+      "existing_variant_parent_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "readiness_status": "blocked_or_review",
+      "blockers": [
+        "base_parent_missing",
+        "base_parent_missing_target_child_finish"
+      ],
+      "evidence": {
+        "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+        "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/litwick-24",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "console_name": "Pokemon Trick or Trade 2023",
+        "product_name": "Litwick #24",
+        "source_status": "candidate_pricecharting_halloween_active_finish",
+        "evidence_label": "PriceCharting Trick or Trade exact product title: Litwick #24",
+        "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+        "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+        "active_child_finish_key": "normal",
+        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+      }
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "25",
+      "card_name": "Lampent",
+      "finish_key": "normal",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/lampent-25",
+      "base_parent_id": null,
+      "target_parent_id": "83a2c8c0-e6e0-439c-b971-496d936e28b4",
+      "target_child_id": "fc0ce8c7-3e9f-4cfb-b855-acc8b613a785",
+      "live_base_parent_child_finishes": [],
+      "existing_variant_parent_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "readiness_status": "blocked_or_review",
+      "blockers": [
+        "base_parent_missing",
+        "base_parent_missing_target_child_finish"
+      ],
+      "evidence": {
+        "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+        "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/lampent-25",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "console_name": "Pokemon Trick or Trade 2023",
+        "product_name": "Lampent #25",
+        "source_status": "candidate_pricecharting_halloween_active_finish",
+        "evidence_label": "PriceCharting Trick or Trade exact product title: Lampent #25",
+        "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+        "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+        "active_child_finish_key": "normal",
+        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+      }
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "65",
+      "card_name": "Haunter",
+      "finish_key": "normal",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/haunter-65",
+      "base_parent_id": null,
+      "target_parent_id": "0a83a86f-fbc7-43b1-9e1a-42f991947187",
+      "target_child_id": "0f835bee-e715-4bd1-af41-1c9fcc20f8a2",
+      "live_base_parent_child_finishes": [],
+      "existing_variant_parent_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "readiness_status": "blocked_or_review",
+      "blockers": [
+        "base_parent_missing",
+        "base_parent_missing_target_child_finish"
+      ],
+      "evidence": {
+        "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+        "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/haunter-65",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "console_name": "Pokemon Trick or Trade 2023",
+        "product_name": "Haunter #65",
+        "source_status": "candidate_pricecharting_halloween_active_finish",
+        "evidence_label": "PriceCharting Trick or Trade exact product title: Haunter #65",
+        "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+        "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+        "active_child_finish_key": "normal",
+        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+      }
+    }
+  ]
+}

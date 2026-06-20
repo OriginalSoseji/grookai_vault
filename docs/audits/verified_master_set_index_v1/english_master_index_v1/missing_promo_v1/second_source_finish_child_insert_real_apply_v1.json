@@ -1,0 +1,308 @@
+{
+  "package_id": "MISSING-PROMO-04L-SECOND-SOURCE-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-20T01:05:07.921Z",
+  "mode": "real_apply",
+  "apply_status": "applied",
+  "input_artifacts": {
+    "second_source_finish_child_insert_guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/second_source_finish_child_insert_guarded_dry_run_v1.json"
+  },
+  "package_fingerprint_sha256": "2685545ff2bd82267b2582eb6057c39f1c575129ed79a9186ab104c788985e7a",
+  "sql_hash_sha256": "366dcbe03abbf78775fa07ee3e4e02b8c4b45810bc8455ccd03f04c9e1d76cdc",
+  "approved_dry_run_proof_sha256": "bff21af16ad5cd3aab246e0e399a83184a1c4ba4624c88498327d4f3756b6a2c",
+  "targets": [
+    {
+      "parent_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+      "target_child_id": "6975a742-7f59-4d23-8151-d2f21440f398",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP-STD",
+      "set_code": "dp1",
+      "number": "98",
+      "name": "Shinx",
+      "variant_key": "city_championships_stamp",
+      "printed_identity_modifier": null,
+      "family": "championship_stamp",
+      "evidence_mode": "second_source_finish_evidence",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04L-SECOND-SOURCE-FINISH-CHILD-INSERTS",
+        "second_source_acquisition_package_id": "MISSING-PROMO-04K-SECOND-SOURCE-FINISH-ACQUISITION",
+        "second_source_acquisition_fingerprint_sha256": "452ecf54c82bdf1a2688377b64baf6f7b48c4fb0461c63ae475cc9ee7c5cda82",
+        "evidence_mode": "second_source_finish_evidence",
+        "acquisition_reason": "Resolved live reverse ambiguity by using exact non-holo City Championships sources for the stamped variant.",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+          "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+          "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/shinx-city-championships-98"
+        ],
+        "evidence_labels": [
+          "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+          "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo",
+          "Shinx #98/130 Diamond & Pearl Non-Holo City Championships listing title evidence"
+        ],
+        "evidence_sources": [
+          {
+            "source_key": "pokecardvalues",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+            "evidence_label": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+            "evidence_type": "finish_presence"
+          },
+          {
+            "source_key": "pokumon",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+            "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo",
+            "evidence_type": "finish_presence"
+          },
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/shinx-city-championships-98",
+            "evidence_label": "Shinx #98/130 Diamond & Pearl Non-Holo City Championships listing title evidence",
+            "evidence_type": "finish_presence"
+          }
+        ]
+      }
+    },
+    {
+      "parent_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+      "target_child_id": "67181ae1-8200-4c1a-882b-677dff4fcbc7",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP-HOLO",
+      "set_code": "swsh9",
+      "number": "123",
+      "name": "Arceus VSTAR",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null,
+      "family": "league_stamp",
+      "evidence_mode": "second_source_finish_evidence",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04L-SECOND-SOURCE-FINISH-CHILD-INSERTS",
+        "second_source_acquisition_package_id": "MISSING-PROMO-04K-SECOND-SOURCE-FINISH-ACQUISITION",
+        "second_source_acquisition_fingerprint_sha256": "452ecf54c82bdf1a2688377b64baf6f7b48c4fb0461c63ae475cc9ee7c5cda82",
+        "evidence_mode": "second_source_finish_evidence",
+        "acquisition_reason": "Second source acquired: Magic Madhouse exact Prize Pack League Promo product page identifies the card and rarity as Rare Holo VSTAR.",
+        "evidence_urls": [
+          "https://www.pricecharting.com/game/pokemon-brilliant-stars/arceus-vstar-league-promo-123",
+          "https://magicmadhouse.co.uk/pokemon-brilliant-stars-123-172-arceus-vstar-prize-pack-league-promo"
+        ],
+        "evidence_labels": [
+          "Arceus VSTAR [League Promo] #123 sale title: Pokemon Brilliant Stars Holo Ultra Rare League Promo 123/172",
+          "Brilliant Stars 123/172 Arceus VSTAR (Prize Pack League Promo); rarity Rare Holo VSTAR"
+        ],
+        "evidence_sources": [
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/arceus-vstar-league-promo-123",
+            "evidence_label": "Arceus VSTAR [League Promo] #123 sale title: Pokemon Brilliant Stars Holo Ultra Rare League Promo 123/172",
+            "evidence_type": "finish_presence"
+          },
+          {
+            "source_key": "magic_madhouse",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-123-172-arceus-vstar-prize-pack-league-promo",
+            "evidence_label": "Brilliant Stars 123/172 Arceus VSTAR (Prize Pack League Promo); rarity Rare Holo VSTAR",
+            "evidence_type": "finish_presence"
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "target_count": 2,
+    "inserted_child_rows": 2,
+    "matching_post_apply_child_rows": 2,
+    "by_finish": {
+      "holo": 1,
+      "normal": 1
+    },
+    "by_family": {
+      "championship_stamp": 1,
+      "league_stamp": 1
+    }
+  },
+  "guard": {
+    "target_count": 2,
+    "parent_count": 2,
+    "child_id_count": 2,
+    "printing_gv_id_count": 2,
+    "missing_parent_count": 0,
+    "inactive_finish_count": 0,
+    "child_id_collision_count": 0,
+    "printing_gv_id_collision_count": 0,
+    "existing_finish_collision_count": 0,
+    "active_identity_count": 2,
+    "forbidden_stamped_finish_count": 0
+  },
+  "inserted_rows": [
+    {
+      "id": "6975a742-7f59-4d23-8151-d2f21440f398",
+      "card_print_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP-STD"
+    },
+    {
+      "id": "67181ae1-8200-4c1a-882b-677dff4fcbc7",
+      "card_print_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP-HOLO"
+    }
+  ],
+  "before_snapshot": {
+    "captured_at": "2026-06-20T01:05:07.186Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "42006599-5da8-417c-9c59-727c68ef8bd1",
+        "set_code": "dp1",
+        "number": "98",
+        "name": "Shinx",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "52c5bb6b-7c3f-425b-a4f1-50e999e55688",
+        "set_code": "swsh9",
+        "number": "123",
+        "name": "Arceus VSTAR",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+        "set_code": "dp1",
+        "number": "98",
+        "name": "Shinx",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+        "set_code": "swsh9",
+        "number": "123",
+        "name": "Arceus VSTAR",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 2,
+      "target_parent": 2
+    },
+    "hash_sha256": "6b5654436092fa72ad86ef5255de00f2ddb8805a34fd1ef3d842ed09090f14da"
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-20T01:05:07.921Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "42006599-5da8-417c-9c59-727c68ef8bd1",
+        "set_code": "dp1",
+        "number": "98",
+        "name": "Shinx",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "52c5bb6b-7c3f-425b-a4f1-50e999e55688",
+        "set_code": "swsh9",
+        "number": "123",
+        "name": "Arceus VSTAR",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "6975a742-7f59-4d23-8151-d2f21440f398",
+        "set_code": "dp1",
+        "number": "98",
+        "name": "Shinx",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP-STD"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "67181ae1-8200-4c1a-882b-677dff4fcbc7",
+        "set_code": "swsh9",
+        "number": "123",
+        "name": "Arceus VSTAR",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP-HOLO"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+        "set_code": "dp1",
+        "number": "98",
+        "name": "Shinx",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-98-CITY-CHAMPIONSHIPS-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+        "set_code": "swsh9",
+        "number": "123",
+        "name": "Arceus VSTAR",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-SWSH9-123-LEAGUE-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 2,
+      "target_child": 2,
+      "target_parent": 2
+    },
+    "hash_sha256": "d4ecb2fb68c81ce98a7bce698e6e9594333fe95303e6ad3374f1701e1e8ac019"
+  },
+  "post_apply_proof_sha256": "d4ecb2fb68c81ce98a7bce698e6e9594333fe95303e6ad3374f1701e1e8ac019",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "parent_writes_performed": false,
+  "identity_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false
+}

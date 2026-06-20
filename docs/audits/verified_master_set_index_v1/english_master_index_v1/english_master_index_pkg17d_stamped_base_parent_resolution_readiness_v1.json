@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:57:32.394Z",
+  "generated_at": "2026-06-20T05:03:28.780Z",
   "version": "english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1",
   "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
   "future_insert_package_id": "PKG-17D1-STAMPED-BASE-PARENT-INSERTS",
@@ -14,18 +14,16 @@
   "global_apply_performed": false,
   "write_ready_now": 0,
   "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
-  "fingerprint_sha256": "9050f9ea7517879708cf8257daaf86c7593288a5c0f36beb0913accbb12df3aa",
+  "fingerprint_sha256": "ba5279f528d14a1864eee8f65918f8be522bf17264f6e91855e8fcff7421f233",
   "summary": {
     "target_rows": 59,
     "insert_dry_run_candidates": 0,
-    "stale_or_return_to_stamped_readiness": 35,
-    "blocked_rows": 24,
+    "stale_or_return_to_stamped_readiness": 50,
+    "blocked_rows": 9,
     "by_readiness_status": {
+      "stale_unstamped_base_parent_now_exists": 30,
       "stale_stamped_parent_now_exists": 20,
-      "blocked_missing_or_inactive_base_finish": 19,
-      "stale_unstamped_base_parent_now_exists": 15,
-      "blocked_multiple_base_parent_candidates": 4,
-      "blocked_same_number_different_name": 1
+      "blocked_missing_or_inactive_base_finish": 9
     },
     "by_set": {
       "sv08.5": 10,
@@ -84,8 +82,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 9,
+      "same_name_parent_count": 9,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -129,14 +127,104 @@
           "card_feed_event_count": 0
         },
         {
-          "card_print_id": "d6b99a34-9d12-433b-b65a-b0dcba906626",
+          "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
           "set_code": "base1",
           "number": "58",
           "number_plain": "58",
           "name": "Pikachu",
           "rarity": "Common",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "child_finishes": [
+            "normal"
+          ],
+          "external_mapping_count": 0,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        },
+        {
+          "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "child_finishes": [
+            "normal"
+          ],
+          "external_mapping_count": 0,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        },
+        {
+          "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "child_finishes": [
+            "normal"
+          ],
+          "external_mapping_count": 0,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        },
+        {
+          "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "child_finishes": [
+            "normal"
+          ],
+          "external_mapping_count": 0,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        },
+        {
+          "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "child_finishes": [
+            "normal"
+          ],
+          "external_mapping_count": 0,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        },
+        {
+          "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
           "child_finishes": [
             "normal"
           ],
@@ -211,14 +299,14 @@
           "card_feed_event_count": 0
         },
         {
-          "card_print_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
+          "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
           "set_code": "base2",
           "number": "1",
           "number_plain": "1",
           "name": "Clefable",
           "rarity": "Rare Holo",
-          "variant_key": "prerelease_stamp",
-          "printed_identity_modifier": "prerelease_stamp",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
           "child_finishes": [
             "holo"
           ],
@@ -229,14 +317,14 @@
           "card_feed_event_count": 0
         },
         {
-          "card_print_id": "d7b53ebe-eaa4-48a5-81a3-88fd32d8fa14",
+          "card_print_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
           "set_code": "base2",
           "number": "1",
           "number_plain": "1",
           "name": "Clefable",
           "rarity": "Rare Holo",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
           "child_finishes": [
             "holo"
           ],
@@ -284,8 +372,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -319,24 +407,6 @@
           "rarity": "Common",
           "variant_key": "wotc_stamp",
           "printed_identity_modifier": "wotc_stamp",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "930acd23-e52d-4494-b048-9d5080bece90",
-          "set_code": "base2",
-          "number": "60",
-          "number_plain": "60",
-          "name": "Pikachu",
-          "rarity": "Common",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "normal"
           ],
@@ -384,8 +454,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -419,24 +489,6 @@
           "rarity": "Common",
           "variant_key": "wotc_stamp",
           "printed_identity_modifier": "wotc_stamp",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "264fd217-aff8-45c6-9d82-e49aabc5572c",
-          "set_code": "base3",
-          "number": "50",
-          "number_plain": "50",
-          "name": "Kabuto",
-          "rarity": "Common",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "normal"
           ],
@@ -484,8 +536,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -519,24 +571,6 @@
           "rarity": "Rare Holo",
           "variant_key": "prerelease_stamp",
           "printed_identity_modifier": "prerelease_stamp",
-          "child_finishes": [
-            "holo"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "b784bbe3-6aac-4fc3-a655-b165aa8ca482",
-          "set_code": "base5",
-          "number": "8",
-          "number_plain": "8",
-          "name": "Dark Gyarados",
-          "rarity": "Rare Holo",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "holo"
           ],
@@ -584,8 +618,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -619,24 +653,6 @@
           "rarity": "Rare",
           "variant_key": "wotc_stamp",
           "printed_identity_modifier": "wotc_stamp",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "cc07df9b-3637-45dd-96c7-dd0529081314",
-          "set_code": "base5",
-          "number": "19",
-          "number_plain": "19",
-          "name": "Dark Arbok",
-          "rarity": "Rare",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "normal"
           ],
@@ -684,8 +700,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -719,24 +735,6 @@
           "rarity": "Uncommon",
           "variant_key": "wotc_stamp",
           "printed_identity_modifier": "wotc_stamp",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "5ad62671-bde7-4cb4-9f6a-22ca14591a84",
-          "set_code": "base5",
-          "number": "32",
-          "number_plain": "32",
-          "name": "Dark Charmeleon",
-          "rarity": "Uncommon",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "normal"
           ],
@@ -784,8 +782,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -819,24 +817,6 @@
           "rarity": "Rare Holo",
           "variant_key": "prerelease_stamp",
           "printed_identity_modifier": "prerelease_stamp",
-          "child_finishes": [
-            "holo"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "4572321e-2857-4b25-b62e-87bbe2b10e9a",
-          "set_code": "gym1",
-          "number": "9",
-          "number_plain": "9",
-          "name": "Misty's Seadra",
-          "rarity": "Rare Holo",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "holo"
           ],
@@ -884,8 +864,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -919,24 +899,6 @@
           "rarity": "Uncommon",
           "variant_key": "wotc_stamp",
           "printed_identity_modifier": "wotc_stamp",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "22211df9-016e-41f7-8076-b30a41e4a8f3",
-          "set_code": "gym1",
-          "number": "54",
-          "number_plain": "54",
-          "name": "Misty's Psyduck",
-          "rarity": "Uncommon",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
           "child_finishes": [
             "normal"
           ],
@@ -984,8 +946,8 @@
       },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 3,
-      "same_name_parent_count": 3,
+      "same_number_parent_count": 2,
+      "same_name_parent_count": 2,
       "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 1,
       "readiness_status": "stale_stamped_parent_now_exists",
@@ -1027,24 +989,6 @@
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
           "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "2a86a028-7b21-4957-8bf9-afc80b4e3b1b",
-          "set_code": "gym2",
-          "number": "37",
-          "number_plain": "37",
-          "name": "Brock's Vulpix",
-          "rarity": "Uncommon",
-          "variant_key": null,
-          "printed_identity_modifier": "edition:first_edition",
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
         }
       ]
     },
@@ -1062,19 +1006,35 @@
         "base_parent_count_2"
       ],
       "live_set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "8be2f619-a4eb-4cb3-85f2-550e1bd332e7",
+      "selected_base_parent": {
+        "card_print_id": "8be2f619-a4eb-4cb3-85f2-550e1bd332e7",
+        "set_code": "me01",
+        "number": "087",
+        "number_plain": "087",
+        "name": "Spiritomb",
+        "rarity": "Uncommon",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 3,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 2,
-      "same_name_parent_count": 2,
-      "unstamped_parent_count": 2,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_multiple_base_parent_candidates",
-      "blockers": [
-        "same_name_parent_count_2"
-      ],
-      "recommended_next_action": "Resolve base parent identity collision before any stamped package.",
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
       "same_number_parents": [
         {
           "card_print_id": "8be2f619-a4eb-4cb3-85f2-550e1bd332e7",
@@ -1089,26 +1049,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 1,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "4be3283f-99bf-493a-a2df-6bfa912e7612",
-          "set_code": "me01",
-          "number": "87",
-          "number_plain": "87",
-          "name": "Spiritomb",
-          "rarity": "Uncommon",
-          "variant_key": null,
-          "printed_identity_modifier": null,
-          "child_finishes": [
-            "normal",
-            "reverse"
-          ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1189,26 +1130,43 @@
         "base_parent_count_0"
       ],
       "live_set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
+      "selected_base_parent": {
+        "card_print_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
+        "set_code": "sv02",
+        "number": "172",
+        "number_plain": "172",
+        "name": "Boss's Orders (Ghetsis)",
+        "rarity": "Rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 5,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
       "same_number_parent_count": 1,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_same_number_different_name",
-      "blockers": [
-        "same_number_parent_count_1"
-      ],
-      "recommended_next_action": "Adjudicate same-number identity conflict before inserting a base parent.",
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
       "same_number_parents": [
         {
           "card_print_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
           "set_code": "sv02",
           "number": "172",
           "number_plain": "172",
-          "name": "Boss's Orders",
+          "name": "Boss's Orders (Ghetsis)",
           "rarity": "Rare",
           "variant_key": null,
           "printed_identity_modifier": null,
@@ -1217,7 +1175,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 4,
+          "external_mapping_count": 5,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1255,7 +1213,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1285,7 +1243,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1322,7 +1280,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1352,7 +1310,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1406,7 +1364,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1435,7 +1393,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1490,7 +1448,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1519,7 +1477,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1555,7 +1513,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1584,7 +1542,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1621,7 +1579,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 3,
+        "external_mapping_count": 4,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1651,7 +1609,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 3,
+          "external_mapping_count": 4,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1706,7 +1664,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1735,7 +1693,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1770,7 +1728,7 @@
         "child_finishes": [
           "holo"
         ],
-        "external_mapping_count": 2,
+        "external_mapping_count": 3,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -1798,7 +1756,7 @@
           "child_finishes": [
             "holo"
           ],
-          "external_mapping_count": 2,
+          "external_mapping_count": 3,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -1849,7 +1807,6 @@
         "variant_key": null,
         "printed_identity_modifier": null,
         "child_finishes": [
-          "cosmos",
           "normal",
           "reverse"
         ],
@@ -1879,7 +1836,6 @@
           "variant_key": null,
           "printed_identity_modifier": null,
           "child_finishes": [
-            "cosmos",
             "normal",
             "reverse"
           ],
@@ -2053,20 +2009,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "35898507-890a-48ec-8655-58c076bdcc5a",
+      "selected_base_parent": {
+        "card_print_id": "35898507-890a-48ec-8655-58c076bdcc5a",
+        "set_code": "sv08.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Budew",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "35898507-890a-48ec-8655-58c076bdcc5a",
+          "set_code": "sv08.5",
+          "number": "004",
+          "number_plain": "004",
+          "name": "Budew",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2083,20 +2077,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "12e9011e-184c-49ea-ac36-b0a0760c8a70",
+      "selected_base_parent": {
+        "card_print_id": "12e9011e-184c-49ea-ac36-b0a0760c8a70",
+        "set_code": "sv08.5",
+        "number": "040",
+        "number_plain": "040",
+        "name": "Sylveon",
+        "rarity": "Rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "12e9011e-184c-49ea-ac36-b0a0760c8a70",
+          "set_code": "sv08.5",
+          "number": "040",
+          "number_plain": "040",
+          "name": "Sylveon",
+          "rarity": "Rare",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2113,20 +2145,56 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "c5fbe453-77a3-45b3-a5f1-553b076804b0",
+      "selected_base_parent": {
+        "card_print_id": "c5fbe453-77a3-45b3-a5f1-553b076804b0",
+        "set_code": "sv08.5",
+        "number": "041",
+        "number_plain": "041",
+        "name": "Sylveon ex",
+        "rarity": "Double rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "c5fbe453-77a3-45b3-a5f1-553b076804b0",
+          "set_code": "sv08.5",
+          "number": "041",
+          "number_plain": "041",
+          "name": "Sylveon ex",
+          "rarity": "Double rare",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2143,20 +2211,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "0ec2097e-caf6-4de5-a346-60703e9ff2b7",
+      "selected_base_parent": {
+        "card_print_id": "0ec2097e-caf6-4de5-a346-60703e9ff2b7",
+        "set_code": "sv08.5",
+        "number": "074",
+        "number_plain": "074",
+        "name": "Eevee",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "0ec2097e-caf6-4de5-a346-60703e9ff2b7",
+          "set_code": "sv08.5",
+          "number": "074",
+          "number_plain": "074",
+          "name": "Eevee",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2172,20 +2278,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "6d231d4d-c3ec-44de-8dbe-7d1e57ea9e53",
+      "selected_base_parent": {
+        "card_print_id": "6d231d4d-c3ec-44de-8dbe-7d1e57ea9e53",
+        "set_code": "sv08.5",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Friends in Paldea",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "6d231d4d-c3ec-44de-8dbe-7d1e57ea9e53",
+          "set_code": "sv08.5",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Friends in Paldea",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2201,20 +2345,56 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "0d5e6787-869e-447d-9d29-564ec85105ec",
+      "selected_base_parent": {
+        "card_print_id": "0d5e6787-869e-447d-9d29-564ec85105ec",
+        "set_code": "sv08.5",
+        "number": "116",
+        "number_plain": "116",
+        "name": "Max Rod",
+        "rarity": "ACE SPEC Rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "0d5e6787-869e-447d-9d29-564ec85105ec",
+          "set_code": "sv08.5",
+          "number": "116",
+          "number_plain": "116",
+          "name": "Max Rod",
+          "rarity": "ACE SPEC Rare",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2230,20 +2410,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "4e5c03dd-6337-4c96-8061-2397e8558f4f",
+      "selected_base_parent": {
+        "card_print_id": "4e5c03dd-6337-4c96-8061-2397e8558f4f",
+        "set_code": "sv08.5",
+        "number": "122",
+        "number_plain": "122",
+        "name": "Professor's Research",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "4e5c03dd-6337-4c96-8061-2397e8558f4f",
+          "set_code": "sv08.5",
+          "number": "122",
+          "number_plain": "122",
+          "name": "Professor's Research",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2259,20 +2477,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "6e877e52-ef76-4778-8162-9fbe5a81093b",
+      "selected_base_parent": {
+        "card_print_id": "6e877e52-ef76-4778-8162-9fbe5a81093b",
+        "set_code": "sv08.5",
+        "number": "123",
+        "number_plain": "123",
+        "name": "Professor's Research",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "6e877e52-ef76-4778-8162-9fbe5a81093b",
+          "set_code": "sv08.5",
+          "number": "123",
+          "number_plain": "123",
+          "name": "Professor's Research",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2288,20 +2544,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "321e5906-9e70-4c1f-b92f-9d5d5096e45c",
+      "selected_base_parent": {
+        "card_print_id": "321e5906-9e70-4c1f-b92f-9d5d5096e45c",
+        "set_code": "sv08.5",
+        "number": "124",
+        "number_plain": "124",
+        "name": "Professor's Research",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "321e5906-9e70-4c1f-b92f-9d5d5096e45c",
+          "set_code": "sv08.5",
+          "number": "124",
+          "number_plain": "124",
+          "name": "Professor's Research",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2317,20 +2611,58 @@
         "base_parent_count_0"
       ],
       "live_set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "89b167bd-5293-44ff-819b-b8eb9499f3e9",
+      "selected_base_parent": {
+        "card_print_id": "89b167bd-5293-44ff-819b-b8eb9499f3e9",
+        "set_code": "sv08.5",
+        "number": "125",
+        "number_plain": "125",
+        "name": "Professor's Research",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 2,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 0,
-      "same_name_parent_count": 0,
-      "unstamped_parent_count": 0,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_missing_or_inactive_base_finish",
-      "blockers": [
-        "missing_target_finish"
-      ],
-      "recommended_next_action": "Acquire an exact active child finish for the unstamped base parent before any insert dry-run.",
-      "same_number_parents": []
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
+      "same_number_parents": [
+        {
+          "card_print_id": "89b167bd-5293-44ff-819b-b8eb9499f3e9",
+          "set_code": "sv08.5",
+          "number": "125",
+          "number_plain": "125",
+          "name": "Professor's Research",
+          "rarity": "Common",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "vault_item_count": 0,
+          "vault_instance_parent_count": 0,
+          "pricing_watch_count": 0,
+          "card_feed_event_count": 0
+        }
+      ]
     },
     {
       "package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
@@ -2346,19 +2678,35 @@
         "base_parent_count_2"
       ],
       "live_set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "755dabde-0f54-48c0-9862-2a02053b37fe",
+      "selected_base_parent": {
+        "card_print_id": "755dabde-0f54-48c0-9862-2a02053b37fe",
+        "set_code": "swsh11",
+        "number": "017",
+        "number_plain": "017",
+        "name": "Trevenant",
+        "rarity": "Holo Rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "reverse"
+        ],
+        "external_mapping_count": 3,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 2,
-      "same_name_parent_count": 2,
-      "unstamped_parent_count": 2,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_multiple_base_parent_candidates",
-      "blockers": [
-        "same_name_parent_count_2"
-      ],
-      "recommended_next_action": "Resolve base parent identity collision before any stamped package.",
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
       "same_number_parents": [
         {
           "card_print_id": "755dabde-0f54-48c0-9862-2a02053b37fe",
@@ -2374,24 +2722,6 @@
             "reverse"
           ],
           "external_mapping_count": 3,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "0b4aa3b3-3c2e-4394-87c1-f28efa396e51",
-          "set_code": "swsh11",
-          "number": "17",
-          "number_plain": "17",
-          "name": "Trevenant",
-          "rarity": "Rare Holo",
-          "variant_key": null,
-          "printed_identity_modifier": null,
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -2413,19 +2743,35 @@
         "base_parent_count_2"
       ],
       "live_set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "155e3b7b-c79a-495e-b849-9e6c66294673",
+      "selected_base_parent": {
+        "card_print_id": "155e3b7b-c79a-495e-b849-9e6c66294673",
+        "set_code": "swsh11",
+        "number": "026",
+        "number_plain": "026",
+        "name": "Chandelure",
+        "rarity": "Holo Rare",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "holo",
+          "reverse"
+        ],
+        "external_mapping_count": 3,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 2,
-      "same_name_parent_count": 2,
-      "unstamped_parent_count": 2,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_multiple_base_parent_candidates",
-      "blockers": [
-        "same_name_parent_count_2"
-      ],
-      "recommended_next_action": "Resolve base parent identity collision before any stamped package.",
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
       "same_number_parents": [
         {
           "card_print_id": "155e3b7b-c79a-495e-b849-9e6c66294673",
@@ -2441,24 +2787,6 @@
             "reverse"
           ],
           "external_mapping_count": 3,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "0b24e7e8-9e51-428d-a974-2e2268c7b193",
-          "set_code": "swsh11",
-          "number": "26",
-          "number_plain": "26",
-          "name": "Chandelure",
-          "rarity": "Rare Holo",
-          "variant_key": null,
-          "printed_identity_modifier": null,
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -2480,19 +2808,35 @@
         "base_parent_count_2"
       ],
       "live_set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
-      "selected_base_parent_id": null,
-      "selected_base_parent": null,
+      "selected_base_parent_id": "76390c0f-b80a-49aa-ac2e-1d7301163bf0",
+      "selected_base_parent": {
+        "card_print_id": "76390c0f-b80a-49aa-ac2e-1d7301163bf0",
+        "set_code": "swsh11",
+        "number": "064",
+        "number_plain": "064",
+        "name": "Gastly",
+        "rarity": "Common",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 3,
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
       "target_base_parent_id": null,
       "target_base_child_id": null,
-      "same_number_parent_count": 2,
-      "same_name_parent_count": 2,
-      "unstamped_parent_count": 2,
+      "same_number_parent_count": 1,
+      "same_name_parent_count": 1,
+      "unstamped_parent_count": 1,
       "stamped_variant_parent_count": 0,
-      "readiness_status": "blocked_multiple_base_parent_candidates",
-      "blockers": [
-        "same_name_parent_count_2"
-      ],
-      "recommended_next_action": "Resolve base parent identity collision before any stamped package.",
+      "readiness_status": "stale_unstamped_base_parent_now_exists",
+      "blockers": [],
+      "recommended_next_action": "Return this row to stamped parent identity readiness; the unstamped base parent now exists.",
       "same_number_parents": [
         {
           "card_print_id": "76390c0f-b80a-49aa-ac2e-1d7301163bf0",
@@ -2508,24 +2852,6 @@
             "reverse"
           ],
           "external_mapping_count": 3,
-          "vault_item_count": 0,
-          "vault_instance_parent_count": 0,
-          "pricing_watch_count": 0,
-          "card_feed_event_count": 0
-        },
-        {
-          "card_print_id": "17066191-eb5f-43e7-8872-7b2562fa3836",
-          "set_code": "swsh11",
-          "number": "64",
-          "number_plain": "64",
-          "name": "Gastly",
-          "rarity": "Common",
-          "variant_key": null,
-          "printed_identity_modifier": null,
-          "child_finishes": [
-            "normal"
-          ],
-          "external_mapping_count": 0,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -2792,7 +3118,6 @@
         "variant_key": null,
         "printed_identity_modifier": null,
         "child_finishes": [
-          "cosmos",
           "normal",
           "reverse"
         ],
@@ -2822,7 +3147,6 @@
           "variant_key": null,
           "printed_identity_modifier": null,
           "child_finishes": [
-            "cosmos",
             "normal",
             "reverse"
           ],
@@ -2940,7 +3264,6 @@
         "variant_key": null,
         "printed_identity_modifier": null,
         "child_finishes": [
-          "cosmos",
           "normal",
           "reverse"
         ],
@@ -2970,7 +3293,6 @@
           "variant_key": null,
           "printed_identity_modifier": null,
           "child_finishes": [
-            "cosmos",
             "normal",
             "reverse"
           ],
@@ -3025,7 +3347,6 @@
         "variant_key": null,
         "printed_identity_modifier": null,
         "child_finishes": [
-          "cosmos",
           "normal",
           "reverse"
         ],
@@ -3055,7 +3376,6 @@
           "variant_key": null,
           "printed_identity_modifier": null,
           "child_finishes": [
-            "cosmos",
             "normal",
             "reverse"
           ],
@@ -3375,7 +3695,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 1,
+        "external_mapping_count": 2,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -3405,7 +3725,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 1,
+          "external_mapping_count": 2,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,
@@ -3527,7 +3847,7 @@
           "normal",
           "reverse"
         ],
-        "external_mapping_count": 1,
+        "external_mapping_count": 2,
         "vault_item_count": 0,
         "vault_instance_parent_count": 0,
         "pricing_watch_count": 0,
@@ -3558,7 +3878,7 @@
             "normal",
             "reverse"
           ],
-          "external_mapping_count": 1,
+          "external_mapping_count": 2,
           "vault_item_count": 0,
           "vault_instance_parent_count": 0,
           "pricing_watch_count": 0,

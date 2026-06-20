@@ -1,0 +1,229 @@
+{
+  "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS",
+  "generated_at": "2026-06-19T16:48:59.923Z",
+  "source_governance_package_id": "MISSING-PROMO-04D-ANCIENT-MEW-SET-LANE-GOVERNANCE",
+  "source_governance_fingerprint_sha256": "3ca75e62877ff3c11f7f9fd992ae085c5fc2e4a26a0ab485b9b552da9133f4cf",
+  "package_fingerprint_sha256": "b8078b77231bc0a9c1241412669ace89de0ca62fe43d79a30677d47840a3763b",
+  "sql_hash_sha256": "1b94ebf95b31279f858f161e645d58bdf1f018abd8b6d564fd7c25b5f7ce0595",
+  "scope": {
+    "target": {
+      "set_id": "f5b23e9a-7af6-46e7-a8a6-5b67b8df5030",
+      "set_code": "misc",
+      "set_name": "Miscellaneous Cards & Products",
+      "printed_set_abbrev": "MISC",
+      "printed_total": 1,
+      "set_role": "promotion_umbrella",
+      "identity_domain_default": "pokemon_eng_standard",
+      "identity_model": "standard",
+      "parent_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+      "child_id": "d91be6d3-58f8-4ebc-a3e7-e9b58b391e8d",
+      "card_name": "Ancient Mew",
+      "card_number": "1",
+      "rarity": "Promo",
+      "finish_key": "cosmos",
+      "gv_id": "GV-PK-MISC-001",
+      "printing_gv_id": "GV-PK-MISC-001-COSMOS",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_source": {
+        "verified_master_index_v1": {
+          "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS",
+          "source_governance_package_id": "MISSING-PROMO-04D-ANCIENT-MEW-SET-LANE-GOVERNANCE",
+          "source_governance_fingerprint_sha256": "3ca75e62877ff3c11f7f9fd992ae085c5fc2e4a26a0ab485b9b552da9133f4cf",
+          "lane_type": "english_physical_miscellaneous_promotional_cards",
+          "source_aliases": {
+            "bulbapedia": "Miscellaneous Promotional cards",
+            "pkmncards": "Miscellaneous",
+            "tcgplayer": "Miscellaneous Cards & Products",
+            "pricecharting": "Pokemon Promo"
+          },
+          "governance_decision": "Create a dedicated miscellaneous/movie-promo set lane instead of forcing Ancient Mew into basep/Wizards Black Star Promos."
+        }
+      },
+      "evidence_payload": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS",
+        "source_governance_package_id": "MISSING-PROMO-04D-ANCIENT-MEW-SET-LANE-GOVERNANCE",
+        "source_governance_fingerprint_sha256": "3ca75e62877ff3c11f7f9fd992ae085c5fc2e4a26a0ab485b9b552da9133f4cf",
+        "classification": "ancient_mew_movie_2000_miscellaneous_promo",
+        "number_governance": "catalog_assigned_number_not_physical_printed_number",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Ancient_Mew_%28The_Power_of_One_promo%29",
+          "https://pkmncards.com/card/ancient-mew-miscellaneous/",
+          "https://pkmncards.com/set/miscellaneous/",
+          "https://www.tcgplayer.com/product/108589/pokemon-miscellaneous-cards-and-products-ancient-mew",
+          "https://www.pricecharting.com/game/pokemon-promo/ancient-mew"
+        ],
+        "evidence_labels": [
+          "Ancient Mew The Power of One promo release information",
+          "PkmnCards Ancient Mew Miscellaneous card page",
+          "PkmnCards Miscellaneous set lane",
+          "TCGplayer Ancient Mew Miscellaneous Cards and Products product page",
+          "PriceCharting Ancient Mew Pokemon Promo market page"
+        ],
+        "preserved_evidence_sources": [
+          "bulbapedia_ancient_mew_power_of_one",
+          "pkmncards_ancient_mew_miscellaneous",
+          "pkmncards_miscellaneous_set",
+          "tcgplayer_ancient_mew_misc_products",
+          "pricecharting_ancient_mew_pokemon_promo"
+        ],
+        "evidence": [
+          {
+            "source_key": "bulbapedia_ancient_mew_power_of_one",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Mew_%28The_Power_of_One_promo%29",
+            "evidence_label": "Ancient Mew The Power of One promo release information",
+            "supports": [
+              "card_identity",
+              "miscellaneous_promotional_cards_lane",
+              "movie_2000_distribution",
+              "english_physical_release"
+            ]
+          },
+          {
+            "source_key": "pkmncards_ancient_mew_miscellaneous",
+            "source_kind": "collector_reference",
+            "source_url": "https://pkmncards.com/card/ancient-mew-miscellaneous/",
+            "evidence_label": "PkmnCards Ancient Mew Miscellaneous card page",
+            "supports": [
+              "card_identity",
+              "miscellaneous_lane",
+              "card_content"
+            ]
+          },
+          {
+            "source_key": "pkmncards_miscellaneous_set",
+            "source_kind": "collector_reference",
+            "source_url": "https://pkmncards.com/set/miscellaneous/",
+            "evidence_label": "PkmnCards Miscellaneous set lane",
+            "supports": [
+              "miscellaneous_lane",
+              "card_identity"
+            ]
+          },
+          {
+            "source_key": "tcgplayer_ancient_mew_misc_products",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/108589/pokemon-miscellaneous-cards-and-products-ancient-mew",
+            "evidence_label": "TCGplayer Ancient Mew Miscellaneous Cards and Products product page",
+            "supports": [
+              "card_identity",
+              "miscellaneous_cards_and_products_lane",
+              "market_lane"
+            ]
+          },
+          {
+            "source_key": "pricecharting_ancient_mew_pokemon_promo",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-promo/ancient-mew",
+            "evidence_label": "PriceCharting Ancient Mew Pokemon Promo market page",
+            "supports": [
+              "card_identity",
+              "promo_market_lane",
+              "holo_product_identity"
+            ]
+          }
+        ],
+        "adjacent_variant_boundaries": [
+          {
+            "candidate_key": "ancient_mew_japanese_exclusive_print",
+            "status": "future_variant_governance_required",
+            "source_url": "https://www.tcgplayer.com/product/482427/pokemon-miscellaneous-cards-and-products-ancient-mew-japanese-exclusive-print",
+            "evidence_label": "TCGplayer Japanese Exclusive Print product page",
+            "reason": "Do not merge this into the English movie-promo row. It needs separate language/variant governance."
+          },
+          {
+            "candidate_key": "ancient_mew_i_nintedo_error",
+            "status": "future_variant_governance_required",
+            "source_url": "https://www.elitefourum.com/t/ancient-mew-variants-and-versions-differences/40111",
+            "evidence_label": "Elite Fourum Ancient Mew variant comparison",
+            "reason": "Collector evidence identifies Japanese Nintedo/corrected and Ancient Mew I/II distinctions. These are not the current English physical row."
+          }
+        ],
+        "note": "English Ancient Mew movie-promo lane. Japanese exclusive print and Nintedo/error variants are excluded pending separate governance."
+      }
+    },
+    "expected_set_inserts": 1,
+    "expected_parent_inserts": 1,
+    "expected_identity_inserts": 1,
+    "expected_child_inserts": 1,
+    "expected_external_mapping_inserts": 0,
+    "excluded_adjacent_variants": [
+      {
+        "candidate_key": "ancient_mew_japanese_exclusive_print",
+        "status": "future_variant_governance_required",
+        "source_url": "https://www.tcgplayer.com/product/482427/pokemon-miscellaneous-cards-and-products-ancient-mew-japanese-exclusive-print",
+        "evidence_label": "TCGplayer Japanese Exclusive Print product page",
+        "reason": "Do not merge this into the English movie-promo row. It needs separate language/variant governance."
+      },
+      {
+        "candidate_key": "ancient_mew_i_nintedo_error",
+        "status": "future_variant_governance_required",
+        "source_url": "https://www.elitefourum.com/t/ancient-mew-variants-and-versions-differences/40111",
+        "evidence_label": "Elite Fourum Ancient Mew variant comparison",
+        "reason": "Collector evidence identifies Japanese Nintedo/corrected and Ancient Mew I/II distinctions. These are not the current English physical row."
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "ancient_mew_misc_set_parent_child_insert_completed_rolled_back_no_durable_change",
+    "before_snapshot": {
+      "captured_at": "2026-06-19T16:48:58.692Z",
+      "rows": [],
+      "counts": {},
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T16:48:59.922Z",
+      "rows": [],
+      "counts": {},
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "rollback_verified": true,
+    "guard": {
+      "target_rows": 1,
+      "set_collision_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "active_finish_count": 1,
+      "expected_shape_count": 1
+    },
+    "projection_guard": {
+      "ready_projection_count": 1,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "target_rows": 1,
+      "inserted_set_rows": 1,
+      "inserted_parent_rows": 1,
+      "inserted_identity_rows": 1,
+      "inserted_child_rows": 1,
+      "external_mapping_rows": 0,
+      "matching_cosmos_child_rows": 1
+    },
+    "simulated_write_counts": {
+      "set_inserts": 1,
+      "parent_inserts": 1,
+      "identity_inserts": 1,
+      "child_inserts": 1,
+      "external_mapping_inserts": 0,
+      "pricing_writes": 0,
+      "image_writes": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "dry_run_proof_sha256": "89dfd2b9d0a3e2c4c536a49f2fc9eb4dec2afaf4aecee76c90538468df9d9cb5",
+    "stop_findings": []
+  },
+  "pass": true,
+  "recommended_real_apply_approval_text": "Approve real MISSING-PROMO-04E-ANCIENT-MEW-MISC-SET-PARENT-CHILD-INSERTS apply only. Fingerprint: b8078b77231bc0a9c1241412669ace89de0ca62fe43d79a30677d47840a3763b. SQL hash: 1b94ebf95b31279f858f161e645d58bdf1f018abd8b6d564fd7c25b5f7ce0595. Scope: 1 misc set insert, 1 Ancient Mew parent insert, 1 active identity insert, 1 cosmos child printing insert; set misc/Miscellaneous Cards & Products; gv_id GV-PK-MISC-001; printing_gv_id GV-PK-MISC-001-COSMOS. Dry-run proof: 89dfd2b9d0a3e2c4c536a49f2fc9eb4dec2afaf4aecee76c90538468df9d9cb5 == 89dfd2b9d0a3e2c4c536a49f2fc9eb4dec2afaf4aecee76c90538468df9d9cb5. No external mappings. No pricing writes. No image writes. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false
+}

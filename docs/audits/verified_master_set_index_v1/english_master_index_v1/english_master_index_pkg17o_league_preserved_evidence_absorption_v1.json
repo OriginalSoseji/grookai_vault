@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:30:24.228Z",
+  "generated_at": "2026-06-20T04:58:17.093Z",
   "version": "english_master_index_pkg17o_league_preserved_evidence_absorption_v1",
   "package_id": "PKG-17O-LEAGUE-PRESERVED-EVIDENCE-ABSORPTION",
   "audit_only": true,
@@ -17,69 +17,208 @@
     "exact_fixture": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17o_league_preserved_evidence_absorption_v1/league_two_source_exact_active_finish_candidates_v1.json",
     "crosshatch_alias_review_fixture": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17o_league_preserved_evidence_absorption_v1/league_crosshatch_alias_review_candidates_v1.json"
   },
-  "fingerprint_sha256": "db12979b5e12bf93802c104b8a1b7fbd46e07cda126c39a68a566174816752e4",
+  "fingerprint_sha256": "bf60cf52a4192361a05c7abe4b73d138a48b245e0058adba7d28b8832b0e9f4a",
   "summary": {
-    "league_active_finish_targets": 78,
-    "preserved_evidence_rows_scanned": 1900,
-    "rows_with_any_preserved_match": 73,
-    "two_source_exact_active_finish_ready_for_guarded_dry_run": 0,
-    "crosshatch_alias_governance_required_before_dry_run": 0,
-    "single_source_exact_active_finish_second_source_needed": 16,
-    "no_preserved_source_match": 21,
+    "league_active_finish_targets": 89,
+    "preserved_evidence_rows_scanned": 1895,
+    "rows_with_any_preserved_match": 100,
+    "two_source_exact_active_finish_ready_for_guarded_dry_run": 2,
+    "crosshatch_alias_governance_required_before_dry_run": 2,
+    "single_source_exact_active_finish_second_source_needed": 28,
+    "no_preserved_source_match": 20,
     "by_readiness_status": {
-      "blocked_no_explicit_active_finish": 56,
-      "no_preserved_source_match": 21,
-      "single_source_exact_active_finish_second_source_needed": 16,
-      "crosshatch_alias_review_only": 1
+      "blocked_no_explicit_active_finish": 68,
+      "single_source_exact_active_finish_second_source_needed": 28,
+      "no_preserved_source_match": 20,
+      "crosshatch_alias_governance_required_before_dry_run": 2,
+      "two_source_exact_active_finish_ready_for_guarded_dry_run": 2
     },
     "by_set": {
+      "bw1": 8,
+      "hgss1": 6,
       "sm8": 6,
       "xy2": 6,
       "sm7": 5,
       "xy1": 5,
       "xy3": 5,
-      "hgss1": 4,
+      "xy8": 5,
+      "bw3": 4,
+      "bw8": 4,
       "hgss2": 4,
+      "pl4": 4,
       "sm1": 4,
       "sm3": 4,
+      "bw11": 3,
       "dv1": 3,
-      "pl2": 3,
+      "pl3": 3,
       "sm6": 3,
-      "bw1": 2,
-      "bw3": 2,
+      "bw2": 2,
       "bw5": 2,
-      "bw8": 2,
       "bw9": 2,
       "dp1": 2,
       "ex8": 2,
       "hgss3": 2,
       "hgss4": 2,
+      "pl1": 2,
       "sm2": 2,
       "sm5": 2,
       "swsh4": 2,
       "xy11": 2,
       "bw10": 1,
-      "bw11": 1,
       "bw7": 1,
       "ex12": 1,
       "ex14": 1,
       "ex5": 1,
       "ex9": 1,
-      "pl3": 1,
+      "pl2": 1,
       "sm4": 1,
       "swsh1": 1,
       "swsh7": 1,
       "xy10": 1,
       "xy12": 1,
       "xy4": 1,
-      "xy8": 1,
       "xy9": 1
     },
     "by_finish": {
-      "reverse": 17
+      "reverse": 32
     }
   },
   "rows": [
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "53",
+      "card_name": "Whirlipede",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-black-and-white/whirlipede-league-promo-53",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "53",
+          "card_name": "Whirlipede",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Whirlipede [League Promo] #53",
+          "evidence_text_or_label": "Whirlipede [League Promo] #53",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.981Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:5809316",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "79",
+      "card_name": "Watchog",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-black-and-white/watchog-league-promo-79",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "79",
+          "card_name": "Watchog",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Watchog [League Promo] #79",
+          "evidence_text_or_label": "Watchog [League Promo] #79",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.981Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:5206636",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "81",
+      "card_name": "Lillipup",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-black-and-white/lillipup-league-promo-81",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "81",
+          "card_name": "Lillipup",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Lillipup [League Promo] #81",
+          "evidence_text_or_label": "Lillipup [League Promo] #81",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.981Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:7226347",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
     {
       "source_report": "PKG-15J",
       "set_key": "bw1",
@@ -114,7 +253,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Water Energy [League Play] #107",
           "evidence_text_or_label": "Water Energy [League Play] #107",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.118Z",
+          "retrieved_at": "2026-06-20T04:58:16.981Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10264403",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -159,7 +298,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Deino [1st Place League] #97",
           "evidence_text_or_label": "Deino [1st Place League] #97",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.168Z",
+          "retrieved_at": "2026-06-20T04:58:17.029Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259737",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -181,7 +320,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Deino [2nd Place League] #97",
           "evidence_text_or_label": "Deino [2nd Place League] #97",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.168Z",
+          "retrieved_at": "2026-06-20T04:58:17.029Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259738",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -203,7 +342,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Deino [3rd Place League] #97",
           "evidence_text_or_label": "Deino [3rd Place League] #97",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.168Z",
+          "retrieved_at": "2026-06-20T04:58:17.029Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10045693",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -225,7 +364,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Deino [4th Place League] #97",
           "evidence_text_or_label": "Deino [4th Place League] #97",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.168Z",
+          "retrieved_at": "2026-06-20T04:58:17.029Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:11262595",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -235,6 +374,141 @@
       "crosshatch_alias_source_families": [],
       "blocked_source_count": 4,
       "source_count": 4
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "109",
+      "card_name": "Bianca",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legendary-treasures/bianca-league-109",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_number": "109",
+          "card_name": "Bianca",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Bianca [League] #109",
+          "evidence_text_or_label": "Bianca [League] #109",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:17.029Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:9312178",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "82",
+      "card_name": "Unfezant",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/unfezant-league-82",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw2",
+          "set_name": "Emerging Powers",
+          "card_number": "82",
+          "card_name": "Unfezant",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Unfezant [League] #82",
+          "evidence_text_or_label": "Unfezant [League] #82",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:8597934",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-noble-victories/cryogonal-league-32",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw3",
+          "set_name": "Noble Victories",
+          "card_number": "32",
+          "card_name": "Cryogonal",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Cryogonal [League] #32",
+          "evidence_text_or_label": "Cryogonal [League] #32",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:17.032Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:8597935",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
     },
     {
       "source_report": "PKG-15J",
@@ -270,7 +544,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Scyther [1st Place League] #4",
           "evidence_text_or_label": "Scyther [1st Place League] #4",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.127Z",
+          "retrieved_at": "2026-06-20T04:58:16.990Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5790304",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -292,7 +566,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Scyther [2nd Place League] #4",
           "evidence_text_or_label": "Scyther [2nd Place League] #4",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.127Z",
+          "retrieved_at": "2026-06-20T04:58:16.990Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10021295",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -314,7 +588,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Scyther [3rd Place League Challenge] #4",
           "evidence_text_or_label": "Scyther [3rd Place League Challenge] #4",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.127Z",
+          "retrieved_at": "2026-06-20T04:58:16.990Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6244328",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -336,7 +610,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Scyther [4th Place League] #4",
           "evidence_text_or_label": "Scyther [4th Place League] #4",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.127Z",
+          "retrieved_at": "2026-06-20T04:58:16.990Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6073272",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -381,7 +655,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Delibird [1st Place League] #38",
           "evidence_text_or_label": "Delibird [1st Place League] #38",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.120Z",
+          "retrieved_at": "2026-06-20T04:58:16.983Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6216898",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -403,7 +677,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Delibird [2nd Place League] #38",
           "evidence_text_or_label": "Delibird [2nd Place League] #38",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.120Z",
+          "retrieved_at": "2026-06-20T04:58:16.983Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8670736",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -425,7 +699,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Delibird [3rd Place League] #38",
           "evidence_text_or_label": "Delibird [3rd Place League] #38",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.120Z",
+          "retrieved_at": "2026-06-20T04:58:16.983Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259709",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -447,7 +721,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Delibird [4th Place League] #38",
           "evidence_text_or_label": "Delibird [4th Place League] #38",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.120Z",
+          "retrieved_at": "2026-06-20T04:58:16.983Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:13071509",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -492,8 +766,53 @@
           "evidence_label": "PriceCharting CSV preserved product title: Colress [League Promo] #118",
           "evidence_text_or_label": "Colress [League Promo] #118",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.035Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6573160",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "120",
+      "card_name": "Escape Rope",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/escape-rope-league-promo-120",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "bw8",
+          "set_name": "Plasma Storm",
+          "card_number": "120",
+          "card_name": "Escape Rope",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Escape Rope [League Promo] #120",
+          "evidence_text_or_label": "Escape Rope [League Promo] #120",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:17.035Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:6249705",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
         }
@@ -537,8 +856,53 @@
           "evidence_label": "PriceCharting CSV preserved product title: Hypnotoxic Laser [League Promo] #123",
           "evidence_text_or_label": "Hypnotoxic Laser [League Promo] #123",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.035Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6604663",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "39",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/delibird-league-promo-39",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "hgss1",
+          "set_name": "HeartGold & SoulSilver",
+          "card_number": "39",
+          "card_name": "Delibird",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Delibird [League Promo] #39",
+          "evidence_text_or_label": "Delibird [League Promo] #39",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.998Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:12122470",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
         }
@@ -582,7 +946,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Pokemon Collector [League Promo] #97",
           "evidence_text_or_label": "Pokemon Collector [League Promo] #97",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.136Z",
+          "retrieved_at": "2026-06-20T04:58:16.998Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9903715",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -627,7 +991,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Double Colorless Energy [League] #103",
           "evidence_text_or_label": "Double Colorless Energy [League] #103",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.136Z",
+          "retrieved_at": "2026-06-20T04:58:16.998Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8597949",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -672,53 +1036,8 @@
           "evidence_label": "PriceCharting CSV preserved product title: Politoed [Crosshatch Pokemon League] #7",
           "evidence_text_or_label": "Politoed [Crosshatch Pokemon League] #7",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.185Z",
+          "retrieved_at": "2026-06-20T04:58:17.046Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8463077",
-          "observation_status": "blocked_no_explicit_active_finish",
-          "notes": "source identifies League/stamped identity but does not prove active child finish"
-        }
-      ],
-      "accepted_exact_source_families": [],
-      "crosshatch_alias_source_families": [],
-      "blocked_source_count": 1,
-      "source_count": 1
-    },
-    {
-      "source_report": "PKG-15J",
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "21",
-      "card_name": "Poliwrath",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "queue_status": "active_finish_required",
-      "blockers": [
-        "no_active_finish_observation"
-      ],
-      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
-      "write_ready_now": 0,
-      "readiness_status": "blocked_no_explicit_active_finish",
-      "evidence_records": [
-        {
-          "source_key": "pricecharting_csv_preserved_league",
-          "source_family": "pricecharting",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/poliwrath-league-21",
-          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
-          "set_key": "hgss2",
-          "set_name": "HS—Unleashed",
-          "card_number": "21",
-          "card_name": "Poliwrath",
-          "finish_key": null,
-          "variant_key": "league_stamp",
-          "stamp_label": "League Stamp",
-          "evidence_type": "finish_presence",
-          "evidence_label": "PriceCharting CSV preserved product title: Poliwrath [League] #21",
-          "evidence_text_or_label": "Poliwrath [League] #21",
-          "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.185Z",
-          "raw_snapshot_ref": "pricecharting_csv_preserved:8597941",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
         }
@@ -762,7 +1081,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Rare Candy [League Promo] #82",
           "evidence_text_or_label": "Rare Candy [League Promo] #82",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.185Z",
+          "retrieved_at": "2026-06-20T04:58:17.046Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8692813",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -807,7 +1126,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Darkness Energy [League] #79",
           "evidence_text_or_label": "Darkness Energy [League] #79",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.185Z",
+          "retrieved_at": "2026-06-20T04:58:17.046Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8597950",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -852,7 +1171,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Metal Energy [Pokemon League] #80",
           "evidence_text_or_label": "Metal Energy [Pokemon League] #80",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.185Z",
+          "retrieved_at": "2026-06-20T04:58:17.046Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6124813",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -897,7 +1216,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Black Belt [League Stamp] #85",
           "evidence_text_or_label": "Black Belt [League Stamp] #85",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.184Z",
+          "retrieved_at": "2026-06-20T04:58:17.044Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7532304",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -942,7 +1261,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Seeker [League Promo] #88",
           "evidence_text_or_label": "Seeker [League Promo] #88",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.184Z",
+          "retrieved_at": "2026-06-20T04:58:17.045Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4251875",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -955,10 +1274,10 @@
     },
     {
       "source_report": "PKG-15J",
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "89",
-      "card_name": "Bebe's Search",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "104",
+      "card_name": "Broken Time-Space",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
       "finish_key": null,
@@ -974,21 +1293,21 @@
           "source_key": "pricecharting_csv_preserved_league",
           "source_family": "pricecharting",
           "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/bebes-search-league-89",
+          "source_url": "https://www.pricecharting.com/game/pokemon-platinum/broken-time-space-league-104",
           "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
-          "set_key": "pl2",
-          "set_name": "Rising Rivals",
-          "card_number": "89",
-          "card_name": "Bebe's Search",
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "card_number": "104",
+          "card_name": "Broken Time-Space",
           "finish_key": null,
           "variant_key": "league_stamp",
           "stamp_label": "League Stamp",
           "evidence_type": "finish_presence",
-          "evidence_label": "PriceCharting CSV preserved product title: Bebe's Search [League] #89",
-          "evidence_text_or_label": "Bebe's Search [League] #89",
+          "evidence_label": "PriceCharting CSV preserved product title: Broken Time-Space [League] #104",
+          "evidence_text_or_label": "Broken Time-Space [League] #104",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.177Z",
-          "raw_snapshot_ref": "pricecharting_csv_preserved:8597942",
+          "retrieved_at": "2026-06-20T04:58:17.035Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:8597943",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
         }
@@ -997,6 +1316,185 @@
       "crosshatch_alias_source_families": [],
       "blocked_source_count": 1,
       "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "26",
+      "card_name": "Dusknoir FB",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "elitefourum_alternate_checklist",
+          "source_family": "elitefourum",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1/pl3.json",
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "card_number": "26",
+          "card_name": "Dusknoir FB",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Elite Fourum alternate checklist: 26/147 Dusknoir FB [PokéBall Stamped, League Promo; 2009-2010]",
+          "evidence_text_or_label": "Elite Fourum alternate checklist: 26/147 Dusknoir FB [PokéBall Stamped, League Promo; 2009-2010]",
+          "language": "en",
+          "retrieved_at": "2026-05-28T02:44:21.474Z",
+          "raw_snapshot_ref": "elitefourum_alternate_checklist:pl3:26:stamped",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "32",
+      "card_name": "Spiritomb",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "elitefourum_alternate_checklist",
+          "source_family": "elitefourum",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1/pl4.json",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "32",
+          "card_name": "Spiritomb",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Elite Fourum alternate checklist: 32/99 Spiritomb [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
+          "evidence_text_or_label": "Elite Fourum alternate checklist: 32/99 Spiritomb [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
+          "language": "en",
+          "retrieved_at": "2026-05-28T02:44:21.474Z",
+          "raw_snapshot_ref": "elitefourum_alternate_checklist:pl4:32:stamped",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        },
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-arceus/spiritomb-league-32",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "32",
+          "card_name": "Spiritomb",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Spiritomb [League] #32",
+          "evidence_text_or_label": "Spiritomb [League] #32",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.979Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:8597932",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 2,
+      "source_count": 2
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "87",
+      "card_name": "Expert Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "elitefourum_alternate_checklist",
+          "source_family": "elitefourum",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1/pl4.json",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "87",
+          "card_name": "Expert Belt",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Elite Fourum alternate checklist: 87/99 Expert Belt [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
+          "evidence_text_or_label": "Elite Fourum alternate checklist: 87/99 Expert Belt [Play! Pokémon Logo Stamped, League Promo; 2010-2011]",
+          "language": "en",
+          "retrieved_at": "2026-05-28T02:44:21.474Z",
+          "raw_snapshot_ref": "elitefourum_alternate_checklist:pl4:87:stamped",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        },
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-arceus/expert-belt-league-87",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "87",
+          "card_name": "Expert Belt",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Expert Belt [League] #87",
+          "evidence_text_or_label": "Expert Belt [League] #87",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.979Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:8597944",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 2,
+      "source_count": 2
     },
     {
       "source_report": "PKG-15J",
@@ -1032,7 +1530,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Tsareena [1st Place League] #20",
           "evidence_text_or_label": "Tsareena [1st Place League] #20",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6870188",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1054,7 +1552,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Tsareena [3rd Place League] #20",
           "evidence_text_or_label": "Tsareena [3rd Place League] #20",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6931965",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1099,7 +1597,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Primarina [League] #41",
           "evidence_text_or_label": "Primarina [League] #41",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7471126",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1144,7 +1642,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Nest Ball [League Cup Staff] #123",
           "evidence_text_or_label": "Nest Ball [League Cup Staff] #123",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6385971",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1189,7 +1687,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Oricorio [1st Place League] #55",
           "evidence_text_or_label": "Oricorio [1st Place League] #55",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.135Z",
+          "retrieved_at": "2026-06-20T04:58:16.997Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5571584",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1234,7 +1732,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Aqua Patch [League Cup Staff] #119",
           "evidence_text_or_label": "Aqua Patch [League Cup Staff] #119",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.135Z",
+          "retrieved_at": "2026-06-20T04:58:16.997Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8096524",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1279,7 +1777,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Raichu [1st Place League] #41",
           "evidence_text_or_label": "Raichu [1st Place League] #41",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7374226",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1301,7 +1799,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Raichu [2nd Place League] #41",
           "evidence_text_or_label": "Raichu [2nd Place League] #41",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7465364",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1323,7 +1821,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Raichu [3rd Place League] #41",
           "evidence_text_or_label": "Raichu [3rd Place League] #41",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8444656",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1345,7 +1843,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Raichu [4th Place League] #41",
           "evidence_text_or_label": "Raichu [4th Place League] #41",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5700141",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1390,7 +1888,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Diancie [League] #94",
           "evidence_text_or_label": "Diancie [League] #94",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5705706",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1435,7 +1933,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Bodybuilding Dumbbells [League Staff] #113",
           "evidence_text_or_label": "Bodybuilding Dumbbells [League Staff] #113",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.121Z",
+          "retrieved_at": "2026-06-20T04:58:16.984Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5529192",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1480,7 +1978,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Counter Catcher [League Cup Staff] #91",
           "evidence_text_or_label": "Counter Catcher [League Cup Staff] #91",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.126Z",
+          "retrieved_at": "2026-06-20T04:58:16.988Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6009630",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1525,7 +2023,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Magnezone [4th Place League] #83",
           "evidence_text_or_label": "Magnezone [4th Place League] #83",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.184Z",
+          "retrieved_at": "2026-06-20T04:58:17.045Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9312157",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1570,7 +2068,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Escape Board [League Cup Staff] #122",
           "evidence_text_or_label": "Escape Board [League Cup Staff] #122",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.184Z",
+          "retrieved_at": "2026-06-20T04:58:17.045Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6226362",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1615,7 +2113,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Buzzwole [League] #77",
           "evidence_text_or_label": "Buzzwole [League] #77",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.995Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5705705",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1660,7 +2158,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Mysterious Treasure [League Cup] #113",
           "evidence_text_or_label": "Mysterious Treasure [League Cup] #113",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.134Z",
+          "retrieved_at": "2026-06-20T04:58:16.996Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5790342",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1705,7 +2203,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Magcargo [1st Place League] #24",
           "evidence_text_or_label": "Magcargo [1st Place League] #24",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.122Z",
+          "retrieved_at": "2026-06-20T04:58:16.985Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6245984",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1750,7 +2248,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Metagross [League Promo] #95",
           "evidence_text_or_label": "Metagross [League Promo] #95",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.122Z",
+          "retrieved_at": "2026-06-20T04:58:16.985Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4990416",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1795,7 +2293,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Rare Candy [League Cup] #142",
           "evidence_text_or_label": "Rare Candy [League Cup] #142",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.122Z",
+          "retrieved_at": "2026-06-20T04:58:16.985Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8136579",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1840,7 +2338,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Steven’s Resolve [League] #145",
           "evidence_text_or_label": "Steven’s Resolve [League] #145",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.122Z",
+          "retrieved_at": "2026-06-20T04:58:16.985Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5705714",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1885,7 +2383,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Zebstrika [1st Place League] #82",
           "evidence_text_or_label": "Zebstrika [1st Place League] #82",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.169Z",
+          "retrieved_at": "2026-06-20T04:58:17.031Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5571583",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1907,7 +2405,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Zebstrika [2nd Place League] #82",
           "evidence_text_or_label": "Zebstrika [2nd Place League] #82",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.169Z",
+          "retrieved_at": "2026-06-20T04:58:17.031Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4925884",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1952,7 +2450,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Naganadel [League] #108",
           "evidence_text_or_label": "Naganadel [League] #108",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.169Z",
+          "retrieved_at": "2026-06-20T04:58:17.030Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5705712",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -1997,7 +2495,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Electropower [League Cup Staff] #172",
           "evidence_text_or_label": "Electropower [League Cup Staff] #172",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.169Z",
+          "retrieved_at": "2026-06-20T04:58:17.030Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5551255",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2042,7 +2540,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Lost Blender [League] #181",
           "evidence_text_or_label": "Lost Blender [League] #181",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.169Z",
+          "retrieved_at": "2026-06-20T04:58:17.030Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9312173",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2087,7 +2585,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Quick Ball [League Cup Staff] #179",
           "evidence_text_or_label": "Quick Ball [League Cup Staff] #179",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.182Z",
+          "retrieved_at": "2026-06-20T04:58:17.043Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:3951747",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2132,7 +2630,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: League Staff #153",
           "evidence_text_or_label": "League Staff #153",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.186Z",
+          "retrieved_at": "2026-06-20T04:58:17.047Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:887693",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2177,7 +2675,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Pikachu [League Stamp] #49",
           "evidence_text_or_label": "Pikachu [League Stamp] #49",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.131Z",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6490256",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2222,7 +2720,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Pumpkaboo [2nd Place League] #56",
           "evidence_text_or_label": "Pumpkaboo [2nd Place League] #56",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:11205935",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2267,7 +2765,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Solrock [1st Place League] #64",
           "evidence_text_or_label": "Solrock [1st Place League] #64",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259705",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2289,7 +2787,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Solrock [2nd Place League] #64",
           "evidence_text_or_label": "Solrock [2nd Place League] #64",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259706",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2311,7 +2809,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Solrock [3rd Place League] #64",
           "evidence_text_or_label": "Solrock [3rd Place League] #64",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259707",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2333,7 +2831,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Solrock [4th Place League] #64",
           "evidence_text_or_label": "Solrock [4th Place League] #64",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259708",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2378,7 +2876,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Muscle Band [League] #121",
           "evidence_text_or_label": "Muscle Band [League] #121",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:12396704",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2423,7 +2921,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Professor's Letter [League] #123",
           "evidence_text_or_label": "Professor's Letter [League] #123",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.188Z",
+          "retrieved_at": "2026-06-20T04:58:17.048Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9771562",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2468,7 +2966,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Lucario [1st Place Pokemon League] #63",
           "evidence_text_or_label": "Lucario [1st Place Pokemon League] #63",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.131Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5165855",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2490,7 +2988,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Lucario [2nd Place League] #63",
           "evidence_text_or_label": "Lucario [2nd Place League] #63",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:11080586",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2512,7 +3010,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Lucario [3rd Place League] #63",
           "evidence_text_or_label": "Lucario [3rd Place League] #63",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:11080585",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2534,7 +3032,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Lucario [4th Place League] #63",
           "evidence_text_or_label": "Lucario [4th Place League] #63",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:11667975",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2579,7 +3077,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Volcarona [1st Place League] #15",
           "evidence_text_or_label": "Volcarona [1st Place League] #15",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.041Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5205674",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2601,7 +3099,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Volcarona [2nd Place League] #15",
           "evidence_text_or_label": "Volcarona [2nd Place League] #15",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.041Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6303791",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2623,7 +3121,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Volcarona [3rd Place League] #15",
           "evidence_text_or_label": "Volcarona [3rd Place League] #15",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.041Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4928492",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2645,7 +3143,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Volcarona [4th Place League] #15",
           "evidence_text_or_label": "Volcarona [4th Place League] #15",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.041Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6377525",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2690,7 +3188,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Ninja Boy [League Cup] #103",
           "evidence_text_or_label": "Ninja Boy [League Cup] #103",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.180Z",
+          "retrieved_at": "2026-06-20T04:58:17.041Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7150029",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2735,7 +3233,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Mew [1st Place League] #53",
           "evidence_text_or_label": "Mew [1st Place League] #53",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.130Z",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4998301",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2757,7 +3255,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Mew [2nd Place League] #53",
           "evidence_text_or_label": "Mew [2nd Place League] #53",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.130Z",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4658550",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2779,7 +3277,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Mew [3rd Place League] #53",
           "evidence_text_or_label": "Mew [3rd Place League] #53",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.130Z",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5530247",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2801,7 +3299,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Mew [4th Place League] #53",
           "evidence_text_or_label": "Mew [4th Place League] #53",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.130Z",
+          "retrieved_at": "2026-06-20T04:58:16.993Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4695524",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2846,7 +3344,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Fiery Torch [League] #89",
           "evidence_text_or_label": "Fiery Torch [League] #89",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6241687",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2891,7 +3389,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Magnetic Storm [League] #91",
           "evidence_text_or_label": "Magnetic Storm [League] #91",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9312156",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2936,7 +3434,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Pokemon Fan Club [League] #94",
           "evidence_text_or_label": "Pokemon Fan Club [League] #94",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.132Z",
+          "retrieved_at": "2026-06-20T04:58:16.994Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:12414367",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -2981,7 +3479,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Shelmet [1st Place League] #8",
           "evidence_text_or_label": "Shelmet [1st Place League] #8",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.134Z",
+          "retrieved_at": "2026-06-20T04:58:16.996Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9176166",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3026,7 +3524,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Battle Reporter [League] #88",
           "evidence_text_or_label": "Battle Reporter [League] #88",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.134Z",
+          "retrieved_at": "2026-06-20T04:58:16.996Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:9312166",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3071,7 +3569,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Klefki [1st Place League] #66",
           "evidence_text_or_label": "Klefki [1st Place League] #66",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.034Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259734",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3093,7 +3591,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Klefki [2nd Place League] #66",
           "evidence_text_or_label": "Klefki [2nd Place League] #66",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.034Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:8315400",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3115,7 +3613,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Klefki [3rd Place League] #66",
           "evidence_text_or_label": "Klefki [3rd Place League] #66",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.034Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:4928494",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3137,7 +3635,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Klefki [4th Place League] #66",
           "evidence_text_or_label": "Klefki [4th Place League] #66",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.173Z",
+          "retrieved_at": "2026-06-20T04:58:17.034Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:10259735",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3182,7 +3680,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Marowak [1st Place League] #78",
           "evidence_text_or_label": "Marowak [1st Place League] #78",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6142768",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3204,7 +3702,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Marowak [2nd Place League] #78",
           "evidence_text_or_label": "Marowak [2nd Place League] #78",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6401414",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3226,7 +3724,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Marowak [3rd Place League] #78",
           "evidence_text_or_label": "Marowak [3rd Place League] #78",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6748683",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3248,7 +3746,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Marowak [4th Place League] #78",
           "evidence_text_or_label": "Marowak [4th Place League] #78",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6736412",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3258,6 +3756,96 @@
       "crosshatch_alias_source_families": [],
       "blocked_source_count": 4,
       "source_count": 4
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/flabebe-league-promo-101",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "card_number": "101",
+          "card_name": "Flabébé",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Flabebe [League Promo] #101",
+          "evidence_text_or_label": "Flabebe [League Promo] #101",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:9297004",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "no_active_finish_observation"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "blocked_no_explicit_active_finish",
+      "evidence_records": [
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/floette-league-stamp-102",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "card_number": "102",
+          "card_name": "Floette",
+          "finish_key": null,
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Floette [League Stamp] #102",
+          "evidence_text_or_label": "Floette [League Stamp] #102",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:5872661",
+          "observation_status": "blocked_no_explicit_active_finish",
+          "notes": "source identifies League/stamped identity but does not prove active child finish"
+        }
+      ],
+      "accepted_exact_source_families": [],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 1,
+      "source_count": 1
     },
     {
       "source_report": "PKG-15J",
@@ -3293,7 +3881,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Greninja [1st Place League] #40",
           "evidence_text_or_label": "Greninja [1st Place League] #40",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.979Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:5705291",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3315,7 +3903,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Greninja [2nd Place League] #40",
           "evidence_text_or_label": "Greninja [2nd Place League] #40",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6396932",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3337,7 +3925,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Greninja [3rd Place League] #40",
           "evidence_text_or_label": "Greninja [3rd Place League] #40",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6392471",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3359,7 +3947,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: Greninja [4th Place League] #40",
           "evidence_text_or_label": "Greninja [4th Place League] #40",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.117Z",
+          "retrieved_at": "2026-06-20T04:58:16.980Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:6135472",
           "observation_status": "blocked_no_explicit_active_finish",
           "notes": "source identifies League/stamped identity but does not prove active child finish"
@@ -3381,13 +3969,34 @@
       "finish_key": "reverse",
       "queue_status": "active_finish_required",
       "blockers": [
-        "exact_active_finish_source_needed",
         "crosshatch_alias_governance_required"
       ],
       "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
       "write_ready_now": 0,
-      "readiness_status": "crosshatch_alias_review_only",
+      "readiness_status": "crosshatch_alias_governance_required_before_dry_run",
       "evidence_records": [
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_family": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json",
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "card_number": "5",
+          "card_name": "Garchomp",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PokemonFlashfire product/category label: Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "evidence_text_or_label": "Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:48:57.067Z",
+          "raw_snapshot_ref": "pokemonflashfire:pl3:5:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        },
         {
           "source_key": "pricecharting_csv_preserved_league",
           "source_family": "pricecharting",
@@ -3405,18 +4014,91 @@
           "evidence_label": "PriceCharting CSV preserved product title: Garchomp [Crosshatch Holo] #5",
           "evidence_text_or_label": "Garchomp [Crosshatch Holo] #5",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.181Z",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:7456997",
           "observation_status": "crosshatch_alias_review_required",
           "notes": "source label names Crosshatch Holo; this likely maps to the stamped reverse lane but needs explicit governance before write"
         }
       ],
-      "accepted_exact_source_families": [],
+      "accepted_exact_source_families": [
+        "pokemonflashfire_league_reverse_exact"
+      ],
       "crosshatch_alias_source_families": [
         "pricecharting"
       ],
       "blocked_source_count": 0,
-      "source_count": 1
+      "source_count": 2
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "26",
+      "card_name": "Dusknoir FB",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "crosshatch_alias_governance_required"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "crosshatch_alias_governance_required_before_dry_run",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/pl3.json",
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "card_number": "26",
+          "card_name": "Dusknoir FB",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:pl3:26:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        },
+        {
+          "source_key": "pricecharting_csv_preserved_league",
+          "source_family": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-supreme-victors/dusknoir-fb-crosshatch-holo-26",
+          "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "card_number": "26",
+          "card_name": "Dusknoir FB",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PriceCharting CSV preserved product title: Dusknoir FB [Crosshatch Holo] #26",
+          "evidence_text_or_label": "Dusknoir FB [Crosshatch Holo] #26",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:58:17.042Z",
+          "raw_snapshot_ref": "pricecharting_csv_preserved:6341889",
+          "observation_status": "crosshatch_alias_review_required",
+          "notes": "source label names Crosshatch Holo; this likely maps to the stamped reverse lane but needs explicit governance before write"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [
+        "pricecharting"
+      ],
+      "blocked_source_count": 0,
+      "source_count": 2
     },
     {
       "source_report": "PKG-15J",
@@ -3780,26 +4462,6 @@
     },
     {
       "source_report": "PKG-15J",
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "98",
-      "card_name": "Volkner's Philosophy",
-      "variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "finish_key": null,
-      "queue_status": "active_finish_required",
-      "blockers": [
-        "no_preserved_source_match"
-      ],
-      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
-      "write_ready_now": 0,
-      "readiness_status": "no_preserved_source_match",
-      "evidence_records": [],
-      "accepted_exact_source_families": [],
-      "crosshatch_alias_source_families": []
-    },
-    {
-      "source_report": "PKG-15J",
       "set_key": "xy3",
       "set_name": "Furious Fists",
       "card_number": "12",
@@ -3842,6 +4504,147 @@
       "source_report": "PKG-15J",
       "set_key": "bw1",
       "set_name": "Black & White",
+      "card_number": "53",
+      "card_name": "Whirlipede",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw1.json",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "53",
+          "card_name": "Whirlipede",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw1:53:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "79",
+      "card_name": "Watchog",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw1.json",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "79",
+          "card_name": "Watchog",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw1:79:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "81",
+      "card_name": "Lillipup",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw1.json",
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "81",
+          "card_name": "Lillipup",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw1:81:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw1",
+      "set_name": "Black & White",
       "card_number": "107",
       "card_name": "Water Energy",
       "variant_key": "league_stamp",
@@ -3872,7 +4675,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:bw1:107:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -3887,10 +4690,10 @@
     },
     {
       "source_report": "PKG-15J",
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "97",
-      "card_name": "Pokémon Collector",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "109",
+      "card_name": "Bianca",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
       "finish_key": "reverse",
@@ -3906,21 +4709,209 @@
           "source_key": "pokecardvalues_stamped_finish",
           "source_family": "pokecardvalues",
           "source_kind": "collector_reference",
-          "source_url": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/",
-          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/hgss1.json",
-          "set_key": "hgss1",
-          "set_name": "HeartGold & SoulSilver",
-          "card_number": "97",
-          "card_name": "Pokémon Collector",
+          "source_url": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw11.json",
+          "set_key": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_number": "109",
+          "card_name": "Bianca",
           "finish_key": "reverse",
           "variant_key": "league_stamp",
           "stamp_label": "League Stamp",
           "evidence_type": "finish_presence",
-          "evidence_label": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
-          "evidence_text_or_label": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
+          "evidence_label": "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
-          "raw_snapshot_ref": "pokecardvalues:hgss1:97:league_stamp:reverse",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw11:109:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "82",
+      "card_name": "Unfezant",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw2.json",
+          "set_key": "bw2",
+          "set_name": "Emerging Powers",
+          "card_number": "82",
+          "card_name": "Unfezant",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw2:82:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw3.json",
+          "set_key": "bw3",
+          "set_name": "Noble Victories",
+          "card_number": "32",
+          "card_name": "Cryogonal",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw3:32:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "120",
+      "card_name": "Escape Rope",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bw8.json",
+          "set_key": "bw8",
+          "set_name": "Plasma Storm",
+          "card_number": "120",
+          "card_name": "Escape Rope",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:bw8:120:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "39",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/hgss1.json",
+          "set_key": "hgss1",
+          "set_name": "HeartGold & SoulSilver",
+          "card_number": "39",
+          "card_name": "Delibird",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:hgss1:39:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
         }
@@ -3966,7 +4957,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:hgss1:103:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -3983,8 +4974,55 @@
       "source_report": "PKG-15J",
       "set_key": "hgss2",
       "set_name": "HS—Unleashed",
-      "card_number": "82",
-      "card_name": "Rare Candy",
+      "card_number": "7",
+      "card_name": "Politoed",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_family": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json",
+          "set_key": "hgss2",
+          "set_name": "HS—Unleashed",
+          "card_number": "7",
+          "card_name": "Politoed",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PokemonFlashfire product/category label: Politoed 7/95 Reverse Holo Pokemon League Promo",
+          "evidence_text_or_label": "Politoed 7/95 Reverse Holo Pokemon League Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:48:57.067Z",
+          "raw_snapshot_ref": "pokemonflashfire:hgss2:7:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokemonflashfire_league_reverse_exact"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "104",
+      "card_name": "Broken Time-Space",
       "variant_key": "league_stamp",
       "stamp_label": "League Stamp",
       "finish_key": "reverse",
@@ -4000,21 +5038,115 @@
           "source_key": "pokecardvalues_stamped_finish",
           "source_family": "pokecardvalues",
           "source_kind": "collector_reference",
-          "source_url": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/",
-          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/hgss2.json",
-          "set_key": "hgss2",
-          "set_name": "HS—Unleashed",
-          "card_number": "82",
-          "card_name": "Rare Candy",
+          "source_url": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/pl1.json",
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "card_number": "104",
+          "card_name": "Broken Time-Space",
           "finish_key": "reverse",
           "variant_key": "league_stamp",
           "stamp_label": "League Stamp",
           "evidence_type": "finish_presence",
-          "evidence_label": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
-          "evidence_text_or_label": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
+          "evidence_label": "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
-          "raw_snapshot_ref": "pokecardvalues:hgss2:82:league_stamp:reverse",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:pl1:104:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "32",
+      "card_name": "Spiritomb",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/pl4.json",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "32",
+          "card_name": "Spiritomb",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:pl4:32:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "87",
+      "card_name": "Expert Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/pl4.json",
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "card_number": "87",
+          "card_name": "Expert Belt",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:pl4:87:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
         }
@@ -4060,7 +5192,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm1:41:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4107,7 +5239,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm3:94:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4154,7 +5286,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm6:77:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4201,7 +5333,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm7:95:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4248,7 +5380,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm8:108:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4295,7 +5427,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:sm8:181:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4342,7 +5474,7 @@
           "evidence_label": "PriceCharting CSV preserved product title: League Staff [Reverse Holo] #153",
           "evidence_text_or_label": "League Staff [Reverse Holo] #153",
           "language": "en",
-          "retrieved_at": "2026-06-12T23:30:24.186Z",
+          "retrieved_at": "2026-06-20T04:58:17.047Z",
           "raw_snapshot_ref": "pricecharting_csv_preserved:887864",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source label explicitly names Reverse Holo/Reverse Holofoil"
@@ -4389,7 +5521,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:xy1:121:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4436,7 +5568,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:xy2:89:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4483,7 +5615,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:xy2:91:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4530,7 +5662,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:xy2:94:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4577,7 +5709,7 @@
           "evidence_label": "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo",
           "evidence_text_or_label": "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo",
           "language": "en",
-          "retrieved_at": "2026-06-12T08:22:30.553Z",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
           "raw_snapshot_ref": "pokecardvalues:xy3:88:league_stamp:reverse",
           "observation_status": "accepted_exact_active_finish",
           "notes": "source row already carries an active finish key"
@@ -4589,6 +5721,236 @@
       "crosshatch_alias_source_families": [],
       "blocked_source_count": 0,
       "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/xy8.json",
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "card_number": "101",
+          "card_name": "Flabébé",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:xy8:101:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [
+        "second_independent_source_needed"
+      ],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "single_source_exact_active_finish_second_source_needed",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/xy8.json",
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "card_number": "102",
+          "card_name": "Floette",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:xy8:102:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 1
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "97",
+      "card_name": "Pokémon Collector",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "two_source_exact_active_finish_ready_for_guarded_dry_run",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/hgss1.json",
+          "set_key": "hgss1",
+          "set_name": "HeartGold & SoulSilver",
+          "card_number": "97",
+          "card_name": "Pokémon Collector",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:hgss1:97:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        },
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_family": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/pokemon-collector-97123-reverse-holo-pokemon-league-promo/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json",
+          "set_key": "hgss1",
+          "set_name": "HeartGold & SoulSilver",
+          "card_number": "97",
+          "card_name": "Pokémon Collector",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PokemonFlashfire product/category label: Pokemon Collector 97/123 Reverse Holo Pokemon League Promo",
+          "evidence_text_or_label": "Pokemon Collector 97/123 Reverse Holo Pokemon League Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:48:57.067Z",
+          "raw_snapshot_ref": "pokemonflashfire:hgss1:97:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues",
+        "pokemonflashfire_league_reverse_exact"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 2
+    },
+    {
+      "source_report": "PKG-15J",
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "82",
+      "card_name": "Rare Candy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "queue_status": "active_finish_required",
+      "blockers": [],
+      "recommended_next_action": "Acquire exact active child finish evidence before parent identity insertion.",
+      "write_ready_now": 0,
+      "readiness_status": "two_source_exact_active_finish_ready_for_guarded_dry_run",
+      "evidence_records": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_family": "pokecardvalues",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/hgss2.json",
+          "set_key": "hgss2",
+          "set_name": "HS—Unleashed",
+          "card_number": "82",
+          "card_name": "Rare Candy",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
+          "evidence_text_or_label": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-13T00:02:20.623Z",
+          "raw_snapshot_ref": "pokecardvalues:hgss2:82:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        },
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_family": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/rare-candy-8295-reverse-holo-pokemon-league-promo/",
+          "source_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json",
+          "set_key": "hgss2",
+          "set_name": "HS—Unleashed",
+          "card_number": "82",
+          "card_name": "Rare Candy",
+          "finish_key": "reverse",
+          "variant_key": "league_stamp",
+          "stamp_label": "League Stamp",
+          "evidence_type": "finish_presence",
+          "evidence_label": "PokemonFlashfire product/category label: Rare Candy 82/95 Reverse Holo Pokemon League Promo",
+          "evidence_text_or_label": "Rare Candy 82/95 Reverse Holo Pokemon League Promo",
+          "language": "en",
+          "retrieved_at": "2026-06-20T04:48:57.067Z",
+          "raw_snapshot_ref": "pokemonflashfire:hgss2:82:league_stamp:reverse",
+          "observation_status": "accepted_exact_active_finish",
+          "notes": "source row already carries an active finish key"
+        }
+      ],
+      "accepted_exact_source_families": [
+        "pokecardvalues",
+        "pokemonflashfire_league_reverse_exact"
+      ],
+      "crosshatch_alias_source_families": [],
+      "blocked_source_count": 0,
+      "source_count": 2
     }
   ]
 }

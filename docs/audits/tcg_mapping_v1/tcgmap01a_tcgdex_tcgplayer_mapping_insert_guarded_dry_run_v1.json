@@ -1,0 +1,508 @@
+{
+  "package_id": "TCGMAP-01A-TCGDEX-TCGPLAYER-MAPPING-INSERTS",
+  "generated_at": "2026-06-19T06:12:07.268Z",
+  "pass": true,
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "rollback_only": true,
+  "readiness_report": "docs\\audits\\tcg_mapping_v1\\tcg_mapping_tcgdex_tcgplayer_readiness_v1.json",
+  "readiness_fingerprint_sha256": "301f0fd37e9eebd23c3beab04e8792e067d5ba6d5e9d0a85b5ffdc20ebce50c4",
+  "target_rows": 3066,
+  "target_fingerprint_sha256": "30cfdb7d896b8c2eb969caf326468f37b7bd5e1badd35d85d7b5f9f3b855b7a6",
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-19T06:12:05.051Z",
+      "scoped_rows": [],
+      "scoped_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "global_counts": {
+        "active_tcgplayer_rows": 14118,
+        "active_tcgplayer_card_prints": 14118,
+        "active_tcgplayer_external_ids": 14118
+      },
+      "global_hash_sha256": "183ce4f64f51cda14324087b4ce10ac0a875ab3978e1ebebd0f6740faa80a95a"
+    },
+    "guard": {
+      "target_count": 3066,
+      "distinct_card_print_count": 3066,
+      "distinct_external_id_count": 3066,
+      "non_tcgplayer_source_count": 0,
+      "missing_external_id_count": 0,
+      "missing_parent_count": 0,
+      "active_card_mapping_collision_count": 0,
+      "external_id_collision_count": 0,
+      "batch_duplicate_card_print_count": 0,
+      "batch_duplicate_external_id_count": 0,
+      "target_fingerprint_sha256": "30cfdb7d896b8c2eb969caf326468f37b7bd5e1badd35d85d7b5f9f3b855b7a6"
+    },
+    "inside_transaction_proof": {
+      "inserted_rows": 3066,
+      "inserted_active_rows": 3066,
+      "active_external_id_collision_groups": 0,
+      "active_card_print_multi_mapping_groups": 0
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-19T06:12:07.268Z",
+      "scoped_rows": [],
+      "scoped_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "global_counts": {
+        "active_tcgplayer_rows": 14118,
+        "active_tcgplayer_card_prints": 14118,
+        "active_tcgplayer_external_ids": 14118
+      },
+      "global_hash_sha256": "183ce4f64f51cda14324087b4ce10ac0a875ab3978e1ebebd0f6740faa80a95a"
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "sample_rows": [
+    {
+      "card_print_id": "9553a435-5e03-4398-9f04-f64c23284ce1",
+      "source": "tcgplayer",
+      "external_id": "623528",
+      "tcgdex_external_id": "sv09-101",
+      "set_code": "sv09",
+      "number": "101",
+      "name": "Bombirdier",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv09-101",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "83150d67-60cb-4f96-93d2-93ade5881bbf",
+      "source": "tcgplayer",
+      "external_id": "523772",
+      "tcgdex_external_id": "sv04-102",
+      "set_code": "sv04",
+      "number": "102",
+      "name": "Nacli",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-102",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "a582bdb5-4e56-4348-8b5d-035a9fb0792f",
+      "source": "tcgplayer",
+      "external_id": "523774",
+      "tcgdex_external_id": "sv04-104",
+      "set_code": "sv04",
+      "number": "104",
+      "name": "Garganacl",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-104",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "43300ce3-2353-41d0-b263-9e1fb175692f",
+      "source": "tcgplayer",
+      "external_id": "523804",
+      "tcgdex_external_id": "sv04-127",
+      "set_code": "sv04",
+      "number": "127",
+      "name": "Ferroseed",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-127",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "72d7400b-fd67-4985-9378-98eff1e2f051",
+      "source": "tcgplayer",
+      "external_id": "523773",
+      "tcgdex_external_id": "sv04-103",
+      "set_code": "sv04",
+      "number": "103",
+      "name": "Naclstack",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-103",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "ed1ec152-addf-4f86-b159-e32cc5cbfa3c",
+      "source": "tcgplayer",
+      "external_id": "523787",
+      "tcgdex_external_id": "sv04-113",
+      "set_code": "sv04",
+      "number": "113",
+      "name": "Absol",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-113",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "727e3eaa-8f1f-457c-85ec-8da58bdf01b4",
+      "source": "tcgplayer",
+      "external_id": "523800",
+      "tcgdex_external_id": "sv04-124",
+      "set_code": "sv04",
+      "number": "124",
+      "name": "Roaring Moon ex",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-124",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "fb646318-b121-42aa-ac7f-554e3dc4d900",
+      "source": "tcgplayer",
+      "external_id": "523806",
+      "tcgdex_external_id": "sv04-129",
+      "set_code": "sv04",
+      "number": "129",
+      "name": "Durant",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-129",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "6f092ad8-88f0-4860-9c71-a622bf5dff6a",
+      "source": "tcgplayer",
+      "external_id": "523813",
+      "tcgdex_external_id": "sv04-134",
+      "set_code": "sv04",
+      "number": "134",
+      "name": "Aegislash",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-134",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "e96423b2-4b56-48ee-a32f-d66cd5e03648",
+      "source": "tcgplayer",
+      "external_id": "523797",
+      "tcgdex_external_id": "sv04-122",
+      "set_code": "sv04",
+      "number": "122",
+      "name": "Lokix",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-122",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "5c2595e8-5e81-4d07-b9d0-bc2ce488c857",
+      "source": "tcgplayer",
+      "external_id": "523817",
+      "tcgdex_external_id": "sv04-138",
+      "set_code": "sv04",
+      "number": "138",
+      "name": "Orthworm",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-138",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "10d8582d-ef90-448b-933c-11154bea31e8",
+      "source": "tcgplayer",
+      "external_id": "523818",
+      "tcgdex_external_id": "sv04-139",
+      "set_code": "sv04",
+      "number": "139",
+      "name": "Gholdengo ex",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-139",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "164b4228-2d10-416e-a67c-86ad72df6ce1",
+      "source": "tcgplayer",
+      "external_id": "523779",
+      "tcgdex_external_id": "sv04-107",
+      "set_code": "sv04",
+      "number": "107",
+      "name": "Slither Wing",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-107",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "79f69f10-a40c-4485-a0be-4b6bfab4d67a",
+      "source": "tcgplayer",
+      "external_id": "523851",
+      "tcgdex_external_id": "sv04-170",
+      "set_code": "sv04",
+      "number": "170",
+      "name": "Professor Sada's Vitality",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-170",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "1381a124-8bc2-4da9-bdab-93353447bdef",
+      "source": "tcgplayer",
+      "external_id": "523809",
+      "tcgdex_external_id": "sv04-132",
+      "set_code": "sv04",
+      "number": "132",
+      "name": "Doublade",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-132",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "3b09e8f3-3438-4402-9f06-42d7f6e2db0e",
+      "source": "tcgplayer",
+      "external_id": "523777",
+      "tcgdex_external_id": "sv04-105",
+      "set_code": "sv04",
+      "number": "105",
+      "name": "Klawf",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-105",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "aad885d8-e0bf-41a2-b7be-1827ff5b0d88",
+      "source": "tcgplayer",
+      "external_id": "523788",
+      "tcgdex_external_id": "sv04-114",
+      "set_code": "sv04",
+      "number": "114",
+      "name": "Purrloin",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-114",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "e0a5e3be-439d-43aa-8dec-b842bf8c3a05",
+      "source": "tcgplayer",
+      "external_id": "523791",
+      "tcgdex_external_id": "sv04-117",
+      "set_code": "sv04",
+      "number": "117",
+      "name": "Garbodor",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-117",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "bb3020fe-b783-4e92-87e2-dc2b162353fb",
+      "source": "tcgplayer",
+      "external_id": "523784",
+      "tcgdex_external_id": "sv04-111",
+      "set_code": "sv04",
+      "number": "111",
+      "name": "Golbat",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-111",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "1a75127f-94a9-4c81-9c51-f0be8d6a87fc",
+      "source": "tcgplayer",
+      "external_id": "523771",
+      "tcgdex_external_id": "sv04-101",
+      "set_code": "sv04",
+      "number": "101",
+      "name": "Nacli",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-101",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "04921b45-a4d7-4237-a6b4-24386e13c0b9",
+      "source": "tcgplayer",
+      "external_id": "523808",
+      "tcgdex_external_id": "sv04-131",
+      "set_code": "sv04",
+      "number": "131",
+      "name": "Honedge",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-131",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "source": "tcgplayer",
+      "external_id": "523796",
+      "tcgdex_external_id": "sv04-121",
+      "set_code": "sv04",
+      "number": "121",
+      "name": "Morpeko",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-121",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "4d52eeef-3157-400a-bbf7-7661b4fbfe62",
+      "source": "tcgplayer",
+      "external_id": "523795",
+      "tcgdex_external_id": "sv04-120",
+      "set_code": "sv04",
+      "number": "120",
+      "name": "Thievul",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-120",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "82f30f6c-0abe-4178-9398-3df26d976736",
+      "source": "tcgplayer",
+      "external_id": "523814",
+      "tcgdex_external_id": "sv04-135",
+      "set_code": "sv04",
+      "number": "135",
+      "name": "Aegislash ex",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-135",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    },
+    {
+      "card_print_id": "4c8e0b1b-0b60-4066-ae5b-19d9371d4c55",
+      "source": "tcgplayer",
+      "external_id": "523790",
+      "tcgdex_external_id": "sv04-116",
+      "set_code": "sv04",
+      "number": "116",
+      "name": "Trubbish",
+      "meta": {
+        "derived_from": "tcgdex_pricing_productId",
+        "tcgdex_external_id": "sv04-116",
+        "validated_variant_paths": [
+          "pricing.tcgplayer.normal.productId",
+          "pricing.tcgplayer.reverse-holofoil.productId"
+        ],
+        "promoted_by": "tcg_mapping_tcgdex_tcgplayer_readiness_v1"
+      }
+    }
+  ]
+}

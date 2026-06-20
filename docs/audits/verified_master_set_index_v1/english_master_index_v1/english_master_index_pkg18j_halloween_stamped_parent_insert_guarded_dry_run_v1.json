@@ -1,0 +1,3270 @@
+{
+  "generated_at": "2026-06-20T04:09:53.057Z",
+  "version": "english_master_index_pkg18j_halloween_stamped_parent_insert_guarded_dry_run_v1",
+  "package_id": "PKG-18J-HALLOWEEN-STAMPED-PARENT-INSERTS",
+  "package_fingerprint_sha256": "7383e51d46248ea1f0da306feb03572f7975cca5f651a89ab624d4e6dabf6960",
+  "dry_run_proof_sha256": null,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18i_halloween_active_finish_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 22,
+    "by_set": {
+      "swsh4": 4,
+      "swsh2": 3,
+      "swsh3": 3,
+      "swsh1": 2,
+      "swsh10": 2,
+      "swsh5": 2,
+      "swsh6": 2,
+      "swsh9": 2,
+      "swsh12": 1,
+      "swsh8": 1
+    },
+    "by_finish": {
+      "normal": 22
+    },
+    "by_stamp_label": {
+      "Pikachu Jack-o'-Lantern Stamp": 21,
+      "Pikachu Pumpkin Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "eec913a3-35cb-4ce3-bacc-1e7da08b06fe",
+        "target_child_id": "770f0fe6-9c45-406a-bf6e-917ce57da41d",
+        "base_parent_id": "87196989-b663-4f42-865d-32d5fab9853c",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "89",
+        "card_name": "Sinistea",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/sinistea-89"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/sinistea-89"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh1:89:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/sinistea-89",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Sinistea #89",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Sinistea #89",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "365ff4b6-fc0b-48cf-9d48-12067c87fc7a",
+        "target_child_id": "1010e64f-be19-47f5-946f-be4b70d93e83",
+        "base_parent_id": "1ade6258-668b-4027-b61e-4fd370cfa376",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "90",
+        "card_name": "Polteageist",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/polteageist-90"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/polteageist-90"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh1:90:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/polteageist-90",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Polteageist #90",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Polteageist #90",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "106a5e61-a3d7-46ec-b1dc-0d89859c7a36",
+        "target_child_id": "8b860652-9671-4933-bcb8-a1b39ca90a61",
+        "base_parent_id": "5940a75f-71bd-4136-8cb0-8d6cfaf30f1a",
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "card_number": "58",
+        "card_name": "Misdreavus",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/misdreavus-58"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/misdreavus-58"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh10:58:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/misdreavus-58",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Misdreavus #58",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Misdreavus #58",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "21e822a5-6bc8-4b39-8309-0e0d362ee3fe",
+        "target_child_id": "83f5af41-f96a-4b98-8cfb-ab65caddc0ed",
+        "base_parent_id": "947f5cf8-4824-4518-ad6a-b2f55e5754ae",
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "card_number": "103",
+        "card_name": "Nickit",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/nickit-103"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/nickit-103"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh10:103:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/nickit-103",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Nickit #103",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Nickit #103",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "13d10451-a654-4f8b-9ac1-b60404125881",
+        "target_child_id": "7f685e4e-86d5-4c2b-bbc6-2ea2f51759ed",
+        "base_parent_id": "d2b6650f-cdc1-46f3-bc43-7418439c61b1",
+        "set_key": "swsh12",
+        "set_name": "Silver Tempest",
+        "card_number": "103",
+        "card_name": "Zubat",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/zubat-103"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/zubat-103"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh12:103:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/zubat-103",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Zubat #103",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Zubat #103",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "e58c70ba-6b09-49e9-b904-09906796a258",
+        "target_child_id": "c9c756b1-0e69-46cc-9750-c266a42102b3",
+        "base_parent_id": "dc63e75c-ff8b-41aa-89ce-23b15114116e",
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "card_number": "31",
+        "card_name": "Litwick",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/litwick-31"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/litwick-31"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh2:31:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/litwick-31",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Litwick #31",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Litwick #31",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "890d5249-b8da-4b43-83f8-b2cbe7d1b0cf",
+        "target_child_id": "e1e60cff-dd27-4ec4-81a1-ab7c7377ad41",
+        "base_parent_id": "0dfb32d9-c6f7-4ac1-9ab4-c19c48b77bd5",
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "card_number": "32",
+        "card_name": "Lampent",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/lampent-32"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/lampent-32"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh2:32:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/lampent-32",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Lampent #32",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Lampent #32",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "5aa8d834-7206-4eb7-97d2-ffc2e9763ecc",
+        "target_child_id": "96672fb8-9118-497e-8072-c83f3ce05b53",
+        "base_parent_id": "60cfcf2e-cb67-4995-9870-6f4ba7c0de80",
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "card_number": "102",
+        "card_name": "Galarian Runerigus",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/galarian-runerigus-102"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/galarian-runerigus-102"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh2:102:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/galarian-runerigus-102",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Galarian Runerigus #102",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Galarian Runerigus #102",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "2c554e26-6ed5-4f0b-b800-cb098eb9215e",
+        "target_child_id": "43a631c8-2d75-4ba1-9079-95e3fef80783",
+        "base_parent_id": "7a895ebe-1ac4-4184-a87b-3b09a83bd77c",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "82",
+        "card_name": "Sinistea",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/sinistea-82"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/sinistea-82"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh3:82:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/sinistea-82",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Sinistea #82",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Sinistea #82",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "9079661d-15da-4a80-8f72-8e2057b03d61",
+        "target_child_id": "c164121e-3def-4fd9-86dd-e97a658e09c0",
+        "base_parent_id": "2c461ddb-27aa-47db-b56f-cd29682abdfa",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "102",
+        "card_name": "Spinarak",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/spinarak-102"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/spinarak-102"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh3:102:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/spinarak-102",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Spinarak #102",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Spinarak #102",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "ab0f27af-7728-4500-ac26-e4260373eb1d",
+        "target_child_id": "e6b3fe98-551f-43fe-94dd-a4e2333729a3",
+        "base_parent_id": "9f136db1-6ec7-4e5d-b56e-24adcb242eb3",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "103",
+        "card_name": "Ariados",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/ariados-103"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/ariados-103"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh3:103:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/ariados-103",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Ariados #103",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Ariados #103",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "8357d442-1913-42dd-b02f-6aac3a09222b",
+        "target_child_id": "31aefe32-13c6-4e77-a419-b0860ee58375",
+        "base_parent_id": "d52cbdd8-ff7d-49f9-a8b1-0dbcaeefc28e",
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "card_number": "19",
+        "card_name": "Dhelmise",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dhelmise-19"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dhelmise-19"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh4:19:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dhelmise-19",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Dhelmise #19",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Dhelmise #19",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "e0297df5-a791-4dd4-9efe-37381730a25d",
+        "target_child_id": "eea1c889-9a6f-46a0-abf1-e534cc5011a4",
+        "base_parent_id": "aca8e8b9-b371-41e3-ac81-a38853fea6ac",
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "card_number": "69",
+        "card_name": "Duskull",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/duskull-69"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/duskull-69"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh4:69:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/duskull-69",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Duskull #69",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Duskull #69",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "d33d2057-443d-4ae7-92a5-85d5c7d03c54",
+        "target_child_id": "e5dc023e-ebc2-419e-a346-467be30e8fd2",
+        "base_parent_id": "b96ba072-1157-49be-9db0-f4a5410eac85",
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "card_number": "70",
+        "card_name": "Dusclops",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dusclops-70"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dusclops-70"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh4:70:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dusclops-70",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Dusclops #70",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Dusclops #70",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "922fb80c-7209-454f-b94a-c94f422e8941",
+        "target_child_id": "48839bf9-4d08-4f3f-a72a-91b5862a3f9e",
+        "base_parent_id": "90e5ea75-0713-4b4e-8469-b82a6f9065f9",
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "card_number": "95",
+        "card_name": "Lycanroc",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/lycanroc-95"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/lycanroc-95"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh4:95:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/lycanroc-95",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2023",
+            "product_name": "Lycanroc #95",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Lycanroc #95",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "984cd933-81b1-42d3-8758-be80aba8f300",
+        "target_child_id": "4d355f74-b2da-490f-b3ca-7209172e71f1",
+        "base_parent_id": "ef852d52-e257-4db7-8a91-b959e4b299a3",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "69",
+        "card_name": "Cubone",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/cubone-69"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/cubone-69"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh5:69:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/cubone-69",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Cubone #69",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Cubone #69",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "fcf376cc-2498-43d0-adec-8165daabe7e3",
+        "target_child_id": "ce781be3-d0d0-4a87-8081-9ecaa9fe8bba",
+        "base_parent_id": "1f4acc4f-db5f-410e-a98e-f6316aadf7cc",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "93",
+        "card_name": "Murkrow",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/murkrow-93"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/murkrow-93"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh5:93:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/murkrow-93",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Murkrow #93",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Murkrow #93",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "42d61af8-e219-42d8-90ee-25fa455586ca",
+        "target_child_id": "5be1ba7a-c97d-44b2-98fa-ae0ff618730c",
+        "base_parent_id": "90b0078d-f270-4b3f-9ce7-23b7db3720de",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "55",
+        "card_name": "Gastly",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/gastly-55"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/gastly-55"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh6:55:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/gastly-55",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Gastly #55",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Gastly #55",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "842ab29c-45fc-40a2-a9f5-edbd2def6889",
+        "target_child_id": "84ca7632-9189-41be-87a7-a7535fc909e9",
+        "base_parent_id": "88eb8593-47ef-42b6-b454-09175b3913c3",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "56",
+        "card_name": "Haunter",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/haunter-56"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/haunter-56"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh6:56:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/haunter-56",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Haunter #56",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Haunter #56",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "9852214f-5a8b-46fd-8dab-2d5f3b8a65ea",
+        "target_child_id": "e4fdedb4-516a-4016-bea7-df7b031ce890",
+        "base_parent_id": "c78685be-48d2-4e17-ae17-3164bd403433",
+        "set_key": "swsh8",
+        "set_name": "Fusion Strike",
+        "card_number": "16",
+        "card_name": "Phantump",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/phantump-16"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/phantump-16"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh8:16:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/phantump-16",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Phantump #16",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Phantump #16",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "6fb7618c-725b-49ec-b6c6-9d6be62165db",
+        "target_child_id": "2f8a30ed-21e6-4cda-ab33-147db61e949a",
+        "base_parent_id": "c6618fea-c02f-4db1-b8a1-0a286b1c84ca",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "60",
+        "card_name": "Duskull",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_jack_o_lantern_stamp",
+        "target_printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+        "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/duskull-60"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/duskull-60"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh9:60:pikachu_jack_o_lantern_stamp:normal",
+          "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/duskull-60",
+            "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Duskull #60",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Duskull #60",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      },
+      {
+        "target_parent_id": "6b2b24d6-8485-4ae1-a58e-da5aef1d63a2",
+        "target_child_id": "24ba7374-fd85-4c84-83dc-108d29ed3f4b",
+        "base_parent_id": "b425ac6b-78ce-443c-9bfa-ce640635305d",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "61",
+        "card_name": "Dusclops",
+        "target_finish_key": "normal",
+        "target_variant_key": "pikachu_pumpkin_stamp",
+        "target_printed_identity_modifier": "pikachu_pumpkin_stamp",
+        "stamp_label": "Pikachu Pumpkin Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/dusclops-61"
+        ],
+        "source_families": [
+          "pricecharting_trick_or_trade",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "b73d3ffb77fd4e9bfd428ee5b97bb92260ef7bd259ba5a06941298ffaaee1049",
+          "source_families": [
+            "pricecharting_trick_or_trade",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/dusclops-61"
+          ],
+          "evidence_label": "PriceCharting Trick or Trade exact product title supports Halloween stamp normal active finish",
+          "raw_snapshot_ref": "pkg18i:swsh9:61:pikachu_pumpkin_stamp:normal",
+          "stamp_label": "Pikachu Pumpkin Stamp",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting proves Trick or Trade product identity and finish label; original printed set comes from existing Master Index identity evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2022/dusclops-61",
+            "stamp_label": "Pikachu Pumpkin Stamp",
+            "console_name": "Pokemon Trick or Trade 2022",
+            "product_name": "Dusclops #61",
+            "source_status": "candidate_pricecharting_halloween_active_finish",
+            "evidence_label": "PriceCharting Trick or Trade exact product title: Dusclops #61",
+            "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
+            "stamped_variant_key": "pikachu_pumpkin_stamp",
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "5259bf07f115fb8a36eb063218b93ce65a924c5f56b082a0768fcf508bec6014"
+          }
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg18j_failed_rolled_back",
+    "error_message": "guard failed: {\"target_count\":22,\"target_parent_count\":22,\"target_child_count\":22,\"missing_base_count\":0,\"inactive_finish_count\":0,\"missing_base_finish_count\":0,\"parent_collision_count\":22,\"child_collision_count\":22,\"identity_target_collision_count\":22,\"ready_identity_projection_count\":22,\"identity_hash_collision_count\":0}",
+    "before_snapshot": {
+      "captured_at": "2026-06-20T04:09:52.347Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "87196989-b663-4f42-865d-32d5fab9853c",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "1ade6258-668b-4027-b61e-4fd370cfa376",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "947f5cf8-4824-4518-ad6a-b2f55e5754ae",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5940a75f-71bd-4136-8cb0-8d6cfaf30f1a",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d2b6650f-cdc1-46f3-bc43-7418439c61b1",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "60cfcf2e-cb67-4995-9870-6f4ba7c0de80",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "dc63e75c-ff8b-41aa-89ce-23b15114116e",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0dfb32d9-c6f7-4ac1-9ab4-c19c48b77bd5",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "2c461ddb-27aa-47db-b56f-cd29682abdfa",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9f136db1-6ec7-4e5d-b56e-24adcb242eb3",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7a895ebe-1ac4-4184-a87b-3b09a83bd77c",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d52cbdd8-ff7d-49f9-a8b1-0dbcaeefc28e",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "aca8e8b9-b371-41e3-ac81-a38853fea6ac",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b96ba072-1157-49be-9db0-f4a5410eac85",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "90e5ea75-0713-4b4e-8469-b82a6f9065f9",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ef852d52-e257-4db7-8a91-b959e4b299a3",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "1f4acc4f-db5f-410e-a98e-f6316aadf7cc",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "90b0078d-f270-4b3f-9ce7-23b7db3720de",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "88eb8593-47ef-42b6-b454-09175b3913c3",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c78685be-48d2-4e17-ae17-3164bd403433",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c6618fea-c02f-4db1-b8a1-0a286b1c84ca",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b425ac6b-78ce-443c-9bfa-ce640635305d",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "770f0fe6-9c45-406a-bf6e-917ce57da41d",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "1010e64f-be19-47f5-946f-be4b70d93e83",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "83f5af41-f96a-4b98-8cfb-ab65caddc0ed",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8b860652-9671-4933-bcb8-a1b39ca90a61",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7f685e4e-86d5-4c2b-bbc6-2ea2f51759ed",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "96672fb8-9118-497e-8072-c83f3ce05b53",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c9c756b1-0e69-46cc-9750-c266a42102b3",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e1e60cff-dd27-4ec4-81a1-ab7c7377ad41",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c164121e-3def-4fd9-86dd-e97a658e09c0",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e6b3fe98-551f-43fe-94dd-a4e2333729a3",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "43a631c8-2d75-4ba1-9079-95e3fef80783",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "31aefe32-13c6-4e77-a419-b0860ee58375",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "eea1c889-9a6f-46a0-abf1-e534cc5011a4",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e5dc023e-ebc2-419e-a346-467be30e8fd2",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "48839bf9-4d08-4f3f-a72a-91b5862a3f9e",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4d355f74-b2da-490f-b3ca-7209172e71f1",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ce781be3-d0d0-4a87-8081-9ecaa9fe8bba",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5be1ba7a-c97d-44b2-98fa-ae0ff618730c",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "84ca7632-9189-41be-87a7-a7535fc909e9",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e4fdedb4-516a-4016-bea7-df7b031ce890",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2f8a30ed-21e6-4cda-ab33-147db61e949a",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "24ba7374-fd85-4c84-83dc-108d29ed3f4b",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "cb9d19ed-7a6b-4b38-a2ca-5f830e840329",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2818f8f7db06f08ca9ea6803b96503cb926e834780f52b6e2e4a055043b5aa2d"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "83f5168f-1444-4c98-a836-55b587efeb06",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "0dca4acef63fb62a42c746cd5d1e3f65cf74e0bd6d578163f0740f2e83c23838"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3ff10f0f-efa6-4221-b131-66f48c2c7602",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "fbc6fecc372c037b4042dd175383a6d11bbc816ac22b290293b0311867fbaaee"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2f2535f9-caf0-4911-8b82-9bc040ab9271",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e42eee56109cc92c45ef4e0f506d9c198be1796d7604b3ed30e36895c3600ffc"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5c3b3723-161a-43e6-93a1-74e01771ede1",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "c85420680f97f2277753f56944797f3d84374fa759c5dcf2da998368862be131"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "59483d10-8aa7-4478-a411-6eb7164c7993",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2ba22a30b47dfda36f94ee0b52173b3dd06d5e9a45b2e94c2a1f6ce57b10c90e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "04ff6bf9-556a-4ed4-a8ee-d3d8152635b5",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "4e1144e522c07b416ad058eab121de58b562d0a0c35e18a83daecb2eabeb536f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0f7cc289-6a78-4be8-8d3e-fb128187863b",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b5dfb892edfa6410d80141f81d979f1d7a05cb12beea7cbf5ce0100e2900c0fa"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6065b34b-8da9-4afd-a5c8-e595718f4938",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "21ac610d45fc4c0c9366a51ab0e918f7d1e4a4b3a6639af649f5aa1da794f383"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e9aef6ae-6f4c-48ea-8f68-f045408b5af4",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "f5926ca6bc74618e8933a01f21038b7e5114b86260cb4431993f15c62645b0b4"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "709d7bc5-5c02-4188-801d-64298f2b9fbc",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ab2db8bcd15f8a21ac68794fb057fb80b35005f20a497d6ac75b8b1bc795cda0"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b8bb5128-8ed8-48fd-9dca-94dca50fa18c",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9d385089597063a36cf13466ef81fb60171096bd02aef86f91c533bed0580974"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d29caa64-ab1e-4464-b30b-e9ff329c598a",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "134b731cd9f8058417deade2ffb2d718983cff63cba7c2791698df13cac6168a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6745c9a9-3b16-4c1f-8d01-e87ad23aa714",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "5439a7f873c37071545d314a0f7186e79b7a3572deadcba27db5d4cfbeb91802"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5880a316-8506-4f2e-8736-42a14c522d75",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b7a8bbbae7b4786da139da7a36cdd98aaaef2a81250c715c2258b1831d76e1de"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2dd1a44d-eb15-4755-b215-556f04ce4fe4",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b641ede20472a38640ddf5f2f35cd172dc631ff55fb3443ce324d515e302aa28"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4ed1abc4-e318-4ab1-a340-5346130b2fca",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "612a7dfe585b90b2cbb7aa2be7c9c142235d2ddcd5d8087ee2d6b5eff85170d2"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6b5580c4-4161-4074-a255-509859729cc5",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1b7335416d6c9b41c5cbdd89d707acc8d40da9df0272ec90357a26c6c8071d93"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "65da47e4-2a05-41d1-b177-01f40f7830e1",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "365cec3ec7c70442fb56fea0a72dc13e96acef7d488502e45bc7fc03651e0cce"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "1398ae1a-90c8-4ce6-b608-9b624721711f",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d9deef176745b8a1829845dcdee1f0edea3be2ab28a486b09c66833fea00f37f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a07a76cf-030f-4eea-8d7e-5db1079dc521",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "4abbc23b618bafd28527207c45a5ff3129cb381f88a185ef296defeeacc94208"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4a21dcad-f031-40fe-9dd0-337e6b8ddfde",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": null,
+          "identity_key_hash": "5d37498e7e33a2072254347d081f90a8ab309eab7e873915a41c3c7909c475bc"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "eec913a3-35cb-4ce3-bacc-1e7da08b06fe",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "365ff4b6-fc0b-48cf-9d48-12067c87fc7a",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "21e822a5-6bc8-4b39-8309-0e0d362ee3fe",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "106a5e61-a3d7-46ec-b1dc-0d89859c7a36",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "13d10451-a654-4f8b-9ac1-b60404125881",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5aa8d834-7206-4eb7-97d2-ffc2e9763ecc",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e58c70ba-6b09-49e9-b904-09906796a258",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "890d5249-b8da-4b43-83f8-b2cbe7d1b0cf",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9079661d-15da-4a80-8f72-8e2057b03d61",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ab0f27af-7728-4500-ac26-e4260373eb1d",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2c554e26-6ed5-4f0b-b800-cb098eb9215e",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "8357d442-1913-42dd-b02f-6aac3a09222b",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e0297df5-a791-4dd4-9efe-37381730a25d",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d33d2057-443d-4ae7-92a5-85d5c7d03c54",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "922fb80c-7209-454f-b94a-c94f422e8941",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "984cd933-81b1-42d3-8758-be80aba8f300",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "fcf376cc-2498-43d0-adec-8165daabe7e3",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "42d61af8-e219-42d8-90ee-25fa455586ca",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "842ab29c-45fc-40a2-a9f5-edbd2def6889",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9852214f-5a8b-46fd-8dab-2d5f3b8a65ea",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6fb7618c-725b-49ec-b6c6-9d6be62165db",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6b2b24d6-8485-4ae1-a58e-da5aef1d63a2",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b518c1a07a12fe190e535fb410e874dff732a9739aef85919eff1dbd7be364d6",
+      "counts": {
+        "base_parent": 22,
+        "target_child": 22,
+        "target_identity": 22,
+        "target_parent": 22
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-20T04:09:52.977Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "87196989-b663-4f42-865d-32d5fab9853c",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "1ade6258-668b-4027-b61e-4fd370cfa376",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "947f5cf8-4824-4518-ad6a-b2f55e5754ae",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5940a75f-71bd-4136-8cb0-8d6cfaf30f1a",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d2b6650f-cdc1-46f3-bc43-7418439c61b1",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "60cfcf2e-cb67-4995-9870-6f4ba7c0de80",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "dc63e75c-ff8b-41aa-89ce-23b15114116e",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0dfb32d9-c6f7-4ac1-9ab4-c19c48b77bd5",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "2c461ddb-27aa-47db-b56f-cd29682abdfa",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9f136db1-6ec7-4e5d-b56e-24adcb242eb3",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7a895ebe-1ac4-4184-a87b-3b09a83bd77c",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d52cbdd8-ff7d-49f9-a8b1-0dbcaeefc28e",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "aca8e8b9-b371-41e3-ac81-a38853fea6ac",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b96ba072-1157-49be-9db0-f4a5410eac85",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "90e5ea75-0713-4b4e-8469-b82a6f9065f9",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ef852d52-e257-4db7-8a91-b959e4b299a3",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "1f4acc4f-db5f-410e-a98e-f6316aadf7cc",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "90b0078d-f270-4b3f-9ce7-23b7db3720de",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "88eb8593-47ef-42b6-b454-09175b3913c3",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c78685be-48d2-4e17-ae17-3164bd403433",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c6618fea-c02f-4db1-b8a1-0a286b1c84ca",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b425ac6b-78ce-443c-9bfa-ce640635305d",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "770f0fe6-9c45-406a-bf6e-917ce57da41d",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "1010e64f-be19-47f5-946f-be4b70d93e83",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "83f5af41-f96a-4b98-8cfb-ab65caddc0ed",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8b860652-9671-4933-bcb8-a1b39ca90a61",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7f685e4e-86d5-4c2b-bbc6-2ea2f51759ed",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "96672fb8-9118-497e-8072-c83f3ce05b53",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c9c756b1-0e69-46cc-9750-c266a42102b3",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e1e60cff-dd27-4ec4-81a1-ab7c7377ad41",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c164121e-3def-4fd9-86dd-e97a658e09c0",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e6b3fe98-551f-43fe-94dd-a4e2333729a3",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "43a631c8-2d75-4ba1-9079-95e3fef80783",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "31aefe32-13c6-4e77-a419-b0860ee58375",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "eea1c889-9a6f-46a0-abf1-e534cc5011a4",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e5dc023e-ebc2-419e-a346-467be30e8fd2",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "48839bf9-4d08-4f3f-a72a-91b5862a3f9e",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4d355f74-b2da-490f-b3ca-7209172e71f1",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ce781be3-d0d0-4a87-8081-9ecaa9fe8bba",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5be1ba7a-c97d-44b2-98fa-ae0ff618730c",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "84ca7632-9189-41be-87a7-a7535fc909e9",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e4fdedb4-516a-4016-bea7-df7b031ce890",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2f8a30ed-21e6-4cda-ab33-147db61e949a",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "24ba7374-fd85-4c84-83dc-108d29ed3f4b",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "cb9d19ed-7a6b-4b38-a2ca-5f830e840329",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2818f8f7db06f08ca9ea6803b96503cb926e834780f52b6e2e4a055043b5aa2d"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "83f5168f-1444-4c98-a836-55b587efeb06",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "0dca4acef63fb62a42c746cd5d1e3f65cf74e0bd6d578163f0740f2e83c23838"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3ff10f0f-efa6-4221-b131-66f48c2c7602",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "fbc6fecc372c037b4042dd175383a6d11bbc816ac22b290293b0311867fbaaee"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2f2535f9-caf0-4911-8b82-9bc040ab9271",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e42eee56109cc92c45ef4e0f506d9c198be1796d7604b3ed30e36895c3600ffc"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5c3b3723-161a-43e6-93a1-74e01771ede1",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "c85420680f97f2277753f56944797f3d84374fa759c5dcf2da998368862be131"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "59483d10-8aa7-4478-a411-6eb7164c7993",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2ba22a30b47dfda36f94ee0b52173b3dd06d5e9a45b2e94c2a1f6ce57b10c90e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "04ff6bf9-556a-4ed4-a8ee-d3d8152635b5",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "4e1144e522c07b416ad058eab121de58b562d0a0c35e18a83daecb2eabeb536f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0f7cc289-6a78-4be8-8d3e-fb128187863b",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b5dfb892edfa6410d80141f81d979f1d7a05cb12beea7cbf5ce0100e2900c0fa"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6065b34b-8da9-4afd-a5c8-e595718f4938",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "21ac610d45fc4c0c9366a51ab0e918f7d1e4a4b3a6639af649f5aa1da794f383"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e9aef6ae-6f4c-48ea-8f68-f045408b5af4",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "f5926ca6bc74618e8933a01f21038b7e5114b86260cb4431993f15c62645b0b4"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "709d7bc5-5c02-4188-801d-64298f2b9fbc",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ab2db8bcd15f8a21ac68794fb057fb80b35005f20a497d6ac75b8b1bc795cda0"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b8bb5128-8ed8-48fd-9dca-94dca50fa18c",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9d385089597063a36cf13466ef81fb60171096bd02aef86f91c533bed0580974"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d29caa64-ab1e-4464-b30b-e9ff329c598a",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "134b731cd9f8058417deade2ffb2d718983cff63cba7c2791698df13cac6168a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6745c9a9-3b16-4c1f-8d01-e87ad23aa714",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "5439a7f873c37071545d314a0f7186e79b7a3572deadcba27db5d4cfbeb91802"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5880a316-8506-4f2e-8736-42a14c522d75",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b7a8bbbae7b4786da139da7a36cdd98aaaef2a81250c715c2258b1831d76e1de"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2dd1a44d-eb15-4755-b215-556f04ce4fe4",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b641ede20472a38640ddf5f2f35cd172dc631ff55fb3443ce324d515e302aa28"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4ed1abc4-e318-4ab1-a340-5346130b2fca",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "612a7dfe585b90b2cbb7aa2be7c9c142235d2ddcd5d8087ee2d6b5eff85170d2"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6b5580c4-4161-4074-a255-509859729cc5",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1b7335416d6c9b41c5cbdd89d707acc8d40da9df0272ec90357a26c6c8071d93"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "65da47e4-2a05-41d1-b177-01f40f7830e1",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "365cec3ec7c70442fb56fea0a72dc13e96acef7d488502e45bc7fc03651e0cce"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "1398ae1a-90c8-4ce6-b608-9b624721711f",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d9deef176745b8a1829845dcdee1f0edea3be2ab28a486b09c66833fea00f37f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a07a76cf-030f-4eea-8d7e-5db1079dc521",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": "4abbc23b618bafd28527207c45a5ff3129cb381f88a185ef296defeeacc94208"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4a21dcad-f031-40fe-9dd0-337e6b8ddfde",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": null,
+          "identity_key_hash": "5d37498e7e33a2072254347d081f90a8ab309eab7e873915a41c3c7909c475bc"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "eec913a3-35cb-4ce3-bacc-1e7da08b06fe",
+          "set_code": "swsh1",
+          "number": "89",
+          "number_plain": "89",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "365ff4b6-fc0b-48cf-9d48-12067c87fc7a",
+          "set_code": "swsh1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Polteageist",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "21e822a5-6bc8-4b39-8309-0e0d362ee3fe",
+          "set_code": "swsh10",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Nickit",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "106a5e61-a3d7-46ec-b1dc-0d89859c7a36",
+          "set_code": "swsh10",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Misdreavus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "13d10451-a654-4f8b-9ac1-b60404125881",
+          "set_code": "swsh12",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Zubat",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5aa8d834-7206-4eb7-97d2-ffc2e9763ecc",
+          "set_code": "swsh2",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Galarian Runerigus",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e58c70ba-6b09-49e9-b904-09906796a258",
+          "set_code": "swsh2",
+          "number": "31",
+          "number_plain": "31",
+          "name": "Litwick",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "890d5249-b8da-4b43-83f8-b2cbe7d1b0cf",
+          "set_code": "swsh2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Lampent",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9079661d-15da-4a80-8f72-8e2057b03d61",
+          "set_code": "swsh3",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Spinarak",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ab0f27af-7728-4500-ac26-e4260373eb1d",
+          "set_code": "swsh3",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Ariados",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2c554e26-6ed5-4f0b-b800-cb098eb9215e",
+          "set_code": "swsh3",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Sinistea",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "8357d442-1913-42dd-b02f-6aac3a09222b",
+          "set_code": "swsh4",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dhelmise",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e0297df5-a791-4dd4-9efe-37381730a25d",
+          "set_code": "swsh4",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d33d2057-443d-4ae7-92a5-85d5c7d03c54",
+          "set_code": "swsh4",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Dusclops",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "922fb80c-7209-454f-b94a-c94f422e8941",
+          "set_code": "swsh4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Lycanroc",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "984cd933-81b1-42d3-8758-be80aba8f300",
+          "set_code": "swsh5",
+          "number": "69",
+          "number_plain": "69",
+          "name": "Cubone",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "fcf376cc-2498-43d0-adec-8165daabe7e3",
+          "set_code": "swsh5",
+          "number": "93",
+          "number_plain": "93",
+          "name": "Murkrow",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "42d61af8-e219-42d8-90ee-25fa455586ca",
+          "set_code": "swsh6",
+          "number": "55",
+          "number_plain": "55",
+          "name": "Gastly",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "842ab29c-45fc-40a2-a9f5-edbd2def6889",
+          "set_code": "swsh6",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Haunter",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9852214f-5a8b-46fd-8dab-2d5f3b8a65ea",
+          "set_code": "swsh8",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Phantump",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6fb7618c-725b-49ec-b6c6-9d6be62165db",
+          "set_code": "swsh9",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Duskull",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": "pikachu_jack_o_lantern_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6b2b24d6-8485-4ae1-a58e-da5aef1d63a2",
+          "set_code": "swsh9",
+          "number": "61",
+          "number_plain": "61",
+          "name": "Dusclops",
+          "variant_key": "pikachu_pumpkin_stamp",
+          "printed_identity_modifier": "pikachu_pumpkin_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b518c1a07a12fe190e535fb410e874dff732a9739aef85919eff1dbd7be364d6",
+      "counts": {
+        "base_parent": 22,
+        "target_child": 22,
+        "target_identity": 22,
+        "target_parent": 22
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": null,
+    "simulated_write_counts": {
+      "parent_inserts": 0,
+      "identity_inserts": 0,
+      "child_inserts": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "stop_findings": [
+      "dry_run_error:guard failed: {\"target_count\":22,\"target_parent_count\":22,\"target_child_count\":22,\"missing_base_count\":0,\"inactive_finish_count\":0,\"missing_base_finish_count\":0,\"parent_collision_count\":22,\"child_collision_count\":22,\"identity_target_collision_count\":22,\"ready_identity_projection_count\":22,\"identity_hash_collision_count\":0}"
+    ]
+  },
+  "recommended_real_apply_approval_text": "Not approval-ready; dry-run did not pass cleanly."
+}

@@ -16,9 +16,9 @@ DB read-only readiness gate for PKG-17O two-source League reverse rows.
 
 | metric | value |
 | --- | --- |
-| target_rows | 14 |
-| future_guarded_parent_identity_insert_candidates | 14 |
-| blocked_or_review_rows | 0 |
+| target_rows | 2 |
+| future_guarded_parent_identity_insert_candidates | 0 |
+| blocked_or_review_rows | 2 |
 | db_available | true |
 | db_read_error |  |
 
@@ -26,30 +26,18 @@ DB read-only readiness gate for PKG-17O two-source League reverse rows.
 
 | status | count |
 | --- | --- |
-| future_guarded_parent_identity_insert_candidate | 14 |
+| blocked_or_review | 2 |
 
 ## Candidates
 
-| set | number | name | variant | finish | source families |
-| --- | --- | --- | --- | --- | --- |
-| bw1 | 79 | Watchog | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw11 | 109 | Bianca | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| pl3 | 26 | Dusknoir FB | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw1 | 53 | Whirlipede | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| xy8 | 102 | Floette | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw3 | 32 | Cryogonal | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw2 | 82 | Unfezant | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| pl1 | 104 | Broken Time-Space | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| pl4 | 32 | Spiritomb | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| pl4 | 87 | Expert Belt | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw1 | 81 | Lillipup | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| hgss1 | 39 | Delibird | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| bw8 | 120 | Escape Rope | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
-| xy8 | 101 | Flabébé | league_stamp | reverse | pokecardvalues, pokemonflashfire_league_reverse_exact |
+None.
 
 ## Blocked Rows
 
-None.
+| set | number | name | variant | finish | blockers |
+| --- | --- | --- | --- | --- | --- |
+| hgss2 | 82 | Rare Candy | league_stamp | reverse | target_parent_collision, identity_hash_collision |
+| hgss1 | 97 | Pokémon Collector | league_stamp | reverse | target_parent_collision, identity_hash_collision |
 
 ## Next Step
 

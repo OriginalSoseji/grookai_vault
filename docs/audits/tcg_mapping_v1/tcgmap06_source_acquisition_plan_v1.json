@@ -1,0 +1,834 @@
+{
+  "contract": "TCGMAP06_SOURCE_ACQUISITION_PLAN_V1",
+  "generated_at": "2026-06-19T14:07:21.418Z",
+  "audit_only": true,
+  "current_totals": {
+    "english_physical_parent_rows": 22884,
+    "parents_with_tcgplayer": 18065,
+    "parents_with_justtcg": 19753,
+    "parents_with_tcgplayer_and_justtcg": 17365,
+    "parents_with_justtcg_only": 2388,
+    "parents_with_neither_tcgplayer_nor_justtcg": 2431,
+    "parents_with_pricecharting": 0,
+    "parents_with_tcgdex": 20651,
+    "child_printings_total": 37646,
+    "child_printings_under_tcgplayer_parent": 32395,
+    "child_printings_without_tcgplayer_parent": 5251,
+    "missing_tcgplayer_parent_rows": 4819
+  },
+  "completed_packages": [
+    {
+      "package_id": "TCGMAP-01A-TCGDEX-TCGPLAYER-MAPPING-INSERTS",
+      "inserted_rows": 3066,
+      "target_fingerprint_sha256": "30cfdb7d896b8c2eb969caf326468f37b7bd5e1badd35d85d7b5f9f3b855b7a6"
+    },
+    {
+      "package_id": "TCGMAP-04A-STAGING-TCGPLAYER-MAPPING-INSERTS",
+      "inserted_rows": 728,
+      "target_fingerprint_sha256": "cad93b765851870f1eaedb2f75c1c55a12ab7c5a0be8ff4a84d72e24520d7119"
+    },
+    {
+      "package_id": "TCGMAP-05A-CACHED-TCGCSV-TCGPLAYER-MAPPING-INSERTS",
+      "inserted_rows": 153,
+      "target_fingerprint_sha256": "88874689034c1e4807322b6d5d64347a01964a80b89a22f40894f566bcb6e0b5"
+    }
+  ],
+  "exhausted_lanes": [
+    {
+      "lane": "justtcg_preserved_tcgplayer_id",
+      "ready_rows": 0,
+      "blocked_rows": 2394,
+      "reason": "JustTCG rows do not preserve TCGplayer product IDs."
+    },
+    {
+      "lane": "resolved_external_discovery_candidates",
+      "ready_rows": 0,
+      "blocked_rows": 24,
+      "reason": "Remaining staging candidates are collisions or multi-row ambiguous parents."
+    },
+    {
+      "lane": "cached_tcgcsv_exact_identity",
+      "ready_rows": 0,
+      "blocked_rows": 266,
+      "reason": "Remaining cached catalog matches collide with existing product IDs or duplicate product ownership."
+    }
+  ],
+  "remaining_by_lane": [
+    {
+      "lane": "justtcg_only",
+      "parents": 2388,
+      "children": 2842,
+      "sets": 71
+    },
+    {
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 1594,
+      "children": 2055,
+      "sets": 113
+    },
+    {
+      "lane": "no_pricing_mapping",
+      "parents": 837,
+      "children": 354,
+      "sets": 117
+    }
+  ],
+  "stage_table": {
+    "rows": 0,
+    "batches": 0,
+    "latest_imported_at": null,
+    "latest_batch_id": null
+  },
+  "source_report_fingerprints": {
+    "status_after_05a_generated_at": "2026-06-19T06:50:14.456Z",
+    "tcgmap02_generated_at": "2026-06-19T06:48:25.584Z",
+    "tcgmap02_fingerprint_sha256": "1565cc3452dbe6e2ca829680ad34e57f84035b0821266c5bd9ee90f8fe6f172d",
+    "tcgmap05_fingerprint_sha256": "d7f2c5f6fcb39a66a7b122b827168a97f3c8a4a05e32ffd7789be2e6ffc23b82"
+  },
+  "priority_sets": [
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "lane": "justtcg_only",
+      "parents": 482,
+      "children": 889,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "lane": "justtcg_only",
+      "parents": 458,
+      "children": 1488,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "masterball",
+        "normal",
+        "pokeball",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "lane": "justtcg_only",
+      "parents": 328,
+      "children": 487,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "lane": "justtcg_only",
+      "parents": 267,
+      "children": 575,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv10.5b",
+      "set_name": "Black Bolt",
+      "lane": "justtcg_only",
+      "parents": 261,
+      "children": 417,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "lane": "justtcg_only",
+      "parents": 237,
+      "children": 243,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "me03",
+      "set_name": "Perfect Order",
+      "lane": "justtcg_only",
+      "parents": 203,
+      "children": 361,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "lane": "justtcg_only",
+      "parents": 167,
+      "children": 264,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "lane": "justtcg_only",
+      "parents": 162,
+      "children": 162,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 154,
+      "children": 264,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh10.5",
+      "set_name": "Pokémon GO",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 146,
+      "children": 264,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 122,
+      "children": 122,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 103,
+      "children": 251,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "lane": "justtcg_only",
+      "parents": 103,
+      "children": 12,
+      "finish_keys": [
+        "cosmos",
+        "holo"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "ex13",
+      "set_name": "Holon Phantoms",
+      "lane": "justtcg_only",
+      "parents": 102,
+      "children": 207,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sm115",
+      "set_name": "Hidden Fates",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 96,
+      "children": 98,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 70,
+      "children": 70,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 67,
+      "children": 189,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 57,
+      "children": 69,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 55,
+      "children": 59,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "lane": "no_pricing_mapping",
+      "parents": 55,
+      "children": 57,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 54,
+      "children": 58,
+      "finish_keys": [
+        "cosmos",
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "lane": "justtcg_only",
+      "parents": 52,
+      "children": 148,
+      "finish_keys": [
+        "cosmos",
+        "cracked_ice",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 50,
+      "children": 100,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 50,
+      "children": 50,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 49,
+      "children": 49,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 47,
+      "children": 61,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "lane": "no_pricing_mapping",
+      "parents": 42,
+      "children": 42,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 37,
+      "children": 57,
+      "finish_keys": [
+        "cosmos",
+        "cracked_ice",
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "g1",
+      "set_name": "Generations",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 35,
+      "children": 37,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "lane": "justtcg_only",
+      "parents": 35,
+      "children": 26,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 34,
+      "children": 34,
+      "finish_keys": [
+        "normal"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "lane": "justtcg_only",
+      "parents": 31,
+      "children": 57,
+      "finish_keys": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "lane": "justtcg_only",
+      "parents": 31,
+      "children": 13,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 30,
+      "children": 30,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 30,
+      "children": 30,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 30,
+      "children": 30,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 30,
+      "children": 30,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "lane": "justtcg_only",
+      "parents": 29,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "lane": "no_pricing_mapping",
+      "parents": 29,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "lane": "justtcg_only",
+      "parents": 28,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "lane": "justtcg_only",
+      "parents": 28,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "lane": "no_pricing_mapping",
+      "parents": 28,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 27,
+      "children": 69,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "hsp",
+      "set_name": "HGSS Black Star Promos",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 27,
+      "children": 31,
+      "finish_keys": [
+        "cosmos",
+        "cracked_ice",
+        "holo"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "lane": "justtcg_only",
+      "parents": 27,
+      "children": 27,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "lane": "justtcg_only",
+      "parents": 27,
+      "children": 24,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "lane": "no_pricing_mapping",
+      "parents": 27,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "lane": "justtcg_only",
+      "parents": 26,
+      "children": 5,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "lane": "no_pricing_mapping",
+      "parents": 25,
+      "children": 25,
+      "finish_keys": [
+        "normal"
+      ],
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "ex15",
+      "set_name": "Dragon Frontiers",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 24,
+      "children": 46,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "lane": "justtcg_only",
+      "parents": 24,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "first"
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "lane": "no_pricing_mapping",
+      "parents": 24,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "lane": "no_pricing_mapping",
+      "parents": 24,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "ex14",
+      "set_name": "Crystal Guardians",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 23,
+      "children": 45,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "lane": "no_pricing_mapping",
+      "parents": 23,
+      "children": 6,
+      "finish_keys": [
+        "holo"
+      ],
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "lane": "tcgdex_only_no_tcgplayer_product",
+      "parents": 22,
+      "children": 46,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "acquisition_priority": "second"
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "lane": "no_pricing_mapping",
+      "parents": 22,
+      "children": 22,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "lane": "no_pricing_mapping",
+      "parents": 22,
+      "children": 0,
+      "finish_keys": null,
+      "acquisition_priority": "third"
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "lane": "justtcg_only",
+      "parents": 21,
+      "children": 3,
+      "finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "acquisition_priority": "first"
+    }
+  ],
+  "recommended_next_package": {
+    "package_id": "TCGMAP-06A-TCGPLAYER-PRODUCT-SNAPSHOT-STAGE-DRY-RUN",
+    "type": "source_snapshot_stage_or_fixture_only",
+    "canonical_mapping_inserts_allowed": false,
+    "pricing_writes_allowed": false,
+    "source_requirements": [
+      "stable TCGplayer product ID",
+      "product URL or stable product identifier",
+      "set name or exact set slug/group name",
+      "card number including suffixes/prefixes",
+      "product/card name",
+      "variant/title text where available",
+      "language",
+      "raw payload"
+    ]
+  },
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "pricing_writes_performed": false,
+    "image_writes_performed": false,
+    "card_identity_writes_performed": false,
+    "child_printing_writes_performed": false,
+    "canonical_mapping_writes_performed": false
+  },
+  "fingerprint_sha256": "b60634b6c1d94524da0679e22c3a81014df48049b9b2de2451e04295d305c613"
+}

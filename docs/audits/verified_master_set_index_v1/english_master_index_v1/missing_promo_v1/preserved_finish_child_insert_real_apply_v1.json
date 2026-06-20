@@ -1,0 +1,398 @@
+{
+  "package_id": "MISSING-PROMO-04H-PRESERVED-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-19T19:30:40.691Z",
+  "mode": "real_apply",
+  "apply_status": "applied",
+  "input_artifacts": {
+    "preserved_finish_child_insert_guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/preserved_finish_child_insert_guarded_dry_run_v1.json"
+  },
+  "package_fingerprint_sha256": "3b8d5f93711ecd9ab0d8af5458625464f4c174ba7df48cdd0979cfd68acec7ad",
+  "sql_hash_sha256": "7f490cfc8cf1c8d3820e47013373b7e74f5d4edb449a5f72c6a7030db409fe15",
+  "approved_dry_run_proof_sha256": "5a2a8d9d53a11daa2287f98d9680c01344d3eb3fd4c9cd62e9e2910a52128f10",
+  "targets": [
+    {
+      "parent_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+      "target_child_id": "2e253893-efce-4eaa-8edd-e5a2b5e2e014",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP-RH",
+      "set_code": "dp1",
+      "number": "35",
+      "name": "Pachirisu",
+      "variant_key": "diamond_pearl_stamp",
+      "printed_identity_modifier": null,
+      "family": "other_stamp",
+      "evidence_mode": "exact_preserved_finish_text",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04H-PRESERVED-FINISH-CHILD-INSERTS",
+        "source_extraction_package_id": "MISSING-PROMO-04G-SPECIAL-FINISH-SOURCE-EXTRACTION",
+        "source_extraction_fingerprint_sha256": "a31d681f13417622f232e42531a32a342e2b4d7e7ed266f32db5e343f7836bea",
+        "evidence_mode": "exact_preserved_finish_text",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+          "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35"
+        ],
+        "evidence_labels": [
+          "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants.",
+          "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl."
+        ],
+        "finish_claims": [
+          {
+            "finish_key": "reverse",
+            "confidence": "exact_preserved_text",
+            "evidence_kind": "label",
+            "evidence_text_or_url": "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants.",
+            "matched_pattern": "/\\breverse\\s+holo(?:foil)?\\b/i"
+          }
+        ]
+      }
+    },
+    {
+      "parent_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+      "target_child_id": "4ac8916d-3a0a-4cfd-a673-1afd011559d7",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP-RH",
+      "set_code": "dp1",
+      "number": "49",
+      "name": "Grotle",
+      "variant_key": "diamond_pearl_stamp",
+      "printed_identity_modifier": null,
+      "family": "other_stamp",
+      "evidence_mode": "exact_preserved_finish_text",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04H-PRESERVED-FINISH-CHILD-INSERTS",
+        "source_extraction_package_id": "MISSING-PROMO-04G-SPECIAL-FINISH-SOURCE-EXTRACTION",
+        "source_extraction_fingerprint_sha256": "a31d681f13417622f232e42531a32a342e2b4d7e7ed266f32db5e343f7836bea",
+        "evidence_mode": "exact_preserved_finish_text",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+          "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl"
+        ],
+        "evidence_labels": [
+          "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+          "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+        ],
+        "finish_claims": [
+          {
+            "finish_key": "reverse",
+            "confidence": "exact_preserved_text",
+            "evidence_kind": "label",
+            "evidence_text_or_url": "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+            "matched_pattern": "/\\breverse\\s+holo(?:foil)?\\b/i"
+          },
+          {
+            "finish_key": "reverse",
+            "confidence": "exact_preserved_text",
+            "evidence_kind": "label",
+            "evidence_text_or_url": "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing.",
+            "matched_pattern": "/\\breverse\\s+holo(?:foil)?\\b/i"
+          }
+        ]
+      }
+    },
+    {
+      "parent_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+      "target_child_id": "28bffdea-1003-46c5-97c8-6502da04d936",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP-RH",
+      "set_code": "dp1",
+      "number": "56",
+      "name": "Monferno",
+      "variant_key": "diamond_pearl_stamp",
+      "printed_identity_modifier": null,
+      "family": "other_stamp",
+      "evidence_mode": "exact_preserved_finish_text",
+      "provenance": {
+        "source": "verified_master_index_v1",
+        "package_id": "MISSING-PROMO-04H-PRESERVED-FINISH-CHILD-INSERTS",
+        "source_extraction_package_id": "MISSING-PROMO-04G-SPECIAL-FINISH-SOURCE-EXTRACTION",
+        "source_extraction_fingerprint_sha256": "a31d681f13417622f232e42531a32a342e2b4d7e7ed266f32db5e343f7836bea",
+        "evidence_mode": "exact_preserved_finish_text",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+          "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl"
+        ],
+        "evidence_labels": [
+          "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+          "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+        ],
+        "finish_claims": [
+          {
+            "finish_key": "reverse",
+            "confidence": "exact_preserved_text",
+            "evidence_kind": "label",
+            "evidence_text_or_url": "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+            "matched_pattern": "/\\breverse\\s+holo(?:foil)?\\b/i"
+          },
+          {
+            "finish_key": "reverse",
+            "confidence": "exact_preserved_text",
+            "evidence_kind": "label",
+            "evidence_text_or_url": "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing.",
+            "matched_pattern": "/\\breverse\\s+holo(?:foil)?\\b/i"
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "target_count": 3,
+    "inserted_child_rows": 3,
+    "matching_post_apply_child_rows": 3,
+    "by_finish": {
+      "reverse": 3
+    },
+    "by_family": {
+      "other_stamp": 3
+    }
+  },
+  "guard": {
+    "target_count": 3,
+    "parent_count": 3,
+    "child_id_count": 3,
+    "printing_gv_id_count": 3,
+    "missing_parent_count": 0,
+    "inactive_finish_count": 0,
+    "child_id_collision_count": 0,
+    "printing_gv_id_collision_count": 0,
+    "existing_finish_collision_count": 0,
+    "active_identity_count": 3,
+    "forbidden_stamped_finish_count": 0
+  },
+  "inserted_rows": [
+    {
+      "id": "2e253893-efce-4eaa-8edd-e5a2b5e2e014",
+      "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP-RH"
+    },
+    {
+      "id": "4ac8916d-3a0a-4cfd-a673-1afd011559d7",
+      "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP-RH"
+    },
+    {
+      "id": "28bffdea-1003-46c5-97c8-6502da04d936",
+      "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP-RH"
+    }
+  ],
+  "before_snapshot": {
+    "captured_at": "2026-06-19T19:30:39.942Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "16c8dfb3-2dc2-4676-8b12-1a50e38d353f",
+        "set_code": "dp1",
+        "number": "35",
+        "name": "Pachirisu",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "bea24373-703c-4278-97ae-05585a98f3fd",
+        "set_code": "dp1",
+        "number": "49",
+        "name": "Grotle",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "dc200a11-507c-429e-b681-d5cf8e2c3d8b",
+        "set_code": "dp1",
+        "number": "56",
+        "name": "Monferno",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "set_code": "dp1",
+        "number": "35",
+        "name": "Pachirisu",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "set_code": "dp1",
+        "number": "49",
+        "name": "Grotle",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "set_code": "dp1",
+        "number": "56",
+        "name": "Monferno",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 3,
+      "target_parent": 3
+    },
+    "hash_sha256": "5a2a8d9d53a11daa2287f98d9680c01344d3eb3fd4c9cd62e9e2910a52128f10"
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-19T19:30:40.690Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "16c8dfb3-2dc2-4676-8b12-1a50e38d353f",
+        "set_code": "dp1",
+        "number": "35",
+        "name": "Pachirisu",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "bea24373-703c-4278-97ae-05585a98f3fd",
+        "set_code": "dp1",
+        "number": "49",
+        "name": "Grotle",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "dc200a11-507c-429e-b681-d5cf8e2c3d8b",
+        "set_code": "dp1",
+        "number": "56",
+        "name": "Monferno",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "2e253893-efce-4eaa-8edd-e5a2b5e2e014",
+        "set_code": "dp1",
+        "number": "35",
+        "name": "Pachirisu",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP-RH"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "4ac8916d-3a0a-4cfd-a673-1afd011559d7",
+        "set_code": "dp1",
+        "number": "49",
+        "name": "Grotle",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP-RH"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "28bffdea-1003-46c5-97c8-6502da04d936",
+        "set_code": "dp1",
+        "number": "56",
+        "name": "Monferno",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP-RH"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "set_code": "dp1",
+        "number": "35",
+        "name": "Pachirisu",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "set_code": "dp1",
+        "number": "49",
+        "name": "Grotle",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "set_code": "dp1",
+        "number": "56",
+        "name": "Monferno",
+        "variant_key": "diamond_pearl_stamp",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "finish_key": null,
+        "printing_gv_id": null
+      }
+    ],
+    "counts": {
+      "active_identity": 3,
+      "target_child": 3,
+      "target_parent": 3
+    },
+    "hash_sha256": "ef7d62ea531c258caa57c42b21950bc4c3d90733912a29f879efffce7bf15266"
+  },
+  "post_apply_proof_sha256": "ef7d62ea531c258caa57c42b21950bc4c3d90733912a29f879efffce7bf15266",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "parent_writes_performed": false,
+  "identity_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false
+}

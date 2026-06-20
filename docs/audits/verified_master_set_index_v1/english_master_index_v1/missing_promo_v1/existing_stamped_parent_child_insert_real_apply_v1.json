@@ -1,0 +1,105 @@
+{
+  "package_id": "MISSING-PROMO-05A-EXISTING-STAMPED-PARENT-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-20T02:24:22.318Z",
+  "apply_status": "applied",
+  "package_fingerprint_sha256": "f47b3153e46da5ee80c1ca2e72607c214cb5ee9b6c20afdb94790253b01112f2",
+  "sql_hash_sha256": "b58b60555914d267cde158ef3da39358078995e0d8d1f9a77ebb82afe008f12f",
+  "input_artifacts": {
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/existing_stamped_parent_child_insert_guarded_dry_run_v1.json"
+  },
+  "output_json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/existing_stamped_parent_child_insert_real_apply_v1.json",
+  "output_md": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/existing_stamped_parent_child_insert_real_apply_v1.md",
+  "summary": {
+    "target_count": 9,
+    "inserted_child_rows": 9,
+    "matching_post_apply_child_rows": 9,
+    "by_finish": {
+      "reverse": 9
+    },
+    "by_variant": {
+      "league_stamp": 9
+    }
+  },
+  "guard": {
+    "target_count": 9,
+    "parent_count": 9,
+    "child_id_count": 9,
+    "printing_gv_id_count": 9,
+    "missing_parent_count": 0,
+    "missing_parent_gv_id_count": 0,
+    "inactive_finish_count": 0,
+    "child_id_collision_count": 0,
+    "printing_gv_id_collision_count": 0,
+    "existing_finish_collision_count": 0,
+    "active_identity_count": 9,
+    "forbidden_stamped_finish_count": 0
+  },
+  "inserted_rows": [
+    {
+      "id": "882bd132-6c8e-452d-92af-5549270871e4",
+      "card_print_id": "46c3ad1f-90ed-45e2-8997-ee2bcc7fe8ec",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW1-53-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "6bd49b95-a944-4368-aff7-13d9c4b0158a",
+      "card_print_id": "1583719c-b09d-43e4-b806-e5ef906d1511",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW1-79-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "4202e3cb-3ad4-446f-9a53-3dbf16e70b6a",
+      "card_print_id": "9df3e0aa-cfb3-449d-92d5-a7a3c5f8cbcf",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW1-81-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "a0109246-1f6a-4a5c-9c77-081aa2cbadb9",
+      "card_print_id": "6f4c117e-30b4-4ed4-996e-3f29131b24e6",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW2-82-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "cb7bfb46-3e8f-406c-9b2b-1ab6de4fd111",
+      "card_print_id": "642b428d-8a06-4bcb-a4bd-edd9a33b83fe",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW3-32-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "fd1a72bb-dea3-421c-b50d-4df8153b05f6",
+      "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW8-120-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "a5c65e75-d1de-479c-94ae-a9ff410cba18",
+      "card_print_id": "c2d8b50a-f752-4d7f-9362-f212b3d10b98",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-HGSS1-39-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "e4087707-25cd-4a82-a32e-310596efb582",
+      "card_print_id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-XY8-101-LEAGUE-STAMP-RH"
+    },
+    {
+      "id": "9b6677b3-29e4-4c28-9fd0-797488cfb46b",
+      "card_print_id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-XY8-102-LEAGUE-STAMP-RH"
+    }
+  ],
+  "post_apply_proof_sha256": "1d4deb0a1029224cb9a6ac669c68aeaecb2decbf8065463252424b2a6321effd",
+  "migrations_created": false,
+  "parent_writes_performed": false,
+  "identity_writes_performed": false,
+  "external_mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "image_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false
+}

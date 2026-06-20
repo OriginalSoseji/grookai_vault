@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:02:02.090Z",
+  "generated_at": "2026-06-20T04:58:09.599Z",
   "version": "pkg17i3_pricecharting_stamp_label_acquisition_v1",
   "package_id": "PKG-17I3-PRICECHARTING-STAMP-LABEL-ACQUISITION",
   "audit_only": true,
@@ -13,7 +13,7 @@
   "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
   "csv_path": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
   "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_stamp_label_v1/pricecharting_stamp_label_candidates_v1.json",
-  "fingerprint_sha256": "3e50fec1740185366c585baa61c8db88d17b5bf4add860395cdc0214b4c31b37",
+  "fingerprint_sha256": "8e77f0e72aecae4a1e599f49b764a4a10b51cfe274133a09f24aa9e69e7d812a",
   "summary": {
     "target_rows": 178,
     "csv_rows_reviewed": 73212,

@@ -13,6 +13,7 @@ const PKG17I_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17i_stamped_re
 const PKG17I2_JSON = path.join(SOURCE_DIR, 'pkg17i2_stamp_label_source_acquisition_v1', 'pkg17i2_stamp_label_source_acquisition_v1.json');
 const PKG17I3_JSON = path.join(SOURCE_DIR, 'pkg17i3_pricecharting_stamp_label_acquisition_v1', 'pkg17i3_pricecharting_stamp_label_acquisition_v1.json');
 const PKG17L_JSON = path.join(SOURCE_DIR, 'pkg17l_pricecharting_league_active_finish_acquisition_v1', 'pkg17l_pricecharting_league_active_finish_acquisition_v1.json');
+const PKG18N_JSON = path.join(SOURCE_DIR, 'pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1', 'pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1.json');
 const DELTA_SUMMARY_JSON = path.join(SOURCE_DIR, 'source_delta_audit_v1', 'english_master_index_source_delta_summary_v1.json');
 const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json');
 const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.md');
@@ -157,6 +158,7 @@ ${markdownTable(['source attempt', 'result'], [
     ['PKG-17I2 external candidate labels', report.source_attempt_summary.pkg17i2_unique_rows_with_external_candidates],
     ['PKG-17I3 PriceCharting candidate labels', report.source_attempt_summary.pkg17i3_candidate_rows],
     ['PKG-17L League active finish candidates', report.source_attempt_summary.pkg17l_candidate_rows],
+    ['PKG-18N current PriceCharting active finish candidates', report.source_attempt_summary.pkg18n_candidate_rows],
   ])}
 
 No row in PKG-18E/F is write-ready from the current source set. Future progress requires a new independent exact source or manual adjudication artifact.
@@ -164,13 +166,14 @@ No row in PKG-18E/F is write-ready from the current source set. Future progress 
 }
 
 async function main() {
-  const [pkg18x, pkg17b, pkg17i, pkg17i2, pkg17i3, pkg17l, deltaSummary] = await Promise.all([
+  const [pkg18x, pkg17b, pkg17i, pkg17i2, pkg17i3, pkg17l, pkg18n, deltaSummary] = await Promise.all([
     readJson(PKG18X_JSON),
     readJson(PKG17B_JSON),
     readJson(PKG17I_JSON),
     readJsonIfExists(PKG17I2_JSON),
     readJsonIfExists(PKG17I3_JSON),
     readJsonIfExists(PKG17L_JSON),
+    readJsonIfExists(PKG18N_JSON),
     readJsonIfExists(DELTA_SUMMARY_JSON),
   ]);
   const rows = buildRows(pkg18x.rows ?? []);
@@ -181,6 +184,7 @@ async function main() {
     pkg17i2_fingerprint: pkg17i2?.fingerprint_sha256 ?? null,
     pkg17i3_fingerprint: pkg17i3?.fingerprint_sha256 ?? null,
     pkg17l_fingerprint: pkg17l?.fingerprint_sha256 ?? null,
+    pkg18n_fingerprint: pkg18n?.fingerprint_sha256 ?? null,
     delta_summary_generated_at: deltaSummary?.generated_at ?? null,
     rows,
   };
@@ -203,6 +207,7 @@ async function main() {
       stamp_label_source_acquisition: pkg17i2 ? rel(PKG17I2_JSON) : null,
       pricecharting_stamp_label_acquisition: pkg17i3 ? rel(PKG17I3_JSON) : null,
       pricecharting_league_active_finish_acquisition: pkg17l ? rel(PKG17L_JSON) : null,
+      pricecharting_current_stamped_active_finish_acquisition: pkg18n ? rel(PKG18N_JSON) : null,
       source_delta_summary: deltaSummary ? rel(DELTA_SUMMARY_JSON) : null,
     },
     fingerprint_sha256: sha256(stableJson(payload)),
@@ -212,6 +217,7 @@ async function main() {
       pkg17i2_unique_rows_with_external_candidates: pkg17i2?.summary?.unique_rows_with_external_candidates ?? 0,
       pkg17i3_candidate_rows: pkg17i3?.summary?.candidate_rows ?? 0,
       pkg17l_candidate_rows: pkg17l?.summary?.candidate_rows ?? 0,
+      pkg18n_candidate_rows: pkg18n?.summary?.candidate_rows ?? 0,
       delta_summary: deltaSummary?.summary ?? null,
     },
     summary: {

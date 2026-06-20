@@ -18,7 +18,7 @@ Audit-only mining pass for rows where Grookai has generic stamped evidence but l
 - candidate_internal_checkpoint_label_found: 6
 - blocked_conflicting_candidate_labels: 5
 - blocked_no_candidate_label_found: 167
-- fingerprint_sha256: `f9fa877413a80d60f00f75ae188324b9e0877d5e1a72c60ef2ef37f087cc7ed1`
+- fingerprint_sha256: `ac0aef7a548ad1c69d0409dffb1598c6d99564f7af3f46615bbf2dc337b57238`
 
 ## Status Counts
 

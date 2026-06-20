@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_pokecardvalues_stamped_finish_acquisition_v1",
-  "generated_at": "2026-06-13T00:02:20.623Z",
+  "generated_at": "2026-06-20T04:58:35.598Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -10,67 +10,21 @@
   "source_key": "pokecardvalues_stamped_finish",
   "source_url": "https://pokecardvalues.co.uk/sets/",
   "rule": "One exact Poke Card Values structured card title must match set/card/number/stamp-family and active finish. Ambiguous stamped variants are blocked.",
-  "fingerprint_sha256": "1b4af47e7b6d6cf540eaa1928e1fee1da25671c7bff876d78f21ce95fd6b185e",
+  "fingerprint_sha256": "b8c602e7a027accc4c070596e1a4a5523b10d408b7fc6177b250f39c9e6240a2",
   "summary": {
-    "target_rows": 339,
-    "records_generated": 31,
-    "fixture_files_written": 20,
+    "target_rows": 298,
+    "records_generated": 0,
+    "fixture_files_written": 0,
     "by_status": {
-      "no_exact_pokecardvalues_match": 286,
-      "accepted_exact_finish_match": 31,
-      "blocked_multiple_matching_stamp_variants": 22
+      "no_exact_pokecardvalues_match": 287,
+      "blocked_multiple_matching_stamp_variants": 11
     },
-    "by_finish": {
-      "reverse": 30,
-      "normal": 1
-    },
-    "by_set": {
-      "bw1": 4,
-      "hgss1": 3,
-      "xy2": 3,
-      "pl3": 2,
-      "pl4": 2,
-      "sm8": 2,
-      "xy8": 2,
-      "bw11": 1,
-      "bw2": 1,
-      "bw3": 1,
-      "bw8": 1,
-      "bwp": 1,
-      "hgss2": 1,
-      "pl1": 1,
-      "sm1": 1,
-      "sm3": 1,
-      "sm6": 1,
-      "sm7": 1,
-      "xy1": 1,
-      "xy3": 1
-    },
-    "fetched_sets": 77
+    "by_finish": {},
+    "by_set": {},
+    "fetched_sets": 74
   },
   "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1",
-  "fixture_files": [
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bw1.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bw11.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bw2.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bw3.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bw8.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bwp.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\hgss1.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\hgss2.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\pl1.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\pl3.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\pl4.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\sm1.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\sm3.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\sm6.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\sm7.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\sm8.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\xy1.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\xy2.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\xy3.json",
-    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\xy8.json"
-  ],
+  "fixture_files": [],
   "results": [
     {
       "set_key": "bw1",
@@ -92,87 +46,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "53",
-      "card_name": "Whirlipede",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
-      "accepted_source_title": "Whirlipede - 53/114 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
-          "source_title": "Whirlipede - 53/114 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "79",
-      "card_name": "Watchog",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
-      "accepted_source_title": "Watchog - 79/114 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
-          "source_title": "Watchog - 79/114 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "81",
-      "card_name": "Lillipup",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
-      "accepted_source_title": "Lillipup - 81/114 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
-          "source_title": "Lillipup - 81/114 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "bw1",
@@ -213,33 +86,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "107",
-      "card_name": "Water Energy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/",
-      "accepted_source_title": "Water Energy - 107/114 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/",
-          "source_title": "Water Energy - 107/114 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "bw1",
@@ -302,60 +148,6 @@
       "reviewed_matches": []
     },
     {
-      "set_key": "bw11",
-      "set_name": "Legendary Treasures",
-      "card_number": "109",
-      "card_name": "Bianca",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw11/legendary-treasures/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
-      "accepted_source_title": "Bianca - 109/113 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
-          "source_title": "Bianca - 109/113 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "bw2",
-      "set_name": "Emerging Powers",
-      "card_number": "82",
-      "card_name": "Unfezant",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw2/emerging-powers/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
-      "accepted_source_title": "Unfezant - 82/98 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
-          "source_title": "Unfezant - 82/98 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
       "set_key": "bw2",
       "set_name": "Emerging Powers",
       "card_number": "95",
@@ -414,33 +206,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "bw3",
-      "set_name": "Noble Victories",
-      "card_number": "32",
-      "card_name": "Cryogonal",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw3/noble-victories/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
-      "accepted_source_title": "Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
-          "source_title": "Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "bw3",
@@ -550,72 +315,6 @@
       ]
     },
     {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "37",
-      "card_name": "Jolteon",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw5/dark-explorers/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
-          "source_title": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-37-3-83/",
-          "source_title": "Jolteon - 37/108 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "84",
-      "card_name": "Eevee",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw5/dark-explorers/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
-          "source_title": "Eevee - 84/108 - Reverse Holo - City Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "City Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-staff-city-championships-dark-explorers/bw5-84-3-75/",
-          "source_title": "Eevee - 84/108 - Reverse Holo - Staff City Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff City Championships Promo"
-        }
-      ]
-    },
-    {
       "set_key": "bw7",
       "set_name": "Boundaries Crossed",
       "card_number": "38",
@@ -654,33 +353,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "bw8",
-      "set_name": "Plasma Storm",
-      "card_number": "120",
-      "card_name": "Escape Rope",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw8/plasma-storm/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
-      "accepted_source_title": "Escape Rope - 120/135 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
-          "source_title": "Escape Rope - 120/135 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "bw8",
@@ -823,33 +495,6 @@
       "reviewed_matches": []
     },
     {
-      "set_key": "bwp",
-      "set_name": "BW Black Star Promos",
-      "card_number": "BW95",
-      "card_name": "Champions Festival",
-      "proposed_variant_key": "quarter_finalist_stamp",
-      "stamp_label": "Quarter Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bwp/bw-black-star-promos/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "normal",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
-      "accepted_source_title": "Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
-          "source_title": "Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
-          "finish_key": "normal",
-          "variant_text": "Quarter-Finalist Worlds Promo Promo"
-        }
-      ]
-    },
-    {
       "set_key": "col1",
       "set_name": "Call of Legends",
       "card_number": "88",
@@ -907,38 +552,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "card_number": "98",
-      "card_name": "Shinx",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/dp1/diamond-pearl/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
-          "source_title": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
-          "finish_key": "normal",
-          "variant_text": "City Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-staff-city-championships-diamond-pearl/dp1-98-2-75/",
-          "source_title": "Shinx - 98/130 - Non-Holo - Staff City Championships - Promo",
-          "finish_key": "normal",
-          "variant_text": "Staff City Championships Promo"
-        }
-      ]
     },
     {
       "set_key": "dp3",
@@ -1493,32 +1106,6 @@
     {
       "set_key": "hgss1",
       "set_name": "HeartGold & SoulSilver",
-      "card_number": "39",
-      "card_name": "Delibird",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss1/heartgold-soulsilver/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
-      "accepted_source_title": "Delibird - 39/123 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
-          "source_title": "Delibird - 39/123 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
       "card_number": "40",
       "card_name": "Donphan",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
@@ -1538,32 +1125,6 @@
     {
       "set_key": "hgss1",
       "set_name": "HeartGold & SoulSilver",
-      "card_number": "97",
-      "card_name": "Pokémon Collector",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss1/heartgold-soulsilver/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/",
-      "accepted_source_title": "Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/",
-          "source_title": "Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
       "card_number": "100",
       "card_name": "Professor Elm's Training Method",
       "proposed_variant_key": "professor_program_stamp",
@@ -1579,32 +1140,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "103",
-      "card_name": "Double Colorless Energy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss1/heartgold-soulsilver/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/",
-      "accepted_source_title": "Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/",
-          "source_title": "Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "hgss2",
@@ -1682,32 +1217,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "82",
-      "card_name": "Rare Candy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss2/hs-unleashed/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/",
-      "accepted_source_title": "Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/",
-          "source_title": "Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "hgss3",
@@ -1838,32 +1347,6 @@
       ]
     },
     {
-      "set_key": "pl1",
-      "set_name": "Platinum",
-      "card_number": "104",
-      "card_name": "Broken Time-Space",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl1/platinum/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
-      "accepted_source_title": "Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
-          "source_title": "Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
       "card_number": "89",
@@ -1943,58 +1426,6 @@
     {
       "set_key": "pl3",
       "set_name": "Supreme Victors",
-      "card_number": "26",
-      "card_name": "Dusknoir FB",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl3/supreme-victors/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
-      "accepted_source_title": "Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
-          "source_title": "Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
-      "card_number": "83",
-      "card_name": "Skarmory FB",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl3/supreme-victors/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
-      "accepted_source_title": "Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
-          "source_title": "Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
       "card_number": "136",
       "card_name": "Cynthia's Guidance",
       "proposed_variant_key": "pok_ball_stamped_player_rewards_promo_2009_2010",
@@ -2010,58 +1441,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "32",
-      "card_name": "Spiritomb",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl4/arceus/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
-      "accepted_source_title": "Spiritomb - 32/99 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
-          "source_title": "Spiritomb - 32/99 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "87",
-      "card_name": "Expert Belt",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl4/arceus/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
-      "accepted_source_title": "Expert Belt - 87/99 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
-          "source_title": "Expert Belt - 87/99 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "sm1",
@@ -2082,34 +1461,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "41",
-      "card_name": "Primarina",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/",
-      "accepted_source_title": "Primarina - 41/149 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/",
-          "source_title": "Primarina - 41/149 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "sm1",
@@ -2210,39 +1561,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "128",
-      "card_name": "Professor Kukui",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
-          "source_title": "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-staff-regional-championships-sun-moon/sm1-128-3-83/",
-          "source_title": "Professor Kukui - 128/149 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
     },
     {
       "set_key": "sm1",
@@ -2722,33 +2040,6 @@
     {
       "set_key": "sm3",
       "set_name": "Burning Shadows",
-      "card_number": "94",
-      "card_name": "Diancie",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm3/burning-shadows/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/",
-      "accepted_source_title": "Diancie - 94/147 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/",
-          "source_title": "Diancie - 94/147 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
       "card_number": "113",
       "card_name": "Bodybuilding Dumbbells",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -2902,39 +2193,6 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
-      "card_number": "119",
-      "card_name": "Cynthia",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-regional-championships-ultra-prism/sm5-119-3-60/",
-          "source_title": "Cynthia - 119/156 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-staff-regional-championships-ultra-prism/sm5-119-3-83/",
-          "source_title": "Cynthia - 119/156 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
       "card_number": "122",
       "card_name": "Escape Board",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -2971,99 +2229,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "77",
-      "card_name": "Buzzwole",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm6/forbidden-light/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
-      "accepted_source_title": "Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
-          "source_title": "Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "102",
-      "card_name": "Beast Ring",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm6/forbidden-light/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-league-promo-forbidden-light/sm6-102-3-41/",
-          "source_title": "Beast Ring - 102/131 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-staff-league-promo-forbidden-light/sm6-102-3-78/",
-          "source_title": "Beast Ring - 102/131 - Reverse Holo - Staff League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "105",
-      "card_name": "Diantha",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm6/forbidden-light/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
-          "source_title": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-staff-regional-championships-forbidden-light/sm6-105-3-83/",
-          "source_title": "Diantha - 105/131 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
     },
     {
       "set_key": "sm6",
@@ -3137,33 +2302,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm7",
-      "set_name": "Celestial Storm",
-      "card_number": "95",
-      "card_name": "Metagross",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm7/celestial-storm/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/",
-      "accepted_source_title": "Metagross - 95/168 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/",
-          "source_title": "Metagross - 95/168 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "sm7",
@@ -3343,33 +2481,6 @@
     {
       "set_key": "sm8",
       "set_name": "Lost Thunder",
-      "card_number": "108",
-      "card_name": "Naganadel",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/",
-      "accepted_source_title": "Naganadel - 108/214 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/",
-          "source_title": "Naganadel - 108/214 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
       "card_number": "172",
       "card_name": "Electropower",
       "proposed_variant_key": "league_cup_staff_stamp",
@@ -3386,33 +2497,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "181",
-      "card_name": "Lost Blender",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/",
-      "accepted_source_title": "Lost Blender - 181/214 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/",
-          "source_title": "Lost Blender - 181/214 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "sm8",
@@ -3764,6 +2848,25 @@
       "stamp_label": "Asia Championship Stamp",
       "base_parent_child_finishes": [
         "holo",
+        "normal",
+        "reverse"
+      ],
+      "source_set_url": "https://pokecardvalues.co.uk/sets/svp/scarlet-violet-black-star-promos/",
+      "status": "no_exact_pokecardvalues_match",
+      "match_count": 0,
+      "accepted_finish_key": null,
+      "accepted_source_url": null,
+      "accepted_source_title": null,
+      "reviewed_matches": []
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "base_parent_child_finishes": [
         "normal",
         "reverse"
       ],
@@ -6523,72 +5626,6 @@
     {
       "set_key": "xy1",
       "set_name": "XY",
-      "card_number": "83",
-      "card_name": "Honedge",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
-          "source_title": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-staff-regional-championships-xy/xy1-83-3-83/",
-          "source_title": "Honedge - 83/146 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "84",
-      "card_name": "Doublade",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
-          "source_title": "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-staff-regional-championships-xy/xy1-84-3-83/",
-          "source_title": "Doublade - 84/146 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
       "card_number": "85",
       "card_name": "Aegislash",
       "proposed_variant_key": "regional_championships_stamp",
@@ -6616,33 +5653,6 @@
           "source_title": "Aegislash - 85/146 - Reverse Holo - Staff Regional Championships - Promo",
           "finish_key": "reverse",
           "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "121",
-      "card_name": "Muscle Band",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/",
-      "accepted_source_title": "Muscle Band - 121/146 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/",
-          "source_title": "Muscle Band - 121/146 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
         }
       ]
     },
@@ -6686,39 +5696,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "xy10",
-      "set_name": "Fates Collide",
-      "card_number": "94",
-      "card_name": "Chaos Tower",
-      "proposed_variant_key": "national_championships_stamp",
-      "stamp_label": "National Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy10/fates-collide/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
-          "source_title": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "National Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-staff-national-championships-fates-collide/xy10-94-3-80/",
-          "source_title": "Chaos Tower - 94/124 - Reverse Holo - Staff National Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff National Championships Promo"
-        }
-      ]
     },
     {
       "set_key": "xy11",
@@ -6814,87 +5791,6 @@
       "reviewed_matches": []
     },
     {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "89",
-      "card_name": "Fiery Torch",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy2/flashfire/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/",
-      "accepted_source_title": "Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/",
-          "source_title": "Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "91",
-      "card_name": "Magnetic Storm",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy2/flashfire/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/",
-      "accepted_source_title": "Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/",
-          "source_title": "Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "94",
-      "card_name": "Pokémon Fan Club",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy2/flashfire/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/",
-      "accepted_source_title": "Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/",
-          "source_title": "Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
       "set_key": "xy3",
       "set_name": "Furious Fists",
       "card_number": "8",
@@ -6953,33 +5849,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "xy3",
-      "set_name": "Furious Fists",
-      "card_number": "88",
-      "card_name": "Battle Reporter",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy3/furious-fists/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/",
-      "accepted_source_title": "Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/",
-          "source_title": "Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "xy4",
@@ -7044,60 +5913,6 @@
     {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
-      "card_number": "101",
-      "card_name": "Flabébé",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy8/breakthrough/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
-      "accepted_source_title": "Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
-          "source_title": "Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "102",
-      "card_name": "Floette",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy8/breakthrough/",
-      "status": "accepted_exact_finish_match",
-      "match_count": 1,
-      "accepted_finish_key": "reverse",
-      "accepted_source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
-      "accepted_source_title": "Floette - 102/162 - Reverse Holo - League Promo - Promo",
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
-          "source_title": "Floette - 102/162 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
       "card_number": "138",
       "card_name": "Giovanni's Scheme",
       "proposed_variant_key": "regional_championships_stamp",
@@ -7114,39 +5929,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "145",
-      "card_name": "Parallel City",
-      "proposed_variant_key": "city_championships_stamp",
-      "stamp_label": "City Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy8/breakthrough/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
-          "source_title": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "City Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-staff-city-championships-breakthrough/xy8-145-3-75/",
-          "source_title": "Parallel City - 145/162 - Reverse Holo - Staff City Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff City Championships Promo"
-        }
-      ]
     },
     {
       "set_key": "xy9",
@@ -7223,533 +6005,5 @@
       ]
     }
   ],
-  "records": [
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "53",
-      "card_name": "Whirlipede",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Whirlipede - 53/114 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw1:53:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "79",
-      "card_name": "Watchog",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Watchog - 79/114 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw1:79:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "81",
-      "card_name": "Lillipup",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Lillipup - 81/114 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw1:81:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/water-energy-107-114-reverse-holo-league-promo-black-white/bw1-107-3-41/",
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "107",
-      "card_name": "Water Energy",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Water Energy - 107/114 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw1:107:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
-      "set_key": "bw11",
-      "set_name": "Legendary Treasures",
-      "card_number": "109",
-      "card_name": "Bianca",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Bianca - 109/113 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw11:109:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
-      "set_key": "bw2",
-      "set_name": "Emerging Powers",
-      "card_number": "82",
-      "card_name": "Unfezant",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Unfezant - 82/98 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw2:82:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
-      "set_key": "bw3",
-      "set_name": "Noble Victories",
-      "card_number": "32",
-      "card_name": "Cryogonal",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw3:32:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
-      "set_key": "bw8",
-      "set_name": "Plasma Storm",
-      "card_number": "120",
-      "card_name": "Escape Rope",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Escape Rope - 120/135 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bw8:120:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
-      "set_key": "bwp",
-      "set_name": "BW Black Star Promos",
-      "card_number": "BW95",
-      "card_name": "Champions Festival",
-      "finish_key": "normal",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:bwp:BW95:quarter_finalist_stamp:normal",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "39",
-      "card_name": "Delibird",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Delibird - 39/123 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:hgss1:39:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/pokemon-collector-97-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-97-3-41/",
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "97",
-      "card_name": "Pokémon Collector",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Pokemon Collector - 97/123 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:hgss1:97:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/double-colorless-energy-103-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-103-3-41/",
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "card_number": "103",
-      "card_name": "Double Colorless Energy",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Double Colorless Energy - 103/123 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:hgss1:103:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/rare-candy-82-95-reverse-holo-league-promo-unleashed/hgss2-82-3-41/",
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "82",
-      "card_name": "Rare Candy",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Rare Candy - 82/95 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:hgss2:82:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
-      "set_key": "pl1",
-      "set_name": "Platinum",
-      "card_number": "104",
-      "card_name": "Broken Time-Space",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Broken Time-Space - 104/127 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:pl1:104:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
-      "card_number": "26",
-      "card_name": "Dusknoir FB",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Dusknoir FB - 26/147 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:pl3:26:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
-      "set_key": "pl3",
-      "set_name": "Supreme Victors",
-      "card_number": "83",
-      "card_name": "Skarmory FB",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Skarmory FB - 83/147 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:pl3:83:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "32",
-      "card_name": "Spiritomb",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Spiritomb - 32/99 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:pl4:32:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
-      "set_key": "pl4",
-      "set_name": "Arceus",
-      "card_number": "87",
-      "card_name": "Expert Belt",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Expert Belt - 87/99 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:pl4:87:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/",
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "41",
-      "card_name": "Primarina",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Primarina - 41/149 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm1:41:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/",
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
-      "card_number": "94",
-      "card_name": "Diancie",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Diancie - 94/147 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm3:94:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "77",
-      "card_name": "Buzzwole",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm6:77:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/",
-      "set_key": "sm7",
-      "set_name": "Celestial Storm",
-      "card_number": "95",
-      "card_name": "Metagross",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Metagross - 95/168 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm7:95:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/",
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "108",
-      "card_name": "Naganadel",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Naganadel - 108/214 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm8:108:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/",
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "181",
-      "card_name": "Lost Blender",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Lost Blender - 181/214 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:sm8:181:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/muscle-band-121-146-reverse-holo-league-promo-xy/xy1-121-3-41/",
-      "set_key": "xy1",
-      "set_name": "XY",
-      "card_number": "121",
-      "card_name": "Muscle Band",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Muscle Band - 121/146 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy1:121:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/fiery-torch-89-106-reverse-holo-league-promo-flashfire/xy2-89-3-41/",
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "89",
-      "card_name": "Fiery Torch",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Fiery Torch - 89/106 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy2:89:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/magnetic-storm-91-106-reverse-holo-league-promo-flashfire/xy2-91-3-41/",
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "91",
-      "card_name": "Magnetic Storm",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Magnetic Storm - 91/106 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy2:91:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/pokemon-fan-club-94-106-reverse-holo-league-promo-flashfire/xy2-94-3-41/",
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "card_number": "94",
-      "card_name": "Pokémon Fan Club",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Pokemon Fan Club - 94/106 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy2:94:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/battle-reporter-88-111-reverse-holo-league-promo-furious-fists/xy3-88-3-41/",
-      "set_key": "xy3",
-      "set_name": "Furious Fists",
-      "card_number": "88",
-      "card_name": "Battle Reporter",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Battle Reporter - 88/111 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy3:88:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "101",
-      "card_name": "Flabébé",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy8:101:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    },
-    {
-      "source_key": "pokecardvalues_stamped_finish",
-      "source_kind": "collector_reference",
-      "source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "card_number": "102",
-      "card_name": "Floette",
-      "finish_key": "reverse",
-      "rarity": null,
-      "evidence_type": "finish_presence",
-      "evidence_label": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo",
-      "language": "en",
-      "retrieved_at": "2026-06-13T00:02:20.623Z",
-      "raw_snapshot_ref": "pokecardvalues:xy8:102:league_stamp:reverse",
-      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
-    }
-  ]
+  "records": []
 }

@@ -1,0 +1,28 @@
+{
+  "package_id": "MISSING-PROMO-05A-EXISTING-STAMPED-PARENT-FINISH-CHILD-INSERTS",
+  "generated_at": "2026-06-20T02:24:35.260Z",
+  "mode": "guarded_rollback_dry_run",
+  "input_artifacts": {
+    "stamped_finish_routing_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+  },
+  "package_fingerprint_sha256": "53927026668a4367922668ab30c3ed811dfa0d250062172ff242f67252e7ffe4",
+  "sql_hash_sha256": "b58b60555914d267cde158ef3da39358078995e0d8d1f9a77ebb82afe008f12f",
+  "dry_run_proof_sha256": "not_applicable_no_ready_targets",
+  "rollback_proof_sha256": "not_applicable_no_ready_targets",
+  "output_json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/existing_stamped_parent_child_insert_guarded_dry_run_v1.json",
+  "output_md": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/existing_stamped_parent_child_insert_guarded_dry_run_v1.md",
+  "summary": {
+    "source_ready_rows": 31,
+    "target_count": 0,
+    "by_finish": {},
+    "by_variant": {},
+    "inserted_rows_in_rollback_transaction": 0,
+    "durable_after_snapshot_matches_before_snapshot": null,
+    "transient_after_snapshot_differs_from_before_snapshot": null
+  },
+  "guard": null,
+  "targets": [],
+  "recommended_real_apply_approval_text": "No real apply recommended: no existing stamped parent child-printing targets.",
+  "db_writes_performed": false,
+  "migrations_created": false
+}

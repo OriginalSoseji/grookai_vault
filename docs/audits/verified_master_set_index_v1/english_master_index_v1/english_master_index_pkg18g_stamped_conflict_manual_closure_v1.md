@@ -18,7 +18,7 @@ Audit-only closure for the final conflict bucket.
 | --- | --- |
 | conflict_rows | 3 |
 | write_ready_rows | 0 |
-| fingerprint_sha256 | `8673c803aebf5b4a811e872460e6d6bbdd77f2737c1e310984455a5e05994bab` |
+| fingerprint_sha256 | `d4196d12d6603cc20eef4cb720c0f1664f12a82c38f66df8a64f0e696b946d20` |
 
 ## Conflict Rows
 

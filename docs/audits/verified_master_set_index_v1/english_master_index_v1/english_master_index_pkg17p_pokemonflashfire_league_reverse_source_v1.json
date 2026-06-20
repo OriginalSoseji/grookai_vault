@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T23:18:35.903Z",
+  "generated_at": "2026-06-20T04:58:17.242Z",
   "version": "english_master_index_pkg17p_pokemonflashfire_league_reverse_source_v1",
   "package_id": "PKG-17P-POKEMONFLASHFIRE-LEAGUE-REVERSE-SOURCE",
   "audit_only": true,
@@ -13,12 +13,12 @@
     "stamped_remaining_action_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
     "fixture_json": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json"
   },
-  "fingerprint_sha256": "03e0779393f35bfa3ea5ac04b0617a8ae629288e7cc6d914c4eb2fe42c591a69",
+  "fingerprint_sha256": "304c34e7455b3196663940df2d2976599df637b76533fd76e0a90ca23394dc95",
   "summary": {
-    "source_rows_reviewed": 14,
-    "current_queue_matches": 14,
-    "fixture_records_written": 14,
-    "skipped_rows": 0
+    "source_rows_reviewed": 29,
+    "current_queue_matches": 18,
+    "fixture_records_written": 18,
+    "skipped_rows": 11
   },
   "records": [
     {
@@ -37,7 +37,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Whirlipede 53/114 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Whirlipede 53/114 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.902Z",
+      "retrieved_at": "2026-06-20T04:58:17.241Z",
       "raw_snapshot_ref": "pokemonflashfire:bw1:53:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -57,7 +57,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Watchog 79/114 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Watchog 79/114 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw1:79:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -77,7 +77,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Lillipup 81/114 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Lillipup 81/114 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw1:81:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -97,7 +97,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Bianca 109/113 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Bianca 109/113 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw11:109:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -117,7 +117,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Unfezant 82/98 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Unfezant 82/98 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw2:82:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -137,7 +137,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Cryogonal 32/101 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Cryogonal 32/101 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw3:32:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -157,7 +157,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Escape Rope 120/135 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Escape Rope 120/135 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:bw8:120:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -177,7 +177,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Delibird 39/123 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Delibird 39/123 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:hgss1:39:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -197,7 +197,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Broken Time Space 104/127 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Broken Time Space 104/127 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:pl1:104:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -217,7 +217,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Dusknoir FB 26/147 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Dusknoir FB 26/147 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:pl3:26:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -237,7 +237,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Spiritomb 32/99 Reverse Holo Pokemon League promo",
       "evidence_text_or_label": "Spiritomb 32/99 Reverse Holo Pokemon League promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:pl4:32:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -257,7 +257,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Expert Belt 87/99 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Expert Belt 87/99 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:pl4:87:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -277,7 +277,7 @@
       "evidence_label": "PokemonFlashfire product/category label: Flabebe 101/162 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Flabebe 101/162 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:xy8:101:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     },
@@ -297,10 +297,179 @@
       "evidence_label": "PokemonFlashfire product/category label: Floette 102/162 Reverse Holo Pokemon League Promo",
       "evidence_text_or_label": "Floette 102/162 Reverse Holo Pokemon League Promo",
       "language": "en",
-      "retrieved_at": "2026-06-12T23:18:35.903Z",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
       "raw_snapshot_ref": "pokemonflashfire:xy8:102:league_stamp:reverse",
+      "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
+    },
+    {
+      "source_key": "pokemonflashfire_league_reverse_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "5",
+      "card_name": "Garchomp",
+      "finish_key": "reverse",
+      "rarity": null,
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonFlashfire product/category label: Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+      "evidence_text_or_label": "Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
+      "raw_snapshot_ref": "pokemonflashfire:pl3:5:league_stamp:reverse",
+      "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
+    },
+    {
+      "source_key": "pokemonflashfire_league_reverse_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/",
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "7",
+      "card_name": "Politoed",
+      "finish_key": "reverse",
+      "rarity": null,
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonFlashfire product/category label: Politoed 7/95 Reverse Holo Pokemon League Promo",
+      "evidence_text_or_label": "Politoed 7/95 Reverse Holo Pokemon League Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
+      "raw_snapshot_ref": "pokemonflashfire:hgss2:7:league_stamp:reverse",
+      "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
+    },
+    {
+      "source_key": "pokemonflashfire_league_reverse_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemonflashfire.com/product/rare-candy-8295-reverse-holo-pokemon-league-promo/",
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "82",
+      "card_name": "Rare Candy",
+      "finish_key": "reverse",
+      "rarity": null,
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonFlashfire product/category label: Rare Candy 82/95 Reverse Holo Pokemon League Promo",
+      "evidence_text_or_label": "Rare Candy 82/95 Reverse Holo Pokemon League Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
+      "raw_snapshot_ref": "pokemonflashfire:hgss2:82:league_stamp:reverse",
+      "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
+    },
+    {
+      "source_key": "pokemonflashfire_league_reverse_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemonflashfire.com/product/pokemon-collector-97123-reverse-holo-pokemon-league-promo/",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "97",
+      "card_name": "Pokémon Collector",
+      "finish_key": "reverse",
+      "rarity": null,
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonFlashfire product/category label: Pokemon Collector 97/123 Reverse Holo Pokemon League Promo",
+      "evidence_text_or_label": "Pokemon Collector 97/123 Reverse Holo Pokemon League Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-20T04:58:17.242Z",
+      "raw_snapshot_ref": "pokemonflashfire:hgss1:97:league_stamp:reverse",
       "notes": "Accepted only because the reviewed PokemonFlashfire/DJS source label states card number, Reverse Holo, and Pokemon League Promo for a current PKG-17A queue row."
     }
   ],
-  "skipped_rows": []
+  "skipped_rows": [
+    {
+      "set_key": "pl2",
+      "card_number": "89",
+      "card_name": "Bebe's Search",
+      "source_url": "https://pokemonflashfire.com/product/bebes-search-89111-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Bebe's Search 89/111 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl2",
+      "card_number": "98",
+      "card_name": "Volkner's Philosophy",
+      "source_url": "https://pokemonflashfire.com/product/volkners-philosophy-98111-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Volkner's Philosophy 98/111 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl2",
+      "card_number": "33",
+      "card_name": "Snorlax",
+      "source_url": "https://pokemonflashfire.com/product/snorlax-33111-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Snorlax 33/111 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "hgss2",
+      "card_number": "21",
+      "card_name": "Poliwrath",
+      "source_url": "https://pokemonflashfire.com/product/poliwrath-2195-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Poliwrath 21/95 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "bw11",
+      "card_number": "36",
+      "card_name": "Pokemon Catcher",
+      "source_url": "https://pokemonflashfire.com/product/pokemon-catcher-3639-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Pokemon Catcher 36/39 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl2",
+      "card_number": "43",
+      "card_name": "Uxie",
+      "source_url": "https://pokemonflashfire.com/product/uxie-43146-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Uxie 43/146 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl2",
+      "card_number": "97",
+      "card_name": "Underground Expedition",
+      "source_url": "https://pokemonflashfire.com/product/underground-expedition-97111-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Underground Expedition 97/111 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl2",
+      "card_number": "102",
+      "card_name": "Upper Energy",
+      "source_url": "https://pokemonflashfire.com/product/upper-energy-102111-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Upper Energy 102/111 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl3",
+      "card_number": "136",
+      "card_name": "Cynthia's Guidance",
+      "source_url": "https://pokemonflashfire.com/product/cynthias-guidance-136147-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Cynthia's Guidance 136/147 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "pl3",
+      "card_number": "56",
+      "card_name": "Dragonite FB",
+      "source_url": "https://pokemonflashfire.com/product/dragonite-fb-56147-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Dragonite FB 56/147 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    },
+    {
+      "set_key": "dp6",
+      "card_number": "125",
+      "card_name": "Roseanne's Research",
+      "source_url": "https://pokemonflashfire.com/product/roseannes-research-125132-reverse-holo-pokemon-league-promo/",
+      "evidence_label": "Roseanne's Research 125/132 Reverse Holo Pokemon League Promo",
+      "reason": "not_in_current_pkg17a_active_finish_queue"
+    }
+  ]
 }

@@ -1,0 +1,29 @@
+{
+  "package_id": "MISSING-PROMO-05B-STAMPED-PARENT-IDENTITY-INSERTS",
+  "generated_at": "2026-06-20T02:43:52.025Z",
+  "mode": "guarded_rollback_dry_run",
+  "input_artifacts": {
+    "stamped_finish_routing_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+  },
+  "package_fingerprint_sha256": "1a245535bd72c38b4beee9e1120f24df64d138535ef2d03e96818352025ac688",
+  "sql_hash_sha256": "6e9d9f9daba66082b3e39f166d446d400e0aa81079fab4deb057dad691e28c7f",
+  "dry_run_proof_sha256": "not_applicable_no_ready_targets",
+  "rollback_proof_sha256": "not_applicable_no_ready_targets",
+  "output_json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/stamped_parent_identity_insert_guarded_dry_run_v1.json",
+  "output_md": "docs/audits/verified_master_set_index_v1/english_master_index_v1/missing_promo_v1/stamped_parent_identity_insert_guarded_dry_run_v1.md",
+  "summary": {
+    "source_ready_rows": 31,
+    "target_count": 0,
+    "by_finish": {},
+    "by_variant": {},
+    "inserted_rows_in_rollback_transaction": 0,
+    "durable_after_snapshot_matches_before_snapshot": null,
+    "transient_after_snapshot_differs_from_before_snapshot": null
+  },
+  "pre_guard": null,
+  "post_guard": null,
+  "targets": [],
+  "recommended_real_apply_approval_text": "No real apply recommended: no missing stamped parent identity targets.",
+  "db_writes_performed": false,
+  "migrations_created": false
+}

@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_bulbapedia_build_battle_acquisition_v1",
-  "generated_at": "2026-06-08T12:45:03.766Z",
+  "generated_at": "2026-06-20T02:07:52.315Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -10,16 +10,17 @@
   "source_key": "bulbapedia_build_battle_product",
   "source_url": "https://bulbapedia.bulbagarden.net/wiki/Build_%26_Battle_Box_(TCG)",
   "summary": {
-    "pages_attempted": 45,
-    "pages_with_usable_segments": 9,
+    "pages_attempted": 201,
+    "pages_with_usable_segments": 32,
     "records_generated": 0,
     "fixture_files_written": 0,
     "by_status": {
-      "no_matching_remaining_gap_facts": 9,
-      "source_unavailable": 36
+      "no_matching_remaining_gap_facts": 32,
+      "no_usable_finish_segments": 1,
+      "source_unavailable": 168
     },
     "by_finish": {},
-    "ignored_source_entries": 284
+    "ignored_source_entries": 505
   },
   "safety": {
     "exact_finish_only": true,
@@ -45,12 +46,48 @@
       "ignored": []
     },
     {
+      "source_set_key": "xy7",
+      "source_set_name": "Ancient Origins",
+      "title": "Ancient Origins Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Origins_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Ancient_Origins_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "ecard2",
       "source_set_name": "Aquapolis",
       "title": "Aquapolis Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Aquapolis_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Aquapolis_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pl4",
+      "source_set_name": "Arceus",
+      "title": "Arceus Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Arceus_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Arceus_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ascended_heroes",
+      "source_set_name": "Ascended Heroes",
+      "title": "Ascended Heroes Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ascended_Heroes_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Ascended_Heroes_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -364,6 +401,369 @@
       ]
     },
     {
+      "source_set_key": "swsh10tg",
+      "source_set_name": "Astral Radiance Trainer Gallery",
+      "title": "Astral Radiance Trainer Gallery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_Trainer_Gallery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Astral_Radiance_Trainer_Gallery_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "base1",
+      "source_set_name": "Base",
+      "title": "Base Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Base_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Base_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "base4",
+      "source_set_name": "Base Set 2",
+      "title": "Base Set 2 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Base_Set_2_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Base_Set_2_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh5",
+      "source_set_name": "Battle Styles",
+      "title": "Battle Styles Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Styles_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Battle_Styles_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "88",
+          "card_name": "Cherrim",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "89",
+          "card_name": "Octillery",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "90",
+          "card_name": "Houndoom",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "91",
+          "card_name": "Bronzong",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "8",
+          "card_name": "Cherrim",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "16",
+          "card_name": "Tapu Bulu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "91",
+          "card_name": "Crobat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "7",
+          "card_name": "Cherubi",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "8",
+          "card_name": "Cherrim",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "16",
+          "card_name": "Tapu Bulu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "119",
+          "card_name": "Drampa",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "36",
+          "card_name": "Remoraid",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "76",
+          "card_name": "Mienfoo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "77",
+          "card_name": "Mienshao",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "128",
+          "card_name": "Korrina's Focus",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "95",
+          "card_name": "Houndour",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "84",
+          "card_name": "Stonjourner",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "121",
+          "card_name": "Bruno",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "101",
+          "card_name": "Bronzor",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "89",
+          "card_name": "Zubat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "90",
+          "card_name": "Golbat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "91",
+          "card_name": "Crobat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "120",
+          "card_name": "Indeedee",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "165",
+          "card_name": "Hop",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "158",
+          "card_name": "Dan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "167",
+          "card_name": "Sonia",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Vivid Voltage",
+          "card_number": "179",
+          "card_name": "Allister",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Vivid Voltage",
+          "card_number": "184",
+          "card_name": "Opal",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "bog",
+      "source_set_name": "Best of Game",
+      "title": "Best of Game Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Best_of_Game_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Best_of_Game_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw1",
+      "source_set_name": "Black & White",
+      "title": "Black & White Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Black_%26_White_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Black_%26_White_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv10.5b",
+      "source_set_name": "Black Bolt",
+      "title": "Black Bolt Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Black_Bolt_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Black_Bolt_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw7",
+      "source_set_name": "Boundaries Crossed",
+      "title": "Boundaries Crossed Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boundaries_Crossed_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Boundaries_Crossed_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "xy9",
       "source_set_name": "BREAKpoint",
       "title": "BREAKpoint Build & Battle Box (TCG)",
@@ -388,12 +788,332 @@
       "ignored": []
     },
     {
+      "source_set_key": "swsh9",
+      "source_set_name": "Brilliant Stars",
+      "title": "Brilliant Stars Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Brilliant_Stars_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "185",
+          "card_name": "Moltres",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "186",
+          "card_name": "Lucario",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "187",
+          "card_name": "Liepard",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "188",
+          "card_name": "Bibarel",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "8",
+          "card_name": "Torterra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "21",
+          "card_name": "Moltres",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "26",
+          "card_name": "Infernape",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "79",
+          "card_name": "Lucario",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "121",
+          "card_name": "Bibarel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "24",
+          "card_name": "Chimchar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "25",
+          "card_name": "Monferno",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "26",
+          "card_name": "Infernape",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "21",
+          "card_name": "Moltres",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "78",
+          "card_name": "Riolu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "79",
+          "card_name": "Lucario",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "116",
+          "card_name": "Castform",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "124",
+          "card_name": "Energy Recycler",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "150",
+          "card_name": "Ultra Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "90",
+          "card_name": "Purrloin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "91",
+          "card_name": "Liepard",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "9",
+          "card_name": "Burmy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "11",
+          "card_name": "Mothim",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "140",
+          "card_name": "Friends in Galar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "120",
+          "card_name": "Bidoof",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "121",
+          "card_name": "Bibarel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "6",
+          "card_name": "Turtwig",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "7",
+          "card_name": "Grotle",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "8",
+          "card_name": "Torterra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "141",
+          "card_name": "Gloria",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "121",
+          "card_name": "Bruno",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "128",
+          "card_name": "Korrina's Focus",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "143",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "130",
+          "card_name": "Barry",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "138",
+          "card_name": "Cynthia's Ambition",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "swsh9tg",
+      "source_set_name": "Brilliant Stars Trainer Gallery",
+      "title": "Brilliant Stars Trainer Gallery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_Trainer_Gallery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Brilliant_Stars_Trainer_Gallery_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "sm3",
       "source_set_name": "Burning Shadows",
       "title": "Burning Shadows Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Burning_Shadows_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Burning_Shadows_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bwp",
+      "source_set_name": "BW Black Star Promos",
+      "title": "BW Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/BW_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=BW_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-bw-e",
+      "source_set_name": "BW trainer Kit (Excadrill)",
+      "title": "BW trainer Kit (Excadrill) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/BW_trainer_Kit_(Excadrill)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=BW_trainer_Kit_(Excadrill)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-bw-z",
+      "source_set_name": "BW trainer Kit (Zoroark)",
+      "title": "BW trainer Kit (Zoroark) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/BW_trainer_Kit_(Zoroark)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=BW_trainer_Kit_(Zoroark)_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -418,6 +1138,18 @@
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Celebrations_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Celebrations_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "cel25c",
+      "source_set_name": "Celebrations: Classic Collection",
+      "title": "Celebrations: Classic Collection Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Celebrations%3A_Classic_Collection_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Celebrations%3A_Classic_Collection_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -701,12 +1433,348 @@
       "ignored": []
     },
     {
+      "source_set_key": "me04",
+      "source_set_name": "Chaos Rising",
+      "title": "Chaos Rising Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chaos_Rising_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Chaos_Rising_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Chaos Rising",
+          "card_number": "13",
+          "card_name": "Delphox",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chaos Rising",
+          "card_number": "29",
+          "card_name": "Ampharos",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chaos Rising",
+          "card_number": "51",
+          "card_name": "Crobat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chaos Rising",
+          "card_number": "68",
+          "card_name": "Goodra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "swsh6",
+      "source_set_name": "Chilling Reign",
+      "title": "Chilling Reign Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chilling_Reign_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Chilling_Reign_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "112",
+          "card_name": "Cinderace",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "113",
+          "card_name": "Inteleon",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "114",
+          "card_name": "Cresselia",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "115",
+          "card_name": "Passimian",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chilling Reign",
+          "card_number": "28",
+          "card_name": "Cinderace",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chilling Reign",
+          "card_number": "43",
+          "card_name": "Inteleon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Chilling Reign",
+          "card_number": "61",
+          "card_name": "Gardevoir",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sm12",
+      "source_set_name": "Cosmic Eclipse",
+      "title": "Cosmic Eclipse Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Cosmic_Eclipse_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Cosmic_Eclipse_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "218",
+          "card_name": "Buzzwole",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "219",
+          "card_name": "Entei",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "220",
+          "card_name": "Phione",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "221",
+          "card_name": "Blacephalon",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "16",
+          "card_name": "Sawsbuck",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "85",
+          "card_name": "Dusknoir",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "204",
+          "card_name": "Rosa",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "13",
+          "card_name": "Kricketot",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "14",
+          "card_name": "Kricketune",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "15",
+          "card_name": "Deerling",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "16",
+          "card_name": "Sawsbuck",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "201",
+          "card_name": "Professor Oak's Setup",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "31",
+          "card_name": "Tepig",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "32",
+          "card_name": "Pignite",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "33",
+          "card_name": "Emboar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "203",
+          "card_name": "Roller Skater",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Team Up",
+          "card_number": "152",
+          "card_name": "Pokémon Communication",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "54",
+          "card_name": "Piplup",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "55",
+          "card_name": "Prinplup",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "56",
+          "card_name": "Empoleon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "209",
+          "card_name": "Draw Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Team Up",
+          "card_number": "152",
+          "card_name": "Pokémon Communication",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "83",
+          "card_name": "Duskull",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "84",
+          "card_name": "Dusclops",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "85",
+          "card_name": "Dusknoir",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Cosmic Eclipse",
+          "card_number": "205",
+          "card_name": "Roxie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Team Up",
+          "card_number": "152",
+          "card_name": "Pokémon Communication",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
       "source_set_key": "sm4",
       "source_set_name": "Crimson Invasion",
       "title": "Crimson Invasion Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crimson_Invasion_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Crimson_Invasion_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh12.5",
+      "source_set_name": "Crown Zenith",
+      "title": "Crown Zenith Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crown_Zenith_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Crown_Zenith_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh12pt5gg",
+      "source_set_name": "Crown Zenith Galarian Gallery",
+      "title": "Crown Zenith Galarian Gallery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crown_Zenith_Galarian_Gallery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Crown_Zenith_Galarian_Gallery_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -737,12 +1805,429 @@
       "ignored": []
     },
     {
+      "source_set_key": "swsh3",
+      "source_set_name": "Darkness Ablaze",
+      "title": "Darkness Ablaze Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Darkness_Ablaze_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Darkness_Ablaze_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "35",
+          "card_name": "Decidueye",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "36",
+          "card_name": "Arctozolt",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "37",
+          "card_name": "Hydreigon",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "38",
+          "card_name": "Kangaskhan",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "61",
+          "card_name": "Tapu Koko",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "105",
+          "card_name": "Darkrai",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "133",
+          "card_name": "Kangaskhan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "11",
+          "card_name": "Rowlet",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "12",
+          "card_name": "Dartrix",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "148",
+          "card_name": "Ducklett",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "149",
+          "card_name": "Swanna",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "159",
+          "card_name": "Bird Keeper",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "65",
+          "card_name": "Dracozolt",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "61",
+          "card_name": "Tapu Koko",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "167",
+          "card_name": "Rare Fossil",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "163",
+          "card_name": "Kabu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "133",
+          "card_name": "Kangaskhan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "45",
+          "card_name": "Vanillite",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "46",
+          "card_name": "Vanillish",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "47",
+          "card_name": "Vanilluxe",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "166",
+          "card_name": "Pokémon Breeder's Nurturing",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "108",
+          "card_name": "Deino",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "109",
+          "card_name": "Zweilous",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "110",
+          "card_name": "Hydreigon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "105",
+          "card_name": "Darkrai",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Darkness Ablaze",
+          "card_number": "165",
+          "card_name": "Piers",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "165",
+          "card_name": "Hop",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "158",
+          "card_name": "Dan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "161",
+          "card_name": "Milo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "167",
+          "card_name": "Sonia",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "ex11",
+      "source_set_name": "Delta Species",
+      "title": "Delta Species Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Delta_Species_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Delta_Species_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex8",
+      "source_set_name": "Deoxys",
+      "title": "Deoxys Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Deoxys_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Deoxys_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv10",
+      "source_set_name": "Destined Rivals",
+      "title": "Destined Rivals Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Destined_Rivals_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Destined Rivals",
+          "card_number": "34",
+          "card_name": "Ethan's Typhlosion",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Destined Rivals",
+          "card_number": "49",
+          "card_name": "Misty's Gyarados",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Destined Rivals",
+          "card_number": "96",
+          "card_name": "Team Rocket's Tyranitar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "det1",
+      "source_set_name": "Detective Pikachu",
+      "title": "Detective Pikachu Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Detective_Pikachu_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Detective_Pikachu_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "dp1",
       "source_set_name": "Diamond & Pearl",
       "title": "Diamond & Pearl Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Diamond_%26_Pearl_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dc1",
+      "source_set_name": "Double Crisis",
+      "title": "Double Crisis Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Double_Crisis_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Double_Crisis_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dpp",
+      "source_set_name": "DP Black Star Promos",
+      "title": "DP Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/DP_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=DP_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-dp-l",
+      "source_set_name": "DP trainer Kit (Lucario)",
+      "title": "DP trainer Kit (Lucario) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/DP_trainer_Kit_(Lucario)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=DP_trainer_Kit_(Lucario)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-dp-m",
+      "source_set_name": "DP trainer Kit (Manaphy)",
+      "title": "DP trainer Kit (Manaphy) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/DP_trainer_Kit_(Manaphy)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=DP_trainer_Kit_(Manaphy)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex3",
+      "source_set_name": "Dragon",
+      "title": "Dragon Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dragon_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex15",
+      "source_set_name": "Dragon Frontiers",
+      "title": "Dragon Frontiers Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Frontiers_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dragon_Frontiers_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm7.5",
+      "source_set_name": "Dragon Majesty",
+      "title": "Dragon Majesty Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Majesty_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dragon_Majesty_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dv1",
+      "source_set_name": "Dragon Vault",
+      "title": "Dragon Vault Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dragon_Vault_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -779,6 +2264,18 @@
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Emerging_Powers_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Emerging_Powers_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy12",
+      "source_set_name": "Evolutions",
+      "title": "Evolutions Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Evolutions_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Evolutions_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1050,6 +2547,78 @@
       ]
     },
     {
+      "source_set_key": "tk-ex-m",
+      "source_set_name": "EX Trainer Kit 2 Minun",
+      "title": "EX Trainer Kit 2 Minun Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_2_Minun_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=EX_Trainer_Kit_2_Minun_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-ex-p",
+      "source_set_name": "EX Trainer Kit 2 Plusle",
+      "title": "EX Trainer Kit 2 Plusle Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_2_Plusle_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=EX_Trainer_Kit_2_Plusle_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-ex-latia",
+      "source_set_name": "EX Trainer Kit Latias",
+      "title": "EX Trainer Kit Latias Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_Latias_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=EX_Trainer_Kit_Latias_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-ex-latio",
+      "source_set_name": "EX Trainer Kit Latios",
+      "title": "EX Trainer Kit Latios Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_Latios_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=EX_Trainer_Kit_Latios_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ecard1",
+      "source_set_name": "Expedition Base Set",
+      "title": "Expedition Base Set Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Expedition_Base_Set_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Expedition_Base_Set_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy10",
+      "source_set_name": "Fates Collide",
+      "title": "Fates Collide Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Fates_Collide_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Fates_Collide_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "ex6",
       "source_set_name": "FireRed & LeafGreen",
       "title": "FireRed & LeafGreen Build & Battle Box (TCG)",
@@ -1074,12 +2643,101 @@
       "ignored": []
     },
     {
+      "source_set_key": "sm6",
+      "source_set_name": "Forbidden Light",
+      "title": "Forbidden Light Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Forbidden_Light_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "115",
+          "card_name": "Pheromosa",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "116",
+          "card_name": "Xurkitree",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "117",
+          "card_name": "Malamar",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "118",
+          "card_name": "Lycanroc",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "base3",
+      "source_set_name": "Fossil",
+      "title": "Fossil Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Fossil_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Fossil_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "xy3",
       "source_set_name": "Furious Fists",
       "title": "Furious Fists Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Furious_Fists_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Furious_Fists_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh8",
+      "source_set_name": "Fusion Strike",
+      "title": "Fusion Strike Build & Battle Box (TCG)",
+      "status": "no_usable_finish_segments",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Fusion_Strike_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Fusion_Strike_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "g1",
+      "source_set_name": "Generations",
+      "title": "Generations Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Generations_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dp4",
+      "source_set_name": "Great Encounters",
+      "title": "Great Encounters Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Great_Encounters_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Great_Encounters_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1098,12 +2756,120 @@
       "ignored": []
     },
     {
+      "source_set_key": "gym2",
+      "source_set_name": "Gym Challenge",
+      "title": "Gym Challenge Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Gym_Challenge_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Gym_Challenge_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "gym1",
+      "source_set_name": "Gym Heroes",
+      "title": "Gym Heroes Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Gym_Heroes_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Gym_Heroes_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "hgss1",
       "source_set_name": "HeartGold & SoulSilver",
       "title": "HeartGold & SoulSilver Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/HeartGold_%26_SoulSilver_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HeartGold_%26_SoulSilver_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "hgssp",
+      "source_set_name": "HGSS Black Star Promos",
+      "title": "HGSS Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HGSS_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HGSS_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm115",
+      "source_set_name": "Hidden Fates",
+      "title": "Hidden Fates Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hidden_Fates_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Hidden_Fates_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sma",
+      "source_set_name": "Hidden Fates Shiny Vault",
+      "title": "Hidden Fates Shiny Vault Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hidden_Fates_Shiny_Vault_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Hidden_Fates_Shiny_Vault_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex5",
+      "source_set_name": "Hidden Legends",
+      "title": "Hidden Legends Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hidden_Legends_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Hidden_Legends_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex13",
+      "source_set_name": "Holon Phantoms",
+      "title": "Holon Phantoms Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Holon_Phantoms_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Holon_Phantoms_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-hs-g",
+      "source_set_name": "HS trainer Kit (Gyarados)",
+      "title": "HS trainer Kit (Gyarados) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS_trainer_Kit_(Gyarados)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS_trainer_Kit_(Gyarados)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-hs-r",
+      "source_set_name": "HS trainer Kit (Raichu)",
+      "title": "HS trainer Kit (Raichu) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS_trainer_Kit_(Raichu)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS_trainer_Kit_(Raichu)_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1122,12 +2888,135 @@
       "ignored": []
     },
     {
+      "source_set_key": "hgss3",
+      "source_set_name": "HS—Undaunted",
+      "title": "HS—Undaunted Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Undaunted_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS%E2%80%94Undaunted_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "hgss2",
       "source_set_name": "HS—Unleashed",
       "title": "HS—Unleashed Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Unleashed_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS%E2%80%94Unleashed_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv09",
+      "source_set_name": "Journey Together",
+      "title": "Journey Together Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Journey_Together_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Journey_Together_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Journey Together",
+          "card_number": "55",
+          "card_name": "Iono's Kilowattrel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Journey Together",
+          "card_number": "128",
+          "card_name": "Noivern",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "jumbo",
+      "source_set_name": "Jumbo cards",
+      "title": "Jumbo cards Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jumbo_cards_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Jumbo_cards_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "base2",
+      "source_set_name": "Jungle",
+      "title": "Jungle Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Jungle_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy0",
+      "source_set_name": "Kalos Starter Set",
+      "title": "Kalos Starter Set Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Kalos_Starter_Set_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Kalos_Starter_Set_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex12",
+      "source_set_name": "Legend Maker",
+      "title": "Legend Maker Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Legend_Maker_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Legend_Maker_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "lc",
+      "source_set_name": "Legendary Collection",
+      "title": "Legendary Collection Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Legendary_Collection_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Legendary_Collection_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw11",
+      "source_set_name": "Legendary Treasures",
+      "title": "Legendary Treasures Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Legendary_Treasures_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Legendary_Treasures_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dp6",
+      "source_set_name": "Legends Awakened",
+      "title": "Legends Awakened Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Legends_Awakened_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Legends_Awakened_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1348,6 +3237,18 @@
           "reason": "no_matching_remaining_gap_fact"
         }
       ]
+    },
+    {
+      "source_set_key": "swsh11tg",
+      "source_set_name": "Lost Origin Trainer Gallery",
+      "title": "Lost Origin Trainer Gallery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_Trainer_Gallery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Lost_Origin_Trainer_Gallery_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
     },
     {
       "source_set_key": "sm8",
@@ -1641,12 +3542,298 @@
       "ignored": []
     },
     {
+      "source_set_key": "2011bw",
+      "source_set_name": "McDonald's Collection 2011",
+      "title": "McDonald's Collection 2011 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2011_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2011_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2012bw",
+      "source_set_name": "McDonald's Collection 2012",
+      "title": "McDonald's Collection 2012 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2012_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2012_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2014xy",
+      "source_set_name": "McDonald's Collection 2014",
+      "title": "McDonald's Collection 2014 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2014_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2014_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2015xy",
+      "source_set_name": "McDonald's Collection 2015",
+      "title": "McDonald's Collection 2015 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2015_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2015_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2016xy",
+      "source_set_name": "McDonald's Collection 2016",
+      "title": "McDonald's Collection 2016 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2016_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2016_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2017sm",
+      "source_set_name": "McDonald's Collection 2017",
+      "title": "McDonald's Collection 2017 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2017_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2017_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2018sm",
+      "source_set_name": "McDonald's Collection 2018",
+      "title": "McDonald's Collection 2018 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2018_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2018_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2019sm",
+      "source_set_name": "McDonald's Collection 2019",
+      "title": "McDonald's Collection 2019 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2019_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2019_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2021swsh",
+      "source_set_name": "McDonald's Collection 2021",
+      "title": "McDonald's Collection 2021 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2021_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2021_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2022swsh",
+      "source_set_name": "McDonald's Collection 2022",
+      "title": "McDonald's Collection 2022 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2022_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2022_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2023sv",
+      "source_set_name": "McDonald's Collection 2023",
+      "title": "McDonald's Collection 2023 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2023_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2023_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "2024sv",
+      "source_set_name": "McDonald's Collection 2024",
+      "title": "McDonald's Collection 2024 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2024_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=McDonald's_Collection_2024_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "me01",
+      "source_set_name": "Mega Evolution",
+      "title": "Mega Evolution Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Mega_Evolution_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Mega Evolution",
+          "card_number": "10",
+          "card_name": "Meganium",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Mega Evolution",
+          "card_number": "64",
+          "card_name": "Xerneas",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Mega Evolution",
+          "card_number": "73",
+          "card_name": "Hariyama",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "mee",
+      "source_set_name": "Mega Evolution Energy",
+      "title": "Mega Evolution Energy Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Energy_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Mega_Evolution_Energy_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "mep",
+      "source_set_name": "MEP Black Star Promos",
+      "title": "MEP Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=MEP_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "mfb",
+      "source_set_name": "My First Battle",
+      "title": "My First Battle Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/My_First_Battle_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=My_First_Battle_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dp2",
+      "source_set_name": "Mysterious Treasures",
+      "title": "Mysterious Treasures Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mysterious_Treasures_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Mysterious_Treasures_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "neo4",
+      "source_set_name": "Neo Destiny",
+      "title": "Neo Destiny Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Neo_Destiny_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Neo_Destiny_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "neo2",
+      "source_set_name": "Neo Discovery",
+      "title": "Neo Discovery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Neo_Discovery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Neo_Discovery_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "neo1",
       "source_set_name": "Neo Genesis",
       "title": "Neo Genesis Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Neo_Genesis_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Neo_Genesis_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "neo3",
+      "source_set_name": "Neo Revelation",
+      "title": "Neo Revelation Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Neo_Revelation_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Neo_Revelation_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw4",
+      "source_set_name": "Next Destinies",
+      "title": "Next Destinies Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Next_Destinies_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Next_Destinies_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "np",
+      "source_set_name": "Nintendo Black Star Promos",
+      "title": "Nintendo Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Nintendo_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Nintendo_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1665,12 +3852,283 @@
       "ignored": []
     },
     {
+      "source_set_key": "sv03",
+      "source_set_name": "Obsidian Flames",
+      "title": "Obsidian Flames Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Obsidian_Flames_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Obsidian Flames",
+          "card_number": "62",
+          "card_name": "Palafin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Obsidian Flames",
+          "card_number": "72",
+          "card_name": "Toxtricity",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Obsidian Flames",
+          "card_number": "85",
+          "card_name": "Togekiss",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sv02",
+      "source_set_name": "Paldea Evolved",
+      "title": "Paldea Evolved Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Paldea_Evolved_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Paldea_Evolved_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Paldea Evolved",
+          "card_number": "21",
+          "card_name": "Lokix",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paldea Evolved",
+          "card_number": "60",
+          "card_name": "Baxcalibur",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paldea Evolved",
+          "card_number": "105",
+          "card_name": "Tinkaton",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paldea Evolved",
+          "card_number": "172",
+          "card_name": "Boss's Orders",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sv04.5",
+      "source_set_name": "Paldean Fates",
+      "title": "Paldean Fates Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Paldean_Fates_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Paldean_Fates_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv04",
+      "source_set_name": "Paradox Rift",
+      "title": "Paradox Rift Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Paradox_Rift_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Paradox_Rift_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "28",
+          "card_name": "Iron Moth",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "29",
+          "card_name": "Chi-Yu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "49",
+          "card_name": "Golisopod",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "72",
+          "card_name": "Xatu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "81",
+          "card_name": "Espathra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Paradox Rift",
+          "card_number": "134",
+          "card_name": "Aegislash",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "me03",
+      "source_set_name": "Perfect Order",
+      "title": "Perfect Order Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Perfect_Order_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Perfect_Order_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Perfect Order",
+          "card_number": "6",
+          "card_name": "Serperior",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Perfect Order",
+          "card_number": "41",
+          "card_name": "Landorus",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Perfect Order",
+          "card_number": "45",
+          "card_name": "Tyrantrum",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Perfect Order",
+          "card_number": "86",
+          "card_name": "Growing G Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Perfect Order",
+          "card_number": "87",
+          "card_name": "Rocky F Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "me02",
+      "source_set_name": "Phantasmal Flames",
+      "title": "Phantasmal Flames Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Phantasmal_Flames_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Phantasmal_Flames_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Phantasmal Flames",
+          "card_number": "14",
+          "card_name": "Moltres",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Phantasmal Flames",
+          "card_number": "45",
+          "card_name": "Zacian",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Phantasmal Flames",
+          "card_number": "53",
+          "card_name": "Flygon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Phantasmal Flames",
+          "card_number": "68",
+          "card_name": "Toxtricity",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
       "source_set_key": "xy4",
       "source_set_name": "Phantom Forces",
       "title": "Phantom Forces Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Phantom_Forces_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Phantom_Forces_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw10",
+      "source_set_name": "Plasma Blast",
+      "title": "Plasma Blast Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Plasma_Blast_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Plasma_Blast_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1707,6 +4165,210 @@
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Platinum_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Platinum_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex5.5",
+      "source_set_name": "Poké Card Creator Pack",
+      "title": "Poké Card Creator Pack Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9_Card_Creator_Pack_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Pok%C3%A9_Card_Creator_Pack_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "fut2020",
+      "source_set_name": "Pokémon Futsal 2020",
+      "title": "Pokémon Futsal 2020 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Futsal_2020_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Pok%C3%A9mon_Futsal_2020_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "fut20",
+      "source_set_name": "Pokémon Futsal Collection",
+      "title": "Pokémon Futsal Collection Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Futsal_Collection_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Pok%C3%A9mon_Futsal_Collection_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh10.5",
+      "source_set_name": "Pokémon GO",
+      "title": "Pokémon GO Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_GO_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Pok%C3%A9mon_GO_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ru1",
+      "source_set_name": "Pokémon Rumble",
+      "title": "Pokémon Rumble Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Rumble_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Pok%C3%A9mon_Rumble_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop1",
+      "source_set_name": "POP Series 1",
+      "title": "POP Series 1 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_1_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_1_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop2",
+      "source_set_name": "POP Series 2",
+      "title": "POP Series 2 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_2_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_2_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop3",
+      "source_set_name": "POP Series 3",
+      "title": "POP Series 3 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_3_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_3_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop4",
+      "source_set_name": "POP Series 4",
+      "title": "POP Series 4 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_4_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_4_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop5",
+      "source_set_name": "POP Series 5",
+      "title": "POP Series 5 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_5_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_5_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop6",
+      "source_set_name": "POP Series 6",
+      "title": "POP Series 6 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_6_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_6_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop7",
+      "source_set_name": "POP Series 7",
+      "title": "POP Series 7 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_7_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_7_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop8",
+      "source_set_name": "POP Series 8",
+      "title": "POP Series 8 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_8_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_8_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pop9",
+      "source_set_name": "POP Series 9",
+      "title": "POP Series 9 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/POP_Series_9_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=POP_Series_9_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex16",
+      "source_set_name": "Power Keepers",
+      "title": "Power Keepers Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Keepers_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Power_Keepers_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy5",
+      "source_set_name": "Primal Clash",
+      "title": "Primal Clash Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Primal_Clash_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Primal_Clash_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv08.5",
+      "source_set_name": "Prismatic Evolutions",
+      "title": "Prismatic Evolutions Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Prismatic_Evolutions_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1955,12 +4617,127 @@
       "ignored": []
     },
     {
+      "source_set_key": "xy6",
+      "source_set_name": "Roaring Skies",
+      "title": "Roaring Skies Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Roaring_Skies_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Roaring_Skies_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "ex1",
       "source_set_name": "Ruby & Sapphire",
       "title": "Ruby & Sapphire Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Ruby_%26_Sapphire_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sp",
+      "source_set_name": "Sample",
+      "title": "Sample Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sample_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Sample_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex2",
+      "source_set_name": "Sandstorm",
+      "title": "Sandstorm Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sandstorm_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Sandstorm_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv01",
+      "source_set_name": "Scarlet & Violet",
+      "title": "Scarlet & Violet Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Scarlet_%26_Violet_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Scarlet_%26_Violet_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "54",
+          "card_name": "Quaquaval",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "61",
+          "card_name": "Dondozo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "76",
+          "card_name": "Pawmot",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "142",
+          "card_name": "Revavroom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "svp",
+      "source_set_name": "Scarlet & Violet Black Star Promos",
+      "title": "Scarlet & Violet Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Scarlet_%26_Violet_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Scarlet_%26_Violet_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sve",
+      "source_set_name": "Scarlet & Violet Energies",
+      "title": "Scarlet & Violet Energies Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Scarlet_%26_Violet_Energies_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Scarlet_%26_Violet_Energies_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -1979,12 +4756,212 @@
       "ignored": []
     },
     {
+      "source_set_key": "swsh4.5",
+      "source_set_name": "Shining Fates",
+      "title": "Shining Fates Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Shining_Fates_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh45sv",
+      "source_set_name": "Shining Fates Shiny Vault",
+      "title": "Shining Fates Shiny Vault Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_Shiny_Vault_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Shining_Fates_Shiny_Vault_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm3.5",
+      "source_set_name": "Shining Legends",
+      "title": "Shining Legends Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shining_Legends_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Shining_Legends_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv06.5",
+      "source_set_name": "Shrouded Fable",
+      "title": "Shrouded Fable Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shrouded_Fable_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Shrouded_Fable_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh12",
+      "source_set_name": "Silver Tempest",
+      "title": "Silver Tempest Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Silver_Tempest_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Silver_Tempest_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Silver Tempest",
+          "card_number": "22",
+          "card_name": "Rapidash",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Silver Tempest",
+          "card_number": "147",
+          "card_name": "Archeops",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "153",
+          "card_name": "Arezu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "swsh12tg",
+      "source_set_name": "Silver Tempest Trainer Gallery",
+      "title": "Silver Tempest Trainer Gallery Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Silver_Tempest_Trainer_Gallery_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Silver_Tempest_Trainer_Gallery_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ecard3",
+      "source_set_name": "Skyridge",
+      "title": "Skyridge Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Skyridge_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Skyridge_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "smp",
       "source_set_name": "SM Black Star Promos",
       "title": "SM Black Star Promos Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=SM_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-sm-r",
+      "source_set_name": "SM trainer Kit (Alolan Raichu)",
+      "title": "SM trainer Kit (Alolan Raichu) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_trainer_Kit_(Alolan_Raichu)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=SM_trainer_Kit_(Alolan_Raichu)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-sm-l",
+      "source_set_name": "SM trainer Kit (Lycanroc)",
+      "title": "SM trainer Kit (Lycanroc) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_trainer_Kit_(Lycanroc)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=SM_trainer_Kit_(Lycanroc)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "si1",
+      "source_set_name": "Southern Islands",
+      "title": "Southern Islands Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Southern_Islands_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Southern_Islands_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy11",
+      "source_set_name": "Steam Siege",
+      "title": "Steam Siege Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Steam_Siege_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Steam_Siege_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv07",
+      "source_set_name": "Stellar Crown",
+      "title": "Stellar Crown Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Stellar_Crown_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Stellar_Crown_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Stellar Crown",
+          "card_number": "3",
+          "card_name": "Ledian",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Stellar Crown",
+          "card_number": "119",
+          "card_name": "Bouffalant",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "dp7",
+      "source_set_name": "Stormfront",
+      "title": "Stormfront Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Stormfront_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Stormfront_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -2001,6 +4978,59 @@
       "usable_segments": 0,
       "records_generated": 0,
       "ignored": []
+    },
+    {
+      "source_set_key": "pl3",
+      "source_set_name": "Supreme Victors",
+      "title": "Supreme Victors Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Supreme_Victors_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Supreme_Victors_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv08",
+      "source_set_name": "Surging Sparks",
+      "title": "Surging Sparks Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Surging_Sparks_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Surging_Sparks_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Surging Sparks",
+          "card_number": "14",
+          "card_name": "Rabsca",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Surging Sparks",
+          "card_number": "38",
+          "card_name": "Gouging Fire",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Surging Sparks",
+          "card_number": "65",
+          "card_name": "Tapu Koko",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
     },
     {
       "source_set_key": "swsh1",
@@ -2261,12 +5291,204 @@
       ]
     },
     {
+      "source_set_key": "swshp",
+      "source_set_name": "SWSH Black Star Promos",
+      "title": "SWSH Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/SWSH_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=SWSH_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "ex4",
       "source_set_name": "Team Magma vs Team Aqua",
       "title": "Team Magma vs Team Aqua Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Magma_vs_Team_Aqua_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Team_Magma_vs_Team_Aqua_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "base5",
+      "source_set_name": "Team Rocket",
+      "title": "Team Rocket Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Team_Rocket_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex7",
+      "source_set_name": "Team Rocket Returns",
+      "title": "Team Rocket Returns Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_Returns_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Team_Rocket_Returns_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm9",
+      "source_set_name": "Team Up",
+      "title": "Team Up Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Up_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Team_Up_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "158",
+          "card_name": "Charizard",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "159",
+          "card_name": "Zapdos",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "160",
+          "card_name": "Nidoqueen",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "161",
+          "card_name": "Jirachi",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sv05",
+      "source_set_name": "Temporal Forces",
+      "title": "Temporal Forces Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Temporal_Forces_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "41",
+          "card_name": "Feraligatr",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "62",
+          "card_name": "Iron Thorns",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "78",
+          "card_name": "Flutter Mane",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "84",
+          "card_name": "Relicanth",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "119",
+          "card_name": "Koraidon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Temporal Forces",
+          "card_number": "121",
+          "card_name": "Miraidon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sv06",
+      "source_set_name": "Twilight Masquerade",
+      "title": "Twilight Masquerade Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Twilight_Masquerade_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Twilight_Masquerade_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Twilight Masquerade",
+          "card_number": "33",
+          "card_name": "Infernape",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Twilight Masquerade",
+          "card_number": "53",
+          "card_name": "Froslass",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Twilight Masquerade",
+          "card_number": "95",
+          "card_name": "Munkidori",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Twilight Masquerade",
+          "card_number": "96",
+          "card_name": "Fezandipiti",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Twilight Masquerade",
+          "card_number": "111",
+          "card_name": "Okidogi",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sm5",
+      "source_set_name": "Ultra Prism",
+      "title": "Ultra Prism Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ultra_Prism_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Ultra_Prism_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,
@@ -2517,6 +5739,71 @@
       ]
     },
     {
+      "source_set_key": "sm11",
+      "source_set_name": "Unified Minds",
+      "title": "Unified Minds Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Unified_Minds_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Unified_Minds_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "202",
+          "card_name": "Amoonguss",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "203",
+          "card_name": "Tapu Fini",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "204",
+          "card_name": "Necrozma",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "205",
+          "card_name": "Terrakion",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "ex10",
+      "source_set_name": "Unseen Forces",
+      "title": "Unseen Forces Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Unseen_Forces_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Unseen_Forces_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "exu",
+      "source_set_name": "Unseen Forces Unown Collection",
+      "title": "Unseen Forces Unown Collection Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Unseen_Forces_Unown_Collection_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Unseen_Forces_Unown_Collection_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "swsh4",
       "source_set_name": "Vivid Voltage",
       "title": "Vivid Voltage Build & Battle Box (TCG)",
@@ -2558,12 +5845,168 @@
       ]
     },
     {
+      "source_set_key": "wp",
+      "source_set_name": "W Promotional",
+      "title": "W Promotional Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/W_Promotional_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=W_Promotional_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sv10.5w",
+      "source_set_name": "White Flare",
+      "title": "White Flare Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/White_Flare_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=White_Flare_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "basep",
+      "source_set_name": "Wizards Black Star Promos",
+      "title": "Wizards Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Wizards_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy1",
+      "source_set_name": "XY",
+      "title": "XY Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
       "source_set_key": "xyp",
       "source_set_name": "XY Black Star Promos",
       "title": "XY Black Star Promos Build & Battle Box (TCG)",
       "status": "source_unavailable",
       "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
       "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-b",
+      "source_set_name": "XY trainer Kit (Bisharp)",
+      "title": "XY trainer Kit (Bisharp) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Bisharp)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Bisharp)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-latia",
+      "source_set_name": "XY trainer Kit (Latias)",
+      "title": "XY trainer Kit (Latias) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Latias)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Latias)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-latio",
+      "source_set_name": "XY trainer Kit (Latios)",
+      "title": "XY trainer Kit (Latios) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Latios)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Latios)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-n",
+      "source_set_name": "XY trainer Kit (Noivern)",
+      "title": "XY trainer Kit (Noivern) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Noivern)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Noivern)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-p",
+      "source_set_name": "XY trainer Kit (Pikachu Libre)",
+      "title": "XY trainer Kit (Pikachu Libre) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Pikachu_Libre)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Pikachu_Libre)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-su",
+      "source_set_name": "XY trainer Kit (Suicune)",
+      "title": "XY trainer Kit (Suicune) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Suicune)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Suicune)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-sy",
+      "source_set_name": "XY trainer Kit (Sylveon)",
+      "title": "XY trainer Kit (Sylveon) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Sylveon)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Sylveon)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "tk-xy-w",
+      "source_set_name": "XY trainer Kit (Wigglytuff)",
+      "title": "XY trainer Kit (Wigglytuff) Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Wigglytuff)_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_trainer_Kit_(Wigglytuff)_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xya",
+      "source_set_name": "Yellow A Alternate",
+      "title": "Yellow A Alternate Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Yellow_A_Alternate_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Yellow_A_Alternate_Build_%26_Battle_Box_(TCG)&action=raw",
       "from_cache": true,
       "usable_segments": 0,
       "records_generated": 0,

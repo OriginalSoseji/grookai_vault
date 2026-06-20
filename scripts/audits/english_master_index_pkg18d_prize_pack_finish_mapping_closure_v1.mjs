@@ -2,13 +2,20 @@ import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { DEFAULT_OUTPUT_DIR, markdownTable } from './verified_master_set_index_v1/shared.mjs';
+import {
+  DEFAULT_OUTPUT_DIR,
+  markdownTable,
+  normalizeNumber,
+  normalizeText,
+} from './verified_master_set_index_v1/shared.mjs';
 
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const SOURCE_DIR = path.join(ROOT, 'docs', 'audits', 'english_master_index_source_exhaustion_v1');
 const PKG17H_JSON = path.join(SOURCE_DIR, 'pkg17h_prize_pack_active_finish_current_queue_acquisition_v1', 'pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json');
 const CROSS_SOURCE_JSON = path.join(SOURCE_DIR, 'prize_pack_current_gap_cross_source_v1', 'prize_pack_current_gap_cross_source_v1.json');
+const PKG18K_JSON = path.join(SOURCE_DIR, 'pkg18k_pricecharting_prize_pack_finish_corroboration_v1', 'pkg18k_pricecharting_prize_pack_finish_corroboration_v1.json');
+const PKG18M_REAL_APPLY_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18m_prize_pack_stamped_parent_insert_real_apply_v1.json');
 const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1.json');
 const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1.md');
 
@@ -16,6 +23,15 @@ const PACKAGE_ID = 'PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE';
 
 async function readJson(filePath) {
   return JSON.parse(await fs.readFile(filePath, 'utf8'));
+}
+
+async function readJsonIfExists(filePath) {
+  try {
+    return await readJson(filePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
 }
 
 async function writeJson(filePath, value) {
@@ -63,6 +79,15 @@ function closureStatus(row) {
   return 'blocked_manual_review';
 }
 
+function rowKey(row) {
+  return [
+    row.set_key,
+    normalizeNumber(row.card_number),
+    normalizeText(row.card_name),
+    row.variant_key,
+  ].join('||');
+}
+
 function renderMarkdown(report) {
   return `# PKG-18D Prize Pack Finish Mapping Closure V1
 
@@ -83,6 +108,7 @@ Audit-only closure for Prize Pack stamped active-finish mapping.
 ${markdownTable(['metric', 'value'], [
     ['target_rows', report.summary.target_rows],
     ['ready_for_guarded_dry_run', report.summary.ready_for_guarded_dry_run],
+    ['applied_real_apply_verified', report.summary.applied_real_apply_verified],
     ['blocked_rows', report.summary.blocked_rows],
     ['single_source_rows', report.summary.single_source_rows],
     ['conflicting_rows', report.summary.conflicting_rows],
@@ -100,19 +126,40 @@ ${markdownTable(['closure_status', 'rows'], Object.entries(report.summary.by_clo
 ${markdownTable(['artifact', 'fingerprint/status'], [
     [report.source_artifacts.pkg17h_current_queue_acquisition, report.source_fingerprints.pkg17h_current_queue_acquisition],
     [report.source_artifacts.cross_source_current_gap, report.source_fingerprints.cross_source_current_gap],
+    [report.source_artifacts.pkg18k_pricecharting_corroboration ?? 'pkg18k not present', report.source_fingerprints.pkg18k_pricecharting_corroboration ?? 'not_present'],
+    [report.source_artifacts.pkg18m_real_apply ?? 'pkg18m not present', report.source_fingerprints.pkg18m_real_apply ?? 'not_present'],
   ])}
 
-No Prize Pack row is write-ready from the current source set. Continue only if a new independent exact source is added.
+Prize Pack rows are dry-run-ready only when current source evidence and PKG-18K PriceCharting corroboration agree on the exact active finish.
 `;
 }
 
 async function main() {
-  const [pkg17h, crossSource] = await Promise.all([
+  const [pkg17h, crossSource, pkg18k] = await Promise.all([
     readJson(PKG17H_JSON),
     readJson(CROSS_SOURCE_JSON),
+    readJsonIfExists(PKG18K_JSON),
   ]);
+  const pkg18mRealApply = await readJsonIfExists(PKG18M_REAL_APPLY_JSON);
+  const pricechartingReadyByKey = new Map(
+    (pkg18k?.rows ?? [])
+      .filter((row) => row.pricecharting_status === 'ready_second_source_pricecharting_corroborated')
+      .map((row) => [rowKey(row), row]),
+  );
+  const appliedByKey = new Set(
+    (pkg18mRealApply?.committed === true && pkg18mRealApply?.db_writes_performed === true && pkg18mRealApply?.deletes_performed === false)
+      ? (pkg18mRealApply.scope?.targets ?? []).map((row) => rowKey({
+        set_key: row.set_key,
+        card_number: row.card_number,
+        card_name: row.card_name,
+        variant_key: row.target_variant_key ?? row.variant_key,
+      }))
+      : [],
+  );
   const rows = (pkg17h.rows ?? []).map((row) => {
-    const status = closureStatus(row);
+    const pricechartingReady = pricechartingReadyByKey.get(rowKey(row)) ?? null;
+    const isApplied = appliedByKey.has(rowKey(row));
+    const status = isApplied ? 'applied_real_apply_verified' : (pricechartingReady ? 'ready_for_guarded_dry_run' : closureStatus(row));
     return {
       set_key: row.set_key,
       set_name: row.set_name,
@@ -126,7 +173,16 @@ async function main() {
       evidence_count: row.evidence_count ?? 0,
       source_families: row.source_families ?? [],
       finish_counts: row.finish_counts ?? {},
-      required_next_evidence: status === 'ready_for_guarded_dry_run'
+      pricecharting_corroboration_status: pricechartingReady?.pricecharting_status ?? null,
+      pricecharting_finish_key: pricechartingReady?.pricecharting_finish_key ?? null,
+      pricecharting_matches: pricechartingReady?.pricecharting_matches ?? [],
+      applied_package_id: isApplied ? pkg18mRealApply.package_id : null,
+      applied_package_fingerprint_sha256: isApplied ? pkg18mRealApply.package_fingerprint_sha256 : null,
+      evidence: [
+        ...(row.evidence ?? []),
+        ...(pricechartingReady?.evidence ?? []),
+      ],
+      required_next_evidence: status === 'ready_for_guarded_dry_run' || status === 'applied_real_apply_verified'
         ? null
         : 'Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish.',
     };
@@ -134,9 +190,12 @@ async function main() {
   const payload = {
     pkg17h_fingerprint: pkg17h.fingerprint_sha256,
     cross_source_fingerprint: crossSource.fingerprint_sha256,
+    pkg18k_fingerprint: pkg18k?.fingerprint_sha256 ?? null,
+    pkg18m_real_apply_fingerprint: pkg18mRealApply?.package_fingerprint_sha256 ?? null,
     rows,
   };
   const readyRows = rows.filter((row) => row.closure_status === 'ready_for_guarded_dry_run');
+  const appliedRows = rows.filter((row) => row.closure_status === 'applied_real_apply_verified');
   const report = {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1',
@@ -152,20 +211,26 @@ async function main() {
     source_artifacts: {
       pkg17h_current_queue_acquisition: rel(PKG17H_JSON),
       cross_source_current_gap: rel(CROSS_SOURCE_JSON),
+      pkg18k_pricecharting_corroboration: pkg18k ? rel(PKG18K_JSON) : null,
+      pkg18m_real_apply: pkg18mRealApply ? rel(PKG18M_REAL_APPLY_JSON) : null,
     },
     source_fingerprints: {
       pkg17h_current_queue_acquisition: pkg17h.fingerprint_sha256,
       cross_source_current_gap: crossSource.fingerprint_sha256,
+      pkg18k_pricecharting_corroboration: pkg18k?.fingerprint_sha256 ?? null,
+      pkg18m_real_apply: pkg18mRealApply?.package_fingerprint_sha256 ?? null,
     },
     fingerprint_sha256: sha256(stableJson(payload)),
     summary: {
       target_rows: rows.length,
       ready_for_guarded_dry_run: readyRows.length,
-      blocked_rows: rows.length - readyRows.length,
+      applied_real_apply_verified: appliedRows.length,
+      blocked_rows: rows.length - readyRows.length - appliedRows.length,
       single_source_rows: rows.filter((row) => row.closure_status === 'blocked_second_independent_source_needed').length,
       conflicting_rows: rows.filter((row) => row.closure_status === 'blocked_conflicting_finish_evidence').length,
       no_exact_match_rows: rows.filter((row) => row.closure_status === 'blocked_no_exact_source_match').length,
       cross_source_records_generated: crossSource.summary?.records_generated ?? 0,
+      pricecharting_corroborated_rows: rows.filter((row) => row.pricecharting_corroboration_status === 'ready_second_source_pricecharting_corroborated').length,
       by_closure_status: countBy(rows, (row) => row.closure_status),
       by_set: countBy(rows, (row) => row.set_key),
     },

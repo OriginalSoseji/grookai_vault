@@ -1,0 +1,216 @@
+{
+  "generated_at": "2026-06-20T17:03:50.523Z",
+  "version": "english_master_index_pkg18g3_stamped_conflict_resolved_readiness_v1",
+  "package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-READINESS",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_performed": false,
+  "dry_run_execution_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "conflict_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
+  },
+  "source_fingerprint_sha256": "c601cc7665df09daabe86b163c83a7f5093314c6647b86f7cccf16c108f424d8",
+  "package_fingerprint_sha256": "7f98ac16026f095517fab27ce5764a2eacc460d4257d09b87a73a3171798c141",
+  "summary": {
+    "candidate_identities": 2,
+    "future_guarded_candidates": 2,
+    "blocked_rows": 0,
+    "target_parent_inserts": 2,
+    "target_child_inserts": 2,
+    "target_identity_inserts": 2,
+    "write_ready_now": 0,
+    "by_status": {
+      "future_guarded_parent_child_identity_insert_candidate": 2
+    },
+    "by_finish": {
+      "cosmos": 1,
+      "reverse": 1
+    },
+    "by_variant_key": {
+      "gamestop_stamp": 1,
+      "regional_championships_stamp": 1
+    }
+  },
+  "approval_boundary": {
+    "next_allowed_step": "rollback_only_guarded_dry_run_transaction_artifact_preparation",
+    "real_apply_authorized": false,
+    "migrations_authorized": false,
+    "cleanup_authorized": false
+  },
+  "rows": [
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "026",
+      "card_name": "Suicune",
+      "variant_key": "gamestop_stamp",
+      "stamp_label": "GameStop Stamp",
+      "target_finish_key": "cosmos",
+      "previous_candidate_finish_key": "holo",
+      "base_parent_id": "190e9217-eafb-4a79-96cc-283e21d6e691",
+      "target_parent_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+      "target_child_id": "8ef1005c-7207-4ae0-8683-0ca9828c63e8",
+      "target_variant_key": "gamestop_stamp",
+      "target_printed_identity_modifier": "gamestop_stamp",
+      "target_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP",
+      "target_printing_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP-COSMOS",
+      "base_children": [
+        {
+          "id": "24f42fbe-c38c-4451-917f-f03cd843c438",
+          "finish_key": "cosmos",
+          "printing_gv_id": "GV-PK-PFL-026-COSMOS"
+        },
+        {
+          "id": "90877857-5dcf-46dc-83a2-2c9e44ce3515",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-PFL-026-RH"
+        },
+        {
+          "id": "b48a49eb-18a2-4241-b46a-684a4f701b89",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-PFL-026-HOLO"
+        }
+      ],
+      "existing_target_parents": [],
+      "identity_projection": {
+        "status": "ready",
+        "printed_number": "026",
+        "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "printed_total": 94,
+          "printed_set_abbrev": "PFL",
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "def277282b660b013f714e16fbb2a5147bc91578ba1906f82021365c8e3970ca",
+        "set_code_identity": "me02",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "suicune"
+      },
+      "identity_hash_collision_count": 0,
+      "exact_sources_supporting_adjudicated_finish": 4,
+      "evidence_sources": [
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+          "evidence_label": "Suicune Cosmos Holo GameStop Exclusive product page",
+          "supports_finish_key": "cosmos"
+        },
+        {
+          "source_key": "pricecharting_search_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/search-products?q=suicune&type=prices",
+          "evidence_label": "Suicune 026/094 Phantasmal Flames Cosmos Holo [Gamestop]",
+          "supports_finish_key": "cosmos"
+        },
+        {
+          "source_key": "tag_grading_pop_report",
+          "source_kind": "collector_reference",
+          "source_url": "https://my.taggrading.com/pop-report/Pok%C3%A9mon/2025/Pok%C3%A9mon%20Mega%20Evolution/Suicune/026%2F094?grades=10&setName=Phantasmal+Flames+%22GameStop%22+Stamp&variation=Pixel+Cosmos+Holo",
+          "evidence_label": "Phantasmal Flames GameStop Stamp Suicune 026/094 Pixel Cosmos Holo",
+          "supports_finish_key": "cosmos"
+        },
+        {
+          "source_key": "pokescope_variant_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokescope.app/card/me2-26/",
+          "evidence_label": "Previously captured PokeScope GameStop Cosmos Holo observation",
+          "supports_finish_key": "cosmos"
+        }
+      ],
+      "readiness_status": "future_guarded_parent_child_identity_insert_candidate",
+      "blockers": [],
+      "write_ready_now": 0,
+      "dry_run_execution_authorized": false
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "085",
+      "card_name": "Aegislash",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "target_finish_key": "reverse",
+      "previous_candidate_finish_key": "reverse",
+      "base_parent_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+      "target_parent_id": "dd9b9fc2-db91-4afb-b572-a9c3a646d137",
+      "target_child_id": "81ceb2d6-d5ce-48d4-9174-07fef7e4191e",
+      "target_variant_key": "regional_championships_stamp",
+      "target_printed_identity_modifier": "regional_championships_stamp",
+      "target_gv_id": "GV-PK-XY-85-REGIONAL-CHAMPIONSHIPS-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-85-REGIONAL-CHAMPIONSHIPS-STAMP-RH",
+      "base_children": [
+        {
+          "id": "0369f7d8-f94a-448d-881e-e379e42ef7ea",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-XY-85-RH"
+        },
+        {
+          "id": "37352237-17dd-44a7-b056-1b13ea88de42",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-XY-85-STD"
+        }
+      ],
+      "existing_target_parents": [],
+      "identity_projection": {
+        "status": "ready",
+        "printed_number": "85",
+        "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "printed_total": 146,
+          "printed_set_abbrev": "XY",
+          "variant_key_current": "regional_championships_stamp"
+        },
+        "identity_key_hash": "03bec9d8d48cbdb3beac3160e32c1653d2740cfbc305b2a703b420fb6093133d",
+        "set_code_identity": "xy1",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "aegislash"
+      },
+      "identity_hash_collision_count": 0,
+      "exact_sources_supporting_adjudicated_finish": 4,
+      "evidence_sources": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+          "evidence_label": "Aegislash 85/146 Reverse Holo Regional Championships",
+          "supports_finish_key": "reverse"
+        },
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/209551/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships",
+          "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holofoil",
+          "supports_finish_key": "reverse"
+        },
+        {
+          "source_key": "gamenerdz_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/aegislash-85-146-regional-championships-85-league-championship-cards-reverse-holofoil",
+          "evidence_label": "Aegislash 85/146 Regional Championships League Championship Cards Reverse Holofoil",
+          "supports_finish_key": "reverse"
+        },
+        {
+          "source_key": "nobleknight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148463419/Aegislash---85-146-Regional-Championships-P-085-146-Reverse-Holo",
+          "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holo",
+          "supports_finish_key": "reverse"
+        }
+      ],
+      "readiness_status": "future_guarded_parent_child_identity_insert_candidate",
+      "blockers": [],
+      "write_ready_now": 0,
+      "dry_run_execution_authorized": false
+    }
+  ]
+}

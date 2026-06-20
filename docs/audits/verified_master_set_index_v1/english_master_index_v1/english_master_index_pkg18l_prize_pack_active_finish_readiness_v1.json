@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-06-20T04:58:44.261Z",
+  "version": "english_master_index_pkg18l_prize_pack_active_finish_readiness_v1",
+  "package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+  "future_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1.json",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_read_error": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "fingerprint_sha256": "6a2c92a3bf2b42e95e90d7c21894e9e5a0505f38745738ee3ebcb0c678dc353c",
+  "summary": {
+    "source_candidate_rows": 0,
+    "future_guarded_parent_identity_insert_candidates": 0,
+    "blocked_or_review_rows": 0,
+    "by_readiness_status": {},
+    "by_blocker": {},
+    "by_finish": {},
+    "by_set": {}
+  },
+  "rows": []
+}

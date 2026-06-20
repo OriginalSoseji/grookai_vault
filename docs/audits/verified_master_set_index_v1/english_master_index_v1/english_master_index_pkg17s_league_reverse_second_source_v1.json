@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-06-20T04:58:17.371Z",
+  "version": "english_master_index_pkg17s_league_reverse_second_source_v1",
+  "package_id": "PKG-17S-LEAGUE-REVERSE-SECOND-SOURCE",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "stamped_remaining_action_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+    "fixture_json": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17s_league_reverse_second_source_v1/league_reverse_second_sources_v1.json"
+  },
+  "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "summary": {
+    "source_rows_reviewed": 3,
+    "current_queue_matches": 0,
+    "fixture_records_written": 0
+  },
+  "records": []
+}

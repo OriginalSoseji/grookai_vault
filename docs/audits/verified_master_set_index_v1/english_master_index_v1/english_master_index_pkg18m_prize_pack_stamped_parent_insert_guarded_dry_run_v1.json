@@ -1,0 +1,2296 @@
+{
+  "generated_at": "2026-06-20T04:27:38.760Z",
+  "version": "english_master_index_pkg18m_prize_pack_stamped_parent_insert_guarded_dry_run_v1",
+  "package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+  "package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+  "dry_run_proof_sha256": "56fc20603626c53ccaab3aa57addf28c6abe29e9636d88316c9bde2f262cb068",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18l_prize_pack_active_finish_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 12,
+    "by_set": {
+      "swsh5": 3,
+      "swsh7": 3,
+      "swsh9": 3,
+      "swsh1": 2,
+      "swsh6": 1
+    },
+    "by_finish": {
+      "normal": 12
+    },
+    "by_stamp_label": {
+      "Prize Pack Stamp": 12
+    },
+    "targets": [
+      {
+        "target_parent_id": "fd433679-c6de-4cd5-ac0f-c700d45a3748",
+        "target_child_id": "29dad302-bded-4d83-890f-36377b587009",
+        "base_parent_id": "736b75a6-1d8d-4adb-97d9-1b5e839d518a",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "162",
+        "card_name": "Energy Switch",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh1:162:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Sword & Shield",
+            "product_name": "Energy Switch [Prize Pack] #162",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Energy Switch",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "162",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Energy Switch 162 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:162:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Energy Switch",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "162",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Energy Switch 162 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:162:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Energy Switch",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162",
+                "card_number": "162",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Energy Switch [Prize Pack] #162",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:11550893:swsh1:162:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "11550893",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162",
+                "console_name": "Pokemon Sword & Shield",
+                "product_name": "Energy Switch [Prize Pack] #162"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "e8dcdd9f-8bec-4b4a-afec-a3804885e85e",
+        "target_child_id": "92da1559-e61d-4ef5-84ec-f4a34b6eab5f",
+        "base_parent_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "164",
+        "card_name": "Great Ball",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh1:164:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Sword & Shield",
+            "product_name": "Great Ball [Prize Pack] #164",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Great Ball",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "164",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Great Ball 164 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh1:164:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Great Ball",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "164",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Great Ball 164 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh1:164:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh1",
+                "language": "en",
+                "set_name": "Sword & Shield",
+                "card_name": "Great Ball",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164",
+                "card_number": "164",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Great Ball [Prize Pack] #164",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:12591697:swsh1:164:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "12591697",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164",
+                "console_name": "Pokemon Sword & Shield",
+                "product_name": "Great Ball [Prize Pack] #164"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "4147310c-d50a-4e46-adbf-349a35bfa4b7",
+        "target_child_id": "91357542-dd74-4f04-99c4-3b61c7bf260c",
+        "base_parent_id": "d5920c2c-956f-4d75-ab84-6d5501b5efe7",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "136",
+        "card_name": "Tool Jammer",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh5:136:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Battle Styles",
+            "product_name": "Tool Jammer [Prize Pack] #136",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tool Jammer",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "136",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Tool Jammer 136 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:136:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tool Jammer",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "136",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Tool Jammer 136 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:136:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tool Jammer",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136",
+                "card_number": "136",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Tool Jammer [Prize Pack] #136",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:10608596:swsh5:136:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "10608596",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136",
+                "console_name": "Pokemon Battle Styles",
+                "product_name": "Tool Jammer [Prize Pack] #136"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "2957a676-b1b1-4586-ac0e-4386edd1a200",
+        "target_child_id": "aa518335-4874-4cfe-8feb-5477fdd41a13",
+        "base_parent_id": "f33082e9-630e-4c08-b3e4-203d85dfcc8a",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "137",
+        "card_name": "Tower of Darkness",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh5:137:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Battle Styles",
+            "product_name": "Tower Of Darkness [Prize Pack] #137",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Darkness",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "137",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Tower of Darkness 137 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:137:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Darkness",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "137",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Tower of Darkness 137 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:137:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Darkness",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137",
+                "card_number": "137",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Tower Of Darkness [Prize Pack] #137",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:10608594:swsh5:137:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "10608594",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137",
+                "console_name": "Pokemon Battle Styles",
+                "product_name": "Tower Of Darkness [Prize Pack] #137"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "7ed8b8a3-cb40-47a3-a494-628cd6eb9300",
+        "target_child_id": "bc2a532a-c1ee-46af-8bb9-d6bcc0dfe8ea",
+        "base_parent_id": "118ec019-366c-483e-92c3-19325edb8819",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "138",
+        "card_name": "Tower of Waters",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh5:138:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Battle Styles",
+            "product_name": "Tower of Waters [Prize Pack 1] #138",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Waters",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "138",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Tower of Waters 138 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh5:138:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Waters",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "138",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Tower of Waters 138 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh5:138:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh5",
+                "language": "en",
+                "set_name": "Battle Styles",
+                "card_name": "Tower of Waters",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138",
+                "card_number": "138",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Tower of Waters [Prize Pack 1] #138",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:5154460:swsh5:138:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "5154460",
+                "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138",
+                "console_name": "Pokemon Battle Styles",
+                "product_name": "Tower of Waters [Prize Pack 1] #138"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "bd3c13a1-dffe-444f-b297-d6265020e820",
+        "target_child_id": "b1b36934-488a-4ec7-9c6c-d57bac442ad1",
+        "base_parent_id": "3d15055b-33d3-4c1b-ae95-7e5d001fc131",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "64",
+        "card_name": "Cresselia",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh6:64:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Chilling Reign",
+            "product_name": "Cresselia [Prize Pack 1] #64",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh6",
+                "language": "en",
+                "set_name": "Chilling Reign",
+                "card_name": "Cresselia",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "64",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Cresselia 64 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh6:64:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh6",
+                "language": "en",
+                "set_name": "Chilling Reign",
+                "card_name": "Cresselia",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "64",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Cresselia 64 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh6:64:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh6",
+                "language": "en",
+                "set_name": "Chilling Reign",
+                "card_name": "Cresselia",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64",
+                "card_number": "64",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Cresselia [Prize Pack 1] #64",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:5334238:swsh6:64:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "5334238",
+                "source_url": "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64",
+                "console_name": "Pokemon Chilling Reign",
+                "product_name": "Cresselia [Prize Pack 1] #64"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "47fd22de-aed3-4e70-83be-270c8105c921",
+        "target_child_id": "46673913-a7b1-4356-980d-467fab73712f",
+        "base_parent_id": "fec12cfa-cf5b-4991-a786-05d7135a4b90",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "144",
+        "card_name": "Crystal Cave",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh7:144:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Evolving Skies",
+            "product_name": "Crystal Cave [Prize Pack 1] #144",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Crystal Cave",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "144",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Crystal Cave 144 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:144:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Crystal Cave",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "144",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Crystal Cave 144 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:144:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Crystal Cave",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144",
+                "card_number": "144",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Crystal Cave [Prize Pack 1] #144",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:5334239:swsh7:144:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "5334239",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144",
+                "console_name": "Pokemon Evolving Skies",
+                "product_name": "Crystal Cave [Prize Pack 1] #144"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "fa64d814-a230-481f-aa3b-972a8c456dda",
+        "target_child_id": "18510175-080f-4c2a-9d9a-9cf705d6d373",
+        "base_parent_id": "327bcb66-1325-4431-9da8-007491330fc0",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "146",
+        "card_name": "Dream Ball",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh7:146:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Evolving Skies",
+            "product_name": "Dream Ball [Prize Pack 1] #146",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Dream Ball",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "146",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Dream Ball 146 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:146:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Dream Ball",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "146",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Dream Ball 146 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:146:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Dream Ball",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146",
+                "card_number": "146",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Dream Ball [Prize Pack 1] #146",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:5334240:swsh7:146:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "5334240",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146",
+                "console_name": "Pokemon Evolving Skies",
+                "product_name": "Dream Ball [Prize Pack 1] #146"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "2ce7b2ff-04a1-4753-bca4-72a5ed194c2f",
+        "target_child_id": "5ac27212-d712-4709-a95c-72c34c4b5cd5",
+        "base_parent_id": "6c586b33-cdd3-47a6-9c58-2693d7a25ca2",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "154",
+        "card_name": "Rescue Carrier",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh7:154:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Evolving Skies",
+            "product_name": "Rescue Carrier [Prize Pack] #154",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Rescue Carrier",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+                "card_number": "154",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 1: Rescue Carrier 154 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps1:swsh7:154:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Rescue Carrier",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "154",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Rescue Carrier 154 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh7:154:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh7",
+                "language": "en",
+                "set_name": "Evolving Skies",
+                "card_name": "Rescue Carrier",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154",
+                "card_number": "154",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Rescue Carrier [Prize Pack] #154",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:12591696:swsh7:154:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "12591696",
+                "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154",
+                "console_name": "Pokemon Evolving Skies",
+                "product_name": "Rescue Carrier [Prize Pack] #154"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "50d53e25-b1b6-40ca-8b46-bb99e017c68e",
+        "target_child_id": "f05c6935-3e4c-4c89-bba2-8e48fd9dca0f",
+        "base_parent_id": "e851cee4-6ef0-403a-b4d5-389878aa8658",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "134",
+        "card_name": "Cheren's Care",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh9:134:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Brilliant Stars",
+            "product_name": "Cheren’s Care [Prize Pack] #134",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cheren's Care",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "134",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Cheren's Care 134 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:134:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cheren's Care",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+                "card_number": "134",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 3: Cheren's Care 134 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:134:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cheren's Care",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134",
+                "card_number": "134",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Cheren’s Care [Prize Pack] #134",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:6115084:swsh9:134:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "6115084",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134",
+                "console_name": "Pokemon Brilliant Stars",
+                "product_name": "Cheren’s Care [Prize Pack] #134"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "6e196280-5e23-4688-9b68-18f45df6a6b8",
+        "target_child_id": "0c4ebd36-b8ab-4807-a471-6fd3543cb726",
+        "base_parent_id": "3a6d4675-779a-40c4-99fd-4baff941804f",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "138",
+        "card_name": "Cynthia's Ambition",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh9:138:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Brilliant Stars",
+            "product_name": "Cynthia's Ambition [Prize Pack] #138",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cynthia's Ambition",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "138",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Cynthia's Ambition 138 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:138:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cynthia's Ambition",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+                "card_number": "138",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 3: Cynthia's Ambition 138 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:138:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Cynthia's Ambition",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138",
+                "card_number": "138",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Cynthia's Ambition [Prize Pack] #138",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:10157244:swsh9:138:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "10157244",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138",
+                "console_name": "Pokemon Brilliant Stars",
+                "product_name": "Cynthia's Ambition [Prize Pack] #138"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      },
+      {
+        "target_parent_id": "442a751e-9b1d-4cd7-885a-09cdc03a8315",
+        "target_child_id": "27bd9b88-9327-4ace-bcfb-c617e47b1e6b",
+        "base_parent_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "148",
+        "card_name": "Roseanne's Backup",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148"
+        ],
+        "source_families": [
+          "pricecharting_prize_pack",
+          "verified_master_index_identity"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18L-PRIZE-PACK-ACTIVE-FINISH-READINESS",
+          "readiness_fingerprint_sha256": "543c7637be5536691bc37239c1ea5c0f6c5a6ea848584b44e7113d8c5c87c25e",
+          "source_families": [
+            "pricecharting_prize_pack",
+            "verified_master_index_identity"
+          ],
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148"
+          ],
+          "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+          "raw_snapshot_ref": "pkg18l:swsh9:148:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal",
+          "source_evidence": {
+            "caveat": "PriceCharting corroborates exact Prize Pack product identity and active finish; original printed set and card identity come from existing Master Index evidence.",
+            "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148",
+            "stamp_label": "Prize Pack Stamp",
+            "console_name": "Pokemon Brilliant Stars",
+            "product_name": "Roseanne's Backup [Prize Pack] #148",
+            "source_status": "ready_for_guarded_dry_run",
+            "evidence_label": "PriceCharting exact Prize Pack product title corroborates active finish",
+            "source_evidence": [
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Roseanne's Backup",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+                "card_number": "148",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 2: Roseanne's Backup 148 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps2:swsh9:148:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Current PKG-17A exact Prize Pack stamped active-finish evidence. Accepted only when set key, card number, card name, and active finish are explicitly supported.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Roseanne's Backup",
+                "finish_key": "normal",
+                "source_key": "bulbapedia_prize_pack_active_finish_current_queue",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+                "card_number": "148",
+                "source_kind": "human_readable_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T03:55:36.451Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "Bulbapedia Prize Pack Series 3: Roseanne's Backup 148 Standard Set supports non-holo normal",
+                "raw_snapshot_ref": "bulbapedia_prize_pack_active_finish_current_queue:pps3:swsh9:148:normal:prize_pack_stamp"
+              },
+              {
+                "notes": "Exact PriceCharting CSV title match against current PKG-18D Prize Pack blocker row. No DB writes; this only corroborates active finish when another source already supports the same finish.",
+                "set_key": "swsh9",
+                "language": "en",
+                "set_name": "Brilliant Stars",
+                "card_name": "Roseanne's Backup",
+                "finish_key": "normal",
+                "source_key": "pricecharting_prize_pack_finish_corroboration",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148",
+                "card_number": "148",
+                "source_kind": "marketplace_checklist",
+                "variant_key": "prize_pack_stamp",
+                "retrieved_at": "2026-06-20T04:18:44.867Z",
+                "evidence_type": "finish_presence",
+                "evidence_label": "PriceCharting exact Prize Pack product title: Roseanne's Backup [Prize Pack] #148",
+                "raw_snapshot_ref": "pricecharting_prize_pack_finish_corroboration:13077392:swsh9:148:normal"
+              }
+            ],
+            "source_package_id": "PKG-18D-PRIZE-PACK-FINISH-MAPPING-CLOSURE",
+            "stamped_variant_key": "prize_pack_stamp",
+            "pricecharting_matches": [
+              {
+                "finish_key": "normal",
+                "product_id": "13077392",
+                "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148",
+                "console_name": "Pokemon Brilliant Stars",
+                "product_name": "Roseanne's Backup [Prize Pack] #148"
+              }
+            ],
+            "active_child_finish_key": "normal",
+            "source_fingerprint_sha256": "eb8a2de8d6904d54ae42db6f98532ccaad354bd4aa7e5b2123b15d62e5259561"
+          }
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg18m_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 12,
+      "target_parent_count": 12,
+      "target_child_count": 12,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 12,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
+      "package_fingerprint": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
+      "target_rows": 12,
+      "inserted_parent_rows": 12,
+      "inserted_parent_modifier_rows": 12,
+      "inserted_identity_rows": 12,
+      "inserted_child_rows": 12,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 12,
+      "identity_inserts": 12,
+      "child_inserts": 12,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-20T04:27:37.512Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "736b75a6-1d8d-4adb-97d9-1b5e839d518a",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5920c2c-956f-4d75-ab84-6d5501b5efe7",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f33082e9-630e-4c08-b3e4-203d85dfcc8a",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "118ec019-366c-483e-92c3-19325edb8819",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3d15055b-33d3-4c1b-ae95-7e5d001fc131",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "fec12cfa-cf5b-4991-a786-05d7135a4b90",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "327bcb66-1325-4431-9da8-007491330fc0",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "6c586b33-cdd3-47a6-9c58-2693d7a25ca2",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e851cee4-6ef0-403a-b4d5-389878aa8658",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3a6d4675-779a-40c4-99fd-4baff941804f",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "7e5152fe7a90bfaa2e472a9e6fbeacef4361612e561787ff70e9ce50c337a28c",
+      "counts": {
+        "base_parent": 12
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-20T04:27:38.522Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "736b75a6-1d8d-4adb-97d9-1b5e839d518a",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5920c2c-956f-4d75-ab84-6d5501b5efe7",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f33082e9-630e-4c08-b3e4-203d85dfcc8a",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "118ec019-366c-483e-92c3-19325edb8819",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3d15055b-33d3-4c1b-ae95-7e5d001fc131",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "fec12cfa-cf5b-4991-a786-05d7135a4b90",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "327bcb66-1325-4431-9da8-007491330fc0",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "6c586b33-cdd3-47a6-9c58-2693d7a25ca2",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e851cee4-6ef0-403a-b4d5-389878aa8658",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3a6d4675-779a-40c4-99fd-4baff941804f",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "29dad302-bded-4d83-890f-36377b587009",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "92da1559-e61d-4ef5-84ec-f4a34b6eab5f",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "91357542-dd74-4f04-99c4-3b61c7bf260c",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "aa518335-4874-4cfe-8feb-5477fdd41a13",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "bc2a532a-c1ee-46af-8bb9-d6bcc0dfe8ea",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "b1b36934-488a-4ec7-9c6c-d57bac442ad1",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "46673913-a7b1-4356-980d-467fab73712f",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "18510175-080f-4c2a-9d9a-9cf705d6d373",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5ac27212-d712-4709-a95c-72c34c4b5cd5",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f05c6935-3e4c-4c89-bba2-8e48fd9dca0f",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "0c4ebd36-b8ab-4807-a471-6fd3543cb726",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "27bd9b88-9327-4ace-bcfb-c617e47b1e6b",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "bf2e2963-1bf5-4710-aaa8-f819ecba9c51",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "bc62df570f36fbc2114a87eb471790d730a1296efd656686a59a3261604437c3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "56859bbd-479a-4450-8c48-f98713876e40",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "37eec71b30242a596111e5905c0207f22247fb8cbacc933e90a55096d70f1325"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "60d1458d-eda6-4dab-acf3-ae155924ce3b",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1af0afee517d8694aeaa86ccfc59f079608cf8e176112b3e3541e7aca1818ea9"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d2343a73-9e6d-4d42-b92a-65c501f5455b",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "c2c31d7ee572bcc7889a8668aa13995c112ed769203704a4e876f3dec65b0c9b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3a1473dd-c18d-45ab-a2ec-e3922dee65a3",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d2bc3886a74288e6da33c0e2d20b95afb5814be16b98f5a7480007a67bd48e6f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "7c7bf06b-324b-4e0b-8188-15e49395b738",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1369e549b77f1767076fed22d362df0b7431828192b399bbaef318dbba132993"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "f472cb5c-132e-4f7d-b24c-e723f2b2d15c",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "149360c0cc3f12bc5a29f18df655f2e2638293118556d52538b397882d9ef37d"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "39f721f2-1f66-445c-bb15-5e1e25dd716d",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "63c83df523c5bac6754138f3b0fb981fabf7d165c9a1aa564f894955d000cc42"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "cda4e362-cbb5-42a9-8c4f-31c353f3058c",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "834f852d13f55b275130b81d7f599ef6f54d29e853bf7a9f4237d7e5cfa7d4b4"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9626494f-fee1-4571-8c77-e582d7ade0da",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1e7c5403be73cd064cf3cc319eac6d248f525738a6a65a261420871ec6bdee6f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "ee08870d-6b8b-49fa-a0c6-364763659ee9",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b63a246c13d264c120939caec991cd3d32f61077f975f0954068beee8fd4fc8c"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "29b01b09-9d46-4cbf-b9a1-baef62ae0175",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d9d6bdfa8891027ec7259b93bc0bbab2f80f04e511468e7c6a8143484533244a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "fd433679-c6de-4cd5-ac0f-c700d45a3748",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e8dcdd9f-8bec-4b4a-afec-a3804885e85e",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4147310c-d50a-4e46-adbf-349a35bfa4b7",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2957a676-b1b1-4586-ac0e-4386edd1a200",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "7ed8b8a3-cb40-47a3-a494-628cd6eb9300",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bd3c13a1-dffe-444f-b297-d6265020e820",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "47fd22de-aed3-4e70-83be-270c8105c921",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "fa64d814-a230-481f-aa3b-972a8c456dda",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2ce7b2ff-04a1-4753-bca4-72a5ed194c2f",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "50d53e25-b1b6-40ca-8b46-bb99e017c68e",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6e196280-5e23-4688-9b68-18f45df6a6b8",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "442a751e-9b1d-4cd7-885a-09cdc03a8315",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "prize_pack_stamp",
+          "printed_identity_modifier": "prize_pack_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "2a7fbe49a7cad2242ddd35de71658c0996c1420bb1290d49bed4494e13f377ff",
+      "counts": {
+        "base_parent": 12,
+        "target_child": 12,
+        "target_identity": 12,
+        "target_parent": 12
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-20T04:27:38.679Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "736b75a6-1d8d-4adb-97d9-1b5e839d518a",
+          "set_code": "swsh1",
+          "number": "162",
+          "number_plain": "162",
+          "name": "Energy Switch",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+          "set_code": "swsh1",
+          "number": "164",
+          "number_plain": "164",
+          "name": "Great Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5920c2c-956f-4d75-ab84-6d5501b5efe7",
+          "set_code": "swsh5",
+          "number": "136",
+          "number_plain": "136",
+          "name": "Tool Jammer",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f33082e9-630e-4c08-b3e4-203d85dfcc8a",
+          "set_code": "swsh5",
+          "number": "137",
+          "number_plain": "137",
+          "name": "Tower of Darkness",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "118ec019-366c-483e-92c3-19325edb8819",
+          "set_code": "swsh5",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Tower of Waters",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3d15055b-33d3-4c1b-ae95-7e5d001fc131",
+          "set_code": "swsh6",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cresselia",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "fec12cfa-cf5b-4991-a786-05d7135a4b90",
+          "set_code": "swsh7",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Crystal Cave",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "327bcb66-1325-4431-9da8-007491330fc0",
+          "set_code": "swsh7",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Dream Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "6c586b33-cdd3-47a6-9c58-2693d7a25ca2",
+          "set_code": "swsh7",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Rescue Carrier",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e851cee4-6ef0-403a-b4d5-389878aa8658",
+          "set_code": "swsh9",
+          "number": "134",
+          "number_plain": "134",
+          "name": "Cheren's Care",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3a6d4675-779a-40c4-99fd-4baff941804f",
+          "set_code": "swsh9",
+          "number": "138",
+          "number_plain": "138",
+          "name": "Cynthia's Ambition",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+          "set_code": "swsh9",
+          "number": "148",
+          "number_plain": "148",
+          "name": "Roseanne's Backup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "7e5152fe7a90bfaa2e472a9e6fbeacef4361612e561787ff70e9ce50c337a28c",
+      "counts": {
+        "base_parent": 12
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "56fc20603626c53ccaab3aa57addf28c6abe29e9636d88316c9bde2f262cb068",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS apply only. Fingerprint: 2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d. Scope: 12 stamped parent inserts, 12 identity inserts, 12 child printing inserts; finishes normal=12; stamp labels Prize Pack Stamp=12; sets swsh5=3, swsh7=3, swsh9=3, swsh1=2, swsh6=1. Dry-run proof: 7e5152fe7a90bfaa2e472a9e6fbeacef4361612e561787ff70e9ce50c337a28c == 7e5152fe7a90bfaa2e472a9e6fbeacef4361612e561787ff70e9ce50c337a28c. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}
