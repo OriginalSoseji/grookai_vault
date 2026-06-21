@@ -115,6 +115,18 @@ export default function EarlyAccessPage({ searchParams }: EarlyAccessPageProps) 
             </div>
           ) : null}
 
+          <div className="mt-4 flex flex-col items-center gap-2 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:gap-3">
+            <span>Follow us here for all updates.</span>
+            <a
+              href="https://discord.gg/UwxmxX2FGH"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-slate-200/80 bg-white/72 px-4 py-2 font-semibold text-slate-800 shadow-[0_16px_40px_-34px_rgba(15,23,42,0.72)] transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-white/10 dark:bg-white/8 dark:text-white dark:hover:border-blue-300/30 dark:hover:text-blue-200"
+            >
+              Join the Discord
+            </a>
+          </div>
+
           <div className="mt-10 grid w-full max-w-3xl grid-cols-3 gap-3">
             {proofStats.map((stat) => (
               <div key={stat.label} className="rounded-[1.4rem] bg-slate-50/80 px-3 py-4 dark:bg-white/6">
