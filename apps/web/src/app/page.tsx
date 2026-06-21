@@ -202,6 +202,15 @@ export default async function HomePage() {
             </Suspense>
           </div>
 
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link href="/early-access" className="gv-primary-button">
+              Join early access
+            </Link>
+            <Link href="/explore" className="gv-secondary-button">
+              Preview search
+            </Link>
+          </div>
+
           <div className="mx-auto flex w-full max-w-[560px] items-end justify-center gap-3 pt-2 sm:gap-5">
             <Link
               href={leftCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${leftCard.gv_id}`}
