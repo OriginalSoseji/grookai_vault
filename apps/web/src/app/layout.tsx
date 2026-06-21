@@ -114,9 +114,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </main>
         <footer className="border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur md:pb-0">
           <PageContainer className="py-4 text-center text-sm text-slate-600">
-            <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
-              Legal
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+              <Link href="/early-access" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                Early Access
+              </Link>
+              <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                Legal
+              </Link>
+            </div>
           </PageContainer>
         </footer>
         <Analytics />
