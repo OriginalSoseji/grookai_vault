@@ -842,7 +842,7 @@ export default async function FounderPage() {
           title="Founder Tools"
           description="Use these guarded lanes for access, review, and staged operational changes."
         />
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           <FounderToolCard
             href="/founder/entitlements"
             eyebrow="Access"
@@ -861,6 +861,12 @@ export default async function FounderPage() {
             eyebrow="Operations"
             title="Staging Dashboard"
             description="Inspect staged work before any guarded production path is considered."
+          />
+          <FounderToolCard
+            href="/founder/early-access"
+            eyebrow="Leads"
+            title="Early Access"
+            description="View and copy early access emails captured through the public landing page."
           />
         </div>
       </PageSection>
