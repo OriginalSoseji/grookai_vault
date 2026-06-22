@@ -407,7 +407,7 @@ class _DexSprite extends StatelessWidget {
                 height: size * 0.78,
                 fit: BoxFit.contain,
                 filterQuality: FilterQuality.none,
-                errorBuilder: (_, __, ___) =>
+                errorBuilder: (context, error, stackTrace) =>
                     _DexSpriteFallback(species: species),
               ),
       ),
