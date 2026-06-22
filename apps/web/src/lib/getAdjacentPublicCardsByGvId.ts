@@ -1,6 +1,10 @@
 import { cache } from "react";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  getChildDisplayImageFallbacks,
+  type ChildDisplayImageFallback,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 type CardNavigationSeedRow = {
@@ -9,6 +13,7 @@ type CardNavigationSeedRow = {
 };
 
 type CardNavigationRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   set_code: string | null;
@@ -106,11 +111,20 @@ function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
 }
 
-async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCard | undefined> {
+async function toAdjacentCard(
+  row?: CardNavigationRow,
+  childDisplayImageFallbacks = new Map<string, ChildDisplayImageFallback>(),
+): Promise<AdjacentPublicCard | undefined> {
   if (!row?.gv_id) return undefined;
 
   const imageFields = await resolveCardImageFieldsV1(row);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+  const childDisplayImageFallback = row.id
+    ? childDisplayImageFallbacks.get(row.id)
+    : undefined;
+  const fallbackDisplayImage = !imageFields.display_image_url
+    ? childDisplayImageFallback
+    : undefined;
 
   return {
     gv_id: row.gv_id,
@@ -122,11 +136,20 @@ async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCa
     printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
     image_url: imageFields.image_url ?? undefined,
     representative_image_url: imageFields.representative_image_url ?? undefined,
-    image_status: imageFields.image_status ?? undefined,
-    image_note: imageFields.image_note ?? undefined,
     image_source: imageFields.image_source ?? undefined,
-    display_image_url: imageFields.display_image_url ?? undefined,
-    display_image_kind: imageFields.display_image_kind,
+    display_image_url:
+      imageFields.display_image_url ??
+      fallbackDisplayImage?.display_image_url ??
+      undefined,
+    display_image_kind: fallbackDisplayImage
+      ? fallbackDisplayImage.display_image_kind
+      : imageFields.display_image_kind,
+    image_status: fallbackDisplayImage
+      ? fallbackDisplayImage.image_status
+      : imageFields.image_status ?? undefined,
+    image_note: fallbackDisplayImage
+      ? fallbackDisplayImage.image_note
+      : imageFields.image_note ?? undefined,
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
   };
 }
@@ -154,7 +177,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,sets(identity_model)",
+      "id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,sets(identity_model)",
     )
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);
@@ -176,9 +199,17 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
     return {};
   }
 
+  const adjacentRows = [orderedRows[currentIndex - 1], orderedRows[currentIndex + 1]].filter(
+    (row): row is CardNavigationRow & { gv_id: string } => Boolean(row),
+  );
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    adjacentRows,
+  );
+
   const [previous, next] = await Promise.all([
-    toAdjacentCard(orderedRows[currentIndex - 1]),
-    toAdjacentCard(orderedRows[currentIndex + 1]),
+    toAdjacentCard(orderedRows[currentIndex - 1], childDisplayImageFallbacks),
+    toAdjacentCard(orderedRows[currentIndex + 1], childDisplayImageFallbacks),
   ]);
 
   return { previous, next };

@@ -1019,9 +1019,10 @@ export default async function CardPage({
               const relatedCardImageSrc =
                 normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
               const relatedCardImageFallback =
-                relatedCard.display_image_kind === "exact"
+                normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
+                (relatedCard.display_image_kind === "exact"
                   ? buildTcgDexImageUrl(relatedCard.tcgdex_external_id)
-                  : null;
+                  : null);
               return (
                 <Link
                   key={relatedCard.gv_id}

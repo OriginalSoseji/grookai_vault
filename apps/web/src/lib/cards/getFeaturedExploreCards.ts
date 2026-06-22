@@ -3,10 +3,15 @@ import "server-only";
 import { cache } from "react";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  getChildDisplayImageFallbacks,
+  type ChildDisplayImageFallback,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
 type FeaturedExploreCardRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
@@ -50,19 +55,29 @@ export type FeaturedExploreCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
+  display_image_fallback_url?: string;
   display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 };
 
 const FEATURED_EXPLORE_CARD_COUNT = 10;
 const FEATURED_EXPLORE_CANDIDATE_WINDOW = 48;
 
-async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null | undefined): Promise<FeaturedExploreCard | null> {
+async function normalizeFeaturedExploreCard(
+  row: FeaturedExploreCardRow | null | undefined,
+  childDisplayImageFallbacks = new Map<string, ChildDisplayImageFallback>(),
+): Promise<FeaturedExploreCard | null> {
   if (!row?.gv_id) {
     return null;
   }
 
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const imageFields = await resolveCardImageFieldsV1(row);
+  const childDisplayImageFallback = row.id
+    ? childDisplayImageFallbacks.get(row.id)
+    : undefined;
+  const fallbackDisplayImage = !imageFields.display_image_url
+    ? childDisplayImageFallback
+    : undefined;
   const name = row.name?.trim() || "Unknown";
   const displayIdentity = resolveDisplayIdentity({
     name,
@@ -86,11 +101,22 @@ async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null |
     set_identity_model: setRecord?.identity_model?.trim() || undefined,
     image_url: imageFields.image_url ?? undefined,
     representative_image_url: imageFields.representative_image_url ?? undefined,
-    image_status: imageFields.image_status ?? undefined,
-    image_note: imageFields.image_note ?? undefined,
     image_source: imageFields.image_source ?? undefined,
-    display_image_url: imageFields.display_image_url ?? undefined,
-    display_image_kind: imageFields.display_image_kind,
+    display_image_url:
+      imageFields.display_image_url ??
+      fallbackDisplayImage?.display_image_url ??
+      undefined,
+    display_image_fallback_url:
+      childDisplayImageFallback?.display_image_url ?? undefined,
+    display_image_kind: fallbackDisplayImage
+      ? fallbackDisplayImage.display_image_kind
+      : imageFields.display_image_kind,
+    image_status: fallbackDisplayImage
+      ? fallbackDisplayImage.image_status
+      : imageFields.image_status ?? undefined,
+    image_note: fallbackDisplayImage
+      ? fallbackDisplayImage.image_note
+      : imageFields.image_note ?? undefined,
   } satisfies FeaturedExploreCard;
 }
 
@@ -115,7 +141,7 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
   const supabase = createPublicServerClient();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
+    .select("id,gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
     .ilike("rarity", "%Special Illustration Rare%")
     .order("gv_id", { ascending: true })
     .range(offset, offset + windowSize - 1);
@@ -124,8 +150,15 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
     throw error;
   }
 
+  const rows = (data ?? []) as FeaturedExploreCardRow[];
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    rows,
+  );
   const normalizedRows = await Promise.all(
-    ((data ?? []) as FeaturedExploreCardRow[]).map((row) => normalizeFeaturedExploreCard(row)),
+    rows.map((row) =>
+      normalizeFeaturedExploreCard(row, childDisplayImageFallbacks),
+    ),
   );
 
   return normalizedRows.filter((row): row is FeaturedExploreCard => Boolean(row?.gv_id));

@@ -10,6 +10,10 @@ import {
 } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { normalizePublicSetDisplayName } from "@/lib/publicSets.shared";
+import {
+  getChildDisplayImageFallbacks,
+  type ChildDisplayImageFallback,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type {
   ActiveCardPrintIdentity,
@@ -307,6 +311,7 @@ function mapTraitRecord(
 
 async function mapRelatedPrints(
   rows: RelatedCardRow[],
+  childDisplayImageFallbacks = new Map<string, ChildDisplayImageFallback>(),
 ): Promise<RelatedCardPrint[] | undefined> {
   if (rows.length === 0) {
     return undefined;
@@ -322,6 +327,12 @@ async function mapRelatedPrints(
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
     const imageFields = await resolveCardImageFieldsV1(row);
+    const childDisplayImageFallback = row.id
+      ? childDisplayImageFallbacks.get(row.id)
+      : undefined;
+    const fallbackDisplayImage = !imageFields.display_image_url
+      ? childDisplayImageFallback
+      : undefined;
 
     mapped.set(gvId, {
       id: row.id ?? gvId,
@@ -335,11 +346,22 @@ async function mapRelatedPrints(
       image_url: imageFields.image_url ?? undefined,
       representative_image_url:
         imageFields.representative_image_url ?? undefined,
-      image_status: imageFields.image_status ?? undefined,
-      image_note: imageFields.image_note ?? undefined,
       image_source: imageFields.image_source ?? undefined,
-      display_image_url: imageFields.display_image_url ?? undefined,
-      display_image_kind: imageFields.display_image_kind,
+      display_image_url:
+        imageFields.display_image_url ??
+        fallbackDisplayImage?.display_image_url ??
+        undefined,
+      display_image_fallback_url:
+        childDisplayImageFallback?.display_image_url ?? undefined,
+      display_image_kind: fallbackDisplayImage
+        ? fallbackDisplayImage.display_image_kind
+        : imageFields.display_image_kind,
+      image_status: fallbackDisplayImage
+        ? fallbackDisplayImage.image_status
+        : imageFields.image_status ?? undefined,
+      image_note: fallbackDisplayImage
+        ? fallbackDisplayImage.image_note
+        : imageFields.image_note ?? undefined,
       tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
       release_date: setRecord?.release_date ?? undefined,
       release_year: getReleaseYear(setRecord?.release_date),
@@ -548,9 +570,13 @@ async function getRelatedPrintsByName(
     return undefined;
   }
 
-  return mapRelatedPrints(
-    (data as RelatedCardRow[]).filter((row) => row.id !== excludeId),
+  const rows = (data as RelatedCardRow[]).filter((row) => row.id !== excludeId);
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    rows,
   );
+
+  return mapRelatedPrints(rows, childDisplayImageFallbacks);
 }
 
 async function getCameosByGvId(

@@ -133,6 +133,7 @@ export default function ExploreDiscoverySections({
                       <div className="space-y-2 p-0">
                         <PublicCardImage
                           src={spotlightCard.display_image_url ?? spotlightCard.image_url}
+                          fallbackSrc={spotlightCard.display_image_fallback_url}
                           alt={getCardImageAltText(spotlightCard.display_name, spotlightCard)}
                           imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3"
                           fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
@@ -187,6 +188,7 @@ export default function ExploreDiscoverySections({
                             <div className="space-y-2">
                               <PublicCardImage
                                 src={card.display_image_url ?? card.image_url}
+                                fallbackSrc={card.display_image_fallback_url}
                                 alt={getCardImageAltText(card.display_name, card)}
                                 imageClassName="aspect-[3/4] w-full object-contain"
                                 fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
