@@ -109,6 +109,15 @@ If a contract is missing from this index, it is not authoritative.
 
 ---
 
+## 🔎 SEARCH & DISCOVERY CONTRACTS
+
+| Contract | Status | Description |
+|--------|--------|-------------|
+| GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
+| GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
+
+---
+
 ## 🌐 COMMUNITY & SOCIAL CONTRACTS
 
 | Contract | Status | Description |

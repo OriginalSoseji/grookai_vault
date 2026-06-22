@@ -64,6 +64,62 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
   assert.ok(missingImages.interpretedLabels.includes('Image: Missing exact image'));
 });
 
+test('Grookai Search recognizes governed special-case identity families deterministically', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+  const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');
+
+  const examples = [
+    ['Pokemon Centre stamped Lechonk', 'Pokemon Center Stamp', 'Lechonk'],
+    ['PC stamped Lechonk', 'Pokemon Center Stamp', 'Lechonk'],
+    ['BAB Piplup', 'Build-A-Bear Workshop Stamp', 'Piplup'],
+    ['TRU Piplup', 'Toys R Us Stamp', 'Piplup'],
+    ['Dragon Vault stamped Salamence', 'Dragon Vault Stamp', 'Salamence'],
+    ['Regional Championships Salamence', 'Regional Championships Stamp', 'Salamence'],
+    ['Prize Pack Bronzong', 'Prize Pack Stamp', 'Bronzong'],
+    ['Player Rewards crosshatch Fire Energy', 'Player Rewards Crosshatch Stamp', 'Fire Energy'],
+    ['W stamp Dark Arbok', 'WOTC Stamp', 'Dark Arbok'],
+    ['E3 stamp Pikachu', 'E3 Stamp', 'Pikachu'],
+    ['Jungle no symbol Vaporeon', 'No Symbol Error', 'Jungle Vaporeon'],
+    ['Base Set Pikachu red cheeks shadowless', 'Red Cheeks', 'Base Set Pikachu'],
+    ['Black Flame Ninetales', 'Black Flame Error', 'Ninetales'],
+    ['No Damage Ninetales', 'No Damage Error', 'Ninetales'],
+    ['D. Fending error Beedrill', 'D. Fending Error', 'Beedrill'],
+    ['Sideways Fighting Energy Diglett', 'Sideways Fighting Energy Error', 'Diglett'],
+    ['Incorrect Artist Mewtwo', 'Incorrect Artist Variant', 'Mewtwo'],
+  ];
+
+  for (const [query, expectedLabel, expectedResidual] of examples) {
+    const intent = buildSmartSearchIntent(query);
+    assert.ok(
+      intent.stampLabels.includes(expectedLabel),
+      `${query} should include ${expectedLabel}; got ${intent.stampLabels.join(', ')}`,
+    );
+    assert.equal(intent.residualQuery, expectedResidual, `${query} residual`);
+    assert.equal(resolveSmartSearchQuery(query, intent), expectedResidual);
+  }
+
+  const ancientMew = buildSmartSearchIntent('Ancient Mew');
+  assert.equal(ancientMew.stampLabels.length, 0);
+  assert.equal(ancientMew.residualQuery, 'Ancient Mew');
+  assert.equal(resolveSmartSearchQuery('Ancient Mew', ancientMew), 'Ancient Mew');
+});
+
+test('Grookai Smart Search contract is authoritative and keeps normal search non-AI', () => {
+  const index = readFileSync(new URL('../../docs/CONTRACT_INDEX.md', import.meta.url), 'utf8');
+  const contract = readFileSync(new URL('../../docs/contracts/GROOKAI_SMART_SEARCH_V1.md', import.meta.url), 'utf8');
+  const contractJson = JSON.parse(
+    readFileSync(new URL('../../docs/contracts/GROOKAI_SMART_SEARCH_V1.json', import.meta.url), 'utf8'),
+  );
+
+  assert.match(index, /\|\s*GROOKAI_SMART_SEARCH_V1\s*\|\s*Active\s*\|/);
+  assert.equal(contractJson.status, 'active');
+  assert.equal(contractJson.normal_search_ai_model_calls_allowed, false);
+  assert.equal(contractJson.db_writes_allowed, false);
+  assert.equal(contractJson.migrations_allowed, false);
+  assert.match(contract, /Grookai Search must remain free, fast, deterministic, and governed/);
+  assert.match(contract, /Normal Search must not call AI models/);
+});
+
 test('Grookai Assistant access fails closed unless explicitly enabled and entitled', () => {
   const { resolveGrookaiAssistantAccess } = loadTsModule('../../apps/web/src/lib/ai/grookaiAssistantAccess.ts');
   const originalEnv = { ...process.env };

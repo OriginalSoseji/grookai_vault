@@ -2987,7 +2987,7 @@ function getSmartStampSearchTokens(stampLabels: string[]) {
         .split(" ")
         .filter(
           (token) =>
-            token.length >= 3 &&
+            (token.length >= 3 || token === "e3") &&
             token !== "stamp" &&
             token !== "stamped" &&
             token !== "workshop",

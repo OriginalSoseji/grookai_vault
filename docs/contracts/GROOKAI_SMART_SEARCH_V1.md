@@ -1,6 +1,6 @@
 # Grookai Smart Search V1
 
-Status: proposed
+Status: active
 
 Date: 2026-06-17
 
@@ -25,11 +25,15 @@ Domain: English Physical
 
 Then Grookai should run the normal trusted search path against structured filters.
 
+This contract governs the normal Grookai Search box. It improves the existing deterministic search path rather than replacing it with AI.
+
 ## Core Principle
 
 Natural language search must not invent truth.
 
 It may interpret intent into allowed filters. It must not generate arbitrary SQL, create DB rows, rewrite canonical identity, or assume unsupported card facts.
+
+Grookai Search must remain free, fast, deterministic, and governed. Grookai Assistant and Grookai Intelligence are separate premium/power-user lanes for AI reasoning.
 
 ## Scope
 
@@ -44,6 +48,7 @@ In scope:
 - English physical card search
 - Ownership-aware filters where supported
 - Finish, variant, stamp, set, year, species, artist, image-status filters where supported by DB fields
+- Special-case identity families already present in Grookai canon, including retailer stamps, event stamps, recognized errors, first-edition/shadowless/red-cheeks/yellow-cheeks lanes, product lanes, and governed miscellaneous promos
 
 Out of scope for V1:
 
@@ -54,6 +59,7 @@ Out of scope for V1:
 - vault mutation changes
 - mobile app implementation
 - AI-generated SQL
+- AI model calls on the normal Search execution path
 - unsupported enrichment assumptions
 - Japanese or multilingual expansion
 
@@ -133,15 +139,32 @@ The parser may recognize:
 - image confidence phrases
 - artist phrases
 - sorting phrases
+- governed special-case families such as WB Kids, Build-A-Bear, Toys R Us, Burger King, Pokemon Center, Prize Pack, League, Championship, Player Rewards, No Symbol, Shadowless, Red Cheeks, Yellow Cheeks, Gold Border, Japanese Card Back, Black Flame, No Damage, D. Fending, Stage, Evolution Box, Sideways Fighting Energy, Incorrect Artist, and related recognized-error labels
 
 The parser must fail closed:
 
 - no arbitrary SQL
+- no AI model call during normal Search
 - no inferred finishes
 - no inferred variants
 - no guessed stamps
 - no unsupported source facts
 - no mutation side effects
+
+## Grookai Search Versus AI Product Boundary
+
+Grookai Search is the free deterministic catalog interface.
+
+Grookai Assistant is premium and may answer collector questions such as:
+
+- what variants am I missing?
+- why is this card special?
+- build me a chase list
+- compare my collection to the Master Index
+
+Grookai Intelligence is a vendor/power-user lane for catalog gaps, demand signals, exports, inventory recommendations, and collection audits.
+
+Normal Search must not call AI models. It may show an upgrade path into Assistant only after deterministic parsing has already run.
 
 ## Required Query Examples
 
@@ -158,6 +181,18 @@ missing Pikachu cards in my vault
 all cards with no exact image
 all stamped variants from Toys R Us
 all cards illustrated by Ken Sugimori
+Pokemon Center stamped Lechonk
+Build-A-Bear Piplup
+Toys R Us Piplup
+Dragon Vault Regional Championships
+Prize Pack stamped Bronzong
+Jungle No Symbol
+Base Set Pikachu red cheeks shadowless
+Black Flame Ninetales
+No Damage Ninetales
+Sideways Fighting Energy Diglett
+Ancient Mew
+Poke Card Creator Pikachu
 ```
 
 ## Explainability Contract
@@ -195,6 +230,7 @@ Search V1 must not:
 - mutate pricing data
 - mutate canonical identity
 - query via arbitrary natural-language-generated SQL
+- call AI models during normal Search execution
 - hide unsupported data without explicit user-visible explanation
 
 ## Implementation Phases

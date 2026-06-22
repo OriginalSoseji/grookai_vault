@@ -52,8 +52,10 @@ const Map<String, String> _variantKeyMap = <String, String>{
   'world_championships_stamp': 'World Championships Stamp',
   'world_championships_staff_stamp': 'World Championships Staff Stamp',
   'play_pokemon_stamp': 'Play Pokémon Stamp',
+  'player_rewards_crosshatch_stamp': 'Player Rewards Crosshatch Stamp',
   'e_league_stamp': 'E-League Stamp',
   'e_league_winner_stamp': 'E-League Winner Stamp',
+  'wotc_stamp': 'WOTC Stamp',
   'alt': 'Alternate Art',
   'tg': 'Trainer Gallery',
   'rc': 'Radiant Collection',
@@ -96,12 +98,14 @@ const Map<String, String> _printedIdentityModifierMap = <String, String>{
   'stamp:pikachu_jack_o_lantern': 'Pikachu Jack-o\'-Lantern Stamp',
   'stamp:pikachu_pumpkin': 'Pikachu Pumpkin Stamp',
   'stamp:pokemon_center': 'Pokémon Center Stamp',
+  'stamp:player_rewards_crosshatch': 'Player Rewards Crosshatch Stamp',
   'stamp:prize_pack': 'Prize Pack Stamp',
   'stamp:professor_program': 'Professor Program Stamp',
   'stamp:regional_championships': 'Regional Championships Stamp',
   'stamp:toys_r_us': 'Toys R Us Stamp',
   'stamp:wb_kids': 'WB Kids Stamp',
   'stamp:winner': 'Winner Stamp',
+  'stamp:wotc': 'WOTC Stamp',
 };
 
 const Map<String, String> _finishKeyMap = <String, String>{
