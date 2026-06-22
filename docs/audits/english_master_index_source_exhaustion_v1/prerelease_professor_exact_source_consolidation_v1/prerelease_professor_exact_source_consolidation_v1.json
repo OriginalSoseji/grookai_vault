@@ -1,0 +1,828 @@
+{
+  "version": "prerelease_professor_exact_source_consolidation_v1",
+  "generated_at": "2026-06-22T19:16:29.590Z",
+  "input_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_residual_action_plan_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "dry_run_package_prepared": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "source_fixture_dirs_considered": [
+    "generated_astral_radiance_prerelease_finish_evidence_v1",
+    "generated_brilliant_stars_prerelease_finish_evidence_v1",
+    "generated_professor_program_finish_evidence_v1",
+    "generated_bulbapedia_sv085_professor_program_v1",
+    "generated_cardtrader_stamped_finish_v1",
+    "generated_bulbapedia_card_pages_v1",
+    "generated_pokecardvalues_stamped_finish_v1",
+    "generated_pricecharting_stamp_label_v1",
+    "generated_pokumon_stamped_special_candidate_acquisition_v1",
+    "generated_tcgcsv_stamped_subtype_v1"
+  ],
+  "summary": {
+    "target_rows": 20,
+    "preserved_fixture_records_considered": 44,
+    "by_blocker_class": {
+      "prerelease_finish_absorbed_or_conflict_blocked": 10,
+      "professor_program_taxonomy_or_finish_blocked": 10
+    },
+    "by_status": {
+      "still_blocked_no_preserved_professor_program_fixture": 9,
+      "preserved_exact_finish_candidate_no_write": 8,
+      "still_blocked_no_preserved_prerelease_fixture": 2,
+      "structured_only_finish_candidate_no_write": 1
+    },
+    "by_candidate_finish": {
+      "holo": 8,
+      "reverse": 1
+    },
+    "write_ready_created": 0
+  },
+  "rows": [
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Metagross\" \"BW75\" \"BW Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_prerelease_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "card_number": "24",
+      "card_name": "Team Aqua's Cacnea",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Team Aqua's Cacnea\" \"24\" \"Team Magma vs Team Aqua\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_prerelease_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH185",
+      "card_name": "Moltres",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Moltres\" \"SWSH185\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/moltres-swsh185-promo-prerelease-swshp-swsh185-holo",
+          "finish_key": "holo",
+          "evidence_label": "facetofacegames_prerelease_product: Moltres SWSH185 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/moltres-swsh185",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Moltres SWSH185 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH186",
+      "card_name": "Lucario",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Lucario\" \"SWSH186\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/lucario-swsh186-promo-prerelease-swshp-swsh186-holo",
+          "finish_key": "holo",
+          "evidence_label": "facetofacegames_prerelease_product: Lucario SWSH186 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/lucario-swsh186",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Lucario SWSH186 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH187",
+      "card_name": "Liepard",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Liepard\" \"SWSH187\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/liepard-swsh187-promo-prerelease-swshp-swsh187-holo",
+          "finish_key": "holo",
+          "evidence_label": "facetofacegames_prerelease_product: Liepard SWSH187 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/liepard-swsh187",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Liepard SWSH187 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH188",
+      "card_name": "Bibarel",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Bibarel\" \"SWSH188\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/bibarel-swsh188-promo-prerelease-swshp-swsh188-holo",
+          "finish_key": "holo",
+          "evidence_label": "facetofacegames_prerelease_product: Bibarel SWSH188 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bibarel-swsh188",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Bibarel SWSH188 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_brilliant_stars_prerelease_finish_evidence_v1/swshp_brilliant_stars_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH205",
+      "card_name": "Hisuian Basculegion",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Hisuian Basculegion\" \"SWSH205\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/hisuian-basculegion-swsh205",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Hisuian Basculegion SWSH205 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/hisuian-basculegion-swsh205-english-promo/",
+          "finish_key": "holo",
+          "evidence_label": "pokumon_card_page: Hisuian Basculegion SWSH205 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Wyrdeer\" \"SWSH206\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/wyrdeer-swsh206",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Wyrdeer SWSH206 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/wyrdeer-swsh206-english-promo/",
+          "finish_key": "holo",
+          "evidence_label": "pokumon_card_page: Wyrdeer SWSH206 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH207",
+      "card_name": "Hisuian Samurott",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Hisuian Samurott\" \"SWSH207\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/hisuian-samurott-swsh207",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Hisuian Samurott SWSH207 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/hisuian-samurott-swsh207-english-promo/",
+          "finish_key": "holo",
+          "evidence_label": "pokumon_card_page: Hisuian Samurott SWSH207 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 6,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "prerelease_finish_absorbed_or_conflict_blocked",
+      "source_state": "targeted_prerelease_checked",
+      "allowed_next_action": "For older prerelease rows, require exact card-level finish evidence from independent source; modern SWSH rows are already absorbed.",
+      "prohibited_action": "Do not infer old prerelease active finish from generic prerelease promo status.",
+      "search_queries": [
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" Pokemon card finish",
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" reverse holo holo normal",
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokumon.com",
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pokescope.app",
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:pricecharting.com",
+        "\"Magnezone\" \"SWSH208\" \"SWSH Black Star Promos\" \"Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_exact_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/magnezone-swsh208",
+          "finish_key": "holo",
+          "evidence_label": "pricecharting_promo_price_guide: Magnezone SWSH208 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/magnezone-swsh208-english-promo/",
+          "finish_key": "holo",
+          "evidence_label": "pokumon_card_page: Magnezone SWSH208 Prerelease Holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_astral_radiance_prerelease_finish_evidence_v1/swshp_astral_radiance_prerelease_holo_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "122",
+      "card_name": "Professor Oak's Visit",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Professor Oak's Visit\" \"122\" \"Secret Wonders\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "card_number": "79",
+      "card_name": "Professor Elm's Training Method",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Professor Elm's Training Method\" \"79\" \"Dragon Frontiers\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Prof. Oak's Research\" \"98\" \"FireRed & LeafGreen\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "100",
+      "card_name": "Professor Elm's Training Method",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Professor Elm's Training Method\" \"100\" \"HeartGold & SoulSilver\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "professor_program_finish_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/professor-elms-training-method-100-123-non-holo-unlimited-heartgold-soulsilver/hgss1-100-2-1/",
+          "finish_key": "reverse",
+          "evidence_label": "pokecardvalues_professor_elms_training_method_professor_program_reverse_100: exact Professor Program active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_professor_program_finish_evidence_v1/hgss1.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "66",
+      "card_name": "Voltorb",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Voltorb\" \"66\" \"Paldea Evolved\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "175",
+      "card_name": "Pokémon Catcher",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Pokémon Catcher\" \"175\" \"Sword & Shield\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "177",
+      "card_name": "Potion",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Potion\" \"177\" \"Sword & Shield\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "29",
+      "card_name": "Vulpix",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Vulpix\" \"29\" \"Fusion Strike\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "46",
+      "card_name": "Sizzlipede",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Sizzlipede\" \"46\" \"Fusion Strike\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "147",
+      "card_name": "Professor's Research",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 7,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "professor_program_taxonomy_or_finish_blocked",
+      "source_state": "targeted_professor_program_checked",
+      "allowed_next_action": "Resolve deck-stamp taxonomy and collect exact active-finish evidence for rows not already absorbed.",
+      "prohibited_action": "Do not treat Professor Program identity as a finish or promote deck-stamp taxonomy conflicts.",
+      "search_queries": [
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" Pokemon card finish",
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" reverse holo holo normal",
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" site:pokumon.com",
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" site:pokescope.app",
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" site:pricecharting.com",
+        "\"Professor's Research\" \"147\" \"Brilliant Stars\" \"Professor Program Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_professor_program_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact stamp/variant and active finish."
+    }
+  ],
+  "fingerprint_sha256": "771461f3ca1b9b4685b03d9e622bbe737edc39e46b2dcb1d988c7e98a4c8b6e9"
+}

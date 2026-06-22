@@ -1,0 +1,535 @@
+{
+  "version": "second_source_taxonomy_consolidation_v1",
+  "generated_at": "2026-06-22T19:22:36.026Z",
+  "input_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_residual_action_plan_v1.json",
+  "input_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_source_acquisition_queue_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "dry_run_package_prepared": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "source_fixture_dirs_considered": [
+    "generated_event_staff_exact_source_evidence_v1",
+    "generated_individual_event_scan_source_acquisition_v1",
+    "generated_individual_event_scan_source_acquisition_v2",
+    "generated_collexy_governed_stamp_finish_v1",
+    "generated_cardtrader_stamped_finish_v1",
+    "generated_binderbuilder_v1",
+    "generated_bulbapedia_card_pages_v1",
+    "generated_pkmngg_stamped_finish_v1",
+    "generated_pokecardvalues_stamped_finish_v1",
+    "generated_pokumon_stamped_special_candidate_acquisition_v1",
+    "generated_pricecharting_stamp_label_v1",
+    "generated_tcgcsv_stamped_subtype_v1"
+  ],
+  "summary": {
+    "target_rows": 6,
+    "preserved_fixture_records_considered": 899,
+    "by_status": {
+      "exhausted_no_preserved_exact_second_source": 3,
+      "preserved_second_source_candidate_no_write": 3
+    },
+    "by_candidate_finish": {
+      "reverse": 2,
+      "normal": 1
+    },
+    "write_ready_created": 0
+  },
+  "rows": [
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" Pokemon card finish",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" reverse holo holo normal",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" site:pokumon.com",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" site:pokescope.app",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" site:pricecharting.com",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "preserved_second_source_candidate_no_write",
+      "candidate_finish_keys": [
+        "normal"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pokumon_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/staff-luxio-52-130-diamond-pearl-prerelease-special-print/",
+          "finish_key": "normal",
+          "evidence_label": "Pokumon card-name result: Staff Luxio (52/130 Diamond &#038; Pearl Prerelease Special Print)",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokumon_stamped_special_candidate_acquisition_v1/pokumon_stamped_special_candidates_v1.json"
+        },
+        {
+          "source_key": "pokumon_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/staff-luxio-52-130-diamond-pearl-prerelease-special-print/",
+          "finish_key": "normal",
+          "evidence_label": "Pokumon card-name result: Staff Luxio (52/130 Diamond &#038; Pearl Prerelease Special Print)",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokumon_stamped_special_candidate_acquisition_v1/pokumon_stamped_special_candidates_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" Pokemon card finish",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" reverse holo holo normal",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" site:pokumon.com",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" site:pokescope.app",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" site:pricecharting.com",
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Luxio%22%20%2252%22%20%22Diamond%20%26%20Pearl%22%20%22States%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "exhausted_no_preserved_exact_second_source",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Keep blocked. Existing targeted source lanes did not preserve exact set/card/stamp/finish evidence."
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" Pokemon card finish",
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" reverse holo holo normal",
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" site:pokumon.com",
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" site:pokescope.app",
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" site:pricecharting.com",
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Suicune%22%20%2226%22%20%22Phantasmal%20Flames%22%20%22EB%20Games%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "exhausted_no_preserved_exact_second_source",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Keep blocked. Existing targeted source lanes did not preserve exact set/card/stamp/finish evidence."
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_staff_stamp",
+      "stamp_label": "League Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" Pokemon card finish",
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" reverse holo holo normal",
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" site:pokumon.com",
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" site:pokescope.app",
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" site:pricecharting.com",
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Beast%20Ring%22%20%22102%22%20%22Forbidden%20Light%22%20%22League%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "exhausted_no_preserved_exact_second_source",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Keep blocked. Existing targeted source lanes did not preserve exact set/card/stamp/finish evidence."
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" Pokemon card finish",
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" reverse holo holo normal",
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" site:pokumon.com",
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" site:pokescope.app",
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" site:pricecharting.com",
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Chaos%20Tower%22%20%2294%22%20%22Fates%20Collide%22%20%22National%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "preserved_second_source_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pokumon_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/staff-chaos-tower-94-124-national-championships-special-print/",
+          "finish_key": "reverse",
+          "evidence_label": "Pokumon card-name result: Staff Chaos Tower (94/124 National Championships Special Print)",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokumon_stamped_special_candidate_acquisition_v1/pokumon_stamped_special_candidates_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "next_source_family": "targeted_exact_source_search",
+      "priority_rank": 5,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "second_source_taxonomy_or_absorption_blocked",
+      "source_state": "targeted_second_source_checked",
+      "allowed_next_action": "Resolve Holo/Cosmos or finish taxonomy conflicts, then rerun source-delta only when exact evidence changes.",
+      "prohibited_action": "Do not promote a row when exact sources use conflicting finish vocabulary.",
+      "search_queries": [
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" Pokemon card finish",
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" reverse holo holo normal",
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" site:pokumon.com",
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" site:pokescope.app",
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" site:pricecharting.com",
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "searched_source_urls": [
+        {
+          "source_target": "google_general",
+          "label": "General web",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?q=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "google_images",
+          "label": "Image search",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.google.com/search?tbm=isch&q=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_active",
+          "label": "eBay active",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "ebay_sold",
+          "label": "eBay sold UI",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.ebay.com/sch/i.html?_nkw=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&LH_Sold=1&LH_Complete=1"
+        },
+        {
+          "source_target": "worthpoint",
+          "label": "Worthpoint",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.worthpoint.com/inventory/search?query=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "tcgplayer",
+          "label": "TCGplayer",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front"
+        },
+        {
+          "source_target": "pricecharting",
+          "label": "PriceCharting",
+          "query": "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\" \"Pokemon card\" scan front",
+          "url": "https://www.pricecharting.com/search-products?q=%22Parallel%20City%22%20%22145%22%20%22BREAKthrough%22%20%22City%20Championships%20Staff%20Stamp%22%20%22Pokemon%20card%22%20scan%20front&type=prices"
+        }
+      ],
+      "consolidation_status": "preserved_second_source_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pokumon_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/staff-parallel-city-145-162-city-championships-special-print/",
+          "finish_key": "reverse",
+          "evidence_label": "Pokumon card-name result: Staff Parallel City (145/162 City Championships Special Print)",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokumon_stamped_special_candidate_acquisition_v1/pokumon_stamped_special_candidates_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    }
+  ],
+  "fingerprint_sha256": "7fddd3f960876b26985b23d9047893de82d99a007ab5ac6156ff732c9d7c94fb"
+}

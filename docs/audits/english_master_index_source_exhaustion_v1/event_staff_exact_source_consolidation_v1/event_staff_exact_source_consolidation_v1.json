@@ -1,0 +1,811 @@
+{
+  "version": "event_staff_exact_source_consolidation_v1",
+  "generated_at": "2026-06-22T19:11:41.001Z",
+  "input_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_residual_action_plan_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "dry_run_package_prepared": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "source_fixture_dirs_considered": [
+    "generated_event_staff_exact_source_evidence_v1",
+    "generated_collexy_governed_stamp_finish_v1",
+    "generated_binderbuilder_v1",
+    "generated_cardtrader_v1",
+    "generated_elitefourum_alternate_v1",
+    "generated_bulbapedia_card_pages_v1",
+    "generated_pokecardvalues_stamped_finish_v1",
+    "generated_pricecharting_stamp_label_v1",
+    "generated_pokumon_stamped_special_candidate_acquisition_v1",
+    "generated_tcgcsv_stamped_subtype_v1"
+  ],
+  "summary": {
+    "target_rows": 19,
+    "preserved_fixture_records_considered": 272,
+    "by_status": {
+      "still_blocked_no_preserved_event_staff_fixture": 8,
+      "structured_only_event_staff_finish_candidate_no_write": 6,
+      "preserved_event_staff_finish_candidate_no_write": 4,
+      "conflicting_event_staff_finish_candidates_no_write": 1
+    },
+    "by_candidate_finish": {
+      "holo": 4,
+      "reverse": 4,
+      "normal": 2
+    },
+    "write_ready_created": 0
+  },
+  "rows": [
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" Pokemon card finish",
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" reverse holo holo normal",
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" site:pokumon.com",
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" site:pokescope.app",
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" site:pricecharting.com",
+        "\"Tropical Beach\" \"BW50\" \"BW Black Star Promos\" \"Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://theendgames.crystalcommerce.com/buylist/pokemon-pokemon_singles-pokemon_promos/tropical_beach_finalist__bw50__promotional/953353",
+          "finish_key": "holo",
+          "evidence_label": "theendgames_tropical_beach_finalist_bw50_holo: exact Finalist Stamp active finish holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/bwp.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" Pokemon card finish",
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" reverse holo holo normal",
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" site:pokumon.com",
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" site:pokescope.app",
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" site:pricecharting.com",
+        "\"Champions Festival\" \"BW95\" \"BW Black Star Promos\" \"Quarter Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "conflicting_event_staff_finish_candidates_no_write",
+      "candidate_finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "source_families": [
+        "marketplace_checklist",
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.frontlinegames.net/buylist/pokemon_singles-pokemon_promos-bw_black_star_promos/champions_festival_quarter_finalist__bw95__promotional/420943",
+          "finish_key": "holo",
+          "evidence_label": "frontline_champions_festival_quarter_finalist_bw95_holo: exact Quarter Finalist Stamp active finish holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/bwp.json"
+        },
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
+          "finish_key": "normal",
+          "evidence_label": "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/bwp.json"
+        }
+      ],
+      "recommended_next_action": "Manual finish adjudication required before any truth promotion."
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" Pokemon card finish",
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" site:pokumon.com",
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" site:pokescope.app",
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Dragonite\" \"2\" \"Legends Awakened\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "normal"
+      ],
+      "source_families": [
+        "human_checklist",
+        "marketplace_checklist",
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+          "finish_key": "normal",
+          "evidence_label": "pokecardvalues_dragonite_staff_national_non_holo_2: exact Staff Stamp active finish normal",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/dp6.json"
+        },
+        {
+          "source_key": "elitefourum_alternate_checklist",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+          "finish_key": null,
+          "evidence_label": "Elite Fourum alternate checklist: 2/146 Dragonite [STAFF Stamped; National Championships Promo; 2008-2009]",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1/dp6.json"
+        },
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+          "finish_key": "normal",
+          "evidence_label": "Poke Card Values exact stamped finish: Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1/dp6.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "130",
+      "card_name": "Buck's Training",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" Pokemon card finish",
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" site:pokumon.com",
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" site:pokescope.app",
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Buck's Training\" \"130\" \"Legends Awakened\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "normal"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/bucks-training-130-146-non-holo-unlimited-legends-awakened/dp6-130-2-1/",
+          "finish_key": "normal",
+          "evidence_label": "pokecardvalues_bucks_training_staff_prerelease_non_holo_130: exact Staff Stamp active finish normal",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/dp6.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "card_number": "DP25",
+      "card_name": "Tropical Wind",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" Pokemon card finish",
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" reverse holo holo normal",
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" site:pokumon.com",
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" site:pokescope.app",
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" site:pricecharting.com",
+        "\"Tropical Wind\" \"DP25\" \"DP Black Star Promos\" \"Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "cardtrader_blueprint_index",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardtrader.com/en/cards/113624-tropical-wind-non-holo-promo-dp25-finalist-dp-black-star-promos",
+          "finish_key": "holo",
+          "evidence_label": "CardTrader blueprint row Tropical Wind - Non-Holo Promo | DP25 | Finalist",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1/dpp.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "115",
+      "card_name": "Guzma",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" Pokemon card finish",
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" reverse holo holo normal",
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" site:pokumon.com",
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" site:pokescope.app",
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" site:pricecharting.com",
+        "\"Guzma\" \"115\" \"Burning Shadows\" \"World Championships Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "188",
+      "card_name": "Professor Elm's Lecture",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" Pokemon card finish",
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" reverse holo holo normal",
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" site:pokumon.com",
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" site:pokescope.app",
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" site:pricecharting.com",
+        "\"Professor Elm's Lecture\" \"188\" \"Lost Thunder\" \"Regional Championships Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_checklist",
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/professor-elms-lecture-188-214-regional-championships-staff-188-league-championship-cards-reverse-holofoil",
+          "finish_key": "reverse",
+          "evidence_label": "gamenerdz_professor_elms_lecture_regional_staff_reverse_188: exact Regional Championships Staff Stamp active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/sm8.json"
+        },
+        {
+          "source_key": "cardtrader_blueprint_index",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardtrader.com/en/cards/122731-professor-elm-s-lecture-staff-regional-championships-188-214-lost-thunder-promos",
+          "finish_key": null,
+          "evidence_label": "CardTrader blueprint row Professor Elm's Lecture - STAFF | Regional Championships 188/214",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1/sm8.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM231",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" Pokemon card finish",
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" reverse holo holo normal",
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" site:pokumon.com",
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" site:pokescope.app",
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" site:pricecharting.com",
+        "\"Champions Festival\" \"SM231\" \"SM Black Star Promos\" \"Quarter Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "34",
+      "card_name": "Ethan's Typhlosion",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" Pokemon card finish",
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" site:pokumon.com",
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" site:pokescope.app",
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Ethan's Typhlosion\" \"34\" \"Destined Rivals\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "49",
+      "card_name": "Misty's Gyarados",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" Pokemon card finish",
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" site:pokumon.com",
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" site:pokescope.app",
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Misty's Gyarados\" \"49\" \"Destined Rivals\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "87",
+      "card_name": "Team Rocket's Mimikyu",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" Pokemon card finish",
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" site:pokumon.com",
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" site:pokescope.app",
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Team Rocket's Mimikyu\" \"87\" \"Destined Rivals\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "96",
+      "card_name": "Team Rocket's Tyranitar",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" Pokemon card finish",
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" reverse holo holo normal",
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" site:pokumon.com",
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" site:pokescope.app",
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" site:pricecharting.com",
+        "\"Team Rocket's Tyranitar\" \"96\" \"Destined Rivals\" \"Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "101",
+      "card_name": "Pikachu",
+      "variant_key": "asia_championship_stamp",
+      "stamp_label": "Asia Championship Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" Pokemon card finish",
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" reverse holo holo normal",
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" site:pokumon.com",
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" site:pokescope.app",
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" site:pricecharting.com",
+        "\"Pikachu\" \"101\" \"Scarlet & Violet Black Star Promos\" \"Asia Championship Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/Pikachu-SVP101-Holo-Black-Star-Scarlet-Violet-Black-Star-Promos/svp-101-1-17/",
+          "finish_key": "holo",
+          "evidence_label": "pokecardvalues_pikachu_svp101_asia_championship_holo: exact Asia Championship Stamp active finish holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/svp.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" Pokemon card finish",
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" reverse holo holo normal",
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" site:pokumon.com",
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" site:pokescope.app",
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" site:pricecharting.com",
+        "\"Pikachu\" \"225\" \"Scarlet & Violet Black Star Promos\" \"World Championships Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "154",
+      "card_name": "Boss's Orders",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" Pokemon card finish",
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" reverse holo holo normal",
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" site:pokumon.com",
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" site:pokescope.app",
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" site:pricecharting.com",
+        "\"Boss's Orders\" \"154\" \"Rebel Clash\" \"Regional Championships Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/boss%27s-orders-regional-championships-154",
+          "finish_key": "reverse",
+          "evidence_label": "pricecharting_bosss_orders_regional_championships_reverse_154: exact Regional Championships Stamp active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/swsh2.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH296",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" Pokemon card finish",
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" reverse holo holo normal",
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" site:pokumon.com",
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" site:pokescope.app",
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" site:pricecharting.com",
+        "\"Champions Festival\" \"SWSH296\" \"SWSH Black Star Promos\" \"Quarter Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_event_staff_fixture",
+      "candidate_finish_keys": [],
+      "source_families": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required for exact event/staff stamp and finish."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "138",
+      "card_name": "Giovanni's Scheme",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" Pokemon card finish",
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" reverse holo holo normal",
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" site:pokumon.com",
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" site:pokescope.app",
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" site:pricecharting.com",
+        "\"Giovanni's Scheme\" \"138\" \"BREAKthrough\" \"Regional Championships Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/giovannis-scheme-138-162-reverse-holo-regional-championships-breakthrough/xy8-138-3-60/",
+          "finish_key": "reverse",
+          "evidence_label": "pokecardvalues_giovannis_scheme_regional_reverse_138: exact Regional Championships Stamp active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/xy8.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" Pokemon card finish",
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" reverse holo holo normal",
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" site:pokumon.com",
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" site:pokescope.app",
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" site:pricecharting.com",
+        "\"Misty's Determination\" \"104\" \"BREAKpoint\" \"Regional Championships Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "source_families": [
+        "marketplace_checklist",
+        "marketplace_or_collector_reference"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/mistys-determination-104-122-regional-championships-staff-104-league-championship-cards-reverse-holofoil",
+          "finish_key": "reverse",
+          "evidence_label": "gamenerdz_mistys_determination_regional_staff_reverse_104: exact Regional Championships Staff Stamp active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/xy9.json"
+        },
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/mistys-determination-104-122-reverse-holo-unlimited-breakpoint/xy9-104-3-1/",
+          "finish_key": "reverse",
+          "evidence_label": "pokecardvalues_mistys_determination_regional_staff_reverse_104: exact Regional Championships Staff Stamp active finish reverse",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/xy9.json"
+        },
+        {
+          "source_key": "cardtrader_blueprint_index",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardtrader.com/en/cards/110612-misty-s-determination-staff-regional-championships-104-122-breakpoint-promos",
+          "finish_key": null,
+          "evidence_label": "CardTrader blueprint row Misty's Determination - STAFF | Regional Championships 104/122",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1/xy9.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; no DB write until current snapshot proves row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "next_source_family": "worlds_event_staff_sources",
+      "priority_rank": 4,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "event_staff_exact_finish_missing_or_absorbed",
+      "source_state": "event_staff_delta_exhausted",
+      "allowed_next_action": "Use independent event/staff source evidence only when it binds exact card identity, staff/event stamp, and active finish.",
+      "prohibited_action": "Do not rely on event/staff title labels without finish proof.",
+      "search_queries": [
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" Pokemon card finish",
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" reverse holo holo normal",
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" site:pokumon.com",
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" site:pokescope.app",
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" site:pricecharting.com",
+        "\"Champions Festival\" \"XY27\" \"XY Black Star Promos\" \"Finalist Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "structured_only_event_staff_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "source_families": [
+        "marketplace_checklist"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "event_staff_exact_source_evidence_v1",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ahiddenfortress.com/catalog/xy__black_star_promos/5581?filter%5B1855%5D=Naoki+Saito",
+          "finish_key": "holo",
+          "evidence_label": "ahiddenfortress_champions_festival_finalist_xy27_holo: exact Finalist Stamp active finish holo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1/xyp.json"
+        }
+      ],
+      "recommended_next_action": "Need human/checklist/collector source before master truth."
+    }
+  ],
+  "fingerprint_sha256": "5afd2b8f7bc3b7a0351e27386f8f304bb9276d28f1eba708daeb127332170d3b"
+}

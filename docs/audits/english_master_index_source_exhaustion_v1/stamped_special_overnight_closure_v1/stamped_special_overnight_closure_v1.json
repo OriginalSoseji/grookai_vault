@@ -1,0 +1,484 @@
+{
+  "version": "stamped_special_overnight_closure_v1",
+  "generated_at": "2026-06-22T19:25:54.300Z",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "dry_run_package_prepared": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "summary": {
+    "reports_consolidated": 7,
+    "target_rows_reviewed": 162,
+    "preserved_fixture_records_considered": 1687,
+    "fixture_records_created": 0,
+    "write_ready_created": 0,
+    "delta_reports_checked": 12,
+    "useful_delta_matches": 1,
+    "delta_already_in_current_index": 316,
+    "delta_unmatched_candidate_records": 11,
+    "by_status": {
+      "preserved_fixture_single_finish_candidate_no_write": 32,
+      "still_blocked_no_preserved_prize_pack_fixture": 19,
+      "still_blocked_no_preserved_exact_finish_fixture": 16,
+      "identity_supported_finish_unproven_no_write": 14,
+      "source_ready_candidate_no_db_write": 12,
+      "identity_supported_finish_unproven": 10,
+      "still_blocked_no_preserved_professor_program_fixture": 9,
+      "taxonomy_review_no_write": 9,
+      "preserved_exact_finish_candidate_no_write": 8,
+      "still_blocked_no_preserved_event_staff_fixture": 8,
+      "structured_only_event_staff_finish_candidate_no_write": 6,
+      "still_blocked_no_exact_variant_finish": 5,
+      "preserved_event_staff_finish_candidate_no_write": 4,
+      "exhausted_no_preserved_exact_second_source": 3,
+      "preserved_second_source_candidate_no_write": 3,
+      "still_blocked_no_preserved_prerelease_fixture": 2,
+      "conflicting_event_staff_finish_candidates_no_write": 1,
+      "structured_only_finish_candidate_no_write": 1
+    }
+  },
+  "reports": [
+    {
+      "key": "individual_event_scan_source_acquisition_v2",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/individual_event_scan_source_acquisition_v2/individual_event_scan_source_acquisition_v2.json",
+      "fingerprint_sha256": "6b91557297178faf801a23ec5e2ffdc6b100a76bf0b687cd26dd93f08881fca8",
+      "summary": {
+        "target_remaining_rows": 20,
+        "rows_attempted": 20,
+        "source_ready_candidates": 9,
+        "identity_supported_finish_unproven": 7,
+        "taxonomy_review_no_write": 4,
+        "fixture_records_written": 19,
+        "write_ready_created": 0,
+        "by_status": {
+          "source_ready_candidate_no_db_write": 9,
+          "identity_supported_finish_unproven": 7,
+          "taxonomy_review_no_write": 4
+        }
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 0
+    },
+    {
+      "key": "exact_finish_binding_consolidation_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/exact_finish_binding_consolidation_v1/exact_finish_binding_consolidation_v1.json",
+      "fingerprint_sha256": "3816eab058241765d635996226f8bc2cbf66349d53814ca58300ac61c25f73a7",
+      "summary": {
+        "target_rows": 48,
+        "preserved_fixture_records_considered": 203,
+        "by_status": {
+          "preserved_fixture_single_finish_candidate_no_write": 32,
+          "still_blocked_no_preserved_exact_finish_fixture": 16
+        },
+        "by_candidate_finish": {
+          "reverse": 31,
+          "holo": 1
+        },
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 48
+    },
+    {
+      "key": "exact_finish_binding_manual_web_pass_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/exact_finish_binding_manual_web_pass_v1/exact_finish_binding_manual_web_pass_v1.json",
+      "fingerprint_sha256": "4a6e2eba3a740222436d262ba70785cc0791bac8f5256494469c3bae3786e1e7",
+      "summary": {
+        "rows_attempted": 16,
+        "by_status": {
+          "still_blocked_no_exact_variant_finish": 5,
+          "taxonomy_review_no_write": 5,
+          "identity_supported_finish_unproven": 3,
+          "source_ready_candidate_no_db_write": 3
+        },
+        "by_finish_key": {
+          "reverse": 3
+        },
+        "fixture_records_written": 3,
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 16
+    },
+    {
+      "key": "prize_pack_second_source_consolidation_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/prize_pack_second_source_consolidation_v1/prize_pack_second_source_consolidation_v1.json",
+      "fingerprint_sha256": "7265ca86038a8bb237f525375ed436f97c1dcd9283f7b53664e01a69751398f6",
+      "summary": {
+        "target_rows": 33,
+        "preserved_fixture_records_considered": 269,
+        "by_status": {
+          "still_blocked_no_preserved_prize_pack_fixture": 19,
+          "identity_supported_finish_unproven_no_write": 14
+        },
+        "by_candidate_finish": {},
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 33
+    },
+    {
+      "key": "event_staff_exact_source_consolidation_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/event_staff_exact_source_consolidation_v1/event_staff_exact_source_consolidation_v1.json",
+      "fingerprint_sha256": "5afd2b8f7bc3b7a0351e27386f8f304bb9276d28f1eba708daeb127332170d3b",
+      "summary": {
+        "target_rows": 19,
+        "preserved_fixture_records_considered": 272,
+        "by_status": {
+          "still_blocked_no_preserved_event_staff_fixture": 8,
+          "structured_only_event_staff_finish_candidate_no_write": 6,
+          "preserved_event_staff_finish_candidate_no_write": 4,
+          "conflicting_event_staff_finish_candidates_no_write": 1
+        },
+        "by_candidate_finish": {
+          "holo": 4,
+          "reverse": 4,
+          "normal": 2
+        },
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 19
+    },
+    {
+      "key": "prerelease_professor_exact_source_consolidation_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/prerelease_professor_exact_source_consolidation_v1/prerelease_professor_exact_source_consolidation_v1.json",
+      "fingerprint_sha256": "771461f3ca1b9b4685b03d9e622bbe737edc39e46b2dcb1d988c7e98a4c8b6e9",
+      "summary": {
+        "target_rows": 20,
+        "preserved_fixture_records_considered": 44,
+        "by_blocker_class": {
+          "prerelease_finish_absorbed_or_conflict_blocked": 10,
+          "professor_program_taxonomy_or_finish_blocked": 10
+        },
+        "by_status": {
+          "still_blocked_no_preserved_professor_program_fixture": 9,
+          "preserved_exact_finish_candidate_no_write": 8,
+          "still_blocked_no_preserved_prerelease_fixture": 2,
+          "structured_only_finish_candidate_no_write": 1
+        },
+        "by_candidate_finish": {
+          "holo": 8,
+          "reverse": 1
+        },
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 20
+    },
+    {
+      "key": "second_source_taxonomy_consolidation_v1",
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/second_source_taxonomy_consolidation_v1/second_source_taxonomy_consolidation_v1.json",
+      "fingerprint_sha256": "7fddd3f960876b26985b23d9047893de82d99a007ab5ac6156ff732c9d7c94fb",
+      "summary": {
+        "target_rows": 6,
+        "preserved_fixture_records_considered": 899,
+        "by_status": {
+          "exhausted_no_preserved_exact_second_source": 3,
+          "preserved_second_source_candidate_no_write": 3
+        },
+        "by_candidate_finish": {
+          "reverse": 2,
+          "normal": 1
+        },
+        "write_ready_created": 0
+      },
+      "safety": {
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "dry_run_package_prepared": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "apply_executed": false
+      },
+      "row_count": 6
+    }
+  ],
+  "delta_reports": [
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/individual_event_scan_source_acquisition_v2_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 19,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 14,
+        "unmatched_candidate_records": 5,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 14,
+          "not_in_remaining_gaps_or_current_index": 5
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/pkmngg_stamped_finish_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 51,
+        "matched_gap_facts": 1,
+        "useful_candidate_matches": 1,
+        "already_in_current_index": 49,
+        "unmatched_candidate_records": 1,
+        "by_delta_status": {
+          "suppressed_claim_review_evidence": 1
+        },
+        "by_gap_type": {
+          "suppressed_structured_claim_reviewed": 1
+        },
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 49,
+          "not_in_remaining_gaps_or_current_index": 1
+        },
+        "top_sets": {
+          "sv10|Destined Rivals": 1
+        },
+        "next_step": "Review useful candidate matches, then run guarded rebuild only if the source lane is accepted."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/cardtrader_stamped_finish_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 2,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 2,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 2
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/pokecardvalues_stamped_finish_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 32,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 31,
+        "unmatched_candidate_records": 1,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 31,
+          "not_in_remaining_gaps_or_current_index": 1
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/tcgcsv_prize_pack_title_finish_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 1,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 1,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 1
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/bulbapedia_prize_pack_normal_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 77,
+        "matched_gap_facts": 15,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 62,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {
+          "same_source_or_authority": 15
+        },
+        "by_gap_type": {
+          "finish_second_source_needed": 15
+        },
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 62
+        },
+        "top_sets": {
+          "swsh7|Evolving Skies": 4,
+          "swsh10|Astral Radiance": 3,
+          "swsh6|Chilling Reign": 3,
+          "sv10|Destined Rivals": 1,
+          "swsh11|Lost Origin": 1,
+          "swsh2|Rebel Clash": 1,
+          "swsh5|Battle Styles": 1,
+          "swsh9|Brilliant Stars": 1
+        },
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/bulbapedia_prize_pack_foil_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 16,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 16,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 16
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/event_staff_exact_source_evidence_v1_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 11,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 7,
+        "unmatched_candidate_records": 4,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "not_in_remaining_gaps_or_current_index": 4,
+          "already_in_current_index_master_verified": 7
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/brilliant_stars_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 8,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 8,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 8
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/astral_radiance_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 8,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 8,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 8
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/professor_program_finish_evidence_v1_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 1,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 1,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 1
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    },
+    {
+      "path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/pokumon_stamped_special_candidate_acquisition_v1_source_delta_audit_v1.json",
+      "summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 117,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 117,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 117
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      }
+    }
+  ],
+  "fingerprint_sha256": "a7508dee7742bc7d67e36d7cfe304617a569c27e272f598a0448bb62091b4fc3"
+}

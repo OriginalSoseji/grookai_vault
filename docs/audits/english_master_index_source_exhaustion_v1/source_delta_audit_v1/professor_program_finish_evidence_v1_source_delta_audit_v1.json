@@ -1,0 +1,56 @@
+{
+  "version": "english_master_index_source_delta_audit_v1",
+  "generated_at": "2026-06-22T19:16:45.705Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_key": "professor_program_finish_evidence_v1",
+  "source_kind": "marketplace_checklist",
+  "inputs": {
+    "gaps_path": "docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json",
+    "report_path": null,
+    "fixture_dir": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_professor_program_finish_evidence_v1",
+    "master_index_dir": "docs/audits/verified_master_set_index_v1/english_master_index_v1",
+    "current_cards_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_cards_v1.json",
+    "current_printings_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "rule": "New sources are evaluated as isolated candidate lanes against current remaining gaps before any guarded global rebuild.",
+  "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
+  "no_global_rebuild_required_for_discovery": true,
+  "summary": {
+    "current_gap_facts": 1654,
+    "candidate_records_loaded": 1,
+    "matched_gap_facts": 0,
+    "useful_candidate_matches": 0,
+    "already_in_current_index": 1,
+    "unmatched_candidate_records": 0,
+    "by_delta_status": {},
+    "by_gap_type": {},
+    "by_unmatched_reason": {
+      "already_in_current_index_master_verified": 1
+    },
+    "top_sets": {},
+    "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+  },
+  "useful_matches": [],
+  "all_matches": [],
+  "already_in_current_index": [
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "100",
+      "card_name": "Professor Elm's Training Method",
+      "finish_key": "reverse",
+      "candidate_source_key": "professor_program_finish_evidence_v1",
+      "candidate_source_kind": "marketplace_checklist",
+      "candidate_authority": "pokecardvalues.co.uk",
+      "candidate_url": "https://pokecardvalues.co.uk/cards/professor-elms-training-method-100-123-non-holo-unlimited-heartgold-soulsilver/hgss1-100-2-1/",
+      "evidence_label": "pokecardvalues_professor_elms_training_method_professor_program_reverse_100: exact Professor Program active finish reverse"
+    }
+  ],
+  "unmatched_candidate_sample": []
+}
