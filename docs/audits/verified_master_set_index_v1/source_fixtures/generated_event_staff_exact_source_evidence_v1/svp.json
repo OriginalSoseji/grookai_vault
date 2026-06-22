@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/Pikachu-SVP101-Holo-Black-Star-Scarlet-Violet-Black-Star-Promos/svp-101-1-17/",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "101",
+      "card_name": "Pikachu",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_pikachu_svp101_asia_championship_holo: exact Asia Championship Stamp active finish holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:svp:101:asia_championship_stamp:pokecardvalues_pikachu_svp101_asia_championship_holo",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

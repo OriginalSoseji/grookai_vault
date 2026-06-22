@@ -1,0 +1,2035 @@
+{
+  "version": "exact_finish_binding_consolidation_v1",
+  "generated_at": "2026-06-22T18:58:36.454Z",
+  "input_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_residual_action_plan_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "dry_run_package_prepared": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "source_fixture_dirs_considered": [
+    "generated_pkmngg_stamped_finish_v1",
+    "generated_cardtrader_stamped_finish_v1",
+    "generated_pokecardvalues_stamped_finish_v1",
+    "generated_pkg17l_pricecharting_league_active_finish_acquisition_v1",
+    "generated_pkg17o_league_preserved_evidence_absorption_v1",
+    "generated_pkg17p_pokemonflashfire_league_reverse_source_v1",
+    "generated_pkg17s_league_reverse_second_source_v1",
+    "generated_pkg18o_pokemonflashfire_live_league_reverse_source_v1",
+    "generated_small_custom_stamp_web_evidence_v1",
+    "generated_pokumon_stamped_special_candidate_acquisition_v1",
+    "generated_pkmngg_stamped_finish_v1",
+    "generated_tcgcsv_stamped_subtype_v1"
+  ],
+  "summary": {
+    "target_rows": 48,
+    "preserved_fixture_records_considered": 203,
+    "by_status": {
+      "preserved_fixture_single_finish_candidate_no_write": 32,
+      "still_blocked_no_preserved_exact_finish_fixture": 16
+    },
+    "by_candidate_finish": {
+      "reverse": 31,
+      "holo": 1
+    },
+    "write_ready_created": 0
+  },
+  "rows": [
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "5",
+      "card_name": "Tropius",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" Pokemon card finish",
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" reverse holo holo normal",
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" site:pokumon.com",
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" site:pokescope.app",
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" site:pricecharting.com",
+        "\"Tropius\" \"5\" \"Plasma Blast\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" Pokemon card finish",
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" reverse holo holo normal",
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" site:pokumon.com",
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" site:pokescope.app",
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" site:pricecharting.com",
+        "\"Deino\" \"97\" \"Legendary Treasures\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/black-white/legendary-treasures/097",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/bw11.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/black-white/legendary-treasures/097",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/bw11.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" Pokemon card finish",
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" reverse holo holo normal",
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" site:pokumon.com",
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" site:pokescope.app",
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" site:pricecharting.com",
+        "\"Delibird\" \"38\" \"Boundaries Crossed\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/black-white/boundaries-crossed/038",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/bw7.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/black-white/boundaries-crossed/038",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/bw7.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "3",
+      "card_name": "Electivire",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" Pokemon card finish",
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" reverse holo holo normal",
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" site:pokumon.com",
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" site:pokescope.app",
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" site:pricecharting.com",
+        "\"Electivire\" \"3\" \"Diamond & Pearl\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "7",
+      "card_name": "Luxray",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" Pokemon card finish",
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" reverse holo holo normal",
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" site:pokumon.com",
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" site:pokescope.app",
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" site:pricecharting.com",
+        "\"Luxray\" \"7\" \"Diamond & Pearl\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "6",
+      "card_name": "Golem",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" Pokemon card finish",
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" reverse holo holo normal",
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" site:pokumon.com",
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" site:pokescope.app",
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" site:pricecharting.com",
+        "\"Golem\" \"6\" \"Legend Maker\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "card_number": "14",
+      "card_name": "Blastoise",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" Pokemon card finish",
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" reverse holo holo normal",
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" site:pokumon.com",
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" site:pokescope.app",
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" site:pricecharting.com",
+        "\"Blastoise\" \"14\" \"Crystal Guardians\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "card_number": "9",
+      "card_name": "Machamp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" Pokemon card finish",
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" reverse holo holo normal",
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" site:pokumon.com",
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" site:pokescope.app",
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" site:pricecharting.com",
+        "\"Machamp\" \"9\" \"Hidden Legends\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "16",
+      "card_name": "Deoxys",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" Pokemon card finish",
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" reverse holo holo normal",
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" site:pokumon.com",
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" site:pokescope.app",
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" site:pricecharting.com",
+        "\"Deoxys\" \"16\" \"Deoxys\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "22",
+      "card_name": "Rayquaza",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" Pokemon card finish",
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" reverse holo holo normal",
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" site:pokumon.com",
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" site:pokescope.app",
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" site:pricecharting.com",
+        "\"Rayquaza\" \"22\" \"Deoxys\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "3",
+      "card_name": "Exploud",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" Pokemon card finish",
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" reverse holo holo normal",
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" site:pokumon.com",
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" site:pokescope.app",
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" site:pricecharting.com",
+        "\"Exploud\" \"3\" \"Emerald\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "7",
+      "card_name": "Politoed",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" Pokemon card finish",
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" reverse holo holo normal",
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" site:pokumon.com",
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" site:pokescope.app",
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" site:pricecharting.com",
+        "\"Politoed\" \"7\" \"HS—Unleashed\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/",
+          "finish_key": "reverse",
+          "evidence_label": "PokemonFlashfire product/category label: Politoed 7/95 Reverse Holo Pokemon League Promo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "79",
+      "card_name": "Darkness Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" Pokemon card finish",
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" reverse holo holo normal",
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" site:pokumon.com",
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" site:pokescope.app",
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" site:pricecharting.com",
+        "\"Darkness Energy\" \"79\" \"HS—Undaunted\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-undaunted/079",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss3.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-undaunted/079",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss3.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "80",
+      "card_name": "Metal Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" Pokemon card finish",
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" reverse holo holo normal",
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" site:pokumon.com",
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" site:pokescope.app",
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" site:pricecharting.com",
+        "\"Metal Energy\" \"80\" \"HS—Undaunted\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-undaunted/080",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss3.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-undaunted/080",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss3.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "85",
+      "card_name": "Black Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" Pokemon card finish",
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" reverse holo holo normal",
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" site:pokumon.com",
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" site:pokescope.app",
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" site:pricecharting.com",
+        "\"Black Belt\" \"85\" \"HS—Triumphant\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-triumphant/085",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss4.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-triumphant/085",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss4.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "88",
+      "card_name": "Seeker",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" Pokemon card finish",
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" reverse holo holo normal",
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" site:pokumon.com",
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" site:pokescope.app",
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" site:pricecharting.com",
+        "\"Seeker\" \"88\" \"HS—Triumphant\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-triumphant/088",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss4.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/heartgold-soulsilver/hs-triumphant/088",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: League Promo / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/hgss4.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "96",
+      "card_name": "Team Galactic's Invention G-109 SP Radar",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" Pokemon card finish",
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" reverse holo holo normal",
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" site:pokumon.com",
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" site:pokescope.app",
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" site:pricecharting.com",
+        "\"Team Galactic's Invention G-109 SP Radar\" \"96\" \"Rising Rivals\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "5",
+      "card_name": "Garchomp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" Pokemon card finish",
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" reverse holo holo normal",
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" site:pokumon.com",
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" site:pokescope.app",
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" site:pricecharting.com",
+        "\"Garchomp\" \"5\" \"Supreme Victors\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/",
+          "finish_key": "reverse",
+          "evidence_label": "PokemonFlashfire product/category label: Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17o_league_preserved_evidence_absorption_v1/league_crosshatch_alias_review_candidates_v1.json"
+        },
+        {
+          "source_key": "pokemonflashfire_league_reverse_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/",
+          "finish_key": "reverse",
+          "evidence_label": "PokemonFlashfire product/category label: Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17p_pokemonflashfire_league_reverse_source_v1/pokemonflashfire_league_reverse_exact_sources_v1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" Pokemon card finish",
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" reverse holo holo normal",
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" site:pokumon.com",
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" site:pokescope.app",
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" site:pricecharting.com",
+        "\"Tsareena\" \"20\" \"Sun & Moon\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon/020",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Reverse Holo Pokémon League Challenge  / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon/020",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Reverse Holo Pokémon League Challenge  / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "123",
+      "card_name": "Nest Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Nest Ball\" \"123\" \"Sun & Moon\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon/123",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon/123",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" Pokemon card finish",
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" reverse holo holo normal",
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" site:pokumon.com",
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" site:pokescope.app",
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" site:pricecharting.com",
+        "\"Oricorio\" \"55\" \"Guardians Rising\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/guardians-rising/055",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Reverse Holo Pokémon League Challenge 1st Place / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm2.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/guardians-rising/055",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Reverse Holo Pokémon League Challenge 1st Place / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm2.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "119",
+      "card_name": "Aqua Patch",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Aqua Patch\" \"119\" \"Guardians Rising\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/guardians-rising/119",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm2.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/guardians-rising/119",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm2.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" Pokemon card finish",
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" reverse holo holo normal",
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" site:pokumon.com",
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" site:pokescope.app",
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" site:pricecharting.com",
+        "\"Raichu\" \"41\" \"Burning Shadows\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/041",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Reverse Holo Pokémon League Challenge / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm3.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/041",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Reverse Holo Pokémon League Challenge / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm3.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "113",
+      "card_name": "Bodybuilding Dumbbells",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Bodybuilding Dumbbells\" \"113\" \"Burning Shadows\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/113",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm3.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/113",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm3.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "91",
+      "card_name": "Counter Catcher",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Counter Catcher\" \"91\" \"Crimson Invasion\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/crimson-invasion/091",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm4.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/crimson-invasion/091",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm4.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" Pokemon card finish",
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" reverse holo holo normal",
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" site:pokumon.com",
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" site:pokescope.app",
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" site:pricecharting.com",
+        "\"Magnezone\" \"83\" \"Ultra Prism\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/ultra-prism/083",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm5.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/ultra-prism/083",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm5.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "122",
+      "card_name": "Escape Board",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Escape Board\" \"122\" \"Ultra Prism\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/ultra-prism/122",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm5.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/ultra-prism/122",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm5.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" Pokemon card finish",
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" reverse holo holo normal",
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" site:pokumon.com",
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" site:pokescope.app",
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" site:pricecharting.com",
+        "\"Magcargo\" \"24\" \"Celestial Storm\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/024",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/024",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" Pokemon card finish",
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" reverse holo holo normal",
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" site:pokumon.com",
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" site:pokescope.app",
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" site:pricecharting.com",
+        "\"Rare Candy\" \"142\" \"Celestial Storm\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/142",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/142",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Reverse Holo Pokémon League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "145",
+      "card_name": "Steven's Resolve",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" Pokemon card finish",
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" reverse holo holo normal",
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" site:pokumon.com",
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" site:pokescope.app",
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" site:pricecharting.com",
+        "\"Steven's Resolve\" \"145\" \"Celestial Storm\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/145",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Pokémon League Stamp / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/145",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Pokémon League Stamp / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm7.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" Pokemon card finish",
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" reverse holo holo normal",
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" site:pokumon.com",
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" site:pokescope.app",
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" site:pricecharting.com",
+        "\"Zebstrika\" \"82\" \"Lost Thunder\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/lost-thunder/082",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm8.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/lost-thunder/082",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm8.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "172",
+      "card_name": "Electropower",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Electropower\" \"172\" \"Lost Thunder\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/lost-thunder/172",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm8.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sun-moon/lost-thunder/172",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/sm8.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "81",
+      "card_name": "Team Rocket's Mewtwo ex",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" Pokemon card finish",
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" reverse holo holo normal",
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" site:pokumon.com",
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" site:pokescope.app",
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" site:pricecharting.com",
+        "\"Team Rocket's Mewtwo ex\" \"81\" \"Destined Rivals\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "179",
+      "card_name": "Quick Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"Quick Ball\" \"179\" \"Sword & Shield\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield/179",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/swsh1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield/179",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo League Cup / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/swsh1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "153",
+      "card_name": "League Staff",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" Pokemon card finish",
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" reverse holo holo normal",
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" site:pokumon.com",
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" site:pokescope.app",
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" site:pricecharting.com",
+        "\"League Staff\" \"153\" \"Vivid Voltage\" \"League Cup Staff Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" Pokemon card finish",
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" reverse holo holo normal",
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" site:pokumon.com",
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" site:pokescope.app",
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" site:pricecharting.com",
+        "\"Pikachu\" \"49\" \"Evolving Skies\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" Pokemon card finish",
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" reverse holo holo normal",
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" site:pokumon.com",
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" site:pokescope.app",
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" site:pricecharting.com",
+        "\"Pumpkaboo\" \"56\" \"XY\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/056",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/056",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" Pokemon card finish",
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" reverse holo holo normal",
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" site:pokumon.com",
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" site:pokescope.app",
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" site:pricecharting.com",
+        "\"Solrock\" \"64\" \"XY\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/064",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/064",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "123",
+      "card_name": "Professor's Letter",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" Pokemon card finish",
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" reverse holo holo normal",
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" site:pokumon.com",
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" site:pokescope.app",
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" site:pricecharting.com",
+        "\"Professor's Letter\" \"123\" \"XY\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/123",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Crosshatch Holo Pokémon League Rustboro Season (December 2014) / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/xy/123",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: Crosshatch Holo Pokémon League Rustboro Season (December 2014) / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy1.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" Pokemon card finish",
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" reverse holo holo normal",
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" site:pokumon.com",
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" site:pokescope.app",
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" site:pricecharting.com",
+        "\"Lucario\" \"63\" \"Fates Collide\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/fates-collide/063",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy10.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/fates-collide/063",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy10.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" Pokemon card finish",
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" reverse holo holo normal",
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" site:pokumon.com",
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" site:pokescope.app",
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" site:pricecharting.com",
+        "\"Volcarona\" \"15\" \"Steam Siege\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/steam-siege/015",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy11.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/steam-siege/015",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy11.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" Pokemon card finish",
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" reverse holo holo normal",
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" site:pokumon.com",
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" site:pokescope.app",
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" site:pricecharting.com",
+        "\"Mew\" \"53\" \"Evolutions\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "holo"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/evolutions/053",
+          "finish_key": "holo",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy12.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/evolutions/053",
+          "finish_key": "holo",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy12.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" Pokemon card finish",
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" reverse holo holo normal",
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" site:pokumon.com",
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" site:pokescope.app",
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" site:pricecharting.com",
+        "\"Shelmet\" \"8\" \"Furious Fists\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/furious-fists/008",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy3.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/furious-fists/008",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy3.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "12",
+      "card_name": "Torchic",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" Pokemon card finish",
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" reverse holo holo normal",
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" site:pokumon.com",
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" site:pokescope.app",
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" site:pricecharting.com",
+        "\"Torchic\" \"12\" \"Furious Fists\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "14",
+      "card_name": "Blaziken",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" Pokemon card finish",
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" reverse holo holo normal",
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" site:pokumon.com",
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" site:pokescope.app",
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" site:pricecharting.com",
+        "\"Blaziken\" \"14\" \"Furious Fists\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" Pokemon card finish",
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" reverse holo holo normal",
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" site:pokumon.com",
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" site:pokescope.app",
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" site:pricecharting.com",
+        "\"Klefki\" \"66\" \"Phantom Forces\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "still_blocked_no_preserved_exact_finish_fixture",
+      "candidate_finish_keys": [],
+      "fixture_matches": [],
+      "recommended_next_action": "Manual source acquisition still required. Need exact set + card number + card name + stamp/variant + finish + URL."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" Pokemon card finish",
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" reverse holo holo normal",
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" site:pokumon.com",
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" site:pokescope.app",
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" site:pricecharting.com",
+        "\"Marowak\" \"78\" \"BREAKthrough\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/breakthrough/078",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy8.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/breakthrough/078",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy8.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "next_source_family": "league_marketplace_scan_sources",
+      "priority_rank": 1,
+      "evidence_requirement": "Exact set + card number + card name + stamp/variant + finish + source URL.",
+      "blocker_class": "exact_finish_binding_missing",
+      "source_state": "marketplace_title_review_exhausted",
+      "allowed_next_action": "Use only clear scan/listing/checklist evidence that proves set, number, card name, League Stamp, and active finish together.",
+      "prohibited_action": "Do not promote title-only League Stamp or crosshatch wording as exact finish truth.",
+      "search_queries": [
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" Pokemon card finish",
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" reverse holo holo normal",
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" site:pokumon.com",
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" site:pokescope.app",
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" site:pricecharting.com",
+        "\"Greninja\" \"40\" \"BREAKpoint\" \"League Stamp\" site:tcgplayer.com"
+      ],
+      "write_ready_now": false,
+      "consolidation_status": "preserved_fixture_single_finish_candidate_no_write",
+      "candidate_finish_keys": [
+        "reverse"
+      ],
+      "fixture_matches": [
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/breakpoint/040",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy9.json"
+        },
+        {
+          "source_key": "pkmngg_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pkmn.gg/series/xy/breakpoint/040",
+          "finish_key": "reverse",
+          "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmngg_stamped_finish_v1/xy9.json"
+        }
+      ],
+      "recommended_next_action": "Run source-delta/readiness only; do not write until current DB snapshot proves this row is still missing and non-conflicting."
+    }
+  ],
+  "fingerprint_sha256": "3816eab058241765d635996226f8bc2cbf66349d53814ca58300ac61c25f73a7"
+}

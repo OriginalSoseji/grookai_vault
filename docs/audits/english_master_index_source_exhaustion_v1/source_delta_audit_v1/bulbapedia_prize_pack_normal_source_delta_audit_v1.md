@@ -13,7 +13,7 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Metric | Value |
 | --- | --- |
-| current_gap_facts | 1658 |
+| current_gap_facts | 1654 |
 | candidate_records_loaded | 77 |
 | matched_gap_facts | 15 |
 | useful_candidate_matches | 0 |

@@ -1,0 +1,154 @@
+{
+  "package_id": "STAMPED-SPECIAL-SINGLE-FINISH-WEB-REVIEW-V1",
+  "generated_at": "2026-06-22T17:35:15.345Z",
+  "input_artifact": "docs/audits/english_master_index_source_exhaustion_v1/stamped_special_web_variant_discovery_v1/stamped_special_web_variant_discovery_v1.json",
+  "input_fingerprint_sha256": "a180745c273bdb494460008ea952931c74bc6837c8ff1ad54cba6e2d86150ba7",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "promotable_records_written": 0
+  },
+  "summary": {
+    "source_rows_checked": 171,
+    "variant_supported_rows": 81,
+    "single_finish_review_candidates": 5,
+    "promotable_rows": 0,
+    "by_review_status": {
+      "multi_finish_terms_not_safe": 76,
+      "single_finish_single_variant_source_review": 4,
+      "single_finish_multi_variant_source_review": 1
+    },
+    "by_single_finish_term": {
+      "normal": 4,
+      "holo": 1
+    },
+    "by_variant_key": {
+      "quarter_finalist_stamp": 2,
+      "finalist_stamp": 1,
+      "play_pokemon_stamp": 1,
+      "world_championships_stamp": 1
+    },
+    "by_set": {
+      "bw1": 1,
+      "bwp": 1,
+      "smp": 1,
+      "svp": 1,
+      "xyp": 1
+    }
+  },
+  "rows": [
+    {
+      "source_key": "stamped_special_web_variant_discovery",
+      "source_kind": "collector_reference",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "105",
+      "card_name": "Grass Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "single_finish_term": "normal",
+      "detected_finish_labels": [
+        "normal"
+      ],
+      "variant_source_count": 2,
+      "source_urls": [
+        "https://pokescope.app/card/bw1-105/",
+        "https://scrydex.com/pokemon/cards/black-and-white/bw1-105"
+      ],
+      "review_status": "single_finish_multi_variant_source_review",
+      "promotable": false,
+      "reason_not_promotable": "Web page finish terms are review signals only; they do not independently prove exact stamp/variant-to-active-finish binding."
+    },
+    {
+      "source_key": "stamped_special_web_variant_discovery",
+      "source_kind": "collector_reference",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "single_finish_term": "normal",
+      "detected_finish_labels": [
+        "normal"
+      ],
+      "variant_source_count": 1,
+      "source_urls": [
+        "https://pokescope.app/card/bwp-BW95/",
+        "https://scrydex.com/pokemon/cards/bw-black-star-promos/bwp-BW95"
+      ],
+      "review_status": "single_finish_single_variant_source_review",
+      "promotable": false,
+      "reason_not_promotable": "Web page finish terms are review signals only; they do not independently prove exact stamp/variant-to-active-finish binding."
+    },
+    {
+      "source_key": "stamped_special_web_variant_discovery",
+      "source_kind": "collector_reference",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM231",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "single_finish_term": "normal",
+      "detected_finish_labels": [
+        "normal"
+      ],
+      "variant_source_count": 1,
+      "source_urls": [
+        "https://pokescope.app/card/smp-SM231/",
+        "https://scrydex.com/pokemon/cards/sm-black-star-promos/smp-SM231"
+      ],
+      "review_status": "single_finish_single_variant_source_review",
+      "promotable": false,
+      "reason_not_promotable": "Web page finish terms are review signals only; they do not independently prove exact stamp/variant-to-active-finish binding."
+    },
+    {
+      "source_key": "stamped_special_web_variant_discovery",
+      "source_kind": "collector_reference",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "single_finish_term": "normal",
+      "detected_finish_labels": [
+        "normal"
+      ],
+      "variant_source_count": 1,
+      "source_urls": [
+        "https://pokescope.app/card/svp-225/",
+        "https://scrydex.com/pokemon/cards/scarlet-and-violet-black-star-promos/svp-225"
+      ],
+      "review_status": "single_finish_single_variant_source_review",
+      "promotable": false,
+      "reason_not_promotable": "Web page finish terms are review signals only; they do not independently prove exact stamp/variant-to-active-finish binding."
+    },
+    {
+      "source_key": "stamped_special_web_variant_discovery",
+      "source_kind": "collector_reference",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "single_finish_term": "holo",
+      "detected_finish_labels": [
+        "holo"
+      ],
+      "variant_source_count": 1,
+      "source_urls": [
+        "https://pokescope.app/card/xyp-XY27/",
+        "https://scrydex.com/pokemon/cards/xy-black-star-promos/xyp-XY27"
+      ],
+      "review_status": "single_finish_single_variant_source_review",
+      "promotable": false,
+      "reason_not_promotable": "Web page finish terms are review signals only; they do not independently prove exact stamp/variant-to-active-finish binding."
+    }
+  ],
+  "fingerprint_sha256": "ba7e7cd4991be7081f6e8e12ba2425fc09ca6e32b4faa47b3d937742e79f4b50"
+}

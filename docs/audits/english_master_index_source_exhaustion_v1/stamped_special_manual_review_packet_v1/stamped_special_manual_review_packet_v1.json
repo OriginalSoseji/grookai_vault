@@ -1,0 +1,513 @@
+{
+  "version": "stamped_special_manual_review_packet_v1",
+  "generated_at": "2026-06-22T13:02:11.704Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "purpose": "Preserve exact stamped/special source findings that are not safe to promote automatically, and route them into manual adjudication buckets.",
+  "inputs": {
+    "pkmngg_report": "docs/audits/english_master_index_source_exhaustion_v1/pkmngg_stamped_finish_acquisition_v1/pkmngg_stamped_finish_acquisition_v1.json",
+    "pkmngg_delta": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/pkmngg_stamped_finish_source_delta_audit_v1.json",
+    "pokecardvalues_report": "docs/audits/english_master_index_source_exhaustion_v1/pokecardvalues_stamped_finish_acquisition_v1/pokecardvalues_stamped_finish_acquisition_v1.json",
+    "current_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json"
+  },
+  "summary": {
+    "current_queue_open_rows": 280,
+    "current_queue_write_ready_now": 0,
+    "pkmngg_exact_records_preserved": 51,
+    "pkmngg_useful_delta_matches": 1,
+    "pkmngg_already_mastered_evidence": 49,
+    "pkmngg_no_exact_variant_match": 56,
+    "pkmngg_unavailable_or_unmapped": 21,
+    "pkmngg_conflicting_finish_rows": 1,
+    "pokecardvalues_exact_records_preserved": 2,
+    "pokecardvalues_multi_variant_blockers": 4,
+    "write_ready_created": 0
+  },
+  "promotion_rule": "This packet does not make rows write-ready. Rows require exact set + number + name + variant/stamp + active finish evidence and must pass the normal rollback-only dry-run lifecycle before any apply.",
+  "useful_review_evidence": [
+    {
+      "delta_status": "suppressed_claim_review_evidence",
+      "gap_type": "suppressed_structured_claim_reviewed",
+      "fact_type": "printing_finish",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "087",
+      "card_name": "Team Rocket's Mimikyu",
+      "finish_key": "holo",
+      "current_status": "structured_only_unsupported_by_exact_checklist",
+      "existing_sources": [
+        "tcgdex"
+      ],
+      "existing_authorities": [
+        "https://api.tcgdex.net/v2/en/cards/sv10-087"
+      ],
+      "candidate_source_key": "pkmngg_stamped_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "pkmn.gg",
+      "candidate_url": "https://www.pkmn.gg/series/scarlet-violet/destined-rivals/087",
+      "evidence_label": "pkmn.gg exact variant subtype: Pre-Release Staff Stamp / Holofoil"
+    }
+  ],
+  "pkmngg_conflicts": [
+    {
+      "status": "blocked_conflicting_pkmngg_finish_matches",
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/xy/phantom-forces/066",
+      "candidate_facts": [
+        {
+          "label": "1st Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126180"
+        },
+        {
+          "label": "2nd Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126181"
+        },
+        {
+          "label": "3rd Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126182"
+        },
+        {
+          "label": "4th Place Crosshatch Holo Pokémon League",
+          "subtype": "Holofoil",
+          "finish_key": "holo",
+          "tcgplayer_id": "126183"
+        },
+        {
+          "label": "1st Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126180"
+        },
+        {
+          "label": "2nd Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126181"
+        },
+        {
+          "label": "3rd Place Crosshatch Holo Pokémon League",
+          "subtype": "Reverse Holofoil",
+          "finish_key": "reverse",
+          "tcgplayer_id": "126182"
+        },
+        {
+          "label": "4th Place Crosshatch Holo Pokémon League",
+          "subtype": "Holofoil",
+          "finish_key": "holo",
+          "tcgplayer_id": "126183"
+        }
+      ]
+    }
+  ],
+  "pkmngg_unavailable_or_unmapped_sample": [
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/black-white/black-white-promos/BW50",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/black-white/black-white-promos/BW95",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "card_number": "DP25",
+      "card_name": "Tropical Wind",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/diamond-pearl/diamond-pearl-promos/DP25",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM231",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon-promos/SM231",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "101",
+      "card_name": "Pikachu",
+      "variant_key": "asia_championship_stamp",
+      "stamp_label": "Asia Championship Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/scarlet-violet/scarlet-violet-promos/101",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/scarlet-violet/scarlet-violet-promos/225",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH296",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH296",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/xy/xy-promos/XY27",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/black-white/black-white-promos/BW75",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH185",
+      "card_name": "Moltres",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH185",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH186",
+      "card_name": "Lucario",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH186",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH187",
+      "card_name": "Liepard",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH187",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH188",
+      "card_name": "Bibarel",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH188",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH205",
+      "card_name": "Hisuian Basculegion",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH205",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH206",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH207",
+      "card_name": "Hisuian Samurott",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH207",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sword-shield/sword-shield-promos/SWSH208",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "75",
+      "card_name": "Mimikyu",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/scarlet-violet/scarlet-violet-promos/075",
+      "http_status": "powershell_fetch_error:1"
+    },
+    {
+      "status": "blocked_pkmngg_url_unmapped",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "88",
+      "card_name": "Grass Energy",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "stamp_label": "Player Rewards Crosshatch Stamp",
+      "finish_key": null
+    },
+    {
+      "status": "blocked_pkmngg_url_unmapped",
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "finish_key": null
+    },
+    {
+      "status": "blocked_pkmngg_fetch_failed",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM86",
+      "card_name": "Pikachu",
+      "variant_key": "alolan_raichu_half_deck_14_stamp",
+      "stamp_label": "Alolan Raichu Half Deck 14 Stamp",
+      "finish_key": null,
+      "source_url": "https://www.pkmn.gg/series/sun-moon/sun-moon-promos/SM86",
+      "http_status": "powershell_fetch_error:1"
+    }
+  ],
+  "pkmngg_no_exact_variant_match_by_set": {
+    "swsh3|Darkness Ablaze": 5,
+    "bw1|Black & White": 4,
+    "swsh11|Lost Origin": 4,
+    "ex9|Emerald": 3,
+    "bw9|Plasma Freeze": 2,
+    "dp1|Diamond & Pearl": 2,
+    "ex12|Legend Maker": 2,
+    "ex8|Deoxys": 2,
+    "hgss2|HS—Unleashed": 2,
+    "pl3|Supreme Victors": 2,
+    "sv10|Destined Rivals": 2,
+    "swsh1|Sword & Shield": 2,
+    "swsh8|Fusion Strike": 2,
+    "xy3|Furious Fists": 2,
+    "bw10|Plasma Blast": 1,
+    "bw3|Noble Victories": 1,
+    "bw5|Dark Explorers": 1,
+    "bw8|Plasma Storm": 1,
+    "ex11|Delta Species": 1,
+    "ex14|Crystal Guardians": 1,
+    "ex4|Team Magma vs Team Aqua": 1,
+    "ex5|Hidden Legends": 1,
+    "hgss1|HeartGold & SoulSilver": 1,
+    "pl2|Rising Rivals": 1,
+    "sm10|Unbroken Bonds": 1,
+    "sm8|Lost Thunder": 1,
+    "sm9|Team Up": 1,
+    "sv02|Paldea Evolved": 1,
+    "swsh12|Silver Tempest": 1,
+    "swsh2|Rebel Clash": 1,
+    "swsh4|Vivid Voltage": 1,
+    "swsh5|Battle Styles": 1,
+    "swsh7|Evolving Skies": 1,
+    "xy6|Roaring Skies": 1
+  },
+  "pkmngg_no_exact_variant_match_by_stamp": {
+    "League Stamp": 20,
+    "Play! PokéMon, Thank You Stamp": 5,
+    "Professor Program Stamp": 5,
+    "Pikachu Jack-o'-Lantern Stamp": 4,
+    "Play! Pokemon Stamp": 3,
+    "Player Rewards Crosshatch Stamp": 3,
+    "Destined Rivals Stamp": 2,
+    "EB Games Stamp": 1,
+    "Gym Challenge Stamped; 2006 2007": 1,
+    "Indianapolis GenCon Stamped; 2005": 1,
+    "League Cup Staff Stamp": 1,
+    "Legendary PokéMon Stamp": 1,
+    "McDonald's Stamp": 1,
+    "Origins Game Fair Stamped; 200": 1,
+    "PokéBall Stamped, Player Rewards Promo; 2009 2010": 1,
+    "Prerelease Stamp": 1,
+    "Regional Championships Stamp": 1,
+    "San Diego Comic Con International Stamped; 2005": 1,
+    "Silver Tempest Stamp": 1,
+    "Team Up Stamp": 1,
+    "Unbroken Bonds Stamp": 1
+  },
+  "pokecardvalues_multi_variant_blockers": [
+    {
+      "status": "blocked_multiple_matching_stamp_variants",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "stamp_label": "Finalist Stamp"
+    },
+    {
+      "status": "blocked_multiple_matching_stamp_variants",
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "stamp_label": "EB Games Stamp"
+    },
+    {
+      "status": "blocked_multiple_matching_stamp_variants",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "stamp_label": "League Stamp"
+    },
+    {
+      "status": "blocked_multiple_matching_stamp_variants",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "stamp_label": "Finalist Stamp"
+    }
+  ],
+  "accepted_evidence_summary": {
+    "pkmngg_by_finish": {
+      "unknown": 51
+    },
+    "pkmngg_by_set": {
+      "sm3|Burning Shadows": 3,
+      "sm7|Celestial Storm": 3,
+      "sm8|Lost Thunder": 3,
+      "sv10|Destined Rivals": 3,
+      "xy1|XY": 3,
+      "dp6|Legends Awakened": 2,
+      "hgss3|HS—Undaunted": 2,
+      "hgss4|HS—Triumphant": 2,
+      "sm1|Sun & Moon": 2,
+      "sm2|Guardians Rising": 2,
+      "sm5|Ultra Prism": 2,
+      "xy8|BREAKthrough": 2,
+      "xy9|BREAKpoint": 2,
+      "bw11|Legendary Treasures": 1,
+      "bw3|Noble Victories": 1,
+      "bw5|Dark Explorers": 1,
+      "bw7|Boundaries Crossed": 1,
+      "bw8|Plasma Storm": 1,
+      "dp3|Secret Wonders": 1,
+      "ex11|Delta Species": 1,
+      "ex15|Dragon Frontiers": 1,
+      "ex6|FireRed & LeafGreen": 1,
+      "hgss1|HeartGold & SoulSilver": 1,
+      "sm4|Crimson Invasion": 1,
+      "sv05|Temporal Forces": 1,
+      "swsh1|Sword & Shield": 1,
+      "swsh11|Lost Origin": 1,
+      "swsh4|Vivid Voltage": 1,
+      "swsh9|Brilliant Stars": 1,
+      "xy10|Fates Collide": 1,
+      "xy11|Steam Siege": 1,
+      "xy12|Evolutions": 1,
+      "xy3|Furious Fists": 1
+    },
+    "pokecardvalues_by_finish": {
+      "unknown": 2
+    },
+    "pokecardvalues_by_set": {
+      "bwp|BW Black Star Promos": 1,
+      "dp6|Legends Awakened": 1
+    }
+  },
+  "recommended_next_actions": [
+    "Manually adjudicate Team Rocket’s Mimikyu SV10 #087 staff prerelease holo as review evidence only; do not promote solely from the suppressed structured claim lane.",
+    "Do not promote Klefki XY4 #66 until placement-specific League variants are modeled because pkmn.gg has reverse and holo finish rows under separate placements.",
+    "Keep PokéCardValues multi-variant rows blocked until variant labels are exact enough to select one card identity.",
+    "Use preserved exact records only as additive evidence; do not reset or weaken existing Master Index evidence."
+  ]
+}

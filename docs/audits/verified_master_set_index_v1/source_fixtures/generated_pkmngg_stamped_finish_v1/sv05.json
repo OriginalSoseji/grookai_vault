@@ -1,0 +1,27 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkmngg_stamped_finish",
+  "source_kind": "collector_reference",
+  "set_key": "sv05",
+  "retrieved_at": "2026-06-22T12:56:16.898Z",
+  "raw_snapshot_ref": "generated_fixture:pkmngg_stamped_finish:sv05:2026-06-22T12:56:16.898Z",
+  "records": [
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/scarlet-violet/temporal-forces/077",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "77",
+      "card_name": "Scream Tail",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: Pikachu jack-o'-lantern stamp Trick or Trade BOOster 2024 / Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sv05:77:pikachu_jack_o_lantern_stamp:570272:normal",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    }
+  ]
+}

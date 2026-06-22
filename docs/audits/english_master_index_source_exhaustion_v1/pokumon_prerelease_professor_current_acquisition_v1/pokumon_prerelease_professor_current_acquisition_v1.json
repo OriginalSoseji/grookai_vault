@@ -1,0 +1,285 @@
+{
+  "generated_at": "2026-06-22T05:44:43.697Z",
+  "version": "pokumon_prerelease_professor_current_acquisition_v1",
+  "input_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+  "audit_only": true,
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "global_apply_performed": false,
+    "write_ready_now": 0
+  },
+  "summary": {
+    "target_rows": 20,
+    "card_name_pages_checked": 19,
+    "candidate_records": 0,
+    "review_records": 9,
+    "with_finish_label": 0,
+    "finish_unresolved": 0,
+    "fetch_errors": 9,
+    "by_action_bucket": {
+      "prerelease_exact_finish_source": 10,
+      "professor_program_exact_finish_source": 10
+    },
+    "by_candidate_status": {}
+  },
+  "attempts": [
+    {
+      "card_name": "Metagross",
+      "pages_checked": 2,
+      "source_rows": 42,
+      "matches": 0
+    },
+    {
+      "card_name": "Team Aqua's Cacnea",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Moltres",
+      "pages_checked": 3,
+      "source_rows": 87,
+      "matches": 0
+    },
+    {
+      "card_name": "Lucario",
+      "pages_checked": 3,
+      "source_rows": 96,
+      "matches": 0
+    },
+    {
+      "card_name": "Liepard",
+      "pages_checked": 1,
+      "source_rows": 5,
+      "matches": 0
+    },
+    {
+      "card_name": "Bibarel",
+      "pages_checked": 1,
+      "source_rows": 5,
+      "matches": 0
+    },
+    {
+      "card_name": "Hisuian Basculegion",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Wyrdeer",
+      "pages_checked": 1,
+      "source_rows": 2,
+      "matches": 0
+    },
+    {
+      "card_name": "Hisuian Samurott",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Magnezone",
+      "pages_checked": 2,
+      "source_rows": 32,
+      "matches": 0
+    },
+    {
+      "card_name": "Professor Oak's Visit",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Professor Elm's Training Method",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Prof. Oak's Research",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Voltorb",
+      "pages_checked": 1,
+      "source_rows": 4,
+      "matches": 0
+    },
+    {
+      "card_name": "Pokémon Catcher",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Potion",
+      "pages_checked": 2,
+      "source_rows": 30,
+      "matches": 0
+    },
+    {
+      "card_name": "Vulpix",
+      "pages_checked": 3,
+      "source_rows": 90,
+      "matches": 0
+    },
+    {
+      "card_name": "Sizzlipede",
+      "error": "fetch failed",
+      "matches": 0
+    },
+    {
+      "card_name": "Professor's Research",
+      "error": "fetch failed",
+      "matches": 0
+    }
+  ],
+  "candidate_records": [],
+  "review_records": [
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/metagross-bw75-english-promo/",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Metagross (BW75 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-metagross-bw75-english-promo/",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Staff Metagross (BW75 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/moltres-swsh185-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH185",
+      "card_name": "Moltres",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Moltres (SWSH185 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/liepard-swsh187-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH187",
+      "card_name": "Liepard",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Liepard (SWSH187 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/bibarel-swsh188-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH188",
+      "card_name": "Bibarel",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Bibarel (SWSH188 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-wyrdeer-swsh206-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Staff Wyrdeer (SWSH206 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/wyrdeer-swsh206-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Wyrdeer (SWSH206 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/magnezone-swsh208-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Magnezone (SWSH208 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-magnezone-swsh208-english-promo/",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "evidence_type": "near_miss_identity_variant_review",
+      "evidence_label": "Pokumon card-name near miss: Staff Magnezone (SWSH208 English Promo)",
+      "status": "target_variant_not_confirmed",
+      "notes": "Card name and number match, but Pokumon label does not confirm the queued stamp/variant. Do not promote without taxonomy review."
+    }
+  ],
+  "fingerprint_sha256": "5c611655cecc659061e35aa02f2e55c7e41d09672cacb3c35ac5deb63a0ad70c"
+}

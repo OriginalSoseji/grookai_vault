@@ -1,0 +1,89 @@
+{
+  "package_id": "STAMPED-SPECIAL-FINISH-BINDING-MANUAL-REVIEW-V1",
+  "generated_at": "2026-06-21",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "write_ready_now": 0
+  },
+  "summary": {
+    "candidate_rows_preserved": 3,
+    "write_ready_now": 0,
+    "manual_adjudication_required": 3
+  },
+  "rows": [
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "105",
+      "card_name": "Grass Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "candidate_finish_key": "reverse",
+      "source_finish_labels": [
+        "Crosshatch Foiling",
+        "Holofoil",
+        "Reverse Holo"
+      ],
+      "status": "manual_finish_binding_candidate_not_write_ready",
+      "fixture_path": "docs/audits/verified_master_set_index_v1/source_fixtures/stamped_special_finish_binding_manual_v1/bw1_grass_energy_play_pokemon_stamp_v1.json",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/145863/pokemon-league-and-championship-cards-grass-energy-105-114-play-pokemon",
+        "https://www.bigorbitcards.co.uk/pokemon/pokemon-promos/league-en/grass-energy-105-114-play-pokemon-promo-reverse-holo.html",
+        "https://www.gamenerdz.com/grass-energy-105-114-play-pokemon-105-league-championship-cards-holofoil",
+        "https://pokescope.app/card/bw1-105/",
+        "https://scrydex.com/pokemon/cards/black-and-white/bw1-105"
+      ]
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "106",
+      "card_name": "Fire Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "candidate_finish_key": "reverse",
+      "source_finish_labels": [
+        "Crosshatch Holo",
+        "Holofoil",
+        "Reverse Holo"
+      ],
+      "status": "manual_finish_binding_candidate_not_write_ready",
+      "fixture_path": "docs/audits/verified_master_set_index_v1/source_fixtures/stamped_special_finish_binding_manual_v1/bw1_fire_energy_play_pokemon_stamp_v1.json",
+      "source_urls": [
+        "https://magicmadhouse.co.uk/pokemon-black-white-106-114-fire-energy-play-pokemon-league-promo",
+        "https://www.dragon-egg-games.com/products/fire-energy-106-114-play-pokemon-promo-black-white-base-set",
+        "https://www.thesidedeck.com/catalog/pokmon-pokemon_singles-promos-pokemon_promos/fire_energy__106114__crosshatch_holo_play_pokemon_promo/1733718",
+        "https://www.bigorbitcards.co.uk/sell-or-trade-your-cards/pokemon/pokemon-promos/league-en/fire-energy-106-114-play-pokemon-promo-reverse-holo.html",
+        "https://pokescope.app/card/bw1-106/",
+        "https://scrydex.com/pokemon/cards/black-and-white/bw1-106"
+      ]
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "111",
+      "card_name": "Darkness Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "candidate_finish_key": "reverse",
+      "source_finish_labels": [
+        "Crosshatch Holo",
+        "Holofoil",
+        "League Play"
+      ],
+      "status": "manual_finish_binding_candidate_not_write_ready",
+      "fixture_path": "docs/audits/verified_master_set_index_v1/source_fixtures/stamped_special_finish_binding_manual_v1/bw1_darkness_energy_play_pokemon_stamp_v1.json",
+      "source_urls": [
+        "https://magicmadhouse.co.uk/pokemon-black-white-111-114-darkness-energy-play-pokemon-league-promo",
+        "https://www.collectorscache.com/buylist/pokemon_singles-pokemon_english_promos/darkness_energy_111114_holo_promo__2011_play_pokemon/572703",
+        "https://www.gamenerdz.com/darkness-energy-111-114-play-pokemon-111-league-championship-cards-holofoil",
+        "https://www.darkfoxtcg.com/products/darkness-energy-111-114-play-pokemon-league-championship-cards-holofoil",
+        "https://pokescope.app/card/bw1-111/",
+        "https://scrydex.com/pokemon/cards/black-and-white/bw1-111"
+      ]
+    }
+  ]
+}

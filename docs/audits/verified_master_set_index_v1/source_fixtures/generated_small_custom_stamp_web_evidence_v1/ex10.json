@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "small_custom_stamp_web_evidence_v1",
+  "generated_at": "2026-06-22T16:19:21.633Z",
+  "generation_note": "Audit-only small-custom stamp web evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "small_custom_stamp_web_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/lugia-29-115-non-holo-exclusive-unseen-forces/ex10-29-2-30/",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_number": "29",
+      "card_name": "Lugia",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_lugia_rocks_america_non_holo_29: exact Pokemon Rocks America Stamped; 2005 active finish normal",
+      "language": "en",
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "raw_snapshot_ref": "small_custom_stamp_web_evidence_v1:ex10:29:pokemon_rocks_america_stamped_2005:pokecardvalues_lugia_rocks_america_non_holo_29",
+      "notes": "Audit-only small-custom stamp web evidence. No copyrighted page dumps stored."
+    }
+  ]
+}

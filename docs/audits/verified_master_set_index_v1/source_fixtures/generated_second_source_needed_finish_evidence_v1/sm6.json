@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "second_source_needed_finish_evidence_v1",
+  "generated_at": "2026-06-22T14:59:49.534Z",
+  "generation_note": "Audit-only second-source active finish evidence for stamped/special queue rows. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-staff-league-promo-forbidden-light/sm6-102-3-78/",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_beast_ring_staff_league_reverse_102: exact League Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:sm6:102:league_staff_stamp:pokecardvalues_beast_ring_staff_league_reverse_102",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    }
+  ]
+}

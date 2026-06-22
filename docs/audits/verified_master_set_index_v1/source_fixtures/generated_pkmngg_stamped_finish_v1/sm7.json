@@ -1,0 +1,61 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkmngg_stamped_finish",
+  "source_kind": "collector_reference",
+  "set_key": "sm7",
+  "retrieved_at": "2026-06-22T12:56:16.898Z",
+  "raw_snapshot_ref": "generated_fixture:pkmngg_stamped_finish:sm7:2026-06-22T12:56:16.898Z",
+  "records": [
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/142",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: Reverse Holo Pokémon League Cup / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm7:142:league_stamp:174503:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    },
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/145",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "145",
+      "card_name": "Steven's Resolve",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: Pokémon League Stamp / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm7:145:league_stamp:178007:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    },
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/celestial-storm/024",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm7:24:league_stamp:174505:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    }
+  ]
+}

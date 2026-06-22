@@ -1,0 +1,27 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkmngg_stamped_finish",
+  "source_kind": "collector_reference",
+  "set_key": "bw7",
+  "retrieved_at": "2026-06-22T12:56:16.898Z",
+  "raw_snapshot_ref": "generated_fixture:pkmngg_stamped_finish:bw7:2026-06-22T12:56:16.898Z",
+  "records": [
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/black-white/boundaries-crossed/038",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:bw7:38:league_stamp:166530:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    }
+  ]
+}

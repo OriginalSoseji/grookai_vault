@@ -1,0 +1,2079 @@
+{
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "version": "event_staff_exact_source_evidence_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "inputs": {
+    "queue_path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+    "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_event_staff_exact_source_evidence_v1"
+  },
+  "summary": {
+    "target_queue_rows": 19,
+    "targets_in_script": 19,
+    "queue_targets_matched": 19,
+    "source_ready_candidates": 10,
+    "identity_supported_finish_unproven": 7,
+    "review_only_rows": 0,
+    "source_exhausted_rows": 2,
+    "fixture_records_written": 11,
+    "write_ready_created": 0
+  },
+  "results": [
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "theendgames_tropical_beach_finalist_bw50_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://theendgames.crystalcommerce.com/buylist/pokemon-pokemon_singles-pokemon_promos/tropical_beach_finalist__bw50__promotional/953353",
+          "required_terms": [
+            "Tropical Beach",
+            "Finalist",
+            "BW50",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_tropical_beach_finalist_bw50",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tropical-beach-finalist-bw50",
+          "required_terms": [
+            "Tropical Beach",
+            "Finalist",
+            "#BW50"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "theendgames_tropical_beach_finalist_bw50_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://theendgames.crystalcommerce.com/buylist/pokemon-pokemon_singles-pokemon_promos/tropical_beach_finalist__bw50__promotional/953353",
+          "required_terms": [
+            "Tropical Beach",
+            "Finalist",
+            "BW50",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Tropical Beach",
+              "found": true
+            },
+            {
+              "term": "Finalist",
+              "found": true
+            },
+            {
+              "term": "BW50",
+              "found": true
+            },
+            {
+              "term": "Finish",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_tropical_beach_finalist_bw50",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tropical-beach-finalist-bw50",
+          "required_terms": [
+            "Tropical Beach",
+            "Finalist",
+            "#BW50"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Tropical Beach",
+              "found": true
+            },
+            {
+              "term": "Finalist",
+              "found": true
+            },
+            {
+              "term": "#BW50",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "holo",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "frontline_champions_festival_quarter_finalist_bw95_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.frontlinegames.net/buylist/pokemon_singles-pokemon_promos-bw_black_star_promos/champions_festival_quarter_finalist__bw95__promotional/420943",
+          "required_terms": [
+            "Champions Festival",
+            "Quarter Finalist",
+            "BW95",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "tcgplayer_champions_festival_bw95_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/96569/pokemon-black-and-white-promos-champions-festival-bw95-worlds-13-quarter-finalist",
+          "required_terms": [
+            "Champions Festival",
+            "BW95",
+            "Quarter-Finalist"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "frontline_champions_festival_quarter_finalist_bw95_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.frontlinegames.net/buylist/pokemon_singles-pokemon_promos-bw_black_star_promos/champions_festival_quarter_finalist__bw95__promotional/420943",
+          "required_terms": [
+            "Champions Festival",
+            "Quarter Finalist",
+            "BW95",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": true
+            },
+            {
+              "term": "Quarter Finalist",
+              "found": true
+            },
+            {
+              "term": "BW95",
+              "found": true
+            },
+            {
+              "term": "Finish",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "tcgplayer_champions_festival_bw95_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/96569/pokemon-black-and-white-promos-champions-festival-bw95-worlds-13-quarter-finalist",
+          "required_terms": [
+            "Champions Festival",
+            "BW95",
+            "Quarter-Finalist"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": false
+            },
+            {
+              "term": "BW95",
+              "found": false
+            },
+            {
+              "term": "Quarter-Finalist",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "holo",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "130",
+      "card_name": "Buck's Training",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_bucks_training_staff_prerelease_non_holo_130",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/bucks-training-130-146-non-holo-unlimited-legends-awakened/dp6-130-2-1/",
+          "required_terms": [
+            "Buck's Training",
+            "130/146",
+            "Staff Prerelease",
+            "Non-Holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "nobleknight_bucks_training_staff_130",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148464238/Bucks-Training---130-146-Prerelease-Staff-P-130",
+          "required_terms": [
+            "Buck's Training",
+            "130/146",
+            "Prerelease",
+            "Staff"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_bucks_training_staff_prerelease_non_holo_130",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/bucks-training-130-146-non-holo-unlimited-legends-awakened/dp6-130-2-1/",
+          "required_terms": [
+            "Buck's Training",
+            "130/146",
+            "Staff Prerelease",
+            "Non-Holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Buck's Training",
+              "found": true
+            },
+            {
+              "term": "130/146",
+              "found": true
+            },
+            {
+              "term": "Staff Prerelease",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "nobleknight_bucks_training_staff_130",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148464238/Bucks-Training---130-146-Prerelease-Staff-P-130",
+          "required_terms": [
+            "Buck's Training",
+            "130/146",
+            "Prerelease",
+            "Staff"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Buck's Training",
+              "found": true
+            },
+            {
+              "term": "130/146",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Staff",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "normal",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_dragonite_staff_national_non_holo_2",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+          "required_terms": [
+            "Dragonite",
+            "2/146",
+            "Staff National Championships",
+            "Non-Holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_dragonite_national_championships_staff_2",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/dragonite-national-championships-staff-2",
+          "required_terms": [
+            "Dragonite",
+            "National Championships Staff",
+            "#2"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_dragonite_staff_national_non_holo_2",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+          "required_terms": [
+            "Dragonite",
+            "2/146",
+            "Staff National Championships",
+            "Non-Holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Dragonite",
+              "found": true
+            },
+            {
+              "term": "2/146",
+              "found": true
+            },
+            {
+              "term": "Staff National Championships",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_dragonite_national_championships_staff_2",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/dragonite-national-championships-staff-2",
+          "required_terms": [
+            "Dragonite",
+            "National Championships Staff",
+            "#2"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Dragonite",
+              "found": true
+            },
+            {
+              "term": "National Championships Staff",
+              "found": true
+            },
+            {
+              "term": "#2",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "normal",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "card_number": "DP25",
+      "card_name": "Tropical Wind",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_tropical_wind_finalist_dp25",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tropical-wind-finalist-dp25",
+          "required_terms": [
+            "Tropical Wind",
+            "Finalist",
+            "#DP25"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "pokumon_tropical_wind_cardname_dp25_non_holo",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/cardname/tropical-wind/",
+          "required_terms": [
+            "Tropical Wind",
+            "DP25 English Promo",
+            "Non-holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Card-name aggregate page supports finish family but does not isolate the exact Finalist DP25 row cleanly enough for promotion."
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_tropical_wind_finalist_dp25",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tropical-wind-finalist-dp25",
+          "required_terms": [
+            "Tropical Wind",
+            "Finalist",
+            "#DP25"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Tropical Wind",
+              "found": true
+            },
+            {
+              "term": "Finalist",
+              "found": true
+            },
+            {
+              "term": "#DP25",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_tropical_wind_cardname_dp25_non_holo",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/cardname/tropical-wind/",
+          "required_terms": [
+            "Tropical Wind",
+            "DP25 English Promo",
+            "Non-holo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Card-name aggregate page supports finish family but does not isolate the exact Finalist DP25 row cleanly enough for promotion.",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Tropical Wind",
+              "found": true
+            },
+            {
+              "term": "DP25 English Promo",
+              "found": true
+            },
+            {
+              "term": "Non-holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 1,
+        "review_source_count": 1,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "115",
+      "card_name": "Guzma",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "sources": [
+        {
+          "source_key": "elitefourum_guzma_regional_staff_reverse_115",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/prerelease-staff-card-rarity/25783",
+          "required_terms": [
+            "Burning Shadows",
+            "115/147",
+            "Guzma",
+            "Reverse Holo",
+            "Regional Championships Staff Promo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Supports Regional Championships Staff, while the queue row says World Championships. Preserve as taxonomy conflict context."
+        },
+        {
+          "source_key": "pricecharting_guzma_world_championships_2017_115",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/guzma-115",
+          "required_terms": [
+            "Guzma",
+            "World Championships",
+            "115/147"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "elitefourum_guzma_regional_staff_reverse_115",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/prerelease-staff-card-rarity/25783",
+          "required_terms": [
+            "Burning Shadows",
+            "115/147",
+            "Guzma",
+            "Reverse Holo",
+            "Regional Championships Staff Promo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Supports Regional Championships Staff, while the queue row says World Championships. Preserve as taxonomy conflict context.",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Burning Shadows",
+              "found": true
+            },
+            {
+              "term": "115/147",
+              "found": true
+            },
+            {
+              "term": "Guzma",
+              "found": true
+            },
+            {
+              "term": "Reverse Holo",
+              "found": true
+            },
+            {
+              "term": "Regional Championships Staff Promo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_guzma_world_championships_2017_115",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/guzma-115",
+          "required_terms": [
+            "Guzma",
+            "World Championships",
+            "115/147"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Guzma",
+              "found": true
+            },
+            {
+              "term": "World Championships",
+              "found": true
+            },
+            {
+              "term": "115/147",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 1,
+        "review_source_count": 1,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "188",
+      "card_name": "Professor Elm's Lecture",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "sources": [
+        {
+          "source_key": "gamenerdz_professor_elms_lecture_regional_staff_reverse_188",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/professor-elms-lecture-188-214-regional-championships-staff-188-league-championship-cards-reverse-holofoil",
+          "required_terms": [
+            "Professor Elm's Lecture",
+            "188/214",
+            "Regional Championships",
+            "Staff",
+            "Reverse Holofoil"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "tcgplayer_professor_elms_lecture_regional_staff_188",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/181263/pokemon-league-and-championship-cards-professor-elms-lecture-188-214-regional-championships-staff",
+          "required_terms": [
+            "Professor Elm's Lecture",
+            "188/214",
+            "Regional Championships",
+            "Staff"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "gamenerdz_professor_elms_lecture_regional_staff_reverse_188",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/professor-elms-lecture-188-214-regional-championships-staff-188-league-championship-cards-reverse-holofoil",
+          "required_terms": [
+            "Professor Elm's Lecture",
+            "188/214",
+            "Regional Championships",
+            "Staff",
+            "Reverse Holofoil"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Professor Elm's Lecture",
+              "found": true
+            },
+            {
+              "term": "188/214",
+              "found": true
+            },
+            {
+              "term": "Regional Championships",
+              "found": true
+            },
+            {
+              "term": "Staff",
+              "found": true
+            },
+            {
+              "term": "Reverse Holofoil",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "tcgplayer_professor_elms_lecture_regional_staff_188",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/181263/pokemon-league-and-championship-cards-professor-elms-lecture-188-214-regional-championships-staff",
+          "required_terms": [
+            "Professor Elm's Lecture",
+            "188/214",
+            "Regional Championships",
+            "Staff"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Professor Elm's Lecture",
+              "found": false
+            },
+            {
+              "term": "188/214",
+              "found": false
+            },
+            {
+              "term": "Regional Championships",
+              "found": false
+            },
+            {
+              "term": "Staff",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "reverse",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM231",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_champions_festival_quarter_finalist_sm231",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-quarter-finalist-sm231",
+          "required_terms": [
+            "Champions Festival",
+            "Quarter Finalist",
+            "#SM231"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "tcgplayer_champions_festival_sm231_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/198364/pokemon-sm-promos-champions-festival-sm231-world-championships-2019-quarter-finalist",
+          "required_terms": [
+            "Champions Festival",
+            "SM231",
+            "Quarter Finalist"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_champions_festival_quarter_finalist_sm231",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-quarter-finalist-sm231",
+          "required_terms": [
+            "Champions Festival",
+            "Quarter Finalist",
+            "#SM231"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": true
+            },
+            {
+              "term": "Quarter Finalist",
+              "found": true
+            },
+            {
+              "term": "#SM231",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "tcgplayer_champions_festival_sm231_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/198364/pokemon-sm-promos-champions-festival-sm231-world-championships-2019-quarter-finalist",
+          "required_terms": [
+            "Champions Festival",
+            "SM231",
+            "Quarter Finalist"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": false
+            },
+            {
+              "term": "SM231",
+              "found": false
+            },
+            {
+              "term": "Quarter Finalist",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "34",
+      "card_name": "Ethan's Typhlosion",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_ethans_typhlosion_staff_34",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/ethan%27s-typhlosion-staff-34",
+          "required_terms": [
+            "Ethan's Typhlosion",
+            "Staff",
+            "#34"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "ebay_ethans_typhlosion_staff_holo_34",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/116814846233",
+          "required_terms": [
+            "Ethan's Typhlosion",
+            "Staff",
+            "034/182",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Single live marketplace listing; useful finish context but not stable enough alone for promotion."
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_ethans_typhlosion_staff_34",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/ethan%27s-typhlosion-staff-34",
+          "required_terms": [
+            "Ethan's Typhlosion",
+            "Staff",
+            "#34"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Ethan's Typhlosion",
+              "found": true
+            },
+            {
+              "term": "Staff",
+              "found": true
+            },
+            {
+              "term": "#34",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "ebay_ethans_typhlosion_staff_holo_34",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/116814846233",
+          "required_terms": [
+            "Ethan's Typhlosion",
+            "Staff",
+            "034/182",
+            "Finish",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Single live marketplace listing; useful finish context but not stable enough alone for promotion.",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Ethan's Typhlosion",
+              "found": false
+            },
+            {
+              "term": "Staff",
+              "found": false
+            },
+            {
+              "term": "034/182",
+              "found": false
+            },
+            {
+              "term": "Finish",
+              "found": false
+            },
+            {
+              "term": "Holo",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "49",
+      "card_name": "Misty's Gyarados",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_mistys_gyarados_stamped_49",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/misty%27s-gyarados-stamped-49",
+          "required_terms": [
+            "Misty's Gyarados",
+            "Staff",
+            "Stamped",
+            "#49"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "fanatics_mistys_gyarados_staff_49",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.fanaticscollect.com/buy-now/ca651523-b6dd-4fb3-ac0a-67dd36540d43/2025-pokemon-sv-destined-rivals-prerelease-staff-mistys-gyarados-49-cgc-10-gem",
+          "required_terms": [
+            "Misty's Gyarados",
+            "Destined Rivals",
+            "Prerelease Staff",
+            "#49"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_mistys_gyarados_stamped_49",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/misty%27s-gyarados-stamped-49",
+          "required_terms": [
+            "Misty's Gyarados",
+            "Staff",
+            "Stamped",
+            "#49"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Misty's Gyarados",
+              "found": true
+            },
+            {
+              "term": "Staff",
+              "found": true
+            },
+            {
+              "term": "Stamped",
+              "found": true
+            },
+            {
+              "term": "#49",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "fanatics_mistys_gyarados_staff_49",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.fanaticscollect.com/buy-now/ca651523-b6dd-4fb3-ac0a-67dd36540d43/2025-pokemon-sv-destined-rivals-prerelease-staff-mistys-gyarados-49-cgc-10-gem",
+          "required_terms": [
+            "Misty's Gyarados",
+            "Destined Rivals",
+            "Prerelease Staff",
+            "#49"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Misty's Gyarados",
+              "found": true
+            },
+            {
+              "term": "Destined Rivals",
+              "found": true
+            },
+            {
+              "term": "Prerelease Staff",
+              "found": true
+            },
+            {
+              "term": "#49",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 2,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "87",
+      "card_name": "Team Rocket's Mimikyu",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_team_rockets_mimikyu_prerelease_staff_87",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-mimikyu-prerelease-staff-87",
+          "required_terms": [
+            "Team Rocket's Mimikyu",
+            "Prerelease Staff",
+            "#87"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "dextcg_team_rockets_mimikyu_set_stamp_staff_87",
+          "source_kind": "collector_reference",
+          "source_url": "https://dextcg.com/cards/sv10-87",
+          "required_terms": [
+            "Team Rocket's Mimikyu",
+            "Set Stamp (Staff)"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_team_rockets_mimikyu_prerelease_staff_87",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-mimikyu-prerelease-staff-87",
+          "required_terms": [
+            "Team Rocket's Mimikyu",
+            "Prerelease Staff",
+            "#87"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Rocket's Mimikyu",
+              "found": true
+            },
+            {
+              "term": "Prerelease Staff",
+              "found": true
+            },
+            {
+              "term": "#87",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "dextcg_team_rockets_mimikyu_set_stamp_staff_87",
+          "source_kind": "collector_reference",
+          "source_url": "https://dextcg.com/cards/sv10-87",
+          "required_terms": [
+            "Team Rocket's Mimikyu",
+            "Set Stamp (Staff)"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Rocket's Mimikyu",
+              "found": true
+            },
+            {
+              "term": "Set Stamp (Staff)",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 2,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "96",
+      "card_name": "Team Rocket's Tyranitar",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "sources": [
+        {
+          "source_key": "ebay_team_rockets_tyranitar_staff_96",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/306517381869",
+          "required_terms": [
+            "Team Rocket's Tyranitar",
+            "STAFF Promo",
+            "96/182"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "pricecharting_team_rockets_tyranitar_96",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-tyranitar-96",
+          "required_terms": [
+            "Team Rocket's Tyranitar",
+            "096/182",
+            "STAFF Stamped"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "ebay_team_rockets_tyranitar_staff_96",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/306517381869",
+          "required_terms": [
+            "Team Rocket's Tyranitar",
+            "STAFF Promo",
+            "96/182"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Rocket's Tyranitar",
+              "found": false
+            },
+            {
+              "term": "STAFF Promo",
+              "found": false
+            },
+            {
+              "term": "96/182",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        },
+        {
+          "source_key": "pricecharting_team_rockets_tyranitar_96",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-tyranitar-96",
+          "required_terms": [
+            "Team Rocket's Tyranitar",
+            "096/182",
+            "STAFF Stamped"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Rocket's Tyranitar",
+              "found": true
+            },
+            {
+              "term": "096/182",
+              "found": true
+            },
+            {
+              "term": "STAFF Stamped",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_exhausted_no_exact_source_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "No checked source met the exact required source terms."
+      }
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "101",
+      "card_name": "Pikachu",
+      "variant_key": "asia_championship_stamp",
+      "stamp_label": "Asia Championship Stamp",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_pikachu_svp101_asia_championship_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/Pikachu-SVP101-Holo-Black-Star-Scarlet-Violet-Black-Star-Promos/svp-101-1-17/",
+          "required_terms": [
+            "Pikachu",
+            "SVP101",
+            "Holo",
+            "Asia Championship Series 2023-24"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "bulbapedia_pikachu_svp_promo_101",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(SVP_Promo_101)",
+          "required_terms": [
+            "Pikachu",
+            "SVP 101"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_pikachu_svp101_asia_championship_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/Pikachu-SVP101-Holo-Black-Star-Scarlet-Violet-Black-Star-Promos/svp-101-1-17/",
+          "required_terms": [
+            "Pikachu",
+            "SVP101",
+            "Holo",
+            "Asia Championship Series 2023-24"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "SVP101",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Asia Championship Series 2023-24",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "bulbapedia_pikachu_svp_promo_101",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(SVP_Promo_101)",
+          "required_terms": [
+            "Pikachu",
+            "SVP 101"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "SVP 101",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "holo",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_pikachu_world_championships_225",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-225",
+          "required_terms": [
+            "Pikachu",
+            "World Championships",
+            "#225"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "mnk_pikachu_svp225_world_championships",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.mnkcardkingdom.com.au/products/pikachu-svp-225-promo-world-championships-2025",
+          "required_terms": [
+            "Pikachu",
+            "SVP 225",
+            "World Championships 2025"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_pikachu_world_championships_225",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-225",
+          "required_terms": [
+            "Pikachu",
+            "World Championships",
+            "#225"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "World Championships",
+              "found": true
+            },
+            {
+              "term": "#225",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "mnk_pikachu_svp225_world_championships",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.mnkcardkingdom.com.au/products/pikachu-svp-225-promo-world-championships-2025",
+          "required_terms": [
+            "Pikachu",
+            "SVP 225",
+            "World Championships 2025"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "SVP 225",
+              "found": true
+            },
+            {
+              "term": "World Championships 2025",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 2,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports the event/stamp identity, but active finish is not independently proven."
+      }
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "154",
+      "card_name": "Boss's Orders",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "sources": [
+        {
+          "source_key": "pricecharting_bosss_orders_regional_championships_reverse_154",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/boss%27s-orders-regional-championships-154",
+          "required_terms": [
+            "Boss's Orders",
+            "154/192",
+            "Regional Championships",
+            "Reverse Holo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "ebay_bosss_orders_staff_regional_reverse_154",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/256758371933",
+          "required_terms": [
+            "Boss's Orders",
+            "154/192",
+            "Regional Championships",
+            "STAFF",
+            "Reverse Holo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_bosss_orders_regional_championships_reverse_154",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/boss%27s-orders-regional-championships-154",
+          "required_terms": [
+            "Boss's Orders",
+            "154/192",
+            "Regional Championships",
+            "Reverse Holo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Boss's Orders",
+              "found": true
+            },
+            {
+              "term": "154/192",
+              "found": true
+            },
+            {
+              "term": "Regional Championships",
+              "found": true
+            },
+            {
+              "term": "Reverse Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "ebay_bosss_orders_staff_regional_reverse_154",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/256758371933",
+          "required_terms": [
+            "Boss's Orders",
+            "154/192",
+            "Regional Championships",
+            "STAFF",
+            "Reverse Holo"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Boss's Orders",
+              "found": false
+            },
+            {
+              "term": "154/192",
+              "found": false
+            },
+            {
+              "term": "Regional Championships",
+              "found": false
+            },
+            {
+              "term": "STAFF",
+              "found": false
+            },
+            {
+              "term": "Reverse Holo",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "reverse",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH296",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "tcgplayer_champions_festival_swsh296_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/search/pokemon/product?q=Champions%20Festival%20SWSH296%20Quarter%20Finalist",
+          "required_terms": [
+            "Champions Festival",
+            "SWSH296",
+            "Quarter"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "tcgplayer_champions_festival_swsh296_quarter_finalist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/search/pokemon/product?q=Champions%20Festival%20SWSH296%20Quarter%20Finalist",
+          "required_terms": [
+            "Champions Festival",
+            "SWSH296",
+            "Quarter"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": false
+            },
+            {
+              "term": "SWSH296",
+              "found": false
+            },
+            {
+              "term": "Quarter",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_exhausted_no_exact_source_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "No checked source met the exact required source terms."
+      }
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "138",
+      "card_name": "Giovanni's Scheme",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_giovannis_scheme_regional_reverse_138",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/giovannis-scheme-138-162-reverse-holo-regional-championships-breakthrough/xy8-138-3-60/",
+          "required_terms": [
+            "Giovanni's Scheme",
+            "138/162",
+            "Reverse Holo",
+            "Regional Championships"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_giovannis_scheme_staff_138",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/giovanni%27s-scheme-staff-138",
+          "required_terms": [
+            "Giovanni's Scheme",
+            "138/162",
+            "Regional Championships",
+            "STAFF"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "review_only_reason": "Supports a Staff-labeled related lane; current queue row is non-staff Regional Championships."
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_giovannis_scheme_regional_reverse_138",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/giovannis-scheme-138-162-reverse-holo-regional-championships-breakthrough/xy8-138-3-60/",
+          "required_terms": [
+            "Giovanni's Scheme",
+            "138/162",
+            "Reverse Holo",
+            "Regional Championships"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Giovanni's Scheme",
+              "found": true
+            },
+            {
+              "term": "138/162",
+              "found": true
+            },
+            {
+              "term": "Reverse Holo",
+              "found": true
+            },
+            {
+              "term": "Regional Championships",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_giovannis_scheme_staff_138",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/giovanni%27s-scheme-staff-138",
+          "required_terms": [
+            "Giovanni's Scheme",
+            "138/162",
+            "Regional Championships",
+            "STAFF"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "review_only_reason": "Supports a Staff-labeled related lane; current queue row is non-staff Regional Championships.",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Giovanni's Scheme",
+              "found": true
+            },
+            {
+              "term": "138/162",
+              "found": true
+            },
+            {
+              "term": "Regional Championships",
+              "found": true
+            },
+            {
+              "term": "STAFF",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "reverse",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 0,
+        "review_source_count": 1,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "sources": [
+        {
+          "source_key": "gamenerdz_mistys_determination_regional_staff_reverse_104",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/mistys-determination-104-122-regional-championships-staff-104-league-championship-cards-reverse-holofoil",
+          "required_terms": [
+            "Misty's Determination",
+            "104/122",
+            "Regional Championships",
+            "Staff",
+            "Reverse Holofoil"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pokecardvalues_mistys_determination_regional_staff_reverse_104",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/mistys-determination-104-122-reverse-holo-unlimited-breakpoint/xy9-104-3-1/",
+          "required_terms": [
+            "Misty's Determination",
+            "104/122",
+            "Reverse Holo",
+            "Staff Regional Championships"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "gamenerdz_mistys_determination_regional_staff_reverse_104",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/mistys-determination-104-122-regional-championships-staff-104-league-championship-cards-reverse-holofoil",
+          "required_terms": [
+            "Misty's Determination",
+            "104/122",
+            "Regional Championships",
+            "Staff",
+            "Reverse Holofoil"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Misty's Determination",
+              "found": true
+            },
+            {
+              "term": "104/122",
+              "found": true
+            },
+            {
+              "term": "Regional Championships",
+              "found": true
+            },
+            {
+              "term": "Staff",
+              "found": true
+            },
+            {
+              "term": "Reverse Holofoil",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokecardvalues_mistys_determination_regional_staff_reverse_104",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/mistys-determination-104-122-reverse-holo-unlimited-breakpoint/xy9-104-3-1/",
+          "required_terms": [
+            "Misty's Determination",
+            "104/122",
+            "Reverse Holo",
+            "Staff Regional Championships"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Misty's Determination",
+              "found": true
+            },
+            {
+              "term": "104/122",
+              "found": true
+            },
+            {
+              "term": "Reverse Holo",
+              "found": true
+            },
+            {
+              "term": "Staff Regional Championships",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "reverse",
+        "exact_finish_source_count": 2,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "sources": [
+        {
+          "source_key": "ahiddenfortress_champions_festival_finalist_xy27_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ahiddenfortress.com/catalog/xy__black_star_promos/5581?filter%5B1855%5D=Naoki+Saito",
+          "required_terms": [
+            "Champions Festival",
+            "Finalist",
+            "XY27",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_champions_festival_finalist_xy27",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-finalist-xy27",
+          "required_terms": [
+            "Champions Festival",
+            "Finalist",
+            "#XY27"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "source_checks": [
+        {
+          "source_key": "ahiddenfortress_champions_festival_finalist_xy27_holo",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ahiddenfortress.com/catalog/xy__black_star_promos/5581?filter%5B1855%5D=Naoki+Saito",
+          "required_terms": [
+            "Champions Festival",
+            "Finalist",
+            "XY27",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": true
+            },
+            {
+              "term": "Finalist",
+              "found": true
+            },
+            {
+              "term": "XY27",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_champions_festival_finalist_xy27",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-finalist-xy27",
+          "required_terms": [
+            "Champions Festival",
+            "Finalist",
+            "#XY27"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Champions Festival",
+              "found": true
+            },
+            {
+              "term": "Finalist",
+              "found": true
+            },
+            {
+              "term": "#XY27",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "holo",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves set, number, card name, event/stamp lane, and active finish. No write package created."
+      }
+    }
+  ],
+  "fingerprint_sha256": "c0ef790ca638e9623fc46c7efc3174e33cf54451e118cf4e60437c3a3bc7d1e7"
+}

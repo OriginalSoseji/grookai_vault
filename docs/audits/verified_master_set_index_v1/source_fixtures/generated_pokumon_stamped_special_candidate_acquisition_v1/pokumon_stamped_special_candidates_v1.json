@@ -1,0 +1,4023 @@
+{
+  "generated_at": "2026-06-21T20:19:58.857Z",
+  "source_key": "pokumon_special_print",
+  "records": [
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/wartortle-50-112-ex-firered-leafgreen-prerelease-special-print/",
+      "set_key": "ex6",
+      "card_number": "50",
+      "card_name": "Wartortle",
+      "variant_key": "prerelease_stamp",
+      "variant_family": "prerelease",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Wartortle (50/112 EX FireRed LeafGreen Prerelease Special Print)",
+      "matched_tokens": [
+        "prerelease"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/space-center-91-107-10th-anniversary-houston-space-center-event-special-print/",
+      "set_key": "ex8",
+      "card_number": "91",
+      "card_name": "Space Center",
+      "variant_key": "pokemon_10th_anniversary_stamped",
+      "variant_family": "small_custom_stamp",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Space Center (91/107 10th Anniversary Houston Space Center Event Special Print)",
+      "matched_tokens": [
+        "10th",
+        "anniversary"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/electivire-20-102-triumphant-prerelease-special-print/",
+      "set_key": "hgss4",
+      "card_number": "20",
+      "card_name": "Electivire",
+      "variant_key": "prerelease_stamp",
+      "variant_family": "prerelease",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Electivire (20/102 Triumphant Prerelease Special Print)",
+      "matched_tokens": [
+        "prerelease"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-electivire-20-102-triumphant-prerelease-special-print/",
+      "set_key": "hgss4",
+      "card_number": "20",
+      "card_name": "Electivire",
+      "variant_key": "prerelease_stamp",
+      "variant_family": "prerelease",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Electivire (20/102 Triumphant Prerelease Special Print)",
+      "matched_tokens": [
+        "prerelease"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-poliwhirl-37-95-state-championships-special-print/",
+      "set_key": "hgss2",
+      "card_number": "37",
+      "card_name": "Poliwhirl",
+      "variant_key": "staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Poliwhirl (37/95 State Championships Special Print)",
+      "matched_tokens": [
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-shelmet-8-111-pokemon-league-special-print/",
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Shelmet (8/111 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-shelmet-8-111-pokemon-league-special-print/",
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Shelmet (8/111 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-shelmet-8-111-pokemon-league-special-print/",
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Shelmet (8/111 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-shelmet-8-111-pokemon-league-special-print/",
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Shelmet (8/111 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/escavalier-80-101-national-championships-special-print/",
+      "set_key": "bw3",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Escavalier (80/101 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-escavalier-80-101-national-championships-special-print/",
+      "set_key": "bw3",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Escavalier (80/101 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/escavalier-80-101-national-championships-special-print/",
+      "set_key": "bw3",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Escavalier (80/101 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-escavalier-80-101-national-championships-special-print/",
+      "set_key": "bw3",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Escavalier (80/101 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-escavalier-80-101-national-championships-special-print/",
+      "set_key": "bw3",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Escavalier (80/101 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-scyther-4-108-pokemon-league-special-print/",
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Scyther (4/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-scyther-4-108-pokemon-league-special-print/",
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Scyther (4/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-scyther-4-108-pokemon-league-special-print/",
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Scyther (4/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-scyther-4-108-pokemon-league-special-print/",
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Scyther (4/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/state-staff-vaporeon-25-108-state-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: State Staff Vaporeon (25/108 State Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/state-staff-vaporeon-25-108-state-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: State Staff Vaporeon (25/108 State Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/state-staff-vaporeon-25-108-state-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: State Staff Vaporeon (25/108 State Championships Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-vaporeon-25-108-regional-championships-special-print/",
+      "set_key": "bw5",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Vaporeon (25/108 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-delibird-38-149-pokemon-league-special-print/",
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Delibird (38/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-delibird-38-149-pokemon-league-special-print/",
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Delibird (38/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-delibird-38-149-pokemon-league-special-print/",
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Delibird (38/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-delibird-38-149-pokemon-league-special-print/",
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Delibird (38/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-deino-97-113-pokemon-league-special-print/",
+      "set_key": "bw11",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Deino (97/113 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-deino-97-113-pokemon-league-special-print/",
+      "set_key": "bw11",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Deino (97/113 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-deino-97-113-pokemon-league-special-print/",
+      "set_key": "bw11",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Deino (97/113 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-deino-97-113-pokemon-league-special-print/",
+      "set_key": "bw11",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Deino (97/113 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Pumpkaboo (56/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Pumpkaboo (56/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-pumpkaboo-56-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Pumpkaboo (56/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Pumpkaboo (56/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-solrock-64-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Solrock (64/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-solrock-64-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Solrock (64/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-solrock-64-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Solrock (64/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-solrock-64-146-pokemon-league-special-print/",
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Solrock (64/146 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Klefki (66/119 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Klefki (66/119 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-klefki-66-119-pokemon-league-special-print/",
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Klefki (66/119 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/",
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Klefki (66/119 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Marowak (78/162 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Marowak (78/162 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Marowak (78/162 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/",
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Marowak (78/162 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/",
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Greninja (40/122 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/",
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Lucario (63/124 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-volcarona-15-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Volcarona (15/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Volcarona (15/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Volcarona (15/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Volcarona (15/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/ninja-boy-103-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "103",
+      "card_name": "Ninja Boy",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Ninja Boy (103/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-ninja-boy-103-114-pokemon-league-special-print/",
+      "set_key": "xy11",
+      "card_number": "103",
+      "card_name": "Ninja Boy",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Ninja Boy (103/114 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/",
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Mew (53/108 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-champion-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Champion Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-top-8-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Top 8 Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-champion-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Champion Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-top-8-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Top 8 Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-champion-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Champion Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-top-8-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Top 8 Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-champion-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Champion Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-top-8-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Top 8 Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-champion-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Champion Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-top-8-double-colorless-energy-90-108-international-championships-europe-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Top 8 Double Colorless Energy (90/108 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-champion-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Champion Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-top-8-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Top 8 Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-champion-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Champion Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-top-8-double-colorless-energy-90-108-international-championships-latin-america-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Top 8 Double Colorless Energy (90/108 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-champion-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Champion Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-top-8-double-colorless-energy-90-108-international-championships-oceania-special-print/",
+      "set_key": "xy12",
+      "card_number": "90",
+      "card_name": "Double Colorless Energy",
+      "variant_key": "national_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Top 8 Double Colorless Energy (90/108 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/",
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Tsareena (20/149 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-ultra-ball-135-149-international-championships-latin-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Ultra Ball (135/149 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-ultra-ball-135-149-international-championships-north-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Ultra Ball (135/149 International Championships North America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-ultra-ball-135-149-international-championships-latin-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Ultra Ball (135/149 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-ultra-ball-135-149-international-championships-north-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Ultra Ball (135/149 International Championships North America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-ultra-ball-135-149-international-championships-latin-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Ultra Ball (135/149 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-ultra-ball-135-149-international-championships-north-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Ultra Ball (135/149 International Championships North America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/latin-america-championships-staff-ultra-ball-135-149-international-championships-latin-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Latin America Championships Staff Ultra Ball (135/149 International Championships Latin America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/north-american-championships-staff-ultra-ball-135-149-international-championships-north-america-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: North American Championships Staff Ultra Ball (135/149 International Championships North America Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "championship_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print)",
+      "matched_tokens": [
+        "championship",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "europe",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "europe",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "europe",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+      "set_key": "sm1",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Europe Championships Staff Ultra Ball (135/149 International Championships Europe Special Print)",
+      "matched_tokens": [
+        "europe",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/",
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Oricorio (55/145 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/",
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Raichu (41/147 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/gladion-95-111-regional-championships-special-print/",
+      "set_key": "sm4",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Gladion (95/111 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-gladion-95-111-regional-championships-special-print/",
+      "set_key": "sm4",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Gladion (95/111 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/gladion-95-111-regional-championships-special-print/",
+      "set_key": "sm4",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Gladion (95/111 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-gladion-95-111-regional-championships-special-print/",
+      "set_key": "sm4",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Gladion (95/111 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-magnezone-83-156-pokemon-league-special-print/",
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Magnezone (83/156 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/professor-program-judge-108-131-professor-program-special-print/",
+      "set_key": "sm6",
+      "card_number": "108",
+      "card_name": "Judge",
+      "variant_key": "professor_program_stamp",
+      "variant_family": "professor_program",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Professor Program Judge (108/131 Professor Program Special Print)",
+      "matched_tokens": [
+        "professor",
+        "program"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/mysterious-treasure-113-131-pokemon-league-special-print/",
+      "set_key": "sm6",
+      "card_number": "113",
+      "card_name": "Mysterious Treasure",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Mysterious Treasure (113/131 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-mysterious-treasure-113-131-pokemon-league-special-print/",
+      "set_key": "sm6",
+      "card_number": "113",
+      "card_name": "Mysterious Treasure",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Mysterious Treasure (113/131 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Magcargo (24/168 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Magcargo (24/168 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Magcargo (24/168 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/",
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Magcargo (24/168 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/stamped-suicune-59-214-legendary-pokemon-campaign-special-print/",
+      "set_key": "sm8",
+      "card_number": "59",
+      "card_name": "Suicune",
+      "variant_key": "legendary_pok_mon_stamp",
+      "variant_family": "small_custom_stamp",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Stamped Suicune (59/214 Legendary Pokemon Campaign Special Print)",
+      "matched_tokens": [
+        "legendary"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/stamped-suicune-59-214-legendary-pokemon-campaign-special-print/",
+      "set_key": "sm8",
+      "card_number": "59",
+      "card_name": "Suicune",
+      "variant_key": "legendary_pok_mon_stamp",
+      "variant_family": "small_custom_stamp",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Stamped Suicune (59/214 Legendary Pokemon Campaign Special Print)",
+      "matched_tokens": [
+        "legendary"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: First Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Fourth Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Second Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/",
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "variant_family": "league",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Third Place Zebstrika (82/214 Pokemon League Special Print)",
+      "matched_tokens": [
+        "league"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/professor-program-sonia-167-192-professor-program-special-print/",
+      "set_key": "swsh2",
+      "card_number": "167",
+      "card_name": "Sonia",
+      "variant_key": "professor_program_stamp",
+      "variant_family": "professor_program",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Professor Program Sonia (167/192 Professor Program Special Print)",
+      "matched_tokens": [
+        "professor",
+        "program"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/thank-you-hydreigon-110-189-thank-you-campaign-special-print/",
+      "set_key": "swsh3",
+      "card_number": "110",
+      "card_name": "Hydreigon",
+      "variant_key": "thank_you_stamp",
+      "variant_family": "small_custom_stamp",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Thank You Hydreigon (110/189 Thank You Campaign Special Print)",
+      "matched_tokens": [
+        "thank",
+        "you"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/thank-you-hydreigon-110-189-thank-you-campaign-special-print/",
+      "set_key": "swsh3",
+      "card_number": "110",
+      "card_name": "Hydreigon",
+      "variant_key": "thank_you_stamp",
+      "variant_family": "small_custom_stamp",
+      "finish_key": null,
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Thank You Hydreigon (110/189 Thank You Campaign Special Print)",
+      "matched_tokens": [
+        "thank",
+        "you"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-luxio-52-130-diamond-pearl-prerelease-special-print/",
+      "set_key": "dp1",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "variant_family": "prerelease",
+      "finish_key": "normal",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Luxio (52/130 Diamond &#038; Pearl Prerelease Special Print)",
+      "matched_tokens": [
+        "staff",
+        "prerelease"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-luxio-52-130-diamond-pearl-prerelease-special-print/",
+      "set_key": "dp1",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "variant_family": "prerelease",
+      "finish_key": "normal",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Luxio (52/130 Diamond &#038; Pearl Prerelease Special Print)",
+      "matched_tokens": [
+        "staff",
+        "prerelease"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-shinx-98-130-city-championships-special-print/",
+      "set_key": "dp1",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "variant_key": "city_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "normal",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Shinx (98/130 City Championships Special Print)",
+      "matched_tokens": [
+        "city",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-shinx-98-130-city-championships-special-print/",
+      "set_key": "dp1",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "variant_key": "city_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "normal",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Shinx (98/130 City Championships Special Print)",
+      "matched_tokens": [
+        "city",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-professor-kukui-128-149-regional-championships-special-print/",
+      "set_key": "sm1",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Professor Kukui (128/149 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-cynthia-119-156-regional-championships-special-print/",
+      "set_key": "sm5",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Cynthia (119/156 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-cynthia-119-156-regional-championships-special-print/",
+      "set_key": "sm5",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Cynthia (119/156 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-honedge-83-146-regional-championships-special-print/",
+      "set_key": "xy1",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Honedge (83/146 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-aegislash-85-146-regional-championships-special-print/",
+      "set_key": "xy1",
+      "card_number": "85",
+      "card_name": "Aegislash",
+      "variant_key": "regional_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Aegislash (85/146 Regional Championships Special Print)",
+      "matched_tokens": [
+        "regional",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-chaos-tower-94-124-national-championships-special-print/",
+      "set_key": "xy10",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Chaos Tower (94/124 National Championships Special Print)",
+      "matched_tokens": [
+        "national",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    },
+    {
+      "source_key": "pokumon_special_print",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokumon.com/card/staff-parallel-city-145-162-city-championships-special-print/",
+      "set_key": "xy8",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_staff_stamp",
+      "variant_family": "championship_or_staff",
+      "finish_key": "reverse",
+      "evidence_type": "candidate_variant_presence",
+      "evidence_label": "Pokumon card-name result: Staff Parallel City (145/162 City Championships Special Print)",
+      "matched_tokens": [
+        "city",
+        "championships",
+        "staff"
+      ],
+      "candidate_finish_from_label": null,
+      "status": "candidate_exact_variant_finish_unresolved",
+      "notes": "Candidate only. Pokumon card-name pages support card/name/number/special-print wording, but this artifact does not promote rows or infer set truth by itself."
+    }
+  ]
+}

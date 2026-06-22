@@ -21,7 +21,7 @@ Audit-only extraction of active finish evidence from local PriceCharting CSV Tri
 | candidate_rows | 4 |
 | blocked_rows | 2 |
 | fixture_records_written | 4 |
-| fingerprint_sha256 | `837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206` |
+| fingerprint_sha256 | `5388a28d783112806ac500510c4711d12a0a8340afdbc368b82ba199c18c2ac7` |
 
 ## Status Counts
 

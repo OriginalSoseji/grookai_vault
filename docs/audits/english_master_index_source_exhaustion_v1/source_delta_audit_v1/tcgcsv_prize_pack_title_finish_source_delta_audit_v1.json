@@ -1,13 +1,13 @@
 {
   "version": "english_master_index_source_delta_audit_v1",
-  "generated_at": "2026-06-12T08:22:56.032Z",
+  "generated_at": "2026-06-22T19:09:10.076Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
   "cleanup_performed": false,
   "quarantine_performed": false,
   "source_key": "tcgcsv_prize_pack_title_finish",
-  "source_kind": "marketplace_checklist",
+  "source_kind": "structured_api",
   "inputs": {
     "gaps_path": "docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json",
     "report_path": null,
@@ -20,42 +20,31 @@
   "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
   "no_global_rebuild_required_for_discovery": true,
   "summary": {
-    "current_gap_facts": 1658,
+    "current_gap_facts": 1654,
     "candidate_records_loaded": 1,
-    "matched_gap_facts": 1,
+    "matched_gap_facts": 0,
     "useful_candidate_matches": 0,
-    "already_in_current_index": 0,
+    "already_in_current_index": 1,
     "unmatched_candidate_records": 0,
-    "by_delta_status": {
-      "same_source_or_authority": 1
+    "by_delta_status": {},
+    "by_gap_type": {},
+    "by_unmatched_reason": {
+      "already_in_current_index_master_verified": 1
     },
-    "by_gap_type": {
-      "finish_second_source_needed": 1
-    },
-    "by_unmatched_reason": {},
-    "top_sets": {
-      "swsh9|Brilliant Stars": 1
-    },
+    "top_sets": {},
     "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
   },
   "useful_matches": [],
-  "all_matches": [
+  "all_matches": [],
+  "already_in_current_index": [
     {
-      "delta_status": "same_source_or_authority",
-      "gap_type": "finish_second_source_needed",
-      "fact_type": "printing_finish",
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
       "card_number": "151",
       "card_name": "Double Turbo Energy",
       "finish_key": "cosmos",
-      "current_status": "human_source_verified",
-      "existing_sources": [
-        "tcgcsv_prize_pack_title_finish"
-      ],
-      "existing_authorities": [
-        "tcgplayer.com"
-      ],
       "candidate_source_key": "tcgcsv_prize_pack_title_finish",
       "candidate_source_kind": "marketplace_checklist",
       "candidate_authority": "tcgplayer.com",
@@ -63,6 +52,5 @@
       "evidence_label": "TCGCSV/TCGplayer Prize Pack product title: Double Turbo Energy (Cosmos Holo)"
     }
   ],
-  "already_in_current_index": [],
   "unmatched_candidate_sample": []
 }

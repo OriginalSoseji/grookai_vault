@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T04:58:43.127Z",
+  "generated_at": "2026-06-22T14:23:22.420Z",
   "version": "english_master_index_pkg18k_pricecharting_prize_pack_finish_corroboration_v1",
   "package_id": "PKG-18K-PRICECHARTING-PRIZE-PACK-FINISH-CORROBORATION",
   "audit_only": true,
@@ -16,17 +16,17 @@
   },
   "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg18k_pricecharting_prize_pack_finish_corroboration_v1",
   "fixture_files": [],
-  "fingerprint_sha256": "4dc6607ef045bea894dd943be0e0f151ede54ce6b8a55cbeac00c87f395a10ec",
+  "fingerprint_sha256": "0d73967daaf6f6b53bf75cbb365fbab13c8714a2d5b1c702bad1ca81b500d648",
   "summary": {
-    "target_rows": 63,
+    "target_rows": 51,
     "pricecharting_prize_pack_products": 566,
     "ready_second_source_pricecharting_corroborated": 0,
-    "review_pricecharting_single_source_only": 31,
+    "review_pricecharting_single_source_only": 19,
     "review_conflicting_pricecharting_finish_titles": 0,
     "blocked_no_exact_pricecharting_prize_pack_match": 32,
     "by_status": {
       "blocked_no_exact_pricecharting_prize_pack_match": 32,
-      "review_pricecharting_single_source_only": 31
+      "review_pricecharting_single_source_only": 19
     },
     "by_ready_finish": {},
     "by_ready_set": {},
@@ -225,82 +225,6 @@
       "pricecharting_status": "blocked_no_exact_pricecharting_prize_pack_match",
       "pricecharting_match_count": 0,
       "pricecharting_finish_counts": {}
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "162",
-      "card_name": "Energy Switch",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "11550893",
-          "product_name": "Energy Switch [Prize Pack] #162",
-          "console_name": "Pokemon Sword & Shield",
-          "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/energy-switch-prize-pack-162",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "164",
-      "card_name": "Great Ball",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "12591697",
-          "product_name": "Great Ball [Prize Pack] #164",
-          "console_name": "Pokemon Sword & Shield",
-          "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/great-ball-prize-pack-164",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
     },
     {
       "set_key": "swsh1",
@@ -1039,120 +963,6 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "card_number": "136",
-      "card_name": "Tool Jammer",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "10608596",
-          "product_name": "Tool Jammer [Prize Pack] #136",
-          "console_name": "Pokemon Battle Styles",
-          "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tool-jammer-prize-pack-136",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "137",
-      "card_name": "Tower of Darkness",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "10608594",
-          "product_name": "Tower Of Darkness [Prize Pack] #137",
-          "console_name": "Pokemon Battle Styles",
-          "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-darkness-prize-pack-137",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "138",
-      "card_name": "Tower of Waters",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "5154460",
-          "product_name": "Tower of Waters [Prize Pack 1] #138",
-          "console_name": "Pokemon Battle Styles",
-          "source_url": "https://www.pricecharting.com/game/pokemon-battle-styles/tower-of-waters-prize-pack-1-138",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
       "card_number": "139",
       "card_name": "Urn of Vitality",
       "variant_key": "prize_pack_stamp",
@@ -1235,44 +1045,6 @@
       "pricecharting_status": "blocked_no_exact_pricecharting_prize_pack_match",
       "pricecharting_match_count": 0,
       "pricecharting_finish_counts": {}
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "64",
-      "card_name": "Cresselia",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "5334238",
-          "product_name": "Cresselia [Prize Pack 1] #64",
-          "console_name": "Pokemon Chilling Reign",
-          "source_url": "https://www.pricecharting.com/game/pokemon-chilling-reign/cresselia-prize-pack-1-64",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
     },
     {
       "set_key": "swsh6",
@@ -1628,120 +1400,6 @@
     {
       "set_key": "swsh7",
       "set_name": "Evolving Skies",
-      "card_number": "144",
-      "card_name": "Crystal Cave",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "5334239",
-          "product_name": "Crystal Cave [Prize Pack 1] #144",
-          "console_name": "Pokemon Evolving Skies",
-          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/crystal-cave-prize-pack-1-144",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "146",
-      "card_name": "Dream Ball",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "5334240",
-          "product_name": "Dream Ball [Prize Pack 1] #146",
-          "console_name": "Pokemon Evolving Skies",
-          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/dream-ball-prize-pack-1-146",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "154",
-      "card_name": "Rescue Carrier",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "12591696",
-          "product_name": "Rescue Carrier [Prize Pack] #154",
-          "console_name": "Pokemon Evolving Skies",
-          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/rescue-carrier-prize-pack-154",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
       "card_number": "161",
       "card_name": "Stormy Mountains",
       "variant_key": "prize_pack_stamp",
@@ -1887,44 +1545,6 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "card_number": "134",
-      "card_name": "Cheren's Care",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "6115084",
-          "product_name": "Cheren’s Care [Prize Pack] #134",
-          "console_name": "Pokemon Brilliant Stars",
-          "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cherens-care-prize-pack-134",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
       "card_number": "137",
       "card_name": "Collapsed Stadium",
       "variant_key": "prize_pack_stamp",
@@ -1949,44 +1569,6 @@
       "pricecharting_status": "blocked_no_exact_pricecharting_prize_pack_match",
       "pricecharting_match_count": 0,
       "pricecharting_finish_counts": {}
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "138",
-      "card_name": "Cynthia's Ambition",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "10157244",
-          "product_name": "Cynthia's Ambition [Prize Pack] #138",
-          "console_name": "Pokemon Brilliant Stars",
-          "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/cynthias-ambition-prize-pack-138",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
     },
     {
       "set_key": "swsh9",
@@ -2021,44 +1603,6 @@
       "applied_package_fingerprint_sha256": null,
       "evidence": [],
       "required_next_evidence": "Another independent exact source proving set + card number + card name + Prize Pack stamp + active finish.",
-      "pricecharting_status": "review_pricecharting_single_source_only",
-      "pricecharting_match_count": 1,
-      "pricecharting_finish_counts": {
-        "normal": 1
-      }
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "148",
-      "card_name": "Roseanne's Backup",
-      "variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "accepted_finish_key": "normal",
-      "acquisition_status": "review_only_single_source_family",
-      "closure_status": "applied_real_apply_verified",
-      "evidence_count": 2,
-      "source_families": [
-        "bulbapedia_prize_pack_active_finish_current_queue"
-      ],
-      "finish_counts": {
-        "normal": 2
-      },
-      "pricecharting_corroboration_status": "ready_second_source_pricecharting_corroborated",
-      "pricecharting_finish_key": "normal",
-      "pricecharting_matches": [
-        {
-          "product_id": "13077392",
-          "product_name": "Roseanne's Backup [Prize Pack] #148",
-          "console_name": "Pokemon Brilliant Stars",
-          "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148",
-          "finish_key": "normal"
-        }
-      ],
-      "applied_package_id": "PKG-18M-PRIZE-PACK-STAMPED-PARENT-INSERTS",
-      "applied_package_fingerprint_sha256": "2eccac5fc5f0f2a9db366b48aa135370d06a4f08f247f722bfea8dbd14bc917d",
-      "evidence": [],
-      "required_next_evidence": null,
       "pricecharting_status": "review_pricecharting_single_source_only",
       "pricecharting_match_count": 1,
       "pricecharting_finish_counts": {

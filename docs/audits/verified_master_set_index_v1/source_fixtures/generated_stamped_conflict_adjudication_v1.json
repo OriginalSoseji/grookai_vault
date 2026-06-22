@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T14:33:47.642Z",
+  "generated_at": "2026-06-22T05:44:43.771Z",
   "version": "generated_stamped_conflict_adjudication_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -19,7 +19,7 @@
       "evidence_type": "conflict_adjudication_review_context",
       "evidence_label": "Vaporeon 25/108 Reverse Holo Staff Regional Championships",
       "adjudication_status": "still_blocked_taxonomy_and_event_label_ambiguity",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -36,7 +36,7 @@
       "evidence_type": "conflict_adjudication_review_context",
       "evidence_label": "Staff Vaporeon Regional Championships Special Print; Crosshatch Holo wording",
       "adjudication_status": "still_blocked_taxonomy_and_event_label_ambiguity",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -53,7 +53,7 @@
       "evidence_type": "conflict_adjudication_review_context",
       "evidence_label": "Vaporeon Championship page/sales text uses Holo/Crosshatch wording",
       "adjudication_status": "still_blocked_taxonomy_and_event_label_ambiguity",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -70,7 +70,7 @@
       "evidence_type": "conflict_adjudication_review_context",
       "evidence_label": "Comparable State Championships Staff Vaporeon has Reverse Holofoil listing; not exact Regional staff row.",
       "adjudication_status": "still_blocked_taxonomy_and_event_label_ambiguity",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -87,7 +87,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Suicune Cosmos Holo GameStop Exclusive product page",
       "adjudication_status": "resolved_to_cosmos_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -104,7 +104,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Suicune 026/094 Phantasmal Flames Cosmos Holo [Gamestop]",
       "adjudication_status": "resolved_to_cosmos_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -121,7 +121,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Phantasmal Flames GameStop Stamp Suicune 026/094 Pixel Cosmos Holo",
       "adjudication_status": "resolved_to_cosmos_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -138,7 +138,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Previously captured PokeScope GameStop Cosmos Holo observation",
       "adjudication_status": "resolved_to_cosmos_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -155,7 +155,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Aegislash 85/146 Reverse Holo Regional Championships",
       "adjudication_status": "resolved_to_reverse_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -172,7 +172,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holofoil",
       "adjudication_status": "resolved_to_reverse_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -189,7 +189,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Aegislash 85/146 Regional Championships League Championship Cards Reverse Holofoil",
       "adjudication_status": "resolved_to_reverse_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     },
     {
@@ -206,7 +206,7 @@
       "evidence_type": "conflict_adjudication_finish_support",
       "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holo",
       "adjudication_status": "resolved_to_reverse_future_dry_run_candidate",
-      "retrieved_at": "2026-06-20T14:33:47.642Z",
+      "retrieved_at": "2026-06-22T05:44:43.771Z",
       "raw_snapshot_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json"
     }
   ]

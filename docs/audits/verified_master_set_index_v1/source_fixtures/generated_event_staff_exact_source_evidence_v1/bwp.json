@@ -1,0 +1,42 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://theendgames.crystalcommerce.com/buylist/pokemon-pokemon_singles-pokemon_promos/tropical_beach_finalist__bw50__promotional/953353",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "theendgames_tropical_beach_finalist_bw50_holo: exact Finalist Stamp active finish holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:bwp:BW50:finalist_stamp:theendgames_tropical_beach_finalist_bw50_holo",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    },
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.frontlinegames.net/buylist/pokemon_singles-pokemon_promos-bw_black_star_promos/champions_festival_quarter_finalist__bw95__promotional/420943",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "frontline_champions_festival_quarter_finalist_bw95_holo: exact Quarter Finalist Stamp active finish holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:bwp:BW95:quarter_finalist_stamp:frontline_champions_festival_quarter_finalist_bw95_holo",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

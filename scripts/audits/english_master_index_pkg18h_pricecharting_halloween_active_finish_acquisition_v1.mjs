@@ -12,7 +12,7 @@ import {
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const SOURCE_DIR = path.join(ROOT, 'docs', 'audits', 'english_master_index_source_exhaustion_v1');
-const PKG18EF_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json');
+const NEXT_ACTION_QUEUE_JSON = path.join(AUDIT_DIR, 'english_master_index_stamped_special_next_action_queue_v1.json');
 const CSV_PATH = path.join(ROOT, 'tmp', 'pricecharting', 'pokemon_cards_pricecharting.csv');
 const REPORT_DIR = path.join(SOURCE_DIR, 'pkg18h_pricecharting_halloween_active_finish_acquisition_v1');
 const FIXTURE_DIR = path.join(ROOT, 'docs', 'audits', 'verified_master_set_index_v1', 'source_fixtures', 'generated_pkg18h_pricecharting_halloween_active_finish_v1');
@@ -167,10 +167,10 @@ function finishFromProduct(entry) {
   return 'normal';
 }
 
-function targetRows(pkg18ef) {
-  return (pkg18ef.rows ?? [])
+function targetRows(nextActionQueue) {
+  return (nextActionQueue.rows ?? [])
+    .filter((row) => row.action_bucket === 'halloween_base_parent_or_finish_resolution')
     .filter((row) => row.variant_family === 'halloween')
-    .filter((row) => row.closure_status === 'blocked_halloween_source_needed')
     .filter((row) => row.card_number && row.card_name)
     .sort((left, right) => String(left.set_key).localeCompare(String(right.set_key))
       || String(left.card_number).localeCompare(String(right.card_number), undefined, { numeric: true })
@@ -265,8 +265,8 @@ PriceCharting Trick or Trade product titles prove the Halloween product family, 
 }
 
 async function main() {
-  const [pkg18ef, csvRows] = await Promise.all([readJson(PKG18EF_JSON), readCsv(CSV_PATH)]);
-  const targets = targetRows(pkg18ef);
+  const [nextActionQueue, csvRows] = await Promise.all([readJson(NEXT_ACTION_QUEUE_JSON), readCsv(CSV_PATH)]);
+  const targets = targetRows(nextActionQueue);
   const products = sourceProducts(csvRows);
 
   const rows = [];
@@ -314,7 +314,7 @@ async function main() {
 
   await writeJson(FIXTURE_JSON, fixtureRecords);
   const payload = {
-    pkg18ef_fingerprint: pkg18ef.fingerprint_sha256,
+    next_action_queue_fingerprint: nextActionQueue.fingerprint_sha256,
     source_key: SOURCE_KEY,
     rows,
     fixtureRecords,
@@ -323,7 +323,7 @@ async function main() {
     generated_at: new Date().toISOString(),
     version: 'pkg18h_pricecharting_halloween_active_finish_acquisition_v1',
     package_id: PACKAGE_ID,
-    source_artifact: rel(PKG18EF_JSON),
+    source_artifact: rel(NEXT_ACTION_QUEUE_JSON),
     csv_path: rel(CSV_PATH),
     fixture_path: rel(FIXTURE_JSON),
     audit_only: true,

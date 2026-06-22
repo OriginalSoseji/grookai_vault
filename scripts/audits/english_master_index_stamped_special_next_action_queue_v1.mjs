@@ -10,10 +10,23 @@ const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_stamped_special_nex
 const INPUTS = {
   current_queue: path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.json'),
   execution_queue: path.join(AUDIT_DIR, 'english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json'),
+  live_residual_queue: path.join(AUDIT_DIR, 'english_master_index_stamped_special_live_residual_queue_v1.json'),
   source_closure: path.join(AUDIT_DIR, 'english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json'),
   completion_rollup: path.join(AUDIT_DIR, 'english_master_index_pkg18z_stamped_completion_rollup_v1.json'),
   overnight_pass: path.join(AUDIT_DIR, 'english_master_index_stamped_special_overnight_source_pass_v1.json'),
   conflict_adjudication: path.join(AUDIT_DIR, 'english_master_index_pkg18g2_stamped_conflict_source_adjudication_v1.json'),
+  dv1_regional_championship_evidence: path.join(
+    AUDIT_DIR,
+    'english_master_index_dv1_regional_championship_source_evidence_v1.json',
+  ),
+  regional_championship_taxonomy_governance: path.join(
+    AUDIT_DIR,
+    'english_master_index_regional_championship_taxonomy_governance_v1.json',
+  ),
+  regional_championship_active_finish_adjudication: path.join(
+    AUDIT_DIR,
+    'english_master_index_regional_championship_active_finish_adjudication_v1.json',
+  ),
 };
 
 function readJson(filePath) {
@@ -62,6 +75,44 @@ function rowKey(row) {
   ].join('|');
 }
 
+function sourceEvidenceKey(row) {
+  return [
+    row.set_key ?? '',
+    row.card_number ?? '',
+    row.card_name ?? '',
+    row.variant_key ?? row.current_queue_variant_key ?? '',
+  ].join('|').toLowerCase();
+}
+
+function cardIdentityKey(row) {
+  return [
+    row.set_key ?? '',
+    row.card_number ?? '',
+    row.card_name ?? '',
+  ].join('|').toLowerCase();
+}
+
+function normalizedVariantKey(row) {
+  return String(
+    row.governed_variant_key ??
+    row.target_variant_key ??
+    row.variant_key ??
+    row.current_queue_variant_key ??
+    row.observed_variant_key ??
+    row.stamp_label ??
+    '',
+  ).toLowerCase();
+}
+
+function cardVariantIdentityKey(row) {
+  return [
+    row.set_key ?? '',
+    row.card_number ?? '',
+    row.card_name ?? '',
+    normalizedVariantKey(row),
+  ].join('|').toLowerCase();
+}
+
 function conflictAdjudicationKey(row) {
   return [
     row.set_key ?? '',
@@ -75,7 +126,13 @@ function exactEvidencePrompt(row) {
   return `Need exact source URL proving ${row.set_key}/${row.card_number} ${row.card_name} has ${row.stamp_label || row.variant_key || 'the stamped/special variant'}${row.finish_key ? ` with active finish ${row.finish_key}` : ''}.`;
 }
 
-function classifyNextAction(row, adjudicationByKey = new Map()) {
+function classifyNextAction(
+  row,
+  adjudicationByKey = new Map(),
+  regionalChampionshipEvidenceByKey = new Map(),
+  regionalChampionshipGovernanceByKey = new Map(),
+  regionalChampionshipActiveFinishByKey = new Map(),
+) {
   const adjudication = adjudicationByKey.get(conflictAdjudicationKey(row));
   if (adjudication?.dry_run_candidate_after_package_builder) {
     return {
@@ -114,6 +171,45 @@ function classifyNextAction(row, adjudicationByKey = new Map()) {
   }
 
   if (row.execution_bucket === 'bucket_05_variant_family_source_acquisition_bulk') {
+    const regionalChampionshipActiveFinish = regionalChampionshipActiveFinishByKey.get(cardVariantIdentityKey(row));
+    if (regionalChampionshipActiveFinish?.dry_run_candidate) {
+      return {
+        action_bucket: 'regional_championship_future_dry_run_candidate',
+        priority: 1,
+        recommended_action: 'Build a separate guarded rollback-only dry-run package for Regional Championships parent identity inserts with holo child printing. No real apply without explicit approval.',
+        governing_contract: regionalChampionshipActiveFinish.governing_contract,
+        governed_variant_key: regionalChampionshipActiveFinish.governed_variant_key,
+        governed_printed_identity_modifier: regionalChampionshipActiveFinish.governed_printed_identity_modifier,
+        target_child_finish_key: regionalChampionshipActiveFinish.target_child_finish_key,
+        crosshatch_treatment: regionalChampionshipActiveFinish.crosshatch_treatment,
+        active_finish_adjudication_status: regionalChampionshipActiveFinish.active_finish_adjudication_status,
+      };
+    }
+    const regionalChampionshipGovernance = regionalChampionshipGovernanceByKey.get(sourceEvidenceKey(row));
+    if (regionalChampionshipGovernance?.governance_status === 'identity_governed_finish_blocked') {
+      return {
+        action_bucket: 'regional_championship_active_finish_adjudication',
+        priority: 2,
+        recommended_action: 'Regional Championships identity is governed; adjudicate active child finish from exact sources before any dry-run package.',
+        governing_contract: regionalChampionshipGovernance.governing_contract,
+        governed_variant_key: regionalChampionshipGovernance.governed_variant_key,
+        governed_printed_identity_modifier: regionalChampionshipGovernance.governed_printed_identity_modifier,
+        crosshatch_treatment: regionalChampionshipGovernance.crosshatch_treatment,
+        active_finish_status: regionalChampionshipGovernance.active_finish_status,
+        source_evidence_count: regionalChampionshipGovernance.evidence_sources?.length ?? 0,
+      };
+    }
+    const regionalChampionshipEvidence = regionalChampionshipEvidenceByKey.get(sourceEvidenceKey(row));
+    if (regionalChampionshipEvidence?.status === 'source_agreed_taxonomy_blocked') {
+      return {
+        action_bucket: 'regional_championship_taxonomy_governance',
+        priority: 2,
+        recommended_action: 'Sources agree on a Regional Championships crosshatch promo lane. Govern exact variant key and active finish mapping before any dry-run package.',
+        observed_variant_key: regionalChampionshipEvidence.observed_variant_key,
+        observed_finish_family: regionalChampionshipEvidence.observed_finish_family,
+        source_evidence_count: regionalChampionshipEvidence.evidence_sources?.length ?? 0,
+      };
+    }
     const family = row.variant_family || 'unknown';
     if (family === 'league') {
       return {
@@ -221,15 +317,35 @@ function sampleRows(rows, limit = 20) {
 function buildReport() {
   const currentQueue = readJson(INPUTS.current_queue);
   const executionQueue = readJson(INPUTS.execution_queue);
+  const liveResidualQueue = readJsonIfExists(INPUTS.live_residual_queue);
   const sourceClosure = readJson(INPUTS.source_closure);
   const completionRollup = readJson(INPUTS.completion_rollup);
   const overnightPass = readJson(INPUTS.overnight_pass);
   const conflictAdjudication = readJsonIfExists(INPUTS.conflict_adjudication);
+  const dv1RegionalChampionshipEvidence = readJsonIfExists(INPUTS.dv1_regional_championship_evidence);
+  const regionalChampionshipTaxonomyGovernance = readJsonIfExists(INPUTS.regional_championship_taxonomy_governance);
+  const regionalChampionshipActiveFinishAdjudication = readJsonIfExists(INPUTS.regional_championship_active_finish_adjudication);
   const adjudicationByKey = new Map((conflictAdjudication?.rows ?? []).map((row) => [conflictAdjudicationKey(row), row]));
+  const regionalChampionshipEvidenceByKey = new Map(
+    (dv1RegionalChampionshipEvidence?.rows ?? []).map((row) => [sourceEvidenceKey(row), row]),
+  );
+  const regionalChampionshipGovernanceByKey = new Map(
+    (regionalChampionshipTaxonomyGovernance?.rows ?? []).map((row) => [sourceEvidenceKey(row), row]),
+  );
+  const regionalChampionshipActiveFinishByKey = new Map(
+    (regionalChampionshipActiveFinishAdjudication?.rows ?? []).map((row) => [cardVariantIdentityKey(row), row]),
+  );
+  const sourceRows = liveResidualQueue?.open_rows ?? executionQueue.rows ?? [];
 
-  const rows = (executionQueue.rows ?? []).map((row) => ({
+  const rows = sourceRows.map((row) => ({
     ...row,
-    ...classifyNextAction(row, adjudicationByKey),
+    ...classifyNextAction(
+      row,
+      adjudicationByKey,
+      regionalChampionshipEvidenceByKey,
+      regionalChampionshipGovernanceByKey,
+      regionalChampionshipActiveFinishByKey,
+    ),
   })).sort((a, b) => a.priority - b.priority || rowKey(a).localeCompare(rowKey(b)));
 
   const actionGroups = Object.entries(countBy(rows, (row) => row.action_bucket)).map(([action_bucket, count]) => {
@@ -252,8 +368,18 @@ function buildReport() {
   const noWriteRows = rows.filter((row) => row.priority >= 90);
   const conflictRows = rows.filter((row) => row.action_bucket === 'manual_conflict_adjudication' || row.action_bucket === 'manual_conflict_still_blocked');
   const conflictResolvedRows = rows.filter((row) => row.action_bucket === 'conflict_resolved_future_dry_run_candidate');
+  const regionalChampionshipFutureDryRunRows = rows.filter((row) => row.action_bucket === 'regional_championship_future_dry_run_candidate');
   const conflictResolvedIdentityCount = new Set(conflictResolvedRows.map(conflictAdjudicationKey)).size;
-  const sourceNeededRows = rows.filter((row) => row.priority >= 2 && row.priority < 90);
+  const taxonomyGovernanceRows = rows.filter((row) => (
+    row.action_bucket === 'regional_championship_taxonomy_governance' ||
+    row.action_bucket === 'regional_championship_active_finish_adjudication'
+  ));
+  const sourceNeededRows = rows.filter((row) => (
+    row.priority >= 2 &&
+    row.priority < 90 &&
+    row.action_bucket !== 'regional_championship_taxonomy_governance' &&
+    row.action_bucket !== 'regional_championship_active_finish_adjudication'
+  ));
 
   const nextRecommendedOrder = actionGroups
     .filter((group) => group.priority < 90)
@@ -281,19 +407,25 @@ function buildReport() {
     source_fingerprints: {
       current_queue: currentQueue.fingerprint_sha256 ?? null,
       execution_queue: executionQueue.fingerprint_sha256 ?? null,
+      live_residual_queue: liveResidualQueue?.fingerprint_sha256 ?? null,
       source_closure: sourceClosure.fingerprint_sha256 ?? null,
       completion_rollup: completionRollup.fingerprint_sha256 ?? null,
       overnight_pass: overnightPass.fingerprint_sha256 ?? null,
       conflict_adjudication: conflictAdjudication?.fingerprint_sha256 ?? null,
+      dv1_regional_championship_evidence: dv1RegionalChampionshipEvidence?.fingerprint_sha256 ?? null,
+      regional_championship_taxonomy_governance: regionalChampionshipTaxonomyGovernance?.fingerprint_sha256 ?? null,
+      regional_championship_active_finish_adjudication: regionalChampionshipActiveFinishAdjudication?.fingerprint_sha256 ?? null,
     },
     summary: {
       total_rows: rows.length,
       acquisition_or_adjudication_rows: acquisitionRows.length,
       source_needed_rows: sourceNeededRows.length,
+      taxonomy_governance_rows: taxonomyGovernanceRows.length,
       no_write_or_governance_rows: noWriteRows.length,
       manual_conflict_rows: conflictRows.length,
       conflict_resolved_future_dry_run_candidates: conflictResolvedRows.length,
       conflict_resolved_future_dry_run_candidate_identities: conflictResolvedIdentityCount,
+      regional_championship_future_dry_run_candidates: regionalChampionshipFutureDryRunRows.length,
       write_ready_now: 0,
       by_action_bucket: countBy(rows, (row) => row.action_bucket),
       by_execution_bucket: countBy(rows, (row) => row.execution_bucket),
@@ -366,6 +498,7 @@ function writeMarkdown(report) {
     { metric: 'manual_conflict_rows', value: report.summary.manual_conflict_rows },
     { metric: 'conflict_resolved_future_dry_run_candidates', value: report.summary.conflict_resolved_future_dry_run_candidates },
     { metric: 'conflict_resolved_future_dry_run_candidate_identities', value: report.summary.conflict_resolved_future_dry_run_candidate_identities },
+    { metric: 'regional_championship_future_dry_run_candidates', value: report.summary.regional_championship_future_dry_run_candidates },
     { metric: 'write_ready_now', value: report.summary.write_ready_now },
     { metric: 'fingerprint_sha256', value: `\`${report.fingerprint_sha256}\`` },
   ]));

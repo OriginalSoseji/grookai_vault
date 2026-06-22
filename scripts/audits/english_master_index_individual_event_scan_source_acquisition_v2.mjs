@@ -1,0 +1,743 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const VERSION = 'individual_event_scan_source_acquisition_v2';
+const REPORT_DIR = `docs/audits/english_master_index_source_exhaustion_v1/${VERSION}`;
+const FIXTURE_DIR = `docs/audits/verified_master_set_index_v1/source_fixtures/generated_${VERSION}`;
+const CHECKPOINT_DIR = 'docs/checkpoints/master_index';
+const ACTION_PLAN_PATH =
+  'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_post_collexy_residual_action_plan_v1.json';
+
+const EVIDENCE = [
+  {
+    set_key: 'hgss2',
+    set_name: 'HS-Unleashed',
+    card_number: '24',
+    card_name: 'Steelix',
+    variant_key: 'player_rewards_crosshatch_stamp',
+    stamp_label: 'Player Rewards Crosshatch Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'beckett_hgss_unleashed_steelix_crosshatch_holo_24',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.beckett.com/pokemon/2010/pokemon-tcg-heartgold-and-soulsilver-unleashed-promos/',
+        evidence_label:
+          'Beckett Unleashed Promos #24 Steelix Crosshatch Holo Pokemon League Block Smash Season',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card number/name/set family with Crosshatch Holo event promo wording.',
+      },
+      {
+        source_key: 'elitefourum_steelix_crosshatch_holo_block_smash',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.elitefourum.com/t/price-estimate-on-pokemon-tcg-sets/22064',
+        evidence_label: 'Elite Fourum list: 24/95 Steelix Crosshatch Holo Pokemon League Block Smash Season',
+        evidence_type: 'finish_presence',
+        notes: 'Collector reference corroborates exact card and Crosshatch Holo event lane.',
+      },
+    ],
+  },
+  {
+    set_key: 'hgss1',
+    set_name: 'HeartGold & SoulSilver',
+    card_number: '40',
+    card_name: 'Donphan',
+    variant_key: 'player_rewards_crosshatch_stamp',
+    stamp_label: 'Player Rewards Crosshatch Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'beckett_hgss_donphan_crosshatch_holo_40',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.beckett.com/pokemon/2010/pokemon-tcg-heartgold-and-soulsilver-promos',
+        evidence_label: 'Beckett HeartGold and SoulSilver Promos #40 Donphan Crosshatch Holo Pokemon League Ring Drop Season',
+        evidence_type: 'finish_presence',
+        notes: 'Exact set-era promo checklist binds Donphan #40 to Crosshatch Holo Pokemon League Ring Drop Season.',
+      },
+      {
+        source_key: 'pricecharting_donphan_crosshatch_league_40',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/game/pokemon-heartgold-%26-soulsilver/donphan-crosshatch-league-40',
+        evidence_label: 'PriceCharting Donphan Crosshatch League #40 sales titles',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card/set/number with Crosshatch League and Holo wording in product/sales lane.',
+      },
+      {
+        source_key: 'pokecardvalues_donphan_reverse_holo_league_promo_40',
+        source_kind: 'collector_reference',
+        source_url: 'https://pokecardvalues.co.uk/cards/donphan-40-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-40-3-41/',
+        evidence_label: 'PokeCardValues Donphan 40/123 Reverse Holo League Promo Crosshatch Holo',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card page describes Reverse Holo Promo / League Promo Crosshatch Holo; useful for finish taxonomy review.',
+      },
+    ],
+  },
+  {
+    set_key: 'pl3',
+    set_name: 'Supreme Victors',
+    card_number: '136',
+    card_name: "Cynthia's Guidance",
+    variant_key: 'pok_ball_stamped_player_rewards_promo_2009_2010',
+    stamp_label: 'PokéBall Stamped, Player Rewards Promo; 2009 2010',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'pokebeach_promo_card_catalog_cynthias_guidance',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.pokebeach.com/forums/threads/promo-card-catalog-and-scans.69884/',
+        evidence_label: "PokeBeach promo catalog lists Cynthia's Guidance Supreme Victors 136/147",
+        evidence_type: 'checklist_entry',
+        notes: 'Useful identity context; active finish is not explicit enough for promotion.',
+      },
+    ],
+  },
+  {
+    set_key: 'me02',
+    set_name: 'Phantasmal Flames',
+    card_number: '26',
+    card_name: 'Suicune',
+    variant_key: 'eb_games_stamp',
+    stamp_label: 'EB Games Stamp',
+    finish_key: null,
+    status: 'taxonomy_review_no_write',
+    sources: [
+      {
+        source_key: 'tcgplayer_suicune_eb_games_exclusive',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.tcgplayer.com/product/671234/pokemon-miscellaneous-cards-and-products-suicune-eb-games-exclusive',
+        evidence_label: 'TCGplayer Suicune EB Games Exclusive product lane',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact EB Games identity, but finish remains unresolved against Holo/Cosmos taxonomy.',
+      },
+      {
+        source_key: 'pricecharting_suicune_phantasmal_flames_search',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/search-products?q=suicune&type=prices',
+        evidence_label: 'PriceCharting separates Suicune [EB Games], [Gamestop], and [Cosmos Holo] #26',
+        evidence_type: 'needs_manual_review',
+        notes: 'Supports taxonomy split risk; do not promote without adjudication.',
+      },
+    ],
+  },
+  {
+    set_key: 'sm10',
+    set_name: 'Unbroken Bonds',
+    card_number: '129',
+    card_name: 'Melmetal',
+    variant_key: 'unbroken_bonds_stamp',
+    stamp_label: 'Unbroken Bonds Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'ebay_melmetal_unbroken_bonds_stamped_holo',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.ebay.co.uk/itm/175038190278',
+        evidence_label: 'eBay UK Melmetal 129/214 Promo Holo Stamped Card Unbroken Bonds',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card number/set/stamp with Holo wording.',
+      },
+      {
+        source_key: 'greyogre_melmetal_unbroken_bonds_stamped_holofoil',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.greyogregames.com/products/melmetal-129-214-unbroken-bonds-stamped-sun-moon-unbroken-bonds',
+        evidence_label: 'Grey Ogre Games Melmetal Unbroken Bonds Stamped with Holofoil variants',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card number/set/stamp and Holofoil condition variants.',
+      },
+    ],
+  },
+  {
+    set_key: 'sm8',
+    set_name: 'Lost Thunder',
+    card_number: '59',
+    card_name: 'Suicune',
+    variant_key: 'legendary_pok_mon_stamp',
+    stamp_label: 'Legendary PokéMon Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'spankys_suicune_legendary_pokemon_holofoil',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://spankyscardshop.com/products/suicune-59-214-legendary-pokemon-stamped-sun-moon-lost-thunder',
+        evidence_label: 'Spankys Suicune 59/214 Legendary Pokemon Stamped with Holofoil variants',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card/set/stamp with Holofoil variant menu.',
+      },
+      {
+        source_key: 'pokescope_suicune_lost_thunder_legendary_stamp',
+        source_kind: 'collector_reference',
+        source_url: 'https://pokescope.app/card/sm8-59/',
+        evidence_label: 'PokeScope Suicune Lost Thunder lists Legendary Pokemon Stamp variant',
+        evidence_type: 'checklist_entry',
+        notes: 'Supports exact variant identity; PokeScope base rarity is Rare Holo.',
+      },
+    ],
+  },
+  {
+    set_key: 'sm9',
+    set_name: 'Team Up',
+    card_number: '19',
+    card_name: 'Moltres',
+    variant_key: 'team_up_stamp',
+    stamp_label: 'Team Up Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'magic_madhouse_moltres_team_up_holo_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://magicmadhouse.co.uk/pokemon-sm-team-up-019-181-moltres-holo-team-up-stamp',
+        evidence_label: 'Magic Madhouse SM Team Up 019/181 Moltres Holo Team Up Stamp',
+        evidence_type: 'finish_presence',
+        notes: 'Exact set/number/name/stamp with Holo in title.',
+      },
+      {
+        source_key: 'pricecharting_moltres_stamped_19_team_up',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/game/pokemon-team-up/moltres-stamped-19',
+        evidence_label: 'PriceCharting Moltres [Stamped] #19 Team Up sold-title evidence',
+        evidence_type: 'finish_presence',
+        notes: 'Multiple sold titles bind Team Up Stamp promo and Holo wording.',
+      },
+    ],
+  },
+  {
+    set_key: 'sv10',
+    set_name: 'Destined Rivals',
+    card_number: '51',
+    card_name: "Team Rocket's Articuno",
+    variant_key: 'destined_rivals_stamp',
+    stamp_label: 'Destined Rivals Stamp',
+    finish_key: 'cosmos',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'pricecharting_team_rockets_articuno_stamped_cosmos_51',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-articuno-stamped-51',
+        evidence_label: "PriceCharting Team Rocket's Articuno Stamped #51 Cosmos Holo sales title",
+        evidence_type: 'finish_presence',
+        notes: 'Exact card number/stamp with Cosmos Holo wording.',
+      },
+      {
+        source_key: 'ebay_team_rockets_articuno_cosmos_destined_rivals_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.ebay.com/p/24079708259',
+        evidence_label: "eBay product page Team Rocket's Articuno Cosmos Holo Destined Rivals Stamp",
+        evidence_type: 'finish_presence',
+        notes: 'Product metadata binds Cosmos Holo and Destined Rivals Stamp.',
+      },
+    ],
+  },
+  {
+    set_key: 'sv10',
+    set_name: 'Destined Rivals',
+    card_number: '70',
+    card_name: "Team Rocket's Zapdos",
+    variant_key: 'destined_rivals_stamp',
+    stamp_label: 'Destined Rivals Stamp',
+    finish_key: 'holo',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'pricecharting_team_rockets_zapdos_stamped_holo_70',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-zapdos-stamped-70',
+        evidence_label: "PriceCharting Team Rocket's Zapdos Stamped #70 Holo Rare sales title",
+        evidence_type: 'finish_presence',
+        notes: 'Exact card number/stamp with Holo wording in sold-title evidence.',
+      },
+      {
+        source_key: 'knightandday_team_rockets_zapdos_holofoil_70',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://knightanddaygames.com/products/team-rockets-zapdos-destined-rivals-stamp-70-miscellaneous-cards-products-holofoil',
+        evidence_label: "Knight & Day Team Rocket's Zapdos Destined Rivals Stamp 70 Holofoil",
+        evidence_type: 'finish_presence',
+        notes: 'Exact product page title binds stamp and Holofoil.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh11',
+    set_name: 'Lost Origin',
+    card_number: '76',
+    card_name: 'Hisuian Zoroark',
+    variant_key: 'lost_origin_stamp',
+    stamp_label: 'Lost Origin Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'pricecharting_hisuian_zoroark_lost_origin_stamped_76',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.pricecharting.com/search-products?q=hisuian+zoroark+lost+origin+076%2F196&type=prices',
+        evidence_label: 'PriceCharting search lists Hisuian Zoroark [Stamped], [Gamestop], and [EB Games] #76',
+        evidence_type: 'checklist_entry',
+        notes: 'Supports variant lanes but active finish is not exact enough for promotion.',
+      },
+    ],
+  },
+  {
+    set_key: 'smp',
+    set_name: 'SM Black Star Promos',
+    card_number: 'SM86',
+    card_name: 'Pikachu',
+    variant_key: 'alolan_raichu_half_deck_14_stamp',
+    stamp_label: 'Alolan Raichu Half Deck 14 Stamp',
+    finish_key: null,
+    status: 'taxonomy_review_no_write',
+    sources: [
+      {
+        source_key: 'elitefourum_pikachu_collection_sm86_and_alolan_raichu_half_deck',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.elitefourum.com/t/thatpikachuguys-pikachu-card-collection/33797',
+        evidence_label: 'Elite Fourum separates Black Star Promo SM86 from Alolan Raichu Half Deck Pikachu 14/30',
+        evidence_type: 'needs_manual_review',
+        notes: 'Source suggests the queue row may be conflating SM86 with Trainer Kit Alolan Raichu Half Deck 14/30; do not promote.',
+      },
+      {
+        source_key: 'reddit_all_english_pikachu_cards_sm86_alolan_raichu_half_deck',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.reddit.com/r/PokemonTCG/comments/1mmpaee/all_english_pikachu_cards/',
+        evidence_label: 'English Pikachu checklist separates SM86 variants and Sun & Moon Trainer Kit Alolan Raichu Half Deck 14/30',
+        evidence_type: 'needs_manual_review',
+        notes: 'Independent checklist-style context supports taxonomy conflict rather than exact SM86 stamped identity.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh12',
+    set_name: 'Silver Tempest',
+    card_number: '131',
+    card_name: 'Dragonite',
+    variant_key: 'silver_tempest_stamp',
+    stamp_label: 'Silver Tempest Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'pricecharting_dragonite_stamped_131_silver_tempest',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/game/pokemon-silver-tempest/dragonite-stamped-131',
+        evidence_label: 'PriceCharting Dragonite [Stamped] #131 Silver Tempest sales titles',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp identity; finish needs second source cleanup before promotion.',
+      },
+      {
+        source_key: 'cardmarket_dragonite_silver_tempest_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Silver-Tempest/Dragonite-V2-SIT131',
+        evidence_label: 'Cardmarket Dragonite SIT131 offers include Silver Tempest stamp notes',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact product/number with seller stamp notes; finish not explicit enough alone.',
+      },
+      {
+        source_key: 'ebay_dragonite_silver_tempest_stamp_holo_review',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.ebay.com/itm/376429390824',
+        evidence_label: 'eBay Dragonite 131/195 Holo Silver Tempest Stamp listing',
+        evidence_type: 'needs_manual_review',
+        notes: 'Supports stamped identity and suggests holo wording, but finish taxonomy needs independent exact confirmation before promotion.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh3',
+    set_name: 'Darkness Ablaze',
+    card_number: '150',
+    card_name: 'Bunnelby',
+    variant_key: 'play_pok_mon_thank_you_stamp',
+    stamp_label: 'Play! PokéMon, Thank You Stamp',
+    finish_key: 'reverse',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'tag_bunnelby_thank_you_reverse_holo_150',
+        source_kind: 'collector_reference',
+        source_url:
+          'https://my.taggrading.com/pop-report/Pok%C3%A9mon/2020/Pok%C3%A9mon%20Sword%20%26%20Shield%20Promos/Bunnelby/150%2F189?grades=7.5&setName=Darkness+Ablaze+-+%22Thank+You%22+Stamp&variation=Reverse+Holo',
+        evidence_label: 'TAG Portal Bunnelby 150/189 Darkness Ablaze Thank You Stamp Reverse Holo',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card/stamp/Reverse Holo population lane.',
+      },
+      {
+        source_key: 'magic_madhouse_bunnelby_thank_you_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://magicmadhouse.co.uk/pokemon-darkness-ablaze-150-189-bunnelby-league-promo-thank-you-stamp',
+        evidence_label: 'Magic Madhouse Darkness Ablaze 150/189 Bunnelby League Promo Thank You Stamp',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp identity; finish provided by TAG source.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh3',
+    set_name: 'Darkness Ablaze',
+    card_number: '172',
+    card_name: 'Turbo Patch',
+    variant_key: 'play_pok_mon_thank_you_stamp',
+    stamp_label: 'Play! PokéMon, Thank You Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'magic_madhouse_turbo_patch_thank_you_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://magicmadhouse.co.uk/pokemon-darkness-ablaze-172-189-turbo-patch-league-promo-thank-you-stamp',
+        evidence_label: 'Magic Madhouse Darkness Ablaze 172/189 Turbo Patch League Promo Thank You Stamp',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp identity; active finish not explicit.',
+      },
+      {
+        source_key: 'mrpokemon_turbo_patch_thank_you_stamp',
+        source_kind: 'collector_reference',
+        source_url: 'https://www.mrpokemon.phenixs.com/info.php?i=34518',
+        evidence_label: 'MrPokemon Turbo Patch Player Rewards Program Thank You Stamp 172/189',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact identity and stamp context; active finish still requires exact proof.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh3',
+    set_name: 'Darkness Ablaze',
+    card_number: '36',
+    card_name: 'Galarian Mr. Rime',
+    variant_key: 'play_pok_mon_thank_you_stamp',
+    stamp_label: 'Play! PokéMon, Thank You Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'dextcg_galarian_mr_rime_thank_you_variant',
+        source_kind: 'collector_reference',
+        source_url: 'https://dextcg.com/cards/swsh3-36',
+        evidence_label: 'DexTCG Galarian Mr. Rime variants include Thank You Stamp',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp variant, but finish is not explicit.',
+      },
+      {
+        source_key: 'pokescope_galarian_mr_rime_thank_you_stamp',
+        source_kind: 'collector_reference',
+        source_url: 'https://pokescope.app/card/swsh3-36/',
+        evidence_label: 'PokeScope Galarian Mr. Rime lists Play Pokemon Thank You Stamp variant',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact variant identity; finish still needs proof.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh3',
+    set_name: 'Darkness Ablaze',
+    card_number: '78',
+    card_name: 'Dedenne',
+    variant_key: 'play_pok_mon_thank_you_stamp',
+    stamp_label: 'Play! PokéMon, Thank You Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'cardmarket_dedenne_darkness_ablaze_thank_you_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Darkness-Ablaze/Dedenne-V2-DAA078',
+        evidence_label: 'Cardmarket Dedenne DAA078 offers include Thank You Stamp version',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card and Thank You Stamp offer notes; finish not explicit enough.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh3',
+    set_name: 'Darkness Ablaze',
+    card_number: '83',
+    card_name: 'Polteageist',
+    variant_key: 'play_pok_mon_thank_you_stamp',
+    stamp_label: 'Play! PokéMon, Thank You Stamp',
+    finish_key: null,
+    status: 'identity_supported_finish_unproven',
+    sources: [
+      {
+        source_key: 'pricecharting_polteageist_thank_you_83',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/game/pokemon-darkness-ablaze/polteageist-thank-you-83',
+        evidence_label: 'PriceCharting Polteageist [Thank You] #83 Darkness Ablaze',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp identity; finish not explicit.',
+      },
+      {
+        source_key: 'mercari_polteageist_thank_you_83',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.mercari.com/us/item/m43291515241/',
+        evidence_label: "Mercari Polteageist 83/189 League Champions 'Thank You' Promo",
+        evidence_type: 'checklist_entry',
+        notes: 'Listing title supports identity/stamp but not exact finish.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh4',
+    set_name: 'Vivid Voltage',
+    card_number: '131',
+    card_name: 'Snorlax',
+    variant_key: 'vivid_voltage_stamp',
+    stamp_label: 'Vivid Voltage Stamp',
+    finish_key: 'cosmos',
+    status: 'source_ready_candidate_no_db_write',
+    sources: [
+      {
+        source_key: 'tag_snorlax_vivid_voltage_stamp_cosmos',
+        source_kind: 'collector_reference',
+        source_url:
+          'https://my.taggrading.com/pop-report/Pok%C3%A9mon/2020/Pok%C3%A9mon%20Sword%20%26%20Shield/Snorlax/131%2F185?grades=7&setName=Vivid+Voltage++%22Vivid+Voltage%22+Stamp+&variation=Cosmos+Holo',
+        evidence_label: 'TAG Portal Snorlax 131/185 Vivid Voltage Stamp Cosmos Holo',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card/stamp/finish population lane.',
+      },
+      {
+        source_key: 'pokecardvalues_snorlax_vivid_voltage_stamp_cosmos',
+        source_kind: 'collector_reference',
+        source_url:
+          'https://pokecardvalues.co.uk/cards/snorlax-131-185-holo-cosmos-holo-vivid-voltage/swsh4-131-1-25/',
+        evidence_label: 'PokeCardValues Snorlax 131/185 Holo Promo Cosmos Holo Vivid Voltage stamp',
+        evidence_type: 'finish_presence',
+        notes: 'Exact card/stamp with Cosmos Holo wording.',
+      },
+    ],
+  },
+  {
+    set_key: 'swsh5',
+    set_name: 'Battle Styles',
+    card_number: '82',
+    card_name: 'Sandaconda',
+    variant_key: 'eb_games_stamp',
+    stamp_label: 'EB Games Stamp',
+    finish_key: null,
+    status: 'taxonomy_review_no_write',
+    sources: [
+      {
+        source_key: 'cardmarket_sandaconda_eb_games_stamp',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Battle-Styles/Sandaconda-V3',
+        evidence_label: 'Cardmarket Sandaconda BST82 offers include EB Games stamp sealed Australia promo',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact EB Games stamp identity; finish not explicit.',
+      },
+      {
+        source_key: 'pricecharting_sandaconda_eb_games_82',
+        source_kind: 'marketplace_checklist',
+        source_url: 'https://www.pricecharting.com/game/pokemon-battle-styles/sandaconda-eb-games-82',
+        evidence_label: 'PriceCharting Sandaconda [EB Games] #82 Battle Styles',
+        evidence_type: 'checklist_entry',
+        notes: 'Exact card/stamp identity; finish taxonomy needs adjudication.',
+      },
+    ],
+  },
+  {
+    set_key: 'xy6',
+    set_name: 'Roaring Skies',
+    card_number: '20',
+    card_name: 'Pikachu',
+    variant_key: 'mcdonalds_stamp',
+    stamp_label: "McDonald's Stamp",
+    finish_key: null,
+    status: 'taxonomy_review_no_write',
+    sources: [
+      {
+        source_key: 'reddit_pikachu_english_list_roaring_skies_build_a_bear',
+        source_kind: 'manual_review',
+        source_url: 'https://www.reddit.com/r/PokemonTCG/comments/1mmpaee/all_english_pikachu_cards/',
+        evidence_label: "English Pikachu list notes Roaring Skies 20/108 Build-A-Bear Stamp, not McDonald's",
+        evidence_type: 'needs_manual_review',
+        notes: 'Current queue label says McDonald’s Stamp, but discovered source context points to Build-A-Bear. Keep blocked.',
+      },
+      {
+        source_key: 'fanatics_pikachu_roaring_skies_build_a_bear_20',
+        source_kind: 'marketplace_checklist',
+        source_url:
+          'https://www.fanaticscollect.com/buy-now/a854bfe8-fff6-4302-b2f8-3f7001a4033a/2025-pokemon-japanese-mega-evolution-mcdonalds-promo-pikachu-20-psa-10-gem-mint',
+        evidence_label: 'Fanatics related listing references 2015 Pokemon XY Roaring Skies Build-A-Bear Workshop Pikachu #20',
+        evidence_type: 'needs_manual_review',
+        notes: 'Supports likely label correction, but page context is noisy. Do not promote.',
+      },
+    ],
+  },
+];
+
+function ensureDir(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+function stableHash(value) {
+  return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
+}
+
+function buildFixtureRows() {
+  const rows = [];
+  for (const item of EVIDENCE.filter((entry) => entry.status === 'source_ready_candidate_no_db_write')) {
+    for (const source of item.sources) {
+      rows.push({
+        source_key: source.source_key,
+        source_kind: source.source_kind,
+        source_url: source.source_url,
+        set_key: item.set_key,
+        set_name: item.set_name,
+        card_number: item.card_number,
+        card_name: item.card_name,
+        variant_key: item.variant_key,
+        stamp_label: item.stamp_label,
+        finish_key: item.finish_key,
+        evidence_type: source.evidence_type,
+        evidence_label: source.evidence_label,
+        notes: source.notes,
+      });
+    }
+  }
+  return rows;
+}
+
+function buildFixturePayload(records) {
+  return {
+    source_key: VERSION,
+    source_kind: 'marketplace_checklist',
+    source_url: 'multiple_preserved_source_urls',
+    raw_snapshot_ref: `generated_${VERSION}`,
+    records,
+  };
+}
+
+function summarize() {
+  const byStatus = {};
+  for (const row of EVIDENCE) byStatus[row.status] = (byStatus[row.status] || 0) + 1;
+  return {
+    target_remaining_rows: 20,
+    rows_attempted: EVIDENCE.length,
+    source_ready_candidates: EVIDENCE.filter((row) => row.status === 'source_ready_candidate_no_db_write').length,
+    identity_supported_finish_unproven: EVIDENCE.filter((row) => row.status === 'identity_supported_finish_unproven').length,
+    taxonomy_review_no_write: EVIDENCE.filter((row) => row.status === 'taxonomy_review_no_write').length,
+    fixture_records_written: buildFixtureRows().length,
+    write_ready_created: 0,
+    by_status: byStatus,
+  };
+}
+
+function writeMarkdown(report) {
+  const lines = [];
+  lines.push('# Individual Event Scan Source Acquisition V2');
+  lines.push('');
+  lines.push('Audit-only source acquisition for the remaining individual-event stamped/special rows.');
+  lines.push('');
+  lines.push('## Summary');
+  lines.push('');
+  lines.push('| metric | value |');
+  lines.push('| --- | ---: |');
+  for (const [key, value] of Object.entries(report.summary)) {
+    if (typeof value !== 'object') lines.push(`| ${key} | ${value} |`);
+  }
+  lines.push('');
+  lines.push('## Evidence Rows');
+  lines.push('');
+  lines.push('| set | number | card | stamp | finish | status | sources |');
+  lines.push('| --- | --- | --- | --- | --- | --- | ---: |');
+  for (const row of report.evidence_rows) {
+    lines.push(
+      `| ${row.set_key} | ${row.card_number} | ${row.card_name} | ${row.stamp_label} | ${row.finish_key || 'unproven'} | ${row.status} | ${row.sources.length} |`,
+    );
+  }
+  lines.push('');
+  lines.push('## Safety');
+  lines.push('');
+  lines.push('- No DB writes.');
+  lines.push('- No migrations.');
+  lines.push('- No dry-run package prepared.');
+  lines.push('- Taxonomy rows remain blocked.');
+  lines.push('');
+  lines.push(`Fixture: \`${report.fixture_output}\``);
+  lines.push('');
+  lines.push(`Fingerprint: \`${report.fingerprint_sha256}\``);
+  return `${lines.join('\n')}\n`;
+}
+
+function appendCheckpointIndex(checkpointFile) {
+  const indexPath = path.join(CHECKPOINT_DIR, 'CHECKPOINT_INDEX.md');
+  const current = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf8') : '# Master Index Checkpoints\n';
+  const rel = path.basename(checkpointFile);
+  const line = `- 2026-06-22: Individual event scan source acquisition V2 checkpoint — exhausts the remaining 20 individual-event rows into 9 source-ready, 7 finish-unproven, and 4 taxonomy-review rows; write_ready_now remains 0. See docs/checkpoints/master_index/${rel}.`;
+  if (!current.includes(rel)) {
+    fs.writeFileSync(indexPath, `${current.trimEnd()}\n${line}\n`);
+  }
+}
+
+function writeCheckpoint(report) {
+  ensureDir(CHECKPOINT_DIR);
+  const checkpointFile = path.join(CHECKPOINT_DIR, '20260622_individual_event_scan_source_acquisition_v2_checkpoint.md');
+  const lines = [];
+  lines.push('# Individual Event Scan Source Acquisition V2 Checkpoint');
+  lines.push('');
+  lines.push(`Fingerprint: \`${report.fingerprint_sha256}\``);
+  lines.push('');
+  lines.push('## Outcome');
+  lines.push('');
+  lines.push(`- Rows attempted: ${report.summary.rows_attempted}`);
+  lines.push(`- Source-ready candidates preserved: ${report.summary.source_ready_candidates}`);
+  lines.push(`- Identity-supported, finish-unproven rows: ${report.summary.identity_supported_finish_unproven}`);
+  lines.push(`- Taxonomy review rows: ${report.summary.taxonomy_review_no_write}`);
+  lines.push(`- Fixture records written: ${report.summary.fixture_records_written}`);
+  lines.push('- `write_ready_created`: 0');
+  lines.push('- No DB writes, migrations, dry-runs, applies, cleanup, or deletes.');
+  fs.writeFileSync(checkpointFile, `${lines.join('\n')}\n`);
+  appendCheckpointIndex(checkpointFile);
+}
+
+function main() {
+  ensureDir(REPORT_DIR);
+  ensureDir(FIXTURE_DIR);
+  const summary = summarize();
+  const fixtureRows = buildFixtureRows();
+  const fixtureOutput = path.join(FIXTURE_DIR, `${VERSION}.json`);
+  const seed = {
+    version: VERSION,
+    generated_at: new Date().toISOString(),
+    source_queue: ACTION_PLAN_PATH,
+    safety: {
+      db_writes_performed: false,
+      migrations_created: false,
+      dry_run_package_prepared: false,
+      cleanup_performed: false,
+      quarantine_performed: false,
+      apply_executed: false,
+    },
+    summary,
+    evidence_rows: EVIDENCE,
+    fixture_output: fixtureOutput,
+  };
+  const fingerprint = stableHash({
+    version: seed.version,
+    safety: seed.safety,
+    summary: seed.summary,
+    evidence_rows: seed.evidence_rows,
+  });
+  const report = { ...seed, fingerprint_sha256: fingerprint };
+  fs.writeFileSync(fixtureOutput, `${JSON.stringify(buildFixturePayload(fixtureRows), null, 2)}\n`);
+  fs.writeFileSync(path.join(REPORT_DIR, `${VERSION}.json`), `${JSON.stringify(report, null, 2)}\n`);
+  fs.writeFileSync(path.join(REPORT_DIR, `${VERSION}.md`), writeMarkdown(report));
+  writeCheckpoint(report);
+  console.log(JSON.stringify(summary, null, 2));
+  console.log(`fingerprint_sha256=${fingerprint}`);
+}
+
+main();

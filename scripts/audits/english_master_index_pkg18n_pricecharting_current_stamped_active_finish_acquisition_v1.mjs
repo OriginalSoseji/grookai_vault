@@ -12,7 +12,7 @@ import {
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const SOURCE_DIR = path.join(ROOT, 'docs', 'audits', 'english_master_index_source_exhaustion_v1');
-const QUEUE_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.json');
+const QUEUE_JSON = path.join(AUDIT_DIR, 'english_master_index_stamped_special_next_action_queue_v1.json');
 const CSV_PATH = path.join(ROOT, 'tmp', 'pricecharting', 'pokemon_cards_pricecharting.csv');
 const REPORT_DIR = path.join(SOURCE_DIR, 'pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1');
 const FIXTURE_DIR = path.join(ROOT, 'docs', 'audits', 'verified_master_set_index_v1', 'source_fixtures', 'generated_pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1');

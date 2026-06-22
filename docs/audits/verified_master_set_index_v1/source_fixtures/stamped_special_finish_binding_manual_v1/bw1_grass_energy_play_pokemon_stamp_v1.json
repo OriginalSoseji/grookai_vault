@@ -1,0 +1,96 @@
+{
+  "fixture_id": "bw1_grass_energy_play_pokemon_stamp_v1",
+  "created_at": "2026-06-21",
+  "status": "manual_finish_binding_candidate_not_write_ready",
+  "scope": {
+    "language": "en",
+    "physical_only": true,
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "105",
+    "card_name": "Grass Energy",
+    "variant_key": "play_pokemon_stamp",
+    "stamp_label": "Play! Pokemon Stamp"
+  },
+  "candidate_finish_mapping": {
+    "source_finish_labels": [
+      "Crosshatch Foiling",
+      "Holofoil",
+      "Reverse Holo"
+    ],
+    "candidate_finish_key": "reverse",
+    "candidate_finish_reason": "Existing Grookai governance treats crosshatch/promo league foil labels as requiring explicit active-finish adjudication before mapping to a canonical finish key. This fixture preserves exact evidence but does not promote it."
+  },
+  "evidence_rows": [
+    {
+      "source_key": "tcgplayer_grass_energy_play_pokemon_105_114",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/145863/pokemon-league-and-championship-cards-grass-energy-105-114-play-pokemon",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "TCGplayer product lane for Grass Energy 105/114 Play! Pokemon with crosshatch foiling context",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp",
+        "crosshatch_foil_context"
+      ]
+    },
+    {
+      "source_key": "bigorbit_grass_energy_play_pokemon_reverse_holo",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.bigorbitcards.co.uk/pokemon/pokemon-promos/league-en/grass-energy-105-114-play-pokemon-promo-reverse-holo.html",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "Big Orbit product page for Grass Energy 105/114 Play! Pokemon Promo Reverse Holo",
+      "proves": [
+        "card_identity",
+        "card_number",
+        "play_pokemon_stamp",
+        "reverse_holo_finish_label"
+      ]
+    },
+    {
+      "source_key": "gamenerdz_grass_energy_play_pokemon_holofoil",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.gamenerdz.com/grass-energy-105-114-play-pokemon-105-league-championship-cards-holofoil",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "GameNerdz product lane for Grass Energy 105/114 Play! Pokemon Holofoil",
+      "proves": [
+        "card_identity",
+        "card_number",
+        "play_pokemon_stamp",
+        "holofoil_finish_label"
+      ]
+    },
+    {
+      "source_key": "pokescope_bw1_105",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokescope.app/card/bw1-105/",
+      "evidence_type": "variant_presence",
+      "evidence_label": "PokeScope exact card page lists Play! Pokemon Stamp variant for BW1 Grass Energy #105",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp"
+      ]
+    },
+    {
+      "source_key": "scrydex_bw1_105",
+      "source_kind": "collector_reference",
+      "source_url": "https://scrydex.com/pokemon/cards/black-and-white/bw1-105",
+      "evidence_type": "variant_presence",
+      "evidence_label": "Scrydex exact card page lists Play Pokemon Stamp variant for BW1 Grass Energy #105",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp"
+      ]
+    }
+  ],
+  "why_not_write_ready": [
+    "The live base parent currently has only a normal child finish.",
+    "The candidate finish is crosshatch/league foil, which needs explicit canonical finish mapping approval before insert.",
+    "This fixture should feed a dedicated guarded readiness packet, not an automatic parent/child insert."
+  ],
+  "db_writes_performed": false,
+  "migrations_created": false
+}

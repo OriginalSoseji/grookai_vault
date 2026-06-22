@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.ahiddenfortress.com/catalog/xy__black_star_promos/5581?filter%5B1855%5D=Naoki+Saito",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "ahiddenfortress_champions_festival_finalist_xy27_holo: exact Finalist Stamp active finish holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:xyp:XY27:finalist_stamp:ahiddenfortress_champions_festival_finalist_xy27_holo",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

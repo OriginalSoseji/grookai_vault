@@ -1,0 +1,42 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "second_source_needed_finish_evidence_v1",
+  "generated_at": "2026-06-22T14:59:49.534Z",
+  "generation_note": "Audit-only second-source active finish evidence for stamped/special queue rows. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-staff-city-championships-breakthrough/xy8-145-3-75/",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_parallel_city_staff_city_reverse_145: exact City Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:xy8:145:city_championships_staff_stamp:pokecardvalues_parallel_city_staff_city_reverse_145",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    },
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://collectorsedition101.com/products/3754424023",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "collectorsedition101_parallel_city_staff_city_reverse_145: exact City Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:xy8:145:city_championships_staff_stamp:collectorsedition101_parallel_city_staff_city_reverse_145",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    }
+  ]
+}

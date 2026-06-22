@@ -1,0 +1,140 @@
+{
+  "version": "english_master_index_source_delta_audit_v1",
+  "generated_at": "2026-06-22T18:01:45.681Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_key": "collexy_governed_stamp_finish",
+  "source_kind": "collector_reference",
+  "inputs": {
+    "gaps_path": "docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json",
+    "report_path": null,
+    "fixture_dir": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_collexy_governed_stamp_finish_v1",
+    "master_index_dir": "docs/audits/verified_master_set_index_v1/english_master_index_v1",
+    "current_cards_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_cards_v1.json",
+    "current_printings_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "rule": "New sources are evaluated as isolated candidate lanes against current remaining gaps before any guarded global rebuild.",
+  "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
+  "no_global_rebuild_required_for_discovery": true,
+  "summary": {
+    "current_gap_facts": 1654,
+    "candidate_records_loaded": 7,
+    "matched_gap_facts": 0,
+    "useful_candidate_matches": 0,
+    "already_in_current_index": 5,
+    "unmatched_candidate_records": 2,
+    "by_delta_status": {},
+    "by_gap_type": {},
+    "by_unmatched_reason": {
+      "already_in_current_index_master_verified": 5,
+      "not_in_remaining_gaps_or_current_index": 2
+    },
+    "top_sets": {},
+    "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+  },
+  "useful_matches": [],
+  "all_matches": [],
+  "already_in_current_index": [
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "15",
+      "card_name": "Tepig",
+      "finish_key": "reverse",
+      "candidate_source_key": "collexy_bw_holofoil_overview",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "insights.collexy.com",
+      "candidate_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "evidence_label": "Tepig has one extra variant from the Pokémon League."
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "finish_key": "reverse",
+      "candidate_source_key": "collexy_bw_holofoil_overview",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "insights.collexy.com",
+      "candidate_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "evidence_label": "Escavalier has two extra variants, i.e. (a) one extra variant with the \"National Championships\"-stamp, and (b) one extra variant with the \"National Championships\"-stamp and \"Staff\"-stamp."
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "finish_key": "reverse",
+      "candidate_source_key": "collexy_bw_holofoil_overview",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "insights.collexy.com",
+      "candidate_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "evidence_label": "Vaporeon has 4 extra variants, i.e. (a) one extra variant with the \"State Championships\"-stamp, and (b) one extra variant with the \"State Championships\"-stamp and \"Staff\"-stamp, (c) one extra variant with the \"Regional Championships\"-sta..."
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "finish_key": "reverse",
+      "candidate_source_key": "collexy_bw_holofoil_overview",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "insights.collexy.com",
+      "candidate_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "evidence_label": "Jolteon has (a) one extra variant with the \"Regional Championships\"-stamp, and (b) one extra variant with the \"Regional Championships\"-stamp and \"Staff\"-stamp."
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "finish_key": "reverse",
+      "candidate_source_key": "collexy_bw_holofoil_overview",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "insights.collexy.com",
+      "candidate_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "evidence_label": "Eevee has (a) one extra variant with the \"City Championships\"-stamp, and (b) one extra variant with the \"City Championships\"-stamp and \"Staff\"-stamp."
+    }
+  ],
+  "unmatched_candidate_sample": [
+    {
+      "source_key": "collexy_bw_holofoil_overview",
+      "source_kind": "collector_reference",
+      "source_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "105",
+      "card_name": "Grass Energy",
+      "finish_key": "reverse",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Grass Energy has one extra variant with the \"Play! Pokémon Logo\"-stamp from the Pokémon League.",
+      "raw_snapshot_ref": "docs/audits/english_master_index_source_exhaustion_v1/collexy_bw_holofoil_source_acquisition_v1/collexy_bw_holofoil_source_acquisition_v1.json"
+    },
+    {
+      "source_key": "collexy_bw_holofoil_overview",
+      "source_kind": "collector_reference",
+      "source_url": "https://insights.collexy.com/database-insight-holofoil-overview-black-white-era/",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "106",
+      "card_name": "Fire Energy",
+      "finish_key": "reverse",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Fire Energy has one extra variant with the \"Play! Pokémon Logo\"-stamp from the Pokémon League.",
+      "raw_snapshot_ref": "docs/audits/english_master_index_source_exhaustion_v1/collexy_bw_holofoil_source_acquisition_v1/collexy_bw_holofoil_source_acquisition_v1.json"
+    }
+  ]
+}

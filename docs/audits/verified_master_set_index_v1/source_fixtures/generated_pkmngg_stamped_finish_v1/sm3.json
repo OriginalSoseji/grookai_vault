@@ -1,0 +1,61 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkmngg_stamped_finish",
+  "source_kind": "collector_reference",
+  "set_key": "sm3",
+  "retrieved_at": "2026-06-22T12:56:16.898Z",
+  "raw_snapshot_ref": "generated_fixture:pkmngg_stamped_finish:sm3:2026-06-22T12:56:16.898Z",
+  "records": [
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/113",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "113",
+      "card_name": "Bodybuilding Dumbbells",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: Staff Reverse Holo Pokémon League Cup / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm3:113:league_cup_staff_stamp:183454:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    },
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/041",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: 1st Place Reverse Holo Pokémon League Challenge / Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm3:41:league_stamp:147226:reverse holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    },
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/sun-moon/burning-shadows/115",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "115",
+      "card_name": "Guzma",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: Zachary Bokhari - Ice Path FTW - 2017 World Championships Deck / Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:sm3:115:world_championships_stamp:481878:normal",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    }
+  ]
+}

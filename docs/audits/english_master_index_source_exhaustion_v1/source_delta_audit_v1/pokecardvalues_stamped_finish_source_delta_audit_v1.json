@@ -1,13 +1,13 @@
 {
   "version": "english_master_index_source_delta_audit_v1",
-  "generated_at": "2026-06-13T00:03:09.350Z",
+  "generated_at": "2026-06-22T18:58:47.010Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
   "cleanup_performed": false,
   "quarantine_performed": false,
   "source_key": "pokecardvalues_stamped_finish",
-  "source_kind": "marketplace_checklist",
+  "source_kind": "collector_reference",
   "inputs": {
     "gaps_path": "docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json",
     "report_path": null,
@@ -21,15 +21,16 @@
   "no_global_rebuild_required_for_discovery": true,
   "summary": {
     "current_gap_facts": 1654,
-    "candidate_records_loaded": 31,
+    "candidate_records_loaded": 32,
     "matched_gap_facts": 0,
     "useful_candidate_matches": 0,
     "already_in_current_index": 31,
-    "unmatched_candidate_records": 0,
+    "unmatched_candidate_records": 1,
     "by_delta_status": {},
     "by_gap_type": {},
     "by_unmatched_reason": {
-      "already_in_current_index_master_verified": 31
+      "already_in_current_index_master_verified": 31,
+      "not_in_remaining_gaps_or_current_index": 1
     },
     "top_sets": {},
     "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
@@ -472,5 +473,19 @@
       "evidence_label": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo"
     }
   ],
-  "unmatched_candidate_sample": []
+  "unmatched_candidate_sample": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "finish_key": "normal",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+      "raw_snapshot_ref": "pokecardvalues:dp6:2:staff_stamp:normal"
+    }
+  ]
 }

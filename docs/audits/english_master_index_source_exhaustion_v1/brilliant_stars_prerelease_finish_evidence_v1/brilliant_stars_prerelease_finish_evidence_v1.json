@@ -1,0 +1,305 @@
+{
+  "version": "brilliant_stars_prerelease_finish_evidence_v1",
+  "generated_at": "2026-06-22T15:15:20.091Z",
+  "audit_only": true,
+  "summary": {
+    "target_queue_rows": 4,
+    "source_ready_candidates": 4,
+    "fixture_records_written": 8,
+    "write_ready_created": 0
+  },
+  "results": [
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH185",
+      "card_name": "Moltres",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/moltres-swsh185-promo-prerelease-swshp-swsh185-holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Moltres",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Collector #:",
+              "found": true
+            },
+            {
+              "term": "SWSH185",
+              "found": true
+            },
+            {
+              "term": "Sword & Shield Promotional Cards",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/moltres-swsh185",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Moltres",
+              "found": true
+            },
+            {
+              "term": "SWSH185",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH186",
+      "card_name": "Lucario",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/lucario-swsh186-promo-prerelease-swshp-swsh186-holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Lucario",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Collector #:",
+              "found": true
+            },
+            {
+              "term": "SWSH186",
+              "found": true
+            },
+            {
+              "term": "Sword & Shield Promotional Cards",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/lucario-swsh186",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Lucario",
+              "found": true
+            },
+            {
+              "term": "SWSH186",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH187",
+      "card_name": "Liepard",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/liepard-swsh187-promo-prerelease-swshp-swsh187-holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Liepard",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Collector #:",
+              "found": true
+            },
+            {
+              "term": "SWSH187",
+              "found": true
+            },
+            {
+              "term": "Sword & Shield Promotional Cards",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/liepard-swsh187",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Liepard",
+              "found": true
+            },
+            {
+              "term": "SWSH187",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH188",
+      "card_name": "Bibarel",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "facetofacegames_prerelease_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/bibarel-swsh188-promo-prerelease-swshp-swsh188-holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Bibarel",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Collector #:",
+              "found": true
+            },
+            {
+              "term": "SWSH188",
+              "found": true
+            },
+            {
+              "term": "Sword & Shield Promotional Cards",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bibarel-swsh188",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Bibarel",
+              "found": true
+            },
+            {
+              "term": "SWSH188",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    }
+  ],
+  "fixture_output": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_brilliant_stars_prerelease_finish_evidence_v1\\swshp_brilliant_stars_prerelease_holo_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "fingerprint_sha256": "d728852a65cf58aee5039f0bf1cd4f2fa454e5cfdb6266e53c8a21f86636c76f"
+}

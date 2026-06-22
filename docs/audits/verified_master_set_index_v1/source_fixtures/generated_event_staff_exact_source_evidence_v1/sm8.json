@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.gamenerdz.com/professor-elms-lecture-188-214-regional-championships-staff-188-league-championship-cards-reverse-holofoil",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "188",
+      "card_name": "Professor Elm's Lecture",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "gamenerdz_professor_elms_lecture_regional_staff_reverse_188: exact Regional Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:sm8:188:regional_championships_staff_stamp:gamenerdz_professor_elms_lecture_regional_staff_reverse_188",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

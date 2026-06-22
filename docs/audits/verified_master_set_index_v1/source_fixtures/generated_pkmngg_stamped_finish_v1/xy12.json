@@ -1,0 +1,27 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkmngg_stamped_finish",
+  "source_kind": "collector_reference",
+  "set_key": "xy12",
+  "retrieved_at": "2026-06-22T12:56:16.898Z",
+  "raw_snapshot_ref": "generated_fixture:pkmngg_stamped_finish:xy12:2026-06-22T12:56:16.898Z",
+  "records": [
+    {
+      "source_key": "pkmngg_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pkmn.gg/series/xy/evolutions/053",
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "53",
+      "card_name": "Mew",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pkmn.gg exact variant subtype: 1st Place Crosshatch Holo Pokémon League / Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-22T12:56:16.898Z",
+      "raw_snapshot_ref": "pkmngg:xy12:53:league_stamp:162829:holofoil",
+      "notes": "Accepted only when pkmn.gg URL was deterministic for exact set/card number and embedded one matching stamped/variant label with one active TCGplayer subtype."
+    }
+  ]
+}

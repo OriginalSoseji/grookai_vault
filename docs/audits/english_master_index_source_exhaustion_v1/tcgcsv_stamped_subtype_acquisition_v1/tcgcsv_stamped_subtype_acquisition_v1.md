@@ -12,16 +12,16 @@ Audit-only source acquisition lane using TCGCSV/TCGplayer products plus price `s
 
 ## Summary
 
-- target_rows: 298
-- sets_attempted: 74
+- target_rows: 167
+- sets_attempted: 69
 - records_generated: 0
 - fixture_files_written: 0
 - fingerprint_sha256: `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`
 
 | status | rows |
 | --- | --- |
-| blocked_no_exact_tcgcsv_product_match | 246 |
-| blocked_tcgcsv_group_not_mapped | 34 |
+| blocked_no_exact_tcgcsv_product_match | 132 |
+| blocked_tcgcsv_group_not_mapped | 17 |
 | blocked_tcgcsv_group_ambiguous | 15 |
 | blocked_no_active_tcgcsv_subtype_match | 3 |
 

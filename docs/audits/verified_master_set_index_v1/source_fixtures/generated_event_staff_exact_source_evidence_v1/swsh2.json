@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/boss%27s-orders-regional-championships-154",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "154",
+      "card_name": "Boss's Orders",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pricecharting_bosss_orders_regional_championships_reverse_154: exact Regional Championships Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:swsh2:154:regional_championships_stamp:pricecharting_bosss_orders_regional_championships_reverse_154",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

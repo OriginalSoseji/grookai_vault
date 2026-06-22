@@ -1,0 +1,108 @@
+{
+  "fixture_id": "bw1_fire_energy_play_pokemon_stamp_v1",
+  "created_at": "2026-06-21",
+  "status": "manual_finish_binding_candidate_not_write_ready",
+  "scope": {
+    "language": "en",
+    "physical_only": true,
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "106",
+    "card_name": "Fire Energy",
+    "variant_key": "play_pokemon_stamp",
+    "stamp_label": "Play! Pokemon Stamp"
+  },
+  "candidate_finish_mapping": {
+    "source_finish_labels": [
+      "Crosshatch Holo",
+      "Holofoil",
+      "Reverse Holo"
+    ],
+    "candidate_finish_key": "reverse",
+    "candidate_finish_reason": "Exact sources agree on the Play! Pokemon stamped Fire Energy #106 identity and provide crosshatch/holo/reverse finish context. Existing governance treats league crosshatch labels as requiring explicit canonical finish adjudication before mapping to a card_printings.finish_key."
+  },
+  "evidence_rows": [
+    {
+      "source_key": "magicmadhouse_bw1_fire_energy_play_pokemon",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-black-white-106-114-fire-energy-play-pokemon-league-promo",
+      "evidence_type": "variant_presence",
+      "evidence_label": "Magic Madhouse product title identifies Black & White 106/114 Fire Energy as Play! Pokemon League Promo",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp"
+      ]
+    },
+    {
+      "source_key": "dragon_egg_fire_energy_play_pokemon_holofoil",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.dragon-egg-games.com/products/fire-energy-106-114-play-pokemon-promo-black-white-base-set",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "Dragon Egg Games product page for Fire Energy 106/114 Play Pokemon Promo with Holofoil condition variants",
+      "proves": [
+        "card_identity",
+        "card_number",
+        "play_pokemon_stamp",
+        "holofoil_finish_label"
+      ]
+    },
+    {
+      "source_key": "side_deck_fire_energy_crosshatch_holo",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.thesidedeck.com/catalog/pokmon-pokemon_singles-promos-pokemon_promos/fire_energy__106114__crosshatch_holo_play_pokemon_promo/1733718",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "The Side Deck product page identifies Fire Energy 106/114 as Crosshatch Holo Play! Pokemon Promo",
+      "proves": [
+        "card_identity",
+        "card_number",
+        "play_pokemon_stamp",
+        "crosshatch_holo_finish_label"
+      ]
+    },
+    {
+      "source_key": "bigorbit_fire_energy_play_pokemon_reverse_holo",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.bigorbitcards.co.uk/sell-or-trade-your-cards/pokemon/pokemon-promos/league-en/fire-energy-106-114-play-pokemon-promo-reverse-holo.html",
+      "evidence_type": "variant_finish_context",
+      "evidence_label": "Big Orbit product page for Fire Energy 106/114 Play! Pokemon Promo Reverse Holo",
+      "proves": [
+        "card_identity",
+        "card_number",
+        "play_pokemon_stamp",
+        "reverse_holo_finish_label"
+      ]
+    },
+    {
+      "source_key": "pokescope_bw1_106",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokescope.app/card/bw1-106/",
+      "evidence_type": "variant_presence",
+      "evidence_label": "PokeScope exact card page lists Play! Pokemon Stamp variant for BW1 Fire Energy #106",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp"
+      ]
+    },
+    {
+      "source_key": "scrydex_bw1_106",
+      "source_kind": "collector_reference",
+      "source_url": "https://scrydex.com/pokemon/cards/black-and-white/bw1-106",
+      "evidence_type": "variant_presence",
+      "evidence_label": "Scrydex exact card page lists Play Pokemon Stamp variant for BW1 Fire Energy #106",
+      "proves": [
+        "card_identity",
+        "set_number",
+        "play_pokemon_stamp"
+      ]
+    }
+  ],
+  "why_not_write_ready": [
+    "The live base parent currently has only a normal child finish.",
+    "The candidate finish is crosshatch/league foil, which needs explicit canonical finish mapping approval before insert.",
+    "This fixture should feed a dedicated guarded readiness packet, not an automatic parent/child insert."
+  ],
+  "db_writes_performed": false,
+  "migrations_created": false
+}

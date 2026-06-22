@@ -15,18 +15,18 @@ Audit-only current-queue PriceCharting CSV acquisition for stamped active child 
 
 | metric | value |
 | --- | --- |
-| target_rows | 289 |
+| target_rows | 225 |
 | csv_rows_reviewed | 75855 |
 | candidate_rows | 0 |
-| blocked_rows | 289 |
+| blocked_rows | 225 |
 | fixture_records_written | 0 |
-| fingerprint_sha256 | `18cfb386fea960ba17932fdc5b66746c24886d4aae9bc1db44dd0896b722a845` |
+| fingerprint_sha256 | `87ab736c8ff08b16879ab248f931cc1d062f3ee72f6dc5119463ccd22c56820c` |
 
 ## Status
 
 | status | rows |
 | --- | --- |
-| blocked_no_pricecharting_exact_stamped_active_finish | 289 |
+| blocked_no_pricecharting_exact_stamped_active_finish | 225 |
 
 ## Candidate Rows
 

@@ -12,7 +12,7 @@ import {
 
 const execFileAsync = promisify(execFile);
 
-const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json';
+const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json';
 const SETS_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json';
 const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1';
 const CACHE_DIR = path.join(REPORT_DIR, 'cache');
@@ -195,7 +195,7 @@ function productCardNameMatches(row, product) {
 
 function variantMatches(row, product) {
   const text = comparable(productText(product));
-  const variantKey = normalizeText(row.proposed_variant_key);
+  const variantKey = normalizeText(row.proposed_variant_key ?? row.variant_key);
   const stampLabel = comparable(row.stamp_label);
   if (variantKey === 'battle_academy_deck_mark') return /\bbattle\s+academy\b/.test(text);
   if (variantKey === 'prize_pack_stamp') return /\bprize\s+pack\b/.test(text);
@@ -240,8 +240,17 @@ function chooseGroups(set, groups) {
 
 function targetRows(report, options) {
   return (report.rows ?? [])
-    .filter((row) => row.routing_status === 'blocked_missing_exact_finish_phrase')
+    .map((row) => ({
+      ...row,
+      proposed_variant_key: row.proposed_variant_key ?? row.variant_key,
+    }))
+    .filter((row) => (
+      row.routing_status === 'blocked_missing_exact_finish_phrase'
+      || row.queue_status === 'active_finish_required'
+    ))
     .filter((row) => row.proposed_variant_key && row.proposed_variant_key !== 'stamped')
+    .filter((row) => row.action_bucket !== 'display_metadata_no_write')
+    .filter((row) => !row.live_satisfied)
     .filter((row) => !options.sets || options.sets.has(normalizeText(row.set_key)));
 }
 

@@ -12,7 +12,7 @@ const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_stamped_special_ove
 
 const ARTIFACTS = {
   checkpoint: path.join(ROOT, 'docs', 'checkpoints', 'master_index', 'STAMPED_SPECIAL_OVERNIGHT_SOURCE_ACQUISITION_CHECKPOINT_20260619.md'),
-  current_queue: path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.json'),
+  current_queue: path.join(AUDIT_DIR, 'english_master_index_stamped_special_next_action_queue_v1.json'),
   execution_queue: path.join(AUDIT_DIR, 'english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json'),
   completion_rollup: path.join(AUDIT_DIR, 'english_master_index_pkg18z_stamped_completion_rollup_v1.json'),
   active_finish_acquisition: path.join(AUDIT_DIR, 'english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1.json'),
@@ -190,7 +190,6 @@ async function main() {
     jsonArtifacts.map(async ([key, filePath]) => [key, await readJsonIfExists(filePath)]),
   ));
   const checkpointExists = await fileExists(ARTIFACTS.checkpoint);
-  const executionSummary = summaryOf(loaded.execution_queue) ?? {};
   const queueSummary = summaryOf(loaded.current_queue) ?? {};
   const rollupSummary = summaryOf(loaded.completion_rollup) ?? {};
 
@@ -283,10 +282,10 @@ async function main() {
       starting_manual_conflict_rows: 3,
     },
     current: {
-      current_remaining_rows: metric(executionSummary, 'remaining_rows', metric(queueSummary, 'queue_rows')),
-      current_no_write_or_governance_rows: metric(executionSummary, 'no_db_write_expected_rows'),
-      current_source_required_rows: metric(executionSummary, 'future_guarded_write_possible_rows'),
-      current_manual_conflict_rows: metric(executionSummary, 'blocked_no_write_rows'),
+      current_remaining_rows: metric(queueSummary, 'total_rows', metric(queueSummary, 'queue_rows')),
+      current_no_write_or_governance_rows: metric(queueSummary, 'no_write_or_governance_rows'),
+      current_source_required_rows: metric(queueSummary, 'source_needed_rows'),
+      current_manual_conflict_rows: metric(queueSummary, 'manual_conflict_rows'),
       rollup_closed_or_classified_rows: metric(rollupSummary, 'closed_or_classified_rows'),
       rollup_source_acquisition_rows_blocked: metric(rollupSummary, 'source_acquisition_rows_blocked'),
     },

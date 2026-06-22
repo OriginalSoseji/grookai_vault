@@ -1,0 +1,1205 @@
+{
+  "version": "supergames_league_title_review_v1",
+  "generated_at": "2026-06-22T13:09:38.142Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_key": "supergames_league_championship_titles",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846",
+  "rule": "Super Games product titles may be used as review evidence only unless the title/page proves exact set + card number + card name + stamp/variant + active finish.",
+  "target_rows": 56,
+  "pages": [
+    {
+      "page": 1,
+      "url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846",
+      "status": "fetched",
+      "product_count": 47
+    },
+    {
+      "page": 2,
+      "url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846?page=2&sort_by_price=0",
+      "status": "fetched",
+      "product_count": 41
+    },
+    {
+      "page": 3,
+      "url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846?page=3&sort_by_price=0",
+      "status": "fetched",
+      "product_count": 44
+    },
+    {
+      "page": 4,
+      "url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846?page=4&sort_by_price=0",
+      "status": "fetched",
+      "product_count": 44
+    },
+    {
+      "page": 5,
+      "url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/5846?page=5&sort_by_price=0",
+      "status": "fetched",
+      "product_count": 44
+    }
+  ],
+  "products_loaded": 220,
+  "parsed_products": 95,
+  "review_rows": 0,
+  "summary": {
+    "by_status": {
+      "blocked_unparseable_product_title": 125,
+      "blocked_no_current_queue_match": 86,
+      "blocked_title_finish_not_active_finish_proof": 9
+    },
+    "review_by_set": {},
+    "review_by_finish": {}
+  },
+  "review_rows_detail": [],
+  "blocked_title_finish_not_active_finish_proof": [
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "79",
+      "card_name": "Darkness Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/darkness_energy__7990__promotional__crosshatch_holo_pokemon_league_disc_catch_season_2011/284843",
+      "source_title": "Darkness Energy - 79/90 - Promotional - Crosshatch Holo Pokemon League Disc Catch Season 2011",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Darkness Energy - 79/90 - Promotional - Crosshatch Holo Pokemon League Disc Catch Season 2011",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 4
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/deino__97113__1st_place_crosshatch_holo_pokemon_league_yveltalchesnaught_season_league_challenge_promo/285233",
+      "source_title": "Deino - 97/113 - 1st Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Deino - 97/113 - 1st Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 4
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/deino__97113__2nd_place_crosshatch_holo_pokemon_league_yveltalchesnaught_season_league_challenge_promo/285243",
+      "source_title": "Deino - 97/113 - 2nd Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Deino - 97/113 - 2nd Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 4
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/deino__97113__3rd_place_crosshatch_holo_pokemon_league_yveltalchesnaught_season_league_challenge_promo/285253",
+      "source_title": "Deino - 97/113 - 3rd Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Deino - 97/113 - 3rd Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/deino__97113__4th_place_crosshatch_holo_pokemon_league_yveltalchesnaught_season_league_challenge_promo/285263",
+      "source_title": "Deino - 97/113 - 4th Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Deino - 97/113 - 4th Place Crosshatch Holo Pokemon League Yveltal/Chesnaught Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/delibird__38149__1st_place_crosshatch_holo_pokemon_league_froakie__xerneas_season_league_challenge_promo/285133",
+      "source_title": "Delibird - 38/149 - 1st Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Delibird - 38/149 - 1st Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/delibird__38149__2nd_place_crosshatch_holo_pokemon_league_froakie__xerneas_season_league_challenge_promo/285143",
+      "source_title": "Delibird - 38/149 - 2nd Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Delibird - 38/149 - 2nd Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/delibird__38149__3rd_place_crosshatch_holo_pokemon_league_froakie__xerneas_season_league_challenge_promo/285153",
+      "source_title": "Delibird - 38/149 - 3rd Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Delibird - 38/149 - 3rd Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    },
+    {
+      "status": "blocked_title_finish_not_active_finish_proof",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/delibird__38149__4th_place_crosshatch_holo_pokemon_league_froakie__xerneas_season_league_challenge_promo/285163",
+      "source_title": "Delibird - 38/149 - 4th Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "evidence_label": "Super Games product title: Delibird - 38/149 - 4th Place Crosshatch Holo Pokemon League Froakie / Xerneas Season League Challenge Promo",
+      "notes": "Product title does not prove active finish safely enough for Master Index promotion.",
+      "page": 5
+    }
+  ],
+  "blocked_no_current_queue_match_with_explicit_finish": [
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_promo/789594",
+      "source_title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Promo",
+      "parsed": {
+        "title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Promo",
+        "card_name": "Ace Trainer",
+        "card_number": "69",
+        "set_total": "98",
+        "title_tail": "Reverse Holo - Pokemon Regional Championships Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_staff_promo/521233",
+      "source_title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Staff Promo",
+      "parsed": {
+        "title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Staff Promo",
+        "card_name": "Ace Trainer",
+        "card_number": "69",
+        "set_total": "98",
+        "title_tail": "Reverse Holo - Pokemon Regional Championships Staff Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acro_bike__123a168__reverse_holo__pokemon_league_promo/789577",
+      "source_title": "Acro Bike - 123a/168 - Reverse Holo - Pokemon League Promo",
+      "parsed": {
+        "title": "Acro Bike - 123a/168 - Reverse Holo - Pokemon League Promo",
+        "card_name": "Acro Bike",
+        "card_number": "123a",
+        "set_total": "168",
+        "title_tail": "Reverse Holo - Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__2017_pokemon_league_stamped_promo/744498",
+      "source_title": "Aqua Patch - 119/145 - Reverse Holo - 2017 Pokemon League Stamped Promo",
+      "parsed": {
+        "title": "Aqua Patch - 119/145 - Reverse Holo - 2017 Pokemon League Stamped Promo",
+        "card_name": "Aqua Patch",
+        "card_number": "119",
+        "set_total": "145",
+        "title_tail": "Reverse Holo - 2017 Pokemon League Stamped Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__staff_2017_pokemon_league_stamped_promo/789729",
+      "source_title": "Aqua Patch - 119/145 - Reverse Holo - Staff 2017 Pokemon League Stamped Promo",
+      "parsed": {
+        "title": "Aqua Patch - 119/145 - Reverse Holo - Staff 2017 Pokemon League Stamped Promo",
+        "card_name": "Aqua Patch",
+        "card_number": "119",
+        "set_total": "145",
+        "title_tail": "Reverse Holo - Staff 2017 Pokemon League Stamped Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102131__league_promo__reverse_holo/742782",
+      "source_title": "Beast Ring - 102/131 - League Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102/131 - League Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102",
+        "set_total": "131",
+        "title_tail": "League Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__league_cup_promo__reverse_holo/789779",
+      "source_title": "Beast Ring - 102a/131 - League Cup Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102a/131 - League Cup Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102a",
+        "set_total": "131",
+        "title_tail": "League Cup Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__staff_league_cup_promo__reverse_holo/789732",
+      "source_title": "Beast Ring - 102a/131 - Staff League Cup Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102a/131 - Staff League Cup Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102a",
+        "set_total": "131",
+        "title_tail": "Staff League Cup Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bodybuilding_dumbbells__113147__reverse_holo_pokemon_league_promo/742781",
+      "source_title": "Bodybuilding Dumbbells - 113/147 - Reverse Holo Pokemon League Promo",
+      "parsed": {
+        "title": "Bodybuilding Dumbbells - 113/147 - Reverse Holo Pokemon League Promo",
+        "card_name": "Bodybuilding Dumbbells",
+        "card_number": "113",
+        "set_total": "147",
+        "title_tail": "Reverse Holo Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/celesteela__100168__reverse_holo_rare__league_promo/748147",
+      "source_title": "Celesteela - 100/168 - Reverse Holo Rare - League Promo",
+      "parsed": {
+        "title": "Celesteela - 100/168 - Reverse Holo Rare - League Promo",
+        "card_name": "Celesteela",
+        "card_number": "100",
+        "set_total": "168",
+        "title_tail": "Reverse Holo Rare - League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 3
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/cinderace__034202__reverse_holo__pokemon_league_promo/805021",
+      "source_title": "Cinderace - 034/202 - Reverse Holo - Pokemon League Promo",
+      "parsed": {
+        "title": "Cinderace - 034/202 - Reverse Holo - Pokemon League Promo",
+        "card_name": "Cinderace",
+        "card_number": "034",
+        "set_total": "202",
+        "title_tail": "Reverse Holo - Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 3
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/claydol__15106__holo_rare__reverse_holo__pokemon_league_cynthia_season_crosshatch_promo/521243",
+      "source_title": "Claydol - 15/106 - Holo Rare - Reverse Holo - Pokemon League Cynthia Season Crosshatch Promo",
+      "parsed": {
+        "title": "Claydol - 15/106 - Holo Rare - Reverse Holo - Pokemon League Cynthia Season Crosshatch Promo",
+        "card_name": "Claydol",
+        "card_number": "15",
+        "set_total": "106",
+        "title_tail": "Holo Rare - Reverse Holo - Pokemon League Cynthia Season Crosshatch Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 3
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/darkrai__87147__reverse_holo_pokemon_league_promo/742784",
+      "source_title": "Darkrai - 87/147 - Reverse Holo Pokemon League Promo",
+      "parsed": {
+        "title": "Darkrai - 87/147 - Reverse Holo Pokemon League Promo",
+        "card_name": "Darkrai",
+        "card_number": "87",
+        "set_total": "147",
+        "title_tail": "Reverse Holo Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 4
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/decidueye__11149__reverse_holo__league_stamp_promo__2017_pokemon_league_exclusive/742783",
+      "source_title": "Decidueye - 11/149 - Reverse Holo - League Stamp Promo - 2017 Pokemon League Exclusive",
+      "parsed": {
+        "title": "Decidueye - 11/149 - Reverse Holo - League Stamp Promo - 2017 Pokemon League Exclusive",
+        "card_name": "Decidueye",
+        "card_number": "11",
+        "set_total": "149",
+        "title_tail": "Reverse Holo - League Stamp Promo - 2017 Pokemon League Exclusive"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 4
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/delphox__13124__reverse_holo__pokemon_league_promo/789583",
+      "source_title": "Delphox - 13/124 - Reverse Holo - Pokemon League Promo",
+      "parsed": {
+        "title": "Delphox - 13/124 - Reverse Holo - Pokemon League Promo",
+        "card_name": "Delphox",
+        "card_number": "13",
+        "set_total": "124",
+        "title_tail": "Reverse Holo - Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 5
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/diancie__94147__reverse_holo_pokemon_league_promo/744500",
+      "source_title": "Diancie - 94/147 - Reverse Holo Pokemon League Promo",
+      "parsed": {
+        "title": "Diancie - 94/147 - Reverse Holo Pokemon League Promo",
+        "card_name": "Diancie",
+        "card_number": "94",
+        "set_total": "147",
+        "title_tail": "Reverse Holo Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 5
+    }
+  ],
+  "blocked_sample": [
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/accelgor__12101__championships_2011_promo/284963",
+      "source_title": "Accelgor - 12/101 - Championships 2011 Promo",
+      "parsed": {
+        "title": "Accelgor - 12/101 - Championships 2011 Promo",
+        "card_name": "Accelgor",
+        "card_number": "12",
+        "set_total": "101",
+        "title_tail": "Championships 2011 Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/accelgor__12101__championships_staff_2011_promo/284973",
+      "source_title": "Accelgor - 12/101 - Championships Staff 2011 Promo",
+      "parsed": {
+        "title": "Accelgor - 12/101 - Championships Staff 2011 Promo",
+        "card_name": "Accelgor",
+        "card_number": "12",
+        "set_total": "101",
+        "title_tail": "Championships Staff 2011 Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/accelgor__12101__championships_staff_2011_promo/284973",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_promo/789594",
+      "source_title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Promo",
+      "parsed": {
+        "title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Promo",
+        "card_name": "Ace Trainer",
+        "card_number": "69",
+        "set_total": "98",
+        "title_tail": "Reverse Holo - Pokemon Regional Championships Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_promo/789594",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_staff_promo/521233",
+      "source_title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Staff Promo",
+      "parsed": {
+        "title": "Ace Trainer - 69/98 - Reverse Holo - Pokemon Regional Championships Staff Promo",
+        "card_name": "Ace Trainer",
+        "card_number": "69",
+        "set_total": "98",
+        "title_tail": "Reverse Holo - Pokemon Regional Championships Staff Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/ace_trainer__6998__reverse_holo__pokemon_regional_championships_staff_promo/521233",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__1st_place_league_promo/752697",
+      "source_title": "Acerola - 112a/147 - 1st Place League Promo",
+      "parsed": {
+        "title": "Acerola - 112a/147 - 1st Place League Promo",
+        "card_name": "Acerola",
+        "card_number": "112a",
+        "set_total": "147",
+        "title_tail": "1st Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__1st_place_league_promo/752697",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__2nd_place_league_promo/752698",
+      "source_title": "Acerola - 112a/147 - 2nd Place League Promo",
+      "parsed": {
+        "title": "Acerola - 112a/147 - 2nd Place League Promo",
+        "card_name": "Acerola",
+        "card_number": "112a",
+        "set_total": "147",
+        "title_tail": "2nd Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__2nd_place_league_promo/752698",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__3rd_place_league_promo/752699",
+      "source_title": "Acerola - 112a/147 - 3rd Place League Promo",
+      "parsed": {
+        "title": "Acerola - 112a/147 - 3rd Place League Promo",
+        "card_name": "Acerola",
+        "card_number": "112a",
+        "set_total": "147",
+        "title_tail": "3rd Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__3rd_place_league_promo/752699",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__4th_place_league_promo/752700",
+      "source_title": "Acerola - 112a/147 - 4th Place League Promo",
+      "parsed": {
+        "title": "Acerola - 112a/147 - 4th Place League Promo",
+        "card_name": "Acerola",
+        "card_number": "112a",
+        "set_total": "147",
+        "title_tail": "4th Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acerola__112a147__4th_place_league_promo/752700",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acro_bike__123a168__reverse_holo__pokemon_league_promo/789577",
+      "source_title": "Acro Bike - 123a/168 - Reverse Holo - Pokemon League Promo",
+      "parsed": {
+        "title": "Acro Bike - 123a/168 - Reverse Holo - Pokemon League Promo",
+        "card_name": "Acro Bike",
+        "card_number": "123a",
+        "set_total": "168",
+        "title_tail": "Reverse Holo - Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/acro_bike__123a168__reverse_holo__pokemon_league_promo/789577",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aegislash__85146__regional_stamped_promo/521313",
+      "source_title": "Aegislash - 85/146 - Regional Stamped Promo",
+      "parsed": {
+        "title": "Aegislash - 85/146 - Regional Stamped Promo",
+        "card_name": "Aegislash",
+        "card_number": "85",
+        "set_total": "146",
+        "title_tail": "Regional Stamped Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aegislash__85146__regional_stamped_promo/521313",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__2017_pokemon_league_stamped_promo/744498",
+      "source_title": "Aqua Patch - 119/145 - Reverse Holo - 2017 Pokemon League Stamped Promo",
+      "parsed": {
+        "title": "Aqua Patch - 119/145 - Reverse Holo - 2017 Pokemon League Stamped Promo",
+        "card_name": "Aqua Patch",
+        "card_number": "119",
+        "set_total": "145",
+        "title_tail": "Reverse Holo - 2017 Pokemon League Stamped Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__2017_pokemon_league_stamped_promo/744498",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__staff_2017_pokemon_league_stamped_promo/789729",
+      "source_title": "Aqua Patch - 119/145 - Reverse Holo - Staff 2017 Pokemon League Stamped Promo",
+      "parsed": {
+        "title": "Aqua Patch - 119/145 - Reverse Holo - Staff 2017 Pokemon League Stamped Promo",
+        "card_name": "Aqua Patch",
+        "card_number": "119",
+        "set_total": "145",
+        "title_tail": "Reverse Holo - Staff 2017 Pokemon League Stamped Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/aqua_patch__119145__reverse_holo__staff_2017_pokemon_league_stamped_promo/789729",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/arcanine__6__pokemon_league_march_2000/742830",
+      "source_title": "Arcanine - 6 - Pokemon League (March 2000)",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/arcanine__6__pokemon_league_march_2000/742830",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/arcanine_g__15147__crosshatch_holo_pokemon_league_cyrus_season_2009_promo/284663",
+      "source_title": "Arcanine [G] - 15/147 - Crosshatch Holo Pokemon League Cyrus Season 2009 Promo",
+      "parsed": {
+        "title": "Arcanine [G] - 15/147 - Crosshatch Holo Pokemon League Cyrus Season 2009 Promo",
+        "card_name": "Arcanine [G]",
+        "card_number": "15",
+        "set_total": "147",
+        "title_tail": "Crosshatch Holo Pokemon League Cyrus Season 2009 Promo"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/arcanine_g__15147__crosshatch_holo_pokemon_league_cyrus_season_2009_promo/284663",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/articuno__48__pokemon_league_july_2002/742836",
+      "source_title": "Articuno - 48 - Pokemon League (July 2002)",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/articuno__48__pokemon_league_july_2002/742836",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__1st_place_league_promo/789774",
+      "source_title": "Avalugg - 31/106 - 1st Place League Promo",
+      "parsed": {
+        "title": "Avalugg - 31/106 - 1st Place League Promo",
+        "card_name": "Avalugg",
+        "card_number": "31",
+        "set_total": "106",
+        "title_tail": "1st Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__1st_place_league_promo/789774",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__2nd_place_league_promo/789773",
+      "source_title": "Avalugg - 31/106 - 2nd Place League Promo",
+      "parsed": {
+        "title": "Avalugg - 31/106 - 2nd Place League Promo",
+        "card_name": "Avalugg",
+        "card_number": "31",
+        "set_total": "106",
+        "title_tail": "2nd Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__2nd_place_league_promo/789773",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__3rd_place_league_promo/789772",
+      "source_title": "Avalugg - 31/106 - 3rd Place League Promo",
+      "parsed": {
+        "title": "Avalugg - 31/106 - 3rd Place League Promo",
+        "card_name": "Avalugg",
+        "card_number": "31",
+        "set_total": "106",
+        "title_tail": "3rd Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__3rd_place_league_promo/789772",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__4th_place_league_promo/789730",
+      "source_title": "Avalugg - 31/106 - 4th Place League Promo",
+      "parsed": {
+        "title": "Avalugg - 31/106 - 4th Place League Promo",
+        "card_name": "Avalugg",
+        "card_number": "31",
+        "set_total": "106",
+        "title_tail": "4th Place League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/avalugg__31106__4th_place_league_promo/789730",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/azelf__19146__crosshatch_holo_pokemon_league_promo/402343",
+      "source_title": "Azelf - 19/146 - Crosshatch Holo Pokemon League Promo",
+      "parsed": {
+        "title": "Azelf - 19/146 - Crosshatch Holo Pokemon League Promo",
+        "card_name": "Azelf",
+        "card_number": "19",
+        "set_total": "146",
+        "title_tail": "Crosshatch Holo Pokemon League Promo"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/azelf__19146__crosshatch_holo_pokemon_league_promo/402343",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bagon__620__crosshatch_holo_regional_championship_promo/521193",
+      "source_title": "Bagon - 6/20 - Crosshatch Holo Regional Championship Promo",
+      "parsed": {
+        "title": "Bagon - 6/20 - Crosshatch Holo Regional Championship Promo",
+        "card_name": "Bagon",
+        "card_number": "6",
+        "set_total": "20",
+        "title_tail": "Crosshatch Holo Regional Championship Promo"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bagon__620__crosshatch_holo_regional_championship_promo/521193",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/battle_reporter__88111__pokemon_league_promo/521143",
+      "source_title": "Battle Reporter - 88/111 - Pokemon League Promo",
+      "parsed": {
+        "title": "Battle Reporter - 88/111 - Pokemon League Promo",
+        "card_name": "Battle Reporter",
+        "card_number": "88",
+        "set_total": "111",
+        "title_tail": "Pokemon League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/battle_reporter__88111__pokemon_league_promo/521143",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bayleef__2122__xy_breakpoint__pokemon_league_promo/521393",
+      "source_title": "Bayleef - 2/122 - XY Breakpoint - Pokemon League Promo",
+      "parsed": {
+        "title": "Bayleef - 2/122 - XY Breakpoint - Pokemon League Promo",
+        "card_name": "Bayleef",
+        "card_number": "2",
+        "set_total": "122",
+        "title_tail": "XY Breakpoint - Pokemon League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bayleef__2122__xy_breakpoint__pokemon_league_promo/521393",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102131__league_promo__reverse_holo/742782",
+      "source_title": "Beast Ring - 102/131 - League Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102/131 - League Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102",
+        "set_total": "131",
+        "title_tail": "League Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 1
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102131__league_promo__reverse_holo/742782",
+      "source_title": "Wishlist",
+      "page": 1
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__league_cup_promo__reverse_holo/789779",
+      "source_title": "Beast Ring - 102a/131 - League Cup Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102a/131 - League Cup Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102a",
+        "set_total": "131",
+        "title_tail": "League Cup Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__league_cup_promo__reverse_holo/789779",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__staff_league_cup_promo__reverse_holo/789732",
+      "source_title": "Beast Ring - 102a/131 - Staff League Cup Promo - Reverse Holo",
+      "parsed": {
+        "title": "Beast Ring - 102a/131 - Staff League Cup Promo - Reverse Holo",
+        "card_name": "Beast Ring",
+        "card_number": "102a",
+        "set_total": "131",
+        "title_tail": "Staff League Cup Promo - Reverse Holo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beast_ring__102a131__staff_league_cup_promo__reverse_holo/789732",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bebes_search__89111__crosshatch_holo_pokemon_league_dahlia_season_2010/284643",
+      "source_title": "Bebe's Search - 89/111 - Crosshatch Holo Pokemon League Dahlia Season 2010",
+      "parsed": {
+        "title": "Bebe's Search - 89/111 - Crosshatch Holo Pokemon League Dahlia Season 2010",
+        "card_name": "Bebe's Search",
+        "card_number": "89",
+        "set_total": "111",
+        "title_tail": "Crosshatch Holo Pokemon League Dahlia Season 2010"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bebes_search__89111__crosshatch_holo_pokemon_league_dahlia_season_2010/284643",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beldum__22__league_winner_june_2004/401623",
+      "source_title": "Beldum - 22 - League Winner (June 2004)",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beldum__22__league_winner_june_2004/401623",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beldum__22__eleague/872850",
+      "source_title": "Beldum - 22 - e-League",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/beldum__22__eleague/872850",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bianca__109113__promotional__mirror_holo_pokemon_league_froakie_season_2014/285273",
+      "source_title": "Bianca - 109/113 - Promotional - Mirror Holo Pokemon league Froakie Season 2014",
+      "parsed": {
+        "title": "Bianca - 109/113 - Promotional - Mirror Holo Pokemon league Froakie Season 2014",
+        "card_name": "Bianca",
+        "card_number": "109",
+        "set_total": "113",
+        "title_tail": "Promotional - Mirror Holo Pokemon league Froakie Season 2014"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bibarel__121172__holo_rare/874102",
+      "source_title": "Bibarel - 121/172 - Holo Rare",
+      "parsed": {
+        "title": "Bibarel - 121/172 - Holo Rare",
+        "card_name": "Bibarel",
+        "card_number": "121",
+        "set_total": "172",
+        "title_tail": "Holo Rare"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/black_belt__85102__promotional__crosshatch_holo_2011_player_rewards/284883",
+      "source_title": "Black Belt - 85/102 - Promotional - Crosshatch Holo 2011 Player Rewards",
+      "parsed": {
+        "title": "Black Belt - 85/102 - Promotional - Crosshatch Holo 2011 Player Rewards",
+        "card_name": "Black Belt",
+        "card_number": "85",
+        "set_total": "102",
+        "title_tail": "Promotional - Crosshatch Holo 2011 Player Rewards"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/black_belt__85102__promotional__crosshatch_holo_2011_player_rewards/284883",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blaziken__14111__national_championship_series_promo/521493",
+      "source_title": "Blaziken - 14/111 - National Championship Series Promo",
+      "parsed": {
+        "title": "Blaziken - 14/111 - National Championship Series Promo",
+        "card_name": "Blaziken",
+        "card_number": "14",
+        "set_total": "111",
+        "title_tail": "National Championship Series Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blaziken__14111__national_championship_series_promo/521493",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blaziken__14111__national_championship_series_promo_staff/521483",
+      "source_title": "Blaziken - 14/111 - National Championship Series Promo (Staff)",
+      "parsed": {
+        "title": "Blaziken - 14/111 - National Championship Series Promo (Staff)",
+        "card_name": "Blaziken",
+        "card_number": "14",
+        "set_total": "111",
+        "title_tail": "National Championship Series Promo (Staff)"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blaziken__14111__national_championship_series_promo_staff/521483",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blend_energy_grpd__117124__crosshatch_holo_2012_player_rewards/285103",
+      "source_title": "Blend Energy GRPD - 117/124 - Crosshatch Holo 2012 Player Rewards",
+      "parsed": {
+        "title": "Blend Energy GRPD - 117/124 - Crosshatch Holo 2012 Player Rewards",
+        "card_name": "Blend Energy GRPD",
+        "card_number": "117",
+        "set_total": "124",
+        "title_tail": "Crosshatch Holo 2012 Player Rewards"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/blend_energy_wlfm__118124__crosshatch_holo_2012_player_rewards/285113",
+      "source_title": "Blend Energy WLFM - 118/124 - Crosshatch Holo 2012 Player Rewards",
+      "parsed": {
+        "title": "Blend Energy WLFM - 118/124 - Crosshatch Holo 2012 Player Rewards",
+        "card_name": "Blend Energy WLFM",
+        "card_number": "118",
+        "set_total": "124",
+        "title_tail": "Crosshatch Holo 2012 Player Rewards"
+      },
+      "source_finish_key": "holo",
+      "source_finish_confidence": "holo_pattern_needs_adjudication",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bodybuilding_dumbbells__113147__reverse_holo_pokemon_league_promo/742781",
+      "source_title": "Bodybuilding Dumbbells - 113/147 - Reverse Holo Pokemon League Promo",
+      "parsed": {
+        "title": "Bodybuilding Dumbbells - 113/147 - Reverse Holo Pokemon League Promo",
+        "card_name": "Bodybuilding Dumbbells",
+        "card_number": "113",
+        "set_total": "147",
+        "title_tail": "Reverse Holo Pokemon League Promo"
+      },
+      "source_finish_key": "reverse",
+      "source_finish_confidence": "explicit_active_finish",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bodybuilding_dumbbells__113147__reverse_holo_pokemon_league_promo/742781",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_no_current_queue_match",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bodybuilding_dumbbells__113147__staff_league_promo/789733",
+      "source_title": "Bodybuilding Dumbbells - 113/147 - Staff League Promo",
+      "parsed": {
+        "title": "Bodybuilding Dumbbells - 113/147 - Staff League Promo",
+        "card_name": "Bodybuilding Dumbbells",
+        "card_number": "113",
+        "set_total": "147",
+        "title_tail": "Staff League Promo"
+      },
+      "source_finish_key": null,
+      "source_finish_confidence": "finish_not_present_in_title",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bodybuilding_dumbbells__113147__staff_league_promo/789733",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bosss_orders_cyrus__132172_regional_championship_promo__league__championship_cards/838301",
+      "source_title": "Boss's Orders (Cyrus) - 132/172 (Regional Championship Promo) - League & Championship Cards",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bosss_orders_cyrus__132172_regional_championship_promo__league__championship_cards/838301",
+      "source_title": "Wishlist",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bosss_orders_cyrus__132172_regional_championships_staff__league__championship_cards/838302",
+      "source_title": "Boss's Orders (Cyrus) - 132/172 (Regional Championships) (Staff) - League & Championship Cards",
+      "page": 2
+    },
+    {
+      "status": "blocked_unparseable_product_title",
+      "source_url": "https://www.supergamesinc.com/catalog/pokemon_singles-pokemon_league__championship_cards/bosss_orders_cyrus__132172_regional_championships_staff__league__championship_cards/838302",
+      "source_title": "Wishlist",
+      "page": 2
+    }
+  ]
+}

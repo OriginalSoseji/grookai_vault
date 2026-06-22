@@ -1,0 +1,322 @@
+{
+  "version": "astral_radiance_prerelease_finish_evidence_v1",
+  "generated_at": "2026-06-22T15:15:20.091Z",
+  "audit_only": true,
+  "summary": {
+    "target_queue_rows": 4,
+    "source_ready_candidates": 4,
+    "review_only_candidates": 0,
+    "fixture_records_written": 8,
+    "write_ready_created": 0
+  },
+  "results": [
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH205",
+      "card_name": "Hisuian Basculegion",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/hisuian-basculegion-swsh205",
+          "required_terms": [
+            "Hisuian Basculegion",
+            "SWSH205",
+            "Prerelease",
+            "Holo"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Hisuian Basculegion",
+              "found": true
+            },
+            {
+              "term": "SWSH205",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/hisuian-basculegion-swsh205-english-promo/",
+          "required_terms": [
+            "Hisuian Basculegion",
+            "SWSH205",
+            "Holo",
+            "Prerelease"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Hisuian Basculegion",
+              "found": true
+            },
+            {
+              "term": "SWSH205",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/wyrdeer-swsh206",
+          "required_terms": [
+            "Wyrdeer",
+            "SWSH206",
+            "Prerelease",
+            "Holo"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Wyrdeer",
+              "found": true
+            },
+            {
+              "term": "SWSH206",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/wyrdeer-swsh206-english-promo/",
+          "required_terms": [
+            "Wyrdeer",
+            "SWSH206",
+            "Holo",
+            "Prerelease"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Wyrdeer",
+              "found": true
+            },
+            {
+              "term": "SWSH206",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH207",
+      "card_name": "Hisuian Samurott",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/hisuian-samurott-swsh207",
+          "required_terms": [
+            "Hisuian Samurott",
+            "SWSH207",
+            "Prerelease",
+            "Holo"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Hisuian Samurott",
+              "found": true
+            },
+            {
+              "term": "SWSH207",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/hisuian-samurott-swsh207-english-promo/",
+          "required_terms": [
+            "Hisuian Samurott",
+            "SWSH207",
+            "Holo",
+            "Prerelease"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Hisuian Samurott",
+              "found": true
+            },
+            {
+              "term": "SWSH207",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "holo",
+      "source_count": 2,
+      "status": "source_ready_candidate_no_db_write",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_promo_price_guide",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/magnezone-swsh208",
+          "required_terms": [
+            "Magnezone",
+            "SWSH208",
+            "Prerelease",
+            "Holo"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Magnezone",
+              "found": true
+            },
+            {
+              "term": "SWSH208",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/magnezone-swsh208-english-promo/",
+          "required_terms": [
+            "Magnezone",
+            "SWSH208",
+            "Holo",
+            "Prerelease"
+          ],
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Magnezone",
+              "found": true
+            },
+            {
+              "term": "SWSH208",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ]
+    }
+  ],
+  "fixture_output": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_astral_radiance_prerelease_finish_evidence_v1\\swshp_astral_radiance_prerelease_holo_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "fingerprint_sha256": "acd7c3fe32b0b03cffab8d02b7a10563aad4d4119ec03f753bb6b8b0535d574b"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/bucks-training-130-146-non-holo-unlimited-legends-awakened/dp6-130-2-1/",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "130",
+      "card_name": "Buck's Training",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_bucks_training_staff_prerelease_non_holo_130: exact Staff Stamp active finish normal",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:dp6:130:staff_stamp:pokecardvalues_bucks_training_staff_prerelease_non_holo_130",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    },
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_dragonite_staff_national_non_holo_2: exact Staff Stamp active finish normal",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:dp6:2:staff_stamp:pokecardvalues_dragonite_staff_national_non_holo_2",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

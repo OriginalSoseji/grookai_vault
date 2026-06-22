@@ -1,0 +1,59 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "second_source_needed_finish_evidence_v1",
+  "generated_at": "2026-06-22T14:59:49.534Z",
+  "generation_note": "Audit-only second-source active finish evidence for stamped/special queue rows. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-states-championships-dark-explorers/bw5-25-3-84/",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_vaporeon_staff_states_reverse_25: exact States Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:bw5:25:states_championships_staff_stamp:pokecardvalues_vaporeon_staff_states_reverse_25",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    },
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-37-3-83/",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_jolteon_staff_regional_reverse_37: exact Regional Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:bw5:37:regional_championships_staff_stamp:pokecardvalues_jolteon_staff_regional_reverse_37",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    },
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-staff-city-championships-dark-explorers/bw5-84-3-75/",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_eevee_staff_city_reverse_84: exact City Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:59:49.534Z",
+      "raw_snapshot_ref": "second_source_needed_finish_evidence_v1:bw5:84:city_championships_staff_stamp:pokecardvalues_eevee_staff_city_reverse_84",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves exact set/card identity, stamp/variant family, and active finish."
+    }
+  ]
+}

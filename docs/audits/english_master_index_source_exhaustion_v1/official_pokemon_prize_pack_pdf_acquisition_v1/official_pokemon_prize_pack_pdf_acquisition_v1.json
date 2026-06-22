@@ -1,0 +1,2481 @@
+{
+  "generated_at": "2026-06-22T16:24:33.182Z",
+  "version": "official_pokemon_prize_pack_pdf_acquisition_v1",
+  "package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+    "prize_pack_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1.json"
+  },
+  "source_downloads": [
+    {
+      "series": 1,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series1.pdf",
+      "parsed_entries": 157
+    },
+    {
+      "series": 2,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series2.pdf",
+      "parsed_entries": 145
+    },
+    {
+      "series": 3,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series3.pdf",
+      "parsed_entries": 147
+    },
+    {
+      "series": 4,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series4.pdf",
+      "parsed_entries": 8
+    },
+    {
+      "series": 5,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series5.pdf",
+      "parsed_entries": 7
+    },
+    {
+      "series": 6,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_6_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series6.pdf",
+      "parsed_entries": 8
+    },
+    {
+      "series": 7,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_7_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series7.pdf",
+      "parsed_entries": 6
+    },
+    {
+      "series": 8,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_8_web_cardlist_en.pdf",
+      "source_status": "available",
+      "pdf_path": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/cache/series8.pdf",
+      "parsed_entries": 8
+    }
+  ],
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/official_pokemon_prize_pack_pdf_acquisition_v1",
+  "fixture_files": [],
+  "summary": {
+    "target_rows": 35,
+    "official_entries_parsed": 486,
+    "useful_second_source_matches": 0,
+    "official_single_finish_may_resolve_prior_conflict": 0,
+    "official_conflicting_normal_and_foil": 23,
+    "no_official_exact_match": 4,
+    "by_status": {
+      "official_conflicting_normal_and_foil": 23,
+      "official_conflicts_with_prior_accepted_finish": 6,
+      "no_official_exact_match": 4,
+      "official_single_source_only": 2
+    },
+    "by_useful_finish": {},
+    "fixture_files_written": 0
+  },
+  "rows": [
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "95",
+      "card_name": "Pokémon Catcher",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_no_exact_source_match",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {},
+      "prior_source_families": [],
+      "official_match_count": 0,
+      "official_finishes": [],
+      "useful_finish_key": null,
+      "acquisition_status": "no_official_exact_match",
+      "official_evidence": [],
+      "source_urls": []
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "100",
+      "card_name": "Frozen City",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_no_exact_source_match",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {},
+      "prior_source_families": [],
+      "official_match_count": 0,
+      "official_finishes": [],
+      "useful_finish_key": null,
+      "acquisition_status": "no_official_exact_match",
+      "official_evidence": [],
+      "source_urls": []
+    },
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "card_number": "13",
+      "card_name": "Basic Psychic Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "justinbasil_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 0,
+      "official_finishes": [],
+      "useful_finish_key": null,
+      "acquisition_status": "no_official_exact_match",
+      "official_evidence": [],
+      "source_urls": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "117",
+      "card_name": "Galarian Zigzagoon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "117",
+          "card_name": "Galarian Zigzagoon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Galarian Zigzagoon SSH 117",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:117:Galarian Zigzagoon:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "156",
+      "card_name": "Air Balloon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "156",
+          "card_name": "Air Balloon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Air Balloon SSH 156",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:156:Air Balloon:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "156",
+          "card_name": "Air Balloon",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Air Balloon SSH 156",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:156:Air Balloon:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "159",
+      "card_name": "Crushing Hammer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Crushing Hammer SSH 159",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:159:Crushing Hammer:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Crushing Hammer SSH 159",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:159:Crushing Hammer:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Crushing Hammer SSH 159",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SSH:159:Crushing Hammer:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "159",
+          "card_name": "Crushing Hammer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Crushing Hammer SSH 159",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SSH:159:Crushing Hammer:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "169",
+      "card_name": "Marnie",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Marnie SSH 169",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:169:Marnie:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Marnie SSH 169",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:169:Marnie:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "170",
+      "card_name": "Metal Saucer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "170",
+          "card_name": "Metal Saucer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Metal Saucer SSH 170",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:170:Metal Saucer:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "170",
+          "card_name": "Metal Saucer",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Metal Saucer SSH 170",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:170:Metal Saucer:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "171",
+      "card_name": "Ordinary Rod",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "171",
+          "card_name": "Ordinary Rod",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Ordinary Rod SSH 171",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:171:Ordinary Rod:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "171",
+          "card_name": "Ordinary Rod",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Ordinary Rod SSH 171",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:171:Ordinary Rod:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "180",
+      "card_name": "Rare Candy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Rare Candy SSH 180",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:180:Rare Candy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Rare Candy SSH 180",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:180:Rare Candy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Rare Candy SSH 180",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SSH:180:Rare Candy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "180",
+          "card_name": "Rare Candy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Rare Candy SSH 180",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SSH:180:Rare Candy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "186",
+      "card_name": "Aurora Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "186",
+          "card_name": "Aurora Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Aurora Energy SSH 186",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:186:Aurora Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "card_number": "186",
+          "card_name": "Aurora Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Aurora Energy SSH 186",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:SSH:186:Aurora Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "109",
+      "card_name": "Falinks",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "109",
+          "card_name": "Falinks",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Falinks RCL 109",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:109:Falinks:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "165",
+      "card_name": "Scoop Up Net",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "165",
+          "card_name": "Scoop Up Net",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Scoop Up Net RCL 165",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:165:Scoop Up Net:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "165",
+          "card_name": "Scoop Up Net",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Scoop Up Net RCL 165",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:165:Scoop Up Net:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "171",
+      "card_name": "Capture Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "171",
+          "card_name": "Capture Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Capture Energy RCL 171",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:171:Capture Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "171",
+          "card_name": "Capture Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Capture Energy RCL 171",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:171:Capture Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "174",
+      "card_name": "Twin Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 1,
+        "normal": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "174",
+          "card_name": "Twin Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Twin Energy RCL 174",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:174:Twin Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "card_number": "174",
+          "card_name": "Twin Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Twin Energy RCL 174",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:RCL:174:Twin Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "159",
+      "card_name": "Bird Keeper",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh3",
+          "set_name": "Darkness Ablaze",
+          "card_number": "159",
+          "card_name": "Bird Keeper",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Bird Keeper DAA 159",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:DAA:159:Bird Keeper:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "160",
+      "card_name": "Cape of Toughness",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh3",
+          "set_name": "Darkness Ablaze",
+          "card_number": "160",
+          "card_name": "Cape of Toughness",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Cape of Toughness DAA 160",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:DAA:160:Cape of Toughness:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "157",
+      "card_name": "Nessa",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh4",
+          "set_name": "Vivid Voltage",
+          "card_number": "157",
+          "card_name": "Nessa",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Nessa VIV 157",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:VIV:157:Nessa:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "37",
+      "card_name": "Octillery",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "normal": 2,
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Octillery BST 037",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:037:Octillery:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Octillery BST 037",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:037:Octillery:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "37",
+          "card_name": "Octillery",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Octillery BST 037",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:037:Octillery:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "96",
+      "card_name": "Houndoom",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "normal": 2,
+        "cosmos": 1
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Houndoom BST 096",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:096:Houndoom:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Houndoom BST 096",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:096:Houndoom:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "96",
+          "card_name": "Houndoom",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Houndoom BST 096",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:096:Houndoom:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "123",
+      "card_name": "Cheryl",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Cheryl BST 123",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:123:Cheryl:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Cheryl BST 123",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:123:Cheryl:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Cheryl BST 123",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:123:Cheryl:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "123",
+          "card_name": "Cheryl",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Cheryl BST 123",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:123:Cheryl:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "125",
+      "card_name": "Escape Rope",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Escape Rope BST 125",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:125:Escape Rope:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Escape Rope BST 125",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:125:Escape Rope:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Escape Rope BST 125",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:125:Escape Rope:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "125",
+          "card_name": "Escape Rope",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Escape Rope BST 125",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:125:Escape Rope:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "129",
+      "card_name": "Level Ball",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Level Ball BST 129",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:129:Level Ball:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Level Ball BST 129",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:129:Level Ball:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Level Ball BST 129",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:129:Level Ball:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Level Ball BST 129",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:129:Level Ball:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "140",
+      "card_name": "Rapid Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Rapid Strike Energy BST 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:140:Rapid Strike Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Rapid Strike Energy BST 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:140:Rapid Strike Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Rapid Strike Energy BST 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:140:Rapid Strike Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "140",
+          "card_name": "Rapid Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Rapid Strike Energy BST 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:140:Rapid Strike Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "141",
+      "card_name": "Single Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Single Strike Energy BST 141",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:141:Single Strike Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Single Strike Energy BST 141",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:141:Single Strike Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Single Strike Energy BST 141",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:141:Single Strike Energy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "card_number": "141",
+          "card_name": "Single Strike Energy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Single Strike Energy BST 141",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:141:Single Strike Energy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "70",
+      "card_name": "Malamar",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Malamar CRE 070",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:070:Malamar:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Malamar CRE 070",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:070:Malamar:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Malamar CRE 070",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:070:Malamar:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "70",
+          "card_name": "Malamar",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Malamar CRE 070",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:070:Malamar:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "140",
+      "card_name": "Fog Crystal",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Fog Crystal CRE 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:140:Fog Crystal:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Fog Crystal CRE 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:140:Fog Crystal:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Fog Crystal CRE 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:140:Fog Crystal:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "140",
+          "card_name": "Fog Crystal",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Fog Crystal CRE 140",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:140:Fog Crystal:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "148",
+      "card_name": "Path to the Peak",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Path to the Peak CRE 148",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:148:Path to the Peak:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Path to the Peak CRE 148",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:148:Path to the Peak:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Path to the Peak CRE 148",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:148:Path to the Peak:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "card_number": "148",
+          "card_name": "Path to the Peak",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Path to the Peak CRE 148",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:148:Path to the Peak:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "94",
+      "card_name": "Umbreon V",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_second_independent_source_needed",
+      "prior_accepted_finish_key": "cosmos",
+      "prior_finish_counts": {
+        "cosmos": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicts_with_prior_accepted_finish",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "94",
+          "card_name": "Umbreon V",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Umbreon V EVS 094",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:EVS:094:Umbreon V:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "94",
+          "card_name": "Umbreon V",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Umbreon V EVS 094",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:EVS:094:Umbreon V:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "161",
+      "card_name": "Stormy Mountains",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Stormy Mountains EVS 161",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:EVS:161:Stormy Mountains:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set foil for Stormy Mountains EVS 161",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:EVS:161:Stormy Mountains:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Stormy Mountains EVS 161",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:EVS:161:Stormy Mountains:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Stormy Mountains EVS 161",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:EVS:161:Stormy Mountains:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "41",
+      "card_name": "Manaphy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Manaphy BRS 041",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:041:Manaphy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Manaphy BRS 041",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:041:Manaphy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set for Manaphy BRS 041",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:041:Manaphy:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "41",
+          "card_name": "Manaphy",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set foil for Manaphy BRS 041",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:041:Manaphy:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "132",
+      "card_name": "Boss's Orders",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 0,
+      "official_finishes": [],
+      "useful_finish_key": null,
+      "acquisition_status": "no_official_exact_match",
+      "official_evidence": [],
+      "source_urls": []
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "144",
+      "card_name": "Magma Basin",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_conflicting_finish_evidence",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {
+        "cosmos": 2,
+        "normal": 2
+      },
+      "prior_source_families": [
+        "bulbapedia_prize_pack_active_finish_current_queue"
+      ],
+      "official_match_count": 2,
+      "official_finishes": [
+        "cosmos",
+        "normal"
+      ],
+      "useful_finish_key": null,
+      "acquisition_status": "official_conflicting_normal_and_foil",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Magma Basin BRS 144",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:144:Magma Basin:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set foil for Magma Basin BRS 144",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:144:Magma Basin:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set for Magma Basin BRS 144",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:144:Magma Basin:normal+cosmos:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        },
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "144",
+          "card_name": "Magma Basin",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "cosmos",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set foil for Magma Basin BRS 144",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:144:Magma Basin:normal+cosmos:cosmos",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH195",
+      "card_name": "Leafeon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_no_exact_source_match",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {},
+      "prior_source_families": [],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": "normal",
+      "acquisition_status": "official_single_source_only",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swshp",
+          "set_name": "SWSH Black Star Promos",
+          "card_number": "SWSH195",
+          "card_name": "Leafeon VSTAR",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Leafeon VSTAR SWSH SWSH195",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SWSH:SWSH195:Leafeon VSTAR:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH197",
+      "card_name": "Glaceon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "prior_closure_status": "blocked_no_exact_source_match",
+      "prior_accepted_finish_key": null,
+      "prior_finish_counts": {},
+      "prior_source_families": [],
+      "official_match_count": 1,
+      "official_finishes": [
+        "normal"
+      ],
+      "useful_finish_key": "normal",
+      "acquisition_status": "official_single_source_only",
+      "official_evidence": [
+        {
+          "source_key": "official_pokemon_prize_pack_pdf",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "set_key": "swshp",
+          "set_name": "SWSH Black Star Promos",
+          "card_number": "SWSH197",
+          "card_name": "Glaceon VSTAR",
+          "variant_key": "prize_pack_stamp",
+          "finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Glaceon VSTAR SWSH SWSH197",
+          "language": "en",
+          "retrieved_at": "2026-06-22T16:24:33.182Z",
+          "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:SWSH:SWSH197:Glaceon VSTAR:normal:normal",
+          "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance."
+        }
+      ],
+      "source_urls": [
+        "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+      ]
+    }
+  ],
+  "next_recommended_step": "No official PDF rows are dry-run-ready; continue source acquisition.",
+  "fingerprint_sha256": "3920f087fcb106de63282cc4b7d6a6dfe6e2c1f7e01c08fd1dbc0ead860ebdd1"
+}

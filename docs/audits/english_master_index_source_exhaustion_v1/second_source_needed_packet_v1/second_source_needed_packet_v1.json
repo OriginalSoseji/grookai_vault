@@ -1,0 +1,271 @@
+{
+  "package_id": "SECOND-SOURCE-NEEDED-PACKET-V1",
+  "generated_at": "2026-06-22T14:24:45.533Z",
+  "input_artifacts": {
+    "next_action_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+    "closure_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json"
+  },
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "write_ready_now": 0
+  },
+  "summary": {
+    "rows": 10,
+    "write_ready_now": 0
+  },
+  "rows": [
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Escavalier\" \"80\" \"Noble Victories\" \"National Championships Staff Stamp\"",
+        "\"Escavalier\" \"80\" \"National Championships Staff Stamp\" \"Pokemon\"",
+        "\"Escavalier\" \"National Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Vaporeon\" \"25\" \"Dark Explorers\" \"States Championships Staff Stamp\"",
+        "\"Vaporeon\" \"25\" \"States Championships Staff Stamp\" \"Pokemon\"",
+        "\"Vaporeon\" \"States Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Jolteon\" \"37\" \"Dark Explorers\" \"Regional Championships Staff Stamp\"",
+        "\"Jolteon\" \"37\" \"Regional Championships Staff Stamp\" \"Pokemon\"",
+        "\"Jolteon\" \"Regional Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Eevee\" \"84\" \"Dark Explorers\" \"City Championships Staff Stamp\"",
+        "\"Eevee\" \"84\" \"City Championships Staff Stamp\" \"Pokemon\"",
+        "\"Eevee\" \"City Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"Staff Prerelease Stamp\"",
+        "\"Luxio\" \"52\" \"Staff Prerelease Stamp\" \"Pokemon\"",
+        "\"Luxio\" \"Staff Prerelease Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "Build & Battle or prerelease product page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Luxio\" \"52\" \"Diamond & Pearl\" \"States Championships Staff Stamp\"",
+        "\"Luxio\" \"52\" \"States Championships Staff Stamp\" \"Pokemon\"",
+        "\"Luxio\" \"States Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Suicune\" \"26\" \"Phantasmal Flames\" \"EB Games Stamp\"",
+        "\"Suicune\" \"26\" \"EB Games Stamp\" \"Pokemon\"",
+        "\"Suicune\" \"EB Games Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "retailer promo checklist or product page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_staff_stamp",
+      "stamp_label": "League Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Beast Ring\" \"102\" \"Forbidden Light\" \"League Staff Stamp\"",
+        "\"Beast Ring\" \"102\" \"League Staff Stamp\" \"Pokemon\"",
+        "\"Beast Ring\" \"League Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Chaos Tower\" \"94\" \"Fates Collide\" \"National Championships Staff Stamp\"",
+        "\"Chaos Tower\" \"94\" \"National Championships Staff Stamp\" \"Pokemon\"",
+        "\"Chaos Tower\" \"National Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "execution_bucket": "bucket_06_second_source_acquisition_bulk",
+      "closure_status": "blocked_second_independent_source_needed",
+      "required_next_evidence": "One additional independent source for the exact existing single-source fact.",
+      "search_phrases": [
+        "\"Parallel City\" \"145\" \"BREAKthrough\" \"City Championships Staff Stamp\"",
+        "\"Parallel City\" \"145\" \"City Championships Staff Stamp\" \"Pokemon\"",
+        "\"Parallel City\" \"City Championships Staff Stamp\" \"Staff\" \"Championships\""
+      ],
+      "recommended_source_targets": [
+        "event/championship checklist or staff distribution page",
+        "PSA auction/page",
+        "PriceCharting product title",
+        "TCGplayer product title",
+        "PokeScope/Scrydex exact card page"
+      ],
+      "write_ready_now": 0
+    }
+  ],
+  "fingerprint_sha256": "a67881a2d8e73a65277cf9c21e8ed43454851df849c663611450d52a2e376fd7"
+}

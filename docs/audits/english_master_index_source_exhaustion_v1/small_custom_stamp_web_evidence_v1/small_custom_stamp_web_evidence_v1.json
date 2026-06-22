@@ -1,0 +1,575 @@
+{
+  "generated_at": "2026-06-22T16:19:21.633Z",
+  "version": "small_custom_stamp_web_evidence_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "inputs": {
+    "queue_path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+    "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_small_custom_stamp_web_evidence_v1"
+  },
+  "summary": {
+    "target_queue_rows": 31,
+    "targets_in_script": 5,
+    "queue_targets_matched": 5,
+    "source_ready_candidates": 3,
+    "identity_or_review_supported_finish_unproven": 2,
+    "fixture_records_written": 3,
+    "write_ready_created": 0
+  },
+  "results": [
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_number": "29",
+      "card_name": "Lugia",
+      "variant_key": "pokemon_rocks_america_stamped_2005",
+      "stamp_label": "Pokemon Rocks America Stamped; 2005",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_lugia_rocks_america_non_holo_29",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/lugia-29-115-non-holo-exclusive-unseen-forces/ex10-29-2-30/",
+          "required_terms": [
+            "Lugia",
+            "29/115",
+            "Non-Holo",
+            "Pokemon Rocks America Promo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "facetofacegames_lugia_rocks_america_non_holo_29",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/en-us/products/lugia-29115-promo-pokemon-rocks-america-2005-ex10msp-29-non-holo",
+          "required_terms": [
+            "Lugia",
+            "Pokemon Rocks America 2005",
+            "Finish: Non-Holo",
+            "Collector #: 29/115"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_lugia_rocks_america_non_holo_29",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/lugia-29-115-non-holo-exclusive-unseen-forces/ex10-29-2-30/",
+          "required_terms": [
+            "Lugia",
+            "29/115",
+            "Non-Holo",
+            "Pokemon Rocks America Promo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Lugia",
+              "found": true
+            },
+            {
+              "term": "29/115",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            },
+            {
+              "term": "Pokemon Rocks America Promo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "facetofacegames_lugia_rocks_america_non_holo_29",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/en-us/products/lugia-29115-promo-pokemon-rocks-america-2005-ex10msp-29-non-holo",
+          "required_terms": [
+            "Lugia",
+            "Pokemon Rocks America 2005",
+            "Finish: Non-Holo",
+            "Collector #: 29/115"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Lugia",
+              "found": true
+            },
+            {
+              "term": "Pokemon Rocks America 2005",
+              "found": true
+            },
+            {
+              "term": "Finish: Non-Holo",
+              "found": false
+            },
+            {
+              "term": "Collector #: 29/115",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "normal",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 0,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves exact small-custom stamp identity and active finish. Source-delta must still decide whether this is useful."
+      }
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "60",
+      "card_name": "Pikachu",
+      "variant_key": "san_diego_comic_con_international_stamped_2005",
+      "stamp_label": "San Diego Comic Con International Stamped; 2005",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_pikachu_sdcc_non_holo_60",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/pikachu-60-106-non-holo-comic-con-promo-emerald/ex9-60-2-24/",
+          "required_terms": [
+            "Pikachu",
+            "60/106",
+            "Non-Holo",
+            "Comic Con Promo",
+            "San Diego Comic Con promo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_pikachu_comic_con_60",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerald/pikachu-comic-con-promo-60",
+          "required_terms": [
+            "Pikachu",
+            "Comic Con Promo",
+            "60/106"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_pikachu_sdcc_non_holo_60",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/pikachu-60-106-non-holo-comic-con-promo-emerald/ex9-60-2-24/",
+          "required_terms": [
+            "Pikachu",
+            "60/106",
+            "Non-Holo",
+            "Comic Con Promo",
+            "San Diego Comic Con promo"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "60/106",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            },
+            {
+              "term": "Comic Con Promo",
+              "found": true
+            },
+            {
+              "term": "San Diego Comic Con promo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_pikachu_comic_con_60",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerald/pikachu-comic-con-promo-60",
+          "required_terms": [
+            "Pikachu",
+            "Comic Con Promo",
+            "60/106"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Pikachu",
+              "found": true
+            },
+            {
+              "term": "Comic Con Promo",
+              "found": true
+            },
+            {
+              "term": "60/106",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "normal",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves exact small-custom stamp identity and active finish. Source-delta must still decide whether this is useful."
+      }
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "70",
+      "card_name": "Treecko",
+      "variant_key": "indianapolis_gencon_stamped_2005",
+      "stamp_label": "Indianapolis GenCon Stamped; 2005",
+      "sources": [
+        {
+          "source_key": "pokecardvalues_treecko_gencon_non_holo_70",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/treecko-70-106-non-holo-exclusive-emerald/ex9-70-2-30/",
+          "required_terms": [
+            "Treecko",
+            "70/106",
+            "Non-Holo",
+            "GenCon"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence"
+        },
+        {
+          "source_key": "pricecharting_treecko_gencon_70",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/treecko-gencon-70",
+          "required_terms": [
+            "Treecko",
+            "GenCon",
+            "70/106"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "source_checks": [
+        {
+          "source_key": "pokecardvalues_treecko_gencon_non_holo_70",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/treecko-70-106-non-holo-exclusive-emerald/ex9-70-2-30/",
+          "required_terms": [
+            "Treecko",
+            "70/106",
+            "Non-Holo",
+            "GenCon"
+          ],
+          "claimed_finish_key": "normal",
+          "evidence_type": "finish_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Treecko",
+              "found": true
+            },
+            {
+              "term": "70/106",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            },
+            {
+              "term": "GenCon",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pricecharting_treecko_gencon_70",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/treecko-gencon-70",
+          "required_terms": [
+            "Treecko",
+            "GenCon",
+            "70/106"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Treecko",
+              "found": true
+            },
+            {
+              "term": "GenCon",
+              "found": true
+            },
+            {
+              "term": "70/106",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "source_ready_candidate_no_db_write",
+        "recommended_finish_key": "normal",
+        "exact_finish_source_count": 1,
+        "identity_source_count": 1,
+        "review_source_count": 0,
+        "decision_reason": "At least one source proves exact small-custom stamp identity and active finish. Source-delta must still decide whether this is useful."
+      }
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "5",
+      "card_name": "Gengar",
+      "variant_key": "gym_challenge_stamped_2006_2007",
+      "stamp_label": "Gym Challenge Stamped; 2006 2007",
+      "sources": [
+        {
+          "source_key": "pricecharting_gengar_gym_challenge_5",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legend-maker/gengar-gym-challenge-5",
+          "required_terms": [
+            "Gengar",
+            "Gym Challenge",
+            "#5"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "sportscardinvestor_gengar_reverse_holo_gym_challenge_context_5",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.sportscardinvestor.com/cards/gengar-pokemon/2006-ex-legend-maker-reverse-holo-05-92",
+          "required_terms": [
+            "Gengar",
+            "Reverse Holo",
+            "05/92",
+            "Promo (Gym Challenge)"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Page discusses reverse holo and Promo (Gym Challenge) as tracked variations, but does not isolate the Gym Challenge variant as the exact active finish cleanly enough for promotion."
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_gengar_gym_challenge_5",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legend-maker/gengar-gym-challenge-5",
+          "required_terms": [
+            "Gengar",
+            "Gym Challenge",
+            "#5"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Gengar",
+              "found": true
+            },
+            {
+              "term": "Gym Challenge",
+              "found": true
+            },
+            {
+              "term": "#5",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "sportscardinvestor_gengar_reverse_holo_gym_challenge_context_5",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.sportscardinvestor.com/cards/gengar-pokemon/2006-ex-legend-maker-reverse-holo-05-92",
+          "required_terms": [
+            "Gengar",
+            "Reverse Holo",
+            "05/92",
+            "Promo (Gym Challenge)"
+          ],
+          "claimed_finish_key": "reverse",
+          "evidence_type": "finish_presence",
+          "review_only_reason": "Page discusses reverse holo and Promo (Gym Challenge) as tracked variations, but does not isolate the Gym Challenge variant as the exact active finish cleanly enough for promotion.",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Gengar",
+              "found": true
+            },
+            {
+              "term": "Reverse Holo",
+              "found": true
+            },
+            {
+              "term": "05/92",
+              "found": true
+            },
+            {
+              "term": "Promo (Gym Challenge)",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_or_review_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 1,
+        "review_source_count": 1,
+        "decision_reason": "Source evidence supports identity or review context, but active finish is not clean enough for promotion."
+      }
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "card_number": "64",
+      "card_name": "Ditto",
+      "variant_key": "games_expo_stamped_2007",
+      "stamp_label": "Games Expo Stamped; 2007",
+      "sources": [
+        {
+          "source_key": "pricecharting_ditto_games_expo_64",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-delta-species/ditto-games-expo-64",
+          "required_terms": [
+            "Ditto",
+            "Games Expo",
+            "64/113"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        },
+        {
+          "source_key": "landrypop_ditto_games_expo_64",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.landrypop.com/auctions/2026/03/pokemon-30-icons-rarities-grails/224",
+          "required_terms": [
+            "Ditto",
+            "Games Expo 2007",
+            "64/113"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence"
+        }
+      ],
+      "queue_row_present": true,
+      "retrieved_at": "2026-06-22T16:19:21.633Z",
+      "source_checks": [
+        {
+          "source_key": "pricecharting_ditto_games_expo_64",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-delta-species/ditto-games-expo-64",
+          "required_terms": [
+            "Ditto",
+            "Games Expo",
+            "64/113"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Ditto",
+              "found": true
+            },
+            {
+              "term": "Games Expo",
+              "found": true
+            },
+            {
+              "term": "64/113",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "landrypop_ditto_games_expo_64",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.landrypop.com/auctions/2026/03/pokemon-30-icons-rarities-grails/224",
+          "required_terms": [
+            "Ditto",
+            "Games Expo 2007",
+            "64/113"
+          ],
+          "claimed_finish_key": null,
+          "evidence_type": "identity_presence",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Ditto",
+              "found": true
+            },
+            {
+              "term": "Games Expo 2007",
+              "found": true
+            },
+            {
+              "term": "64/113",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "classification": {
+        "status": "identity_or_review_supported_finish_unproven_no_write",
+        "recommended_finish_key": null,
+        "exact_finish_source_count": 0,
+        "identity_source_count": 2,
+        "review_source_count": 0,
+        "decision_reason": "Source evidence supports identity or review context, but active finish is not clean enough for promotion."
+      }
+    }
+  ],
+  "fingerprint_sha256": "84cf82075d8a7249544ef24d8cd70d859bb8935b469d062c1e2834f8736f16dc"
+}

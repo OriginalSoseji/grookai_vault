@@ -1,0 +1,60 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "exact_finish_binding_manual_web_pass_v1",
+  "source_kind": "collector_reference",
+  "retrieved_at": "2026-06-22T19:04:43.631Z",
+  "raw_snapshot_ref": "generated_fixture:exact_finish_binding_manual_web_pass_v1:2026-06-22T19:04:43.631Z",
+  "records": [
+    {
+      "source_key": "exact_finish_binding_manual_web_pass_v1",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.nobleknight.com/P/2148463851/Team-Galactics-Invention-G-109-SP-Radar---96-111-League-Promo-P-096-111-Reverse-Holo",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "96",
+      "card_name": "Team Galactic's Invention G-109 SP Radar",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Noble Knight Team Galactic's Invention G-109 SP Radar 96/111 League Promo Reverse Holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T19:04:43.631Z",
+      "raw_snapshot_ref": "manual_web_pass:pl2:96:league_stamp:reverse",
+      "notes": "Audit-only exact finish candidate. Supporting sources: nobleknight_sp_radar_league_promo_reverse_holo, pokecardvalues_sp_radar_league_promo_reverse_holo"
+    },
+    {
+      "source_key": "exact_finish_binding_manual_web_pass_v1",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/pikachu-league-stamp-49",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting Pikachu League Stamp #49 Evolving Skies sales title includes Reverse Holo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T19:04:43.631Z",
+      "raw_snapshot_ref": "manual_web_pass:swsh7:49:league_stamp:reverse",
+      "notes": "Audit-only exact finish candidate. Supporting sources: pricecharting_pikachu_evolving_skies_league_stamp_reverse"
+    },
+    {
+      "source_key": "exact_finish_binding_manual_web_pass_v1",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.ebay.com/itm/226939069442",
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "eBay Klefki 66/119 Phantom Forces Pokémon League 4th Place Reverse Holo Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T19:04:43.631Z",
+      "raw_snapshot_ref": "manual_web_pass:xy4:66:league_stamp:reverse",
+      "notes": "Audit-only exact finish candidate. Supporting sources: ebay_klefki_phantom_forces_league_4th_place_reverse, pokecardvalues_klefki_second_place_reverse_holo_league"
+    }
+  ]
+}

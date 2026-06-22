@@ -1,0 +1,32 @@
+{
+  "source_key": "pokecardvalues_stamped_finish_dp6",
+  "source_kind": "collector_reference",
+  "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+  "source_status": "available_generated_fixture",
+  "generated_at": "2026-06-22T05:48:33.992Z",
+  "retrieved_at": "2026-06-22T05:48:33.992Z",
+  "raw_snapshot_ref": "generated_fixture:pokecardvalues_stamped_finish:dp6:2026-06-22T05:48:33.992Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "generation_note": "Generated from Poke Card Values structured set/card titles for remaining stamped finish blockers only.",
+  "records": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T05:48:33.992Z",
+      "raw_snapshot_ref": "pokecardvalues:dp6:2:staff_stamp:normal",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    }
+  ]
+}

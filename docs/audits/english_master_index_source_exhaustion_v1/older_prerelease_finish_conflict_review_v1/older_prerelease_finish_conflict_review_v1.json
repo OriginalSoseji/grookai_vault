@@ -1,0 +1,217 @@
+{
+  "version": "older_prerelease_finish_conflict_review_v1",
+  "generated_at": "2026-06-22T15:15:25.200Z",
+  "audit_only": true,
+  "summary": {
+    "target_queue_rows": 2,
+    "source_ready_candidates": 0,
+    "manual_finish_conflicts": 1,
+    "review_only_rows": 1,
+    "write_ready_created": 0
+  },
+  "results": [
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "in_current_queue": true,
+      "source_checks": [
+        {
+          "source_key": "pricecharting_metagross_bw75",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/metagross-bw75",
+          "required_terms": [
+            "Metagross",
+            "BW75",
+            "Prerelease",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Metagross",
+              "found": true
+            },
+            {
+              "term": "BW75",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "tcgplayer_metagross_bw75_prerelease",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/87344/pokemon-black-and-white-promos-metagross-bw75-team-plasma-prerelease",
+          "required_terms": [
+            "Metagross",
+            "BW75",
+            "Prerelease",
+            "Holofoil"
+          ],
+          "claimed_finish_key": "holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Metagross",
+              "found": false
+            },
+            {
+              "term": "BW75",
+              "found": false
+            },
+            {
+              "term": "Prerelease",
+              "found": false
+            },
+            {
+              "term": "Holofoil",
+              "found": false
+            }
+          ],
+          "all_required_terms_found": false
+        }
+      ],
+      "status": "review_only_insufficient_second_source_no_write",
+      "accepted_source_count": 1,
+      "claimed_finish_keys": [
+        "holo"
+      ],
+      "decision_reason": "Exact source evidence exists but not enough independently fetched agreement for promotion."
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "card_number": "24",
+      "card_name": "Team Aqua's Cacnea",
+      "stamp_label": "Prerelease Stamp",
+      "variant_key": "prerelease_stamp",
+      "in_current_queue": true,
+      "source_checks": [
+        {
+          "source_key": "pricecharting_cacnea_prerelease_24",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-team-magma-%26-team-aqua/cacnea-prerelease-24",
+          "required_terms": [
+            "Prerelease",
+            "24",
+            "Holo"
+          ],
+          "claimed_finish_key": "holo",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Prerelease",
+              "found": true
+            },
+            {
+              "term": "24",
+              "found": true
+            },
+            {
+              "term": "Holo",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokumon_cacnea_prerelease_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/team-aquas-cacnea-24-95-ex-team-magma-vs-team-aqua-prerelease-special-print/",
+          "required_terms": [
+            "Team Aqua",
+            "Cacnea",
+            "24/95",
+            "Prerelease"
+          ],
+          "claimed_finish_key": null,
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Aqua",
+              "found": true
+            },
+            {
+              "term": "Cacnea",
+              "found": true
+            },
+            {
+              "term": "24/95",
+              "found": true
+            },
+            {
+              "term": "Prerelease",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        },
+        {
+          "source_key": "pokecardvalues_cacnea_non_holo_prerelease",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/team-aquas-cacnea-24-95-non-holo-prerelease-stamp-team-magma-vs-team-aqua/ex4-24-2-54/",
+          "required_terms": [
+            "Team Aqua",
+            "Cacnea",
+            "24/95",
+            "Non-Holo",
+            "Prerelease Stamp"
+          ],
+          "claimed_finish_key": "normal",
+          "fetch_status": "fetched",
+          "term_results": [
+            {
+              "term": "Team Aqua",
+              "found": true
+            },
+            {
+              "term": "Cacnea",
+              "found": true
+            },
+            {
+              "term": "24/95",
+              "found": true
+            },
+            {
+              "term": "Non-Holo",
+              "found": true
+            },
+            {
+              "term": "Prerelease Stamp",
+              "found": true
+            }
+          ],
+          "all_required_terms_found": true
+        }
+      ],
+      "status": "manual_finish_conflict_no_write",
+      "accepted_source_count": 3,
+      "claimed_finish_keys": [
+        "holo",
+        "normal"
+      ],
+      "decision_reason": "Fetched sources support different active finishes; fail closed."
+    }
+  ],
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "fixtures_created": false
+  },
+  "fingerprint_sha256": "8b2c5d485836640f6fd58550c416ea294bdbfdb078354837d2822efbcfb6f8f5"
+}

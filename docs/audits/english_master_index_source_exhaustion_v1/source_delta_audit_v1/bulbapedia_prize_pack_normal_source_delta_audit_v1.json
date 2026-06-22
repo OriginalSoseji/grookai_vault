@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_source_delta_audit_v1",
-  "generated_at": "2026-06-12T08:22:54.021Z",
+  "generated_at": "2026-06-22T19:09:10.093Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -20,7 +20,7 @@
   "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
   "no_global_rebuild_required_for_discovery": true,
   "summary": {
-    "current_gap_facts": 1658,
+    "current_gap_facts": 1654,
     "candidate_records_loaded": 77,
     "matched_gap_facts": 15,
     "useful_candidate_matches": 0,
@@ -60,6 +60,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -82,6 +83,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -104,6 +106,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -126,6 +129,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -148,6 +152,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -170,6 +175,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -192,6 +198,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -214,6 +221,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -236,6 +244,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -258,6 +267,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -280,6 +290,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -302,6 +313,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -324,6 +336,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -346,6 +359,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [
@@ -368,6 +382,7 @@
       "finish_key": "normal",
       "current_status": "human_source_verified",
       "existing_sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
         "bulbapedia_prize_pack_normal"
       ],
       "existing_authorities": [

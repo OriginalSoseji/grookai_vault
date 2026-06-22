@@ -1,0 +1,86 @@
+[
+  {
+    "set_key": "bw1",
+    "card_number": "105",
+    "card_name": "Grass Energy",
+    "variant_key": "play_pokemon_stamp",
+    "stamp_label": "Play! Pokemon Stamp",
+    "detected_finish_labels": [
+      "normal"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/bw1-105/",
+      "https://scrydex.com/pokemon/cards/black-and-white/bw1-105"
+    ]
+  },
+  {
+    "set_key": "dv1",
+    "card_number": "6",
+    "card_name": "Bagon",
+    "variant_key": "league_stamp",
+    "stamp_label": "League Stamp",
+    "detected_finish_labels": [
+      "holo"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/dv1-6/",
+      "https://scrydex.com/pokemon/cards/dragon-vault/dv1-6"
+    ]
+  },
+  {
+    "set_key": "dv1",
+    "card_number": "7",
+    "card_name": "Shelgon",
+    "variant_key": "league_stamp",
+    "stamp_label": "League Stamp",
+    "detected_finish_labels": [
+      "holo"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/dv1-7/",
+      "https://scrydex.com/pokemon/cards/dragon-vault/dv1-7"
+    ]
+  },
+  {
+    "set_key": "dv1",
+    "card_number": "10",
+    "card_name": "Latios",
+    "variant_key": "dragon_vault_stamp",
+    "stamp_label": "Dragon Vault Stamp",
+    "detected_finish_labels": [
+      "holo"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/dv1-10/",
+      "https://scrydex.com/pokemon/cards/dragon-vault/dv1-10"
+    ]
+  },
+  {
+    "set_key": "dv1",
+    "card_number": "11",
+    "card_name": "Rayquaza",
+    "variant_key": "dragon_vault_stamp",
+    "stamp_label": "Dragon Vault Stamp",
+    "detected_finish_labels": [
+      "holo"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/dv1-11/",
+      "https://scrydex.com/pokemon/cards/dragon-vault/dv1-11"
+    ]
+  },
+  {
+    "set_key": "dv1",
+    "card_number": "16",
+    "card_name": "Haxorus",
+    "variant_key": "dragon_vault_stamp",
+    "stamp_label": "Dragon Vault Stamp",
+    "detected_finish_labels": [
+      "holo"
+    ],
+    "source_urls": [
+      "https://pokescope.app/card/dv1-16/",
+      "https://scrydex.com/pokemon/cards/dragon-vault/dv1-16"
+    ]
+  }
+]

@@ -1,0 +1,808 @@
+{
+  "generated_at": "2026-06-22T18:16:05.041Z",
+  "version": "prize_pack_post_collexy_fixture_recheck_v1",
+  "package_id": "PRIZE-PACK-POST-COLLEXY-FIXTURE-RECHECK-V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_performed": false,
+  "write_ready_now": 0,
+  "input_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_post_collexy_source_packet_v1.json",
+  "fixture_roots": [
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/official_pokemon_prize_pack_pdf_acquisition_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_title_finish_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_justinbasil_prize_pack_finish_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1"
+  ],
+  "fixture_files": [
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1/sv05.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1/sv07.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1/swsh10.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1/swsh11.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_foil_v1/swsh9.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/sv09.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/sv10.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh1.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh10.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh11.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh12.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh2.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh3.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh4.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh5.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh6.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh7.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh8.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_prize_pack_normal_v1/swsh9.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_justinbasil_prize_pack_finish_v1/sv02.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_justinbasil_prize_pack_finish_v1/sv05.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_justinbasil_prize_pack_finish_v1/swsh11.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_justinbasil_prize_pack_finish_v1/swsh12.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_sv02.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_sv05.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_sv10.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh10.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh11.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh2.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh5.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh6.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh7.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/bulbapedia_prize_pack_current_gap_finish_swsh9.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/justinbasil_prize_pack_current_gap_finish_sv02.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1/justinbasil_prize_pack_current_gap_finish_sv05.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_title_finish_v1/swsh9.json",
+    "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_v1/sv03.json"
+  ],
+  "summary": {
+    "target_rows": 33,
+    "fixture_files_loaded": 38,
+    "fixture_records_loaded": 259,
+    "rows_with_exact_fixture_match": 14,
+    "multi_source_finish_review_candidates": 0,
+    "by_status": {
+      "no_exact_fixture_match": 19,
+      "preservation_only_review_blocked": 14
+    },
+    "by_set": {
+      "swsh1": 8,
+      "swsh5": 7,
+      "swsh2": 4,
+      "swsh6": 3,
+      "swsh9": 3,
+      "swsh3": 2,
+      "swsh7": 2,
+      "swshp": 2,
+      "sve": 1,
+      "swsh4": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "card_number": "13",
+      "card_name": "Basic Psychic Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "117",
+      "card_name": "Galarian Zigzagoon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476053/pokemon-prize-pack-series-cards-galarian-zigzagoon",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh1:117:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "156",
+      "card_name": "Air Balloon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "159",
+      "card_name": "Crushing Hammer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476106/pokemon-prize-pack-series-cards-crushing-hammer",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh1:159:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "169",
+      "card_name": "Marnie",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "170",
+      "card_name": "Metal Saucer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476091/pokemon-prize-pack-series-cards-metal-saucer",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh1:170:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "171",
+      "card_name": "Ordinary Rod",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476098/pokemon-prize-pack-series-cards-ordinary-rod",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh1:171:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "180",
+      "card_name": "Rare Candy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "186",
+      "card_name": "Aurora Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476131/pokemon-prize-pack-series-cards-aurora-energy",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh1:186:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "109",
+      "card_name": "Falinks",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "165",
+      "card_name": "Scoop Up Net",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "171",
+      "card_name": "Capture Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476132/pokemon-prize-pack-series-cards-capture-energy",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh2:171:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "174",
+      "card_name": "Twin Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476137/pokemon-prize-pack-series-cards-twin-energy",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh2:174:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "159",
+      "card_name": "Bird Keeper",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476092/pokemon-prize-pack-series-cards-bird-keeper",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh3:159:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "160",
+      "card_name": "Cape of Toughness",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476099/pokemon-prize-pack-series-cards-cape-of-toughness",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh3:160:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "157",
+      "card_name": "Nessa",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "37",
+      "card_name": "Octillery",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "96",
+      "card_name": "Houndoom",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "123",
+      "card_name": "Cheryl",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476104/pokemon-prize-pack-series-cards-cheryl",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh5:123:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "125",
+      "card_name": "Escape Rope",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476113/pokemon-prize-pack-series-cards-escape-rope",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh5:125:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "129",
+      "card_name": "Level Ball",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "140",
+      "card_name": "Rapid Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476134/pokemon-prize-pack-series-cards-rapid-strike-energy",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh5:140:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "141",
+      "card_name": "Single Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/476135/pokemon-prize-pack-series-cards-single-strike-energy",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swsh5:141:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "70",
+      "card_name": "Malamar",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "140",
+      "card_name": "Fog Crystal",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "148",
+      "card_name": "Path to the Peak",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "94",
+      "card_name": "Umbreon V",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "161",
+      "card_name": "Stormy Mountains",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "41",
+      "card_name": "Manaphy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "132",
+      "card_name": "Boss's Orders",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "144",
+      "card_name": "Magma Basin",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH195",
+      "card_name": "Leafeon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [
+        {
+          "finish_key": "stamped",
+          "records": [
+            {
+              "source_key": "tcgcsv_prize_pack_catalog",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/489306/pokemon-prize-pack-series-cards-leafeon-vstar",
+              "evidence_label": "tcgcsv_prize_pack_catalog preserved finish evidence from last promoted Master Index",
+              "raw_snapshot_ref": "source_preservation:tcgcsv_prize_pack_catalog:2026-06-06T19:16:37.504Z:swshp:SWSH195:stamped",
+              "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_prize_pack_preservation_v1/tcgcsv_prize_pack_preservation_v1.json",
+              "preservation_only": true
+            }
+          ],
+          "source_count": 1,
+          "independent_source_count": 0,
+          "source_authorities": [
+            "tcgcsv"
+          ],
+          "independent_source_authorities": []
+        }
+      ],
+      "exact_fixture_match_count": 1,
+      "candidate_finish_keys": [
+        "stamped"
+      ],
+      "status": "preservation_only_review_blocked"
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH197",
+      "card_name": "Glaceon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "finish_groups": [],
+      "exact_fixture_match_count": 0,
+      "candidate_finish_keys": [],
+      "status": "no_exact_fixture_match"
+    }
+  ],
+  "fingerprint_sha256": "fa07ef6590f2e2fe7ebd8beceb34082c11f0c1d2be2d40164365087836e9ca73"
+}

@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_pokecardvalues_stamped_finish_acquisition_v1",
-  "generated_at": "2026-06-20T04:58:35.598Z",
+  "generated_at": "2026-06-22T05:48:33.992Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -10,21 +10,30 @@
   "source_key": "pokecardvalues_stamped_finish",
   "source_url": "https://pokecardvalues.co.uk/sets/",
   "rule": "One exact Poke Card Values structured card title must match set/card/number/stamp-family and active finish. Ambiguous stamped variants are blocked.",
-  "fingerprint_sha256": "b8c602e7a027accc4c070596e1a4a5523b10d408b7fc6177b250f39c9e6240a2",
+  "fingerprint_sha256": "11ceda7d1d2c0b5870fbc852b704e55f532d29168fe3b51fb5c583eeac551b6d",
   "summary": {
-    "target_rows": 298,
-    "records_generated": 0,
-    "fixture_files_written": 0,
+    "target_rows": 167,
+    "records_generated": 2,
+    "fixture_files_written": 2,
     "by_status": {
-      "no_exact_pokecardvalues_match": 287,
-      "blocked_multiple_matching_stamp_variants": 11
+      "no_exact_pokecardvalues_match": 161,
+      "blocked_multiple_matching_stamp_variants": 4,
+      "accepted_exact_finish_match": 2
     },
-    "by_finish": {},
-    "by_set": {},
-    "fetched_sets": 74
+    "by_finish": {
+      "normal": 2
+    },
+    "by_set": {
+      "bwp": 1,
+      "dp6": 1
+    },
+    "fetched_sets": 69
   },
   "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1",
-  "fixture_files": [],
+  "fixture_files": [
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\bwp.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokecardvalues_stamped_finish_v1\\dp6.json"
+  ],
   "results": [
     {
       "set_key": "bw1",
@@ -33,12 +42,6 @@
       "card_name": "Tepig",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
       "stamp_label": "Player Rewards Crosshatch Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -54,11 +57,6 @@
       "card_name": "Grass Energy",
       "proposed_variant_key": "play_pokemon_stamp",
       "stamp_label": "Play! Pokemon Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -74,11 +72,6 @@
       "card_name": "Fire Energy",
       "proposed_variant_key": "play_pokemon_stamp",
       "stamp_label": "Play! Pokemon Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -94,11 +87,6 @@
       "card_name": "Darkness Energy",
       "proposed_variant_key": "play_pokemon_stamp",
       "stamp_label": "Play! Pokemon Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw1/black-white/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -114,11 +102,6 @@
       "card_name": "Tropius",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw10/plasma-blast/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -134,11 +117,6 @@
       "card_name": "Deino",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw11/legendary-treasures/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -154,11 +132,6 @@
       "card_name": "Pokémon Catcher",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw2/emerging-powers/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -174,11 +147,6 @@
       "card_name": "Karrablast",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw3/noble-victories/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -194,11 +162,6 @@
       "card_name": "Shelmet",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw3/noble-victories/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -208,51 +171,12 @@
       "reviewed_matches": []
     },
     {
-      "set_key": "bw3",
-      "set_name": "Noble Victories",
-      "card_number": "80",
-      "card_name": "Escavalier",
-      "proposed_variant_key": "national_championships_stamp",
-      "stamp_label": "National Championships Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw3/noble-victories/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-national-championships-noble-victories/bw3-80-3-45/",
-          "source_title": "Escavalier - 80/101 - Reverse Holo - National Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "National Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-staff-national-championships-noble-victories/bw3-80-3-80/",
-          "source_title": "Escavalier - 80/101 - Reverse Holo - Staff National Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff National Championships Promo"
-        }
-      ]
-    },
-    {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
       "card_number": "4",
       "card_name": "Scyther",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw5/dark-explorers/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -268,11 +192,6 @@
       "card_name": "Flareon",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw5/dark-explorers/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -282,50 +201,12 @@
       "reviewed_matches": []
     },
     {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "card_number": "25",
-      "card_name": "Vaporeon",
-      "proposed_variant_key": "championship_staff_stamp",
-      "stamp_label": "Championship Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/bw5/dark-explorers/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-25-3-83/",
-          "source_title": "Vaporeon - 25/108 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-states-championships-dark-explorers/bw5-25-3-84/",
-          "source_title": "Vaporeon - 25/108 - Reverse Holo - Staff States Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff States Championships Promo"
-        }
-      ]
-    },
-    {
       "set_key": "bw7",
       "set_name": "Boundaries Crossed",
       "card_number": "38",
       "card_name": "Delibird",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw7/boundaries-crossed/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -341,11 +222,6 @@
       "card_name": "Colress",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw8/plasma-storm/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -361,11 +237,6 @@
       "card_name": "Hypnotoxic Laser",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw8/plasma-storm/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -381,12 +252,6 @@
       "card_name": "Leafeon",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw9/plasma-freeze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -402,11 +267,6 @@
       "card_name": "Glaceon",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw9/plasma-freeze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -422,11 +282,6 @@
       "card_name": "Frozen City",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bw9/plasma-freeze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -442,11 +297,6 @@
       "card_name": "Tropical Beach",
       "proposed_variant_key": "finalist_stamp",
       "stamp_label": "Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bwp/bw-black-star-promos/",
       "status": "blocked_multiple_matching_stamp_variants",
       "match_count": 3,
@@ -481,11 +331,6 @@
       "card_name": "Metagross",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/bwp/bw-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -495,17 +340,34 @@
       "reviewed_matches": []
     },
     {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "proposed_variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "source_set_url": "https://pokecardvalues.co.uk/sets/bwp/bw-black-star-promos/",
+      "status": "accepted_exact_finish_match",
+      "match_count": 1,
+      "accepted_finish_key": "normal",
+      "accepted_source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
+      "accepted_source_title": "Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+      "reviewed_matches": [
+        {
+          "source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
+          "source_title": "Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+          "finish_key": "normal",
+          "variant_text": "Quarter-Finalist Worlds Promo Promo"
+        }
+      ]
+    },
+    {
       "set_key": "col1",
       "set_name": "Call of Legends",
       "card_number": "88",
       "card_name": "Grass Energy",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
       "stamp_label": "Player Rewards Crosshatch Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/col1/call-of-legends/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -521,11 +383,6 @@
       "card_name": "Electivire",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dp1/diamond-pearl/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -541,10 +398,6 @@
       "card_name": "Luxray",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dp1/diamond-pearl/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -560,10 +413,6 @@
       "card_name": "Professor Oak's Visit",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dp3/secret-wonders/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -579,17 +428,20 @@
       "card_name": "Dragonite",
       "proposed_variant_key": "staff_stamp",
       "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dp6/legends-awakened/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
+      "status": "accepted_exact_finish_match",
+      "match_count": 1,
+      "accepted_finish_key": "normal",
+      "accepted_source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+      "accepted_source_title": "Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+      "reviewed_matches": [
+        {
+          "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+          "source_title": "Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+          "finish_key": "normal",
+          "variant_text": "Staff National Championships Promo"
+        }
+      ]
     },
     {
       "set_key": "dp6",
@@ -598,10 +450,6 @@
       "card_name": "Buck's Training",
       "proposed_variant_key": "staff_stamp",
       "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dp6/legends-awakened/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -617,10 +465,6 @@
       "card_name": "Tropical Wind",
       "proposed_variant_key": "finalist_stamp",
       "stamp_label": "Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dpp/dp-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -636,11 +480,6 @@
       "card_name": "Bagon",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -656,11 +495,6 @@
       "card_name": "Shelgon",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -676,113 +510,7 @@
       "card_name": "Salamence",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "dv1",
-      "set_name": "Dragon Vault",
-      "card_number": "10",
-      "card_name": "Latios",
-      "proposed_variant_key": "dragon_vault_stamp",
-      "stamp_label": "Dragon Vault Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "dv1",
-      "set_name": "Dragon Vault",
-      "card_number": "11",
-      "card_name": "Rayquaza",
-      "proposed_variant_key": "dragon_vault_stamp",
-      "stamp_label": "Dragon Vault Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "dv1",
-      "set_name": "Dragon Vault",
-      "card_number": "16",
-      "card_name": "Haxorus",
-      "proposed_variant_key": "dragon_vault_stamp",
-      "stamp_label": "Dragon Vault Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "dv1",
-      "set_name": "Dragon Vault",
-      "card_number": "17",
-      "card_name": "Druddigon",
-      "proposed_variant_key": "dragon_vault_stamp",
-      "stamp_label": "Dragon Vault Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/dv1/dragon-vault/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "ex10",
-      "set_name": "Unseen Forces",
-      "card_number": "29",
-      "card_name": "Lugia",
-      "proposed_variant_key": "pokemon_rocks_america_stamped_2005",
-      "stamp_label": "Pokemon Rocks America Stamped; 2005",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/ex10/unseen-forces/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -797,10 +525,6 @@
       "card_name": "Ditto",
       "proposed_variant_key": "origins_game_fair_stamped_200",
       "stamp_label": "Origins Game Fair Stamped; 200",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex11/delta-species/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -816,10 +540,6 @@
       "card_name": "Ditto",
       "proposed_variant_key": "games_expo_stamped_2007",
       "stamp_label": "Games Expo Stamped; 2007",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex11/delta-species/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -835,10 +555,6 @@
       "card_name": "Gengar",
       "proposed_variant_key": "gym_challenge_stamped_2006_2007",
       "stamp_label": "Gym Challenge Stamped; 2006 2007",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex12/legend-maker/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -854,10 +570,6 @@
       "card_name": "Golem",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex12/legend-maker/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -873,11 +585,6 @@
       "card_name": "Blastoise",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex14/crystal-guardians/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -893,10 +600,6 @@
       "card_name": "Professor Elm's Training Method",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex15/dragon-frontiers/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -912,10 +615,6 @@
       "card_name": "Team Aqua's Cacnea",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex4/team-magma-vs-team-aqua/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -931,32 +630,7 @@
       "card_name": "Machamp",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex5/hidden-legends/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "ex6",
-      "set_name": "FireRed & LeafGreen",
-      "card_number": "50",
-      "card_name": "Wartortle",
-      "proposed_variant_key": "prerelease_stamp",
-      "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/ex6/firered-leafgreen/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -971,11 +645,6 @@
       "card_name": "Prof. Oak's Research",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex6/firered-leafgreen/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -991,11 +660,6 @@
       "card_name": "Deoxys",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex8/deoxys/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1011,31 +675,6 @@
       "card_name": "Rayquaza",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/ex8/deoxys/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "ex8",
-      "set_name": "Deoxys",
-      "card_number": "91",
-      "card_name": "Space Center",
-      "proposed_variant_key": "pokemon_10th_anniversary_stamped",
-      "stamp_label": "Pokemon 10th Anniversary Stamped",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex8/deoxys/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1051,10 +690,6 @@
       "card_name": "Exploud",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex9/emerald/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1070,11 +705,6 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "san_diego_comic_con_international_stamped_2005",
       "stamp_label": "San Diego Comic Con International Stamped; 2005",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex9/emerald/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1090,11 +720,6 @@
       "card_name": "Treecko",
       "proposed_variant_key": "indianapolis_gencon_stamped_2005",
       "stamp_label": "Indianapolis GenCon Stamped; 2005",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/ex9/emerald/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1110,10 +735,6 @@
       "card_name": "Donphan",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
       "stamp_label": "Player Rewards Crosshatch Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss1/heartgold-soulsilver/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1129,10 +750,6 @@
       "card_name": "Professor Elm's Training Method",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss1/heartgold-soulsilver/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1148,29 +765,6 @@
       "card_name": "Politoed",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss2/hs-unleashed/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "21",
-      "card_name": "Poliwrath",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss2/hs-unleashed/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1186,30 +780,6 @@
       "card_name": "Steelix",
       "proposed_variant_key": "player_rewards_crosshatch_stamp",
       "stamp_label": "Player Rewards Crosshatch Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss2/hs-unleashed/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "card_number": "37",
-      "card_name": "Poliwhirl",
-      "proposed_variant_key": "staff_stamp",
-      "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss2/hs-unleashed/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1225,10 +795,6 @@
       "card_name": "Darkness Energy",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss3/hs-undaunted/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1244,30 +810,7 @@
       "card_name": "Metal Energy",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss3/hs-undaunted/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "hgss4",
-      "set_name": "HS—Triumphant",
-      "card_number": "20",
-      "card_name": "Electivire",
-      "proposed_variant_key": "prerelease_stamp",
-      "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/hgss4/hs-triumphant/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -1282,10 +825,6 @@
       "card_name": "Black Belt",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss4/hs-triumphant/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1301,10 +840,6 @@
       "card_name": "Seeker",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/hgss4/hs-triumphant/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1320,11 +855,6 @@
       "card_name": "Suicune",
       "proposed_variant_key": "eb_games_stamp",
       "stamp_label": "EB Games Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/me2/phantasmal-flames/",
       "status": "blocked_multiple_matching_stamp_variants",
       "match_count": 2,
@@ -1349,52 +879,10 @@
     {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
-      "card_number": "89",
-      "card_name": "Bebe's Search",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl2/rising-rivals/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
       "card_number": "96",
       "card_name": "Team Galactic's Invention G-109 SP Radar",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/pl2/rising-rivals/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "card_number": "98",
-      "card_name": "Volkner's Philosophy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/pl2/rising-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1410,11 +898,6 @@
       "card_name": "Garchomp",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/pl3/supreme-victors/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1430,10 +913,6 @@
       "card_name": "Cynthia's Guidance",
       "proposed_variant_key": "pok_ball_stamped_player_rewards_promo_2009_2010",
       "stamp_label": "PokéBall Stamped, Player Rewards Promo; 2009 2010",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/pl3/supreme-victors/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1449,51 +928,6 @@
       "card_name": "Tsareena",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "119",
-      "card_name": "Great Ball",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "120",
-      "card_name": "Hau",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1509,126 +943,7 @@
       "card_name": "Nest Ball",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "126",
-      "card_name": "Pokémon Catcher",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "127",
-      "card_name": "Potion",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "132",
-      "card_name": "Switch",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "card_number": "135",
-      "card_name": "Ultra Ball",
-      "proposed_variant_key": "championship_staff_stamp",
-      "stamp_label": "Championship Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm1/sun-moon/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-europe-championships-sun-moon/sm1-135-3-77/",
-          "source_title": "Ultra Ball - 135/149 - Reverse Holo - Staff Europe Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Europe Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-oceania-championships-sun-moon/sm1-135-3-81/",
-          "source_title": "Ultra Ball - 135/149 - Reverse Holo - Staff Oceania Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Oceania Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm10",
-      "set_name": "Unbroken Bonds",
-      "card_number": "129",
-      "card_name": "Melmetal",
-      "proposed_variant_key": "unbroken_bonds_stamp",
-      "stamp_label": "Unbroken Bonds Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm10/unbroken-bonds/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -1639,316 +954,11 @@
     {
       "set_key": "sm10",
       "set_name": "Unbroken Bonds",
-      "card_number": "189",
-      "card_name": "Welder",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
+      "card_number": "129",
+      "card_name": "Melmetal",
+      "proposed_variant_key": "unbroken_bonds_stamp",
+      "stamp_label": "Unbroken Bonds Stamp",
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm10/unbroken-bonds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "34",
-      "card_name": "Salazzle",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "84",
-      "card_name": "Mesprit",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "87",
-      "card_name": "Cresselia",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "97",
-      "card_name": "Toxapex",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "164",
-      "card_name": "Tauros",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "card_number": "189",
-      "card_name": "Bug Catcher",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm11/unified-minds/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "8",
-      "card_name": "Charmeleon",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "9",
-      "card_name": "Charizard-GX",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "19",
-      "card_name": "Pikachu",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "20",
-      "card_name": "Raichu-GX",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "31",
-      "card_name": "Mewtwo-GX",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "32",
-      "card_name": "Mew",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "46",
-      "card_name": "Chansey",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "49",
-      "card_name": "Eevee",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm115",
-      "set_name": "Hidden Fates",
-      "card_number": "50",
-      "card_name": "Snorlax",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm115/hidden-fates/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -1963,11 +973,6 @@
       "card_name": "Oricorio",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm2/guardians-rising/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -1983,11 +988,6 @@
       "card_name": "Aqua Patch",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm2/guardians-rising/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2003,32 +1003,6 @@
       "card_name": "Raichu",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm3/burning-shadows/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
-      "card_number": "43",
-      "card_name": "Electivire",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm3/burning-shadows/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2044,11 +1018,6 @@
       "card_name": "Bodybuilding Dumbbells",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm3/burning-shadows/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2064,11 +1033,6 @@
       "card_name": "Guzma",
       "proposed_variant_key": "world_championships_stamp",
       "stamp_label": "World Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm3/burning-shadows/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2084,85 +1048,7 @@
       "card_name": "Counter Catcher",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm4/crimson-invasion/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm4",
-      "set_name": "Crimson Invasion",
-      "card_number": "95",
-      "card_name": "Gladion",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm4/crimson-invasion/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-regional-championships-crimson-invasion/sm4-95-3-60/",
-          "source_title": "Gladion - 95/111 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-staff-regional-championships-crimson-invasion/sm4-95-3-83/",
-          "source_title": "Gladion - 95/111 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
-      "card_number": "25",
-      "card_name": "Salandit",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
-      "card_number": "43",
-      "card_name": "Electabuzz",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -2177,11 +1063,6 @@
       "card_name": "Magnezone",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2197,11 +1078,6 @@
       "card_name": "Escape Board",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2209,79 +1085,6 @@
       "accepted_source_url": null,
       "accepted_source_title": null,
       "reviewed_matches": []
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
-      "card_number": "133",
-      "card_name": "Pokémon Fan Club",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm5/ultra-prism/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "108",
-      "card_name": "Judge",
-      "proposed_variant_key": "professor_program_stamp",
-      "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm6/forbidden-light/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "card_number": "113",
-      "card_name": "Mysterious Treasure",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm6/forbidden-light/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/mysterious-treasure-113-131-reverse-holo-league-promo-forbidden-light/sm6-113-3-41/",
-          "source_title": "Mysterious Treasure - 113/131 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/mysterious-treasure-113-131-reverse-holo-staff-league-promo-forbidden-light/sm6-113-3-78/",
-          "source_title": "Mysterious Treasure - 113/131 - Reverse Holo - Staff League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff League Promo Promo"
-        }
-      ]
     },
     {
       "set_key": "sm7",
@@ -2290,11 +1093,6 @@
       "card_name": "Magcargo",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm7/celestial-storm/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2310,11 +1108,6 @@
       "card_name": "Rare Candy",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm7/celestial-storm/",
       "status": "blocked_multiple_matching_stamp_variants",
       "match_count": 2,
@@ -2343,33 +1136,7 @@
       "card_name": "Steven's Resolve",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm7/celestial-storm/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "38",
-      "card_name": "Moltres",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -2384,31 +1151,6 @@
       "card_name": "Suicune",
       "proposed_variant_key": "legendary_pok_mon_stamp",
       "stamp_label": "Legendary PokéMon Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "81",
-      "card_name": "Blitzle",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2424,52 +1166,6 @@
       "card_name": "Zebstrika",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "89",
-      "card_name": "Espeon",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "card_number": "105",
-      "card_name": "Mareanie",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2485,11 +1181,6 @@
       "card_name": "Electropower",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2505,11 +1196,6 @@
       "card_name": "Professor Elm's Lecture",
       "proposed_variant_key": "regional_championships_staff_stamp",
       "stamp_label": "Regional Championships Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm8/lost-thunder/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2525,31 +1211,6 @@
       "card_name": "Moltres",
       "proposed_variant_key": "team_up_stamp",
       "stamp_label": "Team Up Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sm9/team-up/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sm9",
-      "set_name": "Team Up",
-      "card_number": "45",
-      "card_name": "Zebstrika",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sm9/team-up/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2565,31 +1226,6 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "alolan_raichu_half_deck_14_stamp",
       "stamp_label": "Alolan Raichu Half Deck 14 Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/smp/sm-black-star-promos/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "smp",
-      "set_name": "SM Black Star Promos",
-      "card_number": "SM186",
-      "card_name": "Flareon",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/smp/sm-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2605,11 +1241,6 @@
       "card_name": "Champions Festival",
       "proposed_variant_key": "quarter_finalist_stamp",
       "stamp_label": "Quarter Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/smp/sm-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2625,10 +1256,6 @@
       "card_name": "Voltorb",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv2/paldea-evolved/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2644,12 +1271,6 @@
       "card_name": "Scream Tail",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv5/temporal-forces/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2665,31 +1286,6 @@
       "card_name": "Ethan's Typhlosion",
       "proposed_variant_key": "staff_stamp",
       "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sv10",
-      "set_name": "Destined Rivals",
-      "card_number": "49",
-      "card_name": "Misty's Gyarados",
-      "proposed_variant_key": "staff_stamp",
-      "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2705,12 +1301,6 @@
       "card_name": "Team Rocket's Articuno",
       "proposed_variant_key": "destined_rivals_stamp",
       "stamp_label": "Destined Rivals Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2726,30 +1316,6 @@
       "card_name": "Team Rocket's Zapdos",
       "proposed_variant_key": "destined_rivals_stamp",
       "stamp_label": "Destined Rivals Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "sv10",
-      "set_name": "Destined Rivals",
-      "card_number": "81",
-      "card_name": "Team Rocket's Mewtwo ex",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2765,11 +1331,6 @@
       "card_name": "Team Rocket's Mimikyu",
       "proposed_variant_key": "staff_stamp",
       "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2785,12 +1346,6 @@
       "card_name": "Team Rocket's Tyranitar",
       "proposed_variant_key": "staff_stamp",
       "stamp_label": "Staff Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sv10/destined-rivals/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2806,11 +1361,6 @@
       "card_name": "Basic Psychic Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/sve/scarlet-violet-energies/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2826,11 +1376,6 @@
       "card_name": "Mimikyu",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/svp/scarlet-violet-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2846,11 +1391,6 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "asia_championship_stamp",
       "stamp_label": "Asia Championship Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/svp/scarlet-violet-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -2866,108 +1406,7 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "world_championships_stamp",
       "stamp_label": "World Championships Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/svp/scarlet-violet-black-star-promos/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "29",
-      "card_name": "Turtonator",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "74",
-      "card_name": "Yamper",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "76",
-      "card_name": "Boltund",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "89",
-      "card_name": "Sinistea",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "90",
-      "card_name": "Polteageist",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -2982,10 +1421,6 @@
       "card_name": "Galarian Zigzagoon",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3001,10 +1436,6 @@
       "card_name": "Air Balloon",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3020,86 +1451,6 @@
       "card_name": "Crushing Hammer",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "160",
-      "card_name": "Energy Retrieval",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "162",
-      "card_name": "Energy Switch",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "164",
-      "card_name": "Great Ball",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "165",
-      "card_name": "Hop",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3115,11 +1466,6 @@
       "card_name": "Marnie",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3135,10 +1481,6 @@
       "card_name": "Metal Saucer",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3154,10 +1496,6 @@
       "card_name": "Ordinary Rod",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3173,10 +1511,6 @@
       "card_name": "Pokémon Catcher",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3192,10 +1526,6 @@
       "card_name": "Potion",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3211,10 +1541,6 @@
       "card_name": "Quick Ball",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3230,29 +1556,6 @@
       "card_name": "Rare Candy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "card_number": "183",
-      "card_name": "Switch",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3268,49 +1571,7 @@
       "card_name": "Aurora Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh1/sword-shield/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "58",
-      "card_name": "Misdreavus",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh10/astral-radiance/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "card_number": "103",
-      "card_name": "Nickit",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh10/astral-radiance/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -3325,10 +1586,6 @@
       "card_name": "Phantump",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh11/lost-origin/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3344,10 +1601,6 @@
       "card_name": "Litwick",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh11/lost-origin/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3363,10 +1616,6 @@
       "card_name": "Lampent",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh11/lost-origin/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3382,10 +1631,6 @@
       "card_name": "Haunter",
       "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
       "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh11/lost-origin/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3401,30 +1646,7 @@
       "card_name": "Hisuian Zoroark",
       "proposed_variant_key": "lost_origin_stamp",
       "stamp_label": "Lost Origin Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh11/lost-origin/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh12",
-      "set_name": "Silver Tempest",
-      "card_number": "103",
-      "card_name": "Zubat",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh12/silver-tempest/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -3439,68 +1661,7 @@
       "card_name": "Dragonite",
       "proposed_variant_key": "silver_tempest_stamp",
       "stamp_label": "Silver Tempest Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh12/silver-tempest/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "31",
-      "card_name": "Litwick",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "32",
-      "card_name": "Lampent",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "102",
-      "card_name": "Galarian Runerigus",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -3515,10 +1676,6 @@
       "card_name": "Falinks",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3534,11 +1691,6 @@
       "card_name": "Boss's Orders",
       "proposed_variant_key": "regional_championships_stamp",
       "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3554,29 +1706,6 @@
       "card_name": "Scoop Up Net",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "card_number": "167",
-      "card_name": "Sonia",
-      "proposed_variant_key": "professor_program_stamp",
-      "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3592,10 +1721,6 @@
       "card_name": "Capture Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3611,10 +1736,6 @@
       "card_name": "Twin Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh2/rebel-clash/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3630,10 +1751,6 @@
       "card_name": "Galarian Mr. Rime",
       "proposed_variant_key": "play_pok_mon_thank_you_stamp",
       "stamp_label": "Play! PokéMon, Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3649,29 +1766,6 @@
       "card_name": "Dedenne",
       "proposed_variant_key": "play_pok_mon_thank_you_stamp",
       "stamp_label": "Play! PokéMon, Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "82",
-      "card_name": "Sinistea",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3687,67 +1781,6 @@
       "card_name": "Polteageist",
       "proposed_variant_key": "play_pok_mon_thank_you_stamp",
       "stamp_label": "Play! PokéMon, Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "102",
-      "card_name": "Spinarak",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "103",
-      "card_name": "Ariados",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "110",
-      "card_name": "Hydreigon",
-      "proposed_variant_key": "thank_you_stamp",
-      "stamp_label": "Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3763,10 +1796,6 @@
       "card_name": "Bunnelby",
       "proposed_variant_key": "play_pok_mon_thank_you_stamp",
       "stamp_label": "Play! PokéMon, Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3782,10 +1811,6 @@
       "card_name": "Bird Keeper",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3801,29 +1826,6 @@
       "card_name": "Cape of Toughness",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh3",
-      "set_name": "Darkness Ablaze",
-      "card_number": "165",
-      "card_name": "Piers",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3839,125 +1841,7 @@
       "card_name": "Turbo Patch",
       "proposed_variant_key": "play_pok_mon_thank_you_stamp",
       "stamp_label": "Play! PokéMon, Thank You Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh3/darkness-ablaze/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "19",
-      "card_name": "Dhelmise",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "53",
-      "card_name": "Blitzle",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "54",
-      "card_name": "Zebstrika",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "69",
-      "card_name": "Duskull",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "70",
-      "card_name": "Dusclops",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "card_number": "95",
-      "card_name": "Lycanroc",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -3972,10 +1856,6 @@
       "card_name": "Snorlax",
       "proposed_variant_key": "vivid_voltage_stamp",
       "stamp_label": "Vivid Voltage Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -3991,10 +1871,6 @@
       "card_name": "League Staff",
       "proposed_variant_key": "league_cup_staff_stamp",
       "stamp_label": "League Cup Staff Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4010,31 +1886,7 @@
       "card_name": "Nessa",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh4/vivid-voltage/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "8",
-      "card_name": "Cherrim",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -4049,30 +1901,6 @@
       "card_name": "Octillery",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "69",
-      "card_name": "Cubone",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4088,30 +1916,6 @@
       "card_name": "Sandaconda",
       "proposed_variant_key": "eb_games_stamp",
       "stamp_label": "EB Games Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "93",
-      "card_name": "Murkrow",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4127,49 +1931,6 @@
       "card_name": "Houndoom",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "102",
-      "card_name": "Bronzong",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "121",
-      "card_name": "Bruno",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4185,29 +1946,6 @@
       "card_name": "Cheryl",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "124",
-      "card_name": "Energy Recycler",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4223,48 +1961,6 @@
       "card_name": "Escape Rope",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "127",
-      "card_name": "Fan of Waves",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "128",
-      "card_name": "Korrina's Focus",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4280,105 +1976,6 @@
       "card_name": "Level Ball",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "130",
-      "card_name": "Phoebe",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "136",
-      "card_name": "Tool Jammer",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "137",
-      "card_name": "Tower of Darkness",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "138",
-      "card_name": "Tower of Waters",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "card_number": "139",
-      "card_name": "Urn of Vitality",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4394,10 +1991,6 @@
       "card_name": "Rapid Strike Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4413,69 +2006,7 @@
       "card_name": "Single Strike Energy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh5/battle-styles/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "55",
-      "card_name": "Gastly",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "56",
-      "card_name": "Haunter",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "64",
-      "card_name": "Cresselia",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -4490,29 +2021,6 @@
       "card_name": "Malamar",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "136",
-      "card_name": "Echoing Horn",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4528,49 +2036,6 @@
       "card_name": "Fog Crystal",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "145",
-      "card_name": "Klara",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "146",
-      "card_name": "Melony",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4586,48 +2051,6 @@
       "card_name": "Path to the Peak",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "149",
-      "card_name": "Peonia",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "card_number": "150",
-      "card_name": "Peony",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh6/chilling-reign/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4643,10 +2066,6 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4662,106 +2081,6 @@
       "card_name": "Umbreon V",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "103",
-      "card_name": "Zoroark",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "142",
-      "card_name": "Boost Shake",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "144",
-      "card_name": "Crystal Cave",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "146",
-      "card_name": "Dream Ball",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "card_number": "154",
-      "card_name": "Rescue Carrier",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4777,30 +2096,7 @@
       "card_name": "Stormy Mountains",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh7/evolving-skies/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "16",
-      "card_name": "Phantump",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -4815,29 +2111,6 @@
       "card_name": "Vulpix",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "30",
-      "card_name": "Ninetales",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -4853,276 +2126,6 @@
       "card_name": "Sizzlipede",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "49",
-      "card_name": "Centiskorch",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "91",
-      "card_name": "Shinx",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "92",
-      "card_name": "Luxio",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "93",
-      "card_name": "Luxray",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "102",
-      "card_name": "Zeraora",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "109",
-      "card_name": "Morpeko",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "162",
-      "card_name": "Carvanha",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "163",
-      "card_name": "Sharpedo",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "167",
-      "card_name": "Darkrai",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "170",
-      "card_name": "Zorua",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "171",
-      "card_name": "Zoroark",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "226",
-      "card_name": "Bug Catcher",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "228",
-      "card_name": "Cook",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh8",
-      "set_name": "Fusion Strike",
-      "card_number": "240",
-      "card_name": "Shauna",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh8/fusion-strike/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5138,67 +2141,6 @@
       "card_name": "Manaphy",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "60",
-      "card_name": "Duskull",
-      "proposed_variant_key": "pikachu_jack_o_lantern_stamp",
-      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "61",
-      "card_name": "Dusclops",
-      "proposed_variant_key": "pikachu_pumpkin_stamp",
-      "stamp_label": "Pikachu Pumpkin Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "126",
-      "card_name": "Tornadus",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5214,69 +2156,6 @@
       "card_name": "Boss's Orders",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "134",
-      "card_name": "Cheren's Care",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "137",
-      "card_name": "Collapsed Stadium",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "138",
-      "card_name": "Cynthia's Ambition",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5292,10 +2171,6 @@
       "card_name": "Magma Basin",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5311,30 +2186,6 @@
       "card_name": "Professor's Research",
       "proposed_variant_key": "professor_program_stamp",
       "stamp_label": "Professor Program Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "card_number": "148",
-      "card_name": "Roseanne's Backup",
-      "proposed_variant_key": "prize_pack_stamp",
-      "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swsh9/brilliant-stars/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5350,11 +2201,6 @@
       "card_name": "Moltres",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5370,11 +2216,6 @@
       "card_name": "Lucario",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5390,11 +2231,6 @@
       "card_name": "Liepard",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5410,31 +2246,6 @@
       "card_name": "Bibarel",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "swshp",
-      "set_name": "SWSH Black Star Promos",
-      "card_number": "SWSH193",
-      "card_name": "Galarian Obstagoon",
-      "proposed_variant_key": "battle_academy_deck_mark",
-      "stamp_label": "Battle Academy Deck Mark",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5450,11 +2261,6 @@
       "card_name": "Leafeon VSTAR",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5470,11 +2276,6 @@
       "card_name": "Glaceon VSTAR",
       "proposed_variant_key": "prize_pack_stamp",
       "stamp_label": "Prize Pack Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5490,11 +2291,6 @@
       "card_name": "Hisuian Basculegion",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5510,11 +2306,6 @@
       "card_name": "Wyrdeer",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5530,11 +2321,6 @@
       "card_name": "Hisuian Samurott",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5550,11 +2336,6 @@
       "card_name": "Magnezone",
       "proposed_variant_key": "prerelease_stamp",
       "stamp_label": "Prerelease Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5570,11 +2351,6 @@
       "card_name": "Champions Festival",
       "proposed_variant_key": "quarter_finalist_stamp",
       "stamp_label": "Quarter Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/swshp/sword-shield-black-star-promos/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5590,11 +2366,6 @@
       "card_name": "Pumpkaboo",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5610,11 +2381,6 @@
       "card_name": "Solrock",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5626,48 +2392,10 @@
     {
       "set_key": "xy1",
       "set_name": "XY",
-      "card_number": "85",
-      "card_name": "Aegislash",
-      "proposed_variant_key": "regional_championships_stamp",
-      "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
-          "source_title": "Aegislash - 85/146 - Reverse Holo - Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Regional Championships Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-staff-regional-championships-xy/xy1-85-3-83/",
-          "source_title": "Aegislash - 85/146 - Reverse Holo - Staff Regional Championships - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff Regional Championships Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy1",
-      "set_name": "XY",
       "card_number": "123",
       "card_name": "Professor's Letter",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy1/xy/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5683,12 +2411,6 @@
       "card_name": "Lucario",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cosmos",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy10/fates-collide/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5704,65 +2426,7 @@
       "card_name": "Volcarona",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy11/steam-siege/",
-      "status": "no_exact_pokecardvalues_match",
-      "match_count": 0,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": []
-    },
-    {
-      "set_key": "xy11",
-      "set_name": "Steam Siege",
-      "card_number": "103",
-      "card_name": "Ninja Boy",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy11/steam-siege/",
-      "status": "blocked_multiple_matching_stamp_variants",
-      "match_count": 2,
-      "accepted_finish_key": null,
-      "accepted_source_url": null,
-      "accepted_source_title": null,
-      "reviewed_matches": [
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/ninja-boy-103-114-reverse-holo-league-promo-steam-siege/xy11-103-3-41/",
-          "source_title": "Ninja Boy - 103/114 - Reverse Holo - League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "League Promo Promo"
-        },
-        {
-          "source_url": "https://pokecardvalues.co.uk/cards/ninja-boy-103-114-reverse-holo-staff-league-promo-steam-siege/xy11-103-3-78/",
-          "source_title": "Ninja Boy - 103/114 - Reverse Holo - Staff League Promo - Promo",
-          "finish_key": "reverse",
-          "variant_text": "Staff League Promo Promo"
-        }
-      ]
-    },
-    {
-      "set_key": "xy12",
-      "set_name": "Evolutions",
-      "card_number": "53",
-      "card_name": "Mew",
-      "proposed_variant_key": "league_stamp",
-      "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
-      "source_set_url": "https://pokecardvalues.co.uk/sets/xy12/evolutions/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
       "accepted_finish_key": null,
@@ -5773,15 +2437,10 @@
     {
       "set_key": "xy12",
       "set_name": "Evolutions",
-      "card_number": "90",
-      "card_name": "Double Colorless Energy",
-      "proposed_variant_key": "national_championships_stamp",
-      "stamp_label": "National Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
+      "card_number": "53",
+      "card_name": "Mew",
+      "proposed_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy12/evolutions/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5797,11 +2456,6 @@
       "card_name": "Shelmet",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy3/furious-fists/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5817,11 +2471,6 @@
       "card_name": "Torchic",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy3/furious-fists/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5837,11 +2486,6 @@
       "card_name": "Blaziken",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy3/furious-fists/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5857,11 +2501,6 @@
       "card_name": "Klefki",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy4/phantom-forces/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5877,11 +2516,6 @@
       "card_name": "Pikachu",
       "proposed_variant_key": "mcdonalds_stamp",
       "stamp_label": "McDonald's Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy6/roaring-skies/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5897,11 +2531,6 @@
       "card_name": "Marowak",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy8/breakthrough/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5917,11 +2546,6 @@
       "card_name": "Giovanni's Scheme",
       "proposed_variant_key": "regional_championships_stamp",
       "stamp_label": "Regional Championships Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy8/breakthrough/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5937,12 +2561,6 @@
       "card_name": "Greninja",
       "proposed_variant_key": "league_stamp",
       "stamp_label": "League Stamp",
-      "base_parent_child_finishes": [
-        "cracked_ice",
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy9/breakpoint/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5958,11 +2576,6 @@
       "card_name": "Misty's Determination",
       "proposed_variant_key": "regional_championships_staff_stamp",
       "stamp_label": "Regional Championships Staff Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xy9/breakpoint/",
       "status": "no_exact_pokecardvalues_match",
       "match_count": 0,
@@ -5978,11 +2591,6 @@
       "card_name": "Champions Festival",
       "proposed_variant_key": "finalist_stamp",
       "stamp_label": "Finalist Stamp",
-      "base_parent_child_finishes": [
-        "holo",
-        "normal",
-        "reverse"
-      ],
       "source_set_url": "https://pokecardvalues.co.uk/sets/xyp/xy-black-star-promos/",
       "status": "blocked_multiple_matching_stamp_variants",
       "match_count": 2,
@@ -6005,5 +2613,40 @@
       ]
     }
   ],
-  "records": []
+  "records": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/champions-festival-bw95-non-holo-quarter-finalist-worlds-promo-bw-black-star-promos/bwp-BW95-2-56/",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Champions Festival - BW95 - Non-Holo - Quarter-Finalist Worlds Promo - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T05:48:33.992Z",
+      "raw_snapshot_ref": "pokecardvalues:bwp:BW95:quarter_finalist_stamp:normal",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    },
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/dragonite-2-146-non-holo-staff-national-championships-legends-awakened/dp6-2-2-80/",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Dragonite - 2/146 - Non-Holo - Staff National Championships - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-22T05:48:33.992Z",
+      "raw_snapshot_ref": "pokecardvalues:dp6:2:staff_stamp:normal",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    }
+  ]
 }

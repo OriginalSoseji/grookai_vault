@@ -1,0 +1,138 @@
+{
+  "package_id": "SECOND-SOURCE-FOUND-MANUAL-CANDIDATES-V1",
+  "generated_at": "2026-06-21",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "write_ready_now": 0
+  },
+  "summary": {
+    "manual_candidates_preserved": 6,
+    "write_ready_now": 0,
+    "requires_followup_readiness_route": 6
+  },
+  "rows": [
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "026",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "candidate_finish_key": "cosmos",
+      "status": "second_source_found_existing_parent_route_needed",
+      "source_urls": [
+        "https://www.hobbyscan.com/card/379797",
+        "https://magicmadhouse.co.uk/pokemon-1/?page=21"
+      ],
+      "evidence_labels": [
+        "HobbyScan exact card page lists ME02 Phantasmal Flames #026 Suicune with Holo and EB Games Stamp features.",
+        "Magic Madhouse product listing identifies ME Phantasmal Flames 026/094 Suicune as Cosmo Holo EB Games Stamp."
+      ],
+      "why_not_write_ready": "The broader conflict/readiness lane reports target_parent_already_exists for this identity. This should feed existing-parent reconciliation, not parent insertion."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "stamp_label": "Europe Championships Staff Stamp",
+      "candidate_finish_key": "reverse",
+      "status": "second_source_found_needs_readiness_route",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/588122/pokemon-league-and-championship-cards-ultra-ball-135-149-europe-championships",
+        "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Ultra Ball 135/149 Europe Championships.",
+        "Pokumon exact card page identifies Europe Championships Staff Ultra Ball 135/149 as Reverse Holo European International Championships 2017-2018 Staff promo."
+      ],
+      "why_not_write_ready": "New evidence has not yet been passed through a guarded readiness script."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "083",
+      "card_name": "Honedge",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "candidate_finish_key": "holo",
+      "status": "second_source_found_needs_readiness_route",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/267992/pokemon-league-and-championship-cards-honedge-83-146-regional-championships-staff",
+        "https://pokumon.com/card/staff-honedge-83-146-regional-championships-special-print/",
+        "https://pokescope.app/card/xy1-83/"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Honedge 83/146 Regional Championships Staff.",
+        "Pokumon exact card page identifies Staff Honedge 83/146 as Crosshatch Holo Autumn Regional Championships 2014-2015 promo.",
+        "PokeScope exact card page snippet identifies XY Honedge 83 Holo Crosshatch 2014 Autumn Regional Championships STAFF."
+      ],
+      "why_not_write_ready": "New evidence has not yet been passed through a guarded readiness script."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "085",
+      "card_name": "Aegislash",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "candidate_finish_key": "reverse",
+      "status": "second_source_found_existing_parent_route_needed",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/209563/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships-staff",
+        "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-staff-regional-championships-xy/xy1-85-3-83/",
+        "https://www.pricecharting.com/game/pokemon-xy/aegislash-regional-championship-staff-85"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Aegislash 85/146 Regional Championships Staff.",
+        "PokeCardValues exact card page identifies Aegislash 85/146 Reverse Holo Staff Regional Championships.",
+        "PriceCharting product page identifies Aegislash Regional Championship Staff #85."
+      ],
+      "why_not_write_ready": "The broader conflict/readiness lane reports a target parent already exists for related Aegislash regional championship identity. This should feed existing-parent reconciliation, not parent insertion."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "candidate_finish_key": "holo",
+      "status": "context_only_not_target_variant",
+      "source_urls": [
+        "https://www.pricecharting.com/game/pokemon-sun-%26-moon/ultra-ball-championships-staff-north-america-135"
+      ],
+      "evidence_labels": [
+        "PriceCharting identifies Ultra Ball Championships Staff North America #135, which is useful context but not the target Europe Championships Staff row."
+      ],
+      "why_not_write_ready": "Context source is a different event/region than the target Europe Championships Staff row."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "candidate_finish_key": "reverse",
+      "status": "second_source_found_needs_readiness_route",
+      "source_urls": [
+        "https://www.cgccards.com/population-report/tcg/pok%C3%A9mon/2/black-and-white/947/dark-explorers/17212/?page=2&populationID=478993",
+        "https://www.psacard.com/psasetregistry/tcg/key-card-sets/pokemon-black-white-eeveelutions-crosshatch-promos-2012-2013-master/publishedset/586918",
+        "https://www.pikawiz.com/card/darkexplorers/vaporeon/25",
+        "https://pokecardvalues.co.uk/cards/vaporeon-25-108-non-holo-unlimited-dark-explorers/bw5-25-2-1/"
+      ],
+      "evidence_labels": [
+        "CGC population report identifies Vaporeon 25/108 Dark Explorers Regional Championships - Staff as Crosshatch Holo.",
+        "PSA Set Registry identifies 2012 Pokemon Black & White Dark Explorers Vaporeon-Holo 2012 Euro Spring Regional Championships-Staff.",
+        "Pikawiz population page separately identifies Vaporeon Staff Cross-Hatch Holo Euro Spring Regional Championships Promo.",
+        "PokeCardValues exact Vaporeon page lists Vaporeon Reverse Holo Staff Regional Championships as a related variant."
+      ],
+      "why_not_write_ready": "New evidence has not yet been passed through a guarded readiness script after the live residual refresh. Crosshatch/Holo source wording must remain mapped through the existing League/Championship alias governance before any dry-run package."
+    }
+  ]
+}

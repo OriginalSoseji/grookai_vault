@@ -12,7 +12,7 @@ import {
 
 const execFileAsync = promisify(execFile);
 
-const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json';
+const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json';
 const FIXTURE_DIR = 'docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokecardvalues_stamped_finish_v1';
 const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/pokecardvalues_stamped_finish_acquisition_v1';
 const CACHE_DIR = path.join(REPORT_DIR, 'cache');
@@ -233,8 +233,17 @@ function finishFromLabel(value) {
 
 function targetRows(report, options) {
   return (report.rows ?? [])
-    .filter((row) => row.routing_status === 'blocked_missing_exact_finish_phrase')
+    .map((row) => ({
+      ...row,
+      proposed_variant_key: row.proposed_variant_key ?? row.variant_key,
+    }))
+    .filter((row) => (
+      row.routing_status === 'blocked_missing_exact_finish_phrase'
+      || row.queue_status === 'active_finish_required'
+    ))
     .filter((row) => row.proposed_variant_key && row.proposed_variant_key !== 'stamped')
+    .filter((row) => row.action_bucket !== 'display_metadata_no_write')
+    .filter((row) => !row.live_satisfied)
     .filter((row) => !options.sets || options.sets.has(normalizeText(row.set_key)))
     .sort((a, b) => String(a.set_key).localeCompare(String(b.set_key))
       || String(a.card_number).localeCompare(String(b.card_number), undefined, { numeric: true })
@@ -244,21 +253,22 @@ function targetRows(report, options) {
 function variantMatches(row, card) {
   const variantText = normalizeText(card.variant_text);
   const stampLabel = normalizeText(row.stamp_label);
-  const variantKey = normalizeText(row.proposed_variant_key).replace(/_/g, ' ');
+  const normalizedVariantKey = row.proposed_variant_key ?? row.variant_key;
+  const variantKey = normalizeText(normalizedVariantKey).replace(/_/g, ' ');
 
-  if (row.proposed_variant_key === 'staff_stamp') {
+  if (normalizedVariantKey === 'staff_stamp') {
     return /\bstaff\b/.test(variantText);
   }
-  if (row.proposed_variant_key === 'battle_academy_deck_mark') {
+  if (normalizedVariantKey === 'battle_academy_deck_mark') {
     return /\bbattle academy\b/.test(variantText);
   }
-  if (row.proposed_variant_key === 'prerelease_stamp') {
+  if (normalizedVariantKey === 'prerelease_stamp') {
     return /\bprerelease stamp\b/.test(variantText) && !/\bstaff\b/.test(variantText);
   }
-  if (row.proposed_variant_key === 'play_pokemon_stamp') {
+  if (normalizedVariantKey === 'play_pokemon_stamp') {
     return /\bplay\b/.test(variantText) && /\bpokemon\b/.test(variantText);
   }
-  if (row.proposed_variant_key?.includes('burger_king')) {
+  if (normalizedVariantKey?.includes('burger_king')) {
     return /\bburger king\b/.test(variantText);
   }
 
@@ -279,9 +289,10 @@ function variantMatches(row, card) {
 }
 
 function cardMatches(row, card) {
+  const allowedFinishes = row.base_parent_child_finishes ?? [];
   return compactNumber(row.card_number) === compactNumber(card.card_number)
     && cardComparable(row.card_name) === cardComparable(card.card_name)
-    && (row.base_parent_child_finishes ?? []).includes(card.finish_key)
+    && (!allowedFinishes.length || allowedFinishes.includes(card.finish_key))
     && variantMatches(row, card);
 }
 
@@ -317,7 +328,6 @@ function fixtureRecord(row, card, generatedAt) {
 
 async function writeFixtures(records, generatedAt, dryRun) {
   if (dryRun || records.length === 0) return [];
-  await fs.rm(FIXTURE_DIR, { recursive: true, force: true });
   const bySet = new Map();
   for (const record of records) {
     if (!bySet.has(record.set_key)) bySet.set(record.set_key, []);
@@ -325,10 +335,23 @@ async function writeFixtures(records, generatedAt, dryRun) {
   }
   const files = [];
   for (const [setKey, setRecords] of bySet) {
+    const filePath = path.join(FIXTURE_DIR, `${setKey}.json`);
+    let existingRecords = [];
+    try {
+      const existing = await readJson(filePath);
+      existingRecords = existing.records ?? [];
+    } catch {
+      existingRecords = [];
+    }
+    const mergedRecords = [...existingRecords, ...setRecords];
+    const dedupedRecords = [...new Map(mergedRecords.map((record) => [
+      record.raw_snapshot_ref ?? `${record.source_key}:${record.set_key}:${record.card_number}:${record.card_name}:${record.finish_key}`,
+      record,
+    ])).values()];
     const fixture = {
       source_key: `${SOURCE_KEY}_${setKey}`,
       source_kind: 'collector_reference',
-      source_url: setRecords[0]?.source_url ?? SETS_URL,
+      source_url: dedupedRecords[0]?.source_url ?? SETS_URL,
       source_status: 'available_generated_fixture',
       generated_at: generatedAt,
       retrieved_at: generatedAt,
@@ -337,11 +360,10 @@ async function writeFixtures(records, generatedAt, dryRun) {
       db_writes_performed: false,
       migrations_created: false,
       generation_note: 'Generated from Poke Card Values structured set/card titles for remaining stamped finish blockers only.',
-      records: setRecords.sort((a, b) => String(a.card_number).localeCompare(String(b.card_number), undefined, { numeric: true })
+      records: dedupedRecords.sort((a, b) => String(a.card_number).localeCompare(String(b.card_number), undefined, { numeric: true })
         || String(a.card_name).localeCompare(String(b.card_name))
         || String(a.finish_key).localeCompare(String(b.finish_key))),
     };
-    const filePath = path.join(FIXTURE_DIR, `${setKey}.json`);
     await writeJson(filePath, fixture);
     files.push(filePath);
   }

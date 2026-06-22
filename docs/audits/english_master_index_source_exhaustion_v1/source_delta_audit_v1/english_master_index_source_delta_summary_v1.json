@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_source_delta_summary_v1",
-  "generated_at": "2026-06-13T00:03:35.295Z",
+  "generated_at": "2026-06-22T15:00:19.065Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -8,25 +8,36 @@
   "quarantine_performed": false,
   "rule": "Existing source lanes are delta-tested against current remaining gaps before any global rebuild or new acquisition work.",
   "summary": {
-    "sources_reviewed": 46,
-    "candidate_records_loaded": 106904,
-    "matched_gap_facts": 113,
-    "useful_candidate_matches": 0,
-    "already_in_current_index": 101080,
+    "sources_reviewed": 54,
+    "candidate_records_loaded": 107141,
+    "matched_gap_facts": 114,
+    "useful_candidate_matches": 1,
+    "already_in_current_index": 101316,
     "unmatched_candidate_records": 5711,
-    "useful_unabsorbed_source_lanes": 0,
-    "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
+    "useful_unabsorbed_source_lanes": 1,
+    "conclusion": "Review useful source lanes before any guarded rebuild."
   },
   "by_delta_status": {
     "same_source_or_authority": 94,
     "candidate_context": 1,
-    "potential_conflict_finish_absence": 18
+    "potential_conflict_finish_absence": 18,
+    "suppressed_claim_review_evidence": 1
   },
   "by_unmatched_reason": {
-    "already_in_current_index_master_verified": 101080,
+    "already_in_current_index_master_verified": 101316,
     "not_in_remaining_gaps_or_current_index": 5711
   },
   "sources": [
+    {
+      "source_key": "astral_radiance_prerelease_finish_evidence_v1",
+      "candidate_records_loaded": 8,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 8,
+      "unmatched_candidate_records": 0,
+      "delta_report": "astral_radiance_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
     {
       "source_key": "binderbuilder_set_variant",
       "candidate_records_loaded": 188,
@@ -35,6 +46,16 @@
       "already_in_current_index": 184,
       "unmatched_candidate_records": 4,
       "delta_report": "binderbuilder_set_variant_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "brilliant_stars_prerelease_finish_evidence_v1",
+      "candidate_records_loaded": 8,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 8,
+      "unmatched_candidate_records": 0,
+      "delta_report": "brilliant_stars_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
@@ -102,8 +123,8 @@
       "candidate_records_loaded": 2,
       "matched_gap_facts": 0,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 1,
-      "unmatched_candidate_records": 1,
+      "already_in_current_index": 2,
+      "unmatched_candidate_records": 0,
       "delta_report": "cardtrader_stamped_finish_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
@@ -268,6 +289,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "pkmngg_stamped_finish",
+      "candidate_records_loaded": 51,
+      "matched_gap_facts": 1,
+      "useful_candidate_matches": 1,
+      "already_in_current_index": 49,
+      "unmatched_candidate_records": 1,
+      "delta_report": "pkmngg_stamped_finish_source_delta_audit_v1.json",
+      "status": "candidate_review_needed"
+    },
+    {
       "source_key": "pokecardvalues_stamped_finish",
       "candidate_records_loaded": 31,
       "matched_gap_facts": 0,
@@ -328,6 +359,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "pokumon_stamped_special_candidate",
+      "candidate_records_loaded": 117,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 117,
+      "unmatched_candidate_records": 0,
+      "delta_report": "pokumon_stamped_special_candidate_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "pricecharting_csv_base_product",
       "candidate_records_loaded": 13,
       "matched_gap_facts": 0,
@@ -368,6 +409,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "pricecharting_league_active_finish",
+      "candidate_records_loaded": 0,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 0,
+      "unmatched_candidate_records": 0,
+      "delta_report": "pricecharting_league_active_finish_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "pricecharting",
       "candidate_records_loaded": 18,
       "matched_gap_facts": 0,
@@ -375,6 +426,16 @@
       "already_in_current_index": 17,
       "unmatched_candidate_records": 1,
       "delta_report": "pricecharting_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "pricecharting_stamp_label",
+      "candidate_records_loaded": 42,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 42,
+      "unmatched_candidate_records": 0,
+      "delta_report": "pricecharting_stamp_label_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
@@ -388,6 +449,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "professor_program_finish_evidence_v1",
+      "candidate_records_loaded": 1,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 1,
+      "unmatched_candidate_records": 0,
+      "delta_report": "professor_program_finish_evidence_v1_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "reverseholo_set_checklist",
       "candidate_records_loaded": 23765,
       "matched_gap_facts": 0,
@@ -395,6 +466,16 @@
       "already_in_current_index": 18933,
       "unmatched_candidate_records": 4832,
       "delta_report": "reverseholo_set_checklist_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "second_source_needed_finish_evidence_v1",
+      "candidate_records_loaded": 10,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 10,
+      "unmatched_candidate_records": 0,
+      "delta_report": "second_source_needed_finish_evidence_v1_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {

@@ -6,30 +6,32 @@ Audit-only summary of existing source lanes tested against the current remaining
 
 | Metric | Value |
 | --- | --- |
-| sources_reviewed | 46 |
-| candidate_records_loaded | 106904 |
-| matched_gap_facts | 113 |
-| useful_candidate_matches | 0 |
-| already_in_current_index | 101080 |
+| sources_reviewed | 54 |
+| candidate_records_loaded | 107141 |
+| matched_gap_facts | 114 |
+| useful_candidate_matches | 1 |
+| already_in_current_index | 101316 |
 | unmatched_candidate_records | 5711 |
-| useful_unabsorbed_source_lanes | 0 |
+| useful_unabsorbed_source_lanes | 1 |
 
 ## Conclusion
 
-Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition.
+Review useful source lanes before any guarded rebuild.
 
 ## Source Lanes
 
 | Source | Loaded | Matched Gaps | Useful | Already In Index | Unmatched | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| astral_radiance_prerelease_finish_evidence_v1 | 8 | 0 | 0 | 8 | 0 | no_useful_unabsorbed_gap_evidence |
 | binderbuilder_set_variant | 188 | 0 | 0 | 184 | 4 | no_useful_unabsorbed_gap_evidence |
+| brilliant_stars_prerelease_finish_evidence_v1 | 8 | 0 | 0 | 8 | 0 | no_useful_unabsorbed_gap_evidence |
 | bulbapedia_build_battle_product | 118 | 0 | 0 | 95 | 23 | no_useful_unabsorbed_gap_evidence |
 | bulbapedia_card_page_release_info | 317 | 0 | 0 | 275 | 42 | no_useful_unabsorbed_gap_evidence |
 | bulbapedia_prize_pack_current_gap_finish | 164 | 0 | 0 | 164 | 0 | no_useful_unabsorbed_gap_evidence |
 | bulbapedia_prize_pack_normal | 77 | 15 | 0 | 62 | 0 | no_useful_unabsorbed_gap_evidence |
 | bulbapedia_sv03_additional_stamped_active_finish | 4 | 0 | 0 | 3 | 1 | no_useful_unabsorbed_gap_evidence |
 | cardtrader_blueprint_index | 1297 | 1 | 0 | 1185 | 111 | no_useful_unabsorbed_gap_evidence |
-| cardtrader_stamped_finish | 2 | 0 | 0 | 1 | 1 | no_useful_unabsorbed_gap_evidence |
+| cardtrader_stamped_finish | 2 | 0 | 0 | 2 | 0 | no_useful_unabsorbed_gap_evidence |
 | doubleholo_set_checklist | 52 | 0 | 0 | 52 | 0 | no_useful_unabsorbed_gap_evidence |
 | elitefourum_alternate_checklist | 50 | 0 | 0 | 50 | 0 | no_useful_unabsorbed_gap_evidence |
 | eyevo_identity | 169 | 0 | 0 | 169 | 0 | no_useful_unabsorbed_gap_evidence |
@@ -46,19 +48,25 @@ Existing generated source lanes do not contain useful unabsorbed evidence for cu
 | pkmncollectors_futsal | 4 | 0 | 0 | 4 | 0 | no_useful_unabsorbed_gap_evidence |
 | pkmncollectors_sm1_energy | 9 | 0 | 0 | 9 | 0 | no_useful_unabsorbed_gap_evidence |
 | pkmncollectors_xya | 4 | 0 | 0 | 4 | 0 | no_useful_unabsorbed_gap_evidence |
+| pkmngg_stamped_finish | 51 | 1 | 1 | 49 | 1 | candidate_review_needed |
 | pokecardvalues_stamped_finish | 31 | 0 | 0 | 31 | 0 | no_useful_unabsorbed_gap_evidence |
 | pokellector_set_checklist | 2 | 0 | 0 | 2 | 0 | no_useful_unabsorbed_gap_evidence |
 | pokemoncard_io_price_breakdown | 18 | 0 | 0 | 3 | 15 | no_useful_unabsorbed_gap_evidence |
 | pokescope_pl2_variant | 3 | 0 | 0 | 3 | 0 | no_useful_unabsorbed_gap_evidence |
 | pokescope_variant | 0 | 0 | 0 | 0 | 0 | no_useful_unabsorbed_gap_evidence |
 | pokex_set_checklist | 1 | 0 | 0 | 1 | 0 | no_useful_unabsorbed_gap_evidence |
+| pokumon_stamped_special_candidate | 117 | 0 | 0 | 117 | 0 | no_useful_unabsorbed_gap_evidence |
 | pricecharting_csv_base_product | 13 | 0 | 0 | 13 | 0 | no_useful_unabsorbed_gap_evidence |
 | pricecharting_csv_product | 2 | 0 | 0 | 2 | 0 | no_useful_unabsorbed_gap_evidence |
 | pricecharting_csv_product_stamp | 9 | 0 | 0 | 9 | 0 | no_useful_unabsorbed_gap_evidence |
 | pricecharting_csv | 421 | 0 | 0 | 421 | 0 | no_useful_unabsorbed_gap_evidence |
+| pricecharting_league_active_finish | 0 | 0 | 0 | 0 | 0 | no_useful_unabsorbed_gap_evidence |
 | pricecharting | 18 | 0 | 0 | 17 | 1 | no_useful_unabsorbed_gap_evidence |
+| pricecharting_stamp_label | 42 | 0 | 0 | 42 | 0 | no_useful_unabsorbed_gap_evidence |
 | prize_pack_current_gap_cross_source | 24 | 16 | 0 | 8 | 0 | no_useful_unabsorbed_gap_evidence |
+| professor_program_finish_evidence_v1 | 1 | 0 | 0 | 1 | 0 | no_useful_unabsorbed_gap_evidence |
 | reverseholo_set_checklist | 23765 | 0 | 0 | 18933 | 4832 | no_useful_unabsorbed_gap_evidence |
+| second_source_needed_finish_evidence_v1 | 10 | 0 | 0 | 10 | 0 | no_useful_unabsorbed_gap_evidence |
 | tcdb_checklist | 5 | 0 | 0 | 3 | 2 | no_useful_unabsorbed_gap_evidence |
 | tcgcollector_card_variants | 1533 | 0 | 0 | 1181 | 352 | no_useful_unabsorbed_gap_evidence |
 | tcgcsv_prize_pack_catalog | 7 | 0 | 0 | 7 | 0 | no_useful_unabsorbed_gap_evidence |

@@ -1,0 +1,42 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "event_staff_exact_source_evidence_v1",
+  "generated_at": "2026-06-22T15:12:09.142Z",
+  "generation_note": "Audit-only event/staff exact active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.gamenerdz.com/mistys-determination-104-122-regional-championships-staff-104-league-championship-cards-reverse-holofoil",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "gamenerdz_mistys_determination_regional_staff_reverse_104: exact Regional Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:xy9:104:regional_championships_staff_stamp:gamenerdz_mistys_determination_regional_staff_reverse_104",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    },
+    {
+      "source_key": "event_staff_exact_source_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/mistys-determination-104-122-reverse-holo-unlimited-breakpoint/xy9-104-3-1/",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_mistys_determination_regional_staff_reverse_104: exact Regional Championships Staff Stamp active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T15:12:09.142Z",
+      "raw_snapshot_ref": "event_staff_exact_source_evidence_v1:xy9:104:regional_championships_staff_stamp:pokecardvalues_mistys_determination_regional_staff_reverse_104",
+      "notes": "Audit-only event/staff fixture. Accepted only when source text proves exact set/card identity, event/stamp family, and active finish."
+    }
+  ]
+}

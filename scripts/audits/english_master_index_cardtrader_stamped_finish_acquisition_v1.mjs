@@ -8,7 +8,7 @@ import {
   normalizeText,
 } from './verified_master_set_index_v1/shared.mjs';
 
-const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json';
+const INPUT_JSON = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json';
 const BLUEPRINT_CACHE = 'docs/audits/english_master_index_source_exhaustion_v1/cardtrader_acquisition_v1/cache/cardtrader_blueprints_pokemon.json';
 const FIXTURE_DIR = 'docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_stamped_finish_v1';
 const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/cardtrader_stamped_finish_acquisition_v1';
@@ -156,14 +156,23 @@ function rowKey(row) {
     normalizeText(row.set_key),
     normalizeNumber(row.card_number),
     comparable(row.card_name),
-    normalizeText(row.proposed_variant_key),
+    normalizeText(row.proposed_variant_key ?? row.variant_key),
   ].join('|');
 }
 
 function targetRows(report, options) {
   return (report.rows ?? [])
-    .filter((row) => row.routing_status === 'blocked_missing_exact_finish_phrase')
+    .map((row) => ({
+      ...row,
+      proposed_variant_key: row.proposed_variant_key ?? row.variant_key,
+    }))
+    .filter((row) => (
+      row.routing_status === 'blocked_missing_exact_finish_phrase'
+      || row.queue_status === 'active_finish_required'
+    ))
     .filter((row) => row.proposed_variant_key && row.proposed_variant_key !== 'stamped')
+    .filter((row) => row.action_bucket !== 'display_metadata_no_write')
+    .filter((row) => !row.live_satisfied)
     .filter((row) => !options.sets || options.sets.has(normalizeText(row.set_key)))
     .sort((left, right) => String(left.set_key).localeCompare(String(right.set_key))
       || String(left.card_number).localeCompare(String(right.card_number), undefined, { numeric: true })
@@ -178,7 +187,7 @@ function setMatches(row, blueprint) {
 
 function variantMatches(row, blueprint) {
   const label = comparable(`${blueprint.variant_label} ${blueprint.source_id}`);
-  const variantKey = normalizeText(row.proposed_variant_key);
+  const variantKey = normalizeText(row.proposed_variant_key ?? row.variant_key);
   const stampLabel = comparable(row.stamp_label);
 
   if (variantKey === 'jr_stamp_rally') return /\bjr\s+stamp\s+rally\b/.test(label);

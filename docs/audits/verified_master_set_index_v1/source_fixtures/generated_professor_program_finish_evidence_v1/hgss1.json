@@ -1,0 +1,25 @@
+{
+  "schema_version": "verified_master_set_index_source_fixture_v1",
+  "source_key": "professor_program_finish_evidence_v1",
+  "generated_at": "2026-06-22T14:52:08.381Z",
+  "generation_note": "Audit-only Professor Program second-source active finish evidence. No copyrighted page dumps stored.",
+  "records": [
+    {
+      "source_key": "professor_program_finish_evidence_v1",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokecardvalues.co.uk/cards/professor-elms-training-method-100-123-non-holo-unlimited-heartgold-soulsilver/hgss1-100-2-1/",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "100",
+      "card_name": "Professor Elm's Training Method",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "pokecardvalues_professor_elms_training_method_professor_program_reverse_100: exact Professor Program active finish reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-22T14:52:08.381Z",
+      "raw_snapshot_ref": "professor_program_finish_evidence_v1:hgss1:100:pokecardvalues_professor_elms_training_method_professor_program_reverse_100",
+      "notes": "Audit-only second-source fixture. Accepted only when source text proves set/card identity, Professor Program stamp, and active finish."
+    }
+  ]
+}
