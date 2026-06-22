@@ -127,10 +127,35 @@ function normalizeOptionalText(value: unknown) {
 
 function normalizeSearchText(value: unknown) {
   return normalizeOptionalText(value)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .replace(/[_-]+/g, " ")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function rowMatchesResidualQuery(row: ExploreResultCard, query: string) {
+  const tokens = normalizeSearchText(query)
+    .split(" ")
+    .filter((token) => token.length >= 3);
+
+  if (tokens.length === 0) {
+    return true;
+  }
+
+  const haystack = normalizeSearchText([
+    row.name,
+    row.set_name,
+    row.set_code,
+    row.number,
+    row.variant_key,
+    row.printed_identity_modifier,
+    row.display_discriminator,
+    row.finish_label,
+  ].filter(Boolean).join(" "));
+
+  return tokens.every((token) => haystack.includes(token));
 }
 
 function rowMatchesFinish(row: ExploreResultCard, finishKeys: string[]) {
@@ -153,6 +178,7 @@ function rowMatchesStamp(row: ExploreResultCard, stampLabels: string[]) {
     return true;
   }
 
+  const normalizedSetCode = normalizeSearchText(row.set_code);
   const haystack = normalizeSearchText([
     row.variant_key,
     row.printed_identity_modifier,
@@ -160,7 +186,15 @@ function rowMatchesStamp(row: ExploreResultCard, stampLabels: string[]) {
     row.finish_label,
   ].filter(Boolean).join(" "));
 
-  return stampLabels.some((label) => {
+  return stampLabels.every((label) => {
+    const normalizedLabel = normalizeSearchText(label);
+    if (normalizedLabel.includes("first partner")) {
+      return normalizedSetCode === "mep";
+    }
+    if (normalizedLabel.includes("poke card creator")) {
+      return normalizedSetCode === "ex5 5";
+    }
+
     const tokens = normalizeSearchText(label)
       .split(" ")
       .filter((token) => token && token !== "stamp" && token !== "workshop");
@@ -372,10 +406,28 @@ export async function GET(request: NextRequest) {
                 finishKeys: effectiveSmartSearchIntent.finishKeys,
                 stampLabels: effectiveSmartSearchIntent.stampLabels,
                 imageState: effectiveSmartSearchIntent.imageState,
-              }).then((rows) => ({
-                rows,
-                meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
-              }))
+              }).then(async (rows) => {
+                const fallbackRows =
+                  rows.length === 0 && hasSmartStampIntent
+                    ? await getExploreRowsForSmartFilterDiscovery({
+                        sortMode,
+                        exactSetCode,
+                        exactReleaseYear,
+                        exactIllustrator,
+                        identityFilter,
+                        releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+                        releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+                        finishKeys: effectiveSmartSearchIntent.finishKeys,
+                        stampLabels: effectiveSmartSearchIntent.stampLabels,
+                        imageState: effectiveSmartSearchIntent.imageState,
+                      })
+                    : rows;
+
+                return {
+                  rows: fallbackRows,
+                  meta: buildSmartFilterDiscoveryMeta(fallbackRows, effectiveSmartSearchIntent),
+                };
+              })
             : resolveQueryWithMeta(query, {
                 mode: "ranked",
                 sortMode,
@@ -413,7 +465,7 @@ export async function GET(request: NextRequest) {
       canonicalResults,
       promotionTransitions,
     );
-    const {
+    let {
       rows: smartFilteredCanonicalResults,
       smartSearchIntent: responseSmartSearchIntent,
     } = await applySmartSearchPostFilters(
@@ -421,6 +473,38 @@ export async function GET(request: NextRequest) {
       effectiveSmartSearchIntent,
       userId,
     );
+
+    if (
+      smartFilteredCanonicalResults.length === 0 &&
+      shouldUseStructuredTextExpansion &&
+      hasSmartStampIntent
+    ) {
+      const fallbackRows = await getExploreRowsForSmartFilterDiscovery({
+        sortMode,
+        exactSetCode,
+        exactReleaseYear,
+        exactIllustrator,
+        identityFilter,
+        releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+        releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+        finishKeys: effectiveSmartSearchIntent.finishKeys,
+        stampLabels: effectiveSmartSearchIntent.stampLabels,
+        imageState: effectiveSmartSearchIntent.imageState,
+      });
+      const residualFilteredRows = fallbackRows.filter((row) =>
+        rowMatchesResidualQuery(row, query),
+      );
+      const fallbackPostFilter = await applySmartSearchPostFilters(
+        residualFilteredRows.length > 0 ? residualFilteredRows : fallbackRows,
+        effectiveSmartSearchIntent,
+        userId,
+      );
+
+      if (fallbackPostFilter.rows.length > 0) {
+        smartFilteredCanonicalResults = fallbackPostFilter.rows;
+        responseSmartSearchIntent = fallbackPostFilter.smartSearchIntent;
+      }
+    }
     // LOCK: Canonical truth must replace promoted provisional visibility.
     // LOCK: Do not dual-render the same entity across canonical and provisional sections.
     // LOCK: Uniqueness suppression must use explicit canonical linkage only.

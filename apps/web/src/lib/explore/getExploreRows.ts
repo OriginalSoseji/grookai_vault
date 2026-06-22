@@ -472,7 +472,12 @@ function getReleaseYear(releaseDate?: string | null) {
 }
 
 function normalizeTextForMatch(value?: string | null) {
-  return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+  return (value ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
 }
 
 function normalizeCollectorToken(value?: string | null) {
@@ -2991,6 +2996,24 @@ function getSmartStampSearchTokens(stampLabels: string[]) {
   ).slice(0, 8);
 }
 
+function hasSmartLabel(stampLabels: string[], phrase: string) {
+  const normalizedPhrase = normalizeTextForMatch(phrase);
+  return stampLabels.some((label) =>
+    normalizeTextForMatch(label).includes(normalizedPhrase),
+  );
+}
+
+function getSpecialSetCodesForSmartLabels(stampLabels: string[]) {
+  const setCodes: string[] = [];
+  if (hasSmartLabel(stampLabels, "first partner")) {
+    setCodes.push("mep");
+  }
+  if (hasSmartLabel(stampLabels, "poke card creator")) {
+    setCodes.push("ex5.5");
+  }
+  return uniqueValues(setCodes);
+}
+
 function normalizeFinishKeys(finishKeys?: string[]) {
   return uniqueValues(
     (finishKeys ?? [])
@@ -3001,7 +3024,8 @@ function normalizeFinishKeys(finishKeys?: string[]) {
 
 async function fetchCardRowsByStampLabels(stampLabels: string[]) {
   const tokens = getSmartStampSearchTokens(stampLabels);
-  if (tokens.length === 0) {
+  const specialSetCodes = getSpecialSetCodesForSmartLabels(stampLabels);
+  if (tokens.length === 0 && specialSetCodes.length === 0) {
     return [] as CardPrintLookupRow[];
   }
 
@@ -3009,6 +3033,22 @@ async function fetchCardRowsByStampLabels(stampLabels: string[]) {
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
+
+  if (specialSetCodes.length > 0) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .in("set_code", specialSetCodes)
+      .limit(250);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+  }
 
   for (const tokenChunk of chunkArray(tokens, 3)) {
     const orExpression = tokenChunk

@@ -39,9 +39,13 @@ const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; resi
 ];
 
 const STAMP_PATTERNS: Array<{ pattern: RegExp; label: string; residual: string }> = [
+  { pattern: /\bfirst\s+partner(?:\s+series)?\b/gi, label: "First Partner Series", residual: "first partner" },
+  { pattern: /\bpok[eé]\s+card\s+creator(?:\s+pack)?\b/gi, label: "Poké Card Creator Pack", residual: "poke card creator" },
   { pattern: /\bbuild[-\s]?a[-\s]?bear(?:\s+workshop)?(?:\s+stamps?|\s+stamped)?\b/gi, label: "Build-A-Bear Workshop Stamp", residual: "build a bear stamp" },
   { pattern: /\btoys\s*r\s*us(?:\s+stamps?|\s+stamped)?\b/gi, label: "Toys R Us Stamp", residual: "toys r us stamp" },
   { pattern: /\bburger\s+king(?:\s+stamps?|\s+stamped)?\b/gi, label: "Burger King Stamp", residual: "burger king stamp" },
+  { pattern: /\bdragon\s+vault\s+(?:stamps?|stamped)\b/gi, label: "Dragon Vault Stamp", residual: "dragon vault stamp" },
+  { pattern: /\bgamestop(?:\s+stamps?|\s+stamped)?\b|\bgame\s+stop(?:\s+stamps?|\s+stamped)?\b/gi, label: "GameStop Stamp", residual: "gamestop stamp" },
   { pattern: /\bpokemon\s+center(?:\s+exclusive)?(?:\s+stamps?|\s+stamped)?(?:\s+promos?)?\b/gi, label: "Pokemon Center Stamp", residual: "pokemon center stamp" },
   { pattern: /\bpokemon\s+together(?:\s+stamps?|\s+stamped)?\b/gi, label: "Pokemon Together Stamp", residual: "pokemon together stamp" },
   { pattern: /\binverted\s+wb\s+kids(?:\s+promos?)?(?:\s+stamps?|\s+stamped)?\b/gi, label: "Inverted WB Kids Stamp", residual: "inverted wb kids stamp" },
@@ -49,8 +53,16 @@ const STAMP_PATTERNS: Array<{ pattern: RegExp; label: string; residual: string }
   { pattern: /\bwb\s+kids(?:\s+promos?)?(?:\s+stamps?|\s+stamped)?\b/gi, label: "WB Kids Stamp", residual: "wb kids stamp" },
   { pattern: /\bleague(?:\s+stamps?|\s+stamped)?\b/gi, label: "League Stamp", residual: "league stamp" },
   { pattern: /\bprize\s+pack(?:\s+stamps?|\s+stamped)?\b/gi, label: "Prize Pack Stamp", residual: "prize pack stamp" },
+  { pattern: /\bregional\s+championships?(?:\s+stamps?|\s+stamped)?\b/gi, label: "Regional Championships Stamp", residual: "regional championships stamp" },
   { pattern: /\bwinner(?:\s+stamps?|\s+stamped)?\b/gi, label: "Winner Stamp", residual: "winner stamp" },
   { pattern: /\bstaff(?:\s+stamps?|\s+stamped)?\b/gi, label: "Staff Stamp", residual: "staff stamp" },
+  { pattern: /\bno\s+symbol(?:\s+errors?)?\b/gi, label: "No Symbol Error", residual: "no symbol error" },
+  { pattern: /\bgold\s+border\b/gi, label: "Gold Border", residual: "gold border" },
+  { pattern: /\bjapanese\s+(?:card\s+)?back\b/gi, label: "Japanese Card Back", residual: "japanese card back" },
+  { pattern: /\bred\s+cheeks?\b/gi, label: "Red Cheeks", residual: "red cheeks" },
+  { pattern: /\byellow\s+cheeks?\b/gi, label: "Yellow Cheeks", residual: "yellow cheeks" },
+  { pattern: /\bshadowless\b/gi, label: "Shadowless", residual: "shadowless" },
+  { pattern: /\b(?:1st|first)\s+edition\b/gi, label: "First Edition", residual: "first edition" },
 ];
 
 function normalizeWhitespace(value: string) {
