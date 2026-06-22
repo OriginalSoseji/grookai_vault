@@ -5,13 +5,13 @@ Package: `ENRICH-08A-SPECIES-NAME-RULE-BACKFILL`
 ## Result
 
 - Pass: true
-- Target species inserts: 67
-- Target parent rows: 67
-- Inserted species rows: 67
-- Package fingerprint: `240724ddd2897956a15453ca0e66629b477364de821d95b07881c505d7c5a1ad`
+- Target species inserts: 76
+- Target parent rows: 76
+- Inserted species rows: 76
+- Package fingerprint: `28ae8be4b409b41ffe65d0b609ebbd29d8a6376779dcd7198f63911545c40e82`
 - Dry-run proof: `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`
 - Before species rows in scope: 0
-- After species rows in scope: 67
+- After species rows in scope: 76
 
 ## Safety
 

@@ -1,12 +1,12 @@
 {
   "version": "ENRICH08A_SPECIES_NAME_RULE_GUARDED_DRY_RUN_V1",
   "package_id": "ENRICH-08A-SPECIES-NAME-RULE-BACKFILL",
-  "generated_at": "2026-06-18T02:43:40.460Z",
-  "package_fingerprint_sha256": "240724ddd2897956a15453ca0e66629b477364de821d95b07881c505d7c5a1ad",
+  "generated_at": "2026-06-20T17:31:23.150Z",
+  "package_fingerprint_sha256": "28ae8be4b409b41ffe65d0b609ebbd29d8a6376779dcd7198f63911545c40e82",
   "scope": {
-    "missing_species_parent_rows_scanned": 3808,
-    "target_species_mapping_inserts": 67,
-    "target_parent_rows": 67,
+    "missing_species_parent_rows_scanned": 3841,
+    "target_species_mapping_inserts": 76,
+    "target_parent_rows": 76,
     "durable_db_writes_performed": false,
     "migrations_created": false,
     "writes_simulated_then_rolled_back": [
@@ -25,242 +25,247 @@
     ]
   },
   "classification_counts": {
-    "unmapped": 3740,
-    "mapped": 67,
+    "unmapped": 3764,
+    "mapped": 76,
     "non_completion_candidate": 1
   },
   "reason_counts": {
     "blocked_trait_no_subject_match": 3404,
-    "no_subject_match": 336,
-    "name_token_match": 67,
+    "no_subject_match": 360,
+    "name_token_match": 76,
     "blocked_trait_subject_match": 1
   },
   "by_species_top_25": {
-    "pikachu": 11,
-    "dragonite": 4,
-    "electabuzz": 3,
-    "mewtwo": 3,
-    "meowth": 2,
-    "ninetales": 2,
-    "piplup": 2,
-    "snorlax": 2,
-    "zapdos": 2,
-    "articuno": 1,
-    "beedrill": 1,
-    "blastoise": 1,
-    "bulbasaur": 1,
+    "dusclops": 2,
+    "duskull": 2,
+    "fennekin": 2,
+    "sinistea": 2,
+    "alakazam": 1,
+    "ariados": 1,
+    "buzzwole": 1,
+    "charcadet": 1,
     "charmander": 1,
-    "clefable": 1,
-    "clefairy": 1,
-    "cosmog": 1,
-    "diglett": 1,
+    "chespin": 1,
+    "chikorita": 1,
+    "cresselia": 1,
+    "cubone": 1,
+    "cyndaquil": 1,
+    "dhelmise": 1,
+    "diancie": 1,
     "eevee": 1,
-    "electrode": 1,
-    "flareon": 1,
-    "jigglypuff": 1,
-    "jolteon": 1,
-    "kangaskhan": 1,
-    "magikarp": 1
+    "flutter-mane": 1,
+    "froakie": 1,
+    "fuecoco": 1,
+    "gastly": 1,
+    "grookey": 1,
+    "haunter": 1,
+    "hoppip": 1,
+    "iron-bundle": 1
   },
   "by_set_top_25": {
-    "base2": 16,
-    "basep": 15,
-    "base1": 13,
-    "g1": 6,
-    "sm1": 3,
-    "sm5": 2,
-    "base3": 1,
-    "base5": 1,
-    "bw10": 1,
-    "bw11": 1,
-    "bw5": 1,
+    "mep": 24,
+    "svp": 17,
+    "swsh4": 4,
+    "swsh2": 3,
+    "swsh3": 3,
+    "swsh6": 3,
+    "ecard1": 2,
+    "swsh1": 2,
+    "swsh10": 2,
+    "swsh5": 2,
+    "swsh9": 2,
+    "base2": 1,
+    "basep": 1,
+    "hgss2": 1,
+    "misc": 1,
+    "sm1": 1,
     "sm3": 1,
-    "sm4": 1,
-    "xy12": 1,
-    "xy2": 1,
-    "xy5": 1,
-    "xy6": 1,
-    "xy7": 1
+    "sm6": 1,
+    "sm7": 1,
+    "sm8": 1,
+    "sv01": 1,
+    "swsh12": 1,
+    "swsh8": 1
   },
   "execution": {
     "before_snapshot": {
-      "captured_at": "2026-06-18T02:43:39.445Z",
+      "captured_at": "2026-06-20T17:31:22.151Z",
       "rows": [],
       "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "row_count": 0
     },
     "guard": {
-      "target_count": 67,
-      "target_parent_count": 67,
-      "distinct_target_count": 67,
+      "target_count": 76,
+      "target_parent_count": 76,
+      "distinct_target_count": 76,
       "missing_species_id_count": 0,
       "missing_parent_count": 0,
       "existing_active_mapping_count": 0,
       "parents_with_existing_active_species_count": 0,
-      "target_fingerprint_sha256": "62d86edaa94827d7ccd5ec1fa0d3c2674992b3d5f2a8b0bed6cb050eb23b548c"
+      "target_fingerprint_sha256": "4b68c81ff81b9e17eb45ef0121d0b7d43ae7a196c661cd3f6d66b90f28670ad0"
     },
     "inside_transaction_proof": {
-      "inserted_species_rows": 67,
+      "inserted_species_rows": 76,
       "proof": {
-        "target_count": 67,
-        "matching_active_species_count": 67
+        "target_count": 76,
+        "matching_active_species_count": 76
       },
       "inserted_samples": [
         {
-          "id": "c376c0ec-4575-47fb-88f5-2bfb8e158457",
-          "card_print_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
-          "species_id": "fa640798-a9d8-4acd-810e-f6c942f1a565",
+          "id": "3e113895-a3eb-435a-96f8-4f8322f1ddd6",
+          "card_print_id": "deed5f22-63ef-4b4a-a312-fb91e6103461",
+          "species_id": "ff9b0d75-2ead-4abb-9020-30f771017532",
           "role": "primary"
         },
         {
-          "id": "a0de15f4-18ec-4602-a08a-66bcade3e374",
-          "card_print_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
-          "species_id": "fa640798-a9d8-4acd-810e-f6c942f1a565",
+          "id": "2abde345-6a45-468b-bd68-50eb6be9a76d",
+          "card_print_id": "a2327720-fcc1-4a23-991f-460a435a0dfb",
+          "species_id": "16a9c824-a043-4777-87d5-8a2f115f6076",
           "role": "primary"
         },
         {
-          "id": "e6eef0d1-cb2d-4624-8e58-509a53cd99ad",
-          "card_print_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
-          "species_id": "290f16c5-f252-48d9-b9d7-43ca03039200",
+          "id": "6e1a018d-b1ac-417f-8f86-a0011cd76982",
+          "card_print_id": "36da4f82-b99e-4cf9-8df8-422d0f53f7cb",
+          "species_id": "15552c35-87d8-4bf0-b55c-7e657729d464",
           "role": "primary"
         },
         {
-          "id": "bf6cff45-9232-4671-bf18-5e776363bfbe",
-          "card_print_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
-          "species_id": "7455cd0c-6dc2-4c95-8160-5c02a0d6dcc8",
+          "id": "ba9af96f-047a-4018-9e01-42a13310b2ae",
+          "card_print_id": "2e9fa4e0-1546-488c-96b2-d9bab41cdb2f",
+          "species_id": "d7e630d8-28c0-46e7-bdbd-4ecd1d3f45f1",
           "role": "primary"
         },
         {
-          "id": "c291870b-d7c7-4c06-95b3-b896398dc7c9",
-          "card_print_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
-          "species_id": "8674f79c-0e7f-4d0f-8e0c-44b7672506a3",
+          "id": "b23082f6-22b5-4640-b574-649012d59fb6",
+          "card_print_id": "2d7bc89d-1760-4645-ac03-937d5d9efbec",
+          "species_id": "8064e5a5-b79f-49d0-9a2d-82485684903c",
           "role": "primary"
         },
         {
-          "id": "1683e0e9-08dd-46ab-820e-a15883866fef",
-          "card_print_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
-          "species_id": "f4cf2d23-6cbc-4d9f-81fb-775538a5b029",
+          "id": "23e82ab1-272a-4929-b83a-57fe4746b694",
+          "card_print_id": "be61d9c3-61dd-4ac6-876b-f68049ea3a77",
+          "species_id": "c83c260a-ecea-41b9-93d4-8ff13562f9ae",
           "role": "primary"
         },
         {
-          "id": "015fd4e9-53c9-434f-b7eb-20d5c298a26e",
-          "card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "0275a3b4-5a7d-4969-b8d0-4cded0525189",
+          "card_print_id": "150b8246-3378-452a-8d18-f8315516c207",
+          "species_id": "1ee66765-c9e4-4d30-a924-82eece9a60a7",
           "role": "primary"
         },
         {
-          "id": "3b2f12d1-83d5-4a84-9b3c-239ef240dfd1",
-          "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "8b7dbd7f-836c-4e66-bc6a-84cf35cfbe05",
+          "card_print_id": "01eb8829-7bef-40f8-a24b-4b5a2458adeb",
+          "species_id": "f81625fd-f105-40fc-bd31-4665313721ee",
           "role": "primary"
         },
         {
-          "id": "a2ab7d6d-9ddb-437d-af53-ecc94657f03d",
-          "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "6e7a3a9a-62f8-454b-a7b9-0d5db7bd216a",
+          "card_print_id": "fcbe0c37-4939-49b0-964d-d16d251225bd",
+          "species_id": "89455657-46c7-44b4-aa10-f8ca31e6b16e",
+          "role": "trainer_owned"
+        },
+        {
+          "id": "46035fd3-6eb0-4efe-9673-8a18ef2f5dc5",
+          "card_print_id": "91e7feba-1022-4c64-b03c-5a1139baa447",
+          "species_id": "28f99332-8e02-4185-a7c6-d5fea6fd542d",
           "role": "primary"
         },
         {
-          "id": "a68b4038-84e6-463a-a77a-c4b67e852aed",
-          "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "a82fc0f0-47be-470b-9d7b-84a2623f061c",
+          "card_print_id": "585e9ae4-72ed-41ba-9655-3e8af3dfed48",
+          "species_id": "a58359f5-3abc-4cfb-842c-0b4e542fbbd5",
           "role": "primary"
         },
         {
-          "id": "c69f2c7a-b3e5-4190-bf06-0aca23767eb8",
-          "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "260fc98a-aaf1-45df-8217-df4be291ba34",
+          "card_print_id": "71c6ffe0-f844-4779-b245-dba313266056",
+          "species_id": "1bc350c3-f679-45c3-9a12-16ec208c24bf",
           "role": "primary"
         },
         {
-          "id": "8a919725-70ac-4e2d-93aa-c87320ca2c60",
-          "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "2c84c36c-3029-4fb2-8e60-a7e0636801d0",
+          "card_print_id": "0ffb2971-7581-4412-85f6-06d87b317b7c",
+          "species_id": "41936724-6c8d-4bfd-9fb5-f7d349403afb",
           "role": "primary"
         },
         {
-          "id": "f9a23931-ac63-4099-8270-b1144d399568",
-          "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
-          "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+          "id": "c247a6e1-2895-4cb3-8046-094767c92ce9",
+          "card_print_id": "81007ef0-68b3-4179-9144-f1c3da194515",
+          "species_id": "1938f2bb-91cb-43ae-a5a1-a6495da2b368",
           "role": "primary"
         },
         {
-          "id": "02bae44f-f372-409c-a813-2393b28613a9",
-          "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
-          "species_id": "e49f1d3e-e3b7-406c-93d0-de514c9c01be",
+          "id": "e29079b8-349e-4d75-863d-1e1c298250cc",
+          "card_print_id": "441ff695-8227-4b6d-99c5-b086402e6215",
+          "species_id": "2d704194-e4ec-4317-a598-aba85f5928a4",
           "role": "primary"
         },
         {
-          "id": "83aa610a-804a-4b39-b4c6-2d1b6617f7b6",
-          "card_print_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
-          "species_id": "203172b5-ddfa-40a1-9c9c-85e7d2b65042",
+          "id": "7b95ae3f-0b8f-43fc-8c6c-7a645aa55652",
+          "card_print_id": "012f3cc7-4435-496a-9317-4967c5db0717",
+          "species_id": "ba15cc23-c7f7-4163-9da1-a550b751231e",
           "role": "primary"
         },
         {
-          "id": "b66e665d-0425-4542-afc1-c3d5ba26304b",
-          "card_print_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
-          "species_id": "0f5aa393-c5de-47a5-9c0f-e43b1653f01b",
+          "id": "b3d3a1d5-6ad1-4424-adb5-ccb1c691fed4",
+          "card_print_id": "3bc8fa1b-6ee0-45c1-8878-69f67a16ece0",
+          "species_id": "d59c656b-6cff-45dd-af41-fad96ec1408a",
           "role": "primary"
         },
         {
-          "id": "a27e77fc-9c16-45ea-ba3a-80a458a8c1c9",
-          "card_print_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
-          "species_id": "6a20d12e-c83d-4158-9746-368b535eed06",
+          "id": "3cd389d4-25c2-4a09-b6df-c35b708beaeb",
+          "card_print_id": "bbb8ec10-752b-4365-ba6e-175c72cfafec",
+          "species_id": "7a46ee79-d6f2-459b-8d2a-3121a6132e3a",
           "role": "primary"
         },
         {
-          "id": "20b18e5d-308f-4423-baae-68cb35039059",
-          "card_print_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
-          "species_id": "303b4fa9-a89d-405b-bc45-2dc7f8826939",
+          "id": "a10e3e87-a8b1-494f-a071-7ccb0fd7a0a3",
+          "card_print_id": "a2c2cf77-f690-4e11-aa78-a3a380dfcc49",
+          "species_id": "c59fb13a-b3ec-4634-afd0-b701279cb97f",
           "role": "primary"
         },
         {
-          "id": "2989023b-957a-43c7-a977-4bb23039a79f",
-          "card_print_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
-          "species_id": "3f855bc7-d48d-4cc3-b282-062ec1d48040",
+          "id": "0d7f0ad0-5980-46c9-ac00-bedd331d0fa8",
+          "card_print_id": "b1091ad7-fe30-4542-b25a-11babdcff849",
+          "species_id": "e915ae47-e6be-4ae0-899a-278f98d95817",
           "role": "primary"
         },
         {
-          "id": "1840a6a9-d0ba-4729-9c3b-256de8715a3d",
-          "card_print_id": "3ab13536-8f6a-4686-be31-14424a87788f",
-          "species_id": "bb74a48e-fa2a-4034-acb9-48d8a3d6c77f",
+          "id": "f31577fa-82df-4fd7-b1a1-ad4d81778ffa",
+          "card_print_id": "703b2dbb-6c88-4813-b352-86e51f7b29bd",
+          "species_id": "6402f3d4-541f-41ff-9539-daf6945fd314",
           "role": "primary"
         },
         {
-          "id": "f2890103-6f3c-4d18-9144-7ae0fbb23e36",
-          "card_print_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
-          "species_id": "3902693d-3516-40a7-94a4-b8dc546ade9f",
+          "id": "6f102f9c-8da8-4e5a-bbcd-6a6d40ab2bab",
+          "card_print_id": "56b0ae7e-01f0-40a1-ba67-545f5fda47c2",
+          "species_id": "9e49ad66-0076-4f32-b1d6-435b0149422c",
           "role": "primary"
         },
         {
-          "id": "cf86c8f9-bfc9-43e4-8191-91186980d4d0",
-          "card_print_id": "83189125-b5f6-4169-b788-52a873359eb4",
-          "species_id": "70657605-b1cd-44ae-a71f-495067b2e1ad",
+          "id": "5eaeadef-b6e7-4ea0-aa7e-5980975e7de6",
+          "card_print_id": "dda4a838-b557-4a55-a88e-a42bdb7ec91e",
+          "species_id": "aac20026-2287-40fa-89ba-873e159c5d63",
           "role": "primary"
         },
         {
-          "id": "3cecda8d-fef4-4f93-9d78-bf492cc7d33f",
-          "card_print_id": "58197a15-6846-4234-b153-565e26038a51",
-          "species_id": "31339113-d8fc-4389-9f23-75df8a30d1a7",
+          "id": "66c8bc9d-fcf7-4746-a444-ae4eba46f52e",
+          "card_print_id": "8b4dc72a-4715-4449-a8f8-26566255741f",
+          "species_id": "dca9660c-946d-4c1c-bfbf-1bfd868b0ed9",
           "role": "primary"
         },
         {
-          "id": "cdcde467-3f2b-40d7-ab2f-2bf04bfef65c",
-          "card_print_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
-          "species_id": "25b6ee89-ad24-4b4e-ba99-383e9b85f9d9",
-          "role": "primary"
-        },
-        {
-          "id": "62f09321-ff7c-430e-a612-13608f272309",
-          "card_print_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
-          "species_id": "a0c6e610-a5ad-40a5-9515-37e99759029c",
+          "id": "08fe5c96-f29e-464d-8a43-4bc31e709eb8",
+          "card_print_id": "ddceced6-4236-46e0-aa1e-b8b1eef6b659",
+          "species_id": "3843e8b4-4c9a-4804-8265-f9f17fef1a52",
           "role": "primary"
         }
       ]
     },
     "caught_error": null,
     "after_rollback_snapshot": {
-      "captured_at": "2026-06-18T02:43:40.460Z",
+      "captured_at": "2026-06-20T17:31:23.150Z",
       "rows": [],
       "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "row_count": 0
@@ -269,687 +274,653 @@
   },
   "target_samples": [
     {
-      "card_print_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
-      "species_slug": "ninetales",
+      "card_print_id": "deed5f22-63ef-4b4a-a312-fb91e6103461",
+      "species_slug": "meowth",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Ninetales",
-        "matched_token": "ninetales",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "12",
-      "card_name": "Ninetales"
-    },
-    {
-      "card_print_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
-      "species_slug": "ninetales",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Ninetales",
-        "matched_token": "ninetales",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "12",
-      "card_name": "Ninetales"
-    },
-    {
-      "card_print_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
-      "species_slug": "beedrill",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Beedrill",
-        "matched_token": "beedrill",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "17",
-      "card_name": "Beedrill"
-    },
-    {
-      "card_print_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
-      "species_slug": "blastoise",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Blastoise",
-        "matched_token": "blastoise",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "2",
-      "card_name": "Blastoise"
-    },
-    {
-      "card_print_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
-      "species_slug": "wartortle",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Wartortle",
-        "matched_token": "wartortle",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "42",
-      "card_name": "Wartortle"
-    },
-    {
-      "card_print_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
-      "species_slug": "diglett",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Diglett",
-        "matched_token": "diglett",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "47",
-      "card_name": "Diglett"
-    },
-    {
-      "card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base1",
-      "number": "58",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
-      "species_slug": "clefable",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Clefable",
-        "matched_token": "clefable",
+        "card_name": "Meowth",
+        "matched_token": "meowth",
         "supertype": null,
         "card_category": null
       },
       "set_code": "base2",
-      "number": "1",
-      "card_name": "Clefable"
+      "number": "56",
+      "card_name": "Meowth"
     },
     {
-      "card_print_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
-      "species_slug": "scyther",
+      "card_print_id": "a2327720-fcc1-4a23-991f-460a435a0dfb",
+      "species_slug": "rapidash",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Scyther",
-        "matched_token": "scyther",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "10",
-      "card_name": "Scyther"
-    },
-    {
-      "card_print_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
-      "species_slug": "snorlax",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Snorlax",
-        "matched_token": "snorlax",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "11",
-      "card_name": "Snorlax"
-    },
-    {
-      "card_print_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
-      "species_slug": "vaporeon",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Vaporeon",
-        "matched_token": "vaporeon",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "12",
-      "card_name": "Vaporeon"
-    },
-    {
-      "card_print_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
-      "species_slug": "venomoth",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Venomoth",
-        "matched_token": "venomoth",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "13",
-      "card_name": "Venomoth"
-    },
-    {
-      "card_print_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
-      "species_slug": "victreebel",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Victreebel",
-        "matched_token": "victreebel",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "14",
-      "card_name": "Victreebel"
-    },
-    {
-      "card_print_id": "3ab13536-8f6a-4686-be31-14424a87788f",
-      "species_slug": "vileplume",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Vileplume",
-        "matched_token": "vileplume",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "15",
-      "card_name": "Vileplume"
-    },
-    {
-      "card_print_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
-      "species_slug": "wigglytuff",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Wigglytuff",
-        "matched_token": "wigglytuff",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "16",
-      "card_name": "Wigglytuff"
-    },
-    {
-      "card_print_id": "83189125-b5f6-4169-b788-52a873359eb4",
-      "species_slug": "electrode",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Electrode",
-        "matched_token": "electrode",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "2",
-      "card_name": "Electrode"
-    },
-    {
-      "card_print_id": "58197a15-6846-4234-b153-565e26038a51",
-      "species_slug": "flareon",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Flareon",
-        "matched_token": "flareon",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "3",
-      "card_name": "Flareon"
-    },
-    {
-      "card_print_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
-      "species_slug": "jolteon",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Jolteon",
-        "matched_token": "jolteon",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "4",
-      "card_name": "Jolteon"
-    },
-    {
-      "card_print_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
-      "species_slug": "kangaskhan",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Kangaskhan",
-        "matched_token": "kangaskhan",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "5",
-      "card_name": "Kangaskhan"
-    },
-    {
-      "card_print_id": "1cfc7d99-93b3-4da7-a9d0-9321e4b1eaa2",
-      "species_slug": "mr-mime",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Mr. Mime",
-        "matched_token": "mr mime",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "6",
-      "card_name": "Mr. Mime"
-    },
-    {
-      "card_print_id": "ffceadb7-dfad-4a35-b332-0ff0856fbecb",
-      "species_slug": "nidoqueen",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Nidoqueen",
-        "matched_token": "nidoqueen",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "7",
-      "card_name": "Nidoqueen"
-    },
-    {
-      "card_print_id": "e563e20e-a43b-48f0-b07f-31a986fd827e",
-      "species_slug": "pidgeot",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pidgeot",
-        "matched_token": "pidgeot",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "8",
-      "card_name": "Pidgeot"
-    },
-    {
-      "card_print_id": "66cdd415-f700-4199-bd04-dd47edeefd5e",
-      "species_slug": "pinsir",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pinsir",
-        "matched_token": "pinsir",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base2",
-      "number": "9",
-      "card_name": "Pinsir"
-    },
-    {
-      "card_print_id": "e9c242ce-6ebb-40ac-b148-43f063c5f9c9",
-      "species_slug": "zapdos",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Zapdos",
-        "matched_token": "zapdos",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base3",
-      "number": "15",
-      "card_name": "Zapdos"
-    },
-    {
-      "card_print_id": "d0155199-e607-42fe-a18c-9d0a9adc9b9a",
-      "species_slug": "dragonite",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Dark Dragonite",
-        "matched_token": "dragonite",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "base5",
-      "number": "5",
-      "card_name": "Dark Dragonite"
-    },
-    {
-      "card_print_id": "bae09811-d56e-41db-b093-94b4dc70b561",
-      "species_slug": "persian",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Dark Persian",
-        "matched_token": "persian",
+        "card_name": "Rapidash",
+        "matched_token": "rapidash",
         "supertype": null,
         "card_category": null
       },
       "set_code": "basep",
-      "number": "17",
-      "card_name": "Dark Persian"
+      "number": "51",
+      "card_name": "Rapidash"
     },
     {
-      "card_print_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
-      "species_slug": "electabuzz",
+      "card_print_id": "36da4f82-b99e-4cf9-8df8-422d0f53f7cb",
+      "species_slug": "hoppip",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Electabuzz",
-        "matched_token": "electabuzz",
+        "card_name": "Hoppip",
+        "matched_token": "hoppip",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "2",
-      "card_name": "Electabuzz"
+      "set_code": "ecard1",
+      "number": "112",
+      "card_name": "Hoppip"
     },
     {
-      "card_print_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
-      "species_slug": "electabuzz",
+      "card_print_id": "2e9fa4e0-1546-488c-96b2-d9bab41cdb2f",
+      "species_slug": "pichu",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Electabuzz",
-        "matched_token": "electabuzz",
+        "card_name": "Pichu",
+        "matched_token": "pichu",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "2",
-      "card_name": "Electabuzz"
+      "set_code": "ecard1",
+      "number": "58",
+      "card_name": "Pichu"
     },
     {
-      "card_print_id": "3368a54d-889f-42c7-8493-afbddf613328",
-      "species_slug": "moltres",
+      "card_print_id": "2d7bc89d-1760-4645-ac03-937d5d9efbec",
+      "species_slug": "poliwrath",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Moltres",
-        "matched_token": "moltres",
+        "card_name": "Poliwrath",
+        "matched_token": "poliwrath",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
+      "set_code": "hgss2",
       "number": "21",
-      "card_name": "Moltres"
+      "card_name": "Poliwrath"
     },
     {
-      "card_print_id": "aaedcb11-d8ed-4ee0-8c26-920aa86c35c9",
-      "species_slug": "articuno",
+      "card_print_id": "be61d9c3-61dd-4ac6-876b-f68049ea3a77",
+      "species_slug": "alakazam",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Articuno",
-        "matched_token": "articuno",
+        "card_name": "Alakazam",
+        "matched_token": "alakazam",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "22",
-      "card_name": "Articuno"
+      "set_code": "mep",
+      "number": "009",
+      "card_name": "Alakazam"
     },
     {
-      "card_print_id": "8355d761-b16a-4a07-9a2d-d39dcb4bf809",
-      "species_slug": "zapdos",
+      "card_print_id": "150b8246-3378-452a-8d18-f8315516c207",
+      "species_slug": "riolu",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Zapdos",
-        "matched_token": "zapdos",
+        "card_name": "Riolu",
+        "matched_token": "riolu",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "23",
-      "card_name": "Zapdos"
+      "set_code": "mep",
+      "number": "010",
+      "card_name": "Riolu"
     },
     {
-      "card_print_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
-      "species_slug": "mewtwo",
+      "card_print_id": "01eb8829-7bef-40f8-a24b-4b5a2458adeb",
+      "species_slug": "charcadet",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Mewtwo",
-        "matched_token": "mewtwo",
+        "card_name": "Charcadet",
+        "matched_token": "charcadet",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "3",
-      "card_name": "Mewtwo"
+      "set_code": "mep",
+      "number": "022",
+      "card_name": "Charcadet"
     },
     {
-      "card_print_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
-      "species_slug": "mewtwo",
+      "card_print_id": "fcbe0c37-4939-49b0-964d-d16d251225bd",
+      "species_slug": "zekrom",
+      "role": "trainer_owned",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.72,
+      "evidence": {
+        "card_name": "N's Zekrom",
+        "matched_token": "zekrom",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "031",
+      "card_name": "N's Zekrom"
+    },
+    {
+      "card_print_id": "91e7feba-1022-4c64-b03c-5a1139baa447",
+      "species_slug": "chikorita",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Mewtwo",
-        "matched_token": "mewtwo",
+        "card_name": "Chikorita",
+        "matched_token": "chikorita",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "3",
-      "card_name": "Mewtwo"
+      "set_code": "mep",
+      "number": "046",
+      "card_name": "Chikorita"
     },
     {
-      "card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
-      "species_slug": "mewtwo",
+      "card_print_id": "585e9ae4-72ed-41ba-9655-3e8af3dfed48",
+      "species_slug": "cyndaquil",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Mewtwo",
-        "matched_token": "mewtwo",
+        "card_name": "Cyndaquil",
+        "matched_token": "cyndaquil",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "3",
-      "card_name": "Mewtwo"
+      "set_code": "mep",
+      "number": "047",
+      "card_name": "Cyndaquil"
     },
     {
-      "card_print_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+      "card_print_id": "71c6ffe0-f844-4779-b245-dba313266056",
+      "species_slug": "totodile",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Totodile",
+        "matched_token": "totodile",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "048",
+      "card_name": "Totodile"
+    },
+    {
+      "card_print_id": "0ffb2971-7581-4412-85f6-06d87b317b7c",
+      "species_slug": "snivy",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Snivy",
+        "matched_token": "snivy",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "049",
+      "card_name": "Snivy"
+    },
+    {
+      "card_print_id": "81007ef0-68b3-4179-9144-f1c3da194515",
+      "species_slug": "tepig",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Tepig",
+        "matched_token": "tepig",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "050",
+      "card_name": "Tepig"
+    },
+    {
+      "card_print_id": "441ff695-8227-4b6d-99c5-b086402e6215",
+      "species_slug": "oshawott",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Oshawott",
+        "matched_token": "oshawott",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "051",
+      "card_name": "Oshawott"
+    },
+    {
+      "card_print_id": "012f3cc7-4435-496a-9317-4967c5db0717",
+      "species_slug": "grookey",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Grookey",
+        "matched_token": "grookey",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "052",
+      "card_name": "Grookey"
+    },
+    {
+      "card_print_id": "3bc8fa1b-6ee0-45c1-8878-69f67a16ece0",
+      "species_slug": "scorbunny",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Scorbunny",
+        "matched_token": "scorbunny",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "053",
+      "card_name": "Scorbunny"
+    },
+    {
+      "card_print_id": "bbb8ec10-752b-4365-ba6e-175c72cfafec",
+      "species_slug": "sobble",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Sobble",
+        "matched_token": "sobble",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "054",
+      "card_name": "Sobble"
+    },
+    {
+      "card_print_id": "a2c2cf77-f690-4e11-aa78-a3a380dfcc49",
+      "species_slug": "treecko",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Treecko",
+        "matched_token": "treecko",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "055",
+      "card_name": "Treecko"
+    },
+    {
+      "card_print_id": "b1091ad7-fe30-4542-b25a-11babdcff849",
+      "species_slug": "torchic",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Torchic",
+        "matched_token": "torchic",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "056",
+      "card_name": "Torchic"
+    },
+    {
+      "card_print_id": "703b2dbb-6c88-4813-b352-86e51f7b29bd",
+      "species_slug": "mudkip",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Mudkip",
+        "matched_token": "mudkip",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "057",
+      "card_name": "Mudkip"
+    },
+    {
+      "card_print_id": "56b0ae7e-01f0-40a1-ba67-545f5fda47c2",
+      "species_slug": "chespin",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Chespin",
+        "matched_token": "chespin",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "058",
+      "card_name": "Chespin"
+    },
+    {
+      "card_print_id": "dda4a838-b557-4a55-a88e-a42bdb7ec91e",
+      "species_slug": "fennekin",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Fennekin",
+        "matched_token": "fennekin",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "059",
+      "card_name": "Fennekin"
+    },
+    {
+      "card_print_id": "8b4dc72a-4715-4449-a8f8-26566255741f",
+      "species_slug": "froakie",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Froakie",
+        "matched_token": "froakie",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "060",
+      "card_name": "Froakie"
+    },
+    {
+      "card_print_id": "ddceced6-4236-46e0-aa1e-b8b1eef6b659",
+      "species_slug": "sprigatito",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Sprigatito",
+        "matched_token": "sprigatito",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "061",
+      "card_name": "Sprigatito"
+    },
+    {
+      "card_print_id": "7beeb8aa-8c81-4811-a3cb-bc3677803b69",
+      "species_slug": "fuecoco",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Fuecoco",
+        "matched_token": "fuecoco",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "062",
+      "card_name": "Fuecoco"
+    },
+    {
+      "card_print_id": "206efaa9-0a89-4fc9-a528-946fa2bdcbb3",
+      "species_slug": "quaxly",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Quaxly",
+        "matched_token": "quaxly",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "063",
+      "card_name": "Quaxly"
+    },
+    {
+      "card_print_id": "1ea8e35c-754d-4e8c-a4b3-c881711f095e",
+      "species_slug": "tyrunt",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Tyrunt",
+        "matched_token": "tyrunt",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "070",
+      "card_name": "Tyrunt"
+    },
+    {
+      "card_print_id": "a71a3419-80dc-4997-9997-1eb9d669c64a",
+      "species_slug": "fennekin",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Fennekin",
+        "matched_token": "fennekin",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "mep",
+      "number": "80",
+      "card_name": "Fennekin"
+    },
+    {
+      "card_print_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+      "species_slug": "mew",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Ancient Mew",
+        "matched_token": "mew",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "misc",
+      "number": "1",
+      "card_name": "Ancient Mew"
+    },
+    {
+      "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+      "species_slug": "primarina",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Primarina",
+        "matched_token": "primarina",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sm1",
+      "number": "41",
+      "card_name": "Primarina"
+    },
+    {
+      "card_print_id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+      "species_slug": "diancie",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Diancie",
+        "matched_token": "diancie",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sm3",
+      "number": "94",
+      "card_name": "Diancie"
+    },
+    {
+      "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+      "species_slug": "buzzwole",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Buzzwole",
+        "matched_token": "buzzwole",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sm6",
+      "number": "77",
+      "card_name": "Buzzwole"
+    },
+    {
+      "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+      "species_slug": "metagross",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Metagross",
+        "matched_token": "metagross",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sm7",
+      "number": "95",
+      "card_name": "Metagross"
+    },
+    {
+      "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+      "species_slug": "naganadel",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Naganadel",
+        "matched_token": "naganadel",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sm8",
+      "number": "108",
+      "card_name": "Naganadel"
+    },
+    {
+      "card_print_id": "908807d5-dabe-456f-b226-033d3cd2f4bd",
+      "species_slug": "lechonk",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Lechonk",
+        "matched_token": "lechonk",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "sv01",
+      "number": "155",
+      "card_name": "Lechonk"
+    },
+    {
+      "card_print_id": "44cc8bdb-3047-430e-9dd1-f47ad41ce556",
+      "species_slug": "miraidon",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Miraidon",
+        "matched_token": "miraidon",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "013",
+      "card_name": "Miraidon"
+    },
+    {
+      "card_print_id": "bccbd96f-9b70-41ed-82cd-2ef51556b18e",
+      "species_slug": "koraidon",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Koraidon",
+        "matched_token": "koraidon",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "014",
+      "card_name": "Koraidon"
+    },
+    {
+      "card_print_id": "01142147-e360-4b64-be4b-4079af211a7c",
       "species_slug": "pikachu",
       "role": "primary",
       "counts_for_completion": true,
@@ -961,114 +932,12 @@
         "supertype": null,
         "card_category": null
       },
-      "set_code": "basep",
-      "number": "4",
+      "set_code": "svp",
+      "number": "027",
       "card_name": "Pikachu"
     },
     {
-      "card_print_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "basep",
-      "number": "4",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
-      "species_slug": "pikachu",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Pikachu",
-        "matched_token": "pikachu",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "basep",
-      "number": "4",
-      "card_name": "Pikachu"
-    },
-    {
-      "card_print_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
-      "species_slug": "dragonite",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Dragonite",
-        "matched_token": "dragonite",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "basep",
-      "number": "5",
-      "card_name": "Dragonite"
-    },
-    {
-      "card_print_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
-      "species_slug": "dragonite",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Dragonite",
-        "matched_token": "dragonite",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "basep",
-      "number": "5",
-      "card_name": "Dragonite"
-    },
-    {
-      "card_print_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
-      "species_slug": "dragonite",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Dragonite",
-        "matched_token": "dragonite",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "basep",
-      "number": "5",
-      "card_name": "Dragonite"
-    },
-    {
-      "card_print_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
-      "species_slug": "squirtle",
-      "role": "primary",
-      "counts_for_completion": true,
-      "source": "grookai_dex_name_rule_v1",
-      "confidence": 0.82,
-      "evidence": {
-        "card_name": "Squirtle",
-        "matched_token": "squirtle",
-        "supertype": null,
-        "card_category": null
-      },
-      "set_code": "bw10",
-      "number": "14",
-      "card_name": "Squirtle"
-    },
-    {
-      "card_print_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+      "card_print_id": "bfc4d6bc-5489-4d3b-b37c-861f73156bae",
       "species_slug": "charmander",
       "role": "primary",
       "counts_for_completion": true,
@@ -1080,43 +949,179 @@
         "supertype": null,
         "card_category": null
       },
-      "set_code": "bw11",
-      "number": "17",
+      "set_code": "svp",
+      "number": "044",
       "card_name": "Charmander"
     },
     {
-      "card_print_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
-      "species_slug": "bulbasaur",
+      "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
+      "species_slug": "snorlax",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Bulbasaur",
-        "matched_token": "bulbasaur",
+        "card_name": "Snorlax",
+        "matched_token": "snorlax",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "bw5",
-      "number": "1",
-      "card_name": "Bulbasaur"
+      "set_code": "svp",
+      "number": "051",
+      "card_name": "Snorlax"
     },
     {
-      "card_print_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
-      "species_slug": "magikarp",
+      "card_print_id": "ca06fc8f-ae36-492f-979b-3bae50bdb467",
+      "species_slug": "scream-tail",
       "role": "primary",
       "counts_for_completion": true,
       "source": "grookai_dex_name_rule_v1",
       "confidence": 0.82,
       "evidence": {
-        "card_name": "Magikarp",
-        "matched_token": "magikarp",
+        "card_name": "Scream Tail",
+        "matched_token": "scream tail",
         "supertype": null,
         "card_category": null
       },
-      "set_code": "g1",
-      "number": "22",
-      "card_name": "Magikarp"
+      "set_code": "svp",
+      "number": "065",
+      "card_name": "Scream Tail"
+    },
+    {
+      "card_print_id": "3678b8e1-0eb0-476e-87d1-6b2028308b03",
+      "species_slug": "iron-bundle",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Iron Bundle",
+        "matched_token": "iron bundle",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "066",
+      "card_name": "Iron Bundle"
+    },
+    {
+      "card_print_id": "70aa18b2-7f82-42a2-980b-a59a37a24d87",
+      "species_slug": "mimikyu",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Mimikyu",
+        "matched_token": "mimikyu",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "075",
+      "card_name": "Mimikyu"
+    },
+    {
+      "card_print_id": "6b485dee-1694-4c30-b51f-cd04239a2c73",
+      "species_slug": "flutter-mane",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Flutter Mane",
+        "matched_token": "flutter mane",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "097",
+      "card_name": "Flutter Mane"
+    },
+    {
+      "card_print_id": "6c9510f4-4fbb-4dba-91ef-dbf3fb60b120",
+      "species_slug": "iron-thorns",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Iron Thorns",
+        "matched_token": "iron thorns",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "098",
+      "card_name": "Iron Thorns"
+    },
+    {
+      "card_print_id": "1fd93d00-a702-4d45-977e-d19f9ca8ecb0",
+      "species_slug": "ogerpon",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Teal Mask Ogerpon",
+        "matched_token": "ogerpon",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "123",
+      "card_name": "Teal Mask Ogerpon"
+    },
+    {
+      "card_print_id": "b57142a9-e139-45e1-9c95-5e1880684ebb",
+      "species_slug": "pecharunt",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Pecharunt",
+        "matched_token": "pecharunt",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "129",
+      "card_name": "Pecharunt"
+    },
+    {
+      "card_print_id": "7c9f6487-13de-434a-a48e-e8e172e50d3d",
+      "species_slug": "noctowl",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Noctowl",
+        "matched_token": "noctowl",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "141",
+      "card_name": "Noctowl"
+    },
+    {
+      "card_print_id": "00f3d76b-c863-4d95-8feb-2a610e81e65a",
+      "species_slug": "magneton",
+      "role": "primary",
+      "counts_for_completion": true,
+      "source": "grookai_dex_name_rule_v1",
+      "confidence": 0.82,
+      "evidence": {
+        "card_name": "Magneton",
+        "matched_token": "magneton",
+        "supertype": null,
+        "card_category": null
+      },
+      "set_code": "svp",
+      "number": "159",
+      "card_name": "Magneton"
     }
   ],
   "blocked_samples": [
@@ -2023,5 +2028,5 @@
   ],
   "stop_findings": [],
   "pass": true,
-  "recommended_approval_text": "Approve real ENRICH-08A-SPECIES-NAME-RULE-BACKFILL apply only. Fingerprint: 240724ddd2897956a15453ca0e66629b477364de821d95b07881c505d7c5a1ad. Scope: 67 card_print_species inserts across 67 English physical parents using grookai_dex_name_rule_v1. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No parent writes. No child writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply."
+  "recommended_approval_text": "Approve real ENRICH-08A-SPECIES-NAME-RULE-BACKFILL apply only. Fingerprint: 28ae8be4b409b41ffe65d0b609ebbd29d8a6376779dcd7198f63911545c40e82. Scope: 76 card_print_species inserts across 76 English physical parents using grookai_dex_name_rule_v1. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No parent writes. No child writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply."
 }
