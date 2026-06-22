@@ -1,11 +1,12 @@
 {
   "contract_key": "GROOKAI_SMART_SEARCH_V1",
-  "status": "proposed",
+  "status": "active",
   "date": "2026-06-17",
-  "objective": "Build app-like search result presentation plus governed natural-language search that compiles into safe structured filters.",
+  "objective": "Build app-like search result presentation plus governed natural-language search that compiles into safe structured filters without replacing normal search with AI.",
   "db_writes_allowed": false,
   "migrations_allowed": false,
   "arbitrary_sql_allowed": false,
+  "normal_search_ai_model_calls_allowed": false,
   "scope": {
     "in_scope": [
       "web_search_result_hierarchy",
@@ -13,7 +14,8 @@
       "natural_language_query_parsing",
       "visible_interpreted_filters",
       "search_explainability",
-      "english_physical_card_search"
+      "english_physical_card_search",
+      "governed_special_case_identity_family_search"
     ],
     "out_of_scope": [
       "db_writes",
@@ -23,6 +25,7 @@
       "pricing_mutations",
       "mobile_app_implementation",
       "ai_generated_sql",
+      "ai_model_calls_on_normal_search_execution_path",
       "multilingual_expansion"
     ]
   },
@@ -53,7 +56,21 @@
     "missing Pikachu cards in my vault",
     "all cards with no exact image",
     "all stamped variants from Toys R Us",
-    "all cards illustrated by Ken Sugimori"
+    "all cards illustrated by Ken Sugimori",
+    "artist Ken Sugimori 1999-2003",
+    "illustrator Mitsuhiro Arita 2014-2026",
+    "Pokemon Center stamped Lechonk",
+    "Build-A-Bear Piplup",
+    "Toys R Us Piplup",
+    "Dragon Vault Regional Championships",
+    "Prize Pack stamped Bronzong",
+    "Jungle No Symbol",
+    "Base Set Pikachu red cheeks shadowless",
+    "Black Flame Ninetales",
+    "No Damage Ninetales",
+    "Sideways Fighting Energy Diglett",
+    "Ancient Mew",
+    "Poke Card Creator Pikachu"
   ],
   "implementation_phases": [
     "result_card_hierarchy",
@@ -68,6 +85,12 @@
     "no_inferred_finishes",
     "no_inferred_variants",
     "no_guessed_stamps",
-    "no_mutation_side_effects"
-  ]
+    "no_mutation_side_effects",
+    "no_ai_model_call_for_normal_search"
+  ],
+  "product_boundaries": {
+    "grookai_search": "Free deterministic catalog search with natural-language parsing through typed filters.",
+    "grookai_assistant": "Premium grounded collector AI for variant explanations, chase lists, and collection comparison.",
+    "grookai_intelligence": "Vendor and power-user intelligence for catalog gaps, demand signals, exports, audits, and inventory recommendations."
+  }
 }

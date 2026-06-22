@@ -110,14 +110,14 @@ function getPrintedTotalFallback(card: { set_code?: string }) {
 
 function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string; number_plain?: string }) {
   const setCode = card.set_code?.trim().toLowerCase();
-  const cardNumber = (card.number_plain ?? card.number)?.trim();
-  if (!setCode || !cardNumber) return null;
+  const printedNumber = card.number?.trim();
+  if (!setCode || !printedNumber || !/^\d+$/.test(printedNumber)) return null;
 
   const looksPokemonTcgCompatible =
     /^(base|gym|neo|ecard|ex|dp|pl|hgss|col|bw|xy|sm|swsh|sv|pop|sma|smp|svp|xyp|bwp|np|det|cel|g|ru|dv|pgo|fut)/.test(setCode);
   if (!looksPokemonTcgCompatible) return null;
 
-  const normalizedNumber = cardNumber.match(/^\d+$/) ? String(Number(cardNumber)) : cardNumber;
+  const normalizedNumber = String(Number(printedNumber));
   if (!normalizedNumber || normalizedNumber === "NaN") return null;
 
   return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;

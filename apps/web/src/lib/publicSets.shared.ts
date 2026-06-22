@@ -92,7 +92,12 @@ export type PublicSetCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
-  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
+  display_image_kind?:
+    | "exact"
+    | "representative"
+    | "missing_variant_visual"
+    | "missing"
+    | "blocked";
   printings?: Array<{
     id?: string;
     printing_gv_id?: string;
@@ -103,7 +108,12 @@ export type PublicSetCard = {
     image_note?: string;
     image_source?: string;
     display_image_url?: string;
-    display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
+    display_image_kind?:
+      | "exact"
+      | "representative"
+      | "missing_variant_visual"
+      | "missing"
+      | "blocked";
     owned_count?: number;
   }>;
 };
@@ -120,7 +130,10 @@ export type PublicSetFilter =
   | "newest"
   | "oldest";
 
-export const PUBLIC_SET_FILTER_OPTIONS: Array<{ value: PublicSetFilter; label: string }> = [
+export const PUBLIC_SET_FILTER_OPTIONS: Array<{
+  value: PublicSetFilter;
+  label: string;
+}> = [
   { value: "all", label: "All Sets" },
   { value: "modern", label: "Modern" },
   { value: "special", label: "Special" },
@@ -137,6 +150,17 @@ export function normalizeSetQuery(value: string) {
     .replace(/[^a-z0-9\s.-]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+export function normalizePublicSetDisplayName(value?: string | null) {
+  const normalized = (value ?? "").trim();
+  if (!normalized) {
+    return normalized;
+  }
+
+  return normalized
+    .replace(/\bMacdonald's\b/gi, "McDonald's")
+    .replace(/\btrainer Kit\b/g, "Trainer Kit");
 }
 
 export function tokenizeSetWords(value?: string | null) {
@@ -160,10 +184,14 @@ export function matchesPublicSetSearch(
     setInfo.normalized_code ?? normalizeSetQuery(setInfo.code ?? ""),
   ];
 
-  return tokens.every((token) => haystacks.some((value) => value.includes(token)));
+  return tokens.every((token) =>
+    haystacks.some((value) => value.includes(token)),
+  );
 }
 
-export function normalizePublicSetFilter(value?: string | null): PublicSetFilter {
+export function normalizePublicSetFilter(
+  value?: string | null,
+): PublicSetFilter {
   switch ((value ?? "").trim().toLowerCase()) {
     case "modern":
       return "modern";
