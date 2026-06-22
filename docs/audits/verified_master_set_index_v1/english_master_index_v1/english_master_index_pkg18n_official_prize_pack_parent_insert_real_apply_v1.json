@@ -1,0 +1,2173 @@
+{
+  "generated_at": "2026-06-21T03:32:43.006Z",
+  "version": "english_master_index_pkg18n_official_prize_pack_parent_insert_real_apply_v1",
+  "package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-PARENT-INSERTS",
+  "package_fingerprint_sha256": "6d1519947deb1aa373712ba023b58d9952612c21068975ad90025de084c33621",
+  "dry_run_proof_sha256": "9694d8b85b8ce27759b0b3c5a7425a2e1be187a1c7b0fecae7a38f94b6a337d0",
+  "approval_text_required": "Approve real PKG-18N-OFFICIAL-PRIZE-PACK-PARENT-INSERTS apply only. Fingerprint: 6d1519947deb1aa373712ba023b58d9952612c21068975ad90025de084c33621. Scope: 15 stamped parent inserts, 15 identity inserts, 15 child printing inserts; finishes normal=15; stamp labels Prize Pack Stamp=15; sets swsh5=6, swsh6=5, swsh7=2, swsh9=2. Dry-run proof: 7929932f5c1ad760da1f09142b98bbc3cea2aebacb604788d3d4a8c526bf3037 == 7929932f5c1ad760da1f09142b98bbc3cea2aebacb604788d3d4a8c526bf3037. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg18n_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18n_official_prize_pack_parent_insert_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_inserts": 15,
+    "identity_inserts": 15,
+    "child_inserts": 15,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 15,
+    "target_parent_count": 15,
+    "target_child_count": 15,
+    "missing_base_count": 0,
+    "inactive_finish_count": 0,
+    "missing_base_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0,
+    "identity_target_collision_count": 0,
+    "ready_identity_projection_count": 15,
+    "identity_hash_collision_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-PARENT-INSERTS",
+    "package_fingerprint": "6d1519947deb1aa373712ba023b58d9952612c21068975ad90025de084c33621",
+    "target_rows": 15,
+    "inserted_parent_rows": 15,
+    "inserted_parent_modifier_rows": 15,
+    "inserted_identity_rows": 15,
+    "inserted_child_rows": 15,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-21T03:32:41.431Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "5b4a17b1-5d5b-4921-826f-a4c8a4cb441c",
+        "set_code": "swsh5",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Bruno",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3b8eb7b9-d907-48dc-9fa8-aaf8226d754f",
+        "set_code": "swsh5",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Fan of Waves",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "30c98a64-2b21-404c-9077-ac5d9ecc152b",
+        "set_code": "swsh5",
+        "number": "128",
+        "number_plain": "128",
+        "name": "Korrina's Focus",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "0e986738-aece-4e5b-a4ff-de1599452d7b",
+        "set_code": "swsh5",
+        "number": "130",
+        "number_plain": "130",
+        "name": "Phoebe",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d7d6fc1e-b5ba-4d81-a8b7-9b84a7d7f284",
+        "set_code": "swsh5",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Urn of Vitality",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_code": "swsh5",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cherrim",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a8189dc7-1bd5-4371-b052-f895f3249056",
+        "set_code": "swsh6",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Echoing Horn",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "acd27805-fb0a-492c-9a4c-8d0b06e174d5",
+        "set_code": "swsh6",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Klara",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b79419ed-dbb1-4680-87ee-a8cd865de8b3",
+        "set_code": "swsh6",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Melony",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "57666c38-3750-405b-9c61-0db8c2156c9b",
+        "set_code": "swsh6",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Peonia",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f5de0200-09f4-45f3-a442-974dd6e54e18",
+        "set_code": "swsh6",
+        "number": "150",
+        "number_plain": "150",
+        "name": "Peony",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "080a53d2-2ac2-4796-be61-6c026ac5029d",
+        "set_code": "swsh7",
+        "number": "103",
+        "number_plain": "103",
+        "name": "Zoroark",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "6b574bbc-83c3-4789-8834-dfab342f28cb",
+        "set_code": "swsh7",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Boost Shake",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "5a875326-872e-412d-b15b-b47e5e5a4658",
+        "set_code": "swsh9",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Tornadus",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d976d5b2-49e5-4026-8f2d-25ca470316a6",
+        "set_code": "swsh9",
+        "number": "137",
+        "number_plain": "137",
+        "name": "Collapsed Stadium",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "7929932f5c1ad760da1f09142b98bbc3cea2aebacb604788d3d4a8c526bf3037",
+    "counts": {
+      "base_parent": 15
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-21T03:32:42.920Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "5b4a17b1-5d5b-4921-826f-a4c8a4cb441c",
+        "set_code": "swsh5",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Bruno",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3b8eb7b9-d907-48dc-9fa8-aaf8226d754f",
+        "set_code": "swsh5",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Fan of Waves",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "30c98a64-2b21-404c-9077-ac5d9ecc152b",
+        "set_code": "swsh5",
+        "number": "128",
+        "number_plain": "128",
+        "name": "Korrina's Focus",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "0e986738-aece-4e5b-a4ff-de1599452d7b",
+        "set_code": "swsh5",
+        "number": "130",
+        "number_plain": "130",
+        "name": "Phoebe",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d7d6fc1e-b5ba-4d81-a8b7-9b84a7d7f284",
+        "set_code": "swsh5",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Urn of Vitality",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_code": "swsh5",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cherrim",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a8189dc7-1bd5-4371-b052-f895f3249056",
+        "set_code": "swsh6",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Echoing Horn",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "acd27805-fb0a-492c-9a4c-8d0b06e174d5",
+        "set_code": "swsh6",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Klara",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b79419ed-dbb1-4680-87ee-a8cd865de8b3",
+        "set_code": "swsh6",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Melony",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "57666c38-3750-405b-9c61-0db8c2156c9b",
+        "set_code": "swsh6",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Peonia",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f5de0200-09f4-45f3-a442-974dd6e54e18",
+        "set_code": "swsh6",
+        "number": "150",
+        "number_plain": "150",
+        "name": "Peony",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "080a53d2-2ac2-4796-be61-6c026ac5029d",
+        "set_code": "swsh7",
+        "number": "103",
+        "number_plain": "103",
+        "name": "Zoroark",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "6b574bbc-83c3-4789-8834-dfab342f28cb",
+        "set_code": "swsh7",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Boost Shake",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "5a875326-872e-412d-b15b-b47e5e5a4658",
+        "set_code": "swsh9",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Tornadus",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d976d5b2-49e5-4026-8f2d-25ca470316a6",
+        "set_code": "swsh9",
+        "number": "137",
+        "number_plain": "137",
+        "name": "Collapsed Stadium",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "fa51e82b-8e66-402e-8b19-6ef6ae018995",
+        "set_code": "swsh5",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Bruno",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "4b46e3dd-ad78-40c5-a0ce-01ac707088a1",
+        "set_code": "swsh5",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Fan of Waves",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "71b3c4cf-3504-4a62-9cbe-77103742ac0f",
+        "set_code": "swsh5",
+        "number": "128",
+        "number_plain": "128",
+        "name": "Korrina's Focus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "593d5dd9-fb9c-4601-8811-c56e23794a8d",
+        "set_code": "swsh5",
+        "number": "130",
+        "number_plain": "130",
+        "name": "Phoebe",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "34d1d00a-1342-473c-9c07-70e3f6398c3d",
+        "set_code": "swsh5",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Urn of Vitality",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "2b131f3b-6d7a-4b1d-87bd-1ecc4d29f3c4",
+        "set_code": "swsh5",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cherrim",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "ebd40a51-61aa-4f50-a707-182ee91ff68d",
+        "set_code": "swsh6",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Echoing Horn",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "5436b2c8-1866-469e-b62c-e71edc17d4d6",
+        "set_code": "swsh6",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Klara",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "c853ba4e-c2bd-47ea-9edd-8172f72d7b3b",
+        "set_code": "swsh6",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Melony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "c72bcdd9-5bf9-48ae-a109-6179419ef7a5",
+        "set_code": "swsh6",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Peonia",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "9e374ce4-be0c-4898-8c89-10946fbef7d4",
+        "set_code": "swsh6",
+        "number": "150",
+        "number_plain": "150",
+        "name": "Peony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "b0de48b9-1550-4ed0-9150-954744d4a6b0",
+        "set_code": "swsh7",
+        "number": "103",
+        "number_plain": "103",
+        "name": "Zoroark",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "72307b91-75a6-4ef4-9353-0f11e84c59fe",
+        "set_code": "swsh7",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Boost Shake",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "d08fdebe-262b-4cb2-b900-c24b7a0bcc63",
+        "set_code": "swsh9",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Tornadus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "d42c9a6e-035c-4acd-9b48-a1d4fa85ba56",
+        "set_code": "swsh9",
+        "number": "137",
+        "number_plain": "137",
+        "name": "Collapsed Stadium",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "a5950a2e-6a0a-4824-a8d4-ca00ce316770",
+        "set_code": "swsh5",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Bruno",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "f6003c55f2eb0ebfde5086ace5408ff23923d237aa54189d9f4ca0e90963c97f"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "8c5770f2-9355-4781-aec3-be60356299c0",
+        "set_code": "swsh5",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Fan of Waves",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "c125f2dc4b500224c47a398ccfb8449bafcfffce855a396370cb1b99786f1f13"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "30ea3e35-f164-454b-b5fa-144c1b32d9de",
+        "set_code": "swsh5",
+        "number": "128",
+        "number_plain": "128",
+        "name": "Korrina's Focus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "e7aeec3239769fddbd414e925d3960220b0d2c47de23c34c3d68b4ca294283fc"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "a6115edb-1b93-46ae-a710-519102191650",
+        "set_code": "swsh5",
+        "number": "130",
+        "number_plain": "130",
+        "name": "Phoebe",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "77170635cd00302fca3b43fb6361064ae68b426b881e80dcefcf0ed1fdab610d"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "2cc044ec-a061-413b-9707-52a29021fd9a",
+        "set_code": "swsh5",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Urn of Vitality",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "0a63c2a4b9ade4099b47503edac5b2a64fe4f286337dbcc50d6c8c3378ef3031"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "348021bb-277f-4648-9d5f-79023eea275c",
+        "set_code": "swsh5",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cherrim",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "47cdc2d5a05a7a5c54172441c57471e608920b04e31f6391ada69d80f44fd870"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "138eea83-381e-4e1f-8169-c25919a7ce25",
+        "set_code": "swsh6",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Echoing Horn",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "e084fcd6d5ea44d131b9a6ea7e0f415cf826a3095da12cf4ecf74037f34aa9d7"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "80e1a88b-0642-44e0-99af-629566dbc9fe",
+        "set_code": "swsh6",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Klara",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "d5b07a12ec18d124b98e2f186f2574ffcbb9ba57b0ca1627234c1de678007e86"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "363737bb-0de9-4a75-9f58-e5ecdbba92ab",
+        "set_code": "swsh6",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Melony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "1f092ea65f690973b170c6e8820ea81aa96493a9e152d3908fb6820539139f98"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "227de66c-642b-4d81-9d4e-0f23577d7648",
+        "set_code": "swsh6",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Peonia",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "8d4281493cf51bce593020f7b3697409e9cf2d3b761c4082a85040ee928f4281"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "6a1eac5d-84a7-4dd2-ab4c-55ccdb65a988",
+        "set_code": "swsh6",
+        "number": "150",
+        "number_plain": "150",
+        "name": "Peony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "8bffecbb5b4bd09ac6329d2093d94371e959d94d7053b8020d49129734f2d5f2"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "ae46f788-f4ba-4e91-9536-a1bf5558a3af",
+        "set_code": "swsh7",
+        "number": "103",
+        "number_plain": "103",
+        "name": "Zoroark",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "1accac76d067c9afe51173df0964d156ba2ff41f364725f37ba105424336ca1c"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "f70d259f-66eb-47e0-bcbf-63c803ec218c",
+        "set_code": "swsh7",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Boost Shake",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "3e49643a3927d9feea2448fff0d88e7b8faa8cba5e84a0d9c6eca4e5251442b9"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "b1263672-6c3f-4000-9076-7e89c5cf3022",
+        "set_code": "swsh9",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Tornadus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "f6f4e6893d2b4966d520b73c3b2eeaae33fef694f7182be5045a1d2b8c90d264"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "1b9da302-f59b-4b31-ad0f-a1d6e8e0cf98",
+        "set_code": "swsh9",
+        "number": "137",
+        "number_plain": "137",
+        "name": "Collapsed Stadium",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "a9a264bd0a9ea85062aec86fcda6f95e025c1ef80ae49c05eba370a8d5846985"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "22fdbf05-cd8b-49b2-ac11-84d0eb602ed3",
+        "set_code": "swsh5",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Bruno",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4c6ae733-5387-4a76-b938-e92ede92ce36",
+        "set_code": "swsh5",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Fan of Waves",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "39d9571f-c161-4d8e-83be-9d922d71a8b1",
+        "set_code": "swsh5",
+        "number": "128",
+        "number_plain": "128",
+        "name": "Korrina's Focus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8fdcd82a-4a1d-4615-8085-04a7307efbf2",
+        "set_code": "swsh5",
+        "number": "130",
+        "number_plain": "130",
+        "name": "Phoebe",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f5dbdb3c-813f-4153-9049-9804850d44d8",
+        "set_code": "swsh5",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Urn of Vitality",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e7177ce9-b2f6-4bd0-90b6-397b1958a3be",
+        "set_code": "swsh5",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cherrim",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "851b6129-ac18-4861-a951-ac95fbf187c3",
+        "set_code": "swsh6",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Echoing Horn",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2f38c3bc-0c15-4049-9a88-eb00208dffbc",
+        "set_code": "swsh6",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Klara",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "26a8cd4c-b488-4d83-85c6-fe1d7a4be712",
+        "set_code": "swsh6",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Melony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6c250d4d-f0be-4148-80f1-2946b41e37b9",
+        "set_code": "swsh6",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Peonia",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "416026c1-89a7-4302-987c-c839af46cf60",
+        "set_code": "swsh6",
+        "number": "150",
+        "number_plain": "150",
+        "name": "Peony",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "584ecc6d-d064-4ac6-a31c-70c0c86c13b3",
+        "set_code": "swsh7",
+        "number": "103",
+        "number_plain": "103",
+        "name": "Zoroark",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "63bb143f-fd6f-4d8a-9b92-4cf0effd5ca2",
+        "set_code": "swsh7",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Boost Shake",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "24ed11e6-2ccf-45f6-9300-8bab90c67074",
+        "set_code": "swsh9",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Tornadus",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ca175b84-dc69-4c5a-94f2-31b73eaa7477",
+        "set_code": "swsh9",
+        "number": "137",
+        "number_plain": "137",
+        "name": "Collapsed Stadium",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "1b46e6ebf5df0bef0fd0f360c4c5ce54da6b58bb31cee38583718ada3788d5c5",
+    "counts": {
+      "base_parent": 15,
+      "target_child": 15,
+      "target_identity": 15,
+      "target_parent": 15
+    }
+  },
+  "scope": {
+    "target_count": 15,
+    "by_set": {
+      "swsh5": 6,
+      "swsh6": 5,
+      "swsh7": 2,
+      "swsh9": 2
+    },
+    "by_finish": {
+      "normal": 15
+    },
+    "by_stamp_label": {
+      "Prize Pack Stamp": 15
+    },
+    "targets": [
+      {
+        "target_parent_id": "e7177ce9-b2f6-4bd0-90b6-397b1958a3be",
+        "target_child_id": "2b131f3b-6d7a-4b1d-87bd-1ecc4d29f3c4",
+        "base_parent_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "8",
+        "card_name": "Cherrim",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Cherrim",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "8",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Cherrim BST 008",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:008:Cherrim:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Cherrim",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "8",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Cherrim BST 008",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:008:Cherrim:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:8:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "22fdbf05-cd8b-49b2-ac11-84d0eb602ed3",
+        "target_child_id": "fa51e82b-8e66-402e-8b19-6ef6ae018995",
+        "base_parent_id": "5b4a17b1-5d5b-4921-826f-a4c8a4cb441c",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "121",
+        "card_name": "Bruno",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Bruno",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "121",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Bruno BST 121",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:121:Bruno:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Bruno",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "121",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Bruno BST 121",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:121:Bruno:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:121:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "4c6ae733-5387-4a76-b938-e92ede92ce36",
+        "target_child_id": "4b46e3dd-ad78-40c5-a0ce-01ac707088a1",
+        "base_parent_id": "3b8eb7b9-d907-48dc-9fa8-aaf8226d754f",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "127",
+        "card_name": "Fan of Waves",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Fan of Waves",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "127",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Fan of Waves BST 127",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:127:Fan of Waves:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Fan of Waves",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "127",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Fan of Waves BST 127",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:127:Fan of Waves:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:127:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "39d9571f-c161-4d8e-83be-9d922d71a8b1",
+        "target_child_id": "71b3c4cf-3504-4a62-9cbe-77103742ac0f",
+        "base_parent_id": "30c98a64-2b21-404c-9077-ac5d9ecc152b",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "128",
+        "card_name": "Korrina's Focus",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Korrina's Focus",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "128",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Korrina's Focus BST 128",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:128:Korrina’s Focus:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Korrina's Focus",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "128",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Korrina's Focus BST 128",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:128:Korrina’s Focus:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:128:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "8fdcd82a-4a1d-4615-8085-04a7307efbf2",
+        "target_child_id": "593d5dd9-fb9c-4601-8811-c56e23794a8d",
+        "base_parent_id": "0e986738-aece-4e5b-a4ff-de1599452d7b",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "130",
+        "card_name": "Phoebe",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Phoebe",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "130",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Phoebe BST 130",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:130:Phoebe:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Phoebe",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "130",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Phoebe BST 130",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:130:Phoebe:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:130:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "f5dbdb3c-813f-4153-9049-9804850d44d8",
+        "target_child_id": "34d1d00a-1342-473c-9c07-70e3f6398c3d",
+        "base_parent_id": "d7d6fc1e-b5ba-4d81-a8b7-9b84a7d7f284",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "139",
+        "card_name": "Urn of Vitality",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Urn of Vitality",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "139",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Urn of Vitality BST 139",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:139:Urn of Vitality:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Urn of Vitality",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "139",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Urn of Vitality BST 139",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:139:Urn of Vitality:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh5:139:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "851b6129-ac18-4861-a951-ac95fbf187c3",
+        "target_child_id": "ebd40a51-61aa-4f50-a707-182ee91ff68d",
+        "base_parent_id": "a8189dc7-1bd5-4371-b052-f895f3249056",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "136",
+        "card_name": "Echoing Horn",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Echoing Horn",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "136",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Echoing Horn CRE 136",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:136:Echoing Horn:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Echoing Horn",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "136",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Echoing Horn CRE 136",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:136:Echoing Horn:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh6:136:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "2f38c3bc-0c15-4049-9a88-eb00208dffbc",
+        "target_child_id": "5436b2c8-1866-469e-b62c-e71edc17d4d6",
+        "base_parent_id": "acd27805-fb0a-492c-9a4c-8d0b06e174d5",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "145",
+        "card_name": "Klara",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Klara",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "145",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Klara CRE 145",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:145:Klara:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Klara",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "145",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Klara CRE 145",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:145:Klara:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh6:145:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "26a8cd4c-b488-4d83-85c6-fe1d7a4be712",
+        "target_child_id": "c853ba4e-c2bd-47ea-9edd-8172f72d7b3b",
+        "base_parent_id": "b79419ed-dbb1-4680-87ee-a8cd865de8b3",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "146",
+        "card_name": "Melony",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Melony",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "146",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Melony CRE 146",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:146:Melony:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Melony",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "146",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Melony CRE 146",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:146:Melony:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh6:146:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "6c250d4d-f0be-4148-80f1-2946b41e37b9",
+        "target_child_id": "c72bcdd9-5bf9-48ae-a109-6179419ef7a5",
+        "base_parent_id": "57666c38-3750-405b-9c61-0db8c2156c9b",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "149",
+        "card_name": "Peonia",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Peonia",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "149",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Peonia CRE 149",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:149:Peonia:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Peonia",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "149",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Peonia CRE 149",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:149:Peonia:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh6:149:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "416026c1-89a7-4302-987c-c839af46cf60",
+        "target_child_id": "9e374ce4-be0c-4898-8c89-10946fbef7d4",
+        "base_parent_id": "f5de0200-09f4-45f3-a442-974dd6e54e18",
+        "set_key": "swsh6",
+        "set_name": "Chilling Reign",
+        "card_number": "150",
+        "card_name": "Peony",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Peony",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "150",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Peony CRE 150",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:CRE:150:Peony:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh6",
+              "language": "en",
+              "set_name": "Chilling Reign",
+              "card_name": "Peony",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "150",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Peony CRE 150",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:CRE:150:Peony:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh6:150:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "584ecc6d-d064-4ac6-a31c-70c0c86c13b3",
+        "target_child_id": "b0de48b9-1550-4ed0-9150-954744d4a6b0",
+        "base_parent_id": "080a53d2-2ac2-4796-be61-6c026ac5029d",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "103",
+        "card_name": "Zoroark",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh7",
+              "language": "en",
+              "set_name": "Evolving Skies",
+              "card_name": "Zoroark",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "103",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Zoroark EVS 103",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:EVS:103:Zoroark:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh7",
+              "language": "en",
+              "set_name": "Evolving Skies",
+              "card_name": "Zoroark",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "103",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Zoroark EVS 103",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:EVS:103:Zoroark:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh7:103:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "63bb143f-fd6f-4d8a-9b92-4cf0effd5ca2",
+        "target_child_id": "72307b91-75a6-4ef4-9353-0f11e84c59fe",
+        "base_parent_id": "6b574bbc-83c3-4789-8834-dfab342f28cb",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "142",
+        "card_name": "Boost Shake",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh7",
+              "language": "en",
+              "set_name": "Evolving Skies",
+              "card_name": "Boost Shake",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "142",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Boost Shake EVS 142",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:EVS:142:Boost Shake:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh7",
+              "language": "en",
+              "set_name": "Evolving Skies",
+              "card_name": "Boost Shake",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "142",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Boost Shake EVS 142",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:EVS:142:Boost Shake:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh7:142:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "24ed11e6-2ccf-45f6-9300-8bab90c67074",
+        "target_child_id": "d08fdebe-262b-4cb2-b900-c24b7a0bcc63",
+        "base_parent_id": "5a875326-872e-412d-b15b-b47e5e5a4658",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "126",
+        "card_name": "Tornadus",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh9",
+              "language": "en",
+              "set_name": "Brilliant Stars",
+              "card_name": "Tornadus",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "126",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Tornadus BRS 126",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:126:Tornadus:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh9",
+              "language": "en",
+              "set_name": "Brilliant Stars",
+              "card_name": "Tornadus",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "card_number": "126",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set for Tornadus BRS 126",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:126:Tornadus:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh9:126:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "ca175b84-dc69-4c5a-94f2-31b73eaa7477",
+        "target_child_id": "d42c9a6e-035c-4acd-9b48-a1d4fa85ba56",
+        "base_parent_id": "d976d5b2-49e5-4026-8f2d-25ca470316a6",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "137",
+        "card_name": "Collapsed Stadium",
+        "target_finish_key": "normal",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "af1685d9e1fcb92032655c06613e2eeaef2e24cf835aa34273370b8df3696214",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "b04b8a4bf6b40f10a3d2856ef670ee09845a4b2b3fbd6776d02830eecc989ec0",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh9",
+              "language": "en",
+              "set_name": "Brilliant Stars",
+              "card_name": "Collapsed Stadium",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "137",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Collapsed Stadium BRS 137",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BRS:137:Collapsed Stadium:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh9",
+              "language": "en",
+              "set_name": "Brilliant Stars",
+              "card_name": "Collapsed Stadium",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "card_number": "137",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-20T23:14:57.991Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 3 checklist supports standard set for Collapsed Stadium BRS 137",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series3:BRS:137:Collapsed Stadium:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates active finish",
+          "raw_snapshot_ref": "pkg18n:swsh9:137:prize_pack_stamp:normal",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "normal"
+        }
+      }
+    ]
+  },
+  "stop_findings": []
+}

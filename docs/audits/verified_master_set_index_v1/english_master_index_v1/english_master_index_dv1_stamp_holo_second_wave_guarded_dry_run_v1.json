@@ -1,0 +1,349 @@
+{
+  "package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+  "generated_at": "2026-06-21T20:35:50.538Z",
+  "fingerprint_sha256": "e69e902cea92414cc5e2c8e25679815713c02ef052d15c15d9e4ee5bb8d8019b",
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false
+  },
+  "summary": {
+    "target_rows": 2,
+    "parent_insert_scope": 2,
+    "identity_insert_scope": 2,
+    "child_insert_scope": 2,
+    "finish_counts": {
+      "holo": 2
+    },
+    "variant_counts": {
+      "dragon_vault_stamp": 1,
+      "league_stamp": 1
+    },
+    "readiness_blockers": 0,
+    "dry_run_status": "completed_rolled_back_no_durable_change",
+    "rollback_verified": true,
+    "write_ready_for_approval": true
+  },
+  "targets": [
+    {
+      "target_parent_id": "3c39930f-dca0-4e37-a363-518d3918ea11",
+      "target_child_id": "b610b91c-c3d9-4baa-b07f-007fab80627f",
+      "base_parent_id": "31d877dd-a029-4a27-b1a1-c7ae1fa016ec",
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "8",
+      "card_name": "Salamence",
+      "target_finish_key": "holo",
+      "target_variant_key": "league_stamp",
+      "target_printed_identity_modifier": "league_stamp",
+      "stamp_label": "League Stamp",
+      "base_holo_child_exists": true,
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-8/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-8",
+          "https://bulbapedia.bulbagarden.net/wiki/Salamence_(Dragon_Vault_8)",
+          "https://www.psacard.com/auctionprices/tcg-cards/pokemon-black-white-dragon-vault/salamence-holo-crosshatch-2013-spring-regional-championships/2577354",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "supplemental_finish_sources": [
+          {
+            "source_key": "bulbapedia_salamence_dragon_vault_8",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Salamence_(Dragon_Vault_8)",
+            "evidence_label": "Bulbapedia release information states a special Crosshatch Holofoil English print was given to participants of the 2013-2014 Spring Regional Championships and separately identifies a Staff version and Cosmos Holofoil version."
+          },
+          {
+            "source_key": "psa_salamence_spring_regional_crosshatch",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.psacard.com/auctionprices/tcg-cards/pokemon-black-white-dragon-vault/salamence-holo-crosshatch-2013-spring-regional-championships/2577354",
+            "evidence_label": "PSA auction spec identifies Salamence-Holo #8 Crosshatch 2013 Spring Regional Championships."
+          }
+        ],
+        "stamp_label": "League Stamp",
+        "variant_key": "league_stamp",
+        "active_child_finish_key": "holo"
+      }
+    },
+    {
+      "target_parent_id": "4ad452ce-5c70-4a2d-bbf4-3487d0b2ee7c",
+      "target_child_id": "e2d7309a-22de-473c-b506-4b53b30e73aa",
+      "base_parent_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "17",
+      "card_name": "Druddigon",
+      "target_finish_key": "holo",
+      "target_variant_key": "dragon_vault_stamp",
+      "target_printed_identity_modifier": "dragon_vault_stamp",
+      "stamp_label": "Dragon Vault Stamp",
+      "base_holo_child_exists": true,
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-17/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-17",
+          "https://www.pricecharting.com/game/pokemon-dragon-vault/druddigon-stamped-17",
+          "https://store.401games.ca/products/druddigon-17-20-holo-promo-dragon-vault-stamp",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "supplemental_finish_sources": [
+          {
+            "source_key": "pricecharting_druddigon_stamped_17",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dragon-vault/druddigon-stamped-17",
+            "evidence_label": "PriceCharting product page and sales labels identify Druddigon 17/20 Dragon Vault Stamped Holo."
+          },
+          {
+            "source_key": "401games_druddigon_holo_promo_dragon_vault_stamp",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://store.401games.ca/products/druddigon-17-20-holo-promo-dragon-vault-stamp",
+            "evidence_label": "401 Games product page identifies Druddigon 17/20 Holo Promo - Dragon Vault Stamp."
+          }
+        ],
+        "stamp_label": "Dragon Vault Stamp",
+        "variant_key": "dragon_vault_stamp",
+        "active_child_finish_key": "holo"
+      }
+    }
+  ],
+  "dry_run": {
+    "dry_run_status": "completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 2,
+      "target_parent_count": 2,
+      "target_child_count": 2,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 2,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+      "package_fingerprint": "e69e902cea92414cc5e2c8e25679815713c02ef052d15c15d9e4ee5bb8d8019b",
+      "target_rows": 2,
+      "inserted_parent_rows": 2,
+      "inserted_identity_rows": 2,
+      "inserted_child_rows": 2
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 2,
+      "identity_inserts": 2,
+      "child_inserts": 2,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-21T20:35:49.666Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "31d877dd-a029-4a27-b1a1-c7ae1fa016ec",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b9b787b2d33ef66fbae79d4d27ae1ec2353fb9b6b2cfd2caad5cd24908ec75c8"
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-21T20:35:50.386Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "31d877dd-a029-4a27-b1a1-c7ae1fa016ec",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e2d7309a-22de-473c-b506-4b53b30e73aa",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "b610b91c-c3d9-4baa-b07f-007fab80627f",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "15a4b4b5-112b-4df1-b425-41930ef7d85d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1e88ba4645f1975e5b30ebc18d1e4dfd94b1c211310bbf20d89149effbe233e8"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "79e6c0dc-e591-4e50-b350-674532ea6f6c",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "50628f75027fa9aeed31d2e61a538b436ddb6225ae0266f01da7f987d6cf424e"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4ad452ce-5c70-4a2d-bbf4-3487d0b2ee7c",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3c39930f-dca0-4e37-a363-518d3918ea11",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "3915dd9687788d579c796cab3731c1970b9dffe63055bcc28c897f2c16c0cb01"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-21T20:35:50.538Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "31d877dd-a029-4a27-b1a1-c7ae1fa016ec",
+          "set_code": "dv1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b9b787b2d33ef66fbae79d4d27ae1ec2353fb9b6b2cfd2caad5cd24908ec75c8"
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "189a08eebdf16f493dbfec8bd89fc9017facd565c69d6a6fa6101435ea14c063",
+    "stop_findings": []
+  }
+}

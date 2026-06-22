@@ -1,0 +1,405 @@
+{
+  "package_id": "SECOND-SOURCE-MANUAL-PARENT-INSERTS",
+  "generated_at": "2026-06-21T20:35:52.047Z",
+  "input_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_second_source_manual_candidate_readiness_v1.json",
+  "fingerprint_sha256": "1a6ab61b6803b788700cc123927c909f80e9de955eeb9fa4c44af9ee483c0cc2",
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false
+  },
+  "summary": {
+    "source_candidate_rows": 4,
+    "excluded_rows": 1,
+    "target_rows": 3,
+    "parent_insert_scope": 3,
+    "identity_insert_scope": 3,
+    "child_insert_scope": 3,
+    "finish_counts": {
+      "reverse": 3
+    },
+    "variant_counts": {
+      "europe_championships_staff_stamp": 1,
+      "regional_championships_staff_stamp": 2
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change",
+    "rollback_verified": true,
+    "write_ready_for_approval": true
+  },
+  "targets": [
+    {
+      "target_parent_id": "43370620-7dc4-41cd-90ae-49aa256087f8",
+      "target_child_id": "147de242-6981-4222-90fd-4ad582f7c09b",
+      "base_parent_id": "cabd8a46-2611-4f3f-9087-3ee4f6c7ae5c",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "target_finish_key": "reverse",
+      "target_variant_key": "regional_championships_staff_stamp",
+      "target_printed_identity_modifier": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "target_gv_id": "GV-PK-BW5-25-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP",
+      "target_printing_gv_id": "GV-PK-BW5-25-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP-RH",
+      "source_urls": [
+        "https://www.cgccards.com/population-report/tcg/pok%C3%A9mon/2/black-and-white/947/dark-explorers/17212/?page=2&populationID=478993",
+        "https://www.psacard.com/psasetregistry/tcg/key-card-sets/pokemon-black-white-eeveelutions-crosshatch-promos-2012-2013-master/publishedset/586918",
+        "https://www.pikawiz.com/card/darkexplorers/vaporeon/25",
+        "https://pokecardvalues.co.uk/cards/vaporeon-25-108-non-holo-unlimited-dark-explorers/bw5-25-2-1/"
+      ],
+      "evidence_labels": [
+        "CGC population report identifies Vaporeon 25/108 Dark Explorers Regional Championships - Staff as Crosshatch Holo.",
+        "PSA Set Registry identifies 2012 Pokemon Black & White Dark Explorers Vaporeon-Holo 2012 Euro Spring Regional Championships-Staff.",
+        "Pikawiz population page separately identifies Vaporeon Staff Cross-Hatch Holo Euro Spring Regional Championships Promo.",
+        "PokeCardValues exact Vaporeon page lists Vaporeon Reverse Holo Staff Regional Championships as a related variant."
+      ]
+    },
+    {
+      "target_parent_id": "56c7643a-edd4-40ae-bcf9-89d79aa5c5f5",
+      "target_child_id": "62ebecc3-3e67-47b6-9c50-83b776f602ed",
+      "base_parent_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "target_finish_key": "reverse",
+      "target_variant_key": "europe_championships_staff_stamp",
+      "target_printed_identity_modifier": "europe_championships_staff_stamp",
+      "stamp_label": "Europe Championships Staff Stamp",
+      "target_gv_id": "GV-PK-SM1-135-EUROPE-CHAMPIONSHIPS-STAFF-STAMP",
+      "target_printing_gv_id": "GV-PK-SM1-135-EUROPE-CHAMPIONSHIPS-STAFF-STAMP-RH",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/588122/pokemon-league-and-championship-cards-ultra-ball-135-149-europe-championships",
+        "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Ultra Ball 135/149 Europe Championships.",
+        "Pokumon exact card page identifies Europe Championships Staff Ultra Ball 135/149 as Reverse Holo European International Championships 2017-2018 Staff promo."
+      ]
+    },
+    {
+      "target_parent_id": "61067407-0228-4f07-884e-157b24a38e97",
+      "target_child_id": "0eb4ee81-8620-4c8c-873d-fe75fd624a5a",
+      "base_parent_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "085",
+      "card_name": "Aegislash",
+      "target_finish_key": "reverse",
+      "target_variant_key": "regional_championships_staff_stamp",
+      "target_printed_identity_modifier": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "target_gv_id": "GV-PK-XY1-85-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP",
+      "target_printing_gv_id": "GV-PK-XY1-85-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP-RH",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/209563/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships-staff",
+        "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-staff-regional-championships-xy/xy1-85-3-83/",
+        "https://www.pricecharting.com/game/pokemon-xy/aegislash-regional-championship-staff-85"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Aegislash 85/146 Regional Championships Staff.",
+        "PokeCardValues exact card page identifies Aegislash 85/146 Reverse Holo Staff Regional Championships.",
+        "PriceCharting product page identifies Aegislash Regional Championship Staff #85."
+      ]
+    }
+  ],
+  "excluded_targets": [
+    {
+      "target_parent_id": "59ca7a79-84e0-4afb-9688-b439567435ef",
+      "target_child_id": "1f6193eb-a247-4dde-9756-a0a9847c9341",
+      "base_parent_id": "94a1987b-3ff0-4aea-a58c-aaa0903d1c61",
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "083",
+      "card_name": "Honedge",
+      "target_finish_key": "holo",
+      "target_variant_key": "regional_championships_staff_stamp",
+      "target_printed_identity_modifier": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "target_gv_id": "GV-PK-XY1-83-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP",
+      "target_printing_gv_id": "GV-PK-XY1-83-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP-HOLO",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/267992/pokemon-league-and-championship-cards-honedge-83-146-regional-championships-staff",
+        "https://pokumon.com/card/staff-honedge-83-146-regional-championships-special-print/",
+        "https://pokescope.app/card/xy1-83/"
+      ],
+      "evidence_labels": [
+        "TCGplayer product page identifies Honedge 83/146 Regional Championships Staff.",
+        "Pokumon exact card page identifies Staff Honedge 83/146 as Crosshatch Holo Autumn Regional Championships 2014-2015 promo.",
+        "PokeScope exact card page snippet identifies XY Honedge 83 Holo Crosshatch 2014 Autumn Regional Championships STAFF."
+      ],
+      "excluded_reason": "base_parent_missing_matching_finish_child",
+      "next_step": "finish taxonomy adjudication or source-backed base finish insertion required before parent insert"
+    }
+  ],
+  "dry_run": {
+    "dry_run_status": "completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 3,
+      "target_parent_count": 3,
+      "target_child_count": 3,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 3,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SECOND-SOURCE-MANUAL-PARENT-INSERTS",
+      "package_fingerprint": "1a6ab61b6803b788700cc123927c909f80e9de955eeb9fa4c44af9ee483c0cc2",
+      "target_rows": 3,
+      "inserted_parent_rows": 3,
+      "inserted_identity_rows": 3,
+      "inserted_child_rows": 3
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 3,
+      "identity_inserts": 3,
+      "child_inserts": 3,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-21T20:35:51.197Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "cabd8a46-2611-4f3f-9087-3ee4f6c7ae5c",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "eec317ccf69782572778f17996f26855c13c8ad4e3456644e8a5eccb822c9c1f"
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-21T20:35:51.898Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "cabd8a46-2611-4f3f-9087-3ee4f6c7ae5c",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "147de242-6981-4222-90fd-4ad582f7c09b",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "62ebecc3-3e67-47b6-9c50-83b776f602ed",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "europe_championships_staff_stamp",
+          "printed_identity_modifier": "europe_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "0eb4ee81-8620-4c8c-873d-fe75fd624a5a",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b9e2583d-a41b-4cd9-8cfa-132860faf1fb",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "49b99f4343ecf9e7f6d1d527b1b2ce55bad1ca20dbb8b4700e097073626ff5e7"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "7b27fa53-fc99-436c-b9a5-967b869d3754",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "europe_championships_staff_stamp",
+          "printed_identity_modifier": "europe_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "af5e0d797ecfe9653695e52d74fc57f9e0a58b9af7d6b4eb9484d49683bc2401"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "19a33964-7639-45dd-be0a-6db565949ffd",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "3f12b6c696216ca73260bc337a1a08d56d1dfeda81a17a1f2ef3d5f445f7d42b"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "43370620-7dc4-41cd-90ae-49aa256087f8",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "56c7643a-edd4-40ae-bcf9-89d79aa5c5f5",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "europe_championships_staff_stamp",
+          "printed_identity_modifier": "europe_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "61067407-0228-4f07-884e-157b24a38e97",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_staff_stamp",
+          "printed_identity_modifier": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b6faffee2b63be31c72597a6a0ec2ef4e4d0276d7e55b43c740110bf2413331f"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-21T20:35:52.047Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "cabd8a46-2611-4f3f-9087-3ee4f6c7ae5c",
+          "set_code": "bw5",
+          "number": "25",
+          "number_plain": "25",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "eec317ccf69782572778f17996f26855c13c8ad4e3456644e8a5eccb822c9c1f"
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "61afe4fc04739e1dd5ed182f264efa4451361c01800d6a54d3f869523306c572",
+    "stop_findings": []
+  }
+}

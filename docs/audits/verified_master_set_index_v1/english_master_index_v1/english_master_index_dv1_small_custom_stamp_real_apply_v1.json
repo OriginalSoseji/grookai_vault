@@ -1,0 +1,518 @@
+{
+  "generated_at": "2026-06-21T21:44:12.575Z",
+  "version": "english_master_index_dv1_small_custom_stamp_real_apply_v1",
+  "package_id": "DV1-SMALL-CUSTOM-STAMP-DRAGON-VAULT-PARENT-INSERTS",
+  "package_fingerprint_sha256": "cc55f171699052b623c36990dfd48ba9ac877e38e1dcc63f255794ab94fd9b83",
+  "dry_run_proof_sha256": "49ed01f0fae24e6651256a00cd06b750fa459778aa1d168f2162f9cc6f55a15b",
+  "source_packet": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_small_custom_stamp_dry_run_packet_v1.json",
+  "source_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_small_custom_stamp_guarded_dry_run_v1.json",
+  "apply_status": "committed",
+  "committed": true,
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "summary": {
+    "target_rows": 4,
+    "inserted_parent_rows": 4,
+    "inserted_identity_rows": 4,
+    "inserted_child_rows": 4
+  },
+  "targets": [
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "10",
+      "card_name": "Latios",
+      "base_parent_id": "d3e1d17b-6e35-4362-8a5a-570b2702a0d1",
+      "target_parent_id": "773ab09c-ee9a-46bc-b0dc-e263ced5962f",
+      "target_child_id": "404c1849-f0c8-4672-b240-bc1caba8e008",
+      "target_finish_key": "holo",
+      "target_variant_key": "dragon_vault_stamp",
+      "target_printed_identity_modifier": "dragon_vault_stamp",
+      "stamp_label": "Dragon Vault Stamp",
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-10/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-10",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "stamp_label": "Dragon Vault Stamp",
+        "variant_key": "dragon_vault_stamp",
+        "active_child_finish_key": "holo"
+      },
+      "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_stamp_holo_review_ready_guarded_dry_run_v1.json",
+      "source_package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+      "source_package_fingerprint_sha256": "46ee2cb0ad4702303aee2da1964578169dc101e6811d6d4a5b5655c3ba99893f",
+      "live_readiness_status": "ready_for_fresh_guarded_dry_run_artifact"
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "11",
+      "card_name": "Rayquaza",
+      "base_parent_id": "0b68d053-5859-420a-9739-921fdd69755a",
+      "target_parent_id": "b0337ebd-58c5-4241-a36f-a4e4139ca1eb",
+      "target_child_id": "6bf5ed00-3faf-4517-b21d-d65b66527403",
+      "target_finish_key": "holo",
+      "target_variant_key": "dragon_vault_stamp",
+      "target_printed_identity_modifier": "dragon_vault_stamp",
+      "stamp_label": "Dragon Vault Stamp",
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-11/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-11",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "stamp_label": "Dragon Vault Stamp",
+        "variant_key": "dragon_vault_stamp",
+        "active_child_finish_key": "holo"
+      },
+      "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_stamp_holo_review_ready_guarded_dry_run_v1.json",
+      "source_package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+      "source_package_fingerprint_sha256": "46ee2cb0ad4702303aee2da1964578169dc101e6811d6d4a5b5655c3ba99893f",
+      "live_readiness_status": "ready_for_fresh_guarded_dry_run_artifact"
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "16",
+      "card_name": "Haxorus",
+      "base_parent_id": "92ff6498-b145-4864-ae82-f6229e9f7f70",
+      "target_parent_id": "c5b56546-12cc-4211-b288-7531b289e5cd",
+      "target_child_id": "dd4c9965-0592-4d28-b30e-acfa0bdcc56a",
+      "target_finish_key": "holo",
+      "target_variant_key": "dragon_vault_stamp",
+      "target_printed_identity_modifier": "dragon_vault_stamp",
+      "stamp_label": "Dragon Vault Stamp",
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-16/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-16",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "stamp_label": "Dragon Vault Stamp",
+        "variant_key": "dragon_vault_stamp",
+        "active_child_finish_key": "holo"
+      },
+      "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_stamp_holo_review_ready_guarded_dry_run_v1.json",
+      "source_package_id": "DV1-STAMP-HOLO-REVIEW-READY-PARENT-INSERTS",
+      "source_package_fingerprint_sha256": "46ee2cb0ad4702303aee2da1964578169dc101e6811d6d4a5b5655c3ba99893f",
+      "live_readiness_status": "ready_for_fresh_guarded_dry_run_artifact"
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "17",
+      "card_name": "Druddigon",
+      "base_parent_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+      "target_parent_id": "4ad452ce-5c70-4a2d-bbf4-3487d0b2ee7c",
+      "target_child_id": "e2d7309a-22de-473c-b506-4b53b30e73aa",
+      "target_finish_key": "holo",
+      "target_variant_key": "dragon_vault_stamp",
+      "target_printed_identity_modifier": "dragon_vault_stamp",
+      "stamp_label": "Dragon Vault Stamp",
+      "evidence": {
+        "package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+        "evidence_rule": "exact_variant_sources_plus_dragon_vault_all_foil_set_rule",
+        "source_urls": [
+          "https://pokescope.app/card/dv1-17/",
+          "https://scrydex.com/pokemon/cards/dragon-vault/dv1-17",
+          "https://www.pricecharting.com/game/pokemon-dragon-vault/druddigon-stamped-17",
+          "https://store.401games.ca/products/druddigon-17-20-holo-promo-dragon-vault-stamp",
+          "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+          "https://www.pokellector.com/Dragon-Vault-Expansion/"
+        ],
+        "exact_variant_sources": [
+          "pokescope_card_page",
+          "scrydex_card_page"
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "supplemental_finish_sources": [
+          {
+            "source_key": "pricecharting_druddigon_stamped_17",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dragon-vault/druddigon-stamped-17",
+            "evidence_label": "PriceCharting product page and sales labels identify Druddigon 17/20 Dragon Vault Stamped Holo."
+          },
+          {
+            "source_key": "401games_druddigon_holo_promo_dragon_vault_stamp",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://store.401games.ca/products/druddigon-17-20-holo-promo-dragon-vault-stamp",
+            "evidence_label": "401 Games product page identifies Druddigon 17/20 Holo Promo - Dragon Vault Stamp."
+          }
+        ],
+        "stamp_label": "Dragon Vault Stamp",
+        "variant_key": "dragon_vault_stamp",
+        "active_child_finish_key": "holo"
+      },
+      "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_dv1_stamp_holo_second_wave_guarded_dry_run_v1.json",
+      "source_package_id": "DV1-STAMP-HOLO-SECOND-WAVE-PARENT-INSERTS",
+      "source_package_fingerprint_sha256": "e69e902cea92414cc5e2c8e25679815713c02ef052d15c15d9e4ee5bb8d8019b",
+      "live_readiness_status": "ready_for_fresh_guarded_dry_run_artifact"
+    }
+  ],
+  "apply": {
+    "before_snapshot": {
+      "captured_at": "2026-06-21T21:44:11.676Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "d3e1d17b-6e35-4362-8a5a-570b2702a0d1",
+          "set_code": "dv1",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Latios",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0b68d053-5859-420a-9739-921fdd69755a",
+          "set_code": "dv1",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Rayquaza",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "92ff6498-b145-4864-ae82-f6229e9f7f70",
+          "set_code": "dv1",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Haxorus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 4
+      },
+      "hash_sha256": "2ddfddff87e3a4ecb19776dddf47a886acabec8d0bc0f9979e1e7e3e2a49bbf2"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-21T21:44:12.570Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "d3e1d17b-6e35-4362-8a5a-570b2702a0d1",
+          "set_code": "dv1",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Latios",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0b68d053-5859-420a-9739-921fdd69755a",
+          "set_code": "dv1",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Rayquaza",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "92ff6498-b145-4864-ae82-f6229e9f7f70",
+          "set_code": "dv1",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Haxorus",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "80c3c20e-727d-4cf4-9dd5-a1ca9c154c1d",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "404c1849-f0c8-4672-b240-bc1caba8e008",
+          "set_code": "dv1",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Latios",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "6bf5ed00-3faf-4517-b21d-d65b66527403",
+          "set_code": "dv1",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Rayquaza",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "dd4c9965-0592-4d28-b30e-acfa0bdcc56a",
+          "set_code": "dv1",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Haxorus",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e2d7309a-22de-473c-b506-4b53b30e73aa",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "45d4465f-99f1-44a6-9140-ee8c486dcc32",
+          "set_code": "dv1",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Latios",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": "73418b6220ca22139e754faa8e082f36bc9ab6e61bcd3519cec50d4a54fe441a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5daf0ac3-915e-4940-b24a-decfab0864a2",
+          "set_code": "dv1",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Rayquaza",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": "740859b5cc8d03b694bf056bf05217b0669b2c8189d909de08e177d60469e938"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b10b931d-a7a6-4da1-8b1e-341e8c338874",
+          "set_code": "dv1",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Haxorus",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2f5906f2c032f41ea5b60619a57f13aaf89e11cf77d3194bafa772aa4deed1a4"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0f519c8f-2b76-47e7-aeb7-a6e76f4f4ed0",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1e88ba4645f1975e5b30ebc18d1e4dfd94b1c211310bbf20d89149effbe233e8"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "773ab09c-ee9a-46bc-b0dc-e263ced5962f",
+          "set_code": "dv1",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Latios",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "b0337ebd-58c5-4241-a36f-a4e4139ca1eb",
+          "set_code": "dv1",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Rayquaza",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c5b56546-12cc-4211-b288-7531b289e5cd",
+          "set_code": "dv1",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Haxorus",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4ad452ce-5c70-4a2d-bbf4-3487d0b2ee7c",
+          "set_code": "dv1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Druddigon",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": "dragon_vault_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 4,
+        "target_child": 4,
+        "target_identity": 4,
+        "target_parent": 4
+      },
+      "hash_sha256": "7aabe6e44bb3cc632aed34f48ccdab8e60f8e74f209c5a90e8ff32c73eaa7595"
+    },
+    "proof": {
+      "guard": {
+        "target_count": 4,
+        "target_parent_count": 4,
+        "target_child_count": 4,
+        "missing_base_count": 0,
+        "inactive_finish_count": 0,
+        "missing_base_finish_count": 0,
+        "parent_collision_count": 0,
+        "child_collision_count": 0,
+        "identity_target_collision_count": 0,
+        "ready_identity_projection_count": 4,
+        "identity_hash_collision_count": 0
+      },
+      "inserted_parent_rows": 4,
+      "inserted_identity_rows": 4,
+      "inserted_child_rows": 4
+    },
+    "apply_proof_sha256": "dc1167883ceb4016145a1ae0606eec0c3c12cdec1b0a3da6d9c1acbab93ebb88"
+  },
+  "stop_findings": []
+}

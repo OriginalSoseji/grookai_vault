@@ -1,0 +1,92 @@
+# Pokumon Detail Parent Insert Real Apply V1
+
+Generated: 2026-06-22T02:37:29.989Z
+
+Approved real apply for exact Pokumon detail-page stamped/special parent identity inserts.
+
+## Safety
+
+- approval_text_required: Approve real POKUMON-DETAIL-PARENT-INSERTS apply only. Fingerprint: d8dba1ac6b247dd860107630743f1a0e6af2734d569bb63ef11c7d2b018e41a0. Scope: 22 stamped/special parent inserts, 22 active identity inserts, 23 child printing inserts; finishes reverse=17 and normal=6; no deletes, no merges, no migrations, no global apply, no unsupported cleanup. Dry-run proof: f747a15c0c18916645906540f0338d549d9ade5a3f1128f94a981cdb902f2b73.
+- db_writes_performed: true
+- durable_db_writes_performed: true
+- migrations_created: false
+- apply_performed: true
+- cleanup_performed: false
+
+## Summary
+
+| metric | value |
+| --- | --- |
+| source_child_candidate_rows | 23 |
+| parent_insert_scope | 22 |
+| child_insert_scope | 23 |
+| identity_insert_scope | 22 |
+| apply_status | pokumon_detail_real_apply_committed |
+| committed | true |
+| dry_run_proof_sha256 | f747a15c0c18916645906540f0338d549d9ade5a3f1128f94a981cdb902f2b73 |
+| apply_proof_sha256 | 3b1ee841caf443f029b8dfa6b78e725f7dfa70fc6ba9c026c10585f3f4d60d0d |
+| fingerprint_sha256 | `d8dba1ac6b247dd860107630743f1a0e6af2734d569bb63ef11c7d2b018e41a0` |
+
+## Parent Scope
+
+| set | number | card | variant | child finishes |
+| --- | --- | --- | --- | --- |
+| bw3 | 80 | Escavalier | national_championships_staff_stamp | normal |
+| bw3 | 80 | Escavalier | national_championships_stamp | reverse |
+| bw5 | 25 | Vaporeon | championship_staff_stamp | normal, reverse |
+| bw5 | 25 | Vaporeon | regional_championships_staff_stamp | reverse |
+| dp1 | 98 | Shinx | city_championships_staff_stamp | normal |
+| ex6 | 50 | Wartortle | prerelease_stamp | normal |
+| ex8 | 91 | Space Center | pokemon_10th_anniversary_stamped | normal |
+| hgss2 | 37 | Poliwhirl | staff_stamp | reverse |
+| hgss4 | 20 | Electivire | prerelease_stamp | normal |
+| sm1 | 128 | Professor Kukui | regional_championships_staff_stamp | reverse |
+| sm1 | 135 | Ultra Ball | championship_staff_stamp | reverse |
+| sm1 | 135 | Ultra Ball | europe_championships_staff_stamp | reverse |
+| sm4 | 95 | Gladion | regional_championships_stamp | reverse |
+| sm5 | 119 | Cynthia | regional_championships_staff_stamp | reverse |
+| sm6 | 108 | Judge | professor_program_stamp | reverse |
+| sm6 | 113 | Mysterious Treasure | league_stamp | reverse |
+| swsh2 | 167 | Sonia | professor_program_stamp | reverse |
+| swsh3 | 110 | Hydreigon | thank_you_stamp | reverse |
+| xy1 | 83 | Honedge | regional_championships_staff_stamp | reverse |
+| xy1 | 85 | Aegislash | regional_championships_staff_stamp | reverse |
+| xy11 | 103 | Ninja Boy | league_stamp | reverse |
+| xy12 | 90 | Double Colorless Energy | national_championships_stamp | reverse |
+
+## Child Scope
+
+| set | number | card | variant | finish |
+| --- | --- | --- | --- | --- |
+| bw3 | 80 | Escavalier | national_championships_staff_stamp | normal |
+| bw3 | 80 | Escavalier | national_championships_stamp | reverse |
+| bw5 | 25 | Vaporeon | championship_staff_stamp | normal |
+| bw5 | 25 | Vaporeon | championship_staff_stamp | reverse |
+| bw5 | 25 | Vaporeon | regional_championships_staff_stamp | reverse |
+| dp1 | 98 | Shinx | city_championships_staff_stamp | normal |
+| ex6 | 50 | Wartortle | prerelease_stamp | normal |
+| ex8 | 91 | Space Center | pokemon_10th_anniversary_stamped | normal |
+| hgss2 | 37 | Poliwhirl | staff_stamp | reverse |
+| hgss4 | 20 | Electivire | prerelease_stamp | normal |
+| sm1 | 128 | Professor Kukui | regional_championships_staff_stamp | reverse |
+| sm1 | 135 | Ultra Ball | championship_staff_stamp | reverse |
+| sm1 | 135 | Ultra Ball | europe_championships_staff_stamp | reverse |
+| sm4 | 95 | Gladion | regional_championships_stamp | reverse |
+| sm5 | 119 | Cynthia | regional_championships_staff_stamp | reverse |
+| sm6 | 108 | Judge | professor_program_stamp | reverse |
+| sm6 | 113 | Mysterious Treasure | league_stamp | reverse |
+| swsh2 | 167 | Sonia | professor_program_stamp | reverse |
+| swsh3 | 110 | Hydreigon | thank_you_stamp | reverse |
+| xy1 | 83 | Honedge | regional_championships_staff_stamp | reverse |
+| xy1 | 85 | Aegislash | regional_championships_staff_stamp | reverse |
+| xy11 | 103 | Ninja Boy | league_stamp | reverse |
+| xy12 | 90 | Double Colorless Energy | national_championships_stamp | reverse |
+
+## Result
+
+- parent_inserts: 22
+- identity_inserts: 22
+- child_inserts: 23
+- deletes: 0
+- merges: 0
+- stop_findings: 0

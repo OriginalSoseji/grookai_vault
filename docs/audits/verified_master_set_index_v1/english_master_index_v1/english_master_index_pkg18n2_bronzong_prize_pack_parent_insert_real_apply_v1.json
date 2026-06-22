@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-06-22T02:24:53.246Z",
+  "version": "english_master_index_pkg18n2_bronzong_prize_pack_parent_insert_real_apply_v1",
+  "package_id": "PKG-18N2-BRONZONG-PRIZE-PACK-PARENT-INSERT",
+  "package_fingerprint_sha256": "19652e0ab6a055565dc28794c039bea3eab6b6422306eed24ba7a45ca3477fdb",
+  "dry_run_proof_sha256": "d1c7cd8e30b4e9f5c7d5eaf85b8366dd812ac5e9c2c6470bc39625ea2fe31339",
+  "approval_text_required": "Approve real PKG-18N2-BRONZONG-PRIZE-PACK-PARENT-INSERT apply only. Fingerprint: 19652e0ab6a055565dc28794c039bea3eab6b6422306eed24ba7a45ca3477fdb. Scope: 1 stamped parent inserts, 1 identity inserts, 1 child printing inserts; finishes holo=1; stamp labels Prize Pack Stamp=1; sets swsh5=1. Dry-run proof: f685254c0f86bb8352f165062b03ee5e0fd62b77d88acc679e48e66270454b14 == f685254c0f86bb8352f165062b03ee5e0fd62b77d88acc679e48e66270454b14. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg18n2_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18n2_bronzong_prize_pack_parent_insert_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_inserts": 1,
+    "identity_inserts": 1,
+    "child_inserts": 1,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 1,
+    "target_parent_count": 1,
+    "target_child_count": 1,
+    "missing_base_count": 0,
+    "inactive_finish_count": 0,
+    "missing_base_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0,
+    "identity_target_collision_count": 0,
+    "ready_identity_projection_count": 1,
+    "identity_hash_collision_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-18N2-BRONZONG-PRIZE-PACK-PARENT-INSERT",
+    "package_fingerprint": "19652e0ab6a055565dc28794c039bea3eab6b6422306eed24ba7a45ca3477fdb",
+    "target_rows": 1,
+    "inserted_parent_rows": 1,
+    "inserted_parent_modifier_rows": 1,
+    "inserted_identity_rows": 1,
+    "inserted_child_rows": 1,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-22T02:24:52.238Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "8dade4e7-8dea-4e51-8e4d-73a333360247",
+        "set_code": "swsh5",
+        "number": "102",
+        "number_plain": "102",
+        "name": "Bronzong",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "f685254c0f86bb8352f165062b03ee5e0fd62b77d88acc679e48e66270454b14",
+    "counts": {
+      "base_parent": 1
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-22T02:24:53.161Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "8dade4e7-8dea-4e51-8e4d-73a333360247",
+        "set_code": "swsh5",
+        "number": "102",
+        "number_plain": "102",
+        "name": "Bronzong",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "ff3b7bcc-a01b-427a-9932-d87b2454696e",
+        "set_code": "swsh5",
+        "number": "102",
+        "number_plain": "102",
+        "name": "Bronzong",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "bbb5c1ec-7a13-47aa-ba7f-6cda8b337b68",
+        "set_code": "swsh5",
+        "number": "102",
+        "number_plain": "102",
+        "name": "Bronzong",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "f2246937b2963ca035e1c903e6522c4106654a94915bed92a2eed5c3cb7e0b0f"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "57a3817e-a626-4fd8-b7fa-6ef6598bf64e",
+        "set_code": "swsh5",
+        "number": "102",
+        "number_plain": "102",
+        "name": "Bronzong",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "975f5000b0605bcbe7bdb52a915c41c2fdda4adc8ebd3622f60dc75dc450574e",
+    "counts": {
+      "base_parent": 1,
+      "target_child": 1,
+      "target_identity": 1,
+      "target_parent": 1
+    }
+  },
+  "scope": {
+    "target_count": 1,
+    "by_set": {
+      "swsh5": 1
+    },
+    "by_finish": {
+      "holo": 1
+    },
+    "by_stamp_label": {
+      "Prize Pack Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "57a3817e-a626-4fd8-b7fa-6ef6598bf64e",
+        "target_child_id": "ff3b7bcc-a01b-427a-9932-d87b2454696e",
+        "base_parent_id": "8dade4e7-8dea-4e51-8e4d-73a333360247",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "102",
+        "card_name": "Bronzong",
+        "target_finish_key": "holo",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "Prize Pack Stamp",
+        "source_urls": [
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+        ],
+        "source_families": [
+          "official_pokemon_prize_pack_pdf",
+          "bulbapedia_prize_pack_active_finish_current_queue"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+          "readiness_fingerprint_sha256": "db75b268ab8903d74bc0a326b3cab1b3e2e3344a9e0ed75108eb752875d527b3",
+          "source_package_id": "OFFICIAL-POKEMON-PRIZE-PACK-PDF-ACQUISITION-V1",
+          "source_fingerprint_sha256": "7e5a81205910dbc1150539107fc7e478ed83c1ce23abeac8141f65a828ed4351",
+          "source_families": [
+            "official_pokemon_prize_pack_pdf",
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "source_urls": [
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+            "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf"
+          ],
+          "official_evidence": [
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Bronzong",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+              "card_number": "102",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-22T01:39:26.765Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 1 checklist supports standard set for Bronzong BST 102",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series1:BST:102:Bronzong:normal:normal"
+            },
+            {
+              "notes": "Official Pokémon Prize Pack checklist PDF. Standard set is mapped to normal; standard set foil is mapped to cosmos for Prize Pack stamped active-finish governance.",
+              "set_key": "swsh5",
+              "language": "en",
+              "set_name": "Battle Styles",
+              "card_name": "Bronzong",
+              "finish_key": "normal",
+              "source_key": "official_pokemon_prize_pack_pdf",
+              "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+              "card_number": "102",
+              "source_kind": "official_gallery",
+              "variant_key": "prize_pack_stamp",
+              "retrieved_at": "2026-06-22T01:39:26.765Z",
+              "evidence_type": "finish_presence",
+              "evidence_label": "Official Pokémon Prize Pack Series 2 checklist supports standard set for Bronzong BST 102",
+              "raw_snapshot_ref": "official_pokemon_prize_pack_pdf:series2:BST:102:Bronzong:normal:normal"
+            }
+          ],
+          "prior_source_families": [
+            "bulbapedia_prize_pack_active_finish_current_queue"
+          ],
+          "evidence_label": "Official Pokemon Prize Pack PDF checklist corroborates Bronzong active finish through governed standard-set-to-base-holo mapping",
+          "raw_snapshot_ref": "pkg18n:swsh5:102:prize_pack_stamp:holo",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "active_child_finish_key": "holo",
+          "source_finish_key": "normal",
+          "finish_governance_rule": "official_standard_set_maps_to_base_holo_when_base_has_holo_not_normal"
+        }
+      }
+    ]
+  },
+  "stop_findings": []
+}

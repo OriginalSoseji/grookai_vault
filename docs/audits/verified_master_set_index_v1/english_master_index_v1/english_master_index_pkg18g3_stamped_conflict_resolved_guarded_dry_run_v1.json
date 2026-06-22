@@ -1,0 +1,399 @@
+{
+  "generated_at": "2026-06-20T17:52:34.964Z",
+  "version": "english_master_index_pkg18g3_stamped_conflict_resolved_guarded_dry_run_v1",
+  "package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-PARENT-INSERTS",
+  "package_fingerprint_sha256": "b8b55500f43f889df85d5c76aa1db4ac117209469fadfee565e045e7d48db108",
+  "dry_run_proof_sha256": "b9703d52a7b5502322c8454da864c34ec67a0baf846263651eb7419c94200041",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g3_stamped_conflict_resolved_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 2,
+    "by_set": {
+      "me02": 1,
+      "xy1": 1
+    },
+    "by_finish": {
+      "cosmos": 1,
+      "reverse": 1
+    },
+    "by_stamp_label": {
+      "GameStop Stamp": 1,
+      "Regional Championships Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+        "target_child_id": "8ef1005c-7207-4ae0-8683-0ca9828c63e8",
+        "base_parent_id": "190e9217-eafb-4a79-96cc-283e21d6e691",
+        "set_key": "me02",
+        "set_name": "Phantasmal Flames",
+        "card_number": "026",
+        "card_name": "Suicune",
+        "target_finish_key": "cosmos",
+        "target_variant_key": "gamestop_stamp",
+        "target_printed_identity_modifier": "gamestop_stamp",
+        "target_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP",
+        "target_printing_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP-COSMOS",
+        "stamp_label": "GameStop Stamp",
+        "source_urls": [
+          "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+          "https://www.pricecharting.com/search-products?q=suicune&type=prices",
+          "https://my.taggrading.com/pop-report/Pok%C3%A9mon/2025/Pok%C3%A9mon%20Mega%20Evolution/Suicune/026%2F094?grades=10&setName=Phantasmal+Flames+%22GameStop%22+Stamp&variation=Pixel+Cosmos+Holo",
+          "https://pokescope.app/card/me2-26/"
+        ],
+        "source_families": [
+          "tcgplayer_product_page",
+          "pricecharting_search_product",
+          "tag_grading_pop_report",
+          "pokescope_variant_page"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-READINESS",
+          "readiness_fingerprint_sha256": "7f98ac16026f095517fab27ce5764a2eacc460d4257d09b87a73a3171798c141",
+          "source_families": [
+            "tcgplayer_product_page",
+            "pricecharting_search_product",
+            "tag_grading_pop_report",
+            "pokescope_variant_page"
+          ],
+          "source_urls": [
+            "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+            "https://www.pricecharting.com/search-products?q=suicune&type=prices",
+            "https://my.taggrading.com/pop-report/Pok%C3%A9mon/2025/Pok%C3%A9mon%20Mega%20Evolution/Suicune/026%2F094?grades=10&setName=Phantasmal+Flames+%22GameStop%22+Stamp&variation=Pixel+Cosmos+Holo",
+            "https://pokescope.app/card/me2-26/"
+          ],
+          "evidence_label": "Conflict-resolved exact source evidence supports stamped active finish",
+          "raw_snapshot_ref": "pkg18g3:me02:026:gamestop_stamp:cosmos",
+          "stamp_label": "GameStop Stamp",
+          "variant_key": "gamestop_stamp",
+          "active_child_finish_key": "cosmos",
+          "source_evidence": [
+            {
+              "source_key": "tcgplayer_product_page",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+              "evidence_label": "Suicune Cosmos Holo GameStop Exclusive product page",
+              "supports_finish_key": "cosmos"
+            },
+            {
+              "source_key": "pricecharting_search_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/search-products?q=suicune&type=prices",
+              "evidence_label": "Suicune 026/094 Phantasmal Flames Cosmos Holo [Gamestop]",
+              "supports_finish_key": "cosmos"
+            },
+            {
+              "source_key": "tag_grading_pop_report",
+              "source_kind": "collector_reference",
+              "source_url": "https://my.taggrading.com/pop-report/Pok%C3%A9mon/2025/Pok%C3%A9mon%20Mega%20Evolution/Suicune/026%2F094?grades=10&setName=Phantasmal+Flames+%22GameStop%22+Stamp&variation=Pixel+Cosmos+Holo",
+              "evidence_label": "Phantasmal Flames GameStop Stamp Suicune 026/094 Pixel Cosmos Holo",
+              "supports_finish_key": "cosmos"
+            },
+            {
+              "source_key": "pokescope_variant_page",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokescope.app/card/me2-26/",
+              "evidence_label": "Previously captured PokeScope GameStop Cosmos Holo observation",
+              "supports_finish_key": "cosmos"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "dd9b9fc2-db91-4afb-b572-a9c3a646d137",
+        "target_child_id": "81ceb2d6-d5ce-48d4-9174-07fef7e4191e",
+        "base_parent_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+        "set_key": "xy1",
+        "set_name": "XY",
+        "card_number": "085",
+        "card_name": "Aegislash",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "target_printed_identity_modifier": "regional_championships_stamp",
+        "target_gv_id": "GV-PK-XY-85-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "target_printing_gv_id": "GV-PK-XY-85-REGIONAL-CHAMPIONSHIPS-STAMP-RH",
+        "stamp_label": "Regional Championships Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+          "https://www.tcgplayer.com/product/209551/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships",
+          "https://www.gamenerdz.com/aegislash-85-146-regional-championships-85-league-championship-cards-reverse-holofoil",
+          "https://www.nobleknight.com/P/2148463419/Aegislash---85-146-Regional-Championships-P-085-146-Reverse-Holo"
+        ],
+        "source_families": [
+          "pokecardvalues_same_finish_ambiguous",
+          "tcgplayer_product_page",
+          "gamenerdz_product_page",
+          "nobleknight_product_page"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-READINESS",
+          "readiness_fingerprint_sha256": "7f98ac16026f095517fab27ce5764a2eacc460d4257d09b87a73a3171798c141",
+          "source_families": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_product_page",
+            "gamenerdz_product_page",
+            "nobleknight_product_page"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+            "https://www.tcgplayer.com/product/209551/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships",
+            "https://www.gamenerdz.com/aegislash-85-146-regional-championships-85-league-championship-cards-reverse-holofoil",
+            "https://www.nobleknight.com/P/2148463419/Aegislash---85-146-Regional-Championships-P-085-146-Reverse-Holo"
+          ],
+          "evidence_label": "Conflict-resolved exact source evidence supports stamped active finish",
+          "raw_snapshot_ref": "pkg18g3:xy1:085:regional_championships_stamp:reverse",
+          "stamp_label": "Regional Championships Stamp",
+          "variant_key": "regional_championships_stamp",
+          "active_child_finish_key": "reverse",
+          "source_evidence": [
+            {
+              "source_key": "pokecardvalues_same_finish_ambiguous",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+              "evidence_label": "Aegislash 85/146 Reverse Holo Regional Championships",
+              "supports_finish_key": "reverse"
+            },
+            {
+              "source_key": "tcgplayer_product_page",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/209551/pokemon-league-and-championship-cards-aegislash-85-146-regional-championships",
+              "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holofoil",
+              "supports_finish_key": "reverse"
+            },
+            {
+              "source_key": "gamenerdz_product_page",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.gamenerdz.com/aegislash-85-146-regional-championships-85-league-championship-cards-reverse-holofoil",
+              "evidence_label": "Aegislash 85/146 Regional Championships League Championship Cards Reverse Holofoil",
+              "supports_finish_key": "reverse"
+            },
+            {
+              "source_key": "nobleknight_product_page",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.nobleknight.com/P/2148463419/Aegislash---85-146-Regional-Championships-P-085-146-Reverse-Holo",
+              "evidence_label": "Aegislash 85/146 Regional Championships Reverse Holo",
+              "supports_finish_key": "reverse"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg18g3_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 2,
+      "target_parent_count": 2,
+      "target_child_count": 2,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 2,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-PARENT-INSERTS",
+      "package_fingerprint": "b8b55500f43f889df85d5c76aa1db4ac117209469fadfee565e045e7d48db108",
+      "target_rows": 2,
+      "inserted_parent_rows": 2,
+      "inserted_parent_modifier_rows": 2,
+      "inserted_identity_rows": 2,
+      "inserted_child_rows": 2,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 2,
+      "identity_inserts": 2,
+      "child_inserts": 2,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-20T17:52:33.625Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "190e9217-eafb-4a79-96cc-283e21d6e691",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "6c6a57c2214e2ab15e96d0c1123190d4d6f6c864742f39692fc7a7091b5f599a",
+      "counts": {
+        "base_parent": 2
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-20T17:52:34.730Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "190e9217-eafb-4a79-96cc-283e21d6e691",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8ef1005c-7207-4ae0-8683-0ca9828c63e8",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "gamestop_stamp",
+          "printed_identity_modifier": "gamestop_stamp",
+          "finish_key": "cosmos",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "81ceb2d6-d5ce-48d4-9174-07fef7e4191e",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0bfeeeee-aecc-416c-8caf-9b5017862c9b",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "gamestop_stamp",
+          "printed_identity_modifier": "gamestop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "def277282b660b013f714e16fbb2a5147bc91578ba1906f82021365c8e3970ca"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "24ddfb5b-549c-4f40-b677-920ed5f48578",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "03bec9d8d48cbdb3beac3160e32c1653d2740cfbc305b2a703b420fb6093133d"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "gamestop_stamp",
+          "printed_identity_modifier": "gamestop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "dd9b9fc2-db91-4afb-b572-a9c3a646d137",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "d05d2baefdbc0a9187c7a15f81cc165cf781444b67539dc525fe6704f9a58d9c",
+      "counts": {
+        "base_parent": 2,
+        "target_child": 2,
+        "target_identity": 2,
+        "target_parent": 2
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-20T17:52:34.883Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "190e9217-eafb-4a79-96cc-283e21d6e691",
+          "set_code": "me02",
+          "number": "026",
+          "number_plain": "026",
+          "name": "Suicune",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "41f3405e-a416-4aff-a0ac-48c76545ece1",
+          "set_code": "xy1",
+          "number": "85",
+          "number_plain": "85",
+          "name": "Aegislash",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "6c6a57c2214e2ab15e96d0c1123190d4d6f6c864742f39692fc7a7091b5f599a",
+      "counts": {
+        "base_parent": 2
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "b9703d52a7b5502322c8454da864c34ec67a0baf846263651eb7419c94200041",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real PKG-18G3-STAMPED-CONFLICT-RESOLVED-PARENT-INSERTS apply only. Fingerprint: b8b55500f43f889df85d5c76aa1db4ac117209469fadfee565e045e7d48db108. Scope: 2 stamped parent inserts, 2 identity inserts, 2 child printing inserts; finishes cosmos=1, reverse=1; stamp labels GameStop Stamp=1, Regional Championships Stamp=1; sets me02=1, xy1=1. Dry-run proof: 6c6a57c2214e2ab15e96d0c1123190d4d6f6c864742f39692fc7a7091b5f599a == 6c6a57c2214e2ab15e96d0c1123190d4d6f6c864742f39692fc7a7091b5f599a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}
