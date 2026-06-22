@@ -123,18 +123,27 @@ function normalizePokemonPlural(value: string) {
 }
 
 function parseArtistIntent(query: string) {
-  const artistMatch = query.match(/\b(?:illustrated|drawn|art)\s+by\s+([a-z0-9 .'-]+?)(?:\s+(?:from|between|with|that|which|and)\b|$)/i);
-  if (!artistMatch) {
-    return null;
-  }
+  const artistPatterns = [
+    /\b(?:illustrated|drawn|art)\s+by\s+([a-z0-9 .'-]+?)(?=\s+(?:from|between|with|that|which|and|19\d{2}|20\d{2})\b|$)/i,
+    /\b(?:artist|illustrator)\s+([a-z0-9 .'-]+?)(?=\s+(?:from|between|with|that|which|and|19\d{2}|20\d{2})\b|$)/i,
+  ];
 
-  const artist = normalizeWhitespace(artistMatch[1] ?? "");
-  return artist
-    ? {
+  for (const pattern of artistPatterns) {
+    const artistMatch = query.match(pattern);
+    if (!artistMatch) {
+      continue;
+    }
+
+    const artist = normalizeWhitespace(artistMatch[1] ?? "");
+    if (artist) {
+      return {
         artist,
         matchedText: artistMatch[0],
-      }
-    : null;
+      };
+    }
+  }
+
+  return null;
 }
 
 function parseImageStateIntent(query: string): SmartSearchIntent["imageState"] {
@@ -167,12 +176,6 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   const finishKeys: string[] = [];
   const stampLabels: string[] = [];
   const unappliedLabels: string[] = [];
-
-  const artistIntent = parseArtistIntent(residual);
-  if (artistIntent) {
-    residual = residual.replace(artistIntent.matchedText, " ");
-    interpretedLabels.push(`Artist: ${artistIntent.artist}`);
-  }
 
   const imageState = parseImageStateIntent(residual);
   if (imageState && imageState !== "any") {
@@ -216,6 +219,12 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
       interpretedLabels.push(stamp.label);
       residual = residual.replace(stamp.pattern, " ");
     }
+  }
+
+  const artistIntent = parseArtistIntent(residual);
+  if (artistIntent) {
+    residual = residual.replace(artistIntent.matchedText, " ");
+    interpretedLabels.push(`Artist: ${artistIntent.artist}`);
   }
 
   for (const filler of FILLER_PHRASES) {

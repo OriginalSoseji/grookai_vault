@@ -54,6 +54,28 @@ test('Grookai Search maps collector parallel language to live finish keys', () =
   assert.equal(masterBall.residualQuery, 'Pikachu');
 });
 
+test('Grookai Search parses plain artist and illustrator year-range language', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+  const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');
+
+  const artist = buildSmartSearchIntent('artist Ken Sugimori 1999-2003');
+  assert.equal(artist.artist, 'Ken Sugimori');
+  assert.equal(artist.releaseYearMin, 1999);
+  assert.equal(artist.releaseYearMax, 2003);
+  assert.equal(artist.residualQuery, '');
+  assert.ok(artist.interpretedLabels.includes('Artist: Ken Sugimori'));
+  assert.ok(artist.interpretedLabels.includes('1999-2003'));
+  assert.equal(resolveSmartSearchQuery('artist Ken Sugimori 1999-2003', artist), '');
+
+  const illustrator = buildSmartSearchIntent('illustrator Mitsuhiro Arita from 2014 to 2026');
+  assert.equal(illustrator.artist, 'Mitsuhiro Arita');
+  assert.equal(illustrator.releaseYearMin, 2014);
+  assert.equal(illustrator.releaseYearMax, 2026);
+  assert.equal(illustrator.residualQuery, '');
+  assert.ok(illustrator.interpretedLabels.includes('Artist: Mitsuhiro Arita'));
+  assert.ok(illustrator.interpretedLabels.includes('2014-2026'));
+});
+
 test('Grookai Search recognizes stamp and image worklist language deterministically', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
   const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');
