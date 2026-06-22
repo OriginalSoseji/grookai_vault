@@ -181,6 +181,8 @@ missing Pikachu cards in my vault
 all cards with no exact image
 all stamped variants from Toys R Us
 all cards illustrated by Ken Sugimori
+artist Ken Sugimori 1999-2003
+illustrator Mitsuhiro Arita 2014-2026
 Pokemon Center stamped Lechonk
 Build-A-Bear Piplup
 Toys R Us Piplup
