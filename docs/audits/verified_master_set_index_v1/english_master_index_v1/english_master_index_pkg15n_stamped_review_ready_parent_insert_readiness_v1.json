@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T00:52:13.142Z",
+  "generated_at": "2026-06-22T05:49:21.819Z",
   "version": "english_master_index_pkg15n_stamped_review_ready_parent_insert_readiness_v1",
   "package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
   "future_package_id": "PKG-15O-STAMPED-REVIEW-READY-PARENT-INSERTS",
@@ -17,10 +17,10 @@
   },
   "source_fingerprints": {
     "pkg15k": "832eba38f63aa2660a65112067730b397e7da5fa536d41791d7c91e63de4b695",
-    "pkg15j": "dc0fd43549ec2e75b8832e8dbd683b587d8895252c170763320a779bc104d2d2"
+    "pkg15j": "c721da56359c901e64005606c470838f11b79044d407ce26fbb79482392137a0"
   },
   "package_fingerprint_sha256": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
-  "report_fingerprint_sha256": "81ee8e8aa76ddb7ca029c19d505b935b97541653bd5627ad76f5ce7f304cf3ba",
+  "report_fingerprint_sha256": "903c9d216716cc4e5d2b76d65b7259cbad4dbb3f7d3ccecb9bbaeea8ef052c43",
   "summary": {
     "target_rows": 11,
     "ready_for_guarded_dry_run_parent_child_insert": 0,
@@ -32,7 +32,7 @@
     "expected_merges": 0,
     "base_parent_vault_refs": 0,
     "base_finish_child_vault_refs": 0,
-    "base_parent_external_mappings": 47,
+    "base_parent_external_mappings": 39,
     "by_readiness_status": {
       "blocked_before_dry_run": 11
     },
@@ -104,7 +104,7 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
+      "target_child_id_collision_count": 0,
       "existing_target_child_count": 1,
       "active_finish_exists": true,
       "ready_identity_projection": true,
@@ -118,7 +118,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
         "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
@@ -174,8 +173,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -188,8 +187,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -236,8 +233,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -250,8 +247,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -306,8 +301,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -316,12 +311,10 @@
       "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_finish_child_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 10,
+      "base_parent_external_mapping_count": 3,
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -385,8 +378,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -395,12 +388,10 @@
       "identity_hash_collision_count": 1,
       "base_parent_vault_ref_count": 0,
       "base_finish_child_vault_ref_count": 0,
-      "base_parent_external_mapping_count": 5,
+      "base_parent_external_mapping_count": 4,
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -447,8 +438,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -461,8 +452,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -526,8 +515,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -540,8 +529,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -596,8 +583,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -610,8 +597,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -666,7 +651,7 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
+      "target_child_id_collision_count": 0,
       "existing_target_child_count": 1,
       "active_finish_exists": true,
       "ready_identity_projection": true,
@@ -680,7 +665,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
         "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
@@ -736,8 +720,8 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
-      "existing_target_child_count": 1,
+      "target_child_id_collision_count": 0,
+      "existing_target_child_count": 0,
       "active_finish_exists": true,
       "ready_identity_projection": true,
       "identity_domain": "pokemon_eng_standard",
@@ -750,8 +734,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
-        "target_child_finish_already_exists",
         "identity_hash_collision"
       ]
     },
@@ -806,7 +788,7 @@
       "base_parent_printed_identity_modifier": null,
       "base_finish_exists": true,
       "target_parent_collision_count": 1,
-      "target_child_id_collision_count": 1,
+      "target_child_id_collision_count": 0,
       "existing_target_child_count": 1,
       "active_finish_exists": true,
       "ready_identity_projection": true,
@@ -820,7 +802,6 @@
       "readiness_status": "blocked_before_dry_run",
       "blockers": [
         "target_stamped_parent_already_exists",
-        "target_child_id_collision",
         "target_child_finish_already_exists",
         "identity_hash_collision"
       ]

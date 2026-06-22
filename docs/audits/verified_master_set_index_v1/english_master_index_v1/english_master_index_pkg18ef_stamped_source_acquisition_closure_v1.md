@@ -21,8 +21,8 @@ Audit-only closure for the remaining stamped source-acquisition buckets after br
 | blocked_rows | 212 |
 | useful_candidate_matches | 0 |
 | useful_unabsorbed_source_lanes | 0 |
-| candidate_records_loaded | 106904 |
-| fingerprint_sha256 | `a4008c1b39c27ccca328480fda0659907b94d99bf904bbb244f36034ec9a2c7f` |
+| candidate_records_loaded | 107100 |
+| fingerprint_sha256 | `1d77076e91c9e574e358539b9759aef74ecd14e026e5f0128c8d6ef0ae82c7f9` |
 
 ## Closure Status Counts
 

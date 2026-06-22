@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T04:58:07.591Z",
+  "generated_at": "2026-06-22T05:49:20.644Z",
   "version": "english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1",
   "package_id": "PKG-17B-STAMPED-ACTIVE-FINISH-SOURCE-ACQUISITION",
   "audit_only": true,
@@ -14,24 +14,24 @@
     "source_delta_acceptance": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_acceptance_v1/source_delta_acceptance_v1.json",
     "source_delta_summary": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/english_master_index_source_delta_summary_v1.json"
   },
-  "fingerprint_sha256": "02b60270042d2ff4539421b9c2792d24fa4e316302f9aa3e137ec23089ba28a6",
+  "fingerprint_sha256": "20dc94cdd7e0e81036028e5b03debc90dd942a62daa774c44b93012038dd7c65",
   "summary": {
     "active_finish_required_queue_rows": 289,
     "source_lanes_attempted": 4,
-    "raw_source_records_generated": 31,
-    "accepted_exact_source_rows": 31,
+    "raw_source_records_generated": 2,
+    "accepted_exact_source_rows": 2,
     "useful_current_gap_matches": 0,
     "accepted_delta_records": 4,
     "accepted_delta_statuses": [
       "candidate_second_finish_source"
     ],
     "source_delta_summary": {
-      "sources_reviewed": 46,
-      "candidate_records_loaded": 106904,
+      "sources_reviewed": 49,
+      "candidate_records_loaded": 107063,
       "matched_gap_facts": 113,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 101080,
-      "unmatched_candidate_records": 5711,
+      "already_in_current_index": 101240,
+      "unmatched_candidate_records": 5710,
       "useful_unabsorbed_source_lanes": 0,
       "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
     },
@@ -171,7 +171,7 @@
       "source_key": "pricecharting_stamped_active_finish",
       "acquisition_report": "docs/audits/english_master_index_source_exhaustion_v1/pricecharting_stamped_active_finish_acquisition_v1/pricecharting_stamped_active_finish_acquisition_v1.json",
       "delta_report": null,
-      "target_rows": 339,
+      "target_rows": 298,
       "raw_records_generated": 0,
       "accepted_exact_source_rows": 0,
       "blocked_or_ambiguous_rows": 6,
@@ -179,7 +179,7 @@
       "already_in_current_index": 0,
       "unmatched_candidate_records": 0,
       "by_status": {
-        "no_exact_pricecharting_active_finish_match": 333,
+        "no_exact_pricecharting_active_finish_match": 292,
         "blocked_multiple_exact_pricecharting_active_finish_matches": 6
       },
       "by_finish": {},
@@ -189,7 +189,7 @@
       "source_key": "cardtrader_stamped_finish",
       "acquisition_report": "docs/audits/english_master_index_source_exhaustion_v1/cardtrader_stamped_finish_acquisition_v1/cardtrader_stamped_finish_acquisition_v1.json",
       "delta_report": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/cardtrader_stamped_finish_source_delta_audit_v1.json",
-      "target_rows": 339,
+      "target_rows": 167,
       "raw_records_generated": 0,
       "accepted_exact_source_rows": 0,
       "blocked_or_ambiguous_rows": 0,
@@ -197,7 +197,7 @@
       "already_in_current_index": 2,
       "unmatched_candidate_records": 0,
       "by_status": {
-        "no_exact_cardtrader_match": 339
+        "no_exact_cardtrader_match": 167
       },
       "by_finish": {},
       "useful_matches": []
@@ -206,21 +206,20 @@
       "source_key": "pokecardvalues_stamped_finish",
       "acquisition_report": "docs/audits/english_master_index_source_exhaustion_v1/pokecardvalues_stamped_finish_acquisition_v1/pokecardvalues_stamped_finish_acquisition_v1.json",
       "delta_report": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/pokecardvalues_stamped_finish_source_delta_audit_v1.json",
-      "target_rows": 339,
-      "raw_records_generated": 31,
-      "accepted_exact_source_rows": 31,
-      "blocked_or_ambiguous_rows": 22,
+      "target_rows": 167,
+      "raw_records_generated": 2,
+      "accepted_exact_source_rows": 2,
+      "blocked_or_ambiguous_rows": 4,
       "useful_current_gap_matches": 0,
       "already_in_current_index": 31,
       "unmatched_candidate_records": 0,
       "by_status": {
-        "no_exact_pokecardvalues_match": 286,
-        "accepted_exact_finish_match": 31,
-        "blocked_multiple_matching_stamp_variants": 22
+        "no_exact_pokecardvalues_match": 161,
+        "blocked_multiple_matching_stamp_variants": 4,
+        "accepted_exact_finish_match": 2
       },
       "by_finish": {
-        "reverse": 30,
-        "normal": 1
+        "normal": 2
       },
       "useful_matches": []
     },
@@ -228,17 +227,17 @@
       "source_key": "tcgcsv_stamped_subtype",
       "acquisition_report": "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
       "delta_report": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/tcgcsv_stamped_subtype_source_delta_audit_v1.json",
-      "target_rows": 339,
+      "target_rows": 167,
       "raw_records_generated": 0,
       "accepted_exact_source_rows": 0,
-      "blocked_or_ambiguous_rows": 339,
+      "blocked_or_ambiguous_rows": 167,
       "useful_current_gap_matches": 0,
       "already_in_current_index": 15,
       "unmatched_candidate_records": 0,
       "by_status": {
-        "blocked_no_exact_tcgcsv_product_match": 281,
-        "blocked_tcgcsv_group_not_mapped": 39,
-        "blocked_tcgcsv_group_ambiguous": 16,
+        "blocked_no_exact_tcgcsv_product_match": 132,
+        "blocked_tcgcsv_group_not_mapped": 17,
+        "blocked_tcgcsv_group_ambiguous": 15,
         "blocked_no_active_tcgcsv_subtype_match": 3
       },
       "by_finish": {},

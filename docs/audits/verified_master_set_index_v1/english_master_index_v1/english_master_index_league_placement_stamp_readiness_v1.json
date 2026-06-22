@@ -1,0 +1,1970 @@
+{
+  "generated_at": "2026-06-21T19:35:49.092Z",
+  "version": "league_placement_stamp_readiness_v1",
+  "package_id": "LEAGUE-PLACEMENT-STAMP-READINESS",
+  "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+  "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902",
+  "fingerprint_sha256": "8018205de19bfe3c9a0deb6f2f33c13f08a8060c2918fe0b8b4ef3a7f2fdc3c2",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "summary": {
+    "source_rows": 19,
+    "expanded_candidate_rows": 46,
+    "future_guarded_parent_identity_insert_candidates": 46,
+    "blocked_or_review_rows": 0,
+    "write_ready_now": 0,
+    "by_variant": {
+      "fourth_place_league_stamp": 16,
+      "first_place_league_stamp": 11,
+      "third_place_league_stamp": 10,
+      "second_place_league_stamp": 9
+    },
+    "by_finish": {
+      "reverse": 45,
+      "cosmos": 1
+    },
+    "blockers": {}
+  },
+  "future_guarded_parent_identity_insert_candidates": [
+    {
+      "set_key": "bw11",
+      "card_number": "97",
+      "card_name": "Deino",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/third-place-deino-97-113-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "44971076-ecec-4067-9ca1-487e08a04afa",
+      "base_gv_id": "GV-PK-LTR-97",
+      "target_parent_id": "150fd30b-7cde-4b0d-afd3-5a73bcf730c0",
+      "target_child_id": "22088dc3-6426-4897-80a3-0f5907fe277e",
+      "target_gv_id": "GV-PK-LTR-97-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-LTR-97-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/third-place-deino-97-113-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-scyther-4-108-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-scyther-4-108-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ed5bf4-a80e-4e7d-9826-2ad23b6322bd",
+      "base_gv_id": "GV-PK-DEX-4",
+      "target_parent_id": "cf01b85f-7e9b-4e21-bd16-261ca866716d",
+      "target_child_id": "acd45100-9904-4f6f-af09-e40009bc5dd1",
+      "target_gv_id": "GV-PK-DEX-4-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-DEX-4-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-scyther-4-108-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-scyther-4-108-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "bw5",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-scyther-4-108-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-scyther-4-108-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ed5bf4-a80e-4e7d-9826-2ad23b6322bd",
+      "base_gv_id": "GV-PK-DEX-4",
+      "target_parent_id": "a1edc6e2-4421-44f8-aa7e-2c466ddacec5",
+      "target_child_id": "611421f9-74df-4680-b39c-365034df13e1",
+      "target_gv_id": "GV-PK-DEX-4-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-DEX-4-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-scyther-4-108-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-scyther-4-108-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-delibird-38-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-delibird-38-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "b2b21993-7dd6-4b28-8556-d5540d7b7e5c",
+      "base_gv_id": "GV-PK-BCR-38",
+      "target_parent_id": "a810cc15-e8b4-4c39-a999-cfcd951e2898",
+      "target_child_id": "6c7b0798-25d1-44ce-9570-810f08f43637",
+      "target_gv_id": "GV-PK-BCR-38-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BCR-38-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-delibird-38-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-delibird-38-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "bw7",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-delibird-38-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-delibird-38-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "b2b21993-7dd6-4b28-8556-d5540d7b7e5c",
+      "base_gv_id": "GV-PK-BCR-38",
+      "target_parent_id": "7ce3df0c-b60c-4487-853a-805182f5886e",
+      "target_child_id": "c5fa63a0-68ab-4594-ba81-5603c15df7b0",
+      "target_gv_id": "GV-PK-BCR-38-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BCR-38-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-delibird-38-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-delibird-38-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f26eff3d-095b-436b-bc4f-93637d400026",
+      "base_gv_id": "GV-PK-SUM-20",
+      "target_parent_id": "0a5b951a-73d1-46a1-9054-b836cd1a0790",
+      "target_child_id": "897a09c3-6295-4b12-b8ac-419bf6ceaa14",
+      "target_gv_id": "GV-PK-SUM-20-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-SUM-20-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f26eff3d-095b-436b-bc4f-93637d400026",
+      "base_gv_id": "GV-PK-SUM-20",
+      "target_parent_id": "02cfdc94-0e6d-4dd3-974b-8c0e50cf455c",
+      "target_child_id": "c3f38095-ed33-4b47-b1fa-0de0b9536a94",
+      "target_gv_id": "GV-PK-SUM-20-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-SUM-20-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f26eff3d-095b-436b-bc4f-93637d400026",
+      "base_gv_id": "GV-PK-SUM-20",
+      "target_parent_id": "ed97a6bc-87dd-4708-9903-2d1c2e480e00",
+      "target_child_id": "3cca73a0-2dd1-47d4-9ec6-6604b7660bb3",
+      "target_gv_id": "GV-PK-SUM-20-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-SUM-20-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f26eff3d-095b-436b-bc4f-93637d400026",
+      "base_gv_id": "GV-PK-SUM-20",
+      "target_parent_id": "76ac5a66-a61e-4c99-88ac-1d1728c45df8",
+      "target_child_id": "d6d36e3e-77fd-42f8-b3c9-9b05bcbc9a38",
+      "target_gv_id": "GV-PK-SUM-20-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-SUM-20-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-tsareena-20-149-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-tsareena-20-149-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "0af8d2c8-9ee2-4f06-817e-641350a608da",
+      "base_gv_id": "GV-PK-GRI-55",
+      "target_parent_id": "23dce9ec-8723-435b-ad2c-37325d671075",
+      "target_child_id": "9b366448-8059-4d02-9e2c-26a636154736",
+      "target_gv_id": "GV-PK-GRI-55-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-GRI-55-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "0af8d2c8-9ee2-4f06-817e-641350a608da",
+      "base_gv_id": "GV-PK-GRI-55",
+      "target_parent_id": "134a618c-0d5c-489e-8291-dac9e37d5eb4",
+      "target_child_id": "def63457-0176-4783-9c9b-5a4971e7fb8c",
+      "target_gv_id": "GV-PK-GRI-55-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-GRI-55-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "0af8d2c8-9ee2-4f06-817e-641350a608da",
+      "base_gv_id": "GV-PK-GRI-55",
+      "target_parent_id": "48fb78a2-1957-4e1c-b0c2-3a5f93d125eb",
+      "target_child_id": "0761b1ce-f47f-4fce-ba78-f099709798fc",
+      "target_gv_id": "GV-PK-GRI-55-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-GRI-55-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm2",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "0af8d2c8-9ee2-4f06-817e-641350a608da",
+      "base_gv_id": "GV-PK-GRI-55",
+      "target_parent_id": "5fb3ad1b-73f6-43d1-92d8-39860f080064",
+      "target_child_id": "b57b9fa8-c140-49d1-a06f-70d4e2f48188",
+      "target_gv_id": "GV-PK-GRI-55-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-GRI-55-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-oricorio-55-145-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-oricorio-55-145-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "44b92f31-c2a9-4cb5-bdbf-7f29eacfd06c",
+      "base_gv_id": "GV-PK-BUS-41",
+      "target_parent_id": "45afa6f5-fb85-406b-93da-325c869b85a0",
+      "target_child_id": "2d35a0ad-8634-4877-a77e-5aa7983eedeb",
+      "target_gv_id": "GV-PK-BUS-41-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BUS-41-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-raichu-41-147-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm3",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "finish_key": "cosmos",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "44b92f31-c2a9-4cb5-bdbf-7f29eacfd06c",
+      "base_gv_id": "GV-PK-BUS-41",
+      "target_parent_id": "90e81abc-3464-4dba-8297-a0dbdee38103",
+      "target_child_id": "093f195f-89e8-4dc7-b463-39ef2eeb81cf",
+      "target_gv_id": "GV-PK-BUS-41-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BUS-41-FOURTH-PLACE-LEAGUE-STAMP-COSMOS",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-raichu-41-147-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "cosmos",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm5",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/second-place-magnezone-83-156-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "b6b8bbd2-1d82-4234-91bf-aaa8309f0a39",
+      "base_gv_id": "GV-PK-UPR-83",
+      "target_parent_id": "dac5b3a0-b96e-495e-8539-216030003baa",
+      "target_child_id": "7a77dff3-e3b4-44da-9f38-0d4399af0d5f",
+      "target_gv_id": "GV-PK-UPR-83-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-UPR-83-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/second-place-magnezone-83-156-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "15423754-2aff-455c-ae2e-3466b236ee86",
+      "base_gv_id": "GV-PK-CES-24",
+      "target_parent_id": "fdba25e8-1e71-45f7-9fe0-7045e2058342",
+      "target_child_id": "25f8d64b-8d2f-4c3f-b3b2-4669aba98d72",
+      "target_gv_id": "GV-PK-CES-24-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-CES-24-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "15423754-2aff-455c-ae2e-3466b236ee86",
+      "base_gv_id": "GV-PK-CES-24",
+      "target_parent_id": "9b790718-be9c-464f-b9ae-4237295b1a2f",
+      "target_child_id": "739f7b62-ef35-40ef-9836-b808e603d612",
+      "target_gv_id": "GV-PK-CES-24-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-CES-24-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "15423754-2aff-455c-ae2e-3466b236ee86",
+      "base_gv_id": "GV-PK-CES-24",
+      "target_parent_id": "7f9182e1-03f8-4e8d-9ee2-0fba899fb017",
+      "target_child_id": "cbb8fd3f-ff8d-4a05-95af-a8c128299cef",
+      "target_gv_id": "GV-PK-CES-24-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-CES-24-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm7",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "15423754-2aff-455c-ae2e-3466b236ee86",
+      "base_gv_id": "GV-PK-CES-24",
+      "target_parent_id": "002842b9-6b60-42bd-933b-148ce922cbaf",
+      "target_child_id": "9ea92cd8-a9b9-40a8-89bd-260009f2b92f",
+      "target_gv_id": "GV-PK-CES-24-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-CES-24-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-magcargo-24-168-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-magcargo-24-168-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "ab00755f-14d6-4c61-956f-6289481baeac",
+      "base_gv_id": "GV-PK-LOT-82",
+      "target_parent_id": "33e0b6c2-9931-4fb9-89e4-0cc8a95ed42b",
+      "target_child_id": "1fb4d50c-31bf-4784-8e9b-ffd76babe109",
+      "target_gv_id": "GV-PK-LOT-82-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-LOT-82-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "ab00755f-14d6-4c61-956f-6289481baeac",
+      "base_gv_id": "GV-PK-LOT-82",
+      "target_parent_id": "dd832fad-9bb4-42c1-abd4-25a71f1a84b7",
+      "target_child_id": "ff82c3db-4029-4879-a072-293c96f51703",
+      "target_gv_id": "GV-PK-LOT-82-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-LOT-82-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "ab00755f-14d6-4c61-956f-6289481baeac",
+      "base_gv_id": "GV-PK-LOT-82",
+      "target_parent_id": "a1d985d4-7bce-415e-8f34-209c364d5c04",
+      "target_child_id": "04b74e46-4fb5-44cc-b768-c72c1552fe00",
+      "target_gv_id": "GV-PK-LOT-82-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-LOT-82-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "sm8",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "ab00755f-14d6-4c61-956f-6289481baeac",
+      "base_gv_id": "GV-PK-LOT-82",
+      "target_parent_id": "4b9d47b2-e4af-43fc-9fa0-dc4b3fe8d9c9",
+      "target_child_id": "198ebaae-4e29-4f99-ba55-7279aafa08ff",
+      "target_gv_id": "GV-PK-LOT-82-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-LOT-82-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-zebstrika-82-214-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-zebstrika-82-214-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f14b6f4a-493d-449f-ac22-20c7acd0d697",
+      "base_gv_id": "GV-PK-XY-56",
+      "target_parent_id": "bbbea080-eccf-46c5-9e49-fd13199beb52",
+      "target_child_id": "f7d668bd-adc2-4a84-b2d7-bca25b5e143e",
+      "target_gv_id": "GV-PK-XY-56-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-56-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f14b6f4a-493d-449f-ac22-20c7acd0d697",
+      "base_gv_id": "GV-PK-XY-56",
+      "target_parent_id": "00af57ab-2be1-4d55-9e09-a09906c359ff",
+      "target_child_id": "b7e300ff-64a8-4db4-b11f-52a80a80b611",
+      "target_gv_id": "GV-PK-XY-56-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-56-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy1",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f14b6f4a-493d-449f-ac22-20c7acd0d697",
+      "base_gv_id": "GV-PK-XY-56",
+      "target_parent_id": "35ba9cc7-9494-4523-9063-301be09ba41c",
+      "target_child_id": "6fb578ef-688f-4957-b304-1b88b828df0a",
+      "target_gv_id": "GV-PK-XY-56-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-56-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-pumpkaboo-56-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-pumpkaboo-56-146-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-solrock-64-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-solrock-64-146-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "9caa9118-dac7-48bd-ac32-f74ba07a1341",
+      "base_gv_id": "GV-PK-XY-64",
+      "target_parent_id": "c9cfac77-6d07-4806-8f55-863c95d7cb96",
+      "target_child_id": "077c0212-646b-47b4-ad73-c6bc0b9aaf1e",
+      "target_gv_id": "GV-PK-XY-64-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-64-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-solrock-64-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-solrock-64-146-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy1",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-solrock-64-146-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-solrock-64-146-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "9caa9118-dac7-48bd-ac32-f74ba07a1341",
+      "base_gv_id": "GV-PK-XY-64",
+      "target_parent_id": "b1601084-3126-4934-b01b-1ebf9b1535ed",
+      "target_child_id": "88a118be-57b4-451f-afae-6aa0e0111539",
+      "target_gv_id": "GV-PK-XY-64-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-XY-64-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-solrock-64-146-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-solrock-64-146-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "e7f8c7de-2078-4142-a8b6-15f80128d46e",
+      "base_gv_id": "GV-PK-FCO-63",
+      "target_parent_id": "21989185-7765-4e0b-bb86-6b50ad06bdef",
+      "target_child_id": "5d09d589-f41d-45fb-8f42-edce3296ceef",
+      "target_gv_id": "GV-PK-FCO-63-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-FCO-63-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy10",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "e7f8c7de-2078-4142-a8b6-15f80128d46e",
+      "base_gv_id": "GV-PK-FCO-63",
+      "target_parent_id": "b8007484-9cd8-4563-b55c-73a37f034346",
+      "target_child_id": "1cff7a48-63ba-4246-a2a1-50c88a785e16",
+      "target_gv_id": "GV-PK-FCO-63-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-FCO-63-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-lucario-63-124-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-lucario-63-124-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d898fd45-6d1a-48b8-b26b-098b1894f403",
+      "base_gv_id": "GV-PK-STS-15",
+      "target_parent_id": "b78aad39-0b29-4545-8cff-9edb74bcef6d",
+      "target_child_id": "6d147fb5-7b20-4abe-b736-8b6ae786a7cf",
+      "target_gv_id": "GV-PK-STS-15-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-STS-15-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d898fd45-6d1a-48b8-b26b-098b1894f403",
+      "base_gv_id": "GV-PK-STS-15",
+      "target_parent_id": "47062b12-a8f2-473a-a044-eb3607de1e77",
+      "target_child_id": "70675a12-d316-4a71-940e-a3edb1e5bb67",
+      "target_gv_id": "GV-PK-STS-15-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-STS-15-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy11",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d898fd45-6d1a-48b8-b26b-098b1894f403",
+      "base_gv_id": "GV-PK-STS-15",
+      "target_parent_id": "d503fc5d-06a7-4e9e-8587-f85f3cd06f03",
+      "target_child_id": "6beaf066-5430-492a-9d7a-409af9f00898",
+      "target_gv_id": "GV-PK-STS-15-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-STS-15-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-volcarona-15-114-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-volcarona-15-114-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy12",
+      "card_number": "53",
+      "card_name": "Mew",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "bcc2c8f6-7c4f-41d1-9b15-30e5e6d1d2f4",
+      "base_gv_id": "GV-PK-EVO-53",
+      "target_parent_id": "c02d1c88-de6f-47f4-a5a5-6af37158fb42",
+      "target_child_id": "9d6fe53a-64e5-435a-8ea3-b6179b56fd84",
+      "target_gv_id": "GV-PK-EVO-53-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-EVO-53-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-mew-53-108-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-shelmet-8-111-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-shelmet-8-111-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "2efdefc1-c1a6-428d-99c6-0cd81a27fdf7",
+      "base_gv_id": "GV-PK-FFI-8",
+      "target_parent_id": "4782b175-62cf-44e1-aea2-d8749d2b303a",
+      "target_child_id": "0829697c-3c7f-41af-ba8a-9708f70e4bfb",
+      "target_gv_id": "GV-PK-FFI-8-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-FFI-8-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-shelmet-8-111-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-shelmet-8-111-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy3",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/fourth-place-shelmet-8-111-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-shelmet-8-111-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "2efdefc1-c1a6-428d-99c6-0cd81a27fdf7",
+      "base_gv_id": "GV-PK-FFI-8",
+      "target_parent_id": "47e9c8eb-7c27-4c5b-90aa-58f61b291ac1",
+      "target_child_id": "c539b96f-aa00-40a7-910e-e656fd070d62",
+      "target_gv_id": "GV-PK-FFI-8-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-FFI-8-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/fourth-place-shelmet-8-111-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-shelmet-8-111-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d053904c-351b-4c5f-8856-a0280b7c2381",
+      "base_gv_id": "GV-PK-PHF-66",
+      "target_parent_id": "342a4ae0-a890-4a16-a99a-0b9c4d45869c",
+      "target_child_id": "10c721fb-ea19-4bb1-a7d0-ee1193efb1c5",
+      "target_gv_id": "GV-PK-PHF-66-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-PHF-66-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d053904c-351b-4c5f-8856-a0280b7c2381",
+      "base_gv_id": "GV-PK-PHF-66",
+      "target_parent_id": "a791f44b-0971-44fd-8525-d299dedf8c25",
+      "target_child_id": "281e428d-f8c4-4196-b681-ac832cc13dbe",
+      "target_gv_id": "GV-PK-PHF-66-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-PHF-66-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy4",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "d053904c-351b-4c5f-8856-a0280b7c2381",
+      "base_gv_id": "GV-PK-PHF-66",
+      "target_parent_id": "258d7d6a-0896-41ea-9cb3-b56c52f73a9c",
+      "target_child_id": "fa11bad8-920b-4bb8-b356-a3809e6a4a0e",
+      "target_gv_id": "GV-PK-PHF-66-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-PHF-66-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-klefki-66-119-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-klefki-66-119-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ec01cf-5196-4ba3-a4f5-bd785a1ff4d0",
+      "base_gv_id": "GV-PK-BKT-78",
+      "target_parent_id": "cc6f958e-4714-4b76-9056-8efefc9a6689",
+      "target_child_id": "132050c2-5bfa-4f97-a4ec-7ac5fc4e3121",
+      "target_gv_id": "GV-PK-BKT-78-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKT-78-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ec01cf-5196-4ba3-a4f5-bd785a1ff4d0",
+      "base_gv_id": "GV-PK-BKT-78",
+      "target_parent_id": "c64a9bf5-5655-4ff2-896d-6dbf205beb31",
+      "target_child_id": "02280e6f-1888-47dd-83e7-799a58dce18b",
+      "target_gv_id": "GV-PK-BKT-78-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKT-78-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "finish_key": "reverse",
+      "variant_key": "second_place_league_stamp",
+      "printed_identity_modifier": "second_place_league_stamp",
+      "stamp_label": "Second Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ec01cf-5196-4ba3-a4f5-bd785a1ff4d0",
+      "base_gv_id": "GV-PK-BKT-78",
+      "target_parent_id": "270de755-9a2c-4e00-b88c-69a81538926d",
+      "target_child_id": "b7030001-cc10-4733-add4-342d37f21657",
+      "target_gv_id": "GV-PK-BKT-78-SECOND-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKT-78-SECOND-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Second Place League Stamp",
+        "variant_key": "second_place_league_stamp",
+        "evidence_label": "Second Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy8",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "finish_key": "reverse",
+      "variant_key": "third_place_league_stamp",
+      "printed_identity_modifier": "third_place_league_stamp",
+      "stamp_label": "Third Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+        "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "f4ec01cf-5196-4ba3-a4f5-bd785a1ff4d0",
+      "base_gv_id": "GV-PK-BKT-78",
+      "target_parent_id": "61e42fae-a864-47e3-b695-667a3e59f71e",
+      "target_child_id": "921812ec-20f1-4bfa-aa05-b1d77b5c73a5",
+      "target_gv_id": "GV-PK-BKT-78-THIRD-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKT-78-THIRD-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/second-place-marowak-78-162-pokemon-league-special-print/",
+          "https://pokumon.com/card/third-place-marowak-78-162-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Third Place League Stamp",
+        "variant_key": "third_place_league_stamp",
+        "evidence_label": "Third Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "finish_key": "reverse",
+      "variant_key": "first_place_league_stamp",
+      "printed_identity_modifier": "first_place_league_stamp",
+      "stamp_label": "First Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "c89d997d-59f6-41b0-a55e-f23b0ca1e130",
+      "base_gv_id": "GV-PK-BKP-40",
+      "target_parent_id": "79ef05fb-a510-4b2e-9499-ae4140f3b7bc",
+      "target_child_id": "c43f201d-c945-4c7f-b6ec-26b505f793a9",
+      "target_gv_id": "GV-PK-BKP-40-FIRST-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKP-40-FIRST-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "cracked_ice",
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/"
+        ],
+        "stamp_label": "First Place League Stamp",
+        "variant_key": "first_place_league_stamp",
+        "evidence_label": "First Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    },
+    {
+      "set_key": "xy9",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "finish_key": "reverse",
+      "variant_key": "fourth_place_league_stamp",
+      "printed_identity_modifier": "fourth_place_league_stamp",
+      "stamp_label": "Fourth Place League Stamp",
+      "source_variant_key": "league_stamp",
+      "source_urls": [
+        "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+        "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/"
+      ],
+      "base_parent_id": "c89d997d-59f6-41b0-a55e-f23b0ca1e130",
+      "base_gv_id": "GV-PK-BKP-40",
+      "target_parent_id": "c251bd5a-8c48-4a8d-ac0f-0ad73f4e3f6d",
+      "target_child_id": "2cf49a1b-1a64-4a1a-841f-6920f325f161",
+      "target_gv_id": "GV-PK-BKP-40-FOURTH-PLACE-LEAGUE-STAMP",
+      "target_printing_gv_id": "GV-PK-BKP-40-FOURTH-PLACE-LEAGUE-STAMP-RH",
+      "live_base_parent_child_finishes": [
+        "cracked_ice",
+        "normal",
+        "reverse"
+      ],
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": [],
+      "evidence": {
+        "source_urls": [
+          "https://pokumon.com/card/first-place-greninja-40-122-pokemon-league-special-print/",
+          "https://pokumon.com/card/fourth-place-greninja-40-122-pokemon-league-special-print/"
+        ],
+        "stamp_label": "Fourth Place League Stamp",
+        "variant_key": "fourth_place_league_stamp",
+        "evidence_label": "Fourth Place League Stamp placement-specific League stamped identity from Pokumon detail evidence",
+        "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pokumon_stamp_granularity_governance_v1.json",
+        "governing_contract": "LEAGUE_PLACEMENT_STAMP_IDENTITY_RULE_V1",
+        "source_variant_key": "league_stamp",
+        "active_child_finish_key": "reverse",
+        "source_fingerprint_sha256": "e095fb476ad132945ac0d31a8901dc848cf9298a80e3d1e7fd0759a130bd1902"
+      }
+    }
+  ],
+  "blocked_or_review_rows": []
+}

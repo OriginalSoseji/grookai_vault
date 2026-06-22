@@ -1,0 +1,2367 @@
+{
+  "generated_at": "2026-06-22T16:22:33.656Z",
+  "version": "english_master_index_league_finish_preserved_crosscheck_v1",
+  "input_packet": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+  "source_artifacts": [
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17o_league_preserved_evidence_absorption_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17p_pokemonflashfire_league_reverse_source_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18o_pokemonflashfire_live_league_reverse_source_v1.json",
+    "docs/audits/english_master_index_source_exhaustion_v1/pokescope_live_league_variant_acquisition_v1/pokescope_live_league_variant_acquisition_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_league_staff_153_taxonomy_review_v1.json"
+  ],
+  "audit_only": true,
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "global_apply_performed": false
+  },
+  "summary": {
+    "target_rows": 56,
+    "write_ready_now": 0,
+    "by_crosscheck_status": {
+      "manual_review_or_governance_blocked": 3,
+      "preserved_variant_evidence_finish_unresolved": 53
+    },
+    "by_set": {
+      "bw10": 1,
+      "bw11": 1,
+      "bw3": 2,
+      "bw5": 2,
+      "bw7": 1,
+      "bw8": 2,
+      "bw9": 2,
+      "dp1": 2,
+      "ex12": 1,
+      "ex14": 1,
+      "ex5": 1,
+      "ex8": 2,
+      "ex9": 1,
+      "hgss2": 1,
+      "hgss3": 2,
+      "hgss4": 2,
+      "pl2": 1,
+      "pl3": 1,
+      "sm1": 2,
+      "sm2": 2,
+      "sm3": 2,
+      "sm4": 1,
+      "sm5": 2,
+      "sm7": 3,
+      "sm8": 2,
+      "sv10": 1,
+      "swsh1": 1,
+      "swsh4": 1,
+      "swsh7": 1,
+      "xy1": 3,
+      "xy10": 1,
+      "xy11": 1,
+      "xy12": 1,
+      "xy3": 3,
+      "xy4": 1,
+      "xy8": 1,
+      "xy9": 1
+    },
+    "by_source_count": {
+      "0": 54,
+      "2": 1,
+      "3": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "5",
+      "card_name": "Tropius",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw10-5/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-legendary-treasures/deino-1st-place-league-97",
+            "https://www.pricecharting.com/game/pokemon-legendary-treasures/deino-2nd-place-league-97",
+            "https://www.pricecharting.com/game/pokemon-legendary-treasures/deino-3rd-place-league-97",
+            "https://www.pricecharting.com/game/pokemon-legendary-treasures/deino-4th-place-league-97"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw11-97/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "11",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw3-11/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "8",
+      "card_name": "Karrablast",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw3-8/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "12",
+      "card_name": "Flareon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw5-12/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/scyther-1st-place-league-4",
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/scyther-2nd-place-league-4",
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/scyther-3rd-place-league-challenge-4",
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/scyther-4th-place-league-4"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw5-4/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-boundaries-crossed/delibird-1st-place-league-38",
+            "https://www.pricecharting.com/game/pokemon-boundaries-crossed/delibird-2nd-place-league-38",
+            "https://www.pricecharting.com/game/pokemon-boundaries-crossed/delibird-3rd-place-league-38",
+            "https://www.pricecharting.com/game/pokemon-boundaries-crossed/delibird-4th-place-league-38"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw7-38/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "118",
+      "card_name": "Colress",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-plasma-storm/colress-league-promo-118"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw8-118/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "123",
+      "card_name": "Hypnotoxic Laser",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-plasma-storm/hypnotoxic-laser-league-promo-123"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw8-123/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "11",
+      "card_name": "Leafeon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw9-11/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "23",
+      "card_name": "Glaceon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/bw9-23/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "3",
+      "card_name": "Electivire",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/dp1-3/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "7",
+      "card_name": "Luxray",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/dp1-7/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "6",
+      "card_name": "Golem",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex12-6/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "card_number": "14",
+      "card_name": "Blastoise",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex14-14/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "card_number": "9",
+      "card_name": "Machamp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex5-9/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "16",
+      "card_name": "Deoxys",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex8-16/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "22",
+      "card_name": "Rayquaza",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex8-22/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "3",
+      "card_name": "Exploud",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/ex9-3/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "7",
+      "card_name": "Politoed",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-unleashed/politoed-crosshatch-pokemon-league-7"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "single_source_exact_active_finish_second_source_needed",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/"
+          ],
+          "source_families": [
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pkg17p_pokemonflashfire_fixture",
+          "readiness_status": "finish_presence",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/"
+          ],
+          "source_families": [
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "evidence_label": "PokemonFlashfire product/category label: Politoed 7/95 Reverse Holo Pokemon League Promo",
+          "reason": null
+        },
+        {
+          "source_name": "pkg18o_pokemonflashfire_live_review",
+          "readiness_status": "needs_manual_review_not_fixture_evidence",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/politoed-795-reverse-holo-pokemon-league-promo/"
+          ],
+          "source_families": [],
+          "evidence_label": "Politoed 7/95 Reverse Holo Pokemon League Promo",
+          "reason": "live_source_page_describes_national_championships_crosshatch_staff_context_not_plain_league_stamp"
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/hgss2-7/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "manual_review_or_governance_blocked",
+      "next_action": "Do not promote. Review variant/stamp taxonomy and source context before dry-run.",
+      "source_count": 2,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "79",
+      "card_name": "Darkness Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-undaunted/darkness-energy-league-79"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/hgss3-79/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "80",
+      "card_name": "Metal Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-undaunted/metal-energy-pokemon-league-80"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/hgss3-80/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "85",
+      "card_name": "Black Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-triumphant/black-belt-league-stamp-85"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/hgss4-85/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "88",
+      "card_name": "Seeker",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-triumphant/seeker-league-promo-88"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/hgss4-88/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "96",
+      "card_name": "Team Galactic's Invention G-109 SP Radar",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/pl2-96/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "5",
+      "card_name": "Garchomp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "crosshatch_alias_governance_required_before_dry_run",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/",
+            "https://www.pricecharting.com/game/pokemon-supreme-victors/garchomp-crosshatch-holo-5"
+          ],
+          "source_families": [
+            "pokemonflashfire_league_reverse_exact",
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pkg17p_pokemonflashfire_fixture",
+          "readiness_status": "finish_presence",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/"
+          ],
+          "source_families": [
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "evidence_label": "PokemonFlashfire product/category label: Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "reason": null
+        },
+        {
+          "source_name": "pkg18o_pokemonflashfire_live_review",
+          "readiness_status": "needs_manual_review_not_fixture_evidence",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://pokemonflashfire.com/product/garchomp-5147-2010-reverse-holo-pokemon-league-promo/"
+          ],
+          "source_families": [],
+          "evidence_label": "Garchomp 5/147 2010 Reverse Holo Pokemon League Promo",
+          "reason": "live_source_page_describes_national_championships_crosshatch_staff_context_not_plain_league_stamp"
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/pl3-5/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "manual_review_or_governance_blocked",
+      "next_action": "Do not promote. Review variant/stamp taxonomy and source context before dry-run.",
+      "source_count": 3,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "123",
+      "card_name": "Nest Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-sun-and-moon/nest-ball-league-cup-staff-123"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm1-123/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-sun-and-moon/tsareena-1st-place-league-20",
+            "https://www.pricecharting.com/game/pokemon-sun-and-moon/tsareena-3rd-place-league-20"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm1-20/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "119",
+      "card_name": "Aqua Patch",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-guardians-rising/aqua-patch-league-cup-staff-119"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm2-119/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-guardians-rising/oricorio-1st-place-league-55"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm2-55/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "113",
+      "card_name": "Bodybuilding Dumbbells",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-burning-shadows/bodybuilding-dumbbells-league-staff-113"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm3-113/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-burning-shadows/raichu-1st-place-league-41",
+            "https://www.pricecharting.com/game/pokemon-burning-shadows/raichu-2nd-place-league-41",
+            "https://www.pricecharting.com/game/pokemon-burning-shadows/raichu-3rd-place-league-41",
+            "https://www.pricecharting.com/game/pokemon-burning-shadows/raichu-4th-place-league-41"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm3-41/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "91",
+      "card_name": "Counter Catcher",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-crimson-invasion/counter-catcher-league-cup-staff-91"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm4-91/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "122",
+      "card_name": "Escape Board",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-ultra-prism/escape-board-league-cup-staff-122"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm5-122/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-ultra-prism/magnezone-4th-place-league-83"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm5-83/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-celestial-storm/rare-candy-league-cup-142"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm7-142/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "145",
+      "card_name": "Steven's Resolve",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-celestial-storm/stevens-resolve-league-145"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm7-145/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-celestial-storm/magcargo-1st-place-league-24"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm7-24/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "172",
+      "card_name": "Electropower",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-lost-thunder/electropower-league-cup-staff-172"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm8-172/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-lost-thunder/zebstrika-1st-place-league-82",
+            "https://www.pricecharting.com/game/pokemon-lost-thunder/zebstrika-2nd-place-league-82"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sm8-82/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "81",
+      "card_name": "Team Rocket's Mewtwo ex",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/sv10-81/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "179",
+      "card_name": "Quick Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-sword-and-shield/quick-ball-league-cup-staff-179"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/swsh1-179/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "153",
+      "card_name": "League Staff",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-vivid-voltage/league-staff-153"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "single_source_exact_active_finish_second_source_needed",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-vivid-voltage/league-staff-reverse-holo-153"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/swsh4-153/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        },
+        {
+          "source_name": "league_staff_153_taxonomy_review",
+          "readiness_status": "finish_supported_but_queued_stamp_label_not_supported",
+          "finish_key": "reverse",
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-vivid-voltage/league-staff-reverse-holo-153",
+            "https://www.pokellector.com/Vivid-Voltage-Expansion/League-Staff-Card-153",
+            "https://www.misprint.com/card/13658702",
+            "https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/swsh4/153/"
+          ],
+          "source_families": [
+            "pricecharting_reverse_holo",
+            "pokellector_card_page",
+            "misprint_related_marketplace_text",
+            "official_pokemon_card_database"
+          ],
+          "evidence_label": "League Staff #153 exact finish is supported, but queued stamp label is not supported.",
+          "reason": "Do not promote the league_cup_staff_stamp row. Create/adjudicate a separate professor_program_stamp lane only if the Master Index source standard is satisfied.",
+          "variant_key": "league_cup_staff_stamp"
+        }
+      ],
+      "crosscheck_status": "manual_review_or_governance_blocked",
+      "next_action": "Do not promote. Exact finish is supported, but source labels do not support the queued stamp lane.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolving-skies/pikachu-league-stamp-49"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/swsh7-49/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "123",
+      "card_name": "Professor's Letter",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-xy/professors-letter-league-123"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy1-123/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page did not confirm exact set/card identity strongly enough.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-xy/pumpkaboo-2nd-place-league-56"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy1-56/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-xy/solrock-1st-place-league-64",
+            "https://www.pricecharting.com/game/pokemon-xy/solrock-2nd-place-league-64",
+            "https://www.pricecharting.com/game/pokemon-xy/solrock-3rd-place-league-64",
+            "https://www.pricecharting.com/game/pokemon-xy/solrock-4th-place-league-64"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy1-64/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-1st-place-pokemon-league-63",
+            "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-2nd-place-league-63",
+            "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-3rd-place-league-63",
+            "https://www.pricecharting.com/game/pokemon-fates-collide/lucario-4th-place-league-63"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy10-63/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-steam-siege/volcarona-1st-place-league-15",
+            "https://www.pricecharting.com/game/pokemon-steam-siege/volcarona-2nd-place-league-15",
+            "https://www.pricecharting.com/game/pokemon-steam-siege/volcarona-3rd-place-league-15",
+            "https://www.pricecharting.com/game/pokemon-steam-siege/volcarona-4th-place-league-15"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy11-15/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolutions/mew-1st-place-league-53",
+            "https://www.pricecharting.com/game/pokemon-evolutions/mew-2nd-place-league-53",
+            "https://www.pricecharting.com/game/pokemon-evolutions/mew-3rd-place-league-53",
+            "https://www.pricecharting.com/game/pokemon-evolutions/mew-4th-place-league-53"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy12-53/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "12",
+      "card_name": "Torchic",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy3-12/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "14",
+      "card_name": "Blaziken",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "no_preserved_source_match",
+          "finish_key": null,
+          "source_urls": [],
+          "source_families": [],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "variant_presence",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy3-14/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page lists League Stamp as a card variant.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-furious-fists/shelmet-1st-place-league-8"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy3-8/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-phantom-forces/klefki-1st-place-league-66",
+            "https://www.pricecharting.com/game/pokemon-phantom-forces/klefki-2nd-place-league-66",
+            "https://www.pricecharting.com/game/pokemon-phantom-forces/klefki-3rd-place-league-66",
+            "https://www.pricecharting.com/game/pokemon-phantom-forces/klefki-4th-place-league-66"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy4-66/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-breakthrough/marowak-1st-place-league-78",
+            "https://www.pricecharting.com/game/pokemon-breakthrough/marowak-2nd-place-league-78",
+            "https://www.pricecharting.com/game/pokemon-breakthrough/marowak-3rd-place-league-78",
+            "https://www.pricecharting.com/game/pokemon-breakthrough/marowak-4th-place-league-78"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy8-78/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "evidence": [
+        {
+          "source_name": "pkg17o_preserved_absorption",
+          "readiness_status": "blocked_no_explicit_active_finish",
+          "finish_key": null,
+          "source_urls": [
+            "https://www.pricecharting.com/game/pokemon-breakpoint/greninja-1st-place-league-40",
+            "https://www.pricecharting.com/game/pokemon-breakpoint/greninja-2nd-place-league-40",
+            "https://www.pricecharting.com/game/pokemon-breakpoint/greninja-3rd-place-league-40",
+            "https://www.pricecharting.com/game/pokemon-breakpoint/greninja-4th-place-league-40"
+          ],
+          "source_families": [
+            "pricecharting"
+          ],
+          "evidence_label": null,
+          "reason": null
+        },
+        {
+          "source_name": "pokescope_live_variant_acquisition",
+          "readiness_status": "source_attempt",
+          "finish_key": null,
+          "source_urls": [
+            "https://pokescope.app/card/xy9-40/"
+          ],
+          "source_families": [
+            "pokescope_live_league_variant"
+          ],
+          "evidence_label": "PokeScope page confirmed the card identity but did not expose League Stamp text.",
+          "reason": null
+        }
+      ],
+      "crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "next_action": "Existing preserved evidence does not prove exact active finish.",
+      "source_count": 0,
+      "write_ready_now": false
+    }
+  ],
+  "fingerprint_sha256": "ddf5ad9a22e75f2adaa537ee08c1938e4bc5132ca450cb60ecf5c47f327901bb"
+}

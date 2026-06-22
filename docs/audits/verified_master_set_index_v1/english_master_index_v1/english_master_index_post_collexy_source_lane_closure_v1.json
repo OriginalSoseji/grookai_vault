@@ -1,0 +1,370 @@
+{
+  "version": "english_master_index_post_collexy_source_lane_closure_v1",
+  "generated_at": "2026-06-22T18:22:33.211Z",
+  "objective": "Consolidate the post-Collexy stamped/special source acquisition lanes into a no-write closure report.",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_executed": false
+  },
+  "source_packet": {
+    "packet_rows": 154,
+    "by_source_family": {
+      "league_marketplace_scan_sources": 48,
+      "individual_event_stamp_sources": 28,
+      "official_prize_pack_or_product_pdf_recheck": 33,
+      "worlds_event_staff_sources": 19,
+      "targeted_exact_source_search": 26
+    },
+    "by_action_bucket": {
+      "league_finish_exact_source": 48,
+      "small_custom_stamp_exact_source": 28,
+      "prize_pack_second_source": 33,
+      "event_staff_exact_source": 19,
+      "second_source_needed": 6,
+      "prerelease_exact_finish_source": 10,
+      "professor_program_exact_finish_source": 10
+    },
+    "source_packet_fingerprint": "4af3fb89cea076b48c0b2729405fdf9e64e30d43c1d46088b18d51ab219b199c"
+  },
+  "lanes": [
+    {
+      "lane_key": "league_marketplace_scan_sources",
+      "decision": "review_only",
+      "reason": "eBay Browse returned title-level variant hits, but no exact set + number + name + stamp + finish proof suitable for Master Index promotion.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/league_marketplace_scan_sources_v1/league_marketplace_scan_sources_v1.json",
+      "source_delta_path": null,
+      "report_found": true,
+      "source_delta_found": null,
+      "summary": {
+        "rows_available_from_packet": 48,
+        "rows_targeted": 48,
+        "browse_queries_attempted": 96,
+        "browse_queries_succeeded": 96,
+        "exact_title_match_rows": 0,
+        "exact_title_matches": 0,
+        "partial_title_match_rows": 0,
+        "variant_title_review_rows": 36,
+        "variant_title_review_matches": 119,
+        "by_review_status": {
+          "variant_title_finish_review_only": 36,
+          "no_usable_title_evidence": 12
+        },
+        "by_set": {
+          "sm7": 3,
+          "xy1": 3,
+          "xy3": 3,
+          "dp1": 2,
+          "ex8": 2,
+          "hgss3": 2,
+          "hgss4": 2,
+          "sm1": 2,
+          "sm2": 2,
+          "sm3": 2,
+          "sm5": 2,
+          "sm8": 2,
+          "bw10": 1,
+          "bw11": 1,
+          "bw7": 1,
+          "ex12": 1,
+          "ex14": 1,
+          "ex5": 1,
+          "ex9": 1,
+          "hgss2": 1,
+          "pl2": 1,
+          "pl3": 1,
+          "sm4": 1,
+          "sv10": 1,
+          "swsh1": 1,
+          "swsh4": 1,
+          "swsh7": 1,
+          "xy10": 1,
+          "xy11": 1,
+          "xy12": 1,
+          "xy4": 1,
+          "xy8": 1,
+          "xy9": 1
+        },
+        "by_finish_key": {
+          "unknown": 48
+        }
+      },
+      "source_delta_summary": null,
+      "fingerprint_sha256": "8324b5c6f47ac264e196572f75d3ba928c47f57d2f70aa683c15e371a296166b"
+    },
+    {
+      "lane_key": "prize_pack_post_collexy_fixture_recheck",
+      "decision": "blocked",
+      "reason": "Preserved fixture matches are useful context, but current rows still lack promotable exact active-finish evidence.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/prize_pack_post_collexy_fixture_recheck_v1/prize_pack_post_collexy_fixture_recheck_v1.json",
+      "source_delta_path": null,
+      "report_found": true,
+      "source_delta_found": null,
+      "summary": {
+        "target_rows": 33,
+        "fixture_files_loaded": 38,
+        "fixture_records_loaded": 259,
+        "rows_with_exact_fixture_match": 14,
+        "multi_source_finish_review_candidates": 0,
+        "by_status": {
+          "no_exact_fixture_match": 19,
+          "preservation_only_review_blocked": 14
+        },
+        "by_set": {
+          "swsh1": 8,
+          "swsh5": 7,
+          "swsh2": 4,
+          "swsh6": 3,
+          "swsh9": 3,
+          "swsh3": 2,
+          "swsh7": 2,
+          "swshp": 2,
+          "sve": 1,
+          "swsh4": 1
+        }
+      },
+      "source_delta_summary": null,
+      "fingerprint_sha256": "fa07ef6590f2e2fe7ebd8beceb34082c11f0c1d2be2d40164365087836e9ca73"
+    },
+    {
+      "lane_key": "small_custom_stamp_web_evidence",
+      "decision": "already_absorbed_or_blocked",
+      "reason": "Exact records already in the fixture are already master-verified; remaining rows need new exact sources.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/small_custom_stamp_web_evidence_v1/small_custom_stamp_web_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/small_custom_stamp_web_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 31,
+        "targets_in_script": 5,
+        "queue_targets_matched": 5,
+        "source_ready_candidates": 3,
+        "identity_or_review_supported_finish_unproven": 2,
+        "fixture_records_written": 3,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 3,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 3,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 3
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "84cf82075d8a7249544ef24d8cd70d859bb8935b469d062c1e2834f8736f16dc"
+    },
+    {
+      "lane_key": "event_staff_exact_source_evidence",
+      "decision": "already_absorbed_or_blocked",
+      "reason": "Source-delta found no useful gap-closing records; existing exact records are already absorbed or no longer map to current gaps.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/event_staff_exact_source_evidence_v1/event_staff_exact_source_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/event_staff_exact_source_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 19,
+        "targets_in_script": 19,
+        "queue_targets_matched": 19,
+        "source_ready_candidates": 10,
+        "identity_supported_finish_unproven": 7,
+        "review_only_rows": 0,
+        "source_exhausted_rows": 2,
+        "fixture_records_written": 11,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 11,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 7,
+        "unmatched_candidate_records": 4,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "not_in_remaining_gaps_or_current_index": 4,
+          "already_in_current_index_master_verified": 7
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "c0ef790ca638e9623fc46c7efc3174e33cf54451e118cf4e60437c3a3bc7d1e7"
+    },
+    {
+      "lane_key": "professor_program_finish_evidence",
+      "decision": "already_absorbed_or_taxonomy_blocked",
+      "reason": "One exact record is already master-verified; remaining Professor Program rows are single-source, finish-unproven, or taxonomy issues.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/professor_program_finish_evidence_v1/professor_program_finish_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/professor_program_finish_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 10,
+        "source_ready_candidates": 1,
+        "identity_supported_finish_still_single_source": 4,
+        "identity_supported_active_finish_unproven": 1,
+        "queue_taxonomy_issues": 4,
+        "fixture_records_written": 1,
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 1,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 1,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 1
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "9db38594e98e1f634b4fe5ce01b2f41a1cf2ff34b5c296e436f6fa7ae45f0079"
+    },
+    {
+      "lane_key": "second_source_needed_finish_evidence",
+      "decision": "already_absorbed_or_taxonomy_blocked",
+      "reason": "Most exact records are already master-verified; Suicune EB Games remains blocked by Holo/Cosmos taxonomy conflict.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/second_source_needed_finish_evidence_v1/second_source_needed_finish_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/second_source_needed_finish_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 10,
+        "source_ready_candidates": 9,
+        "manual_finish_taxonomy_conflicts": 1,
+        "review_only_rows": 0,
+        "fixture_records_written": 10,
+        "db_writes_performed": false,
+        "migrations_created": false,
+        "cleanup_performed": false,
+        "quarantine_performed": false,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 10,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 10,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 10
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "44d605596df6305fb8e6a96b1ae912b3b315df87034358dee07afee1ab00c23e"
+    },
+    {
+      "lane_key": "brilliant_stars_prerelease_finish_evidence",
+      "decision": "already_absorbed",
+      "reason": "Modern Brilliant Stars prerelease finish evidence is already master-verified in the current index.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/brilliant_stars_prerelease_finish_evidence_v1/brilliant_stars_prerelease_finish_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/brilliant_stars_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 4,
+        "source_ready_candidates": 4,
+        "fixture_records_written": 8,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 8,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 8,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 8
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "d728852a65cf58aee5039f0bf1cd4f2fa454e5cfdb6266e53c8a21f86636c76f"
+    },
+    {
+      "lane_key": "astral_radiance_prerelease_finish_evidence",
+      "decision": "already_absorbed",
+      "reason": "Modern Astral Radiance prerelease finish evidence is already master-verified in the current index.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/astral_radiance_prerelease_finish_evidence_v1/astral_radiance_prerelease_finish_evidence_v1.json",
+      "source_delta_path": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/astral_radiance_prerelease_finish_evidence_v1_source_delta_audit_v1.json",
+      "report_found": true,
+      "source_delta_found": true,
+      "summary": {
+        "target_queue_rows": 4,
+        "source_ready_candidates": 4,
+        "review_only_candidates": 0,
+        "fixture_records_written": 8,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": {
+        "current_gap_facts": 1654,
+        "candidate_records_loaded": 8,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 8,
+        "unmatched_candidate_records": 0,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 8
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "fingerprint_sha256": "acd7c3fe32b0b03cffab8d02b7a10563aad4d4119ec03f753bb6b8b0535d574b"
+    },
+    {
+      "lane_key": "older_prerelease_finish_conflict_review",
+      "decision": "conflict_or_review_blocked",
+      "reason": "Older prerelease rows remain blocked because sources do not resolve active finish cleanly enough for promotion.",
+      "report_path": "docs/audits/english_master_index_source_exhaustion_v1/older_prerelease_finish_conflict_review_v1/older_prerelease_finish_conflict_review_v1.json",
+      "source_delta_path": null,
+      "report_found": true,
+      "source_delta_found": null,
+      "summary": {
+        "target_queue_rows": 2,
+        "source_ready_candidates": 0,
+        "manual_finish_conflicts": 1,
+        "review_only_rows": 1,
+        "write_ready_created": 0
+      },
+      "source_delta_summary": null,
+      "fingerprint_sha256": "8b2c5d485836640f6fd58550c416ea294bdbfdb078354837d2822efbcfb6f8f5"
+    }
+  ],
+  "closure_summary": {
+    "lanes_consolidated": 9,
+    "packet_rows": 154,
+    "report_files_found": 9,
+    "source_delta_files_found": 6,
+    "total_target_or_source_rows": 161,
+    "total_source_ready_candidates": 31,
+    "total_write_ready_created": 0,
+    "source_delta_useful_matches": 0
+  },
+  "fingerprint_sha256": "859584277c0641e007ed9684d4f7f3f5136652f94724249cc7728d3355e60ad8"
+}

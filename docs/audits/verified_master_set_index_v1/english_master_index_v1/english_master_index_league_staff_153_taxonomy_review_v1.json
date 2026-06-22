@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-06-21T23:51:38.273Z",
+  "version": "english_master_index_league_staff_153_taxonomy_review_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "queue_json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json"
+  },
+  "target": {
+    "set_key": "swsh4",
+    "set_name": "Vivid Voltage",
+    "card_number": "153",
+    "card_name": "League Staff",
+    "variant_key": "league_cup_staff_stamp",
+    "stamp_label": "League Cup Staff Stamp"
+  },
+  "candidate_finish_key": "reverse",
+  "review_status": "finish_supported_but_queued_stamp_label_not_supported",
+  "recommended_action": "Do not promote the league_cup_staff_stamp row. Create/adjudicate a separate professor_program_stamp lane only if the Master Index source standard is satisfied.",
+  "evidence_sources": [
+    {
+      "source_key": "pricecharting_reverse_holo",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-vivid-voltage/league-staff-reverse-holo-153",
+      "supports_finish_key": "reverse",
+      "supports_queued_stamp": false,
+      "observed_stamp_or_variant_label": "League Staff [Reverse Holo]",
+      "evidence_label": "PriceCharting reverse-holo page for League Staff #153."
+    },
+    {
+      "source_key": "pokellector_card_page",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokellector.com/Vivid-Voltage-Expansion/League-Staff-Card-153",
+      "supports_finish_key": "reverse",
+      "supports_queued_stamp": false,
+      "observed_stamp_or_variant_label": "Reverse Holo Professor Program Stamp",
+      "evidence_label": "Pokellector page text identifies Reverse Holo Professor Program Stamp, not League Cup Staff Stamp."
+    },
+    {
+      "source_key": "misprint_related_marketplace_text",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.misprint.com/card/13658702",
+      "supports_finish_key": "reverse",
+      "supports_queued_stamp": false,
+      "observed_stamp_or_variant_label": "League Staff-Reverse Foil Professor Program",
+      "evidence_label": "Misprint related listing text points to Professor Program wording."
+    },
+    {
+      "source_key": "official_pokemon_card_database",
+      "source_kind": "official_gallery",
+      "source_url": "https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/swsh4/153/",
+      "supports_finish_key": null,
+      "supports_queued_stamp": false,
+      "observed_stamp_or_variant_label": "Base Vivid Voltage League Staff identity only",
+      "evidence_label": "Official card page confirms base card identity only."
+    }
+  ],
+  "fingerprint_sha256": "711be317c019b772959d5dec08cd18f2b7e0dd1c2a3d91c37606a8c0a90b3327"
+}

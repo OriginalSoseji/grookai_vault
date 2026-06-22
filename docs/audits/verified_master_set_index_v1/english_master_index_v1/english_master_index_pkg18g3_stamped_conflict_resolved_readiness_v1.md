@@ -17,11 +17,11 @@ Read-only readiness packet for conflict rows that now have exact adjudicated fin
 | metric | value |
 | --- | --- |
 | candidate_identities | 2 |
-| future_guarded_candidates | 2 |
-| blocked_rows | 0 |
-| target_parent_inserts | 2 |
-| target_child_inserts | 2 |
-| target_identity_inserts | 2 |
+| future_guarded_candidates | 0 |
+| blocked_rows | 2 |
+| target_parent_inserts | 0 |
+| target_child_inserts | 0 |
+| target_identity_inserts | 0 |
 | write_ready_now | 0 |
 | package_fingerprint_sha256 | `7f98ac16026f095517fab27ce5764a2eacc460d4257d09b87a73a3171798c141` |
 
@@ -29,8 +29,8 @@ Read-only readiness packet for conflict rows that now have exact adjudicated fin
 
 | set_key | card_number | card_name | variant_key | target_finish_key | readiness_status | blockers |
 | --- | --- | --- | --- | --- | --- | --- |
-| me02 | 026 | Suicune | gamestop_stamp | cosmos | future_guarded_parent_child_identity_insert_candidate | none |
-| xy1 | 085 | Aegislash | regional_championships_stamp | reverse | future_guarded_parent_child_identity_insert_candidate | none |
+| me02 | 026 | Suicune | gamestop_stamp | cosmos | blocked | target_parent_already_exists |
+| xy1 | 085 | Aegislash | regional_championships_stamp | reverse | blocked | target_parent_already_exists |
 
 ## Guardrail
 

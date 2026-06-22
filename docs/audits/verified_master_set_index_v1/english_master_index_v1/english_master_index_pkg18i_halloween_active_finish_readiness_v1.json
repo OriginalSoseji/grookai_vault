@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T04:59:01.164Z",
+  "generated_at": "2026-06-22T17:16:20.830Z",
   "version": "english_master_index_pkg18i_halloween_active_finish_readiness_v1",
   "package_id": "PKG-18I-HALLOWEEN-ACTIVE-FINISH-READINESS",
   "future_package_id": "PKG-18J-HALLOWEEN-STAMPED-PARENT-INSERTS",
@@ -14,7 +14,7 @@
   "quarantine_performed": false,
   "global_apply_performed": false,
   "write_ready_now": 0,
-  "fingerprint_sha256": "842062fbf12e6ef8667f359ef9b0e13af12be311fd57102648cdd1237047de42",
+  "fingerprint_sha256": "6f2210ac0d31310a23e634ac6d14e22628f0bdad7f316efea5bb6dcd5e2120c3",
   "summary": {
     "source_candidate_rows": 4,
     "future_guarded_parent_identity_insert_candidates": 0,
@@ -66,7 +66,7 @@
         "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
         "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
         "active_child_finish_key": "normal",
-        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+        "source_fingerprint_sha256": "efefeafd235785b9d6732208368799b0ff91d9538a5654f2b9840fb21538c54e"
       }
     },
     {
@@ -101,7 +101,7 @@
         "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
         "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
         "active_child_finish_key": "normal",
-        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+        "source_fingerprint_sha256": "efefeafd235785b9d6732208368799b0ff91d9538a5654f2b9840fb21538c54e"
       }
     },
     {
@@ -136,7 +136,7 @@
         "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
         "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
         "active_child_finish_key": "normal",
-        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+        "source_fingerprint_sha256": "efefeafd235785b9d6732208368799b0ff91d9538a5654f2b9840fb21538c54e"
       }
     },
     {
@@ -171,7 +171,7 @@
         "source_package_id": "PKG-18H-PRICECHARTING-HALLOWEEN-ACTIVE-FINISH-ACQUISITION",
         "stamped_variant_key": "pikachu_jack_o_lantern_stamp",
         "active_child_finish_key": "normal",
-        "source_fingerprint_sha256": "837b59ee7abc209297d2964468053aef7c4c4b9eccec6c08d6b883061439c206"
+        "source_fingerprint_sha256": "efefeafd235785b9d6732208368799b0ff91d9538a5654f2b9840fb21538c54e"
       }
     }
   ]

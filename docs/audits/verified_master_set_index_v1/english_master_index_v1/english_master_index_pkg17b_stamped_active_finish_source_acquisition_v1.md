@@ -15,21 +15,21 @@ Audit-only source acquisition pass for stamped rows that still need exact active
 
 - active_finish_required_queue_rows: 289
 - source_lanes_attempted: 4
-- raw_source_records_generated: 31
-- accepted_exact_source_rows: 31
+- raw_source_records_generated: 2
+- accepted_exact_source_rows: 2
 - useful_current_gap_matches: 0
 - accepted_delta_records: 4
 - remaining_requires_new_source_or_review: 289
-- fingerprint_sha256: `02b60270042d2ff4539421b9c2792d24fa4e316302f9aa3e137ec23089ba28a6`
+- fingerprint_sha256: `20dc94cdd7e0e81036028e5b03debc90dd942a62daa774c44b93012038dd7c65`
 
 ## Source Lanes
 
 | source | targets | raw records | accepted exact | useful gaps | already indexed | blocked/ambiguous |
 | --- | --- | --- | --- | --- | --- | --- |
-| pricecharting_stamped_active_finish | 339 | 0 | 0 | 0 | 0 | 6 |
-| cardtrader_stamped_finish | 339 | 0 | 0 | 0 | 2 | 0 |
-| pokecardvalues_stamped_finish | 339 | 31 | 31 | 0 | 31 | 22 |
-| tcgcsv_stamped_subtype | 339 | 0 | 0 | 0 | 15 | 339 |
+| pricecharting_stamped_active_finish | 298 | 0 | 0 | 0 | 0 | 6 |
+| cardtrader_stamped_finish | 167 | 0 | 0 | 0 | 2 | 0 |
+| pokecardvalues_stamped_finish | 167 | 2 | 2 | 0 | 31 | 4 |
+| tcgcsv_stamped_subtype | 167 | 0 | 0 | 0 | 15 | 167 |
 
 ## Useful Current Gap Matches
 

@@ -1,0 +1,2624 @@
+{
+  "generated_at": "2026-06-22T17:15:08.674Z",
+  "version": "english_master_index_stamped_special_current_unresolved_work_plan_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "inputs": {
+    "next_action_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
+    "next_action_fingerprint_sha256": "31433cdd2823c0a49c3445fc70fd08bba2ce1bd1b9b0ecf9c25a8f78ee8672ad",
+    "no_write_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_current_no_write_governance_closure_v1.json",
+    "no_write_closure_fingerprint_sha256": "4a23fd179a48227a393b2dc44290078d3dabaa2b6fda44e0b5b0845e54ab0d3d"
+  },
+  "summary": {
+    "queue_rows": 277,
+    "no_write_closed_rows": 91,
+    "unresolved_rows": 186,
+    "write_ready_now": 0,
+    "by_execution_group": {
+      "source_acquisition": 171,
+      "dependency_governance": 15
+    },
+    "by_execution_group_lanes": {
+      "source_acquisition": 7,
+      "dependency_governance": 2
+    },
+    "by_action_bucket": {
+      "league_finish_exact_source": 56,
+      "prize_pack_second_source": 35,
+      "small_custom_stamp_exact_source": 31,
+      "event_staff_exact_source": 19,
+      "prerelease_exact_finish_source": 10,
+      "professor_program_exact_finish_source": 10,
+      "second_source_needed": 10,
+      "base_parent_blocked_no_write": 9,
+      "halloween_base_parent_or_finish_resolution": 6
+    },
+    "by_variant_family": {
+      "league": 57,
+      "prize_pack": 35,
+      "small_custom_stamp": 27,
+      "championship_or_staff": 26,
+      "prerelease": 11,
+      "professor_program": 10,
+      "generic_or_unknown": 7,
+      "halloween": 6,
+      "player_rewards_crosshatch": 5,
+      "battle_academy": 2
+    },
+    "top_sets": {
+      "swsh1": 11,
+      "swshp": 11,
+      "swsh5": 8,
+      "sv10": 7,
+      "swsh3": 7,
+      "wp": 7,
+      "bw5": 5,
+      "swsh11": 5,
+      "swsh2": 5,
+      "bw1": 4,
+      "dp1": 4,
+      "sm8": 4,
+      "swsh9": 4,
+      "bw3": 3,
+      "bw9": 3,
+      "bwp": 3,
+      "ex9": 3,
+      "sm3": 3,
+      "sm7": 3,
+      "svp": 3
+    }
+  },
+  "lane_plan": [
+    {
+      "action_bucket": "league_finish_exact_source",
+      "lane": "league_exact_finish_source",
+      "execution_group": "source_acquisition",
+      "priority": 1,
+      "row_count": 56,
+      "top_sets": [
+        {
+          "set_key": "sm7",
+          "count": 3
+        },
+        {
+          "set_key": "xy1",
+          "count": 3
+        },
+        {
+          "set_key": "xy3",
+          "count": 3
+        },
+        {
+          "set_key": "bw3",
+          "count": 2
+        },
+        {
+          "set_key": "bw5",
+          "count": 2
+        },
+        {
+          "set_key": "bw8",
+          "count": 2
+        },
+        {
+          "set_key": "bw9",
+          "count": 2
+        },
+        {
+          "set_key": "dp1",
+          "count": 2
+        },
+        {
+          "set_key": "ex8",
+          "count": 2
+        },
+        {
+          "set_key": "hgss3",
+          "count": 2
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "league_stamp",
+          "count": 48
+        },
+        {
+          "variant_key": "league_cup_staff_stamp",
+          "count": 8
+        }
+      ],
+      "next_action": "Find exact set + number + name + League Stamp + active finish evidence. Do not infer reverse from crosshatch wording.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "prize_pack_second_source",
+      "lane": "prize_pack_finish_mapping",
+      "execution_group": "source_acquisition",
+      "priority": 2,
+      "row_count": 35,
+      "top_sets": [
+        {
+          "set_key": "swsh1",
+          "count": 8
+        },
+        {
+          "set_key": "swsh5",
+          "count": 7
+        },
+        {
+          "set_key": "swsh2",
+          "count": 4
+        },
+        {
+          "set_key": "swsh6",
+          "count": 3
+        },
+        {
+          "set_key": "swsh9",
+          "count": 3
+        },
+        {
+          "set_key": "swsh3",
+          "count": 2
+        },
+        {
+          "set_key": "swsh7",
+          "count": 2
+        },
+        {
+          "set_key": "swshp",
+          "count": 2
+        },
+        {
+          "set_key": "bw2",
+          "count": 1
+        },
+        {
+          "set_key": "bw9",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "prize_pack_stamp",
+          "count": 35
+        }
+      ],
+      "next_action": "Resolve Normal/Foil ambiguity with exact independent product/checklist evidence. Official PDFs alone are not enough when both finishes appear.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "small_custom_stamp_exact_source",
+      "lane": "small_custom_stamp_exact_finish",
+      "execution_group": "source_acquisition",
+      "priority": 3,
+      "row_count": 31,
+      "top_sets": [
+        {
+          "set_key": "swsh3",
+          "count": 5
+        },
+        {
+          "set_key": "bw1",
+          "count": 4
+        },
+        {
+          "set_key": "ex11",
+          "count": 2
+        },
+        {
+          "set_key": "ex9",
+          "count": 2
+        },
+        {
+          "set_key": "sv10",
+          "count": 2
+        },
+        {
+          "set_key": "col1",
+          "count": 1
+        },
+        {
+          "set_key": "ex10",
+          "count": 1
+        },
+        {
+          "set_key": "ex12",
+          "count": 1
+        },
+        {
+          "set_key": "hgss1",
+          "count": 1
+        },
+        {
+          "set_key": "hgss2",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "play_pok_mon_thank_you_stamp",
+          "count": 5
+        },
+        {
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "count": 4
+        },
+        {
+          "variant_key": "play_pokemon_stamp",
+          "count": 3
+        },
+        {
+          "variant_key": "destined_rivals_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "eb_games_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "alolan_raichu_half_deck_14_stamp",
+          "count": 1
+        },
+        {
+          "variant_key": "games_expo_stamped_2007",
+          "count": 1
+        },
+        {
+          "variant_key": "gym_challenge_stamped_2006_2007",
+          "count": 1
+        },
+        {
+          "variant_key": "indianapolis_gencon_stamped_2005",
+          "count": 1
+        },
+        {
+          "variant_key": "legendary_pok_mon_stamp",
+          "count": 1
+        }
+      ],
+      "next_action": "Target event/product pages or stable listings that prove exact custom stamp and active finish.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "event_staff_exact_source",
+      "lane": "event_staff_exact_finish",
+      "execution_group": "source_acquisition",
+      "priority": 4,
+      "row_count": 19,
+      "top_sets": [
+        {
+          "set_key": "sv10",
+          "count": 4
+        },
+        {
+          "set_key": "bwp",
+          "count": 2
+        },
+        {
+          "set_key": "dp6",
+          "count": 2
+        },
+        {
+          "set_key": "svp",
+          "count": 2
+        },
+        {
+          "set_key": "dpp",
+          "count": 1
+        },
+        {
+          "set_key": "sm3",
+          "count": 1
+        },
+        {
+          "set_key": "sm8",
+          "count": 1
+        },
+        {
+          "set_key": "smp",
+          "count": 1
+        },
+        {
+          "set_key": "swsh2",
+          "count": 1
+        },
+        {
+          "set_key": "swshp",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "staff_stamp",
+          "count": 6
+        },
+        {
+          "variant_key": "finalist_stamp",
+          "count": 3
+        },
+        {
+          "variant_key": "quarter_finalist_stamp",
+          "count": 3
+        },
+        {
+          "variant_key": "regional_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "regional_championships_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "world_championships_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "asia_championship_stamp",
+          "count": 1
+        }
+      ],
+      "next_action": "Acquire event/staff-specific evidence that names the stamp label and active finish for the exact card.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "prerelease_exact_finish_source",
+      "lane": "prerelease_exact_finish",
+      "execution_group": "source_acquisition",
+      "priority": 5,
+      "row_count": 10,
+      "top_sets": [
+        {
+          "set_key": "swshp",
+          "count": 8
+        },
+        {
+          "set_key": "bwp",
+          "count": 1
+        },
+        {
+          "set_key": "ex4",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "prerelease_stamp",
+          "count": 10
+        }
+      ],
+      "next_action": "Find exact prerelease or staff-prerelease finish proof; do not rely on set-era assumptions.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "professor_program_exact_finish_source",
+      "lane": "professor_program_exact_finish",
+      "execution_group": "source_acquisition",
+      "priority": 6,
+      "row_count": 10,
+      "top_sets": [
+        {
+          "set_key": "swsh1",
+          "count": 2
+        },
+        {
+          "set_key": "swsh8",
+          "count": 2
+        },
+        {
+          "set_key": "dp3",
+          "count": 1
+        },
+        {
+          "set_key": "ex15",
+          "count": 1
+        },
+        {
+          "set_key": "ex6",
+          "count": 1
+        },
+        {
+          "set_key": "hgss1",
+          "count": 1
+        },
+        {
+          "set_key": "sv02",
+          "count": 1
+        },
+        {
+          "set_key": "swsh9",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "professor_program_stamp",
+          "count": 10
+        }
+      ],
+      "next_action": "Find exact Professor Program stamp and finish evidence; resolve deck/product stamp taxonomy separately.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "second_source_needed",
+      "lane": "second_source_needed",
+      "execution_group": "source_acquisition",
+      "priority": 7,
+      "row_count": 10,
+      "top_sets": [
+        {
+          "set_key": "bw5",
+          "count": 3
+        },
+        {
+          "set_key": "dp1",
+          "count": 2
+        },
+        {
+          "set_key": "bw3",
+          "count": 1
+        },
+        {
+          "set_key": "me02",
+          "count": 1
+        },
+        {
+          "set_key": "sm6",
+          "count": 1
+        },
+        {
+          "set_key": "xy10",
+          "count": 1
+        },
+        {
+          "set_key": "xy8",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "city_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "national_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "states_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "variant_key": "eb_games_stamp",
+          "count": 1
+        },
+        {
+          "variant_key": "league_staff_stamp",
+          "count": 1
+        },
+        {
+          "variant_key": "regional_championships_staff_stamp",
+          "count": 1
+        },
+        {
+          "variant_key": "staff_prerelease_stamp",
+          "count": 1
+        }
+      ],
+      "next_action": "Add one independent corroborating source for exact set + number + name + variant/stamp + finish.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "base_parent_blocked_no_write",
+      "lane": "base_parent_dependency",
+      "execution_group": "dependency_governance",
+      "priority": 8,
+      "row_count": 9,
+      "top_sets": [
+        {
+          "set_key": "wp",
+          "count": 7
+        },
+        {
+          "set_key": "sm7.5",
+          "count": 2
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "unknown",
+          "count": 7
+        },
+        {
+          "variant_key": "battle_academy_deck_mark",
+          "count": 2
+        }
+      ],
+      "next_action": "Resolve base parent/base finish dependency before modeling the variant parent.",
+      "write_ready_now": false
+    },
+    {
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "lane": "halloween_base_or_finish_resolution",
+      "execution_group": "dependency_governance",
+      "priority": 9,
+      "row_count": 6,
+      "top_sets": [
+        {
+          "set_key": "swsh11",
+          "count": 4
+        },
+        {
+          "set_key": "sv05",
+          "count": 1
+        },
+        {
+          "set_key": "svp",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "count": 6
+        }
+      ],
+      "next_action": "Separate Trick or Trade display/product metadata from true stamped physical identity and exact active finish.",
+      "write_ready_now": false
+    }
+  ],
+  "unresolved_rows": [
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "95",
+      "card_name": "Pokémon Catcher",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "100",
+      "card_name": "Frozen City",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "card_number": "13",
+      "card_name": "Basic Psychic Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "117",
+      "card_name": "Galarian Zigzagoon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "156",
+      "card_name": "Air Balloon",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "159",
+      "card_name": "Crushing Hammer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "169",
+      "card_name": "Marnie",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "170",
+      "card_name": "Metal Saucer",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "171",
+      "card_name": "Ordinary Rod",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "180",
+      "card_name": "Rare Candy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "186",
+      "card_name": "Aurora Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "109",
+      "card_name": "Falinks",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "165",
+      "card_name": "Scoop Up Net",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "171",
+      "card_name": "Capture Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "174",
+      "card_name": "Twin Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "159",
+      "card_name": "Bird Keeper",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "160",
+      "card_name": "Cape of Toughness",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "157",
+      "card_name": "Nessa",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "123",
+      "card_name": "Cheryl",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "125",
+      "card_name": "Escape Rope",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "129",
+      "card_name": "Level Ball",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "140",
+      "card_name": "Rapid Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "141",
+      "card_name": "Single Strike Energy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "37",
+      "card_name": "Octillery",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "96",
+      "card_name": "Houndoom",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "140",
+      "card_name": "Fog Crystal",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "148",
+      "card_name": "Path to the Peak",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "70",
+      "card_name": "Malamar",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "161",
+      "card_name": "Stormy Mountains",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "94",
+      "card_name": "Umbreon V",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "132",
+      "card_name": "Boss's Orders",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "144",
+      "card_name": "Magma Basin",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "41",
+      "card_name": "Manaphy",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH195",
+      "card_name": "Leafeon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH197",
+      "card_name": "Glaceon VSTAR",
+      "variant_key": "prize_pack_stamp",
+      "stamp_label": "Prize Pack Stamp",
+      "action_bucket": "prize_pack_second_source",
+      "variant_family": "prize_pack",
+      "recommended_action": "Acquire a second independent exact Prize Pack finish source; existing PriceCharting rows remain review-only."
+    },
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "5",
+      "card_name": "Tropius",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "97",
+      "card_name": "Deino",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "11",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "8",
+      "card_name": "Karrablast",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "12",
+      "card_name": "Flareon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "4",
+      "card_name": "Scyther",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "card_number": "38",
+      "card_name": "Delibird",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "118",
+      "card_name": "Colress",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "123",
+      "card_name": "Hypnotoxic Laser",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "11",
+      "card_name": "Leafeon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "23",
+      "card_name": "Glaceon",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "3",
+      "card_name": "Electivire",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "7",
+      "card_name": "Luxray",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "6",
+      "card_name": "Golem",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "card_number": "14",
+      "card_name": "Blastoise",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "card_number": "9",
+      "card_name": "Machamp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "16",
+      "card_name": "Deoxys",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "22",
+      "card_name": "Rayquaza",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "3",
+      "card_name": "Exploud",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "7",
+      "card_name": "Politoed",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "79",
+      "card_name": "Darkness Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "card_number": "80",
+      "card_name": "Metal Energy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "85",
+      "card_name": "Black Belt",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "88",
+      "card_name": "Seeker",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "96",
+      "card_name": "Team Galactic's Invention G-109 SP Radar",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "5",
+      "card_name": "Garchomp",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "123",
+      "card_name": "Nest Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "20",
+      "card_name": "Tsareena",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "119",
+      "card_name": "Aqua Patch",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "55",
+      "card_name": "Oricorio",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "113",
+      "card_name": "Bodybuilding Dumbbells",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "41",
+      "card_name": "Raichu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "91",
+      "card_name": "Counter Catcher",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "122",
+      "card_name": "Escape Board",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "83",
+      "card_name": "Magnezone",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "142",
+      "card_name": "Rare Candy",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "145",
+      "card_name": "Steven's Resolve",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "24",
+      "card_name": "Magcargo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "172",
+      "card_name": "Electropower",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "82",
+      "card_name": "Zebstrika",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "81",
+      "card_name": "Team Rocket's Mewtwo ex",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "179",
+      "card_name": "Quick Ball",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "153",
+      "card_name": "League Staff",
+      "variant_key": "league_cup_staff_stamp",
+      "stamp_label": "League Cup Staff Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "123",
+      "card_name": "Professor's Letter",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "56",
+      "card_name": "Pumpkaboo",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "64",
+      "card_name": "Solrock",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "63",
+      "card_name": "Lucario",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "card_number": "15",
+      "card_name": "Volcarona",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "53",
+      "card_name": "Mew",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "12",
+      "card_name": "Torchic",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "14",
+      "card_name": "Blaziken",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "8",
+      "card_name": "Shelmet",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "66",
+      "card_name": "Klefki",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "78",
+      "card_name": "Marowak",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "40",
+      "card_name": "Greninja",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "action_bucket": "league_finish_exact_source",
+      "variant_family": "league",
+      "recommended_action": "Target league/crosshatch exact checklist sources for set + number + card + reverse/active finish."
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW50",
+      "card_name": "Tropical Beach",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW95",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "130",
+      "card_name": "Buck's Training",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "2",
+      "card_name": "Dragonite",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "card_number": "DP25",
+      "card_name": "Tropical Wind",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "115",
+      "card_name": "Guzma",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "188",
+      "card_name": "Professor Elm's Lecture",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM231",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "34",
+      "card_name": "Ethan's Typhlosion",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "49",
+      "card_name": "Misty's Gyarados",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "87",
+      "card_name": "Team Rocket's Mimikyu",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "96",
+      "card_name": "Team Rocket's Tyranitar",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "101",
+      "card_name": "Pikachu",
+      "variant_key": "asia_championship_stamp",
+      "stamp_label": "Asia Championship Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "variant_key": "world_championships_stamp",
+      "stamp_label": "World Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "154",
+      "card_name": "Boss's Orders",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH296",
+      "card_name": "Champions Festival",
+      "variant_key": "quarter_finalist_stamp",
+      "stamp_label": "Quarter Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "138",
+      "card_name": "Giovanni's Scheme",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY27",
+      "card_name": "Champions Festival",
+      "variant_key": "finalist_stamp",
+      "stamp_label": "Finalist Stamp",
+      "action_bucket": "event_staff_exact_source",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Target event/staff stamped sources with exact stamp label and active finish."
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW75",
+      "card_name": "Metagross",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "card_number": "24",
+      "card_name": "Team Aqua's Cacnea",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH185",
+      "card_name": "Moltres",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH186",
+      "card_name": "Lucario",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH187",
+      "card_name": "Liepard",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH188",
+      "card_name": "Bibarel",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH205",
+      "card_name": "Hisuian Basculegion",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH206",
+      "card_name": "Wyrdeer",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH207",
+      "card_name": "Hisuian Samurott",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH208",
+      "card_name": "Magnezone",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "action_bucket": "prerelease_exact_finish_source",
+      "variant_family": "prerelease",
+      "recommended_action": "Target prerelease pages/products that prove exact stamped card and active finish."
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "122",
+      "card_name": "Professor Oak's Visit",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "card_number": "79",
+      "card_name": "Professor Elm's Training Method",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "100",
+      "card_name": "Professor Elm's Training Method",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "66",
+      "card_name": "Voltorb",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "175",
+      "card_name": "Pokémon Catcher",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "177",
+      "card_name": "Potion",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "29",
+      "card_name": "Vulpix",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "46",
+      "card_name": "Sizzlipede",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "147",
+      "card_name": "Professor's Research",
+      "variant_key": "professor_program_stamp",
+      "stamp_label": "Professor Program Stamp",
+      "action_bucket": "professor_program_exact_finish_source",
+      "variant_family": "professor_program",
+      "recommended_action": "Target Professor Program checklist/product sources that prove exact active finish."
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "77",
+      "card_name": "Scream Tail",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "75",
+      "card_name": "Mimikyu",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "16",
+      "card_name": "Phantump",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "24",
+      "card_name": "Litwick",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "25",
+      "card_name": "Lampent",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "65",
+      "card_name": "Haunter",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence."
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "105",
+      "card_name": "Grass Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "106",
+      "card_name": "Fire Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "111",
+      "card_name": "Darkness Energy",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "15",
+      "card_name": "Tepig",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "stamp_label": "Player Rewards Crosshatch Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "player_rewards_crosshatch",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "88",
+      "card_name": "Grass Energy",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "stamp_label": "Player Rewards Crosshatch Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "player_rewards_crosshatch",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_number": "29",
+      "card_name": "Lugia",
+      "variant_key": "pokemon_rocks_america_stamped_2005",
+      "stamp_label": "Pokemon Rocks America Stamped; 2005",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "card_number": "61",
+      "card_name": "Ditto",
+      "variant_key": "origins_game_fair_stamped_200",
+      "stamp_label": "Origins Game Fair Stamped; 200",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "card_number": "64",
+      "card_name": "Ditto",
+      "variant_key": "games_expo_stamped_2007",
+      "stamp_label": "Games Expo Stamped; 2007",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "5",
+      "card_name": "Gengar",
+      "variant_key": "gym_challenge_stamped_2006_2007",
+      "stamp_label": "Gym Challenge Stamped; 2006 2007",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "60",
+      "card_name": "Pikachu",
+      "variant_key": "san_diego_comic_con_international_stamped_2005",
+      "stamp_label": "San Diego Comic Con International Stamped; 2005",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "70",
+      "card_name": "Treecko",
+      "variant_key": "indianapolis_gencon_stamped_2005",
+      "stamp_label": "Indianapolis GenCon Stamped; 2005",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "40",
+      "card_name": "Donphan",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "stamp_label": "Player Rewards Crosshatch Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "player_rewards_crosshatch",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "24",
+      "card_name": "Steelix",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "stamp_label": "Player Rewards Crosshatch Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "player_rewards_crosshatch",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "136",
+      "card_name": "Cynthia's Guidance",
+      "variant_key": "pok_ball_stamped_player_rewards_promo_2009_2010",
+      "stamp_label": "PokéBall Stamped, Player Rewards Promo; 2009 2010",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "player_rewards_crosshatch",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "129",
+      "card_name": "Melmetal",
+      "variant_key": "unbroken_bonds_stamp",
+      "stamp_label": "Unbroken Bonds Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "59",
+      "card_name": "Suicune",
+      "variant_key": "legendary_pok_mon_stamp",
+      "stamp_label": "Legendary PokéMon Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "card_number": "19",
+      "card_name": "Moltres",
+      "variant_key": "team_up_stamp",
+      "stamp_label": "Team Up Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM86",
+      "card_name": "Pikachu",
+      "variant_key": "alolan_raichu_half_deck_14_stamp",
+      "stamp_label": "Alolan Raichu Half Deck 14 Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "51",
+      "card_name": "Team Rocket's Articuno",
+      "variant_key": "destined_rivals_stamp",
+      "stamp_label": "Destined Rivals Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "70",
+      "card_name": "Team Rocket's Zapdos",
+      "variant_key": "destined_rivals_stamp",
+      "stamp_label": "Destined Rivals Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "76",
+      "card_name": "Hisuian Zoroark",
+      "variant_key": "lost_origin_stamp",
+      "stamp_label": "Lost Origin Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "131",
+      "card_name": "Dragonite",
+      "variant_key": "silver_tempest_stamp",
+      "stamp_label": "Silver Tempest Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "150",
+      "card_name": "Bunnelby",
+      "variant_key": "play_pok_mon_thank_you_stamp",
+      "stamp_label": "Play! PokéMon, Thank You Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "172",
+      "card_name": "Turbo Patch",
+      "variant_key": "play_pok_mon_thank_you_stamp",
+      "stamp_label": "Play! PokéMon, Thank You Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "36",
+      "card_name": "Galarian Mr. Rime",
+      "variant_key": "play_pok_mon_thank_you_stamp",
+      "stamp_label": "Play! PokéMon, Thank You Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "78",
+      "card_name": "Dedenne",
+      "variant_key": "play_pok_mon_thank_you_stamp",
+      "stamp_label": "Play! PokéMon, Thank You Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "83",
+      "card_name": "Polteageist",
+      "variant_key": "play_pok_mon_thank_you_stamp",
+      "stamp_label": "Play! PokéMon, Thank You Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "131",
+      "card_name": "Snorlax",
+      "variant_key": "vivid_voltage_stamp",
+      "stamp_label": "Vivid Voltage Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "82",
+      "card_name": "Sandaconda",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "card_number": "20",
+      "card_name": "Pikachu",
+      "variant_key": "mcdonalds_stamp",
+      "stamp_label": "McDonald's Stamp",
+      "action_bucket": "small_custom_stamp_exact_source",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Acquire exact source for the specific small stamp/variant family; do not generalize from stamped text."
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "prerelease",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "small_custom_stamp",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_staff_stamp",
+      "stamp_label": "League Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "league",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "action_bucket": "second_source_needed",
+      "variant_family": "championship_or_staff",
+      "recommended_action": "Find one more independent exact source for rows already supported by a single source."
+    },
+    {
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "card_number": "3",
+      "card_name": "Charizard",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "battle_academy",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "card_number": "55",
+      "card_name": "Kangaskhan",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "battle_academy",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR B2 63",
+      "card_name": "Wartortle",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR FO 50",
+      "card_name": "Kabuto",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR GC 37",
+      "card_name": "Brock's Vulpix",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR GH 54",
+      "card_name": "Misty's Psyduck",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR JU 60",
+      "card_name": "Pikachu",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR TR 19",
+      "card_name": "Dark Arbok",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR TR 32",
+      "card_name": "Dark Charmeleon",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed."
+    }
+  ],
+  "fingerprint_sha256": "065c815a62bcc5ec94afa2225507e51d18d05b64a08109ea5916e0d59d42e97d"
+}

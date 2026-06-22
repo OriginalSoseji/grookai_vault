@@ -1,0 +1,158 @@
+{
+  "generated_at": "2026-06-20T23:45:00.000Z",
+  "version": "wb_poke_card_creator_pack_discovery_v1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "finding": "The Poké Card Creator Pack cards are not missing from canonical DB. They exist under set_code ex5.5, set name Poké Card Creator Pack, with active identities, species links, traits, one normal child printing each, and parent exact image URLs. The visible gap is child-printing image enrichment: child card_printings have no image_url/image_path/image_status.",
+  "source_evidence": [
+    {
+      "source_key": "cardguide_wiki",
+      "source_kind": "collector_reference",
+      "source_url": "https://cardguide.fandom.com/wiki/Pok%C3%A9_Card_Creator_Pack",
+      "evidence_label": "CardGuide describes Poké Card Creator Pack as a 2004 special expansion with five cards from Kids' WB! Poké Card Creator Contest winners.",
+      "supports": [
+        "set_identity",
+        "five_card_pack",
+        "contest_origin"
+      ]
+    },
+    {
+      "source_key": "scrydex_treecko_wb1_1",
+      "source_kind": "collector_reference",
+      "source_url": "https://scrydex.com/pokemon/cards/treecko/wb1-1",
+      "evidence_label": "Scrydex lists Treecko as wb1-1 in Poké Card Creator Pack with English language and normal variant.",
+      "supports": [
+        "card_identity",
+        "source_id",
+        "set_membership"
+      ]
+    },
+    {
+      "source_key": "scrydex_pikachu_wb1_5",
+      "source_kind": "collector_reference",
+      "source_url": "https://scrydex.com/pokemon/cards/pikachu/wb1-5",
+      "evidence_label": "Scrydex lists Pikachu as wb1-5 in Poké Card Creator Pack and shows third-party market evidence.",
+      "supports": [
+        "card_identity",
+        "source_id",
+        "set_membership"
+      ]
+    },
+    {
+      "source_key": "pricecharting_pikachu_5",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-2004-poke-card-creator/pikachu-5",
+      "evidence_label": "PriceCharting has a Pokemon 2004 Poke Card Creator product lane for Pikachu #5.",
+      "supports": [
+        "market_recognition",
+        "card_identity"
+      ]
+    },
+    {
+      "source_key": "fanatics_mudkip_4",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.fanaticscollect.com/weekly/78c367d0-0863-11f1-bf51-0a9dcf241f19/2004-pokemon-kids-wb-poke-card-creator-mudkip-4-psa-8-nm-mt",
+      "evidence_label": "Fanatics Collect auction page identifies 2004 Pokemon Kids' WB! Poke Card Creator Mudkip #4.",
+      "supports": [
+        "market_recognition",
+        "card_identity"
+      ]
+    }
+  ],
+  "db_rows": [
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "1",
+      "name": "Treecko",
+      "gv_id": "GV-PK-CC-1",
+      "printing_gv_id": "GV-PK-CC-1-STD",
+      "finish_key": "normal",
+      "parent_image_status": "exact",
+      "parent_has_image_url": true,
+      "child_has_image": false,
+      "has_active_identity": true,
+      "has_species": true,
+      "has_traits": true
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "2",
+      "name": "Wurmple",
+      "gv_id": "GV-PK-CC-2",
+      "printing_gv_id": "GV-PK-CC-2-STD",
+      "finish_key": "normal",
+      "parent_image_status": "exact",
+      "parent_has_image_url": true,
+      "child_has_image": false,
+      "has_active_identity": true,
+      "has_species": true,
+      "has_traits": true
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "3",
+      "name": "Torchic",
+      "gv_id": "GV-PK-CC-3",
+      "printing_gv_id": "GV-PK-CC-3-STD",
+      "finish_key": "normal",
+      "parent_image_status": "exact",
+      "parent_has_image_url": true,
+      "child_has_image": false,
+      "has_active_identity": true,
+      "has_species": true,
+      "has_traits": true
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "4",
+      "name": "Mudkip",
+      "gv_id": "GV-PK-CC-4",
+      "printing_gv_id": "GV-PK-CC-4-STD",
+      "finish_key": "normal",
+      "parent_image_status": "exact",
+      "parent_has_image_url": true,
+      "child_has_image": false,
+      "has_active_identity": true,
+      "has_species": true,
+      "has_traits": true
+    },
+    {
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "5",
+      "name": "Pikachu",
+      "gv_id": "GV-PK-CC-5",
+      "printing_gv_id": "GV-PK-CC-5-STD",
+      "finish_key": "normal",
+      "parent_image_status": "exact",
+      "parent_has_image_url": true,
+      "child_has_image": false,
+      "has_active_identity": true,
+      "has_species": true,
+      "has_traits": true
+    }
+  ],
+  "recommended_next_actions": [
+    {
+      "id": "IMG-CC-01",
+      "action": "Prepare child-printing image dry-run for ex5.5 normal child rows using existing exact parent image URLs as the source, preserving source URL/provenance.",
+      "writes_required_later": [
+        "card_printings.image_url",
+        "card_printings.image_status",
+        "card_printings.image_note"
+      ],
+      "real_apply_authorized_now": false
+    },
+    {
+      "id": "ORIGIN-CC-01",
+      "action": "Add variant/origin explanation metadata for Poké Card Creator Pack as a special campaign set, separate from finish truth.",
+      "real_apply_authorized_now": false
+    }
+  ]
+}

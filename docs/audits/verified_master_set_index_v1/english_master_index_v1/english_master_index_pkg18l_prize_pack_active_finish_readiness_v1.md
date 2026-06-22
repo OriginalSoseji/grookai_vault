@@ -19,7 +19,7 @@ Read-only DB readiness view for Prize Pack stamped parent identity inserts.
 | source_candidate_rows | 0 |
 | future_guarded_parent_identity_insert_candidates | 0 |
 | blocked_or_review_rows | 0 |
-| fingerprint_sha256 | `6a2c92a3bf2b42e95e90d7c21894e9e5a0505f38745738ee3ebcb0c678dc353c` |
+| fingerprint_sha256 | `890e16587e1f7c8b67c7a4222e8e375b95a796655d881ad0979a66a75d4211ba` |
 
 ## Readiness Status
 

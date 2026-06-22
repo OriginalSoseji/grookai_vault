@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-06-22T02:43:49.029Z",
+  "version": "english_master_index_pkg18n_official_prize_pack_readiness_v1",
+  "package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-READINESS",
+  "future_package_id": "PKG-18N-OFFICIAL-PRIZE-PACK-PARENT-INSERTS",
+  "source_artifact": "docs/audits/english_master_index_source_exhaustion_v1/official_pokemon_prize_pack_pdf_acquisition_v1/official_pokemon_prize_pack_pdf_acquisition_v1.json",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_read_error": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "summary": {
+    "source_candidate_rows": 0,
+    "future_guarded_parent_identity_insert_candidates": 0,
+    "blocked_or_review_rows": 0,
+    "by_readiness_status": {},
+    "by_blocker": {},
+    "by_finish": {},
+    "by_set": {}
+  },
+  "rows": [],
+  "fingerprint_sha256": "11af27244fb3e24c2ca9d7e1a6fa594850e1907620ccbc3bdda3360e20642f30"
+}

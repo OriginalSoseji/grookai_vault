@@ -14,18 +14,18 @@ This is an audit-only consolidation of the remaining stamped blocker work after 
 
 ## Summary
 
-- queue_rows: 590
+- queue_rows: 567
 - decision_buckets: 9
-- decision_bucket_memberships: 653
+- decision_bucket_memberships: 630
 - immediate_write_ready_rows: 0
 - stamped_finish_key_rows_allowed: 0
-- fingerprint_sha256: `d3d275be8f482e3d2a9fa15fa1c288ac88d88becb38f62d51e77f1b0f904759f`
+- fingerprint_sha256: `5b22d5b43756b63c9f69ed348ad3283d3ba781f43a656e12d41818370844b0b2`
 
 ## Current Queue Status
 
 | queue_status | rows |
 | --- | --- |
-| active_finish_required | 312 |
+| active_finish_required | 289 |
 | stamp_identity_label_needed | 178 |
 | base_parent_missing | 45 |
 | blocked_second_independent_source_needed | 18 |
@@ -39,7 +39,7 @@ This is an audit-only consolidation of the remaining stamped blocker work after 
 
 | bucket | rows | result | write ready | evidence status | recommended next action |
 | --- | --- | --- | --- | --- | --- |
-| active_finish_required | 312 | blocked_after_source_attempt | 0 | 4 source lanes attempted; 0 useful current-gap matches. | Continue with new source families or variant-specific adjudication. Do not write active-finish rows from the exhausted source lanes. |
+| active_finish_required | 289 | blocked_after_source_attempt | 0 | 4 source lanes attempted; 0 useful current-gap matches. | Continue with new source families or variant-specific adjudication. Do not write active-finish rows from the exhausted source lanes. |
 | active_finish_required_with_dependency_awareness | 4 | blocked_until_dependency_aware_finish_evidence | 0 | Requires exact active finish evidence and a dependency-aware package. | Keep separate from bulk stamped packages; prepare only after exact evidence and dependency map exist. |
 | prize_pack_active_finish_current_queue | 63 | blocked_after_prize_pack_attempt | 0 | 0 two-source exact rows; 25 conflicting rows; 34 single-source-family rows. | Do not infer from Prize Pack product family. Build a product-series rule only if it can distinguish Standard Set from Standard Set Foil at card level. |
 | stamp_identity_label_needed | 178 | source_label_needed | 0 | Current evidence says stamped but does not prove exact stamp label or deterministic variant key. | Attack with exact checklist/product pages that name the stamp label; generic stamped claims remain blocked. |

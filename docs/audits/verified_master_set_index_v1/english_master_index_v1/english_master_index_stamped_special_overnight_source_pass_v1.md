@@ -16,12 +16,12 @@ Audit-only overnight-style pass for the remaining stamped/special queue.
 | metric | value |
 | --- | --- |
 | starting_remaining_rows | 567 |
-| current_remaining_rows | 567 |
-| current_no_write_or_governance_rows | 301 |
-| current_source_required_rows | 263 |
-| current_manual_conflict_rows | 3 |
+| current_remaining_rows | 280 |
+| current_no_write_or_governance_rows | 100 |
+| current_source_required_rows | 177 |
+| current_manual_conflict_rows | 0 |
 | write_ready_now | 0 |
-| fingerprint_sha256 | `ef5b5cf0e35aebac23cafb829af640880e9063c9c1e58beb96bd0d8496170309` |
+| fingerprint_sha256 | `bab9df68e1be1b9e74915d9b95017b0ea84fbe8a379cb6d691f6d63955edb8f7` |
 
 ## Source Attempts
 

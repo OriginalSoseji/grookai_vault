@@ -1,0 +1,301 @@
+{
+  "generated_at": "2026-06-22T17:17:16.867Z",
+  "version": "english_master_index_stamped_special_dependency_governance_packet_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "inputs": {
+    "unresolved_work_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_current_unresolved_work_plan_v1.json",
+    "unresolved_work_plan_fingerprint_sha256": "065c815a62bcc5ec94afa2225507e51d18d05b64a08109ea5916e0d59d42e97d",
+    "halloween_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18i_halloween_active_finish_readiness_v1.json",
+    "halloween_readiness_fingerprint_sha256": "6f2210ac0d31310a23e634ac6d14e22628f0bdad7f316efea5bb6dcd5e2120c3",
+    "base_parent_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json",
+    "base_parent_readiness_fingerprint_sha256": "6c2fdc3ee0d0d23ee74f7dfb7a8ec9b774cb69601cc0d03ae8562c37d3bbacd5",
+    "base_parent_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.json",
+    "base_parent_closure_fingerprint_sha256": "30da14a83bb8dc026e271d45895cab529a1f6a3ce08d59fa189adeed2f19dd1b"
+  },
+  "summary": {
+    "dependency_rows": 15,
+    "halloween_rows": 6,
+    "base_parent_rows": 9,
+    "write_ready_now": 0,
+    "by_dependency_class": {
+      "w_promotional_base_identity_governance_required": 7,
+      "halloween_base_parent_or_finish_blocked": 6,
+      "battle_academy_display_metadata_base_finish_blocked": 2
+    },
+    "by_set": {
+      "wp": 7,
+      "swsh11": 4,
+      "sm7.5": 2,
+      "sv05": 1,
+      "svp": 1
+    }
+  },
+  "source_summaries": {
+    "halloween": {
+      "source_candidate_rows": 4,
+      "future_guarded_parent_identity_insert_candidates": 0,
+      "blocked_or_review_rows": 4,
+      "by_readiness_status": {
+        "blocked_or_review": 4
+      },
+      "by_blocker": {
+        "base_parent_missing": 4,
+        "base_parent_missing_target_child_finish": 4
+      },
+      "by_finish": {
+        "normal": 4
+      },
+      "by_set": {
+        "swsh11": 4
+      }
+    },
+    "base_readiness": {
+      "target_rows": 9,
+      "insert_dry_run_candidates": 0,
+      "stale_or_return_to_stamped_readiness": 0,
+      "blocked_rows": 9,
+      "by_readiness_status": {
+        "blocked_missing_or_inactive_base_finish": 9
+      },
+      "by_set": {
+        "wp": 7,
+        "sm7.5": 2
+      }
+    },
+    "base_closure": {
+      "target_rows": 9,
+      "ready_for_separate_guarded_dry_run": 0,
+      "closed_as_stale_return_to_stamped_flow": 0,
+      "blocked_rows": 9,
+      "by_closure_status": {
+        "blocked_active_finish_required": 9
+      },
+      "by_readiness_status": {
+        "blocked_missing_or_inactive_base_finish": 9
+      },
+      "by_set": {
+        "wp": 7,
+        "sm7.5": 2
+      }
+    }
+  },
+  "rows": [
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "77",
+      "card_name": "Scream Tail",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "75",
+      "card_name": "Mimikyu",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "16",
+      "card_name": "Phantump",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "24",
+      "card_name": "Litwick",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "25",
+      "card_name": "Lampent",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "65",
+      "card_name": "Haunter",
+      "variant_key": "pikachu_jack_o_lantern_stamp",
+      "stamp_label": "Pikachu Jack-o'-Lantern Stamp",
+      "action_bucket": "halloween_base_parent_or_finish_resolution",
+      "variant_family": "halloween",
+      "recommended_action": "Resolve missing base parent/target child finish before using Halloween product evidence.",
+      "dependency_class": "halloween_base_parent_or_finish_blocked",
+      "next_action": "Resolve missing base parent/target child finish before considering Halloween stamped identity rows.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "card_number": "3",
+      "card_name": "Charizard",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "battle_academy",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "battle_academy_display_metadata_base_finish_blocked",
+      "next_action": "Keep as display/deck metadata unless Battle Academy deck marks are governed as distinct physical identities.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "card_number": "55",
+      "card_name": "Kangaskhan",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "battle_academy",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "battle_academy_display_metadata_base_finish_blocked",
+      "next_action": "Keep as display/deck metadata unless Battle Academy deck marks are governed as distinct physical identities.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR B2 63",
+      "card_name": "Wartortle",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR FO 50",
+      "card_name": "Kabuto",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR GC 37",
+      "card_name": "Brock's Vulpix",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR GH 54",
+      "card_name": "Misty's Psyduck",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR JU 60",
+      "card_name": "Pikachu",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR TR 19",
+      "card_name": "Dark Arbok",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "card_number": "WPR TR 32",
+      "card_name": "Dark Charmeleon",
+      "variant_key": null,
+      "stamp_label": null,
+      "action_bucket": "base_parent_blocked_no_write",
+      "variant_family": "generic_or_unknown",
+      "recommended_action": "Base parent cannot be resolved safely; keep no-write until parent identity is governed.",
+      "dependency_class": "w_promotional_base_identity_governance_required",
+      "next_action": "Create W Promotional identity governance before any parent/child package; current base parent cannot be resolved safely.",
+      "write_ready_now": false
+    }
+  ],
+  "fingerprint_sha256": "c364821c0c2be5023d6d242045bc58c013100a14c5537a9bae8bbe8986e2b7d8"
+}

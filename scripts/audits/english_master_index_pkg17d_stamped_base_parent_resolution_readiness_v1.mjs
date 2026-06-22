@@ -17,13 +17,12 @@ loadDotenv({ path: '.env.local', quiet: true });
 const { Client } = pg;
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
-const SOURCE_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17a_stamped_remaining_action_queue_v1.json');
+const SOURCE_JSON = path.join(AUDIT_DIR, 'english_master_index_stamped_special_next_action_queue_v1.json');
 const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json');
 const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.md');
 
 const PACKAGE_ID = 'PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS';
 const FUTURE_INSERT_PACKAGE_ID = 'PKG-17D1-STAMPED-BASE-PARENT-INSERTS';
-const BASE_PARENT_STATUSES = new Set(['base_parent_missing', 'base_parent_ambiguous']);
 const ACTIVE_CHILD_FINISHES = new Set(['normal', 'holo', 'reverse', 'cosmos', 'cracked_ice']);
 
 function connectionString() {
@@ -81,7 +80,7 @@ function uuidFromSeed(seed) {
 
 function targetRows(queue) {
   return (queue.rows ?? [])
-    .filter((row) => BASE_PARENT_STATUSES.has(row.queue_status))
+    .filter((row) => row.action_bucket === 'base_parent_blocked_no_write')
     .map((row) => ({
       ...row,
       normalized_card_number: normalizeNumber(row.card_number),

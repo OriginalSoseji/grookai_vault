@@ -1,0 +1,262 @@
+{
+  "generated_at": "2026-06-21T22:11:19.556Z",
+  "version": "english_master_index_regional_championship_active_finish_adjudication_v1",
+  "input_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_regional_championship_taxonomy_governance_v1.json",
+  "governing_contract": "REGIONAL_CHAMPIONSHIP_STAMP_IDENTITY_RULE_V1",
+  "audit_only": true,
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "global_apply_performed": false,
+    "dry_run_package_prepared": false
+  },
+  "summary": {
+    "target_rows": 3,
+    "future_dry_run_candidates": 3,
+    "write_ready_now": 0,
+    "by_active_finish_adjudication_status": {
+      "active_finish_governed_future_dry_run_candidate": 3
+    },
+    "by_target_child_finish_key": {
+      "holo": 3
+    },
+    "by_governed_variant_key": {
+      "regional_championships_stamp": 3
+    }
+  },
+  "rows": [
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "6",
+      "card_name": "Bagon",
+      "governed_variant_key": "regional_championships_stamp",
+      "governed_printed_identity_modifier": "regional_championships_stamp",
+      "governed_stamp_label": "Regional Championships Stamp",
+      "target_child_finish_key": "holo",
+      "crosshatch_treatment": "evidence_and_display_metadata_not_finish_key",
+      "active_finish_adjudication_status": "active_finish_governed_future_dry_run_candidate",
+      "dry_run_candidate": true,
+      "write_ready_now": 0,
+      "rationale": "Regional Championships is the parent identity. Crosshatch is preserved as evidence/display metadata. Existing active finish taxonomy should use holo for the child printing because exact/source labels and Dragon Vault set-level sources describe these as holo/foil cards.",
+      "evidence": {
+        "identity_sources": [
+          {
+            "source_key": "tcgplayer",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/232883/pokemon-league-and-championship-cards-bagon-6-20-regional-championships",
+            "evidence_label": "TCGplayer product: Bagon - 6/20 (Regional Championships)."
+          },
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dragon-vault/bagon-regional-championships-6",
+            "evidence_label": "PriceCharting product: Bagon [Regional Championships] #6."
+          },
+          {
+            "source_key": "cardtrader",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.cardtrader.com/en/cards/114410-bagon-regional-championships-holo-promo-6-20-league-promos",
+            "evidence_label": "CardTrader product: Bagon Regional Championships Holo Promo 6/20."
+          },
+          {
+            "source_key": "pokecardvalues",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokecardvalues.co.uk/cards/bagon-6-20-reverse-holo-staff-regional-championships-dragon-vault/dv1-6-3-83/",
+            "evidence_label": "Poke Card Values related Dragon Vault Regional Championships/Staff page family."
+          }
+        ],
+        "finish_sources": [
+          {
+            "source_key": "cardtrader",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.cardtrader.com/en/cards/114410-bagon-regional-championships-holo-promo-6-20-league-promos",
+            "evidence_label": "CardTrader product: Bagon Regional Championships Holo Promo 6/20."
+          }
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "alternate_source_labels": []
+      }
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "7",
+      "card_name": "Shelgon",
+      "governed_variant_key": "regional_championships_stamp",
+      "governed_printed_identity_modifier": "regional_championships_stamp",
+      "governed_stamp_label": "Regional Championships Stamp",
+      "target_child_finish_key": "holo",
+      "crosshatch_treatment": "evidence_and_display_metadata_not_finish_key",
+      "active_finish_adjudication_status": "active_finish_governed_future_dry_run_candidate",
+      "dry_run_candidate": true,
+      "write_ready_now": 0,
+      "rationale": "Regional Championships is the parent identity. Crosshatch is preserved as evidence/display metadata. Existing active finish taxonomy should use holo for the child printing because exact/source labels and Dragon Vault set-level sources describe these as holo/foil cards.",
+      "evidence": {
+        "identity_sources": [
+          {
+            "source_key": "bulbapedia_card_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shelgon_(Dragon_Vault_7)",
+            "evidence_label": "Bulbapedia card page notes a 2014 Winter Regional Championships participant print."
+          },
+          {
+            "source_key": "bulbapedia_set_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Bulbapedia Dragon Vault set page lists Shelgon 7/20 Regional and Staff crosshatch promo rows."
+          },
+          {
+            "source_key": "tcgplayer",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/251200/pokemon-league-and-championship-cards-shelgon-7-20-regional-championships",
+            "evidence_label": "TCGplayer product: Shelgon - 7/20 (Regional Championships)."
+          },
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dragon-vault/shelgon-regional-championship-7",
+            "evidence_label": "PriceCharting product: Shelgon [Regional Championship] #7."
+          },
+          {
+            "source_key": "cardtrader",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.cardtrader.com/en/cards/114413-shelgon-winter-regional-championships-holo-promo-007-020-dragon-vault",
+            "evidence_label": "CardTrader product: Shelgon Winter Regional Championships Holo Promo 007/020."
+          },
+          {
+            "source_key": "pokecardvalues",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokecardvalues.co.uk/cards/shelgon-7-20-reverse-holo-regional-championships-dragon-vault/dv1-7-3-60/",
+            "evidence_label": "Poke Card Values product: Shelgon 7/20 Regional Championships."
+          }
+        ],
+        "finish_sources": [
+          {
+            "source_key": "bulbapedia_set_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Bulbapedia Dragon Vault set page lists Shelgon 7/20 Regional and Staff crosshatch promo rows."
+          },
+          {
+            "source_key": "cardtrader",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.cardtrader.com/en/cards/114413-shelgon-winter-regional-championships-holo-promo-007-020-dragon-vault",
+            "evidence_label": "CardTrader product: Shelgon Winter Regional Championships Holo Promo 007/020."
+          }
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "alternate_source_labels": []
+      }
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "8",
+      "card_name": "Salamence",
+      "governed_variant_key": "regional_championships_stamp",
+      "governed_printed_identity_modifier": "regional_championships_stamp",
+      "governed_stamp_label": "Regional Championships Stamp",
+      "target_child_finish_key": "holo",
+      "crosshatch_treatment": "evidence_and_display_metadata_not_finish_key",
+      "active_finish_adjudication_status": "active_finish_governed_future_dry_run_candidate",
+      "dry_run_candidate": true,
+      "write_ready_now": 0,
+      "rationale": "Regional Championships is the parent identity. Crosshatch is preserved as evidence/display metadata. Existing active finish taxonomy should use holo for the child printing because exact/source labels and Dragon Vault set-level sources describe these as holo/foil cards.",
+      "evidence": {
+        "identity_sources": [
+          {
+            "source_key": "bulbapedia_card_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Salamence_(Dragon_Vault_8)",
+            "evidence_label": "Bulbapedia card page notes a Spring Regional Championships crosshatch print and separate Staff version."
+          },
+          {
+            "source_key": "bulbapedia_set_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Bulbapedia Dragon Vault set page lists Salamence 8/20 Regional and Staff crosshatch promo rows."
+          },
+          {
+            "source_key": "tcgplayer",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/227091/pokemon-league-and-championship-cards-salamence-8-20-regional-championships",
+            "evidence_label": "TCGplayer product: Salamence - 8/20 (Regional Championships)."
+          },
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-dragon-vault/salamence-regional-championship-8",
+            "evidence_label": "PriceCharting product: Salamence [Regional Championship] #8."
+          },
+          {
+            "source_key": "pokecardvalues",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokecardvalues.co.uk/cards/shelgon-7-20-reverse-holo-regional-championships-dragon-vault/dv1-7-3-60/",
+            "evidence_label": "Poke Card Values related Dragon Vault Regional Championships family includes Salamence 8/20 Regional Championships."
+          }
+        ],
+        "finish_sources": [
+          {
+            "source_key": "bulbapedia_card_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Salamence_(Dragon_Vault_8)",
+            "evidence_label": "Bulbapedia card page notes a Spring Regional Championships crosshatch print and separate Staff version."
+          },
+          {
+            "source_key": "bulbapedia_set_page",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Bulbapedia Dragon Vault set page lists Salamence 8/20 Regional and Staff crosshatch promo rows."
+          }
+        ],
+        "set_level_finish_sources": [
+          {
+            "source_key": "bulbapedia_dragon_vault_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Vault_(TCG)",
+            "evidence_label": "Dragon Vault set release text states the set cards are foil."
+          },
+          {
+            "source_key": "pokellector_dragon_vault",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.pokellector.com/Dragon-Vault-Expansion/",
+            "evidence_label": "Pokellector Dragon Vault set page describes the set as holographic."
+          }
+        ],
+        "alternate_source_labels": []
+      }
+    }
+  ],
+  "fingerprint_sha256": "b79c620d260893ede2e542b0fbb3417a182ad850f8551cb49c37dbd0c2b65743"
+}

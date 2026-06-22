@@ -19,7 +19,7 @@ Read-only DB readiness view for Halloween stamped parent identity inserts.
 | source_candidate_rows | 4 |
 | future_guarded_parent_identity_insert_candidates | 0 |
 | blocked_or_review_rows | 4 |
-| fingerprint_sha256 | `842062fbf12e6ef8667f359ef9b0e13af12be311fd57102648cdd1237047de42` |
+| fingerprint_sha256 | `6f2210ac0d31310a23e634ac6d14e22628f0bdad7f316efea5bb6dcd5e2120c3` |
 
 ## Readiness Status
 

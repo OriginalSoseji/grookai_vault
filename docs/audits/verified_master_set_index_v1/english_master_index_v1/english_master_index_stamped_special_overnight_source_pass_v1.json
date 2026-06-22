@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T05:04:49.556Z",
+  "generated_at": "2026-06-22T05:34:53.652Z",
   "version": "english_master_index_stamped_special_overnight_source_pass_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,7 +11,7 @@
   "write_ready_now": 0,
   "source_artifacts": {
     "checkpoint": "docs/checkpoints/master_index/STAMPED_SPECIAL_OVERNIGHT_SOURCE_ACQUISITION_CHECKPOINT_20260619.md",
-    "current_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+    "current_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_special_next_action_queue_v1.json",
     "execution_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
     "completion_rollup": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18z_stamped_completion_rollup_v1.json",
     "active_finish_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1.json",
@@ -33,7 +33,7 @@
     "sv03_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_lane_closure_v1.json",
     "source_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json"
   },
-  "fingerprint_sha256": "ef5b5cf0e35aebac23cafb829af640880e9063c9c1e58beb96bd0d8496170309",
+  "fingerprint_sha256": "bab9df68e1be1b9e74915d9b95017b0ea84fbe8a379cb6d691f6d63955edb8f7",
   "baseline": {
     "checkpoint": "docs/checkpoints/master_index/STAMPED_SPECIAL_OVERNIGHT_SOURCE_ACQUISITION_CHECKPOINT_20260619.md",
     "checkpoint_exists": true,
@@ -43,10 +43,10 @@
     "starting_manual_conflict_rows": 3
   },
   "current": {
-    "current_remaining_rows": 567,
-    "current_no_write_or_governance_rows": 301,
-    "current_source_required_rows": 263,
-    "current_manual_conflict_rows": 3,
+    "current_remaining_rows": 280,
+    "current_no_write_or_governance_rows": 100,
+    "current_source_required_rows": 177,
+    "current_manual_conflict_rows": 0,
     "rollup_closed_or_classified_rows": 579,
     "rollup_source_acquisition_rows_blocked": 212
   },
@@ -562,7 +562,7 @@
         "blocked_rows": 212,
         "useful_candidate_matches": 0,
         "useful_unabsorbed_source_lanes": 0,
-        "candidate_records_loaded": 106904,
+        "candidate_records_loaded": 107063,
         "by_execution_bucket": {
           "bucket_05_variant_family_source_acquisition_bulk": 194,
           "bucket_06_second_source_acquisition_bulk": 18

@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-06-20T00:00:00.000-06:00",
+  "version": "pokeset_source_comparison_readiness_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "master_index_evidence_rules_changed": false,
+  "source_label_requested": "PokeSet",
+  "checked_urls": [
+    "https://pokeset.com/"
+  ],
+  "source_status": "unavailable_for_comparison",
+  "comparison_performed": false,
+  "blocked_reason": "The checked public PokeSet URL resolves to a generic placeholder/company template and does not expose Pokemon TCG card, set, checklist, API, or downloadable card identity data.",
+  "required_minimum_identity_evidence": [
+    "set",
+    "card_number",
+    "card_name",
+    "source_url"
+  ],
+  "required_minimum_finish_or_variant_evidence": [
+    "set",
+    "card_number",
+    "card_name",
+    "finish_or_variant_or_stamp_label",
+    "source_url"
+  ],
+  "comparison_counts": {
+    "missing_from_grookai": 0,
+    "missing_from_pokeset": 0,
+    "conflicting": 0,
+    "candidate_unconfirmed": 0,
+    "source_supported": 0
+  },
+  "likely_intended_alternatives": [
+    {
+      "source_key": "pokellector",
+      "source_url": "https://www.pokellector.com/sets",
+      "potential_use": "card identity and some variant pages",
+      "adapter_required": true
+    },
+    {
+      "source_key": "pokedata",
+      "source_url": "https://www.pokedata.io/sets/",
+      "potential_use": "set inventory and product metadata",
+      "adapter_required": true
+    },
+    {
+      "source_key": "pokecardvalues",
+      "source_url": "https://pokecardvalues.co.uk/sets/",
+      "potential_use": "set lists and price/checklist pages",
+      "adapter_required": true
+    },
+    {
+      "source_key": "pkmncards",
+      "source_url": "https://pkmncards.com/sets/",
+      "potential_use": "card identity support lane",
+      "adapter_required": false,
+      "current_contract_limit": "identity support only"
+    }
+  ],
+  "recommended_next_step": "Confirm the exact PokeSet checklist URL, then run a no-write source adapter and identity-first comparison report."
+}

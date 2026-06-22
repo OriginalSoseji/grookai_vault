@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-06-22T16:22:33.705Z",
+  "version": "english_master_index_league_finish_fresh_source_attempt_v1",
+  "input_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_league_finish_preserved_crosscheck_v1.json",
+  "audit_only": true,
+  "safety": {
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "global_apply_performed": false
+  },
+  "summary": {
+    "source_attempts": 2,
+    "accepted_promotable_evidence": 0,
+    "write_ready_now": 0,
+    "by_source_result": {
+      "finish_supported_taxonomy_review_required": 1,
+      "wrong_variant_not_accepted": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "sv10",
+      "card_number": "81",
+      "card_name": "Team Rocket's Mewtwo ex",
+      "searched_for_variant": "league_stamp",
+      "searched_for_stamp_label": "League Stamp",
+      "source_key": "pricecharting_destined_rivals_prize_pack",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket%27s-mewtwo-ex-prize-pack-81",
+      "evidence_label": "PriceCharting page labels Team Rocket's Mewtwo ex #81 as Prize Pack, with eBay listings mentioning Prize Pack / Play Stamp.",
+      "observed_variant_or_stamp": "prize_pack_or_play_stamp",
+      "observed_finish_key": null,
+      "source_result": "wrong_variant_not_accepted",
+      "notes": "This is useful for Prize Pack/Play Stamp governance, but it does not prove the current League Stamp target.",
+      "current_target_found": true,
+      "current_crosscheck_status": "preserved_variant_evidence_finish_unresolved",
+      "write_ready_now": false
+    },
+    {
+      "set_key": "swsh4",
+      "card_number": "153",
+      "card_name": "League Staff",
+      "searched_for_variant": "league_cup_staff_stamp",
+      "searched_for_stamp_label": "League Cup Staff Stamp",
+      "source_key": "misprint_related_marketplace_data",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.misprint.com/card/5767993?authority=Ungraded&scale=MP",
+      "evidence_label": "Misprint related marketplace row references 2020 #153 League Staff-Reverse Foil Professor Program Pokemon Sword & Shield Vivid Voltage.",
+      "observed_variant_or_stamp": "professor_program_or_league_staff",
+      "observed_finish_key": "reverse",
+      "source_result": "finish_supported_taxonomy_review_required",
+      "notes": "Supports reverse finish as an independent source, but label taxonomy conflicts with the target League Cup Staff Stamp lane. Do not promote until taxonomy is adjudicated.",
+      "current_target_found": true,
+      "current_crosscheck_status": "manual_review_or_governance_blocked",
+      "write_ready_now": false
+    }
+  ],
+  "fingerprint_sha256": "04ae165c1ea0c42cbc1b59cdbd1583018bb30370f224ffaeee1ad6f8fd8ead29"
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T03:55:36.459Z",
+  "generated_at": "2026-06-21T15:56:05.545Z",
   "version": "english_master_index_pkg17i_stamped_remaining_blocker_triage_v1",
   "package_id": "PKG-17I-STAMPED-REMAINING-BLOCKER-TRIAGE",
   "audit_only": true,
@@ -16,11 +16,11 @@
     "base_parent_resolution_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json",
     "prize_pack_current_queue_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json"
   },
-  "fingerprint_sha256": "d3d275be8f482e3d2a9fa15fa1c288ac88d88becb38f62d51e77f1b0f904759f",
+  "fingerprint_sha256": "5b22d5b43756b63c9f69ed348ad3283d3ba781f43a656e12d41818370844b0b2",
   "summary": {
-    "queue_rows": 590,
+    "queue_rows": 567,
     "current_queue_by_status": {
-      "active_finish_required": 312,
+      "active_finish_required": 289,
       "stamp_identity_label_needed": 178,
       "base_parent_missing": 45,
       "blocked_second_independent_source_needed": 18,
@@ -31,7 +31,7 @@
       "blocked_conflicting_finish_observation": 3
     },
     "decision_bucket_count": 9,
-    "decision_bucket_memberships": 653,
+    "decision_bucket_memberships": 630,
     "decision_bucket_memberships_note": "Decision buckets include sub-analyses such as Prize Pack current queue, so memberships can exceed unique queue rows.",
     "immediate_write_ready_rows": 0,
     "stamped_finish_key_rows_allowed": 0,
@@ -45,38 +45,26 @@
   "decision_buckets": [
     {
       "bucket_id": "active_finish_required",
-      "rows": 312,
+      "rows": 289,
       "current_result": "blocked_after_source_attempt",
       "write_ready_now": 0,
       "evidence_status": "4 source lanes attempted; 0 useful current-gap matches.",
       "top_sets": [
         {
           "key": "swsh1",
-          "count": 21
-        },
-        {
-          "key": "swsh5",
-          "count": 21
+          "count": 17
         },
         {
           "key": "swsh8",
-          "count": 18
+          "count": 17
         },
         {
-          "key": "swsh3",
-          "count": 12
+          "key": "swsh5",
+          "count": 16
         },
         {
           "key": "swshp",
           "count": 12
-        },
-        {
-          "key": "swsh6",
-          "count": 11
-        },
-        {
-          "key": "swsh9",
-          "count": 11
         },
         {
           "key": "sm8",
@@ -87,26 +75,34 @@
           "count": 9
         },
         {
-          "key": "swsh2",
+          "key": "swsh3",
           "count": 9
+        },
+        {
+          "key": "bw1",
+          "count": 8
+        },
+        {
+          "key": "sm115",
+          "count": 8
+        },
+        {
+          "key": "swsh6",
+          "count": 8
         }
       ],
       "top_variant_keys": [
         {
           "key": "league_stamp",
-          "count": 70
-        },
-        {
-          "key": "prize_pack_stamp",
-          "count": 63
+          "count": 81
         },
         {
           "key": "battle_academy_deck_mark",
           "count": 56
         },
         {
-          "key": "pikachu_jack_o_lantern_stamp",
-          "count": 27
+          "key": "prize_pack_stamp",
+          "count": 51
         },
         {
           "key": "prerelease_stamp",
@@ -119,6 +115,10 @@
         {
           "key": "league_cup_staff_stamp",
           "count": 8
+        },
+        {
+          "key": "pikachu_jack_o_lantern_stamp",
+          "count": 6
         },
         {
           "key": "staff_stamp",

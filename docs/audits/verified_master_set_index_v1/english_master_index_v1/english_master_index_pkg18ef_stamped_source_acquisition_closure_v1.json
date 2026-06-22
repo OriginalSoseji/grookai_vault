@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T05:03:29.193Z",
+  "generated_at": "2026-06-22T13:02:29.400Z",
   "version": "english_master_index_pkg18ef_stamped_source_acquisition_closure_v1",
   "package_id": "PKG-18EF-STAMPED-SOURCE-ACQUISITION-CLOSURE",
   "audit_only": true,
@@ -20,7 +20,7 @@
     "pricecharting_current_stamped_active_finish_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1/pkg18n_pricecharting_current_stamped_active_finish_acquisition_v1.json",
     "source_delta_summary": "docs/audits/english_master_index_source_exhaustion_v1/source_delta_audit_v1/english_master_index_source_delta_summary_v1.json"
   },
-  "fingerprint_sha256": "a4008c1b39c27ccca328480fda0659907b94d99bf904bbb244f36034ec9a2c7f",
+  "fingerprint_sha256": "1d77076e91c9e574e358539b9759aef74ecd14e026e5f0128c8d6ef0ae82c7f9",
   "source_attempt_summary": {
     "pkg17b_useful_current_gap_matches": 0,
     "pkg17b_useful_unabsorbed_source_lanes": 0,
@@ -29,11 +29,11 @@
     "pkg17l_candidate_rows": 0,
     "pkg18n_candidate_rows": 0,
     "delta_summary": {
-      "sources_reviewed": 46,
-      "candidate_records_loaded": 106904,
+      "sources_reviewed": 50,
+      "candidate_records_loaded": 107100,
       "matched_gap_facts": 113,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 101080,
+      "already_in_current_index": 101276,
       "unmatched_candidate_records": 5711,
       "useful_unabsorbed_source_lanes": 0,
       "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
@@ -45,7 +45,7 @@
     "blocked_rows": 212,
     "useful_candidate_matches": 0,
     "useful_unabsorbed_source_lanes": 0,
-    "candidate_records_loaded": 106904,
+    "candidate_records_loaded": 107100,
     "by_execution_bucket": {
       "bucket_05_variant_family_source_acquisition_bulk": 194,
       "bucket_06_second_source_acquisition_bulk": 18

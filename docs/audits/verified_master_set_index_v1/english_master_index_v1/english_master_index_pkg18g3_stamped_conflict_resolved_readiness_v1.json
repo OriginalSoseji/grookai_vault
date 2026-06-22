@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T17:03:50.523Z",
+  "generated_at": "2026-06-21T14:37:52.241Z",
   "version": "english_master_index_pkg18g3_stamped_conflict_resolved_readiness_v1",
   "package_id": "PKG-18G3-STAMPED-CONFLICT-RESOLVED-READINESS",
   "audit_only": true,
@@ -18,14 +18,14 @@
   "package_fingerprint_sha256": "7f98ac16026f095517fab27ce5764a2eacc460d4257d09b87a73a3171798c141",
   "summary": {
     "candidate_identities": 2,
-    "future_guarded_candidates": 2,
-    "blocked_rows": 0,
-    "target_parent_inserts": 2,
-    "target_child_inserts": 2,
-    "target_identity_inserts": 2,
+    "future_guarded_candidates": 0,
+    "blocked_rows": 2,
+    "target_parent_inserts": 0,
+    "target_child_inserts": 0,
+    "target_identity_inserts": 0,
     "write_ready_now": 0,
     "by_status": {
-      "future_guarded_parent_child_identity_insert_candidate": 2
+      "blocked": 2
     },
     "by_finish": {
       "cosmos": 1,
@@ -76,7 +76,13 @@
           "printing_gv_id": "GV-PK-PFL-026-HOLO"
         }
       ],
-      "existing_target_parents": [],
+      "existing_target_parents": [
+        {
+          "id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+          "variant_key": "gamestop_stamp",
+          "printed_identity_modifier": "gamestop_stamp"
+        }
+      ],
       "identity_projection": {
         "status": "ready",
         "printed_number": "026",
@@ -125,8 +131,10 @@
           "supports_finish_key": "cosmos"
         }
       ],
-      "readiness_status": "future_guarded_parent_child_identity_insert_candidate",
-      "blockers": [],
+      "readiness_status": "blocked",
+      "blockers": [
+        "target_parent_already_exists"
+      ],
       "write_ready_now": 0,
       "dry_run_execution_authorized": false
     },
@@ -158,7 +166,13 @@
           "printing_gv_id": "GV-PK-XY-85-STD"
         }
       ],
-      "existing_target_parents": [],
+      "existing_target_parents": [
+        {
+          "id": "dd9b9fc2-db91-4afb-b572-a9c3a646d137",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": "regional_championships_stamp"
+        }
+      ],
       "identity_projection": {
         "status": "ready",
         "printed_number": "85",
@@ -207,8 +221,10 @@
           "supports_finish_key": "reverse"
         }
       ],
-      "readiness_status": "future_guarded_parent_child_identity_insert_candidate",
-      "blockers": [],
+      "readiness_status": "blocked",
+      "blockers": [
+        "target_parent_already_exists"
+      ],
       "write_ready_now": 0,
       "dry_run_execution_authorized": false
     }

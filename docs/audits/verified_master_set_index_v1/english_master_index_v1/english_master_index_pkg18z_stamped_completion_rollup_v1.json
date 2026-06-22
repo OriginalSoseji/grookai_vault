@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T05:03:29.406Z",
+  "generated_at": "2026-06-22T05:44:43.949Z",
   "version": "english_master_index_pkg18z_stamped_completion_rollup_v1",
   "package_id": "PKG-18Z-STAMPED-COMPLETION-ROLLUP",
   "audit_only": true,
@@ -18,10 +18,10 @@
     "source_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json",
     "conflict_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g_stamped_conflict_manual_closure_v1.json"
   },
-  "fingerprint_sha256": "650eb0dd9097c498d1b4bd3b48dbd19b307beab05933846cfbb3d6e4a5e61664",
+  "fingerprint_sha256": "dd3fa2c5c2a392e5dc5660f39c3618ecb0e43addf396ff99828c05be75b345ce",
   "summary": {
     "original_execution_queue_rows": 567,
-    "closed_or_classified_rows": 579,
+    "closed_or_classified_rows": 567,
     "write_ready_rows": 0,
     "no_write_governance_rows": 242,
     "base_parent_rows_classified": 59,
@@ -43,7 +43,7 @@
     },
     {
       "bucket": "04 Prize Pack finish mapping",
-      "rows": 63,
+      "rows": 51,
       "outcome": "51 blocked; 0 ready for guarded dry-run"
     },
     {
