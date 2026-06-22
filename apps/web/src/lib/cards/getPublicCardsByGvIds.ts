@@ -2,6 +2,7 @@ import "server-only";
 
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -25,6 +26,7 @@ export type ComparePublicCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
+  display_image_fallback_url?: string;
   display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
   raw_price?: number;
   raw_price_source?: string;
@@ -128,7 +130,10 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
 
   const rows = (data ?? []) as PublicCompareCardRow[];
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
-  const pricesByCardId = await getPublicPricingByCardIds(supabase, cardIds);
+  const [pricesByCardId, childDisplayImageFallbacks] = await Promise.all([
+    getPublicPricingByCardIds(supabase, cardIds),
+    getChildDisplayImageFallbacks(supabase, rows),
+  ]);
 
   const cards: ComparePublicCard[] = [];
 
@@ -143,6 +148,12 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
     const imageFields = await resolveCardImageFieldsV1(row);
+    const childDisplayImageFallback = row.id
+      ? childDisplayImageFallbacks.get(row.id)
+      : undefined;
+    const fallbackDisplayImage = !imageFields.display_image_url
+      ? childDisplayImageFallback
+      : undefined;
 
     cards.push({
       id: row.id ?? row.gv_id,
@@ -158,11 +169,22 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       artist: row.artist?.trim() || undefined,
       image_url: imageFields.image_url ?? undefined,
       representative_image_url: imageFields.representative_image_url ?? undefined,
-      image_status: imageFields.image_status ?? undefined,
-      image_note: imageFields.image_note ?? undefined,
       image_source: imageFields.image_source ?? undefined,
-      display_image_url: imageFields.display_image_url ?? undefined,
-      display_image_kind: imageFields.display_image_kind,
+      display_image_url:
+        imageFields.display_image_url ??
+        fallbackDisplayImage?.display_image_url ??
+        undefined,
+      display_image_fallback_url:
+        childDisplayImageFallback?.display_image_url ?? undefined,
+      display_image_kind: fallbackDisplayImage
+        ? fallbackDisplayImage.display_image_kind
+        : imageFields.display_image_kind,
+      image_status: fallbackDisplayImage
+        ? fallbackDisplayImage.image_status
+        : imageFields.image_status ?? undefined,
+      image_note: fallbackDisplayImage
+        ? fallbackDisplayImage.image_note
+        : imageFields.image_note ?? undefined,
       raw_price: row.id ? pricesByCardId.get(row.id)?.raw_price : undefined,
       raw_price_source: row.id ? pricesByCardId.get(row.id)?.raw_price_source : undefined,
       raw_price_ts: row.id ? pricesByCardId.get(row.id)?.raw_price_ts : undefined,
