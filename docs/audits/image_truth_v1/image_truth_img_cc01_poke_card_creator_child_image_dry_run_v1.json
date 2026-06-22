@@ -1,0 +1,268 @@
+{
+  "package_id": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN",
+  "generated_at": "2026-06-21T04:11:32.497Z",
+  "fingerprint": "d1d167145b8121243a3a79d45b3e7690f37f5198fa568f1957b644ab1d99196e",
+  "sql_hash": "9f342859493e79fb555e2647a7cb5ae9aea5240ee13a0d3f5aec2728696e5dd1",
+  "summary": {
+    "source_rows": 5,
+    "expected_rows": 5,
+    "ready_rows": 5,
+    "blocked_rows": 0,
+    "planned_child_image_updates": 5
+  },
+  "identity_proof": {
+    "expected_rows": [
+      {
+        "number": "1",
+        "name": "Treecko",
+        "printing_gv_id": "GV-PK-CC-1-STD"
+      },
+      {
+        "number": "2",
+        "name": "Wurmple",
+        "printing_gv_id": "GV-PK-CC-2-STD"
+      },
+      {
+        "number": "3",
+        "name": "Torchic",
+        "printing_gv_id": "GV-PK-CC-3-STD"
+      },
+      {
+        "number": "4",
+        "name": "Mudkip",
+        "printing_gv_id": "GV-PK-CC-4-STD"
+      },
+      {
+        "number": "5",
+        "name": "Pikachu",
+        "printing_gv_id": "GV-PK-CC-5-STD"
+      }
+    ],
+    "actual_rows": [
+      {
+        "set_code": "ex5.5",
+        "number": "1",
+        "card_name": "Treecko",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-CC-1-STD",
+        "species_slug": "treecko",
+        "mapping_active": true,
+        "counts_for_completion": true,
+        "ready": true,
+        "violations": []
+      },
+      {
+        "set_code": "ex5.5",
+        "number": "2",
+        "card_name": "Wurmple",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-CC-2-STD",
+        "species_slug": "wurmple",
+        "mapping_active": true,
+        "counts_for_completion": true,
+        "ready": true,
+        "violations": []
+      },
+      {
+        "set_code": "ex5.5",
+        "number": "3",
+        "card_name": "Torchic",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-CC-3-STD",
+        "species_slug": "torchic",
+        "mapping_active": true,
+        "counts_for_completion": true,
+        "ready": true,
+        "violations": []
+      },
+      {
+        "set_code": "ex5.5",
+        "number": "4",
+        "card_name": "Mudkip",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-CC-4-STD",
+        "species_slug": "mudkip",
+        "mapping_active": true,
+        "counts_for_completion": true,
+        "ready": true,
+        "violations": []
+      },
+      {
+        "set_code": "ex5.5",
+        "number": "5",
+        "card_name": "Pikachu",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-CC-5-STD",
+        "species_slug": "pikachu",
+        "mapping_active": true,
+        "counts_for_completion": true,
+        "ready": true,
+        "violations": []
+      }
+    ]
+  },
+  "dry_run_proof": {
+    "before_hash": "051a4f031879a731f218ca2725a7401f3109bbc4e5e53e7db4594dbc9348a711",
+    "after_rollback_hash": "051a4f031879a731f218ca2725a7401f3109bbc4e5e53e7db4594dbc9348a711",
+    "rollback_restored": true,
+    "rows_updated_in_rollback_transaction": 5,
+    "proof": {
+      "matching_rows": 5,
+      "exact_parent_image_rows": 5,
+      "noted_rows": 5
+    }
+  },
+  "rows": [
+    {
+      "ready": true,
+      "violations": [],
+      "card_print_id": "454c9738-5da2-41d6-8e94-ca2c7d3ef57e",
+      "card_printing_id": "f43ff154-803e-4dbc-b95d-ce084b4002e5",
+      "parent_gv_id": "GV-PK-CC-1",
+      "printing_gv_id": "GV-PK-CC-1-STD",
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "1",
+      "card_name": "Treecko",
+      "finish_key": "normal",
+      "species_slug": "treecko",
+      "mapping_active": true,
+      "counts_for_completion": true,
+      "parent_image_source": "tcgdex",
+      "parent_image_path": null,
+      "parent_image_url": "https://assets.tcgdex.net/en/ex/ex5.5/1/high.webp",
+      "parent_image_alt_url": null,
+      "parent_image_status": "exact",
+      "planned_update": {
+        "image_source": "tcgdex",
+        "image_path": null,
+        "image_url": "https://assets.tcgdex.net/en/ex/ex5.5/1/high.webp",
+        "image_alt_url": null,
+        "image_status": "exact_parent_image",
+        "image_note": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN: copied exact parent image metadata to normal child printing; parent_gv_id:GV-PK-CC-1; parent_image_status:exact; parent_image_note:card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_print_id": "a7aacf4c-4726-4bcd-ab0b-76dda112f829",
+      "card_printing_id": "9faa4ccd-6d1b-4a8e-88fd-4b19b0d5f2f6",
+      "parent_gv_id": "GV-PK-CC-2",
+      "printing_gv_id": "GV-PK-CC-2-STD",
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "2",
+      "card_name": "Wurmple",
+      "finish_key": "normal",
+      "species_slug": "wurmple",
+      "mapping_active": true,
+      "counts_for_completion": true,
+      "parent_image_source": "tcgdex",
+      "parent_image_path": null,
+      "parent_image_url": "https://assets.tcgdex.net/en/ex/ex5.5/2/high.webp",
+      "parent_image_alt_url": null,
+      "parent_image_status": "exact",
+      "planned_update": {
+        "image_source": "tcgdex",
+        "image_path": null,
+        "image_url": "https://assets.tcgdex.net/en/ex/ex5.5/2/high.webp",
+        "image_alt_url": null,
+        "image_status": "exact_parent_image",
+        "image_note": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN: copied exact parent image metadata to normal child printing; parent_gv_id:GV-PK-CC-2; parent_image_status:exact; parent_image_note:card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_print_id": "bd16f36d-f0e8-4eec-bc9d-d61cc6a4413a",
+      "card_printing_id": "5790b606-5611-47f9-bed5-d6977a36b5e9",
+      "parent_gv_id": "GV-PK-CC-3",
+      "printing_gv_id": "GV-PK-CC-3-STD",
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "3",
+      "card_name": "Torchic",
+      "finish_key": "normal",
+      "species_slug": "torchic",
+      "mapping_active": true,
+      "counts_for_completion": true,
+      "parent_image_source": "tcgdex",
+      "parent_image_path": null,
+      "parent_image_url": "https://assets.tcgdex.net/en/ex/ex5.5/3/high.webp",
+      "parent_image_alt_url": null,
+      "parent_image_status": "exact",
+      "planned_update": {
+        "image_source": "tcgdex",
+        "image_path": null,
+        "image_url": "https://assets.tcgdex.net/en/ex/ex5.5/3/high.webp",
+        "image_alt_url": null,
+        "image_status": "exact_parent_image",
+        "image_note": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN: copied exact parent image metadata to normal child printing; parent_gv_id:GV-PK-CC-3; parent_image_status:exact; parent_image_note:card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_print_id": "d8aa1424-8a24-44b1-8316-0882ae5005fd",
+      "card_printing_id": "b92b6819-e18e-4e50-843e-3384c1da9e08",
+      "parent_gv_id": "GV-PK-CC-4",
+      "printing_gv_id": "GV-PK-CC-4-STD",
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "4",
+      "card_name": "Mudkip",
+      "finish_key": "normal",
+      "species_slug": "mudkip",
+      "mapping_active": true,
+      "counts_for_completion": true,
+      "parent_image_source": "tcgdex",
+      "parent_image_path": null,
+      "parent_image_url": "https://assets.tcgdex.net/en/ex/ex5.5/4/high.webp",
+      "parent_image_alt_url": null,
+      "parent_image_status": "exact",
+      "planned_update": {
+        "image_source": "tcgdex",
+        "image_path": null,
+        "image_url": "https://assets.tcgdex.net/en/ex/ex5.5/4/high.webp",
+        "image_alt_url": null,
+        "image_status": "exact_parent_image",
+        "image_note": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN: copied exact parent image metadata to normal child printing; parent_gv_id:GV-PK-CC-4; parent_image_status:exact; parent_image_note:card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_print_id": "80458cce-def2-439c-a567-7e8a384e2fa1",
+      "card_printing_id": "e52fca3e-76a1-490f-8d35-b4ddcc0c6936",
+      "parent_gv_id": "GV-PK-CC-5",
+      "printing_gv_id": "GV-PK-CC-5-STD",
+      "set_code": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "number": "5",
+      "card_name": "Pikachu",
+      "finish_key": "normal",
+      "species_slug": "pikachu",
+      "mapping_active": true,
+      "counts_for_completion": true,
+      "parent_image_source": "tcgdex",
+      "parent_image_path": null,
+      "parent_image_url": "https://assets.tcgdex.net/en/ex/ex5.5/5/high.webp",
+      "parent_image_alt_url": null,
+      "parent_image_status": "exact",
+      "planned_update": {
+        "image_source": "tcgdex",
+        "image_path": null,
+        "image_url": "https://assets.tcgdex.net/en/ex/ex5.5/5/high.webp",
+        "image_alt_url": null,
+        "image_status": "exact_parent_image",
+        "image_note": "IMG-CC-01-POKE-CARD-CREATOR-CHILD-IMAGE-DRY-RUN: copied exact parent image metadata to normal child printing; parent_gv_id:GV-PK-CC-5; parent_image_status:exact; parent_image_note:card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+      }
+    }
+  ],
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "storage_uploads_performed": false,
+  "parent_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false
+}

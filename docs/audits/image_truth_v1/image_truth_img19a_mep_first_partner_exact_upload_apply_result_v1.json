@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-06-20T17:42:14.804Z",
+  "package_id": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY",
+  "fingerprint": "82800ca528e3a6fd81cdddb113d961037b942bc12c668324e1fbe55bd597016a",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "parent_writes": false,
+  "deletes": false,
+  "merges": false,
+  "updated_rows": 18,
+  "uploaded_objects": 18,
+  "updated": [
+    {
+      "card_printing_id": "86656169-01ef-438d-ba52-5efb490d752b",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/86656169-01ef-438d-ba52-5efb490d752b/9c103405264c02306a63c3d0.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/4/41/ChikoritaMEPPromo46.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Chikorita_(MEP_Promo_46)"
+    },
+    {
+      "card_printing_id": "0cd11eaa-0954-4cef-86be-e9e44776ceec",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0cd11eaa-0954-4cef-86be-e9e44776ceec/9a83b6da120cf849c1bbc081.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/f/fb/CyndaquilMEPPromo47.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Cyndaquil_(MEP_Promo_47)"
+    },
+    {
+      "card_printing_id": "b14fc497-2fc1-482b-837e-0fe5ad32ca86",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/b14fc497-2fc1-482b-837e-0fe5ad32ca86/6521344627da63cdfe335159.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/8/8c/TotodileMEPPromo48.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Totodile_(MEP_Promo_48)"
+    },
+    {
+      "card_printing_id": "05524fe1-7184-4ea8-ab51-14519de56384",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/05524fe1-7184-4ea8-ab51-14519de56384/50612de3638131710bf9fc40.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/2/2f/SnivyMEPPromo49.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Snivy_(MEP_Promo_49)"
+    },
+    {
+      "card_printing_id": "6343e1de-3a86-4ff3-a3da-e6d75ada2178",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6343e1de-3a86-4ff3-a3da-e6d75ada2178/b100f7897511c72f9bc35731.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/c/c2/TepigMEPPromo50.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Tepig_(MEP_Promo_50)"
+    },
+    {
+      "card_printing_id": "d02f8947-aa73-409b-8657-5746baef7c48",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/d02f8947-aa73-409b-8657-5746baef7c48/c49eb98e28dcd7e74163f5f6.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/0/02/OshawottMEPPromo51.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Oshawott_(MEP_Promo_51)"
+    },
+    {
+      "card_printing_id": "abcc7798-30d1-4e35-a89c-afd41360a7c3",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/abcc7798-30d1-4e35-a89c-afd41360a7c3/cbb57cbe4f94f20769708173.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/4/48/GrookeyMEPPromo52.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Grookey_(MEP_Promo_52)"
+    },
+    {
+      "card_printing_id": "0d1efcda-6719-49b6-8eb7-50e97f780fb9",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0d1efcda-6719-49b6-8eb7-50e97f780fb9/d9311cb78171931141c12e4b.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/e/e5/ScorbunnyMEPPromo53.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Scorbunny_(MEP_Promo_53)"
+    },
+    {
+      "card_printing_id": "7a47f22b-443a-4d50-99a7-6d7a55755f20",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/7a47f22b-443a-4d50-99a7-6d7a55755f20/e884682d80f4269234061827.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/3/37/SobbleMEPPromo54.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Sobble_(MEP_Promo_54)"
+    },
+    {
+      "card_printing_id": "e9fe897b-339e-46ed-a106-fe479e9e1069",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/e9fe897b-339e-46ed-a106-fe479e9e1069/7f40978c1fea6987f69ea453.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/3/38/TreeckoMEPPromo55.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Treecko_(MEP_Promo_55)"
+    },
+    {
+      "card_printing_id": "a60208ed-3178-4142-8fc0-b1dab73889bb",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a60208ed-3178-4142-8fc0-b1dab73889bb/e157fb65556ee97ab117552a.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/a/a8/TorchicMEPPromo56.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Torchic_(MEP_Promo_56)"
+    },
+    {
+      "card_printing_id": "015eea37-c937-4d65-994c-f738357aa089",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/015eea37-c937-4d65-994c-f738357aa089/76593e5f0559fffd2483b6a7.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/6/63/MudkipMEPPromo57.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Mudkip_(MEP_Promo_57)"
+    },
+    {
+      "card_printing_id": "843dd9c7-6c96-4ab3-80ad-161354c9bfee",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/843dd9c7-6c96-4ab3-80ad-161354c9bfee/290c1714c3e2b5bf1c958163.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/b/bb/ChespinMEPPromo58.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Chespin_(MEP_Promo_58)"
+    },
+    {
+      "card_printing_id": "c515cb02-3dd3-41d4-b4b5-52458f8f3ef0",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/c515cb02-3dd3-41d4-b4b5-52458f8f3ef0/00ac9ee9615c5c92b78a382f.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/5/5b/FennekinMEPPromo59.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Fennekin_(MEP_Promo_59)"
+    },
+    {
+      "card_printing_id": "9cde24e6-e69c-4269-9926-d46304054e11",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/9cde24e6-e69c-4269-9926-d46304054e11/919c3c32e5d60b432e126cdf.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/5/50/FroakieMEPPromo60.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Froakie_(MEP_Promo_60)"
+    },
+    {
+      "card_printing_id": "a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3/180b450c645b9f5283ca3a5c.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/d/d6/SprigatitoMEPPromo61.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Sprigatito_(MEP_Promo_61)"
+    },
+    {
+      "card_printing_id": "6faccbb7-c455-4a84-87d1-962ae99be91f",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6faccbb7-c455-4a84-87d1-962ae99be91f/74e63eaf4f52f220e4e3a2dc.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/8/81/FuecocoMEPPromo62.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Fuecoco_(MEP_Promo_62)"
+    },
+    {
+      "card_printing_id": "be5ffa44-fb2b-4af8-ad76-9eb734b5d836",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/be5ffa44-fb2b-4af8-ad76-9eb734b5d836/23fe2c9443d3e479e6757ff1.jpg",
+      "image_url": null,
+      "image_alt_url": "https://archives.bulbagarden.net/media/upload/d/d9/QuaxlyMEPPromo63.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Quaxly_(MEP_Promo_63)"
+    }
+  ],
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/86656169-01ef-438d-ba52-5efb490d752b/9c103405264c02306a63c3d0.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0cd11eaa-0954-4cef-86be-e9e44776ceec/9a83b6da120cf849c1bbc081.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/b14fc497-2fc1-482b-837e-0fe5ad32ca86/6521344627da63cdfe335159.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/05524fe1-7184-4ea8-ab51-14519de56384/50612de3638131710bf9fc40.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6343e1de-3a86-4ff3-a3da-e6d75ada2178/b100f7897511c72f9bc35731.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/d02f8947-aa73-409b-8657-5746baef7c48/c49eb98e28dcd7e74163f5f6.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/abcc7798-30d1-4e35-a89c-afd41360a7c3/cbb57cbe4f94f20769708173.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0d1efcda-6719-49b6-8eb7-50e97f780fb9/d9311cb78171931141c12e4b.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/7a47f22b-443a-4d50-99a7-6d7a55755f20/e884682d80f4269234061827.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/e9fe897b-339e-46ed-a106-fe479e9e1069/7f40978c1fea6987f69ea453.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a60208ed-3178-4142-8fc0-b1dab73889bb/e157fb65556ee97ab117552a.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/015eea37-c937-4d65-994c-f738357aa089/76593e5f0559fffd2483b6a7.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/843dd9c7-6c96-4ab3-80ad-161354c9bfee/290c1714c3e2b5bf1c958163.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/c515cb02-3dd3-41d4-b4b5-52458f8f3ef0/00ac9ee9615c5c92b78a382f.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/9cde24e6-e69c-4269-9926-d46304054e11/919c3c32e5d60b432e126cdf.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3/180b450c645b9f5283ca3a5c.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6faccbb7-c455-4a84-87d1-962ae99be91f/74e63eaf4f52f220e4e3a2dc.jpg",
+    "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/be5ffa44-fb2b-4af8-ad76-9eb734b5d836/23fe2c9443d3e479e6757ff1.jpg"
+  ],
+  "pass": true
+}
