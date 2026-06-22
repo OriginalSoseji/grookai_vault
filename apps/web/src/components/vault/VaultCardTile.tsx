@@ -339,7 +339,7 @@ export function VaultCardTile({
         .join(" ")}
       title={
         <Link href={`/card/${item.gv_id}`} className="block transition hover:text-slate-700">
-          <span className="gv-hi-card-identity block line-clamp-2">{displayIdentity.base_name}</span>
+          <span className="gv-hi-card-identity block line-clamp-2">{displayIdentity.display_name}</span>
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}

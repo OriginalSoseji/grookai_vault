@@ -71,7 +71,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       }
       title={
         <Link href={href} className="block transition hover:text-slate-700">
-          <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
+          <span className="gv-hi-card-identity block truncate">{displayIdentity.display_name}</span>
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}

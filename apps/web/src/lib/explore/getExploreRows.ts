@@ -8,7 +8,10 @@ import {
   normalizeIdentityFilterKey,
   type IdentityFilterKey,
 } from "@/lib/cards/identitySearch";
-import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  resolveCardImageFieldsV1,
+  type ResolvedCardImageFieldsV1,
+} from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   getPublicPricingByCardIds,
   type PublicPricingRecord,
@@ -658,7 +661,7 @@ function imageKindScore(kind: string | null | undefined) {
 
 async function fetchChildDisplayImageFallbacks(lookupRows: CardPrintLookupRow[]) {
   const cardPrintIds = uniqueValues(lookupRows.map((row) => row.id).filter(Boolean));
-  const fallbackByCardPrintId = new Map<string, string>();
+  const fallbackByCardPrintId = new Map<string, ResolvedCardImageFieldsV1>();
   if (cardPrintIds.length === 0) {
     return fallbackByCardPrintId;
   }
@@ -732,12 +735,40 @@ async function fetchChildDisplayImageFallbacks(lookupRows: CardPrintLookupRow[])
         })[0];
 
       if (best?.imageFields.display_image_url) {
-        fallbackByCardPrintId.set(row.id, best.imageFields.display_image_url);
+        fallbackByCardPrintId.set(row.id, best.imageFields);
       }
     }),
   );
 
   return fallbackByCardPrintId;
+}
+
+function shouldPromoteChildDisplayImageFields(
+  row: CardPrintLookupRow,
+  parentImageFields: ResolvedCardImageFieldsV1,
+  childImageFields?: ResolvedCardImageFieldsV1,
+) {
+  if (!childImageFields?.display_image_url) {
+    return false;
+  }
+
+  if (
+    row.search_object_type === "child_printing" ||
+    row.selected_printing_gv_id ||
+    row.search_card_printing_id ||
+    row.printing_gv_id
+  ) {
+    return true;
+  }
+
+  if (!parentImageFields.display_image_url) {
+    return true;
+  }
+
+  return (
+    imageKindScore(childImageFields.display_image_kind) >
+    imageKindScore(parentImageFields.display_image_kind)
+  );
 }
 
 function toNumberDigits(value?: string | null) {
@@ -863,6 +894,14 @@ async function buildExploreRows(
         ? setMetadataByCode.get(row.set_code)
         : undefined;
       const imageFields = await resolveCardImageFieldsV1(row);
+      const childImageFields = childDisplayImageFallbacks.get(row.id);
+      const displayImageFields = shouldPromoteChildDisplayImageFields(
+        row,
+        imageFields,
+        childImageFields,
+      )
+        ? childImageFields!
+        : imageFields;
 
       return {
         id: row.id,
@@ -875,14 +914,17 @@ async function buildExploreRows(
         printed_total: setMetadata?.printed_total,
         rarity: row.rarity ?? undefined,
         artist: row.artist ?? undefined,
-        image_url: imageFields.image_url ?? undefined,
-        representative_image_url: imageFields.representative_image_url ?? undefined,
-        image_status: imageFields.image_status ?? undefined,
-        image_note: imageFields.image_note ?? undefined,
-        image_source: imageFields.image_source ?? undefined,
-        display_image_url: imageFields.display_image_url ?? undefined,
-        display_image_fallback_url: childDisplayImageFallbacks.get(row.id) ?? undefined,
-        display_image_kind: imageFields.display_image_kind,
+        image_url: displayImageFields.image_url ?? undefined,
+        representative_image_url: displayImageFields.representative_image_url ?? undefined,
+        image_status: displayImageFields.image_status ?? undefined,
+        image_note: displayImageFields.image_note ?? undefined,
+        image_source: displayImageFields.image_source ?? undefined,
+        display_image_url: displayImageFields.display_image_url ?? undefined,
+        display_image_fallback_url:
+          displayImageFields === imageFields
+            ? childImageFields?.display_image_url ?? undefined
+            : undefined,
+        display_image_kind: displayImageFields.display_image_kind,
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
         set_code: row.set_code ?? undefined,

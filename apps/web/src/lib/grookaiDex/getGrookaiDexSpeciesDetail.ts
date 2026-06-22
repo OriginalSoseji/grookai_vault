@@ -8,6 +8,7 @@ import {
 } from "@/lib/cards/childPrintingPublicIdentity";
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
@@ -39,6 +40,7 @@ export type GrookaiDexCardPrintRow = {
   cardPrintId: string;
   gvId: string | null;
   name: string;
+  displayName: string;
   setCode: string | null;
   setName: string | null;
   number: string | null;
@@ -265,6 +267,11 @@ export async function getGrookaiDexSpeciesDetail(
   }
   const cards = resolvedCards.map((card) => {
     const hasDuplicateCaption = (duplicateCounts.get(duplicateCaptionKey(card)) ?? 0) > 1;
+    const displayIdentity = resolveDisplayIdentity({
+      name: card.name,
+      variant_key: card.variantKey,
+      printed_identity_modifier: card.printedIdentityModifier,
+    });
     const discriminator = getCardPrintDisplayDiscriminator({
       variantKey: card.variantKey,
       printedIdentityModifier: card.printedIdentityModifier,
@@ -273,6 +280,7 @@ export async function getGrookaiDexSpeciesDetail(
     });
     return {
       ...card,
+      displayName: displayIdentity.display_name,
       printLabel: discriminator.label,
       printLabelSource: discriminator.source,
     };

@@ -62,7 +62,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
           />
           <div className="min-w-0">
             <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline dark:text-slate-100">
-              <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
+              <span className="gv-hi-card-identity block truncate">{displayIdentity.display_name}</span>
               {identitySubtitle ? (
                 <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
               ) : null}

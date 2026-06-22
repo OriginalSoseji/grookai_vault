@@ -64,7 +64,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
             <div className="min-w-0 space-y-2">
               <div className="space-y-1">
                 <span className="gv-hi-card-identity block truncate text-lg hover:underline">
-                  {displayIdentity.base_name}
+                  {displayIdentity.display_name}
                 </span>
                 {identitySubtitle ? (
                   <span className="gv-hi-metadata block truncate text-sm font-medium">{identitySubtitle}</span>

@@ -171,7 +171,7 @@ export default function PublicSetCardGrid({
                   href={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
                   className="block transition hover:text-slate-700"
                 >
-                  <span className="block truncate">{displayIdentity.base_name}</span>
+                  <span className="block truncate">{displayIdentity.display_name}</span>
                   {identitySubtitle ? (
                     <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}

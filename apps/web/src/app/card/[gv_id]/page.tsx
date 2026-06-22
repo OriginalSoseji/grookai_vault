@@ -664,7 +664,7 @@ export default async function CardPage({
                 ) : null}
                 <div className="space-y-3">
                   <h1 className="gv-hi-card-identity max-w-3xl text-[3rem] leading-[0.96] tracking-normal sm:text-[4.2rem] lg:text-[5.35rem]">
-                    {resolvedDisplayIdentity.base_name}
+                    {resolvedDisplayIdentity.display_name}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2">
                     {identitySubtitle ? (
