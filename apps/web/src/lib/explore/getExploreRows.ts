@@ -3014,6 +3014,43 @@ function getSpecialSetCodesForSmartLabels(stampLabels: string[]) {
   return uniqueValues(setCodes);
 }
 
+function rowMatchesSmartStampLabels(row: CardPrintLookupRow, stampLabels?: string[]) {
+  const labels = stampLabels ?? [];
+  if (labels.length === 0) {
+    return true;
+  }
+
+  const specialSetCodes = new Set(getSpecialSetCodesForSmartLabels(labels));
+  if (specialSetCodes.has(normalizeSetCode(row.set_code))) {
+    return true;
+  }
+
+  const tokens = getSmartStampSearchTokens(labels);
+  if (tokens.length === 0) {
+    return false;
+  }
+
+  const searchableIdentity = normalizeTextForMatch(
+    [
+      row.variant_key,
+      row.printed_identity_modifier,
+      ...(Array.isArray(row.variants) ? row.variants : []),
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+
+  return tokens.every((token) => searchableIdentity.includes(token));
+}
+
+function applySmartStampParentFilter(rows: CardPrintLookupRow[], stampLabels?: string[]) {
+  if ((stampLabels ?? []).length === 0) {
+    return rows;
+  }
+
+  return rows.filter((row) => rowMatchesSmartStampLabels(row, stampLabels));
+}
+
 function normalizeFinishKeys(finishKeys?: string[]) {
   return uniqueValues(
     (finishKeys ?? [])
@@ -3081,38 +3118,29 @@ async function fetchSmartDiscoverySeedParentRows(
   const exactSetCode = normalizeSetCode(options.exactSetCode);
   const exactIllustrator = options.exactIllustrator?.trim();
   const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
+  let parentRows: CardPrintLookupRow[] = [];
 
   if (exactSetCode) {
-    return fetchCardRowsBySetCode(exactSetCode);
-  }
-
-  if (typeof options.exactReleaseYear === "number") {
-    return fetchCardRowsByReleaseYear(options.exactReleaseYear);
-  }
-
-  if (
+    parentRows = await fetchCardRowsBySetCode(exactSetCode);
+  } else if (typeof options.exactReleaseYear === "number") {
+    parentRows = await fetchCardRowsByReleaseYear(options.exactReleaseYear);
+  } else if (
     typeof options.releaseYearMin === "number" ||
     typeof options.releaseYearMax === "number"
   ) {
-    return fetchCardRowsByReleaseYearRange(
+    parentRows = await fetchCardRowsByReleaseYearRange(
       options.releaseYearMin,
       options.releaseYearMax,
     );
+  } else if (exactIllustrator) {
+    parentRows = await fetchCardRowsByIllustrator(exactIllustrator);
+  } else if (isIdentityFilterActive(identityFilter)) {
+    parentRows = await fetchCardRowsByIdentityFilter(identityFilter);
+  } else if ((options.stampLabels ?? []).length > 0) {
+    parentRows = await fetchCardRowsByStampLabels(options.stampLabels ?? []);
   }
 
-  if (exactIllustrator) {
-    return fetchCardRowsByIllustrator(exactIllustrator);
-  }
-
-  if (isIdentityFilterActive(identityFilter)) {
-    return fetchCardRowsByIdentityFilter(identityFilter);
-  }
-
-  if ((options.stampLabels ?? []).length > 0) {
-    return fetchCardRowsByStampLabels(options.stampLabels ?? []);
-  }
-
-  return [] as CardPrintLookupRow[];
+  return applySmartStampParentFilter(parentRows, options.stampLabels);
 }
 
 function getParentFromSmartChild(row: CardPrintingSmartLookupRow) {
@@ -3291,6 +3319,8 @@ export async function getExploreRowsForSmartStructuredTextSearch(
   if (isIdentityFilterActive(identityFilter)) {
     parentRows = parentRows.filter((row) => matchesIdentityFilter(row, identityFilter));
   }
+
+  parentRows = applySmartStampParentFilter(parentRows, options.stampLabels);
 
   const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
   if (childScopedRows.length === 0) {

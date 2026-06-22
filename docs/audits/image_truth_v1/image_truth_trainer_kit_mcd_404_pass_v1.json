@@ -1,0 +1,181 @@
+{
+  "package_id": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1",
+  "generated_at": "2026-06-22T21:44:27.045Z",
+  "mode": "dry_run",
+  "fingerprint_sha256": "63d13cf9edd281637eac98d2993cdc86587bfa636222776817ea51db7bddc170",
+  "constraints": {
+    "no_migrations": true,
+    "no_deletes": true,
+    "no_merges": true,
+    "no_child_printing_writes": true,
+    "normal_search_ai_unchanged": true
+  },
+  "plan": {
+    "set_renames": [],
+    "image_replacements": [],
+    "image_blocks": []
+  },
+  "replacement_probes": [],
+  "replacement_probe_summary": {
+    "total": 0,
+    "ok": 0,
+    "failed": 0
+  },
+  "current_live_state": [
+    {
+      "code": "2021swsh",
+      "name": "McDonald's Collection 2021",
+      "total_cards": 25,
+      "exact_pokemonapi": 25,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "mcd21",
+      "name": "McDonald's Collection 2021",
+      "total_cards": 25,
+      "exact_pokemonapi": 25,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-bw-e",
+      "name": "BW Trainer Kit (Excadrill)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-bw-z",
+      "name": "BW Trainer Kit (Zoroark)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-dp-l",
+      "name": "DP Trainer Kit (Lucario)",
+      "total_cards": 11,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 11,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-dp-m",
+      "name": "DP Trainer Kit (Manaphy)",
+      "total_cards": 12,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 12,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-ex-latia",
+      "name": "EX Trainer Kit (Latias)",
+      "total_cards": 10,
+      "exact_pokemonapi": 10,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-ex-m",
+      "name": "EX Trainer Kit 2 (Minun)",
+      "total_cards": 12,
+      "exact_pokemonapi": 12,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-ex-p",
+      "name": "EX Trainer Kit 2 (Plusle)",
+      "total_cards": 12,
+      "exact_pokemonapi": 12,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-sm-l",
+      "name": "SM Trainer Kit (Lycanroc)",
+      "total_cards": 18,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 18,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-sm-r",
+      "name": "SM Trainer Kit (Alolan Raichu)",
+      "total_cards": 19,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 19,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-xy-b",
+      "name": "XY Trainer Kit (Bisharp)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-xy-n",
+      "name": "XY Trainer Kit (Noivern)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-xy-p",
+      "name": "XY Trainer Kit (Pikachu Libre)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-xy-sy",
+      "name": "XY Trainer Kit (Sylveon)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk-xy-w",
+      "name": "XY Trainer Kit (Wigglytuff)",
+      "total_cards": 30,
+      "exact_pokemonapi": 0,
+      "unresolved_no_url": 30,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk1a",
+      "name": "EX Trainer Kit Latias",
+      "total_cards": 10,
+      "exact_pokemonapi": 10,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    },
+    {
+      "code": "tk2b",
+      "name": "EX Trainer Kit 2 Minun",
+      "total_cards": 12,
+      "exact_pokemonapi": 12,
+      "unresolved_no_url": 0,
+      "broken_tcgdex_urls": 0
+    }
+  ],
+  "apply_result": null,
+  "summary": {
+    "audited_sets": 18,
+    "audited_card_rows": 376,
+    "broken_rows": 0,
+    "broken_by_set": {},
+    "replacements_by_set": {},
+    "blocks_by_set": {},
+    "post_apply_broken_rows": null,
+    "post_apply_broken_by_set": null
+  }
+}

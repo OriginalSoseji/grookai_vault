@@ -126,6 +126,24 @@ test('Grookai Search recognizes governed special-case identity families determin
   assert.equal(resolveSmartSearchQuery('Ancient Mew', ancientMew), 'Ancient Mew');
 });
 
+test('Grookai Search composes stamp filters with year, artist, and residual text discovery', () => {
+  const source = readFileSync(
+    new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(source, /function rowMatchesSmartStampLabels/);
+  assert.match(source, /function applySmartStampParentFilter/);
+  assert.match(
+    source,
+    /return applySmartStampParentFilter\(parentRows, options\.stampLabels\);/,
+  );
+  assert.match(
+    source,
+    /parentRows = applySmartStampParentFilter\(parentRows, options\.stampLabels\);/,
+  );
+});
+
 test('Grookai Smart Search contract is authoritative and keeps normal search non-AI', () => {
   const index = readFileSync(new URL('../../docs/CONTRACT_INDEX.md', import.meta.url), 'utf8');
   const contract = readFileSync(new URL('../../docs/contracts/GROOKAI_SMART_SEARCH_V1.md', import.meta.url), 'utf8');

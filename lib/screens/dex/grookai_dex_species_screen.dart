@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../services/grookai_dex/grookai_dex_service.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../utils/pokemon_sprite_url.dart';
 import '../../widgets/card_surface_artwork.dart';
 
@@ -476,6 +477,13 @@ class _DexCardTile extends StatelessWidget {
       variantKey: card.variantKey,
       printedIdentityModifier: card.printedIdentityModifier,
     );
+    final imagePresentation = resolveImagePresentationFromFields(
+      imageUrl: card.exactImageUrl,
+      representativeImageUrl: card.representativeImageUrl,
+      displayImageUrl: card.imageUrl,
+      imageStatus: card.imageStatus,
+      imageNote: card.imageNote,
+    );
     final meta = [
       card.setName ?? card.setCode,
       if ((card.number ?? '').isNotEmpty) '#${card.number}',
@@ -506,6 +514,8 @@ class _DexCardTile extends StatelessWidget {
                 height: 108,
                 borderRadius: 16,
                 padding: const EdgeInsets.all(1.5),
+                imageTruthLabel: imagePresentation.compactBadgeLabel,
+                imageTruthStrong: imagePresentation.isCollisionRepresentative,
               ),
               const SizedBox(width: 12),
               Expanded(
