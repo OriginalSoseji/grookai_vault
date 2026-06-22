@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../secrets.dart';
+import '../../utils/display_image_contract.dart';
 import '../vault/vault_card_service.dart';
 
 class GrookaiDexSpeciesSummary {
@@ -76,6 +78,10 @@ class GrookaiDexCardPrint {
     this.rarity,
     this.variantKey,
     this.printedIdentityModifier,
+    this.exactImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
     this.imageUrl,
   });
 
@@ -88,6 +94,10 @@ class GrookaiDexCardPrint {
   final String? rarity;
   final String? variantKey;
   final String? printedIdentityModifier;
+  final String? exactImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
   final String? imageUrl;
   final String role;
   final bool countsForCompletion;
@@ -144,6 +154,13 @@ class GrookaiDexService {
   static const int defaultPageSize = 100;
   static const String _spriteBaseUrl =
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+  static const String _cardImageMediaBucket = 'user-card-images';
+  static const String _legendaryTreasuresRc5CardPrintId =
+      'efa15a49-a1f9-46b0-bd69-85111388328e';
+  static const List<String> _legendaryTreasuresRc5BlockedImagePatterns = [
+    '00484a4e28a235d9f4a8edcc',
+    'images.pokemontcg.io/bw11/5_hires.png',
+  ];
 
   static String? spriteUrlForNationalDexNumber(int nationalDexNumber) {
     if (nationalDexNumber <= 0) {
@@ -268,7 +285,7 @@ class GrookaiDexService {
         .where((value) => value.isNotEmpty)
         .toSet()
         .toList(growable: false);
-    final identityModifiers = await _fetchPrintedIdentityModifiers(
+    final imageMetadata = await _fetchCardPrintImageMetadata(
       client: client,
       cardPrintIds: cardPrintIds,
     );
@@ -287,10 +304,36 @@ class GrookaiDexService {
       cardPrintIds: cardPrintIds,
       ownedCountsByPrintingId: ownedPrintingCounts,
     );
+    final childImageMetadata = await _fetchChildImageMetadata(
+      client: client,
+      cardPrintIds: cardPrintIds,
+    );
+    final aliasImageFallbacks = _buildAliasImageFallbacks(
+      rawRows: rawRows,
+      parentImageMetadata: imageMetadata,
+      childImageMetadata: childImageMetadata,
+    );
 
     final cards = rawRows
         .map((row) {
           final cardPrintId = _clean(row['card_print_id']);
+          final parentImage = imageMetadata[cardPrintId];
+          final childImage = childImageMetadata[cardPrintId];
+          final aliasImage = aliasImageFallbacks[cardPrintId];
+          final sourceBackedFallback = _sourceBackedImageFallback(row);
+          final childExactImageUrl =
+              _isExactImageStatus(childImage?.imageStatus)
+              ? childImage?.imageUrl
+              : null;
+          final childRepresentativeImageUrl =
+              _isRepresentativeImageStatus(childImage?.imageStatus)
+              ? childImage?.imageUrl
+              : null;
+          final resolvedDisplayImage =
+              _resolveNonBrokenDisplayImageUrl(row) ??
+              aliasImage?.imageUrl ??
+              sourceBackedFallback?.imageUrl ??
+              normalizeDisplayImageUrl(childImage?.imageUrl);
           return GrookaiDexCardPrint(
             cardPrintId: cardPrintId,
             gvId: _optional(row['gv_id']),
@@ -300,11 +343,29 @@ class GrookaiDexService {
             number: _optional(row['number']),
             rarity: _optional(row['rarity']),
             variantKey: _optional(row['variant_key']),
-            printedIdentityModifier: identityModifiers[cardPrintId],
-            imageUrl:
-                _httpUrl(row['image_url']) ??
-                _httpUrl(row['image_alt_url']) ??
-                _httpUrl(row['representative_image_url']),
+            printedIdentityModifier: parentImage?.printedIdentityModifier,
+            exactImageUrl:
+                _resolveNonBrokenImageUrl(parentImage?.imageUrl) ??
+                _resolveNonBrokenImageUrl(_optional(row['image_url'])) ??
+                aliasImage?.exactImageUrl ??
+                sourceBackedFallback?.exactImageUrl ??
+                childExactImageUrl,
+            representativeImageUrl:
+                parentImage?.representativeImageUrl ??
+                _optional(row['representative_image_url']) ??
+                aliasImage?.representativeImageUrl ??
+                sourceBackedFallback?.representativeImageUrl ??
+                childRepresentativeImageUrl,
+            imageStatus:
+                parentImage?.imageStatus ??
+                aliasImage?.imageStatus ??
+                sourceBackedFallback?.imageStatus ??
+                childImage?.imageStatus,
+            imageNote:
+                parentImage?.imageNote ??
+                sourceBackedFallback?.imageNote ??
+                childImage?.imageNote,
+            imageUrl: resolvedDisplayImage,
             role: _optional(row['role']) ?? 'primary',
             countsForCompletion: row['counts_for_completion'] == true,
             ownedCount: ownedCounts[cardPrintId] ?? 0,
@@ -348,9 +409,11 @@ class GrookaiDexService {
     final rows = <Map<String, dynamic>>[];
     for (final chunk in _chunks(speciesIds, 250)) {
       final data = await client
-          .from('card_print_species')
-          .select('species_id,card_print_id')
-          .eq('active', true)
+          .from('v_grookai_dex_card_prints_v1')
+          .select(
+            'species_id,card_print_id,counts_for_completion,mapping_active',
+          )
+          .eq('mapping_active', true)
           .eq('counts_for_completion', true)
           .inFilter('species_id', chunk);
       rows.addAll(
@@ -362,21 +425,32 @@ class GrookaiDexService {
     return rows;
   }
 
-  static Future<Map<String, String?>> _fetchPrintedIdentityModifiers({
+  static Future<Map<String, _CardPrintImageMetadata>>
+  _fetchCardPrintImageMetadata({
     required SupabaseClient client,
     required Iterable<String> cardPrintIds,
   }) async {
-    final values = <String, String?>{};
+    final values = <String, _CardPrintImageMetadata>{};
     for (final chunk in _chunks(cardPrintIds, 250)) {
       final data = await client
           .from('card_prints')
-          .select('id,printed_identity_modifier')
+          .select(
+            'id,printed_identity_modifier,image_url,representative_image_url,image_status,image_note',
+          )
           .inFilter('id', chunk);
       for (final raw in data) {
         final row = Map<String, dynamic>.from(raw as Map);
         final id = _clean(row['id']);
         if (id.isNotEmpty) {
-          values[id] = _optional(row['printed_identity_modifier']);
+          values[id] = _CardPrintImageMetadata(
+            printedIdentityModifier: _optional(
+              row['printed_identity_modifier'],
+            ),
+            imageUrl: _optional(row['image_url']),
+            representativeImageUrl: _optional(row['representative_image_url']),
+            imageStatus: _optional(row['image_status']),
+            imageNote: _optional(row['image_note']),
+          );
         }
       }
     }
@@ -497,6 +571,283 @@ class GrookaiDexService {
     });
   }
 
+  static Future<Map<String, _CardPrintChildImageMetadata>>
+  _fetchChildImageMetadata({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final values = <String, _CardPrintChildImageMetadata>{};
+    for (final chunk in _chunks(cardPrintIds, 250)) {
+      late final List<dynamic> data;
+      try {
+        data =
+            await client
+                    .from('card_printings')
+                    .select(
+                      'card_print_id,printing_gv_id,finish_key,image_path,image_url,image_alt_url,image_status,image_note',
+                    )
+                    .inFilter('card_print_id', chunk)
+                as List<dynamic>;
+      } catch (_) {
+        continue;
+      }
+
+      for (final raw in data) {
+        final row = Map<String, dynamic>.from(raw as Map);
+        final cardPrintId = _clean(row['card_print_id']);
+        if (cardPrintId.isEmpty) {
+          continue;
+        }
+        if (_isKnownWrongLegendaryTreasuresRc5ChildImage(row)) {
+          continue;
+        }
+
+        final metadata = _CardPrintChildImageMetadata(
+          finishKey: _optional(row['finish_key']),
+          imageUrl:
+              _resolvePublicMediaUrl(_optional(row['image_path'])) ??
+              _optional(row['image_url']) ??
+              _optional(row['image_alt_url']),
+          imageStatus: _optional(row['image_status']),
+          imageNote: _optional(row['image_note']),
+        );
+        if ((metadata.imageUrl ?? '').isEmpty) {
+          continue;
+        }
+
+        final current = values[cardPrintId];
+        if (current == null ||
+            _childImagePreference(metadata) > _childImagePreference(current)) {
+          values[cardPrintId] = metadata;
+        }
+      }
+    }
+    return values;
+  }
+
+  static bool _isKnownWrongLegendaryTreasuresRc5ChildImage(
+    Map<String, dynamic> row,
+  ) {
+    final cardPrintId = _clean(row['card_print_id']).toLowerCase();
+    final printingGvId = _clean(row['printing_gv_id']).toLowerCase();
+    final isRc5Torchic =
+        cardPrintId == _legendaryTreasuresRc5CardPrintId ||
+        printingGvId.startsWith('gv-pk-ltr-rc5-');
+    if (!isRc5Torchic) {
+      return false;
+    }
+
+    return _legendaryTreasuresRc5BlockedImagePatterns.any((pattern) {
+      final normalizedPattern = pattern.toLowerCase();
+      return _clean(
+            row['image_path'],
+          ).toLowerCase().contains(normalizedPattern) ||
+          _clean(row['image_url']).toLowerCase().contains(normalizedPattern) ||
+          _clean(
+            row['image_alt_url'],
+          ).toLowerCase().contains(normalizedPattern);
+    });
+  }
+
+  static Map<String, _CardPrintAliasImageFallback> _buildAliasImageFallbacks({
+    required Iterable<Map<String, dynamic>> rawRows,
+    required Map<String, _CardPrintImageMetadata> parentImageMetadata,
+    required Map<String, _CardPrintChildImageMetadata> childImageMetadata,
+  }) {
+    final candidatesByAlias = <String, _CardPrintAliasImageFallback>{};
+    final cardAliasKeys = <String, String>{};
+    final cardCurrentUrls = <String, String?>{};
+
+    for (final row in rawRows) {
+      final cardPrintId = _clean(row['card_print_id']);
+      final aliasKey = _imageAliasKey(row);
+      if (cardPrintId.isEmpty || aliasKey == null) {
+        continue;
+      }
+
+      cardAliasKeys[cardPrintId] = aliasKey;
+      final parentImage = parentImageMetadata[cardPrintId];
+      final childImage = childImageMetadata[cardPrintId];
+      final displayUrl =
+          _resolveNonBrokenDisplayImageUrl(row) ??
+          normalizeDisplayImageUrl(childImage?.imageUrl);
+      cardCurrentUrls[cardPrintId] = displayUrl;
+      if (displayUrl == null) {
+        continue;
+      }
+
+      final fallback = _CardPrintAliasImageFallback(
+        imageUrl: displayUrl,
+        exactImageUrl: _isExactImageStatus(parentImage?.imageStatus)
+            ? displayUrl
+            : null,
+        representativeImageUrl:
+            _isRepresentativeImageStatus(parentImage?.imageStatus)
+            ? displayUrl
+            : null,
+        imageStatus: parentImage?.imageStatus,
+      );
+      candidatesByAlias.putIfAbsent(aliasKey, () => fallback);
+    }
+
+    final fallbacks = <String, _CardPrintAliasImageFallback>{};
+    for (final entry in cardAliasKeys.entries) {
+      final currentUrl = cardCurrentUrls[entry.key];
+      if (currentUrl != null && !_isKnownBrokenImageUrl(currentUrl)) {
+        continue;
+      }
+      final fallback = candidatesByAlias[entry.value];
+      if (fallback != null) {
+        fallbacks[entry.key] = fallback;
+      }
+    }
+    return fallbacks;
+  }
+
+  static String? _imageAliasKey(Map<String, dynamic> row) {
+    final setCode = _clean(row['set_code']).toLowerCase();
+    final name = _clean(row['name']).toLowerCase();
+    final number = _clean(row['number']).toLowerCase();
+    if (name.isEmpty || number.isEmpty) {
+      return null;
+    }
+
+    if (setCode == 'tk-ex-latia' || setCode == 'tk1a') {
+      return 'trainer-kit-latias|$name|$number';
+    }
+    if (setCode == '2021swsh' || setCode == 'mcd21') {
+      return 'mcdonalds-2021|$name|$number';
+    }
+    return null;
+  }
+
+  static _CardPrintAliasImageFallback? _sourceBackedImageFallback(
+    Map<String, dynamic> row,
+  ) {
+    final setCode = _clean(row['set_code']).toLowerCase();
+    final number = _clean(row['number']).toLowerCase();
+    final name = _clean(row['name']).toLowerCase();
+
+    if (setCode == 'ex5.5' && number == '3' && name == 'torchic') {
+      const imageUrl =
+          'https://archives.bulbagarden.net/media/upload/5/57/TorchicCreatorContest3.png';
+      return const _CardPrintAliasImageFallback(
+        imageUrl: imageUrl,
+        exactImageUrl: imageUrl,
+        imageStatus: 'exact',
+        imageNote:
+            'Source-backed fallback: Bulbagarden Archives Torchic Creator Contest 3 image.',
+      );
+    }
+
+    if (setCode == '2021swsh') {
+      final numericNumber = int.tryParse(number);
+      if (numericNumber != null && numericNumber >= 1 && numericNumber <= 25) {
+        final imageUrl =
+            'https://images.pokemontcg.io/mcd21/$numericNumber'
+            '_hires.png';
+        return _CardPrintAliasImageFallback(
+          imageUrl: imageUrl,
+          exactImageUrl: imageUrl,
+          imageStatus: 'exact',
+          imageNote:
+              "Source-backed replacement: PokemonTCG mcd21 image used for McDonald's Collection 2021 because the TCGdex 2021swsh asset URL returns 404.",
+        );
+      }
+    }
+
+    const pokemonTcgTrainerKitAliases = <String, String>{
+      'tk-ex-latia': 'tk1a',
+      'tk-ex-m': 'tk2b',
+      'tk-ex-p': 'tk2a',
+      'tk2b': 'tk2b',
+    };
+    final trainerKitPokemonTcgSetCode = pokemonTcgTrainerKitAliases[setCode];
+    if (trainerKitPokemonTcgSetCode != null) {
+      final numericNumber = int.tryParse(number);
+      if (numericNumber != null) {
+        final imageUrl =
+            'https://images.pokemontcg.io/$trainerKitPokemonTcgSetCode/$numericNumber'
+            '_hires.png';
+        return _CardPrintAliasImageFallback(
+          imageUrl: imageUrl,
+          exactImageUrl: imageUrl,
+          imageStatus: 'exact',
+          imageNote:
+              'Source-backed replacement: PokemonTCG image used because the TCGdex asset URL returns 404.',
+        );
+      }
+    }
+
+    return null;
+  }
+
+  static String? _resolveNonBrokenDisplayImageUrl(Map<String, dynamic> row) {
+    return _resolveNonBrokenImageUrl(resolveDisplayImageUrlFromRow(row));
+  }
+
+  static String? _resolveNonBrokenImageUrl(String? url) {
+    final normalized = normalizeDisplayImageUrl(url);
+    if (normalized == null || _isKnownBrokenImageUrl(normalized)) {
+      return null;
+    }
+    return normalized;
+  }
+
+  static bool _isKnownBrokenImageUrl(String? url) {
+    final normalized = _clean(url).toLowerCase();
+    if (normalized.isEmpty) {
+      return false;
+    }
+
+    return normalized.contains('assets.tcgdex.net/en/tk/') ||
+        normalized.contains('assets.tcgdex.net/en/mc/2021swsh/') ||
+        normalized.contains('assets.tcgdex.net/en/ex/ex5.5/');
+  }
+
+  static bool _isExactImageStatus(String? status) {
+    final normalized = _clean(status).toLowerCase();
+    return normalized == 'exact' || normalized == 'exact_parent_image';
+  }
+
+  static bool _isRepresentativeImageStatus(String? status) {
+    return _clean(status).toLowerCase().startsWith('representative_');
+  }
+
+  static int _childImagePreference(_CardPrintChildImageMetadata metadata) {
+    var score = 0;
+    final status = _clean(metadata.imageStatus).toLowerCase();
+    final finishKey = _clean(metadata.finishKey).toLowerCase();
+    if (status == 'exact' || status == 'exact_parent_image') {
+      score += 40;
+    } else if (status.startsWith('representative_')) {
+      score += 20;
+    }
+    if (finishKey == 'normal') {
+      score += 8;
+    } else if (finishKey == 'holo') {
+      score += 6;
+    } else if (finishKey == 'reverse') {
+      score += 4;
+    }
+    return score;
+  }
+
+  static String? _resolvePublicMediaUrl(String? path) {
+    final normalized = _clean(path).replaceFirst(RegExp(r'^/+'), '');
+    final baseUrl = supabaseUrl.replaceFirst(RegExp(r'/+$'), '');
+    if (normalized.isEmpty || baseUrl.isEmpty) {
+      return null;
+    }
+
+    final encodedPath = normalized
+        .split('/')
+        .where((segment) => segment.isNotEmpty)
+        .map(Uri.encodeComponent)
+        .join('/');
+    return '$baseUrl/storage/v1/object/public/${Uri.encodeComponent(_cardImageMediaBucket)}/$encodedPath';
+  }
+
   static Map<String, dynamic>? _firstNestedRecord(dynamic value) {
     if (value is Map) {
       return Map<String, dynamic>.from(value);
@@ -553,16 +904,6 @@ class GrookaiDexService {
     return cleaned.isEmpty ? null : cleaned;
   }
 
-  static String? _httpUrl(dynamic value) {
-    final url = _clean(value);
-    final parsed = Uri.tryParse(url);
-    if (parsed == null ||
-        (parsed.scheme != 'http' && parsed.scheme != 'https')) {
-      return null;
-    }
-    return url;
-  }
-
   static String _clean(dynamic value) => (value ?? '').toString().trim();
 }
 
@@ -574,4 +915,50 @@ class _SortablePrintingOption {
 
   final GrookaiDexPrintingOption option;
   final int sortOrder;
+}
+
+class _CardPrintImageMetadata {
+  const _CardPrintImageMetadata({
+    this.printedIdentityModifier,
+    this.imageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
+  });
+
+  final String? printedIdentityModifier;
+  final String? imageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
+}
+
+class _CardPrintChildImageMetadata {
+  const _CardPrintChildImageMetadata({
+    this.finishKey,
+    this.imageUrl,
+    this.imageStatus,
+    this.imageNote,
+  });
+
+  final String? finishKey;
+  final String? imageUrl;
+  final String? imageStatus;
+  final String? imageNote;
+}
+
+class _CardPrintAliasImageFallback {
+  const _CardPrintAliasImageFallback({
+    required this.imageUrl,
+    this.exactImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
+  });
+
+  final String imageUrl;
+  final String? exactImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
 }

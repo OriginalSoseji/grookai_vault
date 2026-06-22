@@ -4,10 +4,20 @@ import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { hasChildPrintingPublicIdentityColumn } from "@/lib/cards/childPrintingPublicIdentity";
 import { hasChildPrintingImageStorageColumns } from "@/lib/cards/childPrintingImageStorage";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
-import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
+import {
+  getCompatiblePublicGvIdCandidates,
+  pickResolvedPublicGvIdRow,
+} from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
+import { normalizePublicSetDisplayName } from "@/lib/publicSets.shared";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
-import type { ActiveCardPrintIdentity, CardCameo, CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
+import type {
+  ActiveCardPrintIdentity,
+  CardCameo,
+  CardDetail,
+  CardPrinting,
+  RelatedCardPrint,
+} from "@/types/cards";
 
 type TraitRow = {
   hp: number | null;
@@ -94,8 +104,16 @@ type RelatedCardRow = {
   variants: VariantFlags;
   external_ids?: { tcgdex?: string | null } | null;
   sets?:
-    | { name: string | null; release_date: string | null; identity_model: string | null }
-    | { name: string | null; release_date: string | null; identity_model: string | null }[]
+    | {
+        name: string | null;
+        release_date: string | null;
+        identity_model: string | null;
+      }
+    | {
+        name: string | null;
+        release_date: string | null;
+        identity_model: string | null;
+      }[]
     | null;
 };
 
@@ -126,13 +144,23 @@ type CameoRow = {
   source_name: string | null;
 };
 
-function getCardPrintingsSelectColumns(includePublicIdentity: boolean, includeImageColumns: boolean) {
+function getCardPrintingsSelectColumns(
+  includePublicIdentity: boolean,
+  includeImageColumns: boolean,
+) {
   const columns = ["id", "card_print_id", "finish_key"];
   if (includePublicIdentity) {
     columns.push("printing_gv_id");
   }
   if (includeImageColumns) {
-    columns.push("image_source", "image_path", "image_url", "image_alt_url", "image_status", "image_note");
+    columns.push(
+      "image_source",
+      "image_path",
+      "image_url",
+      "image_alt_url",
+      "image_status",
+      "image_note",
+    );
   }
   columns.push("finish_keys(label,sort_order)");
   return columns.join(",\n");
@@ -151,9 +179,13 @@ export function assertCanonicalCardRouteRow(
   }
 }
 
-function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null) {
+function extractTcgdexExternalId(
+  externalIds?: { tcgdex?: string | null } | null,
+) {
   const value = externalIds?.tcgdex;
-  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+  return typeof value === "string" && value.trim().length > 0
+    ? value.trim()
+    : undefined;
 }
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -170,35 +202,41 @@ function getReleaseYear(releaseDate?: string | null) {
   return Number.isFinite(parsedYear) ? parsedYear : undefined;
 }
 
-async function mapCardPrintings(rows?: PublicCardRow["card_printings"]): Promise<CardPrinting[] | undefined> {
+async function mapCardPrintings(
+  rows?: PublicCardRow["card_printings"],
+): Promise<CardPrinting[] | undefined> {
   const mapped = (
     await Promise.all(
       (rows ?? []).map(async (printing) => {
-      const finishRecord = Array.isArray(printing.finish_keys) ? printing.finish_keys[0] : printing.finish_keys;
-      const imageFields = await resolveCardImageFieldsV1(printing);
+        const finishRecord = Array.isArray(printing.finish_keys)
+          ? printing.finish_keys[0]
+          : printing.finish_keys;
+        const imageFields = await resolveCardImageFieldsV1(printing);
 
-      return {
-        id: printing.id ?? "",
-        printing_gv_id: printing.printing_gv_id?.trim() || undefined,
-        finish_key: printing.finish_key?.trim() || undefined,
-        finish_name:
-          getCardPrintingFinishLabel({
-            finishKey: printing.finish_key,
-            finishLabel: finishRecord?.label,
-        }) ?? undefined,
-        image_url: imageFields.image_url ?? undefined,
-        image_status: imageFields.image_status ?? undefined,
-        image_note: imageFields.image_note ?? undefined,
-        image_source: imageFields.image_source ?? undefined,
-        display_image_url: imageFields.display_image_url ?? undefined,
-        display_image_kind: imageFields.display_image_kind,
-        is_display_fallback: imageFields.display_image_kind !== "exact",
-        finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : undefined,
-      } satisfies CardPrinting;
-    }),
+        return {
+          id: printing.id ?? "",
+          printing_gv_id: printing.printing_gv_id?.trim() || undefined,
+          finish_key: printing.finish_key?.trim() || undefined,
+          finish_name:
+            getCardPrintingFinishLabel({
+              finishKey: printing.finish_key,
+              finishLabel: finishRecord?.label,
+            }) ?? undefined,
+          image_url: imageFields.image_url ?? undefined,
+          image_status: imageFields.image_status ?? undefined,
+          image_note: imageFields.image_note ?? undefined,
+          image_source: imageFields.image_source ?? undefined,
+          display_image_url: imageFields.display_image_url ?? undefined,
+          display_image_kind: imageFields.display_image_kind,
+          is_display_fallback: imageFields.display_image_kind !== "exact",
+          finish_sort_order:
+            typeof finishRecord?.sort_order === "number"
+              ? finishRecord.sort_order
+              : undefined,
+        } satisfies CardPrinting;
+      }),
     )
-  )
-    .filter((printing) => Boolean(printing.id) && Boolean(printing.finish_name));
+  ).filter((printing) => Boolean(printing.id) && Boolean(printing.finish_name));
 
   if (mapped.length === 0) {
     return undefined;
@@ -218,7 +256,9 @@ async function mapCardPrintings(rows?: PublicCardRow["card_printings"]): Promise
   return mapped;
 }
 
-function buildFallbackDisplayPrinting(row: Pick<PublicCardRow, "id" | "gv_id">): CardPrinting {
+function buildFallbackDisplayPrinting(
+  row: Pick<PublicCardRow, "id" | "gv_id">,
+): CardPrinting {
   const fallbackId = row.id?.trim() || row.gv_id?.trim() || "canonical";
 
   return {
@@ -240,7 +280,9 @@ function resolveDisplayPrintings(
   return [buildFallbackDisplayPrinting(row)];
 }
 
-function mapTraitRecord(record?: PublicCardRow["card_print_traits"]): TraitRow | undefined {
+function mapTraitRecord(
+  record?: PublicCardRow["card_print_traits"],
+): TraitRow | undefined {
   const traitRecord = Array.isArray(record) ? record[0] : record;
 
   if (!traitRecord) {
@@ -249,14 +291,23 @@ function mapTraitRecord(record?: PublicCardRow["card_print_traits"]): TraitRow |
 
   return {
     hp: typeof traitRecord.hp === "number" ? traitRecord.hp : null,
-    national_dex: typeof traitRecord.national_dex === "number" ? traitRecord.national_dex : null,
-    types: Array.isArray(traitRecord.types) ? traitRecord.types.filter((value): value is string => typeof value === "string") : null,
+    national_dex:
+      typeof traitRecord.national_dex === "number"
+        ? traitRecord.national_dex
+        : null,
+    types: Array.isArray(traitRecord.types)
+      ? traitRecord.types.filter(
+          (value): value is string => typeof value === "string",
+        )
+      : null,
     supertype: traitRecord.supertype?.trim() || null,
     card_category: traitRecord.card_category?.trim() || null,
   };
 }
 
-async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrint[] | undefined> {
+async function mapRelatedPrints(
+  rows: RelatedCardRow[],
+): Promise<RelatedCardPrint[] | undefined> {
   if (rows.length === 0) {
     return undefined;
   }
@@ -282,7 +333,8 @@ async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrin
       set_code: row.set_code?.trim() || undefined,
       rarity: row.rarity?.trim() || undefined,
       image_url: imageFields.image_url ?? undefined,
-      representative_image_url: imageFields.representative_image_url ?? undefined,
+      representative_image_url:
+        imageFields.representative_image_url ?? undefined,
       image_status: imageFields.image_status ?? undefined,
       image_note: imageFields.image_note ?? undefined,
       image_source: imageFields.image_source ?? undefined,
@@ -292,7 +344,8 @@ async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrin
       release_date: setRecord?.release_date ?? undefined,
       release_year: getReleaseYear(setRecord?.release_date),
       variant_key: row.variant_key?.trim() || undefined,
-      printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+      printed_identity_modifier:
+        row.printed_identity_modifier?.trim() || undefined,
       set_identity_model: setRecord?.identity_model?.trim() || undefined,
       variants: row.variants ?? undefined,
     });
@@ -304,17 +357,23 @@ async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrin
 
 function createServerSupabase() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const key =
+    process.env.SUPABASE_SECRET_KEY ??
+    process.env.SUPABASE_PUBLISHABLE_KEY ??
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
-    throw new Error("Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY/SUPABASE_PUBLISHABLE_KEY.");
+    throw new Error(
+      "Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY/SUPABASE_PUBLISHABLE_KEY.",
+    );
   }
 
   const cachedFetch: typeof fetch = (input, init) =>
     fetch(input, {
       ...init,
       next: {
-        ...((init as { next?: Record<string, unknown> } | undefined)?.next ?? {}),
+        ...((init as { next?: Record<string, unknown> } | undefined)?.next ??
+          {}),
         revalidate: 120,
       },
     } as RequestInit & { next: { revalidate: number } });
@@ -364,7 +423,8 @@ const getSetDetailsByCode = cache(async (setCode?: string | null) => {
   const row = data as SetRow;
   return {
     name: row.name ?? undefined,
-    printedTotal: typeof row.printed_total === "number" ? row.printed_total : undefined,
+    printedTotal:
+      typeof row.printed_total === "number" ? row.printed_total : undefined,
     printedSetAbbrev: row.printed_set_abbrev ?? undefined,
     releaseDate: row.release_date ?? undefined,
     releaseYear: getReleaseYear(row.release_date),
@@ -383,7 +443,9 @@ async function getActiveIdentityByCardPrintId(
 
   const { data, error } = await supabase
     .from("card_print_identity")
-    .select("identity_domain,set_code_identity,printed_number,identity_key_version")
+    .select(
+      "identity_domain,set_code_identity,printed_number,identity_key_version",
+    )
     .eq("card_print_id", normalizedCardPrintId)
     .eq("is_active", true)
     .limit(2);
@@ -402,7 +464,9 @@ async function getActiveIdentityByCardPrintId(
   }
 
   if (rows.length > 1) {
-    throw new Error(`MULTIPLE_ACTIVE_CARD_PRINT_IDENTITY_ROWS:${normalizedCardPrintId}:${rows.length}`);
+    throw new Error(
+      `MULTIPLE_ACTIVE_CARD_PRINT_IDENTITY_ROWS:${normalizedCardPrintId}:${rows.length}`,
+    );
   }
 
   const row = rows[0];
@@ -484,7 +548,9 @@ async function getRelatedPrintsByName(
     return undefined;
   }
 
-  return mapRelatedPrints((data as RelatedCardRow[]).filter((row) => row.id !== excludeId));
+  return mapRelatedPrints(
+    (data as RelatedCardRow[]).filter((row) => row.id !== excludeId),
+  );
 }
 
 async function getCameosByGvId(
@@ -498,7 +564,9 @@ async function getCameosByGvId(
 
   const { data, error } = await supabase
     .from("v_card_print_cameos_public_v1")
-    .select("cameo_subject_type,cameo_subject_name,pokemon_ndex,notes_raw,cameo_qualifiers,source_name")
+    .select(
+      "cameo_subject_type,cameo_subject_name,pokemon_ndex,notes_raw,cameo_qualifiers,source_name",
+    )
     .eq("gv_id", normalizedGvId)
     .order("cameo_subject_type", { ascending: true })
     .order("cameo_subject_name", { ascending: true });
@@ -512,7 +580,10 @@ async function getCameosByGvId(
     .map((row): CardCameo | null => {
       const subjectType = row.cameo_subject_type?.trim();
       const subjectName = row.cameo_subject_name?.trim();
-      if ((subjectType !== "pokemon" && subjectType !== "trainer") || !subjectName) {
+      if (
+        (subjectType !== "pokemon" && subjectType !== "trainer") ||
+        !subjectName
+      ) {
         return null;
       }
       const key = `${subjectType}:${subjectName.toLowerCase()}:${row.pokemon_ndex ?? ""}`;
@@ -526,7 +597,10 @@ async function getCameosByGvId(
         pokemon_ndex: row.pokemon_ndex?.trim() || undefined,
         notes_raw: row.notes_raw?.trim() || undefined,
         cameo_qualifiers: Array.isArray(row.cameo_qualifiers)
-          ? row.cameo_qualifiers.filter((value): value is string => typeof value === "string" && value.trim().length > 0)
+          ? row.cameo_qualifiers.filter(
+              (value): value is string =>
+                typeof value === "string" && value.trim().length > 0,
+            )
           : undefined,
         source_name: row.source_name?.trim() || undefined,
       } satisfies CardCameo;
@@ -540,10 +614,11 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   gv_id: string,
 ): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
-  const [includePrintingPublicIdentity, includeChildPrintingImageFields] = await Promise.all([
-    hasChildPrintingPublicIdentityColumn(supabase),
-    hasChildPrintingImageStorageColumns(supabase),
-  ]);
+  const [includePrintingPublicIdentity, includeChildPrintingImageFields] =
+    await Promise.all([
+      hasChildPrintingPublicIdentityColumn(supabase),
+      hasChildPrintingImageStorageColumns(supabase),
+    ]);
   const cardPrintingsSelect = getCardPrintingsSelectColumns(
     includePrintingPublicIdentity,
     includeChildPrintingImageFields,
@@ -592,31 +667,42 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     return null;
   }
 
-  const row = pickResolvedPublicGvIdRow(data as unknown as PublicCardRow[], gv_id);
+  const row = pickResolvedPublicGvIdRow(
+    data as unknown as PublicCardRow[],
+    gv_id,
+  );
   if (!row) {
     return null;
   }
   assertCanonicalCardRouteRow(row, gv_id);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const [fallbackSet, relatedPrints, imageFields, activeIdentity, cameos] = await Promise.all([
-    getSetDetailsByCode(row.set_code),
-    getRelatedPrintsByName(supabase, row.name, row.id),
-    resolveCardImageFieldsV1(row),
-    getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
-    getCameosByGvId(supabase, row.gv_id),
-  ]);
+  const [fallbackSet, relatedPrints, imageFields, activeIdentity, cameos] =
+    await Promise.all([
+      getSetDetailsByCode(row.set_code),
+      getRelatedPrintsByName(supabase, row.name, row.id),
+      resolveCardImageFieldsV1(row),
+      getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
+      getCameosByGvId(supabase, row.gv_id),
+    ]);
   // Pricing authority note:
   // Current active engine = v_grookai_value_v1_1
   // App-facing read surface = v_best_prices_all_gv_v1
   // Keep product reads on the compatibility surface during stabilization.
-  const pricingByCardId = row.id ? await getPublicPricingByCardIds(supabase, [row.id]) : new Map();
+  const pricingByCardId = row.id
+    ? await getPublicPricingByCardIds(supabase, [row.id])
+    : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
   const traitRecord = mapTraitRecord(row.card_print_traits);
   const printings = await mapCardPrintings(row.card_printings);
-  const setName = setRecord?.name ?? fallbackSet.name;
+  const setName = normalizePublicSetDisplayName(
+    setRecord?.name ?? fallbackSet.name,
+  );
   const printedTotal =
-    typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
-  const printedSetAbbrev = setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev;
+    typeof setRecord?.printed_total === "number"
+      ? setRecord.printed_total
+      : fallbackSet.printedTotal;
+  const printedSetAbbrev =
+    setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev;
   const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
 
   return {
@@ -658,7 +744,8 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     supertype: traitRecord?.supertype ?? undefined,
     card_category: traitRecord?.card_category ?? undefined,
     variant_key: row.variant_key?.trim() || undefined,
-    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+    printed_identity_modifier:
+      row.printed_identity_modifier?.trim() || undefined,
     set_identity_model: setRecord?.identity_model?.trim() || undefined,
     variants: row.variants ?? undefined,
     printings,
@@ -668,7 +755,9 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   };
 });
 
-export async function getStaticCardParams(limit = 100): Promise<Array<{ gv_id: string }>> {
+export async function getStaticCardParams(
+  limit = 100,
+): Promise<Array<{ gv_id: string }>> {
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
