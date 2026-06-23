@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T04:25:31.381Z",
+  "generated_at": "2026-06-23T04:31:15.350Z",
   "base_url": "http://127.0.0.1:3087",
   "results": [
     {
@@ -92,7 +92,7 @@
       "id": "set_trainer_kit_dp_lucario_residual",
       "path": "/sets/tk-dp-l",
       "status": 200,
-      "body_length": 266326,
+      "body_length": 279806,
       "expected_signals": [
         "DP Trainer Kit (Lucario)",
         "static.tcgcollector.com/content/images/"
@@ -157,6 +157,6 @@
     }
   ],
   "failures": [],
-  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 245ms\n[vault:instance-media] signed url create failed {\n  path: 'warehouse-derived/image-truth-v1/img02a-missing-display-representative/tk-dp-l/3d8a02b1-6050-41ba-bd90-184d4d8429af/725ef5b26228d7849f2e1f94.jpg',\n  error: eu [StorageApiError]: Service Unavailable\n      at C:\\grookai_vault\\apps\\web\\.next\\server\\chunks\\7732.js:24:18334\n      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {\n    __isStorageError: true,\n    namespace: 'storage',\n    status: 503,\n    statusCode: 503\n  }\n}\n",
-  "proof_hash": "f191338876a9adb89717270e2914c79cb85fbfaff3f8e116adefac2ccbab5b14"
+  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 246ms\n",
+  "proof_hash": "9456699a6cc4a14c71d6549e8770e20b61b9e31e3ab3f5b6abb5052713ace35b"
 }
