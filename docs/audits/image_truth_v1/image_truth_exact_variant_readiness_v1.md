@@ -1,15 +1,15 @@
 # Image Truth Exact Variant Readiness V1
 
-Generated: 2026-06-18T19:23:22.328Z
+Generated: 2026-06-23T04:27:58.829Z
 
 This is read-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or change image confidence.
 
 ## Summary
 
-- exact_variant_backlog_rows: 14431
+- exact_variant_backlog_rows: 14856
 - exact_asset_probe_candidate_rows: 6
-- representative_only_or_blocked_rows: 14425
-- rows_without_source_evidence: 1636
+- representative_only_or_blocked_rows: 14850
+- rows_without_source_evidence: 1885
 - db_writes_performed: false
 - migrations_created: false
 
@@ -17,12 +17,12 @@ This is read-only. It does not upload images, update database rows, create migra
 
 | finish | rows |
 | --- | --- |
-| reverse | 13372 |
-| cosmos | 324 |
+| reverse | 13494 |
+| cosmos | 325 |
+| holo | 305 |
+| normal | 303 |
 | pokeball | 230 |
-| holo | 184 |
 | cracked_ice | 122 |
-| normal | 122 |
 | masterball | 67 |
 | rocket_reverse | 10 |
 
@@ -30,10 +30,10 @@ This is read-only. It does not upload images, update database rows, create migra
 
 | lane | rows |
 | --- | --- |
-| representative_only_unless_rendered_overlay_captured | 12340 |
-| no_source_evidence_available | 1636 |
-| source_evidence_available_no_exact_asset_extractor | 388 |
-| representative_only_unless_visual_manually_verified | 61 |
+| representative_only_unless_rendered_overlay_captured | 12497 |
+| no_source_evidence_available | 1885 |
+| source_evidence_available_no_exact_asset_extractor | 392 |
+| representative_only_unless_visual_manually_verified | 76 |
 | exact_asset_probe_candidate | 6 |
 
 ## PriceCharting Exact Probe Candidates
@@ -59,11 +59,16 @@ These rows have display coverage but no approved exact visual source. They shoul
 | no_source_evidence_available | base1 | 88 | Professor Oak | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base1 | 58 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base1 | 58 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | base1 | 58 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base1 | 73 | Impostor Professor Oak | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base1 | 58 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base1 | 58 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | base2 | 60 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | base3 | 50 | Kabuto | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base4 | 102 | Imposter Professor Oak | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base4 | 116 | Professor Oak | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | base5 | 32 | Dark Charmeleon | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | base5 | 19 | Dark Arbok | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | base6 | 105 | The Boss's Way | reverse | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | basep | 52 | Ho-oh | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | basep | 2 | Electabuzz | normal | No preserved source evidence matched set + number + name + finish. |
@@ -79,22 +84,17 @@ These rows have display coverage but no approved exact visual source. They shoul
 | no_source_evidence_available | basep | 4 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | basep | 5 | Dragonite | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | basep | 4 | Pikachu | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw1 | 27 | Oshawott | holo | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | bw1 | 101 | Professor Juniper | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw1 | 107 | Water Energy | reverse | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw1 | 25 | Darmanitan | holo | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | bw1 | 107 | Water Energy | reverse | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | bw10 | 84 | Professor Juniper | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | bw10 | 14 | Squirtle | normal | No preserved source evidence matched set + number + name + finish. |
 | no_source_evidence_available | bw11 | 17 | Charmander | normal | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bw5 | 1 | Bulbasaur | normal | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bw5 | 98 | Professor Juniper | normal | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bw6 | 118 | Blend Energy WaterLightningFightingMetal | reverse | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bw6 | 117 | Blend Energy GrassFirePsychicDarkness | reverse | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bwp | BW51 | Crobat | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bwp | BW40 | Volcarona | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | bwp | BW48 | Altaria | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | cel25 | 23 | Professor's Research (Professor Oak) | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | cel25 | 24 | Professor's Research (Professor Oak) | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | cel25c | 73 | Imposter Professor Oak | holo | No preserved source evidence matched set + number + name + finish. |
-| no_source_evidence_available | col1 | 76 | Cheerleader's Cheer | reverse | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw2 | 53 | Gigalith | holo | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw3 | 80 | Escavalier | normal | No preserved source evidence matched set + number + name + finish. |
+| no_source_evidence_available | bw3 | 91 | Eviolite | holo | No preserved source evidence matched set + number + name + finish. |
 
 ## Honesty Rule
 

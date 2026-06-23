@@ -1,6 +1,6 @@
 # Image Truth IMG-16A Exact Photo Acquisition Plan V1
 
-Generated: 2026-06-23T04:02:57.967Z
+Generated: 2026-06-23T04:27:57.165Z
 
 This is audit-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or promote image confidence.
 
@@ -17,7 +17,7 @@ This is audit-only. It does not upload images, update database rows, create migr
 - storage_uploads_performed: false
 - migrations_created: false
 - parent_overwrite_allowed: false
-- fingerprint: b23d3ad57531194b560f41b042f2cd870a22a68dee55ebdea61bbb4ae8c8f421
+- fingerprint: 5ade18bf4d9fc4055b249ca13e347ca3f95b05670cb83df1b803a0132b7a3805
 
 ## Strategy Buckets
 

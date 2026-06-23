@@ -1,12 +1,12 @@
 # Image Truth Exact Variant Source Lanes V1
 
-Generated: 2026-06-18T19:23:22.328Z
+Generated: 2026-06-23T04:27:58.829Z
 
 This is read-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or change image confidence.
 
 ## Summary
 
-- exact_variant_backlog_rows: 14431
+- exact_variant_backlog_rows: 14856
 - db_writes_performed: false
 - migrations_created: false
 - parent_overwrite_allowed: false
@@ -15,10 +15,10 @@ This is read-only. It does not upload images, update database rows, create migra
 
 | lane | rows |
 | --- | --- |
-| representative_only_unless_rendered_overlay_captured | 12340 |
-| no_source_evidence_available | 1636 |
-| source_evidence_available_no_exact_asset_extractor | 388 |
-| representative_only_unless_visual_manually_verified | 61 |
+| representative_only_unless_rendered_overlay_captured | 12497 |
+| no_source_evidence_available | 1885 |
+| source_evidence_available_no_exact_asset_extractor | 392 |
+| representative_only_unless_visual_manually_verified | 76 |
 | exact_asset_probe_candidate | 6 |
 
 ## Source Evidence With No Exact Extractor
@@ -128,8 +128,11 @@ These rows have source-associated images that may be useful, but require visual/
 | sv03.5 | 161 | Giovanni's Charisma | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/516723/pokemon-sv-scarlet-and-violet-151-giovannis-charisma-161-165 |
 | ex7 | 4 | Dark Electrode | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84591/pokemon-team-rocket-returns-dark-electrode |
 | ex7 | 10 | Dark Steelix | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84658/pokemon-team-rocket-returns-dark-steelix |
+| swsh6 | 146 | Melony | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241847/pokemon-swsh06-chilling-reign-melony |
 | sm75 | 20 | Gyarados | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175382/pokemon-dragon-majesty-gyarados |
+| dv1 | 9 | Latias | holo | cardtrader_stamped_finish | https://www.cardtrader.com/en/cards/114420-latias-stamp-holo-promo-009-020-dragon-vault |
 | sm75 | 3 | Charizard | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175270/pokemon-dragon-majesty-charizard |
+| swsh6 | 145 | Klara | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241844/pokemon-swsh06-chilling-reign-klara |
 | ex7 | 86 | Rocket's Admin. | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88767/pokemon-team-rocket-returns-rockets-admin |
 | dp7 | 87 | Marley's Request | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/87223/pokemon-stormfront-marleys-request |
 | sm75 | 40 | Altaria | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175459/pokemon-dragon-majesty-altaria |
@@ -138,22 +141,32 @@ These rows have source-associated images that may be useful, but require visual/
 | sv03 | 192 | Pokémon League Headquarters | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/509784/pokemon-sv03-obsidian-flames-pokemon-league-headquarters |
 | swsh6 | 78 | Galarian Farfetch'd | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241743/pokemon-swsh06-chilling-reign-galarian-farfetchd |
 | sm75 | 58 | Blaine's Last Stand | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175488/pokemon-dragon-majesty-blaines-last-stand |
+| swsh6 | 130 | Avery | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241814/pokemon-swsh06-chilling-reign-avery |
+| xy12 | 11 | Charizard | holo | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/124026/pokemon-xy-evolutions-charizard |
 | sve | 007 | Basic Darkness Energy | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/475431/pokemon-sve-scarlet-and-violet-energies-basic-darkness-energy-007 |
+| swsh6 | 150 | Peony | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241855/pokemon-swsh06-chilling-reign-peony |
+| swsh6 | 55 | Gastly | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241714/pokemon-swsh06-chilling-reign-gastly |
 | sm75 | 54 | Kommo-o | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175484/pokemon-dragon-majesty-kommo-o |
 | swsh6 | 144 | Karen's Conviction | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241841/pokemon-swsh06-chilling-reign-karens-conviction |
+| swsh6 | 43 | Inteleon | holo | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241696/pokemon-swsh06-chilling-reign-inteleon |
 | ex7 | 13 | Piloswine | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88117/pokemon-team-rocket-returns-piloswine |
 | sv06.5 | 057 | Colress's Tenacity | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/560368/pokemon-sv-shrouded-fable-colresss-tenacity-057-064 |
 | ex7 | 3 | Dark Crobat | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84577/pokemon-team-rocket-returns-dark-crobat |
+| swsh6 | 149 | Peonia | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241852/pokemon-swsh06-chilling-reign-peonia |
 | ex7 | 90 | Rocket's Tricky Gym | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88798/pokemon-team-rocket-returns-rockets-tricky-gym |
 | ex7 | 14 | Togetic | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/89942/pokemon-team-rocket-returns-togetic |
 | sv06.5 | 059 | Janine's Secret Art | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/560370/pokemon-sv-shrouded-fable-janines-secret-art-059-064 |
 | sv6pt5 | 64 | Xerosic's Machinations | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/560375/pokemon-sv-shrouded-fable-xerosics-machinations-064-064 |
 | ex7 | 87 | Rocket's Hideout | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88771/pokemon-team-rocket-returns-rockets-hideout |
+| swsh6 | 56 | Haunter | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241715/pokemon-swsh06-chilling-reign-haunter |
+| swsh6 | 136 | Echoing Horn | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241828/pokemon-swsh06-chilling-reign-echoing-horn |
 | sv6pt5 | 59 | Janine's Secret Art | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/560370/pokemon-sv-shrouded-fable-janines-secret-art-059-064 |
 | sve | 008 | Basic Metal Energy | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/475432/pokemon-sve-scarlet-and-violet-energies-basic-metal-energy-008 |
+| swsh6 | 159 | Spiral Energy | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241870/pokemon-swsh06-chilling-reign-spiral-energy |
 | ex7 | 12 | Kingdra | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/86445/pokemon-team-rocket-returns-kingdra |
 | xy6 | 92 | Trainers' Mail | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/98128/pokemon-xy-roaring-skies-trainers-mail |
 | swsh2 | 154 | Boss's Orders (Giovanni) | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/213255/pokemon-swsh02-rebel-clash-bosss-orders |
+| xy12 | 59 | Machamp | holo | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/124072/pokemon-xy-evolutions-machamp |
 | dp7 | 46 | Piloswine | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88119/pokemon-stormfront-piloswine |
 | sm75 | 24 | Feraligatr | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175386/pokemon-dragon-majesty-feraligatr |
 | ex7 | 89 | Rocket's Poké Ball | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88784/pokemon-team-rocket-returns-rockets-poke-ball |
@@ -169,9 +182,11 @@ These rows have source-associated images that may be useful, but require visual/
 | ex7 | 11 | Jumpluff | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/86365/pokemon-team-rocket-returns-jumpluff |
 | sm75 | 33 | Hydreigon | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/175431/pokemon-dragon-majesty-hydreigon |
 | xy12 | 80 | Misty's Determination | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/124093/pokemon-xy-evolutions-mistys-determination |
+| xy12 | 34 | Gyarados | holo | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/124047/pokemon-xy-evolutions-gyarados |
 | swsh6 | 79 | Galarian Sirfetch'd | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241744/pokemon-swsh06-chilling-reign-galarian-sirfetchd |
 | ex7 | 8 | Dark Octillery | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84633/pokemon-team-rocket-returns-dark-octillery |
 | sv03.5 | 158 | Daisy's Help | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/516720/pokemon-sv-scarlet-and-violet-151-daisys-help-158-165 |
+| swsh6 | 157 | Impact Energy | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241868/pokemon-swsh06-chilling-reign-impact-energy |
 | ex7 | 88 | Rocket's Mission | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88780/pokemon-team-rocket-returns-rockets-mission |
 | ex7 | 9 | Dark Slowking | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84657/pokemon-team-rocket-returns-dark-slowking |
 | sve | 006 | Basic Fighting Energy | normal | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/475430/pokemon-sve-scarlet-and-violet-energies-basic-fighting-energy-006 |
@@ -186,7 +201,9 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | pl2 | 92 | Lucian's Assignment | reverse |
 | me02.5 | 156 | Noibat | pokeball |
 | me02.5 | 156 | Noibat | reverse |
+| swsh10 | 59 | Mismagius | holo |
 | sv8pt5 | 105 | Crispin | pokeball |
+| sv02 | 181 | Fighting Au Lait | normal |
 | me04 | 084 | Bubbly Water Energy | reverse |
 | ex15 | 21 | Quagsire δ | reverse |
 | ex12 | 4 | Delcatty | reverse |
@@ -197,6 +214,7 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | svp | 021 | Murkrow | reverse |
 | ex11 | 13 | Rayquaza δ | reverse |
 | svp | 006 | Pawmot | reverse |
+| hgss1 | 98 | Pokémon Communication | holo |
 | me02.5 | 082 | Togekiss | pokeball |
 | me02.5 | 082 | Togekiss | reverse |
 | sv05 | 024 | Rabsca | cosmos |
@@ -204,6 +222,7 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | sv8pt5 | 025 | Glaceon | pokeball |
 | svp | 014 | Koraidon | reverse |
 | sv10 | 121 | Team Rocket's Golbat | reverse |
+| swsh11 | 160 | Lake Acuity | normal |
 | sv8pt5 | 83 | Buneary | masterball |
 | sv8pt5 | 83 | Buneary | pokeball |
 | sv10 | 36 | Ethan's Magcargo | reverse |
@@ -227,12 +246,16 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | me02.5 | 124 | Haunter | pokeball |
 | me02.5 | 124 | Haunter | reverse |
 | sv08.5 | 027 | Wellspring Mask Ogerpon ex | reverse |
+| swsh6 | 87 | Lycanroc | normal |
 | sv10.5b | 085 | Professor's Research | normal |
 | sv10.5b | 085 | Professor's Research | reverse |
 | ex12 | 27 | Torkoal | reverse |
 | sv02 | 71 | Luxray | cosmos |
+| swsh4 | 76 | Whimsicott | normal |
 | svp | 074 | Charizard ex | reverse |
 | ex15 | 6 | Nidoking δ | reverse |
+| sv10 | 182 | Team Rocket's Energy | normal |
+| sv09 | 147 | Hop's Bag | normal |
 | me02.5 | 020 | Charmander | cosmos |
 | me02.5 | 020 | Charmander | pokeball |
 | me02.5 | 020 | Charmander | reverse |
@@ -240,25 +263,17 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | me02.5 | 093 | Swirlix | reverse |
 | pl2 | 102 | Upper Energy | holo |
 | xy4 | 101 | Professor Sycamore | normal |
+| swsh1 | 158 | Big Charm | normal |
 | sv8pt5 | 69 | Duraludon | masterball |
 | sv8pt5 | 69 | Duraludon | pokeball |
 | sv8pt5 | 22 | Vaporeon | masterball |
 | sv8pt5 | 22 | Vaporeon | pokeball |
 | me02 | 003 | Vileplume | cosmos |
+| ex5 | 41 | Machoke | normal |
 | ex10 | 97 | Metal Energy | reverse |
 | me01 | 132 | Wally's Compassion | reverse |
 | me02.5 | 163 | Larry's Dunsparce | pokeball |
 | me02.5 | 163 | Larry's Dunsparce | reverse |
+| swsh7 | 116 | Kyurem | normal |
 | ex15 | 5 | Milotic δ | reverse |
-| svp | 081 | Skeledirge ex | reverse |
-| sve | 10 | Basic Fire Energy | reverse |
-| ex4 | 29 | Team Aqua's Manectric | reverse |
-| sv10 | 96 | Team Rocket's Tyranitar | reverse |
-| xy10 | 111a | Shauna | reverse |
-| basep | 52 | Ho-oh | normal |
-| pl2 | RT6 | Charon's Choice | reverse |
-| ex11 | 104 | Holon Energy FF | reverse |
-| ex16 | 11 | Machamp | reverse |
-| ex15 | 20 | Mantine δ | reverse |
-| sm5 | 125a | Lillie | reverse |
-| swsh10.5 | 078 | Professor's Research | holo |
+| sm6 | 51 | Malamar | holo |

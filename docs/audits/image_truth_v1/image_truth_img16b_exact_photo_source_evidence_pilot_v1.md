@@ -1,6 +1,6 @@
 # Image Truth IMG-16B Exact Photo Source Evidence Pilot V1
 
-Generated: 2026-06-15T04:39:05.238Z
+Generated: 2026-06-23T04:28:33.940Z
 
 This is audit-only. It fetches source pages and writes reports only. It does not upload images, update DB rows, create migrations, clean up, quarantine, or promote image confidence.
 
@@ -14,7 +14,7 @@ This is audit-only. It fetches source pages and writes reports only. It does not
 - storage_uploads_performed: false
 - migrations_created: false
 - parent_overwrite_allowed: false
-- fingerprint: c0af897c3402fb53e7374908db48e86896130811445e64c0da98609b648e653c
+- fingerprint: c467339fef83d29bfce119deeca1b1103369fbd72c1e23a3586254250c48c5a9
 
 ## Status Counts
 

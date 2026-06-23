@@ -1,9 +1,9 @@
 {
   "package_id": "IMG-19A-IMAGE-SURFACE-PARITY-AUDIT",
   "mode": "read_only_audit",
-  "generated_at": "2026-06-23T02:48:43.301Z",
+  "generated_at": "2026-06-23T04:27:57.669Z",
   "summary": {
-    "dex_parent_missing_child_has_image_count": 255,
+    "dex_parent_missing_child_has_image_count": 397,
     "dex_known_broken_tcgdex_reference_count": 64,
     "family_summary": [
       {
@@ -22,13 +22,13 @@
         "family_name": "mep_black_star_promos",
         "parent_rows": 101,
         "parent_rows_without_image": 85,
-        "parent_rows_without_image_but_child_image_exists": 72
+        "parent_rows_without_image_but_child_image_exists": 76
       },
       {
         "family_name": "trainer_kit",
         "parent_rows": 406,
         "parent_rows_without_image": 270,
-        "parent_rows_without_image_but_child_image_exists": 0
+        "parent_rows_without_image_but_child_image_exists": 270
       }
     ],
     "source_signals": {
@@ -526,5 +526,5 @@
     "write_scope": "none",
     "expected_runtime_fix": "product surfaces use resolveCardImageFieldsV1 and shared child display fallback; self-hosting remains a source/storage decision, not a bypass for image truth status"
   },
-  "proof_hash": "2f068468aaa127d9b68a2ffcd2f68cd8131ee67ef81f82352a7aeba06064e750"
+  "proof_hash": "bf0787257d93613f1681aecabe439a335de4535d056185c7f8398f21cb9a5511"
 }

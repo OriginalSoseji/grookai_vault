@@ -1,9 +1,9 @@
 # IMG-19A-IMAGE-SURFACE-PARITY-AUDIT
 
-- Generated: 2026-06-23T02:48:43.301Z
+- Generated: 2026-06-23T04:27:57.669Z
 - Mode: read_only_audit
-- Proof hash: `2f068468aaa127d9b68a2ffcd2f68cd8131ee67ef81f82352a7aeba06064e750`
-- Dex parent-missing/child-image rows: 255
+- Proof hash: `bf0787257d93613f1681aecabe439a335de4535d056185c7f8398f21cb9a5511`
+- Dex parent-missing/child-image rows: 397
 - Dex known broken TCGdex reference rows: 64
 
 ## Family Summary
@@ -12,8 +12,8 @@
 | --- | --- | --- | --- |
 | base_set_print_run_lanes | 304 | 304 | 0 |
 | mcdonalds_2021 | 25 | 0 | 0 |
-| mep_black_star_promos | 101 | 85 | 72 |
-| trainer_kit | 406 | 270 | 0 |
+| mep_black_star_promos | 101 | 85 | 76 |
+| trainer_kit | 406 | 270 | 270 |
 
 ## Source Signals
 
