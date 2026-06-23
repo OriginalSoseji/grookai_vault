@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T17:16:42.553Z",
+  "generated_at": "2026-06-23T04:18:13.094Z",
   "audit_only": true,
   "db_writes_performed": false,
   "storage_uploads_performed": false,
@@ -9,18 +9,17 @@
   "target_table": "card_printings",
   "parent_overwrite_allowed": false,
   "source_report": "docs\\audits\\image_truth_v1\\image_truth_mep_tcgcsv_finish_image_audit_v1.json",
-  "target_rows": 3,
+  "target_rows": 2,
   "summary": {
     "by_governance_status": {
-      "non_holo_or_modifier_governance_required": 2,
-      "finish_governance_required": 1
+      "non_holo_or_modifier_governance_required": 2
     },
     "mutation_safe_now": false
   },
   "rows": [
     {
-      "card_printing_id": "d771059f-c418-4ded-86a3-8316c7ed3670",
-      "card_print_id": "e974d152-fefe-4a56-ad6a-1baced7713a9",
+      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
+      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
       "set_code": "mep",
       "set_name": "MEP Black Star Promos",
       "number": "064",
@@ -76,9 +75,24 @@
         "stamped"
       ],
       "has_image_by_finish": {
-        "holo": false
+        "holo": true
       },
       "db_rows": [
+        {
+          "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
+          "set_code": "mep",
+          "number": "064",
+          "card_name": "Serperior",
+          "printed_identity_modifier": null,
+          "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
+          "finish_key": "holo",
+          "image_source": null,
+          "image_path": null,
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": null,
+          "image_note": "Child printing completed from exact special-parent finish evidence: single_exact_finish_claim"
+        },
         {
           "card_print_id": "e974d152-fefe-4a56-ad6a-1baced7713a9",
           "set_code": "mep",
@@ -87,27 +101,12 @@
           "printed_identity_modifier": null,
           "card_printing_id": "d771059f-c418-4ded-86a3-8316c7ed3670",
           "finish_key": "holo",
-          "image_source": null,
-          "image_path": null,
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img11a-mep-official-final-display-representative/mep/d771059f-c418-4ded-86a3-8316c7ed3670/a06d2d6d66d95e8854f79b7c.png",
           "image_url": null,
           "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
-        },
-        {
-          "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
-          "set_code": "mep",
-          "number": "064",
-          "card_name": "Serperior",
-          "printed_identity_modifier": null,
-          "card_printing_id": null,
-          "finish_key": null,
-          "image_source": null,
-          "image_path": null,
-          "image_url": null,
-          "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
+          "image_status": "representative_shared",
+          "image_note": "IMG-11A-MEP-OFFICIAL-FINAL-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:official_pokemon_card_page:https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/64/"
         }
       ],
       "master_index_rows": [
@@ -182,8 +181,8 @@
       ]
     },
     {
-      "card_printing_id": "249f318b-94f9-478c-bc9d-caee9ab3851f",
-      "card_print_id": "54ca1be2-df3a-4b81-8adc-7b5923fc3dfa",
+      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
+      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
       "set_code": "mep",
       "set_name": "MEP Black Star Promos",
       "number": "067",
@@ -239,9 +238,24 @@
         "stamped"
       ],
       "has_image_by_finish": {
-        "holo": false
+        "holo": true
       },
       "db_rows": [
+        {
+          "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
+          "set_code": "mep",
+          "number": "067",
+          "card_name": "Doublade",
+          "printed_identity_modifier": null,
+          "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
+          "finish_key": "holo",
+          "image_source": null,
+          "image_path": null,
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": null,
+          "image_note": "Child printing completed from exact special-parent finish evidence: single_exact_finish_claim"
+        },
         {
           "card_print_id": "54ca1be2-df3a-4b81-8adc-7b5923fc3dfa",
           "set_code": "mep",
@@ -250,27 +264,12 @@
           "printed_identity_modifier": null,
           "card_printing_id": "249f318b-94f9-478c-bc9d-caee9ab3851f",
           "finish_key": "holo",
-          "image_source": null,
-          "image_path": null,
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img11a-mep-official-final-display-representative/mep/249f318b-94f9-478c-bc9d-caee9ab3851f/9e6c10e7703e6a8dfdbbf225.png",
           "image_url": null,
           "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
-        },
-        {
-          "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
-          "set_code": "mep",
-          "number": "067",
-          "card_name": "Doublade",
-          "printed_identity_modifier": null,
-          "card_printing_id": null,
-          "finish_key": null,
-          "image_source": null,
-          "image_path": null,
-          "image_url": null,
-          "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
+          "image_status": "representative_shared",
+          "image_note": "IMG-11A-MEP-OFFICIAL-FINAL-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:official_pokemon_card_page:https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/67/"
         }
       ],
       "master_index_rows": [
@@ -340,149 +339,6 @@
           "evidence_urls": [
             "https://bulbapedia.bulbagarden.net/wiki/Doublade_(Perfect_Order_57)",
             "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
-          ]
-        }
-      ]
-    },
-    {
-      "card_printing_id": "e0521254-0ac6-4731-b6ef-2ae7cfdec997",
-      "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "number": "069",
-      "card_name": "Chikorita",
-      "finish_key": "holo",
-      "status": "finish_label_conflict_cosmos_vs_holo",
-      "reason": "Live TCGCSV/TCGplayer product title says Cosmos Holo while the current missing-display target is finish_key=holo.",
-      "selected_product_id": null,
-      "selected_product_name": null,
-      "selected_source_url": null,
-      "selected_image_url": null,
-      "selected_image_exists": null,
-      "matched_products": [
-        {
-          "product_id": 686342,
-          "name": "Chikorita (Cosmos Holo)",
-          "source_url": "https://www.tcgplayer.com/product/686342/pokemon-me-mega-evolution-promo-chikorita-cosmos-holo",
-          "number": "69",
-          "price_subtypes": [
-            "Holofoil"
-          ],
-          "modifier": null,
-          "has_cosmos_label": true,
-          "image_urls": [
-            "https://tcgplayer-cdn.tcgplayer.com/product/686342_200w.jpg",
-            "https://product-images.tcgplayer.com/686342.jpg"
-          ]
-        }
-      ],
-      "governance_status": "finish_governance_required",
-      "recommended_next_step": "Do not image-fill the current holo row. Determine whether the source-backed canonical child should be cosmos, whether holo is an alias/display label, or whether both facts exist.",
-      "mutation_safe_now": false,
-      "child_finishes_in_db": [
-        "cosmos",
-        "holo"
-      ],
-      "master_index_finishes": [
-        "cosmos",
-        "holo"
-      ],
-      "has_image_by_finish": {
-        "cosmos": false,
-        "holo": false
-      },
-      "db_rows": [
-        {
-          "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
-          "set_code": "mep",
-          "number": "069",
-          "card_name": "Chikorita",
-          "printed_identity_modifier": null,
-          "card_printing_id": "8c4676e9-100d-4cf1-bee5-7fcbc475eade",
-          "finish_key": "cosmos",
-          "image_source": null,
-          "image_path": null,
-          "image_url": null,
-          "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
-        },
-        {
-          "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
-          "set_code": "mep",
-          "number": "069",
-          "card_name": "Chikorita",
-          "printed_identity_modifier": null,
-          "card_printing_id": "e0521254-0ac6-4731-b6ef-2ae7cfdec997",
-          "finish_key": "holo",
-          "image_source": null,
-          "image_path": null,
-          "image_url": null,
-          "image_alt_url": null,
-          "image_status": null,
-          "image_note": null
-        }
-      ],
-      "master_index_rows": [
-        {
-          "fact_type": "printing_finish",
-          "key": "mep black star promos|69|chikorita|cosmos",
-          "status": "master_verified",
-          "set_key": "mep",
-          "set_name": "MEP Black Star Promos",
-          "card_number": "69",
-          "card_name": "Chikorita",
-          "finish_key": "cosmos",
-          "rarity_values": [
-            "Promo"
-          ],
-          "source_count": 2,
-          "sources": [
-            "cardtrader_blueprint_index",
-            "thepricedex_price_list"
-          ],
-          "source_authorities": [
-            "cardtrader.com",
-            "thepricedex.com"
-          ],
-          "source_kinds": [
-            "marketplace_checklist"
-          ],
-          "evidence_count": 2,
-          "evidence_urls": [
-            "https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos",
-            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
-          ]
-        },
-        {
-          "fact_type": "printing_finish",
-          "key": "mep black star promos|69|chikorita|holo",
-          "status": "master_verified",
-          "set_key": "mep",
-          "set_name": "MEP Black Star Promos",
-          "card_number": "069",
-          "card_name": "Chikorita",
-          "finish_key": "holo",
-          "rarity_values": [
-            "None"
-          ],
-          "source_count": 2,
-          "sources": [
-            "reverseholo_set_checklist",
-            "tcgdex"
-          ],
-          "source_authorities": [
-            "api.tcgdex.net",
-            "reverseholo.app"
-          ],
-          "source_kinds": [
-            "collector_reference",
-            "structured_api"
-          ],
-          "evidence_count": 2,
-          "evidence_urls": [
-            "https://api.tcgdex.net/v2/en/cards/mep-069",
-            "https://reverseholo.app/sets/mep"
           ]
         }
       ]

@@ -4,8 +4,8 @@ This is read-only. It does not write to the DB, upload images, create migrations
 
 ## Summary
 
-- target_rows: 3
-- finish_governance_required: 1
+- target_rows: 2
+- finish_governance_required: 0
 - non_holo_or_modifier_governance_required: 2
 - mutation_safe_now: false
 
@@ -15,7 +15,6 @@ This is read-only. It does not write to the DB, upload images, create migrations
 | --- | --- | --- | --- | --- | --- | --- |
 | non_holo_or_modifier_governance_required | 064 | Serperior | holo | holo | holo, stamped | Serperior - 064; Serperior - 064 [Staff] |
 | non_holo_or_modifier_governance_required | 067 | Doublade | holo | holo | holo, stamped | Doublade - 067; Doublade - 067 [Staff] |
-| finish_governance_required | 069 | Chikorita | holo | cosmos, holo | cosmos, holo | Chikorita (Cosmos Holo) |
 
 ## Rule
 
