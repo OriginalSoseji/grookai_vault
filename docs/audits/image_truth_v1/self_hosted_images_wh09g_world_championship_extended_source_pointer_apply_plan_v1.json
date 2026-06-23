@@ -1,0 +1,69 @@
+{
+  "package_id": "IMG-HOST-WH-09G-WORLD-CHAMPIONSHIP-EXTENDED-SOURCE-POINTER-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T23:17:34.834Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-09F-WORLD-CHAMPIONSHIP-EXTENDED-SOURCE-POINTER-DRY-RUN",
+  "source_dry_run_fingerprint": "8f78cd09240ed49fa0344404b784b66e96f23260b36b399de90cfde5a3418220",
+  "actual_plan_file_hash": "9c58a0ccae57b2ab8ddf191fad40497a73959c2c5d3ee3d373cff1e618ae8773",
+  "approved_plan_file_hash": "9c58a0ccae57b2ab8ddf191fad40497a73959c2c5d3ee3d373cff1e618ae8773",
+  "metadata_pointer_update_count": 29,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "set_codes": {
+    "wcd2008-empotech": 1,
+    "wcd2009-stallgon": 1,
+    "wcd2011-the-truth": 1,
+    "wcd2013-american-gothic": 1,
+    "wcd2013-anguille-sous-roche": 1,
+    "wcd2014-plasma-power": 1,
+    "wcd2014-trevgor": 1,
+    "wcd2017-golisodor": 1,
+    "wcd2017-ice-path-ftw": 3,
+    "wcd2017-samurai-sniper": 1,
+    "wcd2018-garbanette": 1,
+    "wcd2023-colorless-lugia": 1,
+    "wcd2023-lost-box-kyogre": 3,
+    "wcd2023-psychic-elegance": 2,
+    "wcd2024-ancient-toolbox": 2,
+    "wcd2025-flutter-devo-gardevoir": 3,
+    "wcd2025-joltdengo": 2,
+    "wcd2025-pult-bomb": 3
+  },
+  "deck_years": {
+    "2008": 1,
+    "2009": 1,
+    "2011": 1,
+    "2013": 2,
+    "2014": 2,
+    "2017": 5,
+    "2018": 1,
+    "2023": 6,
+    "2024": 2,
+    "2025": 8
+  },
+  "proposed_image_sources": {
+    "identity": 29
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 29
+  },
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "child_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "8f78cd09240ed49fa0344404b784b66e96f23260b36b399de90cfde5a3418220",
+  "sql_hash": "328ed9b9fc6e33963223cef1d257a4b25b2a02f9f3b3a308c891fed097cb489e"
+}
