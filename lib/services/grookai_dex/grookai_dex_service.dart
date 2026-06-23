@@ -599,7 +599,7 @@ class GrookaiDexService {
       }
 
       final rows = await CanonImageUrlService.enrichRows(
-        (data as List<dynamic>).map(
+        data.map(
           (row) => Map<String, dynamic>.from(row as Map),
         ),
       );

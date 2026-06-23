@@ -315,6 +315,9 @@ class _AppShellState extends State<AppShell> {
 
     if (cardRow != null) {
       final enriched = await CanonImageUrlService.enrichRows([cardRow]);
+      if (!mounted) {
+        return;
+      }
       cardRow = enriched.first;
     }
 
