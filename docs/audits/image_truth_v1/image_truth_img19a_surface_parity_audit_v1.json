@@ -1,0 +1,530 @@
+{
+  "package_id": "IMG-19A-IMAGE-SURFACE-PARITY-AUDIT",
+  "mode": "read_only_audit",
+  "generated_at": "2026-06-23T01:51:03.132Z",
+  "summary": {
+    "dex_parent_missing_child_has_image_count": 255,
+    "dex_known_broken_tcgdex_reference_count": 64,
+    "family_summary": [
+      {
+        "family_name": "base_set_print_run_lanes",
+        "parent_rows": 304,
+        "parent_rows_without_image": 304,
+        "parent_rows_without_image_but_child_image_exists": 0
+      },
+      {
+        "family_name": "mcdonalds_2021",
+        "parent_rows": 25,
+        "parent_rows_without_image": 0,
+        "parent_rows_without_image_but_child_image_exists": 0
+      },
+      {
+        "family_name": "mep_black_star_promos",
+        "parent_rows": 101,
+        "parent_rows_without_image": 85,
+        "parent_rows_without_image_but_child_image_exists": 72
+      },
+      {
+        "family_name": "trainer_kit",
+        "parent_rows": 406,
+        "parent_rows_without_image": 270,
+        "parent_rows_without_image_but_child_image_exists": 0
+      }
+    ],
+    "source_signals": {
+      "dex_uses_child_display_fallbacks": true,
+      "dex_passes_parent_image_status_to_resolver": true,
+      "dex_does_not_import_resolve_display_image_url": true,
+      "product_surfaces_prefer_display_image_url_lock": true,
+      "resolver_blocks_known_broken_tcgdex_urls": true,
+      "resolver_has_mcd2021_pokemon_tcg_replacement": true,
+      "resolver_has_trainer_kit_pokemon_tcg_aliases": true
+    }
+  },
+  "findings": {
+    "dex_parent_missing_child_has_image_examples": [
+      {
+        "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+        "gv_id": "GV-PK-MCD-2023-1",
+        "name": "Sprigatito",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "1",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+        "gv_id": "GV-PK-MCD-2023-10",
+        "name": "Sandaconda",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "10",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+        "gv_id": "GV-PK-MCD-2023-11",
+        "name": "Klawf",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "11",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+        "gv_id": "GV-PK-MCD-2023-12",
+        "name": "Blissey",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "12",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+        "gv_id": "GV-PK-MCD-2023-13",
+        "name": "Tandemaus",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "13",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+        "gv_id": "GV-PK-MCD-2023-14",
+        "name": "Cyclizar",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "14",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+        "gv_id": "GV-PK-MCD-2023-15",
+        "name": "Kirlia",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "15",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+        "gv_id": "GV-PK-MCD-2023-2",
+        "name": "Fuecoco",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "2",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+        "gv_id": "GV-PK-MCD-2023-3",
+        "name": "Quaxly",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "3",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+        "gv_id": "GV-PK-MCD-2023-4",
+        "name": "Cetoddle",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "4",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+        "gv_id": "GV-PK-MCD-2023-5",
+        "name": "Cetitan",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "5",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+        "gv_id": "GV-PK-MCD-2023-6",
+        "name": "Pikachu",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "6",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+        "gv_id": "GV-PK-MCD-2023-7",
+        "name": "Pawmi",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "7",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+        "gv_id": "GV-PK-MCD-2023-8",
+        "name": "Kilowattrel",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "8",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+        "gv_id": "GV-PK-MCD-2023-9",
+        "name": "Flittle",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "number": "9",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+        "gv_id": "GV-PK-MCD-2024-1",
+        "name": "Charizard",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "1",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+        "gv_id": "GV-PK-MCD-2024-10",
+        "name": "Hydreigon",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "10",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+        "gv_id": "GV-PK-MCD-2024-11",
+        "name": "Roaring Moon",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "11",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+        "gv_id": "GV-PK-MCD-2024-12",
+        "name": "Dragonite",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "12",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+        "gv_id": "GV-PK-MCD-2024-13",
+        "name": "Eevee",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "13",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+        "gv_id": "GV-PK-MCD-2024-14",
+        "name": "Rayquaza",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "14",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+        "gv_id": "GV-PK-MCD-2024-15",
+        "name": "Drampa",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "15",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+        "gv_id": "GV-PK-MCD-2024-2",
+        "name": "Pikachu",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "2",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+        "gv_id": "GV-PK-MCD-2024-3",
+        "name": "Miraidon",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "3",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      },
+      {
+        "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+        "gv_id": "GV-PK-MCD-2024-4",
+        "name": "Jigglypuff",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "number": "4",
+        "child_image_rows": 1,
+        "exact_child_image_rows": 0
+      }
+    ],
+    "dex_known_broken_tcgdex_reference_examples": [
+      {
+        "card_print_id": "e1cd8246-7122-466a-b107-f5bb727166c4",
+        "gv_id": "GV-PK-TK-tk-ex-latio-1",
+        "name": "Electrike",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "1",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/1/high.webp"
+      },
+      {
+        "card_print_id": "9305900e-2638-4f6b-90c4-22e53f4728fb",
+        "gv_id": "GV-PK-TK-tk-ex-latio-2",
+        "name": "Latios",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "2",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/2/high.webp"
+      },
+      {
+        "card_print_id": "284c66ce-e844-464a-b5fe-54489103bca5",
+        "gv_id": "GV-PK-TK-tk-ex-latio-3",
+        "name": "Linoone",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "3",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/3/high.webp"
+      },
+      {
+        "card_print_id": "5757b403-2fb2-45b1-9b14-b30340560691",
+        "gv_id": "GV-PK-TK-tk-ex-latio-4",
+        "name": "Magnemite",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "4",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/4/high.webp"
+      },
+      {
+        "card_print_id": "873f9501-a49b-4df4-90dc-1b21cb7a08df",
+        "gv_id": "GV-PK-TK-tk-ex-latio-5",
+        "name": "Magneton",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "5",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/5/high.webp"
+      },
+      {
+        "card_print_id": "a9b48a66-712b-44da-9db4-a6a3feba1253",
+        "gv_id": "GV-PK-TK-tk-ex-latio-6",
+        "name": "Pikachu",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "6",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/6/high.webp"
+      },
+      {
+        "card_print_id": "72039ffe-f240-49d3-8b90-92e0ce22da58",
+        "gv_id": "GV-PK-TK-tk-ex-latio-7",
+        "name": "Zigzagoon",
+        "set_code": "tk-ex-latio",
+        "set_name": "EX trainer Kit (Latios)",
+        "number": "7",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-ex-latio/7/high.webp"
+      },
+      {
+        "card_print_id": "4f84807d-66ca-47e2-bc79-7d7b48c479db",
+        "gv_id": "GV-PK-TK-tk-hs-g-20",
+        "name": "Gyarados",
+        "set_code": "tk-hs-g",
+        "set_name": "HS trainer Kit (Gyarados)",
+        "number": "20",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-hs-g/20/high.webp"
+      },
+      {
+        "card_print_id": "65a2bbd6-b396-441a-a79f-f310a86a582f",
+        "gv_id": "GV-PK-TK-tk-hs-r-19",
+        "name": "Raichu",
+        "set_code": "tk-hs-r",
+        "set_name": "HS trainer Kit (Raichu)",
+        "number": "19",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-hs-r/19/high.webp"
+      },
+      {
+        "card_print_id": "815d768e-d1c9-402d-9faa-1ffd64cde89b",
+        "gv_id": "GV-PK-TK-tk-xy-latia-11",
+        "name": "Lotad",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "11",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/11/high.webp"
+      },
+      {
+        "card_print_id": "0eb0806e-a350-4777-952d-f04eb890bc01",
+        "gv_id": "GV-PK-TK-tk-xy-latia-12",
+        "name": "Tangrowth",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "12",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/12/high.webp"
+      },
+      {
+        "card_print_id": "63280609-09fc-41d2-bb17-0b50e4c38462",
+        "gv_id": "GV-PK-TK-tk-xy-latia-13",
+        "name": "Tangela",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "13",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/13/high.webp"
+      },
+      {
+        "card_print_id": "3a6b757d-029e-4ae5-a275-ee9bd4da9c52",
+        "gv_id": "GV-PK-TK-tk-xy-latia-14",
+        "name": "Latias",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "14",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/14/high.webp"
+      },
+      {
+        "card_print_id": "7e0e3ecb-6881-4493-83e5-3f83fe7b8b0b",
+        "gv_id": "GV-PK-TK-tk-xy-latia-16",
+        "name": "Surskit",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "16",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/16/high.webp"
+      },
+      {
+        "card_print_id": "84269197-5aa7-432c-b884-0116085c4257",
+        "gv_id": "GV-PK-TK-tk-xy-latia-18",
+        "name": "Grovyle",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "18",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/18/high.webp"
+      },
+      {
+        "card_print_id": "5e0624f5-c2f1-4775-b2a8-5b649d8f442d",
+        "gv_id": "GV-PK-TK-tk-xy-latia-21",
+        "name": "Lombre",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "21",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/21/high.webp"
+      },
+      {
+        "card_print_id": "67b3067f-6642-4888-b59c-17ebd36c352b",
+        "gv_id": "GV-PK-TK-tk-xy-latia-23",
+        "name": "Lotad",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "23",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/23/high.webp"
+      },
+      {
+        "card_print_id": "96f55cee-0944-447d-a4e1-f620f1d631aa",
+        "gv_id": "GV-PK-TK-tk-xy-latia-24",
+        "name": "Treecko",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "24",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/24/high.webp"
+      },
+      {
+        "card_print_id": "e4e92e15-6498-4ff9-8de5-a1c96a617265",
+        "gv_id": "GV-PK-TK-tk-xy-latia-25",
+        "name": "Tangrowth",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "25",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/25/high.webp"
+      },
+      {
+        "card_print_id": "c2816551-8323-4311-93ad-9a767e372cc0",
+        "gv_id": "GV-PK-TK-tk-xy-latia-26",
+        "name": "Tangela",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "26",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/26/high.webp"
+      },
+      {
+        "card_print_id": "175f0fc6-fbbe-497c-a659-476483e60a68",
+        "gv_id": "GV-PK-TK-tk-xy-latia-27",
+        "name": "Grovyle",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "27",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/27/high.webp"
+      },
+      {
+        "card_print_id": "ab64d660-f399-4450-8812-a6ed10b05cf2",
+        "gv_id": "GV-PK-TK-tk-xy-latia-30",
+        "name": "Latias",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "30",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/30/high.webp"
+      },
+      {
+        "card_print_id": "c6ec45dc-6573-47e0-ac24-47026252c2d0",
+        "gv_id": "GV-PK-TK-tk-xy-latia-4",
+        "name": "Fletchling",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "4",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/4/high.webp"
+      },
+      {
+        "card_print_id": "516e6f07-6173-46d7-ace9-25a6d9b8f4ce",
+        "gv_id": "GV-PK-TK-tk-xy-latia-6",
+        "name": "Lombre",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "6",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/6/high.webp"
+      },
+      {
+        "card_print_id": "2c5d7aed-0cf0-4f08-a07f-c78eac81f377",
+        "gv_id": "GV-PK-TK-tk-xy-latia-7",
+        "name": "Treecko",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "7",
+        "image_reference": "https://assets.tcgdex.net/en/tk/tk-xy-latia/7/high.webp"
+      }
+    ]
+  },
+  "policy": {
+    "write_scope": "none",
+    "expected_runtime_fix": "product surfaces use resolveCardImageFieldsV1 and shared child display fallback; self-hosting remains a source/storage decision, not a bypass for image truth status"
+  },
+  "proof_hash": "2f068468aaa127d9b68a2ffcd2f68cd8131ee67ef81f82352a7aeba06064e750"
+}

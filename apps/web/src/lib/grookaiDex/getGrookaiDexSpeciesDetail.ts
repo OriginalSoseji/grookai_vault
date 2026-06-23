@@ -2,13 +2,13 @@ import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
 import {
   getCardPrintingsSelectColumns,
   hasChildPrintingPublicIdentityColumn,
 } from "@/lib/cards/childPrintingPublicIdentity";
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
-import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 
@@ -150,17 +150,40 @@ export async function getGrookaiDexSpeciesDetail(
   const cardPrintIds = rows.map((row) => clean(row.card_print_id)).filter((value): value is string => Boolean(value));
   const { data: identityRows, error: identityError } = await admin
     .from("card_prints")
-    .select("id,printed_identity_modifier")
+    .select("id,printed_identity_modifier,image_status,image_note")
     .in("id", cardPrintIds);
 
   if (identityError) {
     throw new Error(`[grookai-dex:species-detail-identity] ${identityError.message}`);
   }
 
-  const printedIdentityModifiersByCardPrintId = new Map(
-    ((identityRows ?? []) as Array<{ id: string | null; printed_identity_modifier: string | null }>)
-      .map((row) => [clean(row.id), clean(row.printed_identity_modifier)] as const)
-      .filter((entry): entry is readonly [string, string | null] => Boolean(entry[0])),
+  const cardPrintMetadataByCardPrintId = new Map(
+    ((identityRows ?? []) as Array<{
+      id: string | null;
+      printed_identity_modifier: string | null;
+      image_status: string | null;
+      image_note: string | null;
+    }>)
+      .map((row) => [
+        clean(row.id),
+        {
+          printedIdentityModifier: clean(row.printed_identity_modifier),
+          imageStatus: clean(row.image_status),
+          imageNote: clean(row.image_note),
+        },
+      ] as const)
+      .filter(
+        (
+          entry,
+        ): entry is readonly [
+          string,
+          {
+            printedIdentityModifier: string | null;
+            imageStatus: string | null;
+            imageNote: string | null;
+          },
+        ] => Boolean(entry[0]),
+      ),
   );
   const [ownedCounts, ownedPrintingCounts]: [Map<string, number>, Map<string, Map<string, number>>] = userId
     ? await Promise.all([
@@ -214,17 +237,30 @@ export async function getGrookaiDexSpeciesDetail(
     });
     printingOptionsByCardPrintId.set(cardPrintId, options);
   }
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    admin,
+    rows.map((row) => ({
+      id: clean(row.card_print_id),
+    })),
+  );
   const resolvedCards = await Promise.all(
     rows.map(async (row) => {
       const cardPrintId = clean(row.card_print_id)!;
-      const imageFields = await resolveCardImageFieldsV1(row);
+      const metadata = cardPrintMetadataByCardPrintId.get(cardPrintId);
+      const imageFields = await resolveCardImageFieldsV1({
+        ...row,
+        id: cardPrintId,
+        image_status: metadata?.imageStatus,
+        image_note: metadata?.imageNote,
+      });
+      const childDisplayImageFallback = childDisplayImageFallbacks.get(cardPrintId);
+      const fallbackDisplayImage = !imageFields.display_image_url
+        ? childDisplayImageFallback
+        : undefined;
       const imageUrl =
-        resolveDisplayImageUrl({
-          display_image_url: imageFields.display_image_url,
-          image_url: row.image_url,
-          image_alt_url: row.image_alt_url,
-          representative_image_url: row.representative_image_url,
-        }) ?? null;
+        imageFields.display_image_url ??
+        fallbackDisplayImage?.display_image_url ??
+        null;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
       const printings = (printingOptionsByCardPrintId.get(cardPrintId) ?? []).map(({ sortOrder: _sortOrder, ...printing }) => printing);
       const resolvedPrintings =
@@ -241,7 +277,7 @@ export async function getGrookaiDexSpeciesDetail(
         number: clean(row.number),
         rarity: clean(row.rarity),
         variantKey: clean(row.variant_key),
-        printedIdentityModifier: printedIdentityModifiersByCardPrintId.get(cardPrintId) ?? null,
+        printedIdentityModifier: metadata?.printedIdentityModifier ?? null,
         printLabel: null,
         printLabelSource: "none",
         imageUrl,

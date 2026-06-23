@@ -96,3 +96,24 @@ test("public set display normalizes McDonalds and Trainer Kit capitalization", (
   assert.match(publicSetsSource, /normalizePublicSetDisplayName\(row\.name\)/);
   assert.match(cardDetailSource, /normalizePublicSetDisplayName/);
 });
+
+test("Dex species detail uses shared child image fallback and does not resurrect blocked legacy URLs", () => {
+  const source = readFileSync(
+    new URL(
+      "../../apps/web/src/lib/grookaiDex/getGrookaiDexSpeciesDetail.ts",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+
+  assert.match(source, /getChildDisplayImageFallbacks/);
+  assert.match(source, /childDisplayImageFallbacks\.get\(cardPrintId\)/);
+  assert.match(source, /image_status,image_note/);
+  assert.match(source, /imageFields\.display_image_url\s*\?\?/);
+  assert.match(source, /fallbackDisplayImage\?\.display_image_url/);
+  assert.doesNotMatch(
+    source,
+    /resolveDisplayImageUrl/,
+    "Dex must not fall back to raw legacy image URLs after the image resolver blocks or withholds display imagery",
+  );
+});
