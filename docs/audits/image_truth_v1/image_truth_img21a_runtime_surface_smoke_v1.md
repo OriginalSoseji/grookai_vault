@@ -1,9 +1,9 @@
 # IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE
 
-- Generated: 2026-06-23T03:44:26.254Z
+- Generated: 2026-06-23T03:59:10.858Z
 - Mode: read_only_runtime_http_smoke
 - Base URL: `http://127.0.0.1:3087`
-- Proof hash: `bcc15b01bc8b32e125d1617d5dbd4902689bfb939c38796852d5cac4db2cd445`
+- Proof hash: `9456699a6cc4a14c71d6549e8770e20b61b9e31e3ab3f5b6abb5052713ace35b`
 - Failures: 0
 
 ## Runtime Routes

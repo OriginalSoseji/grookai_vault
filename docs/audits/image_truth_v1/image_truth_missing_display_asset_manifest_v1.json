@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:56:45.299Z",
+  "generated_at": "2026-06-23T03:59:20.460Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -12,9 +12,9 @@
     "normalized_asset_required_before_dry_run": true,
     "dry_run_required_before_db_write": true
   },
-  "source_rows": 5,
+  "source_rows": 4,
   "source_image_url_preserved_count": 0,
-  "representative_image_url_preserved_count": 1,
+  "representative_image_url_preserved_count": 0,
   "blocked_asset_count": 4,
   "dry_run_ready_count": 0,
   "rows": [
@@ -209,40 +209,6 @@
       "image_alt": null,
       "image_confidence": "representative",
       "block_reason": "pricecharting_live_page: No PriceCharting product image with exact alt text was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found."
-    },
-    {
-      "card_printing_id": "d91be6d3-58f8-4ebc-a3e7-e9b58b391e8d",
-      "printing_gv_id": "GV-PK-MISC-001-COSMOS",
-      "card_print_id": "90c76326-1274-403d-8d8d-276e53319a0a",
-      "parent_gv_id": "GV-PK-MISC-001",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "misc",
-      "set_name": "Miscellaneous Cards & Products",
-      "card_name": "Ancient Mew",
-      "number": "1",
-      "finish_key": "cosmos",
-      "source_status": "representative_source_url_preserved",
-      "source_url": "https://www.pricecharting.com/game/pokemon-promo/ancient-mew",
-      "source_key": "pricecharting_ancient_mew_representative_card_page",
-      "source_kind": "marketplace_checklist",
-      "source_attempts": [
-        {
-          "source_key": "pricecharting_ancient_mew_representative_card_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/ancient-mew",
-          "asset_status": "representative_image_url_preserved",
-          "reason": "PriceCharting Ancient Mew product page and image matched the card identity. Stored as representative because the page does not independently prove exact cosmos finish texture."
-        }
-      ],
-      "asset_status": "representative_image_url_preserved",
-      "asset_url": "https://storage.googleapis.com/images.pricecharting.com/he6cmgeivakceyt4/1600.jpg",
-      "image_alt": "Ancient Mew Pokemon Promo Prices",
-      "image_confidence": "representative",
-      "block_reason": "PriceCharting Ancient Mew product page and image matched the card identity. Stored as representative because the page does not independently prove exact cosmos finish texture."
     }
   ]
 }

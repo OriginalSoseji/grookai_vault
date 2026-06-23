@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-23T03:44:26.194Z
+Generated: 2026-06-23T03:59:10.176Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 38101
 - english physical exact-required rows: 14959
-- english physical display-covered rows: 38091
-- english physical missing-display rows: 5
+- english physical display-covered rows: 38092
+- english physical missing-display rows: 4
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -22,9 +22,9 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 751 |
+| representative | 752 |
 | blocked | 5 |
-| missing | 5 |
+| missing | 4 |
 
 ## English Physical Exact-Required Confidence Counts
 
@@ -32,8 +32,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | missing_variant_visual | 14856 |
 | exact | 55 |
-| representative | 43 |
-| missing | 5 |
+| representative | 44 |
+| missing | 4 |
 
 ## Interpretation
 
@@ -49,7 +49,6 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 | mep | 065 | Barbaracle | holo | no_safe_display_image_available |
 | mep | 066 | Tyrantrum | holo | no_safe_display_image_available |
 | mep | 067 | Doublade | holo | no_safe_display_image_available |
-| misc | 1 | Ancient Mew | cosmos | no_safe_display_image_available |
 
 ## First Missing Variant Visual Rows
 

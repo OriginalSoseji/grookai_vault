@@ -1,6 +1,6 @@
 # Image Truth Audit V1
 
-Generated: 2026-06-23T03:44:26.194Z
+Generated: 2026-06-23T03:59:10.176Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -10,15 +10,15 @@ Status: audit only. No DB writes. No migrations.
 - child image storage columns present: true
 - exact child image required: 16973
 - finish visual review needed: 10851
-- exact-required rows missing exact child image: 16875
+- exact-required rows missing exact child image: 16874
 - finish-review rows missing exact child image: 10628
-- critical/high image risk rows: 16875
-- image apply-addressable missing exact rows: 14861
+- critical/high image risk rows: 16874
+- image apply-addressable missing exact rows: 14860
 - image identity-blocked missing exact rows: 205
 - image non-physical blocked missing exact rows: 1809
 - image other-scope missing exact rows: 0
-- english physical display-covered rows: 38091
-- english physical missing-display rows: 5
+- english physical display-covered rows: 38092
+- english physical missing-display rows: 4
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -32,8 +32,8 @@ All scopes:
 | exact | 22484 |
 | missing_variant_visual | 14856 |
 | blocked | 6041 |
-| representative | 751 |
-| missing | 5 |
+| representative | 752 |
+| missing | 4 |
 
 English physical only:
 
@@ -41,9 +41,9 @@ English physical only:
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 751 |
+| representative | 752 |
 | blocked | 5 |
-| missing | 5 |
+| missing | 4 |
 
 ## Image Coverage Counts
 
@@ -51,17 +51,17 @@ English physical only:
 | --- | --- |
 | using_parent_exact_image | 42476 |
 | using_parent_representative_image | 894 |
-| exact_child_image_present | 681 |
-| missing_display_image | 86 |
+| exact_child_image_present | 682 |
+| missing_display_image | 85 |
 
 ## Risk Counts
 
 | risk | rows |
 | --- | --- |
-| low | 27208 |
+| low | 27209 |
 | high | 16843 |
 | medium | 54 |
-| critical | 32 |
+| critical | 31 |
 
 ## Risk By Finish
 
@@ -70,7 +70,7 @@ English physical only:
 | reverse | 15506 |
 | holo | 337 |
 | normal | 331 |
-| cosmos | 326 |
+| cosmos | 325 |
 | pokeball | 230 |
 | cracked_ice | 122 |
 | masterball | 67 |
