@@ -40,6 +40,7 @@ const FIXTURE_DIRS = [
 ];
 
 const SOURCE_PRIORITY = {
+  pricecharting_ancient_mew_representative_card_page: 15,
   tcgcollector_mfb_representative_card_page: 16,
   tcgdex_api_card_image: 15,
   pricecharting_live_page: 14,
@@ -152,6 +153,13 @@ function buildPriceChartingMfbCandidateUrl(row) {
   const nameSlug = energySlug ?? trainerRepresentativeSlug ?? slugPart(row.card_name);
   if (!nameSlug) return null;
   return `https://www.pricecharting.com/game/pokemon-my-first-battle/${nameSlug}`;
+}
+
+function buildPriceChartingAncientMewCandidateUrl(row) {
+  if (String(row.set_code ?? '').toLowerCase() !== 'misc') return null;
+  if (normalizeText(row.card_name) !== 'ancient mew') return null;
+  if (normalizeNumber(row.number) !== '1') return null;
+  return 'https://www.pricecharting.com/game/pokemon-promo/ancient-mew';
 }
 
 function buildTcgCollectorMfbTrainerCandidateUrl(row) {
@@ -306,6 +314,16 @@ function titleMatchesMfbRepresentativePage(row, title) {
     && normalizedTitle.includes('pokemon cards');
 }
 
+function titleMatchesAncientMewRepresentativePage(row, title) {
+  const normalizedTitle = normalizeText(title);
+  return normalizeText(row.card_name) === 'ancient mew'
+    && normalizeNumber(row.number) === '1'
+    && normalizedTitle.includes('ancient mew')
+    && normalizedTitle.includes('pokemon promo')
+    && normalizedTitle.includes('pokemon cards')
+    && !normalizedTitle.includes(' list');
+}
+
 async function fetchVerifiedPriceChartingSource(row) {
   const sourceUrl = buildPriceChartingCandidateUrl(row);
   if (!sourceUrl) return null;
@@ -341,6 +359,45 @@ async function fetchVerifiedPriceChartingSource(row) {
     return {
       rejected_url: sourceUrl,
       rejection_reason: error?.name === 'AbortError' ? 'pricecharting_fetch_timeout' : 'pricecharting_fetch_failed',
+      title: null,
+    };
+  }
+}
+
+async function fetchVerifiedAncientMewPriceChartingSource(row) {
+  const sourceUrl = buildPriceChartingAncientMewCandidateUrl(row);
+  if (!sourceUrl) return null;
+  try {
+    const fetched = await fetchHtml(sourceUrl);
+    if (!fetched.ok) {
+      return {
+        rejected_url: sourceUrl,
+        rejection_reason: fetched.reason,
+        title: null,
+      };
+    }
+    const title = htmlTitle(fetched.html);
+    if (!titleMatchesAncientMewRepresentativePage(row, title)) {
+      return {
+        rejected_url: sourceUrl,
+        rejection_reason: 'pricecharting_ancient_mew_title_not_representative_card_page',
+        title,
+      };
+    }
+    return {
+      source_key: 'pricecharting_ancient_mew_representative_card_page',
+      source_kind: 'marketplace_checklist',
+      source_url: sourceUrl,
+      evidence_type: 'card_identity',
+      evidence_label: title,
+      raw_snapshot_ref: `pricecharting_ancient_mew_representative:${new Date().toISOString()}:${row.set_code}:${row.number}:${row.finish_key}`,
+      fixture_file: null,
+      fetch_method: fetched.reason,
+    };
+  } catch (error) {
+    return {
+      rejected_url: sourceUrl,
+      rejection_reason: error?.name === 'AbortError' ? 'pricecharting_ancient_mew_fetch_timeout' : 'pricecharting_ancient_mew_fetch_failed',
       title: null,
     };
   }
@@ -678,6 +735,11 @@ async function main() {
       const existingUrl = new Set(matches.map((match) => match.source_url));
       if (!existingUrl.has(liveSource.source_url)) matches.push(liveSource);
     }
+    const liveAncientMewSource = await fetchVerifiedAncientMewPriceChartingSource(row);
+    if (liveAncientMewSource?.source_url) {
+      const existingUrl = new Set(matches.map((match) => match.source_url));
+      if (!existingUrl.has(liveAncientMewSource.source_url)) matches.push(liveAncientMewSource);
+    }
     matches.sort((a, b) => sourcePriority(b) - sourcePriority(a) || a.source_url.localeCompare(b.source_url));
     const evidence = classifyEvidence(matches);
     packetRows.push({
@@ -723,7 +785,9 @@ async function main() {
   }
 
   const accepted = packetRows.filter((row) => row.source_status === 'source_url_preserved');
-  const blocked = packetRows.filter((row) => row.source_status !== 'source_url_preserved');
+  const representativeAccepted = packetRows.filter((row) => row.source_status === 'representative_source_url_preserved');
+  const sourceNeeded = packetRows.filter((row) => row.source_status === 'source_url_needed');
+  const reviewNeeded = packetRows.filter((row) => !['source_url_preserved', 'representative_source_url_preserved', 'source_url_needed'].includes(row.source_status));
   const report = {
     generated_at: new Date().toISOString(),
     audit_only: true,
@@ -744,7 +808,9 @@ async function main() {
     exact_required_target_count: packetRows.filter((row) => row.exact_child_image_required).length,
     display_only_target_count: packetRows.filter((row) => !row.exact_child_image_required).length,
     source_url_preserved_count: accepted.length,
-    source_url_needed_count: blocked.length,
+    representative_source_url_preserved_count: representativeAccepted.length,
+    source_url_needed_count: sourceNeeded.length,
+    source_url_review_needed_count: reviewNeeded.length,
     dry_run_ready_count: packetRows.filter((row) => row.dry_run_ready).length,
     rows: packetRows,
   };
@@ -774,7 +840,9 @@ Status: audit only. No DB writes. No migrations.
 - exact-required target rows: ${report.exact_required_target_count}
 - display-only target rows: ${report.display_only_target_count}
 - source URL preserved: ${report.source_url_preserved_count}
+- representative source URL preserved: ${report.representative_source_url_preserved_count}
 - source URL still needed: ${report.source_url_needed_count}
+- source URL review needed: ${report.source_url_review_needed_count}
 - dry-run ready rows: ${report.dry_run_ready_count}
 
 ## Rows
@@ -797,7 +865,9 @@ ${markdownTable(packetRows, [
     generated: [PACKET_JSON, PACKET_MD],
     target_count: report.target_count,
     source_url_preserved_count: report.source_url_preserved_count,
+    representative_source_url_preserved_count: report.representative_source_url_preserved_count,
     source_url_needed_count: report.source_url_needed_count,
+    source_url_review_needed_count: report.source_url_review_needed_count,
     dry_run_ready_count: report.dry_run_ready_count,
   }, null, 2));
 }

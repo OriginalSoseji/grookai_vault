@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:44:41.383Z",
+  "generated_at": "2026-06-23T03:56:40.838Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -22,7 +22,9 @@
   "exact_required_target_count": 5,
   "display_only_target_count": 0,
   "source_url_preserved_count": 4,
-  "source_url_needed_count": 1,
+  "representative_source_url_preserved_count": 1,
+  "source_url_needed_count": 0,
+  "source_url_review_needed_count": 0,
   "dry_run_ready_count": 0,
   "rows": [
     {
@@ -56,7 +58,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Serperior Holo 64 Prices | Serperior Holo 64 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:44:37.616Z:mep:064:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:56:33.345Z:mep:064:holo",
           "fixture_file": null
         },
         {
@@ -112,7 +114,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Barbaracle Holo 65 Prices | Barbaracle Holo 65 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:44:39.076Z:mep:065:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:56:34.428Z:mep:065:holo",
           "fixture_file": null
         },
         {
@@ -168,7 +170,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Tyrantrum Holo 66 Prices | Tyrantrum Holo 66 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:44:40.250Z:mep:066:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:56:37.663Z:mep:066:holo",
           "fixture_file": null
         },
         {
@@ -224,7 +226,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Doublade Holo 67 Prices | Doublade Holo 67 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:44:41.382Z:mep:067:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:56:38.738Z:mep:067:holo",
           "fixture_file": null
         },
         {
@@ -267,12 +269,23 @@
       "target_table": "card_printings",
       "parent_overwrite_allowed": false,
       "db_write_allowed": false,
-      "source_status": "source_url_needed",
-      "image_confidence": "blocked_no_source",
+      "source_status": "representative_source_url_preserved",
+      "image_confidence": "representative",
       "dry_run_ready": false,
-      "notes": "No preserved exact source URL matched set + number + name + finish.",
+      "notes": "Preserved source URL proves exact card identity only. Any image from this source may be representative, not exact finish truth.",
       "live_source_rejection": null,
-      "preserved_source_urls": []
+      "preserved_source_urls": [
+        {
+          "source_key": "pricecharting_ancient_mew_representative_card_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/ancient-mew",
+          "source_image_url": null,
+          "evidence_type": "card_identity",
+          "evidence_label": "Ancient Mew Prices | Pokemon Promo | Pokemon Cards",
+          "raw_snapshot_ref": "pricecharting_ancient_mew_representative:2026-06-23T03:56:40.838Z:misc:1:cosmos",
+          "fixture_file": null
+        }
+      ]
     }
   ]
 }

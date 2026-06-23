@@ -76,7 +76,7 @@ async function storageObjectExists(supabase, storagePath) {
   return (data ?? []).some((entry) => entry.name === fileName);
 }
 
-async function verifyDbBlankTargets(rows) {
+async function verifyDbTargetImageState(rows) {
   const connectionString = requireDbUrl();
   if (!connectionString) throw new Error('Missing SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL for DB target verification.');
 
@@ -86,21 +86,70 @@ async function verifyDbBlankTargets(rows) {
   try {
     const result = await client.query(
       `
-        select count(*)::int as rows_with_any_image_field
+        select
+          count(*) filter (
+            where
+              nullif(image_source,'') is not null
+              or nullif(image_path,'') is not null
+              or nullif(image_url,'') is not null
+              or nullif(image_alt_url,'') is not null
+          )::int as rows_with_blocking_image_field,
+          count(*) filter (
+            where
+              nullif(image_status,'') is not null
+              or nullif(image_note,'') is not null
+          )::int as rows_with_status_or_note
         from public.card_printings
         where id = any($1::uuid[])
-          and (
+      `,
+      [ids],
+    );
+    return {
+      rows_with_blocking_image_field: Number(result.rows[0]?.rows_with_blocking_image_field ?? 0),
+      rows_with_status_or_note: Number(result.rows[0]?.rows_with_status_or_note ?? 0),
+    };
+  } finally {
+    await client.end();
+  }
+}
+
+async function verifyDbBlankTargets(rows) {
+  const state = await verifyDbTargetImageState(rows);
+  return state.rows_with_blocking_image_field;
+}
+
+async function verifyDbTargetState(rows) {
+  const connectionString = requireDbUrl();
+  if (!connectionString) throw new Error('Missing SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL for DB target verification.');
+
+  const ids = rows.map((row) => row.card_printing_id);
+  const client = new Client({ connectionString, ssl: { rejectUnauthorized: false } });
+  await client.connect();
+  try {
+    const result = await client.query(
+      `
+        select
+          count(*) filter (
+            where
             nullif(image_source,'') is not null
             or nullif(image_path,'') is not null
             or nullif(image_url,'') is not null
             or nullif(image_alt_url,'') is not null
-            or nullif(image_status,'') is not null
-            or nullif(image_note,'') is not null
-          )
+          )::int as rows_with_blocking_image_field,
+          count(*) filter (
+            where
+              nullif(image_status,'') is not null
+              or nullif(image_note,'') is not null
+          )::int as rows_with_status_or_note
+        from public.card_printings
+        where id = any($1::uuid[])
       `,
       [ids],
     );
-    return Number(result.rows[0]?.rows_with_any_image_field ?? 0);
+    return {
+      rows_with_blocking_image_field: Number(result.rows[0]?.rows_with_blocking_image_field ?? 0),
+      rows_with_status_or_note: Number(result.rows[0]?.rows_with_status_or_note ?? 0),
+    };
   } finally {
     await client.end();
   }
@@ -202,7 +251,8 @@ This is a no-upload, no-DB-write readiness packet for the IMG-02A representative
 - source_rows: ${report.source_rows}
 - ready_for_storage_upload_rows: ${report.ready_for_storage_upload_rows}
 - blocked_rows: ${report.blocked_rows}
-- db_rows_with_any_image_field: ${report.db_rows_with_any_image_field}
+- db_rows_with_blocking_image_field: ${report.db_rows_with_blocking_image_field}
+- db_rows_with_status_or_note: ${report.db_rows_with_status_or_note}
 - storage_collision_rows: ${report.storage_collision_rows}
 - local_asset_mismatch_rows: ${report.local_asset_mismatch_rows}
 - ready_for_upload_then_apply: ${report.ready_for_upload_then_apply}
@@ -234,7 +284,7 @@ async function main() {
     .filter((row) => row.parent_overwrite_allowed === false);
 
   const rows = await buildRows(sourceRows);
-  const dbRowsWithAnyImageField = await verifyDbBlankTargets(rows);
+  const dbTargetState = await verifyDbTargetState(rows);
 
   const proof = {
     package_id: PACKAGE_ID,
@@ -248,7 +298,8 @@ async function main() {
       ready_for_storage_upload: row.ready_for_storage_upload,
       blocked_reason: row.blocked_reason,
     })),
-    db_rows_with_any_image_field: dbRowsWithAnyImageField,
+    db_rows_with_blocking_image_field: dbTargetState.rows_with_blocking_image_field,
+    db_rows_with_status_or_note: dbTargetState.rows_with_status_or_note,
   };
 
   const report = {
@@ -268,13 +319,15 @@ async function main() {
     source_rows: rows.length,
     ready_for_storage_upload_rows: rows.filter((row) => row.ready_for_storage_upload).length,
     blocked_rows: rows.filter((row) => !row.ready_for_storage_upload).length,
-    db_rows_with_any_image_field: dbRowsWithAnyImageField,
+    db_rows_with_any_image_field: dbTargetState.rows_with_blocking_image_field,
+    db_rows_with_blocking_image_field: dbTargetState.rows_with_blocking_image_field,
+    db_rows_with_status_or_note: dbTargetState.rows_with_status_or_note,
     storage_collision_rows: rows.filter((row) => row.storage_object_already_exists === true).length,
     local_asset_mismatch_rows: rows.filter((row) => row.local_asset_matches_manifest !== true).length,
     ready_for_upload_then_apply:
       rows.length > 0 &&
       rows.every((row) => row.ready_for_storage_upload) &&
-      dbRowsWithAnyImageField === 0,
+      dbTargetState.rows_with_blocking_image_field === 0,
     rows,
     proof,
     proof_hash: proofHash(proof),
@@ -288,7 +341,8 @@ async function main() {
     source_rows: report.source_rows,
     ready_for_storage_upload_rows: report.ready_for_storage_upload_rows,
     blocked_rows: report.blocked_rows,
-    db_rows_with_any_image_field: report.db_rows_with_any_image_field,
+    db_rows_with_blocking_image_field: report.db_rows_with_blocking_image_field,
+    db_rows_with_status_or_note: report.db_rows_with_status_or_note,
     storage_collision_rows: report.storage_collision_rows,
     ready_for_upload_then_apply: report.ready_for_upload_then_apply,
     proof_hash: report.proof_hash,

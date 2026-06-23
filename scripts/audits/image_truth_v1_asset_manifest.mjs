@@ -193,6 +193,11 @@ function isPriceChartingMfbRepresentativeSource(source) {
     && String(source?.source_url ?? '').startsWith('https://www.pricecharting.com/game/pokemon-my-first-battle/');
 }
 
+function isPriceChartingAncientMewRepresentativeSource(source) {
+  return source?.source_key === 'pricecharting_ancient_mew_representative_card_page'
+    && String(source?.source_url ?? '') === 'https://www.pricecharting.com/game/pokemon-promo/ancient-mew';
+}
+
 function isTcgCollectorMfbRepresentativeSource(source) {
   return source?.source_key === 'tcgcollector_mfb_representative_card_page'
     && String(source?.source_url ?? '').startsWith('https://www.tcgcollector.com/cards/');
@@ -362,6 +367,32 @@ function findMfbPriceChartingImage(row, html) {
     ?? images.find((image) => String(image.alt ?? '').toLowerCase().includes('main image'))
     ?? images[0]
     ?? null;
+}
+
+function titleMatchesAncientMewRepresentativePage(row, title) {
+  const normalizedTitle = normalizeText(title);
+  return normalizeText(row.card_name) === 'ancient mew'
+    && normalizeNumber(row.number) === '1'
+    && normalizedTitle.includes('ancient mew')
+    && normalizedTitle.includes('pokemon promo')
+    && normalizedTitle.includes('pokemon cards')
+    && !normalizedTitle.includes(' list');
+}
+
+function findAncientMewPriceChartingImage(row, html) {
+  if (normalizeText(row.card_name) !== 'ancient mew') return null;
+  const images = extractImages(html).filter((image) => {
+    if (!String(image.src ?? '').includes('storage.googleapis.com/images.pricecharting.com/')) return false;
+    return normalizeText(image.alt).includes('ancient mew')
+      && normalizeText(image.alt).includes('pokemon promo');
+  });
+  const highResolution = images
+    .map((image) => ({
+      ...image,
+      src: String(image.src).replace(/\/240\.jpg$/i, '/1600.jpg'),
+    }))
+    .find((image) => String(image.src ?? '').endsWith('/1600.jpg'));
+  return highResolution ?? images[0] ?? null;
 }
 
 function findTcgCollectorImage(row, html) {
@@ -535,6 +566,64 @@ async function extractAssetFromSource(row, source) {
       image_alt: match.alt,
       image_confidence: 'representative',
       reason: 'PriceCharting My First Battle product page and image matched the exact card identity. Stored as representative because it is product-level imagery, not independent finish texture proof.',
+    };
+  }
+
+  if (isPriceChartingAncientMewRepresentativeSource(source)) {
+    let html;
+    try {
+      html = await fetchHtml(source.source_url);
+    } catch (error) {
+      return {
+        asset_status: 'asset_fetch_failed',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: error?.message ?? 'Ancient Mew PriceCharting page fetch failed.',
+      };
+    }
+    const title = htmlTitle(html);
+    if (!titleMatchesAncientMewRepresentativePage(row, title)) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `Ancient Mew PriceCharting page title did not prove the card identity. title=${title ?? 'missing'}`,
+      };
+    }
+    const match = findAncientMewPriceChartingImage(row, html);
+    if (!match) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: 'No Ancient Mew PriceCharting image matching card identity was found.',
+      };
+    }
+    let verified;
+    try {
+      verified = await verifyImageUrl(match.src);
+    } catch (error) {
+      return {
+        asset_status: 'asset_fetch_failed',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `Ancient Mew PriceCharting image probe failed: ${error?.message ?? 'unknown error'}`,
+      };
+    }
+    if (!verified?.ok) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `Ancient Mew PriceCharting image URL did not return an image. status=${verified?.statusCode ?? 'unknown'} content_type=${verified?.contentType ?? 'unknown'}`,
+      };
+    }
+    return {
+      asset_status: 'representative_image_url_preserved',
+      asset_url: match.src,
+      image_alt: match.alt,
+      image_confidence: 'representative',
+      reason: 'PriceCharting Ancient Mew product page and image matched the card identity. Stored as representative because the page does not independently prove exact cosmos finish texture.',
     };
   }
 
