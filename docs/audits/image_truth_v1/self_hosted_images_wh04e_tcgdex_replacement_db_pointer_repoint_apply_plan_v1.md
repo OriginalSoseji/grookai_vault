@@ -1,7 +1,7 @@
 # IMG-HOST-WH-04E-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-APPLY
 
-- Generated: 2026-06-23T18:12:22.510Z
-- Mode: plan_only
+- Generated: 2026-06-23T18:14:43.545Z
+- Mode: guarded_apply
 - Fingerprint: `34cad9eb3a28767de7fe8465e997de6ea449321f8219e4011f92033c5232ce54`
 - Source dry run fingerprint: `d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b`
 - Metadata pointer updates: 224

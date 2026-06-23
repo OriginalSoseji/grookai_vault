@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-HOST-WH-04E-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-APPLY",
-  "mode": "plan_only",
-  "generated_at": "2026-06-23T18:12:22.510Z",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T18:14:43.545Z",
   "source_dry_run_package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
   "source_dry_run_fingerprint": "d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b",
   "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh04d_tcgdex_replacement_db_pointer_repoint_plan_v1.jsonl",

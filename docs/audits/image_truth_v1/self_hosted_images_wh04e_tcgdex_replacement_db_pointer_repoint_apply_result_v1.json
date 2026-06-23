@@ -1,0 +1,29 @@
+{
+  "package_id": "IMG-HOST-WH-04E-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-23T18:14:44.178Z",
+  "ended_at": "2026-06-23T18:14:44.668Z",
+  "fingerprint": "34cad9eb3a28767de7fe8465e997de6ea449321f8219e4011f92033c5232ce54",
+  "source_dry_run_fingerprint": "d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b",
+  "metadata_pointer_update_count": 224,
+  "metadata_results": [
+    {
+      "key": "card_prints",
+      "expected_count": 224,
+      "updated_count": 224
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_performed": false,
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "756d1419d19768819507e2955dd957b416214062c71c04dfaa7c868d5128c7f7"
+}
