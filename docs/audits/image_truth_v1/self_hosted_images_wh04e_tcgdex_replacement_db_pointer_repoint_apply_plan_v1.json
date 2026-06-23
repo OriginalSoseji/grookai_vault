@@ -1,0 +1,35 @@
+{
+  "package_id": "IMG-HOST-WH-04E-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "plan_only",
+  "generated_at": "2026-06-23T18:04:54.138Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "04d77bcf6c36082e535d8996d15bd3e6b87d25e3d8df0c371f9482ea772a47c4",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh04d_tcgdex_replacement_db_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 11405,
+  "total_update_count": 11405,
+  "target_tables": {
+    "card_prints": 11405
+  },
+  "proposed_image_sources": {
+    "external": 92,
+    "pokemonapi": 10,
+    "tcgdex": 11303
+  },
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "351a87e25c271bb980f4b77609633a49b3e5b54ea05d7bb9f4bbf9e7c24e95b1"
+}
