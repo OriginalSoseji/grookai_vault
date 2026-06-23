@@ -133,8 +133,18 @@ function buildUpdates(wh04dSummary, wh04dPlanRows) {
       stopFindings.push(`missing_metadata_pointer_value:${row.target_row_id}`);
       continue;
     }
+    if (clean(row.proposed_values.image_source) !== 'identity') {
+      stopFindings.push(`non_identity_self_hosted_source:${row.target_row_id}`);
+      continue;
+    }
     if (row.exact_image_claim_change === true) {
       stopFindings.push(`exact_image_claim_change:${row.target_row_id}`);
+      continue;
+    }
+    if (
+      clean(row.current_values?.image_source) === clean(row.proposed_values.image_source)
+      && clean(row.current_values?.image_path) === clean(row.proposed_values.image_path)
+    ) {
       continue;
     }
     updates.push({

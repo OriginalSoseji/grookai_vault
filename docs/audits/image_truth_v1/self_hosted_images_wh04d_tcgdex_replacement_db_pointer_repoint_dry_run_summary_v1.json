@@ -1,6 +1,6 @@
 {
   "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
-  "generated_at": "2026-06-23T17:59:57.286Z",
+  "generated_at": "2026-06-23T18:11:55.600Z",
   "mode": "dry_run_no_write",
   "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh04b_tcgdex_replacement_upload_manifest_v1.jsonl",
   "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh04c_tcgdex_replacement_storage_upload_apply_result_v1.jsonl",
@@ -10,10 +10,11 @@
   "incomplete_or_unsupported_manifest_rows": 0,
   "unique_card_print_rows_in_scope": 11405,
   "metadata_pointer_plan_rows": 11405,
-  "no_op_plan_rows": 0,
-  "effective_metadata_pointer_updates": 11405,
+  "no_op_plan_rows": 11181,
+  "effective_metadata_pointer_updates": 224,
   "missing_current_db_rows": 0,
   "missing_proposed_storage_paths": 0,
+  "missing_proposed_image_sources": 0,
   "status_claim_would_change_if_status_updated": 92,
   "db_writes_performed": false,
   "storage_writes_performed": false,
@@ -31,6 +32,9 @@
     "card_prints": 11405
   },
   "proposed_image_sources": {
+    "identity": 11405
+  },
+  "upstream_source_provenance": {
     "external": 92,
     "pokemonapi": 10,
     "tcgdex": 11303
@@ -74,11 +78,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-001/1d70855507827debe99ef24c.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -113,11 +118,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-002/5bbcde2190f04ac03c6669c9.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -152,11 +158,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-003/3324c5525fc589dac6262d03.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -191,11 +198,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-004/2cc2fce61e4c4772d3ba5282.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -230,11 +238,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-005/de82ac7daf0a1f9c2825e445.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -269,11 +278,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-006/dbed1f2fb097a9053d0c63e9.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -308,11 +318,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-007/08f22cb240b393aa36d3dc28.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -347,11 +358,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-008/ad81544f71d826fce1c73ab8.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -386,11 +398,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-009/476d64d5b43ee130fe516aa7.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -425,11 +438,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-010/a9b2b97baf9d42218492d16d.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -464,11 +478,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-011/06d7e4c3c15867fed57c20f6.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -503,11 +518,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-012/b74bf7da0a10fdcd1d88ddd9.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -542,11 +558,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-013/124bb6b6a8501d4a7f3b3f51.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -581,11 +598,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-014/db069c4462033f12e00f7bac.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -620,11 +638,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-015/259bb56c8607dee98c26c2b1.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -659,11 +678,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-016/e5c89dceaf0981e7b80c2048.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -698,11 +718,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-017/dfcff6674290d3d95005bc27.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -737,11 +758,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-018/c0d0694d3194802953fdae22.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -776,11 +798,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-019/082e6b450e3b90ea5ea1ed04.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -815,11 +838,12 @@
           "image_note": null
         },
         "proposed_values": {
-          "image_source": "tcgdex",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/me04/gv-pk-cri-020/ed85acbf1d84bd588595ab6a.webp",
           "image_status": null,
           "image_note": null
         },
+        "upstream_source_provenance": "tcgdex",
         "proposed_status_from_source_audit": "exact",
         "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
         "image_status_preserved": true,
@@ -856,11 +880,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-hs-g/gv-pk-tk-tk-hs-g-20/5d82b7726b14e039d2cca7e7.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -895,11 +920,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-hs-r/gv-pk-tk-tk-hs-r-19/bb0fad86e785f69bb31c7cf7.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -934,11 +960,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-1/1fb4d2824b81636eb3aa2c4b.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -973,11 +1000,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-10/b6094ff2349efc852be0e69b.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1012,11 +1040,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-11/557e48839beb9b7e233d6ff2.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1051,11 +1080,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-12/ec608c1d0e8360d7712cc471.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1090,11 +1120,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-13/ddfada7bb27b9cdd5fd4e5c9.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1129,11 +1160,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-14/2888d151cba79b2ee5a1edad.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1168,11 +1200,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-15/98eebea7d4bfcbe601354b03.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1207,11 +1240,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-16/1c3178a41c0ee365673f80f5.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1246,11 +1280,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-17/dea230de921c9058696e8bf3.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1285,11 +1320,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-18/9080493eac08e5283bb5496e.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1324,11 +1360,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-19/77cc39e1dba273d2c0c5b307.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1363,11 +1400,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-2/d9c69012ddd2171c4ae6845c.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1402,11 +1440,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-20/1c1e0be6e37a4676f1cbfa6d.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1441,11 +1480,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-21/8ce3eb9c2cbbf8c6ebb242bb.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1480,11 +1520,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-22/e178c8aa5999671ab1e306ea.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1519,11 +1560,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-23/70eb8282b76e40437454a2fd.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1558,11 +1600,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-24/17ca46eb1b2840db0d002524.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1597,11 +1640,12 @@
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
         "proposed_values": {
-          "image_source": "external",
+          "image_source": "identity",
           "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-25/8a0b24d7f5aa98c814374795.jpg",
           "image_status": "exact",
           "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
         },
+        "upstream_source_provenance": "external",
         "proposed_status_from_source_audit": "representative_shared",
         "proposed_note_from_source_audit": "Self-hosted representative replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; exact image claim is not changed.",
         "image_status_preserved": true,
@@ -1612,7 +1656,808 @@
         "storage_write_performed": false
       }
     ],
-    "no_op_plan_rows": []
+    "no_op_plan_rows": [
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:b8e8cc5e-cc82-40b1-b202-0ebdc7593742:metadata_pointer",
+        "source_audit_key": "card_prints:b8e8cc5e-cc82-40b1-b202-0ebdc7593742:image_alt_url:b9a7c23209f4438bcdbbf521",
+        "target_table": "card_prints",
+        "target_row_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "name": "Alakazam",
+        "set_code": "base1",
+        "number": "1",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-1/70c0bc4b5f2b2c97481ca37d.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/1/high.webp",
+        "source_sha256": "70c0bc4b5f2b2c97481ca37d16e4ea50c23306165cdb4d913fbc137de078029a",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-1/70c0bc4b5f2b2c97481ca37d.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-1/70c0bc4b5f2b2c97481ca37d.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f:metadata_pointer",
+        "source_audit_key": "card_prints:fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f:image_alt_url:419fc061d47d77aa2dbd21af",
+        "target_table": "card_prints",
+        "target_row_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "name": "Mewtwo",
+        "set_code": "base1",
+        "number": "10",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-10/388cbad8e9f285c5660bd8f3.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/10/high.webp",
+        "source_sha256": "388cbad8e9f285c5660bd8f30d5e041d2219f6b502d09308e1c17a18195eabca",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-10/388cbad8e9f285c5660bd8f3.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-10/388cbad8e9f285c5660bd8f3.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:85958b14-181b-4c9e-bc90-3aab8f8813ad:metadata_pointer",
+        "source_audit_key": "card_prints:85958b14-181b-4c9e-bc90-3aab8f8813ad:image_alt_url:d0330ce9bdd92467904d3f74",
+        "target_table": "card_prints",
+        "target_row_id": "85958b14-181b-4c9e-bc90-3aab8f8813ad",
+        "gv_id": "GV-PK-BS-100",
+        "name": "Lightning Energy",
+        "set_code": "base1",
+        "number": "100",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-100/6e12df07240a508c51077183.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/100/high.webp",
+        "source_sha256": "6e12df07240a508c51077183022a589bc6bf0afbebe60706fc4c718abe123f51",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-100/6e12df07240a508c51077183.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-100/6e12df07240a508c51077183.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:6abf566f-2878-4107-97b4-6c2272a03d5b:metadata_pointer",
+        "source_audit_key": "card_prints:6abf566f-2878-4107-97b4-6c2272a03d5b:image_alt_url:ada5a4e3506691fe66b3fded",
+        "target_table": "card_prints",
+        "target_row_id": "6abf566f-2878-4107-97b4-6c2272a03d5b",
+        "gv_id": "GV-PK-BS-101",
+        "name": "Psychic Energy",
+        "set_code": "base1",
+        "number": "101",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-101/b0ad9e70e05dbe357d1e40a1.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/101/high.webp",
+        "source_sha256": "b0ad9e70e05dbe357d1e40a1ed441d8bc2ccd920af1bba3c6aaa8f78154b0558",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-101/b0ad9e70e05dbe357d1e40a1.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-101/b0ad9e70e05dbe357d1e40a1.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:e2bf9ce7-4d7c-48ac-80eb-2f8b742556f4:metadata_pointer",
+        "source_audit_key": "card_prints:e2bf9ce7-4d7c-48ac-80eb-2f8b742556f4:image_alt_url:84095818310c72d8585082c3",
+        "target_table": "card_prints",
+        "target_row_id": "e2bf9ce7-4d7c-48ac-80eb-2f8b742556f4",
+        "gv_id": "GV-PK-BS-102",
+        "name": "Water Energy",
+        "set_code": "base1",
+        "number": "102",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-102/e079c92b864511ca53861e78.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/102/high.webp",
+        "source_sha256": "e079c92b864511ca53861e78052eaa6da71a38b7a190a024f0425b710afa11e7",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-102/e079c92b864511ca53861e78.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-102/e079c92b864511ca53861e78.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:fce0338a-de7b-4133-8f91-61472747f150:metadata_pointer",
+        "source_audit_key": "card_prints:fce0338a-de7b-4133-8f91-61472747f150:image_alt_url:9f3f84d3d3cc15c377e460d9",
+        "target_table": "card_prints",
+        "target_row_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "name": "Nidoking",
+        "set_code": "base1",
+        "number": "11",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-11/529b3ff4cb95f077bf9d65cf.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/11/high.webp",
+        "source_sha256": "529b3ff4cb95f077bf9d65cfce6a3f95e24bec01c775076c839d4337ddbaedc7",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-11/529b3ff4cb95f077bf9d65cf.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-11/529b3ff4cb95f077bf9d65cf.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:dd732e0c-c0aa-4c94-8189-d1a7328b1154:metadata_pointer",
+        "source_audit_key": "card_prints:dd732e0c-c0aa-4c94-8189-d1a7328b1154:image_alt_url:239e6594cf20a3bb183ff06d",
+        "target_table": "card_prints",
+        "target_row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "name": "Ninetales",
+        "set_code": "base1",
+        "number": "12",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-12/ccfaa3cabf4f069695791165.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/12/high.webp",
+        "source_sha256": "ccfaa3cabf4f069695791165f3abc4677333ae4c2c61191ac869fa690e4ab50d",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-12/ccfaa3cabf4f069695791165.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-12/ccfaa3cabf4f069695791165.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:d9fe6e48-1f68-47c2-881a-4ae590ef19ba:metadata_pointer",
+        "source_audit_key": "card_prints:d9fe6e48-1f68-47c2-881a-4ae590ef19ba:image_alt_url:1af9e5902c6e5c52cc6c8f1c",
+        "target_table": "card_prints",
+        "target_row_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "name": "Poliwrath",
+        "set_code": "base1",
+        "number": "13",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-13/9f1024635a0b8a5276c3a060.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/13/high.webp",
+        "source_sha256": "9f1024635a0b8a5276c3a0607bf2a9838763b2b361b736dbba30a64ee1f581eb",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-13/9f1024635a0b8a5276c3a060.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-13/9f1024635a0b8a5276c3a060.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:0ef58aa4-b20d-44ad-b2a6-4b3c1ede00f1:metadata_pointer",
+        "source_audit_key": "card_prints:0ef58aa4-b20d-44ad-b2a6-4b3c1ede00f1:image_alt_url:004154a1e35d99dd9b9febe4",
+        "target_table": "card_prints",
+        "target_row_id": "0ef58aa4-b20d-44ad-b2a6-4b3c1ede00f1",
+        "gv_id": "GV-PK-BS-14",
+        "name": "Raichu",
+        "set_code": "base1",
+        "number": "14",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-14/de9cb8265fd23fdea309bd72.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/14/high.webp",
+        "source_sha256": "de9cb8265fd23fdea309bd7296243cfcb77d2bf69e206de7ff9cebc0e58b86c2",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-14/de9cb8265fd23fdea309bd72.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-14/de9cb8265fd23fdea309bd72.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:3058f3ee-db8c-4073-b862-f6073dac4126:metadata_pointer",
+        "source_audit_key": "card_prints:3058f3ee-db8c-4073-b862-f6073dac4126:image_alt_url:0467ff3cdab25e46a9ac7323",
+        "target_table": "card_prints",
+        "target_row_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "name": "Venusaur",
+        "set_code": "base1",
+        "number": "15",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-15/4b7a4a6074fc8a7b77fd0fc7.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/15/high.webp",
+        "source_sha256": "4b7a4a6074fc8a7b77fd0fc71a648dbf1a6bd41bef5779ada098978bc1d1169b",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-15/4b7a4a6074fc8a7b77fd0fc7.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-15/4b7a4a6074fc8a7b77fd0fc7.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc:metadata_pointer",
+        "source_audit_key": "card_prints:cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc:image_alt_url:22ac876b013638861177ab23",
+        "target_table": "card_prints",
+        "target_row_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "name": "Zapdos",
+        "set_code": "base1",
+        "number": "16",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-16/9c9795ba7670666a5e300109.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/16/high.webp",
+        "source_sha256": "9c9795ba7670666a5e3001093591a5b5dd5e90d847c67f860dc133c67296460a",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-16/9c9795ba7670666a5e300109.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-16/9c9795ba7670666a5e300109.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:813413dc-8317-4776-a5f9-dbc54dfaaf46:metadata_pointer",
+        "source_audit_key": "card_prints:813413dc-8317-4776-a5f9-dbc54dfaaf46:image_alt_url:156ccb160d1a2c524fd72117",
+        "target_table": "card_prints",
+        "target_row_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "name": "Beedrill",
+        "set_code": "base1",
+        "number": "17",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-17/bd8c9086ca12bbd24c022823.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/17/high.webp",
+        "source_sha256": "bd8c9086ca12bbd24c022823a34ca29329bbc6d2d5a5588b631f31f0beab4ab9",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-17/bd8c9086ca12bbd24c022823.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-17/bd8c9086ca12bbd24c022823.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:d4131a35-f4e8-4c0a-a459-8b273f14bed5:metadata_pointer",
+        "source_audit_key": "card_prints:d4131a35-f4e8-4c0a-a459-8b273f14bed5:image_alt_url:1704448f624e26bcf404680f",
+        "target_table": "card_prints",
+        "target_row_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "name": "Dragonair",
+        "set_code": "base1",
+        "number": "18",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-18/168a7aa605bced00be933d17.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/18/high.webp",
+        "source_sha256": "168a7aa605bced00be933d1780b21fc83508cc8aca0e61fffc3fb80a0d3b335a",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-18/168a7aa605bced00be933d17.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-18/168a7aa605bced00be933d17.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:bb877a1f-7779-40c2-8dff-6f8c4b00f70e:metadata_pointer",
+        "source_audit_key": "card_prints:bb877a1f-7779-40c2-8dff-6f8c4b00f70e:image_alt_url:bce192ca4bf08531c24ae252",
+        "target_table": "card_prints",
+        "target_row_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+        "gv_id": "GV-PK-BS-19",
+        "name": "Dugtrio",
+        "set_code": "base1",
+        "number": "19",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-19/a73b6dd23dd667e2ee4fb1cb.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/19/high.webp",
+        "source_sha256": "a73b6dd23dd667e2ee4fb1cb44db5114f76f652d86d36887677bca8055fdb105",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-19/a73b6dd23dd667e2ee4fb1cb.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-19/a73b6dd23dd667e2ee4fb1cb.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:5390df67-a217-47f9-90ab-7399fdff5269:metadata_pointer",
+        "source_audit_key": "card_prints:5390df67-a217-47f9-90ab-7399fdff5269:image_alt_url:3ddbae4676857c8a37561461",
+        "target_table": "card_prints",
+        "target_row_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+        "gv_id": "GV-PK-BS-2",
+        "name": "Blastoise",
+        "set_code": "base1",
+        "number": "2",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-2/306af51a594016ee58c27568.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/2/high.webp",
+        "source_sha256": "306af51a594016ee58c2756889455ab7c7276ff1b8ec527491b30e077ee992ff",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-2/306af51a594016ee58c27568.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-2/306af51a594016ee58c27568.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:2b60c7da-0db3-48a2-91a8-219d585b7544:metadata_pointer",
+        "source_audit_key": "card_prints:2b60c7da-0db3-48a2-91a8-219d585b7544:image_alt_url:3a7965b50e40c8c684da1605",
+        "target_table": "card_prints",
+        "target_row_id": "2b60c7da-0db3-48a2-91a8-219d585b7544",
+        "gv_id": "GV-PK-BS-20",
+        "name": "Electabuzz",
+        "set_code": "base1",
+        "number": "20",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-20/ed9480b7c14821fb08eea259.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/20/high.webp",
+        "source_sha256": "ed9480b7c14821fb08eea259e7f993e2708fdd09617ac151b2ea1222c9fcab42",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-20/ed9480b7c14821fb08eea259.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-20/ed9480b7c14821fb08eea259.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:b409d7cf-7db3-4134-b29f-f2c1834c99ac:metadata_pointer",
+        "source_audit_key": "card_prints:b409d7cf-7db3-4134-b29f-f2c1834c99ac:image_alt_url:74fed684acba768c3371f947",
+        "target_table": "card_prints",
+        "target_row_id": "b409d7cf-7db3-4134-b29f-f2c1834c99ac",
+        "gv_id": "GV-PK-BS-21",
+        "name": "Electrode",
+        "set_code": "base1",
+        "number": "21",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-21/8c0b9cf2b72931c91e77064b.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/21/high.webp",
+        "source_sha256": "8c0b9cf2b72931c91e77064b630fb140b61a463d43a024fae719313e93ac9941",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-21/8c0b9cf2b72931c91e77064b.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-21/8c0b9cf2b72931c91e77064b.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:cc846773-e6d2-4070-ad05-fbd1c1d297ae:metadata_pointer",
+        "source_audit_key": "card_prints:cc846773-e6d2-4070-ad05-fbd1c1d297ae:image_alt_url:00edcd37e0e6fd8aa3539031",
+        "target_table": "card_prints",
+        "target_row_id": "cc846773-e6d2-4070-ad05-fbd1c1d297ae",
+        "gv_id": "GV-PK-BS-22",
+        "name": "Pidgeotto",
+        "set_code": "base1",
+        "number": "22",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-22/1a9cde4d9ee9b1984cd89ddf.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/22/high.webp",
+        "source_sha256": "1a9cde4d9ee9b1984cd89ddfa9485b562669fcaaa5ad987fb6251fa51c377405",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-22/1a9cde4d9ee9b1984cd89ddf.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-22/1a9cde4d9ee9b1984cd89ddf.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:d178789e-472b-42c8-94fe-25a5b85e486a:metadata_pointer",
+        "source_audit_key": "card_prints:d178789e-472b-42c8-94fe-25a5b85e486a:image_alt_url:7d3067e560262a35d78b0747",
+        "target_table": "card_prints",
+        "target_row_id": "d178789e-472b-42c8-94fe-25a5b85e486a",
+        "gv_id": "GV-PK-BS-23",
+        "name": "Arcanine",
+        "set_code": "base1",
+        "number": "23",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-23/62fa41b0b200590671290405.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/23/high.webp",
+        "source_sha256": "62fa41b0b2005906712904055b0a846ad6b1bc3d1624cd70550bb4902137cf90",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-23/62fa41b0b200590671290405.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-23/62fa41b0b200590671290405.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:7fac30ad-53cb-40f5-a061-8817332927b1:metadata_pointer",
+        "source_audit_key": "card_prints:7fac30ad-53cb-40f5-a061-8817332927b1:image_alt_url:172d571dd195c1ecbfa4cb92",
+        "target_table": "card_prints",
+        "target_row_id": "7fac30ad-53cb-40f5-a061-8817332927b1",
+        "gv_id": "GV-PK-BS-24",
+        "name": "Charmeleon",
+        "set_code": "base1",
+        "number": "24",
+        "replacement_route": "tcgdex_high_suffix_repair",
+        "replacement_confidence": "high_url_repair",
+        "proposed_display_image_kind": "exact",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-24/a62ea6afea096c6752278d83.webp",
+        "source_final_url": "https://assets.tcgdex.net/en/base/base1/24/high.webp",
+        "source_sha256": "a62ea6afea096c6752278d832b917542b6e15fd67d5cd7e637955a538a43d992",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-24/a62ea6afea096c6752278d83.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-bs-24/a62ea6afea096c6752278d83.webp",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "upstream_source_provenance": "tcgdex",
+        "proposed_status_from_source_audit": "exact",
+        "proposed_note_from_source_audit": "Self-hosted exact replacement planned by IMG-HOST-WH-04B-TCGDEX-REPLACEMENT-UPLOAD-DRY-RUN; source URL repaired or source-backed. Exact claim preserved from source audit.",
+        "image_status_preserved": true,
+        "image_note_preserved": true,
+        "exact_image_claim_change": false,
+        "status_claim_would_change_if_status_updated": false,
+        "db_write_performed": false,
+        "storage_write_performed": false
+      }
+    ]
   },
-  "fingerprint": "04d77bcf6c36082e535d8996d15bd3e6b87d25e3d8df0c371f9482ea772a47c4"
+  "fingerprint": "d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b"
 }

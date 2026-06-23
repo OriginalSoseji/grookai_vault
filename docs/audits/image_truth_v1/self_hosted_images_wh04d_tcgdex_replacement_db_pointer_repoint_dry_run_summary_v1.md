@@ -1,17 +1,18 @@
 # IMG-HOST-WH-04D-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-DRY-RUN
 
-- Generated: 2026-06-23T17:59:57.286Z
+- Generated: 2026-06-23T18:11:55.600Z
 - Mode: dry_run_no_write
-- Fingerprint: `04d77bcf6c36082e535d8996d15bd3e6b87d25e3d8df0c371f9482ea772a47c4`
+- Fingerprint: `d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b`
 - Manifest rows: 11405
 - Completed manifest rows: 11405
 - Incomplete or unsupported manifest rows: 0
 - Unique card_print rows in scope: 11405
 - Metadata pointer plan rows: 11405
-- No-op plan rows: 0
-- Effective metadata pointer updates: 11405
+- No-op plan rows: 11181
+- Effective metadata pointer updates: 224
 - Missing current DB rows: 0
 - Missing proposed storage paths: 0
+- Missing proposed image sources: 0
 - Status claim would change if status updated: 92
 - Ready for apply package: true
 - Stop findings: none
@@ -29,6 +30,12 @@
 | card_prints | 11405 |
 
 ## Proposed Image Sources
+
+| key | count |
+| --- | ---: |
+| identity | 11405 |
+
+## Upstream Source Provenance
 
 | key | count |
 | --- | ---: |

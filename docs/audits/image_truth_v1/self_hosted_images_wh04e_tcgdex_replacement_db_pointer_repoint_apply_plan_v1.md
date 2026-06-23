@@ -1,11 +1,11 @@
 # IMG-HOST-WH-04E-TCGDEX-REPLACEMENT-DB-POINTER-REPOINT-APPLY
 
-- Generated: 2026-06-23T18:04:54.138Z
+- Generated: 2026-06-23T18:12:22.510Z
 - Mode: plan_only
-- Fingerprint: `351a87e25c271bb980f4b77609633a49b3e5b54ea05d7bb9f4bbf9e7c24e95b1`
-- Source dry run fingerprint: `04d77bcf6c36082e535d8996d15bd3e6b87d25e3d8df0c371f9482ea772a47c4`
-- Metadata pointer updates: 11405
-- Total updates: 11405
+- Fingerprint: `34cad9eb3a28767de7fe8465e997de6ea449321f8219e4011f92033c5232ce54`
+- Source dry run fingerprint: `d0b91e6bfd64f66922eb909a950c70292736685fa15cb2f801b646458491ba3b`
+- Metadata pointer updates: 224
+- Total updates: 224
 - Ready for apply: true
 - Stop findings: none
 - Runtime public URL field writes planned: false
@@ -21,12 +21,10 @@
 
 | key | count |
 | --- | ---: |
-| card_prints | 11405 |
+| card_prints | 224 |
 
 ## Proposed Image Sources
 
 | key | count |
 | --- | ---: |
-| tcgdex | 11303 |
-| external | 92 |
-| pokemonapi | 10 |
+| identity | 224 |

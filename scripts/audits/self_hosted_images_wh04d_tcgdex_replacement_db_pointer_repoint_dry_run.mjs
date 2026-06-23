@@ -120,9 +120,11 @@ async function fetchCurrentRows(client, ids) {
 }
 
 function proposedImageSource(row) {
-  const value = clean(row.proposed_db_plan?.proposed_image_source) ?? clean(row.proposed_image_source);
-  if (value === 'tcgdex' || value === 'pokemonapi' || value === 'external') return value;
-  return 'external';
+  return clean(row.target_storage_path) ? 'identity' : null;
+}
+
+function upstreamImageSource(row) {
+  return clean(row.proposed_db_plan?.proposed_image_source) ?? clean(row.proposed_image_source);
 }
 
 function proposedImageNote(row) {
@@ -170,6 +172,7 @@ function planForManifestRow(row, currentRow) {
       image_status: currentStatus,
       image_note: clean(currentRow?.image_note),
     },
+    upstream_source_provenance: upstreamImageSource(row),
     proposed_status_from_source_audit: proposedStatus,
     proposed_note_from_source_audit: proposedImageNote(row),
     image_status_preserved: true,
@@ -209,6 +212,7 @@ async function main() {
   const plans = completedManifestRows.map((row) => planForManifestRow(row, currentRows.get(row.source_row_id)));
   const missingCurrentRows = plans.filter((row) => !currentRows.has(row.target_row_id));
   const missingProposedPathRows = plans.filter((row) => !clean(row.proposed_values.image_path));
+  const missingProposedSourceRows = plans.filter((row) => !clean(row.proposed_values.image_source));
   const statusClaimWouldChangeRows = plans.filter((row) => row.status_claim_would_change_if_status_updated);
   const noOpRows = plans.filter((row) =>
     clean(row.current_values.image_source) === clean(row.proposed_values.image_source)
@@ -218,6 +222,7 @@ async function main() {
     ...(incompleteManifestRows.length ? ['incomplete_or_unsupported_manifest_rows'] : []),
     ...(missingCurrentRows.length ? ['missing_current_db_rows'] : []),
     ...(missingProposedPathRows.length ? ['missing_proposed_storage_paths'] : []),
+    ...(missingProposedSourceRows.length ? ['missing_proposed_image_sources'] : []),
   ];
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -239,6 +244,7 @@ async function main() {
     effective_metadata_pointer_updates: plans.length - noOpRows.length,
     missing_current_db_rows: missingCurrentRows.length,
     missing_proposed_storage_paths: missingProposedPathRows.length,
+    missing_proposed_image_sources: missingProposedSourceRows.length,
     status_claim_would_change_if_status_updated: statusClaimWouldChangeRows.length,
     db_writes_performed: false,
     storage_writes_performed: false,
@@ -251,6 +257,7 @@ async function main() {
     preserved_columns: ['image_status', 'image_note'],
     target_tables: countBy(plans, (row) => row.target_table),
     proposed_image_sources: countBy(plans, (row) => row.proposed_values.image_source),
+    upstream_source_provenance: countBy(plans, (row) => row.upstream_source_provenance),
     proposed_display_image_kinds: countBy(plans, (row) => row.proposed_display_image_kind),
     replacement_routes: countBy(plans, (row) => row.replacement_route),
     stop_findings: stopFindings,
@@ -269,6 +276,7 @@ async function main() {
     preserved_columns: summary.preserved_columns,
     target_tables: summary.target_tables,
     proposed_image_sources: summary.proposed_image_sources,
+    upstream_source_provenance: summary.upstream_source_provenance,
     proposed_display_image_kinds: summary.proposed_display_image_kinds,
     plan_rows: plans.map((row) => ({
       target_table: row.target_table,
@@ -295,6 +303,7 @@ async function main() {
 - Effective metadata pointer updates: ${summary.effective_metadata_pointer_updates}
 - Missing current DB rows: ${summary.missing_current_db_rows}
 - Missing proposed storage paths: ${summary.missing_proposed_storage_paths}
+- Missing proposed image sources: ${summary.missing_proposed_image_sources}
 - Status claim would change if status updated: ${summary.status_claim_would_change_if_status_updated}
 - Ready for apply package: ${summary.ready_for_apply_package}
 - Stop findings: ${summary.stop_findings.length ? summary.stop_findings.join(', ') : 'none'}
@@ -312,6 +321,10 @@ ${markdownTable(topEntries(summary.target_tables))}
 ## Proposed Image Sources
 
 ${markdownTable(topEntries(summary.proposed_image_sources))}
+
+## Upstream Source Provenance
+
+${markdownTable(topEntries(summary.upstream_source_provenance))}
 
 ## Display Image Kinds
 
