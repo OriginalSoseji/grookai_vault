@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:13:48.842Z",
+  "generated_at": "2026-06-23T03:22:11.975Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -12,9 +12,9 @@
     "normalized_asset_required_before_dry_run": true,
     "dry_run_required_before_db_write": true
   },
-  "source_rows": 120,
+  "source_rows": 118,
   "source_image_url_preserved_count": 0,
-  "representative_image_url_preserved_count": 2,
+  "representative_image_url_preserved_count": 0,
   "blocked_asset_count": 118,
   "dry_run_ready_count": 0,
   "rows": [
@@ -4883,88 +4883,6 @@
       "image_alt": null,
       "image_confidence": "representative",
       "block_reason": "tcgcollector_card_variants: No supported source image extractor exists for the preserved source URL. | tcgcollector_card_variants: No supported source image extractor exists for the preserved source URL."
-    },
-    {
-      "card_printing_id": "383f508c-ceb4-4cc9-88af-c77c8c330ab3",
-      "printing_gv_id": "GV-PK-TK-tk-xy-w-3-STD",
-      "card_print_id": "49ef26c4-82c0-41be-8718-de738ee75a7b",
-      "parent_gv_id": "GV-PK-TK-tk-xy-w-3",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "tk-xy-w",
-      "set_name": "XY Trainer Kit (Wigglytuff)",
-      "card_name": "Fairy Energy",
-      "number": "3",
-      "finish_key": "normal",
-      "source_status": "source_url_preserved",
-      "source_url": "https://pkmncards.com/card/fairy-energy-xy-trainer-kit-wigglytuff-tk7b-3/",
-      "source_key": "pkmncards",
-      "source_kind": "collector_reference",
-      "source_attempts": [
-        {
-          "source_key": "tcgcollector_card_variants",
-          "source_kind": "collector_reference",
-          "source_url": "https://www.tcgcollector.com/cards/13291/fairy-energy-xy-trainer-kit-wigglytuff-3-30",
-          "asset_status": "asset_source_not_supported_yet",
-          "reason": "No supported source image extractor exists for the preserved source URL."
-        },
-        {
-          "source_key": "pkmncards",
-          "source_kind": "collector_reference",
-          "source_url": "https://pkmncards.com/card/fairy-energy-xy-trainer-kit-wigglytuff-tk7b-3/",
-          "asset_status": "representative_image_url_preserved",
-          "reason": "PKMNCards card image URL was verified. It is treated as representative because the image is card-level, not independently proven as exact finish/variant imagery."
-        }
-      ],
-      "asset_status": "representative_image_url_preserved",
-      "asset_url": "https://pkmncards.com/wp-content/uploads/en_US-TK7B-003-fairy_energy.jpg",
-      "image_alt": "PKMNCards card image for Fairy Energy 3",
-      "image_confidence": "representative",
-      "block_reason": "PKMNCards card image URL was verified. It is treated as representative because the image is card-level, not independently proven as exact finish/variant imagery."
-    },
-    {
-      "card_printing_id": "0bedb87a-1058-469a-ae15-1c3a8d7e3d8e",
-      "printing_gv_id": "GV-PK-TK-tk-xy-w-4-STD",
-      "card_print_id": "9486ffde-7e91-4c1f-9d8c-db6361cebfaa",
-      "parent_gv_id": "GV-PK-TK-tk-xy-w-4",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "tk-xy-w",
-      "set_name": "XY Trainer Kit (Wigglytuff)",
-      "card_name": "Sentret",
-      "number": "4",
-      "finish_key": "normal",
-      "source_status": "source_url_preserved",
-      "source_url": "https://pkmncards.com/card/sentret-xy-trainer-kit-wigglytuff-tk7b-4/",
-      "source_key": "pkmncards",
-      "source_kind": "collector_reference",
-      "source_attempts": [
-        {
-          "source_key": "tcgcollector_card_variants",
-          "source_kind": "collector_reference",
-          "source_url": "https://www.tcgcollector.com/cards/13292/sentret-xy-trainer-kit-wigglytuff-4-30",
-          "asset_status": "asset_source_not_supported_yet",
-          "reason": "No supported source image extractor exists for the preserved source URL."
-        },
-        {
-          "source_key": "pkmncards",
-          "source_kind": "collector_reference",
-          "source_url": "https://pkmncards.com/card/sentret-xy-trainer-kit-wigglytuff-tk7b-4/",
-          "asset_status": "representative_image_url_preserved",
-          "reason": "PKMNCards card image URL was verified. It is treated as representative because the image is card-level, not independently proven as exact finish/variant imagery."
-        }
-      ],
-      "asset_status": "representative_image_url_preserved",
-      "asset_url": "https://pkmncards.com/wp-content/uploads/en_US-TK7B-004-sentret.jpg",
-      "image_alt": "PKMNCards card image for Sentret 4",
-      "image_confidence": "representative",
-      "block_reason": "PKMNCards card image URL was verified. It is treated as representative because the image is card-level, not independently proven as exact finish/variant imagery."
     }
   ]
 }

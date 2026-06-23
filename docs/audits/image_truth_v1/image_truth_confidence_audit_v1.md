@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-23T03:12:50.945Z
+Generated: 2026-06-23T03:21:37.777Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 38101
 - english physical exact-required rows: 14959
-- english physical display-covered rows: 37975
-- english physical missing-display rows: 121
+- english physical display-covered rows: 37977
+- english physical missing-display rows: 119
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -22,8 +22,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 635 |
-| missing | 121 |
+| representative | 637 |
+| missing | 119 |
 | blocked | 5 |
 
 ## English Physical Exact-Required Confidence Counts

@@ -1,6 +1,6 @@
 # Image Truth Missing-Display Asset Manifest V1
 
-Generated: 2026-06-23T03:13:48.842Z
+Generated: 2026-06-23T03:22:11.975Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -16,9 +16,9 @@ Status: audit only. No DB writes. No migrations.
 
 ## Summary
 
-- source rows reviewed: 120
+- source rows reviewed: 118
 - source image URLs preserved: 0
-- representative image URLs preserved: 2
+- representative image URLs preserved: 0
 - blocked asset rows: 118
 - dry-run ready rows: 0
 
@@ -144,5 +144,3 @@ Status: audit only. No DB writes. No migrations.
 | tk-sm-r | Pikachu | 29 | normal | source_url_preserved | asset_source_not_supported_yet | representative | false | - |
 | tk-sm-r | Stufful | 4 | normal | source_url_preserved | asset_source_not_supported_yet | representative | false | - |
 | tk-sm-r | Golbat | 6 | normal | source_url_preserved | asset_source_not_supported_yet | representative | false | - |
-| tk-xy-w | Fairy Energy | 3 | normal | source_url_preserved | representative_image_url_preserved | representative | false | https://pkmncards.com/wp-content/uploads/en_US-TK7B-003-fairy_energy.jpg |
-| tk-xy-w | Sentret | 4 | normal | source_url_preserved | representative_image_url_preserved | representative | false | https://pkmncards.com/wp-content/uploads/en_US-TK7B-004-sentret.jpg |

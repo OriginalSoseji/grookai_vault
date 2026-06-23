@@ -1,6 +1,6 @@
 {
   "contract": "IMAGE_SURFACE_CONSISTENCY_SCAN_V1",
-  "generated_at": "2026-06-23T03:12:58.980Z",
+  "generated_at": "2026-06-23T03:21:47.394Z",
   "parent_rows_scanned": 25322,
   "child_rows_scanned": 44137,
   "surface_coverage": {
@@ -33,7 +33,7 @@
     "GV-PK-MEP-051": true
   },
   "parent_missing_child_available": {
-    "count": 452,
+    "count": 454,
     "by_set": [
       {
         "set_code": "sm115",
@@ -65,7 +65,7 @@
       },
       {
         "set_code": "tk-xy-w",
-        "count": 28
+        "count": 30
       },
       {
         "set_code": "bw11",

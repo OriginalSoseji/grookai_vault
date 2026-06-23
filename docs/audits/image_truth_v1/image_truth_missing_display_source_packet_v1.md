@@ -1,6 +1,6 @@
 # Image Truth Missing-Display Source Packet V1
 
-Generated: 2026-06-23T03:13:34.658Z
+Generated: 2026-06-23T03:22:01.055Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -17,11 +17,11 @@ Status: audit only. No DB writes. No migrations.
 ## Summary
 
 - source fixture records loaded: 77028
-- full English physical missing-display rows: 121
-- target rows reviewed: 121
+- full English physical missing-display rows: 119
+- target rows reviewed: 119
 - exact-required target rows: 5
-- display-only target rows: 116
-- source URL preserved: 120
+- display-only target rows: 114
+- source URL preserved: 118
 - source URL still needed: 1
 - dry-run ready rows: 0
 
@@ -148,5 +148,3 @@ Status: audit only. No DB writes. No migrations.
 | tk-sm-r | display_only_missing_display | Pikachu | 29 | normal | source_url_preserved | representative | false | https://www.tcgcollector.com/cards/11818/pikachu-sm-trainer-kit-alolan-raichu-29-30 | GV-PK-TK-tk-sm-r-29-STD |
 | tk-sm-r | display_only_missing_display | Stufful | 4 | normal | source_url_preserved | representative | false | https://www.tcgcollector.com/cards/11827/stufful-sm-trainer-kit-alolan-raichu-4-30 | GV-PK-TK-tk-sm-r-4-STD |
 | tk-sm-r | display_only_missing_display | Golbat | 6 | normal | source_url_preserved | representative | false | https://www.tcgcollector.com/cards/13441/golbat-sm-trainer-kit-alolan-raichu-6-30 | GV-PK-TK-tk-sm-r-6-STD |
-| tk-xy-w | display_only_missing_display | Fairy Energy | 3 | normal | source_url_preserved | representative | false | https://www.tcgcollector.com/cards/13291/fairy-energy-xy-trainer-kit-wigglytuff-3-30 | GV-PK-TK-tk-xy-w-3-STD |
-| tk-xy-w | display_only_missing_display | Sentret | 4 | normal | source_url_preserved | representative | false | https://www.tcgcollector.com/cards/13292/sentret-xy-trainer-kit-wigglytuff-4-30 | GV-PK-TK-tk-xy-w-4-STD |

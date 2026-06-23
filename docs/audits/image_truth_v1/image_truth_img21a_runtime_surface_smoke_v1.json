@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T03:13:13.405Z",
+  "generated_at": "2026-06-23T03:21:58.054Z",
   "base_url": "http://127.0.0.1:3087",
   "results": [
     {
@@ -75,7 +75,7 @@
       "id": "set_trainer_kit_sm_lycanroc",
       "path": "/sets/tk-sm-l",
       "status": 200,
-      "body_length": 168606,
+      "body_length": 176662,
       "expected_signals": [
         "SM Trainer Kit (Lycanroc)",
         "cdn.malie.io/file/malie-io/art/cards/jpg/"
@@ -92,7 +92,7 @@
       "id": "set_trainer_kit_dp_lucario_residual",
       "path": "/sets/tk-dp-l",
       "status": 200,
-      "body_length": 129650,
+      "body_length": 143311,
       "expected_signals": [
         "DP Trainer Kit (Lucario)",
         "static.tcgcollector.com/content/images/"
@@ -157,6 +157,6 @@
     }
   ],
   "failures": [],
-  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 249ms\n",
-  "proof_hash": "0b9331a98e8f2ec1f84aeb9a34d62dd2e6ec9f50e6e4da4aa7c7cbcd1c8e4c14"
+  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 260ms\n",
+  "proof_hash": "bcc15b01bc8b32e125d1617d5dbd4902689bfb939c38796852d5cac4db2cd445"
 }
