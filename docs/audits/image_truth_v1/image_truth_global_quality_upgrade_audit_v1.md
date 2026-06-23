@@ -1,24 +1,24 @@
 # Image Truth Global Quality Upgrade Audit V1
 
-Generated: 2026-06-16T20:26:41.552Z
+Generated: 2026-06-23T02:56:21.061Z
 
 Mode: audit only. No DB writes. No image uploads. No migrations.
 
 ## Summary
 
-- child printing rows audited: 37651
-- parent/base high-quality upgrade candidates: 17628
+- child printing rows audited: 38101
+- parent/base high-quality upgrade candidates: 18147
 - deterministic no-probe candidates: 209
-- candidates requiring HEAD probe: 17419
-- visually distinct child rows still needing exact image review: 14311
+- candidates requiring HEAD probe: 17938
+- visually distinct child rows still needing exact image review: 14752
 
 ## Parent Quality Buckets
 
 | bucket | rows |
 | --- | ---: |
 | parent_tcgdex_high_to_pokemontcg_hires_candidate | 17102 |
-| no_parent_quality_upgrade_candidate | 4080 |
-| parent_missing_to_pokemontcg_hires_candidate | 317 |
+| no_parent_quality_upgrade_candidate | 4125 |
+| parent_missing_to_pokemontcg_hires_candidate | 836 |
 | parent_tcgdex_non_high_to_tcgdex_high | 122 |
 | parent_small_to_pokemontcg_hires | 87 |
 
@@ -26,9 +26,9 @@ Mode: audit only. No DB writes. No image uploads. No migrations.
 
 | bucket | rows |
 | --- | ---: |
-| child_parent_display_ok_for_non_visual_finish | 22956 |
-| child_exact_required_using_parent_or_missing | 14311 |
-| child_has_image_no_quality_upgrade_candidate | 384 |
+| child_parent_display_ok_for_non_visual_finish | 22938 |
+| child_exact_required_using_parent_or_missing | 14752 |
+| child_has_image_no_quality_upgrade_candidate | 411 |
 
 ## Rules
 
@@ -47,14 +47,18 @@ Mode: audit only. No DB writes. No image uploads. No migrations.
 | base1 | 101 | Psychic Energy | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/101/high.webp | https://images.pokemontcg.io/base1/101_hires.png |
 | base1 | 102 | Water Energy | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/102/high.webp | https://images.pokemontcg.io/base1/102_hires.png |
 | base1 | 11 | Nidoking | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/11/high.webp | https://images.pokemontcg.io/base1/11_hires.png |
+| base1 | 12 | Ninetales | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/12_hires.png |
+| base1 | 12 | Ninetales | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/12_hires.png |
 | base1 | 12 | Ninetales | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/12/high.webp | https://images.pokemontcg.io/base1/12_hires.png |
 | base1 | 13 | Poliwrath | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/13/high.webp | https://images.pokemontcg.io/base1/13_hires.png |
 | base1 | 14 | Raichu | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/14/high.webp | https://images.pokemontcg.io/base1/14_hires.png |
 | base1 | 15 | Venusaur | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/15/high.webp | https://images.pokemontcg.io/base1/15_hires.png |
 | base1 | 16 | Zapdos | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/16/high.webp | https://images.pokemontcg.io/base1/16_hires.png |
 | base1 | 17 | Beedrill | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/17/high.webp | https://images.pokemontcg.io/base1/17_hires.png |
+| base1 | 17 | Beedrill | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/17_hires.png |
 | base1 | 18 | Dragonair | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/18/high.webp | https://images.pokemontcg.io/base1/18_hires.png |
 | base1 | 19 | Dugtrio | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/19/high.webp | https://images.pokemontcg.io/base1/19_hires.png |
+| base1 | 2 | Blastoise | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/2_hires.png |
 | base1 | 2 | Blastoise | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/2/high.webp | https://images.pokemontcg.io/base1/2_hires.png |
 | base1 | 20 | Electabuzz | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/20/high.webp | https://images.pokemontcg.io/base1/20_hires.png |
 | base1 | 21 | Electrode | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/21/high.webp | https://images.pokemontcg.io/base1/21_hires.png |
@@ -81,10 +85,12 @@ Mode: audit only. No DB writes. No image uploads. No migrations.
 | base1 | 40 | Raticate | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/40/high.webp | https://images.pokemontcg.io/base1/40_hires.png |
 | base1 | 41 | Seel | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/41/high.webp | https://images.pokemontcg.io/base1/41_hires.png |
 | base1 | 42 | Wartortle | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/42/high.webp | https://images.pokemontcg.io/base1/42_hires.png |
+| base1 | 42 | Wartortle | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/42_hires.png |
 | base1 | 43 | Abra | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/43/high.webp | https://images.pokemontcg.io/base1/43_hires.png |
 | base1 | 44 | Bulbasaur | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/44/high.webp | https://images.pokemontcg.io/base1/44_hires.png |
 | base1 | 45 | Caterpie | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/45/high.webp | https://images.pokemontcg.io/base1/45_hires.png |
 | base1 | 46 | Charmander | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/46/high.webp | https://images.pokemontcg.io/base1/46_hires.png |
+| base1 | 47 | Diglett | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/47_hires.png |
 | base1 | 47 | Diglett | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/47/high.webp | https://images.pokemontcg.io/base1/47_hires.png |
 | base1 | 48 | Doduo | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/48/high.webp | https://images.pokemontcg.io/base1/48_hires.png |
 | base1 | 49 | Drowzee | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/49/high.webp | https://images.pokemontcg.io/base1/49_hires.png |
@@ -97,7 +103,15 @@ Mode: audit only. No DB writes. No image uploads. No migrations.
 | base1 | 55 | Nidoran ♂ | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/55/high.webp | https://images.pokemontcg.io/base1/55_hires.png |
 | base1 | 56 | Onix | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/56/high.webp | https://images.pokemontcg.io/base1/56_hires.png |
 | base1 | 57 | Pidgey | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/57/high.webp | https://images.pokemontcg.io/base1/57_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
 | base1 | 58 | Pikachu | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/58/high.webp | https://images.pokemontcg.io/base1/58_hires.png |
+| base1 | 58 | Pikachu | parent_missing_to_pokemontcg_hires_candidate |  | https://images.pokemontcg.io/base1/58_hires.png |
 | base1 | 59 | Poliwag | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/59/high.webp | https://images.pokemontcg.io/base1/59_hires.png |
 | base1 | 6 | Gyarados | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/6/high.webp | https://images.pokemontcg.io/base1/6_hires.png |
 | base1 | 60 | Ponyta | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/60/high.webp | https://images.pokemontcg.io/base1/60_hires.png |
@@ -127,20 +141,6 @@ Mode: audit only. No DB writes. No image uploads. No migrations.
 | base1 | 82 | Full Heal | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/82/high.webp | https://images.pokemontcg.io/base1/82_hires.png |
 | base1 | 83 | Maintenance | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/83/high.webp | https://images.pokemontcg.io/base1/83_hires.png |
 | base1 | 84 | PlusPower | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/84/high.webp | https://images.pokemontcg.io/base1/84_hires.png |
-| base1 | 85 | Pokémon Center | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/85/high.webp | https://images.pokemontcg.io/base1/85_hires.png |
-| base1 | 86 | Pokémon Flute | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/86/high.webp | https://images.pokemontcg.io/base1/86_hires.png |
-| base1 | 87 | Pokédex | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/87/high.webp | https://images.pokemontcg.io/base1/87_hires.png |
-| base1 | 88 | Professor Oak | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/88/high.webp | https://images.pokemontcg.io/base1/88_hires.png |
-| base1 | 89 | Revive | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/89/high.webp | https://images.pokemontcg.io/base1/89_hires.png |
-| base1 | 9 | Magneton | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/9/high.webp | https://images.pokemontcg.io/base1/9_hires.png |
-| base1 | 90 | Super Potion | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/90/high.webp | https://images.pokemontcg.io/base1/90_hires.png |
-| base1 | 91 | Bill | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/91/high.webp | https://images.pokemontcg.io/base1/91_hires.png |
-| base1 | 92 | Energy Removal | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/92/high.webp | https://images.pokemontcg.io/base1/92_hires.png |
-| base1 | 93 | Gust of Wind | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/93/high.webp | https://images.pokemontcg.io/base1/93_hires.png |
-| base1 | 94 | Potion | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/94/high.webp | https://images.pokemontcg.io/base1/94_hires.png |
-| base1 | 95 | Switch | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/95/high.webp | https://images.pokemontcg.io/base1/95_hires.png |
-| base1 | 96 | Double Colorless Energy | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/96/high.webp | https://images.pokemontcg.io/base1/96_hires.png |
-| base1 | 97 | Fighting Energy | parent_tcgdex_high_to_pokemontcg_hires_candidate | https://assets.tcgdex.net/en/base/base1/97/high.webp | https://images.pokemontcg.io/base1/97_hires.png |
 
 ## Important Distinction
 

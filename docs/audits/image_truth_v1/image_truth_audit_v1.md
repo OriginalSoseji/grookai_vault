@@ -1,25 +1,25 @@
 # Image Truth Audit V1
 
-Generated: 2026-06-18T19:18:38.368Z
+Generated: 2026-06-23T02:56:22.590Z
 
 Status: audit only. No DB writes. No migrations.
 
 ## Summary
 
-- total child printings: 43682
+- total child printings: 44137
 - child image storage columns present: true
-- exact child image required: 16541
-- finish visual review needed: 10708
-- exact-required rows missing exact child image: 16445
-- finish-review rows missing exact child image: 10514
-- critical/high image risk rows: 16445
-- image apply-addressable missing exact rows: 14431
+- exact child image required: 16973
+- finish visual review needed: 10851
+- exact-required rows missing exact child image: 16877
+- finish-review rows missing exact child image: 10639
+- critical/high image risk rows: 16877
+- image apply-addressable missing exact rows: 14863
 - image identity-blocked missing exact rows: 205
 - image non-physical blocked missing exact rows: 1809
 - image other-scope missing exact rows: 0
-- english physical display-covered rows: 37646
-- english physical missing-display rows: 0
-- english physical missing-variant-visual rows: 14431
+- english physical display-covered rows: 37821
+- english physical missing-display rows: 275
+- english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
 
@@ -29,46 +29,49 @@ All scopes:
 
 | confidence | rows |
 | --- | --- |
-| exact | 22739 |
-| missing_variant_visual | 14431 |
-| blocked | 6036 |
-| representative | 476 |
+| exact | 22484 |
+| missing_variant_visual | 14856 |
+| blocked | 6041 |
+| representative | 481 |
+| missing | 275 |
 
 English physical only:
 
 | confidence | rows |
 | --- | --- |
-| exact | 22739 |
-| missing_variant_visual | 14431 |
-| representative | 476 |
+| exact | 22484 |
+| missing_variant_visual | 14856 |
+| representative | 481 |
+| missing | 275 |
+| blocked | 5 |
 
 ## Image Coverage Counts
 
 | coverage | rows |
 | --- | --- |
-| using_parent_exact_image | 42751 |
-| using_parent_representative_image | 462 |
-| exact_child_image_present | 388 |
-| missing_display_image | 81 |
+| using_parent_exact_image | 42476 |
+| using_parent_representative_image | 894 |
+| exact_child_image_present | 411 |
+| missing_display_image | 356 |
 
 ## Risk Counts
 
 | risk | rows |
 | --- | --- |
-| low | 27183 |
-| high | 16418 |
-| medium | 54 |
-| critical | 27 |
+| low | 26938 |
+| high | 16843 |
+| medium | 322 |
+| critical | 34 |
 
 ## Risk By Finish
 
 | finish | risk rows |
 | --- | --- |
-| reverse | 15384 |
-| cosmos | 324 |
+| reverse | 15506 |
+| normal | 590 |
+| holo | 348 |
+| cosmos | 326 |
 | pokeball | 230 |
-| holo | 212 |
-| normal | 150 |
 | cracked_ice | 122 |
 | masterball | 67 |
 | rocket_reverse | 10 |
@@ -84,24 +87,24 @@ English physical only:
 | unknown | 259 |
 | A4 | 241 |
 | A3 | 239 |
-| swsh8 | 221 |
+| swsh8 | 229 |
 | A2 | 207 |
 | sm11 | 203 |
-| sm12 | 197 |
+| sm12 | 198 |
+| swsh1 | 194 |
+| sv02 | 193 |
 | sv03 | 193 |
 | sv01 | 192 |
 | sv08.5 | 192 |
-| sv02 | 188 |
-| sm8 | 186 |
-| swsh1 | 181 |
+| sm8 | 190 |
+| sv10 | 189 |
 | sm10 | 180 |
-| sv10 | 176 |
+| swsh3 | 170 |
+| swsh2 | 169 |
 | sv04 | 168 |
 | ecard1 | 167 |
 | sv08 | 166 |
-| swsh3 | 160 |
-| sv03.5 | 159 |
-| ecard2 | 158 |
+| sv03.5 | 162 |
 
 ## Top Risk Rows
 
@@ -134,9 +137,9 @@ English physical only:
 | critical | unknown | 97 | Kangaskhan | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
 | critical | unknown | 98 | Blissey ex | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
 | critical | unknown | 99 | Marill | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
-| high | sv03.5 | 025 | Pikachu | reverse | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
-| high | sv8pt5 | 002 | Exeggutor | masterball | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
-| high | sv8pt5 | 002 | Exeggutor | pokeball | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
+| critical | mep | 064 | Serperior | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
+| critical | mep | 065 | Barbaracle | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
+| critical | mep | 066 | Tyrantrum | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
 
 ## Interpretation
 

@@ -856,16 +856,34 @@ function markdownTable(rows, columns) {
   return [header, divider, ...body].join('\n');
 }
 
+async function mapLimit(items, limit, worker) {
+  const results = new Array(items.length);
+  let cursor = 0;
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (cursor < items.length) {
+      const index = cursor;
+      cursor += 1;
+      results[index] = await worker(items[index], index);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
 async function main() {
   const sourcePacket = JSON.parse(await fs.readFile(SOURCE_PACKET_JSON, 'utf8'));
-  const rows = [];
-  for (const row of sourcePacket.rows ?? []) {
-    if (row.image_scope !== 'english_physical') continue;
-    if (row.target_table !== 'card_printings') continue;
-    if (row.parent_overwrite_allowed !== false) continue;
-    if (!IMAGE_SOURCE_STATUSES.has(row.source_status)) continue;
+  const sourceRows = (sourcePacket.rows ?? []).filter((row) => {
+    if (row.image_scope !== 'english_physical') return false;
+    if (row.target_table !== 'card_printings') return false;
+    if (row.parent_overwrite_allowed !== false) return false;
+    if (!IMAGE_SOURCE_STATUSES.has(row.source_status)) return false;
+    return true;
+  });
+
+  const concurrency = Number(process.env.IMAGE_ASSET_MANIFEST_CONCURRENCY ?? 8);
+  const rows = await mapLimit(sourceRows, Number.isFinite(concurrency) && concurrency > 0 ? concurrency : 8, async (row) => {
     const asset = await extractAsset(row);
-    rows.push({
+    return {
       card_printing_id: row.card_printing_id,
       printing_gv_id: row.printing_gv_id,
       card_print_id: row.card_print_id,
@@ -892,8 +910,8 @@ async function main() {
       block_reason: asset.asset_status === 'source_image_url_preserved'
         ? 'Source image URL is preserved, but it is not normalized into Grookai storage and no dry-run proof exists.'
         : asset.reason,
-    });
-  }
+    };
+  });
 
   const report = {
     generated_at: new Date().toISOString(),

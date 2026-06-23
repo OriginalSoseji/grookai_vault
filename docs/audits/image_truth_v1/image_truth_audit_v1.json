@@ -1,10 +1,10 @@
 {
   "summary": {
-    "generated_at": "2026-06-18T19:18:38.368Z",
+    "generated_at": "2026-06-23T02:56:22.590Z",
     "audit_only": true,
     "db_writes_performed": false,
     "migrations_created": false,
-    "total_child_printings": 43682,
+    "total_child_printings": 44137,
     "child_image_storage_columns_present": true,
     "child_image_storage_columns": {
       "image_source": true,
@@ -14,39 +14,39 @@
       "image_status": true,
       "image_note": true
     },
-    "exact_child_image_required": 16541,
-    "finish_visual_review_needed": 10708,
-    "exact_required_missing_child_exact_image": 16445,
-    "finish_visual_review_missing_child_exact_image": 10514,
-    "critical_or_high_risk_rows": 16445,
+    "exact_child_image_required": 16973,
+    "finish_visual_review_needed": 10851,
+    "exact_required_missing_child_exact_image": 16877,
+    "finish_visual_review_missing_child_exact_image": 10639,
+    "critical_or_high_risk_rows": 16877,
     "risk_level_counts": {
-      "low": 27183,
-      "high": 16418,
-      "medium": 54,
-      "critical": 27
+      "low": 26938,
+      "high": 16843,
+      "medium": 322,
+      "critical": 34
     },
     "image_coverage_counts": {
-      "using_parent_exact_image": 42751,
-      "using_parent_representative_image": 462,
-      "exact_child_image_present": 388,
-      "missing_display_image": 81
+      "using_parent_exact_image": 42476,
+      "using_parent_representative_image": 894,
+      "exact_child_image_present": 411,
+      "missing_display_image": 356
     },
     "finish_counts": {
-      "normal": 16758,
-      "reverse": 15423,
-      "holo": 10708,
-      "cosmos": 355,
+      "normal": 16946,
+      "reverse": 15545,
+      "holo": 10851,
+      "cosmos": 357,
       "pokeball": 230,
       "cracked_ice": 131,
       "masterball": 67,
       "rocket_reverse": 10
     },
     "risky_finish_counts": {
-      "reverse": 15384,
-      "cosmos": 324,
+      "reverse": 15506,
+      "normal": 590,
+      "holo": 348,
+      "cosmos": 326,
       "pokeball": 230,
-      "holo": 212,
-      "normal": 150,
       "cracked_ice": 122,
       "masterball": 67,
       "rocket_reverse": 10
@@ -59,116 +59,116 @@
       "unknown": 259,
       "A4": 241,
       "A3": 239,
-      "swsh8": 221,
+      "swsh8": 229,
       "A2": 207,
       "sm11": 203,
-      "sm12": 197,
+      "sm12": 198,
+      "swsh1": 194,
+      "sv02": 193,
       "sv03": 193,
       "sv01": 192,
       "sv08.5": 192,
-      "sv02": 188,
-      "sm8": 186,
-      "swsh1": 181,
+      "sm8": 190,
+      "sv10": 189,
       "sm10": 180,
-      "sv10": 176,
+      "swsh3": 170,
+      "swsh2": 169,
       "sv04": 168,
       "ecard1": 167,
       "sv08": 166,
-      "swsh3": 160,
-      "sv03.5": 159,
+      "sv03.5": 162,
+      "swsh4": 162,
+      "swsh11": 161,
+      "swsh6": 160,
       "ecard2": 158,
       "pl3": 158,
-      "swsh2": 158,
-      "swsh4": 155,
+      "sv05": 157,
+      "sv09": 157,
+      "swsh7": 156,
+      "swsh12": 154,
+      "swsh9": 154,
+      "sm1": 153,
       "sv06": 152,
-      "sv05": 151,
-      "sv09": 151,
+      "xy8": 152,
+      "swsh10": 151,
       "ecard3": 150,
-      "swsh11": 149,
-      "xy8": 148,
-      "sm1": 147,
+      "dp6": 146,
+      "sm7": 146,
       "sm9": 146,
-      "swsh12": 144,
-      "sm7": 142,
-      "dp6": 141,
-      "swsh6": 140,
-      "bw7": 139,
+      "xy1": 145,
+      "swsh5": 142,
+      "bw7": 140,
+      "dp1": 140,
       "xy5": 139,
-      "xy1": 136,
-      "dp3": 135,
+      "dp3": 137,
       "svp": 135,
-      "swsh7": 134,
-      "dp1": 132,
-      "swsh10": 131,
-      "swsh9": 131,
+      "sm5": 134,
+      "bw1": 133,
+      "me01": 130,
+      "sv07": 130,
       "pl1": 129,
-      "sm5": 129,
-      "sv07": 129,
-      "me01": 127,
-      "swsh5": 126,
-      "xy4": 126,
-      "bw1": 123,
-      "dp2": 122,
-      "sm2": 122,
-      "bw8": 121,
-      "sm3": 120,
-      "bw6": 119,
-      "hgss1": 119,
-      "swsh12.5": 118,
-      "pl2": 116,
+      "xy4": 127,
+      "sm2": 126,
+      "hgss1": 124,
+      "dp2": 123,
+      "sm3": 123,
+      "bw8": 122,
+      "bw6": 121,
+      "swsh12.5": 119,
+      "ex1": 118,
+      "pl2": 118,
+      "sm6": 114,
       "A2b": 111,
-      "ex1": 111,
+      "bw5": 111,
+      "xy3": 111,
       "base6": 110,
-      "sm6": 108,
-      "xy3": 108,
+      "bw3": 108,
+      "dp4": 108,
+      "xy9": 108,
       "A3b": 107,
+      "ex11": 107,
       "bw11": 106,
-      "ex11": 106,
+      "dp5": 106,
       "A4a": 105,
-      "bw9": 104,
-      "dp4": 104,
-      "xy9": 104,
-      "bw2": 103,
-      "ex6": 103,
-      "bw5": 102,
-      "ex10": 102,
-      "bw3": 101,
-      "dp5": 101,
+      "bw2": 105,
+      "bw9": 105,
+      "ex6": 104,
+      "xy10": 104,
+      "ex10": 103,
+      "sm4": 103,
+      "xy11": 102,
       "dp7": 101,
       "pl4": 101,
-      "xy10": 101,
-      "sm4": 99,
-      "bw4": 98,
-      "ex13": 98,
-      "xy11": 97,
+      "bw4": 99,
+      "ex13": 99,
+      "xy2": 99,
+      "ex8": 98,
+      "ex2": 97,
+      "ex3": 97,
+      "ex7": 97,
       "A2a": 96,
-      "ex7": 96,
-      "ex8": 96,
-      "xy2": 95,
-      "ex2": 94,
+      "ex5": 96,
+      "hgss2": 96,
+      "ex9": 95,
+      "ex16": 94,
       "ex4": 94,
-      "ex16": 93,
-      "ex5": 92,
-      "hgss4": 92,
+      "hgss4": 94,
+      "ex14": 92,
+      "xy12": 92,
       "bw10": 91,
-      "ex9": 91,
-      "ex15": 90,
-      "ex3": 90,
+      "ex15": 91,
       "col1": 89,
       "xy6": 89,
-      "ex14": 88,
-      "hgss2": 88,
-      "xy12": 87,
+      "me02": 87,
       "A1a": 86,
-      "me02": 86,
-      "hgss3": 83,
+      "hgss3": 84,
+      "ex12": 83,
       "sv04.5": 83,
       "sv4pt5": 83,
       "xy7": 83,
-      "ex12": 82,
+      "me03": 81,
       "sv10.5b": 81,
       "sv10.5w": 80,
-      "me03": 79,
       "g1": 76,
       "me04": 76,
       "sm3.5": 63,
@@ -182,24 +182,41 @@
       "swsh4.5": 52,
       "swshp": 41,
       "dc1": 32,
+      "tk-bw-e": 30,
+      "tk-bw-z": 30,
+      "tk-xy-b": 30,
+      "tk-xy-n": 30,
+      "tk-xy-p": 30,
+      "tk-xy-sy": 30,
+      "tk-xy-w": 30,
       "smp": 24,
-      "sve": 19,
+      "sve": 20,
+      "tk-sm-r": 19,
       "basep": 18,
+      "tk-sm-l": 18,
       "xyp": 18,
-      "bwp": 13,
+      "bwp": 14,
+      "tk-dp-m": 12,
+      "tk-dp-l": 11,
+      "dv1": 10,
+      "base1": 8,
       "pop8": 8,
-      "base1": 7,
+      "mep": 6,
       "si1": 6,
       "bog": 5,
       "np": 5,
+      "base5": 3,
+      "xy0": 3,
+      "base2": 2,
+      "base3": 2,
       "base4": 2,
       "cel25": 2,
-      "dv1": 2,
+      "gym1": 2,
       "hsp": 2,
-      "mep": 2,
       "pop9": 2,
-      "base3": 1,
       "cel25c": 1,
+      "gym2": 1,
+      "misc": 1,
       "neo1": 1,
       "neo4": 1,
       "pop2": 1,
@@ -207,42 +224,44 @@
       "pop7": 1,
       "swsh12tg": 1,
       "tk-ex-p": 1,
-      "tk-xy-n": 1,
-      "tk-xy-sy": 1,
       "tk2a": 1
     },
     "image_scope_counts": {
-      "english_physical": 37646,
+      "english_physical": 38101,
       "digital_or_non_physical_excluded": 5427,
       "unresolved_set": 609
     },
     "risky_image_scope_counts": {
-      "english_physical": 14431,
+      "english_physical": 15131,
       "digital_or_non_physical_excluded": 1809,
       "unresolved_set": 259
     },
     "image_confidence_counts": {
-      "exact": 22739,
-      "missing_variant_visual": 14431,
-      "blocked": 6036,
-      "representative": 476
+      "exact": 22484,
+      "missing_variant_visual": 14856,
+      "blocked": 6041,
+      "representative": 481,
+      "missing": 275
     },
     "english_physical_image_confidence_counts": {
-      "exact": 22739,
-      "missing_variant_visual": 14431,
-      "representative": 476
+      "exact": 22484,
+      "missing_variant_visual": 14856,
+      "representative": 481,
+      "missing": 275,
+      "blocked": 5
     },
     "english_physical_exact_required_image_confidence_counts": {
-      "missing_variant_visual": 14431,
+      "missing_variant_visual": 14856,
       "exact": 55,
-      "representative": 41
+      "representative": 41,
+      "missing": 7
     },
-    "english_physical_display_covered_rows": 37646,
-    "english_physical_missing_display_rows": 0,
-    "english_physical_missing_variant_visual_rows": 14431,
-    "english_physical_exact_rows": 22739,
-    "english_physical_representative_rows": 476,
-    "image_apply_addressable_missing_exact_rows": 14431,
+    "english_physical_display_covered_rows": 37821,
+    "english_physical_missing_display_rows": 275,
+    "english_physical_missing_variant_visual_rows": 14856,
+    "english_physical_exact_rows": 22484,
+    "english_physical_representative_rows": 481,
+    "image_apply_addressable_missing_exact_rows": 14863,
     "image_identity_blocked_missing_exact_rows": 205,
     "image_non_physical_blocked_missing_exact_rows": 1809,
     "image_other_scope_missing_exact_rows": 0
@@ -1163,6 +1182,242 @@
       "parent_has_public_image": false,
       "parent_has_representative_image": false,
       "parent_image_status": "missing",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
+      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
+      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
+      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Serperior",
+      "number": "064",
+      "finish_key": "holo",
+      "finish_label": "Holo",
+      "variant_key": "staff_stamp",
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": true,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "holo_finish_review_debt",
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "representative_shared_stamp",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "2c76b426-bdda-42ce-85d8-a921e79de026",
+      "printing_gv_id": "GV-PK-MEP-065-STAFF-STAMP-HOLO",
+      "card_print_id": "ed8b64d2-74d2-4046-a440-dc8dc87b7af1",
+      "parent_gv_id": "GV-PK-MEP-065-STAFF-STAMP",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Barbaracle",
+      "number": "065",
+      "finish_key": "holo",
+      "finish_label": "Holo",
+      "variant_key": "staff_stamp",
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": true,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "holo_finish_review_debt",
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "representative_shared_stamp",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "ed4ce9f8-9703-492e-919c-3ec19d1f493a",
+      "printing_gv_id": "GV-PK-MEP-066-STAFF-STAMP-HOLO",
+      "card_print_id": "85e9c572-7d57-4cad-8a44-bfc01681c255",
+      "parent_gv_id": "GV-PK-MEP-066-STAFF-STAMP",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Tyrantrum",
+      "number": "066",
+      "finish_key": "holo",
+      "finish_label": "Holo",
+      "variant_key": "staff_stamp",
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": true,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "holo_finish_review_debt",
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "representative_shared_stamp",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
+      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
+      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
+      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Doublade",
+      "number": "067",
+      "finish_key": "holo",
+      "finish_label": "Holo",
+      "variant_key": "staff_stamp",
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": true,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "holo_finish_review_debt",
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "representative_shared_stamp",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "d91be6d3-58f8-4ebc-a3e7-e9b58b391e8d",
+      "printing_gv_id": "GV-PK-MISC-001-COSMOS",
+      "card_print_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+      "parent_gv_id": "GV-PK-MISC-001",
+      "set_code": "misc",
+      "set_name": "Miscellaneous Cards & Products",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Ancient Mew",
+      "number": "1",
+      "finish_key": "cosmos",
+      "finish_label": "Cosmos Holo",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "visually_distinct_finish",
+        "non_normal_finish",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": "missing",
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "missing",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "3738e9e1-4fec-4b10-8a9c-1380b66ab1ac",
+      "printing_gv_id": "GV-PK-TK-tk-xy-n-24-STD",
+      "card_print_id": "fae987d5-4761-4853-a482-e4dff7bdbda0",
+      "parent_gv_id": "GV-PK-TK-tk-xy-n-24",
+      "set_code": "tk-xy-n",
+      "set_name": "XY Trainer Kit (Noivern)",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Professor’s Letter",
+      "number": "24",
+      "finish_key": "normal",
+      "finish_label": "Normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "unresolved",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "a718f836-1a66-46c8-ae64-d2ec011e654f",
+      "printing_gv_id": "GV-PK-TK-tk-xy-sy-28-STD",
+      "card_print_id": "d11a62c7-d8e6-4342-a531-d59bf01fc984",
+      "parent_gv_id": "GV-PK-TK-tk-xy-sy-28",
+      "set_code": "tk-xy-sy",
+      "set_name": "XY Trainer Kit (Sylveon)",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Professor’s Letter",
+      "number": "28",
+      "finish_key": "normal",
+      "finish_label": "Normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "missing_display_image",
+      "image_confidence": "missing",
+      "image_confidence_reason": "no_safe_display_image_available",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "visual_identity_modifier_or_stamp",
+        "no_display_image_available"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": false,
+      "parent_has_representative_image": false,
+      "parent_image_status": "unresolved",
       "parent_image_source": null,
       "ownership_refs_count": 0
     },
@@ -3412,266 +3667,28 @@
       "parent_image_status": "exact",
       "parent_image_source": "tcgdex",
       "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "6854345a-02c6-4db7-ac0e-436a16b778d0",
-      "printing_gv_id": "GV-TCGP-A3A-36-RH",
-      "card_print_id": "10a8810e-dcce-402b-9744-daaecc1f8514",
-      "parent_gv_id": "GV-TCGP-A3A-36",
-      "set_code": null,
-      "set_name": "Extradimensional Crisis",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Palossand",
-      "number": "36",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "d0db650d-75c5-4bd3-8c25-1270187b8244",
-      "printing_gv_id": "GV-TCGP-A3A-37-RH",
-      "card_print_id": "df85125b-e129-4d4f-8dcb-2dd0294b873b",
-      "parent_gv_id": "GV-TCGP-A3A-37",
-      "set_code": null,
-      "set_name": "Extradimensional Crisis",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Alolan Meowth",
-      "number": "37",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "c68d3963-62c4-40d7-a6c9-0c66fd759f98",
-      "printing_gv_id": "GV-TCGP-P-A-37-RH",
-      "card_print_id": "14ca4aaf-4231-49c4-a967-9e809893b5d2",
-      "parent_gv_id": "GV-TCGP-P-A-37",
-      "set_code": null,
-      "set_name": "Promos-A",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Cresselia ex",
-      "number": "37",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "a68f44be-ced9-4da4-8465-3c569bb4f8d8",
-      "printing_gv_id": "GV-TCGP-A3A-38-RH",
-      "card_print_id": "970f0229-fde0-45f6-8555-2789d475cfcc",
-      "parent_gv_id": "GV-TCGP-A3A-38",
-      "set_code": null,
-      "set_name": "Extradimensional Crisis",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Alolan Persian",
-      "number": "38",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "5874a20e-f5ac-403c-84cc-4674cdb4c19c",
-      "printing_gv_id": "GV-TCGP-P-A-38-RH",
-      "card_print_id": "28c00597-8843-4408-9236-d8de65b35ebf",
-      "parent_gv_id": "GV-TCGP-P-A-38",
-      "set_code": null,
-      "set_name": "Promos-A",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Misdreavus",
-      "number": "38",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "7245062d-47e5-4b8c-bd67-32f974fb3a40",
-      "printing_gv_id": "GV-TCGP-A3A-39-RH",
-      "card_print_id": "6c159791-5df4-4a83-843c-5a35510f9760",
-      "parent_gv_id": "GV-TCGP-A3A-39",
-      "set_code": null,
-      "set_name": "Extradimensional Crisis",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Sandile",
-      "number": "39",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "74889381-9d1d-42f5-b22f-ef0981b528bf",
-      "printing_gv_id": "GV-TCGP-P-A-39-RH",
-      "card_print_id": "b520378a-caba-4b61-8a83-95ebb9826584",
-      "parent_gv_id": "GV-TCGP-P-A-39",
-      "set_code": null,
-      "set_name": "Promos-A",
-      "image_scope": "unresolved_set",
-      "set_identity_domain_default": "tcg_pocket_excluded",
-      "card_name": "Skarmory",
-      "number": "39",
-      "finish_key": "reverse",
-      "finish_label": "Reverse Holo",
-      "variant_key": null,
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_exact_image",
-      "image_confidence": "blocked",
-      "image_confidence_reason": "blocked_scope_unresolved_set",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visually_distinct_finish",
-        "non_normal_finish",
-        "child_printing_falls_back_to_parent_exact_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": true,
-      "parent_has_representative_image": false,
-      "parent_image_status": "exact",
-      "parent_image_source": "tcgdex",
-      "ownership_refs_count": 0
     }
   ],
   "per_finish": [
     {
       "finish_key": "normal",
-      "total_count": 16758,
-      "risk_count": 150
+      "total_count": 16946,
+      "risk_count": 590
     },
     {
       "finish_key": "reverse",
-      "total_count": 15423,
-      "risk_count": 15384
+      "total_count": 15545,
+      "risk_count": 15506
     },
     {
       "finish_key": "holo",
-      "total_count": 10708,
-      "risk_count": 212
+      "total_count": 10851,
+      "risk_count": 348
     },
     {
       "finish_key": "cosmos",
-      "total_count": 355,
-      "risk_count": 324
+      "total_count": 357,
+      "risk_count": 326
     },
     {
       "finish_key": "pokeball",
@@ -3725,7 +3742,7 @@
     },
     {
       "set_code": "swsh8",
-      "risk_count": 221
+      "risk_count": 229
     },
     {
       "set_code": "A2",
@@ -3737,7 +3754,15 @@
     },
     {
       "set_code": "sm12",
-      "risk_count": 197
+      "risk_count": 198
+    },
+    {
+      "set_code": "swsh1",
+      "risk_count": 194
+    },
+    {
+      "set_code": "sv02",
+      "risk_count": 193
     },
     {
       "set_code": "sv03",
@@ -3752,24 +3777,24 @@
       "risk_count": 192
     },
     {
-      "set_code": "sv02",
-      "risk_count": 188
-    },
-    {
       "set_code": "sm8",
-      "risk_count": 186
+      "risk_count": 190
     },
     {
-      "set_code": "swsh1",
-      "risk_count": 181
+      "set_code": "sv10",
+      "risk_count": 189
     },
     {
       "set_code": "sm10",
       "risk_count": 180
     },
     {
-      "set_code": "sv10",
-      "risk_count": 176
+      "set_code": "swsh3",
+      "risk_count": 170
+    },
+    {
+      "set_code": "swsh2",
+      "risk_count": 169
     },
     {
       "set_code": "sv04",
@@ -3784,12 +3809,20 @@
       "risk_count": 166
     },
     {
-      "set_code": "swsh3",
-      "risk_count": 160
+      "set_code": "sv03.5",
+      "risk_count": 162
     },
     {
-      "set_code": "sv03.5",
-      "risk_count": 159
+      "set_code": "swsh4",
+      "risk_count": 162
+    },
+    {
+      "set_code": "swsh11",
+      "risk_count": 161
+    },
+    {
+      "set_code": "swsh6",
+      "risk_count": 160
     },
     {
       "set_code": "ecard2",
@@ -3800,23 +3833,39 @@
       "risk_count": 158
     },
     {
-      "set_code": "swsh2",
-      "risk_count": 158
+      "set_code": "sv05",
+      "risk_count": 157
     },
     {
-      "set_code": "swsh4",
-      "risk_count": 155
+      "set_code": "sv09",
+      "risk_count": 157
+    },
+    {
+      "set_code": "swsh7",
+      "risk_count": 156
+    },
+    {
+      "set_code": "swsh12",
+      "risk_count": 154
+    },
+    {
+      "set_code": "swsh9",
+      "risk_count": 154
+    },
+    {
+      "set_code": "sm1",
+      "risk_count": 153
     },
     {
       "set_code": "sv06",
       "risk_count": 152
     },
     {
-      "set_code": "sv05",
-      "risk_count": 151
+      "set_code": "xy8",
+      "risk_count": 152
     },
     {
-      "set_code": "sv09",
+      "set_code": "swsh10",
       "risk_count": 151
     },
     {
@@ -3824,139 +3873,119 @@
       "risk_count": 150
     },
     {
-      "set_code": "swsh11",
-      "risk_count": 149
+      "set_code": "dp6",
+      "risk_count": 146
     },
     {
-      "set_code": "xy8",
-      "risk_count": 148
-    },
-    {
-      "set_code": "sm1",
-      "risk_count": 147
+      "set_code": "sm7",
+      "risk_count": 146
     },
     {
       "set_code": "sm9",
       "risk_count": 146
     },
     {
-      "set_code": "swsh12",
-      "risk_count": 144
+      "set_code": "xy1",
+      "risk_count": 145
     },
     {
-      "set_code": "sm7",
+      "set_code": "swsh5",
       "risk_count": 142
     },
     {
-      "set_code": "dp6",
-      "risk_count": 141
-    },
-    {
-      "set_code": "swsh6",
+      "set_code": "bw7",
       "risk_count": 140
     },
     {
-      "set_code": "bw7",
-      "risk_count": 139
+      "set_code": "dp1",
+      "risk_count": 140
     },
     {
       "set_code": "xy5",
       "risk_count": 139
     },
     {
-      "set_code": "xy1",
-      "risk_count": 136
-    },
-    {
       "set_code": "dp3",
-      "risk_count": 135
+      "risk_count": 137
     },
     {
       "set_code": "svp",
       "risk_count": 135
     },
     {
-      "set_code": "swsh7",
+      "set_code": "sm5",
       "risk_count": 134
     },
     {
-      "set_code": "dp1",
-      "risk_count": 132
+      "set_code": "bw1",
+      "risk_count": 133
     },
     {
-      "set_code": "swsh10",
-      "risk_count": 131
+      "set_code": "me01",
+      "risk_count": 130
     },
     {
-      "set_code": "swsh9",
-      "risk_count": 131
+      "set_code": "sv07",
+      "risk_count": 130
     },
     {
       "set_code": "pl1",
       "risk_count": 129
     },
     {
-      "set_code": "sm5",
-      "risk_count": 129
-    },
-    {
-      "set_code": "sv07",
-      "risk_count": 129
-    },
-    {
-      "set_code": "me01",
+      "set_code": "xy4",
       "risk_count": 127
     },
     {
-      "set_code": "swsh5",
-      "risk_count": 126
-    },
-    {
-      "set_code": "xy4",
-      "risk_count": 126
-    },
-    {
-      "set_code": "bw1",
-      "risk_count": 123
-    },
-    {
-      "set_code": "dp2",
-      "risk_count": 122
-    },
-    {
       "set_code": "sm2",
-      "risk_count": 122
-    },
-    {
-      "set_code": "bw8",
-      "risk_count": 121
-    },
-    {
-      "set_code": "sm3",
-      "risk_count": 120
-    },
-    {
-      "set_code": "bw6",
-      "risk_count": 119
+      "risk_count": 126
     },
     {
       "set_code": "hgss1",
-      "risk_count": 119
+      "risk_count": 124
+    },
+    {
+      "set_code": "dp2",
+      "risk_count": 123
+    },
+    {
+      "set_code": "sm3",
+      "risk_count": 123
+    },
+    {
+      "set_code": "bw8",
+      "risk_count": 122
+    },
+    {
+      "set_code": "bw6",
+      "risk_count": 121
     },
     {
       "set_code": "swsh12.5",
+      "risk_count": 119
+    },
+    {
+      "set_code": "ex1",
       "risk_count": 118
     },
     {
       "set_code": "pl2",
-      "risk_count": 116
+      "risk_count": 118
+    },
+    {
+      "set_code": "sm6",
+      "risk_count": 114
     },
     {
       "set_code": "A2b",
       "risk_count": 111
     },
     {
-      "set_code": "ex1",
+      "set_code": "bw5",
+      "risk_count": 111
+    },
+    {
+      "set_code": "xy3",
       "risk_count": 111
     },
     {
@@ -3964,11 +3993,15 @@
       "risk_count": 110
     },
     {
-      "set_code": "sm6",
+      "set_code": "bw3",
       "risk_count": 108
     },
     {
-      "set_code": "xy3",
+      "set_code": "dp4",
+      "risk_count": 108
+    },
+    {
+      "set_code": "xy9",
       "risk_count": 108
     },
     {
@@ -3976,11 +4009,15 @@
       "risk_count": 107
     },
     {
+      "set_code": "ex11",
+      "risk_count": 107
+    },
+    {
       "set_code": "bw11",
       "risk_count": 106
     },
     {
-      "set_code": "ex11",
+      "set_code": "dp5",
       "risk_count": 106
     },
     {
@@ -3988,40 +4025,32 @@
       "risk_count": 105
     },
     {
-      "set_code": "bw9",
-      "risk_count": 104
-    },
-    {
-      "set_code": "dp4",
-      "risk_count": 104
-    },
-    {
-      "set_code": "xy9",
-      "risk_count": 104
-    },
-    {
       "set_code": "bw2",
-      "risk_count": 103
+      "risk_count": 105
+    },
+    {
+      "set_code": "bw9",
+      "risk_count": 105
     },
     {
       "set_code": "ex6",
-      "risk_count": 103
+      "risk_count": 104
     },
     {
-      "set_code": "bw5",
-      "risk_count": 102
+      "set_code": "xy10",
+      "risk_count": 104
     },
     {
       "set_code": "ex10",
+      "risk_count": 103
+    },
+    {
+      "set_code": "sm4",
+      "risk_count": 103
+    },
+    {
+      "set_code": "xy11",
       "risk_count": 102
-    },
-    {
-      "set_code": "bw3",
-      "risk_count": 101
-    },
-    {
-      "set_code": "dp5",
-      "risk_count": 101
     },
     {
       "set_code": "dp7",
@@ -4032,23 +4061,31 @@
       "risk_count": 101
     },
     {
-      "set_code": "xy10",
-      "risk_count": 101
-    },
-    {
-      "set_code": "sm4",
+      "set_code": "bw4",
       "risk_count": 99
     },
     {
-      "set_code": "bw4",
-      "risk_count": 98
-    },
-    {
       "set_code": "ex13",
+      "risk_count": 99
+    },
+    {
+      "set_code": "xy2",
+      "risk_count": 99
+    },
+    {
+      "set_code": "ex8",
       "risk_count": 98
     },
     {
-      "set_code": "xy11",
+      "set_code": "ex2",
+      "risk_count": 97
+    },
+    {
+      "set_code": "ex3",
+      "risk_count": 97
+    },
+    {
+      "set_code": "ex7",
       "risk_count": 97
     },
     {
@@ -4056,44 +4093,24 @@
       "risk_count": 96
     },
     {
-      "set_code": "ex7",
+      "set_code": "ex5",
       "risk_count": 96
     },
     {
-      "set_code": "ex8",
+      "set_code": "hgss2",
       "risk_count": 96
     },
     {
-      "set_code": "xy2",
+      "set_code": "ex9",
       "risk_count": 95
     },
     {
-      "set_code": "ex2",
+      "set_code": "ex16",
       "risk_count": 94
     },
     {
       "set_code": "ex4",
       "risk_count": 94
-    },
-    {
-      "set_code": "ex16",
-      "risk_count": 93
-    },
-    {
-      "set_code": "ex5",
-      "risk_count": 92
-    },
-    {
-      "set_code": "hgss4",
-      "risk_count": 92
-    },
-    {
-      "set_code": "bw10",
-      "risk_count": 91
-    },
-    {
-      "set_code": "ex9",
-      "risk_count": 91
     }
   ]
 }
