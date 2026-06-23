@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:59:16.018Z",
+  "generated_at": "2026-06-23T04:10:12.701Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -17,11 +17,11 @@
     "dry_run_required_before_db_write": true
   },
   "source_fixture_records_loaded": 77028,
-  "full_english_physical_missing_display_rows": 4,
-  "target_count": 4,
-  "exact_required_target_count": 4,
+  "full_english_physical_missing_display_rows": 2,
+  "target_count": 2,
+  "exact_required_target_count": 2,
   "display_only_target_count": 0,
-  "source_url_preserved_count": 4,
+  "source_url_preserved_count": 2,
   "representative_source_url_preserved_count": 0,
   "source_url_needed_count": 0,
   "source_url_review_needed_count": 0,
@@ -58,7 +58,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Serperior Holo 64 Prices | Serperior Holo 64 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:59:12.856Z:mep:064:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T04:10:11.781Z:mep:064:holo",
           "fixture_file": null
         },
         {
@@ -79,118 +79,6 @@
           "evidence_type": "finish_presence",
           "evidence_label": "ReverseHolo checklist row #064 - Serperior - HOLO",
           "raw_snapshot_ref": "reverseholo:mep:064:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1/mep.json"
-        }
-      ]
-    },
-    {
-      "card_printing_id": "2c76b426-bdda-42ce-85d8-a921e79de026",
-      "printing_gv_id": "GV-PK-MEP-065-STAFF-STAMP-HOLO",
-      "card_print_id": "ed8b64d2-74d2-4046-a440-dc8dc87b7af1",
-      "parent_gv_id": "GV-PK-MEP-065-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Barbaracle",
-      "number": "065",
-      "finish_key": "holo",
-      "image_coverage_status": "missing_display_image",
-      "source_queue": "exact_required_missing_display",
-      "exact_child_image_required": true,
-      "input_image_confidence": "missing",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "source_status": "source_url_preserved",
-      "image_confidence": "representative",
-      "dry_run_ready": false,
-      "notes": "Preserved source URL proves exact finish identity. Image remains representative until a normalized exact asset is captured from the source.",
-      "live_source_rejection": null,
-      "preserved_source_urls": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/barbaracle-holo-65",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "Barbaracle Holo 65 Prices | Barbaracle Holo 65 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:59:13.913Z:mep:065:holo",
-          "fixture_file": null
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "reverseholo_set_checklist preserved finish evidence from last promoted Master Index",
-          "raw_snapshot_ref": "source_preservation:reverseholo_set_checklist:2026-05-28T16:17:44.174Z:mep:065:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_preservation_v1/reverseholo_preservation_v1.json"
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "ReverseHolo checklist row #065 - Barbaracle - HOLO",
-          "raw_snapshot_ref": "reverseholo:mep:065:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1/mep.json"
-        }
-      ]
-    },
-    {
-      "card_printing_id": "ed4ce9f8-9703-492e-919c-3ec19d1f493a",
-      "printing_gv_id": "GV-PK-MEP-066-STAFF-STAMP-HOLO",
-      "card_print_id": "85e9c572-7d57-4cad-8a44-bfc01681c255",
-      "parent_gv_id": "GV-PK-MEP-066-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Tyrantrum",
-      "number": "066",
-      "finish_key": "holo",
-      "image_coverage_status": "missing_display_image",
-      "source_queue": "exact_required_missing_display",
-      "exact_child_image_required": true,
-      "input_image_confidence": "missing",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "source_status": "source_url_preserved",
-      "image_confidence": "representative",
-      "dry_run_ready": false,
-      "notes": "Preserved source URL proves exact finish identity. Image remains representative until a normalized exact asset is captured from the source.",
-      "live_source_rejection": null,
-      "preserved_source_urls": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tyrantrum-holo-66",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "Tyrantrum Holo 66 Prices | Tyrantrum Holo 66 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:59:14.989Z:mep:066:holo",
-          "fixture_file": null
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "reverseholo_set_checklist preserved finish evidence from last promoted Master Index",
-          "raw_snapshot_ref": "source_preservation:reverseholo_set_checklist:2026-05-28T16:17:44.174Z:mep:066:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_preservation_v1/reverseholo_preservation_v1.json"
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "ReverseHolo checklist row #066 - Tyrantrum - HOLO",
-          "raw_snapshot_ref": "reverseholo:mep:066:holo",
           "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1/mep.json"
         }
       ]
@@ -226,7 +114,7 @@
           "source_image_url": null,
           "evidence_type": "finish_presence",
           "evidence_label": "Doublade Holo 67 Prices | Doublade Holo 67 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T03:59:16.018Z:mep:067:holo",
+          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T04:10:12.701Z:mep:067:holo",
           "fixture_file": null
         },
         {

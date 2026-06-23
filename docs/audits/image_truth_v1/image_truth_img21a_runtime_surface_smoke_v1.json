@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T03:59:10.858Z",
+  "generated_at": "2026-06-23T04:09:01.888Z",
   "base_url": "http://127.0.0.1:3087",
   "results": [
     {
@@ -157,6 +157,6 @@
     }
   ],
   "failures": [],
-  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 252ms\n",
+  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 287ms\n",
   "proof_hash": "9456699a6cc4a14c71d6549e8770e20b61b9e31e3ab3f5b6abb5052713ace35b"
 }

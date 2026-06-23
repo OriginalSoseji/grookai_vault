@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:59:10.176Z",
+  "generated_at": "2026-06-23T04:09:27.778Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -16,30 +16,30 @@
     "total_child_printings": 44137,
     "english_physical_child_printings": 38101,
     "english_physical_exact_required_rows": 14959,
-    "english_physical_display_covered_rows": 38092,
-    "english_physical_missing_display_rows": 4,
+    "english_physical_display_covered_rows": 38094,
+    "english_physical_missing_display_rows": 2,
     "english_physical_missing_variant_visual_rows": 14856,
     "english_physical_exact_rows": 22484,
-    "english_physical_representative_rows": 752,
+    "english_physical_representative_rows": 754,
     "confidence_counts_all_scopes": {
       "exact": 22484,
       "missing_variant_visual": 14856,
       "blocked": 6041,
-      "representative": 752,
-      "missing": 4
+      "representative": 754,
+      "missing": 2
     },
     "confidence_counts_english_physical": {
       "exact": 22484,
       "missing_variant_visual": 14856,
-      "representative": 752,
+      "representative": 754,
       "blocked": 5,
-      "missing": 4
+      "missing": 2
     },
     "confidence_counts_english_physical_exact_required": {
       "missing_variant_visual": 14856,
       "exact": 55,
-      "representative": 44,
-      "missing": 4
+      "representative": 46,
+      "missing": 2
     }
   },
   "by_finish_english_physical_exact_required": [
@@ -114,6 +114,11 @@
       "count": 7
     },
     {
+      "finish_key": "holo",
+      "image_confidence": "representative",
+      "count": 6
+    },
+    {
       "finish_key": "normal",
       "image_confidence": "representative",
       "count": 6
@@ -121,12 +126,7 @@
     {
       "finish_key": "holo",
       "image_confidence": "missing",
-      "count": 4
-    },
-    {
-      "finish_key": "holo",
-      "image_confidence": "representative",
-      "count": 4
+      "count": 2
     },
     {
       "finish_key": "holo",
@@ -146,74 +146,6 @@
       "set_identity_domain_default": "pokemon_eng_standard",
       "card_name": "Serperior",
       "number": "064",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "2c76b426-bdda-42ce-85d8-a921e79de026",
-      "printing_gv_id": "GV-PK-MEP-065-STAFF-STAMP-HOLO",
-      "card_print_id": "ed8b64d2-74d2-4046-a440-dc8dc87b7af1",
-      "parent_gv_id": "GV-PK-MEP-065-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Barbaracle",
-      "number": "065",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "ed4ce9f8-9703-492e-919c-3ec19d1f493a",
-      "printing_gv_id": "GV-PK-MEP-066-STAFF-STAMP-HOLO",
-      "card_print_id": "85e9c572-7d57-4cad-8a44-bfc01681c255",
-      "parent_gv_id": "GV-PK-MEP-066-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Tyrantrum",
-      "number": "066",
       "finish_key": "holo",
       "finish_label": "Holo",
       "variant_key": "staff_stamp",

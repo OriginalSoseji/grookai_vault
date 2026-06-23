@@ -16,37 +16,22 @@
 ## Summary
 
 - package_id: IMG-09C-MEP-TCGCSV-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY
-- source_rows: 17
-- ready_rows: 17
+- source_rows: 2
+- ready_rows: 2
 - blocked_rows: 0
 - ready_for_real_apply: true
-- fingerprint: `c1cd2bd061858d07cc43a8c57bd1ccfdf8d7ad904776a9568a40ec56bddf4f7b`
-- proof_hash: `dd50e588a4df5235b669fbcb2f14acccce626643a0fcd782d3a5407b9a7b9ab5`
+- fingerprint: `158449ea9af2671295ffcee121dc45c0f6ad99a9e01718c25826389e83dd19f0`
+- proof_hash: `af6472fc0b9362951d8596e67972da87a87912778a3a40e151762c6a2674d45e`
 
 ## Rows
 
 | status | set | card | number | finish | image_path | source |
 | --- | --- | --- | --- | --- | --- | --- |
-| ready | mep | Charcadet | 022 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg | https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022 |
-| ready | mep | Mega Charizard X ex | 023 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/cdd39b99-58f6-46ce-b8ca-d3b6605f8d0f/9c99dbe57a55343ec8f7e207.jpg | https://www.tcgplayer.com/product/659612/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-023 |
-| ready | mep | Oricorio ex | 024 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/1990b1cd-63b3-42ba-8913-1fdb247bca01/b5156118f6ec13ccd5289c83.jpg | https://www.tcgplayer.com/product/664010/pokemon-me-mega-evolution-promo-oricorio-ex-024 |
-| ready | mep | Mega Kangaskhan ex | 025 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/79a55f77-1746-4a55-8a75-5f87e983f333/9052d5c54896d9f84c7d38c1.jpg | https://www.tcgplayer.com/product/668509/pokemon-me-mega-evolution-promo-mega-kangaskhan-ex-025 |
-| ready | mep | Meloetta | 026 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/43473b80-43d1-4433-9cfc-895e4703ca2b/0ffd6ed927d05f86eaf49909.jpg | https://www.tcgplayer.com/product/659231/pokemon-me-mega-evolution-promo-meloetta-026 |
-| ready | mep | Haunter | 027 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/4d1b3038-360c-43f1-bd9e-44895389a3fb/33c35c145b4c396020908e12.jpg | https://www.tcgplayer.com/product/659232/pokemon-me-mega-evolution-promo-haunter-027 |
-| ready | mep | Mega Charizard X ex | 029 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fa52b2fe-cb54-49e2-a97c-350a8954bb94/72c10049fb646b48139f2d2e.jpg | https://www.tcgplayer.com/product/680639/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-029 |
-| ready | mep | Mega Charizard Y ex | 030 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/ed980bbd-e46d-4c75-b03c-cbd87ad8eebd/869a114d98439f1d94cb90d9.jpg | https://www.tcgplayer.com/product/680640/pokemon-me-mega-evolution-promo-mega-charizard-y-ex-030 |
-| ready | mep | Mega Gardevoir ex | 032 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/182a4ff4-c69a-400b-83c8-a782cffb4945/a8e158cc6c4a7166d6d21833.jpg | https://www.tcgplayer.com/product/685510/pokemon-me-mega-evolution-promo-mega-gardevoir-ex-032 |
-| ready | mep | Mega Lucario ex | 033 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/985d953d-a624-4a38-a22d-ae4dea45de6c/31139d87576834212b84e6ca.jpg | https://www.tcgplayer.com/product/685511/pokemon-me-mega-evolution-promo-mega-lucario-ex-033 |
-| ready | mep | Mega Meganium ex | 034 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/a93e64f3-8b39-447b-b233-b428abc09299/e13750811ac46b2780f4829f.jpg | https://www.tcgplayer.com/product/692120/pokemon-me-mega-evolution-promo-mega-meganium-ex-034 |
-| ready | mep | Mega Emboar ex | 035 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f99678a3-d141-4ad5-a443-b39b593a45c9/7b5e20593d0c4323bd6298de.jpg | https://www.tcgplayer.com/product/692119/pokemon-me-mega-evolution-promo-mega-emboar-ex-035 |
-| ready | mep | Mega Feraligatr ex | 036 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f5800572-5dbc-466f-8467-93b8fcc1eb4b/91362d6c8b8880544da483c9.jpg | https://www.tcgplayer.com/product/692118/pokemon-me-mega-evolution-promo-mega-feraligatr-ex-036 |
-| ready | mep | Barbaracle | 065 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fe9852cf-3d6d-429f-b590-82e5679ad17e/3150be3f71585a9b7de999dc.jpg | https://www.tcgplayer.com/product/685495/pokemon-me-mega-evolution-promo-barbaracle-065 |
-| ready | mep | Tyrantrum | 066 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/b6276cd5-a477-4e7c-869a-d8a45c109ec1/9cd56f1884565b0397087ea7.jpg | https://www.tcgplayer.com/product/685496/pokemon-me-mega-evolution-promo-tyrantrum-066 |
-| ready | mep | Makuhita | 068 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7cc8e470-9201-459e-8571-601f48ccce17/315fb4e8b2602e4b97b5d70c.jpg | https://www.tcgplayer.com/product/686275/pokemon-me-mega-evolution-promo-makuhita-068 |
-| ready | mep | Tyrunt | 070 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg | https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070 |
+| ready | mep | Barbaracle | 065 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/2c76b426-bdda-42ce-85d8-a921e79de026/3150be3f71585a9b7de999dc.jpg | https://www.tcgplayer.com/product/685495/pokemon-me-mega-evolution-promo-barbaracle-065 |
+| ready | mep | Tyrantrum | 066 | holo | warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/ed4ce9f8-9703-492e-919c-3ec19d1f493a/9cd56f1884565b0397087ea7.jpg | https://www.tcgplayer.com/product/685496/pokemon-me-mega-evolution-promo-tyrantrum-066 |
 
 ## Approval Command
 
 ```powershell
-node scripts/audits/image_truth_v1_img09c_mep_tcgcsv_representative_upload_apply.mjs --apply --fingerprint c1cd2bd061858d07cc43a8c57bd1ccfdf8d7ad904776a9568a40ec56bddf4f7b
+node scripts/audits/image_truth_v1_img09c_mep_tcgcsv_representative_upload_apply.mjs --apply --fingerprint 158449ea9af2671295ffcee121dc45c0f6ad99a9e01718c25826389e83dd19f0
 ```

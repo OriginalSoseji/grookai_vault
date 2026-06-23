@@ -1,6 +1,6 @@
 # Image Truth Apply Readiness V1
 
-Generated: 2026-06-16T04:55:36.416Z
+Generated: 2026-06-23T04:10:09.925Z
 
 This is audit-only. It does not write to the database, create migrations, run cleanup, or quarantine rows.
 
@@ -9,13 +9,13 @@ This is audit-only. It does not write to the database, create migrations, run cl
 - readiness_classification: pipeline_ready_source_assets_required
 - safe_to_apply_now: false
 - reason: No exact source image asset packet has been staged and dry-run proven for a target bucket.
-- total_child_printings: 47561
-- exact_child_image_required: 17745
-- exact_required_missing_child_exact_image: 17654
-- critical_or_high_risk_rows: 17654
-- english_physical_display_covered_rows: 38105
-- english_physical_missing_display_rows: 6
-- english_physical_missing_variant_visual_rows: 14502
+- total_child_printings: 44137
+- exact_child_image_required: 16973
+- exact_required_missing_child_exact_image: 16872
+- critical_or_high_risk_rows: 16872
+- english_physical_display_covered_rows: 38094
+- english_physical_missing_display_rows: 2
+- english_physical_missing_variant_visual_rows: 14856
 - child_image_storage_columns_present: true
 
 ## Existing Pipeline Checks
@@ -34,15 +34,15 @@ This is audit-only. It does not write to the database, create migrations, run cl
 - risk_queue_rows: 1000
 - detailed_rows_are_top_limited: true
 - exact_required_rows_in_queue: 1000
-- full_missing_exact_rows_count: 17654
-- apply_addressable_rows_total: 14502
-- identity_blocked_rows_total: 1343
+- full_missing_exact_rows_count: 16872
+- apply_addressable_rows_total: 14858
+- identity_blocked_rows_total: 205
 - non_physical_blocked_rows_total: 1809
 - other_scope_rows_total: 0
-- apply_addressable_rows_in_detailed_queue: 3
-- identity_blocked_rows_in_detailed_queue: 997
-- critical_missing_display_rows: 27
-- finish_specific_fallback_rows: 973
+- apply_addressable_rows_in_detailed_queue: 795
+- identity_blocked_rows_in_detailed_queue: 205
+- critical_missing_display_rows: 29
+- finish_specific_fallback_rows: 971
 - ownership_reference_rows: 3
 - no_ownership_reference_rows: 997
 
@@ -52,18 +52,20 @@ English physical:
 
 | confidence | rows |
 | --- | --- |
-| exact | 23177 |
-| missing_variant_visual | 14502 |
-| representative | 426 |
-| missing | 6 |
+| exact | 22484 |
+| missing_variant_visual | 14856 |
+| representative | 754 |
+| blocked | 5 |
+| missing | 2 |
 
 English physical exact-required:
 
 | confidence | rows |
 | --- | --- |
-| missing_variant_visual | 14502 |
-| exact | 54 |
-| representative | 37 |
+| missing_variant_visual | 14856 |
+| exact | 55 |
+| representative | 46 |
+| missing | 2 |
 
 ## Recommended Sequence
 
@@ -91,6 +93,8 @@ These rows have exact-child-required finishes, resolved set/number identity, and
 
 | set | scope | confidence | card | number | finish | coverage | risk | printing |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| mep | english_physical | missing | Doublade | 067 | holo | missing_display_image | critical | GV-PK-MEP-067-STAFF-STAMP-HOLO |
+| mep | english_physical | missing | Serperior | 064 | holo | missing_display_image | critical | GV-PK-MEP-064-STAFF-STAMP-HOLO |
 
 ## Identity-Blocked Image Review Bucket
 
@@ -98,31 +102,31 @@ These rows are image-risky but do not have enough resolved set/number context fo
 
 | set | scope | confidence | card | number | finish | coverage | risk | printing |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| unknown | unresolved_set | blocked | Alcremie | 87 | reverse | missing_display_image | critical | 8d631c41-0b92-4fc3-b6e1-716beaeb55b1 |
-| unknown | unresolved_set | blocked | Audino | 89 | reverse | missing_display_image | critical | 2eb8bef7-66d9-40b5-8ed3-eda16382b1f0 |
-| unknown | unresolved_set | blocked | Blacephalon | 76 | reverse | missing_display_image | critical | d1832447-c4df-4cfb-bef2-7032bd324680 |
-| unknown | unresolved_set | blocked | Blissey ex | 98 | reverse | missing_display_image | critical | b8d6a5c5-142a-4c9c-86d6-26d6ac5bc4d5 |
-| unknown | unresolved_set | blocked | Chinchou | 95 | reverse | missing_display_image | critical | db6499a8-bc58-4b2a-8483-41adf11952e8 |
-| unknown | unresolved_set | blocked | Cleffa | 93 | reverse | missing_display_image | critical | d394daae-6bdb-458e-a4e9-d54e6046dcd5 |
-| unknown | unresolved_set | blocked | Dawn Wings Necrozma | 78 | reverse | missing_display_image | critical | 461ee50d-1ea3-4988-961c-a4427224340f |
-| unknown | unresolved_set | blocked | Dragonair | 88 | reverse | missing_display_image | critical | 5515e8ea-4abc-4d2a-ba36-7f94f436faa0 |
-| unknown | unresolved_set | blocked | Dusk Mane Necrozma | 79 | reverse | missing_display_image | critical | dc65a601-65ea-4076-b701-d0c3fa39d11f |
-| unknown | unresolved_set | blocked | Eevee | 92 | reverse | missing_display_image | critical | f492d466-9701-4468-b970-33c15bc8db2f |
-| unknown | unresolved_set | blocked | Greedent | 91 | reverse | missing_display_image | critical | eeed405f-1ce1-415e-8f9d-2a71311f06e2 |
-| unknown | unresolved_set | blocked | Horsea | 94 | reverse | missing_display_image | critical | a1005f01-8f4e-42fa-b388-fe80c17e8879 |
-| unknown | unresolved_set | blocked | Houndoom | 96 | reverse | missing_display_image | critical | bcc59df9-141b-4671-ad33-45a5a3d316cc |
-| unknown | unresolved_set | blocked | Jolteon | 86 | reverse | missing_display_image | critical | 23a29ee6-50cc-478e-b48c-f9b332ce113f |
-| unknown | unresolved_set | blocked | Kangaskhan | 97 | reverse | missing_display_image | critical | 7bdbbcb8-7493-446c-8e60-a54f21afee6f |
-| unknown | unresolved_set | blocked | Kartana | 75 | reverse | missing_display_image | critical | a77c6d24-ba8b-4fa2-a497-9ed194bd691a |
-| unknown | unresolved_set | blocked | Marill | 99 | reverse | missing_display_image | critical | abf70dd3-14d1-4f2b-9287-026cffa1333a |
-| unknown | unresolved_set | blocked | Poipole | 82 | reverse | missing_display_image | critical | c11a83a2-cf79-4fd5-9bd0-4bdd619fbc2d |
-| unknown | unresolved_set | blocked | Stakataka | 80 | reverse | missing_display_image | critical | d6494e6c-57bf-45fc-9f51-fe2879b7679b |
-| unknown | unresolved_set | blocked | Stufful | 83 | reverse | missing_display_image | critical | c96a6486-5d77-4829-90ed-18f186858e8a |
-| unknown | unresolved_set | blocked | Tapu Koko ex | 84 | reverse | missing_display_image | critical | faeb4713-1f5d-4c23-8374-2131a86cea55 |
-| unknown | unresolved_set | blocked | Togedemaru | 90 | reverse | missing_display_image | critical | 3ab2ae8a-c358-4a2d-a5f0-9c77d470aac2 |
-| unknown | unresolved_set | blocked | Ultra Necrozma ex | 81 | reverse | missing_display_image | critical | 914f0671-c1c0-4daa-9ee6-f08e98d99fc4 |
-| unknown | unresolved_set | blocked | Vanillite | 85 | reverse | missing_display_image | critical | 8deb04c4-8696-4289-83c4-89b81631abd5 |
-| unknown | unresolved_set | blocked | Weavile | 100 | reverse | missing_display_image | critical | 152895d6-be43-45d0-83b5-558a986c250f |
+| unknown | unresolved_set | blocked | Alcremie | 87 | reverse | missing_display_image | critical | GV-TCGP-P-A-87-RH |
+| unknown | unresolved_set | blocked | Audino | 89 | reverse | missing_display_image | critical | GV-TCGP-P-A-89-RH |
+| unknown | unresolved_set | blocked | Blacephalon | 76 | reverse | missing_display_image | critical | GV-TCGP-P-A-76-RH |
+| unknown | unresolved_set | blocked | Blissey ex | 98 | reverse | missing_display_image | critical | GV-TCGP-P-A-98-RH |
+| unknown | unresolved_set | blocked | Chinchou | 95 | reverse | missing_display_image | critical | GV-TCGP-P-A-95-RH |
+| unknown | unresolved_set | blocked | Cleffa | 93 | reverse | missing_display_image | critical | GV-TCGP-P-A-93-RH |
+| unknown | unresolved_set | blocked | Dawn Wings Necrozma | 78 | reverse | missing_display_image | critical | GV-TCGP-P-A-78-RH |
+| unknown | unresolved_set | blocked | Dragonair | 88 | reverse | missing_display_image | critical | GV-TCGP-P-A-88-RH |
+| unknown | unresolved_set | blocked | Dusk Mane Necrozma | 79 | reverse | missing_display_image | critical | GV-TCGP-P-A-79-RH |
+| unknown | unresolved_set | blocked | Eevee | 92 | reverse | missing_display_image | critical | GV-TCGP-P-A-92-RH |
+| unknown | unresolved_set | blocked | Greedent | 91 | reverse | missing_display_image | critical | GV-TCGP-P-A-91-RH |
+| unknown | unresolved_set | blocked | Horsea | 94 | reverse | missing_display_image | critical | GV-TCGP-P-A-94-RH |
+| unknown | unresolved_set | blocked | Houndoom | 96 | reverse | missing_display_image | critical | GV-TCGP-P-A-96-RH |
+| unknown | unresolved_set | blocked | Jolteon | 86 | reverse | missing_display_image | critical | GV-TCGP-P-A-86-RH |
+| unknown | unresolved_set | blocked | Kangaskhan | 97 | reverse | missing_display_image | critical | GV-TCGP-P-A-97-RH |
+| unknown | unresolved_set | blocked | Kartana | 75 | reverse | missing_display_image | critical | GV-TCGP-P-A-75-RH |
+| unknown | unresolved_set | blocked | Marill | 99 | reverse | missing_display_image | critical | GV-TCGP-P-A-99-RH |
+| unknown | unresolved_set | blocked | Poipole | 82 | reverse | missing_display_image | critical | GV-TCGP-P-A-82-RH |
+| unknown | unresolved_set | blocked | Stakataka | 80 | reverse | missing_display_image | critical | GV-TCGP-P-A-80-RH |
+| unknown | unresolved_set | blocked | Stufful | 83 | reverse | missing_display_image | critical | GV-TCGP-P-A-83-RH |
+| unknown | unresolved_set | blocked | Tapu Koko ex | 84 | reverse | missing_display_image | critical | GV-TCGP-P-A-84-RH |
+| unknown | unresolved_set | blocked | Togedemaru | 90 | reverse | missing_display_image | critical | GV-TCGP-P-A-90-RH |
+| unknown | unresolved_set | blocked | Ultra Necrozma ex | 81 | reverse | missing_display_image | critical | GV-TCGP-P-A-81-RH |
+| unknown | unresolved_set | blocked | Vanillite | 85 | reverse | missing_display_image | critical | GV-TCGP-P-A-85-RH |
+| unknown | unresolved_set | blocked | Weavile | 100 | reverse | missing_display_image | critical | GV-TCGP-P-A-100-RH |
 
 ## First Child Image Promotion Bucket
 
@@ -131,10 +135,22 @@ These rows have exact-child-required finishes, resolved set/number identity, and
 | set | scope | confidence | card | number | finish | coverage | risk | printing |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | base1 | english_physical | missing_variant_visual | Impostor Professor Oak | 73 | normal | using_parent_exact_image | high | GV-PK-BS-73-STD |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS-NORMAL |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS-NORMAL |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS-NORMAL |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS-NORMAL |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-E3-STAMP-STD |
+| base1 | english_physical | missing_variant_visual | Pikachu | 58 | normal | using_parent_representative_image | high | GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS-NORMAL |
 | base1 | english_physical | missing_variant_visual | Professor Oak | 88 | normal | using_parent_exact_image | high | GV-PK-BS-88-STD |
+| base2 | english_physical | missing_variant_visual | Clefable | 1 | holo | using_parent_representative_image | high | GV-PK-BASE2-1-PRERELEASE-STAMP-HOLO |
+| base2 | english_physical | missing_variant_visual | Pikachu | 60 | normal | using_parent_representative_image | high | GV-PK-BASE2-60-WOTC-STAMP-STD |
+| base3 | english_physical | missing_variant_visual | Kabuto | 50 | normal | using_parent_representative_image | high | GV-PK-BASE3-50-WOTC-STAMP-STD |
 | base3 | english_physical | missing_variant_visual | Zapdos | 15 | cosmos | using_parent_exact_image | high | GV-PK-FO-15-COSMOS |
 | base4 | english_physical | missing_variant_visual | Imposter Professor Oak | 102 | normal | using_parent_exact_image | high | GV-PK-B2-102-STD |
 | base4 | english_physical | missing_variant_visual | Professor Oak | 116 | normal | using_parent_exact_image | high | GV-PK-B2-116-STD |
+| base5 | english_physical | missing_variant_visual | Dark Arbok | 19 | normal | using_parent_representative_image | high | GV-PK-BASE5-19-WOTC-STAMP-STD |
+| base5 | english_physical | missing_variant_visual | Dark Charmeleon | 32 | normal | using_parent_representative_image | high | GV-PK-BASE5-32-WOTC-STAMP-STD |
+| base5 | english_physical | missing_variant_visual | Dark Gyarados | 8 | holo | using_parent_representative_image | high | GV-PK-BASE5-8-PRERELEASE-STAMP-HOLO |
 | base6 | english_physical | missing_variant_visual | Abra | 67 | reverse | using_parent_exact_image | high | GV-PK-LC-67-RH |
 | base6 | english_physical | missing_variant_visual | Alakazam | 1 | reverse | using_parent_exact_image | high | GV-PK-LC-1-RH |
 | base6 | english_physical | missing_variant_visual | Arcanine | 36 | reverse | using_parent_exact_image | high | GV-PK-LC-36-RH |
@@ -143,18 +159,6 @@ These rows have exact-child-required finishes, resolved set/number identity, and
 | base6 | english_physical | missing_variant_visual | Bill | 108 | reverse | using_parent_exact_image | high | GV-PK-LC-108-RH |
 | base6 | english_physical | missing_variant_visual | Bulbasaur | 68 | reverse | using_parent_exact_image | high | GV-PK-LC-68-RH |
 | base6 | english_physical | missing_variant_visual | Butterfree | 21 | reverse | using_parent_exact_image | high | GV-PK-LC-21-RH |
-| base6 | english_physical | missing_variant_visual | Caterpie | 69 | reverse | using_parent_exact_image | high | GV-PK-LC-69-RH |
-| base6 | english_physical | missing_variant_visual | Challenge! | 106 | reverse | using_parent_exact_image | high | GV-PK-LC-106-RH |
-| base6 | english_physical | missing_variant_visual | Charizard | 3 | reverse | using_parent_exact_image | high | GV-PK-LC-3-RH |
-| base6 | english_physical | missing_variant_visual | Charmander | 70 | reverse | using_parent_exact_image | high | GV-PK-LC-70-RH |
-| base6 | english_physical | missing_variant_visual | Charmeleon | 37 | reverse | using_parent_exact_image | high | GV-PK-LC-37-RH |
-| base6 | english_physical | missing_variant_visual | Dark Blastoise | 4 | reverse | using_parent_exact_image | high | GV-PK-LC-4-RH |
-| base6 | english_physical | missing_variant_visual | Dark Dragonair | 38 | reverse | using_parent_exact_image | high | GV-PK-LC-38-RH |
-| base6 | english_physical | missing_variant_visual | Dark Dragonite | 5 | reverse | using_parent_exact_image | high | GV-PK-LC-5-RH |
-| base6 | english_physical | missing_variant_visual | Dark Persian | 6 | reverse | using_parent_exact_image | high | GV-PK-LC-6-RH |
-| base6 | english_physical | missing_variant_visual | Dark Raichu | 7 | reverse | using_parent_exact_image | high | GV-PK-LC-7-RH |
-| base6 | english_physical | missing_variant_visual | Dark Slowbro | 8 | reverse | using_parent_exact_image | high | GV-PK-LC-8-RH |
-| base6 | english_physical | missing_variant_visual | Dark Vaporeon | 9 | reverse | using_parent_exact_image | high | GV-PK-LC-9-RH |
 
 ## Explicit Non-Actions
 

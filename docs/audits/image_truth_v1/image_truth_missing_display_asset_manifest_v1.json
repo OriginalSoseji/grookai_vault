@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T03:59:20.460Z",
+  "generated_at": "2026-06-23T04:10:25.425Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -12,10 +12,10 @@
     "normalized_asset_required_before_dry_run": true,
     "dry_run_required_before_db_write": true
   },
-  "source_rows": 4,
+  "source_rows": 2,
   "source_image_url_preserved_count": 0,
   "representative_image_url_preserved_count": 0,
-  "blocked_asset_count": 4,
+  "blocked_asset_count": 2,
   "dry_run_ready_count": 0,
   "rows": [
     {
@@ -42,102 +42,6 @@
           "source_key": "pricecharting_live_page",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.pricecharting.com/game/pokemon-promo/serperior-holo-64",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No PriceCharting product image with exact alt text was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        }
-      ],
-      "asset_status": "asset_not_found_or_not_exact",
-      "asset_url": null,
-      "image_alt": null,
-      "image_confidence": "representative",
-      "block_reason": "pricecharting_live_page: No PriceCharting product image with exact alt text was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found."
-    },
-    {
-      "card_printing_id": "2c76b426-bdda-42ce-85d8-a921e79de026",
-      "printing_gv_id": "GV-PK-MEP-065-STAFF-STAMP-HOLO",
-      "card_print_id": "ed8b64d2-74d2-4046-a440-dc8dc87b7af1",
-      "parent_gv_id": "GV-PK-MEP-065-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Barbaracle",
-      "number": "065",
-      "finish_key": "holo",
-      "source_status": "source_url_preserved",
-      "source_url": "https://www.pricecharting.com/game/pokemon-promo/barbaracle-holo-65",
-      "source_key": "pricecharting_live_page",
-      "source_kind": "marketplace_checklist",
-      "source_attempts": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/barbaracle-holo-65",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No PriceCharting product image with exact alt text was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        }
-      ],
-      "asset_status": "asset_not_found_or_not_exact",
-      "asset_url": null,
-      "image_alt": null,
-      "image_confidence": "representative",
-      "block_reason": "pricecharting_live_page: No PriceCharting product image with exact alt text was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found."
-    },
-    {
-      "card_printing_id": "ed4ce9f8-9703-492e-919c-3ec19d1f493a",
-      "printing_gv_id": "GV-PK-MEP-066-STAFF-STAMP-HOLO",
-      "card_print_id": "85e9c572-7d57-4cad-8a44-bfc01681c255",
-      "parent_gv_id": "GV-PK-MEP-066-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Tyrantrum",
-      "number": "066",
-      "finish_key": "holo",
-      "source_status": "source_url_preserved",
-      "source_url": "https://www.pricecharting.com/game/pokemon-promo/tyrantrum-holo-66",
-      "source_key": "pricecharting_live_page",
-      "source_kind": "marketplace_checklist",
-      "source_attempts": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tyrantrum-holo-66",
           "asset_status": "asset_not_found_or_not_exact",
           "reason": "No PriceCharting product image with exact alt text was found."
         },
