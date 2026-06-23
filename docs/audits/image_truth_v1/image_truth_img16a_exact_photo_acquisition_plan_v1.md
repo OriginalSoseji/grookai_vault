@@ -1,23 +1,23 @@
 # Image Truth IMG-16A Exact Photo Acquisition Plan V1
 
-Generated: 2026-06-15T04:35:18.645Z
+Generated: 2026-06-23T04:02:57.967Z
 
 This is audit-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or promote image confidence.
 
 ## Summary
 
-- exact_variant_backlog_rows: 13831
+- exact_variant_backlog_rows: 14431
 - ready_now_for_image_apply: 0
 - exact_photo_needed_source_evidence_exists: 377
-- manual_visual_review_needed: 56
-- no_source_acquire_source_first_high_value: 359
-- rendered_overlay_candidate: 12074
+- manual_visual_review_needed: 61
+- no_source_acquire_source_first_high_value: 362
+- rendered_overlay_candidate: 12340
 - residual_probe_exhausted: 6
 - db_writes_performed: false
 - storage_uploads_performed: false
 - migrations_created: false
 - parent_overwrite_allowed: false
-- fingerprint: 4f7a7bccafad7b3c368db21a4d5d41cc8bfeb923f7b183d0153cad78968f2751
+- fingerprint: b23d3ad57531194b560f41b042f2cd870a22a68dee55ebdea61bbb4ae8c8f421
 
 ## Strategy Buckets
 
@@ -25,10 +25,10 @@ This is audit-only. It does not upload images, update database rows, create migr
 | --- | --- |
 | exact_photo_needed_source_evidence_exists | 377 |
 | exact_photo_lower_priority_source_evidence_exists | 11 |
-| manual_visual_review_needed | 56 |
-| no_source_acquire_source_first_high_value | 359 |
-| no_source_acquire_source_first_other | 948 |
-| rendered_overlay_candidate | 12074 |
+| manual_visual_review_needed | 61 |
+| no_source_acquire_source_first_high_value | 362 |
+| no_source_acquire_source_first_other | 1274 |
+| rendered_overlay_candidate | 12340 |
 | residual_probe_exhausted | 6 |
 | ebay_title_context_only | 6 |
 
@@ -101,9 +101,9 @@ These rows should not move to image acquisition yet. First they need source evid
 | package | size | available | input | gate |
 | --- | --- | --- | --- | --- |
 | IMG-16B-EXACT-PHOTO-SOURCE-EVIDENCE-PILOT | 25 | 377 | exact_photo_needed_source_evidence_exists | Every row must prove exact set + card number + card name + finish/variant in the image source itself. |
-| IMG-16C-MANUAL-VISUAL-REVIEW-PILOT | 20 | 56 | manual_visual_review_needed | Catalog product metadata must be paired with visual proof that the asset shows the exact finish. |
-| IMG-16D-NO-SOURCE-HIGH-VALUE-SOURCE-HUNT | 25 | 359 | no_source_acquire_source_first_high_value | A new source must first prove the row exists before any image truth decision. |
-| IMG-16E-REVERSE-REPRESENTATIVE-OVERLAY-DESIGN | 50 | 12074 | rendered_overlay_candidate | Any rendered overlay must stay representative and clearly disclose that it is not an exact photographed variant. |
+| IMG-16C-MANUAL-VISUAL-REVIEW-PILOT | 20 | 61 | manual_visual_review_needed | Catalog product metadata must be paired with visual proof that the asset shows the exact finish. |
+| IMG-16D-NO-SOURCE-HIGH-VALUE-SOURCE-HUNT | 25 | 362 | no_source_acquire_source_first_high_value | A new source must first prove the row exists before any image truth decision. |
+| IMG-16E-REVERSE-REPRESENTATIVE-OVERLAY-DESIGN | 50 | 12340 | rendered_overlay_candidate | Any rendered overlay must stay representative and clearly disclose that it is not an exact photographed variant. |
 
 ## Guardrails
 
