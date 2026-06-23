@@ -1,0 +1,650 @@
+{
+  "package_id": "IMG-HOST-WH-09H-WORLD-CHAMPIONSHIP-UNIQUE-SOURCE-NUMBER-POINTER-DRY-RUN",
+  "generated_at": "2026-06-23T23:32:56.302Z",
+  "mode": "dry_run_no_write",
+  "future_apply_package_id": "IMG-HOST-WH-09I-WORLD-CHAMPIONSHIP-UNIQUE-SOURCE-NUMBER-POINTER-APPLY",
+  "source_translation_fingerprint": "aa9644ffc3568414d9780b10b31c86d81d6c150f82a52286bae16a9b6e28a139",
+  "source_cards_jsonl": "docs\\audits\\master_index_world_championship_decks_v1\\world_championship_decks_09c_proposed_card_prints_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh09h_world_championship_unique_source_number_pointer_plan_v1.jsonl",
+  "current_wcd_rows": 1944,
+  "already_representative_wcd_rows": 1833,
+  "current_missing_wcd_rows": 111,
+  "residual_representative_candidate_rows": 28,
+  "effective_metadata_pointer_updates": 28,
+  "unresolved_residual_rows": 83,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "child_writes_performed": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "blocked_columns": [
+    "id",
+    "gv_id",
+    "name",
+    "set_code",
+    "number",
+    "image_url",
+    "image_alt_url",
+    "representative_image_url"
+  ],
+  "candidate_set_codes": {
+    "wcd2006-b-l-s": 1,
+    "wcd2007-legendary-ascent": 1,
+    "wcd2008-empotech": 1,
+    "wcd2008-psychic-lock": 1,
+    "wcd2014-plasma-power": 1,
+    "wcd2015-honorstoise": 1,
+    "wcd2015-primal-groudon": 1,
+    "wcd2015-punches-n-bites": 1,
+    "wcd2016-bebe-deck": 1,
+    "wcd2016-ninja-blitz": 1,
+    "wcd2018-victory-map": 1,
+    "wcd2023-colorless-lugia": 1,
+    "wcd2023-mews-revenge": 1,
+    "wcd2023-psychic-elegance": 3,
+    "wcd2024-ancient-toolbox": 1,
+    "wcd2024-crushing-thorn": 1,
+    "wcd2024-regidrago-vstar": 1,
+    "wcd2024-the-don": 2,
+    "wcd2025-flutter-devo-gardevoir": 2,
+    "wcd2025-joltdengo": 3,
+    "wcd2025-jp-raging-bolt": 1,
+    "wcd2025-pult-bomb": 1
+  },
+  "candidate_deck_years": {
+    "2006": 1,
+    "2007": 1,
+    "2008": 2,
+    "2014": 1,
+    "2015": 3,
+    "2016": 2,
+    "2018": 1,
+    "2023": 5,
+    "2024": 5,
+    "2025": 7
+  },
+  "source_match_kinds": {
+    "ex_set_number_unique_source_match": 4,
+    "pipe_number_unique_source_match": 3,
+    "source_set_number_unique_source_match": 19,
+    "split_scarlet_violet_number_unique_source_match": 2
+  },
+  "proposed_image_sources": {
+    "identity": 28
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 28
+  },
+  "changed_column_sets": {
+    "image_source,image_path,image_status,image_note": 28
+  },
+  "unresolved_match_kinds": {
+    "energy_or_template_missing_source_key": 83
+  },
+  "unresolved_source_sets": {
+    "unknown": 83
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "samples": {
+    "residual_candidates": [
+      {
+        "gv_id": "GV-PK-WCD-2006-B_L_S-07-EX-105-LATIAS",
+        "name": "Latias ☆",
+        "set_code": "wcd2006-b-l-s",
+        "source_gv_id": "GV-PK-DX-105",
+        "source_set_name": "Deoxys",
+        "source_match_kind": "ex_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-LEGENDARY_ASCENT-08-EX-101-JOLTEON",
+        "name": "Jolteon ☆",
+        "set_code": "wcd2007-legendary-ascent",
+        "source_gv_id": "GV-PK-PK-101",
+        "source_set_name": "Power Keepers",
+        "source_match_kind": "ex_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-EMPOTECH-14-EX-101-MEW",
+        "name": "Mew ☆ δ",
+        "set_code": "wcd2008-empotech",
+        "source_gv_id": "GV-PK-DF-101",
+        "source_set_name": "Dragon Frontiers",
+        "source_match_kind": "ex_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-PSYCHIC_LOCK-12-EX-101-JOLTEON",
+        "name": "Jolteon ☆",
+        "set_code": "wcd2008-psychic-lock",
+        "source_gv_id": "GV-PK-PK-101",
+        "source_set_name": "Power Keepers",
+        "source_match_kind": "ex_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-PLASMA_POWER-21-DRAGONS_EXALTED-118-BLEND_ENERGY_WLFM",
+        "name": "Blend Energy WLFM",
+        "set_code": "wcd2014-plasma-power",
+        "source_gv_id": "GV-PK-DRX-118",
+        "source_set_name": "Dragons Exalted",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-HONORSTOISE-14-PHANTOM_FORCES-92-BATTLE_COMPRESSOR",
+        "name": "Battle Compressor",
+        "set_code": "wcd2015-honorstoise",
+        "source_gv_id": "GV-PK-PHF-92",
+        "source_set_name": "Phantom Forces",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-PRIMAL_GROUDON-11-PHANTOM_FORCES-102-ROBO_SUBSTITUTE",
+        "name": "Robo Substitute",
+        "set_code": "wcd2015-primal-groudon",
+        "source_gv_id": "GV-PK-PHF-102",
+        "source_set_name": "Phantom Forces",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-PUNCHES_N_BITES-18-PHANTOM_FORCES-97-HEAD_RINGER",
+        "name": "Head Ringer",
+        "set_code": "wcd2015-punches-n-bites",
+        "source_gv_id": "GV-PK-PHF-97",
+        "source_set_name": "Phantom Forces",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2016-BEBE_DECK-10-PHANTOM_FORCES-92-BATTLE_COMPRESSOR",
+        "name": "Battle Compressor",
+        "set_code": "wcd2016-bebe-deck",
+        "source_gv_id": "GV-PK-PHF-92",
+        "source_set_name": "Phantom Forces",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2016-NINJA_BLITZ-08-PHANTOM_FORCES-92-BATTLE_COMPRESSOR",
+        "name": "Battle Compressor",
+        "set_code": "wcd2016-ninja-blitz",
+        "source_gv_id": "GV-PK-PHF-92",
+        "source_set_name": "Phantom Forces",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2018-VICTORY_MAP-24-ULTRA_PRISM-138-UNIT_ENERGY_LPM",
+        "name": "Unit Energy LPM",
+        "set_code": "wcd2018-victory-map",
+        "source_gv_id": "GV-PK-UPR-138",
+        "source_set_name": "Ultra Prism",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2023-COLORLESS_LUGIA-11-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2023-colorless-lugia",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2023-MEWS_REVENGE-06-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2023-mews-revenge",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2023-PSYCHIC_ELEGANCE-01-SCARLET-86-GARDEVOIR_EX",
+        "name": "Gardevoir ex",
+        "set_code": "wcd2023-psychic-elegance",
+        "source_gv_id": "GV-PK-SVI-086",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "split_scarlet_violet_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2023-PSYCHIC_ELEGANCE-14-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2023-psychic-elegance",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2023-PSYCHIC_ELEGANCE-15-SCARLET_AND_VIOL-189-PROFESSORS_RESEARCH",
+        "name": "Professor's Research",
+        "set_code": "wcd2023-psychic-elegance",
+        "source_gv_id": "GV-PK-SVI-189",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-08-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2024-ancient-toolbox",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2024-CRUSHING_THORN-03-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2024-crushing-thorn",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2024-REGIDRAGO_VSTAR-14-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2024-regidrago-vstar",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2024-THE_DON-01-SCARLET-81-MIRAIDON_EX",
+        "name": "Miraidon ex",
+        "set_code": "wcd2024-the-don",
+        "source_gv_id": "GV-PK-SVI-081",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "split_scarlet_violet_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2024-THE_DON-13-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2024-the-don",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-FLUTTER_DEVO_GARDEVOIR-01-SCARLET_AND_VIOL-86-GARDEVOIR_EX",
+        "name": "Gardevoir ex",
+        "set_code": "wcd2025-flutter-devo-gardevoir",
+        "source_gv_id": "GV-PK-SVI-086",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "pipe_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-FLUTTER_DEVO_GARDEVOIR-11-SCARLET_AND_VIOL-189-PROFESSORS_RESEARCH",
+        "name": "Professor's Research",
+        "set_code": "wcd2025-flutter-devo-gardevoir",
+        "source_gv_id": "GV-PK-SVI-189",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-JOLTDENGO-04-BLACK_BOLT-67-GENESECT_EX",
+        "name": "Genesect ex",
+        "set_code": "wcd2025-joltdengo",
+        "source_gv_id": "GV-PK-BLK-067",
+        "source_set_name": "Black Bolt",
+        "source_match_kind": "pipe_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-JOLTDENGO-06-SCARLET_AND_VIOL-81-MIRAIDON_EX",
+        "name": "Miraidon ex",
+        "set_code": "wcd2025-joltdengo",
+        "source_gv_id": "GV-PK-SVI-081",
+        "source_set_name": "Scarlet & Violet",
+        "source_match_kind": "pipe_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-JOLTDENGO-11-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2025-joltdengo",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-JP_RAGING_BOLT-13-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2025-jp-raging-bolt",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2025-PULT_BOMB-15-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+        "name": "Boss's Orders",
+        "set_code": "wcd2025-pult-bomb",
+        "source_gv_id": "GV-PK-PAL-172",
+        "source_set_name": "Paldea Evolved",
+        "source_match_kind": "source_set_number_unique_source_match"
+      }
+    ],
+    "unresolved_rows": [
+      {
+        "gv_id": "GV-PK-WCD-2005-BRIGHT_AURA-17-ENERGY-17-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2005-BRIGHT_AURA-18-ENERGY-18-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2005-DARK_TYRANITAR_DECK-26-ENERGY-26-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2005-KING_OF_THE_WEST-25-ENERGY-25-WATER_ENERGY",
+        "name": "Water Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2005-QUEENDOM-19-ENERGY-19-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2005-QUEENDOM-20-ENERGY-20-GRASS_ENERGY",
+        "name": "Grass Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2006-B_L_S-23-ENERGY-23-WATER_ENERGY",
+        "name": "Water Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2006-MEWTRICK-19-ENERGY-19-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2006-SUNS_AND_MOONS-24-ENERGY-24-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2006-SUNS_AND_MOONS-25-ENERGY-25-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-FLYVEES-27-ENERGY-27-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-FLYVEES-28-ENERGY-28-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-LEGENDARY_ASCENT-25-ENERGY-25-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-LEGENDARY_ASCENT-26-ENERGY-26-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-RAMBOLT-26-ENERGY-26-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-RAMBOLT-27-ENERGY-27-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2007-SWIFT_EMPOLEON-20-ENERGY-20-WATER_ENERGY",
+        "name": "Water Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-BLISS_CONTROL-19-ENERGY-19-FIRE_ENERGY",
+        "name": "Fire Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-EMPOTECH-29-ENERGY-29-WATER_ENERGY",
+        "name": "Water Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-INTIMIDATION-18-ENERGY-18-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-INTIMIDATION-19-ENERGY-19-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-INTIMIDATION-20-ENERGY-20-METAL_ENERGY",
+        "name": "Metal Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2008-PSYCHIC_LOCK-27-ENERGY-27-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-CROWNED_TIGER-30-ENERGY-30-DARKNESS_ENERGY",
+        "name": "Darkness Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-CROWNED_TIGER-31-ENERGY-31-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-CROWNED_TIGER-32-ENERGY-32-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-LUXDRILL-26-ENERGY-26-GRASS_ENERGY",
+        "name": "Grass Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-LUXDRILL-27-ENERGY-27-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2009-QUEENGAR-24-ENERGY-24-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2010-BOLTEVOIR-31-ENERGY-31-PSYCHIC_ENERGY",
+        "name": "Psychic Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2010-BOLTEVOIR-32-ENERGY-32-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2010-LUXCHOMP_OF_THE_SPIRIT-29-ENERGY-29-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2010-LUXCHOMP_OF_THE_SPIRIT-30-ENERGY-30-METAL_ENERGY",
+        "name": "Metal Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2010-POWER_COTTONWEED-23-ENERGY-23-GRASS_ENERGY",
+        "name": "Grass Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-CMT_DECK-23-ENERGY-23-GRASS_ENERGY",
+        "name": "Grass Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-CMT_DECK-24-ENERGY-24-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-EELTWO-22-ENERGY-22-LIGHTNING_ENERGY",
+        "name": "Lightning Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-PESADELO_PRISM-21-ENERGY-21-DARKNESS_ENERGY",
+        "name": "Darkness Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-PESADELO_PRISM-22-ENERGY-22-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-TERRAKI_MEWTWO-20-ENERGY-20-FIGHTING_ENERGY",
+        "name": "Fighting Energy",
+        "source_set_name": null,
+        "source_card_number": null,
+        "source_reference_kind": "tcg_named_template",
+        "match_kind": "energy_or_template_missing_source_key"
+      }
+    ]
+  },
+  "fingerprint": "9d73e7353674845d3334d1bb2e09f31baf594d2d31e00f84fd49b07c9311eae9"
+}
