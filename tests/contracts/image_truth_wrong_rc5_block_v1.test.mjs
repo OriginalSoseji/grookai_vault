@@ -85,6 +85,13 @@ test("image resolver replaces source-backed EX trainer kit aliases and blocks un
   assert.match(source, /"tk-bw-e": \{ series: "BW", code: "TK5B", folder: "TK_Excadrill" \}/);
   assert.match(source, /"tk-bw-z": \{ series: "BW", code: "TK5A", folder: "TK_Zoroark" \}/);
   assert.match(source, /cdn\.malie\.io\/file\/malie-io\/art\/cards\/jpg\/en_US/);
+  assert.match(source, /TCGCOLLECTOR_TRAINER_KIT_IMAGE_URLS/);
+  assert.match(source, /"tk-dp-l"/);
+  assert.match(source, /"tk-dp-m"/);
+  assert.match(source, /"tk-hs-g"/);
+  assert.match(source, /"tk-hs-r"/);
+  assert.match(source, /static\.tcgcollector\.com\/content\/images/);
+  assert.match(source, /getTcgCollectorTrainerKitReplacementImageUrl/);
   assert.match(source, /image_status: "representative_shared"/);
   assert.match(source, /display_image_kind: "representative"/);
   assert.match(source, /KNOWN_BROKEN_TCGDEX_IMAGE_NOTE/);

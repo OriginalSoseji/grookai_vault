@@ -91,6 +91,44 @@ const MALIE_TRAINER_KIT_SET_IMAGE_PLANS: Record<
   "tk-sm-l": { series: "SM", code: "TK10A", folder: "TK_Lycanroc" },
   "tk-sm-r": { series: "SM", code: "TK10B", folder: "TK_AlolanRaichu" },
 };
+const TCGCOLLECTOR_TRAINER_KIT_IMAGE_URLS: Record<
+  string,
+  Record<string, string>
+> = {
+  "tk-dp-l": {
+    "1": "https://static.tcgcollector.com/content/images/93/16/8d/93168dd5a846add1c3cb102f8a6f77ff8f9c1aab4885151da791a58248d87ba9.jpg",
+    "2": "https://static.tcgcollector.com/content/images/ef/b9/02/efb902c49990f5975121559159a3f4d1fd74a4cea5a9a9257be8856fd3693ba2.jpg",
+    "3": "https://static.tcgcollector.com/content/images/b3/a3/0a/b3a30aabb684331e0dcf77938e48f38824e512b1c8ac57d528549eb4a2c4aa2f.jpg",
+    "4": "https://static.tcgcollector.com/content/images/eb/39/d1/eb39d12f1690546838338c7e97eff8e5f16e4f26fe405187766f8a60be282ed6.jpg",
+    "5": "https://static.tcgcollector.com/content/images/90/8f/9b/908f9b744a59f41c2126f109b27397c0049bf8612e07f52607ac86fef59aa258.jpg",
+    "6": "https://static.tcgcollector.com/content/images/49/27/91/49279116e712e0b16f02847c5dc3354916add33110accea1bbe32b937a0ee7a5.jpg",
+    "7": "https://static.tcgcollector.com/content/images/bb/98/e1/bb98e184e7e48cd9620650e821fcc0241fe7d2a4b5f816122411936fb1056bb0.jpg",
+    "8": "https://static.tcgcollector.com/content/images/a8/55/d1/a855d14fb345de77b171e51b20ce74f635bf10f188143fe3c9b30f74962c1044.jpg",
+    "9": "https://static.tcgcollector.com/content/images/25/77/46/257746f616f3977b577257231919e358d49b9b840b7fd89266f417dd98d56748.jpg",
+    "10": "https://static.tcgcollector.com/content/images/e2/e9/50/e2e95036f95fae4d7c165194a57082c2cad59cd0e5b8a3d37f0ff6c341a0323f.jpg",
+    "11": "https://static.tcgcollector.com/content/images/a1/ce/08/a1ce08c821befe062de15577892f75c460f8d6cdf05f32121d84dd8e390e3278.jpg",
+  },
+  "tk-dp-m": {
+    "1": "https://static.tcgcollector.com/content/images/f3/b8/b6/f3b8b66529d080a6a929725a18cbc16da8c450e165eb4dfe0711c27a55779857.jpg",
+    "2": "https://static.tcgcollector.com/content/images/52/62/46/5262464272705ad039f0bf93f591851ed4bb2be8e0d788bf459a6dfabf038aec.jpg",
+    "3": "https://static.tcgcollector.com/content/images/0b/21/5d/0b215d49b514b815fc0ff225ac5736a4a82e218fa4ce14cb4fe627b25b79f9ef.jpg",
+    "4": "https://static.tcgcollector.com/content/images/86/33/7e/86337e4b3228e16682d288fca2dfffeb71915a6a29249b14465961c89b5f1ae2.jpg",
+    "5": "https://static.tcgcollector.com/content/images/05/aa/eb/05aaeb129e27e1e2baefb17bb34fd534dfe264d6fbada0f163deff8deb8f6374.jpg",
+    "6": "https://static.tcgcollector.com/content/images/04/d4/0f/04d40fad994ac8ee95301512f4502883852e9dd194ab28304947d5a5bdac2082.jpg",
+    "7": "https://static.tcgcollector.com/content/images/2a/48/9d/2a489d5bfcfd30881d065fb1f853a02c508e574fdf982a2fecfec97dc650ae2e.jpg",
+    "8": "https://static.tcgcollector.com/content/images/7a/66/ba/7a66baab8e91c12cf8bce2a97a318d91021fd977cdc16fdfb060ef0d1a1c5c09.jpg",
+    "9": "https://static.tcgcollector.com/content/images/10/2b/b4/102bb4502de579a480dd7fc584f4c2dca034a4b6c305c6ef50f3f2020e5dcdb2.jpg",
+    "10": "https://static.tcgcollector.com/content/images/03/3f/07/033f07092a580df9b082e7112456d568e0585d8e7eee23f0467ec4b8e2a21b90.jpg",
+    "11": "https://static.tcgcollector.com/content/images/e8/79/cd/e879cde72f570f31d00039df520d4242cf437a885f1d85e55580bf597625aa03.jpg",
+    "12": "https://static.tcgcollector.com/content/images/23/df/a7/23dfa7003966804257a9b93b26c995acf3066976a711a1a7b60cee15a38835b7.jpg",
+  },
+  "tk-hs-g": {
+    "20": "https://static.tcgcollector.com/content/images/57/c4/81/57c481f36dcb032ffd7f4dac803b26d5e907bc89b760b405844e742a8209d6e8.jpg",
+  },
+  "tk-hs-r": {
+    "19": "https://static.tcgcollector.com/content/images/f4/75/e5/f475e52be4dcd901f984a255bd6c05ddff1c73970a5e1fafd9012ed8535865ce.jpg",
+  },
+};
 
 type SourceBackedReplacementImage = {
   url: string;
@@ -254,6 +292,17 @@ function getMalieTrainerKitReplacementImageUrl(
   return `https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/${encodeURIComponent(plan.series)}/${encodeURIComponent(plan.code)}-${encodeURIComponent(plan.folder)}/en_US-${encodeURIComponent(plan.code)}-${encodeURIComponent(number)}-${encodeURIComponent(nameSlug)}.jpg`;
 }
 
+function getTcgCollectorTrainerKitReplacementImageUrl(
+  cardPrint: CardImageLike | null | undefined,
+) {
+  const setCode = normalizeLowerOrNull(cardPrint?.set_code);
+  const number = getNumericCardNumber(cardPrint);
+
+  return setCode && number
+    ? TCGCOLLECTOR_TRAINER_KIT_IMAGE_URLS[setCode]?.[number] ?? null
+    : null;
+}
+
 function getSourceBackedReplacementImage(
   cardPrint: CardImageLike | null | undefined,
 ): SourceBackedReplacementImage | null {
@@ -299,6 +348,19 @@ function getSourceBackedReplacementImage(
       image_status: "representative_shared",
       image_note:
         "Source-backed representative display: Malie Trainer Kit image used because the upstream TCGdex asset is missing or unavailable.",
+      display_image_kind: "representative",
+    };
+  }
+
+  const tcgCollectorTrainerKitReplacementUrl =
+    getTcgCollectorTrainerKitReplacementImageUrl(cardPrint);
+  if (tcgCollectorTrainerKitReplacementUrl) {
+    return {
+      url: tcgCollectorTrainerKitReplacementUrl,
+      image_source: "external",
+      image_status: "representative_shared",
+      image_note:
+        "Source-backed representative display: TCG Collector Trainer Kit image used because no exact owned image is cataloged yet.",
       display_image_kind: "representative",
     };
   }
