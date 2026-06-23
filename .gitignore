@@ -123,6 +123,10 @@ apps/web/src/app/api/assistant/*
 !apps/web/src/app/api/assistant/search-interpretation/route.ts
 !apps/web/src/app/api/assistant/variant-explanation-context/
 !apps/web/src/app/api/assistant/variant-explanation-context/route.ts
+!apps/web/src/app/api/canon/
+apps/web/src/app/api/canon/*
+!apps/web/src/app/api/canon/images/
+!apps/web/src/app/api/canon/images/route.ts
 !apps/web/src/app/api/slabs/
 apps/web/src/app/api/slabs/*
 !apps/web/src/app/api/slabs/upgrade/

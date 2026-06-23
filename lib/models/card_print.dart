@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../secrets.dart';
+import '../services/identity/canon_image_url_service.dart';
 import '../utils/display_image_contract.dart';
 import 'provisional_card.dart';
 
@@ -65,6 +66,7 @@ class CardPrint {
     this.rarity,
     this.imageUrl,
     this.imageAltUrl,
+    this.imagePath,
     this.representativeImageUrl,
     this.imageStatus,
     this.imageNote,
@@ -95,6 +97,7 @@ class CardPrint {
   final String? rarity;
   final String? imageUrl;
   final String? imageAltUrl;
+  final String? imagePath;
   final String? representativeImageUrl;
   final String? imageStatus;
   final String? imageNote;
@@ -120,6 +123,48 @@ class CardPrint {
     imageAltUrl: imageAltUrl,
     representativeImageUrl: representativeImageUrl,
   );
+
+  CardPrint copyWith({
+    String? imageUrl,
+    String? imageAltUrl,
+    String? imagePath,
+    String? representativeImageUrl,
+    String? displayImageUrl,
+    String? displayImageKind,
+  }) {
+    return CardPrint(
+      id: id,
+      name: name,
+      gvId: gvId,
+      setCode: setCode,
+      setName: setName,
+      number: number,
+      numberPlain: numberPlain,
+      variantKey: variantKey,
+      printedIdentityModifier: printedIdentityModifier,
+      setIdentityModel: setIdentityModel,
+      rarity: rarity,
+      imageUrl: imageUrl ?? this.imageUrl,
+      imageAltUrl: imageAltUrl ?? this.imageAltUrl,
+      imagePath: imagePath ?? this.imagePath,
+      representativeImageUrl:
+          representativeImageUrl ?? this.representativeImageUrl,
+      imageStatus: imageStatus,
+      imageNote: imageNote,
+      imageSource: imageSource,
+      displayImageUrl: displayImageUrl ?? this.displayImageUrl,
+      displayImageKind: displayImageKind ?? this.displayImageKind,
+      externalIds: externalIds,
+      searchObjectType: searchObjectType,
+      searchCardPrintingId: searchCardPrintingId,
+      printingGvId: printingGvId,
+      selectedPrintingGvId: selectedPrintingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
+      displayDiscriminator: displayDiscriminator,
+      routeQuery: routeQuery,
+    );
+  }
 
   factory CardPrint.fromJson(Map<String, dynamic> json) {
     final set = json['set'] as Map<String, dynamic>?;
@@ -147,6 +192,7 @@ class CardPrint {
       rarity: json['rarity']?.toString(),
       imageUrl: json['image_url']?.toString(),
       imageAltUrl: json['image_alt_url']?.toString(),
+      imagePath: json['image_path']?.toString(),
       representativeImageUrl: json['representative_image_url']?.toString(),
       imageStatus: json['image_status']?.toString(),
       imageNote: json['image_note']?.toString(),
@@ -267,7 +313,7 @@ class CardPrintSearchResult {
 }
 
 const _cardPrintSelect =
-    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
+    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
 
 class CardPrintRepository {
   static Future<CardPrintSearchResult> searchCardPrintsResolved({
@@ -325,14 +371,14 @@ class CardPrintRepository {
     final rowsJson = decoded['rows'];
     final provisionalJson = decoded['provisional'];
     final metaJson = decoded['meta'];
-    var rows = rowsJson is List
+    final rows = rowsJson is List
         ? rowsJson
               .whereType<Map<String, dynamic>>()
               .map(CardPrint.fromJson)
               .toList()
         : <CardPrint>[];
 
-    rows = _filterByRarity(rows, options.rarity);
+    final filteredRows = _filterByRarity(rows, options.rarity);
     final provisionalRows = provisionalJson is List
         ? provisionalJson
               .whereType<Map<String, dynamic>>()
@@ -356,12 +402,12 @@ class CardPrintRepository {
     if (kDebugMode) {
       debugPrint(
         'search:web_resolver ${meta?.resolverState.name ?? 'browse'} '
-        'count=${rows.length} source=${decoded['source'] ?? 'unknown'}',
+        'count=${filteredRows.length} source=${decoded['source'] ?? 'unknown'}',
       );
     }
 
     return CardPrintSearchResult(
-      rows: rows,
+      rows: filteredRows,
       provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
@@ -383,7 +429,13 @@ class CardPrintRepository {
         .eq('gv_id', normalized)
         .maybeSingle();
 
-    return row == null ? null : CardPrint.fromJson(row);
+    if (row == null) {
+      return null;
+    }
+    final enriched = await CanonImageUrlService.enrichRows([
+      Map<String, dynamic>.from(row),
+    ]);
+    return CardPrint.fromJson(enriched.first);
   }
 
   static Future<List<CardPrint>> searchCardPrints({
@@ -409,9 +461,7 @@ class CardPrintRepository {
           .order(options.sort, ascending: true)
           .limit(options.limit.clamp(1, defaultLimit));
 
-      return data
-          .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-          .toList();
+      return _fromRowsWithCanonImages(data);
     }
 
     final tokens = _tokenize(trimmed);
@@ -490,9 +540,7 @@ class CardPrintRepository {
             options.rarity,
           ).limit(options.limit.clamp(1, isNumberWithTotal ? 25 : 50));
           data = await limited;
-          return data
-              .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-              .toList();
+          return _fromRowsWithCanonImages(data);
         } else {
           mode = 'name+number';
           final nameQuery = nameTokens.join(' ').trim();
@@ -509,9 +557,7 @@ class CardPrintRepository {
             options.rarity,
           ).limit(options.limit.clamp(1, 50));
           data = await limited;
-          return data
-              .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-              .toList();
+          return _fromRowsWithCanonImages(data);
         }
       } else if (resolvedSet != null) {
         mode = 'set+name';
@@ -563,9 +609,7 @@ class CardPrintRepository {
         data = await limited;
       }
 
-      var results = data
-          .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-          .toList();
+      var results = await _fromRowsWithCanonImages(data);
 
       if (results.isEmpty && mode == 'name') {
         final tokens = trimmed.split(' ');
@@ -580,9 +624,7 @@ class CardPrintRepository {
               .order('name', ascending: true)
               .limit(searchLimit);
 
-          results = data2
-              .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-              .toList();
+          results = await _fromRowsWithCanonImages(data2);
         }
       }
 
@@ -604,9 +646,7 @@ class CardPrintRepository {
         );
         if (rpcResp is List && rpcResp.isNotEmpty) {
           if (kDebugMode) debugPrint('search:v1');
-          return rpcResp
-              .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-              .toList();
+          return _fromRowsWithCanonImages(rpcResp);
         }
       } catch (_) {
         // fall through to legacy
@@ -970,11 +1010,7 @@ class CardPrintRepository {
           .order('name', ascending: true)
           .limit(limitPerName);
 
-      trending.addAll(
-        data
-            .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-            .toList(),
-      );
+      trending.addAll(await _fromRowsWithCanonImages(data));
     }
 
     return trending;
@@ -999,8 +1035,7 @@ class CardPrintRepository {
         .inFilter('id', normalizedIds);
 
     final cardsById = <String, CardPrint>{};
-    for (final row in data as List<dynamic>) {
-      final card = CardPrint.fromJson(row as Map<String, dynamic>);
+    for (final card in await _fromRowsWithCanonImages(data as List<dynamic>)) {
       if (card.id.isNotEmpty) {
         cardsById[card.id] = card;
       }
@@ -1029,9 +1064,7 @@ class CardPrintRepository {
         .order('name', ascending: true)
         .limit(limit.clamp(1, 200));
 
-    return (data as List<dynamic>)
-        .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
-        .toList(growable: false);
+    return _fromRowsWithCanonImages(data as List<dynamic>);
   }
 
   static Future<List<CardPrint>> fetchBySetCode({
@@ -1051,9 +1084,18 @@ class CardPrintRepository {
         .order('name', ascending: true)
         .limit(limit.clamp(1, 200));
 
-    return (data as List<dynamic>)
-        .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
+    return _fromRowsWithCanonImages(data as List<dynamic>);
+  }
+
+  static Future<List<CardPrint>> _fromRowsWithCanonImages(
+    Iterable<dynamic> rows,
+  ) async {
+    final normalized = rows
+        .whereType<Map>()
+        .map((row) => Map<String, dynamic>.from(row))
         .toList(growable: false);
+    final enriched = await CanonImageUrlService.enrichRows(normalized);
+    return enriched.map(CardPrint.fromJson).toList(growable: false);
   }
 }
 

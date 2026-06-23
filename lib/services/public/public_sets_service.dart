@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
+import '../identity/canon_image_url_service.dart';
 import '../vault/vault_card_service.dart';
 
 class PublicSetSummary {
@@ -245,7 +246,7 @@ class PublicSetsService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,sets(identity_model)',
+          'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)',
         )
         .eq('set_code', normalizedCode)
         .not('gv_id', 'is', null)
@@ -253,9 +254,11 @@ class PublicSetsService {
         .order('number', ascending: true)
         .range(offset, offset + limit - 1);
 
-    final rawRows = (rows as List<dynamic>)
-        .map((row) => Map<String, dynamic>.from(row as Map))
-        .toList();
+    final rawRows = await CanonImageUrlService.enrichRows(
+      (rows as List<dynamic>).map(
+        (row) => Map<String, dynamic>.from(row as Map),
+      ),
+    );
     final cardPrintIds = rawRows
         .map((row) => _cleanText(row['id']))
         .where((value) => value.isNotEmpty)
@@ -301,6 +304,16 @@ class PublicSetsService {
               : row['sets'] is Map
               ? Map<String, dynamic>.from(row['sets'] as Map)
               : null;
+          final exactImageUrl =
+              _bestImageUrl(
+                primary: row['display_image_url'],
+                fallback: row['image_url'],
+              ) ??
+              _normalizeHttpUrl(row['image_alt_url']);
+          final representativeImageUrl = _normalizeHttpUrl(
+            row['representative_image_url'],
+          );
+          final displayImageUrl = exactImageUrl ?? representativeImageUrl;
 
           return PublicSetCard(
             cardPrintId: cardPrintId,
@@ -318,29 +331,14 @@ class PublicSetsService {
               setRecord?['identity_model'],
             ),
             rarity: _normalizeOptionalText(row['rarity']),
-            imageUrl: _bestImageUrl(
-              primary: row['image_url'],
-              fallback: row['image_alt_url'],
-            ),
-            representativeImageUrl: _normalizeHttpUrl(
-              row['representative_image_url'],
-            ),
+            imageUrl: exactImageUrl,
+            representativeImageUrl: representativeImageUrl,
             imageStatus: _normalizeOptionalText(row['image_status']),
             imageNote: _normalizeOptionalText(row['image_note']),
-            displayImageUrl:
-                _bestImageUrl(
-                  primary: row['image_url'],
-                  fallback: row['image_alt_url'],
-                ) ??
-                _normalizeHttpUrl(row['representative_image_url']),
-            displayImageKind:
-                _bestImageUrl(
-                      primary: row['image_url'],
-                      fallback: row['image_alt_url'],
-                    ) !=
-                    null
+            displayImageUrl: displayImageUrl,
+            displayImageKind: exactImageUrl != null
                 ? 'exact'
-                : _normalizeHttpUrl(row['representative_image_url']) != null
+                : representativeImageUrl != null
                 ? 'representative'
                 : 'missing',
             printings: printingsByCardPrintId[cardPrintId] ?? const [],

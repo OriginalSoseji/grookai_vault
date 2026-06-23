@@ -50,6 +50,7 @@ import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'services/identity/display_identity.dart';
+import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
 import 'widgets/card_surface_artwork.dart';

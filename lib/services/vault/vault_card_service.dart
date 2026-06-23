@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
 class VaultCardIdentity {
@@ -334,7 +335,7 @@ class VaultOwnedCardAnchor {
 
 class VaultCardService {
   static const _canonicalSelect =
-      'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,set:sets(name,code,identity_model)';
+      'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set:sets(name,code,identity_model)';
   static const _wallGuardMessage =
       'Enable your public profile and vault sharing before adding cards to your wall.';
 
@@ -352,7 +353,10 @@ class VaultCardService {
       throw Exception('Canonical card row not found for card_id=$cardId');
     }
 
-    final identity = VaultCardIdentity.fromJson(Map<String, dynamic>.from(row));
+    final enriched = await CanonImageUrlService.enrichRows([
+      Map<String, dynamic>.from(row),
+    ]);
+    final identity = VaultCardIdentity.fromJson(enriched.first);
     if (identity.gvId.isEmpty) {
       throw Exception('Canonical card row missing gv_id for card_id=$cardId');
     }
@@ -680,7 +684,12 @@ class VaultCardService {
           .maybeSingle(),
     ]);
 
-    final canonicalRow = responses[0] as Map<String, dynamic>?;
+    final rawCanonicalRow = responses[0] as Map<String, dynamic>?;
+    final canonicalRow = rawCanonicalRow == null
+        ? null
+        : (await CanonImageUrlService.enrichRows([
+            Map<String, dynamic>.from(rawCanonicalRow),
+          ])).first;
     final profileRow = responses[1] as Map<String, dynamic>?;
 
     final identity = canonicalRow == null

@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
+import '../identity/canon_image_url_service.dart';
 import '../vault/vault_card_service.dart';
 
 class GrookaiDexSpeciesSummary {
@@ -154,7 +154,6 @@ class GrookaiDexService {
   static const int defaultPageSize = 100;
   static const String _spriteBaseUrl =
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
-  static const String _cardImageMediaBucket = 'user-card-images';
   static const String _legendaryTreasuresRc5CardPrintId =
       'efa15a49-a1f9-46b0-bd69-85111388328e';
   static const List<String> _legendaryTreasuresRc5BlockedImagePatterns = [
@@ -265,17 +264,18 @@ class GrookaiDexService {
     final rows = await client
         .from('v_grookai_dex_card_prints_v1')
         .select(
-          'species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,representative_image_url,role,counts_for_completion,mapping_active',
+          'species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,image_source,image_path,representative_image_url,role,counts_for_completion,mapping_active',
         )
         .eq('species_slug', slug)
         .eq('mapping_active', true)
         .order('set_name', ascending: true)
         .order('number', ascending: true);
 
-    final rawRows = (rows as List<dynamic>)
-        .map((row) => Map<String, dynamic>.from(row as Map))
-        .where((row) => _clean(row['card_print_id']).isNotEmpty)
-        .toList();
+    final rawRows = (await CanonImageUrlService.enrichRows(
+      (rows as List<dynamic>).map(
+        (row) => Map<String, dynamic>.from(row as Map),
+      ),
+    )).where((row) => _clean(row['card_print_id']).isNotEmpty).toList();
     if (rawRows.isEmpty) {
       return null;
     }
@@ -435,18 +435,24 @@ class GrookaiDexService {
       final data = await client
           .from('card_prints')
           .select(
-            'id,printed_identity_modifier,image_url,representative_image_url,image_status,image_note',
+            'id,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note',
           )
           .inFilter('id', chunk);
-      for (final raw in data) {
-        final row = Map<String, dynamic>.from(raw as Map);
+      final rows = await CanonImageUrlService.enrichRows(
+        (data as List<dynamic>).map(
+          (row) => Map<String, dynamic>.from(row as Map),
+        ),
+      );
+      for (final row in rows) {
         final id = _clean(row['id']);
         if (id.isNotEmpty) {
           values[id] = _CardPrintImageMetadata(
             printedIdentityModifier: _optional(
               row['printed_identity_modifier'],
             ),
-            imageUrl: _optional(row['image_url']),
+            imageUrl:
+                normalizeDisplayImageUrl(row['display_image_url']) ??
+                _optional(row['image_url']),
             representativeImageUrl: _optional(row['representative_image_url']),
             imageStatus: _optional(row['image_status']),
             imageNote: _optional(row['image_note']),
@@ -584,7 +590,7 @@ class GrookaiDexService {
             await client
                     .from('card_printings')
                     .select(
-                      'card_print_id,printing_gv_id,finish_key,image_path,image_url,image_alt_url,image_status,image_note',
+                      'card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note',
                     )
                     .inFilter('card_print_id', chunk)
                 as List<dynamic>;
@@ -592,8 +598,12 @@ class GrookaiDexService {
         continue;
       }
 
-      for (final raw in data) {
-        final row = Map<String, dynamic>.from(raw as Map);
+      final rows = await CanonImageUrlService.enrichRows(
+        (data as List<dynamic>).map(
+          (row) => Map<String, dynamic>.from(row as Map),
+        ),
+      );
+      for (final row in rows) {
         final cardPrintId = _clean(row['card_print_id']);
         if (cardPrintId.isEmpty) {
           continue;
@@ -605,7 +615,7 @@ class GrookaiDexService {
         final metadata = _CardPrintChildImageMetadata(
           finishKey: _optional(row['finish_key']),
           imageUrl:
-              _resolvePublicMediaUrl(_optional(row['image_path'])) ??
+              CanonImageUrlService.displayImageUrlFromRow(row) ??
               _optional(row['image_url']) ??
               _optional(row['image_alt_url']),
           imageStatus: _optional(row['image_status']),
@@ -831,21 +841,6 @@ class GrookaiDexService {
       score += 4;
     }
     return score;
-  }
-
-  static String? _resolvePublicMediaUrl(String? path) {
-    final normalized = _clean(path).replaceFirst(RegExp(r'^/+'), '');
-    final baseUrl = supabaseUrl.replaceFirst(RegExp(r'/+$'), '');
-    if (normalized.isEmpty || baseUrl.isEmpty) {
-      return null;
-    }
-
-    final encodedPath = normalized
-        .split('/')
-        .where((segment) => segment.isNotEmpty)
-        .map(Uri.encodeComponent)
-        .join('/');
-    return '$baseUrl/storage/v1/object/public/${Uri.encodeComponent(_cardImageMediaBucket)}/$encodedPath';
   }
 
   static Map<String, dynamic>? _firstNestedRecord(dynamic value) {

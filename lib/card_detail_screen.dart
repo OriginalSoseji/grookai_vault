@@ -14,6 +14,7 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'services/identity/display_identity.dart';
+import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
@@ -198,17 +199,19 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Future<void> _loadCardContext() async {
     try {
-      final detailRow = await supabase
+      final rawDetailRow = await supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
+            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
           )
           .eq('id', widget.cardPrintId)
           .maybeSingle();
 
-      final contextData = detailRow == null
+      final contextData = rawDetailRow == null
           ? null
-          : Map<String, dynamic>.from(detailRow);
+          : (await CanonImageUrlService.enrichRows([
+              Map<String, dynamic>.from(rawDetailRow),
+            ])).first;
       final contextName = _cleanText(contextData?['name']);
       final resolvedName = contextName.isNotEmpty ? contextName : _displayName;
       final cardPrintId = _cleanText(contextData?['id']).isNotEmpty
@@ -220,7 +223,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         final response = await supabase
             .from('card_prints')
             .select(
-              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
+              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
             )
             .eq('name', resolvedName)
             .neq('id', widget.cardPrintId)
@@ -230,10 +233,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             .order('number', ascending: true)
             .limit(20);
 
-        relatedRows = (response as List<dynamic>)
-            .map((row) => Map<String, dynamic>.from(row as Map))
-            .where((row) => _cleanText(row['id']).isNotEmpty)
-            .toList();
+        relatedRows = (await CanonImageUrlService.enrichRows(
+          (response as List<dynamic>).map(
+            (row) => Map<String, dynamic>.from(row as Map),
+          ),
+        )).where((row) => _cleanText(row['id']).isNotEmpty).toList();
       }
 
       final relatedVersionOwnershipByCardPrintId =
@@ -1032,14 +1036,19 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     Map<String, dynamic>? row,
   ) {
     final imageStatus = _cleanText(row?['image_status']?.toString());
-    return resolveImagePresentationFromFields(
-      imageUrl: _bestImageUrl(
+    final exactImageUrl = _bestImageUrl(
+      primary: row?['display_image_url'],
+      fallback: _bestImageUrl(
         primary: row?['image_url'],
         fallback: row?['image_alt_url'],
       ),
+    );
+    return resolveImagePresentationFromFields(
+      imageUrl: exactImageUrl,
       representativeImageUrl: _cleanText(
         row?['representative_image_url']?.toString(),
       ),
+      displayImageUrl: CanonImageUrlService.displayImageUrlFromRow(row),
       displayImageKind: imageStatus.toLowerCase().startsWith('representative_')
           ? 'representative'
           : null,
@@ -2184,10 +2193,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  Widget _buildVariantOriginSection(
-    ThemeData theme,
-    ColorScheme colorScheme,
-  ) {
+  Widget _buildVariantOriginSection(ThemeData theme, ColorScheme colorScheme) {
     final copy = _variantOriginCopy;
     if (copy == null) {
       return const SizedBox.shrink();

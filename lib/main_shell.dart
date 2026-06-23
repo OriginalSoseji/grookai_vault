@@ -282,7 +282,7 @@ class _AppShellState extends State<AppShell> {
       final directMatch = await _supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,representative_image_url,sets(name)',
+            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,sets(name)',
           )
           .eq('gv_id', normalizedGvId)
           .maybeSingle();
@@ -296,7 +296,7 @@ class _AppShellState extends State<AppShell> {
           final uppercaseMatch = await _supabase
               .from('card_prints')
               .select(
-                'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,representative_image_url,sets(name)',
+                'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,sets(name)',
               )
               .eq('gv_id', uppercaseGvId)
               .maybeSingle();
@@ -311,6 +311,11 @@ class _AppShellState extends State<AppShell> {
 
     if (!mounted) {
       return;
+    }
+
+    if (cardRow != null) {
+      final enriched = await CanonImageUrlService.enrichRows([cardRow]);
+      cardRow = enriched.first;
     }
 
     final cardPrintId = _routeText(cardRow?['id']);
@@ -355,7 +360,8 @@ class _AppShellState extends State<AppShell> {
       return null;
     }
 
-    return _routeHttpImageUrl(row['display_image_url']) ??
+    return CanonImageUrlService.displayImageUrlFromRow(row) ??
+        _routeHttpImageUrl(row['display_image_url']) ??
         _routeHttpImageUrl(row['image_url']) ??
         _routeHttpImageUrl(row['image_alt_url']) ??
         _routeHttpImageUrl(row['representative_image_url']);
@@ -701,10 +707,12 @@ class _AppShellState extends State<AppShell> {
               children: [
                 _GrookaiDesktopRail(
                   currentDestination: _destination,
-                  onOpenSearch: () => _selectDestination(_ShellDestination.search),
+                  onOpenSearch: () =>
+                      _selectDestination(_ShellDestination.search),
                   onOpenFeed: () => _selectDestination(_ShellDestination.feed),
                   onOpenWall: () => _selectDestination(_ShellDestination.wall),
-                  onOpenVault: () => _selectDestination(_ShellDestination.vault),
+                  onOpenVault: () =>
+                      _selectDestination(_ShellDestination.vault),
                   onOpenScan: _startScanFlow,
                   onOpenDex: () => unawaited(_openDex()),
                   onOpenSets: () => unawaited(_openSets()),
@@ -777,11 +785,15 @@ class _AppShellState extends State<AppShell> {
                             );
                           }
                           return IconThemeData(
-                            color: colorScheme.onSurface.withValues(alpha: 0.54),
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.54,
+                            ),
                             size: 19,
                           );
                         }),
-                        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+                        labelTextStyle: WidgetStateProperty.resolveWith((
+                          states,
+                        ) {
                           final baseStyle = theme.textTheme.labelSmall;
                           if (states.contains(WidgetState.selected)) {
                             return baseStyle?.copyWith(
@@ -792,7 +804,9 @@ class _AppShellState extends State<AppShell> {
                             );
                           }
                           return baseStyle?.copyWith(
-                            color: colorScheme.onSurface.withValues(alpha: 0.56),
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.56,
+                            ),
                             fontWeight: FontWeight.w500,
                             fontSize: 10.1,
                             letterSpacing: 0.08,
@@ -829,7 +843,9 @@ class _AppShellState extends State<AppShell> {
                           ),
                           NavigationDestination(
                             icon: Icon(Icons.center_focus_strong_outlined),
-                            selectedIcon: Icon(Icons.center_focus_strong_rounded),
+                            selectedIcon: Icon(
+                              Icons.center_focus_strong_rounded,
+                            ),
                             label: 'Scan',
                           ),
                           NavigationDestination(
