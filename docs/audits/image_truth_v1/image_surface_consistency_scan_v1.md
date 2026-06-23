@@ -1,12 +1,12 @@
 # Image Surface Consistency Scan V1
 
-Generated: 2026-06-23T02:48:55.175Z
+Generated: 2026-06-23T03:12:58.980Z
 
 ## Summary
 
 - Parent identities scanned: 25322
 - Child printings scanned: 44137
-- Parent identities with no parent image evidence but at least one child image: 298
+- Parent identities with no parent image evidence but at least one child image: 452
 - Surface coverage gate: PASS
 - Known Oshawott case covered: YES
 
@@ -34,15 +34,15 @@ Generated: 2026-06-23T02:48:55.175Z
 | sm115 | 94 |
 | mep | 72 |
 | mfb | 34 |
+| tk-xy-b | 30 |
+| tk-xy-n | 30 |
+| tk-xy-p | 30 |
+| tk-xy-sy | 30 |
+| tk-xy-w | 28 |
 | bw11 | 20 |
 | 2023sv | 15 |
 | 2024sv | 15 |
 | mee | 8 |
-| sve | 8 |
-| svp | 7 |
-| xya | 6 |
-| ecard2 | 5 |
-| ecard3 | 5 |
 
 ## Examples
 

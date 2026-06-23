@@ -1,6 +1,6 @@
 # Image Truth Audit V1
 
-Generated: 2026-06-23T02:56:22.590Z
+Generated: 2026-06-23T03:12:50.945Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -10,15 +10,15 @@ Status: audit only. No DB writes. No migrations.
 - child image storage columns present: true
 - exact child image required: 16973
 - finish visual review needed: 10851
-- exact-required rows missing exact child image: 16877
-- finish-review rows missing exact child image: 10639
-- critical/high image risk rows: 16877
-- image apply-addressable missing exact rows: 14863
+- exact-required rows missing exact child image: 16875
+- finish-review rows missing exact child image: 10628
+- critical/high image risk rows: 16875
+- image apply-addressable missing exact rows: 14861
 - image identity-blocked missing exact rows: 205
 - image non-physical blocked missing exact rows: 1809
 - image other-scope missing exact rows: 0
-- english physical display-covered rows: 37821
-- english physical missing-display rows: 275
+- english physical display-covered rows: 37975
+- english physical missing-display rows: 121
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -32,8 +32,8 @@ All scopes:
 | exact | 22484 |
 | missing_variant_visual | 14856 |
 | blocked | 6041 |
-| representative | 481 |
-| missing | 275 |
+| representative | 635 |
+| missing | 121 |
 
 English physical only:
 
@@ -41,8 +41,8 @@ English physical only:
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 481 |
-| missing | 275 |
+| representative | 635 |
+| missing | 121 |
 | blocked | 5 |
 
 ## Image Coverage Counts
@@ -51,25 +51,25 @@ English physical only:
 | --- | --- |
 | using_parent_exact_image | 42476 |
 | using_parent_representative_image | 894 |
-| exact_child_image_present | 411 |
-| missing_display_image | 356 |
+| exact_child_image_present | 565 |
+| missing_display_image | 202 |
 
 ## Risk Counts
 
 | risk | rows |
 | --- | --- |
-| low | 26938 |
+| low | 27092 |
 | high | 16843 |
-| medium | 322 |
-| critical | 34 |
+| medium | 170 |
+| critical | 32 |
 
 ## Risk By Finish
 
 | finish | risk rows |
 | --- | --- |
 | reverse | 15506 |
-| normal | 590 |
-| holo | 348 |
+| normal | 447 |
+| holo | 337 |
 | cosmos | 326 |
 | pokeball | 230 |
 | cracked_ice | 122 |

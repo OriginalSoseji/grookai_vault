@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-23T02:56:22.590Z
+Generated: 2026-06-23T03:12:50.945Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 38101
 - english physical exact-required rows: 14959
-- english physical display-covered rows: 37821
-- english physical missing-display rows: 275
+- english physical display-covered rows: 37975
+- english physical missing-display rows: 121
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -22,8 +22,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 481 |
-| missing | 275 |
+| representative | 635 |
+| missing | 121 |
 | blocked | 5 |
 
 ## English Physical Exact-Required Confidence Counts
@@ -32,8 +32,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | missing_variant_visual | 14856 |
 | exact | 55 |
-| representative | 41 |
-| missing | 7 |
+| representative | 43 |
+| missing | 5 |
 
 ## Interpretation
 
@@ -50,8 +50,6 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 | mep | 066 | Tyrantrum | holo | no_safe_display_image_available |
 | mep | 067 | Doublade | holo | no_safe_display_image_available |
 | misc | 1 | Ancient Mew | cosmos | no_safe_display_image_available |
-| tk-xy-n | 24 | Professor’s Letter | normal | no_safe_display_image_available |
-| tk-xy-sy | 28 | Professor’s Letter | normal | no_safe_display_image_available |
 | tk-bw-e | 1 | Lillipup | normal | no_safe_display_image_available |
 | tk-bw-e | 10 | Fighting Energy | normal | no_safe_display_image_available |
 | tk-bw-e | 11 | Timburr | normal | no_safe_display_image_available |
@@ -75,7 +73,6 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 | tk-bw-e | 28 | Fighting Energy | normal | no_safe_display_image_available |
 | tk-bw-e | 29 | Timburr | normal | no_safe_display_image_available |
 | tk-bw-e | 3 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 30 | Excadrill | holo | no_safe_display_image_available |
 | tk-bw-e | 4 | Energy Switch | normal | no_safe_display_image_available |
 | tk-bw-e | 5 | Fighting Energy | normal | no_safe_display_image_available |
 | tk-bw-e | 6 | Fighting Energy | normal | no_safe_display_image_available |
@@ -95,6 +92,9 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 | tk-bw-z | 19 | Minccino | normal | no_safe_display_image_available |
 | tk-bw-z | 2 | Watchog | normal | no_safe_display_image_available |
 | tk-bw-z | 20 | Darkness Energy | normal | no_safe_display_image_available |
+| tk-bw-z | 21 | Pidove | normal | no_safe_display_image_available |
+| tk-bw-z | 22 | Darkness Energy | normal | no_safe_display_image_available |
+| tk-bw-z | 23 | Zorua | normal | no_safe_display_image_available |
 
 ## First Missing Variant Visual Rows
 

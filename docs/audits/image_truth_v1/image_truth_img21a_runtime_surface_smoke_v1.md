@@ -1,6 +1,6 @@
 # IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE
 
-- Generated: 2026-06-23T02:49:51.385Z
+- Generated: 2026-06-23T03:13:13.405Z
 - Mode: read_only_runtime_http_smoke
 - Base URL: `http://127.0.0.1:3087`
 - Proof hash: `0b9331a98e8f2ec1f84aeb9a34d62dd2e6ec9f50e6e4da4aa7c7cbcd1c8e4c14`
