@@ -1,7 +1,7 @@
 {
   "contract": "IMAGE_SURFACE_CONSISTENCY_SCAN_V1",
-  "generated_at": "2026-06-22T22:40:59.452Z",
-  "parent_rows_scanned": 25018,
+  "generated_at": "2026-06-23T02:29:49.827Z",
+  "parent_rows_scanned": 25322,
   "child_rows_scanned": 44137,
   "surface_coverage": {
     "helper_exists": true,

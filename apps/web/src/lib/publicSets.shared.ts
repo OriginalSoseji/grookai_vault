@@ -3,6 +3,7 @@ import { SET_SHORTHANDS } from "@/lib/resolver/shorthand";
 export const PUBLIC_SET_ROUTE_ALIAS_MAP: Record<string, string> = {
   "shiny vault": "sma",
   "shiny-vault": "sma",
+  "2021swsh": "mcd21",
   "base set shadowless": "base1-shadowless",
   "base-set-shadowless": "base1-shadowless",
   "base shadowless": "base1-shadowless",

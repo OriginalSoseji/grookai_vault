@@ -117,6 +117,7 @@ test("public set display normalizes McDonalds and Trainer Kit capitalization", (
   assert.match(source, /McDonald's/);
   assert.match(source, /trainer Kit/);
   assert.match(source, /Trainer Kit/);
+  assert.match(source, /"2021swsh": "mcd21"/);
   assert.match(publicSetsSource, /normalizePublicSetDisplayName\(row\.name\)/);
   assert.match(cardDetailSource, /normalizePublicSetDisplayName/);
 });

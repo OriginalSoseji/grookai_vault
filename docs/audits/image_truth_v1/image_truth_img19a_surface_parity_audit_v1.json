@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-19A-IMAGE-SURFACE-PARITY-AUDIT",
   "mode": "read_only_audit",
-  "generated_at": "2026-06-23T01:51:03.132Z",
+  "generated_at": "2026-06-23T02:29:38.322Z",
   "summary": {
     "dex_parent_missing_child_has_image_count": 255,
     "dex_known_broken_tcgdex_reference_count": 64,

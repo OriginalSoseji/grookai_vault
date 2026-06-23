@@ -1,0 +1,162 @@
+{
+  "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
+  "mode": "read_only_runtime_http_smoke",
+  "generated_at": "2026-06-23T02:36:48.572Z",
+  "base_url": "http://127.0.0.1:3087",
+  "results": [
+    {
+      "id": "card_mcd2021_oshawott",
+      "path": "/card/GV-PK-MCD-21",
+      "status": 200,
+      "body_length": 120832,
+      "expected_signals": [
+        "Oshawott",
+        "images.pokemontcg.io/mcd21/21_hires.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/2021swsh/21/high.webp"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_mcd2021",
+      "path": "/sets/2021swsh",
+      "status": 200,
+      "body_length": 174036,
+      "expected_signals": [
+        "McDonald's Collection 2021",
+        "images.pokemontcg.io/mcd21/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/2021swsh/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "dex_oshawott_child_fallback",
+      "path": "/dex/oshawott",
+      "status": 200,
+      "body_length": 125768,
+      "expected_signals": [
+        "Oshawott",
+        "GV-PK-MEP-051"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/tk/",
+        "assets.tcgdex.net/en/mc/2021swsh/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_mep_oshawott_exact",
+      "path": "/card/GV-PK-MEP-051",
+      "status": 200,
+      "body_length": 129789,
+      "expected_signals": [
+        "Oshawott",
+        "gv-card-hero-image-stage"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_trainer_kit_sm_lycanroc",
+      "path": "/sets/tk-sm-l",
+      "status": 200,
+      "body_length": 168606,
+      "expected_signals": [
+        "SM Trainer Kit (Lycanroc)",
+        "cdn.malie.io/file/malie-io/art/cards/jpg/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/tk/tk-sm-l/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_trainer_kit_dp_lucario_residual",
+      "path": "/sets/tk-dp-l",
+      "status": 200,
+      "body_length": 129650,
+      "expected_signals": [
+        "DP Trainer Kit (Lucario)",
+        "static.tcgcollector.com/content/images/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/tk/tk-dp-l/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_trainer_kit_ex_latios_alias",
+      "path": "/card/GV-PK-TK-tk-ex-latio-1",
+      "status": 200,
+      "body_length": 107968,
+      "expected_signals": [
+        "Electrike",
+        "images.pokemontcg.io/tk1b/1_hires.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/tk/tk-ex-latio/1/high.webp"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_trainer_kit_hs_gyarados_residual",
+      "path": "/card/GV-PK-TK-tk-hs-g-20",
+      "status": 200,
+      "body_length": 105188,
+      "expected_signals": [
+        "Gyarados",
+        "static.tcgcollector.com/content/images/57/c4/81/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/tk/tk-hs-g/20/high.webp"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_wrong_rc5_blocked",
+      "path": "/card/GV-PK-LTR-RC5",
+      "status": 200,
+      "body_length": 137140,
+      "expected_signals": [
+        "Torchic",
+        "Image unavailable"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "images.pokemontcg.io/bw11/5_hires.png",
+        "Carnivine"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 245ms\n",
+  "proof_hash": "0b9331a98e8f2ec1f84aeb9a34d62dd2e6ec9f50e6e4da4aa7c7cbcd1c8e4c14"
+}

@@ -1,6 +1,6 @@
 # IMG-19A-IMAGE-SURFACE-PARITY-AUDIT
 
-- Generated: 2026-06-23T01:51:03.132Z
+- Generated: 2026-06-23T02:29:38.322Z
 - Mode: read_only_audit
 - Proof hash: `2f068468aaa127d9b68a2ffcd2f68cd8131ee67ef81f82352a7aeba06064e750`
 - Dex parent-missing/child-image rows: 255
