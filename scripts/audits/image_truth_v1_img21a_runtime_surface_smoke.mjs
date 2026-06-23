@@ -19,13 +19,19 @@ const ROUTES = [
   {
     id: 'card_mcd2021_oshawott',
     path: '/card/GV-PK-MCD-21',
-    expect: ['Oshawott', 'images.pokemontcg.io/mcd21/21_hires.png'],
+    expect: [
+      'Oshawott',
+      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-21',
+    ],
     forbid: ['Image unavailable', 'assets.tcgdex.net/en/mc/2021swsh/21/high.webp'],
   },
   {
     id: 'set_mcd2021',
     path: '/sets/2021swsh',
-    expect: ["McDonald's Collection 2021", 'images.pokemontcg.io/mcd21/'],
+    expect: [
+      "McDonald's Collection 2021",
+      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd21/',
+    ],
     forbid: ['Image unavailable', 'assets.tcgdex.net/en/mc/2021swsh/'],
   },
   {

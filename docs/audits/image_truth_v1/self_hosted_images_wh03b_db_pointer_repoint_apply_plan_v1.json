@@ -1,0 +1,41 @@
+{
+  "package_id": "IMG-HOST-WH-03B-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T15:15:04.107Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-03A-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "c19c43fd4f89cd1bd037ca90342c6ed155b84367cd7af9348a9280ab50ee22f5",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh03a_db_pointer_repoint_plan_v1.jsonl",
+  "runtime_field_update_count": 27139,
+  "metadata_pointer_update_count": 23998,
+  "total_update_count": 51137,
+  "target_tables": {
+    "card_printings": 36,
+    "card_prints": 51101
+  },
+  "runtime_fields": {
+    "card_printings.image_alt_url": 18,
+    "card_prints.image_alt_url": 3144,
+    "card_prints.image_url": 22467,
+    "card_prints.representative_image_url": 1510
+  },
+  "metadata_tables": {
+    "card_printings": 18,
+    "card_prints": 23980
+  },
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "6d01ba4eb29ca5d065e0c499eafe54498e0f8f6ce1ca246dadd7e64d9741c604"
+}

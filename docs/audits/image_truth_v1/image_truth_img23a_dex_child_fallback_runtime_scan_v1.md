@@ -1,9 +1,9 @@
 # IMG-23A-DEX-CHILD-FALLBACK-RUNTIME-SCAN
 
-- Generated: 2026-06-23T04:42:58.913Z
+- Generated: 2026-06-23T15:25:06.960Z
 - Mode: read_only_runtime_http_scan
-- Base URL: `http://127.0.0.1:3088`
-- Proof hash: `6db6a565632af216b080f14b835efc9468730ec32a0b821a7189d28e27b08eae`
+- Base URL: `https://grookaivault.com`
+- Proof hash: `58c325c3c8563aee7e27acd0dfc447b3dadef101ac554a4f88a3fbfb85470758`
 - Candidate parent rows: 396
 - Species routes scanned: 250
 - Failed routes: 0

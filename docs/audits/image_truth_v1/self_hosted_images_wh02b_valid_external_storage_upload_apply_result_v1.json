@@ -1,0 +1,41 @@
+{
+  "package_id": "IMG-HOST-WH-02B-VALID-EXTERNAL-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-23T15:01:54.847Z",
+  "ended_at": "2026-06-23T15:01:56.106Z",
+  "fingerprint": "d1c7bdead3e3c1f0b75954e9b9535298172f8619cec52fb08f43942481c1d855",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh02a_valid_external_upload_manifest_v1.jsonl",
+  "result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh02b_valid_external_storage_upload_apply_result_v1.jsonl",
+  "db_writes_performed": false,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "upload_objects_in_scope": 27059,
+  "pending_objects_this_run": 1,
+  "previously_completed_count": 27058,
+  "uploaded_count_this_run": 1,
+  "skipped_existing_count_this_run": 0,
+  "failed_count_this_run": 0,
+  "uploaded_count_total": 25818,
+  "skipped_existing_count_total": 1241,
+  "failed_count_latest": 0,
+  "completed_count_total": 27059,
+  "failures": [],
+  "results_this_run": [
+    {
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/sm6/gv-pk-fli-14/c4e94ddd3c855066eff4fabf.png",
+      "source_final_url": "https://images.pokemontcg.io/sm6/14_hires.png",
+      "status": "uploaded",
+      "uploaded": true,
+      "sha256": "c4e94ddd3c855066eff4fabfcb5df0a91a6b29f4b081cbd879f7b14282299a3a",
+      "size_bytes": 608846,
+      "content_type": "image/png",
+      "transport_note": "pokemontcg_tls_verification_disabled_after_manifest_validation"
+    }
+  ],
+  "proof_hash": "2344cc315a0f0728bb65a43942671d070a62c9c52f7cc2379780ef6849c8f288"
+}

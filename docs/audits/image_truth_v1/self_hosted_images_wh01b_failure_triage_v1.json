@@ -1,0 +1,1869 @@
+{
+  "package_id": "IMG-HOST-WH-01B-FAILURE-TRIAGE-AND-UPLOAD-READINESS",
+  "generated_at": "2026-06-23T12:09:02.640Z",
+  "mode": "read_only_audit_derivative",
+  "source_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh01a_results_v1.jsonl",
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "total_rows": 40268,
+  "successful_rows": 27821,
+  "failed_rows": 12447,
+  "already_self_hosted_valid_rows": 682,
+  "valid_external_upload_candidate_rows": 27139,
+  "failed_external_rows": 12447,
+  "failed_storage_rows": 0,
+  "route_counts": {
+    "upload_candidate_external_validated": 27139,
+    "replacement_required_tcgdex_failed": 12333,
+    "already_self_hosted_valid": 682,
+    "replacement_required_external_failed": 114
+  },
+  "failed_by_source_lane": {
+    "external_tcgdex": 12333,
+    "external_pokemontcg": 114
+  },
+  "failed_by_reason": {
+    "non_image_content_type,dimensions_unreadable,very_small_image_payload": 12096,
+    "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload": 237,
+    "http_404": 114
+  },
+  "failed_by_source_table": {
+    "card_prints": 12442,
+    "card_printings": 5
+  },
+  "failed_by_set_code_top": [
+    {
+      "key": "B1",
+      "count": 331
+    },
+    {
+      "key": "A1",
+      "count": 285
+    },
+    {
+      "key": "swshp",
+      "count": 285
+    },
+    {
+      "key": "sv01",
+      "count": 258
+    },
+    {
+      "key": "sv04.5",
+      "count": 245
+    },
+    {
+      "key": "me04",
+      "count": 244
+    },
+    {
+      "key": "sv03",
+      "count": 230
+    },
+    {
+      "key": "sv05",
+      "count": 218
+    },
+    {
+      "key": "svp",
+      "count": 216
+    },
+    {
+      "key": "sv03.5",
+      "count": 207
+    },
+    {
+      "key": "swsh2",
+      "count": 201
+    },
+    {
+      "key": "sm11",
+      "count": 200
+    },
+    {
+      "key": "swsh1",
+      "count": 200
+    },
+    {
+      "key": "swsh3",
+      "count": 200
+    },
+    {
+      "key": "swsh4",
+      "count": 200
+    },
+    {
+      "key": "swsh6",
+      "count": 200
+    },
+    {
+      "key": "swsh8",
+      "count": 199
+    },
+    {
+      "key": "sm9",
+      "count": 196
+    },
+    {
+      "key": "swsh5",
+      "count": 183
+    },
+    {
+      "key": "sv02",
+      "count": 180
+    },
+    {
+      "key": "sv08.5",
+      "count": 180
+    },
+    {
+      "key": "unknown",
+      "count": 176
+    },
+    {
+      "key": "ecard2",
+      "count": 173
+    },
+    {
+      "key": "sv10.5w",
+      "count": 173
+    },
+    {
+      "key": "sv10.5b",
+      "count": 172
+    },
+    {
+      "key": "sm1",
+      "count": 171
+    },
+    {
+      "key": "ecard3",
+      "count": 170
+    },
+    {
+      "key": "ecard1",
+      "count": 165
+    },
+    {
+      "key": "xy5",
+      "count": 164
+    },
+    {
+      "key": "bw7",
+      "count": 153
+    },
+    {
+      "key": "dp6",
+      "count": 146
+    },
+    {
+      "key": "xy1",
+      "count": 146
+    },
+    {
+      "key": "dp3",
+      "count": 132
+    },
+    {
+      "key": "gym1",
+      "count": 132
+    },
+    {
+      "key": "gym2",
+      "count": 132
+    },
+    {
+      "key": "base4",
+      "count": 130
+    },
+    {
+      "key": "dp1",
+      "count": 130
+    },
+    {
+      "key": "me02",
+      "count": 130
+    },
+    {
+      "key": "bw6",
+      "count": 128
+    },
+    {
+      "key": "dp2",
+      "count": 124
+    },
+    {
+      "key": "hgss1",
+      "count": 124
+    },
+    {
+      "key": "swsh45sv",
+      "count": 122
+    },
+    {
+      "key": "ex6",
+      "count": 116
+    },
+    {
+      "key": "xy11",
+      "count": 116
+    },
+    {
+      "key": "bw1",
+      "count": 115
+    },
+    {
+      "key": "ex11",
+      "count": 114
+    },
+    {
+      "key": "neo4",
+      "count": 113
+    },
+    {
+      "key": "xy12",
+      "count": 113
+    },
+    {
+      "key": "bw5",
+      "count": 111
+    },
+    {
+      "key": "ex13",
+      "count": 111
+    }
+  ],
+  "failed_tcgdex_by_path_prefix_top": [
+    {
+      "key": "en/base/basep/1",
+      "count": 2
+    },
+    {
+      "key": "en/ecard/bog/1",
+      "count": 2
+    },
+    {
+      "key": "en/ecard/bog/2",
+      "count": 2
+    },
+    {
+      "key": "en/ecard/bog/6",
+      "count": 2
+    },
+    {
+      "key": "en/ecard/bog/7",
+      "count": 2
+    },
+    {
+      "key": "en/ex/ex5.5/1",
+      "count": 2
+    },
+    {
+      "key": "en/ex/ex5.5/2",
+      "count": 2
+    },
+    {
+      "key": "en/ex/ex5.5/3",
+      "count": 2
+    },
+    {
+      "key": "en/ex/ex5.5/4",
+      "count": 2
+    },
+    {
+      "key": "en/ex/ex5.5/5",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/001",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/002",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/003",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/004",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/005",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/006",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/007",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/008",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/009",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/010",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/011",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/012",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/013",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/014",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/015",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/016",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/017",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/018",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/019",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/020",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/021",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/022",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/023",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/024",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/025",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/026",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/027",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/028",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/029",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/030",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/031",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/032",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/033",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/034",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/035",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/036",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/037",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/038",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/039",
+      "count": 2
+    },
+    {
+      "key": "en/me/me04/040",
+      "count": 2
+    }
+  ],
+  "upload_candidates_by_source_lane": {
+    "external_tcgdex": 21025,
+    "external_pokemontcg": 6096,
+    "external_other": 18
+  },
+  "upload_candidates_by_set_code_top": [
+    {
+      "key": "smp",
+      "count": 615
+    },
+    {
+      "key": "sm12",
+      "count": 544
+    },
+    {
+      "key": "sm8",
+      "count": 476
+    },
+    {
+      "key": "swsh10",
+      "count": 473
+    },
+    {
+      "key": "sm10",
+      "count": 468
+    },
+    {
+      "key": "xyp",
+      "count": 437
+    },
+    {
+      "key": "swsh9",
+      "count": 423
+    },
+    {
+      "key": "swsh8",
+      "count": 405
+    },
+    {
+      "key": "sv10",
+      "count": 392
+    },
+    {
+      "key": "sm7",
+      "count": 370
+    },
+    {
+      "key": "sm2",
+      "count": 342
+    },
+    {
+      "key": "swshp",
+      "count": 342
+    },
+    {
+      "key": "B1",
+      "count": 331
+    },
+    {
+      "key": "sm11",
+      "count": 316
+    },
+    {
+      "key": "sv02",
+      "count": 306
+    },
+    {
+      "key": "swsh6",
+      "count": 305
+    },
+    {
+      "key": "sm6",
+      "count": 301
+    },
+    {
+      "key": "me02.5",
+      "count": 295
+    },
+    {
+      "key": "sv04",
+      "count": 290
+    },
+    {
+      "key": "A1",
+      "count": 286
+    },
+    {
+      "key": "sv01",
+      "count": 278
+    },
+    {
+      "key": "swsh7",
+      "count": 278
+    },
+    {
+      "key": "sv08",
+      "count": 271
+    },
+    {
+      "key": "swsh11",
+      "count": 262
+    },
+    {
+      "key": "sv05",
+      "count": 256
+    },
+    {
+      "key": "xy10",
+      "count": 255
+    },
+    {
+      "key": "sv06",
+      "count": 254
+    },
+    {
+      "key": "svp",
+      "count": 254
+    },
+    {
+      "key": "swsh12",
+      "count": 253
+    },
+    {
+      "key": "sv4pt5",
+      "count": 248
+    },
+    {
+      "key": "xy4",
+      "count": 247
+    },
+    {
+      "key": "sv04.5",
+      "count": 245
+    },
+    {
+      "key": "A4",
+      "count": 241
+    },
+    {
+      "key": "A3",
+      "count": 239
+    },
+    {
+      "key": "sv03",
+      "count": 238
+    },
+    {
+      "key": "ex10",
+      "count": 235
+    },
+    {
+      "key": "swsh1",
+      "count": 235
+    },
+    {
+      "key": "xy3",
+      "count": 230
+    },
+    {
+      "key": "swsh2",
+      "count": 223
+    },
+    {
+      "key": "xy2",
+      "count": 223
+    },
+    {
+      "key": "me01",
+      "count": 220
+    },
+    {
+      "key": "swsh3",
+      "count": 217
+    },
+    {
+      "key": "swsh4",
+      "count": 217
+    },
+    {
+      "key": "swsh5",
+      "count": 215
+    },
+    {
+      "key": "sv03.5",
+      "count": 213
+    },
+    {
+      "key": "sv09",
+      "count": 209
+    },
+    {
+      "key": "A2",
+      "count": 207
+    },
+    {
+      "key": "sm9",
+      "count": 196
+    },
+    {
+      "key": "sv07",
+      "count": 196
+    },
+    {
+      "key": "sv8pt5",
+      "count": 194
+    }
+  ],
+  "immediate_packages": [
+    {
+      "package_id": "IMG-HOST-WH-02A-VALID-EXTERNAL-UPLOAD-DRY-RUN",
+      "scope_rows": 27139,
+      "purpose": "Re-download already validated external images and stage/upload to warehouse-backed storage manifest only.",
+      "writes": "No DB writes in dry-run. Later apply may upload storage objects only."
+    },
+    {
+      "package_id": "IMG-HOST-WH-03A-TCGDEX-FAILED-REPLACEMENT-SOURCE-AUDIT",
+      "scope_rows": 12333,
+      "purpose": "For failed TCGdex rows, find source-backed replacements from PokemonTCG, TCGCollector, Malie, or approved source lanes.",
+      "writes": "No DB writes. No exact claims without source proof."
+    },
+    {
+      "package_id": "IMG-HOST-WH-04A-STORAGE-PATH-REPAIR-AUDIT",
+      "scope_rows": 0,
+      "purpose": "If any existing Supabase storage paths failed, verify object existence/path/bucket and repair plan.",
+      "writes": "No DB writes."
+    }
+  ],
+  "sample_failures": [
+    {
+      "gv_id": "GV-PK-CC-1",
+      "printing_gv_id": "GV-PK-CC-1-STD",
+      "source_table": "card_printings",
+      "field_name": "image_url",
+      "set_code": "ex5.5",
+      "number": "1",
+      "name": "Treecko",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/ex/ex5.5/1/high.webp"
+    },
+    {
+      "gv_id": "GV-PK-CC-3",
+      "printing_gv_id": "GV-PK-CC-3-STD",
+      "source_table": "card_printings",
+      "field_name": "image_url",
+      "set_code": "ex5.5",
+      "number": "3",
+      "name": "Torchic",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/ex/ex5.5/3/high.webp"
+    },
+    {
+      "gv_id": "GV-PK-CC-2",
+      "printing_gv_id": "GV-PK-CC-2-STD",
+      "source_table": "card_printings",
+      "field_name": "image_url",
+      "set_code": "ex5.5",
+      "number": "2",
+      "name": "Wurmple",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/ex/ex5.5/2/high.webp"
+    },
+    {
+      "gv_id": "GV-PK-CC-5",
+      "printing_gv_id": "GV-PK-CC-5-STD",
+      "source_table": "card_printings",
+      "field_name": "image_url",
+      "set_code": "ex5.5",
+      "number": "5",
+      "name": "Pikachu",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/ex/ex5.5/5/high.webp"
+    },
+    {
+      "gv_id": "GV-PK-CC-4",
+      "printing_gv_id": "GV-PK-CC-4-STD",
+      "source_table": "card_printings",
+      "field_name": "image_url",
+      "set_code": "ex5.5",
+      "number": "4",
+      "name": "Mudkip",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "http_404,non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/ex/ex5.5/4/high.webp"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-001",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "001",
+      "name": "Bulbasaur",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/001"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-002",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "002",
+      "name": "Ivysaur",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/002"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-003",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "003",
+      "name": "Venusaur",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/003"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-004",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "004",
+      "name": "Venusaur ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/004"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-005",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "005",
+      "name": "Caterpie",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/005"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-006",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "006",
+      "name": "Metapod",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/006"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-007",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "007",
+      "name": "Butterfree",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/007"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-008",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "008",
+      "name": "Weedle",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/008"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-009",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "009",
+      "name": "Kakuna",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/009"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-010",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "010",
+      "name": "Beedrill",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/010"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-011",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "011",
+      "name": "Oddish",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/011"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-012",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "012",
+      "name": "Gloom",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/012"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-013",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "013",
+      "name": "Vileplume",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/013"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-014",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "014",
+      "name": "Paras",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/014"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-015",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "015",
+      "name": "Parasect",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/015"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-016",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "016",
+      "name": "Venonat",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/016"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-017",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "017",
+      "name": "Venomoth",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/017"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-018",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "018",
+      "name": "Bellsprout",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/018"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-019",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "019",
+      "name": "Weepinbell",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/019"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-020",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "020",
+      "name": "Victreebel",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/020"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-021",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "021",
+      "name": "Exeggcute",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/021"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-022",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "022",
+      "name": "Exeggutor",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/022"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-023",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "023",
+      "name": "Exeggutor ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/023"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-024",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "024",
+      "name": "Tangela",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/024"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-025",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "025",
+      "name": "Scyther",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/025"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-026",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "026",
+      "name": "Pinsir",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/026"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-027",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "027",
+      "name": "Cottonee",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/027"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-028",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "028",
+      "name": "Whimsicott",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/028"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-029",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "029",
+      "name": "Petilil",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/029"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-030",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "030",
+      "name": "Lilligant",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/030"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-031",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "031",
+      "name": "Skiddo",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/031"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-032",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "032",
+      "name": "Gogoat",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/032"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-033",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "033",
+      "name": "Charmander",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/033"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-034",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "034",
+      "name": "Charmeleon",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/034"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-035",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "035",
+      "name": "Charizard",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/035"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-036",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "036",
+      "name": "Charizard ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/036"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-037",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "037",
+      "name": "Vulpix",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/037"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-038",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "038",
+      "name": "Ninetales",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/038"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-039",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "039",
+      "name": "Growlithe",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/039"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-040",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "040",
+      "name": "Arcanine",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/040"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-041",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "041",
+      "name": "Arcanine ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/041"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-042",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "042",
+      "name": "Ponyta",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/042"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-043",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "043",
+      "name": "Rapidash",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/043"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-044",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "044",
+      "name": "Magmar",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/044"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-045",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "045",
+      "name": "Flareon",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/045"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-046",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "046",
+      "name": "Moltres",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/046"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-047",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "047",
+      "name": "Moltres ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/047"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-048",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "048",
+      "name": "Heatmor",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/048"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-049",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "049",
+      "name": "Salandit",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/049"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-050",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "050",
+      "name": "Salazzle",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/050"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-051",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "051",
+      "name": "Sizzlipede",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/051"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-052",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "052",
+      "name": "Centiskorch",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/052"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-053",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "053",
+      "name": "Squirtle",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/053"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-054",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "054",
+      "name": "Wartortle",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/054"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-055",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "055",
+      "name": "Blastoise",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/055"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-056",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "056",
+      "name": "Blastoise ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/056"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-057",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "057",
+      "name": "Psyduck",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/057"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-058",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "058",
+      "name": "Golduck",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/058"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-059",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "059",
+      "name": "Poliwag",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/059"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-060",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "060",
+      "name": "Poliwhirl",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/060"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-061",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "061",
+      "name": "Poliwrath",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/061"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-062",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "062",
+      "name": "Tentacool",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/062"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-063",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "063",
+      "name": "Tentacruel",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/063"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-064",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "064",
+      "name": "Seel",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/064"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-065",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "065",
+      "name": "Dewgong",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/065"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-066",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "066",
+      "name": "Shellder",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/066"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-067",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "067",
+      "name": "Cloyster",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/067"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-068",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "068",
+      "name": "Krabby",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/068"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-069",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "069",
+      "name": "Kingler",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/069"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-070",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "070",
+      "name": "Horsea",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/070"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-071",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "071",
+      "name": "Seadra",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/071"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-072",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "072",
+      "name": "Goldeen",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/072"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-073",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "073",
+      "name": "Seaking",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/073"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-074",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "074",
+      "name": "Staryu",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/074"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-075",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "075",
+      "name": "Starmie",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/075"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-076",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "076",
+      "name": "Starmie ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/076"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-077",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "077",
+      "name": "Magikarp",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/077"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-078",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "078",
+      "name": "Gyarados",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/078"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-079",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "079",
+      "name": "Lapras",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/079"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-080",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "080",
+      "name": "Vaporeon",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/080"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-081",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "081",
+      "name": "Omanyte",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/081"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-083",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "083",
+      "name": "Articuno",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/083"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-082",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "082",
+      "name": "Omastar",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/082"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-084",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "084",
+      "name": "Articuno ex",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/084"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-085",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "085",
+      "name": "Ducklett",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/085"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-086",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "086",
+      "name": "Swanna",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/086"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-087",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "087",
+      "name": "Froakie",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/087"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-088",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "088",
+      "name": "Frogadier",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/088"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-089",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "089",
+      "name": "Greninja",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/089"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-090",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "090",
+      "name": "Pyukumuku",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/090"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-091",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "091",
+      "name": "Bruxish",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/091"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-092",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "092",
+      "name": "Snom",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/092"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-093",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "093",
+      "name": "Frosmoth",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/093"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-094",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "094",
+      "name": "Pikachu",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/094"
+    },
+    {
+      "gv_id": "GV-TCGP-A1-095",
+      "printing_gv_id": null,
+      "source_table": "card_prints",
+      "field_name": "image_alt_url",
+      "set_code": "A1",
+      "number": "095",
+      "name": "Raichu",
+      "source_lane": "external_tcgdex",
+      "failure_reason": "non_image_content_type,dimensions_unreadable,very_small_image_payload",
+      "raw_image_value": "https://assets.tcgdex.net/en/tcgp/A1/095"
+    }
+  ],
+  "proof_hash": "045c6e7ef349832ded941e7f54e18f864ba3300290e14c82a9c10424ddb339d4"
+}

@@ -1,0 +1,46 @@
+{
+  "package_id": "IMG-HOST-WH-03C-RUNTIME-PUBLIC-URL-ROLLBACK-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-23T15:34:45.642Z",
+  "ended_at": "2026-06-23T15:34:56.799Z",
+  "fingerprint": "78440482da51fa7eb086df3e09abc5e46ba320b69836d907c95b75ba059ad2ca",
+  "source_dry_run_fingerprint": "78440482da51fa7eb086df3e09abc5e46ba320b69836d907c95b75ba059ad2ca",
+  "runtime_rollback_rows": 27139,
+  "runtime_results": [
+    {
+      "key": "card_printings.image_alt_url",
+      "expected_count": 18,
+      "updated_count": 18
+    },
+    {
+      "key": "card_prints.image_url",
+      "expected_count": 22467,
+      "updated_count": 22467
+    },
+    {
+      "key": "card_prints.representative_image_url",
+      "expected_count": 1510,
+      "updated_count": 1510
+    },
+    {
+      "key": "card_prints.image_alt_url",
+      "expected_count": 3144,
+      "updated_count": 3144
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "metadata_pointer_writes_performed": false,
+  "preserved_columns": [
+    "image_path",
+    "image_source",
+    "image_status",
+    "image_note"
+  ],
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "proof_hash": "dc5b05871f899603acfe9963a4e103ead68d77c0c0fdda9fcb1b6a15bae7e267"
+}

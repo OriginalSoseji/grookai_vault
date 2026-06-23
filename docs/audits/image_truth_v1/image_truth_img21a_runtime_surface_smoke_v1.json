@@ -1,17 +1,17 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T04:31:15.350Z",
-  "base_url": "http://127.0.0.1:3087",
+  "generated_at": "2026-06-23T15:36:15.086Z",
+  "base_url": "https://grookaivault.com",
   "results": [
     {
       "id": "card_mcd2021_oshawott",
       "path": "/card/GV-PK-MCD-21",
       "status": 200,
-      "body_length": 120832,
+      "body_length": 213703,
       "expected_signals": [
         "Oshawott",
-        "images.pokemontcg.io/mcd21/21_hires.png"
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-21"
       ],
       "missing_expected": [],
       "forbidden_signals": [
@@ -25,10 +25,10 @@
       "id": "set_mcd2021",
       "path": "/sets/2021swsh",
       "status": 200,
-      "body_length": 174036,
+      "body_length": 444647,
       "expected_signals": [
         "McDonald's Collection 2021",
-        "images.pokemontcg.io/mcd21/"
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd21/"
       ],
       "missing_expected": [],
       "forbidden_signals": [
@@ -42,7 +42,7 @@
       "id": "dex_oshawott_child_fallback",
       "path": "/dex/oshawott",
       "status": 200,
-      "body_length": 125768,
+      "body_length": 153170,
       "expected_signals": [
         "Oshawott",
         "GV-PK-MEP-051"
@@ -59,7 +59,7 @@
       "id": "card_mep_oshawott_exact",
       "path": "/card/GV-PK-MEP-051",
       "status": 200,
-      "body_length": 129789,
+      "body_length": 203341,
       "expected_signals": [
         "Oshawott",
         "gv-card-hero-image-stage"
@@ -75,7 +75,7 @@
       "id": "set_trainer_kit_sm_lycanroc",
       "path": "/sets/tk-sm-l",
       "status": 200,
-      "body_length": 384091,
+      "body_length": 399319,
       "expected_signals": [
         "SM Trainer Kit (Lycanroc)",
         "cdn.malie.io/file/malie-io/art/cards/jpg/"
@@ -92,7 +92,7 @@
       "id": "set_trainer_kit_dp_lucario_residual",
       "path": "/sets/tk-dp-l",
       "status": 200,
-      "body_length": 279806,
+      "body_length": 291467,
       "expected_signals": [
         "DP Trainer Kit (Lucario)",
         "static.tcgcollector.com/content/images/"
@@ -109,7 +109,7 @@
       "id": "card_trainer_kit_ex_latios_alias",
       "path": "/card/GV-PK-TK-tk-ex-latio-1",
       "status": 200,
-      "body_length": 107968,
+      "body_length": 182958,
       "expected_signals": [
         "Electrike",
         "images.pokemontcg.io/tk1b/1_hires.png"
@@ -126,7 +126,7 @@
       "id": "card_trainer_kit_hs_gyarados_residual",
       "path": "/card/GV-PK-TK-tk-hs-g-20",
       "status": 200,
-      "body_length": 105188,
+      "body_length": 158730,
       "expected_signals": [
         "Gyarados",
         "static.tcgcollector.com/content/images/57/c4/81/"
@@ -142,7 +142,7 @@
       "id": "card_wrong_rc5_blocked",
       "path": "/card/GV-PK-LTR-RC5",
       "status": 200,
-      "body_length": 137140,
+      "body_length": 212477,
       "expected_signals": [
         "Torchic",
         "Image unavailable"
@@ -157,6 +157,6 @@
     }
   ],
   "failures": [],
-  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 246ms\n",
-  "proof_hash": "9456699a6cc4a14c71d6549e8770e20b61b9e31e3ab3f5b6abb5052713ace35b"
+  "server_output_tail": null,
+  "proof_hash": "7102dc86943a49da0446cd6fd10232ee38a48121fb1a4119311d52eac09dcfb8"
 }

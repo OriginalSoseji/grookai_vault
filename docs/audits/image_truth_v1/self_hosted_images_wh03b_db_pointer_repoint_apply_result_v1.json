@@ -1,0 +1,56 @@
+{
+  "package_id": "IMG-HOST-WH-03B-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-23T15:15:04.784Z",
+  "ended_at": "2026-06-23T15:15:29.698Z",
+  "fingerprint": "6d01ba4eb29ca5d065e0c499eafe54498e0f8f6ce1ca246dadd7e64d9741c604",
+  "source_dry_run_fingerprint": "c19c43fd4f89cd1bd037ca90342c6ed155b84367cd7af9348a9280ab50ee22f5",
+  "runtime_field_update_count": 27139,
+  "metadata_pointer_update_count": 23998,
+  "runtime_results": [
+    {
+      "key": "card_printings.image_alt_url",
+      "expected_count": 18,
+      "updated_count": 18
+    },
+    {
+      "key": "card_prints.image_url",
+      "expected_count": 22467,
+      "updated_count": 22467
+    },
+    {
+      "key": "card_prints.representative_image_url",
+      "expected_count": 1510,
+      "updated_count": 1510
+    },
+    {
+      "key": "card_prints.image_alt_url",
+      "expected_count": 3144,
+      "updated_count": 3144
+    }
+  ],
+  "metadata_results": [
+    {
+      "key": "card_printings",
+      "expected_count": 18,
+      "updated_count": 18
+    },
+    {
+      "key": "card_prints",
+      "expected_count": 23980,
+      "updated_count": 23980
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "fc65e5a8ace62b0ab899f60ae650443548e5f2884b93ccdffcc243bece61f68b"
+}

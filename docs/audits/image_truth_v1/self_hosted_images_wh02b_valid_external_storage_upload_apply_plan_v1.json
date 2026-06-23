@@ -1,0 +1,27 @@
+{
+  "package_id": "IMG-HOST-WH-02B-VALID-EXTERNAL-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T15:01:54.800Z",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh02a_valid_external_upload_manifest_v1.jsonl",
+  "manifest_rows": 27139,
+  "unique_upload_objects_total": 27059,
+  "unique_upload_objects_in_scope": 27059,
+  "upload_limit": null,
+  "target_storage_buckets": [
+    "user-card-images"
+  ],
+  "conflict_count": 0,
+  "missing_required_metadata_count": 0,
+  "db_writes_performed": false,
+  "storage_uploads_planned": 27059,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "concurrency": 3,
+  "stop_findings": [],
+  "fingerprint": "d1c7bdead3e3c1f0b75954e9b9535298172f8619cec52fb08f43942481c1d855",
+  "ready_for_apply": true
+}

@@ -1,9 +1,9 @@
 # IMG-23B-CARD-DETAIL-CHILD-FALLBACK-RUNTIME-SCAN
 
-- Generated: 2026-06-23T05:03:54.768Z
+- Generated: 2026-06-23T15:30:31.486Z
 - Mode: read_only_runtime_http_scan
-- Base URL: `http://127.0.0.1:3089`
-- Proof hash: `2b12b5a1ee090b166546db7f5c8064af10d2bfd05adaacfab5c8c199b1c747c0`
+- Base URL: `https://grookaivault.com`
+- Proof hash: `94808a8e0a8be55b0f4219e180bed735da9485bd4fd6707de804a0df11f02b0d`
 - Candidate card routes scanned: 572
 - Failed routes: 0
 

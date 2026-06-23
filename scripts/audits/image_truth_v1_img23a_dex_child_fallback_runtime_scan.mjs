@@ -143,7 +143,7 @@ async function queryCandidates() {
     throw new Error('Missing SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL');
   }
 
-  const client = new Client({ connectionString: dbUrl });
+  const client = new Client({ connectionString: dbUrl, ssl: { rejectUnauthorized: false } });
   await client.connect();
   try {
     const result = await client.query(`

@@ -137,6 +137,11 @@ apps/web/src/app/api/slabs/upgrade/*
 *.log
 *.err.log
 
+# audit raw byproducts
+docs/audits/**/cache/
+docs/audits/image_truth_v1/*.jsonl
+docs/audits/master_index_promo_origin_v1/*.jsonl
+
 # local dev
 apps/web/.tmp-*
 build_web.log

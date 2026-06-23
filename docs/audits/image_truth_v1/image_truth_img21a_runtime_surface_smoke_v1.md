@@ -1,9 +1,9 @@
 # IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE
 
-- Generated: 2026-06-23T04:31:15.350Z
+- Generated: 2026-06-23T15:36:15.086Z
 - Mode: read_only_runtime_http_smoke
-- Base URL: `http://127.0.0.1:3087`
-- Proof hash: `9456699a6cc4a14c71d6549e8770e20b61b9e31e3ab3f5b6abb5052713ace35b`
+- Base URL: `https://grookaivault.com`
+- Proof hash: `7102dc86943a49da0446cd6fd10232ee38a48121fb1a4119311d52eac09dcfb8`
 - Failures: 0
 
 ## Runtime Routes
