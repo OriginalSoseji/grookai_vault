@@ -1,0 +1,47 @@
+{
+  "package_id": "IMG-HOST-WH-06C-MCDONALDS-DEXTCG-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T20:19:05.480Z",
+  "source_dry_run_fingerprint": "389bf9d798397beba886ce665867e9c2e5ee7dc0218c4124d7babf12475dfdcf",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh06b_mcdonalds_dextcg_upload_manifest_v1.jsonl",
+  "manifest_rows": 78,
+  "unique_upload_objects_total": 78,
+  "target_storage_buckets": [
+    "user-card-images"
+  ],
+  "source_lanes": [
+    "external_dextcg"
+  ],
+  "set_codes": {
+    "2023sv": 15,
+    "2024sv": 15,
+    "mcd14": 12,
+    "mcd15": 12,
+    "mcd17": 12,
+    "mcd18": 12
+  },
+  "proposed_image_statuses": {
+    "exact": 48,
+    "representative_shared": 30
+  },
+  "conflict_count": 0,
+  "missing_required_metadata_count": 0,
+  "exact_image_claim_change_rows": 0,
+  "disallowed_set_rows": 0,
+  "disallowed_source_rows": 0,
+  "disallowed_bucket_rows": 0,
+  "db_writes_performed": false,
+  "storage_uploads_planned": 78,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "global_apply_performed": false,
+  "concurrency": 4,
+  "stop_findings": [],
+  "fingerprint": "389bf9d798397beba886ce665867e9c2e5ee7dc0218c4124d7babf12475dfdcf",
+  "plan_hash": "626ccc9b832ac80a901b5a3836ecf83834ca20cc868739deaa754b87a6a0067f",
+  "ready_for_apply": true
+}

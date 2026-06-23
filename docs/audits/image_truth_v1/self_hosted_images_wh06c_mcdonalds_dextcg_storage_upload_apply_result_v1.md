@@ -1,0 +1,21 @@
+# IMG-HOST-WH-06C-MCDONALDS-DEXTCG-STORAGE-UPLOAD-APPLY
+
+- Completed: 2026-06-23T20:19:20.536Z
+- Fingerprint: `389bf9d798397beba886ce665867e9c2e5ee7dc0218c4124d7babf12475dfdcf`
+- Plan hash: `626ccc9b832ac80a901b5a3836ecf83834ca20cc868739deaa754b87a6a0067f`
+- Proof hash: `86515052fed84d61fe96774c7a80c2e8cdff4e9bf06b7c1ccb81a3ef363c7bba`
+- Upload objects in scope: 78
+- Pending objects this run: 78
+- Previously completed: 0
+- Uploaded this run: 78
+- Skipped existing this run: 0
+- Failed this run: 0
+- Completed total: 78
+- Uploaded total: 78
+- Skipped existing total: 0
+- Failed latest: 0
+- DB writes performed: false
+- Migrations created: false
+- Exact image claim changes performed: false
+- Parent overwrites performed: false
+- Global apply performed: false

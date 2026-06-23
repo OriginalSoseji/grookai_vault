@@ -147,8 +147,11 @@ export type PublicSetSummary = {
 type PublicSetSearchCandidate = {
   name?: string | null;
   code?: string | null;
+  printed_set_abbrev?: string | null;
+  release_year?: number;
   normalized_name?: string;
   normalized_code?: string;
+  normalized_printed_set_abbrev?: string;
 };
 
 export type PublicSetCard = {
@@ -242,6 +245,78 @@ export function tokenizeSetWords(value?: string | null) {
   return normalizeSetQuery(value ?? "").match(/[a-z0-9]+/g) ?? [];
 }
 
+function uniqueValues(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function getWorldChampionshipDeckParts(setInfo: PublicSetSearchCandidate) {
+  const code = setInfo.code ?? setInfo.normalized_code ?? "";
+  const name = setInfo.name ?? setInfo.normalized_name ?? "";
+  const codeMatch = code.match(/^wcd(\d{4})-(.+)$/i);
+  const nameMatch = name.match(/^\s*(?:(\d{4})\s+)?world championships? deck:\s*(.+)$/i);
+
+  if (!codeMatch && !nameMatch) {
+    return null;
+  }
+
+  const year = nameMatch?.[1] ?? codeMatch?.[1] ?? (typeof setInfo.release_year === "number" ? String(setInfo.release_year) : "");
+  const deckName = (nameMatch?.[2] ?? codeMatch?.[2]?.replace(/[-_]+/g, " ") ?? "").trim();
+
+  return {
+    year,
+    deckName,
+  };
+}
+
+export function getPublicSetSearchHaystacks(setInfo: PublicSetSearchCandidate) {
+  const baseHaystacks = [
+    setInfo.normalized_name ?? normalizeSetQuery(setInfo.name ?? ""),
+    setInfo.normalized_code ?? normalizeSetQuery(setInfo.code ?? ""),
+    setInfo.normalized_printed_set_abbrev ?? normalizeSetQuery(setInfo.printed_set_abbrev ?? ""),
+  ];
+
+  const worldChampionshipDeck = getWorldChampionshipDeckParts(setInfo);
+  if (!worldChampionshipDeck) {
+    return uniqueValues(baseHaystacks);
+  }
+
+  const { year, deckName } = worldChampionshipDeck;
+  const specificAliases = deckName
+    ? [
+        deckName,
+        `${deckName} deck`,
+        `${deckName} world championship deck`,
+        `${deckName} world championships deck`,
+        `${deckName} worlds deck`,
+        year ? `${year} ${deckName}` : "",
+        year ? `${year} ${deckName} deck` : "",
+        year ? `${year} world championship deck ${deckName}` : "",
+        year ? `${year} world championships deck ${deckName}` : "",
+        year ? `${year} worlds deck ${deckName}` : "",
+      ]
+    : [];
+
+  return uniqueValues(
+    [
+      ...baseHaystacks,
+      "world championship deck",
+      "world championship decks",
+      "world championships deck",
+      "world championships decks",
+      "pokemon world championship deck",
+      "pokemon world championship decks",
+      "worlds deck",
+      "worlds decks",
+      "wcd",
+      year ? `${year} world championship deck` : "",
+      year ? `${year} world championship decks` : "",
+      year ? `${year} worlds deck` : "",
+      year ? `${year} worlds decks` : "",
+      ...specificAliases,
+    ].map(normalizeSetQuery),
+  );
+}
+
 export function normalizeSetSearchQuery(value: string) {
   return tokenizeSetWords(value);
 }
@@ -254,10 +329,7 @@ export function matchesPublicSetSearch(
     return true;
   }
 
-  const haystacks = [
-    setInfo.normalized_name ?? normalizeSetQuery(setInfo.name ?? ""),
-    setInfo.normalized_code ?? normalizeSetQuery(setInfo.code ?? ""),
-  ];
+  const haystacks = getPublicSetSearchHaystacks(setInfo);
 
   return tokens.every((token) =>
     haystacks.some((value) => value.includes(token)),

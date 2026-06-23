@@ -20,6 +20,13 @@ const EXACT_SET_ALIASES = new Set([
   "scarlet and violet",
   "sit",
   "silver tempest",
+  "world championship deck",
+  "world championship decks",
+  "world championships deck",
+  "world championships decks",
+  "worlds deck",
+  "worlds decks",
+  "wcd",
   "svi",
   ...Object.keys(SET_INTENT_ALIAS_MAP)
     .map((value) => value.trim().toLowerCase())
@@ -40,6 +47,12 @@ const SET_PHRASES = [
   "scarlet and violet",
   "silver tempest",
   "trainer gallery",
+  "world championship deck",
+  "world championship decks",
+  "world championships deck",
+  "world championships decks",
+  "worlds deck",
+  "worlds decks",
 ];
 
 const EXACT_SET_ALIAS_TOKENS = new Set([
@@ -52,6 +65,7 @@ const EXACT_SET_ALIAS_TOKENS = new Set([
   "obs",
   "sit",
   "svi",
+  "wcd",
   ...Object.keys(SET_INTENT_ALIAS_MAP)
     .map((value) => value.trim().toLowerCase())
     .filter((value) => /^[a-z0-9.]+$/.test(value)),

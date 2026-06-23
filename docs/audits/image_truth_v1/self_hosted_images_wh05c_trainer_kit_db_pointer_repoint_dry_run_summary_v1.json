@@ -1,0 +1,1224 @@
+{
+  "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-23T19:01:11.487Z",
+  "mode": "dry_run_no_write",
+  "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+  "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh05a_trainer_kit_runtime_upload_manifest_v1.jsonl",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh05b_trainer_kit_runtime_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh05c_trainer_kit_db_pointer_repoint_plan_v1.jsonl",
+  "manifest_rows": 270,
+  "completed_manifest_rows": 270,
+  "incomplete_upload_rows": 0,
+  "unsupported_manifest_rows": 0,
+  "unique_card_print_rows_in_scope": 270,
+  "metadata_pointer_plan_rows": 270,
+  "no_op_plan_rows": 0,
+  "effective_metadata_pointer_updates": 270,
+  "rows_changing_image_status": 270,
+  "rows_changing_image_note": 270,
+  "missing_current_db_rows": 0,
+  "missing_proposed_storage_paths": 0,
+  "missing_proposed_image_sources": 0,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "blocked_columns": [
+    "id",
+    "gv_id",
+    "name",
+    "set_code",
+    "number",
+    "image_url",
+    "image_alt_url",
+    "representative_image_url"
+  ],
+  "target_tables": {
+    "card_prints": 270
+  },
+  "proposed_image_sources": {
+    "identity": 270
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 270
+  },
+  "source_lanes": {
+    "external_malie": 247,
+    "external_tcgcollector": 23
+  },
+  "set_codes": {
+    "tk-bw-e": 30,
+    "tk-bw-z": 30,
+    "tk-dp-l": 11,
+    "tk-dp-m": 12,
+    "tk-sm-l": 18,
+    "tk-sm-r": 19,
+    "tk-xy-b": 30,
+    "tk-xy-n": 30,
+    "tk-xy-p": 30,
+    "tk-xy-sy": 30,
+    "tk-xy-w": 30
+  },
+  "changed_column_sets": {
+    "image_source,image_path,image_status,image_note": 270
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "ce27a54c-0951-4197-82ef-1627da5e8f9c",
+        "gv_id": "GV-PK-TK-tk-bw-e-1",
+        "name": "Lillipup",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "1",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-001-lillipup.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-1/967f302e95c914f6935470c8.jpg",
+        "source_sha256": "967f302e95c914f6935470c884df35e967e45bf424b56e4929121adab433a9e9",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-1/967f302e95c914f6935470c8.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "5f5679f6-b00f-4b59-af4b-a2cde9c4b660",
+        "gv_id": "GV-PK-TK-tk-bw-e-2",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "2",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-002-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-2/25ee1877de8dd2ff79ea5f73.jpg",
+        "source_sha256": "25ee1877de8dd2ff79ea5f739b658b21c3b4b79f2f3ed7a1a147b9e2b701163a",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-2/25ee1877de8dd2ff79ea5f73.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "7dbcee60-5ec7-44d1-be47-e650f5c01288",
+        "gv_id": "GV-PK-TK-tk-bw-e-3",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "3",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-003-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-3/136e9f307a3883998a54c804.jpg",
+        "source_sha256": "136e9f307a3883998a54c80440f5895ea36ed44ab49ec0d519dd2858494edfea",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-3/136e9f307a3883998a54c804.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "8612e49b-bbc7-4145-bf70-72b1ef8a92a8",
+        "gv_id": "GV-PK-TK-tk-bw-e-4",
+        "name": "Energy Switch",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "4",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-004-energy_switch.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-4/7825a966bb297ba4901219c6.jpg",
+        "source_sha256": "7825a966bb297ba4901219c6a5d1c7e87496326d4c4215b68eb0be3345923c1f",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-4/7825a966bb297ba4901219c6.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "21ce31e4-4b98-40eb-ac09-9d97150e5f87",
+        "gv_id": "GV-PK-TK-tk-bw-e-5",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "5",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-005-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-5/ff17192d061a5d20fe3abbd3.jpg",
+        "source_sha256": "ff17192d061a5d20fe3abbd3f568a6c293fa7d101e3d02d336bffdb627c4a24f",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-5/ff17192d061a5d20fe3abbd3.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "1a7b95d4-99dd-44cb-b014-9e5a83327774",
+        "gv_id": "GV-PK-TK-tk-bw-e-6",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "6",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-006-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-6/07b7242ea397b5c75453e879.jpg",
+        "source_sha256": "07b7242ea397b5c75453e87993609b352fd2252de4d5531c50cf466198381969",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-6/07b7242ea397b5c75453e879.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "1cf624e2-332f-45a7-bcfb-bdea71d3cc59",
+        "gv_id": "GV-PK-TK-tk-bw-e-7",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "7",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-007-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-7/de004477fd72e70047dc4e9d.jpg",
+        "source_sha256": "de004477fd72e70047dc4e9d98c1a3c8f5da89d34458f9f2d4e181f121918b61",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-7/de004477fd72e70047dc4e9d.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "c5c067e6-4682-45dc-8345-6435a1054ee2",
+        "gv_id": "GV-PK-TK-tk-bw-e-8",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "8",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-008-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-8/ab3659609ab56b7b428c265e.jpg",
+        "source_sha256": "ab3659609ab56b7b428c265eb3e515f333d961908f42461327d12a5a9231937a",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-8/ab3659609ab56b7b428c265e.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "85bfbeaf-4e64-4391-892a-f27ea77c9789",
+        "gv_id": "GV-PK-TK-tk-bw-e-9",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "9",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-009-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-9/fdcef89f8873bc9d2746ac72.jpg",
+        "source_sha256": "fdcef89f8873bc9d2746ac72a9fdef057c4d6c73fc242fade9902a38dd51c8c6",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-9/fdcef89f8873bc9d2746ac72.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "a2b1eb4d-6607-4abf-8ea5-afa9e8e07e8b",
+        "gv_id": "GV-PK-TK-tk-bw-e-10",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "10",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-010-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-10/187405b99e5a308fb03a192e.jpg",
+        "source_sha256": "187405b99e5a308fb03a192e7a001fc348b51d6696da56b4ce2961b5a0ceef2c",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-10/187405b99e5a308fb03a192e.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "33f45209-4d24-409c-8963-9b071ef542b8",
+        "gv_id": "GV-PK-TK-tk-bw-e-11",
+        "name": "Timburr",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "11",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-011-timburr.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-11/c488f54acc80b600419f21ad.jpg",
+        "source_sha256": "c488f54acc80b600419f21adb81f9715b2da7791db305e909a1b4f26e36ac6ad",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-11/c488f54acc80b600419f21ad.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "dcbf20e5-e0f8-45a8-9c0c-faed5ea9b946",
+        "gv_id": "GV-PK-TK-tk-bw-e-12",
+        "name": "Audino",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "12",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-012-audino.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-12/166a0ff49d1670ccc2071c47.jpg",
+        "source_sha256": "166a0ff49d1670ccc2071c47e7693ec6034a83eb9656c57a0cd04d9664a67a24",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-12/166a0ff49d1670ccc2071c47.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "b664ef3a-bdf1-42ab-8608-13820a11edbc",
+        "gv_id": "GV-PK-TK-tk-bw-e-13",
+        "name": "Drilbur",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "13",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-013-drilbur.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-13/47213987f145a9cc6eeb9803.jpg",
+        "source_sha256": "47213987f145a9cc6eeb9803051ccb468bf57e567b3b548ff195bb07a541e5cb",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-13/47213987f145a9cc6eeb9803.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "f337d0a6-ceab-47a8-9089-a6f468ace0d0",
+        "gv_id": "GV-PK-TK-tk-bw-e-14",
+        "name": "Gurdurr",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "14",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-014-gurdurr.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-14/d4434776a3b625299597391f.jpg",
+        "source_sha256": "d4434776a3b625299597391fad050da6cfe04f1073d6a95df2d282d44199deb5",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-14/d4434776a3b625299597391f.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "45fbd113-a75d-4605-96aa-3ccb103d4141",
+        "gv_id": "GV-PK-TK-tk-bw-e-15",
+        "name": "Potion",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "15",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-015-potion.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-15/90ac307217bc9c1179637891.jpg",
+        "source_sha256": "90ac307217bc9c117963789176afff9ad60f8cd67a88f770430e271d550faeed",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-15/90ac307217bc9c1179637891.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "8b3fc68b-127f-4506-9a86-c8069532d72b",
+        "gv_id": "GV-PK-TK-tk-bw-e-16",
+        "name": "PlusPower",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "16",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-016-pluspower.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-16/19a05999b51f3b9ef7b51109.jpg",
+        "source_sha256": "19a05999b51f3b9ef7b511095f67a9ce2b9b7e5f0ba918e1010c946d1490b3e9",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-16/19a05999b51f3b9ef7b51109.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "cb4f2a98-5584-41d7-83ca-ec9cc1842593",
+        "gv_id": "GV-PK-TK-tk-bw-e-17",
+        "name": "Excadrill",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "17",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-017-excadrill.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-17/ab3e24c36d0c3c870dc36dbe.jpg",
+        "source_sha256": "ab3e24c36d0c3c870dc36dbedaf614748184c4e609d13b8d6fe5a1cad87525a5",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-17/ab3e24c36d0c3c870dc36dbe.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "9aff8127-70d9-45f4-b929-d793cff9d78b",
+        "gv_id": "GV-PK-TK-tk-bw-e-18",
+        "name": "Audino",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "18",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-018-audino.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-18/f8e2c1062db9a3f5c03aadb2.jpg",
+        "source_sha256": "f8e2c1062db9a3f5c03aadb2ffd22ab1dc3e01b91d2755d24b68f61d15972c17",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-18/f8e2c1062db9a3f5c03aadb2.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "4e769f01-d6d0-49a6-8a42-9d05c96d81e1",
+        "gv_id": "GV-PK-TK-tk-bw-e-19",
+        "name": "Herdier",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "19",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-019-herdier.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-19/6d01074487aec6dc3dac3309.jpg",
+        "source_sha256": "6d01074487aec6dc3dac3309555730926ffab811c624b835f06415ff26afccd5",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-19/6d01074487aec6dc3dac3309.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      },
+      {
+        "package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "source_upload_package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+        "source_upload_proof_hash": "e962a3a3539ec0db84dcf43d3dac2f9725463040e94ba408726bd023016a9b73",
+        "target_table": "card_prints",
+        "target_row_id": "d84ee335-2330-4306-a8a2-fffca04e0a2a",
+        "gv_id": "GV-PK-TK-tk-bw-e-20",
+        "name": "Fighting Energy",
+        "set_code": "tk-bw-e",
+        "set_name": "BW Trainer Kit (Excadrill)",
+        "number": "20",
+        "source_lane": "external_malie",
+        "source_url": "https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/BW/TK5B-TK_Excadrill/en_US-TK5B-020-fighting_energy.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-20/8417aba21587d82496fd5c47.jpg",
+        "source_sha256": "8417aba21587d82496fd5c47feca54b7658363c5d1ba11d73b672c299fbfc2ed",
+        "proposed_display_image_kind": "representative",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "unresolved",
+          "image_note": "IMAGE-TRUTH-TRAINER-KIT-MCD-404-PASS-V1: withheld broken TCGdex Trainer Kit asset URL; exact image requires governed source import."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-bw-e/gv-pk-tk-tk-bw-e-20/8417aba21587d82496fd5c47.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Self-hosted representative Trainer Kit image planned by IMG-HOST-WH-05A-TRAINER-KIT-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN; source URL is Malie and exact image claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write_planned": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "id",
+          "gv_id",
+          "name",
+          "set_code",
+          "number",
+          "image_url",
+          "image_alt_url",
+          "representative_image_url"
+        ]
+      }
+    ],
+    "no_op_plan_rows": []
+  },
+  "fingerprint": "6fae84292d3c52afd0806d52de338398a7bc10f8d68cd8b2af9a528b0c962459"
+}

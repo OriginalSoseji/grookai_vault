@@ -1,0 +1,342 @@
+{
+  "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09F-RUNTIME-SEARCH-SMOKE",
+  "generated_at": "2026-06-23T21:35:44.746Z",
+  "mode": "read_only_db_and_runtime_surface_smoke",
+  "db": {
+    "counts": {
+      "set_rows": 80,
+      "card_print_rows": 1944,
+      "child_rows": 0,
+      "forbidden_image_rows": 0
+    },
+    "probes": [
+      {
+        "id": "exact_gv_id_magma_spirit_groudon",
+        "query": "GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+        "expect_prefix": "GV-PK-WCD-2004-MAGMA_SPIRIT-01-",
+        "result_count": 1,
+        "matching_rows": 1,
+        "top_parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+        "top_display_name": "Team Magma's Groudon",
+        "passed": true,
+        "sample_results": [
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+            "display_name": "Team Magma's Groudon",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+            "object_type": "parent_print"
+          }
+        ]
+      },
+      {
+        "id": "deck_name_magma_spirit",
+        "query": "Magma Spirit",
+        "expect_prefix": "GV-PK-WCD-2004-MAGMA_SPIRIT-",
+        "result_count": 10,
+        "matching_rows": 10,
+        "top_parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-11-EXPEDITION-138-COPYCAT",
+        "top_display_name": "Copycat",
+        "passed": true,
+        "sample_results": [
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-11-EXPEDITION-138-COPYCAT",
+            "display_name": "Copycat",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-11-EXPEDITION-138-COPYCAT",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-19-EX_RUBY_AND_SAPP-93-DARKNESS_ENERGY",
+            "display_name": "Darkness Energy",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-19-EX_RUBY_AND_SAPP-93-DARKNESS_ENERGY",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-17-EX_HIDDEN_LEGEND-88-DESERT_RUINS",
+            "display_name": "Desert Ruins",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-17-EX_HIDDEN_LEGEND-88-DESERT_RUINS",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-21-EX_RUBY_AND_SAPP-105-FIGHTING_ENERGY",
+            "display_name": "Fighting Energy",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-21-EX_RUBY_AND_SAPP-105-FIGHTING_ENERGY",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2004-MAGMA_SPIRIT-18-EX_TEAM_MAGMA_VS-87-MAGMA_ENERGY",
+            "display_name": "Magma Energy",
+            "route_path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-18-EX_TEAM_MAGMA_VS-87-MAGMA_ENERGY",
+            "object_type": "parent_print"
+          }
+        ]
+      },
+      {
+        "id": "deck_name_pikarom_judge",
+        "query": "Pikarom Judge",
+        "expect_prefix": "GV-PK-WCD-2019-PIKAROM_JUDGE-",
+        "result_count": 10,
+        "matching_rows": 10,
+        "top_parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-10-UNIFIED_MINDS-191-CHERISH_BALL",
+        "top_display_name": "Cherish Ball",
+        "passed": true,
+        "sample_results": [
+          {
+            "parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-10-UNIFIED_MINDS-191-CHERISH_BALL",
+            "display_name": "Cherish Ball",
+            "route_path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-10-UNIFIED_MINDS-191-CHERISH_BALL",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-11-LOST_THUNDER-171-CUSTOM_CATCHER",
+            "display_name": "Custom Catcher",
+            "route_path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-11-LOST_THUNDER-171-CUSTOM_CATCHER",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-12-ULTRA_PRISM-119-CYNTHIA",
+            "display_name": "Cynthia",
+            "route_path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-12-ULTRA_PRISM-119-CYNTHIA",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-03-UNBROKEN-57-DEDENNE_GX",
+            "display_name": "Dedenne-GX",
+            "route_path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-03-UNBROKEN-57-DEDENNE_GX",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2019-PIKAROM_JUDGE-13-UNBROKEN_BONDS-169-ELECTROMAGNETIC_RADAR",
+            "display_name": "Electromagnetic Radar",
+            "route_path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-13-UNBROKEN_BONDS-169-ELECTROMAGNETIC_RADAR",
+            "object_type": "parent_print"
+          }
+        ]
+      },
+      {
+        "id": "deck_name_ancient_toolbox",
+        "query": "Ancient Toolbox",
+        "expect_prefix": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-",
+        "result_count": 10,
+        "matching_rows": 10,
+        "top_parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-22-PARADOX_RIFT-159-ANCIENT_BOOSTER_ENERGY_CAPSU",
+        "top_display_name": "Ancient Booster Energy Capsule",
+        "passed": true,
+        "sample_results": [
+          {
+            "parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-22-PARADOX_RIFT-159-ANCIENT_BOOSTER_ENERGY_CAPSU",
+            "display_name": "Ancient Booster Energy Capsule",
+            "route_path": "/card/GV-PK-WCD-2024-ANCIENT_TOOLBOX-22-PARADOX_RIFT-159-ANCIENT_BOOSTER_ENERGY_CAPSU",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-08-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+            "display_name": "Boss's Orders",
+            "route_path": "/card/GV-PK-WCD-2024-ANCIENT_TOOLBOX-08-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-13-PARADOX_RIFT-160-COUNTER_CATCHER",
+            "display_name": "Counter Catcher",
+            "route_path": "/card/GV-PK-WCD-2024-ANCIENT_TOOLBOX-13-PARADOX_RIFT-160-COUNTER_CATCHER",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-14-ASTRAL_RADIANCE-139-DARK_PATCH",
+            "display_name": "Dark Patch",
+            "route_path": "/card/GV-PK-WCD-2024-ANCIENT_TOOLBOX-14-ASTRAL_RADIANCE-139-DARK_PATCH",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-24-ENERGY-015-DARKNESS_ENERGY",
+            "display_name": "Darkness Energy",
+            "route_path": "/card/GV-PK-WCD-2024-ANCIENT_TOOLBOX-24-ENERGY-015-DARKNESS_ENERGY",
+            "object_type": "parent_print"
+          }
+        ]
+      },
+      {
+        "id": "deck_name_pult_bomb",
+        "query": "Pult Bomb",
+        "expect_prefix": "GV-PK-WCD-2025-PULT_BOMB-",
+        "result_count": 10,
+        "matching_rows": 10,
+        "top_parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-24-BLACK_BOLT-79-AIR_BALLOON",
+        "top_display_name": "Air Balloon",
+        "passed": true,
+        "sample_results": [
+          {
+            "parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-24-BLACK_BOLT-79-AIR_BALLOON",
+            "display_name": "Air Balloon",
+            "route_path": "/card/GV-PK-WCD-2025-PULT_BOMB-24-BLACK_BOLT-79-AIR_BALLOON",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-14-SCARLET_AND_VIOL-166-ARVEN",
+            "display_name": "Arven",
+            "route_path": "/card/GV-PK-WCD-2025-PULT_BOMB-14-SCARLET_AND_VIOL-166-ARVEN",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-26-ENERGY-26-BASIC_FIRE_ENERGY",
+            "display_name": "Basic Fire Energy",
+            "route_path": "/card/GV-PK-WCD-2025-PULT_BOMB-26-ENERGY-26-BASIC_FIRE_ENERGY",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-25-ENERGY-25-BASIC_PSYCHIC_ENERGY",
+            "display_name": "Basic Psychic Energy",
+            "route_path": "/card/GV-PK-WCD-2025-PULT_BOMB-25-ENERGY-25-BASIC_PSYCHIC_ENERGY",
+            "object_type": "parent_print"
+          },
+          {
+            "parent_gv_id": "GV-PK-WCD-2025-PULT_BOMB-15-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+            "display_name": "Boss's Orders",
+            "route_path": "/card/GV-PK-WCD-2025-PULT_BOMB-15-PALDEA_EVOLVED-172-BOSSS_ORDERS",
+            "object_type": "parent_print"
+          }
+        ]
+      }
+    ]
+  },
+  "http": {
+    "base_url": "http://127.0.0.1:3095",
+    "server_started_by_script": true,
+    "routes": [
+      {
+        "id": "set_magma_spirit",
+        "path": "/sets/wcd2004-magma-spirit",
+        "status": 200,
+        "body_length": 110133,
+        "expected_signals": [
+          "2004 World Championships Deck: Magma Spirit"
+        ],
+        "missing_expected": [],
+        "forbidden_signals": [
+          "assets.tcgdex.net",
+          "user-card-images/warehouse-derived/self-hosted-images-v1"
+        ],
+        "present_forbidden": [],
+        "passed": true
+      },
+      {
+        "id": "set_pikarom_judge",
+        "path": "/sets/wcd2019-pikarom-judge",
+        "status": 200,
+        "body_length": 121924,
+        "expected_signals": [
+          "2019 World Championships Deck: Pikarom Judge"
+        ],
+        "missing_expected": [],
+        "forbidden_signals": [
+          "assets.tcgdex.net",
+          "user-card-images/warehouse-derived/self-hosted-images-v1"
+        ],
+        "present_forbidden": [],
+        "passed": true
+      },
+      {
+        "id": "set_pult_bomb",
+        "path": "/sets/wcd2025-pult-bomb",
+        "status": 200,
+        "body_length": 127627,
+        "expected_signals": [
+          "2025 World Championships Deck: Pult Bomb"
+        ],
+        "missing_expected": [],
+        "forbidden_signals": [
+          "assets.tcgdex.net",
+          "user-card-images/warehouse-derived/self-hosted-images-v1"
+        ],
+        "present_forbidden": [],
+        "passed": true
+      },
+      {
+        "id": "card_magma_spirit_groudon",
+        "path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+        "status": 200,
+        "body_length": 83797,
+        "expected_signals": [
+          "Team Magma",
+          "Groudon",
+          "Image unavailable"
+        ],
+        "missing_expected": [],
+        "forbidden_signals": [
+          "card_prints/wcd2004-magma-spirit",
+          "GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON/"
+        ],
+        "present_forbidden": [],
+        "passed": true
+      },
+      {
+        "id": "card_pikarom_pikachu_zekrom",
+        "path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-01-TEAM-33-PIKACHU_AND_ZEKROM_GX",
+        "status": 200,
+        "body_length": 116582,
+        "expected_signals": [
+          "Pikachu",
+          "Zekrom",
+          "Image unavailable"
+        ],
+        "missing_expected": [],
+        "forbidden_signals": [
+          "card_prints/wcd2019-pikarom-judge",
+          "GV-PK-WCD-2019-PIKAROM_JUDGE-01-TEAM-33-PIKACHU_AND_ZEKROM_GX/"
+        ],
+        "present_forbidden": [],
+        "passed": true
+      }
+    ],
+    "redirects": [
+      {
+        "id": "search_alias_magma_spirit",
+        "path": "/search?q=Magma%20Spirit",
+        "status": 307,
+        "location": "http://localhost:3095/sets/wcd2004-magma-spirit",
+        "expected_location_path": "/sets/wcd2004-magma-spirit",
+        "actual_location_path": "/sets/wcd2004-magma-spirit",
+        "expected_location_query": null,
+        "actual_location_query": "",
+        "passed": true
+      },
+      {
+        "id": "search_alias_pikarom_judge",
+        "path": "/search?q=Pikarom%20Judge",
+        "status": 307,
+        "location": "http://localhost:3095/sets/wcd2019-pikarom-judge",
+        "expected_location_path": "/sets/wcd2019-pikarom-judge",
+        "actual_location_path": "/sets/wcd2019-pikarom-judge",
+        "expected_location_query": null,
+        "actual_location_query": "",
+        "passed": true
+      },
+      {
+        "id": "search_alias_pult_bomb_deck",
+        "path": "/search?q=Pult%20Bomb%20deck",
+        "status": 307,
+        "location": "http://localhost:3095/sets/wcd2025-pult-bomb",
+        "expected_location_path": "/sets/wcd2025-pult-bomb",
+        "actual_location_path": "/sets/wcd2025-pult-bomb",
+        "expected_location_query": null,
+        "actual_location_query": "",
+        "passed": true
+      },
+      {
+        "id": "search_alias_world_championship_decks",
+        "path": "/search?q=world%20championship%20decks",
+        "status": 307,
+        "location": "http://localhost:3095/sets?q=world+championship+decks",
+        "expected_location_path": "/sets",
+        "actual_location_path": "/sets",
+        "expected_location_query": "q=world+championship+decks",
+        "actual_location_query": "q=world+championship+decks",
+        "passed": true
+      }
+    ]
+  },
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "failures": [],
+  "proof_hash": "de5b30e420ade12257277e28d792d1ec0d268ef9d1f82a2f6b6c6ae2ebdf4c81"
+}
