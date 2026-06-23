@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-23T03:21:37.777Z
+Generated: 2026-06-23T03:44:26.194Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 38101
 - english physical exact-required rows: 14959
-- english physical display-covered rows: 37977
-- english physical missing-display rows: 119
+- english physical display-covered rows: 38091
+- english physical missing-display rows: 5
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -22,9 +22,9 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 637 |
-| missing | 119 |
+| representative | 751 |
 | blocked | 5 |
+| missing | 5 |
 
 ## English Physical Exact-Required Confidence Counts
 
@@ -50,51 +50,6 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 | mep | 066 | Tyrantrum | holo | no_safe_display_image_available |
 | mep | 067 | Doublade | holo | no_safe_display_image_available |
 | misc | 1 | Ancient Mew | cosmos | no_safe_display_image_available |
-| tk-bw-e | 1 | Lillipup | normal | no_safe_display_image_available |
-| tk-bw-e | 10 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 11 | Timburr | normal | no_safe_display_image_available |
-| tk-bw-e | 12 | Audino | normal | no_safe_display_image_available |
-| tk-bw-e | 13 | Drilbur | normal | no_safe_display_image_available |
-| tk-bw-e | 14 | Gurdurr | normal | no_safe_display_image_available |
-| tk-bw-e | 15 | Potion | normal | no_safe_display_image_available |
-| tk-bw-e | 16 | PlusPower | normal | no_safe_display_image_available |
-| tk-bw-e | 17 | Excadrill | normal | no_safe_display_image_available |
-| tk-bw-e | 18 | Audino | normal | no_safe_display_image_available |
-| tk-bw-e | 19 | Herdier | normal | no_safe_display_image_available |
-| tk-bw-e | 2 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 20 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 21 | Energy Search | normal | no_safe_display_image_available |
-| tk-bw-e | 22 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 23 | Potion | normal | no_safe_display_image_available |
-| tk-bw-e | 24 | Pokémon Communication | normal | no_safe_display_image_available |
-| tk-bw-e | 25 | Drilbur | normal | no_safe_display_image_available |
-| tk-bw-e | 26 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 27 | Lillipup | normal | no_safe_display_image_available |
-| tk-bw-e | 28 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 29 | Timburr | normal | no_safe_display_image_available |
-| tk-bw-e | 3 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 4 | Energy Switch | normal | no_safe_display_image_available |
-| tk-bw-e | 5 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 6 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 7 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 8 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-e | 9 | Fighting Energy | normal | no_safe_display_image_available |
-| tk-bw-z | 1 | Purrloin | normal | no_safe_display_image_available |
-| tk-bw-z | 10 | Darkness Energy | normal | no_safe_display_image_available |
-| tk-bw-z | 11 | PlusPower | normal | no_safe_display_image_available |
-| tk-bw-z | 12 | Patrat | normal | no_safe_display_image_available |
-| tk-bw-z | 13 | Zorua | normal | no_safe_display_image_available |
-| tk-bw-z | 14 | Pidove | normal | no_safe_display_image_available |
-| tk-bw-z | 15 | Tranquill | normal | no_safe_display_image_available |
-| tk-bw-z | 16 | Energy Retrieval | normal | no_safe_display_image_available |
-| tk-bw-z | 17 | Zoroark | normal | no_safe_display_image_available |
-| tk-bw-z | 18 | Pokémon Communication | normal | no_safe_display_image_available |
-| tk-bw-z | 19 | Minccino | normal | no_safe_display_image_available |
-| tk-bw-z | 2 | Watchog | normal | no_safe_display_image_available |
-| tk-bw-z | 20 | Darkness Energy | normal | no_safe_display_image_available |
-| tk-bw-z | 21 | Pidove | normal | no_safe_display_image_available |
-| tk-bw-z | 22 | Darkness Energy | normal | no_safe_display_image_available |
-| tk-bw-z | 23 | Zorua | normal | no_safe_display_image_available |
 
 ## First Missing Variant Visual Rows
 

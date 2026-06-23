@@ -1,6 +1,6 @@
 # Image Truth Audit V1
 
-Generated: 2026-06-23T03:21:37.777Z
+Generated: 2026-06-23T03:44:26.194Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -17,8 +17,8 @@ Status: audit only. No DB writes. No migrations.
 - image identity-blocked missing exact rows: 205
 - image non-physical blocked missing exact rows: 1809
 - image other-scope missing exact rows: 0
-- english physical display-covered rows: 37977
-- english physical missing-display rows: 119
+- english physical display-covered rows: 38091
+- english physical missing-display rows: 5
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -32,8 +32,8 @@ All scopes:
 | exact | 22484 |
 | missing_variant_visual | 14856 |
 | blocked | 6041 |
-| representative | 637 |
-| missing | 119 |
+| representative | 751 |
+| missing | 5 |
 
 English physical only:
 
@@ -41,9 +41,9 @@ English physical only:
 | --- | --- |
 | exact | 22484 |
 | missing_variant_visual | 14856 |
-| representative | 637 |
-| missing | 119 |
+| representative | 751 |
 | blocked | 5 |
+| missing | 5 |
 
 ## Image Coverage Counts
 
@@ -51,16 +51,16 @@ English physical only:
 | --- | --- |
 | using_parent_exact_image | 42476 |
 | using_parent_representative_image | 894 |
-| exact_child_image_present | 567 |
-| missing_display_image | 200 |
+| exact_child_image_present | 681 |
+| missing_display_image | 86 |
 
 ## Risk Counts
 
 | risk | rows |
 | --- | --- |
-| low | 27094 |
+| low | 27208 |
 | high | 16843 |
-| medium | 168 |
+| medium | 54 |
 | critical | 32 |
 
 ## Risk By Finish
@@ -68,8 +68,8 @@ English physical only:
 | finish | risk rows |
 | --- | --- |
 | reverse | 15506 |
-| normal | 445 |
 | holo | 337 |
+| normal | 331 |
 | cosmos | 326 |
 | pokeball | 230 |
 | cracked_ice | 122 |

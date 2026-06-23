@@ -1,6 +1,6 @@
 {
   "contract": "IMAGE_SURFACE_CONSISTENCY_SCAN_V1",
-  "generated_at": "2026-06-23T03:21:47.394Z",
+  "generated_at": "2026-06-23T03:45:07.119Z",
   "parent_rows_scanned": 25322,
   "child_rows_scanned": 44137,
   "surface_coverage": {
@@ -33,7 +33,7 @@
     "GV-PK-MEP-051": true
   },
   "parent_missing_child_available": {
-    "count": 454,
+    "count": 568,
     "by_set": [
       {
         "set_code": "sm115",
@@ -46,6 +46,14 @@
       {
         "set_code": "mfb",
         "count": 34
+      },
+      {
+        "set_code": "tk-bw-e",
+        "count": 30
+      },
+      {
+        "set_code": "tk-bw-z",
+        "count": 30
       },
       {
         "set_code": "tk-xy-b",
@@ -72,12 +80,28 @@
         "count": 20
       },
       {
+        "set_code": "tk-sm-r",
+        "count": 19
+      },
+      {
+        "set_code": "tk-sm-l",
+        "count": 18
+      },
+      {
         "set_code": "2023sv",
         "count": 15
       },
       {
         "set_code": "2024sv",
         "count": 15
+      },
+      {
+        "set_code": "tk-dp-m",
+        "count": 12
+      },
+      {
+        "set_code": "tk-dp-l",
+        "count": 11
       },
       {
         "set_code": "mee",
@@ -121,30 +145,6 @@
       },
       {
         "set_code": "swshp",
-        "count": 1
-      },
-      {
-        "set_code": "tk-bw-e",
-        "count": 1
-      },
-      {
-        "set_code": "tk-bw-z",
-        "count": 1
-      },
-      {
-        "set_code": "tk-dp-l",
-        "count": 1
-      },
-      {
-        "set_code": "tk-dp-m",
-        "count": 1
-      },
-      {
-        "set_code": "tk-sm-l",
-        "count": 1
-      },
-      {
-        "set_code": "tk-sm-r",
         "count": 1
       },
       {

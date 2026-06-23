@@ -1,6 +1,6 @@
 # IMG-20B-TRAINER-KIT-RESIDUAL-TCGCOLLECTOR-FALLBACK-AUDIT
 
-- Generated: 2026-06-23T02:25:13.555Z
+- Generated: 2026-06-23T03:45:33.304Z
 - Mode: read_only_audit
 - Proof hash: `80c96904167cf3dbfe57606f890d97f08b87bf542a4d019f16beac14c1135c07`
 - Trainer Kit parent rows: 406

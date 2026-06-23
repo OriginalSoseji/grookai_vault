@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generated_at": "2026-06-23T03:21:37.777Z",
+    "generated_at": "2026-06-23T03:44:26.194Z",
     "audit_only": true,
     "db_writes_performed": false,
     "migrations_created": false,
@@ -20,16 +20,16 @@
     "finish_visual_review_missing_child_exact_image": 10628,
     "critical_or_high_risk_rows": 16875,
     "risk_level_counts": {
-      "low": 27094,
+      "low": 27208,
       "high": 16843,
-      "medium": 168,
+      "medium": 54,
       "critical": 32
     },
     "image_coverage_counts": {
       "using_parent_exact_image": 42476,
       "using_parent_representative_image": 894,
-      "exact_child_image_present": 567,
-      "missing_display_image": 200
+      "exact_child_image_present": 681,
+      "missing_display_image": 86
     },
     "finish_counts": {
       "normal": 16946,
@@ -43,8 +43,8 @@
     },
     "risky_finish_counts": {
       "reverse": 15506,
-      "normal": 445,
       "holo": 337,
+      "normal": 331,
       "cosmos": 326,
       "pokeball": 230,
       "cracked_ice": 122,
@@ -182,18 +182,12 @@
       "swsh4.5": 52,
       "swshp": 41,
       "dc1": 32,
-      "tk-bw-e": 29,
-      "tk-bw-z": 29,
       "smp": 24,
       "sve": 20,
       "basep": 18,
-      "tk-sm-r": 18,
       "xyp": 18,
-      "tk-sm-l": 17,
       "bwp": 14,
-      "tk-dp-m": 11,
       "dv1": 10,
-      "tk-dp-l": 10,
       "base1": 8,
       "pop8": 8,
       "mep": 6,
@@ -227,7 +221,7 @@
       "unresolved_set": 609
     },
     "risky_image_scope_counts": {
-      "english_physical": 14975,
+      "english_physical": 14861,
       "digital_or_non_physical_excluded": 1809,
       "unresolved_set": 259
     },
@@ -235,15 +229,15 @@
       "exact": 22484,
       "missing_variant_visual": 14856,
       "blocked": 6041,
-      "representative": 637,
-      "missing": 119
+      "representative": 751,
+      "missing": 5
     },
     "english_physical_image_confidence_counts": {
       "exact": 22484,
       "missing_variant_visual": 14856,
-      "representative": 637,
-      "missing": 119,
-      "blocked": 5
+      "representative": 751,
+      "blocked": 5,
+      "missing": 5
     },
     "english_physical_exact_required_image_confidence_counts": {
       "missing_variant_visual": 14856,
@@ -251,11 +245,11 @@
       "representative": 43,
       "missing": 5
     },
-    "english_physical_display_covered_rows": 37977,
-    "english_physical_missing_display_rows": 119,
+    "english_physical_display_covered_rows": 38091,
+    "english_physical_missing_display_rows": 5,
     "english_physical_missing_variant_visual_rows": 14856,
     "english_physical_exact_rows": 22484,
-    "english_physical_representative_rows": 637,
+    "english_physical_representative_rows": 751,
     "image_apply_addressable_missing_exact_rows": 14861,
     "image_identity_blocked_missing_exact_rows": 205,
     "image_non_physical_blocked_missing_exact_rows": 1809,
@@ -3670,7 +3664,7 @@
     {
       "finish_key": "normal",
       "total_count": 16946,
-      "risk_count": 445
+      "risk_count": 331
     },
     {
       "finish_key": "reverse",

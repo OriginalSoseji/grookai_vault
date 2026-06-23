@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-20B-TRAINER-KIT-RESIDUAL-TCGCOLLECTOR-FALLBACK-AUDIT",
   "mode": "read_only_audit",
-  "generated_at": "2026-06-23T02:25:13.555Z",
+  "generated_at": "2026-06-23T03:45:33.304Z",
   "summary": {
     "trainer_kit_parent_row_count": 406,
     "trainer_kit_rows_with_runtime_resolver_display": 406,
