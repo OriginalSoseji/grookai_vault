@@ -17,6 +17,10 @@
 import "server-only";
 
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
@@ -792,6 +796,10 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       }),
     ),
   );
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    createServerAdminClient(),
+    Array.from(cardMetadataById.values()),
+  );
 
   const rows: CanonicalVaultCollectorRow[] = [];
 
@@ -809,7 +817,12 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
     const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
-    const canonicalImageFields = card ? await resolveCardImageFieldsV1(card) : null;
+    const canonicalImageFields = card
+      ? applyChildDisplayImageFallback(
+          await resolveCardImageFieldsV1(card),
+          childDisplayImageFallbacks.get(cardPrintId),
+        )
+      : null;
     const canonicalImageUrl = resolveDisplayImageUrl({
       image_url: canonicalImageFields?.image_url ?? card?.image_url ?? price?.image_url,
       image_alt_url: card?.image_alt_url,

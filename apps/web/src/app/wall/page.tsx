@@ -5,6 +5,10 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { OwnerWallSectionRail } from "@/components/wall/OwnerWallSectionRail";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -45,6 +49,7 @@ type WallCard = {
 };
 
 type WallIdentityRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   set_code: string | null;
@@ -115,7 +120,7 @@ async function getWallIdentityByGvId(
   const { data, error } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
+      "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
     )
     .in("gv_id", normalizedIds);
 
@@ -133,12 +138,21 @@ async function getWallIdentityByGvId(
 async function normalizeFeed(
   rows: WallFeedRow[] | null | undefined,
   identityByGvId: Map<string, WallIdentityRow>,
+  supabase: SupabaseClient,
 ): Promise<WallCard[]> {
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    Array.from(identityByGvId.values()),
+  );
   const resolvedRows = await Promise.all((rows ?? [])
     .filter((row): row is WallFeedRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
     .map(async (row) => {
       const identityRow = identityByGvId.get(row.gv_id);
-      const imageFields = await resolveCardImageFieldsV1(identityRow);
+      const rawImageFields = await resolveCardImageFieldsV1(identityRow);
+      const imageFields = applyChildDisplayImageFallback(
+        rawImageFields,
+        identityRow?.id ? childDisplayImageFallbacks.get(identityRow.id) : null,
+      );
       const setRecord = Array.isArray(identityRow?.sets) ? identityRow?.sets[0] : identityRow?.sets;
       const name = identityRow?.name?.trim() || row.name?.trim() || "Unknown card";
       const setCode = identityRow?.set_code?.trim() || row.set_code?.trim() || "Unknown set";
@@ -208,7 +222,7 @@ export default async function WallPage() {
       .map((row) => row.gv_id)
       .filter((value): value is string => typeof value === "string" && value.length > 0),
   );
-  const feed = await normalizeFeed((data ?? null) as WallFeedRow[] | null, identityByGvId);
+  const feed = await normalizeFeed((data ?? null) as WallFeedRow[] | null, identityByGvId, supabase);
 
   return (
     <div className="space-y-8 py-8">

@@ -1,6 +1,10 @@
 import "server-only";
 
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -341,9 +345,17 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     throw new Error(`[network:inbox] trade outcome lookup failed: ${tradeOutcomesResponse.error.message}`);
   }
 
+  const cardPrintRows = (cardPrintsResponse.data ?? []) as CardPrintSourceRow[];
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    client,
+    cardPrintRows,
+  );
   const resolvedCardRows = await Promise.all(
-    ((cardPrintsResponse.data ?? []) as CardPrintSourceRow[]).map(async (row) => {
-      const imageFields = await resolveCardImageFieldsV1(row);
+    cardPrintRows.map(async (row) => {
+      const imageFields = applyChildDisplayImageFallback(
+        await resolveCardImageFieldsV1(row),
+        childDisplayImageFallbacks.get(row.id),
+      );
       return { ...row, display_image_url: imageFields.display_image_url };
     }),
   );

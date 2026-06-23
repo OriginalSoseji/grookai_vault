@@ -1,6 +1,6 @@
 # Image Surface Consistency Scan V1
 
-Generated: 2026-06-23T02:29:49.827Z
+Generated: 2026-06-23T02:48:55.175Z
 
 ## Summary
 
@@ -14,11 +14,18 @@ Generated: 2026-06-23T02:29:49.827Z
 
 | Surface | Uses shared child fallback |
 | --- | --- |
+| apps/web/src/app/page.tsx | yes |
+| apps/web/src/app/vault/page.tsx | yes |
+| apps/web/src/app/wall/page.tsx | yes |
 | apps/web/src/lib/getPublicCardByGvId.ts | yes |
 | apps/web/src/lib/getAdjacentPublicCardsByGvId.ts | yes |
+| apps/web/src/lib/getSharedCardsBySlug.ts | yes |
 | apps/web/src/lib/cards/getPublicCardsByGvIds.ts | yes |
 | apps/web/src/lib/explore/getExploreRows.ts | yes |
 | apps/web/src/lib/cards/getFeaturedExploreCards.ts | yes |
+| apps/web/src/lib/network/getCardStreamRows.ts | yes |
+| apps/web/src/lib/network/getUserCardInteractions.ts | yes |
+| apps/web/src/lib/vault/getCanonicalVaultCollectorRows.ts | yes |
 
 ## Top Sets
 

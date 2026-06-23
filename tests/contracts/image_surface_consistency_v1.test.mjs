@@ -13,11 +13,18 @@ test("card summary surfaces use the shared child image fallback resolver", () =>
   assert.match(helper, /representative_missing_variant_visual/);
 
   for (const file of [
+    "apps/web/src/app/page.tsx",
+    "apps/web/src/app/vault/page.tsx",
+    "apps/web/src/app/wall/page.tsx",
     "apps/web/src/lib/getPublicCardByGvId.ts",
     "apps/web/src/lib/getAdjacentPublicCardsByGvId.ts",
+    "apps/web/src/lib/getSharedCardsBySlug.ts",
     "apps/web/src/lib/cards/getPublicCardsByGvIds.ts",
     "apps/web/src/lib/explore/getExploreRows.ts",
     "apps/web/src/lib/cards/getFeaturedExploreCards.ts",
+    "apps/web/src/lib/network/getCardStreamRows.ts",
+    "apps/web/src/lib/network/getUserCardInteractions.ts",
+    "apps/web/src/lib/vault/getCanonicalVaultCollectorRows.ts",
   ]) {
     assert.match(
       source(file),

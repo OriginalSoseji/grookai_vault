@@ -4,6 +4,10 @@ import {
   resolveCardImageFieldsV1,
   type CardDisplayImageKind,
 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
@@ -252,9 +256,18 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
       throw new Error(`[network:stream] card identity lookup failed: ${error.message}`);
     }
 
+    const identityRows = (data ?? []) as CardStreamIdentityRow[];
+    const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+      client,
+      identityRows,
+    );
     const rowsWithDisplayImage = await Promise.all(
-      ((data ?? []) as CardStreamIdentityRow[]).map(async (row) => {
-        const imageFields = await resolveCardImageFieldsV1(row);
+      identityRows.map(async (row) => {
+        const rawImageFields = await resolveCardImageFieldsV1(row);
+        const imageFields = applyChildDisplayImageFallback(
+          rawImageFields,
+          row.id ? childDisplayImageFallbacks.get(row.id) : null,
+        );
         return {
           ...row,
           image_url: imageFields.image_url,

@@ -6,6 +6,10 @@ import PublicSearchForm from "@/components/PublicSearchForm";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { VARIANT_FAMILY_DISCOVERY_COPY } from "@/lib/cards/variantFamilyDiscoveryCopy";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
@@ -13,6 +17,7 @@ const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
 export const revalidate = 300;
 
 type FeaturedCardRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   set_code: string | null;
@@ -107,17 +112,28 @@ async function getFeaturedCardByName(
   const { data } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
+      "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
     )
     .eq("name", name)
     .order("gv_id")
     .limit(12);
 
+  const rows = (data ?? []) as FeaturedCardRow[];
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    rows,
+  );
   const resolvedRows = await Promise.all(
-    ((data ?? []) as FeaturedCardRow[]).map(async (row) => ({
-      row,
-      resolvedImageUrl: (await resolveCardImageFieldsV1(row)).display_image_url,
-    })),
+    rows.map(async (row) => {
+      const imageFields = applyChildDisplayImageFallback(
+        await resolveCardImageFieldsV1(row),
+        row.id ? childDisplayImageFallbacks.get(row.id) : null,
+      );
+      return {
+        row,
+        resolvedImageUrl: imageFields.display_image_url,
+      };
+    }),
   );
   const bestRow = resolvedRows.find(
     (entry) => typeof entry.row.gv_id === "string" && Boolean(entry.resolvedImageUrl),

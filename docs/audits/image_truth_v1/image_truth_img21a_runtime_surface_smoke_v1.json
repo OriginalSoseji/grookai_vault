@@ -1,7 +1,7 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T02:36:48.572Z",
+  "generated_at": "2026-06-23T02:49:51.385Z",
   "base_url": "http://127.0.0.1:3087",
   "results": [
     {

@@ -2,6 +2,10 @@ import "server-only";
 
 import { cache } from "react";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  applyChildDisplayImageFallback,
+  getChildDisplayImageFallbacks,
+} from "@/lib/cards/childDisplayImageFallbacks";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -649,6 +653,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       .filter((row): row is CardPrintRow & { id: string } => typeof row.id === "string" && row.id.length > 0)
       .map((row) => [row.id, row]),
   );
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    cardPrints as CardPrintRow[],
+  );
 
   const resolvedRows = await Promise.all(
     sharedRows.map(async (row) => {
@@ -657,7 +665,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         return null;
       }
 
-      const imageFields = await resolveCardImageFieldsV1(cardPrint);
+      const imageFields = applyChildDisplayImageFallback(
+        await resolveCardImageFieldsV1(cardPrint),
+        childDisplayImageFallbacks.get(row.card_id),
+      );
       const displayImageUrl =
         resolveDisplayImageUrl({
           display_image_url: imageFields.display_image_url,
@@ -839,6 +850,10 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       .filter((row): row is CardPrintRow & { id: string } => typeof row.id === "string" && row.id.length > 0)
       .map((row) => [row.id, row]),
   );
+  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
+    supabase,
+    cardPrintsResponse.data as CardPrintRow[],
+  );
   const sharedByCardId = new Map(
     ((sharedResponse.data ?? []) as Pick<
       SharedCardRow,
@@ -859,7 +874,10 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
     const cardPrint = cardPrintById.get(row.cardPrintId) ?? null;
     const shared = sharedByCardId.get(row.cardPrintId) ?? null;
     const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
-    const imageFields = await resolveCardImageFieldsV1(cardPrint);
+    const imageFields = applyChildDisplayImageFallback(
+      await resolveCardImageFieldsV1(cardPrint),
+      childDisplayImageFallbacks.get(row.cardPrintId),
+    );
     const displayImageUrl =
       resolveDisplayImageUrl({
         display_image_url: imageFields.display_image_url ?? row.imageUrl,

@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   resolveCardImageFieldsV1,
   type CardDisplayImageKind,
+  type ResolvedCardImageFieldsV1,
 } from "@/lib/canon/resolveCardImageFieldsV1";
 
 export type ChildDisplayImageFallbackLookupRow = {
@@ -37,6 +38,23 @@ export type ChildDisplayImageFallback = {
 const CHILD_FALLBACK_STATUS = "representative_missing_variant_visual";
 const CHILD_FALLBACK_NOTE =
   "Correct card identity. Displaying the best reviewed child printing image until the parent identity image is available.";
+
+export function applyChildDisplayImageFallback(
+  imageFields: ResolvedCardImageFieldsV1,
+  fallback: ChildDisplayImageFallback | null | undefined,
+): ResolvedCardImageFieldsV1 {
+  if (imageFields.display_image_url || !fallback) {
+    return imageFields;
+  }
+
+  return {
+    ...imageFields,
+    display_image_url: fallback.display_image_url,
+    display_image_kind: fallback.display_image_kind,
+    image_status: fallback.image_status,
+    image_note: fallback.image_note,
+  };
+}
 
 function uniqueValues(values: Array<string | null | undefined>) {
   return Array.from(
