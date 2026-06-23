@@ -4181,6 +4181,7 @@ class HomePageState extends State<HomePage> {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              // ignore: deprecated_member_use
               cacheExtent: showingCuratedLanding ? 960 : 520,
               slivers: [
                 SliverToBoxAdapter(

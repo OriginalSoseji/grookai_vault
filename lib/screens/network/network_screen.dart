@@ -434,6 +434,7 @@ class NetworkScreenState extends State<NetworkScreen> {
                 ),
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
+                // ignore: deprecated_member_use
                 cacheExtent: 960,
                 slivers: [
                   SliverToBoxAdapter(
