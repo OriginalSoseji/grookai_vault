@@ -1,14 +1,14 @@
 # Image Truth Risk Queue V1
 
-Generated: 2026-06-23T04:09:27.778Z
+Generated: 2026-06-23T04:25:31.358Z
 
 Status: audit only. No DB writes. No migrations.
 
 Queue definition: child printings that require exact visual proof but currently render without an exact child-level image.
 
 Rows in JSON queue: 1000
-Full missing exact rows: 16872
-Apply-addressable missing exact rows: 14858
+Full missing exact rows: 16870
+Apply-addressable missing exact rows: 14856
 Identity-blocked missing exact rows: 205
 Non-physical blocked missing exact rows: 1809
 Other-scope missing exact rows: 0
@@ -42,8 +42,6 @@ Other-scope missing exact rows: 0
 | critical | unknown | unresolved_set | blocked | 97 | Kangaskhan | reverse | GV-TCGP-P-A-97-RH | missing_display_image |
 | critical | unknown | unresolved_set | blocked | 98 | Blissey ex | reverse | GV-TCGP-P-A-98-RH | missing_display_image |
 | critical | unknown | unresolved_set | blocked | 99 | Marill | reverse | GV-TCGP-P-A-99-RH | missing_display_image |
-| critical | mep | english_physical | missing | 064 | Serperior | holo | GV-PK-MEP-064-STAFF-STAMP-HOLO | missing_display_image |
-| critical | mep | english_physical | missing | 067 | Doublade | holo | GV-PK-MEP-067-STAFF-STAMP-HOLO | missing_display_image |
 | high | sv03.5 | english_physical | missing_variant_visual | 025 | Pikachu | reverse | GV-PK-MEW-025-RH | using_parent_exact_image |
 | high | sv8pt5 | english_physical | missing_variant_visual | 002 | Exeggutor | masterball | GV-PK-PRE-002-MB | using_parent_exact_image |
 | high | sv8pt5 | english_physical | missing_variant_visual | 002 | Exeggutor | pokeball | GV-PK-PRE-002-PB | using_parent_exact_image |
@@ -115,3 +113,5 @@ Other-scope missing exact rows: 0
 | high | unknown | unresolved_set | blocked | 37 | Cresselia ex | reverse | GV-TCGP-P-A-37-RH | using_parent_exact_image |
 | high | unknown | unresolved_set | blocked | 38 | Alolan Persian | reverse | GV-TCGP-A3A-38-RH | using_parent_exact_image |
 | high | unknown | unresolved_set | blocked | 38 | Misdreavus | reverse | GV-TCGP-P-A-38-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 39 | Sandile | reverse | GV-TCGP-A3A-39-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 39 | Skarmory | reverse | GV-TCGP-P-A-39-RH | using_parent_exact_image |

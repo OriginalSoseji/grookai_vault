@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T04:09:27.778Z",
+  "generated_at": "2026-06-23T04:25:31.358Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -16,30 +16,27 @@
     "total_child_printings": 44137,
     "english_physical_child_printings": 38101,
     "english_physical_exact_required_rows": 14959,
-    "english_physical_display_covered_rows": 38094,
-    "english_physical_missing_display_rows": 2,
+    "english_physical_display_covered_rows": 38096,
+    "english_physical_missing_display_rows": 0,
     "english_physical_missing_variant_visual_rows": 14856,
-    "english_physical_exact_rows": 22484,
+    "english_physical_exact_rows": 22486,
     "english_physical_representative_rows": 754,
     "confidence_counts_all_scopes": {
-      "exact": 22484,
+      "exact": 22486,
       "missing_variant_visual": 14856,
       "blocked": 6041,
-      "representative": 754,
-      "missing": 2
+      "representative": 754
     },
     "confidence_counts_english_physical": {
-      "exact": 22484,
+      "exact": 22486,
       "missing_variant_visual": 14856,
       "representative": 754,
-      "blocked": 5,
-      "missing": 2
+      "blocked": 5
     },
     "confidence_counts_english_physical_exact_required": {
       "missing_variant_visual": 14856,
-      "exact": 55,
-      "representative": 46,
-      "missing": 2
+      "exact": 57,
+      "representative": 46
     }
   },
   "by_finish_english_physical_exact_required": [
@@ -125,85 +122,11 @@
     },
     {
       "finish_key": "holo",
-      "image_confidence": "missing",
-      "count": 2
-    },
-    {
-      "finish_key": "holo",
       "image_confidence": "exact",
-      "count": 1
+      "count": 3
     }
   ],
-  "missing_display_rows": [
-    {
-      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
-      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
-      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
-      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Serperior",
-      "number": "064",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
-      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
-      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
-      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Doublade",
-      "number": "067",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    }
-  ],
+  "missing_display_rows": [],
   "missing_variant_visual_rows": [
     {
       "card_printing_id": "f6eb8322-7426-4a5c-bd8f-b8294998b36f",
@@ -4747,39 +4670,6 @@
       "ownership_refs_count": 0
     },
     {
-      "card_printing_id": "98fed3d6-4741-4997-a908-11e42508c1d4",
-      "printing_gv_id": "GV-PK-BSP-3-WB-KIDS-STAMP-STD",
-      "card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
-      "parent_gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
-      "set_code": "basep",
-      "set_name": "Wizards Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Mewtwo",
-      "number": "3",
-      "finish_key": "normal",
-      "finish_label": "Normal",
-      "variant_key": "wb_kids_stamp",
-      "printed_identity_modifier": "stamp:wb_kids_first_movie",
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": false,
-      "image_coverage_status": "using_parent_representative_image",
-      "image_confidence": "missing_variant_visual",
-      "image_confidence_reason": "display_image_available_but_exact_finish_or_modifier_visual_missing",
-      "risk_level": "high",
-      "risk_reasons": [
-        "visual_identity_modifier_or_stamp",
-        "child_printing_falls_back_to_parent_representative_image"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": "representative_shared_stamp",
-      "parent_has_public_image": false,
-      "parent_has_representative_image": true,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
       "card_printing_id": "2d4c001b-deaf-49cb-b58c-fc5739acdbf7",
       "printing_gv_id": "GV-PK-BASEP-3-MISSING-WB-KIDS-STAMP-NORMAL",
       "card_print_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
@@ -4809,6 +4699,39 @@
       "parent_has_public_image": false,
       "parent_has_representative_image": true,
       "parent_image_status": "representative_shared",
+      "parent_image_source": null,
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "98fed3d6-4741-4997-a908-11e42508c1d4",
+      "printing_gv_id": "GV-PK-BSP-3-WB-KIDS-STAMP-STD",
+      "card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+      "parent_gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "image_scope": "english_physical",
+      "set_identity_domain_default": "pokemon_eng_standard",
+      "card_name": "Mewtwo",
+      "number": "3",
+      "finish_key": "normal",
+      "finish_label": "Normal",
+      "variant_key": "wb_kids_stamp",
+      "printed_identity_modifier": "stamp:wb_kids_first_movie",
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "using_parent_representative_image",
+      "image_confidence": "missing_variant_visual",
+      "image_confidence_reason": "display_image_available_but_exact_finish_or_modifier_visual_missing",
+      "risk_level": "high",
+      "risk_reasons": [
+        "visual_identity_modifier_or_stamp",
+        "child_printing_falls_back_to_parent_representative_image"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": "representative_shared_stamp",
+      "parent_has_public_image": false,
+      "parent_has_representative_image": true,
+      "parent_image_status": "representative_shared_stamp",
       "parent_image_source": null,
       "ownership_refs_count": 0
     },

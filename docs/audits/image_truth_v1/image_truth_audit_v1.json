@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generated_at": "2026-06-23T04:09:27.778Z",
+    "generated_at": "2026-06-23T04:25:31.358Z",
     "audit_only": true,
     "db_writes_performed": false,
     "migrations_created": false,
@@ -16,20 +16,20 @@
     },
     "exact_child_image_required": 16973,
     "finish_visual_review_needed": 10851,
-    "exact_required_missing_child_exact_image": 16872,
-    "finish_visual_review_missing_child_exact_image": 10626,
-    "critical_or_high_risk_rows": 16872,
+    "exact_required_missing_child_exact_image": 16870,
+    "finish_visual_review_missing_child_exact_image": 10624,
+    "critical_or_high_risk_rows": 16870,
     "risk_level_counts": {
-      "low": 27211,
+      "low": 27213,
       "high": 16843,
       "medium": 54,
-      "critical": 29
+      "critical": 27
     },
     "image_coverage_counts": {
       "using_parent_exact_image": 42476,
       "using_parent_representative_image": 894,
-      "exact_child_image_present": 684,
-      "missing_display_image": 83
+      "exact_child_image_present": 686,
+      "missing_display_image": 81
     },
     "finish_counts": {
       "normal": 16946,
@@ -43,7 +43,7 @@
     },
     "risky_finish_counts": {
       "reverse": 15506,
-      "holo": 335,
+      "holo": 333,
       "normal": 331,
       "cosmos": 325,
       "pokeball": 230,
@@ -193,7 +193,6 @@
       "si1": 6,
       "bog": 5,
       "np": 5,
-      "mep": 4,
       "base5": 3,
       "xy0": 3,
       "base2": 2,
@@ -202,6 +201,7 @@
       "cel25": 2,
       "gym1": 2,
       "hsp": 2,
+      "mep": 2,
       "pop9": 2,
       "cel25c": 1,
       "gym2": 1,
@@ -220,36 +220,33 @@
       "unresolved_set": 609
     },
     "risky_image_scope_counts": {
-      "english_physical": 14858,
+      "english_physical": 14856,
       "digital_or_non_physical_excluded": 1809,
       "unresolved_set": 259
     },
     "image_confidence_counts": {
-      "exact": 22484,
+      "exact": 22486,
       "missing_variant_visual": 14856,
       "blocked": 6041,
-      "representative": 754,
-      "missing": 2
+      "representative": 754
     },
     "english_physical_image_confidence_counts": {
-      "exact": 22484,
+      "exact": 22486,
       "missing_variant_visual": 14856,
       "representative": 754,
-      "blocked": 5,
-      "missing": 2
+      "blocked": 5
     },
     "english_physical_exact_required_image_confidence_counts": {
       "missing_variant_visual": 14856,
-      "exact": 55,
-      "representative": 46,
-      "missing": 2
+      "exact": 57,
+      "representative": 46
     },
-    "english_physical_display_covered_rows": 38094,
-    "english_physical_missing_display_rows": 2,
+    "english_physical_display_covered_rows": 38096,
+    "english_physical_missing_display_rows": 0,
     "english_physical_missing_variant_visual_rows": 14856,
-    "english_physical_exact_rows": 22484,
+    "english_physical_exact_rows": 22486,
     "english_physical_representative_rows": 754,
-    "image_apply_addressable_missing_exact_rows": 14858,
+    "image_apply_addressable_missing_exact_rows": 14856,
     "image_identity_blocked_missing_exact_rows": 205,
     "image_non_physical_blocked_missing_exact_rows": 1809,
     "image_other_scope_missing_exact_rows": 0
@@ -1170,74 +1167,6 @@
       "parent_has_public_image": false,
       "parent_has_representative_image": false,
       "parent_image_status": "missing",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
-      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
-      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
-      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Serperior",
-      "number": "064",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
-      "parent_image_source": null,
-      "ownership_refs_count": 0
-    },
-    {
-      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
-      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
-      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
-      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "image_scope": "english_physical",
-      "set_identity_domain_default": "pokemon_eng_standard",
-      "card_name": "Doublade",
-      "number": "067",
-      "finish_key": "holo",
-      "finish_label": "Holo",
-      "variant_key": "staff_stamp",
-      "printed_identity_modifier": null,
-      "exact_child_image_required": true,
-      "finish_visual_review_needed": true,
-      "image_coverage_status": "missing_display_image",
-      "image_confidence": "missing",
-      "image_confidence_reason": "no_safe_display_image_available",
-      "risk_level": "critical",
-      "risk_reasons": [
-        "holo_finish_review_debt",
-        "visual_identity_modifier_or_stamp",
-        "no_display_image_available"
-      ],
-      "child_has_public_image": false,
-      "child_image_status": null,
-      "parent_has_public_image": false,
-      "parent_has_representative_image": false,
-      "parent_image_status": "representative_shared_stamp",
       "parent_image_source": null,
       "ownership_refs_count": 0
     },
@@ -3657,6 +3586,74 @@
       "parent_image_status": "exact",
       "parent_image_source": "tcgdex",
       "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "7245062d-47e5-4b8c-bd67-32f974fb3a40",
+      "printing_gv_id": "GV-TCGP-A3A-39-RH",
+      "card_print_id": "6c159791-5df4-4a83-843c-5a35510f9760",
+      "parent_gv_id": "GV-TCGP-A3A-39",
+      "set_code": null,
+      "set_name": "Extradimensional Crisis",
+      "image_scope": "unresolved_set",
+      "set_identity_domain_default": "tcg_pocket_excluded",
+      "card_name": "Sandile",
+      "number": "39",
+      "finish_key": "reverse",
+      "finish_label": "Reverse Holo",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "using_parent_exact_image",
+      "image_confidence": "blocked",
+      "image_confidence_reason": "blocked_scope_unresolved_set",
+      "risk_level": "high",
+      "risk_reasons": [
+        "visually_distinct_finish",
+        "non_normal_finish",
+        "child_printing_falls_back_to_parent_exact_image"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": true,
+      "parent_has_representative_image": false,
+      "parent_image_status": "exact",
+      "parent_image_source": "tcgdex",
+      "ownership_refs_count": 0
+    },
+    {
+      "card_printing_id": "74889381-9d1d-42f5-b22f-ef0981b528bf",
+      "printing_gv_id": "GV-TCGP-P-A-39-RH",
+      "card_print_id": "b520378a-caba-4b61-8a83-95ebb9826584",
+      "parent_gv_id": "GV-TCGP-P-A-39",
+      "set_code": null,
+      "set_name": "Promos-A",
+      "image_scope": "unresolved_set",
+      "set_identity_domain_default": "tcg_pocket_excluded",
+      "card_name": "Skarmory",
+      "number": "39",
+      "finish_key": "reverse",
+      "finish_label": "Reverse Holo",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "exact_child_image_required": true,
+      "finish_visual_review_needed": false,
+      "image_coverage_status": "using_parent_exact_image",
+      "image_confidence": "blocked",
+      "image_confidence_reason": "blocked_scope_unresolved_set",
+      "risk_level": "high",
+      "risk_reasons": [
+        "visually_distinct_finish",
+        "non_normal_finish",
+        "child_printing_falls_back_to_parent_exact_image"
+      ],
+      "child_has_public_image": false,
+      "child_image_status": null,
+      "parent_has_public_image": true,
+      "parent_has_representative_image": false,
+      "parent_image_status": "exact",
+      "parent_image_source": "tcgdex",
+      "ownership_refs_count": 0
     }
   ],
   "per_finish": [
@@ -3673,7 +3670,7 @@
     {
       "finish_key": "holo",
       "total_count": 10851,
-      "risk_count": 335
+      "risk_count": 333
     },
     {
       "finish_key": "cosmos",

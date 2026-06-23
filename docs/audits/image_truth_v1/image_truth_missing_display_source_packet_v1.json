@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T04:10:12.701Z",
+  "generated_at": "2026-06-23T04:25:41.863Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -17,127 +17,14 @@
     "dry_run_required_before_db_write": true
   },
   "source_fixture_records_loaded": 77028,
-  "full_english_physical_missing_display_rows": 2,
-  "target_count": 2,
-  "exact_required_target_count": 2,
+  "full_english_physical_missing_display_rows": 0,
+  "target_count": 0,
+  "exact_required_target_count": 0,
   "display_only_target_count": 0,
-  "source_url_preserved_count": 2,
+  "source_url_preserved_count": 0,
   "representative_source_url_preserved_count": 0,
   "source_url_needed_count": 0,
   "source_url_review_needed_count": 0,
   "dry_run_ready_count": 0,
-  "rows": [
-    {
-      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
-      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
-      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
-      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Serperior",
-      "number": "064",
-      "finish_key": "holo",
-      "image_coverage_status": "missing_display_image",
-      "source_queue": "exact_required_missing_display",
-      "exact_child_image_required": true,
-      "input_image_confidence": "missing",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "source_status": "source_url_preserved",
-      "image_confidence": "representative",
-      "dry_run_ready": false,
-      "notes": "Preserved source URL proves exact finish identity. Image remains representative until a normalized exact asset is captured from the source.",
-      "live_source_rejection": null,
-      "preserved_source_urls": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/serperior-holo-64",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "Serperior Holo 64 Prices | Serperior Holo 64 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T04:10:11.781Z:mep:064:holo",
-          "fixture_file": null
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "reverseholo_set_checklist preserved finish evidence from last promoted Master Index",
-          "raw_snapshot_ref": "source_preservation:reverseholo_set_checklist:2026-05-28T16:17:44.174Z:mep:064:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_preservation_v1/reverseholo_preservation_v1.json"
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "ReverseHolo checklist row #064 - Serperior - HOLO",
-          "raw_snapshot_ref": "reverseholo:mep:064:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1/mep.json"
-        }
-      ]
-    },
-    {
-      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
-      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
-      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
-      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Doublade",
-      "number": "067",
-      "finish_key": "holo",
-      "image_coverage_status": "missing_display_image",
-      "source_queue": "exact_required_missing_display",
-      "exact_child_image_required": true,
-      "input_image_confidence": "missing",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "source_status": "source_url_preserved",
-      "image_confidence": "representative",
-      "dry_run_ready": false,
-      "notes": "Preserved source URL proves exact finish identity. Image remains representative until a normalized exact asset is captured from the source.",
-      "live_source_rejection": null,
-      "preserved_source_urls": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/doublade-holo-67",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "Doublade Holo 67 Prices | Doublade Holo 67 List",
-          "raw_snapshot_ref": "pricecharting_live_page:2026-06-23T04:10:12.701Z:mep:067:holo",
-          "fixture_file": null
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "reverseholo_set_checklist preserved finish evidence from last promoted Master Index",
-          "raw_snapshot_ref": "source_preservation:reverseholo_set_checklist:2026-05-28T16:17:44.174Z:mep:067:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_preservation_v1/reverseholo_preservation_v1.json"
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "source_image_url": null,
-          "evidence_type": "finish_presence",
-          "evidence_label": "ReverseHolo checklist row #067 - Doublade - HOLO",
-          "raw_snapshot_ref": "reverseholo:mep:067:holo",
-          "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1/mep.json"
-        }
-      ]
-    }
-  ]
+  "rows": []
 }

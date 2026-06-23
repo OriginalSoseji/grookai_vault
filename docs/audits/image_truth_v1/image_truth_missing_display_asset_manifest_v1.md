@@ -1,6 +1,6 @@
 # Image Truth Missing-Display Asset Manifest V1
 
-Generated: 2026-06-23T04:10:25.425Z
+Generated: 2026-06-23T04:25:48.774Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -16,15 +16,12 @@ Status: audit only. No DB writes. No migrations.
 
 ## Summary
 
-- source rows reviewed: 2
+- source rows reviewed: 0
 - source image URLs preserved: 0
 - representative image URLs preserved: 0
-- blocked asset rows: 2
+- blocked asset rows: 0
 - dry-run ready rows: 0
 
 ## Rows
 
-| set | card | number | finish | source status | asset status | confidence | dry run ready | asset url |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| mep | Serperior | 064 | holo | source_url_preserved | asset_not_found_or_not_exact | representative | false | - |
-| mep | Doublade | 067 | holo | source_url_preserved | asset_not_found_or_not_exact | representative | false | - |
+_None._

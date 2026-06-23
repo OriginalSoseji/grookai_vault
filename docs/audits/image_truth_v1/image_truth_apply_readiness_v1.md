@@ -1,6 +1,6 @@
 # Image Truth Apply Readiness V1
 
-Generated: 2026-06-23T04:10:09.925Z
+Generated: 2026-06-23T04:25:41.395Z
 
 This is audit-only. It does not write to the database, create migrations, run cleanup, or quarantine rows.
 
@@ -11,10 +11,10 @@ This is audit-only. It does not write to the database, create migrations, run cl
 - reason: No exact source image asset packet has been staged and dry-run proven for a target bucket.
 - total_child_printings: 44137
 - exact_child_image_required: 16973
-- exact_required_missing_child_exact_image: 16872
-- critical_or_high_risk_rows: 16872
-- english_physical_display_covered_rows: 38094
-- english_physical_missing_display_rows: 2
+- exact_required_missing_child_exact_image: 16870
+- critical_or_high_risk_rows: 16870
+- english_physical_display_covered_rows: 38096
+- english_physical_missing_display_rows: 0
 - english_physical_missing_variant_visual_rows: 14856
 - child_image_storage_columns_present: true
 
@@ -34,15 +34,15 @@ This is audit-only. It does not write to the database, create migrations, run cl
 - risk_queue_rows: 1000
 - detailed_rows_are_top_limited: true
 - exact_required_rows_in_queue: 1000
-- full_missing_exact_rows_count: 16872
-- apply_addressable_rows_total: 14858
+- full_missing_exact_rows_count: 16870
+- apply_addressable_rows_total: 14856
 - identity_blocked_rows_total: 205
 - non_physical_blocked_rows_total: 1809
 - other_scope_rows_total: 0
 - apply_addressable_rows_in_detailed_queue: 795
 - identity_blocked_rows_in_detailed_queue: 205
-- critical_missing_display_rows: 29
-- finish_specific_fallback_rows: 971
+- critical_missing_display_rows: 27
+- finish_specific_fallback_rows: 973
 - ownership_reference_rows: 3
 - no_ownership_reference_rows: 997
 
@@ -52,20 +52,18 @@ English physical:
 
 | confidence | rows |
 | --- | --- |
-| exact | 22484 |
+| exact | 22486 |
 | missing_variant_visual | 14856 |
 | representative | 754 |
 | blocked | 5 |
-| missing | 2 |
 
 English physical exact-required:
 
 | confidence | rows |
 | --- | --- |
 | missing_variant_visual | 14856 |
-| exact | 55 |
+| exact | 57 |
 | representative | 46 |
-| missing | 2 |
 
 ## Recommended Sequence
 
@@ -93,8 +91,6 @@ These rows have exact-child-required finishes, resolved set/number identity, and
 
 | set | scope | confidence | card | number | finish | coverage | risk | printing |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| mep | english_physical | missing | Doublade | 067 | holo | missing_display_image | critical | GV-PK-MEP-067-STAFF-STAMP-HOLO |
-| mep | english_physical | missing | Serperior | 064 | holo | missing_display_image | critical | GV-PK-MEP-064-STAFF-STAMP-HOLO |
 
 ## Identity-Blocked Image Review Bucket
 

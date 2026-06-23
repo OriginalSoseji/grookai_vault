@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T04:10:25.425Z",
+  "generated_at": "2026-06-23T04:25:48.774Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -12,107 +12,10 @@
     "normalized_asset_required_before_dry_run": true,
     "dry_run_required_before_db_write": true
   },
-  "source_rows": 2,
+  "source_rows": 0,
   "source_image_url_preserved_count": 0,
   "representative_image_url_preserved_count": 0,
-  "blocked_asset_count": 2,
+  "blocked_asset_count": 0,
   "dry_run_ready_count": 0,
-  "rows": [
-    {
-      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
-      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
-      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
-      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Serperior",
-      "number": "064",
-      "finish_key": "holo",
-      "source_status": "source_url_preserved",
-      "source_url": "https://www.pricecharting.com/game/pokemon-promo/serperior-holo-64",
-      "source_key": "pricecharting_live_page",
-      "source_kind": "marketplace_checklist",
-      "source_attempts": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/serperior-holo-64",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No PriceCharting product image with exact alt text was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        }
-      ],
-      "asset_status": "asset_not_found_or_not_exact",
-      "asset_url": null,
-      "image_alt": null,
-      "image_confidence": "representative",
-      "block_reason": "pricecharting_live_page: No PriceCharting product image with exact alt text was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found."
-    },
-    {
-      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
-      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
-      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
-      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
-      "image_scope": "english_physical",
-      "target_table": "card_printings",
-      "parent_overwrite_allowed": false,
-      "db_write_allowed": false,
-      "dry_run_ready": false,
-      "set_code": "mep",
-      "set_name": "MEP Black Star Promos",
-      "card_name": "Doublade",
-      "number": "067",
-      "finish_key": "holo",
-      "source_status": "source_url_preserved",
-      "source_url": "https://www.pricecharting.com/game/pokemon-promo/doublade-holo-67",
-      "source_key": "pricecharting_live_page",
-      "source_kind": "marketplace_checklist",
-      "source_attempts": [
-        {
-          "source_key": "pricecharting_live_page",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://www.pricecharting.com/game/pokemon-promo/doublade-holo-67",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No PriceCharting product image with exact alt text was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        },
-        {
-          "source_key": "reverseholo_set_checklist",
-          "source_kind": "collector_reference",
-          "source_url": "https://reverseholo.app/sets/mep",
-          "asset_status": "asset_not_found_or_not_exact",
-          "reason": "No ReverseHolo card block with matching number, name, finish, and image URL was found."
-        }
-      ],
-      "asset_status": "asset_not_found_or_not_exact",
-      "asset_url": null,
-      "image_alt": null,
-      "image_confidence": "representative",
-      "block_reason": "pricecharting_live_page: No PriceCharting product image with exact alt text was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found. | reverseholo_set_checklist: No ReverseHolo card block with matching number, name, finish, and image URL was found."
-    }
-  ]
+  "rows": []
 }

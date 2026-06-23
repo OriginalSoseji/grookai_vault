@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-23T04:09:27.778Z
+Generated: 2026-06-23T04:25:31.358Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 38101
 - english physical exact-required rows: 14959
-- english physical display-covered rows: 38094
-- english physical missing-display rows: 2
+- english physical display-covered rows: 38096
+- english physical missing-display rows: 0
 - english physical missing-variant-visual rows: 14856
 - db_writes_performed: false
 - migrations_created: false
@@ -20,20 +20,18 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 | confidence | rows |
 | --- | --- |
-| exact | 22484 |
+| exact | 22486 |
 | missing_variant_visual | 14856 |
 | representative | 754 |
 | blocked | 5 |
-| missing | 2 |
 
 ## English Physical Exact-Required Confidence Counts
 
 | confidence | rows |
 | --- | --- |
 | missing_variant_visual | 14856 |
-| exact | 55 |
+| exact | 57 |
 | representative | 46 |
-| missing | 2 |
 
 ## Interpretation
 
@@ -43,10 +41,7 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 
 ## First Missing Display Rows
 
-| set | number | card | finish | reason |
-| --- | --- | --- | --- | --- |
-| mep | 064 | Serperior | holo | no_safe_display_image_available |
-| mep | 067 | Doublade | holo | no_safe_display_image_available |
+_None._
 
 ## First Missing Variant Visual Rows
 

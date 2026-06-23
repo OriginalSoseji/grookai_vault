@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-06-23T04:25:18.267Z",
+  "package_id": "IMG-22A-MEP-STAFF-STAMP-EXACT-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "storage_bucket": "user-card-images",
+  "source_rows": 2,
+  "fingerprint": "f4d14f0f99d07d7b6630a81a562474503189e157289c0c20305aabfd333e238a",
+  "storage_uploaded_rows": 2,
+  "db_updated_rows": 2,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img22a-mep-staff-stamp-exact/mep/gv-pk-mep-064-staff-stamp-holo/38a7473fcd2a43b84ca64b7e.jpg",
+    "warehouse-derived/image-truth-v1/img22a-mep-staff-stamp-exact/mep/gv-pk-mep-067-staff-stamp-holo/061ad22c5dea5ec493d817d8.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "9eaf7539-60ea-40e6-a08e-23d433ec884d",
+      "card_print_id": "bce1c209-c111-4286-a3b9-a98a7a613834",
+      "parent_gv_id": "GV-PK-MEP-064-STAFF-STAMP",
+      "printing_gv_id": "GV-PK-MEP-064-STAFF-STAMP-HOLO",
+      "set_code": "mep",
+      "number": "064",
+      "card_name": "Serperior",
+      "finish_key": "holo",
+      "variant_key": "staff_stamp",
+      "source_url": "https://www.tcgplayer.com/product/685498/pokemon-me-mega-evolution-promo-serperior-064-staff",
+      "source_image_url": "https://product-images.tcgplayer.com/685498.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/img22a-mep-staff-stamp-exact/mep/gv-pk-mep-064-staff-stamp-holo/38a7473fcd2a43b84ca64b7e.jpg",
+      "image_status": "exact"
+    },
+    {
+      "card_printing_id": "4a8736ba-db15-43ee-a72e-f38368ca44dc",
+      "card_print_id": "52b2da20-1965-48dc-8bb4-ff92d0263549",
+      "parent_gv_id": "GV-PK-MEP-067-STAFF-STAMP",
+      "printing_gv_id": "GV-PK-MEP-067-STAFF-STAMP-HOLO",
+      "set_code": "mep",
+      "number": "067",
+      "card_name": "Doublade",
+      "finish_key": "holo",
+      "variant_key": "staff_stamp",
+      "source_url": "https://www.tcgplayer.com/product/685501/pokemon-me-mega-evolution-promo-doublade-067-staff",
+      "source_image_url": "https://product-images.tcgplayer.com/685501.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/img22a-mep-staff-stamp-exact/mep/gv-pk-mep-067-staff-stamp-holo/061ad22c5dea5ec493d817d8.jpg",
+      "image_status": "exact"
+    }
+  ],
+  "proof_hash": "970b98099973e2e30df174de21c4c9e0bde80da1ad993faf07df24075477889a"
+}
