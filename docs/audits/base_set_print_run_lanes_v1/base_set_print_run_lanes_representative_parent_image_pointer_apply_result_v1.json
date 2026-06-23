@@ -1,0 +1,63 @@
+{
+  "package_id": "BASE-SET-PRINT-RUN-LANES-REPRESENTATIVE-PARENT-IMAGE-POINTER-APPLY-V1",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T22:13:14.920Z",
+  "source_audit_package_id": "BASE-SET-PRINT-RUN-LANES-IMAGE-GAP-AUDIT-V1",
+  "source_audit_fingerprint": "797668d995eeb7cb633e69ed7eaebc627587bfc60a314ce3dddd55472fd57d2f",
+  "approved_plan_file_hash": "c3ebba06fbb4f71adb7e6ccd0b1b5dc1fd059438cf50d759a24f716318ca0e63",
+  "actual_plan_file_hash": "c3ebba06fbb4f71adb7e6ccd0b1b5dc1fd059438cf50d759a24f716318ca0e63",
+  "source_plan_jsonl": "docs\\audits\\base_set_print_run_lanes_v1\\base_set_print_run_lanes_representative_parent_pointer_candidate_plan_v1.jsonl",
+  "metadata_pointer_update_count": 304,
+  "target_tables": {
+    "card_prints": 304
+  },
+  "set_codes": {
+    "base1-1999-2000": 102,
+    "base1-first-edition": 101,
+    "base1-shadowless": 101
+  },
+  "proposed_image_sources": {
+    "identity": 304
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 304
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "child_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_identity_overwrites_performed": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "797668d995eeb7cb633e69ed7eaebc627587bfc60a314ce3dddd55472fd57d2f",
+  "sql_hash": "59672f0f69ed4223747c7764d0c1c233cc4b31808787fbde69dca88779ab774a",
+  "started_at": "2026-06-23T22:13:15.472Z",
+  "completed_at": "2026-06-23T22:13:16.604Z",
+  "updated_rows": 304,
+  "batch_results": [
+    {
+      "batch_size": 250,
+      "updated_rows": 250
+    },
+    {
+      "batch_size": 54,
+      "updated_rows": 54
+    }
+  ],
+  "post_apply_findings": [],
+  "applied": true,
+  "result_hash": "54d09dd7d8fca2c495e5ec9ebbb211facda4d188909ae38198d9375909b4371f"
+}
