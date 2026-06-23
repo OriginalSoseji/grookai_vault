@@ -1,0 +1,69 @@
+{
+  "contract_key": "BASE_SET_PRINT_RUN_LANES_V1",
+  "status": "active",
+  "date": "2026-06-22",
+  "scope": {
+    "domain": "pokemon_eng_physical",
+    "source_set_code": "base1",
+    "source_set_name": "Base Set",
+    "expected_slots_per_lane": 102
+  },
+  "lanes": [
+    {
+      "lane_code": "base1-unlimited",
+      "label": "Base Set Unlimited",
+      "source_set_code": "base1",
+      "lane_kind": "source_default",
+      "ordinary_slot_count": 102
+    },
+    {
+      "lane_code": "base1-shadowless",
+      "label": "Base Set Shadowless",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "print_run:shadowless"
+    },
+    {
+      "lane_code": "base1-first-edition",
+      "label": "Base Set 1st Edition",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "edition:first_edition;print_run:shadowless"
+    },
+    {
+      "lane_code": "base1-1999-2000",
+      "label": "Base Set 1999-2000",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "print_run:1999-2000"
+    }
+  ],
+  "pikachu_slot_rule": {
+    "number_plain": "58",
+    "special_slot": true,
+    "shadowless_identity_variant_keys": [
+      "shadowless_red_cheeks",
+      "shadowless_yellow_cheeks"
+    ],
+    "first_edition_identity_variant_keys": [
+      "first_edition_red_cheeks",
+      "first_edition_yellow_cheeks"
+    ],
+    "excluded_from_ordinary_lane_coverage": [
+      "ghost_stamp_shadowless"
+    ],
+    "generic_shadowless_row_allowed": false,
+    "generic_first_edition_row_allowed": false
+  },
+  "db_writes_allowed": false,
+  "migrations_allowed": false,
+  "blind_clone_allowed": false,
+  "image_truth_rules": [
+    "Exact images must match the physical print lane.",
+    "Representative imagery must remain labeled as representative or missing lane imagery.",
+    "Current card_prints lane inserts must use image_status=missing plus image_note until exact lane images are cataloged.",
+    "Unlimited imagery must not be silently presented as exact Shadowless, first-edition, or 1999-2000 imagery."
+  ],
+  "audit_script": "scripts/audits/base_set_print_run_lanes_contract_v1.mjs",
+  "audit_output_dir": "docs/audits/base_set_print_run_lanes_v1"
+}

@@ -6,6 +6,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
 import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
+import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -53,6 +54,7 @@ export default async function SetPage({
   const completionPercent = masterSetStats.completionPercent ?? 0;
   const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
   const isSignedIn = Boolean(user?.id);
+  const printRunExplanation = getBaseSetPrintRunLaneExplanation(setDetail.code);
 
   return (
     <main className="gv-page-shell gv-mobile-safe-content">
@@ -80,7 +82,8 @@ export default async function SetPage({
                 {setDetail.name}
               </h1>
               <p className="gv-body-copy max-w-2xl text-[1.08rem]">
-                Browse every reconciled English physical identity, finish, and variant option in this set. Your vault progress is shown against the Master Index.
+                {printRunExplanation?.summary ??
+                  "Browse every reconciled English physical identity, finish, and variant option in this set. Your vault progress is shown against the Master Index."}
               </p>
             </div>
 
@@ -91,6 +94,29 @@ export default async function SetPage({
               ) : null}
               <span className="gv-metadata-pill">{masterSetStats.parentPrintCount} card identities</span>
             </div>
+
+            {printRunExplanation ? (
+              <div className="grid max-w-4xl gap-3 md:grid-cols-3">
+                <div className="gv-soft-surface px-4 py-4">
+                  <p className="gv-eyebrow">Why Different</p>
+                  <p className="mt-2 text-sm font-medium leading-6 text-slate-700 dark:text-slate-300">
+                    {printRunExplanation.whyDifferent}
+                  </p>
+                </div>
+                <div className="gv-soft-surface px-4 py-4">
+                  <p className="gv-eyebrow">Visual Cue</p>
+                  <p className="mt-2 text-sm font-medium leading-6 text-slate-700 dark:text-slate-300">
+                    {printRunExplanation.visualCue}
+                  </p>
+                </div>
+                <div className="gv-soft-surface px-4 py-4">
+                  <p className="gv-eyebrow">Collector Note</p>
+                  <p className="mt-2 text-sm font-medium leading-6 text-slate-700 dark:text-slate-300">
+                    {printRunExplanation.collectorNote}
+                  </p>
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div className="gv-set-progress-panel p-5 sm:p-6">

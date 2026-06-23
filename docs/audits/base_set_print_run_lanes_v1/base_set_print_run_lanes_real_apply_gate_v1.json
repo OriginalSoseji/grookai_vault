@@ -1,0 +1,18 @@
+{
+  "package_id": "BASE-SET-PRINT-RUN-LANES-REAL-APPLY-GATE-V1",
+  "contract_key": "BASE_SET_PRINT_RUN_LANES_V1",
+  "generated_at": "2026-06-23T01:09:44.141Z",
+  "approval_gate_only": true,
+  "apply_executed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "apply_allowed_by_gate": true,
+  "required_real_apply_approval_text": "Approve real BASE-SET-PRINT-RUN-LANES-V1 apply only. Fingerprint: 0591c77f3be63792f0b03a1c980e728604d7abb57d563eba94fae38ff8faf3ee. SQL hash: db97aa1cfafa79d820d756115c6a6f67e1beabe862da05c5fe82e321d6687304. Scope: 3 derived Base Set collector lane set inserts and 304 card_print lane identity inserts for Shadowless, 1st Edition, and 1999-2000. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No child writes. No identity-table writes. No external mapping writes. No price writes. No deletes. No merges. No migrations. No exact image claims. No global apply.",
+  "dry_run_sql_path": "docs/sql/base_set_print_run_lanes_guarded_dry_run_v1.sql",
+  "real_apply_sql_path": "docs/sql/base_set_print_run_lanes_real_apply_v1.sql",
+  "dry_run_sql_hash_sha256": "db97aa1cfafa79d820d756115c6a6f67e1beabe862da05c5fe82e321d6687304",
+  "real_apply_sql_hash_sha256": "0257a2ec83af160bc9607e9f2701fa4ebe874e8574c41ad993a5edf83bde5c8c",
+  "dry_run_proof_digest_sha256": "b94903aba5bbef940b19cd1cb4546a5fcd7e4d59258eec92618eb5faf922e41f",
+  "stop_findings": []
+}

@@ -5,6 +5,11 @@ import { hasChildPrintingPublicIdentityColumn } from "@/lib/cards/childPrintingP
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { hasChildPrintingImageStorageColumns } from "@/lib/cards/childPrintingImageStorage";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import {
+  BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
+  getBaseSetPrintRunLaneCardCountAdjustment,
+  getBaseSetPrintRunLaneSpecialVariantKeys,
+} from "@/lib/baseSetPrintRunLanes";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   matchesPublicSetSearch,
@@ -37,6 +42,7 @@ type PublicSetCardRow = {
   gv_id: string | null;
   name: string | null;
   number: string | null;
+  number_plain: string | null;
   set_code: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
@@ -285,7 +291,9 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       release_date: row.release_date ?? undefined,
       sort_date: getSetSortDate(row),
       release_year: getReleaseYear(row.release_date),
-      card_count: cardCountBySetCode.get(code) ?? 0,
+      card_count:
+        (cardCountBySetCode.get(code) ?? 0) +
+        getBaseSetPrintRunLaneCardCountAdjustment(code),
       normalized_code: normalizeSetCode(code),
       normalized_name: normalizedName,
       normalized_tokens: tokenizeSetWords(displayName),
@@ -358,14 +366,13 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     includePrintingPublicIdentity,
     includeChildPrintingImageFields,
   );
-  const { data, error } = await supabase
-    .from("card_prints")
-    .select(
-      `
+
+  const selectClause = `
       id,
       gv_id,
       name,
       number,
+      number_plain,
       set_code,
       variant_key,
       printed_identity_modifier,
@@ -381,8 +388,52 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
         ${cardPrintingsSelect}
       ),
       sets(identity_model)
-    `,
-    )
+    `;
+  const specialVariantKeys =
+    getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+
+  if (specialVariantKeys.length > 0) {
+    const [primaryResult, specialResult] = await Promise.all([
+      supabase
+        .from("card_prints")
+        .select(selectClause)
+        .eq("set_code", normalizedCode)
+        .not("gv_id", "is", null)
+        .order("number_plain", { ascending: true, nullsFirst: false })
+        .order("number", { ascending: true }),
+      supabase
+        .from("card_prints")
+        .select(selectClause)
+        .eq("set_code", BASE_SET_PRINT_RUN_SOURCE_SET_CODE)
+        .in("variant_key", specialVariantKeys)
+        .not("gv_id", "is", null)
+        .order("number_plain", { ascending: true, nullsFirst: false })
+        .order("variant_key", { ascending: true }),
+    ]);
+
+    if (primaryResult.error) {
+      throw new Error(primaryResult.error.message);
+    }
+    if (specialResult.error) {
+      throw new Error(specialResult.error.message);
+    }
+
+    const rows = [
+      ...((primaryResult.data ?? []) as unknown as PublicSetCardRow[]),
+      ...((specialResult.data ?? []) as unknown as PublicSetCardRow[]),
+    ]
+      .filter((row): row is PublicSetCardRow & { gv_id: string } =>
+        Boolean(row.gv_id),
+      )
+      .sort(comparePublicSetCardRows)
+      .slice(offset, offset + limit);
+
+    return mapPublicSetCardRows(rows);
+  }
+
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
     .eq("set_code", normalizedCode)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
@@ -397,6 +448,29 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     (row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id),
   );
 
+  return mapPublicSetCardRows(rows);
+});
+
+function getCardRowSortNumber(row: PublicSetCardRow) {
+  const parsed = Number.parseInt(row.number_plain ?? row.number ?? "", 10);
+  return Number.isFinite(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
+}
+
+function comparePublicSetCardRows(left: PublicSetCardRow, right: PublicSetCardRow) {
+  const numberCompare = getCardRowSortNumber(left) - getCardRowSortNumber(right);
+  if (numberCompare !== 0) {
+    return numberCompare;
+  }
+
+  return [
+    (left.number ?? "").localeCompare(right.number ?? ""),
+    (left.name ?? "").localeCompare(right.name ?? ""),
+    (left.variant_key ?? "").localeCompare(right.variant_key ?? ""),
+    (left.gv_id ?? "").localeCompare(right.gv_id ?? ""),
+  ].find((value) => value !== 0) ?? 0;
+}
+
+async function mapPublicSetCardRows(rows: Array<PublicSetCardRow & { gv_id: string }>) {
   return Promise.all(
     rows.map(async (row) => {
       const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
@@ -425,7 +499,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       };
     }),
   );
-});
+}
 
 export const getPublicSetDetail = cache(async function getPublicSetDetail(
   setCode: string,

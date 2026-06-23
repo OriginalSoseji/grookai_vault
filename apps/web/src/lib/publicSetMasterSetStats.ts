@@ -3,6 +3,10 @@ import "server-only";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
+import {
+  BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
+  getBaseSetPrintRunLaneSpecialVariantKeys,
+} from "@/lib/baseSetPrintRunLanes";
 
 type CardPrintIdRow = {
   id: string | null;
@@ -73,6 +77,25 @@ async function fetchSetCardPrintIds(setCode: string) {
     }
 
     offset += pageSize;
+  }
+
+  const specialVariantKeys =
+    getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+  if (specialVariantKeys.length > 0) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select("id")
+      .eq("set_code", BASE_SET_PRINT_RUN_SOURCE_SET_CODE)
+      .in("variant_key", specialVariantKeys)
+      .not("gv_id", "is", null);
+
+    if (error) {
+      throw new Error(`[card_prints.master-set-special-ids] ${error.message}`);
+    }
+
+    ids.push(
+      ...normalizeIds(((data ?? []) as CardPrintIdRow[]).map((row) => row.id)),
+    );
   }
 
   return normalizeIds(ids);

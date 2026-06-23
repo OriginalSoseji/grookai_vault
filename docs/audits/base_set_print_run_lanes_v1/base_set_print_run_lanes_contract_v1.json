@@ -1,0 +1,680 @@
+{
+  "contract_key": "BASE_SET_PRINT_RUN_LANES_V1",
+  "generated_at": "2026-06-23T01:17:49.479Z",
+  "write_mode": "read_only_no_db_writes",
+  "source_set": {
+    "id": "fe8f46d4-c078-4734-8fbc-6a62feb326e5",
+    "code": "base1",
+    "name": "Base Set",
+    "printed_set_abbrev": "BS",
+    "printed_total": 102,
+    "identity_model": "standard",
+    "set_role": null,
+    "release_date": "1999-01-09T07:00:00.000Z"
+  },
+  "derived_set_rows": [
+    {
+      "id": "542f2902-b7ab-46c3-be13-796e2ba421c3",
+      "code": "base1-1999-2000",
+      "name": "Base Set 1999-2000",
+      "printed_set_abbrev": "BS",
+      "printed_total": 102,
+      "identity_model": "standard",
+      "set_role": null,
+      "release_date": "1999-01-09T07:00:00.000Z"
+    },
+    {
+      "id": "2c9b328e-60f3-403f-a5d3-d806849b3a65",
+      "code": "base1-first-edition",
+      "name": "Base Set 1st Edition",
+      "printed_set_abbrev": "BS",
+      "printed_total": 102,
+      "identity_model": "standard",
+      "set_role": null,
+      "release_date": "1999-01-09T07:00:00.000Z"
+    },
+    {
+      "id": "a9f553bb-5580-4727-80ca-116018bf6fcc",
+      "code": "base1-shadowless",
+      "name": "Base Set Shadowless",
+      "printed_set_abbrev": "BS",
+      "printed_total": 102,
+      "identity_model": "standard",
+      "set_role": null,
+      "release_date": "1999-01-09T07:00:00.000Z"
+    }
+  ],
+  "expected_slots_per_lane": 102,
+  "ordinary_base_checklist": {
+    "row_count": 102,
+    "slot_count": 102,
+    "expected_slot_count": 102,
+    "complete": true
+  },
+  "pikachu_slot_rule": {
+    "number_plain": "58",
+    "shadowless_identity_variant_keys": [
+      "shadowless_red_cheeks",
+      "shadowless_yellow_cheeks"
+    ],
+    "first_edition_identity_variant_keys": [
+      "first_edition_red_cheeks",
+      "first_edition_yellow_cheeks"
+    ],
+    "excluded_from_ordinary_lane_coverage": [
+      "ghost_stamp_shadowless"
+    ],
+    "generic_shadowless_row_allowed": false,
+    "generic_first_edition_row_allowed": false,
+    "existing_pikachu_rows": [
+      {
+        "gv_id": "GV-PK-BS-58",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "image_status": "exact"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-1999-2000",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "1999_2000",
+        "printed_identity_modifier": "print_run:1999-2000",
+        "image_status": "missing"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-E3-STAMP",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "e3_stamp",
+        "printed_identity_modifier": "e3_stamp",
+        "image_status": "representative_shared_stamp"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "e3_stamp_red_cheeks",
+        "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "e3_stamp_yellow_cheeks",
+        "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "first_edition_red_cheeks",
+        "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "first_edition_yellow_cheeks",
+        "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "ghost_stamp_shadowless",
+        "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "shadowless_red_cheeks",
+        "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+        "image_status": "representative_shared"
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "shadowless_yellow_cheeks",
+        "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+        "image_status": "representative_shared"
+      }
+    ],
+    "ghost_stamp_rows_excluded_from_ordinary_lane_coverage": [
+      {
+        "gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+        "name": "Pikachu",
+        "number": "58",
+        "number_plain": "58",
+        "variant_key": "ghost_stamp_shadowless",
+        "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+        "image_status": "representative_shared"
+      }
+    ]
+  },
+  "lane_audits": [
+    {
+      "lane_code": "base1-unlimited",
+      "label": "Base Set Unlimited",
+      "source_set_code": "base1",
+      "lane_kind": "source_default",
+      "required_modifier": null,
+      "expected_slots": 102,
+      "current_identity_rows": 102,
+      "current_satisfied_slots": 102,
+      "current_missing_slots": 0,
+      "existing_rows_sample": [
+        {
+          "gv_id": "GV-PK-BS-1",
+          "name": "Alakazam",
+          "number": "1",
+          "number_plain": "1",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-2",
+          "name": "Blastoise",
+          "number": "2",
+          "number_plain": "2",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-3",
+          "name": "Chansey",
+          "number": "3",
+          "number_plain": "3",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-4",
+          "name": "Charizard",
+          "number": "4",
+          "number_plain": "4",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-5",
+          "name": "Clefairy",
+          "number": "5",
+          "number_plain": "5",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-6",
+          "name": "Gyarados",
+          "number": "6",
+          "number_plain": "6",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-7",
+          "name": "Hitmonchan",
+          "number": "7",
+          "number_plain": "7",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-8",
+          "name": "Machamp",
+          "number": "8",
+          "number_plain": "8",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-9",
+          "name": "Magneton",
+          "number": "9",
+          "number_plain": "9",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-10",
+          "name": "Mewtwo",
+          "number": "10",
+          "number_plain": "10",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-11",
+          "name": "Nidoking",
+          "number": "11",
+          "number_plain": "11",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        },
+        {
+          "gv_id": "GV-PK-BS-12",
+          "name": "Ninetales",
+          "number": "12",
+          "number_plain": "12",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "image_status": "exact"
+        }
+      ],
+      "missing_slots": [],
+      "proposed_new_identity_rows": [],
+      "proposed_new_identity_row_count": 0
+    },
+    {
+      "lane_code": "base1-shadowless",
+      "label": "Base Set Shadowless",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "print_run:shadowless",
+      "expected_slots": 102,
+      "current_identity_rows": 103,
+      "current_satisfied_slots": 102,
+      "current_missing_slots": 0,
+      "existing_rows_sample": [
+        {
+          "gv_id": "GV-PK-BASE1-1-SHADOWLESS",
+          "name": "Alakazam",
+          "number": "1",
+          "number_plain": "1",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-2-SHADOWLESS",
+          "name": "Blastoise",
+          "number": "2",
+          "number_plain": "2",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-3-SHADOWLESS",
+          "name": "Chansey",
+          "number": "3",
+          "number_plain": "3",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-4-SHADOWLESS",
+          "name": "Charizard",
+          "number": "4",
+          "number_plain": "4",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-5-SHADOWLESS",
+          "name": "Clefairy",
+          "number": "5",
+          "number_plain": "5",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-6-SHADOWLESS",
+          "name": "Gyarados",
+          "number": "6",
+          "number_plain": "6",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-7-SHADOWLESS",
+          "name": "Hitmonchan",
+          "number": "7",
+          "number_plain": "7",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-8-SHADOWLESS",
+          "name": "Machamp",
+          "number": "8",
+          "number_plain": "8",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-9-SHADOWLESS",
+          "name": "Magneton",
+          "number": "9",
+          "number_plain": "9",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-10-SHADOWLESS",
+          "name": "Mewtwo",
+          "number": "10",
+          "number_plain": "10",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-11-SHADOWLESS",
+          "name": "Nidoking",
+          "number": "11",
+          "number_plain": "11",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-12-SHADOWLESS",
+          "name": "Ninetales",
+          "number": "12",
+          "number_plain": "12",
+          "variant_key": "shadowless",
+          "printed_identity_modifier": "print_run:shadowless",
+          "image_status": "missing"
+        }
+      ],
+      "missing_slots": [],
+      "proposed_new_identity_rows": [],
+      "proposed_new_identity_row_count": 0
+    },
+    {
+      "lane_code": "base1-first-edition",
+      "label": "Base Set 1st Edition",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "edition:first_edition;print_run:shadowless",
+      "expected_slots": 102,
+      "current_identity_rows": 103,
+      "current_satisfied_slots": 102,
+      "current_missing_slots": 0,
+      "existing_rows_sample": [
+        {
+          "gv_id": "GV-PK-BASE1-1-FIRST-EDITION",
+          "name": "Alakazam",
+          "number": "1",
+          "number_plain": "1",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-2-FIRST-EDITION",
+          "name": "Blastoise",
+          "number": "2",
+          "number_plain": "2",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-3-FIRST-EDITION",
+          "name": "Chansey",
+          "number": "3",
+          "number_plain": "3",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-4-FIRST-EDITION",
+          "name": "Charizard",
+          "number": "4",
+          "number_plain": "4",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-5-FIRST-EDITION",
+          "name": "Clefairy",
+          "number": "5",
+          "number_plain": "5",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-6-FIRST-EDITION",
+          "name": "Gyarados",
+          "number": "6",
+          "number_plain": "6",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-7-FIRST-EDITION",
+          "name": "Hitmonchan",
+          "number": "7",
+          "number_plain": "7",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-8-FIRST-EDITION",
+          "name": "Machamp",
+          "number": "8",
+          "number_plain": "8",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-9-FIRST-EDITION",
+          "name": "Magneton",
+          "number": "9",
+          "number_plain": "9",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-10-FIRST-EDITION",
+          "name": "Mewtwo",
+          "number": "10",
+          "number_plain": "10",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-11-FIRST-EDITION",
+          "name": "Nidoking",
+          "number": "11",
+          "number_plain": "11",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-12-FIRST-EDITION",
+          "name": "Ninetales",
+          "number": "12",
+          "number_plain": "12",
+          "variant_key": "first_edition",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless",
+          "image_status": "missing"
+        }
+      ],
+      "missing_slots": [],
+      "proposed_new_identity_rows": [],
+      "proposed_new_identity_row_count": 0
+    },
+    {
+      "lane_code": "base1-1999-2000",
+      "label": "Base Set 1999-2000",
+      "source_set_code": "base1",
+      "lane_kind": "derived_print_run",
+      "required_modifier": "print_run:1999-2000",
+      "expected_slots": 102,
+      "current_identity_rows": 102,
+      "current_satisfied_slots": 102,
+      "current_missing_slots": 0,
+      "existing_rows_sample": [
+        {
+          "gv_id": "GV-PK-BASE1-1-1999-2000",
+          "name": "Alakazam",
+          "number": "1",
+          "number_plain": "1",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-2-1999-2000",
+          "name": "Blastoise",
+          "number": "2",
+          "number_plain": "2",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-3-1999-2000",
+          "name": "Chansey",
+          "number": "3",
+          "number_plain": "3",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-4-1999-2000",
+          "name": "Charizard",
+          "number": "4",
+          "number_plain": "4",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-5-1999-2000",
+          "name": "Clefairy",
+          "number": "5",
+          "number_plain": "5",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-6-1999-2000",
+          "name": "Gyarados",
+          "number": "6",
+          "number_plain": "6",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-7-1999-2000",
+          "name": "Hitmonchan",
+          "number": "7",
+          "number_plain": "7",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-8-1999-2000",
+          "name": "Machamp",
+          "number": "8",
+          "number_plain": "8",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-9-1999-2000",
+          "name": "Magneton",
+          "number": "9",
+          "number_plain": "9",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-10-1999-2000",
+          "name": "Mewtwo",
+          "number": "10",
+          "number_plain": "10",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-11-1999-2000",
+          "name": "Nidoking",
+          "number": "11",
+          "number_plain": "11",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-12-1999-2000",
+          "name": "Ninetales",
+          "number": "12",
+          "number_plain": "12",
+          "variant_key": "1999_2000",
+          "printed_identity_modifier": "print_run:1999-2000",
+          "image_status": "missing"
+        }
+      ],
+      "missing_slots": [],
+      "proposed_new_identity_rows": [],
+      "proposed_new_identity_row_count": 0
+    }
+  ],
+  "summary": {
+    "lanes": 4,
+    "derived_set_rows_present": 3,
+    "total_current_lane_identity_rows": 410,
+    "total_current_satisfied_slots": 408,
+    "total_missing_slots": 0,
+    "total_proposed_new_identity_rows": 0,
+    "proposed_rows_with_blockers": 0
+  }
+}

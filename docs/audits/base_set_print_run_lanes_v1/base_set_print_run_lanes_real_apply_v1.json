@@ -1,0 +1,291 @@
+{
+  "package_id": "BASE-SET-PRINT-RUN-LANES-REAL-APPLY-V1",
+  "contract_key": "BASE_SET_PRINT_RUN_LANES_V1",
+  "generated_at": "2026-06-23T01:17:01.049Z",
+  "approval_text": "Approve real BASE-SET-PRINT-RUN-LANES-V1 apply only. Fingerprint: 0591c77f3be63792f0b03a1c980e728604d7abb57d563eba94fae38ff8faf3ee. SQL hash: db97aa1cfafa79d820d756115c6a6f67e1beabe862da05c5fe82e321d6687304. Scope: 3 derived Base Set collector lane set inserts and 304 card_print lane identity inserts for Shadowless, 1st Edition, and 1999-2000. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No child writes. No identity-table writes. No external mapping writes. No price writes. No deletes. No merges. No migrations. No exact image claims. No global apply.",
+  "real_apply_sql_path": "docs/sql/base_set_print_run_lanes_real_apply_v1.sql",
+  "real_apply_sql_hash_sha256": "0257a2ec83af160bc9607e9f2701fa4ebe874e8574c41ad993a5edf83bde5c8c",
+  "apply_executed": true,
+  "durable_db_writes_performed": true,
+  "inserted_set_rows": 3,
+  "inserted_card_print_rows": 304,
+  "before_snapshot": {
+    "captured_at": "2026-06-23T01:17:00.454Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "total_rows": 0,
+      "set_rows": 0,
+      "card_print_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-23T01:17:00.895Z",
+    "rows": [
+      {
+        "row_type": "card_print",
+        "id": "38eb357c-736c-4d24-a56c-55b34447cb13",
+        "code": "base1-1999-2000",
+        "name": "Alakazam",
+        "gv_id": "GV-PK-BASE1-1-1999-2000",
+        "number_plain": "1",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "4e4df92f-ffd6-4f83-85c4-3ee81a6b8e96",
+        "code": "base1-1999-2000",
+        "name": "Mewtwo",
+        "gv_id": "GV-PK-BASE1-10-1999-2000",
+        "number_plain": "10",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "3e0536bd-11c2-44c2-8fa0-ddc9663d767c",
+        "code": "base1-1999-2000",
+        "name": "Lightning Energy",
+        "gv_id": "GV-PK-BASE1-100-1999-2000",
+        "number_plain": "100",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "f63f7e24-196c-4cdc-88a4-8cdf4eebda0f",
+        "code": "base1-1999-2000",
+        "name": "Psychic Energy",
+        "gv_id": "GV-PK-BASE1-101-1999-2000",
+        "number_plain": "101",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "d5305306-9b80-4be0-8dbb-a6c0646f703c",
+        "code": "base1-1999-2000",
+        "name": "Water Energy",
+        "gv_id": "GV-PK-BASE1-102-1999-2000",
+        "number_plain": "102",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "8df4d1f6-46f5-47cc-b480-6afd30cb7e2b",
+        "code": "base1-1999-2000",
+        "name": "Nidoking",
+        "gv_id": "GV-PK-BASE1-11-1999-2000",
+        "number_plain": "11",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "4168d1d8-e7c6-495d-9b2d-dacc7c2815a4",
+        "code": "base1-1999-2000",
+        "name": "Ninetales",
+        "gv_id": "GV-PK-BASE1-12-1999-2000",
+        "number_plain": "12",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "f78191cd-f36b-4759-9826-300c2963c8a4",
+        "code": "base1-1999-2000",
+        "name": "Poliwrath",
+        "gv_id": "GV-PK-BASE1-13-1999-2000",
+        "number_plain": "13",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "2fb38836-b2e0-4e44-98a4-545c43a0d45f",
+        "code": "base1-1999-2000",
+        "name": "Raichu",
+        "gv_id": "GV-PK-BASE1-14-1999-2000",
+        "number_plain": "14",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "176db31a-ccac-4636-8bf8-a4ce81a08662",
+        "code": "base1-1999-2000",
+        "name": "Venusaur",
+        "gv_id": "GV-PK-BASE1-15-1999-2000",
+        "number_plain": "15",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "37fb3c2b-313b-4799-839a-e890eca79cb6",
+        "code": "base1-1999-2000",
+        "name": "Zapdos",
+        "gv_id": "GV-PK-BASE1-16-1999-2000",
+        "number_plain": "16",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "a112dcb7-fe3a-45ea-a4fe-1ceb723cc0d7",
+        "code": "base1-1999-2000",
+        "name": "Beedrill",
+        "gv_id": "GV-PK-BASE1-17-1999-2000",
+        "number_plain": "17",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "f77997bc-a8cd-4b1e-ac40-c706b93e4b5e",
+        "code": "base1-1999-2000",
+        "name": "Dragonair",
+        "gv_id": "GV-PK-BASE1-18-1999-2000",
+        "number_plain": "18",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "9471be2d-357e-4903-b4ec-79b369429f8f",
+        "code": "base1-1999-2000",
+        "name": "Dugtrio",
+        "gv_id": "GV-PK-BASE1-19-1999-2000",
+        "number_plain": "19",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "3b677f8e-0cd5-47c4-ab81-e3cbfa9e2e52",
+        "code": "base1-1999-2000",
+        "name": "Blastoise",
+        "gv_id": "GV-PK-BASE1-2-1999-2000",
+        "number_plain": "2",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "fee8ef7c-f0dd-4df5-9b0b-015a4ebb6cfc",
+        "code": "base1-1999-2000",
+        "name": "Electabuzz",
+        "gv_id": "GV-PK-BASE1-20-1999-2000",
+        "number_plain": "20",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "2f764afe-7ba3-44b5-b30b-297abb64d57e",
+        "code": "base1-1999-2000",
+        "name": "Electrode",
+        "gv_id": "GV-PK-BASE1-21-1999-2000",
+        "number_plain": "21",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "55e0c4bd-60ed-4c6c-b734-bc69ba990959",
+        "code": "base1-1999-2000",
+        "name": "Pidgeotto",
+        "gv_id": "GV-PK-BASE1-22-1999-2000",
+        "number_plain": "22",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "cb142ec8-4d09-4612-96ff-3fe553e34029",
+        "code": "base1-1999-2000",
+        "name": "Arcanine",
+        "gv_id": "GV-PK-BASE1-23-1999-2000",
+        "number_plain": "23",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      },
+      {
+        "row_type": "card_print",
+        "id": "509f63be-1bc3-44c4-971d-33a8f1a781ab",
+        "code": "base1-1999-2000",
+        "name": "Charmeleon",
+        "gv_id": "GV-PK-BASE1-24-1999-2000",
+        "number_plain": "24",
+        "variant_key": "1999_2000",
+        "image_status": "missing"
+      }
+    ],
+    "hash_sha256": "1a0e136cc337b207699165ad901288407fa71be31637b03fde015068bce7f3ed",
+    "counts": {
+      "total_rows": 307,
+      "set_rows": 3,
+      "card_print_rows": 304
+    }
+  },
+  "post_apply_lane_proof": {
+    "lanes": [
+      {
+        "lane_code": "base1-1999-2000",
+        "set_rows": 1,
+        "lane_card_print_rows": 102,
+        "covered_slots": 102,
+        "special_pikachu_identity_rows": 0,
+        "missing_image_status_rows": 102
+      },
+      {
+        "lane_code": "base1-first-edition",
+        "set_rows": 1,
+        "lane_card_print_rows": 101,
+        "covered_slots": 102,
+        "special_pikachu_identity_rows": 2,
+        "missing_image_status_rows": 101
+      },
+      {
+        "lane_code": "base1-shadowless",
+        "set_rows": 1,
+        "lane_card_print_rows": 101,
+        "covered_slots": 102,
+        "special_pikachu_identity_rows": 2,
+        "missing_image_status_rows": 101
+      }
+    ],
+    "forbidden_rows": 0
+  },
+  "apply_proof_row": {
+    "package_id": "BASE-SET-PRINT-RUN-LANES-GUARDED-DRY-RUN-V1",
+    "contract_key": "BASE_SET_PRINT_RUN_LANES_V1",
+    "audit_fingerprint_sha256": "0591c77f3be63792f0b03a1c980e728604d7abb57d563eba94fae38ff8faf3ee",
+    "inserted_set_rows": 3,
+    "inserted_card_print_rows": 304,
+    "forbidden_rows": 0,
+    "lane_slot_proof": [
+      {
+        "lane_code": "base1-1999-2000",
+        "inserted_slots": 102,
+        "covered_slots_after_plan": 102,
+        "existing_special_pikachu_slot": 0
+      },
+      {
+        "lane_code": "base1-first-edition",
+        "inserted_slots": 101,
+        "covered_slots_after_plan": 102,
+        "existing_special_pikachu_slot": 1
+      },
+      {
+        "lane_code": "base1-shadowless",
+        "inserted_slots": 101,
+        "covered_slots_after_plan": 102,
+        "existing_special_pikachu_slot": 1
+      }
+    ]
+  },
+  "stop_findings": []
+}
