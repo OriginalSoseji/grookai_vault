@@ -82,8 +82,9 @@ export function toLegacyCompatibleGvId(value: string) {
 }
 
 export function getCompatiblePublicGvIdCandidates(value: string) {
+  const requested = value.trim();
   const normalized = normalizeRequestedPublicGvId(value);
-  const candidates = [normalized];
+  const candidates = [requested, normalized];
 
   if (getLegacyAliasRule(normalized)) {
     candidates.push(toCanonicalPublicGvId(normalized));

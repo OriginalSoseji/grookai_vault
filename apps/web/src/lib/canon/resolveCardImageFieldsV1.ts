@@ -69,9 +69,35 @@ const KNOWN_BROKEN_TCGDEX_IMAGE_NOTE =
   "Image blocked: known upstream TCGdex asset URL returns 404 and needs a verified replacement.";
 const POKEMON_TCG_TRAINER_KIT_SET_CODE_ALIASES: Record<string, string> = {
   "tk-ex-latia": "tk1a",
+  "tk-ex-latio": "tk1b",
   "tk-ex-m": "tk2b",
   "tk-ex-p": "tk2a",
   tk2b: "tk2b",
+};
+const MALIE_TRAINER_KIT_SET_IMAGE_PLANS: Record<
+  string,
+  { series: string; code: string; folder: string }
+> = {
+  "tk-bw-z": { series: "BW", code: "TK5A", folder: "TK_Zoroark" },
+  "tk-bw-e": { series: "BW", code: "TK5B", folder: "TK_Excadrill" },
+  "tk-xy-n": { series: "XY", code: "TK6A", folder: "TK_Noivern" },
+  "tk-xy-sy": { series: "XY", code: "TK6B", folder: "TK_Sylveon" },
+  "tk-xy-b": { series: "XY", code: "TK7A", folder: "TK_Bisharp" },
+  "tk-xy-w": { series: "XY", code: "TK7B", folder: "TK_Wigglytuff" },
+  "tk-xy-latio": { series: "XY", code: "TK8A", folder: "TK_Latios" },
+  "tk-xy-latia": { series: "XY", code: "TK8B", folder: "TK_Latias" },
+  "tk-xy-p": { series: "XY", code: "TK9A", folder: "TK_PikachuLibre" },
+  "tk-xy-su": { series: "XY", code: "TK9B", folder: "TK_Suicune" },
+  "tk-sm-l": { series: "SM", code: "TK10A", folder: "TK_Lycanroc" },
+  "tk-sm-r": { series: "SM", code: "TK10B", folder: "TK_AlolanRaichu" },
+};
+
+type SourceBackedReplacementImage = {
+  url: string;
+  image_source: string;
+  image_status: "exact" | "representative_shared";
+  image_note: string;
+  display_image_kind: "exact" | "representative";
 };
 
 function normalizeTextOrNull(value: unknown) {
@@ -189,9 +215,48 @@ function getNumericCardNumber(cardPrint: CardImageLike | null | undefined) {
   return null;
 }
 
-function getSourceBackedReplacementImageUrl(
+function getPaddedNumericCardNumber(cardPrint: CardImageLike | null | undefined) {
+  const number = getNumericCardNumber(cardPrint);
+  return number ? number.padStart(3, "0") : null;
+}
+
+function slugForMalieTrainerKitImage(value: unknown) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) {
+    return null;
+  }
+
+  const slug = normalized
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['\u2018\u2019`]/g, "")
+    .replace(/&/g, " and ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .replace(/_+/g, "_");
+
+  return slug.length > 0 ? slug : null;
+}
+
+function getMalieTrainerKitReplacementImageUrl(
   cardPrint: CardImageLike | null | undefined,
 ) {
+  const setCode = normalizeLowerOrNull(cardPrint?.set_code);
+  const plan = setCode ? MALIE_TRAINER_KIT_SET_IMAGE_PLANS[setCode] : null;
+  const number = getPaddedNumericCardNumber(cardPrint);
+  const nameSlug = slugForMalieTrainerKitImage(cardPrint?.name);
+
+  if (!plan || !number || !nameSlug) {
+    return null;
+  }
+
+  return `https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/${encodeURIComponent(plan.series)}/${encodeURIComponent(plan.code)}-${encodeURIComponent(plan.folder)}/en_US-${encodeURIComponent(plan.code)}-${encodeURIComponent(number)}-${encodeURIComponent(nameSlug)}.jpg`;
+}
+
+function getSourceBackedReplacementImage(
+  cardPrint: CardImageLike | null | undefined,
+): SourceBackedReplacementImage | null {
   const setCode = normalizeLowerOrNull(cardPrint?.set_code);
   const number = getNumericCardNumber(cardPrint);
 
@@ -201,17 +266,74 @@ function getSourceBackedReplacementImageUrl(
     Number(number) >= 1 &&
     Number(number) <= 25
   ) {
-    return `https://images.pokemontcg.io/mcd21/${encodeURIComponent(number)}_hires.png`;
+    return {
+      url: `https://images.pokemontcg.io/mcd21/${encodeURIComponent(number)}_hires.png`,
+      image_source: "pokemonapi",
+      image_status: "exact",
+      image_note:
+        "Source-backed replacement: PokemonTCG image used because the TCGdex asset URL returns 404.",
+      display_image_kind: "exact",
+    };
   }
 
   const trainerKitPokemonTcgSetCode = setCode
     ? POKEMON_TCG_TRAINER_KIT_SET_CODE_ALIASES[setCode]
     : null;
   if (trainerKitPokemonTcgSetCode && number) {
-    return `https://images.pokemontcg.io/${encodeURIComponent(trainerKitPokemonTcgSetCode)}/${encodeURIComponent(number)}_hires.png`;
+    return {
+      url: `https://images.pokemontcg.io/${encodeURIComponent(trainerKitPokemonTcgSetCode)}/${encodeURIComponent(number)}_hires.png`,
+      image_source: "pokemonapi",
+      image_status: "exact",
+      image_note:
+        "Source-backed replacement: PokemonTCG image used because the TCGdex asset URL returns 404.",
+      display_image_kind: "exact",
+    };
+  }
+
+  const malieTrainerKitReplacementUrl =
+    getMalieTrainerKitReplacementImageUrl(cardPrint);
+  if (malieTrainerKitReplacementUrl) {
+    return {
+      url: malieTrainerKitReplacementUrl,
+      image_source: "external",
+      image_status: "representative_shared",
+      image_note:
+        "Source-backed representative display: Malie Trainer Kit image used because the upstream TCGdex asset is missing or unavailable.",
+      display_image_kind: "representative",
+    };
   }
 
   return null;
+}
+
+function buildSourceBackedReplacementFields(
+  replacementImage: SourceBackedReplacementImage,
+): ResolvedCardImageFieldsV1 {
+  if (replacementImage.image_status === "exact") {
+    return {
+      image_url: replacementImage.url,
+      representative_image_url: null,
+      image_status: replacementImage.image_status,
+      image_note: replacementImage.image_note,
+      image_source: replacementImage.image_source,
+      display_image_url: replacementImage.url,
+      display_image_kind: replacementImage.display_image_kind,
+      image_path: null,
+      exact_image_source: "external",
+    };
+  }
+
+  return {
+    image_url: null,
+    representative_image_url: replacementImage.url,
+    image_status: replacementImage.image_status,
+    image_note: replacementImage.image_note,
+    image_source: replacementImage.image_source,
+    display_image_url: replacementImage.url,
+    display_image_kind: replacementImage.display_image_kind,
+    image_path: null,
+    exact_image_source: "none",
+  };
 }
 
 function normalizeImageStatus(
@@ -294,20 +416,9 @@ export async function resolveCardImageFieldsV1(
   }
 
   if (hasKnownBrokenTcgdexImageReference(cardPrint)) {
-    const replacementImageUrl = getSourceBackedReplacementImageUrl(cardPrint);
-    if (replacementImageUrl) {
-      return {
-        image_url: replacementImageUrl,
-        representative_image_url: null,
-        image_status: "exact",
-        image_note:
-          "Source-backed replacement: PokemonTCG image used because the TCGdex asset URL returns 404.",
-        image_source: "pokemonapi",
-        display_image_url: replacementImageUrl,
-        display_image_kind: "exact",
-        image_path: null,
-        exact_image_source: "external",
-      };
+    const replacementImage = getSourceBackedReplacementImage(cardPrint);
+    if (replacementImage) {
+      return buildSourceBackedReplacementFields(replacementImage);
     }
 
     return {
@@ -368,6 +479,11 @@ export async function resolveCardImageFieldsV1(
       image_path: exactImage.image_path,
       exact_image_source: exactImage.source,
     };
+  }
+
+  const replacementImage = getSourceBackedReplacementImage(cardPrint);
+  if (replacementImage) {
+    return buildSourceBackedReplacementFields(replacementImage);
   }
 
   return {

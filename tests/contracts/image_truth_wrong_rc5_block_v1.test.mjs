@@ -68,8 +68,25 @@ test("image resolver replaces source-backed EX trainer kit aliases and blocks un
   assert.match(source, /assets\.tcgdex\.net\/en\/tk\//);
   assert.match(source, /POKEMON_TCG_TRAINER_KIT_SET_CODE_ALIASES/);
   assert.match(source, /"tk-ex-latia": "tk1a"/);
+  assert.match(source, /"tk-ex-latio": "tk1b"/);
   assert.match(source, /"tk-ex-m": "tk2b"/);
   assert.match(source, /"tk-ex-p": "tk2a"/);
+  assert.match(source, /MALIE_TRAINER_KIT_SET_IMAGE_PLANS/);
+  assert.match(source, /"tk-sm-l": \{ series: "SM", code: "TK10A", folder: "TK_Lycanroc" \}/);
+  assert.match(source, /"tk-sm-r": \{ series: "SM", code: "TK10B", folder: "TK_AlolanRaichu" \}/);
+  assert.match(source, /"tk-xy-b": \{ series: "XY", code: "TK7A", folder: "TK_Bisharp" \}/);
+  assert.match(source, /"tk-xy-w": \{ series: "XY", code: "TK7B", folder: "TK_Wigglytuff" \}/);
+  assert.match(source, /"tk-xy-n": \{ series: "XY", code: "TK6A", folder: "TK_Noivern" \}/);
+  assert.match(source, /"tk-xy-sy": \{ series: "XY", code: "TK6B", folder: "TK_Sylveon" \}/);
+  assert.match(source, /"tk-xy-p": \{ series: "XY", code: "TK9A", folder: "TK_PikachuLibre" \}/);
+  assert.match(source, /"tk-xy-su": \{ series: "XY", code: "TK9B", folder: "TK_Suicune" \}/);
+  assert.match(source, /"tk-xy-latia": \{ series: "XY", code: "TK8B", folder: "TK_Latias" \}/);
+  assert.match(source, /"tk-xy-latio": \{ series: "XY", code: "TK8A", folder: "TK_Latios" \}/);
+  assert.match(source, /"tk-bw-e": \{ series: "BW", code: "TK5B", folder: "TK_Excadrill" \}/);
+  assert.match(source, /"tk-bw-z": \{ series: "BW", code: "TK5A", folder: "TK_Zoroark" \}/);
+  assert.match(source, /cdn\.malie\.io\/file\/malie-io\/art\/cards\/jpg\/en_US/);
+  assert.match(source, /image_status: "representative_shared"/);
+  assert.match(source, /display_image_kind: "representative"/);
   assert.match(source, /KNOWN_BROKEN_TCGDEX_IMAGE_NOTE/);
   assert.match(source, /display_image_kind: "blocked"/);
 });
@@ -116,4 +133,15 @@ test("Dex species detail uses shared child image fallback and does not resurrect
     /resolveDisplayImageUrl/,
     "Dex must not fall back to raw legacy image URLs after the image resolver blocks or withholds display imagery",
   );
+});
+
+test("public GV ID route lookup preserves mixed-case database identifiers", () => {
+  const source = readFileSync(
+    new URL("../../apps/web/src/lib/gvIdAlias.ts", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(source, /const requested = value\.trim\(\);/);
+  assert.match(source, /const candidates = \[requested, normalized\];/);
+  assert.match(source, /return uniqueValues\(candidates\);/);
 });
