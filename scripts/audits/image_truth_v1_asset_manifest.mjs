@@ -11,6 +11,7 @@ const ASSET_MANIFEST_JSON = path.join(OUTPUT_DIR, 'image_truth_missing_display_a
 const ASSET_MANIFEST_MD = path.join(OUTPUT_DIR, 'image_truth_missing_display_asset_manifest_v1.md');
 const IMAGE_SOURCE_STATUSES = new Set(['source_url_preserved', 'representative_source_url_preserved']);
 const FETCH_TIMEOUT_MS = 20000;
+const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
 function clean(value) {
   const normalized = String(value ?? '').trim();
@@ -90,6 +91,28 @@ async function fetchHtmlWithPowerShell(url) {
   return result.stdout;
 }
 
+async function fetchHtmlWithCurl(url) {
+  if (process.platform !== 'win32') return null;
+  const result = await execFileAsync('curl.exe', [
+    '--ssl-no-revoke',
+    '-L',
+    '--max-time',
+    '30',
+    '-A',
+    BROWSER_USER_AGENT,
+    url,
+  ], {
+    maxBuffer: 8 * 1024 * 1024,
+    timeout: 45000,
+  });
+  return result.stdout;
+}
+
+function isCloudflareChallengeHtml(html) {
+  const normalized = String(html ?? '').toLowerCase();
+  return normalized.includes('just a moment') && normalized.includes('challenge-platform');
+}
+
 async function fetchHtml(url) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -101,13 +124,20 @@ async function fetchHtml(url) {
         accept: 'text/html',
       },
     });
-    if (response.ok) return await response.text();
+    if (response.ok) {
+      const html = await response.text();
+      if (!isCloudflareChallengeHtml(html)) return html;
+    }
   } catch {
     // Fall through to PowerShell on Windows, which uses the OS certificate store.
   } finally {
     clearTimeout(timeout);
   }
-  return fetchHtmlWithPowerShell(url);
+  let html = await fetchHtmlWithPowerShell(url);
+  if (html && !isCloudflareChallengeHtml(html)) return html;
+  html = await fetchHtmlWithCurl(url);
+  if (html && !isCloudflareChallengeHtml(html)) return html;
+  return html;
 }
 
 async function fetchJson(url) {
@@ -168,6 +198,11 @@ function isTcgCollectorMfbRepresentativeSource(source) {
     && String(source?.source_url ?? '').startsWith('https://www.tcgcollector.com/cards/');
 }
 
+function isTcgCollectorCardVariantSource(source) {
+  return source?.source_key === 'tcgcollector_card_variants'
+    && String(source?.source_url ?? '').startsWith('https://www.tcgcollector.com/cards/');
+}
+
 function isTcgdexApiCardSource(url) {
   return String(url ?? '').startsWith('https://api.tcgdex.net/v2/en/cards/');
 }
@@ -221,7 +256,7 @@ async function fetchImageHeadWithPowerShell(url) {
 
 async function fetchImageHeadWithCurl(url) {
   if (process.platform !== 'win32') return null;
-  const result = await execFileAsync('curl.exe', ['--ssl-no-revoke', '-L', '-I', '--max-time', '20', url], {
+  const result = await execFileAsync('curl.exe', ['--ssl-no-revoke', '-L', '-I', '--max-time', '20', '-A', BROWSER_USER_AGENT, url], {
     maxBuffer: 128 * 1024,
     timeout: 30000,
   });
@@ -338,6 +373,43 @@ function findTcgCollectorImage(row, html) {
     return alt.includes(name) && alt.includes('my first battle');
   });
   return images[0] ?? null;
+}
+
+function tagAttribute(tag, attrName) {
+  const match = String(tag ?? '').match(new RegExp(`\\b${attrName}=["']([^"']*)["']`, 'i'));
+  return clean(decodeHtml(match?.[1]));
+}
+
+function findTcgCollectorOgImage(html) {
+  const metaTags = String(html ?? '').match(/<meta\b[^>]*>/gi) ?? [];
+  for (const tag of metaTags) {
+    const property = tagAttribute(tag, 'property') ?? tagAttribute(tag, 'name');
+    if (String(property ?? '').toLowerCase() !== 'og:image') continue;
+    const content = tagAttribute(tag, 'content');
+    if (String(content ?? '').startsWith('https://static.tcgcollector.com/content/images/')) return content;
+  }
+  const jsonLdBlocks = String(html ?? '').match(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) ?? [];
+  for (const block of jsonLdBlocks) {
+    const match = block.match(/"@type"\s*:\s*"ImageObject"[\s\S]*?"url"\s*:\s*"([^"]+)"/i);
+    const url = clean(match?.[1]?.replace(/\\\//g, '/'));
+    if (String(url ?? '').startsWith('https://static.tcgcollector.com/content/images/')) return url;
+  }
+  return null;
+}
+
+function tcgCollectorPageMatches(row, html, sourceUrl) {
+  const title = htmlTitle(html);
+  const pageText = normalizeText(title);
+  const cardName = normalizeText(row.card_name);
+  const setName = normalizeText(row.set_name);
+  const number = normalizeNumber(row.number);
+  const sourcePath = String(sourceUrl ?? '').toLowerCase();
+  if (!pageText || !cardName || !setName || !number) return false;
+  if (!pageText.includes(cardName)) return false;
+  if (!pageText.includes(setName)) return false;
+  if (pageText.includes(' list')) return false;
+  if (sourcePath.match(new RegExp(`-${number}-\\d+(?:$|[/?#])`, 'i'))) return true;
+  return pageText.includes(` ${number} 30`) || pageText.endsWith(` ${number} 30 international tcg tcg collector`);
 }
 
 function attachSource(asset, source, sourceAttempts = []) {
@@ -501,6 +573,63 @@ async function extractAssetFromSource(row, source) {
       image_alt: source.evidence_label,
       image_confidence: 'representative',
       reason: 'TCGCollector card page and image matched the exact card identity. Stored as representative because the Grookai row is the generic My First Battle trainer row while source imagery is deck-specific.',
+    };
+  }
+
+  if (isTcgCollectorCardVariantSource(source)) {
+    let html;
+    try {
+      html = await fetchHtml(source.source_url);
+    } catch (error) {
+      return {
+        asset_status: 'asset_fetch_failed',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `TCGCollector card page fetch failed: ${error?.message ?? 'unknown error'}`,
+      };
+    }
+    if (!tcgCollectorPageMatches(row, html, source.source_url)) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `TCGCollector card page did not match target card name, set, and number. title=${htmlTitle(html) ?? 'missing'}`,
+      };
+    }
+    const assetUrl = findTcgCollectorOgImage(html);
+    if (!assetUrl) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: 'TCGCollector card page did not expose a supported static image URL.',
+      };
+    }
+    let verified;
+    try {
+      verified = await verifyImageUrl(assetUrl);
+    } catch (error) {
+      return {
+        asset_status: 'asset_fetch_failed',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `TCGCollector image probe failed: ${error?.message ?? 'unknown error'}`,
+      };
+    }
+    if (!verified?.ok) {
+      return {
+        asset_status: 'asset_not_found_or_not_exact',
+        asset_url: null,
+        image_confidence: row.image_confidence,
+        reason: `TCGCollector image URL did not return an image. status=${verified?.statusCode ?? 'unknown'} content_type=${verified?.contentType ?? 'unknown'}`,
+      };
+    }
+    return {
+      asset_status: 'representative_image_url_preserved',
+      asset_url: assetUrl,
+      image_alt: `TCGCollector card image for ${row.card_name} ${row.set_name} ${row.number}`,
+      image_confidence: 'representative',
+      reason: 'TCGCollector card page matched the target card name, set, and number, and exposed a verified static card image URL. Stored as representative because source imagery is card-level, not independently proven as exact finish texture.',
     };
   }
 
