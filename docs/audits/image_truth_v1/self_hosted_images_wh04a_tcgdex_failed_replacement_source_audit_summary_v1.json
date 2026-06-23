@@ -1,0 +1,329 @@
+{
+  "package_id": "IMG-HOST-WH-04A-TCGDEX-FAILED-REPLACEMENT-SOURCE-AUDIT",
+  "generated_at": "2026-06-23T17:41:56.521Z",
+  "mode": "read_only_replacement_source_audit",
+  "source_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh01a_results_v1.jsonl",
+  "result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh04a_tcgdex_failed_replacement_source_audit_v1.jsonl",
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "exact_image_claim_changes_performed": false,
+  "args": {
+    "resume": false,
+    "limit": 0,
+    "concurrency": 10,
+    "timeoutMs": 25000,
+    "maxHours": 8
+  },
+  "run_stats": {
+    "processed_this_run": 12333,
+    "skipped_completed": 0,
+    "pending_before_run": 12333
+  },
+  "total_result_rows": 12333,
+  "replacement_found_rows": 12198,
+  "replacement_missing_rows": 135,
+  "physical_replacement_found_rows": 11527,
+  "tcg_pocket_review_replacement_found_rows": 671,
+  "by_replacement_route": {
+    "no_candidate_rule": 135,
+    "replacement_malie_trainer_kit": 90,
+    "replacement_pokemontcg_trainer_kit": 10,
+    "replacement_tcgcollector_trainer_kit": 2,
+    "tcgdex_high_suffix_repair": 12096
+  },
+  "by_replacement_confidence": {
+    "high": 10,
+    "high_url_repair": 11425,
+    "medium_representative_only": 92,
+    "none": 135,
+    "tcg_pocket_review_required": 671
+  },
+  "by_set_code_top": [
+    {
+      "key": "B1",
+      "count": 331
+    },
+    {
+      "key": "A1",
+      "count": 285
+    },
+    {
+      "key": "swshp",
+      "count": 285
+    },
+    {
+      "key": "sv01",
+      "count": 258
+    },
+    {
+      "key": "sv04.5",
+      "count": 245
+    },
+    {
+      "key": "me04",
+      "count": 244
+    },
+    {
+      "key": "sv03",
+      "count": 230
+    },
+    {
+      "key": "sv05",
+      "count": 218
+    },
+    {
+      "key": "sv03.5",
+      "count": 207
+    },
+    {
+      "key": "swsh2",
+      "count": 201
+    },
+    {
+      "key": "sm11",
+      "count": 200
+    },
+    {
+      "key": "swsh1",
+      "count": 200
+    },
+    {
+      "key": "swsh3",
+      "count": 200
+    },
+    {
+      "key": "swsh4",
+      "count": 200
+    },
+    {
+      "key": "swsh6",
+      "count": 200
+    },
+    {
+      "key": "swsh8",
+      "count": 199
+    },
+    {
+      "key": "sm9",
+      "count": 196
+    },
+    {
+      "key": "svp",
+      "count": 193
+    },
+    {
+      "key": "swsh5",
+      "count": 183
+    },
+    {
+      "key": "sv02",
+      "count": 180
+    },
+    {
+      "key": "sv08.5",
+      "count": 180
+    },
+    {
+      "key": "unknown",
+      "count": 176
+    },
+    {
+      "key": "ecard2",
+      "count": 173
+    },
+    {
+      "key": "sv10.5w",
+      "count": 173
+    },
+    {
+      "key": "sv10.5b",
+      "count": 172
+    },
+    {
+      "key": "sm1",
+      "count": 171
+    },
+    {
+      "key": "ecard3",
+      "count": 170
+    },
+    {
+      "key": "ecard1",
+      "count": 165
+    },
+    {
+      "key": "xy5",
+      "count": 164
+    },
+    {
+      "key": "bw7",
+      "count": 153
+    }
+  ],
+  "replacement_by_set_code_top": [
+    {
+      "key": "B1",
+      "count": 331
+    },
+    {
+      "key": "A1",
+      "count": 285
+    },
+    {
+      "key": "swshp",
+      "count": 285
+    },
+    {
+      "key": "sv01",
+      "count": 258
+    },
+    {
+      "key": "sv04.5",
+      "count": 245
+    },
+    {
+      "key": "me04",
+      "count": 244
+    },
+    {
+      "key": "sv03",
+      "count": 230
+    },
+    {
+      "key": "sv05",
+      "count": 218
+    },
+    {
+      "key": "sv03.5",
+      "count": 207
+    },
+    {
+      "key": "swsh2",
+      "count": 201
+    },
+    {
+      "key": "sm11",
+      "count": 200
+    },
+    {
+      "key": "swsh1",
+      "count": 200
+    },
+    {
+      "key": "swsh3",
+      "count": 200
+    },
+    {
+      "key": "swsh4",
+      "count": 200
+    },
+    {
+      "key": "swsh6",
+      "count": 200
+    },
+    {
+      "key": "swsh8",
+      "count": 199
+    },
+    {
+      "key": "sm9",
+      "count": 196
+    },
+    {
+      "key": "svp",
+      "count": 192
+    },
+    {
+      "key": "swsh5",
+      "count": 183
+    },
+    {
+      "key": "sv02",
+      "count": 180
+    },
+    {
+      "key": "sv08.5",
+      "count": 180
+    },
+    {
+      "key": "unknown",
+      "count": 176
+    },
+    {
+      "key": "sv10.5w",
+      "count": 173
+    },
+    {
+      "key": "sv10.5b",
+      "count": 172
+    },
+    {
+      "key": "sm1",
+      "count": 171
+    },
+    {
+      "key": "ecard1",
+      "count": 165
+    },
+    {
+      "key": "xy5",
+      "count": 164
+    },
+    {
+      "key": "bw7",
+      "count": 153
+    },
+    {
+      "key": "dp6",
+      "count": 146
+    },
+    {
+      "key": "xy1",
+      "count": 146
+    }
+  ],
+  "unresolved_by_set_code_top": [
+    {
+      "key": "ecard2",
+      "count": 40
+    },
+    {
+      "key": "ecard3",
+      "count": 32
+    },
+    {
+      "key": "mep",
+      "count": 16
+    },
+    {
+      "key": "bog",
+      "count": 13
+    },
+    {
+      "key": "ex5.5",
+      "count": 10
+    },
+    {
+      "key": "tk1b",
+      "count": 10
+    },
+    {
+      "key": "hsp",
+      "count": 9
+    },
+    {
+      "key": "bwp",
+      "count": 3
+    },
+    {
+      "key": "pl2",
+      "count": 1
+    },
+    {
+      "key": "svp",
+      "count": 1
+    }
+  ],
+  "proof_hash": "cc2bc09597a1ebaa39f8cbf96f4cd0c3ed881f809fa4a18ce4e2ab01f020ad56"
+}
