@@ -1,0 +1,21 @@
+# IMG-HOST-WH-04C-TCGDEX-REPLACEMENT-STORAGE-UPLOAD-APPLY
+
+- Completed: 2026-06-23T17:56:28.000Z
+- Fingerprint: `bc4fe59f62378f058c174f67bcafcf1735a5774f19aa693bae4cd856e27fc5a0`
+- Proof hash: `09b40f98bdab0fb6c0025f54301de45e449245ada0ae234429bdb68a69aa5fff`
+- Upload objects in scope: 11405
+- Pending objects this run: 0
+- Previously completed: 11405
+- Uploaded this run: 0
+- Skipped existing this run: 0
+- Failed this run: 0
+- Completed total: 11405
+- Uploaded total: 224
+- Skipped existing total: 11181
+- Failed latest: 0
+- DB writes performed: false
+- Storage upload apply executed: true
+- Storage uploads performed in total: true
+- Storage uploads performed this run: false
+- Migrations created: false
+- Exact image claim changes performed: false
