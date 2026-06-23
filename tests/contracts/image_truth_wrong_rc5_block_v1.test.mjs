@@ -98,6 +98,20 @@ test("image resolver replaces source-backed EX trainer kit aliases and blocks un
   assert.match(source, /display_image_kind: "blocked"/);
 });
 
+test("image resolver lets self-hosted image_path win over broken legacy TCGdex URLs", () => {
+  const source = readFileSync(
+    new URL(
+      "../../apps/web/src/lib/canon/resolveCardImageFieldsV1.ts",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+
+  assert.match(source, /const exactImage = await resolveCanonImageV1\(cardPrint\);/);
+  assert.match(source, /hasKnownBrokenTcgdexImageReference\(cardPrint\) && !exactImage\.url/);
+  assert.match(source, /const exactImageUrl = exactImage\.url \?\? null;/);
+});
+
 test("public set display normalizes McDonalds and Trainer Kit capitalization", () => {
   const source = readFileSync(
     new URL("../../apps/web/src/lib/publicSets.shared.ts", import.meta.url),

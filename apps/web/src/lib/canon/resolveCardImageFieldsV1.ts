@@ -461,6 +461,8 @@ function getDisplayKindFromStatus(
 export async function resolveCardImageFieldsV1(
   cardPrint: CardImageLike | null | undefined,
 ): Promise<ResolvedCardImageFieldsV1> {
+  const exactImage = await resolveCanonImageV1(cardPrint);
+
   if (isKnownWrongLegendaryTreasuresRc5Image(cardPrint)) {
     return {
       image_url: null,
@@ -477,7 +479,7 @@ export async function resolveCardImageFieldsV1(
     };
   }
 
-  if (hasKnownBrokenTcgdexImageReference(cardPrint)) {
+  if (hasKnownBrokenTcgdexImageReference(cardPrint) && !exactImage.url) {
     const replacementImage = getSourceBackedReplacementImage(cardPrint);
     if (replacementImage) {
       return buildSourceBackedReplacementFields(replacementImage);
@@ -498,7 +500,6 @@ export async function resolveCardImageFieldsV1(
     };
   }
 
-  const exactImage = await resolveCanonImageV1(cardPrint);
   const exactImageUrl = exactImage.url ?? null;
   const representativeImageUrl = normalizeRepresentativeImageUrl(
     cardPrint?.representative_image_url,
