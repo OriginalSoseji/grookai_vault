@@ -1,0 +1,59 @@
+{
+  "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09E-REAL-APPLY",
+  "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+  "generated_at": "2026-06-23T21:18:50.467Z",
+  "approval_text": "Approve real MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1 apply only. Fingerprint: 25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55. SQL hash: 87420883c2944b53b5324c648b167424224b6095c83b854227026cf6fcc5b94f. Scope: 80 World Championship Deck derived set lane inserts and 1,944 card_print parent identity inserts only. Dry-run proof: 870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa == 870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa. No child writes. No identity-table writes. No external mapping writes. No price writes. No storage writes. No deletes. No merges. No migrations. No exact image claims. No global apply.",
+  "fingerprint": "25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55",
+  "approved_dry_run_sql_hash_sha256": "87420883c2944b53b5324c648b167424224b6095c83b854227026cf6fcc5b94f",
+  "real_apply_sql_path": "docs\\sql\\world_championship_decks_09e_real_apply_v1.sql",
+  "real_apply_sql_hash_sha256": "03cfaf7ed8e8f8948822853a35eb565b34da39066e0cfd5ff2d410c8b91252e4",
+  "apply_executed": true,
+  "durable_db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "inserted_set_rows": 80,
+  "inserted_card_print_rows": 1944,
+  "forbidden_rows": 0,
+  "before_snapshot": {
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "total_rows": 0,
+      "set_rows": 0,
+      "card_print_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "hash_sha256": "4ec244af0578b8373f85c9ed607ae4ba1815dd92bd6e1062481cfcdc4c219c65",
+    "counts": {
+      "total_rows": 2024,
+      "set_rows": 80,
+      "card_print_rows": 1944
+    }
+  },
+  "apply_proof_row": {
+    "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+    "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+    "rollback_sql_fingerprint": "25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55",
+    "source_acquisition_fingerprint": "7ffa3604fe491cb5c6d535305c77b681d18e0765d2c0d6932ec11520728bfdaa",
+    "translation_fingerprint": "da7a18fb284b6ba18078a64868c6375a5e15145d37392b4c92da788de69e0594",
+    "inserted_set_rows": 80,
+    "inserted_card_print_rows": 1944,
+    "forbidden_rows": 0,
+    "card_print_set_count": 80
+  },
+  "readback": {
+    "set_rows": 80,
+    "card_print_rows": 1944,
+    "image_status_rows": [
+      {
+        "image_status": "missing",
+        "image_source": null,
+        "set_identity_model": "reprint_anthology",
+        "count": 1944
+      }
+    ],
+    "forbidden_image_claim_rows": 0,
+    "child_rows": 0
+  },
+  "stop_findings": []
+}

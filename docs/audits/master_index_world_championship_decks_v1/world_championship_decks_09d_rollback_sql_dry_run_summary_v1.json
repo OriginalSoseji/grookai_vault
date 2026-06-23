@@ -1,0 +1,58 @@
+{
+  "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+  "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+  "generated_at": "2026-06-23T21:16:14.664Z",
+  "sql_path": "docs\\sql\\world_championship_decks_09d_rollback_sql_dry_run_v1.sql",
+  "sql_hash_sha256": "87420883c2944b53b5324c648b167424224b6095c83b854227026cf6fcc5b94f",
+  "rollback_sql_fingerprint": "25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55",
+  "source_acquisition_fingerprint": "7ffa3604fe491cb5c6d535305c77b681d18e0765d2c0d6932ec11520728bfdaa",
+  "translation_fingerprint": "da7a18fb284b6ba18078a64868c6375a5e15145d37392b4c92da788de69e0594",
+  "proposed_set_rows": 80,
+  "proposed_card_print_rows": 1944,
+  "execution": {
+    "connected": true,
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null,
+    "before_snapshot": {
+      "hash_sha256": "870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa",
+      "set_rows": 0,
+      "card_print_rows": 0
+    },
+    "after_snapshot": {
+      "hash_sha256": "870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa",
+      "set_rows": 0,
+      "card_print_rows": 0
+    },
+    "proof_rows": [
+      {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "rollback_sql_fingerprint": "25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55",
+        "source_acquisition_fingerprint": "7ffa3604fe491cb5c6d535305c77b681d18e0765d2c0d6932ec11520728bfdaa",
+        "translation_fingerprint": "da7a18fb284b6ba18078a64868c6375a5e15145d37392b4c92da788de69e0594",
+        "inserted_set_rows": 80,
+        "inserted_card_print_rows": 1944,
+        "forbidden_rows": 0,
+        "card_print_set_count": 80
+      }
+    ]
+  },
+  "proof_row": {
+    "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+    "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+    "rollback_sql_fingerprint": "25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55",
+    "source_acquisition_fingerprint": "7ffa3604fe491cb5c6d535305c77b681d18e0765d2c0d6932ec11520728bfdaa",
+    "translation_fingerprint": "da7a18fb284b6ba18078a64868c6375a5e15145d37392b4c92da788de69e0594",
+    "inserted_set_rows": 80,
+    "inserted_card_print_rows": 1944,
+    "forbidden_rows": 0,
+    "card_print_set_count": 80
+  },
+  "required_real_apply_approval_text": "Approve real MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1 apply only. Fingerprint: 25c2fb7b2f8c0c6db41de63b84a95689243cdb8ab3501697f83d50df238ebc55. SQL hash: 87420883c2944b53b5324c648b167424224b6095c83b854227026cf6fcc5b94f. Scope: 80 World Championship Deck derived set lane inserts and 1,944 card_print parent identity inserts only. Dry-run proof: 870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa == 870a3927c512949479ed85f17c406b145422f9feb5b457bfe5ee81b796382aaa. No child writes. No identity-table writes. No external mapping writes. No price writes. No storage writes. No deletes. No merges. No migrations. No exact image claims. No global apply.",
+  "write_ready_now": true,
+  "durable_db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "real_apply_authorized": false,
+  "stop_findings": []
+}

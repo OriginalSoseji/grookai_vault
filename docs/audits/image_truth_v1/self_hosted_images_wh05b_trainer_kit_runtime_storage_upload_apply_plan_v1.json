@@ -1,0 +1,38 @@
+{
+  "package_id": "IMG-HOST-WH-05B-TRAINER-KIT-RUNTIME-REPLACEMENT-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T18:57:40.769Z",
+  "source_dry_run_fingerprint": "9a8a981950ac1147d16d2da24239b1591712120011eab94496c99e6f1cb1b25a",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh05a_trainer_kit_runtime_upload_manifest_v1.jsonl",
+  "manifest_rows": 270,
+  "unique_upload_objects_total": 270,
+  "unique_upload_objects_in_scope": 270,
+  "upload_limit": null,
+  "target_storage_buckets": [
+    "user-card-images"
+  ],
+  "source_lanes": [
+    "external_malie",
+    "external_tcgcollector"
+  ],
+  "proposed_image_statuses": [
+    "representative_shared"
+  ],
+  "conflict_count": 0,
+  "missing_required_metadata_count": 0,
+  "exact_image_claim_change_rows": 0,
+  "non_trainer_kit_rows": 0,
+  "unapproved_source_rows": 0,
+  "db_writes_performed": false,
+  "storage_uploads_planned": 270,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "concurrency": 4,
+  "stop_findings": [],
+  "fingerprint": "0644f1a27224b9f38fb08447166f5e8f8631292499a6ddee904d0ac2deeac1c9",
+  "ready_for_apply": true
+}

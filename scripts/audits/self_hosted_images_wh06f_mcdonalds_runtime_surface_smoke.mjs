@@ -10,111 +10,20 @@ dotenv.config({ quiet: true });
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, 'docs', 'audits', 'image_truth_v1');
-const OUTPUT_JSON = path.join(OUTPUT_DIR, 'image_truth_img21a_runtime_surface_smoke_v1.json');
-const OUTPUT_MD = path.join(OUTPUT_DIR, 'image_truth_img21a_runtime_surface_smoke_v1.md');
-const PACKAGE_ID = 'IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE';
-const DEFAULT_PORT = Number.parseInt(process.env.IMAGE_TRUTH_SMOKE_PORT ?? '3087', 10);
+const PLAN_JSONL = path.join(OUTPUT_DIR, 'self_hosted_images_wh06d_mcdonalds_dextcg_db_pointer_repoint_plan_v1.jsonl');
+const OUTPUT_JSON = path.join(OUTPUT_DIR, 'self_hosted_images_wh06f_mcdonalds_runtime_surface_smoke_v1.json');
+const OUTPUT_MD = path.join(OUTPUT_DIR, 'self_hosted_images_wh06f_mcdonalds_runtime_surface_smoke_v1.md');
+const PACKAGE_ID = 'IMG-HOST-WH-06F-MCDONALDS-RUNTIME-SURFACE-SMOKE';
+const DEFAULT_PORT = Number.parseInt(process.env.MCDONALDS_RUNTIME_SMOKE_PORT ?? '3088', 10);
 
-const ROUTES = [
-  {
-    id: 'card_mcd2021_oshawott',
-    path: '/card/GV-PK-MCD-21',
-    expect: [
-      'Oshawott',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-21',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/mc/2021swsh/21/high.webp'],
-  },
-  {
-    id: 'set_mcd2021',
-    path: '/sets/2021swsh',
-    expect: [
-      "McDonald's Collection 2021",
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd21/',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/mc/2021swsh/'],
-  },
-  {
-    id: 'dex_oshawott_child_fallback',
-    path: '/dex/oshawott',
-    expect: ['Oshawott', 'GV-PK-MEP-051'],
-    forbid: ['assets.tcgdex.net/en/tk/', 'assets.tcgdex.net/en/mc/2021swsh/'],
-  },
-  {
-    id: 'card_mep_oshawott_exact',
-    path: '/card/GV-PK-MEP-051',
-    expect: ['Oshawott', 'gv-card-hero-image-stage'],
-    forbid: ['Image unavailable'],
-  },
-  {
-    id: 'set_trainer_kit_sm_lycanroc',
-    path: '/sets/tk-sm-l',
-    expect: [
-      'SM Trainer Kit (Lycanroc)',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-sm-l/',
-      'representative_shared',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/tk/tk-sm-l/', 'cdn.malie.io/file/malie-io/art/cards/jpg/'],
-  },
-  {
-    id: 'set_trainer_kit_dp_lucario_residual',
-    path: '/sets/tk-dp-l',
-    expect: [
-      'DP Trainer Kit (Lucario)',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-dp-l/',
-      'representative_shared',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/tk/tk-dp-l/', 'static.tcgcollector.com/content/images/'],
-  },
-  {
-    id: 'card_trainer_kit_sm_lycanroc_representative',
-    path: '/card/GV-PK-TK-tk-sm-l-1',
-    expect: [
-      'Caterpie',
-      'gv-card-hero-image-stage',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-sm-l/gv-pk-tk-tk-sm-l-1/',
-      'representative_shared',
-    ],
-    forbid: ['assets.tcgdex.net/en/tk/tk-sm-l/', 'cdn.malie.io/file/malie-io/art/cards/jpg/'],
-  },
-  {
-    id: 'card_trainer_kit_dp_lucario_representative',
-    path: '/card/GV-PK-TK-tk-dp-l-1',
-    expect: [
-      'Geodude',
-      'gv-card-hero-image-stage',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-dp-l/gv-pk-tk-tk-dp-l-1/',
-      'representative_shared',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/tk/tk-dp-l/', 'static.tcgcollector.com/content/images/'],
-  },
-  {
-    id: 'card_trainer_kit_ex_latios_alias',
-    path: '/card/GV-PK-TK-tk-ex-latio-1',
-    expect: [
-      'Electrike',
-      'gv-card-hero-image-stage',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-ex-latio/gv-pk-tk-tk-ex-latio-1/',
-    ],
-    forbid: ['Image unavailable', 'assets.tcgdex.net/en/tk/tk-ex-latio/1/high.webp'],
-  },
-  {
-    id: 'card_trainer_kit_hs_gyarados_residual',
-    path: '/card/GV-PK-TK-tk-hs-g-20',
-    expect: [
-      'Gyarados',
-      'gv-card-hero-image-stage',
-      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-hs-g/gv-pk-tk-tk-hs-g-20/',
-    ],
-    forbid: ['assets.tcgdex.net/en/tk/tk-hs-g/20/high.webp'],
-  },
-  {
-    id: 'card_wrong_rc5_blocked',
-    path: '/card/GV-PK-LTR-RC5',
-    expect: ['Torchic', 'Image unavailable'],
-    forbid: ['images.pokemontcg.io/bw11/5_hires.png', 'Carnivine'],
-  },
-];
+const SET_ROUTE_BY_CODE = {
+  mcd14: '/sets/mcd14',
+  mcd15: '/sets/mcd15',
+  mcd17: '/sets/mcd17',
+  mcd18: '/sets/mcd18',
+  '2023sv': '/sets/2023sv',
+  '2024sv': '/sets/2024sv',
+};
 
 function canonicalizeJson(value) {
   if (Array.isArray(value)) return value.map((entry) => canonicalizeJson(entry));
@@ -131,6 +40,14 @@ function proofHash(value) {
   return crypto.createHash('sha256').update(JSON.stringify(canonicalizeJson(value))).digest('hex');
 }
 
+async function readJsonl(file) {
+  const raw = await fs.readFile(file, 'utf8');
+  return raw
+    .split(/\r?\n/)
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line));
+}
+
 function startServer(port) {
   const nextBin = path.join(ROOT, 'apps', 'web', 'node_modules', 'next', 'dist', 'bin', 'next');
   const env = {
@@ -140,7 +57,6 @@ function startServer(port) {
       ? process.env.NODE_OPTIONS
       : `${process.env.NODE_OPTIONS ?? ''} --use-system-ca`.trim(),
   };
-
   const child = spawn(process.execPath, [nextBin, 'start', '-p', String(port)], {
     cwd: path.join(ROOT, 'apps', 'web'),
     env,
@@ -155,7 +71,6 @@ function startServer(port) {
   child.stderr.on('data', (chunk) => {
     output += chunk.toString();
   });
-
   return { child, getOutput: () => output };
 }
 
@@ -175,7 +90,37 @@ async function waitForServer(baseUrl) {
     }
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  throw new Error('image_truth_runtime_smoke_server_not_ready');
+  throw new Error('mcdonalds_runtime_smoke_server_not_ready');
+}
+
+function buildRoutes(planRows) {
+  const firstRowsBySet = new Map();
+  for (const row of planRows) {
+    if (!firstRowsBySet.has(row.set_code)) firstRowsBySet.set(row.set_code, row);
+  }
+
+  const routes = [];
+  for (const [setCode, routePath] of Object.entries(SET_ROUTE_BY_CODE)) {
+    const firstRow = firstRowsBySet.get(setCode);
+    const storageFragment = `user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/${setCode}/`;
+    routes.push({
+      id: `set_${setCode}`,
+      path: routePath,
+      expect: [firstRow.set_name, storageFragment],
+      forbid: ['Image unavailable', 'assets.tcgdex.net/en/mc/', 'images.pokemontcg.io/'],
+    });
+    routes.push({
+      id: `card_${firstRow.gv_id}`,
+      path: `/card/${firstRow.gv_id}`,
+      expect: [
+        firstRow.name,
+        'gv-card-hero-image-stage',
+        `user-card-images/${firstRow.target_storage_path}`,
+      ],
+      forbid: ['assets.tcgdex.net/en/mc/'],
+    });
+  }
+  return routes;
 }
 
 async function fetchRoute(baseUrl, route) {
@@ -209,10 +154,8 @@ async function fetchRoute(baseUrl, route) {
 
 function renderMarkdown(report) {
   const resultRows = report.results
-    .map(
-      (row) =>
-        `| ${row.id} | ${row.status} | ${row.passed ? 'PASS' : 'FAIL'} | ${row.missing_expected.join('<br>') || 'none'} | ${row.present_forbidden.join('<br>') || 'none'} |`,
-    )
+    .map((row) =>
+      `| ${row.id} | ${row.status} | ${row.passed ? 'PASS' : 'FAIL'} | ${row.missing_expected.join('<br>') || 'none'} | ${row.present_forbidden.join('<br>') || 'none'} |`)
     .join('\n');
 
   return `# ${PACKAGE_ID}
@@ -221,39 +164,28 @@ function renderMarkdown(report) {
 - Mode: ${report.mode}
 - Base URL: \`${report.base_url}\`
 - Proof hash: \`${report.proof_hash}\`
+- Routes: ${report.results.length}
 - Failures: ${report.failures.length}
+- DB writes performed: false
+- Storage writes performed: false
+- Migrations created: false
 
 ## Runtime Routes
 
 | Route | Status | Result | Missing expected signals | Forbidden signals present |
 | --- | ---: | --- | --- | --- |
 ${resultRows}
-
-## Policy
-
-- No database writes.
-- No image uploads.
-- This smoke checks rendered runtime behavior only.
-- RC5 Torchic is expected to remain blocked until a verified exact/replacement image is sourced.
 `;
 }
 
-async function runAgainst(baseUrl, server = null) {
+async function runAgainst(baseUrl, server, routes) {
   await waitForServer(baseUrl);
   const results = [];
-  for (const route of ROUTES) {
-    results.push(await fetchRoute(baseUrl, route));
-  }
-
+  for (const route of routes) results.push(await fetchRoute(baseUrl, route));
   const failures = results
     .filter((row) => !row.passed)
     .map((row) => `${row.id}: status=${row.status}, missing=${row.missing_expected.join(',') || 'none'}, forbidden=${row.present_forbidden.join(',') || 'none'}`);
 
-  const payloadForHash = {
-    routes: ROUTES.map(({ id, path, expect, forbid }) => ({ id, path, expect, forbid })),
-    results,
-    failures,
-  };
   const report = {
     package_id: PACKAGE_ID,
     mode: 'read_only_runtime_http_smoke',
@@ -262,7 +194,10 @@ async function runAgainst(baseUrl, server = null) {
     results,
     failures,
     server_output_tail: server?.getOutput().slice(-2000) ?? null,
-    proof_hash: proofHash(payloadForHash),
+    db_writes_performed: false,
+    storage_writes_performed: false,
+    migrations_created: false,
+    proof_hash: proofHash({ routes, results, failures }),
   };
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -278,22 +213,22 @@ async function runAgainst(baseUrl, server = null) {
     failures: failures.length,
   }, null, 2));
 
-  if (failures.length > 0) {
-    process.exitCode = 1;
-  }
+  if (failures.length > 0) process.exitCode = 1;
 }
 
 async function main() {
+  const planRows = await readJsonl(PLAN_JSONL);
+  const routes = buildRoutes(planRows);
   const externalBaseUrl = process.env.GROOKAI_IMAGE_SURFACE_SMOKE_BASE_URL ?? process.env.GROOKAI_WEB_BASE_URL ?? null;
   if (externalBaseUrl) {
-    await runAgainst(externalBaseUrl.replace(/\/$/, ''));
+    await runAgainst(externalBaseUrl.replace(/\/$/, ''), null, routes);
     return;
   }
 
   const baseUrl = `http://127.0.0.1:${DEFAULT_PORT}`;
   const server = startServer(DEFAULT_PORT);
   try {
-    await runAgainst(baseUrl, server);
+    await runAgainst(baseUrl, server, routes);
   } finally {
     await stopServer(server.child);
   }

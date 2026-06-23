@@ -1,0 +1,850 @@
+{
+  "package_id": "IMG-HOST-WH-06A-MCDONALDS-RUNTIME-REPLACEMENT-UPLOAD-DRY-RUN",
+  "generated_at": "2026-06-23T19:59:32.410Z",
+  "mode": "read_only_upload_manifest_dry_run",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh06a_mcdonalds_runtime_upload_manifest_v1.jsonl",
+  "target_storage_bucket": "user-card-images",
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "deletes_or_merges_performed": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "mcdonalds_rows_total": 191,
+  "mcdonalds_rows_missing_image_path": 78,
+  "source_backed_candidate_rows": 48,
+  "fetch_checked_rows": 48,
+  "fetch_ready_rows": 0,
+  "upload_manifest_rows": 0,
+  "unresolved_rows": 78,
+  "failed_fetch_rows": 48,
+  "duplicate_target_path_groups": 0,
+  "conflicting_target_path_groups": 0,
+  "duplicate_card_print_target_groups": 0,
+  "stop_findings": [
+    "source_fetch_failures"
+  ],
+  "ready_for_storage_upload_apply": false,
+  "by_source_lane": {},
+  "by_set_code": {},
+  "unresolved_by_set_code": {
+    "2023sv": 15,
+    "2024sv": 15,
+    "mcd14": 12,
+    "mcd15": 12,
+    "mcd17": 12,
+    "mcd18": 12
+  },
+  "unresolved_by_reason": {
+    "missing_source_url": 30,
+    "source_url_not_validated": 48
+  },
+  "failures": [
+    {
+      "gv_id": "GV-PK-MCD-2014-1",
+      "name": "Weedle",
+      "set_code": "mcd14",
+      "number": "1",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/1_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-2",
+      "name": "Chespin",
+      "set_code": "mcd14",
+      "number": "2",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/2_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-3",
+      "name": "Fennekin",
+      "set_code": "mcd14",
+      "number": "3",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/3_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-4",
+      "name": "Froakie",
+      "set_code": "mcd14",
+      "number": "4",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/4_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-5",
+      "name": "Pikachu",
+      "set_code": "mcd14",
+      "number": "5",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/5_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-6",
+      "name": "Inkay",
+      "set_code": "mcd14",
+      "number": "6",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/6_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-7",
+      "name": "Honedge",
+      "set_code": "mcd14",
+      "number": "7",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/7_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-8",
+      "name": "Snubbull",
+      "set_code": "mcd14",
+      "number": "8",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/8_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-9",
+      "name": "Swirlix",
+      "set_code": "mcd14",
+      "number": "9",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/9_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-10",
+      "name": "Bunnelby",
+      "set_code": "mcd14",
+      "number": "10",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/10_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-11",
+      "name": "Fletchling",
+      "set_code": "mcd14",
+      "number": "11",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/11_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2014-12",
+      "name": "Furfrou",
+      "set_code": "mcd14",
+      "number": "12",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd14/12_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-1",
+      "name": "Treecko",
+      "set_code": "mcd15",
+      "number": "1",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/1_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-2",
+      "name": "Lotad",
+      "set_code": "mcd15",
+      "number": "2",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/2_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-3",
+      "name": "Torchic",
+      "set_code": "mcd15",
+      "number": "3",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/3_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-4",
+      "name": "Staryu",
+      "set_code": "mcd15",
+      "number": "4",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/4_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-5",
+      "name": "Mudkip",
+      "set_code": "mcd15",
+      "number": "5",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/5_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-6",
+      "name": "Pikachu",
+      "set_code": "mcd15",
+      "number": "6",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/6_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-7",
+      "name": "Electrike",
+      "set_code": "mcd15",
+      "number": "7",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/7_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-8",
+      "name": "Rhyhorn",
+      "set_code": "mcd15",
+      "number": "8",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/8_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-9",
+      "name": "Meditite",
+      "set_code": "mcd15",
+      "number": "9",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/9_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-10",
+      "name": "Marill",
+      "set_code": "mcd15",
+      "number": "10",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/10_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-11",
+      "name": "Zigzagoon",
+      "set_code": "mcd15",
+      "number": "11",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/11_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2015-12",
+      "name": "Skitty",
+      "set_code": "mcd15",
+      "number": "12",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd15/12_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-1",
+      "name": "Rowlet",
+      "set_code": "mcd17",
+      "number": "1",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/1_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-2",
+      "name": "Grubbin",
+      "set_code": "mcd17",
+      "number": "2",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/2_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-3",
+      "name": "Litten",
+      "set_code": "mcd17",
+      "number": "3",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/3_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-4",
+      "name": "Popplio",
+      "set_code": "mcd17",
+      "number": "4",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/4_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-5",
+      "name": "Pikachu",
+      "set_code": "mcd17",
+      "number": "5",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/5_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-6",
+      "name": "Cosmog",
+      "set_code": "mcd17",
+      "number": "6",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/6_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-7",
+      "name": "Crabrawler",
+      "set_code": "mcd17",
+      "number": "7",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/7_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-8",
+      "name": "Alolan Meowth",
+      "set_code": "mcd17",
+      "number": "8",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/8_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-9",
+      "name": "Alolan Diglett",
+      "set_code": "mcd17",
+      "number": "9",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/9_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-10",
+      "name": "Cutiefly",
+      "set_code": "mcd17",
+      "number": "10",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/10_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-11",
+      "name": "Pikipek",
+      "set_code": "mcd17",
+      "number": "11",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/11_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2017-12",
+      "name": "Yungoos",
+      "set_code": "mcd17",
+      "number": "12",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd17/12_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2018-1",
+      "name": "Growlithe",
+      "set_code": "mcd18",
+      "number": "1",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd18/1_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2018-2",
+      "name": "Psyduck",
+      "set_code": "mcd18",
+      "number": "2",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd18/2_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2018-3",
+      "name": "Horsea",
+      "set_code": "mcd18",
+      "number": "3",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd18/3_hires.png"
+    },
+    {
+      "gv_id": "GV-PK-MCD-2018-4",
+      "name": "Pikachu",
+      "set_code": "mcd18",
+      "number": "4",
+      "source_lane": "pokemonapi",
+      "failure_reason": "http_404",
+      "source_url": "https://images.pokemontcg.io/mcd18/4_hires.png"
+    }
+  ],
+  "unresolved_samples": [
+    {
+      "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+      "gv_id": "GV-PK-MCD-2023-1",
+      "name": "Sprigatito",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "1",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+      "gv_id": "GV-PK-MCD-2023-2",
+      "name": "Fuecoco",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "2",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+      "gv_id": "GV-PK-MCD-2023-3",
+      "name": "Quaxly",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "3",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+      "gv_id": "GV-PK-MCD-2023-4",
+      "name": "Cetoddle",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "4",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+      "gv_id": "GV-PK-MCD-2023-5",
+      "name": "Cetitan",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "5",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+      "gv_id": "GV-PK-MCD-2023-6",
+      "name": "Pikachu",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "6",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+      "gv_id": "GV-PK-MCD-2023-7",
+      "name": "Pawmi",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "7",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+      "gv_id": "GV-PK-MCD-2023-8",
+      "name": "Kilowattrel",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "8",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+      "gv_id": "GV-PK-MCD-2023-9",
+      "name": "Flittle",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "9",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+      "gv_id": "GV-PK-MCD-2023-10",
+      "name": "Sandaconda",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "10",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+      "gv_id": "GV-PK-MCD-2023-11",
+      "name": "Klawf",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "11",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+      "gv_id": "GV-PK-MCD-2023-12",
+      "name": "Blissey",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "12",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+      "gv_id": "GV-PK-MCD-2023-13",
+      "name": "Tandemaus",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "13",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+      "gv_id": "GV-PK-MCD-2023-14",
+      "name": "Cyclizar",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "14",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+      "gv_id": "GV-PK-MCD-2023-15",
+      "name": "Kirlia",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "number": "15",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+      "gv_id": "GV-PK-MCD-2024-1",
+      "name": "Charizard",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "1",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+      "gv_id": "GV-PK-MCD-2024-2",
+      "name": "Pikachu",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "2",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+      "gv_id": "GV-PK-MCD-2024-3",
+      "name": "Miraidon",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "3",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+      "gv_id": "GV-PK-MCD-2024-4",
+      "name": "Jigglypuff",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "4",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+      "gv_id": "GV-PK-MCD-2024-5",
+      "name": "Hatenna",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "5",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+      "gv_id": "GV-PK-MCD-2024-6",
+      "name": "Dragapult",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "6",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+      "gv_id": "GV-PK-MCD-2024-7",
+      "name": "Quagsire",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "7",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+      "gv_id": "GV-PK-MCD-2024-8",
+      "name": "Koraidon",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "8",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+      "gv_id": "GV-PK-MCD-2024-9",
+      "name": "Umbreon",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "9",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+      "gv_id": "GV-PK-MCD-2024-10",
+      "name": "Hydreigon",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "10",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+      "gv_id": "GV-PK-MCD-2024-11",
+      "name": "Roaring Moon",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "11",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+      "gv_id": "GV-PK-MCD-2024-12",
+      "name": "Dragonite",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "12",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+      "gv_id": "GV-PK-MCD-2024-13",
+      "name": "Eevee",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "13",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+      "gv_id": "GV-PK-MCD-2024-14",
+      "name": "Rayquaza",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "14",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+      "gv_id": "GV-PK-MCD-2024-15",
+      "name": "Drampa",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "number": "15",
+      "unresolved_reason": "missing_source_url",
+      "has_image_url": false,
+      "has_image_alt_url": false
+    },
+    {
+      "card_print_id": "7df32558-45a4-41a6-817e-69119a056e96",
+      "gv_id": "GV-PK-MCD-2014-1",
+      "name": "Weedle",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "1",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "13f33bf6-9dc1-42e0-9c91-dc796bff5a89",
+      "gv_id": "GV-PK-MCD-2014-2",
+      "name": "Chespin",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "2",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "b423fcaa-225a-4e3c-8dc8-d1439ad3f23c",
+      "gv_id": "GV-PK-MCD-2014-3",
+      "name": "Fennekin",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "3",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "895cb3bc-b78e-4e97-abf2-70af680465d3",
+      "gv_id": "GV-PK-MCD-2014-4",
+      "name": "Froakie",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "4",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "0081a66a-dca1-47e9-ac46-85ebcf6eac4c",
+      "gv_id": "GV-PK-MCD-2014-5",
+      "name": "Pikachu",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "5",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "039d821e-2204-4836-a5cc-63a4e2514c5d",
+      "gv_id": "GV-PK-MCD-2014-6",
+      "name": "Inkay",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "6",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "12a1417f-d734-4227-8dc6-43dc6cd0e3e8",
+      "gv_id": "GV-PK-MCD-2014-7",
+      "name": "Honedge",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "7",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "25f07c6c-4114-4d4b-93ba-b1c8d984473c",
+      "gv_id": "GV-PK-MCD-2014-8",
+      "name": "Snubbull",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "8",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "f0dd196c-198d-46d4-afb6-96b6011e7820",
+      "gv_id": "GV-PK-MCD-2014-9",
+      "name": "Swirlix",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "9",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    },
+    {
+      "card_print_id": "4ab7903c-afa6-4b0b-b1ca-20483fef497f",
+      "gv_id": "GV-PK-MCD-2014-10",
+      "name": "Bunnelby",
+      "set_code": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "number": "10",
+      "unresolved_reason": "source_url_not_validated",
+      "has_image_url": true,
+      "has_image_alt_url": true
+    }
+  ],
+  "sample_manifest_rows": [],
+  "proof_hash": "8772759ee28ec4e5ce1bcb7fbf5918aed259315ea8df6795ab6c3477e4263208"
+}

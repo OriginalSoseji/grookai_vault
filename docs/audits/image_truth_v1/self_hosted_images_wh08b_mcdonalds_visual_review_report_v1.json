@@ -1,0 +1,24 @@
+{
+  "package_id": "IMG-HOST-WH-08B-MCDONALDS-VISUAL-REVIEW-REPORT",
+  "generated_at": "2026-06-23T20:57:02.685Z",
+  "mode": "manual_visual_review_report_no_write",
+  "source_package_id": "IMG-HOST-WH-08A-MCDONALDS-BACK-IMAGE-AUDIT",
+  "source_fingerprint": "aa1bb0d7d6149c1a1954859ea2df07f55cf1096970e67439046816d80699cd88",
+  "rows_reviewed": 191,
+  "contact_sheets_reviewed": 5,
+  "contact_sheets": [
+    "docs\\audits\\image_truth_v1\\contact_sheets\\wh08a_mcdonalds_contact_sheet_01.jpg",
+    "docs\\audits\\image_truth_v1\\contact_sheets\\wh08a_mcdonalds_contact_sheet_02.jpg",
+    "docs\\audits\\image_truth_v1\\contact_sheets\\wh08a_mcdonalds_contact_sheet_03.jpg",
+    "docs\\audits\\image_truth_v1\\contact_sheets\\wh08a_mcdonalds_contact_sheet_04.jpg",
+    "docs\\audits\\image_truth_v1\\contact_sheets\\wh08a_mcdonalds_contact_sheet_05.jpg"
+  ],
+  "observed_card_back_images": 0,
+  "card_back_repair_package_needed": false,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "exact_image_claim_changes_performed": false,
+  "global_apply_performed": false,
+  "fingerprint": "c0f6cf864f6ab4e7a0f73a4eb4f2d19afc28b288f4bed0d6201e528a5f5e1d39"
+}

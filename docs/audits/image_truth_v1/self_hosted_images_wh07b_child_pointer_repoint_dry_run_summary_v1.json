@@ -1,0 +1,1397 @@
+{
+  "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-23T20:41:28.369Z",
+  "mode": "dry_run_no_write",
+  "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+  "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+  "source_candidate_rows": 322,
+  "current_child_rows_found": 322,
+  "metadata_pointer_plan_rows": 322,
+  "effective_metadata_pointer_updates": 322,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "target_tables": {
+    "card_printings": 322
+  },
+  "families": {
+    "mcdonalds": 186,
+    "trainer_kit": 136
+  },
+  "set_codes": {
+    "2021swsh": 50,
+    "mcd11": 12,
+    "mcd12": 12,
+    "mcd14": 12,
+    "mcd15": 12,
+    "mcd16": 12,
+    "mcd17": 12,
+    "mcd18": 12,
+    "mcd19": 12,
+    "mcd21": 25,
+    "mcd22": 15,
+    "tk-ex-latia": 10,
+    "tk-ex-latio": 10,
+    "tk-ex-m": 12,
+    "tk-ex-p": 12,
+    "tk-hs-g": 1,
+    "tk-hs-r": 1,
+    "tk-xy-latia": 30,
+    "tk-xy-latio": 30,
+    "tk-xy-su": 30
+  },
+  "proposed_image_sources": {
+    "identity": 322
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 322
+  },
+  "changed_column_sets": {
+    "image_source,image_path,image_status,image_note": 322
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "parent_overwrites_performed": false,
+  "global_apply_performed": false,
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "b11e0e5e-b1e2-4627-831c-14668556c3a6",
+        "printing_gv_id": "GV-PK-MCD-2017-5-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "004a0cc7-3e4b-434e-bcef-530325b43539",
+        "parent_gv_id": "GV-PK-MCD-2017-5",
+        "name": "Pikachu",
+        "set_code": "mcd17",
+        "set_name": "McDonald's Collection 2017",
+        "number": "5",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd17/gv-pk-mcd-2017-5/3d190f6cacda466d79cfbbf9.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "5eb00400-4387-4474-bdd8-7b51f2109892",
+        "printing_gv_id": "GV-PK-MCD-2014-5-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "0081a66a-dca1-47e9-ac46-85ebcf6eac4c",
+        "parent_gv_id": "GV-PK-MCD-2014-5",
+        "name": "Pikachu",
+        "set_code": "mcd14",
+        "set_name": "McDonald's Collection 2014",
+        "number": "5",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd14/gv-pk-mcd-2014-5/c9fb8bdfccdb71bd7ca07534.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "3eda10c5-f7fb-4fb9-a383-3823051e5cbf",
+        "printing_gv_id": "GV-PK-TK-tk-xy-su-11-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "022ef182-e39b-4a44-8066-570b84cf4706",
+        "parent_gv_id": "GV-PK-TK-tk-xy-su-11",
+        "name": "Froakie",
+        "set_code": "tk-xy-su",
+        "set_name": "XY trainer Kit (Suicune)",
+        "number": "11",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-su/gv-pk-tk-tk-xy-su-11/2986afe735306dd3cb4bd889.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "79fc4910-e445-4a2c-9ab1-c04eee1512c9",
+        "printing_gv_id": "GV-PK-MCD-2014-6-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "039d821e-2204-4836-a5cc-63a4e2514c5d",
+        "parent_gv_id": "GV-PK-MCD-2014-6",
+        "name": "Inkay",
+        "set_code": "mcd14",
+        "set_name": "McDonald's Collection 2014",
+        "number": "6",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd14/gv-pk-mcd-2014-6/a2d068bba78590a69e67edad.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "0609d28a-058a-49f7-b328-4ba68fcf2c58",
+        "printing_gv_id": "GV-PK-MCD-2021-22-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "parent_gv_id": "GV-PK-MCD-2021-22",
+        "name": "Froakie",
+        "set_code": "mcd21",
+        "set_name": "McDonald's Collection 2021",
+        "number": "22",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd21/gv-pk-mcd-2021-22/1cddcb3bca6c41cfeb2084e4.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "c9457a06-88bc-4bf8-b84e-9bd6354c7ec8",
+        "printing_gv_id": "GV-PK-TK-tk-ex-m-10-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "05876e44-866b-4a13-b1aa-1ebe0a6eb7f0",
+        "parent_gv_id": "GV-PK-TK-tk-ex-m-10",
+        "name": "Potion",
+        "set_code": "tk-ex-m",
+        "set_name": "EX Trainer Kit 2 (Minun)",
+        "number": "10",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-ex-m/gv-pk-tk-tk-ex-m-10/b62862a778f02c7e24d6b2d8.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "1b45826f-d9ac-4fb9-b425-055ac067e9f2",
+        "printing_gv_id": "GV-PK-TK-tk-xy-su-14-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0600c082-e03b-4a34-9784-8a5557b9610c",
+        "parent_gv_id": "GV-PK-TK-tk-xy-su-14",
+        "name": "Suicune",
+        "set_code": "tk-xy-su",
+        "set_name": "XY trainer Kit (Suicune)",
+        "number": "14",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-su/gv-pk-tk-tk-xy-su-14/76dc5a21a3dc9d2381f314ca.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "3a6f99dd-970b-42f3-a374-710fc1b6ae4c",
+        "printing_gv_id": "GV-PK-MCD-2016-9-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "07123e3e-8bf4-4fb0-aa90-2327ded8171b",
+        "parent_gv_id": "GV-PK-MCD-2016-9",
+        "name": "Togepi",
+        "set_code": "mcd16",
+        "set_name": "McDonald's Collection 2016",
+        "number": "9",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd16/gv-pk-mcd-2016-9/e707ef0b998accc42d9a6488.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "ee687aa4-1687-49f2-93fc-aa37dbac54a0",
+        "printing_gv_id": "GV-PK-MCD-2011-4-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "07b71d50-8151-4292-ac49-5305766f9afa",
+        "parent_gv_id": "GV-PK-MCD-2011-4",
+        "name": "Oshawott",
+        "set_code": "mcd11",
+        "set_name": "McDonald's Collection 2011",
+        "number": "4",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd11/gv-pk-mcd-2011-4/4053734b7d4c9ecf885aca16.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "8569699c-9019-4699-a3fa-e3aad0b25c2f",
+        "printing_gv_id": "GV-PK-MCD-14-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+        "parent_gv_id": "GV-PK-MCD-14",
+        "name": "Fennekin",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "14",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-14/ba24befb2384f572ab2cbc50.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "e296a9ad-0476-41ef-a611-fbad7e43cf1c",
+        "printing_gv_id": "GV-PK-MCD-14-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+        "parent_gv_id": "GV-PK-MCD-14",
+        "name": "Fennekin",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "14",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-14/ba24befb2384f572ab2cbc50.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "3b24826f-4ff9-41ef-be96-ca9283aeaeef",
+        "printing_gv_id": "GV-PK-MCD-2016-11-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "0aeb1549-ec80-4bb9-9411-a08770b4cea0",
+        "parent_gv_id": "GV-PK-MCD-2016-11",
+        "name": "Meowth",
+        "set_code": "mcd16",
+        "set_name": "McDonald's Collection 2016",
+        "number": "11",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd16/gv-pk-mcd-2016-11/4b1af84c403cea4b34c3a280.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "b371f9ef-e35c-452f-b12a-2d28c6a60ab1",
+        "printing_gv_id": "GV-PK-MCD-17-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+        "parent_gv_id": "GV-PK-MCD-17",
+        "name": "Squirtle",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "17",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-17/acca10365b20d5611f180587.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "dc665289-237e-4dcd-b049-18dd9ec4914c",
+        "printing_gv_id": "GV-PK-MCD-17-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+        "parent_gv_id": "GV-PK-MCD-17",
+        "name": "Squirtle",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "17",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-17/acca10365b20d5611f180587.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "327e1ee8-a003-410b-a78e-7238fc2980f5",
+        "printing_gv_id": "GV-PK-TK-tk-ex-p-10-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0c6f6d1e-6b04-4e73-b598-9595efca8ef0",
+        "parent_gv_id": "GV-PK-TK-tk-ex-p-10",
+        "name": "Professor Cozmo's Discovery",
+        "set_code": "tk-ex-p",
+        "set_name": "EX Trainer Kit 2 (Plusle)",
+        "number": "10",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-ex-p/gv-pk-tk-tk-ex-p-10/fab9c3a39a12742bd24f0e32.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "beab981a-e25e-41b7-b37a-d0d2cdf5f4bc",
+        "printing_gv_id": "GV-PK-TK-tk-ex-p-3-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0d676747-4cd1-4d1a-8dcf-d293f1d8786a",
+        "parent_gv_id": "GV-PK-TK-tk-ex-p-3",
+        "name": "Grumpig",
+        "set_code": "tk-ex-p",
+        "set_name": "EX Trainer Kit 2 (Plusle)",
+        "number": "3",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-ex-p/gv-pk-tk-tk-ex-p-3/86f99406ebf4b4adf3f0e881.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "30605dcd-6686-4fb2-a8c7-e082bea79cbc",
+        "printing_gv_id": "GV-PK-TK-tk-xy-latia-12-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "0eb0806e-a350-4777-952d-f04eb890bc01",
+        "parent_gv_id": "GV-PK-TK-tk-xy-latia-12",
+        "name": "Tangrowth",
+        "set_code": "tk-xy-latia",
+        "set_name": "XY trainer Kit (Latias)",
+        "number": "12",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-latia/gv-pk-tk-tk-xy-latia-12/ec608c1d0e8360d7712cc471.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "ba7039af-4e82-47e2-8a00-824dbdcf64b1",
+        "printing_gv_id": "GV-PK-MCD-2016-4-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "10ec9b4e-9e09-4397-ac62-864f5b48cdc9",
+        "parent_gv_id": "GV-PK-MCD-2016-4",
+        "name": "Magikarp",
+        "set_code": "mcd16",
+        "set_name": "McDonald's Collection 2016",
+        "number": "4",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd16/gv-pk-mcd-2016-4/fad7ba35695fcf51a11a1807.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "a570f21f-8a92-4fdc-8e71-46cd5bb78805",
+        "printing_gv_id": "GV-PK-MCD-2021-13-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+        "parent_gv_id": "GV-PK-MCD-2021-13",
+        "name": "Tepig",
+        "set_code": "mcd21",
+        "set_name": "McDonald's Collection 2021",
+        "number": "13",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd21/gv-pk-mcd-2021-13/ecfdc806a9af327eab472896.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "61555ef7-ace0-4832-a35a-5d71b3bccfca",
+        "printing_gv_id": "GV-PK-MCD-2014-7-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "12a1417f-d734-4227-8dc6-43dc6cd0e3e8",
+        "parent_gv_id": "GV-PK-MCD-2014-7",
+        "name": "Honedge",
+        "set_code": "mcd14",
+        "set_name": "McDonald's Collection 2014",
+        "number": "7",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd14/gv-pk-mcd-2014-7/d3a57d5316dc8d0c60672078.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "c1d07f6b-370d-471a-9169-361c08d05210",
+        "printing_gv_id": "GV-PK-MCD-18-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+        "parent_gv_id": "GV-PK-MCD-18",
+        "name": "Totodile",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "18",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-18/d1c4c414853c4a1c7c6c2e2e.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "1af4eed0-5bd7-41ca-ba54-d6f5570356bf",
+        "printing_gv_id": "GV-PK-MCD-18-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+        "parent_gv_id": "GV-PK-MCD-18",
+        "name": "Totodile",
+        "set_code": "2021swsh",
+        "set_name": "McDonald's Collection 2021",
+        "number": "18",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-18/d1c4c414853c4a1c7c6c2e2e.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "eb888efb-6266-464d-8cf9-b5317f9cc177",
+        "printing_gv_id": "GV-PK-MCD-2016-12-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "12fb37f4-cc29-4769-8307-318f2f14b99f",
+        "parent_gv_id": "GV-PK-MCD-2016-12",
+        "name": "Eevee",
+        "set_code": "mcd16",
+        "set_name": "McDonald's Collection 2016",
+        "number": "12",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd16/gv-pk-mcd-2016-12/122883973e9f3b2d00d90698.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "e8c6e508-d92a-41b5-bd7b-788fce316ebd",
+        "printing_gv_id": "GV-PK-TK-tk-xy-su-16-STD",
+        "finish_key": "normal",
+        "parent_card_print_id": "13f2553c-cddf-4ef8-b00d-6bd4b957a582",
+        "parent_gv_id": "GV-PK-TK-tk-xy-su-16",
+        "name": "Piplup",
+        "set_code": "tk-xy-su",
+        "set_name": "XY trainer Kit (Suicune)",
+        "number": "16",
+        "family": "trainer_kit",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk-xy-su/gv-pk-tk-tk-xy-su-16/38b63d93db817764efb2313b.jpg",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "child_metadata_pointer_repoint",
+        "source_package_id": "IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT",
+        "source_fingerprint": "3399d42b031e37492748bcdd8f1fd5c4f9b7fc46a2946330f661bc4baf16d340",
+        "target_table": "card_printings",
+        "target_row_id": "1440920f-5144-4be0-839d-086f0f7a1821",
+        "printing_gv_id": "GV-PK-MCD-2014-2-HOLO",
+        "finish_key": "holo",
+        "parent_card_print_id": "13f33bf6-9dc1-42e0-9c91-dc796bff5a89",
+        "parent_gv_id": "GV-PK-MCD-2014-2",
+        "name": "Chespin",
+        "set_code": "mcd14",
+        "set_name": "McDonald's Collection 2014",
+        "number": "2",
+        "family": "mcdonalds",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mcd14/gv-pk-mcd-2014-2/ede67f6358bebd8f62be18b3.png",
+          "image_status": "representative_shared",
+          "image_note": "Representative child image candidate from parent card_prints image_path by IMG-HOST-WH-07A-RESIDUAL-GAP-AUDIT. Parent status was exact; exact child finish claim is not changed."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "exact_image_claim_change": false,
+        "storage_write_required": false,
+        "runtime_public_url_field_write_required": false,
+        "allowed_future_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "blocked_future_columns": [
+          "image_url",
+          "image_alt_url",
+          "card_print_id",
+          "finish_key",
+          "printing_gv_id"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false
+      }
+    ]
+  },
+  "fingerprint": "147101f1eb51d2eea5e4a0fc02a6c3fa719263061fe153fec89c76a4917458e3"
+}

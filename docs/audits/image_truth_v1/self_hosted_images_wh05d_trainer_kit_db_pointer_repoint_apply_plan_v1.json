@@ -1,0 +1,53 @@
+{
+  "package_id": "IMG-HOST-WH-05D-TRAINER-KIT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T19:05:01.121Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-05C-TRAINER-KIT-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "6fae84292d3c52afd0806d52de338398a7bc10f8d68cd8b2af9a528b0c962459",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh05c_trainer_kit_db_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 270,
+  "total_update_count": 270,
+  "target_tables": {
+    "card_prints": 270
+  },
+  "proposed_image_sources": {
+    "identity": 270
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 270
+  },
+  "set_codes": {
+    "tk-bw-e": 30,
+    "tk-bw-z": 30,
+    "tk-dp-l": 11,
+    "tk-dp-m": 12,
+    "tk-sm-l": 18,
+    "tk-sm-r": 19,
+    "tk-xy-b": 30,
+    "tk-xy-n": 30,
+    "tk-xy-p": 30,
+    "tk-xy-sy": 30,
+    "tk-xy-w": 30
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_identity_overwrites_performed": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "6fae84292d3c52afd0806d52de338398a7bc10f8d68cd8b2af9a528b0c962459",
+  "plan_hash": "3256ff8033ae1a79df41980f4707fffced74bfcaacc83de984f448a895623893"
+}

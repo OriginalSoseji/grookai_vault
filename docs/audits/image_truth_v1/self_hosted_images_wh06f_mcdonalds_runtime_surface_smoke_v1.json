@@ -1,0 +1,224 @@
+{
+  "package_id": "IMG-HOST-WH-06F-MCDONALDS-RUNTIME-SURFACE-SMOKE",
+  "mode": "read_only_runtime_http_smoke",
+  "generated_at": "2026-06-23T20:47:23.844Z",
+  "base_url": "http://127.0.0.1:3088",
+  "results": [
+    {
+      "id": "set_mcd14",
+      "path": "/sets/mcd14",
+      "status": 200,
+      "body_length": 270474,
+      "expected_signals": [
+        "McDonald's Collection 2014",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd14/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2014-1",
+      "path": "/card/GV-PK-MCD-2014-1",
+      "status": 200,
+      "body_length": 170609,
+      "expected_signals": [
+        "Weedle",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd14/gv-pk-mcd-2014-1/f55b1308c350fab96b27bdcd.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_mcd15",
+      "path": "/sets/mcd15",
+      "status": 200,
+      "body_length": 270474,
+      "expected_signals": [
+        "McDonald's Collection 2015",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd15/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2015-1",
+      "path": "/card/GV-PK-MCD-2015-1",
+      "status": 200,
+      "body_length": 182363,
+      "expected_signals": [
+        "Treecko",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd15/gv-pk-mcd-2015-1/1d26c32a1ff1d33c9c8351e7.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_mcd17",
+      "path": "/sets/mcd17",
+      "status": 200,
+      "body_length": 270515,
+      "expected_signals": [
+        "McDonald's Collection 2017",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd17/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2017-1",
+      "path": "/card/GV-PK-MCD-2017-1",
+      "status": 200,
+      "body_length": 197756,
+      "expected_signals": [
+        "Rowlet",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd17/gv-pk-mcd-2017-1/ac133b7145aa73868140d6d0.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_mcd18",
+      "path": "/sets/mcd18",
+      "status": 200,
+      "body_length": 270473,
+      "expected_signals": [
+        "McDonald's Collection 2018",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd18/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2018-1",
+      "path": "/card/GV-PK-MCD-2018-1",
+      "status": 200,
+      "body_length": 170770,
+      "expected_signals": [
+        "Growlithe",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd18/gv-pk-mcd-2018-1/b456c98c78ba8e2e9caaac2d.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_2023sv",
+      "path": "/sets/2023sv",
+      "status": 200,
+      "body_length": 355308,
+      "expected_signals": [
+        "McDonald's Collection 2023",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2023sv/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2023-1",
+      "path": "/card/GV-PK-MCD-2023-1",
+      "status": 200,
+      "body_length": 186576,
+      "expected_signals": [
+        "Sprigatito",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2023sv/gv-pk-mcd-2023-1/36dd424e9e3626073beabc70.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_2024sv",
+      "path": "/sets/2024sv",
+      "status": 200,
+      "body_length": 355339,
+      "expected_signals": [
+        "McDonald's Collection 2024",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2024sv/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "Image unavailable",
+        "assets.tcgdex.net/en/mc/",
+        "images.pokemontcg.io/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_GV-PK-MCD-2024-1",
+      "path": "/card/GV-PK-MCD-2024-1",
+      "status": 200,
+      "body_length": 173079,
+      "expected_signals": [
+        "Charizard",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2024sv/gv-pk-mcd-2024-1/cf1bb36b27e36b4b00483bba.png"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net/en/mc/"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3088\n\n ✓ Starting...\n ✓ Ready in 239ms\n",
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "36a4d12f2474893b2e6fe83057d6ea30c3df007fb02ab7e886a2a80b393b8739"
+}

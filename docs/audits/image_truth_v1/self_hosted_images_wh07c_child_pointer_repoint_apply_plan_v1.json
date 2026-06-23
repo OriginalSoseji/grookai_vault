@@ -1,0 +1,66 @@
+{
+  "package_id": "IMG-HOST-WH-07C-CHILD-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T20:46:34.001Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-07B-CHILD-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "147101f1eb51d2eea5e4a0fc02a6c3fa719263061fe153fec89c76a4917458e3",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh07b_child_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 322,
+  "total_update_count": 322,
+  "target_tables": {
+    "card_printings": 322
+  },
+  "families": {
+    "mcdonalds": 186,
+    "trainer_kit": 136
+  },
+  "set_codes": {
+    "2021swsh": 50,
+    "mcd11": 12,
+    "mcd12": 12,
+    "mcd14": 12,
+    "mcd15": 12,
+    "mcd16": 12,
+    "mcd17": 12,
+    "mcd18": 12,
+    "mcd19": 12,
+    "mcd21": 25,
+    "mcd22": 15,
+    "tk-ex-latia": 10,
+    "tk-ex-latio": 10,
+    "tk-ex-m": 12,
+    "tk-ex-p": 12,
+    "tk-hs-g": 1,
+    "tk-hs-r": 1,
+    "tk-xy-latia": 30,
+    "tk-xy-latio": 30,
+    "tk-xy-su": 30
+  },
+  "proposed_image_sources": {
+    "identity": 322
+  },
+  "proposed_image_statuses": {
+    "representative_shared": 322
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "147101f1eb51d2eea5e4a0fc02a6c3fa719263061fe153fec89c76a4917458e3",
+  "plan_hash": "677c266d04a6db6815fdc7718e7aa9b8eefd8605ff4365a6a50647016c2a5b40"
+}

@@ -1,9 +1,9 @@
 # IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE
 
-- Generated: 2026-06-23T15:36:15.086Z
+- Generated: 2026-06-23T20:47:24.520Z
 - Mode: read_only_runtime_http_smoke
-- Base URL: `https://grookaivault.com`
-- Proof hash: `7102dc86943a49da0446cd6fd10232ee38a48121fb1a4119311d52eac09dcfb8`
+- Base URL: `http://127.0.0.1:3087`
+- Proof hash: `1b1e43f8b6d742d92d45eed588dab6879e7a2325924941425612f890d0296094`
 - Failures: 0
 
 ## Runtime Routes
@@ -16,6 +16,8 @@
 | card_mep_oshawott_exact | 200 | PASS | none | none |
 | set_trainer_kit_sm_lycanroc | 200 | PASS | none | none |
 | set_trainer_kit_dp_lucario_residual | 200 | PASS | none | none |
+| card_trainer_kit_sm_lycanroc_representative | 200 | PASS | none | none |
+| card_trainer_kit_dp_lucario_representative | 200 | PASS | none | none |
 | card_trainer_kit_ex_latios_alias | 200 | PASS | none | none |
 | card_trainer_kit_hs_gyarados_residual | 200 | PASS | none | none |
 | card_wrong_rc5_blocked | 200 | PASS | none | none |

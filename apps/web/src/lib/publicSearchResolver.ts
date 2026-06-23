@@ -4,6 +4,7 @@ import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/
 import { getPublicSets } from "@/lib/publicSets";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
+  getPublicSetSearchHaystacks,
   normalizeSetQuery,
   SET_INTENT_ALIAS_MAP,
   STRUCTURED_CARD_SET_ALIAS_MAP,
@@ -261,18 +262,10 @@ function buildSetContext(
     .flatMap((setInfo) => {
       const matches: Array<{ phrase: string; codes: string[] }> = [];
 
-      if (phraseInQuery(normalizedInput, setInfo.normalized_name)) {
-        matches.push({ phrase: setInfo.normalized_name, codes: [setInfo.code] });
-      }
-
-      if (
-        setInfo.normalized_printed_set_abbrev &&
-        phraseInQuery(normalizedInput, setInfo.normalized_printed_set_abbrev)
-      ) {
-        matches.push({
-          phrase: setInfo.normalized_printed_set_abbrev,
-          codes: [setInfo.code],
-        });
+      for (const haystack of getPublicSetSearchHaystacks(setInfo)) {
+        if (phraseInQuery(normalizedInput, haystack)) {
+          matches.push({ phrase: haystack, codes: [setInfo.code] });
+        }
       }
 
       return matches;
@@ -502,11 +495,14 @@ function findSetIntentMatches(normalizedInput: string, sets: PublicSetSummary[])
           return false;
         }
 
-        if (setInfo.normalized_name.includes(normalizedInput)) {
+        const haystacks = getPublicSetSearchHaystacks(setInfo);
+
+        if (haystacks.some((haystack) => haystack.includes(normalizedInput))) {
           return true;
         }
 
-        return queryTokens.every((token) => setInfo.normalized_tokens.includes(token));
+        const haystackTokens = new Set(haystacks.flatMap((haystack) => tokenizeWords(haystack)));
+        return queryTokens.every((token) => haystackTokens.has(token));
       })
       .map((setInfo) => setInfo.code),
   );
@@ -522,7 +518,8 @@ async function resolveSetIntent(parsedQuery: ParsedQuery): Promise<ResolverResul
         (setInfo) =>
           setInfo.normalized_name === parsedQuery.normalizedInput ||
           normalizeSetCode(setInfo.code) === parsedQuery.normalizedInput ||
-          setInfo.normalized_printed_set_abbrev === parsedQuery.normalizedInput,
+          setInfo.normalized_printed_set_abbrev === parsedQuery.normalizedInput ||
+          getPublicSetSearchHaystacks(setInfo).some((haystack) => haystack === parsedQuery.normalizedInput),
       )
       .map((setInfo) => setInfo.code),
   );

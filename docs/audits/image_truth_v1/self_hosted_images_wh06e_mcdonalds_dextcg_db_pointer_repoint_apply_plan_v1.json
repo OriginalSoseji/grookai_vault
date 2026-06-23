@@ -1,0 +1,49 @@
+{
+  "package_id": "IMG-HOST-WH-06E-MCDONALDS-DEXTCG-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-23T20:25:54.622Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-06D-MCDONALDS-DEXTCG-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "7b6eef82541db741cd20cbf8b36bcfdc1a52eb1ef27f9995268b0090e6161f62",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh06d_mcdonalds_dextcg_db_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 78,
+  "total_update_count": 78,
+  "target_tables": {
+    "card_prints": 78
+  },
+  "proposed_image_sources": {
+    "identity": 78
+  },
+  "proposed_image_statuses": {
+    "exact": 48,
+    "representative_shared": 30
+  },
+  "set_codes": {
+    "2023sv": 15,
+    "2024sv": 15,
+    "mcd14": 12,
+    "mcd15": 12,
+    "mcd17": 12,
+    "mcd18": 12
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_identity_overwrites_performed": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "7b6eef82541db741cd20cbf8b36bcfdc1a52eb1ef27f9995268b0090e6161f62",
+  "plan_hash": "24d70755a1bc5330b5f2ab551409c067c355850eb91ad669246eea74ec1b9fae"
+}
