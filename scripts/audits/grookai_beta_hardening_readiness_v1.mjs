@@ -20,6 +20,8 @@ const files = {
   worldChampSmoke: 'docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json',
   worldChampLiveSmoke: 'docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json',
   curatedFallbackLiveScan: 'docs/audits/image_truth_v1/image_truth_img24a_curated_fallback_live_scan_v1.json',
+  localCommunityReadiness: 'docs/audits/local_community_feed_v1/local_community_wishlist_matching_readiness_v1.json',
+  localCommunityLiveSmoke: 'docs/audits/local_community_feed_v1/local_community_feed_v2_wishlist_live_smoke_v1.json',
   webVariantOrigin: 'apps/web/src/lib/cards/variantOriginPublicCopy.generated.json',
   mobileVariantOrigin: 'lib/services/identity/variant_origin_public_copy_generated.dart',
 };
@@ -78,6 +80,8 @@ function buildReport() {
   const worldChampSmoke = safeJson(files.worldChampSmoke);
   const worldChampLiveSmoke = safeJson(files.worldChampLiveSmoke);
   const curatedFallbackLiveScan = safeJson(files.curatedFallbackLiveScan);
+  const localCommunityReadiness = safeJson(files.localCommunityReadiness);
+  const localCommunityLiveSmoke = safeJson(files.localCommunityLiveSmoke);
   const webVariantOrigin = readJson(files.webVariantOrigin);
   const mobileVariantOrigin = parseMobileVariantOrigin();
 
@@ -99,6 +103,19 @@ function buildReport() {
   const worldFailures = worldChampSmoke.data?.failures ?? [];
   const worldLiveFailures = worldChampLiveSmoke.data?.failures ?? [];
   const curatedFallbackFailures = curatedFallbackLiveScan.data?.failures ?? [];
+  const localCommunityStaticReady =
+    localCommunityReadiness.data?.summary?.geofence_ready === true &&
+    localCommunityReadiness.data?.summary?.wishlist_storage_ready === true &&
+    localCommunityReadiness.data?.summary?.wishlist_matching_ready === true;
+  const localCommunityLiveReady =
+    localCommunityLiveSmoke.ok &&
+    localCommunityLiveSmoke.data?.status === 'PASS' &&
+    localCommunityLiveSmoke.data?.selected_row_matched === true &&
+    localCommunityLiveSmoke.data?.selected_match_reason === 'viewer_wishlist' &&
+    localCommunityLiveSmoke.data?.no_raw_user_ids_exposed === true &&
+    localCommunityLiveSmoke.data?.no_exact_location_exposed === true &&
+    localCommunityLiveSmoke.data?.no_private_wishlist_data_exposed === true &&
+    localCommunityLiveSmoke.data?.no_persistent_write_confirmation === true;
   const worldHttpFailures =
     countFailures(worldHttp.routes ?? []) + countFailures(worldHttp.redirects ?? []);
   const worldDbProbeFailures = countFailures(worldDb.probes ?? []);
@@ -132,10 +149,28 @@ function buildReport() {
           : 'Fallback surface runtime scan has failures or missing evidence.',
       evidence: [files.dexRuntime, files.cardRuntime, files.curatedFallbackLiveScan, 'tests/contracts/image_surface_consistency_v1.test.mjs'],
     },
+    {
+      rank: 3,
+      severity: 'P1 beta blocker',
+      lane: 'Local community geofence and wishlist matching',
+      status:
+        localCommunityStaticReady && localCommunityLiveReady
+          ? 'live_rollback_smoke_clear'
+          : 'needs_live_rollback_smoke',
+      finding:
+        localCommunityStaticReady && localCommunityLiveReady
+          ? 'Local Nearby feed geofence and wishlist matching are wired and proven by rollback-only live smoke.'
+          : 'Local Nearby feed geofence or wishlist matching evidence is missing or failing.',
+      evidence: [files.localCommunityReadiness, files.localCommunityLiveSmoke],
+    },
   ];
 
   const launchBlockers = launchBlockerCandidates
-    .filter((finding) => !['live_production_clear', 'live_curated_scan_clear'].includes(finding.status))
+    .filter((finding) => ![
+      'live_production_clear',
+      'live_curated_scan_clear',
+      'live_rollback_smoke_clear',
+    ].includes(finding.status))
     .map((finding, index) => ({ ...finding, rank: index + 1 }));
 
   const followups = [
@@ -183,6 +218,8 @@ function buildReport() {
         worldLiveFailures.length === 0 &&
         curatedFallbackLiveScan.ok &&
         curatedFallbackFailures.length === 0 &&
+        localCommunityStaticReady &&
+        localCommunityLiveReady &&
         imageRuntime.ok &&
         imageRuntimeFailures.length === 0
           ? 'beta_ready_with_ranked_followups'
@@ -191,11 +228,12 @@ function buildReport() {
       cleared_checks: [
         'Live sampled image runtime smoke is clear for 11 routes on https://grookaivault.com.',
         'Non-empty live curated fallback scan is clear for Dex, card detail, and set detail.',
+        'Local Nearby geofence and wishlist matching are proven by rollback-only live smoke.',
         'Selected deterministic search, AI boundary, promo origin, image parity, Base Set, and World Championship decklist contracts passed.',
         'Web/mobile variant origin generated payloads are synced.',
       ],
       contract_tests_run_separately:
-        'node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs',
+        'node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs tests/contracts/local_community_geofence_wishlist_contract_v1.test.mjs',
     },
     lanes: {
       image_coverage: {
@@ -289,6 +327,26 @@ function buildReport() {
         world_championship_live_redirects_checked: worldChampLiveSmoke.data?.redirects?.length ?? null,
         world_championship_live_failures: worldLiveFailures,
       },
+      local_community_feed: {
+        status:
+          localCommunityStaticReady && localCommunityLiveReady
+            ? 'geofence_wishlist_live_smoke_clear'
+            : 'needs_followup',
+        static_geofence_ready: localCommunityReadiness.data?.summary?.geofence_ready ?? null,
+        static_wishlist_storage_ready: localCommunityReadiness.data?.summary?.wishlist_storage_ready ?? null,
+        static_wishlist_matching_ready: localCommunityReadiness.data?.summary?.wishlist_matching_ready ?? null,
+        live_status: localCommunityLiveSmoke.data?.status ?? null,
+        viewer: localCommunityLiveSmoke.data?.viewer_slug ?? null,
+        baseline_rows: localCommunityLiveSmoke.data?.baseline_row_count ?? null,
+        baseline_wishlist_matches: localCommunityLiveSmoke.data?.baseline_wishlist_match_count ?? null,
+        post_fixture_wishlist_matches: localCommunityLiveSmoke.data?.post_fixture_wishlist_match_count ?? null,
+        selected_row_matched: localCommunityLiveSmoke.data?.selected_row_matched ?? null,
+        selected_match_reason: localCommunityLiveSmoke.data?.selected_match_reason ?? null,
+        no_raw_user_ids_exposed: localCommunityLiveSmoke.data?.no_raw_user_ids_exposed ?? null,
+        no_exact_location_exposed: localCommunityLiveSmoke.data?.no_exact_location_exposed ?? null,
+        no_private_wishlist_data_exposed: localCommunityLiveSmoke.data?.no_private_wishlist_data_exposed ?? null,
+        no_persistent_write_confirmation: localCommunityLiveSmoke.data?.no_persistent_write_confirmation ?? null,
+      },
       base_set_print_run_lanes: {
         status:
           baseSetMetrics.applied === true &&
@@ -354,6 +412,7 @@ function renderMarkdown(report) {
     `- Search contract health: ${report.lanes.search_contract_health.status}; normal Search AI model calls allowed = ${report.lanes.search_contract_health.deterministic_search_ai_model_calls_allowed}.`,
     `- Mobile parity: ${report.lanes.mobile_parity.status}; web/mobile payload hashes match = ${report.lanes.mobile_parity.web_mobile_payload_hash === report.lanes.mobile_parity.mobile_payload_hash}.`,
     `- Production smoke: ${report.lanes.production_smoke.status}; live routes checked = ${report.lanes.production_smoke.live_routes_checked}; live failures = ${report.lanes.production_smoke.live_failures.length}.`,
+    `- Local community feed: ${report.lanes.local_community_feed.status}; baseline rows = ${report.lanes.local_community_feed.baseline_rows}; post-fixture wishlist matches = ${report.lanes.local_community_feed.post_fixture_wishlist_matches}; no persistent proof rows = ${report.lanes.local_community_feed.no_persistent_write_confirmation}.`,
     `- Base Set print-run lanes: ${report.lanes.base_set_print_run_lanes.status}; updated rows = ${report.lanes.base_set_print_run_lanes.updated_rows}; current missing after final scan = ${report.lanes.base_set_print_run_lanes.current_missing_after_final_scan}.`,
     `- World Championship rows: ${report.lanes.world_championship_rows.status}; sets = ${report.lanes.world_championship_rows.sets}; deck card quantity sum = ${report.lanes.world_championship_rows.deck_quantity_sum_from_card_rows}.`,
     '',

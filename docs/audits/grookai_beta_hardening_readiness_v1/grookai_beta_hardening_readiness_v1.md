@@ -1,6 +1,6 @@
 # GROOKAI_BETA_HARDENING_READINESS_V1
 
-Generated: 2026-06-24T20:30:32.144Z
+Generated: 2026-06-24T21:53:08.482Z
 
 ## Summary
 
@@ -21,6 +21,7 @@ Generated: 2026-06-24T20:30:32.144Z
 - Search contract health: selected_contract_tests_passed; normal Search AI model calls allowed = false.
 - Mobile parity: synced; web/mobile payload hashes match = true.
 - Production smoke: sampled_live_image_routes_clear; live routes checked = 11; live failures = 0.
+- Local community feed: geofence_wishlist_live_smoke_clear; baseline rows = 4; post-fixture wishlist matches = 2; no persistent proof rows = true.
 - Base Set print-run lanes: representative_pointer_gap_closed; updated rows = 304; current missing after final scan = 0.
 - World Championship rows: rows_complete_for_beta_display; sets = 80; deck card quantity sum = 4800.
 
@@ -36,6 +37,7 @@ Generated: 2026-06-24T20:30:32.144Z
 
 - Live sampled image runtime smoke is clear for 11 routes on https://grookaivault.com.
 - Non-empty live curated fallback scan is clear for Dex, card detail, and set detail.
+- Local Nearby geofence and wishlist matching are proven by rollback-only live smoke.
 - Selected deterministic search, AI boundary, promo origin, image parity, Base Set, and World Championship decklist contracts passed.
 - Web/mobile variant origin generated payloads are synced.
 
@@ -52,10 +54,12 @@ Generated: 2026-06-24T20:30:32.144Z
 - worldChampSmoke: docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json
 - worldChampLiveSmoke: docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json
 - curatedFallbackLiveScan: docs/audits/image_truth_v1/image_truth_img24a_curated_fallback_live_scan_v1.json
+- localCommunityReadiness: docs/audits/local_community_feed_v1/local_community_wishlist_matching_readiness_v1.json
+- localCommunityLiveSmoke: docs/audits/local_community_feed_v1/local_community_feed_v2_wishlist_live_smoke_v1.json
 - webVariantOrigin: apps/web/src/lib/cards/variantOriginPublicCopy.generated.json
 - mobileVariantOrigin: lib/services/identity/variant_origin_public_copy_generated.dart
 
 ## Verification
 
-- Contract command run outside this report: `node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs`
-- Report fingerprint: 022f688d9aedfd279361d7abd58bba2b906a9ce74ab2f626af5e6b812eaed307
+- Contract command run outside this report: `node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs tests/contracts/local_community_geofence_wishlist_contract_v1.test.mjs`
+- Report fingerprint: 873b5c69b5d44061431eee5639bcea50b3b96705858419770d3bbd1a8dd17d5b
