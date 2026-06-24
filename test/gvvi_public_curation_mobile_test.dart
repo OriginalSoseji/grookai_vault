@@ -36,4 +36,43 @@ void main() {
       isNot(contains(".from('vault_items')\n        .update({'intent'")),
     );
   });
+
+  test('mobile GVVI screen can create a Wall section for this exact copy', () {
+    final screen = File(
+      'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('Future<void> _createAndAssignSection()'));
+    expect(screen, contains('Create section'));
+    expect(screen, contains('Section name'));
+    expect(screen, contains('VaultGvviService.createSection'));
+    expect(screen, contains('VaultGvviService.assignSectionMembership'));
+    expect(screen, contains('Section created and copy added.'));
+    expect(screen, contains('creatingSection'));
+    expect(
+      screen,
+      isNot(contains('PublicCollectorService.createOwnerWallSection')),
+    );
+  });
+
+  test('mobile GVVI section creation writes owner sections only', () {
+    final service = File(
+      'lib/services/vault/vault_gvvi_service.dart',
+    ).readAsStringSync();
+
+    expect(
+      service,
+      contains('static Future<VaultGvviSectionMembership> createSection'),
+    );
+    expect(service, contains("from('wall_sections')"));
+    expect(service, contains(".insert({"));
+    expect(service, contains("'user_id': userId"));
+    expect(service, contains("'is_active': true"));
+    expect(service, contains("'is_public': true"));
+    expect(service, contains('Section name is required.'));
+    expect(service, contains('Wall is managed automatically.'));
+    expect(service, contains('You already have a section with that name.'));
+    expect(service, isNot(contains(".from('shared_cards').insert")));
+    expect(service, isNot(contains(".from('vault_items').insert")));
+  });
 }
