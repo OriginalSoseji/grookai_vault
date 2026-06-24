@@ -1,6 +1,6 @@
 {
   "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
-  "generated_at": "2026-06-24T17:57:35.396Z",
+  "generated_at": "2026-06-24T18:02:35.157Z",
   "mode": "dry_run_no_write",
   "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh21a_residual_parent_child_pointer_plan_v1.jsonl",
   "residual_parent_gap_rows_scanned": 68,

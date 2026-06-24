@@ -1,8 +1,8 @@
 # IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
 
-- Generated: 2026-06-24T17:49:29.546Z
+- Generated: 2026-06-24T18:02:48.995Z
 - Mode: read_only_final_state_scan_no_write
-- Fingerprint: `23c361db664112c916415c7d1a2950cf5f6ab2abc5b7c223e4239e6d90810efa`
+- Fingerprint: `16345f3c6133b39d38ccb44ab9109b96adc694b850f1d185e9aff9d48ad236cd`
 - Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
 - DB writes performed: false
 - Storage writes performed: false
@@ -13,10 +13,10 @@
 ## Core Coverage
 
 - Parent rows scanned: 27266
-- Parent rows with any image field: 27198
-- Parent rows with self-hosted image_path: 27174
-- Parent rows without any image field: 68
-- Parent weak-status rows: 513
+- Parent rows with any image field: 27239
+- Parent rows with self-hosted image_path: 27192
+- Parent rows without any image field: 27
+- Parent weak-status rows: 473
 - Child rows scanned: 44137
 - Child rows with any image field: 1058
 - Child rows with self-hosted image_path: 390
@@ -55,10 +55,10 @@
 | key | count |
 | --- | ---: |
 | exact | 23019 |
-| representative_shared | 2355 |
+| representative_shared | 2395 |
 | representative_shared_stamp | 1373 |
-| unknown | 349 |
-| missing | 164 |
+| unknown | 328 |
+| missing | 145 |
 | representative_shared_collision | 6 |
 
 ## Child Status Counts
@@ -76,12 +76,6 @@
 | key | count |
 | --- | ---: |
 | unknown | 27 |
-| mep | 23 |
-| svp | 7 |
-| xya | 6 |
-| col1 | 3 |
-| misc | 1 |
-| swshp | 1 |
 
 ## Child Gap Sets
 
