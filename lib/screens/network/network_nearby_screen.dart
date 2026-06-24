@@ -310,6 +310,8 @@ class _NearbyCardRow extends StatelessWidget {
                       _NearbyChip(label: row.sourceLabel, accent: true),
                       if (row.isFollowing)
                         const _NearbyChip(label: 'Following', outline: true),
+                      if (row.viewerWishlistMatch)
+                        const _NearbyChip(label: 'Wishlist match', warm: true),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -344,6 +346,18 @@ class _NearbyCardRow extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  if (row.matchReason == 'viewer_wishlist') ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      'This card matches your wishlist.',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.tertiary,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 10),
                   Divider(
                     height: 1,
@@ -398,22 +412,30 @@ class _NearbyChip extends StatelessWidget {
     required this.label,
     this.accent = false,
     this.outline = false,
+    this.warm = false,
   });
 
   final String label;
   final bool accent;
   final bool outline;
+  final bool warm;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final background = accent
+    final background = warm
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.74)
+        : accent
         ? colorScheme.tertiaryContainer.withValues(alpha: 0.58)
         : colorScheme.surfaceContainerHighest.withValues(alpha: 0.58);
-    final borderColor = outline
+    final borderColor = warm
+        ? colorScheme.tertiary.withValues(alpha: 0.34)
+        : outline
         ? colorScheme.primary.withValues(alpha: 0.32)
         : colorScheme.outline.withValues(alpha: 0.08);
-    final textColor = accent
+    final textColor = warm
+        ? colorScheme.onTertiaryContainer
+        : accent
         ? colorScheme.onTertiaryContainer
         : colorScheme.onSurface.withValues(alpha: 0.72);
 

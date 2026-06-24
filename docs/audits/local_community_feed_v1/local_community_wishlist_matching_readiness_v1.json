@@ -1,0 +1,82 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_WISHLIST_MATCHING_READINESS_V1",
+  "generated_at": "2026-06-24T21:02:32.639Z",
+  "status": "PASS",
+  "summary": {
+    "geofence_ready": true,
+    "wishlist_storage_ready": true,
+    "wishlist_matching_ready": true,
+    "no_db_writes": true,
+    "no_migrations_applied": true
+  },
+  "geofence_checks": [
+    {
+      "name": "Local discovery is opt-in",
+      "ok": true,
+      "detail": "collector_local_discovery_settings defaults local discovery off."
+    },
+    {
+      "name": "Location is coarse only",
+      "ok": true,
+      "detail": "Stored locality is region/coarse geohash prefix; exact location is explicitly out of scope."
+    },
+    {
+      "name": "RPC requires auth",
+      "ok": true,
+      "detail": "local_community_feed_v2 is authenticated-only."
+    },
+    {
+      "name": "Only opted-in local collectors qualify",
+      "ok": true,
+      "detail": "Matches are scoped to same country plus exact coarse-prefix or same-region buckets."
+    },
+    {
+      "name": "Blocks and mutes are enforced",
+      "ok": true,
+      "detail": "Muted and blocked collectors are excluded in the SQL."
+    },
+    {
+      "name": "Public projection hides raw identity and location fields",
+      "ok": true,
+      "detail": "Returned columns omit raw owner user IDs and exact/coarse location internals."
+    },
+    {
+      "name": "Web and mobile call the same RPC",
+      "ok": true,
+      "detail": "App/web parity uses the same local community feed RPC."
+    }
+  ],
+  "wishlist_checks": [
+    {
+      "name": "Wishlist table exists",
+      "ok": true,
+      "detail": "Wishlist rows are stored against card_prints IDs."
+    },
+    {
+      "name": "Wishlist RLS is owner-only",
+      "ok": true,
+      "detail": "Wishlist items are protected by user-owned RLS."
+    },
+    {
+      "name": "Wishlist is a known interaction signal",
+      "ok": true,
+      "detail": "card_signals allows wishlist as a signal type."
+    },
+    {
+      "name": "Nearby RPC joins wishlist data",
+      "ok": true,
+      "detail": "Expected when nearby feed can rank or label cards that match the viewer wishlist."
+    },
+    {
+      "name": "Nearby response exposes a wishlist match field",
+      "ok": true,
+      "detail": "Expected when app/web can show a deterministic wishlist-match reason."
+    },
+    {
+      "name": "Nearby surfaces advertise wishlist matching",
+      "ok": true,
+      "detail": "Expected only after the RPC provides deterministic match data."
+    }
+  ],
+  "recommendation": "Run authenticated live RPC smoke with seeded viewer/wishlist rows."
+}

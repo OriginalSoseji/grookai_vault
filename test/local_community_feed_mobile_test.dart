@@ -8,8 +8,9 @@ void main() {
       'lib/services/network/local_community_feed_service.dart',
     ).readAsStringSync();
 
-    expect(service, contains("rpc(\n      'local_community_feed_v1'"));
+    expect(service, contains("rpc(\n      'local_community_feed_v2'"));
     expect(service, isNot(contains('collector_local_discovery_settings')));
+    expect(service, isNot(contains('wishlist_items')));
     expect(service, isNot(contains('geohash')));
     expect(service, isNot(contains('owner_user_id')));
   });

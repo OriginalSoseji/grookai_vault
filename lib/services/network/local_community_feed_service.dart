@@ -36,6 +36,8 @@ class LocalCommunityFeedRow {
     required this.localityLabel,
     required this.distanceBucket,
     required this.relationshipContext,
+    required this.viewerWishlistMatch,
+    required this.matchReason,
     required this.createdAt,
     required this.routeTarget,
   });
@@ -55,6 +57,8 @@ class LocalCommunityFeedRow {
   final String localityLabel;
   final String distanceBucket;
   final String relationshipContext;
+  final bool viewerWishlistMatch;
+  final String matchReason;
   final DateTime? createdAt;
   final String routeTarget;
 
@@ -113,6 +117,8 @@ class LocalCommunityFeedRow {
       localityLabel: _text(json['locality_label']),
       distanceBucket: _text(json['distance_bucket']),
       relationshipContext: _text(json['relationship_context']),
+      viewerWishlistMatch: json['viewer_wishlist_match'] == true,
+      matchReason: _text(json['match_reason']),
       createdAt: _date(json['created_at']),
       routeTarget: _text(json['route_target']),
     );
@@ -132,7 +138,7 @@ class LocalCommunityFeedService {
 
     final normalizedLimit = limit.clamp(1, 80).toInt();
     final response = await _client.rpc(
-      'local_community_feed_v1',
+      'local_community_feed_v2',
       params: <String, dynamic>{'p_limit': normalizedLimit},
     );
 
