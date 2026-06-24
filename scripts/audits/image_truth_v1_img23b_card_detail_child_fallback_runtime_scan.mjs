@@ -20,7 +20,7 @@ const DEFAULT_PORT = Number.parseInt(process.env.IMAGE_TRUTH_CARD_DETAIL_FALLBAC
 const CONCURRENCY = Number.parseInt(process.env.IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_CONCURRENCY ?? '2', 10);
 const ROUTE_LIMIT = Number.parseInt(process.env.IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_LIMIT ?? '0', 10);
 const RETRIES = Number.parseInt(process.env.IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_RETRIES ?? '2', 10);
-const KNOWN_RESOLVER_BLOCKED_GV_IDS = new Set(['GV-PK-LTR-RC5']);
+const HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS = new Set(['GV-PK-LTR-RC5']);
 
 function requireDbUrl() {
   return (
@@ -191,7 +191,7 @@ async function queryCandidates() {
         and nullif(trim(coalesce(cp.image_alt_url, '')), '') is null
         and nullif(trim(coalesce(cp.representative_image_url, '')), '') is null
       order by cp.set_code, cp.number, cp.gv_id
-    `, [Array.from(KNOWN_RESOLVER_BLOCKED_GV_IDS)]);
+    `, [Array.from(HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS)]);
     const candidates = result.rows.map((row) => ({
       ...row,
       path: `/card/${encodeURIComponent(row.gv_id)}`,
@@ -347,7 +347,7 @@ ${failureRows}
 - No image uploads.
 - This scan verifies card detail hero rendering for parent rows that have no parent image but do have child printing image evidence.
 - Representative child fallback imagery remains explicitly non-exact.
-- Known resolver-blocked wrong-image rows are excluded: ${Array.from(KNOWN_RESOLVER_BLOCKED_GV_IDS).join(', ')}.
+- Historical wrong-image sentinel rows with dedicated surface-smoke coverage are excluded from this fallback-candidate scan: ${Array.from(HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS).join(', ')}.
 `;
 }
 

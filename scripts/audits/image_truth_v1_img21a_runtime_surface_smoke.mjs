@@ -109,9 +109,12 @@ const ROUTES = [
     forbid: ['assets.tcgdex.net/en/tk/tk-hs-g/20/high.webp'],
   },
   {
-    id: 'card_wrong_rc5_blocked',
+    id: 'card_ltr_rc5_self_hosted_torchic',
     path: '/card/GV-PK-LTR-RC5',
-    expect: ['Torchic', 'Image unavailable'],
+    expect: [
+      'Torchic',
+      'user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/bw11/gv-pk-ltr-rc5/',
+    ],
     forbid: ['images.pokemontcg.io/bw11/5_hires.png', 'Carnivine'],
   },
 ];
@@ -234,7 +237,7 @@ ${resultRows}
 - No database writes.
 - No image uploads.
 - This smoke checks rendered runtime behavior only.
-- RC5 Torchic is expected to remain blocked until a verified exact/replacement image is sourced.
+- RC5 Torchic must render its self-hosted Torchic image and must not regress to the old wrong Carnivine/PokemonTCG image signals.
 `;
 }
 
