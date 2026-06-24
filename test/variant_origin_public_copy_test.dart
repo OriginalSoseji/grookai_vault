@@ -30,9 +30,26 @@ void main() {
     expect(copy.sourceUrls, isEmpty);
   });
 
-  test('excludes promo rows that still need manual source review', () {
-    final copy = getVariantOriginPublicCopy(gvId: 'GV-PK-PR-BLW-BW04');
+  test('returns exact promo origin copy with source URLs', () {
+    final reshiram = getVariantOriginPublicCopy(gvId: 'GV-PK-PR-BLW-BW04');
 
-    expect(copy, isNull);
+    expect(reshiram, isNotNull);
+    expect(reshiram!.familyLabel, 'New Legends Tins BW Promo');
+    expect(reshiram.whyItExists, contains('Reshiram BW04 and Zekrom BW05'));
+    expect(reshiram.sourceUrls, hasLength(2));
+
+    final ancientMew = getVariantOriginPublicCopy(gvId: 'GV-PK-MISC-001');
+
+    expect(ancientMew, isNotNull);
+    expect(ancientMew!.familyLabel, 'Ancient Mew The Power of One Promo');
+    expect(ancientMew.whyItExists, contains('The Power of One'));
+    expect(ancientMew.sourceUrls, isNotEmpty);
+
+    final greninja = getVariantOriginPublicCopy(gvId: 'GV-PK-PR-SW-SWSH144');
+
+    expect(greninja, isNotNull);
+    expect(greninja!.familyLabel, 'Celebrations Elite Trainer Box Greninja Star Promo');
+    expect(greninja.whyItExists, contains('Elite Trainer Box'));
+    expect(greninja.sourceUrls, isNotEmpty);
   });
 }

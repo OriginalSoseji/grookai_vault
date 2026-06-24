@@ -1,15 +1,31 @@
 {
-  "generated_at": "2026-06-24T19:10:37.959Z",
-  "source_fingerprint_sha256": "2a512479aaae3b20afc1dbf0afa14ebd89e9d3999f4b50334dff8196436bc3b8",
-  "source_version": "VARIANT_ORIGIN_INDEX_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_FAMILY_COPY_V1",
+  "generated_at": "2026-06-24T19:36:32.695Z",
+  "source_fingerprint_sha256": "ab1f3dfb94422247ea4d3f84445b2db130059ce2e3af48f003e3f10698d35d55",
+  "source_version": "VARIANT_ORIGIN_INDEX_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_EXACT_COPY_V1",
   "summary": {
-    "public_copy_safe_parent_rows": 3326,
-    "public_copy_safe_families": 51,
+    "public_copy_safe_parent_rows": 3330,
+    "public_copy_safe_families": 54,
     "blocked_parent_rows_excluded": 73,
     "promo_family_public_copy_rows_added": 1523,
-    "promo_family_public_copy_families_added": 12
+    "promo_family_public_copy_families_added": 12,
+    "promo_exact_public_copy_rows_added": 4,
+    "promo_exact_public_copy_families_added": 3
   },
   "families": {
+    "ancient_mew_power_of_one_movie_promo": {
+      "family_key": "ancient_mew_power_of_one_movie_promo",
+      "family_label": "Ancient Mew The Power of One Promo",
+      "variant_category": "movie_theatrical_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "Ancient Mew was released as a 2000 theatrical promotional card for The Power of One and distributed through participating cinemas.",
+      "why_collectors_care": "The movie-theater distribution, sealed wrapper, unusual card text, and separate international/Japanese print boundaries make Ancient Mew a distinct promo identity rather than a normal set card.",
+      "how_to_identify": "Confirm the Ancient Mew card, Miscellaneous Promotional card lane, international movie-promo print, and absence of Japanese Nintedo/error-specific governance markers.",
+      "grookai_rule": "Grookai models this English Ancient Mew as an exact movie-promo parent identity. Japanese exclusive, Nintedo/error, and later pamphlet variants remain separate governance lanes.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Ancient_Mew_%28The_Power_of_One_promo%29",
+        "https://pkmncards.com/card/ancient-mew-miscellaneous/"
+      ]
+    },
     "arceus_ar_subset": {
       "family_key": "arceus_ar_subset",
       "family_label": "Platinum Arceus AR Subset",
@@ -128,6 +144,19 @@
       "grookai_rule": "SL-prefixed cards are parent identity lanes because the prefix is a printed subset identity.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Call_of_Legends_%28TCG%29"
+      ]
+    },
+    "celebrations_elite_trainer_box_greninja_star_promo": {
+      "family_key": "celebrations_elite_trainer_box_greninja_star_promo",
+      "family_label": "Celebrations Elite Trainer Box Greninja Star Promo",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "Greninja Star SWSH144 was released as a SWSH Black Star Promo in the Celebrations Elite Trainer Box and Celebrations Pokemon Center Elite Trainer Box from October 8, 2021.",
+      "why_collectors_care": "This card is a modern product-promo revival of Pokemon Star styling, tied specifically to the Celebrations ETB products rather than booster-pack checklist membership.",
+      "how_to_identify": "Confirm Greninja Star, promo number SWSH144, SWSH Black Star Promo membership, and Celebrations ETB product origin.",
+      "grookai_rule": "Grookai models this as an exact Celebrations ETB product-promo parent identity, not as generic SWSH promo family copy.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Greninja_%E2%98%86_%28SWSH_Promo_144%29"
       ]
     },
     "classic_collection_subset": {
@@ -348,6 +377,20 @@
       "how_to_identify": "Confirm the Mega Evolution promo set label, printed number, and card name against the promo checklist.",
       "grookai_rule": "Grookai models Mega Evolution Promos as parent promo identities. This family-level explanation does not assert exact product origin.",
       "source_urls": []
+    },
+    "new_legends_tins_bw_promo": {
+      "family_key": "new_legends_tins_bw_promo",
+      "family_label": "New Legends Tins BW Promo",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "Reshiram BW04 and Zekrom BW05 were released as BW Black Star Promos with English-exclusive artwork in the New Legends Tins in May 2011.",
+      "why_collectors_care": "These New Legends Tins prints are specific BW promo product identities, separate from the Black & White expansion prints and later box or set reprints.",
+      "how_to_identify": "Confirm Reshiram BW04/BW004 or Zekrom BW05/BW005, BW Black Star Promo membership, and the New Legends Tins artwork.",
+      "grookai_rule": "Grookai models these as exact product-promo parent identities for the New Legends Tins prints, not as generic BW promo family copy.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Reshiram_%28Black_%26_White_26%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Zekrom_%28Black_%26_White_47%29"
+      ]
     },
     "nintendo_black_star_promos": {
       "family_key": "nintendo_black_star_promos",
@@ -7220,6 +7263,13 @@
       "variant_key": "play_pokemon_stamp",
       "printed_identity_modifier": null
     },
+    "GV-PK-MISC-001": {
+      "card_print_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+      "gv_id": "GV-PK-MISC-001",
+      "origin_family_key": "ancient_mew_power_of_one_movie_promo",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
     "GV-PK-MT-48-PRERELEASE-STAMP": {
       "card_print_id": "3eb71b5a-62c5-4df5-8080-3cb86705d758",
       "gv_id": "GV-PK-MT-48-PRERELEASE-STAMP",
@@ -9541,6 +9591,20 @@
       "card_print_id": "b3c8142d-dafb-4bb1-aa69-b4dfcd263b01",
       "gv_id": "GV-PK-PR-BLW-BW03",
       "origin_family_key": "bw_black_star_promos",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    "GV-PK-PR-BLW-BW04": {
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "origin_family_key": "new_legends_tins_bw_promo",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    "GV-PK-PR-BLW-BW05": {
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "gv_id": "GV-PK-PR-BLW-BW05",
+      "origin_family_key": "new_legends_tins_bw_promo",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -13783,6 +13847,13 @@
       "card_print_id": "4875eaf8-185c-4d11-8e67-38f4f98b199f",
       "gv_id": "GV-PK-PR-SW-SWSH143",
       "origin_family_key": "swsh_black_star_promos",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    "GV-PK-PR-SW-SWSH144": {
+      "card_print_id": "2b178c88-f2f1-4881-9193-fbbed4d8de97",
+      "gv_id": "GV-PK-PR-SW-SWSH144",
+      "origin_family_key": "celebrations_elite_trainer_box_greninja_star_promo",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -27130,6 +27201,13 @@
       "variant_key": "",
       "printed_identity_modifier": null
     },
+    "218465f1-d753-4c1c-b0af-656654092afe": {
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "gv_id": "GV-PK-PR-BLW-BW05",
+      "origin_family_key": "new_legends_tins_bw_promo",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
     "2189d164-057e-4aa8-ae6b-9dbf3a095a1c": {
       "card_print_id": "2189d164-057e-4aa8-ae6b-9dbf3a095a1c",
       "gv_id": "GV-PK-SM-SM139",
@@ -28171,6 +28249,13 @@
       "gv_id": "GV-PK-PAR-164-PLAY-POKEMON-STAMP",
       "origin_family_key": "prize_pack_series_stamp",
       "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    "2b178c88-f2f1-4881-9193-fbbed4d8de97": {
+      "card_print_id": "2b178c88-f2f1-4881-9193-fbbed4d8de97",
+      "gv_id": "GV-PK-PR-SW-SWSH144",
+      "origin_family_key": "celebrations_elite_trainer_box_greninja_star_promo",
+      "variant_key": "",
       "printed_identity_modifier": null
     },
     "2b251130-31de-45b2-a6e1-1697f4ad4af7": {
@@ -37420,6 +37505,13 @@
       "variant_key": "",
       "printed_identity_modifier": null
     },
+    "90c76326-1274-403d-8d8d-276e53319a0a": {
+      "card_print_id": "90c76326-1274-403d-8d8d-276e53319a0a",
+      "gv_id": "GV-PK-MISC-001",
+      "origin_family_key": "ancient_mew_power_of_one_movie_promo",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
     "90ea69ed-dc7c-4b0e-9ff9-4b2c336e9ebb": {
       "card_print_id": "90ea69ed-dc7c-4b0e-9ff9-4b2c336e9ebb",
       "gv_id": "GV-PK-PR-NP-2",
@@ -42072,6 +42164,13 @@
       "card_print_id": "c58a7b67-41c0-403a-b2c8-e6e6c372d6bc",
       "gv_id": "GV-PK-SM-SM09",
       "origin_family_key": "sm_black_star_promos",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7": {
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "origin_family_key": "new_legends_tins_bw_promo",
       "variant_key": "",
       "printed_identity_modifier": null
     },
