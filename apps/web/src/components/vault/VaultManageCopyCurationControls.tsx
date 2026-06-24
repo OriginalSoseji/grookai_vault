@@ -10,9 +10,12 @@ import {
 } from "@/lib/network/intent";
 import { saveVaultItemInstanceIntentAction } from "@/lib/network/saveVaultItemInstanceIntentAction";
 import { assignWallSectionMembershipAction } from "@/lib/wallSections/assignWallSectionMembershipAction";
+import { createWallSectionAction } from "@/lib/wallSections/createWallSectionAction";
 import { removeWallSectionMembershipAction } from "@/lib/wallSections/removeWallSectionMembershipAction";
 import {
+  normalizeWallSectionName,
   WALL_SECTION_HELPER_COPY,
+  type OwnerWallSection,
   type OwnerWallSectionMembership,
   type OwnerWallSectionMembershipModel,
   type WallSectionMembershipActionResult,
@@ -39,6 +42,14 @@ function resolveStatusTone(result: { ok: boolean } | null): "success" | "error" 
   return result.ok ? "success" : "error";
 }
 
+function getCreatedSection(
+  previousSections: OwnerWallSectionMembership[],
+  nextSections: OwnerWallSection[] | undefined,
+) {
+  const previousIds = new Set(previousSections.map((section) => section.id));
+  return nextSections?.find((section) => !previousIds.has(section.id)) ?? null;
+}
+
 export default function VaultManageCopyCurationControls({
   instanceId,
   initialIntent,
@@ -48,6 +59,7 @@ export default function VaultManageCopyCurationControls({
   const router = useRouter();
   const [intent, setIntent] = useState(initialIntent);
   const [sections, setSections] = useState<OwnerWallSectionMembership[]>(membershipModel.sections);
+  const [createName, setCreateName] = useState("");
   const [statusMessage, setStatusMessage] = useState<{ ok: boolean; message: string } | null>(
     membershipModel.loadError
       ? {
@@ -58,6 +70,7 @@ export default function VaultManageCopyCurationControls({
   );
   const [pendingIntent, setPendingIntent] = useState<VaultIntent | null>(null);
   const [pendingSectionId, setPendingSectionId] = useState<string | null>(null);
+  const [creatingSection, setCreatingSection] = useState(false);
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -70,7 +83,8 @@ export default function VaultManageCopyCurationControls({
 
   const statusTone = resolveStatusTone(statusMessage);
   const assignedCount = sections.filter((section) => section.is_member).length;
-  const disabled = !isActive || pendingIntent !== null || pendingSectionId !== null;
+  const disabled = !isActive || pendingIntent !== null || pendingSectionId !== null || creatingSection;
+  const normalizedCreateName = normalizeWallSectionName(createName);
 
   function applyMembershipResult(result: WallSectionMembershipActionResult) {
     setStatusMessage(result);
@@ -147,6 +161,64 @@ export default function VaultManageCopyCurationControls({
     });
   }
 
+  function handleCreateSection(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (disabled) {
+      return;
+    }
+
+    const name = normalizeWallSectionName(createName);
+    setCreatingSection(true);
+    setStatusMessage(null);
+
+    startTransition(async () => {
+      try {
+        const createResult = await createWallSectionAction({ name });
+        if (!createResult.ok) {
+          setStatusMessage({
+            ok: false,
+            message: createResult.fieldErrors?.name ?? createResult.fieldErrors?.form ?? createResult.message,
+          });
+          return;
+        }
+
+        const createdSection = getCreatedSection(sections, createResult.sections);
+        if (!createdSection) {
+          setStatusMessage({
+            ok: true,
+            message: "Section created. Refresh this copy to assign it.",
+          });
+          router.refresh();
+          return;
+        }
+
+        // LOCK: Create-and-assign still writes section membership through vault_item_instances.id.
+        const assignResult = await assignWallSectionMembershipAction({
+          sectionId: createdSection.id,
+          vaultItemInstanceId: instanceId,
+        });
+
+        applyMembershipResult({
+          ...assignResult,
+          message: assignResult.ok ? "Section created and copy added." : assignResult.message,
+        });
+
+        if (assignResult.ok) {
+          setCreateName("");
+        }
+        router.refresh();
+      } catch {
+        setStatusMessage({
+          ok: false,
+          message: "Section could not be created.",
+        });
+      } finally {
+        setCreatingSection(false);
+      }
+    });
+  }
+
   return (
     <div className="space-y-4 border-t border-slate-200 pt-4">
       <div className="space-y-1">
@@ -199,12 +271,6 @@ export default function VaultManageCopyCurationControls({
           <div className="rounded-[1rem] border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-xs leading-6 text-slate-600">
             <p>Not in any sections yet.</p>
             <p className="mt-1">{WALL_SECTION_HELPER_COPY}</p>
-            <Link
-              href="/account"
-              className="mt-3 inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-            >
-              Create section
-            </Link>
           </div>
         ) : (
           <div className="flex flex-wrap gap-2">
@@ -233,6 +299,34 @@ export default function VaultManageCopyCurationControls({
             })}
           </div>
         )}
+
+        <form className="flex flex-col gap-2 sm:flex-row" onSubmit={handleCreateSection}>
+          <label className="min-w-0 flex-1">
+            <span className="sr-only">New section name</span>
+            <input
+              type="text"
+              value={createName}
+              onChange={(event) => setCreateName(event.target.value)}
+              placeholder="New section name"
+              disabled={disabled}
+              className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={disabled || !normalizedCreateName}
+            className="rounded-full border border-slate-950 bg-slate-950 px-3 py-2 text-xs font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300"
+          >
+            {creatingSection ? "Creating..." : "Create and add"}
+          </button>
+        </form>
+
+        <Link
+          href="/account"
+          className="inline-flex text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+        >
+          Manage all sections
+        </Link>
       </div>
 
       {!isActive ? (

@@ -128,6 +128,7 @@ void main() {
       groupedCopyControlsSource,
       contains('saveVaultItemInstanceIntentAction'),
     );
+    expect(groupedCopyControlsSource, contains('createWallSectionAction'));
     expect(
       groupedCopyControlsSource,
       contains('assignWallSectionMembershipAction'),
@@ -142,6 +143,32 @@ void main() {
     );
     expect(groupedCopyControlsSource, isNot(contains('shared_cards')));
     expect(groupedCopyControlsSource, isNot(contains('legacy_vault_item_id')));
+  });
+
+  test('grouped card copy rows can create and assign section atomically', () {
+    expect(groupedCopyControlsSource, contains('handleCreateSection'));
+    expect(
+      groupedCopyControlsSource,
+      contains('createWallSectionAction({ name })'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('getCreatedSection(sections, createResult.sections)'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('sectionId: createdSection.id'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('vaultItemInstanceId: instanceId'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('Create-and-assign still writes section membership through vault_item_instances.id'),
+    );
+    expect(groupedCopyControlsSource, contains('Section created and copy added.'));
+    expect(groupedCopyControlsSource, contains('Create and add'));
   });
 
   test('actions revalidate owner readback surfaces', () {

@@ -58,9 +58,24 @@ test("grouped card copy rows render exact-copy curation controls", () => {
   assert.match(groupedPage, /instanceId=\{copy\.instance_id\}/);
   assert.match(groupedPage, /initialIntent=\{copy\.intent\}/);
   assert.match(copyControls, /saveVaultItemInstanceIntentAction/);
+  assert.match(copyControls, /createWallSectionAction/);
   assert.match(copyControls, /assignWallSectionMembershipAction/);
   assert.match(copyControls, /removeWallSectionMembershipAction/);
   assert.match(copyControls, /vault_item_instances\.id/);
+});
+
+test("grouped card copy rows can create and immediately assign a section", () => {
+  const copyControls = readSource("components", "vault", "VaultManageCopyCurationControls.tsx");
+
+  assert.match(copyControls, /handleCreateSection/);
+  assert.match(copyControls, /createWallSectionAction\(\{ name \}\)/);
+  assert.match(copyControls, /getCreatedSection\(sections, createResult\.sections\)/);
+  assert.match(copyControls, /assignWallSectionMembershipAction\(\{/);
+  assert.match(copyControls, /sectionId: createdSection\.id/);
+  assert.match(copyControls, /vaultItemInstanceId: instanceId/);
+  assert.match(copyControls, /Section created and copy added\./);
+  assert.match(copyControls, /Create and add/);
+  assert.match(copyControls, /Manage all sections/);
 });
 
 test("GVVI page renders exact-copy section membership controls", () => {
