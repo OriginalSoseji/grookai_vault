@@ -56,7 +56,7 @@ export default async function VaultManageCardPage({
   }
 
   const decodedCardId = decodeURIComponent(params.cardId);
-  const { items, itemsError, publicCollectionHref } = await getOwnerVaultItems(user.id);
+  const { items, itemsError, publicProfileHref, publicCollectionHref } = await getOwnerVaultItems(user.id);
   const item = items.find((candidate) => candidate.card_id === decodedCardId);
 
   if (!item) {
@@ -272,6 +272,7 @@ export default async function VaultManageCardPage({
                     </div>
                     <VaultManageCopyCurationControls
                       instanceId={copy.instance_id}
+                      gvviId={copy.gv_vi_id}
                       initialIntent={copy.intent}
                       membershipModel={
                         sectionMembershipByInstanceId.get(copy.instance_id) ?? {
@@ -280,6 +281,7 @@ export default async function VaultManageCardPage({
                           loadError: "Section assignments could not be loaded.",
                         }
                       }
+                      publicWallHref={publicProfileHref}
                       isActive
                     />
                   </VaultInsetCard>
