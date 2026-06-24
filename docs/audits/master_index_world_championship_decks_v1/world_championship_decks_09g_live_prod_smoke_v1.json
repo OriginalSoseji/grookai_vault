@@ -1,0 +1,155 @@
+{
+  "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09G-LIVE-PROD-SMOKE",
+  "generated_at": "2026-06-24T19:58:24.265Z",
+  "mode": "read_only_live_production_http_smoke_no_db_no_storage_no_migration",
+  "base_url": "https://grookaivault.com",
+  "routes": [
+    {
+      "id": "set_magma_spirit",
+      "path": "/sets/wcd2004-magma-spirit",
+      "status": 200,
+      "body_length": 483712,
+      "expected_signals": [
+        "2004 World Championships Deck: Magma Spirit",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net",
+        "Image unavailable"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_pikarom_judge",
+      "path": "/sets/wcd2019-pikarom-judge",
+      "status": 200,
+      "body_length": 515988,
+      "expected_signals": [
+        "2019 World Championships Deck: Pikarom Judge",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net",
+        "Image unavailable"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "set_pult_bomb",
+      "path": "/sets/wcd2025-pult-bomb",
+      "status": 200,
+      "body_length": 536869,
+      "expected_signals": [
+        "2025 World Championships Deck: Pult Bomb",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net",
+        "Image unavailable"
+      ],
+      "present_forbidden": [],
+      "passed": true
+    },
+    {
+      "id": "card_magma_spirit_groudon",
+      "path": "/card/GV-PK-WCD-2004-MAGMA_SPIRIT-01-EX_TEAM_MAGMA_VS-9-TEAM_MAGMAS_GROUDON",
+      "status": 200,
+      "body_length": 125897,
+      "expected_signals": [
+        "Team Magma",
+        "Groudon",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net",
+        "Image unavailable"
+      ],
+      "present_forbidden": [
+        "assets.tcgdex.net"
+      ],
+      "passed": false
+    },
+    {
+      "id": "card_pikarom_pikachu_zekrom",
+      "path": "/card/GV-PK-WCD-2019-PIKAROM_JUDGE-01-TEAM-33-PIKACHU_AND_ZEKROM_GX",
+      "status": 200,
+      "body_length": 157652,
+      "expected_signals": [
+        "Pikachu",
+        "Zekrom",
+        "gv-card-hero-image-stage",
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/"
+      ],
+      "missing_expected": [],
+      "forbidden_signals": [
+        "assets.tcgdex.net",
+        "Image unavailable"
+      ],
+      "present_forbidden": [
+        "assets.tcgdex.net"
+      ],
+      "passed": false
+    }
+  ],
+  "redirects": [
+    {
+      "id": "search_alias_magma_spirit",
+      "path": "/search?q=Magma%20Spirit",
+      "status": 307,
+      "location": "https://grookaivault.com/sets/wcd2004-magma-spirit",
+      "expected_location_path": "/sets/wcd2004-magma-spirit",
+      "actual_location_path": "/sets/wcd2004-magma-spirit",
+      "expected_location_query": null,
+      "actual_location_query": "",
+      "passed": true
+    },
+    {
+      "id": "search_alias_pikarom_judge",
+      "path": "/search?q=Pikarom%20Judge",
+      "status": 307,
+      "location": "https://grookaivault.com/sets/wcd2019-pikarom-judge",
+      "expected_location_path": "/sets/wcd2019-pikarom-judge",
+      "actual_location_path": "/sets/wcd2019-pikarom-judge",
+      "expected_location_query": null,
+      "actual_location_query": "",
+      "passed": true
+    },
+    {
+      "id": "search_alias_pult_bomb_deck",
+      "path": "/search?q=Pult%20Bomb%20deck",
+      "status": 307,
+      "location": "https://grookaivault.com/sets/wcd2025-pult-bomb",
+      "expected_location_path": "/sets/wcd2025-pult-bomb",
+      "actual_location_path": "/sets/wcd2025-pult-bomb",
+      "expected_location_query": null,
+      "actual_location_query": "",
+      "passed": true
+    },
+    {
+      "id": "search_alias_world_championship_decks",
+      "path": "/search?q=world%20championship%20decks",
+      "status": 307,
+      "location": "https://grookaivault.com/sets?q=world+championship+decks",
+      "expected_location_path": "/sets",
+      "actual_location_path": "/sets",
+      "expected_location_query": "q=world+championship+decks",
+      "actual_location_query": "q=world+championship+decks",
+      "passed": true
+    }
+  ],
+  "failures": [
+    "route:card_magma_spirit_groudon",
+    "route:card_pikarom_pikachu_zekrom"
+  ],
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "9cfd2fe9c2b7231659d819b1d0af066d79040f50f36099a3b5656844b5e7a939"
+}

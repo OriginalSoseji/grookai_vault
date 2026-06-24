@@ -1,0 +1,202 @@
+{
+  "package_id": "GROOKAI_BETA_HARDENING_READINESS_V1",
+  "generated_at": "2026-06-24T19:58:37.002Z",
+  "mode": "read_only_repo_artifact_consolidation_no_db_no_storage_no_migration_no_pricing_no_ai",
+  "explicit_non_scope": [
+    "db_writes",
+    "migrations",
+    "image_uploads",
+    "pointer_repoints",
+    "pricing",
+    "japanese",
+    "ai_expansion"
+  ],
+  "evidence_files": {
+    "imageFinal": "docs/audits/image_truth_v1/self_hosted_images_wh19a_final_image_hosting_state_scan_summary_v1.json",
+    "imageRuntime": "docs/audits/image_truth_v1/image_truth_img21a_runtime_surface_smoke_v1.json",
+    "dexRuntime": "docs/audits/image_truth_v1/image_truth_img23a_dex_child_fallback_runtime_scan_v1.json",
+    "cardRuntime": "docs/audits/image_truth_v1/image_truth_img23b_card_detail_child_fallback_runtime_scan_v1.json",
+    "promoReadiness": "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03a_public_copy_readiness_summary_v1.json",
+    "promoFamily": "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03b_family_public_copy_export_summary_v1.json",
+    "promoExact": "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03c_exact_public_copy_export_summary_v1.json",
+    "baseSetApply": "docs/audits/base_set_print_run_lanes_v1/base_set_print_run_lanes_representative_parent_image_pointer_apply_result_v1.json",
+    "worldChampSmoke": "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json",
+    "worldChampLiveSmoke": "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json",
+    "curatedFallbackLiveScan": "docs/audits/image_truth_v1/image_truth_img24a_curated_fallback_live_scan_v1.json",
+    "webVariantOrigin": "apps/web/src/lib/cards/variantOriginPublicCopy.generated.json",
+    "mobileVariantOrigin": "lib/services/identity/variant_origin_public_copy_generated.dart"
+  },
+  "summary": {
+    "launch_posture": "not_ready_until_blockers_clear",
+    "top_blocker": "World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.",
+    "cleared_checks": [
+      "Live sampled image runtime smoke is clear for 11 routes on https://grookaivault.com.",
+      "Non-empty live curated fallback scan is clear for Dex, card detail, and set detail.",
+      "Selected deterministic search, AI boundary, promo origin, image parity, Base Set, and World Championship decklist contracts passed.",
+      "Web/mobile variant origin generated payloads are synced."
+    ],
+    "contract_tests_run_separately": "node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs"
+  },
+  "lanes": {
+    "image_coverage": {
+      "status": "parent_coverage_clear",
+      "generated_at": "2026-06-24T18:06:12.183Z",
+      "parent_rows_scanned": 27266,
+      "english_physical_parent_rows_without_any_image_field": 0,
+      "priority_parent_rows_without_any_image_field": 0,
+      "child_rows_without_any_image_field": 43079,
+      "parent_image_status_counts": {
+        "exact": 23019,
+        "missing": 145,
+        "representative_shared": 2395,
+        "representative_shared_collision": 6,
+        "representative_shared_stamp": 1373,
+        "unknown": 328
+      },
+      "world_championship_image_status_counts": {
+        "exact": 386,
+        "representative_shared": 1558
+      },
+      "note": "Child rows intentionally remain sparse in image fields; surface fallback parity is the launch contract."
+    },
+    "surface_parity": {
+      "status": "live_curated_scan_clear_candidate_scans_empty",
+      "card_detail_runtime_failed_routes": 0,
+      "dex_runtime_failed_routes": 0,
+      "card_detail_routes_scanned": 0,
+      "dex_routes_scanned": 0,
+      "curated_live_routes_scanned": 5,
+      "curated_live_failed_routes": 0
+    },
+    "promo_origin_coverage": {
+      "status": "covered_after_03c_exact_export",
+      "readiness_missing_before_exports": 1527,
+      "family_rows_added": 1523,
+      "exact_rows_added": 4,
+      "output_public_copy_rows_total": 3330,
+      "previously_excluded_rows_resolved": [
+        {
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "name": "Reshiram",
+          "family_key": "new_legends_tins_bw_promo"
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-BW05",
+          "name": "Zekrom",
+          "family_key": "new_legends_tins_bw_promo"
+        },
+        {
+          "gv_id": "GV-PK-MISC-001",
+          "name": "Ancient Mew",
+          "family_key": "ancient_mew_power_of_one_movie_promo"
+        },
+        {
+          "gv_id": "GV-PK-PR-SW-SWSH144",
+          "name": "Greninja ★",
+          "family_key": "celebrations_elite_trainer_box_greninja_star_promo"
+        }
+      ]
+    },
+    "search_contract_health": {
+      "status": "selected_contract_tests_passed",
+      "deterministic_search_ai_model_calls_allowed": false,
+      "ai_leakage_evidence": "tests/contracts/grookai_ai_search_boundary_v1.test.mjs verifies normal Search does not call AI and Search lane model calls are blocked."
+    },
+    "mobile_parity": {
+      "status": "synced",
+      "web_generated_at": "2026-06-24T19:36:32.695Z",
+      "mobile_generated_at": "2026-06-24T19:36:32.695Z",
+      "web_source_fingerprint_sha256": "ab1f3dfb94422247ea4d3f84445b2db130059ce2e3af48f003e3f10698d35d55",
+      "mobile_source_fingerprint_sha256": "ab1f3dfb94422247ea4d3f84445b2db130059ce2e3af48f003e3f10698d35d55",
+      "web_mobile_payload_hash": "e2e8c73355868641ea93bc8a4be969412d1935623885cdbfaadac19801549fed",
+      "mobile_payload_hash": "e2e8c73355868641ea93bc8a4be969412d1935623885cdbfaadac19801549fed",
+      "web_counts": {
+        "families": 54,
+        "by_gv_id": 3330,
+        "by_card_print_id": 3330
+      },
+      "mobile_counts": {
+        "families": 54,
+        "by_gv_id": 3330,
+        "by_card_print_id": 3330
+      }
+    },
+    "production_smoke": {
+      "status": "sampled_live_image_routes_clear",
+      "live_base_url": "https://grookaivault.com",
+      "live_routes_checked": 11,
+      "live_failures": [],
+      "world_championship_smoke_base_url": "http://127.0.0.1:3095",
+      "world_championship_routes_checked": 5,
+      "world_championship_redirects_checked": 4,
+      "world_championship_local_failures": 0,
+      "world_championship_live_base_url": "https://grookaivault.com",
+      "world_championship_live_routes_checked": 5,
+      "world_championship_live_redirects_checked": 4,
+      "world_championship_live_failures": [
+        "route:card_magma_spirit_groudon",
+        "route:card_pikarom_pikachu_zekrom"
+      ]
+    },
+    "base_set_print_run_lanes": {
+      "status": "representative_pointer_gap_closed",
+      "updated_rows": 304,
+      "image_status": {
+        "representative_shared": 304
+      },
+      "current_missing_after_final_scan": 0
+    },
+    "world_championship_rows": {
+      "status": "rows_complete_for_beta_display",
+      "sets": 80,
+      "card_print_rows": 1944,
+      "deck_quantity_sum_from_card_rows": 4800,
+      "exact_parent_rows": 386,
+      "representative_parent_rows": 1558
+    }
+  },
+  "launch_blockers_ranked": [
+    {
+      "rank": 1,
+      "severity": "P1 beta blocker",
+      "lane": "World Championship production parity",
+      "status": "needs_live_production_smoke",
+      "finding": "World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.",
+      "evidence": [
+        "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json",
+        "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json"
+      ]
+    }
+  ],
+  "followups_ranked": [
+    {
+      "rank": 1,
+      "severity": "P2 enrichment backlog",
+      "lane": "Exact image completeness",
+      "status": "not_launch_blocking_if_representative_labeling_remains_visible",
+      "finding": "English physical parent rows have no missing image-field gaps. Remaining exact-image gap is quality of truth: representative rows still need exact acquisition over time.",
+      "evidence": [
+        "docs/audits/image_truth_v1/self_hosted_images_wh19a_final_image_hosting_state_scan_summary_v1.json"
+      ]
+    },
+    {
+      "rank": 2,
+      "severity": "P2 regression guard",
+      "lane": "Promo origin public copy",
+      "status": "covered",
+      "finding": "Family-level promo copy and the four previously excluded source-backed rows are exported. Pre-export readiness still records the old four-row gap, so use the 03C exact export as current truth.",
+      "evidence": [
+        "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03a_public_copy_readiness_summary_v1.json",
+        "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03b_family_public_copy_export_summary_v1.json",
+        "docs/audits/master_index_promo_origin_v1/master_index_promo_origin_03c_exact_public_copy_export_summary_v1.json"
+      ]
+    }
+  ],
+  "no_write_assertions": {
+    "db_writes_performed_by_this_audit": false,
+    "storage_writes_performed_by_this_audit": false,
+    "migrations_created_by_this_audit": false,
+    "ai_model_calls_performed_by_this_audit": false
+  },
+  "fingerprint": "d493f2ad55be5472c0d4cf4cfd22d70d058959d7f6e6a770f47bf4117a58ef62"
+}
