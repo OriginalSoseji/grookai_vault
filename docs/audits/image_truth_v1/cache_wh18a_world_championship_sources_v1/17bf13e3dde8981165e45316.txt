@@ -1,0 +1,56 @@
+{{DeckInfobox
+|title=Emerald King
+|image=WCS2014 Emerald King Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Grass}}
+|cards=
+}}
+
+'''Emerald King''' is the name of the deck used by Andrew Estrada, who was the champion in the Masters Division in the [[2014 World Championships]]. It is one of the four {{TCGMerch|XY|Series|2014 World Championships Decks}}, released in November 2014, and is based on the {{TCG|Virizion-EX/Genesect-EX}} archetype. Each Deck comes with a Worlds 2014 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2014 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Andrew Estrada's Emerald King deck and its sword-and-shield strategy carried him to a World Champion title. The shield is Virizion-EX, who protects the whole team from special Conditions. The sword is Genesect-EX packing a G Booster, which does enough damage to Knock Out nearly any Pokémon in the game with a single attack! And thanks to Genesect-EX's Ability, which can yank any Benched Pokémon forward to receive the mighty blow, it's an attack scheme that's as precise as it is devastating!</i>
+
+===Booklet===
+<i>Andrew's path to victory was a scientific one: examination, analysis, and testing. "I looked at someone else's list and modified it to my play style," he says. "I play tested with my team and made changes to adapt to different matchups." When asked what he remembered most about playing this year, it was: "The sleepless nights along with the hours of testing." Speaking of his team, he says: "I've been playing four full seasons, and my friend introduced me to the game. I met Matthew Koo, who coached me for the next two years and helped make me the player I am today." Andrew's self-described strategy: "The deck's linear enough for me to know how to start and end every game."</i>
+
+===Pokémon.com===
+<i>Andrew's Virizion-EX and Genesect-EX deck keeps the Pokémon count slim in favor of many Pokémon Trainer cards. But one Pokémon he decided to include was Mr. Mime, which protects his Benched Pokémon from attacks. This sound strategy gave Andrew the title of World Champion.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Genesect-EX (Plasma Blast 11)|Genesect]]{{EX}}|Grass||Rare}}
+{{decklist/entry|1|[[Jirachi-EX (Plasma Blast 60)|Jirachi]]{{EX}}|Metal||Rare}}
+{{decklist/entry|1|{{TCG ID|Plasma Freeze|Mr. Mime|47}}|Psychic||Rare}}
+{{decklist/entry|4|[[Virizion-EX (Plasma Blast 9)|Virizion]]{{EX}}|Grass||Rare}}
+{{decklist/entry|1|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Plasma Storm|Colress Machine|119}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Legendary Treasures|Energy Switch|112}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Enhanced Hammer|94}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Plasma Blast|G Booster|92}}|Item||SuperRare}}
+{{decklist/entry|3|{{TCG ID|XY|Muscle Band|121}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|XY|Professor Sycamore|122}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|XY|Professor's Letter|123}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Freeze|Shadow Triad|102}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Next Destinies|Skyarrow Bridge|91}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Boundaries Crossed|Skyla|134}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragon Vault|Super Rod|20}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dragons Exalted|Tool Scrapper|116}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Town Map|136}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Flashfire|Ultra Ball|99}}|Item||Uncommon}}
+{{decklist/entry|9|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/entry|4|{{TCG ID|Plasma Blast|Plasma Energy|91}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Emerald King (TCG)]]
+[[it:Emerald King (GCC)]]
+[[ja:Emerald King]]

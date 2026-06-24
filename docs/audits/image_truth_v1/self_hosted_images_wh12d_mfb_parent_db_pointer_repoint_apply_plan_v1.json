@@ -1,0 +1,49 @@
+{
+  "package_id": "IMG-HOST-WH-12D-MFB-PARENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T02:09:27.669Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "549843d7cc0b4ac7eecdcc6bdb8c152eb807e71d3d7858ca2e8db5f08151cc50",
+  "source_sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "approved_sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh12c_mfb_parent_db_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 34,
+  "total_update_count": 34,
+  "target_tables": {
+    "card_prints": 34
+  },
+  "proposed_image_sources": {
+    "identity": 34
+  },
+  "by_set_code": {
+    "mfb": 34
+  },
+  "by_source_route": {
+    "pricecharting_mfb_representative": 32,
+    "tcgcollector_mfb_representative_trainer": 2
+  },
+  "by_current_image_status": {
+    "null": 34
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path"
+  ],
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "549843d7cc0b4ac7eecdcc6bdb8c152eb807e71d3d7858ca2e8db5f08151cc50"
+}

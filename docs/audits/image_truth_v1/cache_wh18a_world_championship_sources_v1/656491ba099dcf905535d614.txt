@@ -1,0 +1,63 @@
+{{DeckInfobox
+|title=Crowned Tiger
+|image=WCS2009 Crowned Tiger Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}{{e|Lightning}}
+|cards=[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]], [[Dialga G LV.X (Platinum 122)|Dialga]] {{SP|G}} [[Dialga G LV.X (Platinum 122)|LV.X]]
+}}
+
+'''Crowned Tiger''' is the name of the deck used by Tsubasa Nakamura, the Junior Division Champion in the [[2009 World Championships]]. The deck uses primarily {{ct|Psychic}} Pokémon, utilizing a limited number of {{ct|Lightning}} and {{ct|Darkness}} Pokémon. The Pokémon are mostly {{TCG|Pokémon SP}} and features no [[Evolution]]s. The deck is based on the {{TCG|LuxBox}} {{TCG|Deck archetype|archetype}}, popular during the 2009-2010 season.
+
+Crowned Tiger is one of the four {{TCGMerch|Platinum|Series|2009 World Championships Decks}}, released on October 28, 2009. Each deck comes packaged with a 2009 World Championships Booklet. Each card features a silver border, Nakamura's signature, and limited edition 2009 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Tsubasa Nakamura achieved amazing results and rose to the level of World Champion with his notably relentless deck that uses Skuntank {{SP|G}}'s Poké-Power to Poison at will, then Toxicroak {{SP|G}} to really pile on the extra damage. And with Luxray {{SP|GL}} LV.X and its Bright Look Poké-Power to change out his opponent's Active Pokémon, Crowned Tiger truly rules!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Honchkrow G (Platinum 77)|Honchkrow]] {{SP|G}}|Darkness||Common}}
+{{decklist/entry|2|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}
+{{decklist/entry|2|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}
+{{decklist/entry|2|[[Toxicroak G (Platinum 40)|Toxicroak]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|1|[[Toxicroak G (DP Promo 41)|Toxicroak]] {{SP|G}}|Fighting||None}}
+{{decklist/entry|1|[[Skuntank G (Platinum 94)|Skuntank]] {{SP|G}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie LV.X|146}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|2|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Sableye|48}}|Darkness||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Ditto|27}}|Colorless||Rare}}
+{{decklist/entry|1|[[Dialga G (Platinum 7)|Dialga]] {{SP|G}}|Metal||Rare Holo}}
+{{decklist/entry|1|[[Dialga G LV.X (Platinum 122)|Dialga]] {{SP|G}} [[Dialga G LV.X (Platinum 122)|LV.X]]|Metal||Rare Holo LV.X}}
+{{decklist/entry|1|[[Bronzong G (Platinum 41)|Bronzong]] {{SP|G}}|Metal||Uncommon}}
+{{decklist/entry|1|[[Lucario GL (Rising Rivals 8)|Lucario]] {{SP|GL}}|Fighting||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Platinum|Cyrus's Conspiracy|105}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Aaron's Collection|88}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Moonlight Stadium|100}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-101 Energy Gain (Platinum 116)|<small>'''Team Galactic's Invention G-101'''</small> Energy Gain]]|Trainer||Uncommon}}
+{{decklist/entry|3|[[Team Galactic's Invention G-103 Power Spray (Platinum 117)|<small>'''Team Galactic's Invention G-103'''</small> Power Spray]]|Trainer||Uncommon}}
+{{decklist/entry|3|[[Team Galactic's Invention G-109 SP Radar (Rising Rivals 96)|<small>'''Team Galactic's Invention G-109'''</small> SP Radar]]|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Platinum|Galactic HQ|106}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|SP Energy|101}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG|Darkness Energy}}|Energy|Darkness|None}}
+{{decklist/entry|3|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|2|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+==External==
+[http://www.sixprizes.com/deck-analysis/luxbox-deck-list-analysis/ LuxBox Deck List and Analysis at SixPrizes]
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Crowned Tiger (TCG)]]
+[[zh:金冠猛虎（TCG）]]

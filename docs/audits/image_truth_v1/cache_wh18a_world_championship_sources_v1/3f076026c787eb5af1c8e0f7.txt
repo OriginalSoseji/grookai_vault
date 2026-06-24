@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=Power Cottonweed
+|image=WCS2010 Power Cottonweed Deck.png
+|size=280px
+|caption=Box art
+|types={{e|Grass}}
+|cards={{TCG ID|HeartGold & SoulSilver|Jumpluff|6}}, {{TCG ID|Great Encounters|Claydol|15}}, {{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}
+}}
+
+'''Power Cottonweed''' is the name of the deck used by Yuka Furusawa, the Junior Division Champion in the [[2010 World Championships]]. It is one of the four {{TCGMerch|HeartGold & SoulSilver|Series|2010 World Championships Decks}}, released in November 2010. Each deck comes packaged with a 2010 World Championships Booklet. Each card features a silver border, Furusawa's signature, and limited edition 2010 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Yuka Furusawa's impressive deck gave her many options to winning! Once Pokémon Collector and Claydol have loaded up the Bench, Jumpluff's Mass Attack can really cause some damage! Add in Bebe's Search and Pokémon Communication to find those Evolutions and Unown R for more damage with Mass Attack and a little extra drawing power, and you can see why Yuka's deck made her a Champion!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Jumpluff|6}}|Grass||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|Skiploom|65}}|Grass||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Hoppip|90}}|Grass||Common}}
+{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Hoppip|67}}|Grass||Common}}
+{{decklist/entry|3|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|3|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|1|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Unown Q|49}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Legends Awakened|Unown R|77}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Unleashed|Judge|78}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Communication|98}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|PlusPower|80}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}
+{{decklist/entry|6|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/footer}}
+{{-}}
+==Trivia==
+* An unnumbered version of {{TCG|Grass Energy}} featuring its {{TCG|HeartGold & SoulSilver}} artwork is exclusive to this deck.
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Power Cottonweed (TCG)]]
+[[zh:强力棉草（TCG）]]

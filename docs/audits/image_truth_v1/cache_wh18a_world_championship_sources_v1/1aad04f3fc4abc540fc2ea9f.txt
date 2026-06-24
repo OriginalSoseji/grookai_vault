@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=Ice Path FTW
+|image=WCS2017 Ice Path FTW Deck.jpg
+|caption=Box art
+|types={{e|Water}}
+}}
+
+'''Ice Path FTW''' is the deck used by Zachary Bokhari, who was the Senior Division champion of the [[2017 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2017 World Championships Decks}}, released November 17, 2017. Each deck comes with a Worlds 2017 themed deckbox, a booklet about the championships, a Worlds 2017 pin, and a code card for the {{TCGO}}. The cards included in the deck aren't the prints actually used in the original deck, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+''Zachary Bokhari earned his World Champion title in the Senior Division with a Water-type deck featuring Alolan Ninetales-GX, assisted by Aqua Patch to power it up and Rough Seas to heal the whole team. The star Pokémon brings some nice versatility, with three attacks that do different things: Ice Blade can snipe the opponent's Bench, Blizzard Edge packs an immensely powerful punch, and Ice Path-GX can be a huge swing, moving all damage counters from Alolan Ninetales-GX to its opponent!''
+
+===Booklet===
+''Zachary came close to missing Worlds twice&mdash;he had to resolve a conflict with soccer tryouts, and then his inbound flight was delayed several hours and he didn't even get to Anaheim until very late the night before. But he's certainly comfortable with the last-second approach: "I usually do not have my deck chosen for tournaments until the morning of the tournament... I test at night within the week before events usually." This play style obviously doesn't work for everyone, but considering Zachary has nine big-event finishes in the Top 4 or better since 2012, we think he's got it figured out!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Alolan Ninetales-GX (Guardians Rising 22)|Alolan Ninetales]]{{GX}}|Water||Rare}}
+{{decklist/entry|4|{{TCG ID|Guardians Rising|Alolan Vulpix|21}}|Water||Common}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Octillery|33}}|Water||Rare}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Remoraid|31}}|Water||Common}}
+{{decklist/entry|2|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|SM Promo|Tapu Koko|30}}|Lightning||None}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Sudowoodo|66}}|Fighting||Uncommon}}
+{{decklist/entry|1|{{TCG ID|XY Promo|Giratina|184}}|Psychic||None}}
+{{decklist/entry|4|{{TCG ID|Guardians Rising|Aqua Patch|119}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|XY Promo|Karen|177}}|Supporter||None}}
+{{decklist/entry|3|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Generations|Pokémon Center Lady|68}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sun & Moon|Professor Kukui|128}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Primal Clash|Rough Seas|137}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Ultra Ball|135}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Double Colorless Energy|136}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Ice Path FTW (TCG)]]
+[[zh:冰道一流（TCG）]]

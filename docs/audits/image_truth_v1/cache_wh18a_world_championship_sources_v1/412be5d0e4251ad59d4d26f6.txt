@@ -1,0 +1,52 @@
+{{samename|{{TCG|deck archetype}}|ADP archetype (TCG)}}
+{{DeckInfobox
+|title=ADP
+|image=WCS2022 ADP Deck.jpg
+|caption=Box art
+|release=March 3, 2023
+|types={{e|Lightning}}{{e|Fighting}}
+}}
+
+'''ADP''' is the name of the deck used by Ondřej Škubal, a Masters Division Top 8 finisher at the [[2022 World Championships]]. It is one of the 2022 World Championship Decks released March 3, 2023. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2022 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Škubal, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Škubal's signature.
+
+==Description==
+<i>What can counter Origin Forme Palkia VSTAR most effectively? That was the question coming into Worlds 2022, and Masters Champion Ondrei Skubal's ADP deck provided the answer. Behind the offensive power of Arceus VSTAR lies a Bibarel-driven draw engine complemented by multiple Trainer cards chosen for their search and draw capabilities -and with the flexibility to discard so Bibarel has more room to draw. With Flying Pikachu VMAX and Path to the Peak to neutralize incoming attacks and Boss's Orders to ensure no Pokémon is safe, this deck leaves the opposition toothless, targeted, and trapped!</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Arceus VSTAR (Brilliant Stars 123)|Arceus]]{{VSTAR}}|Colorless||Rare}}
+{{decklist/entry|4|[[Arceus V (Brilliant Stars 122)|Arceus]]{{TCGV}}|Colorless||Rare}}
+{{decklist/entry|2|[[Flying Pikachu VMAX (Celebrations 7)|Flying Pikachu]]{{VMAX}}|Lightning||Rare}}
+{{decklist/entry|3|[[Flying Pikachu V (Celebrations 6)|Flying Pikachu]]{{TCGV}}|Lightning||Rare}}
+{{decklist/entry|2|[[Hisuian Decidueye VSTAR (Astral Radiance 84)|Hisuian Decidueye]]{{VSTAR}}|Fighting||Rare}}
+{{decklist/entry|2|[[Hisuian Decidueye V (Astral Radiance 83)|Hisuian Decidueye]]{{TCGV}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Bibarel|121}}|Colorless||Rare}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Bidoof|120}}|Colorless||Common}}
+{{decklist/entry|1|[[Lumineon V (Brilliant Stars 40)|Lumineon]]{{TCGV}}|Water||Rare}}
+{{decklist/entry|1|[[Crobat V (Darkness Ablaze 104)|Crobat]]{{TCGV}}|Darkness||Rare}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Pumpkaboo|76}}|Psychic||Common}}
+{{decklist/entry|4|{{TCG ID|Brilliant Stars|Boss's Orders|132}} <small>'''[Cyrus]'''</small>|Supporter||Rare}}
+{{decklist/entry|4|{{TCG ID|Sword & Shield|Marnie|169}}|Supporter||Rare}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Professor's Research|147}} <small>'''[Professor Rowan]'''</small>|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Raihan|152}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Chilling Reign|Path to the Peak|148}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Quick Ball|237}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Brilliant Stars|Ultra Ball|150}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Evolution Incense|163}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Switch|183}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|3|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/entry|4|{{TCG ID|Brilliant Stars|Double Turbo Energy|151}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rebel Clash|Capture Energy|171}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+==Trivia==
+*The deck name is a reference to the {{TCG|ADP archetype}} that dominated the {{TCG|2020-21 Standard format}}, as the names of the core Pokémon of the deck start with the same letters. Instead of {{p|Arceus}}, {{p|Dialga}}, and {{p|Palkia}}, it is {{p|Arceus}}, {{p|Decidueye}}, and {{p|Pikachu}}.
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:ADP (TCG)]]
+[[zh:阿狙皮（TCG）]]

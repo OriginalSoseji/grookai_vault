@@ -1,0 +1,55 @@
+{{DeckInfobox
+|title=B-L-S
+|image=WCS2006 B-L-S Deck.jpg
+|caption=Box art
+|types={{e|Colorless}}
+|cards={{TCG ID|EX FireRed & LeafGreen|Blastoise ex|104}}, {{TCG ID|EX Unseen Forces|Lugia ex|105}}, {{TCG ID|EX Unseen Forces|Steelix ex|109}}
+}}
+
+'''B-L-S''' is the name of the deck used by Hiroki Yano, the Ten and Under Champion in the {{TCG|2006 World Championships}}. The deck is a variant of the {{TCG|LBS}} {{TCG|Deck archetype|archetype}}, utilizing the Energy distribution of Blastoise ex, and the ability to deal heavy damage with both Lugia ex and Steelix ex.
+
+B-L-S is one of the four {{TCGMerch|EX|Series|2006 World Championships Decks}}, released on October 31, 2006. Each deck comes packaged with a 2006 World Championships Booklet. Each card features a silver border, Yano's signature, and limited edition 2006 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Hiroki Yano won the 10 and under age category with one of the most powerful decks out there. Lugia ex and Steelix ex use powerful attacks, allowing them to Knock Out most Pokémon in just one hit! Blastoise ex's Energy Rain Poké-Power deals out the Energy that those Pokémon need to be victorious!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Lugia ex|105}}|Colorless||Rare Holo ex}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Blastoise ex|104}}|Water||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Wartortle|50}}|Water||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Squirtle|83}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Steelix ex|109}}|Metal||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Onix|69}}|Fighting||Common}}
+{{decklist/entry|1|[[Latias ☆ (EX Deoxys 105)|Latias]] {{Star}}|Colorless||Rare Holo ☆}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}|Colorless||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|EX FireRed & LeafGreen|Pidgeotto|45}} |Colorless||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgey|73}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|EX Deoxys|Plusle|44}}|Lightning||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Holon's Electrode|21}}|Lightning||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Holon's Magneton|22}}|Metal||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Copycat|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Pokémon Retriever|84}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Legend Maker|Power Tree|76}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Professor Elm's Training Method|89}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Rare Candy|90}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Warp Point|93}}|Trainer||Uncommon}}
+{{decklist/entry|11|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+
+==Trivia==
+* The booklet that comes with the 2006 World Championship decks erroneously lists 3 copies of [[Squirtle (EX FireRed & LeafGreen 82)]] in this deck; the physical deck contains 3 copies of [[Squirtle (EX FireRed & LeafGreen 83)]], which was what Hiroki actually used at the event.
+
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:B-L-S (TCG)]]
+[[ja:B-L-S]]
+[[zh:水-洛-蛇（TCG）]]

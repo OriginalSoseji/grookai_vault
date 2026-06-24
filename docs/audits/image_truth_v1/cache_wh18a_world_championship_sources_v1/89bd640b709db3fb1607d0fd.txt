@@ -1,0 +1,50 @@
+{{DeckInfobox
+|title=Golisodor
+|image=WCS2017 Golisodor Deck.jpg
+|caption=Box art
+|types={{e|Grass}}{{e|Psychic}}
+}}
+
+'''Golisodor''' is the name of the deck used by Naoto Suzuki, the runner-up in the Masters Division of the [[2017 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2017 World Championships Decks}}, released November 17, 2017. Each deck comes with a Worlds 2017 deckbox, a booklet about the championships, a Worlds 2017 pin, and a code card for the {{TCGO}}. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+''Naoto Suzuki combined the new Golisopod-GX with the already popular Garbodor (both the Trashalanche and Garbotoxin versions) to reach the Masters Division finals! With the help of Float Stones and new Supporter cards Guzma and Acerola, this deck can keep switching Golisopod-GX into the Active spot&mdash;and unleash 120 damage for a single Grass Energy with its First Impression attack. Later in the game, after the opponent has played enough Item cards, Garbodor can finish things off with a massive Trashalanche!''
+
+===Booklet===
+''Naoto hasn't been playing the Pokémon TCG for very long, but thanks to some expert assistance from his teammates&mdash;including last year's World Champion, Shintaro Ito&mdash;he crafted the Golisopod/Garbodor deck that brough him to the finals of his very first World Championships. "I used decks my friends were using as reference," he says. "I practiced with my friends every day and made adjustments." Naoto says his most memorable match was "when I battled a Japanese player in the seminfinals. He's a top-class player in Japan, so I was excited to play against him but also nervous."''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Golisopod-GX (Burning Shadows 17)|Golisopod]]{{GX}}|Grass||Rare}}
+{{decklist/entry|4|{{TCG ID|Burning Shadows|Wimpod|16}}|Grass||Common}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Garbodor|57}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Garbodor|51}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Trubbish|56}}|Psychic||Common}}
+{{decklist/entry|2|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|SM Promo|Tapu Koko|30}}|Lightning||None}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Acerola|112}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Heavy Ball|140}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Hex Maniac|75}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Rescue Stretcher|130}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Teammates|141}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Ultra Ball|135}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sun & Moon|Double Colorless Energy|136}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Rainbow Energy|137}}|Energy|Rainbow|Uncommon}}
+{{decklist/entry|3|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Golisodor (TCG)]]

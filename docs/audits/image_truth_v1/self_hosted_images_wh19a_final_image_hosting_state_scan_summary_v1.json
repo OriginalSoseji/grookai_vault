@@ -1,0 +1,1492 @@
+{
+  "package_id": "IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN",
+  "generated_at": "2026-06-24T17:34:19.647Z",
+  "mode": "read_only_final_state_scan_no_write",
+  "self_hosted_storage_path_prefix": "warehouse-derived/self-hosted-images-v1/",
+  "metrics": {
+    "parent_rows_scanned": 27266,
+    "parent_rows_with_any_image_field": 27198,
+    "parent_rows_with_self_hosted_image_path": 27174,
+    "parent_rows_without_any_image_field": 68,
+    "parent_weak_status_rows": 513,
+    "child_rows_scanned": 44137,
+    "child_rows_with_any_image_field": 1008,
+    "child_rows_with_self_hosted_image_path": 340,
+    "child_rows_without_any_image_field": 43129,
+    "child_weak_status_rows": 42782,
+    "priority_parent_rows": 2933,
+    "priority_parent_rows_without_any_image_field": 0,
+    "priority_child_rows": 706,
+    "priority_child_rows_without_any_image_field": 50,
+    "world_championship_parent_rows": 1944,
+    "world_championship_parent_rows_exact": 386,
+    "world_championship_parent_rows_representative": 1558,
+    "world_championship_parent_rows_without_any_image_field": 0,
+    "world_championship_parent_rows_with_self_hosted_image_path": 1944,
+    "world_championship_sets": 80,
+    "world_championship_sets_with_60_card_deck_quantity_total": 80,
+    "world_championship_sets_without_60_card_deck_quantity_total": 0,
+    "world_championship_deck_quantity_sum_from_card_rows": 4800,
+    "mcdonalds_parent_rows": 191,
+    "mcdonalds_parent_rows_without_any_image_field": 0,
+    "mcdonalds_parent_rows_without_self_hosted_image_path": 0,
+    "trainer_kit_parent_rows": 450,
+    "trainer_kit_parent_rows_without_any_image_field": 0,
+    "trainer_kit_parent_rows_without_self_hosted_image_path": 0,
+    "base_set_print_run_lane_parent_rows": 314,
+    "base_set_print_run_lane_parent_rows_without_any_image_field": 0
+  },
+  "parent_image_status_counts": {
+    "exact": 23019,
+    "missing": 164,
+    "representative_shared": 2355,
+    "representative_shared_collision": 6,
+    "representative_shared_stamp": 1373,
+    "unknown": 349
+  },
+  "child_image_status_counts": {
+    "exact": 89,
+    "exact_parent_image": 5,
+    "representative_shared": 956,
+    "representative_shared_stamp": 305,
+    "unknown": 42782
+  },
+  "parent_image_source_counts": {
+    "identity": 27174,
+    "tcgdex": 2,
+    "unknown": 90
+  },
+  "child_image_source_counts": {
+    "identity": 1003,
+    "tcgdex": 5,
+    "unknown": 43129
+  },
+  "parent_family_counts": {
+    "base_set_print_run_lane": 314,
+    "mcdonalds": 191,
+    "my_first_battle": 34,
+    "other": 24333,
+    "trainer_kit": 450,
+    "world_championship_deck": 1944
+  },
+  "child_family_counts": {
+    "base_set_print_run_lane": 10,
+    "mcdonalds": 216,
+    "my_first_battle": 34,
+    "other": 43431,
+    "trainer_kit": 446
+  },
+  "parent_gap_sets_top_50": [
+    {
+      "key": "unknown",
+      "count": 27
+    },
+    {
+      "key": "mep",
+      "count": 23
+    },
+    {
+      "key": "svp",
+      "count": 7
+    },
+    {
+      "key": "xya",
+      "count": 6
+    },
+    {
+      "key": "col1",
+      "count": 3
+    },
+    {
+      "key": "misc",
+      "count": 1
+    },
+    {
+      "key": "swshp",
+      "count": 1
+    }
+  ],
+  "child_gap_sets_top_50": [
+    {
+      "key": "B1",
+      "count": 993
+    },
+    {
+      "key": "A1",
+      "count": 858
+    },
+    {
+      "key": "A4",
+      "count": 723
+    },
+    {
+      "key": "A3",
+      "count": 717
+    },
+    {
+      "key": "A2",
+      "count": 621
+    },
+    {
+      "key": "me02.5",
+      "count": 620
+    },
+    {
+      "key": "unknown",
+      "count": 609
+    },
+    {
+      "key": "sm12",
+      "count": 546
+    },
+    {
+      "key": "swsh8",
+      "count": 529
+    },
+    {
+      "key": "sm11",
+      "count": 526
+    },
+    {
+      "key": "sm8",
+      "count": 480
+    },
+    {
+      "key": "sv02",
+      "count": 480
+    },
+    {
+      "key": "sm10",
+      "count": 479
+    },
+    {
+      "key": "sv8pt5",
+      "count": 456
+    },
+    {
+      "key": "sv01",
+      "count": 447
+    },
+    {
+      "key": "sv08.5",
+      "count": 440
+    },
+    {
+      "key": "sv10",
+      "count": 438
+    },
+    {
+      "key": "sv04",
+      "count": 428
+    },
+    {
+      "key": "sv03",
+      "count": 427
+    },
+    {
+      "key": "svp",
+      "count": 424
+    },
+    {
+      "key": "sv08",
+      "count": 421
+    },
+    {
+      "key": "swsh1",
+      "count": 419
+    },
+    {
+      "key": "swsh6",
+      "count": 402
+    },
+    {
+      "key": "swsh7",
+      "count": 399
+    },
+    {
+      "key": "sm9",
+      "count": 395
+    },
+    {
+      "key": "swsh2",
+      "count": 387
+    },
+    {
+      "key": "sv05",
+      "count": 384
+    },
+    {
+      "key": "sv06",
+      "count": 383
+    },
+    {
+      "key": "swsh11",
+      "count": 382
+    },
+    {
+      "key": "swsh3",
+      "count": 375
+    },
+    {
+      "key": "sm7",
+      "count": 374
+    },
+    {
+      "key": "swsh10",
+      "count": 374
+    },
+    {
+      "key": "sv03.5",
+      "count": 371
+    },
+    {
+      "key": "swsh12",
+      "count": 371
+    },
+    {
+      "key": "swsh4",
+      "count": 367
+    },
+    {
+      "key": "sm1",
+      "count": 363
+    },
+    {
+      "key": "ecard2",
+      "count": 355
+    },
+    {
+      "key": "sm3",
+      "count": 353
+    },
+    {
+      "key": "sm5",
+      "count": 350
+    },
+    {
+      "key": "sm2",
+      "count": 349
+    },
+    {
+      "key": "sv09",
+      "count": 348
+    },
+    {
+      "key": "swsh9",
+      "count": 345
+    },
+    {
+      "key": "swshp",
+      "count": 343
+    },
+    {
+      "key": "pl3",
+      "count": 339
+    },
+    {
+      "key": "ecard3",
+      "count": 336
+    },
+    {
+      "key": "A2b",
+      "count": 333
+    },
+    {
+      "key": "xy8",
+      "count": 333
+    },
+    {
+      "key": "ecard1",
+      "count": 332
+    },
+    {
+      "key": "me01",
+      "count": 329
+    },
+    {
+      "key": "swsh5",
+      "count": 329
+    }
+  ],
+  "priority_parent_gap_sets_top_50": [],
+  "priority_child_gap_sets_top_50": [
+    {
+      "key": "tk2a",
+      "count": 11
+    },
+    {
+      "key": "tk2b",
+      "count": 11
+    },
+    {
+      "key": "tk1a",
+      "count": 9
+    },
+    {
+      "key": "tk1b",
+      "count": 9
+    },
+    {
+      "key": "base1",
+      "count": 5
+    },
+    {
+      "key": "basep",
+      "count": 5
+    }
+  ],
+  "world_championship_image_status_counts": {
+    "exact": 386,
+    "representative_shared": 1558
+  },
+  "world_championship_deck_quantity_by_set": {
+    "wcd2004-blaziken-tech": 60,
+    "wcd2004-magma-spirit": 60,
+    "wcd2004-rocky-beach": 60,
+    "wcd2004-team-rushdown": 60,
+    "wcd2005-bright-aura": 60,
+    "wcd2005-dark-tyranitar-deck": 60,
+    "wcd2005-king-of-the-west": 60,
+    "wcd2005-queendom": 60,
+    "wcd2006-b-l-s": 60,
+    "wcd2006-eeveelutions": 60,
+    "wcd2006-mewtrick": 60,
+    "wcd2006-suns-and-moons": 60,
+    "wcd2007-flyvees": 60,
+    "wcd2007-legendary-ascent": 60,
+    "wcd2007-rambolt": 60,
+    "wcd2007-swift-empoleon": 60,
+    "wcd2008-bliss-control": 60,
+    "wcd2008-empotech": 60,
+    "wcd2008-intimidation": 60,
+    "wcd2008-psychic-lock": 60,
+    "wcd2009-crowned-tiger": 60,
+    "wcd2009-luxdrill": 60,
+    "wcd2009-queengar": 60,
+    "wcd2009-stallgon": 60,
+    "wcd2010-boltevoir": 60,
+    "wcd2010-happy-luck": 60,
+    "wcd2010-luxchomp-of-the-spirit": 60,
+    "wcd2010-power-cottonweed": 60,
+    "wcd2011-megazone": 60,
+    "wcd2011-reshiphlosion": 60,
+    "wcd2011-the-truth": 60,
+    "wcd2011-twinboar": 60,
+    "wcd2012-cmt-deck": 60,
+    "wcd2012-eeltwo": 60,
+    "wcd2012-pesadelo-prism": 60,
+    "wcd2012-terraki-mewtwo": 60,
+    "wcd2013-american-gothic": 60,
+    "wcd2013-anguille-sous-roche": 60,
+    "wcd2013-darkrai-deck": 60,
+    "wcd2013-ultimate-team-plasma": 60,
+    "wcd2014-crazy-punch": 60,
+    "wcd2014-emerald-king": 60,
+    "wcd2014-plasma-power": 60,
+    "wcd2014-trevgor": 60,
+    "wcd2015-honorstoise": 60,
+    "wcd2015-primal-groudon": 60,
+    "wcd2015-punches-n-bites": 60,
+    "wcd2015-the-flying-hammer": 60,
+    "wcd2016-bebe-deck": 60,
+    "wcd2016-black-dragon": 60,
+    "wcd2016-magical-symphony": 60,
+    "wcd2016-ninja-blitz": 60,
+    "wcd2017-golisodor": 60,
+    "wcd2017-ice-path-ftw": 60,
+    "wcd2017-infinite-force": 60,
+    "wcd2017-samurai-sniper": 60,
+    "wcd2018-buzzroc": 60,
+    "wcd2018-dragones-y-sombras": 60,
+    "wcd2018-garbanette": 60,
+    "wcd2018-victory-map": 60,
+    "wcd2019-fire-box": 60,
+    "wcd2019-mind-blown": 60,
+    "wcd2019-perfection": 60,
+    "wcd2019-pikarom-judge": 60,
+    "wcd2022-adp": 60,
+    "wcd2022-cheryl-again": 60,
+    "wcd2022-ice-rider-palkia": 60,
+    "wcd2022-the-shape-of-mew": 60,
+    "wcd2023-colorless-lugia": 60,
+    "wcd2023-lost-box-kyogre": 60,
+    "wcd2023-mews-revenge": 60,
+    "wcd2023-psychic-elegance": 60,
+    "wcd2024-ancient-toolbox": 60,
+    "wcd2024-crushing-thorn": 60,
+    "wcd2024-regidrago-vstar": 60,
+    "wcd2024-the-don": 60,
+    "wcd2025-flutter-devo-gardevoir": 60,
+    "wcd2025-joltdengo": 60,
+    "wcd2025-jp-raging-bolt": 60,
+    "wcd2025-pult-bomb": 60
+  },
+  "world_championship_sets_without_60_card_deck_quantity_total": [],
+  "world_championship_gap_sets_top_50": [],
+  "samples": {
+    "parent_rows_without_any_image_field": [
+      {
+        "gv_id": "GV-PK-MEP-032",
+        "printing_gv_id": null,
+        "name": "Mega Gardevoir ex",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "032",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-107A",
+        "printing_gv_id": null,
+        "name": "Professor Sycamore",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "107a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-24A",
+        "printing_gv_id": null,
+        "name": "M Manectric-EX",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "24a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-28A",
+        "printing_gv_id": null,
+        "name": "Jolteon-EX",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "28a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-54A",
+        "printing_gv_id": null,
+        "name": "Zygarde-EX",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "54a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-55A",
+        "printing_gv_id": null,
+        "name": "M Lucario-EX",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "55a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYA-92A",
+        "printing_gv_id": null,
+        "name": "Trainers’ Mail",
+        "set_code": "xya",
+        "set_name": "Yello A Alternate",
+        "number": "92a",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP",
+        "printing_gv_id": null,
+        "name": "Fennekin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "80",
+        "finish_key": null,
+        "variant_key": "pokemon_center_stamp",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "Pokemon Center stamped canonical identity. Representative base image only until exact stamped image is available."
+      },
+      {
+        "gv_id": "GV-PK-MEP-046",
+        "printing_gv_id": null,
+        "name": "Chikorita",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "046",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-047",
+        "printing_gv_id": null,
+        "name": "Cyndaquil",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "047",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-048",
+        "printing_gv_id": null,
+        "name": "Totodile",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "048",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-049",
+        "printing_gv_id": null,
+        "name": "Snivy",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "049",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-050",
+        "printing_gv_id": null,
+        "name": "Tepig",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "050",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-051",
+        "printing_gv_id": null,
+        "name": "Oshawott",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "051",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-052",
+        "printing_gv_id": null,
+        "name": "Grookey",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "052",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-053",
+        "printing_gv_id": null,
+        "name": "Scorbunny",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "053",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-054",
+        "printing_gv_id": null,
+        "name": "Sobble",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "054",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-055",
+        "printing_gv_id": null,
+        "name": "Treecko",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "055",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-056",
+        "printing_gv_id": null,
+        "name": "Torchic",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "056",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-057",
+        "printing_gv_id": null,
+        "name": "Mudkip",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "057",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-058",
+        "printing_gv_id": null,
+        "name": "Chespin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "058",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-059",
+        "printing_gv_id": null,
+        "name": "Fennekin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "059",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-060",
+        "printing_gv_id": null,
+        "name": "Froakie",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "060",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-061",
+        "printing_gv_id": null,
+        "name": "Sprigatito",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "061",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      },
+      {
+        "gv_id": "GV-PK-MEP-062",
+        "printing_gv_id": null,
+        "name": "Fuecoco",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "062",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+      }
+    ],
+    "child_rows_without_any_image_field": [
+      {
+        "gv_id": "GV-PK-MEG-091",
+        "printing_gv_id": "GV-PK-MEG-091-STD",
+        "name": "Shroodle",
+        "set_code": "me01",
+        "set_name": "Mega Evolution",
+        "number": "091",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-MEG-091",
+        "printing_gv_id": "GV-PK-MEG-091-RH",
+        "name": "Shroodle",
+        "set_code": "me01",
+        "set_name": "Mega Evolution",
+        "number": "091",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-067",
+        "printing_gv_id": "GV-PK-PR-SV-067-HOLO",
+        "name": "Roaring Moon ex",
+        "set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "number": "067",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-LOT-182",
+        "printing_gv_id": "GV-PK-LOT-182-HOLO",
+        "name": "Lusamine ◇",
+        "set_code": "sm8",
+        "set_name": "Lost Thunder",
+        "number": "182",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-MA-85",
+        "printing_gv_id": "GV-PK-MA-85-STD",
+        "name": "Warp Point",
+        "set_code": "ex4",
+        "set_name": "Team Magma vs Team Aqua",
+        "number": "85",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-MA-85",
+        "printing_gv_id": "GV-PK-MA-85-RH",
+        "name": "Warp Point",
+        "set_code": "ex4",
+        "set_name": "Team Magma vs Team Aqua",
+        "number": "85",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-BLK-101",
+        "printing_gv_id": "GV-PK-BLK-101-HOLO",
+        "name": "Panpour",
+        "set_code": "sv10.5b",
+        "set_name": "Black Bolt",
+        "number": "101",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-SM-SM125",
+        "printing_gv_id": "GV-PK-SM-SM125-HOLO",
+        "name": "Naganadel-GX",
+        "set_code": "smp",
+        "set_name": "SM Black Star Promos",
+        "number": "SM125",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-XYP-129-STAFF-STAMP",
+        "printing_gv_id": "GV-PK-XYP-129-STAFF-STAMP-HOLO",
+        "name": "Zygarde",
+        "set_code": "xyp",
+        "set_name": "XY Black Star Promos",
+        "number": "XY129",
+        "finish_key": "holo",
+        "variant_key": "staff_stamp",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "Stamped identity child finish routed from exact evidence label: holo"
+      },
+      {
+        "gv_id": "GV-PK-PR-XY-XY83",
+        "printing_gv_id": "GV-PK-PR-XY-XY83-HOLO",
+        "name": "Arceus",
+        "set_code": "xyp",
+        "set_name": "XY Black Star Promos",
+        "number": "XY83",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-DAA-38",
+        "printing_gv_id": "GV-PK-DAA-38-STD",
+        "name": "Feebas",
+        "set_code": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "number": "38",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-DAA-38",
+        "printing_gv_id": "GV-PK-DAA-38-RH",
+        "name": "Feebas",
+        "set_code": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "number": "38",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-CRZ-063",
+        "printing_gv_id": "GV-PK-CRZ-063-STD",
+        "name": "Dusclops",
+        "set_code": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "number": "063",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-CRZ-063",
+        "printing_gv_id": "GV-PK-CRZ-063-RH",
+        "name": "Dusclops",
+        "set_code": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "number": "063",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-PAR-142",
+        "printing_gv_id": "GV-PK-PAR-142-STD",
+        "name": "Porygon",
+        "set_code": "sv04",
+        "set_name": "Paradox Rift",
+        "number": "142",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-PAR-142",
+        "printing_gv_id": "GV-PK-PAR-142-RH",
+        "name": "Porygon",
+        "set_code": "sv04",
+        "set_name": "Paradox Rift",
+        "number": "142",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-RR-92",
+        "printing_gv_id": "GV-PK-RR-92-STD",
+        "name": "Lucian's Assignment",
+        "set_code": "pl2",
+        "set_name": "Rising Rivals",
+        "number": "92",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-RR-92",
+        "printing_gv_id": "GV-PK-RR-92-RH",
+        "name": "Lucian's Assignment",
+        "set_code": "pl2",
+        "set_name": "Rising Rivals",
+        "number": "92",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-ASC-156",
+        "printing_gv_id": "GV-PK-ASC-156-STD",
+        "name": "Noibat",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "156",
+        "finish_key": "normal",
+        "variant_key": "base",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-ASC-156",
+        "printing_gv_id": "GV-PK-ASC-156-PB",
+        "name": "Noibat",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "156",
+        "finish_key": "pokeball",
+        "variant_key": "base",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-ASC-156",
+        "printing_gv_id": "GV-PK-ASC-156-RH",
+        "name": "Noibat",
+        "set_code": "me02.5",
+        "set_name": "Ascended Heroes",
+        "number": "156",
+        "finish_key": "reverse",
+        "variant_key": "base",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-GE-9",
+        "printing_gv_id": "GV-PK-GE-9-HOLO",
+        "name": "Swampert",
+        "set_code": "dp4",
+        "set_name": "Great Encounters",
+        "number": "9",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-GE-9",
+        "printing_gv_id": "GV-PK-GE-9-RH",
+        "name": "Swampert",
+        "set_code": "dp4",
+        "set_name": "Great Encounters",
+        "number": "9",
+        "finish_key": "reverse",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-PRE-051",
+        "printing_gv_id": "GV-PK-PRE-051-HOLO",
+        "name": "Lucario ex",
+        "set_code": "sv8pt5",
+        "set_name": "Prismatic Evolutions",
+        "number": "051",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-MEW-186",
+        "printing_gv_id": "GV-PK-MEW-186-HOLO",
+        "name": "Ninetales ex",
+        "set_code": "sv03.5",
+        "set_name": "151",
+        "number": "186",
+        "finish_key": "holo",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      }
+    ],
+    "priority_parent_rows_without_any_image_field": [],
+    "priority_child_rows_without_any_image_field": [
+      {
+        "gv_id": "GV-PK-TK-tk2a-5",
+        "printing_gv_id": "GV-PK-TK-tk2a-5-STD",
+        "name": "Metang",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "5",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-9",
+        "printing_gv_id": "GV-PK-TK-tk2a-9-STD",
+        "name": "Potion",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "9",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1b-1",
+        "printing_gv_id": "GV-PK-TK-tk1b-1-STD",
+        "name": "Electrike",
+        "set_code": "tk1b",
+        "set_name": "EX Trainer Kit Latios",
+        "number": "1",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1b-3",
+        "printing_gv_id": "GV-PK-TK-tk1b-3-STD",
+        "name": "Linoone",
+        "set_code": "tk1b",
+        "set_name": "EX Trainer Kit Latios",
+        "number": "3",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+        "printing_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS-NORMAL",
+        "name": "Pikachu",
+        "set_code": "base1",
+        "set_name": "Base Set",
+        "number": "58",
+        "finish_key": "normal",
+        "variant_key": "first_edition_red_cheeks",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-10",
+        "printing_gv_id": "GV-PK-TK-tk2a-10-STD",
+        "name": "Professor Cozmo's Discovery",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "10",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-4",
+        "printing_gv_id": "GV-PK-TK-tk2a-4-STD",
+        "name": "Meowth",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "4",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-7",
+        "printing_gv_id": "GV-PK-TK-tk2a-7-STD",
+        "name": "Spoink",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "7",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-8",
+        "printing_gv_id": "GV-PK-TK-tk2a-8-STD",
+        "name": "Energy Search",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "8",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-9",
+        "printing_gv_id": "GV-PK-TK-tk2b-9-STD",
+        "name": "Energy Search",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "9",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-1",
+        "printing_gv_id": "GV-PK-TK-tk2a-1-STD",
+        "name": "Beldum",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "1",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1a-9",
+        "printing_gv_id": "GV-PK-TK-tk1a-9-STD",
+        "name": "Energy Search",
+        "set_code": "tk1a",
+        "set_name": "EX Trainer Kit Latias",
+        "number": "9",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-11",
+        "printing_gv_id": "GV-PK-TK-tk2a-11-STD",
+        "name": "Lightning Energy",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "11",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1a-3",
+        "printing_gv_id": "GV-PK-TK-tk1a-3-STD",
+        "name": "Delcatty",
+        "set_code": "tk1a",
+        "set_name": "EX Trainer Kit Latias",
+        "number": "3",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1b-7",
+        "printing_gv_id": "GV-PK-TK-tk1b-7-STD",
+        "name": "Zigzagoon",
+        "set_code": "tk1b",
+        "set_name": "EX Trainer Kit Latios",
+        "number": "7",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
+        "printing_gv_id": "GV-PK-BSP-5-WB-KIDS-STAMP-STD",
+        "name": "Dragonite",
+        "set_code": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "number": "5",
+        "finish_key": "normal",
+        "variant_key": "wb_kids_stamp",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      {
+        "gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+        "printing_gv_id": "GV-PK-BSP-3-WB-KIDS-STAMP-STD",
+        "name": "Mewtwo",
+        "set_code": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "number": "3",
+        "finish_key": "normal",
+        "variant_key": "wb_kids_stamp",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      {
+        "gv_id": "GV-PK-TK-tk1a-8",
+        "printing_gv_id": "GV-PK-TK-tk1a-8-STD",
+        "name": "Potion",
+        "set_code": "tk1a",
+        "set_name": "EX Trainer Kit Latias",
+        "number": "8",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-4",
+        "printing_gv_id": "GV-PK-TK-tk2b-4-STD",
+        "name": "Growlithe",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "4",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-1",
+        "printing_gv_id": "GV-PK-TK-tk2b-1-STD",
+        "name": "Arcanine",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "1",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-12",
+        "printing_gv_id": "GV-PK-TK-tk2b-12-STD",
+        "name": "Lightning Energy",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "12",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2a-2",
+        "printing_gv_id": "GV-PK-TK-tk2a-2-STD",
+        "name": "Electrike",
+        "set_code": "tk2a",
+        "set_name": "EX Trainer Kit 2 Plusle",
+        "number": "2",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-8",
+        "printing_gv_id": "GV-PK-TK-tk2b-8-STD",
+        "name": "Celio's Network",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "8",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
+        "printing_gv_id": "GV-PK-BSP-2-WB-KIDS-STAMP-STD",
+        "name": "Electabuzz",
+        "set_code": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "number": "2",
+        "finish_key": "normal",
+        "variant_key": "wb_kids_stamp",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      {
+        "gv_id": "GV-PK-TK-tk2b-10",
+        "printing_gv_id": "GV-PK-TK-tk2b-10-STD",
+        "name": "Potion",
+        "set_code": "tk2b",
+        "set_name": "EX Trainer Kit 2 Minun",
+        "number": "10",
+        "finish_key": "normal",
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      }
+    ],
+    "world_championship_rows_without_any_image_field": []
+  },
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "exact_image_claim_changes_performed": false,
+  "global_apply_performed": false,
+  "fingerprint": "3675b1ba3cc4250639de1d14f90144004e47419e2b02b4d7e1249ca78b90b10b"
+}

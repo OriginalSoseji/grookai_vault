@@ -1,0 +1,54 @@
+{{DeckInfobox
+|title=The Truth
+|image=WCS2011 The Truth Deck.jpg
+|caption=Box art
+|types={{e|Fire}}{{e|Fighting}}
+|cards={{TCG ID|Undaunted|Vileplume|24}}, {{TCG ID|Black & White|Reuniclus|57}}, {{TCG ID|HeartGold & SoulSilver|Donphan|107}}
+}}
+'''The Truth''' is the name of the deck used by Ross Cawthon, the Masters Finalist in the [[2011 World Championships]]. The deck is a rogue deck whose strategy had not been utilized extensively before the championships. The strategy of the deck is to use {{TCG ID|HeartGold & SoulSilver|Donphan|107}}'s {{m|Earthquake}} to both damage the opponent, and power up {{TCG ID|Black & White|Zekrom|47}}'s {{m|Outrage}} for future use. {{TCG ID|Unleashed|Suicune & Entei LEGEND|94}} was used to exploit Weakness with its attack Burning Inferno. {{TCG ID|Undaunted|Vileplume|24}} is used to stop the use of {{TCG|Item card}}s with its Allergy Flower {{TCG|Poké-Body}}, while {{TCG ID|Black & White|Reuniclus|57}} moves damage counters around to both manipulate damage for Zekrom's Outrage attack, and spread the damage around the Active and Bench to keep all the Pokémon from being Knocked Out.
+
+The Truth is one of the four {{TCGMerch|Black & White|Series|2011 World Championships Decks}} released in October 2011. With the deck came a 2011 World Championships Deck Box, and a Champions Booklet.
+
+==Description==
+''Ross Cawthon brought to Worlds battles a deck unlike any other in play! Built to react to the other decks it faces, it uses Pichu to get evolutions rolling, Vileplume to lock down Item cards, Reuniclus to move damage counters, and Blissey to heal them all! And with heavy hitters like Donphan, Zekrom, and Suicune & Entei LEGEND to dish out some damage of their own, your opponents won’t be able to handle The Truth! ''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|Undaunted|Vileplume|24}}|Grass||Rare}}
+{{decklist/entry|2|{{TCG ID|Undaunted|Gloom|27}}|Grass||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Undaunted|Oddish|60}}|Grass||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Reuniclus|57}}|Psychic||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Black & White|Duosion|56}}|Psychic||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Solosis|55}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Donphan|107}}|Fighting||SuperRare Holo}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Phanpy|77}}|Fighting||Common}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Blissey|106}}|Colorless||SuperRare Holo}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Chansey|58}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|Black & White|Zekrom|47}}|Lightning||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Suicune & Entei LEGEND|94}}|Water|Fire|Rare Holo LEGEND}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Suicune & Entei LEGEND|95}}|Water|Fire|Rare Holo LEGEND}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Pichu|28}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Cleffa|24}}|Colorless||Rare}}
+{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Twins|89}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Call of Legends|Sage's Training|85}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Professor Oak's New Theory|83}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Copycat|77}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Pokémon Communication|99}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Triumphant|Seeker|88}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BW Promo|Tropical Beach|28}}|Stadium||None}}
+{{decklist/entry|1|{{TCG ID|Black & White|Fire Energy|106}}|Fire||None}}
+{{decklist/entry|2|{{TCG ID|Black & White|Fighting Energy|110}}|Fighting||None}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Rainbow Energy|104}}|Rainbow||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Double Colorless Energy|103}}|Colorless||Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:The Truth (TCG)]]
+[[zh:真實（TCG）]]

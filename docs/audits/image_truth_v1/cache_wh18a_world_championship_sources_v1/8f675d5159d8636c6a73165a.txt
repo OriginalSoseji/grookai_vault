@@ -1,0 +1,45 @@
+{{DeckInfobox
+|title=Reshiphlosion
+|image=WCS2011 Reshiphlosion Deck.jpg
+|caption=Box art
+|types={{e|Fire}}
+|cards={{TCG ID|Black & White|Reshiram|26}}, {{TCG ID|HeartGold & SoulSilver|Typhlosion|110}}
+}}
+'''Reshiphlosion''' is the name of the deck used by Christopher Kan, the Senior Champion in the [[2011 World Championships]]. The deck is a specific build of the {{TCG|TyRam}} archetype that focuses solely on {{p|Reshiram}} and {{p|Typhlosion}}. The strategy of the deck is to use {{TCG ID|Black & White|Reshiram|26}}'s {{m|Blue Flare}} attack each turn, and reattaching the {{TCG|Fire Energy}} by means of {{TCG ID|HeartGold & SoulSilver|Typhlosion|110}}'s Afterburner {{TCG|Poké-Power}}.
+
+Reshiphlosion is one of the four {{TCGMerch|Black & White|Series|2011 World Championships Decks}} released in October 2011. With the deck came a 2011 World Championships Deck Box, and a Champions Booklet.
+
+==Description==
+''Christopher Kan became World Champion with a simple, fast, and efficient deck that is hard to stop once it's on fire! With Reshiram as its primary attacker, Typhlosion works from the Bench to keep the Energy cards coming back so Reshiram can use its powerful Blue Flare attack turn after turn. Add in key Trainer cards to fan the flames, and this deck is destined to burn through all challengers!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Black & White|Reshiram|26}}|Fire||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Typhlosion|110}}|Fire||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Quilava|49}}|Fire||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Cyndaquil|61}}|Fire||Common}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Black & White|Professor Juniper|101}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Undaunted|Sage's Training|77}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Unleashed|Engineer's Adjustments|75}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Professor Oak's New Theory|101}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Pokégear 3.0|96}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|PlusPower|96}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Pokémon Communication|99}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Revive|102}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Professor Elm's Training Method|100}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Energy Retrieval|92}}|Item||Uncommon}}
+{{decklist/entry|10|{{TCG ID|Black & White|Fire Energy|106}}|Fire||None}}
+{{decklist/entry|2|{{TCG ID|Triumphant|Rescue Energy|90}}|Colorless||Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Reshiphlosion (TCG)]]
+[[zh:莱希爆兽（TCG）]]

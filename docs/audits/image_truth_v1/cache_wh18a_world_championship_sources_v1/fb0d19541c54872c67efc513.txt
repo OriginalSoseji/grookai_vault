@@ -1,0 +1,48 @@
+{{DeckInfobox
+|title=Megazone
+|image=WCS2011 Megazone Deck.jpg
+|caption=Box art
+|types={{e|Lightning}}
+|cards={{TCG ID|Triumphant|Yanmega|98}}, {{TCG ID|Triumphant|Magnezone|96}}
+}}
+'''Megazone''' is the name of the deck used by Gustavo Wada, the Junior Champion in the [[2011 World Championships]]. The deck is a specific build of the {{TCG|MegaZone}} archetype that incorporates {{p|Kingdra}}. The strategy of the deck is to use {{TCG ID|Triumphant|Yanmega|98}}'s {{TCG|Poké-Body}} Insight in order to attack without needing Energy, while building up Energy for {{TCG ID|Triumphant|Magnezone|96}}'s Lost Burn attack. {{TCG ID|Unleashed|Kingdra|85}}'s {{TCG|Poké-Power}}, Spray Splash, does 10 extra damage each turn to one of the opponent's Pokémon in order to maximize possible Knock Outs with Yanmega's attacks.
+
+Megazone is one of the four {{TCGMerch|Black & White|Series|2011 World Championships Decks}} released in October 2011. With the deck came a 2011 World Championships Deck Box, and a Champions Booklet.
+
+==Description==
+''World Champion Gustavo Wada's Megazone deck focuses on matching your opponent's hand size to take advantage of the potential free attacks of Yanmega! Cards like {{TCG ID|Unleashed|Judge|78}} and {{TCG ID|Call of Legends|Copycat|77}} help keep those hand sizes balanced, and while Magnezone keeps cards coming from your deck, it's also building up for huge damage with Lost Burn. This is the kind of Champion's deck that will put you in the zone!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Magnezone|96}}|Lightning||SuperRare}}
+{{decklist/entry|2|{{TCG ID|Triumphant|Magneton|43}}|Lightning||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Magnemite|68}}|Lightning||Common}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Yanmega|98}}|Grass||SuperRare}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Yanma|84}}|Grass||Common}}
+{{decklist/entry|2|{{TCG ID|Unleashed|Kingdra|85}}|Water||SuperRare}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Seadra|40}}|Water||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Unleashed|Horsea|49}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Tyrogue|33}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Cleffa|24}}|Colorless||Rare}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Pachirisu|18}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|2|{{TCG ID|Call of Legends|Copycat|77}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Black & White|Pokémon Communication|99}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Reversal|99}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Professor Oak's New Theory|101}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|Judge|78}}|Supporter||Uncommon}}
+{{decklist/entry|10|{{TCG ID|Black & White|Lightning Energy|108}}|Lightning||None}}
+{{decklist/footer}}
+{{-}}
+
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Megazone (TCG)]]
+[[zh:遠古巨磁（TCG）]]

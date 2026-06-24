@@ -1,0 +1,288 @@
+{
+  "package_id": "IMG-HOST-WH-13A-SVP-DIRECT-URL-PARENT-UPLOAD-DRY-RUN",
+  "generated_at": "2026-06-24T02:16:01.693Z",
+  "mode": "dry_run_no_write",
+  "candidate_parent_rows": 22,
+  "candidate_source_url_rows": 22,
+  "validated_manifest_rows": 0,
+  "failed_source_url_rows": 22,
+  "unique_upload_objects": 0,
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh13a_svp_direct_url_parent_upload_manifest_v1.jsonl",
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "target_storage_bucket": "user-card-images",
+  "planned_db_columns_after_upload": [
+    "card_prints.image_source",
+    "card_prints.image_path"
+  ],
+  "preserved_db_columns_after_upload": [
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "by_set_code": {},
+  "by_source_field": {},
+  "by_current_image_status": {},
+  "by_content_type": {},
+  "failures_by_set_code": {
+    "svp": 22
+  },
+  "failures_by_source_field": {
+    "image_url": 19,
+    "representative_image_url": 3
+  },
+  "stop_findings": [
+    "failed_svp_source_url_validation"
+  ],
+  "ready_for_storage_apply_package": false,
+  "samples": {
+    "manifest_rows": [],
+    "failed_source_url_rows": [
+      {
+        "gv_id": "GV-PK-PR-SV-190",
+        "name": "Pikachu",
+        "set_code": "svp",
+        "number": "190",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/190_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-191",
+        "name": "Sprigatito",
+        "set_code": "svp",
+        "number": "191",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/191_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-192",
+        "name": "Fuecoco",
+        "set_code": "svp",
+        "number": "192",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/192_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-204",
+        "name": "Cynthia's Garchomp ex",
+        "set_code": "svp",
+        "number": "204",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/204_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-205",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "205",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/205_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-208",
+        "name": "Victini",
+        "set_code": "svp",
+        "number": "208",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/208_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-209",
+        "name": "Thundurus",
+        "set_code": "svp",
+        "number": "209",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/209_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-SVP-209-POKEMON-CENTER-STAMP",
+        "name": "Thundurus",
+        "set_code": "svp",
+        "number": "209",
+        "field_name": "representative_image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/209_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-210",
+        "name": "Tornadus",
+        "set_code": "svp",
+        "number": "210",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/210_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-SVP-210-POKEMON-CENTER-STAMP",
+        "name": "Tornadus",
+        "set_code": "svp",
+        "number": "210",
+        "field_name": "representative_image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/210_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-211",
+        "name": "Gothitelle",
+        "set_code": "svp",
+        "number": "211",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/211_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-212",
+        "name": "Reuniclus",
+        "set_code": "svp",
+        "number": "212",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/212_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-213",
+        "name": "Feraligatr",
+        "set_code": "svp",
+        "number": "213",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/213_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-214",
+        "name": "Pikachu",
+        "set_code": "svp",
+        "number": "214",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/214_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-215",
+        "name": "Toxtricity ex",
+        "set_code": "svp",
+        "number": "215",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/215_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-216",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "216",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/216_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-217",
+        "name": "Team Rocket's Nidoking ex",
+        "set_code": "svp",
+        "number": "217",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/217_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-218",
+        "name": "Team Rocket's Persian ex",
+        "set_code": "svp",
+        "number": "218",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/218_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-PR-SV-224",
+        "name": "Paradise Resort",
+        "set_code": "svp",
+        "number": "224",
+        "field_name": "image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/224_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-SVP-224-WORLD-CHAMPIONSHIPS-2025-STAFF-STAMP",
+        "name": "Paradise Resort",
+        "set_code": "svp",
+        "number": "224",
+        "field_name": "representative_image_url",
+        "source_image_value": "https://images.pokemontcg.io/svp/224_hires.png",
+        "status": 404,
+        "content_type": "image/png",
+        "size_bytes": 186316,
+        "error": null
+      }
+    ]
+  },
+  "fingerprint": "5f3decfd3a310d534060a3ef51484fdef78f2e9ea369c15e78d860f316372816"
+}

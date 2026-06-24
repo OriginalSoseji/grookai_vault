@@ -1,0 +1,112 @@
+{{ArchetypeInfobox
+|title=Queendom
+|image=NidoqueenEXFireRedLeafGreen9.jpg
+|image2=PidgeotEXFireRedLeafGreen10.jpg
+|caption={{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} and {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}
+|types={{e|Fighting}}{{e|Colorless}}{{e|Grass}}{{e|Water}}
+|cards={{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}, {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}
+|era=2004-2006
+}}
+
+'''Queendom''' was a popular competitive deck in the [[Pokémon Trading Card Game]] during the 2004/2005 season. The deck was widely accepted as one of, if not ''the'', best decks in the game, and even won a [[World Championships|World Championship]] title, the highest possible honor for a player and their deck. Although the deck is now banned from [[Play! Pokémon]], due to the {{TCG|Rotation}} of the deck's key cards, it still remains a staple deck in the history of competitive Pokémon TCG playing.
+
+==History==
+The deck is presumed to have been created some time in 2004, chiefly developed by Pablo Meza, Jeremy Maron, and Adam Capriola, three of the top players in the world at the time. Especially notable is Maron, who won Worlds with Queendom that year and finished with a {{TCG|Premier Rating}} of 2001.00, fifth in the world at the time. Meza also placed third in Worlds that year, also with Queendom.
+
+After coming up with the idea for the deck, Meza, Maron, and Capriola playtested the deck intensely for months against almost every possible archetype of the time, so as to assure that Queendom had no unforeseen weaknesses. This clearly paid off, as the deck took two of the top three spots at the World Championships that season.
+
+==Strategy==
+Like many of the best decks in the game's history, the strategy of Queendom is fairly straightforward. {{TCG ID|EX FireRed & LeafGreen|Pidgey|73}} is the ideal start so that the player can get a {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}} out as soon as possible.  {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}'s ''Quick Search'' {{TCG|Pokémon Power}} reads that "Once during your turn (before your attack), you may choose any 1 card from your deck and put it into your hand." As can be assumed, this was chiefly used for setting up in the early game, and for getting any other cards needed in the late game. ''Quick Search'' in this deck was mainly meant to be used to set up at least one {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} as quickly as possible.
+
+{{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} is the deck's main attacker and cornerstone. In fact, the deck's name is clearly derived from Nido'''queen'''. {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} has two powerful attacks, '''Toxic''' and '''Power Lariat'''. Toxic {{TCG|Poisoned|Poisons}} the [[Appendix:Glossary (TCG)#Defending Pokémon|Defending Pokémon]] for only one {{e|Grass}} energy. However, Toxic was especially good because instead of placing one damage counter on the Defending Pokémon between turns, like typical poison, it placed ''two'' damage counters. This was extremely good for the time. Power Lariat did more damage based on the number of [[Evolution|evolved]] Pokémon the Queendom player had in play. For an energy cost of only {{e|Fighting}}{{e|Colorless}}{{e|Colorless}}, it could do up to 90 damage. Again, this was spectacular for the time. Since {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}'s Quick Search helps the Queendom player evolve their Pokémon quickly, Power Lariat was an especially effective combo with {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}.
+
+In essence, the basic strategy of the deck is to use Quick Search and other effects to get out a {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} and other Evolutions attacking as quickly as possible.
+
+==Cards==
+===Key Cards===
+*'''{{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}''' is, as mentioned above, the main attacking Pokémon in the deck.
+*'''{{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}''' can use its ''Quick Search'' Pokémon Power to set up a {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} and supporting Pokémon, such as additional {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} or {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}.
+*'''{{TCG ID|EX Hidden Legends|Milotic|12}}''' uses its ''Healing Shower'' {{TCG|Pokémon Power}} to heal damage off both players' Pokémon. This was extremely helpful in certain matchups of the day, including {{TCG|RockLock}}.
+
+===Other Pokémon===
+*'''{{TCG ID|EX FireRed & LeafGreen|Pidgey|73}}''' is chiefly there to [[Evolution|evolve]] into {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}} at some point. If necessary, {{TCG ID|EX FireRed & LeafGreen|Pidgey|73}} can also stall in the early game with its ''Corner'' attack, which prevents the Defending Pokémon from retreating.
+*'''{{TCG ID|EX FireRed & LeafGreen|Pidgeotto|45}}''' also functions solely to evolve into {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}.
+*'''{{TCG ID|EX FireRed & LeafGreen|Nidoran♀|70}}''' is, again, there to evolve into {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}. Its ''Call For Friends'' attack also makes it a viable starting Pokémon, since Basic Pokémon are a significant part of the deck's success.
+*'''{{TCG ID|EX FireRed & LeafGreen|Nidorina|40}}''' actually has a purpose other than evolving. Its ''Fast Evolution'' attack allows the player to search their deck for up to two Evolution cards and add them to their hand. This is especially useful in Queendom because a centerpiece of the deck is, in fact, the concept of "fast [[Evolution]]" so as to power up {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}'s ''Power Lariat'' attack.
+*'''{{TCG ID|EX Hidden Legends|Feebas|61}}''' is there for the sole purpose of evolving into {{TCG ID|EX Hidden Legends|Milotic|12}}.
+
+===Other Trainers/Supporters===
+*'''{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}''' was a staple card in almost every deck at the time, due to its fantastic ability to search any Pokémon (except {{TCG|Pokémon-ex}}) from a player's deck. It speeds up Queendom and makes it easier to get out {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} and {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}.
+*'''{{TCG ID|EX Hidden Legends|Desert Ruins|88}}''' is mostly used as a counter for {{TCG ID|EX Emerald|Battle Frontier|75}}, another popular {{TCG|Stadium card}} that shuts off ''Quick Search''. Additionally, {{TCG ID|EX Hidden Legends|Desert Ruins|88}} can prove a vital asset against decks centered around {{TCG|Pokémon-ex}}.
+*'''{{TCG ID|EX Sandstorm|Rare Candy|88}}''' lets the player evolve {{TCG|Basic Pokémon}} into {{TCG|Stage-2 Pokémon}} directly, skipping the middle stage. Since this allows {{TCG ID|EX FireRed & LeafGreen|Pidgey|73}} to evolve directly into {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}} and {{TCG ID|EX FireRed & LeafGreen|Nidoran♀|70}} to evolve directly into {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}, this speeds up the deck tremendously.
+*'''{{TCG ID|EX Team Rocket Returns|Copycat|83}}''' is simply a good hand-refresher.
+*'''{{TCG ID|EX FireRed & LeafGreen|Great Ball|92}}''' can grab any {{TCG|Basic Pokémon}} from the player's deck, which can help get additional Evolutions out.
+*'''{{TCG ID|EX Hidden Legends|Steven's Advice|92}}''' is just a simple drawing {{TCG|Supporter card|Supporter}}.
+*'''{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}''' can disrupt the opponent's hand in the late game or give the Queendom player a new hand of 6 cards at the beginning of the game. It's a diverse card.
+*'''{{TCG ID|EX Dragon|Mr. Briney's Compassion|87}}''' is used in the late game to pick up the {{TCG ID|EX Hidden Legends|Milotic|12}} and be able to reuse its effect.
+
+===Energy Cards===
+*'''{{TCG|Grass Energy}}''' is used to power {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}'s ''Toxic'' attack.
+*'''{{TCG|Double Rainbow Energy}}''' speeds up the deck by decreasing the number of energy cards needed by {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}} to attack, since it's basically two energy for the price of one.
+*'''{{TCG|Heal Energy}}''' simply is useful for healing 10 damage off a Pokémon. Since 10 damage can make the difference between another turn to live or a knockout, this is a helpful card.
+*'''{{TCG|Fighting Energy}}''' simply provides the energy needed for {{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}'s ''Lariat'' attack.
+
+==2005 World Championships Queendom Deck==
+{{DeckInfobox
+|title=Queendom
+|image=WCS2005 Queendom Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Grass}}{{e|Fighting}}
+|cards={{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}, {{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}, {{TCG ID|EX Hidden Legends|Milotic|12}}
+}}
+
+'''Queendom''' is also the name of the deck used by Jeremy Maron, Fifteen and Over Division Champion in the {{TCG|2005 World Championships}}. It is one of the four {{TCGMerch|EX|Series|2005 World Championships Decks}}, released on October 31st, 2005. Each deck comes packaged with a 2005 World Championships Booklet. Each card features a silver border, Maron's signature, and limited edition 2005 World Championships back. None of the cards are tournament legal.
+
+===Description===
+''Jeremy Maron built a powerhouse of a deck! Nidoqueen for power, Pidgeot for card drawing, and Milotic for surprises. Nidoqueen's Power Lariat Knock Out your opponent's Pokémon, drawing strength from your Evolved Pokémon on the Bench and warming your Bench up for the battle!''
+
+===Deck list===
+The deck list below is based on Maron's deck from the World Championships. A player may wish to change any part of this deck when building his or her own version.
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Nidoran♀|70}}|Grass||Common}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Nidorina|40}}|Grass||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Nidoqueen|9}}|Fighting||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Pidgey|73}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgeotto|45}}|Colorless||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}|Colorless||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Feebas|61}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Milotic|12}}|Water||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Copycat|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Hidden Legends|Desert Ruins|88}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Great Ball|92}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Dragon|Mr. Briney's Compassion|87}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Rare Candy|83}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Heal Energy|94}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Double Rainbow Energy|87}}|Energy|Rainbow|Rare}}
+{{decklist/entry|2|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/entry|6|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/footer}}
+
+==Restriction==
+Since literally all the cards in the deck have been [[Rotation (TCG)|rotated]] out since the height of the deck's popularity, the deck is unplayable in sanctioned tournaments.  Various "new-age" versions of the deck have been tried, centered around other {{TCG|Nidoqueen}} cards, but none have been quite so successful as the deck that won the 2005 World Championships.
+
+==See also==
+
+===Internal===
+* [[Deck archetype (TCG)]]
+
+===External===
+* [http://pokegym.net/forums/showthread.php?t=24534 PokéGym thread]
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:Deck archetypes]]
+[[Category:World Championship Decks]]
+
+[[zh:女王国（TCG）]]

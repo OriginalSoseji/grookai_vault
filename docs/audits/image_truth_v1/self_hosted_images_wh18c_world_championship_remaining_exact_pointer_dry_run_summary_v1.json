@@ -1,0 +1,785 @@
+{
+  "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+  "generated_at": "2026-06-24T13:13:11.640Z",
+  "mode": "dry_run_no_write",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18a_world_championship_remaining_exact_upload_manifest_v1.jsonl",
+  "upload_result_json": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18b_world_championship_remaining_exact_storage_upload_apply_result_v1.json",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18b_world_championship_remaining_exact_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18c_world_championship_remaining_exact_pointer_plan_v1.jsonl",
+  "manifest_rows": 72,
+  "completed_upload_rows": 72,
+  "cumulative_completed_upload_rows": 72,
+  "effective_metadata_pointer_updates": 72,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_planned": 72,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path",
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "target_tables": {
+    "card_prints": 72
+  },
+  "by_set_code": {
+    "wcd2004-team-rushdown": 1,
+    "wcd2008-empotech": 3,
+    "wcd2008-psychic-lock": 2,
+    "wcd2009-crowned-tiger": 1,
+    "wcd2009-luxdrill": 1,
+    "wcd2009-queengar": 1,
+    "wcd2010-luxchomp-of-the-spirit": 2,
+    "wcd2011-reshiphlosion": 2,
+    "wcd2012-cmt-deck": 1,
+    "wcd2012-terraki-mewtwo": 2,
+    "wcd2013-darkrai-deck": 2,
+    "wcd2013-ultimate-team-plasma": 1,
+    "wcd2015-honorstoise": 1,
+    "wcd2015-primal-groudon": 1,
+    "wcd2015-punches-n-bites": 2,
+    "wcd2015-the-flying-hammer": 2,
+    "wcd2016-black-dragon": 2,
+    "wcd2016-magical-symphony": 1,
+    "wcd2017-ice-path-ftw": 3,
+    "wcd2017-infinite-force": 3,
+    "wcd2017-samurai-sniper": 3,
+    "wcd2018-buzzroc": 2,
+    "wcd2018-dragones-y-sombras": 3,
+    "wcd2018-garbanette": 5,
+    "wcd2018-victory-map": 2,
+    "wcd2019-fire-box": 1,
+    "wcd2019-mind-blown": 1,
+    "wcd2019-perfection": 1,
+    "wcd2019-pikarom-judge": 1,
+    "wcd2022-adp": 1,
+    "wcd2022-cheryl-again": 1,
+    "wcd2022-ice-rider-palkia": 6,
+    "wcd2022-the-shape-of-mew": 1,
+    "wcd2023-colorless-lugia": 4,
+    "wcd2023-mews-revenge": 3,
+    "wcd2023-psychic-elegance": 3
+  },
+  "changed_columns": {
+    "image_note": 72,
+    "image_path": 72,
+    "image_status": 72
+  },
+  "proposed_statuses": {
+    "exact": 72
+  },
+  "stop_findings": [],
+  "sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "samples": {
+    "pointer_updates": [
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a343d20f-8e8f-4b8e-afe5-c215396324aa",
+        "gv_id": "GV-PK-WCD-2004-TEAM_RUSHDOWN-14-EX_HIDDEN_LEGEND-91-MAGNETIC_STORM",
+        "name": "Magnetic Storm",
+        "set_code": "wcd2004-team-rushdown",
+        "number": "91",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2004/magnetic-storm-91",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/ob6lm3ygxtaynba5/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2004-team-rushdown/gv-pk-wcd-2004-team-rushdown-14-ex-hidden-legend-91-magnetic-storm/3d436af1993fb97b476f4793.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5/gv-pk-hl-91/d083791b5ec5686049364c08.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-HL-91 for World Championship Deck display continuity. This is not an exact 2004 Team Rushdown replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2004-team-rushdown/gv-pk-wcd-2004-team-rushdown-14-ex-hidden-legend-91-magnetic-storm/3d436af1993fb97b476f4793.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2004/magnetic-storm-91."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "30f2b3c6-6579-4c0d-a8a0-01536adfdb9e",
+        "gv_id": "GV-PK-WCD-2008-EMPOTECH-14-EX-101-MEW",
+        "name": "Mew ☆ δ",
+        "set_code": "wcd2008-empotech",
+        "number": "Dragon Frontiers 101",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/mew-101",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/7b868fff0a754da159456c7d4c692e4ee26927b0059e5ac28c662a176e977895/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-14-ex-101-mew/a72244539bae3f1f19aaa69e.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex15/gv-pk-df-101/d64b03e4395bb06affd5d086.webp",
+          "image_status": "representative_shared",
+          "image_note": "Extended-source representative image from ordinary source card GV-PK-DF-101 for World Championship Deck display continuity. This is not an exact 2008 Empotech replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09H-WORLD-CHAMPIONSHIP-UNIQUE-SOURCE-NUMBER-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-14-ex-101-mew/a72244539bae3f1f19aaa69e.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2008/mew-101."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "2ede0e83-2c49-449d-9632-7f84453d57fd",
+        "gv_id": "GV-PK-WCD-2008-EMPOTECH-08-DIAMOND_AND_PEAR-80-DUSKULL",
+        "name": "Duskull",
+        "set_code": "wcd2008-empotech",
+        "number": "80",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/duskull-80",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/qlh2cs637kij45ca/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-08-diamond-and-pear-80-duskull/8a5a08a94f417ee71823e6fa.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp1/gv-pk-dp-80/c236039ceb96f44821045904.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-DP-80 for World Championship Deck display continuity. This is not an exact 2008 Empotech replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-08-diamond-and-pear-80-duskull/8a5a08a94f417ee71823e6fa.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2008/duskull-80."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "0f79ecf3-dd3b-473e-b38b-204054f07b34",
+        "gv_id": "GV-PK-WCD-2008-EMPOTECH-27-EX_CRYSTAL_GUARD-88-DOUBLE_RAINBOW_ENERGY",
+        "name": "Double Rainbow Energy",
+        "set_code": "wcd2008-empotech",
+        "number": "88",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/double-rainbow-energy-88",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/q7ncizj27k3t6a6e/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-27-ex-crystal-guard-88-double-rainbow-energy/5db2fe5fd80ef08ce31fe2e4.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex14/gv-pk-cg-88/5e61f5c7d27910b895606550.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-CG-88 for World Championship Deck display continuity. This is not an exact 2008 Empotech replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-empotech/gv-pk-wcd-2008-empotech-27-ex-crystal-guard-88-double-rainbow-energy/5db2fe5fd80ef08ce31fe2e4.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2008/double-rainbow-energy-88."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "5a3e1bcb-9ed6-496d-a74b-ff9e8ed174e4",
+        "gv_id": "GV-PK-WCD-2008-PSYCHIC_LOCK-20-GREAT_ENCOUNTERS-102-RARE_CANDY",
+        "name": "Rare Candy",
+        "set_code": "wcd2008-psychic-lock",
+        "number": "102",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/rare-candy-102",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/adajegkosvkhujaa/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-psychic-lock/gv-pk-wcd-2008-psychic-lock-20-great-encounters-102-rare-candy/5c693b97208a62b9c6acb7c3.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp4/gv-pk-ge-102/81b2641e4d8daf7fbc847bb9.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-GE-102 for World Championship Deck display continuity. This is not an exact 2008 Psychic Lock replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-psychic-lock/gv-pk-wcd-2008-psychic-lock-20-great-encounters-102-rare-candy/5c693b97208a62b9c6acb7c3.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2008/rare-candy-102."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "eea7ace9-a5e0-4c64-9d39-f44d1a78701d",
+        "gv_id": "GV-PK-WCD-2008-PSYCHIC_LOCK-19-MYSTERIOUS_TREAS-112-LAKE_BOUNDARY",
+        "name": "Lake Boundary",
+        "set_code": "wcd2008-psychic-lock",
+        "number": "112",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/lake-boundary-112",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/et6yj2qytkjzxanx/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-psychic-lock/gv-pk-wcd-2008-psychic-lock-19-mysterious-treas-112-lake-boundary/3b215977f51aec17d2e3ec69.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp2/gv-pk-mt-112/6199fc7dbbea61d7f77c8dd4.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-MT-112 for World Championship Deck display continuity. This is not an exact 2008 Psychic Lock replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2008-psychic-lock/gv-pk-wcd-2008-psychic-lock-19-mysterious-treas-112-lake-boundary/3b215977f51aec17d2e3ec69.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2008/lake-boundary-112."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "ca2bc003-b1b0-4241-97ff-35f79633b473",
+        "gv_id": "GV-PK-WCD-2009-CROWNED_TIGER-14-PLATINUM-7-DIALGA_G",
+        "name": "Dialga G",
+        "set_code": "wcd2009-crowned-tiger",
+        "number": "7",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2009/dialga-g-7",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/ukx3v6iadcvgobew/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-crowned-tiger/gv-pk-wcd-2009-crowned-tiger-14-platinum-7-dialga-g/05e1c9de8252b00c041a49f1.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/pl1/gv-pk-pl-7/b5039909e47007f8a34588c2.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-PL-7 for World Championship Deck display continuity. This is not an exact 2009 Crowned Tiger replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-crowned-tiger/gv-pk-wcd-2009-crowned-tiger-14-platinum-7-dialga-g/05e1c9de8252b00c041a49f1.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2009/dialga-g-7."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "dcc073a6-0cef-4de1-85ab-b88a9881401e",
+        "gv_id": "GV-PK-WCD-2009-LUXDRILL-25-MYSTERIOUS_TREAS-118-MULTI_ENERGY",
+        "name": "Multi Energy",
+        "set_code": "wcd2009-luxdrill",
+        "number": "118",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2009/multi-energy-118",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/kh3dpuhv2me2qx26/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-luxdrill/gv-pk-wcd-2009-luxdrill-25-mysterious-treas-118-multi-energy/9d56243763acc2e29749d8c7.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp2/gv-pk-mt-118/dfaee15aa270d03a47bfd8cd.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-MT-118 for World Championship Deck display continuity. This is not an exact 2009 Luxdrill replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-luxdrill/gv-pk-wcd-2009-luxdrill-25-mysterious-treas-118-multi-energy/9d56243763acc2e29749d8c7.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2009/multi-energy-118."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "e10f04fc-dbaf-4a94-bcf4-430ec5bb0de2",
+        "gv_id": "GV-PK-WCD-2009-QUEENGAR-12-STORMFRONT-18-GENGAR",
+        "name": "Gengar",
+        "set_code": "wcd2009-queengar",
+        "number": "18",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2009/gengar-18",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/a2nb3egt27sz7lxn/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-queengar/gv-pk-wcd-2009-queengar-12-stormfront-18-gengar/dfaa638d46a67f42592c0c34.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp7/gv-pk-sf-18/e077bdc1aae5bf71de8ddef8.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-SF-18 for World Championship Deck display continuity. This is not an exact 2009 Queengar replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2009-queengar/gv-pk-wcd-2009-queengar-12-stormfront-18-gengar/dfaa638d46a67f42592c0c34.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2009/gengar-18."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "0539bdd1-6a2a-4c37-89f8-4171111dd535",
+        "gv_id": "GV-PK-WCD-2010-LUXCHOMP_OF_THE_SPIRIT-12-LEGENDS_AWAKENED-43-UXIE",
+        "name": "Uxie",
+        "set_code": "wcd2010-luxchomp-of-the-spirit",
+        "number": "43",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2010/uxie-43",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/acbd722f492f4e715e6addd71be8445a9fcd57bcbcce2a43337c044b1f882cd0/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2010-luxchomp-of-the-spirit/gv-pk-wcd-2010-luxchomp-of-the-spirit-12-legends-awakened-43-uxie/d7b80cca0c29d9af5ac20e44.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/dp6/gv-pk-la-43/35842820ff83c233a9e05c49.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-LA-43 for World Championship Deck display continuity. This is not an exact 2010 LuxChomp of the Spirit replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2010-luxchomp-of-the-spirit/gv-pk-wcd-2010-luxchomp-of-the-spirit-12-legends-awakened-43-uxie/d7b80cca0c29d9af5ac20e44.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2010/uxie-43."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "1be018cd-9a7c-4937-bf11-58832ceed3e3",
+        "gv_id": "GV-PK-WCD-2010-LUXCHOMP_OF_THE_SPIRIT-21-HEARTGOLD_AND_SO-98-POKEMON_COMMUNICATION",
+        "name": "Pokémon Communication",
+        "set_code": "wcd2010-luxchomp-of-the-spirit",
+        "number": "98",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2010/pokemon-communication-98",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/fjpakye7gp5jik35/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2010-luxchomp-of-the-spirit/gv-pk-wcd-2010-luxchomp-of-the-spirit-21-heartgold-and-so-98-pokemon-communication/1b447bc0c05237aa6fa312f1.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/hgss1/gv-pk-hs-98/ca27d1fdde181221125e1206.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-HS-98 for World Championship Deck display continuity. This is not an exact 2010 LuxChomp of the Spirit replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2010-luxchomp-of-the-spirit/gv-pk-wcd-2010-luxchomp-of-the-spirit-21-heartgold-and-so-98-pokemon-communication/1b447bc0c05237aa6fa312f1.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2010/pokemon-communication-98."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a2b7bdc4-b95b-4ba2-9957-1e6509f913ed",
+        "gv_id": "GV-PK-WCD-2011-RESHIPHLOSION-02-HEARTGOLD_AND_SO-110-TYPHLOSION",
+        "name": "Typhlosion",
+        "set_code": "wcd2011-reshiphlosion",
+        "number": "110",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2011/typhlosion-110",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/hojtb7cggej64w7j/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2011-reshiphlosion/gv-pk-wcd-2011-reshiphlosion-02-heartgold-and-so-110-typhlosion/ab7dad38d8c21fdc2c864d59.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/hgss1/gv-pk-hs-110/fbd27f35aacfc7f852aa007e.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-HS-110 for World Championship Deck display continuity. This is not an exact 2011 Reshiphlosion replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2011-reshiphlosion/gv-pk-wcd-2011-reshiphlosion-02-heartgold-and-so-110-typhlosion/ab7dad38d8c21fdc2c864d59.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2011/typhlosion-110."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "6635271d-40d4-4a34-8896-bc854c6d74e1",
+        "gv_id": "GV-PK-WCD-2011-RESHIPHLOSION-04-HEARTGOLD_AND_SO-61-CYNDAQUIL",
+        "name": "Cyndaquil",
+        "set_code": "wcd2011-reshiphlosion",
+        "number": "61",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2011/cyndaquil-61",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/mb2mw7wqd2nxvidi/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2011-reshiphlosion/gv-pk-wcd-2011-reshiphlosion-04-heartgold-and-so-61-cyndaquil/5431e654bd66b0e7c479e789.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/hgss1/gv-pk-hs-61/07d1e86aefde520e17df4d90.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-HS-61 for World Championship Deck display continuity. This is not an exact 2011 Reshiphlosion replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2011-reshiphlosion/gv-pk-wcd-2011-reshiphlosion-04-heartgold-and-so-61-cyndaquil/5431e654bd66b0e7c479e789.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2011/cyndaquil-61."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "df461b13-eefa-480e-b368-927bf1dc834d",
+        "gv_id": "GV-PK-WCD-2012-CMT_DECK-04-DARK-90-TORNADUS_EX",
+        "name": "Tornadus-EX",
+        "set_code": "wcd2012-cmt-deck",
+        "number": "Explorers 90",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/tornadus-ex-90",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/corrqxhjkstyecfnchiv/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-cmt-deck/gv-pk-wcd-2012-cmt-deck-04-dark-90-tornadus-ex/d2347cf66bacaa1c613beb3b.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw5/gv-pk-dex-90/68810ecb7a3cb9758c993419.webp",
+          "image_status": "representative_shared",
+          "image_note": "Residual representative image from ordinary source card GV-PK-DEX-90 for World Championship Deck display continuity. This is not an exact 2012 CMT Deck replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09D-WORLD-CHAMPIONSHIP-RESIDUAL-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-cmt-deck/gv-pk-wcd-2012-cmt-deck-04-dark-90-tornadus-ex/d2347cf66bacaa1c613beb3b.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2012/tornadus-ex-90."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "327f3946-2005-44d7-9049-71276a3c8ad3",
+        "gv_id": "GV-PK-WCD-2012-TERRAKI_MEWTWO-01-NEXT-54-MEWTWO_EX",
+        "name": "Mewtwo-EX",
+        "set_code": "wcd2012-terraki-mewtwo",
+        "number": "Destinies 54",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/mewtwo-ex-54",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/yr3n7zyqj7c4idh3/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-terraki-mewtwo/gv-pk-wcd-2012-terraki-mewtwo-01-next-54-mewtwo-ex/24a19de7aa3595f224397342.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw4/gv-pk-nxd-54/4eb22c24cd308d5807f0b7f0.webp",
+          "image_status": "representative_shared",
+          "image_note": "Residual representative image from ordinary source card GV-PK-NXD-54 for World Championship Deck display continuity. This is not an exact 2012 Terraki-Mewtwo replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09D-WORLD-CHAMPIONSHIP-RESIDUAL-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-terraki-mewtwo/gv-pk-wcd-2012-terraki-mewtwo-01-next-54-mewtwo-ex/24a19de7aa3595f224397342.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2012/mewtwo-ex-54."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "cc7ab607-0fab-4808-94ad-c5a361ba5679",
+        "gv_id": "GV-PK-WCD-2012-TERRAKI_MEWTWO-09-CALL_OF_LEGENDS-78-DUAL_BALL",
+        "name": "Dual Ball",
+        "set_code": "wcd2012-terraki-mewtwo",
+        "number": "78",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/dual-ball-78",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/6jivr5pu45oowdwv/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-terraki-mewtwo/gv-pk-wcd-2012-terraki-mewtwo-09-call-of-legends-78-dual-ball/f2c38431d282f7d8d7617851.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/col1/gv-pk-col-78/f03f4c4dda7fee579d1e46ac.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-COL-78 for World Championship Deck display continuity. This is not an exact 2012 Terraki-Mewtwo replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-terraki-mewtwo/gv-pk-wcd-2012-terraki-mewtwo-09-call-of-legends-78-dual-ball/f2c38431d282f7d8d7617851.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2012/dual-ball-78."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "55c7f57e-f870-4f30-a795-f750cdffbdbf",
+        "gv_id": "GV-PK-WCD-2013-DARKRAI_DECK-13-DARK_EXPLORERS-102-ULTRA_BALL",
+        "name": "Ultra Ball",
+        "set_code": "wcd2013-darkrai-deck",
+        "number": "102",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/jvnjhsqz2xm2w27p/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-darkrai-deck/gv-pk-wcd-2013-darkrai-deck-13-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw5/gv-pk-dex-102/88c8576105b7d7eabefe4bc3.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-DEX-102 for World Championship Deck display continuity. This is not an exact 2013 Darkrai Deck replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-darkrai-deck/gv-pk-wcd-2013-darkrai-deck-13-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "20077372-32bf-444e-836f-2d8dadba473c",
+        "gv_id": "GV-PK-WCD-2013-DARKRAI_DECK-03-BOUNDARIES-49-KELDEO_EX",
+        "name": "Keldeo-EX",
+        "set_code": "wcd2013-darkrai-deck",
+        "number": "Crossed 49",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/keldeo-ex-49",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/uh2vqnp7zovu7yht/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-darkrai-deck/gv-pk-wcd-2013-darkrai-deck-03-boundaries-49-keldeo-ex/7f9cc3223a4b562e54e1ab29.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw7/gv-pk-bcr-49/b9549c4ccbc0f55b8144ce04.webp",
+          "image_status": "representative_shared",
+          "image_note": "Residual representative image from ordinary source card GV-PK-BCR-49 for World Championship Deck display continuity. This is not an exact 2013 Darkrai Deck replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09D-WORLD-CHAMPIONSHIP-RESIDUAL-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-darkrai-deck/gv-pk-wcd-2013-darkrai-deck-03-boundaries-49-keldeo-ex/7f9cc3223a4b562e54e1ab29.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2013/keldeo-ex-49."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "24334390-5022-4740-971f-f172777bbceb",
+        "gv_id": "GV-PK-WCD-2013-ULTIMATE_TEAM_PLASMA-13-DARK_EXPLORERS-102-ULTRA_BALL",
+        "name": "Ultra Ball",
+        "set_code": "wcd2013-ultimate-team-plasma",
+        "number": "102",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/jvnjhsqz2xm2w27p/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-ultimate-team-plasma/gv-pk-wcd-2013-ultimate-team-plasma-13-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw5/gv-pk-dex-102/88c8576105b7d7eabefe4bc3.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-DEX-102 for World Championship Deck display continuity. This is not an exact 2013 Ultimate Team Plasma replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-ultimate-team-plasma/gv-pk-wcd-2013-ultimate-team-plasma-13-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      },
+      {
+        "package_id": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN",
+        "plan_type": "exact_world_championship_parent_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "7e2c9d64-8b96-4e9e-ae38-766c895307f7",
+        "gv_id": "GV-PK-WCD-2015-HONORSTOISE-18-PHANTOM_FORCES-109-VS_SEEKER",
+        "name": "VS Seeker",
+        "set_code": "wcd2015-honorstoise",
+        "number": "109",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/vs-seeker-109",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/o7znchdxthe6o7l6/1600.jpg",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-honorstoise/gv-pk-wcd-2015-honorstoise-18-phantom-forces-109-vs-seeker/98505d0c0fc585412a381bbf.jpg",
+        "current_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xy4/gv-pk-phf-109/3ab02bee0226bdf803dd4fc5.webp",
+          "image_status": "representative_shared",
+          "image_note": "Representative image from ordinary source card GV-PK-PHF-109 for World Championship Deck display continuity. This is not an exact 2015 Honorstoise replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-honorstoise/gv-pk-wcd-2015-honorstoise-18-phantom-forces-109-vs-seeker/98505d0c0fc585412a381bbf.jpg",
+          "image_status": "exact",
+          "image_note": "IMG-HOST-WH-18C-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-DRY-RUN: exact World Championship Deck image from PriceCharting direct product page https://www.pricecharting.com/game/pokemon-world-championships-2015/vs-seeker-109."
+        },
+        "changed_columns": [
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "validation_findings": [],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": true
+      }
+    ]
+  },
+  "ready_for_apply_package": true,
+  "fingerprint": "00adda7d043a1323b29a140866485735a1a279dc0d2a83b8208ba49dd38ad306"
+}

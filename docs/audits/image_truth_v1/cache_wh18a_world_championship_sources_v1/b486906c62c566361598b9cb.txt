@@ -1,0 +1,48 @@
+{{DeckInfobox
+|title=Twinboar
+|image=WCS2011 Twinboar Deck.jpg
+|caption=Box art
+|types={{e|Fire}}{{e|Lightning}}
+|cards={{TCG ID|Black & White|Reshiram|26}}, {{TCG ID|Black & White|Emboar|20}}, {{TCG ID|Triumphant|Magnezone|96}}
+}}
+'''Twinboar''' is the name of the deck used by David Cohen, the Masters Champion in the [[2011 World Championships]]. The deck is a specific build of the {{TCG|MagneBoar}} archetype that focuses on {{p|Reshiram}}, {{p|Magnezone}} and {{p|Emboar}}. The strategy of the deck is to use {{TCG ID|Black & White|Reshiram|26}}'s {{m|Blue Flare}} attack each turn, and reattaching the {{TCG|Fire Energy}} by means of {{TCG ID|Black & White|Emboar|20}}'s Inferno Fandango {{TCG|Ability}}, with {{TCG ID|Triumphant|Magnezone|96}} providing draw support through its {{TCG|Poké-Power}}, Magnetic Draw.
+
+Twinboar is one of the four {{TCGMerch|Black & White|Series|2011 World Championships Decks}} released in October 2011. With the deck came a 2011 World Championships Deck Box, and a Champions Booklet.
+
+==Description==
+''With Cleffa in place to stoke the flames and the {{TCG|Trainer card}} {{TCG ID|Triumphant|Twins|89}} to get you just what you need when you need it, World Champion David Cohen uses a combination of {{TCG ID|Black & White|Emboar|20}} and {{TCG ID|Black & White|Reshiram|26}} to blaze the trail to his title. In an added flash of inspiration, his addition of {{TCG ID|Undaunted|Rayquaza & Deoxys LEGEND|89}} can surprise your opponent and earn you two {{TCG|Prize card}}s to win the game in a blaze of glory!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|Black & White|Emboar|20}}|Fire||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Black & White|Pignite|18}}|Fire||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Tepig|15}}|Fire||Common}}
+{{decklist/entry|2|{{TCG ID|Black & White|Reshiram|26}}|Fire||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Magnezone|96}}|Lightning||SuperRare Holo}}
+{{decklist/entry|1|{{TCG ID|Triumphant|Magneton|43}}|Lightning||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Magnemite|68}}|Lightning||Common}}
+{{decklist/entry|1|{{TCG ID|Undaunted|Rayquaza & Deoxys LEGEND|89}}|Colorless|Psychic|Rare Holo LEGEND}}
+{{decklist/entry|1|{{TCG ID|Undaunted|Rayquaza & Deoxys LEGEND|90}}|Colorless|Psychic|Rare Holo LEGEND}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Cleffa|17}}|Colorless||Rare}}
+{{decklist/entry|4|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Black & White|Pokémon Communication|99}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Energy Retrieval|92}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Twins|89}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Call of Legends|Professor Oak's New Theory|83}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Fisherman|92}}|Supporter||Uncommon}}
+{{decklist/entry|9|{{TCG ID|Black & White|Fire Energy|106}}|Fire||None}}
+{{decklist/entry|4|{{TCG ID|Black & White|Lightning Energy|108}}|Lightning||None}}
+{{decklist/entry|2|{{TCG ID|Triumphant|Rescue Energy|90}}|Colorless||Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Twinboar (TCG)]]
+[[zh:雙胞武王（TCG）]]

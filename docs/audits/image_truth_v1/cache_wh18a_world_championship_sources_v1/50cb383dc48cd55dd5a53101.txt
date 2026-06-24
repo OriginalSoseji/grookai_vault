@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=Ancient Toolbox
+|image=WCS2024 Ancient Toolbox Deck.jpg
+|caption=Box Art
+|release=May 16, 2025
+|types={{e|Darkness}}
+|coin=[[File:WCS2024 Silver Pikachu Coin.png|50px]]
+}}
+
+'''Ancient Toolbox''' is the name of the deck used by Sakuya Ota, the Junior Division champion at the [[2024 Pokémon World Championships]]. It is one of the 2024 World Championship Decks released on May 16, 2025. Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2024 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Ota, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and Ota's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments". The signature card displayed in the packaging (Roaring Moon) has a special gold version of Ota's signature, while the rest of the deck has a silver signature.
+
+==Description==
+
+===Packaging===
+Sakuya Ota earned the title of Junior World Champion with a deck few of his competitors were expecting—and the power of math! Nearly half the deck is made up of Ancient cards, which work together to discard the opponent's cards, recycle Energy, and grant extra HP—and when they hit the discard pile after their work is done, they help power up massive Vengeance Fletching attacks from Roaring Moon. In a world of Pokémon ex, this deck's focus on single-Prize Pokémon offers a major advantage—and presents the opponent with an uphill battle!
+
+===Booklet===
+It was an intense finals match that felt neck-and-neck the whole time, and after the opponent took a surprise win in Game 2, any other player might have struggled to recover. But not Sakuya. He was calm, cool, and collected to the very last turn, carefully assessing his discard pile and double-checking all the math before declaring the final attack that made him World Champion. "I knew how to win and how to get there," he said afterward. "I knew I could do it." And he's already strategizing about how to defend his title in 2025—he thinks Technical Machine: Devolution might be a worthwhile inclusion to counter the many Stage 2 Pokémon he expects to see!
+
+==Deck List==
+{{halfdecklist/header|title=Ancient Toolbox|type=Darkness|symbol=no}}
+{{halfdecklist/entry|109/162|H|{{TCG ID|Temporal Forces|Roaring Moon|109}}|Darkness||4}}
+{{halfdecklist/entry|078/162|H|{{TCG ID|Temporal Forces|Flutter Mane|78}}|Psychic||4}}
+{{halfdecklist/entry|097/162|H|{{TCG ID|Temporal Forces|Great Tusk|97}}|Fighting||2}}
+{{halfdecklist/entry|038/064|H|[[Fezandipiti ex (Shrouded Fable 38)|Fezandipiti]]{{ex}}|Darkness||1}}
+{{halfdecklist/entry|046/189|F|{{TCG ID|Astral Radiance|Radiant Greninja|46}}|Water||1}}
+{{halfdecklist/entry|147/162|H|{{TCG ID|Temporal Forces|Explorer's Guidance|147}}|Supporter||4}}
+{{halfdecklist/entry|170/182|G|{{TCG ID|Paradox Rift|Professor Sada's Vitality|170}}|Supporter||4}}
+{{halfdecklist/entry|172/193|G|{{TCG ID|Paldea Evolved|Boss's Orders|172}}|Supporter||1}}
+{{halfdecklist/entry|068/078|F|{{TCG ID|Pokémon GO|PokéStop|68}}|Stadium||3}}
+{{halfdecklist/entry|163/182|G|{{TCG ID|Paradox Rift|Earthen Vessel|163}}|Item||4}}
+{{halfdecklist/entry|181/198|G|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||4}}
+{{halfdecklist/entry|186/198|G|{{TCG ID|Scarlet & Violet|Pokégear 3.0|186}}|Item||4}}
+{{halfdecklist/entry|160/182|G|{{TCG ID|Paradox Rift|Counter Catcher|160}}|Item||2}}
+{{halfdecklist/entry|139/189|F|{{TCG ID|Astral Radiance|Dark Patch|139}}|Item||2}}
+{{halfdecklist/entry|061/064|H|{{TCG ID|Shrouded Fable|Night Stretcher|61}}|Item||2}}
+{{halfdecklist/entry|182/198|G|{{TCG ID|Scarlet & Violet|Pal Pad|182}}|Item||2}}
+{{halfdecklist/entry|146/189|F|{{TCG ID|Astral Radiance|Hisuian Heavy Ball|146}}|Item||1}}
+{{halfdecklist/entry|163/167|H|{{TCG ID|Twilight Masquerade|Secret Box|163}}|Item||1}}
+{{halfdecklist/entry|189/193|G|{{TCG ID|Paldea Evolved|Superior Energy Retrieval|189}}|Item||1}}
+{{halfdecklist/entry|188/193|G|{{TCG ID|Paldea Evolved|Super Rod|188}}|Item||1}}
+{{halfdecklist/entry|196/198|G|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||1}}
+{{halfdecklist/entry|159/182|G|{{TCG ID|Paradox Rift|Ancient Booster Energy Capsule|159}}|Pokémon Tool||4}}
+{{halfdecklist/entry|169/198|G|{{TCG ID|Scarlet & Violet|Defiance Band|169}}|Pokémon Tool||1}}
+{{halfdecklist/entry|SVE 015|—|{{TCG|Darkness Energy}}|Energy|Darkness|6}}
+{{halfdecklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+[[de: Ancient Toolbox (TCG)]]

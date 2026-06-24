@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=Ice Rider Palkia
+|image=WCS2022 Ice Rider Palkia Deck.jpg
+|caption=Box art
+|release=March 3, 2023
+|types={{e|Water}}
+}}
+
+'''Ice Rider Palkia''' is the name of the deck used by Rikuto Ohashi, the Juniors Division champion at the [[2022 World Championships]]. It is one of the 2022 World Championships Decks released March 3, 2023. Each deck comes with a playmat, poster, booklet about the event, TCGL code card, and a special Worlds 2022 deck box, pin, and coin. The cards included in the deck are not the exact prints used by Ohashi, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Ohashi's signature.
+
+==Description==
+<i>Rikuto Ohashi arrived in London as a League Cup Champion—and left as a World Champion thanks to masterful use of his Ice Rider Palkia deck and the ice that runs in his veins in the face of adversity. This deck’s power lies in its use of Origin Forme Palkia VSTAR’s devastating Subspace Swell attack, in conjunction with Choice Belt and a packed Bench to deliver up to 290 damage per attack and one-shot almost any Pokémon in battle. Backed by the Bench-filling Sobble and a powerful Inteleon engine for seeking the Trainer cards needed to keep attacks powered and put Pokémon in play, this deck dampens an opponent’s enthusiasm for battle. Ain’t that swell?</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Origin Forme Palkia VSTAR (Astral Radiance 40)|Origin Forme Palkia]]{{VSTAR}}|Water||Rare}}
+{{decklist/entry|3|[[Origin Forme Palkia V (Astral Radiance 39)|Origin Forme Palkia]]{{TCGV}}|Water||Rare}}
+{{decklist/entry|2|{{TCG ID|Sword & Shield|Inteleon|58}}|Water||Rare}}
+{{decklist/entry|3|{{TCG ID|Sword & Shield|Drizzile|56}}|Water||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Chilling Reign|Sobble|41}}|Water||Common}}
+{{decklist/entry|1|[[Ice Rider Calyrex VMAX (Chilling Reign 46)|Ice Rider Calyrex]]{{VMAX}}|Water||Rare}}
+{{decklist/entry|1|[[Ice Rider Calyrex V (Chilling Reign 45)|Ice Rider Calyrex]]{{TCGV}}|Water||Rare}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Radiant Greninja|46}}|Water||Rare}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Manaphy|41}}|Water||Rare}}
+{{decklist/entry|3|{{TCG ID|Astral Radiance|Irida|147}}|Supporter||Rare}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Boss's Orders|132}} <small>'''[Cyrus]'''</small>|Supporter||Rare}}
+{{decklist/entry|2|{{TCG ID|Chilling Reign|Melony|146}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Vivid Voltage|Leon|154}}|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Marnie|169}}|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Professor's Research|147}} <small>'''[Professor Rowan]'''</small>|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Roxanne|150}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Path to the Peak|148}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rebel Clash|Training Court|169}}|Stadium||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sword & Shield|Evolution Incense|163}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Battle Styles|Level Ball|129}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Fusion Strike|Quick Ball|237}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Rebel Clash|Capacious Bucket|156}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Rebel Clash|Scoop Up Net|165}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Fusion Strike|Battle VIP Pass|225}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Battle Styles|Escape Rope|125}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Pal Pad|172}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Rare Candy|180}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Ultra Ball|150}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Choice Belt|135}}|Item||Uncommon}}
+{{decklist/entry|8|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Ice Rider Palkia (TCG)]]

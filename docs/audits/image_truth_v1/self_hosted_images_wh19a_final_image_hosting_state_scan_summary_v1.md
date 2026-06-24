@@ -1,0 +1,165 @@
+# IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
+
+- Generated: 2026-06-24T17:34:19.647Z
+- Mode: read_only_final_state_scan_no_write
+- Fingerprint: `3675b1ba3cc4250639de1d14f90144004e47419e2b02b4d7e1249ca78b90b10b`
+- Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
+- DB writes performed: false
+- Storage writes performed: false
+- Migrations created: false
+- Exact image claim changes performed: false
+- Global apply performed: false
+
+## Core Coverage
+
+- Parent rows scanned: 27266
+- Parent rows with any image field: 27198
+- Parent rows with self-hosted image_path: 27174
+- Parent rows without any image field: 68
+- Parent weak-status rows: 513
+- Child rows scanned: 44137
+- Child rows with any image field: 1008
+- Child rows with self-hosted image_path: 340
+- Child rows without any image field: 43129
+- Child weak-status rows: 42782
+
+## Priority Lanes
+
+- Priority parent rows: 2933
+- Priority parent image gaps: 0
+- Priority child rows: 706
+- Priority child image gaps: 50
+- McDonald's parent rows: 191
+- McDonald's parent image gaps: 0
+- McDonald's parent rows without self-hosted image_path: 0
+- Trainer Kit parent rows: 450
+- Trainer Kit parent image gaps: 0
+- Trainer Kit parent rows without self-hosted image_path: 0
+- Base Set print-run lane parent rows: 314
+- Base Set print-run lane parent image gaps: 0
+
+## World Championship Decks
+
+- Parent rows: 1944
+- Exact parent images: 386
+- Representative parent images: 1558
+- Parent image gaps: 0
+- Parent rows with self-hosted image_path: 1944
+- WCD sets: 80
+- WCD sets with 60-card deck quantity totals: 80
+- WCD sets without 60-card deck quantity totals: 0
+- Deck quantity sum from card rows: 4800
+
+## Parent Status Counts
+
+| key | count |
+| --- | ---: |
+| exact | 23019 |
+| representative_shared | 2355 |
+| representative_shared_stamp | 1373 |
+| unknown | 349 |
+| missing | 164 |
+| representative_shared_collision | 6 |
+
+## Child Status Counts
+
+| key | count |
+| --- | ---: |
+| unknown | 42782 |
+| representative_shared | 956 |
+| representative_shared_stamp | 305 |
+| exact | 89 |
+| exact_parent_image | 5 |
+
+## Parent Gap Sets
+
+| key | count |
+| --- | ---: |
+| unknown | 27 |
+| mep | 23 |
+| svp | 7 |
+| xya | 6 |
+| col1 | 3 |
+| misc | 1 |
+| swshp | 1 |
+
+## Child Gap Sets
+
+| key | count |
+| --- | ---: |
+| B1 | 993 |
+| A1 | 858 |
+| A4 | 723 |
+| A3 | 717 |
+| A2 | 621 |
+| me02.5 | 620 |
+| unknown | 609 |
+| sm12 | 546 |
+| swsh8 | 529 |
+| sm11 | 526 |
+| sm8 | 480 |
+| sv02 | 480 |
+| sm10 | 479 |
+| sv8pt5 | 456 |
+| sv01 | 447 |
+| sv08.5 | 440 |
+| sv10 | 438 |
+| sv04 | 428 |
+| sv03 | 427 |
+| svp | 424 |
+| sv08 | 421 |
+| swsh1 | 419 |
+| swsh6 | 402 |
+| swsh7 | 399 |
+| sm9 | 395 |
+| swsh2 | 387 |
+| sv05 | 384 |
+| sv06 | 383 |
+| swsh11 | 382 |
+| swsh3 | 375 |
+| sm7 | 374 |
+| swsh10 | 374 |
+| sv03.5 | 371 |
+| swsh12 | 371 |
+| swsh4 | 367 |
+| sm1 | 363 |
+| ecard2 | 355 |
+| sm3 | 353 |
+| sm5 | 350 |
+| sm2 | 349 |
+| sv09 | 348 |
+| swsh9 | 345 |
+| swshp | 343 |
+| pl3 | 339 |
+| ecard3 | 336 |
+| A2b | 333 |
+| xy8 | 333 |
+| ecard1 | 332 |
+| me01 | 329 |
+| swsh5 | 329 |
+
+## Priority Parent Gap Sets
+
+_None._
+
+## Priority Child Gap Sets
+
+| key | count |
+| --- | ---: |
+| tk2a | 11 |
+| tk2b | 11 |
+| tk1a | 9 |
+| tk1b | 9 |
+| base1 | 5 |
+| basep | 5 |
+
+## World Championship Status Counts
+
+| key | count |
+| --- | ---: |
+| representative_shared | 1558 |
+| exact | 386 |
+
+## World Championship Gap Sets
+
+_None._

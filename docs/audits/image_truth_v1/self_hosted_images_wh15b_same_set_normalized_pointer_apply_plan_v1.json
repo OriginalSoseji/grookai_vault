@@ -1,0 +1,56 @@
+{
+  "package_id": "IMG-HOST-WH-15B-SAME-SET-NORMALIZED-POINTER-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T02:29:19.109Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-15A-SAME-SET-NORMALIZED-POINTER-DRY-RUN",
+  "source_dry_run_fingerprint": "93a4dfdfae590ae59abba7806f6ed9920e8f4e94574021e45ec2b0911c213283",
+  "source_sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "approved_sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh15a_same_set_normalized_pointer_plan_v1.jsonl",
+  "metadata_pointer_update_count": 13,
+  "total_update_count": 13,
+  "target_tables": {
+    "card_prints": 13
+  },
+  "by_set_code": {
+    "bwp": 2,
+    "ecard2": 8,
+    "g1": 1,
+    "sm4": 1,
+    "xy7": 1
+  },
+  "by_match_type": {
+    "base_suffix_number": 11,
+    "normalized_number": 2
+  },
+  "by_source_gv_id": {
+    "GV-PK-AOR-75": 1,
+    "GV-PK-AQ-103": 2,
+    "GV-PK-AQ-50": 2,
+    "GV-PK-AQ-74": 2,
+    "GV-PK-AQ-95": 2,
+    "GV-PK-CIN-63": 1,
+    "GV-PK-GEN-73": 1,
+    "GV-PK-PR-BLW-BW004": 1,
+    "GV-PK-PR-BLW-BW005": 1
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "93a4dfdfae590ae59abba7806f6ed9920e8f4e94574021e45ec2b0911c213283"
+}

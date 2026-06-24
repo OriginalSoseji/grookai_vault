@@ -1,0 +1,64 @@
+{{Upcoming notice}}
+{{search|[[2025 Pokémon World Championships]] deck product|a general explanation of the deck's archetype|Gholdengo Joltik Box (TCG)}}
+{{DeckInfobox
+|title=Joltdengo
+|image=WCS2025 Joltdengo Deck.png
+|caption=Box art
+|release=June 19, 2026
+|types={{e|Lightning}}{{e|Metal}}
+}}
+
+'''Joltdengo''' is the name of the deck used by Liao Fu Guan, the Senior Division champion at the [[2025 Pokémon World Championships]]. It is one of the 2025 World Championship Decks released on June 19, 2026.
+
+Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2025 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Liao, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and Liao's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments."
+
+==Description==
+
+===Packaging===
+<i>It wasn’t surprising to see a deck featuring Gholdengo ex at the top tables—but Liao Fu Guan’s version takes it in an unexpected direction, using tiny powerhouse Joltik to flood the board with Energy and launching early attacks with Iron Hands ex and Pikachu ex while Gholdengo ex spends most of its time surfing in and out of the Active Spot to draw extra cards. And after your opponent takes some Knock Outs and your Energy ends up in the discard pile... well, that’s the perfect time to bust out the Superior Energy Retrieval. Time to Make It Rain!</i>
+<!--
+===Booklet===
+TBA-->
+
+==Deck list==
+{{halfdecklist/header|title=Joltdengo|type=Lightning|type2=Metal|symbol=no}}
+{{halfdecklist/entry|139/182|G|{{TCG ID|Paradox Rift|Gholdengo ex|139|Gholdengo}}{{ex}}|Metal||3}}
+{{halfdecklist/entry|097/191|H|{{TCG ID|Surging Sparks|Gimmighoul|97}}|Psychic||4}}
+{{halfdecklist/entry|070/182|G|{{TCG ID|Paradox Rift|Iron Hands ex|70|Iron Hands}}{{ex}}|Lightning||2}}
+{{halfdecklist/entry|067/086|I|{{TCG ID|Black Bolt|Genesect ex|67|Genesect}}{{ex}}|Metal||2}}
+{{halfdecklist/entry|050/142|H|{{TCG ID|Stellar Crown|Joltik|50}}|Lightning||2}}
+{{halfdecklist/entry|081/198|G|{{TCG ID|Scarlet & Violet|Miraidon ex|81|Miraidon}}{{ex}}|Lightning||1}}
+{{halfdecklist/entry|057/191|H|{{TCG ID|Surging Sparks|Pikachu ex|57|Pikachu}}{{Tera ex}}|Lightning||1}}
+{{halfdecklist/entry|038/064|H|{{TCG ID|Shrouded Fable|Fezandipiti ex|38|Fezandipiti}}{{ex}}|Darkness||1}}
+{{halfdecklist/entry|076/191|H|{{TCG ID|Surging Sparks|Latias ex|76|Latias}}{{ex}}|Psychic||1}}
+{{halfdecklist/entry|166/198|G|{{TCG ID|Scarlet & Violet|Arven|166}}|Supporter||4}}
+{{halfdecklist/entry|172/193|G|{{TCG ID|Paldea Evolved|Boss's Orders|172}} <small>'''[Ghetsis]'''</small>|Supporter||3}}
+{{halfdecklist/entry|146/159|I|{{TCG ID|Journey Together|Brock's Scouting|146}}|Supporter||2}}
+{{halfdecklist/entry|171/182|G|{{TCG ID|Paradox Rift|Professor Turo's Scenario|171}}|Supporter||1}}
+{{halfdecklist/entry|176/182|I|{{TCG ID|Destined Rivals|Team Rocket's Petrel|176}}|Supporter||1}}
+{{halfdecklist/entry|150/159|I|{{TCG ID|Journey Together|Levincia|150}}|Stadium||2}}
+{{halfdecklist/entry|181/198|G|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||4}}
+{{halfdecklist/entry|189/193|G|{{TCG ID|Paldea Evolved|Superior Energy Retrieval|189}}|Item||4}}
+{{halfdecklist/entry|144/162|H|{{TCG ID|Temporal Forces|Buddy-Buddy Poffin|144}}|Item||3}}
+{{halfdecklist/entry|163/182|G|{{TCG ID|Paradox Rift|Earthen Vessel|163}}|Item||2}}
+{{halfdecklist/entry|084/086|I|{{TCG ID|Black Bolt|Pokégear 3.0|84}}|Item||2}}
+{{halfdecklist/entry|157/162|H|{{TCG ID|Temporal Forces|Prime Catcher|157}}|Item||1}}
+{{halfdecklist/entry|079/086|I|{{TCG ID|Black Bolt|Air Balloon|79}}|Pokémon Tool||2}}
+{{halfdecklist/entry|173/193|G|{{TCG ID|Paldea Evolved|Bravery Charm|173}}|Pokémon Tool||1}}
+{{halfdecklist/entry|GRA|—|{{TCG|Basic Grass Energy}}|Energy|Grass|4}}
+{{halfdecklist/entry|LIG|—|{{TCG|Basic Lightning Energy}}|Energy|Lightning|4}}
+{{halfdecklist/entry|MET|—|{{TCG|Basic Metal Energy}}|Energy|Metal|3}}
+{{halfdecklist/footer}}
+
+==Trivia==
+The [[2025 Pokémon World Championships]] deck products were originally scheduled for release on April 3, 2026, before it was delayed to June 19, 2026.
+
+==Related articles==
+*[[Gholdengo Joltik Box (TCG)]]
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category: World Championship Decks]]
+
+[[de: Joltdengo (TCG)]]

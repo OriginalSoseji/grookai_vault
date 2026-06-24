@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=American Gothic
+|image=WCS2013 American Gothic Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}{{e|Grass}}
+|cards=
+}}
+
+'''American Gothic''' is the name of the deck used by Ian Whiton, who made it to the Semifinals in the Senior Division in the [[2013 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2013 World Championships Decks}}, released on November 4, 2013. Each Deck comes with a Worlds 2013 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2013 World Championships Pin.
+
+==Description==
+<i>Ian Whiton's devastating American Gothic deck was a masterpiece of control for him and a masterpiece of frustration for everyone else!  Unlucky opponents found their Active Pokémon rapidly locked in place and unable to benefit from Item cards as focus-shifting attacks were used to rain damage onto the Bench through a mighty combination of Accelgor, Gothitelle, Dusknoir, and Mew-EX.  With nowhere to run and a severely compromised arsenal, foes fell by the wayside at impressive speed.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Mew-EX (Dragons Exalted 46)|Mew]]{{EX}}|Psychic||SuperRare}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Accelgor|11}}|Grass||Rare}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Shelmet|10}}|Grass||Common}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Gothitelle|47}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Emerging Powers|Gothorita|46}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Emerging Powers|Gothita|43}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Next Destinies|Musharna|59}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Black & White|Munna|48}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Dusknoir|63}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Duskull|61}}|Psychic||Common}}
+{{decklist/entry|1|[[Keldeo-EX (Boundaries Crossed 49)|Keldeo]]{{EX}}|Water||SuperRare}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Boundaries Crossed|Skyla|134}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Rare Candy|100}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Level Ball|89}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Pokémon Communication|99}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Plasma Freeze|Float Stone|99}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BW Promo|Tropical Beach|50}}|Stadium||None}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragon Vault|Super Rod|20}}|Item||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Town Map|136}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragons Exalted|Tool Scrapper|116}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Computer Search|137}}|Item||SuperRare}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Double Colorless Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:American Gothic (TCG)]]

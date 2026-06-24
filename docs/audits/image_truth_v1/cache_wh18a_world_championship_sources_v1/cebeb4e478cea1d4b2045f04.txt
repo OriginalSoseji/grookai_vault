@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=Buzzroc
+|image=WCS2018 Buzzroc Deck.jpg
+|caption=Box art
+|types={{e|Fighting}}
+|release=November 14, 2018
+}}
+
+'''Buzzroc''' is the name of the deck of Naohito Inoue who was the Junior Division champion at the [[2018 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2018 World Championships Decks}} released November 14, 2018. Each deck comes with a Worlds 2018-deckbox, a Worlds 2018 pin, a booklet about the championships, and a {{TCGO}} code card. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''Naohito Inoue of Japan faced a mirror match in the Junior Division finals, but his Buzzwole/Lycanroc deck came out on top and made him the World Champion! This deck features lots of battle-focused Fighting-type Pokémon and plenty of ways to power them up, with Diancie Prism Star and Strong Energy offering a nice damage boost, and Brooklet Hill searching out any Basic Pokémon in the deck. And if the opponent happens to have exactly 4 Prize cards left, Buzzwole can hit really hard for a single Energy!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Buzzwole-GX (Crimson Invasion 57)|Buzzwole]]{{Red GX}}|Fighting||Ultra-Rare Rare}}
+{{decklist/entry|3|{{TCG ID|Forbidden Light|Buzzwole|77}}|Fighting||Rare}}
+{{decklist/entry|2|[[Lycanroc-GX (Guardians Rising 74)|Lycanroc]]{{GX}}|Fighting||Ultra-Rare Rare}}
+{{decklist/entry|2|{{TCG ID|Forbidden Light|Rockruff|75}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Octillery|33}}|Water||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Remoraid|32}}|Water||Common}}
+{{decklist/entry|1|[[Diancie ♢ (Forbidden Light 74)|Diancie]]{{Prism Star}}|Fighting||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Celestial Storm|Regirock|80}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Forbidden Light|Beast Ring|102}}|Item||Rare}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Fighting Fury Belt|99}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Max Elixir|102}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Shining Legends|Ultra Ball|68}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Brooklet Hill|120}}|Stadium||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Ultra Prism|Cynthia|119}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|1|[[Beast Energy ♢ (Forbidden Light 117)|Beast Energy]]{{Prism Star}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Strong Energy|115}}|Energy|Fighting|Uncommon}}
+{{decklist/entry|9|{{TCG|Fighting Energy}}|Energy|Fighting|Common}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+[[Category:World Championship Decks]]
+
+[[de:Buzzroc (TCG)]]
+[[ja:Buzzroc]]

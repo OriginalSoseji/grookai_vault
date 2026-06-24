@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=Mind Blown
+|image=WCS2019 Mind Blown Deck.jpg
+|caption=Box art
+|release=November 22, 2019
+|types={{e|Fire}}{{e|Psychic}}
+}}
+
+'''Mind Blown''' is the name of the deck used by Shintaro Ito, the runner-up in the Masters Division at the [[2019 World Championships]]. It is one of the 2019 World Championships Decks released November 22, 2019, and is based on the {{TCG|Blacephalon/Naganadel}} {{TCG|archetype}}. Each deck comes with a Worlds 2019 deckbox, a Worlds 2019 pin, a booklet about the championships, and a TCGO code card. The cards included in the deck aren't the prints actually used in the deck, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''An attack that can do enough damage to take down just about any Pokémon-GX in the format? Mind. Blown. Former World Champion Shintaro Ito of Japan piloted this deck, starring the Ultra Beasts Blacephalon and Naganadel, to the final round of the Masters Division! With Beast Ring, Welder, and Naganadel's Charging Up Ability getting tons of Energy into play, Blacephalon-GX's Mind Blown attack can do enormous damage—and in a pinch, newcomer Heatran-GX is happy to soak up all that Fire Energy and unleash a blazing-hot GX attack.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Blacephalon-GX (Lost Thunder 52)|Blacephalon]]{{Red GX}}|Fire||Rare}}
+{{decklist/entry|2|[[Naganadel-GX (Unified Minds 160)|Naganadel]]{{Red GX}}|Dragon||Rare}}
+{{decklist/entry|3|{{TCG ID|Lost Thunder|Naganadel|108}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|Forbidden Light|Poipole|55}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Lost Thunder|Poipole|107}}|Psychic||Common}}
+{{decklist/entry|2|[[Heatran-GX (Unified Minds 25)|Heatran]]{{GX}}|Fire||Rare}}
+{{decklist/entry|1|[[Dedenne-GX (Unbroken Bonds 57)|Dedenne]]{{GX}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Mew|76}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|Forbidden Light|Beast Ring|102}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unified Minds|Cherish Ball|191}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Lost Thunder|Custom Catcher|171}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Ultra Prism|Cynthia|119}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Hapu|200}}|Supporter||Uncommon}}
+{{decklist/entry|1|[[Heat Factory ♢ (Lost Thunder 178)|Heat Factory]] {{Prism Star}}|Stadium||Rare}}
+{{decklist/entry|1|{{TCG ID|Ultra Prism|Lillie|125}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Forbidden Light|Mysterious Treasure|113}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Reset Stamp|206}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Forbidden Light|Ultra Space|115}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unbroken Bonds|Welder|189}}|Supporter||Uncommon}}
+{{decklist/entry|1|[[Beast Energy ♢ (Forbidden Light 117)|Beast Energy]] {{Prism Star}}|Energy|Colorless|Rare}}
+{{decklist/entry|14|{{TCG|Fire Energy}}|Energy|Fire|None}}
+{{decklist/entry|1|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Mind Blown (TCG)]]
+[[ja:Mind Blown]]
+[[zh:惊爆大头（TCG）]]

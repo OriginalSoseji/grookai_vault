@@ -1,0 +1,85 @@
+:''This article is about the [[Deck archetype (TCG)|deck archetype]]. For the [[Evolution]] family based on {{p|Eevee}}, see [[Eeveelution]]. For the Preconstructed {{TCG|Theme Deck}} released with {{TCG|Skyridge}}, see {{TCG|Eeveelution}}.''
+----
+{{ArchetypeInfobox
+|title=Eeveelutions
+|image=EeveeEXDeltaSpecies69.jpg
+|image2={{#switch: {{#expr: {{#time: U}} mod 5}}|0=VaporeonexEXDeltaSpecies110.jpg|1=JolteonexEXDeltaSpecies109.jpg|2=FlareonexEXDeltaSpecies108.jpg|3=EspeonexEXUnseenForces102.jpg|4=UmbreonexEXUnseenForces112.jpg}}
+|caption={{TCG ID|EX Delta Species|Eevee|69}} and {{#switch: {{#expr: {{#time: U}} mod 5}}|0={{TCG ID|EX Delta Species|Vaporeon ex|110}}|1={{TCG ID|EX Delta Species|Jolteon ex|109}}|2={{TCG ID|EX Delta Species|Flareon ex|108}}|3={{TCG ID|EX Unseen Forces|Espeon ex|102}}|4={{TCG ID|EX Unseen Forces|Umbreon ex|112}}}}
+|types={{e|Colorless}}{{e|Water}}{{e|Lightning}}{{e|Fire}}{{e|Psychic}}{{e|Darkness}}
+|cards={{TCG ID|EX Delta Species|Eevee|69}}, {{TCG ID|EX Delta Species|Vaporeon ex|110}}, {{TCG ID|EX Delta Species|Jolteon ex|109}}, {{TCG ID|EX Delta Species|Flareon ex|108}}, {{TCG ID|EX Unseen Forces|Espeon ex|102}}, {{TCG ID|EX Unseen Forces|Umbreon ex|112}}
+|era=2005-2006
+}}
+
+The '''Eeveelutions''' deck archetype is a competitive [[Pokémon Trading Card Game]] deck, and was formerly popular for its diversity and strength against most other types of decks. It was also printed as a World Championships Deck.
+
+==Strategy==
+The Eeveelutions deck holds its strength in the fact that it combines five different types into one deck. This allows for exploitation of almost any other deck's weakness. For instance, if Eeveelutions is facing a deck that mostly utilizes {{ct|Fighting}} Pokémon, which are typically weak against {{ct|Psychic}}, the player would take advantage of that weakness by evolving {{TCG ID|EX Delta Species|Eevee|69}} into {{TCG ID|EX Unseen Forces|Espeon ex|102}} as soon as possible. It is through this strategy that the deck is able to defeat many of the popular decks of that format.
+
+==Cards==
+The following {{p|Eevee}} Evolutions are used in the deck:
+*{{TCG ID|EX Delta Species|Flareon ex|108}}
+*{{TCG ID|EX Unseen Forces|Umbreon ex|112}}
+*{{TCG ID|EX Unseen Forces|Espeon ex|102}}
+*{{TCG ID|EX Delta Species|Vaporeon ex|110}}
+*{{TCG ID|EX Delta Species|Jolteon ex|109}}
+
+Of course, {{TCG ID|EX Delta Species|Eevee|69}} is used in the deck because without it, the player would have a hard time getting their Evolutions into play. The {{TCG|Trainer}}s in the deck are virtually all geared toward rooting all the Eeveelutions out of the deck, such as {{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}. As for {{TCG|Energy}}, a typical Eeveelutions deck would use several copies of {{TCG|Multi Energy}}, {{TCG|Holon Energy}}, and {{TCG|Double Rainbow Energy}}.
+
+==2006 World Championships Eeveelutions Deck==
+{{DeckInfobox
+|title=Eeveelutions
+|image=WCS2006 Eeveelutions Deck.jpg
+|caption=Box art
+|types={{e|Fire}}
+|cards={{TCG ID|EX Delta Species|Eevee|69}}, {{TCG ID|EX Delta Species|Vaporeon ex|110}}, {{TCG ID|EX Delta Species|Jolteon ex|109}}, {{TCG ID|EX Delta Species|Flareon ex|108}}, {{TCG ID|EX Unseen Forces|Espeon ex|102}}, {{TCG ID|EX Unseen Forces|Umbreon ex|112}}
+}}
+
+'''Eeveelutions''' is also the name of the deck used by Jimmy Ballard, Fifteen and Over Division Finalist in the {{TCG|2006 World Championships}}. It is one of the four {{TCGMerch|EX|Series|2006 World Championships Decks}}, released on October 31st, 2006. Each deck comes packaged with a 2006 World Championships Booklet. Each card features a silver border, Ballard's signature, and limited edition 2006 World Championships back. None of the cards are tournament legal.
+
+===Description===
+''Jimmy Ballard took his own brand of Eevee to the finals, using its versatile evolutions to beat his opponents. He included each of Eevee's Pokémon-ex evolutions, combining powerful Pokémon, tricky tactics, and the opposing Pokémon's Weaknesses to win match after match!''
+
+===Deck list===
+The deck list below is based on Ballard's deck from the World Championships. A player may wish to change any part of this deck when building his or her own version.
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Eevee|69}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Flareon ex|108}}|Fire||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Umbreon ex|112}}|Darkness||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Espeon ex|102}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Jolteon ex|109}}|Lightning||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Vaporeon ex|110}}|Water||Rare Holo ex}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Pidgey|73}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgeotto|45}}|Colorless||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}|Colorless||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Holon's Electrode|21}}|Lightning||Rare}}
+{{decklist/entry|3|{{TCG ID|EX Holon Phantoms|Rare Candy|90}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Surprise! Time Machine|91}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Professor Elm's Training Method|89}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Bill's Maintenance|87}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Pokémon Retriever|84}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Deoxys|Strength Charm|92}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Copycat|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|[[Ancient Technical Machine Rock (EX Hidden Legends 85)|Ancient Technical Machine [Rock]]]|Trainer|Technical Machine|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Legend Maker|Giant Stump|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Legend Maker|Full Flame|74}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Holon Energy FF|104}}|Energy|Colorless|Rare}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Holon Energy WP|106}}|Energy|Colorless|Rare}}
+{{decklist/entry|3|{{TCG ID|EX Holon Phantoms|Fire Energy|106}}|Energy|Fire|None}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Water Energy|107}}|Energy|Water|None}}
+{{decklist/footer}}
+
+==Restriction==
+The Eeveelutions deck has been removed from [[Play! Pokémon]], due to the fact that most of its cards, including {{TCG ID|EX Delta Species|Eevee|69}}, have been [[Rotation (TCG)|rotated]] out of play.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:Deck archetypes]]
+[[Category:World Championship Decks]]
+
+[[de:Eeveelutions (TCG)]]
+[[zh:伊布全家族（TCG）]]

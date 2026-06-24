@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=The Flying Hammer
+|image=WCS2015 The Flying Hammer.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}{{e|Psychic}}
+|cards=
+}}
+
+'''The Flying Hammer''' is the name of the deck used by Rowan Stavenow, who was the champion of the Junior Division in the [[2015 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2015 World Championships Decks}}, released in November 2015, and is based around [[Super Scoop Up (Neo Genesis 98)|"scoop up"]] effects. Each Deck comes with a Worlds 2015 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2015 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Rowan Stavenow took top honors in the Pokémon TCG Junior Division with a deck he calls The Flying Hammer, in which Landorus-EX, Hawlucha, and the ever-popular Golbat and Crobat team up to unleash serious damage. This deck runs lots of "scoop up" effects so you can keep reusing the great Abilities from Shaymin-EX and the two Bat Pokémon—and it also includes plenty of ways to boost the power of the star Fighting-type Pokémon. Bring the hammer down on your opponents!</i>
+
+===Booklet===
+<i>Rowan cruised through most of the event "pumped and excited to win" after taking down his first opponents and didn't get really nervous until he was in the Top 4 on Sunday. After he "found the idea online" for a deck that combined Landorus-EX with Golbat and Crobat, he began tweaking it specifically to take down the popular Seismitoad-EX deck. "I was furiously testing with Toad Bats," he says. "My most exciting moment was in Top 4 because I was really excited to play against Jackson Davies because he is a great player and used Toad Bats." All that furious testing certainly paid off!</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|2|[[Landorus-EX (Boundaries Crossed 89)|Landorus]]{{EX}}|Fighting||Rare}}
+{{decklist/entry|3|{{TCG ID|Phantom Forces|Crobat|33}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|Phantom Forces|Golbat|32}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Storm|Zubat|53}}|Psychic||Common}}
+{{decklist/entry|4|{{TCG ID|Furious Fists|Hawlucha|63}}|Fighting||Rare}}
+{{decklist/entry|1|[[Shaymin-EX (Roaring Skies 77)|Shaymin]]{{EX}}|Colorless||Rare}}
+{{decklist/entry|1|[[Lucario-EX (Furious Fists 54)|Lucario]]{{EX}}|Fighting||Rare}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|Professor Sycamore|101}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Furious Fists|Korrina|95}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Lysandre|90}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|AZ|91}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|XY|Muscle Band|121}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Furious Fists|Super Scoop Up|100}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Roaring Skies|Ultra Ball|93}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Plasma Blast|Scoop Up Cyclone|95}}|Item||Rare Ace}}
+{{decklist/entry|3|{{TCG ID|Furious Fists|Fighting Stadium|90}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Primal Clash|Silent Lab|140}}|Stadium||Uncommon}}
+{{decklist/entry|5|{{TCG ID|XY|Fighting Energy|137}}|Energy|Fighting|Common}}
+{{decklist/entry|4|{{TCG ID|Furious Fists|Strong Energy|104}}|Energy|Fighting|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:The Flying Hammer (TCG)]]
+[[ja:The Flying Hammer]]

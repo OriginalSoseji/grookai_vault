@@ -1,0 +1,65 @@
+{{Upcoming notice}}
+{{DeckInfobox
+|title=Pult Bomb
+|image=WCS2025 Pult Bomb Deck.png
+|caption=Box art
+|release=June 19, 2026
+|types={{e|Dragon}}
+}}
+
+'''Pult Bomb''' is the name of the deck used by Jose Cruz Galindo-Resendiz, the Junior Division finalist at the [[2025 Pokémon World Championships]]. It is one of the 2025 World Championship Decks released on June 19, 2026.
+
+Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2025 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Galindo-Resendiz, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and Galindo-Resendiz's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments."
+
+==Description==
+
+===Packaging===
+<i>Dragapult ex and Dusknoir have been teaming up to take down opponents all season long, and Jose Cruz Galindo-Resendiz piloted this power duo to a finalist title in the Junior Division. This deck excels at scattering damage counters all over your opponent’s team with Phantom Dive, piling them on with Dusknoir and Dusclops, flinging them across the table with Munkidori—and, thanks to Budew, locking your opponent out of the Item cards that might dig them out of that situation. Relying on multiple Stage 2 Pokémon can be a challenge, but newcomer Hilda is here to help!</i>
+<!--
+===Booklet===
+TBA-->
+
+==Deck list==
+{{halfdecklist/header|title=Pult Bomb|type=Dragon|symbol=no}}
+{{halfdecklist/entry|130/167|H|{{TCG ID|Twilight Masquerade|Dragapult ex|130|Dragapult}}{{Tera ex}}|Dragon||3}}
+{{halfdecklist/entry|129/167|H|{{TCG ID|Twilight Masquerade|Drakloak|129}}|Dragon||4}}
+{{halfdecklist/entry|128/167|H|{{TCG ID|Twilight Masquerade|Dreepy|128}}|Dragon||4}}
+{{halfdecklist/entry|020/064|H|{{TCG ID|Shrouded Fable|Dusknoir|20}}|Psychic||1}}
+{{halfdecklist/entry|019/064|H|{{TCG ID|Shrouded Fable|Dusclops|19}}|Psychic||2}}
+{{halfdecklist/entry|018/064|H|{{TCG ID|Shrouded Fable|Duskull|18}}|Psychic||2}}
+{{halfdecklist/entry|004/131|H|{{TCG ID|Prismatic Evolutions|Budew|4}}|Grass||2}}
+{{halfdecklist/entry|038/064|H|{{TCG ID|Shrouded Fable|Fezandipiti ex|38|Fezandipiti}}{{ex}}|Darkness||1}}
+{{halfdecklist/entry|040/064|H|{{TCG ID|Shrouded Fable|Genesect|40}}|Metal||1}}
+{{halfdecklist/entry|118/198|G|{{TCG ID|Scarlet & Violet|Hawlucha|118}}|Fighting||1}}
+{{halfdecklist/entry|095/167|H|{{TCG ID|Twilight Masquerade|Munkidori|95}}|Psychic||1}}
+{{halfdecklist/entry|185/193|G|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||4}}
+{{halfdecklist/entry|189/198|G|{{TCG ID|Black Bolt|Professor's Research|85}} <small>'''[Professor Juniper]'''</small>|Supporter||3}}
+{{halfdecklist/entry|166/198|G|{{TCG ID|Scarlet & Violet|Arven|166}}|Supporter||2}}
+{{halfdecklist/entry|172/193|G|{{TCG ID|Paldea Evolved|Boss's Orders|172}} <small>'''[Ghetsis]'''</small>|Supporter||2}}
+{{halfdecklist/entry|146/159|I|{{TCG ID|Journey Together|Brock's Scouting|146}}|Supporter||1}}
+{{halfdecklist/entry|084/086|I|{{TCG ID|White Flare|Hilda|84}}|Supporter||1}}
+{{halfdecklist/entry|153/167|H|{{TCG ID|Twilight Masquerade|Jamming Tower|153}}|Stadium||1}}
+{{halfdecklist/entry|144/162|H|{{TCG ID|Temporal Forces|Buddy-Buddy Poffin|144}}|Item||4}}
+{{halfdecklist/entry|196/198|G|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||4}}
+{{halfdecklist/entry|160/182|G|{{TCG ID|Paradox Rift|Counter Catcher|160}}|Item||3}}
+{{halfdecklist/entry|061/064|H|{{TCG ID|Shrouded Fable|Night Stretcher|61}}|Item||3}}
+{{halfdecklist/entry|191/198|G|{{TCG ID|Scarlet & Violet|Rare Candy|191}}|Item||1}}
+{{halfdecklist/entry|079/086|I|{{TCG ID|Black Bolt|Air Balloon|79}}|Pokémon Tool||2}}
+{{halfdecklist/entry|PSY|—|{{TCG|Basic Psychic Energy}}|Energy|Psychic|2}}
+{{halfdecklist/entry|FIR|—|{{TCG|Basic Fire Energy}}|Energy|Fire|1}}
+{{halfdecklist/entry|191/193|G|{{TCG ID|Paldea Evolved|Luminous Energy|191}}|Energy|Rainbow|3}}
+{{halfdecklist/entry|162/162|H|{{TCG ID|Temporal Forces|Neo Upper Energy|162}}|Energy|Rainbow|1}}
+{{halfdecklist/footer}}
+
+==Trivia==
+The [[2025 Pokémon World Championships]] deck products were originally scheduled for release on April 3, 2026, before it was delayed to June 19, 2026.
+
+==Related articles==
+*[[Dragapult Dusknoir (TCG)]]
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category: World Championship Decks]]
+
+[[de: Pult Bomb (TCG)]]

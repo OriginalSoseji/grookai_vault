@@ -1,0 +1,56 @@
+{{incomplete|2=Needs more info on the strategy}}
+{{DeckInfobox
+|title=Team Rushdown
+|image=WCS2004 Team Rushdown Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}{{e|Lightning}}
+|cards={{TCG ID|EX Ruby & Sapphire|Gardevoir|7}}, {{TCG ID|EX Sandstorm|Gardevoir ex|96}}
+}}
+
+'''Team Rushdown''' is the name of the deck used by Kevin Nguyen in the 2004 World Championships. It focuses on {{e|Psychic}} and {{e|Lightning}} Pokémon. The main attackers of the deck are {{TCG ID|EX Ruby & Sapphire|Gardevoir|7}} and {{TCG ID|EX Sandstorm|Gardevoir ex|96}}.
+
+Team Rushdown is one of the four {{TCGMerch|EX|Series|2004 World Championships Decks}}, released in November 2004. Each deck comes packaged with a 2004 World Championships Booklet. Each card features a silver border, Nguyen's signature, and limited edition 2004 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Kevin Nguyen's Team Rushdown deck is full of dangerous surprises. First, Magneton and Delcatty keep your opponent off-balance. Then all it takes is a dose of Boost Energy to make Gardevoir and Gardevoir EX an unstoppable force.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Gardevoir|7}}|Psychic||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Gardevoir ex|96}}|Psychic||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Skitty|79}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Ralts|74}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|EX Dragon|Magnemite|62}}|Lightning||Common}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Dunsparce|60}}|Colorless||Common}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Kirlia|34}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon|Magneton|17}}|Lightning||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Delcatty|5}}|Colorless||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Rare Candy|88}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Ancient Tomb|87}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Pokémon Reversal|87}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Magma vs Team Aqua|Warp Point|85}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Magnetic Storm|91}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Switch|92}}|Trainer||Common}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Skyridge|Desert Shaman|123}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Aquapolis|Town Volunteers|136}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Skyridge|Oracle|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Aquapolis|Weakness Guard|141}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Expedition|Professor Elm's Training Method|148}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Aquapolis|Boost Energy|145}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|10|{{TCG ID|EX Ruby & Sapphire|Psychic Energy|107}}|Energy|Psychic|Common}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Lightning Energy|109}}|Energy|Lightning|Common}}
+{{decklist/footer}}
+
+==Trivia==
+All cards originating from expansions before {{TCG|EX Team Magma vs Team Aqua}} use the updated layout introduced in the expansion.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Team Rushdown (TCG)]]
+[[zh:猛攻队（TCG）]]

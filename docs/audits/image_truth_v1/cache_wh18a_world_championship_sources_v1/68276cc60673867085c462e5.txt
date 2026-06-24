@@ -1,0 +1,57 @@
+{{DeckInfobox
+|title=Blaziken Tech
+|image=WCS2004 Blaziken Tech Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fire}}{{e|Lightning}}
+|cards={{TCG ID|EX Ruby & Sapphire|Blaziken|3}}, {{TCG ID|EX Team Magma vs Team Aqua|Blaziken ex|89}}, {{TCG ID|EX Ruby & Sapphire|Delcatty|5}}
+}}
+
+'''Blaziken Tech''' is the name of the deck used by Chris Fulop in the 2004 World Championships; the deck is a variant of the {{TCG|RAMBO}} {{TCG|deck archetype}}. It focuses on {{e|Fire}} and {{e|Lightning}} Pokémon. The deck's main attacker is {{TCG ID|EX Team Magma vs Team Aqua|Blaziken ex|89}}.
+
+Blaziken Tech is one of the four {{TCGMerch|EX|Series|2004 World Championships Decks}}, released in November 2004. Each deck comes packaged with a 2004 World Championships Booklet. Each card features a silver border, Fulop's signature, and limited edition 2004 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Chris Fulop took a great Blaziken deck and made it better by adding Bellossom. Extra healing support keeps Delcatty, Team Aqua's Manectric, and Blaziken in the game long enough for Blaziken ex to finally do some serious damage!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Blaziken|3}}|Fire||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Blaziken ex|89}}|Fire||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Combusken|28}}|Fire||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Ruby & Sapphire|Torchic|74}}|Fire||Common}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Delcatty|5}}|Colorless||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Skitty|44}}|Colorless||Common}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Bellossom|16}}|Grass||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Oddish|68}}|Grass||Common}}
+{{decklist/entry|1|{{TCG ID|EX Team Magma vs Team Aqua|Team Aqua's Manectric|4}}|Lightning|Darkness|Rare Holo}}
+{{decklist/entry|1|{{TCG ID|EX Team Magma vs Team Aqua|Team Aqua's Electrike|53}}|Lightning||Common}}
+{{decklist/entry|1|{{TCG ID|EX Dragon|Rayquaza ex|97}}|Colorless||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Dunsparce|60}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Expedition|Copycat|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Skyridge|Oracle|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Expedition|Professor Elm's Training Method|148}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Aquapolis|Town Volunteers|136}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Expedition|Pokémon Nurse|145}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Rare Candy|88}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Skyridge|Friend Ball|126}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Switch|92}}|Trainer||Common}}
+{{decklist/entry|3|{{TCG ID|EX Sandstorm|Multi Energy|93}}|Energy|Colorless|Rare}}
+{{decklist/entry|1|{{TCG ID|Aquapolis|Warp Energy|147}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|10|{{TCG ID|EX Ruby & Sapphire|Fire Energy|108}}|Energy|Fire|Common}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Lightning Energy|109}}|Energy|Lightning|Common}}
+{{decklist/footer}}
+
+==Trivia==
+All cards originating from expansions before {{TCG|EX Team Magma vs Team Aqua}} use the updated layout introduced in the expansion.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Blaziken Tech (TCG)]]
+[[ja:Blaziken Tech]]
+[[zh:火焰鸡科技（TCG）]]

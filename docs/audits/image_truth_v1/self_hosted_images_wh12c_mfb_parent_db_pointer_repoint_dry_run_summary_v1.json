@@ -1,0 +1,449 @@
+{
+  "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-24T02:07:05.035Z",
+  "mode": "dry_run_no_write",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh12a_mfb_parent_source_upload_manifest_v1.jsonl",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh12b_mfb_parent_source_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh12c_mfb_parent_db_pointer_repoint_plan_v1.jsonl",
+  "manifest_rows": 34,
+  "completed_manifest_rows": 34,
+  "incomplete_manifest_rows": 0,
+  "metadata_pointer_plan_rows": 34,
+  "effective_metadata_pointer_updates": 34,
+  "no_op_plan_rows": 0,
+  "missing_current_db_rows": 0,
+  "missing_proposed_storage_paths": 0,
+  "image_status_changes_planned": 0,
+  "image_note_changes_planned": 0,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path"
+  ],
+  "preserved_columns": [
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "target_tables": {
+    "card_prints": 34
+  },
+  "changed_columns": {
+    "image_path": 34,
+    "image_source": 34
+  },
+  "by_set_code": {
+    "mfb": 34
+  },
+  "by_source_route": {
+    "pricecharting_mfb_representative": 32,
+    "tcgcollector_mfb_representative_trainer": 2
+  },
+  "by_current_image_status": {
+    "null": 34
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:49d6a794-5703-4de0-aa70-c6b2438ed1c5:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+        "gv_id": "GV-PK-MFB-1",
+        "name": "Bulbasaur",
+        "set_code": "mfb",
+        "number": "1",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:1:bulbasaur",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-1/10bfcaa374e18e49e366650f.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-1/10bfcaa374e18e49e366650f.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:31c39836-62b4-4d44-a898-6ba37a148004:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+        "gv_id": "GV-PK-MFB-10",
+        "name": "Charmeleon",
+        "set_code": "mfb",
+        "number": "10",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:10:charmeleon",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-10/f30ab5a036cbf12b7e963219.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-10/f30ab5a036cbf12b7e963219.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:f62c0bf4-ab0e-451d-a149-c312dd95c51e:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+        "gv_id": "GV-PK-MFB-11",
+        "name": "Vulpix",
+        "set_code": "mfb",
+        "number": "11",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:11:vulpix",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-11/6d923c734cd84e63d65ad4f3.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-11/6d923c734cd84e63d65ad4f3.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:db309a53-3ed8-4be0-b3f2-b096a64c2f3f:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+        "gv_id": "GV-PK-MFB-12",
+        "name": "Ninetales",
+        "set_code": "mfb",
+        "number": "12",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:12:ninetales",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-12/cb13a14fe4878cd781f5f7d6.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-12/cb13a14fe4878cd781f5f7d6.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:eb4d8953-9d05-43b4-be64-b529162ce221:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+        "gv_id": "GV-PK-MFB-13",
+        "name": "Growlithe",
+        "set_code": "mfb",
+        "number": "13",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:13:growlithe",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-13/19d376cfadcafbd5e3fb56a9.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-13/19d376cfadcafbd5e3fb56a9.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:f7865250-5030-4f54-be6b-aed423100717:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "f7865250-5030-4f54-be6b-aed423100717",
+        "gv_id": "GV-PK-MFB-14",
+        "name": "Arcanine",
+        "set_code": "mfb",
+        "number": "14",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:14:arcanine",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-14/0f268c3c2b40e7628930d2de.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-14/0f268c3c2b40e7628930d2de.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:37047df4-d52c-4a32-8cb3-c77f565128bc:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+        "gv_id": "GV-PK-MFB-15",
+        "name": "Magmar",
+        "set_code": "mfb",
+        "number": "15",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:15:magmar",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-15/88c6a49c454084a8ec5b69a8.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-15/88c6a49c454084a8ec5b69a8.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+        "gv_id": "GV-PK-MFB-16",
+        "name": "Fire Energy",
+        "set_code": "mfb",
+        "number": "16",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:16:fire energy",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-16/29bd6e7a11d4f2c6f9386354.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-16/29bd6e7a11d4f2c6f9386354.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:f57348f5-9b22-4d47-adbd-1dfc08f8ef95:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+        "gv_id": "GV-PK-MFB-17",
+        "name": "Pikachu",
+        "set_code": "mfb",
+        "number": "17",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:17:pikachu",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-17/f7dc8214681d503c94018f4a.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-17/f7dc8214681d503c94018f4a.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-12C-MFB-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:e9a443af-8d01-4369-8395-b25d6de7ea75:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+        "gv_id": "GV-PK-MFB-18",
+        "name": "Raichu",
+        "set_code": "mfb",
+        "number": "18",
+        "source_route": "pricecharting_mfb_representative",
+        "upstream_source": "pricecharting",
+        "upstream_card_id": "pricecharting:mfb:18:raichu",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-18/9676569564e4bfea96253019.jpg",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/mfb/gv-pk-mfb-18/9676569564e4bfea96253019.jpg",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      }
+    ]
+  },
+  "fingerprint": "549843d7cc0b4ac7eecdcc6bdb8c152eb807e71d3d7858ca2e8db5f08151cc50"
+}

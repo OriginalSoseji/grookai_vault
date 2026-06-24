@@ -1,0 +1,58 @@
+{{DeckInfobox
+|title=Dark Tyranitar
+|image=WCS2005 Dark Tyranitar Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Darkness}}{{e|Fighting}}{{e|Metal}}
+|cards={{TCG ID|EX Team Rocket Returns|Dark Tyranitar|19}}, {{TCG ID|EX Team Rocket Returns|Dark Tyranitar|20}}
+}}
+
+'''Dark Tyranitar''' is the name of the deck used by Takashi Yoneda, the Eleven to Fourteen Finalist in the {{TCG|2005 World Championships}}. It focuses on {{e|Darkness}}, {{e|Fighting}}, and {{e|Metal}} Pokémon. The deck's main focus is to bring the powerful Dark Tyranitar cards from {{TCG|EX Team Rocket Returns}} into play quickly, keep them in play, and keep them supplied with Energy utilizing many Trainer cards and Special Energy cards.
+
+Dark Tyranitar is one of the four {{TCGMerch|EX|Series|2005 World Championships Decks}}, released on October 31st, 2005. Each deck comes packaged with a 2005 World Championships Booklet. Each card features a silver border, Yoneda's signature, and limited edition 2005 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Takashi Yoneda found a powerful ally for his finalist deck: Dark Tyranitar! You can't find better attacks than Bite Off or Spinning Tail for all-out damage. It's one Pokémon that's hard to stop. Bring this deck to the table for some quick beatdown action!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Larvitar|63}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Dark Pupitar|41}}|Fighting|Darkness|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Team Rocket Returns|Dark Tyranitar|19}}|Darkness||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Dark Tyranitar|20}}|Fighting|Darkness|Rare}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgey|73}}|Colorless||Common}}
+{{decklist/entry|1|{{TCG ID|EX FireRed & LeafGreen|Pidgeotto|45}}|Colorless||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pidgeot|10}}|Colorless||Rare}}
+{{decklist/entry|3|{{TCG ID|EX Sandstorm|Dunsparce|60}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Jirachi|8}}|Psychic|Metal|Rare}}
+{{decklist/entry|2|[[Ancient Technical Machine Rock (EX Hidden Legends 85)|Ancient Technical Machine [Rock]]]|Trainer|Technical Machine|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Ancient Tomb|87}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Bill's Maintenance|87}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Copycat|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Desert Ruins|88}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Pokémon Retriever|84}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Rare Candy|83}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Emerald|Scott|84}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Darkness Energy|86}}|Energy|Darkness|Rare}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Heal Energy|94}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Emerald|Metal Energy|88}}|Energy|Metal|Rare}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|R Energy|95}}|Energy|Darkness|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Scramble Energy|95}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+
+==Trivia==
+* Both the physical World Championships deck and the list in the accompanying booklet have the wrong Jirachi in them. Takashi actually played two copies of [[Jirachi (EX Deoxys 9)]] at Worlds.
+
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Dark Tyranitar (TCG)]]
+[[zh:邪恶班基拉斯牌组（TCG）]]

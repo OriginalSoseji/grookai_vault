@@ -1,0 +1,44 @@
+{{DeckInfobox
+|title=Fire Box
+|image=WCS2019 Fire Box Deck.jpg
+|caption=Box art
+|release=November 22, 2019
+|types={{e|Fire}}
+}}
+
+'''Fire Box''' is the name of the deck used by Kaya Lichtleitner, the Senior Division champion at the [[2019 World Championships]]. It is one of the 2019 World Championships Decks released November 22, 2019. Each deck comes with a Worlds 2019 deckbox, a Worlds 2019 pin, a booklet about the championships, and a TCGO code card. The cards included in the deck aren't the prints actually used in the deck, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''World Champion Kaya Lichtleitner of Germany claimed a decisive victory in the Senior Division when she brought the heat with Reshiram & Charizard-GX. Jirachi can dig for Trainer cards and then scoot out of the way on an Escape Board, even when it's Asleep. Welder and Giant Hearth keep the Fire Energy flowing for a massive Double Blaze-GX attack, and Ninetales lets you discard that Energy to pull a Pokémon off your opponent’s Bench and into battle. When this deck gets fired up, it’s hard to stop!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Reshiram & Charizard-GX (Unbroken Bonds 20)|Reshiram & Charizard]]{{TT GX}}|Fire||Rare}}
+{{decklist/entry|4|{{TCG ID|Team Up|Jirachi|99}}|Metal||Rare}}
+{{decklist/entry|3|[[Dedenne-GX (Unbroken Bonds 57)|Dedenne]]{{GX}}|Lightning||Rare}}
+{{decklist/entry|2|{{TCG ID|Team Up|Ninetales|16}}|Fire||Rare}}
+{{decklist/entry|2|{{TCG ID|Team Up|Vulpix|15}}|Fire||Common}}
+{{decklist/entry|1|[[Heatran-GX (Unified Minds 25)|Heatran]]{{GX}}|Fire||Rare}}
+{{decklist/entry|1|{{TCG ID|Dragon Majesty|Turtonator|50}}|Dragon||Uncommon}}
+{{decklist/entry|1|[[Victini ♢ (Dragon Majesty 7)|Victini]] {{Prism Star}}|Fire||Rare}}
+{{decklist/entry|4|{{TCG ID|Celestial Storm|Acro Bike|123}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unified Minds|Cherish Ball|191}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ultra Prism|Escape Board|122}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragon Majesty|Fiery Flint|60}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unified Minds|Giant Hearth|197}}|Stadium||Uncommon}}
+{{decklist/entry|1|[[Heat Factory ♢ (Lost Thunder 178)|Heat Factory]] {{Prism Star}}|Stadium||Rare}}
+{{decklist/entry|1|{{TCG ID|Ultra Prism|Pal Pad|132}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Team Up|Pokémon Communication|152}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Celestial Storm|Switch|147}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unbroken Bonds|Welder|189}}|Supporter||Uncommon}}
+{{decklist/entry|18|{{TCG|Fire Energy}}|Energy|Fire|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Fire Box (TCG)]]
+[[ja:Fire Box]]
+[[zh:烈火之盒（TCG）]]

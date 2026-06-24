@@ -1,0 +1,252 @@
+{
+  "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-24T02:42:04.506Z",
+  "mode": "dry_run_no_write",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh16a_ex55_tcgcollector_upload_manifest_v1.jsonl",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh16b_ex55_tcgcollector_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh16c_ex55_db_pointer_repoint_plan_v1.jsonl",
+  "manifest_rows": 5,
+  "completed_manifest_rows": 5,
+  "incomplete_manifest_rows": 0,
+  "metadata_pointer_plan_rows": 5,
+  "effective_metadata_pointer_updates": 5,
+  "no_op_plan_rows": 0,
+  "missing_current_db_rows": 0,
+  "image_status_changes_planned": 0,
+  "image_note_changes_planned": 0,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path"
+  ],
+  "preserved_columns": [
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "target_tables": {
+    "card_prints": 5
+  },
+  "changed_columns": {
+    "image_path": 5,
+    "image_source": 5
+  },
+  "by_set_code": {
+    "ex5.5": 5
+  },
+  "by_source_route": {
+    "tcgcollector_ex55_card_page": 5
+  },
+  "by_current_image_status": {
+    "exact": 5
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:454c9738-5da2-41d6-8e94-ca2c7d3ef57e:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "454c9738-5da2-41d6-8e94-ca2c7d3ef57e",
+        "gv_id": "GV-PK-CC-1",
+        "name": "Treecko",
+        "set_code": "ex5.5",
+        "number": "1",
+        "source_route": "tcgcollector_ex55_card_page",
+        "upstream_source": "tcgcollector",
+        "upstream_card_id": "tcgcollector:ex5.5:1",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-1/13672f8e35a41e9013a16ce4.jpg",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-1/13672f8e35a41e9013a16ce4.jpg",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:a7aacf4c-4726-4bcd-ab0b-76dda112f829:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a7aacf4c-4726-4bcd-ab0b-76dda112f829",
+        "gv_id": "GV-PK-CC-2",
+        "name": "Wurmple",
+        "set_code": "ex5.5",
+        "number": "2",
+        "source_route": "tcgcollector_ex55_card_page",
+        "upstream_source": "tcgcollector",
+        "upstream_card_id": "tcgcollector:ex5.5:2",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-2/32c01c57c47aecea6346450b.jpg",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-2/32c01c57c47aecea6346450b.jpg",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:bd16f36d-f0e8-4eec-bc9d-d61cc6a4413a:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "bd16f36d-f0e8-4eec-bc9d-d61cc6a4413a",
+        "gv_id": "GV-PK-CC-3",
+        "name": "Torchic",
+        "set_code": "ex5.5",
+        "number": "3",
+        "source_route": "tcgcollector_ex55_card_page",
+        "upstream_source": "tcgcollector",
+        "upstream_card_id": "tcgcollector:ex5.5:3",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-3/f96e9820552c7cf6bf353954.jpg",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-3/f96e9820552c7cf6bf353954.jpg",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:d8aa1424-8a24-44b1-8316-0882ae5005fd:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "d8aa1424-8a24-44b1-8316-0882ae5005fd",
+        "gv_id": "GV-PK-CC-4",
+        "name": "Mudkip",
+        "set_code": "ex5.5",
+        "number": "4",
+        "source_route": "tcgcollector_ex55_card_page",
+        "upstream_source": "tcgcollector",
+        "upstream_card_id": "tcgcollector:ex5.5:4",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-4/a0d35e19ec5bee39c28bac55.jpg",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-4/a0d35e19ec5bee39c28bac55.jpg",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-16C-EX55-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:80458cce-def2-439c-a567-7e8a384e2fa1:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "80458cce-def2-439c-a567-7e8a384e2fa1",
+        "gv_id": "GV-PK-CC-5",
+        "name": "Pikachu",
+        "set_code": "ex5.5",
+        "number": "5",
+        "source_route": "tcgcollector_ex55_card_page",
+        "upstream_source": "tcgcollector",
+        "upstream_card_id": "tcgcollector:ex5.5:5",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-5/c0298993d16459714be2129d.jpg",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex5.5/gv-pk-cc-5/c0298993d16459714be2129d.jpg",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      }
+    ]
+  },
+  "fingerprint": "193c1d2a754dc35aff18bb7286f166506ba35a12b5615b77e387fc324d23773f"
+}

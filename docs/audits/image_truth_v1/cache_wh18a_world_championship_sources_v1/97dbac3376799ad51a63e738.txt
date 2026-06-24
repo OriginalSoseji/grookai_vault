@@ -1,0 +1,58 @@
+{{DeckInfobox
+|title=Swift Empoleon
+|image=WCS2007 Swift Empoleon Deck.jpg
+|caption=Box art
+|size=280px
+|types={{e|Water}}
+|cards={{TCG ID|Diamond & Pearl|Empoleon|4}}
+}}
+
+'''Swift Empoleon''' is the name of the deck used by Akira Miyazaki, the Senior Division Finalist in the {{TCG|2007 World Championships}}. It is one of the four {{TCGMerch|Diamond & Pearl|Series|2007 World Championships Decks}}, released on November 19, 2007. Each deck comes packaged with a 2007 World Championships Booklet. Each card features a silver border, Miyazaki's signature, and limited edition 2007 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Akira Miyazaki became a Senior Division finalist with his customized Empoleon deck. Between his strong Water-type Pokémon and his careful selection of Trainer and Stadium cards, he was able to beat many Fire-type decks, as well as those decks that relied too heavily on Poké-Powers!''
+
+==Strategy==
+===Pokémon===
+In the Empoleon [[evolution]]ary line, every stage is capable of making a strong contribution. Piplup, which has 60 HP, a higher than average HP for a basic Pokémon. In its first stage of Evolution, Prinplup’s Aqua Shower attack will do 10 damage to each and every one of your opponent’s Pokémon in play. That’s a potential 60 total damage for only 1 Energy. Its second attack, Brine, allows it to do 40 damage to one of your opponent’s Pokémon, as long as your opponent’s Pokémon already has at least one damage counter on it. In the final stage of Evolution, Empoleon can continue doing 40 damage to any Pokémon with its Ice Blade attack, or for 3 Energy its Aqua Jet attack can inflict 70 damage to the Defending Pokémon and a possible 20 damage to a Benched Pokémon. With its 130 Hit Points, Empoleon can take a lot punishment before it’s Knocked Out.
+
+Corsola's main function is to get the Empoleon evolutionary line into play as quickly as possible. Corsola’s Cry for Help attack lets you search the deck for a Water Pokémon and put it into the player's hand. 
+
+===Trainers===
+With so few Pokémon, the deck has plenty of room for Trainer, Supporter, Stadium, and Special Energy cards. Aside from the normal mix of cards used for searching and drawing, the deck has a few cards with special functions. All of the Pokémon have no Poké-Powers or Poké-Bodies, so cards like Cursed Stone and Cessation Crystal do not affect the Pokémon.
+
+===Energy===
+There are three copies of Scramble Energy, which provides 3 Energy of any color as long as the players have more Prize cards left than the opponent. By having Scramble Energy available, the player can keep Prinplup out front and spread damage quickly. 
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Diamond & Pearl|Empoleon|4}}|Water||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Diamond & Pearl|Prinplup|58}}|Water||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Diamond & Pearl|Piplup|93}}|Water||Common}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Corsola|37}}|Water||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon's Electrode|21}}|Lightning||Rare}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Holon Transceiver|98}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Holon Mentor|75}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Holon Scientist|97}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Farmer|91}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Celio's Network|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Steven's Advice|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Crystal Guardians|Castaway|72}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Dragon Frontiers|Copycat|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Legend Maker|Cursed Stone|72}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Cessation Crystal|74}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Holon Phantoms|Rare Candy|90}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Scramble Energy|89}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Double Rainbow Energy|88}}|Energy|Rainbow|Rare}}
+{{decklist/entry|12|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Swift Empoleon (TCG)]]
+[[zh:迅速帝王拿波（TCG）]]

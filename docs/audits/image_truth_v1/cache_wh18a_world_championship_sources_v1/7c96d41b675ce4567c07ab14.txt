@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=Bliss Control
+|image=WCS2008 Bliss Control Deck.png
+|size=220px
+|caption=Box art
+|types={{e|Colorless}}
+|cards={{TCG ID|Mysterious Treasures|Blissey|5}}
+}}
+
+'''Bliss Control''' is the name of the deck used by Paul Atanassov, the Senior Division Finalist in the {{TCG|2008 World Championships}}. Bliss Control's strategy consisted of using lots of {{TCG|Trainer cards|Trainer}} and {{TCG|Supporter card}}s to interfere with the opponent's strategy, and attacking with {{TCG ID|Mysterious Treasures|Blissey|5}}, which can hit hard while absorbing a lot of damage with its 130 HP.
+
+Bliss Control is one of the four {{TCGMerch|Diamond & Pearl|Series|2008 World Championships Decks}}, released on November 5, 2008. Each deck comes packaged with a 2008 World Championships Booklet. Each card features a silver border, Atanassov's signature, and limited edition 2008 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Paul Atanassov focused on speed and disruption to earn his place as a Senior Division finalist with his Bliss Control deck. Paul used Trainers and Supporters designed to interfere with his opponent's strategies and a heavy hitter that could set up fast and could soak up a large amount of damage before getting Knocked Out!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|Majestic Dawn|Chatot|55}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|Mysterious Treasures|Blissey|5}}|Colorless||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|Mysterious Treasures|Chansey|76}}|Colorless||Common}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Cessation Crystal|74}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Diamond & Pearl|Pokédex HANDY910is|111}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|PlusPower|121}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Mysterious Treasures|Time-Space Distortion|124}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Steven's Advice|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Scott|81}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Mysterious Treasures|Team Galactic's Wager|115}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Power Keepers|Energy Removal 2|74}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Crystal Beach|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Castaway|72}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Celio's Network|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|TV Reporter|82}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Dragon Frontiers|Holon Energy FF|84}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|10|{{TCG|Fire Energy}}|Energy|Fire|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Bliss Control (TCG)]]
+[[zh:幸福控制（TCG）]]

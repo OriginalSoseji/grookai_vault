@@ -1,0 +1,54 @@
+{{DeckInfobox
+|title=Mew's Revenge
+|image=WCS2023 Mew Revenge.jpg
+|caption=Box art
+|release=March 1, 2024
+|types={{e|Psychic}}
+}}
+
+'''Mew's Revenge''' is the name of the deck used by Vance Kelley, the Masters Division champion at the [[2023 Pokémon World Championships]]. It is one of the 2023 World Championship Decks released March 1, 2024. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2023 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Kelley, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Kelley's signature.
+
+==Description==
+
+=== Packaging ===
+<i>Let’s set the scene for one of the greatest Pokémon Trading Card Game Championships battles of all time: underdog Vance Kelley is up against a legend of the game, the match is tied at one win each, and the clock has just run out. The speed, aggression, and sheer disruptive power of the Mew VMAX deck archetype has been popular for a reason, and it led Vance to victory. At the deck’s heart is the powerful engine provided by Genesect V’s Fusion Strike System Ability and plenty of Energy acceleration from Elesa’s Sparkle, which together allow players to attack like only a Champion can—early, often, and with a vengeance.</i>
+
+=== Booklet ===
+''Vance says he was "focused" coming into Worlds. He was also relentless. And by the time the curtain came down on the tournament, his victory seemed close to inevitable. This title match was an epic struggle in front of a packed arena, going down to the wire with a nerve-jangling, nail-biting, sudden-death conclusion. So, how did he manage to stay cool and collected enough to become Champion? The answer lies in simplicity and determination. "I always play Mew", he says, "It's just a question of what other cards to include."''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Mew VMAX (Fusion Strike 114)|Mew]]{{VMAX}}|Psychic||Rare VMAX}}
+{{decklist/entry|4|[[Mew V (Fusion Strike 113)|Mew]]{{TCGV}}|Psychic||Ultra-Rare Rare}}
+{{decklist/entry|4|[[Genesect V (Fusion Strike 185)|Genesect]]{{TCGV}}|Metal||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Fusion Strike|Meloetta|124}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Fusion Strike|Oricorio|42}}|Fire||Rare}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Boss's Orders|172}}|Supporter||Rare}}
+{{decklist/entry|2|{{TCG ID|Fusion Strike|Elesa's Sparkle|233}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Scarlet & Violet|Judge|176}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Lost City|161}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Crystal Cave|144}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Path to the Peak|148}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Battle VIP Pass|225}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Cram-o-matic|229}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Power Tablet|236}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Lost Vacuum|162}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Astral Radiance|Switch Cart|154}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Battle Styles|Escape Rope|125}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Scarlet & Violet|Pal Pad|182}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Silver Tempest|Forest Seal Stone|156}}|Pokémon Tool||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Choice Belt|176}}|Pokémon Tool||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Lost Origin|Box of Disaster|154}}|Pokémon Tool||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Fusion Strike Energy|244}}|Energy|Rainbow|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Brilliant Stars|Double Turbo Energy|151}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Mew's Revenge (TCG)]]

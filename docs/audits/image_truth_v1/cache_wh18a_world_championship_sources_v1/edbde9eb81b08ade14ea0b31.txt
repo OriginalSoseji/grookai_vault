@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=The Shape of Mew
+|image=WCS2022 The Shape of Mew Deck.jpg
+|caption=Box art
+|release=March 3, 2023
+|types={{e|Psychic}}
+}}
+
+'''The Shape of Mew''' is the name of the deck used by André Chiasson, a Masters Division Top 8 finisher at the [[2022 World Championships]]. It is one of the 2022 World Championship Decks released March 3, 2023. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2022 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Chiasson, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Chiasson's signature.
+
+==Description==
+<i>Wielding one of the most feared combos of the tournament scene, André Chiasson was able to secure a spot in the Masters Division Top 8, showcasing a slick and commanding deck that ultimately fell to the eventual Champion. Built to maximize the potential of Mew VMAX’s Cross Fusion Strike attack, this deck is a card-drawing monster, with Genesect V’s outstanding Fusion Strike System bolstered by a full count of Quick Ball, Cram-o-matic, and Battle VIP Pass to ensure a flood of Bench fillers ready to overwhelm the opposition. It may not be subtle, but we’re in love with The Shape of Mew.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Mew VMAX (Fusion Strike 114)|Mew]]{{VMAX}}|Psychic||Rare}}
+{{decklist/entry|4|[[Mew V (Fusion Strike 113)|Mew]]{{TCGV}}|Psychic||Rare}}
+{{decklist/entry|4|[[Genesect V (Fusion Strike 185)|Genesect]]{{TCGV}}|Metal||Rare}}
+{{decklist/entry|2|{{TCG ID|Fusion Strike|Meloetta|124}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Pumpkaboo|76}}|Psychic||Common}}
+{{decklist/entry|3|{{TCG ID|Brilliant Stars|Boss's Orders|132}} <small>'''[Cyrus]'''</small>|Supporter||Rare}}
+{{decklist/entry|3|{{TCG ID|Fusion Strike|Elesa's Sparkle|233}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Darkness Ablaze|Rose Tower|169}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Battle VIP Pass|225}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Cram-o-matic|229}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Power Tablet|236}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Quick Ball|237}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Champion's Path|Rotom Phone|64}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Brilliant Stars|Ultra Ball|150}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Escape Rope|125}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Sword & Shield|Switch|183}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Echoing Horn|136}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Choice Belt|135}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Fusion Strike Energy|244}}|Energy|Rainbow|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Brilliant Stars|Double Turbo Energy|151}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+==Trivia==
+*The deck name is a reference to the [[Ed Sheeran]] song {{wp|Shape of You}}.
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:The Shape of Mew (TCG)]]
+[[zh:夢幻之形（TCG）]]

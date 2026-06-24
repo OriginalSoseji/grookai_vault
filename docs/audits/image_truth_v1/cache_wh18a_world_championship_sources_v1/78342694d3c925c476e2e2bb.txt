@@ -1,0 +1,57 @@
+{{DeckInfobox
+|title=Trevgor
+|image=WCS2014 Trevgor Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Grass}}
+|cards=
+}}
+
+'''Trevgor''' is the name of the deck used by Trent Orndorff, who was the champion in the Senior Division in the [[2014 World Championships]]. It is one of the four {{TCGMerch|XY|Series|2014 World Championships Decks}}, released in November 2014, and is based on the {{TCG|Mew/Accelgor}} archetype. Each Deck comes with a Worlds 2014 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2014 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Trent Orndorff's Trevgor is designed to shut an opponent's deck down and keep it down! It centers around Accelgor's Deck and Cover attack, which Poisons and Paralyzes an opposing Pokémon and then shuffles Accelgor back into the deck—allowing Trevenant to  move into the Active spot, where its Ability keeps the opponent from playing Item cards to recover. And with Dusknoir to move damage counters around on the opponent's side, it's easy to pick exactly which Pokémon to Knock Out for a pinpoint victory!</i>
+
+===Booklet===
+<i>Trent was in eighth place going into the top 8 and had to fight his way up. He flipped heads on a Pokémon Catcher in game three of the finals to win the title of Senior Division World Champion—using a deck he didn't test beforehand! He says, "I built it the night before the Swiss rounds after talking with my friends." How's that for a great mix of skill and luck? Of course, it wasn't a single coin flip that made him Champion. Trent has been an active participant in Pokémon League for three years and plays three times a week with fellow Colorado players.</i>
+
+===Pokémon.com===
+<i>Trent's Trevenant and Accelgor deck is lots of fun to watch and maddening to play against. Trent uses Dusknoir's Sinister Hand Ability to make sure his opponent's Pokémon is Knocked Out at just the right moment. This deck uses few Energy cards, letting Trent include a lot of different Trainer cards.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Accelgor|11}}|Grass||Rare}}
+{{decklist/entry|3|{{TCG ID|Plasma Blast|Shelmet|7}}|Grass||Common}}
+{{decklist/entry|2|{{TCG ID|Boundaries Crossed|Dusknoir|63}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Dusclops|39}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Duskull|38}}|Psychic||Common}}
+{{decklist/entry|2|[[Mew-EX (Dragons Exalted 46)|Mew]]{{EX}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|XY|Trevenant|55}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|XY|Phantump|54}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Computer Search|137}}|Item||SuperRare}}
+{{decklist/entry|3|{{TCG ID|XY|Evosoda|116}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Freeze|Float Stone|99}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Level Ball|89}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|XY|Muscle Band|121}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Kalos Starter Set|Pokémon Catcher|36}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Sacred Ash|96}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Boundaries Crossed|Skyla|134}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Startling Megaphone|97}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Town Map|136}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BW Promo|Tropical Beach|50}}|Stadium||None}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Ultra Ball|99}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|XY|Double Colorless Energy|130}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Trevgor (TCG)]]
+[[ja:Trevgor]]

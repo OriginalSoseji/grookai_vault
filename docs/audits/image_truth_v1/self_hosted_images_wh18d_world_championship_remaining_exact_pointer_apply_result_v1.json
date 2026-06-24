@@ -1,0 +1,34 @@
+{
+  "package_id": "IMG-HOST-WH-18D-WORLD-CHAMPIONSHIP-REMAINING-EXACT-POINTER-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-24T14:25:05.212Z",
+  "ended_at": "2026-06-24T14:25:05.908Z",
+  "fingerprint": "00adda7d043a1323b29a140866485735a1a279dc0d2a83b8208ba49dd38ad306",
+  "sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "source_dry_run_fingerprint": "00adda7d043a1323b29a140866485735a1a279dc0d2a83b8208ba49dd38ad306",
+  "metadata_pointer_update_count": 72,
+  "metadata_results": [
+    {
+      "key": "card_prints",
+      "expected_count": 72,
+      "updated_count": 72
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": 72,
+  "runtime_public_url_field_writes_performed": false,
+  "parent_identity_overwrites_performed": false,
+  "child_writes_performed": false,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "e011bf93435226749ce5dda42a9a0242ffc5916df6ad3220bcf71ff3a50961c0"
+}

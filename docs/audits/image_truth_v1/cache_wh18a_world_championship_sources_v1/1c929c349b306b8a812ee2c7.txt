@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=Bebe
+|image=WCS2016 Bebe Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Grass}}
+|cards=
+}}
+
+'''Bebe''' is the name of the deck used by Jesper Eriksen, who was the champion of the Senior Division in the [[2016 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2016 World Championships Decks}}, released in November 2016, and is based around [[Yanmega BREAK (Steam Siege 8)|Yanmega]]{{BREAK}}. Each Deck comes with a Worlds 2016 themed Deckbox, a booklet about the championships, a code card for the [[Pokémon Trading Card Game Online]], and the 2016 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Jesper Eriksen brought a deck built around the brand-new Yanmega BREAK from XY&mdash;Steam Siege to Worlds, and it took him to the top of the Senior Division! Between Forest of Giant Plants, Yanmega's Sonic Vision Ability, and the Judge Supporter card, this deck can unleash huge attacks immediately. And once enough Pokémon are in the discard pile, Vespiquen comes in to close out the game with the ever-popular Bee Revenge attack!</i>
+
+===Booklet===
+<i>"I was really worried that I would hit bad matchups" at Worlds, Jesper says&mdash;but he was often the one with the type advantage, given the popularity of Water-type decks. He picks Bursting Balloon as the most interesting card, and his deck runs four of them, although it was Professor Sycamore who featured in two of his most memorable plays. At one point, his opponent played N to make Jesper trade in his hand for a single card, Professor Sycamore. Then, in his very last game, Jesper played Professor Sycamore to get one more Pokémon into the discard pile&mdash;which gave Bee Revenge just enough damage for the last Knock Out he needed to win!</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|3|[[Yanmega BREAK (Steam Siege 8)|Yanmega]]{{BREAK}}|Grass||Rare BREAK}}
+{{decklist/entry|4|{{TCG ID|Steam Siege|Yanmega|7}}|Grass||Rare}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|Yanma|3}}|Grass||Common}}
+{{decklist/entry|4|{{TCG ID|Ancient Origins|Vespiquen|10}}|Grass||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Ancient Origins|Combee|9}}|Grass||Common}}
+{{decklist/entry|3|[[Shaymin-EX (Roaring Skies 77)|Shaymin]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Ariados|6}}|Grass||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Spinarak|5}}|Grass||Common}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|AZ|91}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Phantom Forces|Battle Compressor|92}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Bursting Balloon|97}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Ancient Origins|Forest of Giant Plants|74}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Judge|143}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ancient Origins|Level Ball|76}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Lysandre|78}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Generations|Revitalizer|70}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Steam Siege|Special Charge|105}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Ultra Ball|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Double Colorless Energy|114}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Bebe Deck (TCG)]]
+[[zh:蜂蜂牌组（TCG）]]

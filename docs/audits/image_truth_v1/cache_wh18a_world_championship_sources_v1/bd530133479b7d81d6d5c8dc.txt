@@ -1,0 +1,49 @@
+{{DeckInfobox
+|title=Pesadelo Prism
+|image=WCS2012 Pesadelo Prism Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Darkness}}{{e|Fighting}}
+|cards=[[Darkrai-EX (Dark Explorers 63)|Darkrai]]{{EX}}, [[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}, {{TCG ID|Noble Victories|Terrakion|73}}
+}}
+
+'''Pesadelo Prism''' is the name of the deck used by Igor Costa, the Masters Division Champion in the [[2012 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2012 World Championships Decks}}, released in November 2012. Each deck comes packaged with a 2012 World Championships Booklet, Deck Box, and Special Pin. Each card features a silver border, Costa's signature, and limited edition 2012 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''World Champion Igor Costa's Pesadelo Prism deck focuses on card-drawing power and speeding up the flow of Energy to quickly power up Darkrai-EX and Mewtwo-EX! Drawing is helped by cards such as Professor Oak's New Theory and N, while Dark Patch accelerates Energy acquisition and Shaymin moves it around to set up punishing attacks. This was a dream deck for the Champion and will be a nightmare for everyone else!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Darkrai-EX (Dark Explorers 63)|Darkrai]]{{EX}}|Darkness||Rare Holo ex}}
+{{decklist/entry|3|[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|Noble Victories|Terrakion|73}}|Fighting||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Unleashed|Shaymin|8}}|Grass||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Undaunted|Smeargle|8}}|Colorless||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Professor Oak's New Theory|101}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Random Receiver|99}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Dark Patch|93}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Noble Victories|Eviolite|91}}|Item|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|PlusPower|96}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Dual Ball|72}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Super Scoop Up|103}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Prism Energy|93}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Next Destinies|Double Colorless Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Darkness Energy}}|Energy|Darkness|None}}
+{{decklist/entry|2|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+{{-}}
+
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Pesadelo Prism (TCG)]]
+[[zh:夢魘稜鏡（TCG）]]

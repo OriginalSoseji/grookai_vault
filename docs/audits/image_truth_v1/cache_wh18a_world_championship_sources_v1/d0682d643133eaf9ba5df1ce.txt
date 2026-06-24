@@ -1,0 +1,54 @@
+{{DeckInfobox
+|title=Lost Box Kyogre
+|image=WCS2023 Lost Box Kyogre.jpg
+|caption=Box art
+|release=March 1, 2024
+|types={{e|Water}}{{e|Lightning}}{{e|Psychic}}
+}}
+
+'''Lost Box Kyogre''' is the name of the deck used by Shao Tong Yen, the Junior Division champion at the [[2023 Pokémon World Championships]]. It is one of the 2023 World Championship Decks released March 1, 2024. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2023 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Shao Tong, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Shao Tong's signature.
+
+==Description==
+
+=== Packaging ===
+<i>In the hands of Champion Shao Tong Yen, this clever Lost Box Kyogre deck washed away the competition in Yokohama. While it hinges on a strategy fit for a Pokémon TCG Champion—an awful lot of cards have to be in the Lost Zone in order to “turn on” this deck’s biggest rewards—those rewards are well worth the challenge. Comfey’s Flower Selecting Ability and Colress’s Experiment are more than capable of quickly stocking the Lost Zone. And if the cards fall right, players can piece together Shao Tong’s epic Kyogre combo for the win!</i>
+
+=== Booklet ===
+''Anyone who watched the exhilarating finish to the Junior Finals would find it hard to believe that Shao Tong only started playing the Pokémon TCG competitively in 2022 and had real doubts about his chances of reaching even the Top 8 at Worlds. He is, of course, a normal kid who enjoys normal things like basketball and good food...but in his final game of the tournament, he also displayed the hallmarks of a true Pokémon TCG master, as his impeccable planning of an incredibly difficult setup segued into a devastating highlight-reel combo to take the last KO and win it all.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Lost Origin|Comfey|79}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Sableye|70}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Celebrations|Kyogre|3}}|Water||Rare}}
+{{decklist/entry|1|[[Dragonite V (SWSH Promo 154)|Dragonite]]{{TCGV}}|Dragon}}
+{{decklist/entry|1|{{TCG ID|Lost Origin|Cramorant|50}}|Water||Rare}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Radiant Greninja|46}}|Water||Rare Radiant}}
+{{decklist/entry|1|[[Raikou V (Brilliant Stars 48)|Raikou]]{{TCGV}}|Lightning||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Manaphy|41}}|Water||Rare}}
+{{decklist/entry|4|{{TCG ID|Lost Origin|Colress's Experiment|155}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Klara|145}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Pokémon GO|PokéStop|68}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Battle VIP Pass|225}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Battle Styles|Escape Rope|125}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Lost Origin|Mirage Gate|163}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Astral Radiance|Switch Cart|154}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Energy Recycler|124}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Lost Vacuum|162}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Super Rod|188}}|Item||Common}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Echoing Horn|136}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Hisuian Heavy Ball|146}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Scarlet & Violet|Pal Pad|182}}|Item||Common}}
+{{decklist/entry|2|{{TCG ID|Silver Tempest|Forest Seal Stone|156}}|Pokémon Tool||Rare Holo}}
+{{decklist/entry|5|{{TCG|Water Energy}}|Energy|Water}}
+{{decklist/entry|3|{{TCG|Lightning Energy}}|Energy|Lightning}}
+{{decklist/entry|3|{{TCG|Psychic Energy}}|Energy|Psychic}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Lost Box Kyogre (TCG)]]

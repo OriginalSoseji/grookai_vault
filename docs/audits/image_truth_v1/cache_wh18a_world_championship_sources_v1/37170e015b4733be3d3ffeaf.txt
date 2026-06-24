@@ -1,0 +1,56 @@
+{{DeckInfobox
+|title=Primal Groudon
+|image=WCS2015 Primal Groudon.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}
+|cards=
+}}
+
+'''Primal Groudon''' is the name of the deck used by Alejandro Ng-Guzman, who was the runner-up of the Junior Division in the [[2015 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2015 World Championships Decks}}, released in November 2015, and is based around using stalling tactics to prepare [[Primal Groudon-EX (Primal Clash 86)|Primal Groudon]]{{EX}}. Each Deck comes with a Worlds 2015 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2015 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Alejandro Ng-Guzman brought his Primal Groudon deck—and the plush Primal Groudon that kept watch by his side—all the way to the final round of the Pokémon TCG Junior Division. The deck's star player can be slow to get going, so Robo Substitute can keep the opponent busy until Primal Groudon-EX is ready to go...and when it's ready, it's ''really'' ready, with huge HP and an attack that can do massive damage.</i>
+
+===Booklet===
+<i>Alejandro was surprised to find himself in the final round of the World Championships. "I really didn't think I'd get this far," he said. His first Top 4 game looked a little scary when he stalled out on Energy, since his star Pokémon requires a whole bunch of that to attack! But a well-timed Teammates eventually helped him find the cards he needed to win and move into the finals. Alejandro started playing three years ago, when his mom attended a conference that happened to coincide with the Regional Championships in Florida. His most memorable moment from Worlds weekend? "Winning my first Top 8 round, and playing with my friends, and playing people from other countries!"</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|3|[[Primal Groudon-EX (Primal Clash 86)|Primal Groudon]]{{EX}}|Fighting||Rare}}
+{{decklist/entry|3|[[Groudon-EX (Primal Clash 85)|Groudon]]{{EX}}|Fighting||Rare}}
+{{decklist/entry|3|{{TCG ID|Phantom Forces|Wobbuffet|36}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Bunnelby|121}}|Colorless||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Furious Fists|Korrina|95}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Blast|Professor Juniper|84}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Lysandre|90}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Pokémon Center Lady|93}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Teammates|141}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|Robo Substitute|102}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|XY|Hard Charm|119}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Roaring Skies|Mega Turbo|86}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Roaring Skies|Switch|91}}|Item||Common}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Escape Rope|127}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Furious Fists|Focus Sash|91}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|XY|Professor's Letter|123}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Startling Megaphone|97}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Roaring Skies|Ultra Ball|93}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Computer Search|137}}|Item||Rare Ace}}
+{{decklist/entry|2|{{TCG ID|Primal Clash|Silent Lab|140}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Furious Fists|Fighting Stadium|90}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Shrine of Memories|139}}|Stadium||Uncommon}}
+{{decklist/entry|8|{{TCG ID|XY|Fighting Energy|137}}|Energy|Fighting|Common}}
+{{decklist/entry|4|{{TCG ID|Furious Fists|Strong Energy|104}}|Energy|Fighting|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Primal Groudon (TCG)]]
+[[ja:Primal Groudon]]

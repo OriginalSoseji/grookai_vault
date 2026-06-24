@@ -1,0 +1,111 @@
+{{ArchetypeInfobox
+|title=Flyvees
+|image=FlygonexEXDragonFrontiers92.jpg
+|image2=JolteonexEXDeltaSpecies109.jpg
+|caption={{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}} and {{TCG ID|EX Delta Species|Jolteon ex|109}}
+|cards={{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}}, {{TCG ID|EX Delta Species|Jolteon ex|109}}, {{TCG ID|EX Delta Species|Vaporeon ex|110}}
+|types={{e|Grass}}{{e|Psychic}}{{e|Lightning}}{{e|Water}}
+|era=2006-2007
+}}
+
+'''Flyvees''' is a [[Pokémon Trading Card Game]] {{TCG|deck archetype}} based around {{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}}. It was popular due to its potential to quickly search for Trainer and Energy cards and inflict massive damage on the opponent. It was also printed as a World Championships Deck.
+
+==History==
+The Flyvees deck archetype, like most other deck archetypes, was invented after the release of the [[Diamond & Pearl (TCG)|Diamond & Pearl expansion set]]. As a new generation of cards had just been released, new archetypes were being made to replace the old. The Flyvees deck archetype had first gained its significance when [[Jun Hasebe]], a seven year old boy, won the {{TCG|2007 World Championships}} using the deck archetype. After that, it became more widely used in tournaments and competitions. Jun Hasebe's deck became famous enough that Nintendo created a replica deck in its World Championship series.
+
+==Cards==
+===Key Cards===
+*{{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}} is the main attacker with a powerful ''Psychic Pulse'' attack which also affects the player's bench Pokémon.
+*{{TCG ID|EX Holon Phantoms|Flygon δ|7}} allows quick energy attachments to Delta Species Pokémon, allowing Flygon ex δ to power up in two turns instead of three turn, and also has a powerful Swift attack that inflicts 60 damage.
+*{{TCG ID|EX Delta Species|Eevee δ|68}} is used mainly to bring out Vaporeon ex and Jolteon ex to play.
+*{{TCG ID|EX Delta Species|Jolteon ex|109}} can put a damage counter on each of his opponent’s Pokémon when it is put into play. It also served as a counter to Lightning-weak Empoleon decks that were very popular at the World Championships.
+*{{TCG ID|EX Delta Species|Vaporeon ex|110}} not only acted as a counter to popular decks based around Infernape, but had a Poké-Power that made opponents shuffle their hand into their deck and draw only four cards. Players often invested a lot of their deck’s resources to drawing huge hands, so forcing an opponent to lose a large amount of cards was potentially devastating.
+
+===Other Pokémon===
+*{{TCG ID|EX Delta Species|Holon's Voltorb|71}} is only used because it can be attached as an Energy or placed on the field as a relatively useless Pokémon. It has several uses, although none of them are especially great.
+*{{TCG ID|EX Holon Phantoms|Holon's Castform|44}} is much like Holon's Voltorb, as it can be used as an Energy, except it has the ability to draw multiple cards when in play.
+*{{TCG ID|Diamond & Pearl|Budew|43}} is used to add a Trainer card from the deck to the hand for free. It is fairly weak and is only meant to last for one or two turns.
+*{{TCG ID|EX Power Keepers|Absol ex|92}} helps move damage from one of his opponent’s Pokémon to another, allowing him to get a key Knock Out when he needed it. It also recovers Pokémon by removing 3 damage counters from them.
+*{{TCG ID|EX Crystal Guardians|Fearow δ|18}} allows to search the deck for one Delta Species Pokémon each turn, giving an amazingly fast set up. 
+
+===Other Trainers/Supporters===
+*{{TCG ID|EX Dragon Frontiers|Holon Mentor|75}} searches out any three [[Basic Pokémon]] from the deck.
+*{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}} is a good drawing card, allowing a player to benefit from discarding a Pokémon they don't need.
+*{{TCG ID|EX Delta Species|Holon Researcher|95}} is an alternative to {{TCG ID|EX Crystal Guardians|Celio's Network|73}} that is searchable by {{TCG ID|EX Delta Species|Holon Transceiver|98}}.
+*{{TCG ID|EX Delta Species|Holon Farmer|91}} is a last resort to save a player from running out of cards in their deck, which is quite possible due to how quickly the deck burns through cards.
+*{{TCG ID|EX Crystal Guardians|Warp Point|84}} switches out a damaged Pokémon to put another one with full HP into play.  Another use is if a player's Active Pokémon is close to being knocked-out and they want to switch the opponent's Active Pokémon to one less capable of dealing heavy damage.
+*{{TCG ID|EX Crystal Guardians|Windstorm|85}} gets rid of pesky {{TCG|Pokémon Power|Poké-Power}} stopping trainers and stadiums, such as {{TCG ID|EX Crystal Guardians|Cessation Crystal|74}} and {{TCG ID|EX Legend Maker|Cursed Stone|72}}.  If {{TCG|Pokémon Power|Poké-Powers}} are stopped, the whole deck screeches to a halt.
+*{{TCG ID|EX Dragon Frontiers|Copycat|73}} allows for extra drawing and hand-refreshing, which are always good things.
+*{{TCG ID|EX Legend Maker|Power Tree|76}} is Stadium that allows the player to search for a Basic Energy in their discard pile if they have no Special Energy in the discard pile. Since the deck doesn't use many, if any, Special Energy cards, it is easy to use its effect.
+
+===Energy cards===
+*{{TCG|Psychic Energy}} pays for ''Psychic Pulse''. Flygon ex δ cannot be played without them.
+*{{TCG ID|EX Holon Phantoms|Lightning Energy|108}} are absolutely necessary, regardless. The deck cannot be played without them.
+
+==2007 World Championships Flyvees Deck==
+{{DeckInfobox
+|title=Flyvees
+|image=WCS2007 Flyvees Deck.jpg
+|caption=Box art
+|size=280px
+|types={{e|Psychic}}{{e|Lightning}}
+|cards={{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}}, {{TCG ID|EX Delta Species|Jolteon ex|109}}, {{TCG ID|EX Delta Species|Vaporeon ex|110}}
+}}
+
+'''Flyvees''' is also the name of the deck used by [[Jun Hasebe]], Junior Division Champion in the {{TCG|2007 World Championships}}. It is one of the four {{TCGMerch|Diamond & Pearl|Series|2007 World Championships Decks}}, released on November 19, 2007. Each deck comes packaged with a 2007 World Championships Booklet. Each card features a silver border, Hasebe's signature, and limited edition 2007 World Championships back. None of the cards are tournament legal.
+
+===Description===
+''Jun Hasebe played a top-tier deck in a masterful fashion to win the Junior Division and became a World Champion. The main powerhouse for this deck is Flygon ex—with its strong abilities and no Weakness, it makes for a great Pokémon. Using other Pokémon-ex such as Jolteon ex, Vaporeon ex, and Absol ex, Jun had a lot of able responses!''
+
+===Deck list===
+The deck list below is based on Hasebe's deck from the World Championships. A player may wish to change any part of this deck when building his or her own version.
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}}|Psychic||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Holon Phantoms|Flygon δ|7}}|Grass|Metal|Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Vibrava δ|42}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Trapinch δ|84}}|Grass||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Jolteon ex|109}}|Lightning||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Vaporeon ex|110}}|Water||Rare Holo ex}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Eevee δ|68}}|Metal||Common}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Absol ex|92}}|Darkness||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Budew|43}}|Grass||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Fearow δ|18}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Spearow|61}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Holon's Castform|44}}|Colorless||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon's Voltorb|71}}|Lightning||Common}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Holon Transceiver|98}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Holon Mentor|75}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Researcher|95}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Scientist|97}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Fieldworker|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Crystal Guardians|Windstorm|85}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Copycat|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Rare Candy|90}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Professor Elm's Training Method|79}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Power Tree|76}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Warp Point|116}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Crystal Shard|76}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|6|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/entry|4|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/footer}}
+
+==Restriction==
+Since most of the cards in Flyvees, including {{TCG ID|EX Dragon Frontiers|Flygon ex δ|92}}, the main attacker, have been {{TCG|Rotation|Rotated}} out of [[Play! Pokémon]], the deck is unplayable in the current Modified Format.
+
+==See also==
+===Internal===
+[[Deck archetype (TCG)]]
+===External===
+[http://pokebeach.com/forums/showthread.php?tid=28523&page=1 PokéGym thread]
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:Deck archetypes]]
+[[Category:World Championship Decks]]
+
+[[de:Flyvees (TCG)]]
+[[ja:Flyvees]]
+[[zh:蜻蜓伊布（TCG）]]

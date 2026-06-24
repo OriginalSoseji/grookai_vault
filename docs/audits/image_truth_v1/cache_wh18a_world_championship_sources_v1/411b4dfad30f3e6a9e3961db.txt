@@ -1,0 +1,55 @@
+{{DeckInfobox
+|title=Psychic Lock
+|image=WCS2008 Psychic Lock Deck.png
+|size=220px
+|caption=Box art
+|types={{e|Psychic}}
+|cards={{TCG ID|Secret Wonders|Gardevoir|7}}, {{TCG ID|Secret Wonders|Gallade|6}}, {{TCG ID|Great Encounters|Claydol|15}}
+}}
+
+'''Psychic Lock''' is the name of the deck used by [[Jason Klaczynski]], the Masters Division Champion in the {{TCG|2008 World Championships}}, and the first to win the title twice. The deck is a variation of the {{TCG|Gardevoir/Gallade}} {{TCG|Deck archetype|archetype}}. It focuses primarily on {{ct|Psychic}} Pokémon, though also uses {{TCG|Fighting}} and {{ct|Lightning}} Pokémon.
+
+Psychic Lock is one of the four {{TCGMerch|Diamond & Pearl|Series|2008 World Championships Decks}}, released on November 5, 2008. Each deck comes packaged with a 2008 World Championships Booklet. Each card features a silver border, Klaczynski's signature, and limited edition 2008 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Jason Klaczynski became the first two-time World Champion on the strength of his Psychic Lock deck. Using one of the most popular decks of the year–Gallade/Gardevoir–as the main structure of his deck, Jason made modifications designed to allow him to overcome any opponent he faced, including other Gallade/Gardevoir decks!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Ralts|102}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|POP Series 7|Ralts|15}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|POP Series 7|Kirlia|8}}|Psychic||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|Gardevoir|7}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Gardevoir LV.X|131}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|2|{{TCG ID|POP Series 7|Gallade|2}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Duskull|80}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Dusknoir|2}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Chatot|55}}|Colorless||Common}}
+{{decklist/entry|1|[[Jolteon ☆ (EX Power Keepers 101)|Jolteon]] {{Star}}|Lightning||Rare Holo ☆}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Jirachi ex|94}}|Psychic||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Celio's Network|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Bebe's Search|119}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Power Keepers|Steven's Advice|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Mysterious Treasures|Team Galactic's Wager|115}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Mysterious Treasures|Lake Boundary|112}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Rare Candy|102}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Crystal Guardians|Windstorm|85}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy||Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Double Rainbow Energy|88}}|Energy|Rainbow|Rare}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Scramble Energy|89}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Cyclone Energy|90}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Psychic Lock (TCG)]]
+[[zh:精神锁定（TCG）]]

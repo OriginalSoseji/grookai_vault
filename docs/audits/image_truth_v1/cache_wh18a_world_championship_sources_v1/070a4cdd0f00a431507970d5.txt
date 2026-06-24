@@ -1,0 +1,56 @@
+{{DeckInfobox
+|title=Luxdrill
+|image=WCS2009 Luxdrill Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Grass}}
+|cards={{TCG ID|Great Encounters|Beedrill|13}}, {{TCG ID|Rising Rivals|Beedrill|15}}
+}}
+
+'''Luxdrill''' is the name of the deck used by Stephen Silvestro, the Masters Champion in the [[2009 World Championships]]. The deck is a specific build of the {{TCG|Speedrill}} {{TCG|Deck archetype|archetype}} that includes the use of [[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]'s {{TCG|Poké-Power}}, Bright Look. The strategy of the deck is to use the {{TCG|Rising Rivals}} {{TCG ID|Rising Rivals|Beedrill|15}}'s Flutter Wings {{TCG|Poké-Power}} each turn in order to retrieve {{TCG|Great Encounters}} {{TCG ID|Great Encounters|Beedrill|13}} from the deck, evolve as many {{TCG|Beedrill}} as possible utilizing {{TCG ID|Platinum|Broken Time-Space|104}}, and maximize Band Attack's damage. {{TCG ID|Great Encounters|Claydol|15}}'s Cosmic Power Poké-Power provides draw support, [[Crobat G (Platinum 47)|Crobat]] {{SP|G}} provides extra damage, and {{TCG ID|Great Encounters|Unown G|57}} acts as a {{TCG|Pokémon Tool}} to prevent Weakness damage.
+
+Luxdrill is one of the four {{TCGMerch|Platinum|Series|2009 World Championships Decks}}, released on October 28, 2009. Each deck comes packaged with a 2009 World Championships Booklet. Each card features a silver border, Silvestro's signature, and limited edition 2009 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Beedrill searches the deck for more Beedrill using its Flutter Wings Poké-Power...those new Beedrill use Band Attack to do 30 damage for each Beedrill you have in play...and Night Maintenance brings them back from your discard pile to your deck when they get Knocked Out to start the whole hive buzzing again. Champion Steven Silvestro found the perfect way to sting his opponents!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Beedrill|13}}|Grass||Rare}}
+{{decklist/entry|2|{{TCG ID|Rising Rivals|Beedrill|15}}|Grass||Rare}}
+{{decklist/entry|4|{{TCG ID|Rising Rivals|Kakuna|66}}|Grass||Common}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Weedle|93}}|Grass||Common}}
+{{decklist/entry|1|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}
+{{decklist/entry|1|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}
+{{decklist/entry|3|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|1|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Chatot|55}}|Colorless||Common}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Platinum|Cyrus's Conspiracy|105}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Legends Awakened|Cynthia's Feelings|131}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Rare Candy|102}}|Trainer||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|1|[[Team Galactic's Invention G-101 Energy Gain (Platinum 116)|<small>'''Team Galactic's Invention G-101'''</small> Energy Gain]]|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|1|[[Team Galactic's Invention G-109 SP Radar (Rising Rivals 96)|<small>'''Team Galactic's Invention G-109'''</small> SP Radar]]|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Mysterious Treasures|Multi Energy|118}}|Energy|Colorless|Rare}}
+{{decklist/entry|3|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/entry|1|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Luxdrill (TCG)]]
+[[ja:Luxdrill]]
+[[zh:伦琴蜂（TCG）]]

@@ -1,0 +1,35 @@
+{
+  "package_id": "IMG-HOST-WH-10E-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-24T01:28:20.461Z",
+  "ended_at": "2026-06-24T01:28:21.251Z",
+  "fingerprint": "b0b7b06db40e1d36afa2e5c5adafa7f28d94db398dae91394a9fd4396cf77603",
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "source_dry_run_fingerprint": "b0b7b06db40e1d36afa2e5c5adafa7f28d94db398dae91394a9fd4396cf77603",
+  "metadata_pointer_update_count": 151,
+  "metadata_results": [
+    {
+      "key": "card_prints",
+      "expected_count": 151,
+      "updated_count": 151
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_performed": false,
+  "parent_overwrites_performed": false,
+  "planned_columns": [
+    "image_source",
+    "image_path"
+  ],
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "132a083c55d113e0c4c5e70ac8e14276c3a701f5dc45d8c343c6c3501e7e6d9f"
+}

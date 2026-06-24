@@ -1,0 +1,61 @@
+{{DeckInfobox
+|title=Stallgon
+|image=WCS2009 Stallgon Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}{{e|Psychic}}
+|cards={{TCG ID|Rising Rivals|Flygon|5}}, {{TCG ID|Rising Rivals|Flygon LV.X|105}}, {{TCG ID|Legends Awakened|Mewtwo LV.X|144}}
+}}
+
+'''Stallgon''' is the name of the deck used by David Cohen, the Senior Division Finalist in the [[2009 World Championships]]. The deck is a specific build of the {{TCG|Mother Flygon}} archetype that includes the use of {{TCG ID|Legends Awakened|Mewtwo LV.X|144}}'s {{TCG|Poké-Body}}, Psybarrier. The main attackers of the deck are {{TCG|Rising Rivals}} {{TCG ID|Rising Rivals|Flygon|5}}, {{TCG|Secret Wonders}} {{TCG ID|Secret Wonders|Flygon|5}}, and {{TCG ID|Rising Rivals|Flygon LV.X|105}}, utilizing all attacks depending on the situation. {{TCG ID|Rising Rivals|Flygon|5}} also provides free retreat to the other Pokémon in the deck with the use of its {{TCG|Poké-Body}}, Rainbow Float, while Flygon LV.X's Poké-Body Wind Erosion discards from the opponent's deck.
+
+{{TCG ID|Great Encounters|Claydol|15}}'s Cosmic Power Poké-Power and {{TCG ID|Legends Awakened|Uxie|43}}'s Set Up Poké-Power provide draw support, {{TCG ID|Legends Awakened|Azelf|19}}'s Time Walk retrieves necessary Pokémon from the {{TCG|Prize card}}s, {{TCG ID|Rising Rivals|Nidoqueen|30}}'s Maternal Comfort heals 10 damage from all the player's Pokémon between turns, and {{TCG ID|Great Encounters|Unown G|57}} acts as a {{TCG|Pokémon Tool}} to prevent Weakness damage.
+
+Other included {{TCG|Pokémon LV.X}} include {{TCG ID|Legends Awakened|Mewtwo LV.X|144}} and {{TCG ID|DP Promo|Palkia LV.X|18}}. Mewtwo LV.X's Psybarrier {{TCG|Poké-Body}} prevents all effects of attacks, including damage, to Mewtwo LV.X from the opponent's non Evolved Pokémon. Palkia LV.X's Restructure Poké-Power forces both the player and the opponent to switch Pokémon, which the player can then Retreat for free utilizing Flygon's Rainbow Float.
+
+Stallgon is one of the four {{TCGMerch|Platinum|Series|2009 World Championships Decks}}, released on October 28, 2009. Each deck comes packaged with a 2009 World Championships Booklet. Each card features a silver border, Cohen's signature, and limited edition 2009 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Flygon and Flygon LV.X are a formidable combination, as David Cohen proved with his Stallgon deck. Flygon's Sand Wall attack takes out your opponent's {{TCG|Stadium card}}s and Flygon LV.X can blast one of your opponent's Pokémon LV.X for 150 damage. Best of all, Flygon LV.X can use Wind Erosion to put your opponent at risk of losing...by running out of cards!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Trapinch|115}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|Rising Rivals|Vibrava|53}}|Colorless||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Rising Rivals|Flygon|5}}|Colorless||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Flygon LV.X|105}}|Colorless||Rare Holo LV.X}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Nidoran♀|71}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Nidoqueen|30}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Mewtwo|9}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Mewtwo LV.X|144}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|1|{{TCG ID|Great Encounters|Palkia|26}}|Water||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|DP Promo|Palkia LV.X|18}}|Water||None}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Platinum|Memory Berry|110}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Stormfront|Premier Ball|91}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Rare Candy|102}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Poké Drawer +|89}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Upper Energy|102}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Diamond & Pearl|Fighting Energy|128}}|Energy|Fighting|None}}
+{{decklist/entry|3|{{TCG ID|Diamond & Pearl|Psychic Energy|127}}|Energy|Psychic|None}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Water Energy|125}}|Energy|Water|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Stallgon (TCG)]]
+[[ja:Stallgon]]
+[[zh:沙墙蜻蜓（TCG）]]

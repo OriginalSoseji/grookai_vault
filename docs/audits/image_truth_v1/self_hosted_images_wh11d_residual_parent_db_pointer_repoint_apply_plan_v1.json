@@ -1,0 +1,55 @@
+{
+  "package_id": "IMG-HOST-WH-11D-RESIDUAL-PARENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T01:53:44.139Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+  "source_dry_run_fingerprint": "16bbf3e1c960a32766a87d6697dff2b0e7d0baa49afd58fab0f2ac158e3235c4",
+  "source_sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "approved_sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh11c_residual_parent_db_pointer_repoint_plan_v1.jsonl",
+  "metadata_pointer_update_count": 155,
+  "total_update_count": 155,
+  "target_tables": {
+    "card_prints": 155
+  },
+  "proposed_image_sources": {
+    "identity": 155
+  },
+  "by_set_code": {
+    "ecard2": 35,
+    "ecard3": 37,
+    "mep": 78,
+    "sm115": 4,
+    "svp": 1
+  },
+  "by_source_route": {
+    "mep_official_asset": 78,
+    "pokemontcg": 77
+  },
+  "by_current_image_status": {
+    "exact": 73,
+    "null": 60,
+    "representative_shared_stamp": 22
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path"
+  ],
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "16bbf3e1c960a32766a87d6697dff2b0e7d0baa49afd58fab0f2ac158e3235c4"
+}

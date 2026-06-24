@@ -1,0 +1,46 @@
+{{DeckInfobox
+|title=Ultimate Team Plasma
+|image=WCS2013 Ultimate Team Plasma Deck.jpg
+|size=280px
+|types={{e|Water}}{{e|Lightning}}
+|cards=
+}}
+
+'''Ultimate Team Plasma''' is the name of the deck used by Yugo Sato, who was second in the Junior Division in the [[2013 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2013 World Championships Decks}}, released on November 4, 2013. Each Deck comes with a Worlds 2013 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2013 World Championships Pin.
+
+==Description==
+''This deck focusses on getting the most out of Kyurem's Blizzard Burn attack. Thundurus EX helps power it up quickly and Deoxys EX gives it extra punch. When combined with Hypnotoxic Laser and Virbank City Gym, even EXs can be knocked out in one turn.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Thundurus-EX (Plasma Freeze 38)|Thundurus]]{{EX}}|Lightning||SuperRare}}
+{{decklist/entry|4|[[Deoxys-EX (Plasma Freeze 53)|Deoxys]]{{EX}}|Psychic||SuperRare}}
+{{decklist/entry|4|{{TCG ID|Plasma Freeze|Kyurem|31}}|Water||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Computer Search|137}}|Item||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Virbank City Gym|126}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Emerging Powers|Bianca|90}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Boundaries Crossed|Skyla|134}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Storm|Hypnotoxic Laser|123}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Energy Search|128}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Boundaries Crossed|Switch|135}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Freeze|Team Plasma Ball|105}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Plasma Storm|Colress Machine|119}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Freeze|Float Stone|99}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|Lightning Energy|108}}|Energy|Lightning|Common}}
+{{decklist/entry|3|{{TCG ID|Black & White|Water Energy|107}}|Energy|Water|Common}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Prism Energy|93}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Storm|Plasma Energy|127}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Ultimate Team Plasma (TCG)]]
