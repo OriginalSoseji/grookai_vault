@@ -67,9 +67,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
   VaultManageCardData? _data;
   CardSurfacePricingData? _pricing;
+  Map<String, List<VaultManageCopySectionMembership>> _copySectionMemberships =
+      const <String, List<VaultManageCopySectionMembership>>{};
   bool _loading = true;
   bool _intentSaving = false;
   String? _copyIntentSavingId;
+  String? _copySectionSavingKey;
   bool _noteSaving = false;
   bool _priceSaving = false;
   _ManageCardPriceMode _selectedPriceMode = _ManageCardPriceMode.grookai;
@@ -129,6 +132,15 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         cardPrintIds: <String>[widget.cardPrintId],
       );
       final pricing = pricingById[widget.cardPrintId];
+      var copySectionMemberships =
+          const <String, List<VaultManageCopySectionMembership>>{};
+      try {
+        copySectionMemberships =
+            await VaultCardService.loadCopySectionMemberships(
+              client: _client,
+              instanceIds: data.copies.map((copy) => copy.instanceId),
+            );
+      } catch (_) {}
 
       if (!mounted) {
         return;
@@ -138,6 +150,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       setState(() {
         _data = data;
         _pricing = pricing;
+        _copySectionMemberships = copySectionMemberships;
         _loading = false;
       });
     } catch (error) {
@@ -149,6 +162,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _error = error is Error
             ? error.toString()
             : 'Unable to load this card.';
+        _copySectionMemberships =
+            const <String, List<VaultManageCopySectionMembership>>{};
         _loading = false;
       });
     }
@@ -582,6 +597,70 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
       setState(() {
         _copyIntentSavingId = null;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _toggleCopySectionMembership(
+    VaultManageCardCopy copy,
+    VaultManageCopySectionMembership section,
+  ) async {
+    final sectionKey = '${copy.instanceId}:${section.id}';
+    if (_copySectionSavingKey != null) {
+      return;
+    }
+
+    setState(() {
+      _copySectionSavingKey = sectionKey;
+      _statusMessage = null;
+    });
+
+    try {
+      if (section.isMember) {
+        await VaultCardService.removeCopySectionMembership(
+          client: _client,
+          instanceId: copy.instanceId,
+          sectionId: section.id,
+        );
+      } else {
+        await VaultCardService.assignCopySectionMembership(
+          client: _client,
+          instanceId: copy.instanceId,
+          sectionId: section.id,
+        );
+      }
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        final currentSections =
+            _copySectionMemberships[copy.instanceId] ??
+            const <VaultManageCopySectionMembership>[];
+        _copySectionMemberships = {
+          ..._copySectionMemberships,
+          copy.instanceId: currentSections
+              .map(
+                (current) => current.id == section.id
+                    ? current.copyWith(isMember: !section.isMember)
+                    : current,
+              )
+              .toList(growable: false),
+        };
+        _copySectionSavingKey = null;
+        _statusMessage = section.isMember
+            ? 'Copy removed from section.'
+            : 'Copy added to section.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _copySectionSavingKey = null;
       });
       _showStatus(error.toString().replaceFirst('Exception: ', ''));
     }
@@ -1442,12 +1521,24 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                     copy: data.copies[index],
                     intentSaving:
                         _copyIntentSavingId == data.copies[index].instanceId,
+                    sections:
+                        _copySectionMemberships[data
+                            .copies[index]
+                            .instanceId] ??
+                        const <VaultManageCopySectionMembership>[],
+                    busySectionKey: _copySectionSavingKey,
                     onTap: (data.copies[index].gvviId ?? '').trim().isEmpty
                         ? null
                         : () => _openExactCopy(data.copies[index]),
                     onIntentSelected: _copyIntentSavingId == null
                         ? (intent) =>
                               _saveCopyIntent(data.copies[index], intent)
+                        : null,
+                    onToggleSection: _copySectionSavingKey == null
+                        ? (section) => _toggleCopySectionMembership(
+                            data.copies[index],
+                            section,
+                          )
                         : null,
                     secondaryActionLabel:
                         _canUpgradeCopyToSlab(data, data.copies[index])
@@ -1856,16 +1947,22 @@ class _CopyRow extends StatelessWidget {
   const _CopyRow({
     required this.copy,
     required this.intentSaving,
+    required this.sections,
+    this.busySectionKey,
     this.onTap,
     this.onIntentSelected,
+    this.onToggleSection,
     this.secondaryActionLabel,
     this.onSecondaryAction,
   });
 
   final VaultManageCardCopy copy;
   final bool intentSaving;
+  final List<VaultManageCopySectionMembership> sections;
+  final String? busySectionKey;
   final VoidCallback? onTap;
   final ValueChanged<String>? onIntentSelected;
+  final ValueChanged<VaultManageCopySectionMembership>? onToggleSection;
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
 
@@ -1942,6 +2039,42 @@ class _CopyRow extends StatelessWidget {
               ),
           ],
         ),
+        if (sections.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Text(
+            'Sections',
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.54),
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.18,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: [
+              for (final section in sections)
+                FilterChip(
+                  label: Text(section.name),
+                  selected: section.isMember,
+                  avatar: busySectionKey == '${copy.instanceId}:${section.id}'
+                      ? SizedBox(
+                          width: 14,
+                          height: 14,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: colorScheme.primary,
+                          ),
+                        )
+                      : null,
+                  onSelected: busySectionKey == null && onToggleSection != null
+                      ? (_) => onToggleSection!(section)
+                      : null,
+                ),
+            ],
+          ),
+        ],
         if (metaParts.isNotEmpty) ...[
           const SizedBox(height: 8),
           Text(
