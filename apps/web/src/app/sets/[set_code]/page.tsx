@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
-import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
+import { getPublicSetByCode, getPublicSetCards, getPublicWorldChampionshipDecklist } from "@/lib/publicSets";
 import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
 import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import type { PublicWorldChampionshipDecklist } from "@/lib/publicSets.shared";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -30,6 +32,14 @@ function formatReleaseDate(value?: string) {
   }).format(parsed);
 }
 
+function buildWorldChampionshipDecklistBlurb(decklist: PublicWorldChampionshipDecklist) {
+  const yearLabel = decklist.deck_year ? `${decklist.deck_year} World Championship` : "World Championship";
+  const deckLabel = decklist.deck_name ? `${decklist.deck_name} deck` : "deck";
+  const playerLine = decklist.player_name ? ` Player: ${decklist.player_name}.` : "";
+
+  return `${yearLabel} decks preserve tournament lists from that year's top players. This ${deckLabel} is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.${playerLine}`;
+}
+
 export default async function SetPage({
   params,
 }: {
@@ -49,7 +59,10 @@ export default async function SetPage({
   }
 
   const masterSetStats = await getPublicSetMasterSetStats(setDetail.code, user?.id ?? null);
-  const setLogoPath = (await getSetLogoAssetPathMap([setDetail.code])).get(setDetail.code);
+  const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
+    getSetLogoAssetPathMap([setDetail.code]).then((logos) => logos.get(setDetail.code)),
+    getPublicWorldChampionshipDecklist(setDetail.code),
+  ]);
   const releaseLabel = formatReleaseDate(setDetail.release_date);
   const completionPercent = masterSetStats.completionPercent ?? 0;
   const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
@@ -161,6 +174,75 @@ export default async function SetPage({
           </div>
         </div>
       </section>
+
+      {worldChampionshipDecklist ? (
+        <section className="space-y-5">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="gv-eyebrow">Decklist</p>
+              <h2 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50">
+                60-card decklist
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="gv-metadata-pill">{worldChampionshipDecklist.total_quantity} cards</span>
+              <span className="gv-metadata-pill">{worldChampionshipDecklist.unique_card_count} unique</span>
+            </div>
+          </div>
+
+          <div className="gv-soft-surface overflow-hidden">
+            <div className="border-b border-slate-200/70 px-4 py-4 dark:border-white/[0.08] sm:px-5">
+              <p className="max-w-4xl text-sm font-medium leading-6 text-slate-600 dark:text-slate-300">
+                {buildWorldChampionshipDecklistBlurb(worldChampionshipDecklist)}
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left text-sm">
+                <thead className="bg-slate-50/80 text-[11px] uppercase tracking-[0.16em] text-slate-500 dark:bg-white/[0.03] dark:text-slate-400">
+                  <tr>
+                    <th className="w-16 px-4 py-3 font-bold sm:px-5">Qty</th>
+                    <th className="px-4 py-3 font-bold sm:px-5">Card</th>
+                    <th className="px-4 py-3 font-bold sm:px-5">Original print</th>
+                    <th className="px-4 py-3 font-bold sm:px-5">Deck no.</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200/70 dark:divide-white/[0.08]">
+                  {worldChampionshipDecklist.entries.map((entry) => (
+                    <tr key={entry.gv_id} className="align-top">
+                      <td className="px-4 py-3 text-base font-black text-slate-950 dark:text-slate-50 sm:px-5">
+                        {entry.quantity ?? "—"}
+                      </td>
+                      <td className="px-4 py-3 sm:px-5">
+                        <Link href={`/card/${encodeURIComponent(entry.gv_id)}`} className="font-bold text-slate-950 transition hover:text-slate-700 dark:text-slate-50 dark:hover:text-slate-200">
+                          {entry.name}
+                        </Link>
+                        {entry.rarity ? (
+                          <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            {entry.rarity}
+                          </span>
+                        ) : null}
+                      </td>
+                      <td className="px-4 py-3 font-medium text-slate-600 dark:text-slate-300 sm:px-5">
+                        {entry.source_set_name || entry.source_card_number ? (
+                          <>
+                            {entry.source_set_name ?? "Unknown set"}
+                            {entry.source_card_number ? ` #${entry.source_card_number}` : ""}
+                          </>
+                        ) : (
+                          "—"
+                        )}
+                      </td>
+                      <td className="px-4 py-3 font-mono text-xs font-bold text-slate-500 dark:text-slate-400 sm:px-5">
+                        {entry.number || "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-4">

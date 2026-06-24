@@ -196,6 +196,27 @@ export type PublicSetCard = {
   }>;
 };
 
+export type PublicWorldChampionshipDecklistEntry = {
+  id?: string;
+  gv_id: string;
+  name: string;
+  number: string;
+  quantity: number | null;
+  source_set_name?: string;
+  source_card_number?: string;
+  rarity?: string;
+};
+
+export type PublicWorldChampionshipDecklist = {
+  set_code: string;
+  deck_name?: string;
+  deck_year?: number;
+  player_name?: string;
+  total_quantity: number;
+  unique_card_count: number;
+  entries: PublicWorldChampionshipDecklistEntry[];
+};
+
 export type PublicSetDetail = PublicSetSummary & {
   cards: PublicSetCard[];
 };

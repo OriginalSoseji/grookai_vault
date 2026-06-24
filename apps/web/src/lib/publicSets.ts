@@ -22,6 +22,8 @@ import {
   type PublicSetCard,
   type PublicSetDetail,
   type PublicSetSummary,
+  type PublicWorldChampionshipDecklist,
+  type PublicWorldChampionshipDecklistEntry,
 } from "@/lib/publicSets.shared";
 
 type SetRow = {
@@ -81,6 +83,16 @@ type PublicSetCardRow = {
     | null;
 };
 
+type WorldChampionshipDecklistRow = {
+  id: string | null;
+  gv_id: string | null;
+  name: string | null;
+  number: string | null;
+  number_plain: string | null;
+  rarity: string | null;
+  external_ids: Record<string, unknown> | null;
+};
+
 function createServerSupabase() {
   return createPublicServerClient();
 }
@@ -113,6 +125,31 @@ function getCardPrintingsSelectColumns(
 
 function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
+}
+
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
+function getNestedString(record: Record<string, unknown> | null, key: string) {
+  const value = record?.[key];
+  return typeof value === "string" && value.trim() ? value.trim() : undefined;
+}
+
+function getNestedNumber(record: Record<string, unknown> | null, key: string) {
+  const value = record?.[key];
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+
+  return null;
 }
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -450,6 +487,77 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
 
   return mapPublicSetCardRows(rows);
 });
+
+export const getPublicWorldChampionshipDecklist = cache(
+  async function getPublicWorldChampionshipDecklist(
+    setCode: string,
+  ): Promise<PublicWorldChampionshipDecklist | null> {
+    const normalizedCode = resolvePublicSetRouteCode(setCode);
+    if (!normalizedCode || !normalizedCode.startsWith("wcd")) {
+      return null;
+    }
+
+    const supabase = createServerSupabase();
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select("id,gv_id,name,number,number_plain,rarity,external_ids")
+      .eq("set_code", normalizedCode)
+      .eq("variant_key", "world_championship_deck_replica")
+      .not("gv_id", "is", null)
+      .order("number_plain", { ascending: true, nullsFirst: false })
+      .order("number", { ascending: true })
+      .order("name", { ascending: true });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    const rows = ((data ?? []) as WorldChampionshipDecklistRow[]).filter(
+      (row): row is WorldChampionshipDecklistRow & { gv_id: string } =>
+        Boolean(row.gv_id),
+    );
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    let deckName: string | undefined;
+    let deckYear: number | undefined;
+    let playerName: string | undefined;
+    const entries: PublicWorldChampionshipDecklistEntry[] = rows.map((row) => {
+      const grookai = asRecord(asRecord(row.external_ids)?.grookai);
+      deckName ??= getNestedString(grookai, "deck_name");
+      deckYear ??= getNestedNumber(grookai, "deck_year") ?? undefined;
+      playerName ??= getNestedString(grookai, "player_name");
+
+      return {
+        id: row.id ?? undefined,
+        gv_id: row.gv_id,
+        name: row.name ?? "Unknown",
+        number: row.number ?? "",
+        quantity: getNestedNumber(grookai, "deck_quantity"),
+        source_set_name: getNestedString(grookai, "source_set_name"),
+        source_card_number: getNestedString(grookai, "source_card_number"),
+        rarity: row.rarity ?? undefined,
+      };
+    });
+
+    const totalQuantity = entries.reduce(
+      (sum, entry) => sum + (entry.quantity ?? 0),
+      0,
+    );
+
+    return {
+      set_code: normalizedCode,
+      deck_name: deckName,
+      deck_year: deckYear,
+      player_name: playerName,
+      total_quantity: totalQuantity,
+      unique_card_count: entries.length,
+      entries,
+    };
+  },
+);
 
 function getCardRowSortNumber(row: PublicSetCardRow) {
   const parsed = Number.parseInt(row.number_plain ?? row.number ?? "", 10);
