@@ -106,16 +106,60 @@ class PublicSetMasterSetStats {
   }
 }
 
+class PublicWorldChampionshipDecklistEntry {
+  const PublicWorldChampionshipDecklistEntry({
+    required this.cardPrintId,
+    required this.gvId,
+    required this.name,
+    required this.number,
+    this.quantity,
+    this.sourceSetName,
+    this.sourceCardNumber,
+    this.rarity,
+  });
+
+  final String cardPrintId;
+  final String gvId;
+  final String name;
+  final String number;
+  final int? quantity;
+  final String? sourceSetName;
+  final String? sourceCardNumber;
+  final String? rarity;
+}
+
+class PublicWorldChampionshipDecklist {
+  const PublicWorldChampionshipDecklist({
+    required this.setCode,
+    required this.totalQuantity,
+    required this.uniqueCardCount,
+    required this.entries,
+    this.deckName,
+    this.deckYear,
+    this.playerName,
+  });
+
+  final String setCode;
+  final String? deckName;
+  final int? deckYear;
+  final String? playerName;
+  final int totalQuantity;
+  final int uniqueCardCount;
+  final List<PublicWorldChampionshipDecklistEntry> entries;
+}
+
 class PublicSetDetail {
   const PublicSetDetail({
     required this.summary,
     required this.cards,
     required this.masterSetStats,
+    this.worldChampionshipDecklist,
   });
 
   final PublicSetSummary summary;
   final List<PublicSetCard> cards;
   final PublicSetMasterSetStats masterSetStats;
+  final PublicWorldChampionshipDecklist? worldChampionshipDecklist;
 }
 
 enum PublicSetFilter { all, modern, special, alphabetical, newest, oldest }
@@ -364,6 +408,11 @@ class PublicSetsService {
       setCode: summary.code,
       cardLimit: cardLimit,
     );
+    final worldChampionshipDecklist = await fetchWorldChampionshipDecklist(
+      client: client,
+      setCode: summary.code,
+    );
+
     return PublicSetDetail(
       summary: summary,
       cards: cards,
@@ -371,6 +420,86 @@ class PublicSetsService {
         cards: cards,
         signedIn: _cleanText(client.auth.currentUser?.id).isNotEmpty,
       ),
+      worldChampionshipDecklist: worldChampionshipDecklist,
+    );
+  }
+
+  static Future<PublicWorldChampionshipDecklist?>
+  fetchWorldChampionshipDecklist({
+    required SupabaseClient client,
+    required String setCode,
+  }) async {
+    final normalizedCode = _normalizeCode(setCode);
+    if (normalizedCode.isEmpty || !normalizedCode.startsWith('wcd')) {
+      return null;
+    }
+
+    final rows = await client
+        .from('card_prints')
+        .select('id,gv_id,name,number,number_plain,rarity,external_ids')
+        .eq('set_code', normalizedCode)
+        .eq('variant_key', 'world_championship_deck_replica')
+        .not('gv_id', 'is', null)
+        .order('number_plain', ascending: true, nullsFirst: false)
+        .order('number', ascending: true)
+        .order('name', ascending: true);
+
+    final entries = <PublicWorldChampionshipDecklistEntry>[];
+    String? deckName;
+    int? deckYear;
+    String? playerName;
+
+    for (final raw in rows as List<dynamic>) {
+      final row = Map<String, dynamic>.from(raw as Map);
+      final cardPrintId = _cleanText(row['id']);
+      final gvId = _cleanText(row['gv_id']);
+      if (cardPrintId.isEmpty || gvId.isEmpty) {
+        continue;
+      }
+
+      final grookai = _nestedRecord(
+        _nestedRecord(row['external_ids'])?['grookai'],
+      );
+      deckName ??= _normalizeOptionalText(grookai?['deck_name']);
+      deckYear ??= _nullableInt(grookai?['deck_year']);
+      playerName ??= _normalizeOptionalText(grookai?['player_name']);
+
+      final number = _cleanText(row['number_plain']).isNotEmpty
+          ? _cleanText(row['number_plain'])
+          : _cleanText(row['number']);
+      entries.add(
+        PublicWorldChampionshipDecklistEntry(
+          cardPrintId: cardPrintId,
+          gvId: gvId,
+          name: _cleanText(row['name']).isEmpty
+              ? 'Unknown card'
+              : _cleanText(row['name']),
+          number: number.isEmpty ? '—' : number,
+          quantity: _nullableInt(grookai?['deck_quantity']),
+          sourceSetName: _normalizeOptionalText(grookai?['source_set_name']),
+          sourceCardNumber: _normalizeOptionalText(
+            grookai?['source_card_number'],
+          ),
+          rarity: _normalizeOptionalText(row['rarity']),
+        ),
+      );
+    }
+
+    if (entries.isEmpty) {
+      return null;
+    }
+
+    return PublicWorldChampionshipDecklist(
+      setCode: normalizedCode,
+      deckName: deckName,
+      deckYear: deckYear,
+      playerName: playerName,
+      totalQuantity: entries.fold<int>(
+        0,
+        (sum, entry) => sum + (entry.quantity ?? 0),
+      ),
+      uniqueCardCount: entries.length,
+      entries: entries,
     );
   }
 
@@ -667,6 +796,13 @@ class PublicSetsService {
     return null;
   }
 
+  static Map<String, dynamic>? _nestedRecord(dynamic value) {
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
+    }
+    return null;
+  }
+
   static String? _finishLabel({String? finishKey, String? finishLabel}) {
     switch (_cleanText(finishKey).toLowerCase()) {
       case 'normal':
@@ -712,6 +848,13 @@ class PublicSetsService {
       return value.toInt();
     }
     return int.tryParse(_cleanText(value)) ?? fallback;
+  }
+
+  static int? _nullableInt(dynamic value) {
+    if (value is num) {
+      return value.toInt();
+    }
+    return int.tryParse(_cleanText(value));
   }
 
   static PublicSetSummary _chooseCanonicalSet(
