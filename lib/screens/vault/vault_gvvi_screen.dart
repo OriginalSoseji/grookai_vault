@@ -65,6 +65,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   bool _loading = true;
   bool _savingNotes = false;
   bool _savingIntent = false;
+  bool _creatingSection = false;
   String? _busySectionId;
   bool _busyFrontMedia = false;
   bool _busyBackMedia = false;
@@ -473,6 +474,92 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     }
   }
 
+  Future<void> _createAndAssignSection() async {
+    final data = _data;
+    if (data == null ||
+        data.isArchived ||
+        _creatingSection ||
+        _busySectionId != null) {
+      return;
+    }
+
+    final controller = TextEditingController();
+    final name = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Create section'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textInputAction: TextInputAction.done,
+          decoration: const InputDecoration(hintText: 'Section name'),
+          onSubmitted: (value) => Navigator.of(dialogContext).pop(value),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () =>
+                Navigator.of(dialogContext).pop(controller.text.trim()),
+            child: const Text('Create section'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+
+    final normalizedName = (name ?? '').trim();
+    if (normalizedName.isEmpty || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _creatingSection = true;
+      _status = null;
+    });
+
+    try {
+      final section = await VaultGvviService.createSection(
+        client: _client,
+        name: normalizedName,
+      );
+      await VaultGvviService.assignSectionMembership(
+        client: _client,
+        instanceId: data.instanceId,
+        sectionId: section.id,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _sectionMemberships =
+            [
+              ..._sectionMemberships.where(
+                (current) => current.id != section.id,
+              ),
+              section.copyWith(isMember: true),
+            ]..sort((left, right) {
+              final byPosition = left.position.compareTo(right.position);
+              return byPosition != 0
+                  ? byPosition
+                  : left.name.compareTo(right.name);
+            });
+        _creatingSection = false;
+        _status = 'Section created and copy added.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _creatingSection = false;
+        _status = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
   Future<void> _pickMedia(GvviImageSide side) async {
     final data = _data;
     final userId = _client.auth.currentUser?.id;
@@ -713,7 +800,9 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     child: _VaultSectionMembershipSurface(
                       sections: _sectionMemberships,
                       busySectionId: _busySectionId,
+                      creatingSection: _creatingSection,
                       onToggleSection: _toggleSectionMembership,
+                      onCreateSection: _createAndAssignSection,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -1388,13 +1477,17 @@ class _VaultSectionMembershipSurface extends StatelessWidget {
   const _VaultSectionMembershipSurface({
     required this.sections,
     required this.busySectionId,
+    required this.creatingSection,
     required this.onToggleSection,
+    required this.onCreateSection,
   });
 
   final List<VaultGvviSectionMembership> sections;
   final String? busySectionId;
+  final bool creatingSection;
   final Future<void> Function(VaultGvviSectionMembership section)
   onToggleSection;
+  final VoidCallback onCreateSection;
 
   @override
   Widget build(BuildContext context) {
@@ -1402,37 +1495,79 @@ class _VaultSectionMembershipSurface extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     if (sections.isEmpty) {
-      return Text(
-        'Not in any sections yet.',
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: colorScheme.onSurface.withValues(alpha: 0.62),
-          height: 1.35,
-        ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Not in any sections yet.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 10),
+          FilledButton.icon(
+            onPressed: creatingSection ? null : onCreateSection,
+            icon: creatingSection
+                ? SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.onPrimary,
+                    ),
+                  )
+                : const Icon(Icons.add),
+            label: Text(creatingSection ? 'Creating...' : 'Create section'),
+          ),
+        ],
       );
     }
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (final section in sections)
-          FilterChip(
-            label: Text(section.name),
-            selected: section.isMember,
-            avatar: busySectionId == section.id
-                ? SizedBox(
-                    width: 14,
-                    height: 14,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: colorScheme.primary,
-                    ),
-                  )
-                : null,
-            onSelected: busySectionId == null
-                ? (_) => unawaited(onToggleSection(section))
-                : null,
-          ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final section in sections)
+              FilterChip(
+                label: Text(section.name),
+                selected: section.isMember,
+                avatar: busySectionId == section.id
+                    ? SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: colorScheme.primary,
+                        ),
+                      )
+                    : null,
+                onSelected: busySectionId == null && !creatingSection
+                    ? (_) => unawaited(onToggleSection(section))
+                    : null,
+              ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          onPressed: creatingSection || busySectionId != null
+              ? null
+              : onCreateSection,
+          icon: creatingSection
+              ? SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: colorScheme.primary,
+                  ),
+                )
+              : const Icon(Icons.add),
+          label: Text(creatingSection ? 'Creating...' : 'Create section'),
+        ),
       ],
     );
   }
