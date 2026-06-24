@@ -131,6 +131,15 @@ function familyForRow(row) {
   return 'other';
 }
 
+function isTcgPocketExcludedRow(row) {
+  const gvId = clean(row.gv_id ?? row.parent_gv_id ?? row.printing_gv_id)?.toUpperCase() ?? '';
+  const identityDomain = clean(row.identity_domain)?.toLowerCase() ?? '';
+  const setDomain = clean(row.set_domain)?.toLowerCase() ?? '';
+  return gvId.startsWith('GV-TCGP-')
+    || identityDomain === 'tcg_pocket_excluded'
+    || setDomain === 'tcg_pocket';
+}
+
 function deckQuantity(row) {
   const direct = Number.parseInt(row.deck_quantity ?? '0', 10);
   if (Number.isFinite(direct) && direct > 0) return direct;
@@ -197,6 +206,8 @@ async function main() {
         cp.representative_image_url,
         cp.image_status,
         cp.image_note,
+        cp.identity_domain,
+        s.source->>'domain' as set_domain,
         cp.external_ids,
         cp.external_ids->'grookai'->>'deck_quantity' as deck_quantity
       from public.card_prints cp
@@ -224,7 +235,9 @@ async function main() {
         cp.image_source as parent_image_source,
         cp.image_path as parent_image_path,
         cp.image_status as parent_image_status,
-        cp.image_note as parent_image_note
+        cp.image_note as parent_image_note,
+        cp.identity_domain,
+        s.source->>'domain' as set_domain
       from public.card_printings cpg
       join public.card_prints cp on cp.id = cpg.card_print_id
       left join public.sets s on s.code = cp.set_code
@@ -252,6 +265,10 @@ async function main() {
   const childRowsWithoutImage = childRows.filter((row) => !hasAnyImageField(row));
   const parentWeakStatusRows = parentRows.filter((row) => isWeakStatus(row.image_status));
   const childWeakStatusRows = childRows.filter((row) => isWeakStatus(row.image_status));
+  const tcgPocketExcludedParents = parentRows.filter(isTcgPocketExcludedRow);
+  const englishPhysicalParents = parentRows.filter((row) => !isTcgPocketExcludedRow(row));
+  const englishPhysicalParentGaps = englishPhysicalParents.filter((row) => !hasAnyImageField(row));
+  const tcgPocketExcludedParentGaps = tcgPocketExcludedParents.filter((row) => !hasAnyImageField(row));
 
   const priorityParents = parentRows.filter((row) => familyForRow(row) !== 'other');
   const priorityChildren = childRows.filter((row) => familyForRow(row) !== 'other');
@@ -277,6 +294,10 @@ async function main() {
     parent_rows_with_self_hosted_image_path: parentRowsWithSelfHostedPath.length,
     parent_rows_without_any_image_field: parentRowsWithoutImage.length,
     parent_weak_status_rows: parentWeakStatusRows.length,
+    english_physical_parent_rows: englishPhysicalParents.length,
+    english_physical_parent_rows_without_any_image_field: englishPhysicalParentGaps.length,
+    tcg_pocket_excluded_parent_rows: tcgPocketExcludedParents.length,
+    tcg_pocket_excluded_parent_rows_without_any_image_field: tcgPocketExcludedParentGaps.length,
     child_rows_scanned: childRows.length,
     child_rows_with_any_image_field: childRowsWithImage.length,
     child_rows_with_self_hosted_image_path: childRowsWithSelfHostedPath.length,
@@ -317,7 +338,10 @@ async function main() {
     child_image_source_counts: countBy(childRows, (row) => row.image_source),
     parent_family_counts: countBy(parentRows, familyForRow),
     child_family_counts: countBy(childRows, familyForRow),
+    parent_gap_scope_counts: countBy(parentRowsWithoutImage, (row) => (isTcgPocketExcludedRow(row) ? 'tcg_pocket_excluded' : 'english_physical')),
     parent_gap_sets_top_50: topEntries(countBy(parentRowsWithoutImage, (row) => row.set_code), 50),
+    english_physical_parent_gap_sets_top_50: topEntries(countBy(englishPhysicalParentGaps, (row) => row.set_code), 50),
+    tcg_pocket_excluded_parent_gap_sets_top_50: topEntries(countBy(tcgPocketExcludedParentGaps, (row) => row.set_code), 50),
     child_gap_sets_top_50: topEntries(countBy(childRowsWithoutImage, (row) => row.set_code), 50),
     priority_parent_gap_sets_top_50: topEntries(countBy(priorityParentGaps, (row) => row.set_code), 50),
     priority_child_gap_sets_top_50: topEntries(countBy(priorityChildGaps, (row) => row.set_code), 50),
@@ -327,6 +351,8 @@ async function main() {
     world_championship_gap_sets_top_50: topEntries(countBy(worldParents.filter((row) => !hasAnyImageField(row)), (row) => row.set_code), 50),
     samples: {
       parent_rows_without_any_image_field: sampleRows(parentRowsWithoutImage),
+      english_physical_parent_rows_without_any_image_field: sampleRows(englishPhysicalParentGaps),
+      tcg_pocket_excluded_parent_rows_without_any_image_field: sampleRows(tcgPocketExcludedParentGaps),
       child_rows_without_any_image_field: sampleRows(childRowsWithoutImage),
       priority_parent_rows_without_any_image_field: sampleRows(priorityParentGaps),
       priority_child_rows_without_any_image_field: sampleRows(priorityChildGaps),
@@ -371,6 +397,10 @@ async function main() {
 - Parent rows with self-hosted image_path: ${metrics.parent_rows_with_self_hosted_image_path}
 - Parent rows without any image field: ${metrics.parent_rows_without_any_image_field}
 - Parent weak-status rows: ${metrics.parent_weak_status_rows}
+- English physical parent rows: ${metrics.english_physical_parent_rows}
+- English physical parent image gaps: ${metrics.english_physical_parent_rows_without_any_image_field}
+- TCG Pocket excluded parent rows: ${metrics.tcg_pocket_excluded_parent_rows}
+- TCG Pocket excluded parent image gaps: ${metrics.tcg_pocket_excluded_parent_rows_without_any_image_field}
 - Child rows scanned: ${metrics.child_rows_scanned}
 - Child rows with any image field: ${metrics.child_rows_with_any_image_field}
 - Child rows with self-hosted image_path: ${metrics.child_rows_with_self_hosted_image_path}
@@ -415,6 +445,18 @@ ${markdownTable(topEntries(summary.child_image_status_counts))}
 ## Parent Gap Sets
 
 ${markdownTable(summary.parent_gap_sets_top_50)}
+
+## Parent Gap Scope
+
+${markdownTable(topEntries(summary.parent_gap_scope_counts))}
+
+## English Physical Parent Gap Sets
+
+${markdownTable(summary.english_physical_parent_gap_sets_top_50)}
+
+## TCG Pocket Excluded Parent Gap Sets
+
+${markdownTable(summary.tcg_pocket_excluded_parent_gap_sets_top_50)}
 
 ## Child Gap Sets
 

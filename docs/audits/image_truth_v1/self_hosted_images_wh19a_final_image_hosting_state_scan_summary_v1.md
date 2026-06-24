@@ -1,8 +1,8 @@
 # IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
 
-- Generated: 2026-06-24T18:02:48.995Z
+- Generated: 2026-06-24T18:06:12.183Z
 - Mode: read_only_final_state_scan_no_write
-- Fingerprint: `16345f3c6133b39d38ccb44ab9109b96adc694b850f1d185e9aff9d48ad236cd`
+- Fingerprint: `0c6104f997623cf82f28183e2d0773124d0264927e8d61b5642cd2e14b136e85`
 - Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
 - DB writes performed: false
 - Storage writes performed: false
@@ -17,6 +17,10 @@
 - Parent rows with self-hosted image_path: 27192
 - Parent rows without any image field: 27
 - Parent weak-status rows: 473
+- English physical parent rows: 25254
+- English physical parent image gaps: 0
+- TCG Pocket excluded parent rows: 2012
+- TCG Pocket excluded parent image gaps: 27
 - Child rows scanned: 44137
 - Child rows with any image field: 1058
 - Child rows with self-hosted image_path: 390
@@ -72,6 +76,22 @@
 | exact_parent_image | 5 |
 
 ## Parent Gap Sets
+
+| key | count |
+| --- | ---: |
+| unknown | 27 |
+
+## Parent Gap Scope
+
+| key | count |
+| --- | ---: |
+| tcg_pocket_excluded | 27 |
+
+## English Physical Parent Gap Sets
+
+_None._
+
+## TCG Pocket Excluded Parent Gap Sets
 
 | key | count |
 | --- | ---: |
