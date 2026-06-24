@@ -18,6 +18,12 @@ void main() {
   final pageSource = File(
     'apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx',
   ).readAsStringSync();
+  final groupedCardPageSource = File(
+    'apps/web/src/app/vault/card/[cardId]/page.tsx',
+  ).readAsStringSync();
+  final groupedCopyControlsSource = File(
+    'apps/web/src/components/vault/VaultManageCopyCurationControls.tsx',
+  ).readAsStringSync();
   final migrationSource = File(
     'supabase/migrations/20260422133000_wall_sections_data_model_v1.sql',
   ).readAsStringSync();
@@ -104,6 +110,38 @@ void main() {
     expect(componentSource, contains('Wall visibility follows copy intent'));
     expect(componentSource, contains('Create section'));
     expect(componentSource, isNot(contains('/section/')));
+  });
+
+  test('grouped card copy rows expose exact-copy membership UI only', () {
+    expect(
+      groupedCardPageSource,
+      contains('getOwnerWallSectionMemberships(user.id, copy.instance_id)'),
+    );
+    expect(groupedCardPageSource, contains('VaultManageCopyCurationControls'));
+    expect(groupedCardPageSource, contains('instanceId={copy.instance_id}'));
+    expect(groupedCardPageSource, contains('initialIntent={copy.intent}'));
+    expect(
+      groupedCopyControlsSource,
+      contains('Grouped card row curation is exact-copy only'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('saveVaultItemInstanceIntentAction'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('assignWallSectionMembershipAction'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      contains('removeWallSectionMembershipAction'),
+    );
+    expect(
+      groupedCopyControlsSource,
+      isNot(contains('saveSharedCardWallCategoryAction')),
+    );
+    expect(groupedCopyControlsSource, isNot(contains('shared_cards')));
+    expect(groupedCopyControlsSource, isNot(contains('legacy_vault_item_id')));
   });
 
   test('actions revalidate owner readback surfaces', () {

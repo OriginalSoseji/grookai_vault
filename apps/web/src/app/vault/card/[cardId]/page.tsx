@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
+import VaultManageCopyCurationControls from "@/components/vault/VaultManageCopyCurationControls";
 import VaultManageCardSettingsPanel from "@/components/vault/VaultManageCardSettingsPanel";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import PageSection from "@/components/layout/PageSection";
@@ -26,6 +27,7 @@ import {
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getOwnerVaultItems } from "@/lib/vault/getOwnerVaultItems";
+import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -74,6 +76,13 @@ export default async function VaultManageCardPage({
     activeMessageCount: item.active_message_count,
   });
   const displayIdentity = resolveDisplayIdentity(item);
+  const sectionMembershipEntries = await Promise.all(
+    item.copy_items.map(async (copy) => [
+      copy.instance_id,
+      await getOwnerWallSectionMemberships(user.id, copy.instance_id),
+    ] as const),
+  );
+  const sectionMembershipByInstanceId = new Map(sectionMembershipEntries);
 
   return (
     <>
@@ -197,7 +206,7 @@ export default async function VaultManageCardPage({
           </PageSection>
         ) : null}
 
-        {/* LOCK: Grouped card pages must not expose Wall or Section write actions. */}
+        {/* LOCK: Grouped card pages may expose curation only inside exact-copy rows. */}
         <VaultManageCardSettingsPanel
           item={item}
           publicCollectionHref={item.in_play_count > 0 ? publicCollectionHref : null}
@@ -261,6 +270,18 @@ export default async function VaultManageCardPage({
                         />
                       </div>
                     </div>
+                    <VaultManageCopyCurationControls
+                      instanceId={copy.instance_id}
+                      initialIntent={copy.intent}
+                      membershipModel={
+                        sectionMembershipByInstanceId.get(copy.instance_id) ?? {
+                          instanceId: copy.instance_id,
+                          sections: [],
+                          loadError: "Section assignments could not be loaded.",
+                        }
+                      }
+                      isActive
+                    />
                   </VaultInsetCard>
                 );
               })}
