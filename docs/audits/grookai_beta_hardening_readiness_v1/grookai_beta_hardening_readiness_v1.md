@@ -1,11 +1,11 @@
 # GROOKAI_BETA_HARDENING_READINESS_V1
 
-Generated: 2026-06-24T19:58:37.002Z
+Generated: 2026-06-24T20:30:32.144Z
 
 ## Summary
 
-- Launch posture: not_ready_until_blockers_clear
-- Top blocker: World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.
+- Launch posture: beta_ready_with_ranked_followups
+- Top blocker: No launch blockers remain in the current evidence set.
 - Mode: read_only_repo_artifact_consolidation_no_db_no_storage_no_migration_no_pricing_no_ai
 
 ## Scope
@@ -26,7 +26,6 @@ Generated: 2026-06-24T19:58:37.002Z
 
 ## Launch Blockers
 
-1. P1 beta blocker - World Championship production parity: needs_live_production_smoke. World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.
 
 ## Followups
 
@@ -59,4 +58,4 @@ Generated: 2026-06-24T19:58:37.002Z
 ## Verification
 
 - Contract command run outside this report: `node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs`
-- Report fingerprint: d493f2ad55be5472c0d4cf4cfd22d70d058959d7f6e6a770f47bf4117a58ef62
+- Report fingerprint: 022f688d9aedfd279361d7abd58bba2b906a9ce74ab2f626af5e6b812eaed307

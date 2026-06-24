@@ -1,6 +1,6 @@
 {
   "package_id": "GROOKAI_BETA_HARDENING_READINESS_V1",
-  "generated_at": "2026-06-24T19:58:37.002Z",
+  "generated_at": "2026-06-24T20:30:32.144Z",
   "mode": "read_only_repo_artifact_consolidation_no_db_no_storage_no_migration_no_pricing_no_ai",
   "explicit_non_scope": [
     "db_writes",
@@ -27,8 +27,8 @@
     "mobileVariantOrigin": "lib/services/identity/variant_origin_public_copy_generated.dart"
   },
   "summary": {
-    "launch_posture": "not_ready_until_blockers_clear",
-    "top_blocker": "World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.",
+    "launch_posture": "beta_ready_with_ranked_followups",
+    "top_blocker": "No launch blockers remain in the current evidence set.",
     "cleared_checks": [
       "Live sampled image runtime smoke is clear for 11 routes on https://grookaivault.com.",
       "Non-empty live curated fallback scan is clear for Dex, card detail, and set detail.",
@@ -133,10 +133,7 @@
       "world_championship_live_base_url": "https://grookaivault.com",
       "world_championship_live_routes_checked": 5,
       "world_championship_live_redirects_checked": 4,
-      "world_championship_live_failures": [
-        "route:card_magma_spirit_groudon",
-        "route:card_pikarom_pikachu_zekrom"
-      ]
+      "world_championship_live_failures": []
     },
     "base_set_print_run_lanes": {
       "status": "representative_pointer_gap_closed",
@@ -155,19 +152,7 @@
       "representative_parent_rows": 1558
     }
   },
-  "launch_blockers_ranked": [
-    {
-      "rank": 1,
-      "severity": "P1 beta blocker",
-      "lane": "World Championship production parity",
-      "status": "needs_live_production_smoke",
-      "finding": "World Championship live production smoke still fails: sampled WCD card pages serialize TCGdex fallbackSrc despite self-hosted primary images.",
-      "evidence": [
-        "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json",
-        "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json"
-      ]
-    }
-  ],
+  "launch_blockers_ranked": [],
   "followups_ranked": [
     {
       "rank": 1,
@@ -198,5 +183,5 @@
     "migrations_created_by_this_audit": false,
     "ai_model_calls_performed_by_this_audit": false
   },
-  "fingerprint": "d493f2ad55be5472c0d4cf4cfd22d70d058959d7f6e6a770f47bf4117a58ef62"
+  "fingerprint": "022f688d9aedfd279361d7abd58bba2b906a9ce74ab2f626af5e6b812eaed307"
 }

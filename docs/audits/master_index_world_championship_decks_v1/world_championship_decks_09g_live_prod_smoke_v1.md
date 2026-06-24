@@ -1,10 +1,10 @@
 # MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09G-LIVE-PROD-SMOKE
 
-- Generated: 2026-06-24T19:58:24.265Z
+- Generated: 2026-06-24T20:30:19.344Z
 - Mode: read_only_live_production_http_smoke_no_db_no_storage_no_migration
 - Base URL: `https://grookaivault.com`
-- Failures: 2
-- Proof hash: `9cfd2fe9c2b7231659d819b1d0af066d79040f50f36099a3b5656844b5e7a939`
+- Failures: 0
+- Proof hash: `ce3d97fff7c55940919177e294e72d4f497097609aab89368faf433d8f033f59`
 - DB writes performed: false
 - Storage writes performed: false
 - Migrations created: false
@@ -16,8 +16,8 @@
 | set_magma_spirit | 200 | PASS | none | none |
 | set_pikarom_judge | 200 | PASS | none | none |
 | set_pult_bomb | 200 | PASS | none | none |
-| card_magma_spirit_groudon | 200 | FAIL | none | assets.tcgdex.net |
-| card_pikarom_pikachu_zekrom | 200 | FAIL | none | assets.tcgdex.net |
+| card_magma_spirit_groudon | 200 | PASS | none | none |
+| card_pikarom_pikachu_zekrom | 200 | PASS | none | none |
 
 ## Runtime Redirects
 
