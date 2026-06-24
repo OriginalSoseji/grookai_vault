@@ -69,6 +69,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   CardSurfacePricingData? _pricing;
   bool _loading = true;
   bool _intentSaving = false;
+  String? _copyIntentSavingId;
   bool _noteSaving = false;
   bool _priceSaving = false;
   _ManageCardPriceMode _selectedPriceMode = _ManageCardPriceMode.grookai;
@@ -495,6 +496,94 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           _intentSaving = false;
         });
       }
+    }
+  }
+
+  Future<void> _saveCopyIntent(
+    VaultManageCardCopy copy,
+    String nextIntent,
+  ) async {
+    final data = _data;
+    final normalizedNextIntent = normalizeVaultIntentValue(nextIntent);
+    if (data == null ||
+        _copyIntentSavingId != null ||
+        normalizedNextIntent == copy.intent) {
+      return;
+    }
+
+    setState(() {
+      _copyIntentSavingId = copy.instanceId;
+      _statusMessage = null;
+    });
+
+    try {
+      final savedIntent = await VaultCardService.saveVaultItemInstanceIntent(
+        client: _client,
+        instanceId: copy.instanceId,
+        intent: normalizedNextIntent,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      final updatedCopies = data.copies
+          .map(
+            (current) => current.instanceId == copy.instanceId
+                ? current.copyWith(intent: savedIntent)
+                : current,
+          )
+          .toList(growable: false);
+
+      setState(() {
+        _data = VaultManageCardData(
+          vaultItemId: data.vaultItemId,
+          cardPrintId: data.cardPrintId,
+          gvId: data.gvId,
+          name: data.name,
+          setName: data.setName,
+          setCode: data.setCode,
+          number: data.number,
+          rarity: data.rarity,
+          imageUrl: data.imageUrl,
+          canonicalImageUrl: data.canonicalImageUrl,
+          representativeImageUrl: data.representativeImageUrl,
+          imageStatus: data.imageStatus,
+          imageNote: data.imageNote,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
+          totalCopies: data.totalCopies,
+          rawCount: data.rawCount,
+          slabCount: data.slabCount,
+          inPlayCount: updatedCopies
+              .where((current) => current.intent != 'hold')
+              .length,
+          intent: _deriveCardIntent(updatedCopies),
+          isShared: data.isShared,
+          wallCategory: data.wallCategory,
+          publicNote: data.publicNote,
+          publicSlug: data.publicSlug,
+          priceDisplayMode: data.priceDisplayMode,
+          primarySharedGvviId: data.primarySharedGvviId,
+          askingPriceAmount: data.askingPriceAmount,
+          askingPriceCurrency: data.askingPriceCurrency,
+          publicProfileEnabled: data.publicProfileEnabled,
+          vaultSharingEnabled: data.vaultSharingEnabled,
+          copies: updatedCopies,
+        );
+        _copyIntentSavingId = null;
+        _statusMessage = 'Copy intent saved.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _copyIntentSavingId = null;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
     }
   }
 
@@ -956,9 +1045,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             children: [
               Expanded(
                 child: _ManageStatusTile(
-                  label: 'Wall',
-                  value: data.isShared ? 'On Wall' : 'Private',
-                  tone: data.isShared
+                  label: 'Public copies',
+                  value: data.inPlayCount > 0
+                      ? '${data.inPlayCount} public'
+                      : 'Private',
+                  tone: data.inPlayCount > 0
                       ? colorScheme.primary
                       : colorScheme.onSurface.withValues(alpha: 0.64),
                 ),
@@ -1035,7 +1126,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           icon: const Icon(Icons.visibility_outlined),
           label: const Text('View card'),
         ),
-        if (data.canViewWall)
+        if (_canOpenWall(data))
           OutlinedButton.icon(
             onPressed: _openWall,
             style: OutlinedButton.styleFrom(
@@ -1349,9 +1440,15 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                 for (var index = 0; index < data.copies.length; index++) ...[
                   _CopyRow(
                     copy: data.copies[index],
+                    intentSaving:
+                        _copyIntentSavingId == data.copies[index].instanceId,
                     onTap: (data.copies[index].gvviId ?? '').trim().isEmpty
                         ? null
                         : () => _openExactCopy(data.copies[index]),
+                    onIntentSelected: _copyIntentSavingId == null
+                        ? (intent) =>
+                              _saveCopyIntent(data.copies[index], intent)
+                        : null,
                     secondaryActionLabel:
                         _canUpgradeCopyToSlab(data, data.copies[index])
                         ? 'Upgrade to Slab'
@@ -1372,7 +1469,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   }
 
   String _presentationLabel(VaultManageCardData data) {
-    if (!data.isShared) {
+    if (data.inPlayCount == 0) {
       return 'Private';
     }
 
@@ -1384,7 +1481,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       case 'showcase':
         return 'Showcase';
       default:
-        return data.inPlayCount > 0 ? 'Public' : 'Private';
+        return 'Mixed';
     }
   }
 
@@ -1403,19 +1500,40 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
   String _intentRelationshipText(VaultManageCardData data) {
     final intentLabel = getVaultIntentLabel(data.intent);
-    if (!data.isShared) {
-      return data.intent == 'hold'
-          ? 'Choose how you want to use this card.'
-          : '$intentLabel is ready when you want to make it public.';
+    if (data.inPlayCount == 0) {
+      return 'Choose how you want to use this card.';
+    }
+
+    if (!data.publicProfileEnabled || !data.vaultSharingEnabled) {
+      return '$intentLabel is saved, but public profile sharing is off.';
     }
 
     if (data.intent == 'hold') {
-      return data.inPlayCount > 0
-          ? 'This card is private here, while some copies below are public to collectors.'
-          : 'Private in the collector network.';
+      return '${data.inPlayCount} exact copies are public to collectors.';
     }
 
     return '$intentLabel is public to collectors.';
+  }
+
+  bool _canOpenWall(VaultManageCardData data) {
+    return data.inPlayCount > 0 &&
+        (data.publicSlug?.isNotEmpty ?? false) &&
+        data.publicProfileEnabled &&
+        data.vaultSharingEnabled;
+  }
+
+  String _deriveCardIntent(List<VaultManageCardCopy> copies) {
+    final discoverableIntents = copies
+        .map((copy) => normalizeDiscoverableVaultIntentValue(copy.intent))
+        .whereType<String>()
+        .toSet()
+        .toList();
+
+    if (discoverableIntents.length == 1) {
+      return discoverableIntents.first;
+    }
+
+    return 'hold';
   }
 
   String _formatRarity(String raw) {
@@ -1737,13 +1855,17 @@ class _ManageStatusTile extends StatelessWidget {
 class _CopyRow extends StatelessWidget {
   const _CopyRow({
     required this.copy,
+    required this.intentSaving,
     this.onTap,
+    this.onIntentSelected,
     this.secondaryActionLabel,
     this.onSecondaryAction,
   });
 
   final VaultManageCardCopy copy;
+  final bool intentSaving;
   final VoidCallback? onTap;
+  final ValueChanged<String>? onIntentSelected;
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
 
@@ -1780,6 +1902,17 @@ class _CopyRow extends StatelessWidget {
                 Icons.chevron_right_rounded,
                 color: colorScheme.onSurface.withValues(alpha: 0.38),
               ),
+            if (intentSaving) ...[
+              const SizedBox(width: 8),
+              SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: colorScheme.primary,
+                ),
+              ),
+            ],
           ],
         ),
         const SizedBox(height: 8),
@@ -1791,6 +1924,22 @@ class _CopyRow extends StatelessWidget {
             _InlineTag(label: copy.conditionLabel),
             if ((copy.certNumber ?? '').isNotEmpty)
               _InlineTag(label: copy.certNumber!),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final option in kVaultIntentOptions)
+              ChoiceChip(
+                label: Text(option.label),
+                selected:
+                    normalizeVaultIntentValue(copy.intent) == option.value,
+                onSelected: intentSaving || onIntentSelected == null
+                    ? null
+                    : (_) => onIntentSelected!(option.value),
+              ),
           ],
         ),
         if (metaParts.isNotEmpty) ...[
