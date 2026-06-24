@@ -1,0 +1,63 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V2_WISHLIST_LIVE_SMOKE_V1",
+  "status": "PASS",
+  "viewer_slug": "imnotcesar",
+  "function_exists": true,
+  "grants": {
+    "authenticated_execute": true,
+    "anon_execute": false,
+    "public_execute": false
+  },
+  "baseline_row_count": 4,
+  "baseline_wishlist_match_count": 0,
+  "candidate": {
+    "feed_item_id": "e715bb9af497abaaabfffc7cfc776d26",
+    "owner_slug": "pokejavi",
+    "gv_id": "GV-PK-PFL-098",
+    "card_name": "Piplup",
+    "source_type": "showcase",
+    "intent": "showcase",
+    "distance_bucket": "nearby",
+    "relationship_context": "following",
+    "already_matched_before_fixture": false
+  },
+  "fixture": {
+    "existing_wishlist_rows_for_candidate": 0,
+    "wishlist_rows_for_candidate_inside_transaction": 1
+  },
+  "post_fixture_row_count": 4,
+  "post_fixture_wishlist_match_count": 2,
+  "selected_row_matched": true,
+  "selected_match_reason": "viewer_wishlist",
+  "columns": [
+    "feed_item_id",
+    "source_type",
+    "owner_slug",
+    "owner_display_name",
+    "owner_avatar_path",
+    "gv_id",
+    "card_name",
+    "set_code",
+    "set_name",
+    "card_number",
+    "intent",
+    "image_url",
+    "display_image_kind",
+    "locality_label",
+    "distance_bucket",
+    "relationship_context",
+    "viewer_wishlist_match",
+    "match_reason",
+    "created_at",
+    "route_target"
+  ],
+  "forbidden_columns": [],
+  "uuid_like_public_value": null,
+  "no_raw_user_ids_exposed": true,
+  "no_exact_location_exposed": true,
+  "no_private_wishlist_data_exposed": true,
+  "rollback_verification": {
+    "proof_note_rows": 0
+  },
+  "no_persistent_write_confirmation": true
+}
