@@ -19,4 +19,20 @@ void main() {
 
     expect(copy, isNull);
   });
+
+  test('returns family-level promo origin copy without source URLs', () {
+    final copy = getVariantOriginPublicCopy(gvId: 'GV-PK-PR-10');
+
+    expect(copy, isNotNull);
+    expect(copy!.familyLabel, 'Wizards Black Star Promo');
+    expect(copy.whyItExists, contains('promotional checklist'));
+    expect(copy.grookaiRule, contains('does not assert exact distribution origin'));
+    expect(copy.sourceUrls, isEmpty);
+  });
+
+  test('excludes promo rows that still need manual source review', () {
+    final copy = getVariantOriginPublicCopy(gvId: 'GV-PK-PR-BLW-BW04');
+
+    expect(copy, isNull);
+  });
 }
