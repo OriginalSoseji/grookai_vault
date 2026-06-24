@@ -1,6 +1,6 @@
 {
   "package_id": "GROOKAI_BETA_HARDENING_READINESS_V1",
-  "generated_at": "2026-06-24T20:30:32.144Z",
+  "generated_at": "2026-06-24T21:53:08.482Z",
   "mode": "read_only_repo_artifact_consolidation_no_db_no_storage_no_migration_no_pricing_no_ai",
   "explicit_non_scope": [
     "db_writes",
@@ -23,6 +23,8 @@
     "worldChampSmoke": "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09f_runtime_search_smoke_v1.json",
     "worldChampLiveSmoke": "docs/audits/master_index_world_championship_decks_v1/world_championship_decks_09g_live_prod_smoke_v1.json",
     "curatedFallbackLiveScan": "docs/audits/image_truth_v1/image_truth_img24a_curated_fallback_live_scan_v1.json",
+    "localCommunityReadiness": "docs/audits/local_community_feed_v1/local_community_wishlist_matching_readiness_v1.json",
+    "localCommunityLiveSmoke": "docs/audits/local_community_feed_v1/local_community_feed_v2_wishlist_live_smoke_v1.json",
     "webVariantOrigin": "apps/web/src/lib/cards/variantOriginPublicCopy.generated.json",
     "mobileVariantOrigin": "lib/services/identity/variant_origin_public_copy_generated.dart"
   },
@@ -32,10 +34,11 @@
     "cleared_checks": [
       "Live sampled image runtime smoke is clear for 11 routes on https://grookaivault.com.",
       "Non-empty live curated fallback scan is clear for Dex, card detail, and set detail.",
+      "Local Nearby geofence and wishlist matching are proven by rollback-only live smoke.",
       "Selected deterministic search, AI boundary, promo origin, image parity, Base Set, and World Championship decklist contracts passed.",
       "Web/mobile variant origin generated payloads are synced."
     ],
-    "contract_tests_run_separately": "node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs"
+    "contract_tests_run_separately": "node --test tests/contracts/grookai_ai_search_boundary_v1.test.mjs tests/contracts/promo_origin_public_copy_v1.test.mjs tests/contracts/image_surface_consistency_v1.test.mjs tests/contracts/base_set_print_run_lanes_contract_v1.test.mjs tests/contracts/base_set_print_run_lanes_web_parity_v1.test.mjs tests/contracts/world_championship_decklist_public_surface.test.mjs tests/contracts/local_community_geofence_wishlist_contract_v1.test.mjs"
   },
   "lanes": {
     "image_coverage": {
@@ -135,6 +138,23 @@
       "world_championship_live_redirects_checked": 4,
       "world_championship_live_failures": []
     },
+    "local_community_feed": {
+      "status": "geofence_wishlist_live_smoke_clear",
+      "static_geofence_ready": true,
+      "static_wishlist_storage_ready": true,
+      "static_wishlist_matching_ready": true,
+      "live_status": "PASS",
+      "viewer": "imnotcesar",
+      "baseline_rows": 4,
+      "baseline_wishlist_matches": 0,
+      "post_fixture_wishlist_matches": 2,
+      "selected_row_matched": true,
+      "selected_match_reason": "viewer_wishlist",
+      "no_raw_user_ids_exposed": true,
+      "no_exact_location_exposed": true,
+      "no_private_wishlist_data_exposed": true,
+      "no_persistent_write_confirmation": true
+    },
     "base_set_print_run_lanes": {
       "status": "representative_pointer_gap_closed",
       "updated_rows": 304,
@@ -183,5 +203,5 @@
     "migrations_created_by_this_audit": false,
     "ai_model_calls_performed_by_this_audit": false
   },
-  "fingerprint": "022f688d9aedfd279361d7abd58bba2b906a9ce74ab2f626af5e6b812eaed307"
+  "fingerprint": "873b5c69b5d44061431eee5639bcea50b3b96705858419770d3bbd1a8dd17d5b"
 }
