@@ -123,6 +123,11 @@ function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string
   return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;
 }
 
+function buildExactExternalImageFallback(primaryImageUrl: string | null | undefined, tcgdexExternalId?: string) {
+  if (primaryImageUrl?.trim()) return null;
+  return buildTcgDexImageUrl(tcgdexExternalId);
+}
+
 function formatReleaseDate(releaseDate?: string) {
   if (!releaseDate) return undefined;
   const match = releaseDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -254,7 +259,7 @@ export default async function CardPage({
         resolvedCardFallbackImageUrl,
     ) ??
     (resolvedCardImagePresentation.displayImageKind === "exact"
-      ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
+      ? buildExactExternalImageFallback(resolvedCardImageSrc, resolvedCard.tcgdex_external_id)
       : null);
 
   async function addToVaultAction(
@@ -1021,7 +1026,7 @@ export default async function CardPage({
               const relatedCardImageFallback =
                 normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
                 (relatedCard.display_image_kind === "exact"
-                  ? buildTcgDexImageUrl(relatedCard.tcgdex_external_id)
+                  ? buildExactExternalImageFallback(relatedCardImageSrc, relatedCard.tcgdex_external_id)
                   : null);
               return (
                 <Link
@@ -1208,7 +1213,10 @@ export default async function CardPage({
                   undefined;
                 const previousCardImageFallback =
                   adjacentCards.previous?.display_image_kind === "exact"
-                    ? buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id)
+                    ? buildExactExternalImageFallback(
+                        previousCardImageSrc,
+                        adjacentCards.previous?.tcgdex_external_id,
+                      )
                     : null;
                 const previousDisplayIdentity = resolveDisplayIdentity(adjacentCards.previous);
                 return (
@@ -1251,7 +1259,10 @@ export default async function CardPage({
                   undefined;
                 const nextCardImageFallback =
                   adjacentCards.next?.display_image_kind === "exact"
-                    ? buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id)
+                    ? buildExactExternalImageFallback(
+                        nextCardImageSrc,
+                        adjacentCards.next?.tcgdex_external_id,
+                      )
                     : null;
                 const nextDisplayIdentity = resolveDisplayIdentity(adjacentCards.next);
                 return (
