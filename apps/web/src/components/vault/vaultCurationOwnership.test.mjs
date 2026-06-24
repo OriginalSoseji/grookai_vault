@@ -49,6 +49,20 @@ test("grouped card page keeps copy-management path", () => {
   assert.match(groupedPage, /Open copy/);
 });
 
+test("grouped card copy rows render exact-copy curation controls", () => {
+  const groupedPage = readSource("app", "vault", "card", "[cardId]", "page.tsx");
+  const copyControls = readSource("components", "vault", "VaultManageCopyCurationControls.tsx");
+
+  assert.match(groupedPage, /getOwnerWallSectionMemberships\(user\.id, copy\.instance_id\)/);
+  assert.match(groupedPage, /VaultManageCopyCurationControls/);
+  assert.match(groupedPage, /instanceId=\{copy\.instance_id\}/);
+  assert.match(groupedPage, /initialIntent=\{copy\.intent\}/);
+  assert.match(copyControls, /saveVaultItemInstanceIntentAction/);
+  assert.match(copyControls, /assignWallSectionMembershipAction/);
+  assert.match(copyControls, /removeWallSectionMembershipAction/);
+  assert.match(copyControls, /vault_item_instances\.id/);
+});
+
 test("GVVI page renders exact-copy section membership controls", () => {
   const gvviPage = readSource("app", "vault", "gvvi", "[gvvi_id]", "page.tsx");
   const sectionCard = readSource("components", "vault", "VaultInstanceSectionMembershipCard.tsx");
@@ -79,15 +93,18 @@ test("legacy grouped compatibility data does not appear as section UI", () => {
   assert.match(sharedCards, /Legacy grouped wall_category must not surface as the section system/);
 });
 
-test("exact-copy curation remains available only on GVVI surfaces", () => {
+test("exact-copy curation remains exact-copy scoped on GVVI and grouped copy rows", () => {
   const groupedPanel = readSource("components", "vault", "VaultManageCardSettingsPanel.tsx");
   const groupedPage = readSource("app", "vault", "card", "[cardId]", "page.tsx");
+  const copyControls = readSource("components", "vault", "VaultManageCopyCurationControls.tsx");
   const gvviPage = readSource("app", "vault", "gvvi", "[gvvi_id]", "page.tsx");
   const settingsCard = readSource("components", "vault", "VaultInstanceSettingsCard.tsx");
   const assignAction = readSource("lib", "wallSections", "assignWallSectionMembershipAction.ts");
   const removeAction = readSource("lib", "wallSections", "removeWallSectionMembershipAction.ts");
 
-  assert.doesNotMatch(`${groupedPanel}\n${groupedPage}`, /assignWallSectionMembershipAction|removeWallSectionMembershipAction|saveVaultItemInstanceIntentAction/);
+  assert.doesNotMatch(groupedPanel, /assignWallSectionMembershipAction|removeWallSectionMembershipAction|saveVaultItemInstanceIntentAction/);
+  assert.match(groupedPage, /copy\.instance_id/);
+  assert.match(copyControls, /instanceId/);
   assert.match(gvviPage, /VaultInstanceSettingsCard/);
   assert.match(settingsCard, /saveVaultItemInstanceIntentAction/);
   assert.match(assignAction, /vault_item_instance_id/);
