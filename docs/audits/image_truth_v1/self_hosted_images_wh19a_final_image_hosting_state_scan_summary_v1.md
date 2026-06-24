@@ -1,8 +1,8 @@
 # IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
 
-- Generated: 2026-06-24T17:34:19.647Z
+- Generated: 2026-06-24T17:49:29.546Z
 - Mode: read_only_final_state_scan_no_write
-- Fingerprint: `3675b1ba3cc4250639de1d14f90144004e47419e2b02b4d7e1249ca78b90b10b`
+- Fingerprint: `23c361db664112c916415c7d1a2950cf5f6ab2abc5b7c223e4239e6d90810efa`
 - Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
 - DB writes performed: false
 - Storage writes performed: false
@@ -18,17 +18,17 @@
 - Parent rows without any image field: 68
 - Parent weak-status rows: 513
 - Child rows scanned: 44137
-- Child rows with any image field: 1008
-- Child rows with self-hosted image_path: 340
-- Child rows without any image field: 43129
-- Child weak-status rows: 42782
+- Child rows with any image field: 1058
+- Child rows with self-hosted image_path: 390
+- Child rows without any image field: 43079
+- Child weak-status rows: 42741
 
 ## Priority Lanes
 
 - Priority parent rows: 2933
 - Priority parent image gaps: 0
 - Priority child rows: 706
-- Priority child image gaps: 50
+- Priority child image gaps: 0
 - McDonald's parent rows: 191
 - McDonald's parent image gaps: 0
 - McDonald's parent rows without self-hosted image_path: 0
@@ -65,8 +65,8 @@
 
 | key | count |
 | --- | ---: |
-| unknown | 42782 |
-| representative_shared | 956 |
+| unknown | 42741 |
+| representative_shared | 997 |
 | representative_shared_stamp | 305 |
 | exact | 89 |
 | exact_parent_image | 5 |
@@ -144,14 +144,7 @@ _None._
 
 ## Priority Child Gap Sets
 
-| key | count |
-| --- | ---: |
-| tk2a | 11 |
-| tk2b | 11 |
-| tk1a | 9 |
-| tk1b | 9 |
-| base1 | 5 |
-| basep | 5 |
+_None._
 
 ## World Championship Status Counts
 

@@ -1,6 +1,6 @@
 {
   "package_id": "IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN",
-  "generated_at": "2026-06-24T17:34:19.647Z",
+  "generated_at": "2026-06-24T17:49:29.546Z",
   "mode": "read_only_final_state_scan_no_write",
   "self_hosted_storage_path_prefix": "warehouse-derived/self-hosted-images-v1/",
   "metrics": {
@@ -10,14 +10,14 @@
     "parent_rows_without_any_image_field": 68,
     "parent_weak_status_rows": 513,
     "child_rows_scanned": 44137,
-    "child_rows_with_any_image_field": 1008,
-    "child_rows_with_self_hosted_image_path": 340,
-    "child_rows_without_any_image_field": 43129,
-    "child_weak_status_rows": 42782,
+    "child_rows_with_any_image_field": 1058,
+    "child_rows_with_self_hosted_image_path": 390,
+    "child_rows_without_any_image_field": 43079,
+    "child_weak_status_rows": 42741,
     "priority_parent_rows": 2933,
     "priority_parent_rows_without_any_image_field": 0,
     "priority_child_rows": 706,
-    "priority_child_rows_without_any_image_field": 50,
+    "priority_child_rows_without_any_image_field": 0,
     "world_championship_parent_rows": 1944,
     "world_championship_parent_rows_exact": 386,
     "world_championship_parent_rows_representative": 1558,
@@ -47,9 +47,9 @@
   "child_image_status_counts": {
     "exact": 89,
     "exact_parent_image": 5,
-    "representative_shared": 956,
+    "representative_shared": 997,
     "representative_shared_stamp": 305,
-    "unknown": 42782
+    "unknown": 42741
   },
   "parent_image_source_counts": {
     "identity": 27174,
@@ -57,9 +57,9 @@
     "unknown": 90
   },
   "child_image_source_counts": {
-    "identity": 1003,
+    "identity": 1053,
     "tcgdex": 5,
-    "unknown": 43129
+    "unknown": 43079
   },
   "parent_family_counts": {
     "base_set_print_run_lane": 314,
@@ -309,32 +309,7 @@
     }
   ],
   "priority_parent_gap_sets_top_50": [],
-  "priority_child_gap_sets_top_50": [
-    {
-      "key": "tk2a",
-      "count": 11
-    },
-    {
-      "key": "tk2b",
-      "count": 11
-    },
-    {
-      "key": "tk1a",
-      "count": 9
-    },
-    {
-      "key": "tk1b",
-      "count": 9
-    },
-    {
-      "key": "base1",
-      "count": 5
-    },
-    {
-      "key": "basep",
-      "count": 5
-    }
-  ],
+  "priority_child_gap_sets_top_50": [],
   "world_championship_image_status_counts": {
     "exact": 386,
     "representative_shared": 1558
@@ -1129,358 +1104,7 @@
       }
     ],
     "priority_parent_rows_without_any_image_field": [],
-    "priority_child_rows_without_any_image_field": [
-      {
-        "gv_id": "GV-PK-TK-tk2a-5",
-        "printing_gv_id": "GV-PK-TK-tk2a-5-STD",
-        "name": "Metang",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "5",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-9",
-        "printing_gv_id": "GV-PK-TK-tk2a-9-STD",
-        "name": "Potion",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "9",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1b-1",
-        "printing_gv_id": "GV-PK-TK-tk1b-1-STD",
-        "name": "Electrike",
-        "set_code": "tk1b",
-        "set_name": "EX Trainer Kit Latios",
-        "number": "1",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1b-3",
-        "printing_gv_id": "GV-PK-TK-tk1b-3-STD",
-        "name": "Linoone",
-        "set_code": "tk1b",
-        "set_name": "EX Trainer Kit Latios",
-        "number": "3",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
-        "printing_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS-NORMAL",
-        "name": "Pikachu",
-        "set_code": "base1",
-        "set_name": "Base Set",
-        "number": "58",
-        "finish_key": "normal",
-        "variant_key": "first_edition_red_cheeks",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "representative_shared",
-        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-10",
-        "printing_gv_id": "GV-PK-TK-tk2a-10-STD",
-        "name": "Professor Cozmo's Discovery",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "10",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-4",
-        "printing_gv_id": "GV-PK-TK-tk2a-4-STD",
-        "name": "Meowth",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "4",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-7",
-        "printing_gv_id": "GV-PK-TK-tk2a-7-STD",
-        "name": "Spoink",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "7",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-8",
-        "printing_gv_id": "GV-PK-TK-tk2a-8-STD",
-        "name": "Energy Search",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "8",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-9",
-        "printing_gv_id": "GV-PK-TK-tk2b-9-STD",
-        "name": "Energy Search",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "9",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-1",
-        "printing_gv_id": "GV-PK-TK-tk2a-1-STD",
-        "name": "Beldum",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "1",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1a-9",
-        "printing_gv_id": "GV-PK-TK-tk1a-9-STD",
-        "name": "Energy Search",
-        "set_code": "tk1a",
-        "set_name": "EX Trainer Kit Latias",
-        "number": "9",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-11",
-        "printing_gv_id": "GV-PK-TK-tk2a-11-STD",
-        "name": "Lightning Energy",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "11",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1a-3",
-        "printing_gv_id": "GV-PK-TK-tk1a-3-STD",
-        "name": "Delcatty",
-        "set_code": "tk1a",
-        "set_name": "EX Trainer Kit Latias",
-        "number": "3",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1b-7",
-        "printing_gv_id": "GV-PK-TK-tk1b-7-STD",
-        "name": "Zigzagoon",
-        "set_code": "tk1b",
-        "set_name": "EX Trainer Kit Latios",
-        "number": "7",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
-        "printing_gv_id": "GV-PK-BSP-5-WB-KIDS-STAMP-STD",
-        "name": "Dragonite",
-        "set_code": "basep",
-        "set_name": "Wizards Black Star Promos",
-        "number": "5",
-        "finish_key": "normal",
-        "variant_key": "wb_kids_stamp",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "representative_shared_stamp",
-        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
-      },
-      {
-        "gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
-        "printing_gv_id": "GV-PK-BSP-3-WB-KIDS-STAMP-STD",
-        "name": "Mewtwo",
-        "set_code": "basep",
-        "set_name": "Wizards Black Star Promos",
-        "number": "3",
-        "finish_key": "normal",
-        "variant_key": "wb_kids_stamp",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "representative_shared_stamp",
-        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
-      },
-      {
-        "gv_id": "GV-PK-TK-tk1a-8",
-        "printing_gv_id": "GV-PK-TK-tk1a-8-STD",
-        "name": "Potion",
-        "set_code": "tk1a",
-        "set_name": "EX Trainer Kit Latias",
-        "number": "8",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-4",
-        "printing_gv_id": "GV-PK-TK-tk2b-4-STD",
-        "name": "Growlithe",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "4",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-1",
-        "printing_gv_id": "GV-PK-TK-tk2b-1-STD",
-        "name": "Arcanine",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "1",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-12",
-        "printing_gv_id": "GV-PK-TK-tk2b-12-STD",
-        "name": "Lightning Energy",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "12",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2a-2",
-        "printing_gv_id": "GV-PK-TK-tk2a-2-STD",
-        "name": "Electrike",
-        "set_code": "tk2a",
-        "set_name": "EX Trainer Kit 2 Plusle",
-        "number": "2",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-8",
-        "printing_gv_id": "GV-PK-TK-tk2b-8-STD",
-        "name": "Celio's Network",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "8",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      },
-      {
-        "gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
-        "printing_gv_id": "GV-PK-BSP-2-WB-KIDS-STAMP-STD",
-        "name": "Electabuzz",
-        "set_code": "basep",
-        "set_name": "Wizards Black Star Promos",
-        "number": "2",
-        "finish_key": "normal",
-        "variant_key": "wb_kids_stamp",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "representative_shared_stamp",
-        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
-      },
-      {
-        "gv_id": "GV-PK-TK-tk2b-10",
-        "printing_gv_id": "GV-PK-TK-tk2b-10-STD",
-        "name": "Potion",
-        "set_code": "tk2b",
-        "set_name": "EX Trainer Kit 2 Minun",
-        "number": "10",
-        "finish_key": "normal",
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": null,
-        "image_note": null
-      }
-    ],
+    "priority_child_rows_without_any_image_field": [],
     "world_championship_rows_without_any_image_field": []
   },
   "db_writes_performed": false,
@@ -1488,5 +1112,5 @@
   "migrations_created": false,
   "exact_image_claim_changes_performed": false,
   "global_apply_performed": false,
-  "fingerprint": "3675b1ba3cc4250639de1d14f90144004e47419e2b02b4d7e1249ca78b90b10b"
+  "fingerprint": "23c361db664112c916415c7d1a2950cf5f6ab2abc5b7c223e4239e6d90810efa"
 }
