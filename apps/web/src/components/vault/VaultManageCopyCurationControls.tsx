@@ -25,8 +25,10 @@ const INTENT_OPTIONS: VaultIntent[] = ["hold", "trade", "sell", "showcase"];
 
 type VaultManageCopyCurationControlsProps = {
   instanceId: string;
+  gvviId: string | null;
   initialIntent: VaultIntent;
   membershipModel: OwnerWallSectionMembershipModel;
+  publicWallHref: string | null;
   isActive: boolean;
 };
 
@@ -52,8 +54,10 @@ function getCreatedSection(
 
 export default function VaultManageCopyCurationControls({
   instanceId,
+  gvviId,
   initialIntent,
   membershipModel,
+  publicWallHref,
   isActive,
 }: VaultManageCopyCurationControlsProps) {
   const router = useRouter();
@@ -85,6 +89,9 @@ export default function VaultManageCopyCurationControls({
   const assignedCount = sections.filter((section) => section.is_member).length;
   const disabled = !isActive || pendingIntent !== null || pendingSectionId !== null || creatingSection;
   const normalizedCreateName = normalizeWallSectionName(createName);
+  const visibleOnWall = intent !== "hold";
+  const publicGvviHref = visibleOnWall && gvviId ? `/gvvi/${encodeURIComponent(gvviId)}` : null;
+  const assignedSections = sections.filter((section) => section.is_member);
 
   function applyMembershipResult(result: WallSectionMembershipActionResult) {
     setStatusMessage(result);
@@ -327,6 +334,58 @@ export default function VaultManageCopyCurationControls({
         >
           Manage all sections
         </Link>
+      </div>
+
+      <div className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-1">
+            {/* LOCK: Owner preview links are derived from exact-copy public read surfaces only. */}
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Public Preview</p>
+            <p className="text-xs leading-5 text-slate-600">
+              {publicWallHref
+                ? visibleOnWall
+                  ? "This copy can be checked from the public surfaces below."
+                  : "Set this copy to Trade, Sell, or Showcase to make public preview links active."
+                : "Enable your public profile and shared vault to preview this copy publicly."}
+            </p>
+          </div>
+          {!publicWallHref ? (
+            <Link
+              href="/account"
+              className="inline-flex shrink-0 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Enable public Wall
+            </Link>
+          ) : null}
+        </div>
+
+        {publicWallHref && visibleOnWall ? (
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Link
+              href={publicWallHref}
+              className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              View Wall
+            </Link>
+            {publicGvviHref ? (
+              <Link
+                href={publicGvviHref}
+                className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+              >
+                View public copy
+              </Link>
+            ) : null}
+            {assignedSections.map((section) => (
+              <Link
+                key={section.id}
+                href={`${publicWallHref}/section/${encodeURIComponent(section.id)}`}
+                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
+              >
+                {section.name}
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {!isActive ? (

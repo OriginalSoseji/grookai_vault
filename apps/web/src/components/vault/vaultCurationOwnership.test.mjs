@@ -56,7 +56,9 @@ test("grouped card copy rows render exact-copy curation controls", () => {
   assert.match(groupedPage, /getOwnerWallSectionMemberships\(user\.id, copy\.instance_id\)/);
   assert.match(groupedPage, /VaultManageCopyCurationControls/);
   assert.match(groupedPage, /instanceId=\{copy\.instance_id\}/);
+  assert.match(groupedPage, /gvviId=\{copy\.gv_vi_id\}/);
   assert.match(groupedPage, /initialIntent=\{copy\.intent\}/);
+  assert.match(groupedPage, /publicWallHref=\{publicProfileHref\}/);
   assert.match(copyControls, /saveVaultItemInstanceIntentAction/);
   assert.match(copyControls, /createWallSectionAction/);
   assert.match(copyControls, /assignWallSectionMembershipAction/);
@@ -76,6 +78,21 @@ test("grouped card copy rows can create and immediately assign a section", () =>
   assert.match(copyControls, /Section created and copy added\./);
   assert.match(copyControls, /Create and add/);
   assert.match(copyControls, /Manage all sections/);
+});
+
+test("grouped card copy rows expose public owner preview links", () => {
+  const groupedPage = readSource("app", "vault", "card", "[cardId]", "page.tsx");
+  const copyControls = readSource("components", "vault", "VaultManageCopyCurationControls.tsx");
+
+  assert.match(groupedPage, /publicProfileHref/);
+  assert.match(copyControls, /Public Preview/);
+  assert.match(copyControls, /visibleOnWall = intent !== "hold"/);
+  assert.match(copyControls, /publicGvviHref = visibleOnWall && gvviId/);
+  assert.match(copyControls, /View Wall/);
+  assert.match(copyControls, /View public copy/);
+  assert.match(copyControls, /Enable public Wall/);
+  assert.match(copyControls, /assignedSections\.map/);
+  assert.match(copyControls, /href=\{\`\$\{publicWallHref\}\/section\/\$\{encodeURIComponent\(section\.id\)\}\`\}/);
 });
 
 test("GVVI page renders exact-copy section membership controls", () => {

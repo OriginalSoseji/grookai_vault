@@ -119,7 +119,9 @@ void main() {
     );
     expect(groupedCardPageSource, contains('VaultManageCopyCurationControls'));
     expect(groupedCardPageSource, contains('instanceId={copy.instance_id}'));
+    expect(groupedCardPageSource, contains('gvviId={copy.gv_vi_id}'));
     expect(groupedCardPageSource, contains('initialIntent={copy.intent}'));
+    expect(groupedCardPageSource, contains('publicWallHref={publicProfileHref}'));
     expect(
       groupedCopyControlsSource,
       contains('Grouped card row curation is exact-copy only'),
@@ -169,6 +171,24 @@ void main() {
     );
     expect(groupedCopyControlsSource, contains('Section created and copy added.'));
     expect(groupedCopyControlsSource, contains('Create and add'));
+  });
+
+  test('grouped card copy rows expose owner public preview links', () {
+    expect(groupedCardPageSource, contains('publicProfileHref'));
+    expect(groupedCopyControlsSource, contains('Public Preview'));
+    expect(groupedCopyControlsSource, contains('visibleOnWall = intent !== "hold"'));
+    expect(
+      groupedCopyControlsSource,
+      contains('publicGvviHref = visibleOnWall && gvviId'),
+    );
+    expect(groupedCopyControlsSource, contains('View Wall'));
+    expect(groupedCopyControlsSource, contains('View public copy'));
+    expect(groupedCopyControlsSource, contains('Enable public Wall'));
+    expect(groupedCopyControlsSource, contains('assignedSections.map'));
+    expect(
+      groupedCopyControlsSource,
+      contains(r'`${publicWallHref}/section/${encodeURIComponent(section.id)}`'),
+    );
   });
 
   test('actions revalidate owner readback surfaces', () {
