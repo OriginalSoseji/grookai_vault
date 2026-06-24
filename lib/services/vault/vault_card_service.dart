@@ -189,6 +189,21 @@ class VaultManageCardCopy {
   final String? certNumber;
   final bool isGraded;
 
+  VaultManageCardCopy copyWith({String? intent}) {
+    return VaultManageCardCopy(
+      instanceId: instanceId,
+      gvviId: gvviId,
+      conditionLabel: conditionLabel,
+      intent: intent ?? this.intent,
+      note: note,
+      createdAt: createdAt,
+      grader: grader,
+      grade: grade,
+      certNumber: certNumber,
+      isGraded: isGraded,
+    );
+  }
+
   factory VaultManageCardCopy.fromJson(Map<String, dynamic> json) {
     final grader = _trimmedOrNull(json['grade_company']);
     final gradeValue = _trimmedOrNull(json['grade_value']);
@@ -859,6 +874,45 @@ class VaultCardService {
     }
 
     return nextIntent;
+  }
+
+  static Future<String> saveVaultItemInstanceIntent({
+    required SupabaseClient client,
+    required String instanceId,
+    required String intent,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    final normalizedInstanceId = _trimmedOrNull(instanceId);
+    if (normalizedInstanceId == null) {
+      throw Exception('Vault copy is missing exact identity.');
+    }
+
+    final nextIntent = normalizeVaultIntentValue(intent);
+    // LOCK: Copy intent authority is exact-copy level.
+    // LOCK: Do not write grouped vault_items or shared_cards from copy rows.
+    final row = await client
+        .from('vault_item_instances')
+        .update({'intent': nextIntent})
+        .eq('id', normalizedInstanceId)
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .select('id,intent')
+        .maybeSingle();
+
+    if (row == null) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    final savedIntent = normalizeVaultIntentValue(row['intent']);
+    if (savedIntent != nextIntent) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    return savedIntent;
   }
 
   static Future<String?> saveSharedCardWallCategory({
