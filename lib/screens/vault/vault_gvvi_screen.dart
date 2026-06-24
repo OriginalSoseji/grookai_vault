@@ -64,6 +64,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       const <VaultGvviSectionMembership>[];
   bool _loading = true;
   bool _savingNotes = false;
+  bool _savingIntent = false;
   String? _busySectionId;
   bool _busyFrontMedia = false;
   bool _busyBackMedia = false;
@@ -374,6 +375,50 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     }
   }
 
+  Future<void> _saveIntent(String nextIntent) async {
+    final data = _data;
+    if (data == null ||
+        data.isArchived ||
+        _savingIntent ||
+        nextIntent == data.intent) {
+      return;
+    }
+
+    setState(() {
+      _savingIntent = true;
+      _status = null;
+    });
+
+    try {
+      final savedIntent = await VaultGvviService.saveIntent(
+        client: _client,
+        instanceId: data.instanceId,
+        intent: nextIntent,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _data = data.copyWith(
+          intent: savedIntent,
+          isSharedOnWall: savedIntent != 'hold',
+        );
+        _savingIntent = false;
+        _status = savedIntent == 'hold'
+            ? 'Copy is private.'
+            : 'Copy is public on your Wall.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _savingIntent = false;
+        _status = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
   Future<void> _toggleSectionMembership(
     VaultGvviSectionMembership section,
   ) async {
@@ -645,8 +690,10 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     data: _data!,
                     intentLabel: _intentLabel(_data!.intent),
                     status: _status,
+                    savingIntent: _savingIntent,
                     onManageCard: _openGroupedCard,
                     onViewCard: _openCard,
+                    onSaveIntent: _saveIntent,
                     onOpenPublicPage: _data!.canOpenPublicPage
                         ? _openPublicPage
                         : null,
@@ -804,6 +851,8 @@ class _VaultTopSurface extends StatelessWidget {
     required this.intentLabel,
     required this.onManageCard,
     required this.onViewCard,
+    required this.onSaveIntent,
+    required this.savingIntent,
     required this.status,
     this.onOpenPublicPage,
     this.onCopyPublicLink,
@@ -814,8 +863,10 @@ class _VaultTopSurface extends StatelessWidget {
   final VaultGvviData data;
   final String intentLabel;
   final String? status;
+  final bool savingIntent;
   final VoidCallback onManageCard;
   final VoidCallback onViewCard;
+  final ValueChanged<String> onSaveIntent;
   final VoidCallback? onOpenPublicPage;
   final VoidCallback? onCopyPublicLink;
   final VoidCallback? onAddAnother;
@@ -846,6 +897,13 @@ class _VaultTopSurface extends StatelessWidget {
             onAddAnother: onAddAnother,
             onUpgradeToSlab: onUpgradeToSlab,
             framed: false,
+          ),
+          const SizedBox(height: 10),
+          _VaultIntentQuickSurface(
+            intent: data.intent,
+            isArchived: data.isArchived,
+            saving: savingIntent,
+            onSaveIntent: onSaveIntent,
           ),
           if ((status ?? '').trim().isNotEmpty) ...[
             const SizedBox(height: 8),
@@ -1230,6 +1288,98 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
           child: content,
         );
       },
+    );
+  }
+}
+
+class _VaultIntentQuickSurface extends StatelessWidget {
+  const _VaultIntentQuickSurface({
+    required this.intent,
+    required this.isArchived,
+    required this.saving,
+    required this.onSaveIntent,
+  });
+
+  final String intent;
+  final bool isArchived;
+  final bool saving;
+  final ValueChanged<String> onSaveIntent;
+
+  static const _options = <({String value, String label})>[
+    (value: 'hold', label: 'Private'),
+    (value: 'showcase', label: 'Showcase'),
+    (value: 'trade', label: 'Trade'),
+    (value: 'sell', label: 'Sell'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isPublic = intent != 'hold';
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: isPublic
+            ? colorScheme.primaryContainer.withValues(alpha: 0.32)
+            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    isPublic ? 'Public on your Wall' : 'Make this copy public',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                if (saving)
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.primary,
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              isPublic
+                  ? 'Change how collectors see this exact copy.'
+                  : 'Choose Showcase, Trade, or Sell to add this exact copy to your public Wall.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.62),
+                height: 1.28,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final option in _options)
+                  ChoiceChip(
+                    label: Text(option.label),
+                    selected: intent == option.value,
+                    onSelected: isArchived || saving
+                        ? null
+                        : (_) => onSaveIntent(option.value),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
