@@ -1,0 +1,1387 @@
+{
+  "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+  "generated_at": "2026-06-24T17:40:50.719Z",
+  "mode": "dry_run_no_write",
+  "plan_rows": 50,
+  "sql_hash": "571fa148cbd92ec88df84dfbf56e98e843f2d86e9e9cd925b1cc81a54b48f028",
+  "plan_hash": "3f63896c0a4439e1f992d9749c4e8bd7b37ec424bff96c44bb970a434417385d",
+  "target_tables": [
+    "card_printings"
+  ],
+  "writes_if_later_approved": [
+    "card_printings.image_source",
+    "card_printings.image_path",
+    "card_printings.image_status",
+    "card_printings.image_note"
+  ],
+  "set_counts": {
+    "base1": 5,
+    "basep": 5,
+    "tk1a": 9,
+    "tk1b": 9,
+    "tk2a": 11,
+    "tk2b": 11
+  },
+  "finish_counts": {
+    "normal": 50
+  },
+  "status_counts": {
+    "representative_shared": 46,
+    "representative_shared_stamp": 4
+  },
+  "samples": [
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "2fe38f69-bedd-425b-905b-ccc829f506ee",
+      "printing_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS-NORMAL",
+      "finish_key": "normal",
+      "parent_card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+      "parent_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+      "name": "Pikachu",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number": "58",
+      "variant_key": "first_edition_red_cheeks",
+      "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-base1-58-first-edition-red-cheeks/d711644b3b298b4eeb0ceb24.webp",
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "9a1841e3-3223-43a2-a461-9088826e92d5",
+      "printing_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS-NORMAL",
+      "finish_key": "normal",
+      "parent_card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+      "parent_gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+      "name": "Pikachu",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number": "58",
+      "variant_key": "first_edition_yellow_cheeks",
+      "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-base1-58-first-edition-yellow-cheeks/d711644b3b298b4eeb0ceb24.webp",
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "cc6b0966-b366-42fd-a21f-954e59883068",
+      "printing_gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS-NORMAL",
+      "finish_key": "normal",
+      "parent_card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+      "parent_gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+      "name": "Pikachu",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number": "58",
+      "variant_key": "ghost_stamp_shadowless",
+      "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-base1-58-ghost-stamp-shadowless/d711644b3b298b4eeb0ceb24.webp",
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "e10ebe3d-1490-4429-9383-8c6a253b342e",
+      "printing_gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS-NORMAL",
+      "finish_key": "normal",
+      "parent_card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+      "parent_gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+      "name": "Pikachu",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number": "58",
+      "variant_key": "shadowless_red_cheeks",
+      "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-base1-58-shadowless-red-cheeks/d711644b3b298b4eeb0ceb24.webp",
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "f11fd214-e096-4fab-811a-1584d9ca6675",
+      "printing_gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS-NORMAL",
+      "finish_key": "normal",
+      "parent_card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+      "parent_gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS",
+      "name": "Pikachu",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number": "58",
+      "variant_key": "shadowless_yellow_cheeks",
+      "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/base1/gv-pk-base1-58-shadowless-yellow-cheeks/d711644b3b298b4eeb0ceb24.webp",
+        "image_status": "representative_shared",
+        "image_note": "Recognized Base Set Pikachu special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "2d6a68ef-68d0-4af2-9e9c-e894572cf57a",
+      "printing_gv_id": "GV-PK-PR-1-FIRST-EDITION-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+      "parent_gv_id": "GV-PK-PR-1-FIRST-EDITION",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "number": "1",
+      "variant_key": null,
+      "printed_identity_modifier": "edition:first_edition",
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": "first edition child printing applied by PKG-10BB"
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/basep/gv-pk-pr-1-first-edition/512edfb85063f33fe45f3a06.webp",
+        "image_status": "representative_shared",
+        "image_note": "first edition child printing applied by PKG-10BB Representative child image pointer from parent GV-PK-PR-1-FIRST-EDITION by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "d466e713-eeea-4805-b225-ecf2b79aaa09",
+      "printing_gv_id": "GV-PK-BSP-2-WB-KIDS-STAMP-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
+      "parent_gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
+      "name": "Electabuzz",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "number": "2",
+      "variant_key": "wb_kids_stamp",
+      "printed_identity_modifier": "stamp:wb_kids_first_movie",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared_stamp",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/basep/gv-pk-basep-2-wb-kids-stamp/874d762fc5c623ba428cea4c.webp",
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASEP-2-WB-KIDS-STAMP by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "98fed3d6-4741-4997-a908-11e42508c1d4",
+      "printing_gv_id": "GV-PK-BSP-3-WB-KIDS-STAMP-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+      "parent_gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+      "name": "Mewtwo",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "number": "3",
+      "variant_key": "wb_kids_stamp",
+      "printed_identity_modifier": "stamp:wb_kids_first_movie",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared_stamp",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/basep/gv-pk-basep-3-wb-kids-stamp/2a2a06ab3fdb025b840f77ab.webp",
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASEP-3-WB-KIDS-STAMP by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "24afd848-6bd5-42fb-8c48-7177a38c0257",
+      "printing_gv_id": "GV-PK-BSP-4-WB-KIDS-STAMP-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
+      "parent_gv_id": "GV-PK-BASEP-4-WB-KIDS-STAMP",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "number": "4",
+      "variant_key": "wb_kids_stamp",
+      "printed_identity_modifier": "stamp:wb_kids_first_movie",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared_stamp",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/basep/gv-pk-basep-4-wb-kids-stamp/6d88327190cd3543d3e32775.webp",
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASEP-4-WB-KIDS-STAMP by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "3addb622-e46d-4a7d-adbd-d835dc5c9180",
+      "printing_gv_id": "GV-PK-BSP-5-WB-KIDS-STAMP-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
+      "parent_gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
+      "name": "Dragonite",
+      "set_code": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "number": "5",
+      "variant_key": "wb_kids_stamp",
+      "printed_identity_modifier": "stamp:wb_kids_first_movie",
+      "parent_image_source": "identity",
+      "parent_image_status": "representative_shared_stamp",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available."
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/basep/gv-pk-basep-5-wb-kids-stamp/9490b1434b836272bba52daa.webp",
+        "image_status": "representative_shared_stamp",
+        "image_note": "WB Kids promo stamp/special-case child. Representative image only until exact variant image is available. Representative child image pointer from parent GV-PK-BASEP-5-WB-KIDS-STAMP by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "33fe2f8f-2674-42b5-b83b-f281b134b1c4",
+      "printing_gv_id": "GV-PK-TK-tk1a-1-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "a2f6a54a-d443-4aed-aca0-fc2e720bce2e",
+      "parent_gv_id": "GV-PK-TK-tk1a-1",
+      "name": "Bagon",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "1",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-1/0850c73611ed4fbbf87bcdb9.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-1 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "3bd0e0b7-26a6-48be-8093-bc1ea37f00e8",
+      "printing_gv_id": "GV-PK-TK-tk1a-10-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "b79f9ae9-5995-45ba-b700-0ff117605787",
+      "parent_gv_id": "GV-PK-TK-tk1a-10",
+      "name": "Fire Energy",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "10",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-10/1d90b7c33aa4ec208d00397e.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-10 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "144541ad-92bf-4704-b5b8-acaa93e71015",
+      "printing_gv_id": "GV-PK-TK-tk1a-2-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "db6bd57a-4102-4422-a52e-6009dd12ed27",
+      "parent_gv_id": "GV-PK-TK-tk1a-2",
+      "name": "Combusken",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "2",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-2/8e3187cd37ce57f06246b551.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-2 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "8bf0f32f-5803-49d8-ac90-4545ad6c9b18",
+      "printing_gv_id": "GV-PK-TK-tk1a-3-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "402f7c0f-1ce7-4470-bfa2-5abac95cae6c",
+      "parent_gv_id": "GV-PK-TK-tk1a-3",
+      "name": "Delcatty",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "3",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-3/ce01ca301854da23dcc11277.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-3 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "e2aa90bf-6a46-4a15-bb78-abd9cd46166c",
+      "printing_gv_id": "GV-PK-TK-tk1a-5-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "ffc5196e-28e5-4fdb-b377-79a9ba96dc17",
+      "parent_gv_id": "GV-PK-TK-tk1a-5",
+      "name": "Numel",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "5",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-5/2ca99d77a8118f7c5aec490d.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-5 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "a6ebab1d-8eba-464e-bdfa-5db02d11ac6c",
+      "printing_gv_id": "GV-PK-TK-tk1a-6-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "be5be3ca-957f-470b-b558-f91c21c3cad6",
+      "parent_gv_id": "GV-PK-TK-tk1a-6",
+      "name": "Skitty",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "6",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-6/1b1d107ff34964ed29105474.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-6 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "c7d658de-9e20-484a-b7db-80003bcf7ba4",
+      "printing_gv_id": "GV-PK-TK-tk1a-7-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "dd4bd5cc-cf87-4770-b856-159d91257dda",
+      "parent_gv_id": "GV-PK-TK-tk1a-7",
+      "name": "Torchic",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "7",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-7/53f45067f31ab23b273dfb29.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-7 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "661baebd-960b-41af-b851-b38cfcf96f25",
+      "printing_gv_id": "GV-PK-TK-tk1a-8-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "5b1f0520-e937-4d63-988a-1a65080d430a",
+      "parent_gv_id": "GV-PK-TK-tk1a-8",
+      "name": "Potion",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "8",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-8/55a3661d3ece686fe2785271.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-8 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "8c1af808-1e0a-4332-9776-2861542b3078",
+      "printing_gv_id": "GV-PK-TK-tk1a-9-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "3fd0dc0c-9f2f-4e48-8e3b-d4d253f377ec",
+      "parent_gv_id": "GV-PK-TK-tk1a-9",
+      "name": "Energy Search",
+      "set_code": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "number": "9",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1a/gv-pk-tk-tk1a-9/0789d7538d5d1fee30175ea3.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1a-9 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "c65f59aa-4738-41aa-b1b0-9bdb1ee411bb",
+      "printing_gv_id": "GV-PK-TK-tk1b-1-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "0eb9e8db-ae0c-4631-b05f-53ff181d24ab",
+      "parent_gv_id": "GV-PK-TK-tk1b-1",
+      "name": "Electrike",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "1",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-1/41a50244b3ddc7f9fdaedc52.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-1 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "0afe70f1-6b10-4535-abc6-547354b70ef0",
+      "printing_gv_id": "GV-PK-TK-tk1b-10-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "cdf9d0ad-8fe2-4f83-8e1f-c52342c6eeef",
+      "parent_gv_id": "GV-PK-TK-tk1b-10",
+      "name": "Lightning Energy",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "10",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-10/daddab9dee5dd993791faa66.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-10 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "1e4729fc-d4e0-4a19-bbc1-164416b70407",
+      "printing_gv_id": "GV-PK-TK-tk1b-3-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "1c0e523c-32df-48f6-a24e-de0faf05eb68",
+      "parent_gv_id": "GV-PK-TK-tk1b-3",
+      "name": "Linoone",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "3",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-3/3ee19ebeb3d84cd82d436531.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-3 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "9474923b-f894-4eaf-b878-c51871f8a549",
+      "printing_gv_id": "GV-PK-TK-tk1b-4-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "ba3a12a8-2736-4983-8b99-a93f391129a0",
+      "parent_gv_id": "GV-PK-TK-tk1b-4",
+      "name": "Magnemite",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "4",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-4/48d852a592775e6f75c51351.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-4 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "6d9bdf46-37ff-43f9-8ddc-4ff43f1290a5",
+      "printing_gv_id": "GV-PK-TK-tk1b-5-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "e9595114-63f9-48a1-911f-ffcb38d60cae",
+      "parent_gv_id": "GV-PK-TK-tk1b-5",
+      "name": "Magneton",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "5",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-5/594c96af12c27e052ad09dfc.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-5 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    },
+    {
+      "package_id": "IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN",
+      "plan_type": "priority_child_representative_pointer",
+      "target_table": "card_printings",
+      "target_row_id": "b06ee456-1ef7-40f7-81e1-17753f904b77",
+      "printing_gv_id": "GV-PK-TK-tk1b-6-STD",
+      "finish_key": "normal",
+      "parent_card_print_id": "a1d461ed-8b82-4d40-aa20-5923a7234d40",
+      "parent_gv_id": "GV-PK-TK-tk1b-6",
+      "name": "Pikachu",
+      "set_code": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "number": "6",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "parent_image_source": "identity",
+      "parent_image_status": "exact",
+      "current_values": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "proposed_values": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/tk1b/gv-pk-tk-tk1b-6/37b42235497254754ec852eb.png",
+        "image_status": "representative_shared",
+        "image_note": "Representative child image pointer from parent GV-PK-TK-tk1b-6 by IMG-HOST-WH-20A-PRIORITY-CHILD-POINTER-DRY-RUN. Exact child/finish image claim is not changed."
+      },
+      "changed_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "exact_image_claim_change": false,
+      "storage_write_required": false,
+      "runtime_public_url_field_write_required": false,
+      "allowed_future_columns": [
+        "image_source",
+        "image_path",
+        "image_status",
+        "image_note"
+      ],
+      "blocked_future_columns": [
+        "image_url",
+        "image_alt_url",
+        "card_print_id",
+        "finish_key",
+        "printing_gv_id"
+      ]
+    }
+  ],
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "parent_overwrites_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "runtime_public_url_field_writes_performed": false,
+  "global_apply_performed": false,
+  "fingerprint": "5289d8a570ab8f235f8f5fe5e72dcc0a44f7f3d564d50ea842c47318fb8179f3"
+}
