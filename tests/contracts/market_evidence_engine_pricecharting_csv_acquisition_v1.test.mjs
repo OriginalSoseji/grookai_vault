@@ -100,6 +100,39 @@ test("MEE-04D keeps unmatched targets as reviewed misses", () => {
   assert.deepEqual(result.summary.status_counts, { no_pricecharting_csv_match: 1 });
 });
 
+test("MEE-04D matches governed promo source-number prefixes without broad numeric overmatch", () => {
+  const csvRows = parsePriceChartingCsvRowsV1([
+    "id,console-name,product-name,loose-price,cib-price,new-price,graded-price,box-only-price,manual-only-price,bgs-10-price,condition-17-price,condition-18-price,gamestop-price,gamestop-trade-price,retail-loose-buy,retail-loose-sell,retail-cib-buy,retail-cib-sell,retail-new-buy,retail-new-sell,upc,sales-volume,genre,tcg-id,asin,epid,release-date",
+    "901,Pokemon Promo,Reshiram #BW004,$4.00,,,$20.00,,,,,,,,,,,,,,,2,Pokemon Card,,,,2011-01-01",
+    "902,Pokemon Promo,Reshiram #TG04,$40.00,,,$200.00,,,,,,,,,,,,,,,2,Pokemon Card,,,,2022-01-01",
+    "903,Pokemon Black & White,Reshiram #4,$1.00,,,$10.00,,,,,,,,,,,,,,,2,Pokemon Card,,,,2011-01-01",
+  ].join("\n"));
+
+  const result = acquirePriceChartingCsvEvidenceV1({
+    batch: {
+      items: [{
+        card_print_id: "44444444-4444-4444-4444-444444444444",
+        gv_id: "GV-PK-PR-BLW-BW04",
+        name: "Reshiram",
+        set_code: "bwp",
+        number_plain: "04",
+        source: "pricecharting_reference",
+      }],
+    },
+    csvRows,
+    generatedAt: "2026-06-25T02:00:00.000Z",
+    maxCandidatesPerTarget: 3,
+  });
+
+  assert.equal(result.summary.status_counts.candidate_evidence_created, 1);
+  assert.equal(result.summary.candidate_evidence_count, 2);
+  assert.match(result.reviewed_targets[0].best_match_reason, /number_prefix_alias_matched/);
+  assert.match(result.reviewed_targets[0].best_match_reason, /set_alias_matched/);
+  assert.ok(result.candidate_evidence.every((candidate) => candidate.raw_title.includes("#BW004")));
+  assert.ok(result.candidate_evidence.every((candidate) => !candidate.raw_title.includes("#TG04")));
+  assert.ok(result.candidate_evidence.every((candidate) => !candidate.raw_title.includes("Pokemon Black & White")));
+});
+
 test("MEE-04D script and plan do not fetch providers, write DB rows, or publish prices", () => {
   const moduleSource = source("backend/pricing/market_evidence_pricecharting_csv_acquisition_v1.mjs");
   const scriptSource = source("scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs");

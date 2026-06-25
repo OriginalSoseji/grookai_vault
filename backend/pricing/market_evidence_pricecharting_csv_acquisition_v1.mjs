@@ -123,6 +123,28 @@ function candidateTitle(row) {
   return `${row['product-name']} | ${row['console-name']}`.trim();
 }
 
+const PRICECHARTING_PROMO_SET_ALIASES = new Map([
+  ['bwp', ['Pokemon Promo', 'Pokemon Black Star Promo', 'Black Star Promo']],
+  ['dpp', ['Pokemon Promo', 'Pokemon Diamond Pearl Promo', 'Pokemon DP Promo']],
+  ['hgssp', ['Pokemon Promo', 'Pokemon HGSS Promo']],
+  ['np', ['Pokemon Promo', 'Pokemon Nintendo Promo']],
+  ['smp', ['Pokemon Promo', 'Pokemon Sun Moon Promo', 'Pokemon SM Promo']],
+  ['svp', ['Pokemon Promo', 'Pokemon Scarlet Violet Promo', 'Pokemon SV Promo']],
+  ['swshp', ['Pokemon Promo', 'Pokemon Sword Shield Promo', 'Pokemon SWSH Promo']],
+  ['xyp', ['Pokemon Promo', 'Pokemon XY Promo']],
+]);
+
+const PRICECHARTING_PROMO_NUMBER_PREFIXES = new Map([
+  ['bwp', ['bw']],
+  ['dpp', ['dp']],
+  ['hgssp', ['hgss']],
+  ['np', ['np']],
+  ['smp', ['sm']],
+  ['svp', ['svp', 'sv']],
+  ['swshp', ['swsh']],
+  ['xyp', ['xy']],
+]);
+
 function setAliasesForTarget(target, setCatalog) {
   const aliases = new Set();
   const code = String(target.set_code ?? '').trim();
@@ -135,6 +157,9 @@ function setAliasesForTarget(target, setCatalog) {
   }
   if (setInfo?.printed_name) {
     aliases.add(setInfo.printed_name);
+  }
+  for (const alias of PRICECHARTING_PROMO_SET_ALIASES.get(code) ?? []) {
+    aliases.add(alias);
   }
 
   // Minimal offline fallbacks for the first MEE priority rows.
@@ -160,6 +185,38 @@ function setAliasesForTarget(target, setCatalog) {
   }
 
   return Array.from(aliases).map(normalizeText).filter(Boolean);
+}
+
+function numberAliasesForTarget(target) {
+  const aliases = new Set();
+  const exactNumber = normalizeNumber(target.number_plain);
+  if (exactNumber) {
+    aliases.add(exactNumber);
+  }
+
+  const code = String(target.set_code ?? '').trim();
+  const prefixes = PRICECHARTING_PROMO_NUMBER_PREFIXES.get(code) ?? [];
+  const digits = exactNumber.replace(/^[a-z]+/, '');
+  if (digits && prefixes.length > 0) {
+    for (const prefix of prefixes) {
+      aliases.add(normalizeNumber(`${prefix}${digits}`));
+    }
+  }
+
+  return aliases;
+}
+
+function numberMatchReason(target, parsed) {
+  const rowNumber = normalizeNumber(parsed.number);
+  const targetExact = normalizeNumber(target.number_plain);
+  if (rowNumber === targetExact) {
+    return { ok: true, reason: 'number_matched' };
+  }
+  const aliases = numberAliasesForTarget(target);
+  if (aliases.has(rowNumber)) {
+    return { ok: true, reason: 'number_prefix_alias_matched' };
+  }
+  return { ok: false, reason: `number_mismatch:${parsed.number}` };
 }
 
 function setMatches(target, row, setCatalog) {
@@ -227,13 +284,13 @@ function conditionCandidates(row) {
 
 function scoreMatch(target, row, parsed, setCatalog) {
   const nameMatches = normalizeText(parsed.name) === normalizeText(target.name);
-  const numberMatches = normalizeNumber(parsed.number) === normalizeNumber(target.number_plain);
+  const numberMatch = numberMatchReason(target, parsed);
   const setMatch = setMatches(target, row, setCatalog);
   if (!nameMatches) return { ok: false, score: 0, reason: `name_mismatch:${parsed.name}` };
-  if (!numberMatches) return { ok: false, score: 0, reason: `number_mismatch:${parsed.number}` };
+  if (!numberMatch.ok) return { ok: false, score: 0, reason: numberMatch.reason };
 
   let score = 20;
-  const reasons = ['name_matched', 'number_matched'];
+  const reasons = ['name_matched', numberMatch.reason];
   if (setMatch.ok) {
     score += 40;
     reasons.push(setMatch.reason);
