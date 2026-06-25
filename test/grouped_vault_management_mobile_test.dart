@@ -33,6 +33,31 @@ void main() {
     expect(screen, contains('Copy removed from section.'));
   });
 
+  test('grouped card copy rows expose exact-copy public preview controls', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('class _CopyPublicPreviewSurface'));
+    expect(screen, contains('canPreviewPublic'));
+    expect(screen, contains('Public Preview'));
+    expect(screen, contains('View Wall'));
+    expect(screen, contains('View public copy'));
+    expect(screen, contains('Share copy'));
+    expect(screen, contains('Copy link'));
+    expect(screen, contains('PublicGvviScreen(gvviId: gvviId)'));
+    expect(screen, contains('PublicCollectorScreen('));
+    expect(screen, contains('initialSectionId: section.id'));
+    expect(screen, contains('SharePlus.instance.share'));
+    expect(screen, contains('GrookaiWebRouteService.buildUri'));
+    expect(
+      screen,
+      contains(
+        'Grouped row public preview links are exact-copy read links only',
+      ),
+    );
+  });
+
   test('copy-row intent writes are exact-copy scoped', () {
     final service = File(
       'lib/services/vault/vault_card_service.dart',
