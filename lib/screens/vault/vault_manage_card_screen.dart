@@ -72,8 +72,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   CardSurfacePricingData? _pricing;
   Map<String, List<VaultManageCopySectionMembership>> _copySectionMemberships =
       const <String, List<VaultManageCopySectionMembership>>{};
+  Set<String> _selectedCopyIds = const <String>{};
+  String? _bulkSectionId;
   bool _loading = true;
   bool _intentSaving = false;
+  bool _bulkCopySaving = false;
   String? _copyIntentSavingId;
   String? _copySectionSavingKey;
   bool _noteSaving = false;
@@ -154,6 +157,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _data = data;
         _pricing = pricing;
         _copySectionMemberships = copySectionMemberships;
+        _selectedCopyIds = const <String>{};
+        _bulkSectionId = _firstBulkSectionId(copySectionMemberships);
         _loading = false;
       });
     } catch (error) {
@@ -167,6 +172,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             : 'Unable to load this card.';
         _copySectionMemberships =
             const <String, List<VaultManageCopySectionMembership>>{};
+        _selectedCopyIds = const <String>{};
+        _bulkSectionId = null;
         _loading = false;
       });
     }
@@ -667,6 +674,172 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       });
       _showStatus(error.toString().replaceFirst('Exception: ', ''));
     }
+  }
+
+  void _toggleCopySelection(VaultManageCardCopy copy, bool selected) {
+    setState(() {
+      final next = {..._selectedCopyIds};
+      if (selected) {
+        next.add(copy.instanceId);
+      } else {
+        next.remove(copy.instanceId);
+      }
+      _selectedCopyIds = next;
+      _statusMessage = null;
+    });
+  }
+
+  void _toggleAllCopySelection(VaultManageCardData data, bool selected) {
+    setState(() {
+      _selectedCopyIds = selected
+          ? data.copies.map((copy) => copy.instanceId).toSet()
+          : const <String>{};
+      _statusMessage = null;
+    });
+  }
+
+  Future<void> _saveSelectedCopyIntent(String nextIntent) async {
+    final data = _data;
+    final selectedIds = _selectedCopyIds.toSet();
+    if (data == null || selectedIds.isEmpty || _bulkCopySaving) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      final savedIntent =
+          await VaultCardService.saveVaultItemInstancesIntentBulk(
+            client: _client,
+            instanceIds: selectedIds,
+            intent: nextIntent,
+          );
+
+      if (!mounted) {
+        return;
+      }
+
+      final updatedCopies = data.copies
+          .map(
+            (copy) => selectedIds.contains(copy.instanceId)
+                ? copy.copyWith(intent: savedIntent)
+                : copy,
+          )
+          .toList(growable: false);
+
+      setState(() {
+        _data = _copyDataWithCopies(data, updatedCopies);
+        _bulkCopySaving = false;
+        _statusMessage =
+            '${selectedIds.length} ${selectedIds.length == 1 ? 'copy' : 'copies'} updated.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _bulkCopySectionMembership({required bool add}) async {
+    final selectedIds = _selectedCopyIds.toSet();
+    final sectionId = (_bulkSectionId ?? '').trim();
+    if (selectedIds.isEmpty || sectionId.isEmpty || _bulkCopySaving) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultCardService.bulkCopySectionMembership(
+        client: _client,
+        instanceIds: selectedIds,
+        sectionId: sectionId,
+        add: add,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _copySectionMemberships = {
+          for (final entry in _copySectionMemberships.entries)
+            entry.key: selectedIds.contains(entry.key)
+                ? entry.value
+                      .map(
+                        (section) => section.id == sectionId
+                            ? section.copyWith(isMember: add)
+                            : section,
+                      )
+                      .toList(growable: false)
+                : entry.value,
+        };
+        _bulkCopySaving = false;
+        _statusMessage = add
+            ? '${selectedIds.length} ${selectedIds.length == 1 ? 'copy' : 'copies'} added to section.'
+            : '${selectedIds.length} ${selectedIds.length == 1 ? 'copy' : 'copies'} removed from section.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  VaultManageCardData _copyDataWithCopies(
+    VaultManageCardData data,
+    List<VaultManageCardCopy> copies,
+  ) {
+    return VaultManageCardData(
+      vaultItemId: data.vaultItemId,
+      cardPrintId: data.cardPrintId,
+      gvId: data.gvId,
+      name: data.name,
+      setName: data.setName,
+      setCode: data.setCode,
+      number: data.number,
+      rarity: data.rarity,
+      imageUrl: data.imageUrl,
+      canonicalImageUrl: data.canonicalImageUrl,
+      representativeImageUrl: data.representativeImageUrl,
+      imageStatus: data.imageStatus,
+      imageNote: data.imageNote,
+      variantKey: data.variantKey,
+      printedIdentityModifier: data.printedIdentityModifier,
+      setIdentityModel: data.setIdentityModel,
+      totalCopies: data.totalCopies,
+      rawCount: data.rawCount,
+      slabCount: data.slabCount,
+      inPlayCount: copies.where((copy) => copy.intent != 'hold').length,
+      intent: _deriveCardIntent(copies),
+      isShared: data.isShared,
+      wallCategory: data.wallCategory,
+      publicNote: data.publicNote,
+      publicSlug: data.publicSlug,
+      priceDisplayMode: data.priceDisplayMode,
+      primarySharedGvviId: data.primarySharedGvviId,
+      askingPriceAmount: data.askingPriceAmount,
+      askingPriceCurrency: data.askingPriceCurrency,
+      publicProfileEnabled: data.publicProfileEnabled,
+      vaultSharingEnabled: data.vaultSharingEnabled,
+      copies: copies,
+    );
   }
 
   String _formatManualPrice(double? amount) {
@@ -1579,9 +1752,32 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           else
             Column(
               children: [
+                _CopyBulkActionSurface(
+                  selectedCount: _selectedCopyIds.length,
+                  totalCount: data.copies.length,
+                  allSelected: _selectedCopyIds.length == data.copies.length,
+                  busy: _bulkCopySaving,
+                  sectionOptions: _bulkSectionOptions,
+                  selectedSectionId: _bulkSectionId,
+                  onToggleAll: (selected) =>
+                      _toggleAllCopySelection(data, selected),
+                  onIntentSelected: _saveSelectedCopyIntent,
+                  onSectionChanged: (sectionId) {
+                    setState(() {
+                      _bulkSectionId = sectionId;
+                    });
+                  },
+                  onAddToSection: () => _bulkCopySectionMembership(add: true),
+                  onRemoveFromSection: () =>
+                      _bulkCopySectionMembership(add: false),
+                ),
+                const SizedBox(height: 10),
                 for (var index = 0; index < data.copies.length; index++) ...[
                   _CopyRow(
                     copy: data.copies[index],
+                    selected: _selectedCopyIds.contains(
+                      data.copies[index].instanceId,
+                    ),
                     intentSaving:
                         _copyIntentSavingId == data.copies[index].instanceId,
                     canPreviewPublic:
@@ -1600,6 +1796,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                     onTap: (data.copies[index].gvviId ?? '').trim().isEmpty
                         ? null
                         : () => _openExactCopy(data.copies[index]),
+                    onSelectionChanged: (selected) =>
+                        _toggleCopySelection(data.copies[index], selected),
                     onIntentSelected: _copyIntentSavingId == null
                         ? (intent) =>
                               _saveCopyIntent(data.copies[index], intent)
@@ -1713,6 +1911,39 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     return 'hold';
+  }
+
+  List<VaultManageCopySectionMembership> get _bulkSectionOptions {
+    final byId = <String, VaultManageCopySectionMembership>{};
+    for (final sections in _copySectionMemberships.values) {
+      for (final section in sections) {
+        byId.putIfAbsent(section.id, () => section);
+      }
+    }
+    final options = byId.values.toList(growable: false)
+      ..sort((left, right) {
+        final position = left.position.compareTo(right.position);
+        if (position != 0) {
+          return position;
+        }
+        return left.name.compareTo(right.name);
+      });
+    return options;
+  }
+
+  static String? _firstBulkSectionId(
+    Map<String, List<VaultManageCopySectionMembership>> memberships,
+  ) {
+    final sections =
+        memberships.values.expand((value) => value).toList(growable: false)
+          ..sort((left, right) {
+            final position = left.position.compareTo(right.position);
+            if (position != 0) {
+              return position;
+            }
+            return left.name.compareTo(right.name);
+          });
+    return sections.isEmpty ? null : sections.first.id;
   }
 
   String _formatRarity(String raw) {
@@ -2031,14 +2262,182 @@ class _ManageStatusTile extends StatelessWidget {
   }
 }
 
+class _CopyBulkActionSurface extends StatelessWidget {
+  const _CopyBulkActionSurface({
+    required this.selectedCount,
+    required this.totalCount,
+    required this.allSelected,
+    required this.busy,
+    required this.sectionOptions,
+    required this.selectedSectionId,
+    required this.onToggleAll,
+    required this.onIntentSelected,
+    required this.onSectionChanged,
+    required this.onAddToSection,
+    required this.onRemoveFromSection,
+  });
+
+  final int selectedCount;
+  final int totalCount;
+  final bool allSelected;
+  final bool busy;
+  final List<VaultManageCopySectionMembership> sectionOptions;
+  final String? selectedSectionId;
+  final ValueChanged<bool> onToggleAll;
+  final ValueChanged<String> onIntentSelected;
+  final ValueChanged<String?> onSectionChanged;
+  final VoidCallback onAddToSection;
+  final VoidCallback onRemoveFromSection;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final hasSelection = selectedCount > 0;
+    final hasSections = sectionOptions.isNotEmpty;
+    final dropdownValue =
+        sectionOptions.any((section) => section.id == selectedSectionId)
+        ? selectedSectionId
+        : null;
+
+    // LOCK: Mobile bulk copy management writes only exact-copy instance IDs.
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.22),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Checkbox(
+                  value: allSelected,
+                  onChanged: busy
+                      ? null
+                      : (value) => onToggleAll(value == true),
+                ),
+                Expanded(
+                  child: Text(
+                    hasSelection ? '$selectedCount selected' : 'Select copies',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                if (busy)
+                  SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.primary,
+                    ),
+                  ),
+              ],
+            ),
+            if (hasSelection) ...[
+              const SizedBox(height: 10),
+              Text(
+                'Bulk actions',
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.58),
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.18,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final option in kVaultIntentOptions)
+                    ActionChip(
+                      label: Text(option.label),
+                      onPressed: busy
+                          ? null
+                          : () => onIntentSelected(option.value),
+                    ),
+                ],
+              ),
+              if (hasSections) ...[
+                const SizedBox(height: 10),
+                DropdownButtonFormField<String>(
+                  key: ValueKey(dropdownValue ?? 'no-section'),
+                  initialValue: dropdownValue,
+                  decoration: const InputDecoration(
+                    labelText: 'Wall section',
+                    border: OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                  items: [
+                    for (final section in sectionOptions)
+                      DropdownMenuItem<String>(
+                        value: section.id,
+                        child: Text(section.name),
+                      ),
+                  ],
+                  onChanged: busy ? null : onSectionChanged,
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    FilledButton.tonalIcon(
+                      onPressed: busy || dropdownValue == null
+                          ? null
+                          : onAddToSection,
+                      icon: const Icon(Icons.playlist_add_check_rounded),
+                      label: const Text('Add to section'),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: busy || dropdownValue == null
+                          ? null
+                          : onRemoveFromSection,
+                      icon: const Icon(Icons.playlist_remove_rounded),
+                      label: const Text('Remove from section'),
+                    ),
+                  ],
+                ),
+              ] else ...[
+                const SizedBox(height: 8),
+                Text(
+                  'Create a Wall section before using bulk section actions.',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  ),
+                ),
+              ],
+            ] else if (totalCount > 1) ...[
+              const SizedBox(height: 4),
+              Text(
+                'Select multiple exact copies to update intent or section placement together.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _CopyRow extends StatelessWidget {
   const _CopyRow({
     required this.copy,
+    required this.selected,
     required this.intentSaving,
     required this.sections,
     required this.canPreviewPublic,
     this.busySectionKey,
     this.onTap,
+    this.onSelectionChanged,
     this.onIntentSelected,
     this.onToggleSection,
     this.onOpenWall,
@@ -2052,11 +2451,13 @@ class _CopyRow extends StatelessWidget {
   });
 
   final VaultManageCardCopy copy;
+  final bool selected;
   final bool intentSaving;
   final List<VaultManageCopySectionMembership> sections;
   final bool canPreviewPublic;
   final String? busySectionKey;
   final VoidCallback? onTap;
+  final ValueChanged<bool>? onSelectionChanged;
   final ValueChanged<String>? onIntentSelected;
   final ValueChanged<VaultManageCopySectionMembership>? onToggleSection;
   final VoidCallback? onOpenWall;
@@ -2091,6 +2492,13 @@ class _CopyRow extends StatelessWidget {
       children: [
         Row(
           children: [
+            Checkbox(
+              value: selected,
+              onChanged: onSelectionChanged == null
+                  ? null
+                  : (value) => onSelectionChanged!(value == true),
+            ),
+            const SizedBox(width: 4),
             Expanded(
               child: Text(
                 copyTitle.trim().isEmpty ? 'Vault copy' : copyTitle.trim(),
