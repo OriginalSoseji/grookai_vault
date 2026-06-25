@@ -217,3 +217,20 @@ Grookai Value must always be:
 * Explainable
 
 ## If any of these are violated, the version is rejected.
+
+---
+
+## 13. Pricing Evidence Engine Boundary
+
+`PRICING_EVIDENCE_ENGINE_V1` governs future free-provider, free-tier, CSV, uploaded-export, and manual/admin pricing evidence work.
+
+This boundary does not change existing pricing truth:
+
+* Market Truth remains separate from Reference and Projection.
+* Reference providers do not become Market Truth by default.
+* Provider mappings must be explicit and confidence-scored.
+* Pricing evidence must never mutate canon identity.
+* UI must label reference, modeled, stale, low-confidence, and unavailable pricing honestly.
+* Non-API or scraping-like access requires provider/legal review before implementation.
+
+Any pricing worker, importer, rollup, or UI surface that consumes TCGCSV, TCGdex, Pokewallet, JustTCG, PriceCharting exports, user-uploaded exports, or manual/admin evidence must obey `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`.
