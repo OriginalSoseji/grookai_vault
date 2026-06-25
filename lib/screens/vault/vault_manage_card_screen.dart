@@ -75,7 +75,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   Set<String> _selectedCopyIds = const <String>{};
   String? _bulkSectionId;
   bool _loading = true;
-  bool _intentSaving = false;
   bool _bulkCopySaving = false;
   String? _copyIntentSavingId;
   String? _copySectionSavingKey;
@@ -433,97 +432,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
   }
 
-  Future<void> _saveIntent(String nextIntent) async {
-    final data = _data;
-    final normalizedNextIntent = normalizeVaultIntentValue(nextIntent);
-    if (data == null || _intentSaving || normalizedNextIntent == data.intent) {
-      return;
-    }
-
-    setState(() {
-      _intentSaving = true;
-    });
-
-    try {
-      final savedIntent = await VaultCardService.saveVaultItemIntent(
-        client: _client,
-        vaultItemId: data.vaultItemId,
-        intent: normalizedNextIntent,
-      );
-
-      if (!mounted) {
-        return;
-      }
-
-      final updatedCopies = data.copies
-          .map(
-            (copy) => VaultManageCardCopy(
-              instanceId: copy.instanceId,
-              gvviId: copy.gvviId,
-              conditionLabel: copy.conditionLabel,
-              intent: savedIntent,
-              note: copy.note,
-              createdAt: copy.createdAt,
-              grader: copy.grader,
-              grade: copy.grade,
-              certNumber: copy.certNumber,
-              isGraded: copy.isGraded,
-            ),
-          )
-          .toList(growable: false);
-
-      setState(() {
-        _data = VaultManageCardData(
-          vaultItemId: data.vaultItemId,
-          cardPrintId: data.cardPrintId,
-          gvId: data.gvId,
-          name: data.name,
-          setName: data.setName,
-          setCode: data.setCode,
-          number: data.number,
-          rarity: data.rarity,
-          imageUrl: data.imageUrl,
-          canonicalImageUrl: data.canonicalImageUrl,
-          representativeImageUrl: data.representativeImageUrl,
-          imageStatus: data.imageStatus,
-          imageNote: data.imageNote,
-          variantKey: data.variantKey,
-          printedIdentityModifier: data.printedIdentityModifier,
-          setIdentityModel: data.setIdentityModel,
-          totalCopies: data.totalCopies,
-          rawCount: data.rawCount,
-          slabCount: data.slabCount,
-          inPlayCount: savedIntent == 'hold' ? 0 : updatedCopies.length,
-          intent: savedIntent,
-          isShared: data.isShared,
-          wallCategory: data.wallCategory,
-          publicNote: data.publicNote,
-          publicSlug: data.publicSlug,
-          priceDisplayMode: data.priceDisplayMode,
-          primarySharedGvviId: data.primarySharedGvviId,
-          askingPriceAmount: data.askingPriceAmount,
-          askingPriceCurrency: data.askingPriceCurrency,
-          publicProfileEnabled: data.publicProfileEnabled,
-          vaultSharingEnabled: data.vaultSharingEnabled,
-          copies: updatedCopies,
-        );
-      });
-      _showStatus('Intent saved.');
-    } catch (error) {
-      if (!mounted) {
-        return;
-      }
-
-      _showStatus(error.toString().replaceFirst('Exception: ', ''));
-    } finally {
-      if (mounted) {
-        setState(() {
-          _intentSaving = false;
-        });
-      }
-    }
-  }
-
   Future<void> _saveCopyIntent(
     VaultManageCardCopy copy,
     String nextIntent,
@@ -696,6 +604,20 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           : const <String>{};
       _statusMessage = null;
     });
+  }
+
+  void _openCopiesTab({Iterable<String>? selectedCopyIds}) {
+    final nextSelection = selectedCopyIds
+        ?.map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    setState(() {
+      if (nextSelection != null) {
+        _selectedCopyIds = nextSelection;
+      }
+      _statusMessage = null;
+    });
+    _tabController.animateTo(_ManageCardTab.copies.index);
   }
 
   Future<void> _saveSelectedCopyIntent(String nextIntent) async {
@@ -1314,6 +1236,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               label: '${option.label} ${copyIntentCounts[option.value]}',
             ),
     ];
+    final privateCopyIds = data.copies
+        .where((copy) => normalizeVaultIntentValue(copy.intent) == 'hold')
+        .map((copy) => copy.instanceId)
+        .toList(growable: false);
+    final hasPrivateCopies = privateCopyIds.isNotEmpty;
 
     return _ManageSurface(
       child: Column(
@@ -1344,15 +1271,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                   ],
                 ),
               ),
-              if (_intentSaving)
-                SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: colorScheme.primary,
-                  ),
-                ),
             ],
           ),
           const SizedBox(height: 10),
@@ -1381,19 +1299,42 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           ),
           const SizedBox(height: 10),
           Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children: kVaultIntentOptions
-                .map(
-                  (option) => ChoiceChip(
-                    label: Text(option.label),
-                    selected: data.intent == option.value,
-                    onSelected: _intentSaving
-                        ? null
-                        : (_) => _saveIntent(option.value),
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.icon(
+                onPressed: data.copies.isEmpty
+                    ? null
+                    : () => _openCopiesTab(
+                        selectedCopyIds: hasPrivateCopies
+                            ? privateCopyIds
+                            : data.copies.map((copy) => copy.instanceId),
+                      ),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(0, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
                   ),
-                )
-                .toList(),
+                ),
+                icon: const Icon(Icons.library_add_check_outlined),
+                label: Text(
+                  hasPrivateCopies ? 'Select private copies' : 'Manage copies',
+                ),
+              ),
+              OutlinedButton.icon(
+                onPressed: data.copies.isEmpty
+                    ? null
+                    : () => _openCopiesTab(selectedCopyIds: const <String>[]),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(0, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                icon: const Icon(Icons.tune_rounded),
+                label: const Text('Open copy controls'),
+              ),
+            ],
           ),
           if (mixTags.isNotEmpty) ...[
             const SizedBox(height: 8),

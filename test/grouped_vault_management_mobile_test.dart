@@ -18,6 +18,30 @@ void main() {
     expect(screen, contains('data.inPlayCount > 0'));
   });
 
+  test('grouped card overview routes public management to exact copies', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+    final service = File(
+      'lib/services/vault/vault_card_service.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('void _openCopiesTab'));
+    expect(
+      screen,
+      contains('_tabController.animateTo(_ManageCardTab.copies.index)'),
+    );
+    expect(screen, contains('Select private copies'));
+    expect(screen, contains('Open copy controls'));
+    expect(screen, contains('selectedCopyIds: hasPrivateCopies'));
+    expect(screen, isNot(contains('Future<void> _saveIntent')));
+    expect(screen, isNot(contains('VaultCardService.saveVaultItemIntent')));
+    expect(
+      service,
+      isNot(contains('static Future<String> saveVaultItemIntent')),
+    );
+  });
+
   test('grouped card copy rows expose exact-copy section controls', () {
     final screen = File(
       'lib/screens/vault/vault_manage_card_screen.dart',
