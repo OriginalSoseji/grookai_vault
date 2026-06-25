@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-06-25T05:09:21.124Z",
+  "contract": "MARKET_EVIDENCE_ENGINE_V1",
+  "mode": "read_only_worklist",
+  "boundary": {
+    "provider_calls": false,
+    "db_writes": false,
+    "pricing_rollups": false,
+    "migration_apply": false
+  },
+  "options": {
+    "limit": 10,
+    "staleDays": 30,
+    "outDir": "C:\\grookai_vault\\docs\\audits\\market_evidence_engine_v1"
+  },
+  "summary": {
+    "card_print_count": 27266,
+    "ebay_latest_count": 1690,
+    "accepted_ebay_card_count": 0,
+    "reference_card_count": 19753,
+    "missing_accepted_ebay_count": 27266,
+    "missing_ebay_latest_count": 25576,
+    "stale_ebay_latest_count": 1690,
+    "no_reference_count": 7513
+  },
+  "target_count_before_limit": 27266,
+  "targets": [
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "name": "Alakazam",
+      "set_code": "base1",
+      "number_plain": "1",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:35:28.566+00:00"
+      }
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "name": "Mewtwo",
+      "set_code": "base1",
+      "number_plain": "10",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:37:19.39+00:00"
+      }
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "name": "Nidoking",
+      "set_code": "base1",
+      "number_plain": "11",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:37:19.39+00:00"
+      }
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "name": "Ninetales",
+      "set_code": "base1",
+      "number_plain": "12",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:36:28.046+00:00"
+      }
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "name": "Poliwrath",
+      "set_code": "base1",
+      "number_plain": "13",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:36:23.641+00:00"
+      }
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "name": "Venusaur",
+      "set_code": "base1",
+      "number_plain": "15",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:31:24.204+00:00"
+      }
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "name": "Zapdos",
+      "set_code": "base1",
+      "number_plain": "16",
+      "rarity": "Rare Holo",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:36:03.037+00:00"
+      }
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "name": "Beedrill",
+      "set_code": "base1",
+      "number_plain": "17",
+      "rarity": "Rare",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:33:46.977+00:00"
+      }
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "name": "Dragonair",
+      "set_code": "base1",
+      "number_plain": "18",
+      "rarity": "Rare",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:36:11.587+00:00"
+      }
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "name": "Dugtrio",
+      "set_code": "base1",
+      "number_plain": "19",
+      "rarity": "Rare",
+      "priority_score": 110,
+      "reasons": [
+        "no accepted mapped eBay observations",
+        "no eBay latest rollup",
+        "reference lane exists for cross-check",
+        "collector-interest rarity"
+      ],
+      "ebay_latest": null,
+      "accepted_ebay": null,
+      "reference_lane": {
+        "variant_count": 5,
+        "newest_updated_at": "2026-06-11T05:35:33.131+00:00"
+      }
+    }
+  ]
+}

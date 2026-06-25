@@ -40,6 +40,7 @@
     "grookai-dex:checkpoint": "node scripts/grookai_dex/checkpoint_v1.mjs",
     "grookai-dex:smoke:routes": "node scripts/grookai_dex/smoke_routes_v1.mjs",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
+    "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
     "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
