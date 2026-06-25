@@ -866,39 +866,6 @@ class VaultCardService {
     return true;
   }
 
-  static Future<String> saveVaultItemIntent({
-    required SupabaseClient client,
-    required String vaultItemId,
-    required String intent,
-  }) async {
-    final userId = client.auth.currentUser?.id;
-    if (userId == null || userId.isEmpty) {
-      throw Exception('Sign in required.');
-    }
-
-    final normalizedItemId = _trimmedOrNull(vaultItemId);
-    if (normalizedItemId == null) {
-      throw Exception('Vault card is missing grouped identity.');
-    }
-
-    final nextIntent = normalizeVaultIntentValue(intent);
-    // LOCK: Intent authority is instance-level (vault_item_instances.intent).
-    // LOCK: Do not write grouped intent for public discoverability.
-    final data = await client
-        .from('vault_item_instances')
-        .update({'intent': nextIntent})
-        .eq('legacy_vault_item_id', normalizedItemId)
-        .eq('user_id', userId)
-        .filter('archived_at', 'is', null)
-        .select('id,intent');
-
-    if (data.isEmpty) {
-      throw Exception('Vault intent could not be saved.');
-    }
-
-    return nextIntent;
-  }
-
   static Future<String> saveVaultItemInstanceIntent({
     required SupabaseClient client,
     required String instanceId,
