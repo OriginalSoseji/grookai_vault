@@ -21,8 +21,17 @@ void main() {
   final groupedCardPageSource = File(
     'apps/web/src/app/vault/card/[cardId]/page.tsx',
   ).readAsStringSync();
+  final groupedBulkCopiesSource = File(
+    'apps/web/src/components/vault/VaultManageCardCopiesBulkSection.tsx',
+  ).readAsStringSync();
   final groupedCopyControlsSource = File(
     'apps/web/src/components/vault/VaultManageCopyCurationControls.tsx',
+  ).readAsStringSync();
+  final bulkIntentSource = File(
+    'apps/web/src/lib/network/saveVaultItemInstancesIntentBulkAction.ts',
+  ).readAsStringSync();
+  final bulkSectionSource = File(
+    'apps/web/src/lib/wallSections/bulkWallSectionMembershipAction.ts',
   ).readAsStringSync();
   final migrationSource = File(
     'supabase/migrations/20260422133000_wall_sections_data_model_v1.sql',
@@ -117,10 +126,15 @@ void main() {
       groupedCardPageSource,
       contains('getOwnerWallSectionMemberships(user.id, copy.instance_id)'),
     );
-    expect(groupedCardPageSource, contains('VaultManageCopyCurationControls'));
-    expect(groupedCardPageSource, contains('instanceId={copy.instance_id}'));
-    expect(groupedCardPageSource, contains('gvviId={copy.gv_vi_id}'));
-    expect(groupedCardPageSource, contains('initialIntent={copy.intent}'));
+    expect(groupedCardPageSource, contains('VaultManageCardCopiesBulkSection'));
+    expect(groupedBulkCopiesSource, contains('VaultManageCopyCurationControls'));
+    expect(groupedBulkCopiesSource, contains('instanceId={copy.instance_id}'));
+    expect(groupedBulkCopiesSource, contains('gvviId={copy.gv_vi_id}'));
+    expect(groupedBulkCopiesSource, contains('initialIntent={copy.intent}'));
+    expect(
+      groupedBulkCopiesSource,
+      contains('Bulk copy management writes only exact-copy instance IDs'),
+    );
     expect(groupedCardPageSource, contains('publicWallHref={publicProfileHref}'));
     expect(
       groupedCopyControlsSource,
@@ -145,6 +159,36 @@ void main() {
     );
     expect(groupedCopyControlsSource, isNot(contains('shared_cards')));
     expect(groupedCopyControlsSource, isNot(contains('legacy_vault_item_id')));
+  });
+
+  test('grouped card bulk copy management writes exact-copy rows only', () {
+    expect(groupedCardPageSource, contains('VaultManageCardCopiesBulkSection'));
+    expect(groupedBulkCopiesSource, contains('selectedInstanceIds'));
+    expect(
+      groupedBulkCopiesSource,
+      contains('saveVaultItemInstancesIntentBulkAction'),
+    );
+    expect(groupedBulkCopiesSource, contains('bulkWallSectionMembershipAction'));
+    expect(groupedBulkCopiesSource, contains('Bulk actions'));
+    expect(groupedBulkCopiesSource, contains('Add to section'));
+    expect(groupedBulkCopiesSource, contains('Remove from section'));
+
+    expect(bulkIntentSource, contains('.from("vault_item_instances")'));
+    expect(bulkIntentSource, contains('intent: nextIntent'));
+    expect(bulkIntentSource, contains('.eq("user_id", user.id)'));
+    expect(bulkIntentSource, contains('.is("archived_at", null)'));
+    expect(bulkIntentSource, contains('.in("id", normalizedInstanceIds)'));
+    expect(bulkIntentSource, contains('assertVaultIntentProof'));
+    expect(bulkIntentSource, isNot(contains('.from("vault_items")')));
+    expect(bulkIntentSource, isNot(contains('.from("shared_cards")')));
+
+    expect(bulkSectionSource, contains('.from("wall_section_memberships")'));
+    expect(bulkSectionSource, contains('vault_item_instance_id'));
+    expect(bulkSectionSource, contains('.from("vault_item_instances")'));
+    expect(bulkSectionSource, contains('.from("wall_sections")'));
+    expect(bulkSectionSource, contains('assertWallSectionMembershipProof'));
+    expect(bulkSectionSource, isNot(contains('.from("vault_items")')));
+    expect(bulkSectionSource, isNot(contains('.from("shared_cards")')));
   });
 
   test('grouped card copy rows can create and assign section atomically', () {
