@@ -45,6 +45,7 @@
     "mee:acquisition-batch": "node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
     "mee:pricecharting-csv": "node scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs",
     "mee:review-gate": "node scripts/audits/market_evidence_engine_review_gate_v1.mjs",
+    "mee:gap-analysis": "node scripts/audits/market_evidence_engine_gap_analysis_v1.mjs",
     "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
     "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
