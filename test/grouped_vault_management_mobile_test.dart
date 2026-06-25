@@ -115,7 +115,7 @@ void main() {
       'static Future<String> saveVaultItemInstanceIntent',
     );
     final methodEnd = service.indexOf(
-      'static Future<String?> saveSharedCardWallCategory',
+      'static Future<String> saveVaultItemInstancesIntentBulk',
     );
     expect(methodStart, greaterThanOrEqualTo(0));
     expect(methodEnd, greaterThan(methodStart));
@@ -144,7 +144,7 @@ void main() {
       'static Future<void> removeCopySectionMembership',
     );
     final boundary = service.indexOf(
-      'static Future<String?> saveSharedCardWallCategory',
+      'static Future<void> _assertOwnedSectionTarget',
     );
     expect(assignStart, greaterThanOrEqualTo(0));
     expect(removeStart, greaterThan(assignStart));
@@ -190,7 +190,7 @@ void main() {
       'static Future<void> bulkCopySectionMembership',
     );
     final boundary = service.indexOf(
-      'static Future<String?> saveSharedCardWallCategory',
+      'static Future<void> _assertOwnedSectionTarget',
     );
     expect(intentStart, greaterThanOrEqualTo(0));
     expect(sectionStart, greaterThan(intentStart));
@@ -217,5 +217,25 @@ void main() {
     expect(bulkSource, isNot(contains("from('vault_items')")));
     expect(bulkSource, isNot(contains("from('shared_cards')")));
     expect(bulkSource, isNot(contains('legacy_vault_item_id')));
+  });
+
+  test('mobile grouped shared-card mutation helpers stay removed', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+    final service = File(
+      'lib/services/vault/vault_card_service.dart',
+    ).readAsStringSync();
+
+    expect(screen, isNot(contains('_buildWallSettings')));
+    expect(screen, isNot(contains('_publicNoteController')));
+    expect(screen, isNot(contains('_manualPriceController')));
+    expect(screen, isNot(contains('_saveWallCategory')));
+    expect(screen, isNot(contains('_savePublicNote')));
+    expect(screen, isNot(contains('_savePriceDisplay')));
+    expect(screen, isNot(contains('FilteringTextInputFormatter')));
+    expect(service, isNot(contains('saveSharedCardWallCategory')));
+    expect(service, isNot(contains('saveSharedCardPublicNote')));
+    expect(service, isNot(contains('saveSharedCardPriceDisplay')));
   });
 }
