@@ -14,8 +14,16 @@ type CardPagePricingRailProps = {
   pricing: CardPricingUiRecord | null;
 };
 
-function PricingSourceLabel() {
-  return <p className="text-[11px] text-slate-400">* Market reference</p>;
+function PricingSourceLabel({ source }: { source: CardPricingUiRecord["primary_source"] }) {
+  if (source === "justtcg") {
+    return <p className="text-[11px] text-slate-400">Reference pricing: JustTCG</p>;
+  }
+
+  if (source === "ebay") {
+    return <p className="text-[11px] text-slate-400">Market data: eBay</p>;
+  }
+
+  return null;
 }
 
 function PricingLowMidHigh({
@@ -127,7 +135,7 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
         >
           View market analysis →
         </Link>
-        {hasPrimaryPrice ? <PricingSourceLabel /> : null}
+        {hasPrimaryPrice ? <PricingSourceLabel source={pricing?.primary_source} /> : null}
       </div>
     </div>
   );

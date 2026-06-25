@@ -42,6 +42,8 @@ Current pricing state in plain language:
 - the projection lane exists structurally
 - JustTCG is reference-only and non-authoritative
 - future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence is governed by `PRICING_EVIDENCE_ENGINE_V1`
+- the reference lane is implemented as a read-only non-authoritative helper
+- Market Evidence Engine work is now in hardening / ingestion-planning mode, not initial reference implementation mode
 - live eBay validation is still blocked by upstream throttle
 - the queue model is demand-driven and no longer broad-backfill by default
 
@@ -69,7 +71,8 @@ What remains blocked or unproven:
 - repeated first-call eBay Browse `429` continues to block a successful live proof run
 - live comp density is still unproven under normal source conditions
 - live accepted comp persistence is still unproven in a non-throttled window
-- JustTCG runtime integration may still be pending
+- JustTCG runtime reliability remains unproven at scale
+- pricing UI/source labels still need strict lane clarity where legacy display views expose generic primary prices
 - full slab-truth pricing remains future work
 
 ## Pricing Lanes (Authoritative Summary)
@@ -123,27 +126,29 @@ Current operational reality:
 
 Primary next step:
 
-- `REFERENCE_PRICING_LAYER_V1`
+- `MARKET_EVIDENCE_ENGINE_V1`
 
 That next step should:
 
 - obey `PRICING_EVIDENCE_ENGINE_V1`
-- wire `getReferencePricing.ts` safely
+- reconcile pricing lane labels and stale resume/checkpoint pointers
 - keep the reference lane isolated from market truth
-- support the projection system
-- optionally support clearly labeled reference display only where allowed
+- harden tests so `primary_price` cannot be displayed without source-specific labeling
+- plan the warehouse evidence ingestion layer before any migration or provider apply
+- preserve demand-driven queue behavior
 
 That next step must not:
 
 - re-litigate truth / reference / projection separation
 - reopen broad backfill as the next move
+- add a new provider before the existing lane-label contract is enforced
 
 ## Resume Prompt Block
 
 Use this block to restart pricing work in a new chat:
 
 ```md
-Pricing is operating under AXIOM Execution Interface V4. Anchor to `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`, pricing checkpoints 01 through 11, the key pricing audits, and `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`. Current state: eBay is the only market-truth lane; pricing is observation-backed and `accepted + mapped` only; offline classifier hardening passed; comps and trust surfaces exist; projection exists as a separate modeled lane; JustTCG is reference-only; future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence can expand reference evidence only and cannot silently become market truth; queue policy is demand-driven and vault-first; live eBay proof is still blocked by repeated first-call Browse 429s and must be treated as source constraint, not pricing-logic failure. Invariants: no silent fallback pricing, no reference/projection contamination of raw market truth, empty market stays honestly empty, fail closed under throttle, respect existing checkpoints before changes. Next objective: `REFERENCE_PRICING_LAYER_V1`. Do not drift, do not re-litigate lane separation, and do not reopen broad backfill as the next move.
+Pricing is operating under AXIOM Execution Interface V4. Anchor to `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`, pricing checkpoints 01 through 12 and 14, the key pricing audits, and `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`. Current state: eBay is the only market-truth lane; pricing is observation-backed and `accepted + mapped` only; offline classifier hardening passed; comps and trust surfaces exist; projection exists as a separate modeled lane; JustTCG is reference-only and now has a read-only helper; future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence can expand reference evidence only and cannot silently become market truth; queue policy is demand-driven and vault-first; live eBay proof is still blocked by repeated first-call Browse 429s and must be treated as source constraint, not pricing-logic failure. Invariants: no silent fallback pricing, no reference/projection contamination of raw market truth, empty market stays honestly empty, fail closed under throttle, respect existing checkpoints before changes. Next objective: `MARKET_EVIDENCE_ENGINE_V1`: first reconcile lane labels and stale checkpoints, then plan warehouse evidence ingestion. Do not drift, do not re-litigate lane separation, do not add providers before lane labels are enforced, and do not reopen broad backfill as the next move.
 ```
 
 ## Why This File Matters
