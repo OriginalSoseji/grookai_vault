@@ -33,6 +33,31 @@ void main() {
     expect(screen, contains('Copy removed from section.'));
   });
 
+  test('grouped card copy rows expose exact-copy bulk controls', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('class _CopyBulkActionSurface'));
+    expect(screen, contains('_selectedCopyIds'));
+    expect(screen, contains('Future<void> _saveSelectedCopyIntent'));
+    expect(screen, contains('Future<void> _bulkCopySectionMembership'));
+    expect(
+      screen,
+      contains('VaultCardService.saveVaultItemInstancesIntentBulk'),
+    );
+    expect(screen, contains('VaultCardService.bulkCopySectionMembership'));
+    expect(screen, contains('Bulk actions'));
+    expect(screen, contains('Add to section'));
+    expect(screen, contains('Remove from section'));
+    expect(
+      screen,
+      contains(
+        'Mobile bulk copy management writes only exact-copy instance IDs',
+      ),
+    );
+  });
+
   test('grouped card copy rows expose exact-copy public preview controls', () {
     final screen = File(
       'lib/screens/vault/vault_manage_card_screen.dart',
@@ -128,5 +153,45 @@ void main() {
     expect(service, contains(".eq('id', instanceId)"));
     expect(service, contains(".eq('user_id', userId)"));
     expect(service, contains(".filter('archived_at', 'is', null)"));
+  });
+
+  test('bulk copy writes are exact-copy scoped', () {
+    final service = File(
+      'lib/services/vault/vault_card_service.dart',
+    ).readAsStringSync();
+    final intentStart = service.indexOf(
+      'static Future<String> saveVaultItemInstancesIntentBulk',
+    );
+    final sectionStart = service.indexOf(
+      'static Future<void> bulkCopySectionMembership',
+    );
+    final boundary = service.indexOf(
+      'static Future<String?> saveSharedCardWallCategory',
+    );
+    expect(intentStart, greaterThanOrEqualTo(0));
+    expect(sectionStart, greaterThan(intentStart));
+    expect(boundary, greaterThan(sectionStart));
+
+    final bulkSource = service.substring(intentStart, boundary);
+    expect(bulkSource, contains("from('vault_item_instances')"));
+    expect(bulkSource, contains(".update({'intent': nextIntent})"));
+    expect(bulkSource, contains(".inFilter('id', normalizedInstanceIds)"));
+    expect(bulkSource, contains("from('wall_sections')"));
+    expect(bulkSource, contains("from('wall_section_memberships')"));
+    expect(
+      bulkSource,
+      contains('Bulk copy intent authority is exact-copy level'),
+    );
+    expect(
+      bulkSource,
+      contains('Bulk grouped-card section assignment is exact-copy only'),
+    );
+    expect(
+      bulkSource,
+      contains('Bulk grouped-card section removal is exact-copy only'),
+    );
+    expect(bulkSource, isNot(contains("from('vault_items')")));
+    expect(bulkSource, isNot(contains("from('shared_cards')")));
+    expect(bulkSource, isNot(contains('legacy_vault_item_id')));
   });
 }

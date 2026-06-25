@@ -938,6 +938,54 @@ class VaultCardService {
     return savedIntent;
   }
 
+  static Future<String> saveVaultItemInstancesIntentBulk({
+    required SupabaseClient client,
+    required Iterable<String> instanceIds,
+    required String intent,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    final normalizedInstanceIds = instanceIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedInstanceIds.isEmpty) {
+      throw Exception('Choose at least one copy.');
+    }
+
+    final nextIntent = normalizeVaultIntentValue(intent);
+    // LOCK: Bulk copy intent authority is exact-copy level.
+    // LOCK: Do not write grouped vault_items or shared_cards from bulk copy actions.
+    final ownedRows = await client
+        .from('vault_item_instances')
+        .select('id,user_id,archived_at')
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .inFilter('id', normalizedInstanceIds);
+
+    if ((ownedRows as List<dynamic>).length != normalizedInstanceIds.length) {
+      throw Exception('Selected copies could not be updated.');
+    }
+
+    final updatedRows = await client
+        .from('vault_item_instances')
+        .update({'intent': nextIntent})
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .inFilter('id', normalizedInstanceIds)
+        .select('id,intent');
+
+    if ((updatedRows as List<dynamic>).length != normalizedInstanceIds.length) {
+      throw Exception('Selected copies could not be updated.');
+    }
+
+    return nextIntent;
+  }
+
   static Future<Map<String, List<VaultManageCopySectionMembership>>>
   loadCopySectionMemberships({
     required SupabaseClient client,
@@ -1089,6 +1137,86 @@ class VaultCardService {
         .delete()
         .eq('vault_item_instance_id', normalizedInstanceId)
         .eq('section_id', normalizedSectionId);
+  }
+
+  static Future<void> bulkCopySectionMembership({
+    required SupabaseClient client,
+    required Iterable<String> instanceIds,
+    required String sectionId,
+    required bool add,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    final normalizedSectionId = _trimmedOrNull(sectionId);
+    final normalizedInstanceIds = instanceIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (userId == null ||
+        userId.isEmpty ||
+        normalizedSectionId == null ||
+        normalizedSectionId.toLowerCase() == 'wall' ||
+        normalizedInstanceIds.isEmpty) {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    final results = await Future.wait<dynamic>([
+      client
+          .from('vault_item_instances')
+          .select('id,user_id,archived_at')
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .inFilter('id', normalizedInstanceIds),
+      client
+          .from('wall_sections')
+          .select('id,user_id,is_active')
+          .eq('id', normalizedSectionId)
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .maybeSingle(),
+    ]);
+
+    final ownedRows = results[0] as List<dynamic>;
+    if (ownedRows.length != normalizedInstanceIds.length ||
+        results[1] == null) {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    if (add) {
+      final existingRows = await client
+          .from('wall_section_memberships')
+          .select('section_id,vault_item_instance_id')
+          .eq('section_id', normalizedSectionId)
+          .inFilter('vault_item_instance_id', normalizedInstanceIds);
+      final existingInstanceIds = (existingRows as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .map((row) => _trimmedOrNull(row['vault_item_instance_id']))
+          .whereType<String>()
+          .toSet();
+      final rowsToInsert = normalizedInstanceIds
+          .where((id) => !existingInstanceIds.contains(id))
+          .map(
+            (id) => {
+              'section_id': normalizedSectionId,
+              'vault_item_instance_id': id,
+            },
+          )
+          .toList(growable: false);
+
+      if (rowsToInsert.isNotEmpty) {
+        // LOCK: Bulk grouped-card section assignment is exact-copy only.
+        // LOCK: Do not write shared_cards or grouped vault_items.
+        await client.from('wall_section_memberships').insert(rowsToInsert);
+      }
+    } else {
+      // LOCK: Bulk grouped-card section removal is exact-copy only.
+      // LOCK: Do not write shared_cards or grouped vault_items.
+      await client
+          .from('wall_section_memberships')
+          .delete()
+          .eq('section_id', normalizedSectionId)
+          .inFilter('vault_item_instance_id', normalizedInstanceIds);
+    }
   }
 
   static Future<String?> saveSharedCardWallCategory({
