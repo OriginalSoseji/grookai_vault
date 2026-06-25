@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
+import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../widgets/card_surface_price.dart';
+import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
 import 'vault_gvvi_screen.dart';
@@ -808,6 +811,66 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     );
   }
 
+  Future<void> _openCopyPublicPage(VaultManageCardCopy copy) async {
+    final gvviId = (copy.gvviId ?? '').trim();
+    if (gvviId.isEmpty) {
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => PublicGvviScreen(gvviId: gvviId)),
+    );
+  }
+
+  Future<void> _openCopyPublicSection(
+    VaultManageCopySectionMembership section,
+  ) async {
+    final slug = (_data?.publicSlug ?? '').trim();
+    if (slug.isEmpty || !section.isMember) {
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            PublicCollectorScreen(slug: slug, initialSectionId: section.id),
+      ),
+    );
+  }
+
+  Future<void> _copyPublicPreviewLink(String path, String label) async {
+    final uri = GrookaiWebRouteService.buildUri(path);
+    await Clipboard.setData(ClipboardData(text: uri.toString()));
+    _showStatus('$label link copied.');
+  }
+
+  Future<void> _shareCopyPublicLink(VaultManageCardCopy copy) async {
+    final gvviId = (copy.gvviId ?? '').trim();
+    if (gvviId.isEmpty) {
+      return;
+    }
+
+    final uri = GrookaiWebRouteService.buildUri(_publicGvviPath(gvviId));
+    await SharePlus.instance.share(
+      ShareParams(uri: uri, subject: _data?.name ?? 'Grookai Vault copy'),
+    );
+  }
+
+  static String _publicGvviPath(String gvviId) {
+    return '/gvvi/${Uri.encodeComponent(gvviId)}';
+  }
+
+  static String _publicWallPath(String slug) {
+    return '/u/${Uri.encodeComponent(slug.trim().toLowerCase())}';
+  }
+
+  static String _publicSectionPath({
+    required String slug,
+    required String sectionId,
+  }) {
+    return '${_publicWallPath(slug)}/section/${Uri.encodeComponent(sectionId)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -1521,6 +1584,13 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                     copy: data.copies[index],
                     intentSaving:
                         _copyIntentSavingId == data.copies[index].instanceId,
+                    canPreviewPublic:
+                        data.publicProfileEnabled &&
+                        data.vaultSharingEnabled &&
+                        (data.publicSlug ?? '').trim().isNotEmpty &&
+                        normalizeVaultIntentValue(data.copies[index].intent) !=
+                            'hold' &&
+                        (data.copies[index].gvviId ?? '').trim().isNotEmpty,
                     sections:
                         _copySectionMemberships[data
                             .copies[index]
@@ -1540,6 +1610,24 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                             section,
                           )
                         : null,
+                    onOpenWall: _openWall,
+                    onOpenPublicCopy: () =>
+                        _openCopyPublicPage(data.copies[index]),
+                    onCopyPublicCopyLink: () => _copyPublicPreviewLink(
+                      _publicGvviPath(data.copies[index].gvviId ?? ''),
+                      'Public copy',
+                    ),
+                    onSharePublicCopy: () =>
+                        _shareCopyPublicLink(data.copies[index]),
+                    onOpenPublicSection: _openCopyPublicSection,
+                    onCopyPublicSectionLink: (section) =>
+                        _copyPublicPreviewLink(
+                          _publicSectionPath(
+                            slug: data.publicSlug ?? '',
+                            sectionId: section.id,
+                          ),
+                          section.name,
+                        ),
                     secondaryActionLabel:
                         _canUpgradeCopyToSlab(data, data.copies[index])
                         ? 'Upgrade to Slab'
@@ -1948,10 +2036,17 @@ class _CopyRow extends StatelessWidget {
     required this.copy,
     required this.intentSaving,
     required this.sections,
+    required this.canPreviewPublic,
     this.busySectionKey,
     this.onTap,
     this.onIntentSelected,
     this.onToggleSection,
+    this.onOpenWall,
+    this.onOpenPublicCopy,
+    this.onCopyPublicCopyLink,
+    this.onSharePublicCopy,
+    this.onOpenPublicSection,
+    this.onCopyPublicSectionLink,
     this.secondaryActionLabel,
     this.onSecondaryAction,
   });
@@ -1959,10 +2054,17 @@ class _CopyRow extends StatelessWidget {
   final VaultManageCardCopy copy;
   final bool intentSaving;
   final List<VaultManageCopySectionMembership> sections;
+  final bool canPreviewPublic;
   final String? busySectionKey;
   final VoidCallback? onTap;
   final ValueChanged<String>? onIntentSelected;
   final ValueChanged<VaultManageCopySectionMembership>? onToggleSection;
+  final VoidCallback? onOpenWall;
+  final VoidCallback? onOpenPublicCopy;
+  final VoidCallback? onCopyPublicCopyLink;
+  final VoidCallback? onSharePublicCopy;
+  final ValueChanged<VaultManageCopySectionMembership>? onOpenPublicSection;
+  final ValueChanged<VaultManageCopySectionMembership>? onCopyPublicSectionLink;
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
 
@@ -1980,6 +2082,9 @@ class _CopyRow extends StatelessWidget {
             if ((copy.grade ?? '').isNotEmpty) copy.grade!,
           ].join(' ')
         : 'Raw ${copy.conditionLabel}';
+    final assignedSections = sections
+        .where((section) => section.isMember)
+        .toList(growable: false);
 
     final body = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2075,6 +2180,18 @@ class _CopyRow extends StatelessWidget {
             ],
           ),
         ],
+        if (canPreviewPublic) ...[
+          const SizedBox(height: 12),
+          _CopyPublicPreviewSurface(
+            assignedSections: assignedSections,
+            onOpenWall: onOpenWall,
+            onOpenPublicCopy: onOpenPublicCopy,
+            onCopyPublicCopyLink: onCopyPublicCopyLink,
+            onSharePublicCopy: onSharePublicCopy,
+            onOpenPublicSection: onOpenPublicSection,
+            onCopyPublicSectionLink: onCopyPublicSectionLink,
+          ),
+        ],
         if (metaParts.isNotEmpty) ...[
           const SizedBox(height: 8),
           Text(
@@ -2141,6 +2258,135 @@ class _CopyRow extends StatelessWidget {
 
   static String _formatDate(DateTime value) {
     return '${value.month}/${value.day}/${value.year}';
+  }
+}
+
+class _CopyPublicPreviewSurface extends StatelessWidget {
+  const _CopyPublicPreviewSurface({
+    required this.assignedSections,
+    this.onOpenWall,
+    this.onOpenPublicCopy,
+    this.onCopyPublicCopyLink,
+    this.onSharePublicCopy,
+    this.onOpenPublicSection,
+    this.onCopyPublicSectionLink,
+  });
+
+  final List<VaultManageCopySectionMembership> assignedSections;
+  final VoidCallback? onOpenWall;
+  final VoidCallback? onOpenPublicCopy;
+  final VoidCallback? onCopyPublicCopyLink;
+  final VoidCallback? onSharePublicCopy;
+  final ValueChanged<VaultManageCopySectionMembership>? onOpenPublicSection;
+  final ValueChanged<VaultManageCopySectionMembership>? onCopyPublicSectionLink;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    // LOCK: Grouped row public preview links are exact-copy read links only.
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: 0.62),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Public Preview',
+              style: theme.textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.18,
+                color: colorScheme.onSurface.withValues(alpha: 0.58),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              children: [
+                if (onOpenWall != null)
+                  _CopyPreviewActionChip(
+                    icon: Icons.public_outlined,
+                    label: 'View Wall',
+                    onPressed: onOpenWall!,
+                  ),
+                if (onOpenPublicCopy != null)
+                  _CopyPreviewActionChip(
+                    icon: Icons.style_outlined,
+                    label: 'View public copy',
+                    onPressed: onOpenPublicCopy!,
+                  ),
+                if (onSharePublicCopy != null)
+                  _CopyPreviewActionChip(
+                    icon: Icons.ios_share_outlined,
+                    label: 'Share copy',
+                    onPressed: onSharePublicCopy!,
+                  ),
+                if (onCopyPublicCopyLink != null)
+                  _CopyPreviewActionChip(
+                    icon: Icons.link_rounded,
+                    label: 'Copy link',
+                    onPressed: onCopyPublicCopyLink!,
+                  ),
+              ],
+            ),
+            if (assignedSections.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final section in assignedSections)
+                    InputChip(
+                      label: Text(section.name),
+                      avatar: const Icon(Icons.folder_open_outlined, size: 16),
+                      onPressed: onOpenPublicSection == null
+                          ? null
+                          : () => onOpenPublicSection!(section),
+                      deleteIcon: const Icon(Icons.link_rounded, size: 16),
+                      onDeleted: onCopyPublicSectionLink == null
+                          ? null
+                          : () => onCopyPublicSectionLink!(section),
+                    ),
+                ],
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CopyPreviewActionChip extends StatelessWidget {
+  const _CopyPreviewActionChip({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 15),
+      label: Text(label),
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(0, 34),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
   }
 }
 

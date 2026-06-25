@@ -19,6 +19,30 @@ void main() {
     expect(screen, isNot(contains('VaultCardService.saveVaultItemIntent')));
   });
 
+  test('mobile GVVI screen exposes exact-copy public preview links', () {
+    final screen = File(
+      'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('class _VaultPublicPreviewSurface'));
+    expect(screen, contains('Public Preview'));
+    expect(screen, contains('View Wall'));
+    expect(screen, contains('View public copy'));
+    expect(screen, contains('Share copy'));
+    expect(screen, contains('Copy link'));
+    expect(screen, contains('assignedSections'));
+    expect(screen, contains('PublicCollectorScreen('));
+    expect(screen, contains('initialSectionId: section.id'));
+    expect(screen, contains('SharePlus.instance.share'));
+    expect(screen, contains('GrookaiWebRouteService.buildUri'));
+    expect(
+      screen,
+      contains(
+        'Mobile owner preview links are derived from exact-copy public read',
+      ),
+    );
+  });
+
   test('mobile GVVI intent write is exact-copy scoped', () {
     final service = File(
       'lib/services/vault/vault_gvvi_service.dart',
