@@ -134,6 +134,16 @@ const PRICECHARTING_PROMO_SET_ALIASES = new Map([
   ['xyp', ['Pokemon Promo', 'Pokemon XY Promo']],
 ]);
 
+const PRICECHARTING_EXPANSION_SET_ALIASES = new Map([
+  ['col1', ['Pokemon Call of Legends']],
+  ['dp7', ['Pokemon Stormfront']],
+  ['ecard1', ['Pokemon Expedition']],
+  ['ex4', ['Pokemon Team Magma & Team Aqua']],
+  ['ex6', ['Pokemon Fire Red & Leaf Green', 'Pokemon FireRed & LeafGreen']],
+  ['pl2', ['Pokemon Rising Rivals']],
+  ['pl4', ['Pokemon Arceus']],
+]);
+
 const PRICECHARTING_PROMO_NUMBER_PREFIXES = new Map([
   ['bwp', ['bw']],
   ['dpp', ['dp']],
@@ -143,6 +153,13 @@ const PRICECHARTING_PROMO_NUMBER_PREFIXES = new Map([
   ['svp', ['svp', 'sv']],
   ['swshp', ['swsh']],
   ['xyp', ['xy']],
+]);
+
+const PRICECHARTING_EXPANSION_NUMBER_PREFIXES = new Map([
+  ['col1', ['sl']],
+  ['dp7', ['sh']],
+  ['pl2', ['rt']],
+  ['pl4', ['ar', 'sh']],
 ]);
 
 function setAliasesForTarget(target, setCatalog) {
@@ -159,6 +176,9 @@ function setAliasesForTarget(target, setCatalog) {
     aliases.add(setInfo.printed_name);
   }
   for (const alias of PRICECHARTING_PROMO_SET_ALIASES.get(code) ?? []) {
+    aliases.add(alias);
+  }
+  for (const alias of PRICECHARTING_EXPANSION_SET_ALIASES.get(code) ?? []) {
     aliases.add(alias);
   }
 
@@ -195,7 +215,10 @@ function numberAliasesForTarget(target) {
   }
 
   const code = String(target.set_code ?? '').trim();
-  const prefixes = PRICECHARTING_PROMO_NUMBER_PREFIXES.get(code) ?? [];
+  const prefixes = [
+    ...(PRICECHARTING_PROMO_NUMBER_PREFIXES.get(code) ?? []),
+    ...(PRICECHARTING_EXPANSION_NUMBER_PREFIXES.get(code) ?? []),
+  ];
   const digits = exactNumber.replace(/^[a-z]+/, '');
   if (digits && prefixes.length > 0) {
     for (const prefix of prefixes) {

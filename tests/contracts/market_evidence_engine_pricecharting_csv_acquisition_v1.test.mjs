@@ -133,6 +133,59 @@ test("MEE-04D matches governed promo source-number prefixes without broad numeri
   assert.ok(result.candidate_evidence.every((candidate) => !candidate.raw_title.includes("Pokemon Black & White")));
 });
 
+test("MEE-04D matches governed expansion aliases and secret-number prefixes", () => {
+  const csvRows = parsePriceChartingCsvRowsV1([
+    "id,console-name,product-name,loose-price,cib-price,new-price,graded-price,box-only-price,manual-only-price,bgs-10-price,condition-17-price,condition-18-price,gamestop-price,gamestop-trade-price,retail-loose-buy,retail-loose-sell,retail-cib-buy,retail-cib-sell,retail-new-buy,retail-new-sell,upc,sales-volume,genre,tcg-id,asin,epid,release-date",
+    "1001,Pokemon Call of Legends,Ho-Oh #SL5,$199.50,,,$1608.23,,,,,,,,,,,,,,,131,Pokemon Card,,,,2011-02-09",
+    "1002,Pokemon Stormfront,Duskull #SH2,$72.76,,,$272.00,,,,,,,,,,,,,,,60,Pokemon Card,,,,2008-11-05",
+    "1003,Pokemon Rising Rivals,Fan Rotom #RT1,$19.44,,,$106.60,,,,,,,,,,,,,,,40,Pokemon Card,,,,2009-05-16",
+    "1004,Pokemon Emerald,Ho-Oh #5,$3.00,,,$20.00,,,,,,,,,,,,,,,1,Pokemon Card,,,,2005-01-01",
+  ].join("\n"));
+
+  const result = acquirePriceChartingCsvEvidenceV1({
+    batch: {
+      items: [
+        {
+          card_print_id: "55555555-5555-5555-5555-555555555555",
+          gv_id: "GV-PK-COL-SL5",
+          name: "Ho-Oh",
+          set_code: "col1",
+          number_plain: "5",
+          source: "pricecharting_reference",
+        },
+        {
+          card_print_id: "66666666-6666-6666-6666-666666666666",
+          gv_id: "GV-PK-SF-SH2",
+          name: "Duskull",
+          set_code: "dp7",
+          number_plain: "2",
+          source: "pricecharting_reference",
+        },
+        {
+          card_print_id: "77777777-7777-7777-7777-777777777777",
+          gv_id: "GV-PK-RR-RT1",
+          name: "Fan Rotom",
+          set_code: "pl2",
+          number_plain: "1",
+          source: "pricecharting_reference",
+        },
+      ],
+    },
+    csvRows,
+    generatedAt: "2026-06-25T02:00:00.000Z",
+    maxCandidatesPerTarget: 3,
+  });
+
+  assert.equal(result.summary.status_counts.candidate_evidence_created, 3);
+  assert.equal(result.summary.candidate_evidence_count, 6);
+  assert.ok(result.reviewed_targets.every((target) => /number_prefix_alias_matched/.test(target.best_match_reason)));
+  assert.ok(result.reviewed_targets.every((target) => /set_alias_matched/.test(target.best_match_reason)));
+  assert.ok(result.candidate_evidence.some((candidate) => candidate.raw_title.includes("#SL5")));
+  assert.ok(result.candidate_evidence.some((candidate) => candidate.raw_title.includes("#SH2")));
+  assert.ok(result.candidate_evidence.some((candidate) => candidate.raw_title.includes("#RT1")));
+  assert.ok(result.candidate_evidence.every((candidate) => !candidate.raw_title.includes("Pokemon Emerald")));
+});
+
 test("MEE-04D script and plan do not fetch providers, write DB rows, or publish prices", () => {
   const moduleSource = source("backend/pricing/market_evidence_pricecharting_csv_acquisition_v1.mjs");
   const scriptSource = source("scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs");
