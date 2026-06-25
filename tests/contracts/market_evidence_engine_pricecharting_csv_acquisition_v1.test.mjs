@@ -1,0 +1,116 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import test from "node:test";
+
+import {
+  acquirePriceChartingCsvEvidenceV1,
+  parsePriceChartingCsvRowsV1,
+} from "../../backend/pricing/market_evidence_pricecharting_csv_acquisition_v1.mjs";
+
+function source(relativePath) {
+  return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
+}
+
+const sampleBatch = {
+  items: [
+    {
+      card_print_id: "11111111-1111-1111-1111-111111111111",
+      gv_id: "GV-PK-BS-4",
+      name: "Charizard",
+      set_code: "base1",
+      number_plain: "4",
+      source: "pricecharting_reference",
+    },
+    {
+      card_print_id: "22222222-2222-2222-2222-222222222222",
+      gv_id: "GV-PK-BS-58",
+      name: "Pikachu",
+      set_code: "base1",
+      number_plain: "58",
+      source: "manual_review_candidate",
+    },
+  ],
+};
+
+const sampleCsv = [
+  "id,console-name,product-name,loose-price,cib-price,new-price,graded-price,box-only-price,manual-only-price,bgs-10-price,condition-17-price,condition-18-price,gamestop-price,gamestop-trade-price,retail-loose-buy,retail-loose-sell,retail-cib-buy,retail-cib-sell,retail-new-buy,retail-new-sell,upc,sales-volume,genre,tcg-id,asin,epid,release-date",
+  "123,Pokemon Base Set,Charizard #4,$199.99,,,$999.99,,,,,,,,,,,,,,,42,Pokemon Card,,,,1999-01-09",
+  "456,Pokemon Base Set,Charizard [1st Edition] #4,$9999.99,,,$19999.99,,,,,,,,,,,,,,,7,Pokemon Card,,,,1999-01-09",
+  "789,Pokemon Jungle,Pikachu #60,$9.99,,,,,,,,,,,,,,,,,10,Pokemon Card,,,,1999-06-16",
+].join("\n");
+
+test("MEE-04D parses PriceCharting CSV rows and emits local review-gated evidence", () => {
+  const csvRows = parsePriceChartingCsvRowsV1(sampleCsv);
+  const result = acquirePriceChartingCsvEvidenceV1({
+    batch: sampleBatch,
+    csvRows,
+    setCatalog: {
+      base1: { code: "base1", name: "Base Set" },
+    },
+    generatedAt: "2026-06-25T02:00:00.000Z",
+    maxCandidatesPerTarget: 2,
+  });
+
+  assert.equal(result.mode, "local_csv_raw_evidence_only");
+  assert.equal(result.boundary.provider_calls, false);
+  assert.equal(result.boundary.source_fetches, false);
+  assert.equal(result.boundary.db_writes, false);
+  assert.equal(result.boundary.pricing_rollups, false);
+  assert.equal(result.boundary.public_price_publication, false);
+  assert.equal(result.boundary.raw_evidence_objects_created, true);
+  assert.equal(result.boundary.raw_evidence_objects_persisted_to_db, false);
+  assert.equal(result.summary.pricecharting_targets, 1);
+  assert.equal(result.summary.candidate_evidence_count, 4);
+
+  for (const candidate of result.candidate_evidence) {
+    assert.equal(candidate.source, "pricecharting_reference");
+    assert.equal(candidate.source_type, "reference_price");
+    assert.equal(candidate.can_publish_price_directly, false);
+    assert.equal(candidate.needs_review, true);
+    assert.equal(candidate.contract_version, "MARKET_EVIDENCE_OBJECT_CONTRACT_V1");
+    assert.match(candidate.source_url, /^https:\/\/www\.pricecharting\.com\/game\//);
+    assert.equal(candidate.currency, "USD");
+  }
+
+  const firstEditionCandidate = result.candidate_evidence.find((candidate) => candidate.raw_title.includes("[1st Edition]"));
+  assert.ok(firstEditionCandidate);
+  assert.equal(firstEditionCandidate.match_confidence_hint, "medium");
+  assert.ok(firstEditionCandidate.exclusion_flags.includes("ambiguous_variant"));
+  assert.ok(firstEditionCandidate.exclusion_flags.includes("wrong_print_run"));
+});
+
+test("MEE-04D keeps unmatched targets as reviewed misses", () => {
+  const csvRows = parsePriceChartingCsvRowsV1(sampleCsv);
+  const result = acquirePriceChartingCsvEvidenceV1({
+    batch: {
+      items: [{
+        card_print_id: "33333333-3333-3333-3333-333333333333",
+        gv_id: "GV-PK-XYZ-1",
+        name: "Missingmon",
+        set_code: "xyz",
+        number_plain: "1",
+        source: "pricecharting_reference",
+      }],
+    },
+    csvRows,
+    generatedAt: "2026-06-25T02:00:00.000Z",
+  });
+
+  assert.equal(result.summary.candidate_evidence_count, 0);
+  assert.deepEqual(result.summary.status_counts, { no_pricecharting_csv_match: 1 });
+});
+
+test("MEE-04D script and plan do not fetch providers, write DB rows, or publish prices", () => {
+  const moduleSource = source("backend/pricing/market_evidence_pricecharting_csv_acquisition_v1.mjs");
+  const scriptSource = source("scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs");
+  const planDoc = source("docs/plans/market_evidence_engine_v1/MEE_04D_PRICECHARTING_CSV_RAW_EVIDENCE_V1.md");
+  const pkg = source("package.json");
+
+  assert.match(planDoc, /No provider calls, source page fetches, database writes, pricing rollups/);
+  assert.match(planDoc, /can_publish_price_directly = false/);
+  assert.match(pkg, /"mee:pricecharting-csv"/);
+
+  const combined = `${moduleSource}\n${scriptSource}`;
+  assert.doesNotMatch(combined, /fetch\s*\(|axios|https\.request|curl\.exe|execFile/);
+  assert.doesNotMatch(combined, /\.insert\s*\(|\.update\s*\(|\.upsert\s*\(|\.delete\s*\(|\.rpc\s*\(/);
+});

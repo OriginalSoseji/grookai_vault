@@ -43,6 +43,7 @@
     "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
     "mee:acquisition-batch": "node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+    "mee:pricecharting-csv": "node scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs",
     "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
     "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
