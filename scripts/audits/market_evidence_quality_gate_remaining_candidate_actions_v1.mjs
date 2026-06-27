@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import os from "node:os";
+import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { marketEvidenceQueryRows } from "../lib/market_evidence_db_query_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,31 +34,6 @@ function sha256Text(value) {
 
 function sha256Json(value) {
   return sha256Text(JSON.stringify(stable(value)));
-}
-
-function parseRows(output) {
-  const firstBrace = output.indexOf("{");
-  const lastBrace = output.lastIndexOf("}");
-  if (firstBrace === -1 || lastBrace <= firstBrace) {
-    throw new Error(`Could not parse Supabase query JSON output: ${output.slice(0, 500)}`);
-  }
-  return JSON.parse(output.slice(firstBrace, lastBrace + 1)).rows ?? [];
-}
-
-function supabaseReadOnlyQuery(sql) {
-  const tempDir = mkdtempSync(path.join(os.tmpdir(), "mee-quality-actions-"));
-  const tempSql = path.join(tempDir, "query.sql");
-  try {
-    writeFileSync(tempSql, sql);
-    const output = execFileSync("supabase", ["db", "query", "--linked", "-f", tempSql], {
-      cwd: REPO_ROOT,
-      encoding: "utf8",
-      maxBuffer: 1024 * 1024 * 20,
-    });
-    return parseRows(output);
-  } finally {
-    rmSync(tempDir, { recursive: true, force: true });
-  }
 }
 
 function sqlLiteral(value) {
@@ -152,7 +127,7 @@ mkdirSync(SQL_DIR, { recursive: true });
 mkdirSync(PLAN_DIR, { recursive: true });
 mkdirSync(CHECKPOINT_DIR, { recursive: true });
 
-const rows = supabaseReadOnlyQuery(planSql).map((row, index) => ({
+const rows = (await marketEvidenceQueryRows(planSql)).map((row, index) => ({
   package_id: PACKAGE_ID,
   row_index: index + 1,
   ...row,

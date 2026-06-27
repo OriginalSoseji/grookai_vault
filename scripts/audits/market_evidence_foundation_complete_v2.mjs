@@ -51,6 +51,22 @@ function readJson(relativePath) {
   return JSON.parse(read(relativePath));
 }
 
+function readJsonOrNull(relativePath) {
+  const absolutePath = path.join(REPO_ROOT, relativePath);
+  if (!readFileExists(absolutePath)) return null;
+  return JSON.parse(readFileSync(absolutePath, "utf8"));
+}
+
+function readFileExists(absolutePath) {
+  try {
+    readFileSync(absolutePath);
+    return true;
+  } catch (error) {
+    if (error?.code === "ENOENT") return false;
+    throw error;
+  }
+}
+
 function boundaryProof() {
   return {
     db_writes: false,
@@ -86,9 +102,14 @@ mkdirSync(PLAN_DIR, { recursive: true });
 mkdirSync(CHECKPOINT_DIR, { recursive: true });
 
 const fastReadback = readJson(FAST_READBACK_REPORT);
-const qualityTaxonomy = readJson(QUALITY_TAXONOMY_REPORT);
+const qualityTaxonomy = readJsonOrNull(QUALITY_TAXONOMY_REPORT) ?? {
+  package_fingerprint_sha256: "missing_optional_quality_taxonomy_report",
+};
 const qualityScoring = readJson(QUALITY_SCORING_REPORT);
-const candidateThreshold = readJson(CANDIDATE_THRESHOLD_REPORT);
+const candidateThreshold = readJsonOrNull(CANDIDATE_THRESHOLD_REPORT) ?? {
+  package_fingerprint_sha256: "missing_optional_candidate_threshold_report",
+  boundary: { auto_confirm_rows: 0 },
+};
 const fastSummary = fastReadback.summary ?? {};
 const fastPublicBoundaryRows = Object.values(fastReadback.public_boundary ?? {}).reduce(
   (sum, value) => sum + Number(value ?? 0),

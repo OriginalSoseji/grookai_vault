@@ -15,7 +15,7 @@ Create `/etc/grookai/mee-nightly.env` from:
 deploy/env/mee-nightly.env.example
 ```
 
-Fill `SUPABASE_SECRET_KEY` and `SUPABASE_ACCESS_TOKEN`.
+Fill `SUPABASE_SECRET_KEY` and `SUPABASE_DB_URL`.
 
 Fill either:
 
@@ -28,8 +28,8 @@ Preferred installer:
 sudo bash deploy/scripts/install-mee-nightly-systemd.sh
 ```
 
-The worker uses the Supabase CLI for internal readback/apply guards. A global `supabase`
-binary is allowed but not required; the worker falls back to `npx --yes supabase`.
+The worker uses `SUPABASE_DB_URL` for internal readback/apply guards.
+The Supabase CLI is not required for the droplet runtime.
 
 ## Dry Run
 

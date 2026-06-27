@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import os from "node:os";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { marketEvidenceQueryRows } from "../lib/market_evidence_db_query_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,31 +46,6 @@ function read(relativePath) {
 
 function readJson(relativePath) {
   return JSON.parse(read(relativePath));
-}
-
-function parseRows(output) {
-  const firstBrace = output.indexOf("{");
-  const lastBrace = output.lastIndexOf("}");
-  if (firstBrace === -1 || lastBrace <= firstBrace) {
-    throw new Error(`Could not parse Supabase query JSON output: ${output.slice(0, 500)}`);
-  }
-  return JSON.parse(output.slice(firstBrace, lastBrace + 1)).rows ?? [];
-}
-
-function supabaseReadOnlyQuery(sql) {
-  const tempDir = mkdtempSync(path.join(os.tmpdir(), "mee-quality-score-"));
-  const tempSql = path.join(tempDir, "query.sql");
-  try {
-    writeFileSync(tempSql, sql);
-    const output = execFileSync("supabase", ["db", "query", "--linked", "-f", tempSql], {
-      cwd: REPO_ROOT,
-      encoding: "utf8",
-      maxBuffer: 1024 * 1024 * 20,
-    });
-    return parseRows(output);
-  } finally {
-    rmSync(tempDir, { recursive: true, force: true });
-  }
 }
 
 function markdownTable(rows, columns) {
@@ -282,12 +257,19 @@ mkdirSync(CONTRACT_DIR, { recursive: true });
 mkdirSync(PLAN_DIR, { recursive: true });
 mkdirSync(CHECKPOINT_DIR, { recursive: true });
 
-const taxonomyReport = readJson(TAXONOMY_REPORT);
-const readback = supabaseReadOnlyQuery(readbackSql)[0];
+const readback = (await marketEvidenceQueryRows(readbackSql))[0];
 const gateSummary = readback.gate_summary ?? {};
 const laneSummary = readback.lane_summary ?? [];
 const actionSummary = readback.action_summary ?? [];
 const boundary = readback.boundary ?? {};
+const taxonomyReport = existsSync(path.join(REPO_ROOT, TAXONOMY_REPORT))
+  ? readJson(TAXONOMY_REPORT)
+  : {
+      package_fingerprint_sha256: "missing_taxonomy_report_live_readback_baseline",
+      candidate_evidence_rows: Number(gateSummary.candidate_evidence_rows ?? 0),
+      low_confidence_rows: Number(gateSummary.low_match_confidence_rows ?? 0),
+      lane_mismatch_rows: Number(gateSummary.lane_mismatch_rows ?? 0),
+    };
 
 const findings = [];
 const candidateEvidenceRows = Number(gateSummary.candidate_evidence_rows);
