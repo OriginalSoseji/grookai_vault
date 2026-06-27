@@ -80,7 +80,10 @@ npm ci
 
 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run
 
-sudo cp "deploy/systemd/${SERVICE_NAME}" "/etc/systemd/system/${SERVICE_NAME}"
+tmp_service="$(mktemp)"
+sed "s#^WorkingDirectory=.*#WorkingDirectory=${REPO_DIR}#" "deploy/systemd/${SERVICE_NAME}" > "${tmp_service}"
+sudo cp "${tmp_service}" "/etc/systemd/system/${SERVICE_NAME}"
+rm -f "${tmp_service}"
 sudo cp "deploy/systemd/${TIMER_NAME}" "/etc/systemd/system/${TIMER_NAME}"
 sudo systemctl daemon-reload
 sudo systemctl enable --now "${TIMER_NAME}"
