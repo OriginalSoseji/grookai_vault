@@ -79,7 +79,7 @@ set +a
 
 npm ci
 
-node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run
+node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run --skip-provider --skip-apply
 
 tmp_service="$(mktemp)"
 sed "s#^WorkingDirectory=.*#WorkingDirectory=${REPO_DIR}#" "deploy/systemd/${SERVICE_NAME}" > "${tmp_service}"

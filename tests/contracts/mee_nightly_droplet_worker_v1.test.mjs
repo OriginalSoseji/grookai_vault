@@ -131,7 +131,10 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(installer, /env_value SUPABASE_SECRET_KEY/);
   assert.match(installer, /env_value EBAY_CLIENT_ID/);
   assert.match(installer, /source "\$\{ENV_FILE\}"/);
-  assert.match(installer, /node scripts\/workers\/mee_nightly_droplet_worker_v1\.mjs --dry-run/);
+  assert.match(
+    installer,
+    /node scripts\/workers\/mee_nightly_droplet_worker_v1\.mjs --dry-run --skip-provider --skip-apply/,
+  );
   assert.match(installer, /sed "s#\^WorkingDirectory=\.\*#WorkingDirectory=\$\{REPO_DIR\}#"/);
   assert.match(installer, /systemctl enable --now "\$\{TIMER_NAME\}"/);
   assert.match(installer, /MEE_NIGHTLY_ALLOW_RUN=1/);
