@@ -15,12 +15,8 @@ type CardPagePricingRailProps = {
 };
 
 function PricingSourceLabel({ source }: { source: CardPricingUiRecord["primary_source"] }) {
-  if (source === "justtcg") {
-    return <p className="text-[11px] text-slate-400">Reference pricing: JustTCG</p>;
-  }
-
   if (source === "ebay") {
-    return <p className="text-[11px] text-slate-400">Market data: eBay</p>;
+    return <p className="text-[11px] text-slate-400">Active listing evidence: eBay</p>;
   }
 
   return null;

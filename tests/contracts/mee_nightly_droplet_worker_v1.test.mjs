@@ -110,7 +110,7 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(installer, /set -euo pipefail/);
   assert.match(installer, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_vault\}"/);
   assert.match(installer, /require_env_value "SUPABASE_URL"/);
-  assert.match(installer, /env_value SUPABASE_SERVICE_ROLE_KEY/);
+  assert.match(installer, /env_value SUPABASE_SECRET_KEY/);
   assert.match(installer, /env_value EBAY_CLIENT_ID/);
   assert.match(installer, /source "\$\{ENV_FILE\}"/);
   assert.match(installer, /node scripts\/workers\/mee_nightly_droplet_worker_v1\.mjs --dry-run/);

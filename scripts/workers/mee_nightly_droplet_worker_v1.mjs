@@ -228,9 +228,9 @@ function preflight(args) {
     env: {
       MEE_NIGHTLY_ALLOW_RUN: process.env.MEE_NIGHTLY_ALLOW_RUN === "1",
       SUPABASE_URL_present: Boolean(process.env.SUPABASE_URL),
-      SUPABASE_SERVICE_ROLE_KEY_present: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY),
+      SUPABASE_SECRET_KEY_present: Boolean(process.env.SUPABASE_SECRET_KEY),
       EBAY_AUTH_PRESENT: Boolean(
-        process.env.EBAY_BROWSE_TOKEN || (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET),
+        process.env.EBAY_BROWSE_ACCESS_TOKEN || (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET),
       ),
     },
     findings,

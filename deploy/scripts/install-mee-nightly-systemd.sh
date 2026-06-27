@@ -56,13 +56,13 @@ fi
 
 require_env_value "SUPABASE_URL"
 
-if [[ -z "$(env_value SUPABASE_SERVICE_ROLE_KEY)" && -z "$(env_value SUPABASE_SECRET_KEY)" ]]; then
-  echo "${ENV_FILE} must contain SUPABASE_SERVICE_ROLE_KEY or SUPABASE_SECRET_KEY." >&2
+if [[ -z "$(env_value SUPABASE_SECRET_KEY)" ]]; then
+  echo "${ENV_FILE} must contain SUPABASE_SECRET_KEY." >&2
   exit 1
 fi
 
-if [[ -z "$(env_value EBAY_BROWSE_TOKEN)" && -z "$(env_value EBAY_CLIENT_ID)" ]]; then
-  echo "${ENV_FILE} must contain EBAY_BROWSE_TOKEN or EBAY_CLIENT_ID/EBAY_CLIENT_SECRET." >&2
+if [[ -z "$(env_value EBAY_BROWSE_ACCESS_TOKEN)" && -z "$(env_value EBAY_CLIENT_ID)" ]]; then
+  echo "${ENV_FILE} must contain EBAY_BROWSE_ACCESS_TOKEN or EBAY_CLIENT_ID/EBAY_CLIENT_SECRET." >&2
   exit 1
 fi
 

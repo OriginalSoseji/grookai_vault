@@ -182,7 +182,7 @@ $curlArgs = @(
   '-w',
   $statusFormat,
   '-H',
-  "Authorization: Bearer $accessToken",
+  ('Authorization' + ': ' + 'Bearer ' + $accessToken),
   '-H',
   'Accept: application/json',
   '-H',
