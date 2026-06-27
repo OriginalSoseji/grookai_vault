@@ -33,6 +33,8 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /DEFAULT_CALL_CEILING\s*=\s*4000/);
   assert.match(script, /const dryRun = argv\.includes\("--dry-run"\) \|\| !run/);
   assert.match(script, /MEE_NIGHTLY_ALLOW_RUN !== "1"/);
+  assert.match(script, /ensureSupabaseShimDir/);
+  assert.match(script, /npx --yes supabase/);
   assert.match(script, /nightly_worker_lock_not_acquired/);
   assert.match(script, /pg_try_advisory_lock\(hashtext/);
   assert.match(script, /pg_advisory_unlock\(hashtext/);
@@ -105,6 +107,7 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(timer, /RandomizedDelaySec=900/);
   assert.match(cron, /15 3 \* \* \*/);
   assert.match(env, /MEE_NIGHTLY_ALLOW_RUN=1/);
+  assert.match(env, /SUPABASE_ACCESS_TOKEN=/);
   assert.match(env, /EBAY_CLIENT_ID/);
   assert.match(env, /EBAY_CLIENT_SECRET/);
   assert.match(installer, /set -euo pipefail/);
