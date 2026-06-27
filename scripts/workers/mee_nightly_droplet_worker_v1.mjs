@@ -162,6 +162,21 @@ function commandText(command) {
   return command.join(" ");
 }
 
+function translatedCommand(command) {
+  const fileIndex = command.indexOf("-f");
+  if (
+    command[0] === "supabase" &&
+    command[1] === "db" &&
+    command[2] === "query" &&
+    command.includes("--linked") &&
+    fileIndex !== -1 &&
+    command[fileIndex + 1]
+  ) {
+    return ["node", "scripts/lib/market_evidence_db_query_v1.mjs", "--file", command[fileIndex + 1]];
+  }
+  return command;
+}
+
 function ensureSupabaseShimDir() {
   const shimDir = path.join(os.tmpdir(), "grookai-mee-nightly-bin");
   mkdirSync(shimDir, { recursive: true });
@@ -215,7 +230,8 @@ function commandEnv() {
 }
 
 function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
-  const result = spawnSync(command[0], command.slice(1), {
+  const actualCommand = translatedCommand(command);
+  const result = spawnSync(actualCommand[0], actualCommand.slice(1), {
     cwd: REPO_ROOT,
     env: commandEnv(),
     encoding: "utf8",
@@ -225,6 +241,7 @@ function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
   });
   return {
     command: commandText(command),
+    actual_command: commandText(actualCommand),
     status: result.status,
     signal: result.signal,
     stdout_tail: (result.stdout ?? "").slice(-6000),
@@ -283,6 +300,7 @@ function preflight(args) {
       MEE_NIGHTLY_ALLOW_RUN: process.env.MEE_NIGHTLY_ALLOW_RUN === "1",
       SUPABASE_URL_present: Boolean(process.env.SUPABASE_URL),
       SUPABASE_SECRET_KEY_present: Boolean(process.env.SUPABASE_SECRET_KEY),
+      SUPABASE_DB_URL_present: Boolean(process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL),
       EBAY_AUTH_PRESENT: Boolean(
         process.env.EBAY_BROWSE_ACCESS_TOKEN || (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET),
       ),
@@ -409,6 +427,7 @@ const payload = {
   execution: execution.map((phase) => ({
     phase: phase.phase,
     command: phase.command,
+    actual_command: phase.actual_command,
     status: phase.status,
     skipped: phase.skipped,
     reason: phase.reason,

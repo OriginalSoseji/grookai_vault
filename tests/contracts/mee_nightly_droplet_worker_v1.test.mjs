@@ -11,6 +11,7 @@ function exists(relativePath) {
 }
 
 const workerPath = "scripts/workers/mee_nightly_droplet_worker_v1.mjs";
+const dbQueryHelperPath = "scripts/lib/market_evidence_db_query_v1.mjs";
 const contractPath = "docs/contracts/MEE_NIGHTLY_DROPLET_WORKER_V1.md";
 const runbookPath = "docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md";
 const envPath = "deploy/env/mee-nightly.env.example";
@@ -21,7 +22,18 @@ const installerPath = "deploy/scripts/install-mee-nightly-systemd.sh";
 const verifierPath = "deploy/scripts/verify-mee-nightly-systemd.sh";
 
 test("MEE nightly droplet worker artifacts are present", () => {
-  for (const artifactPath of [workerPath, contractPath, runbookPath, envPath, servicePath, timerPath, cronPath, installerPath, verifierPath]) {
+  for (const artifactPath of [
+    workerPath,
+    dbQueryHelperPath,
+    contractPath,
+    runbookPath,
+    envPath,
+    servicePath,
+    timerPath,
+    cronPath,
+    installerPath,
+    verifierPath,
+  ]) {
     assert.equal(exists(artifactPath), true, artifactPath);
   }
 });
@@ -33,6 +45,8 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /DEFAULT_CALL_CEILING\s*=\s*4000/);
   assert.match(script, /const dryRun = argv\.includes\("--dry-run"\) \|\| !run/);
   assert.match(script, /MEE_NIGHTLY_ALLOW_RUN !== "1"/);
+  assert.match(script, /SUPABASE_DB_URL_present/);
+  assert.match(script, /market_evidence_db_query_v1\.mjs/);
   assert.match(script, /ensureSupabaseShimDir/);
   assert.match(script, /npx --yes supabase/);
   assert.match(script, /nightly_worker_lock_not_acquired/);
@@ -107,12 +121,13 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(timer, /RandomizedDelaySec=900/);
   assert.match(cron, /15 3 \* \* \*/);
   assert.match(env, /MEE_NIGHTLY_ALLOW_RUN=1/);
-  assert.match(env, /SUPABASE_ACCESS_TOKEN=/);
+  assert.match(env, /SUPABASE_DB_URL=/);
   assert.match(env, /EBAY_CLIENT_ID/);
   assert.match(env, /EBAY_CLIENT_SECRET/);
   assert.match(installer, /set -euo pipefail/);
   assert.match(installer, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_vault\}"/);
   assert.match(installer, /require_env_value "SUPABASE_URL"/);
+  assert.match(installer, /require_env_value "SUPABASE_DB_URL"/);
   assert.match(installer, /env_value SUPABASE_SECRET_KEY/);
   assert.match(installer, /env_value EBAY_CLIENT_ID/);
   assert.match(installer, /source "\$\{ENV_FILE\}"/);

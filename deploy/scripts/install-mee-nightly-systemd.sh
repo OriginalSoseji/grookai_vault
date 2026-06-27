@@ -55,6 +55,7 @@ if ! grep -q '^MEE_NIGHTLY_ALLOW_RUN=1$' "${ENV_FILE}"; then
 fi
 
 require_env_value "SUPABASE_URL"
+require_env_value "SUPABASE_DB_URL"
 
 if [[ -z "$(env_value SUPABASE_SECRET_KEY)" ]]; then
   echo "${ENV_FILE} must contain SUPABASE_SECRET_KEY." >&2
