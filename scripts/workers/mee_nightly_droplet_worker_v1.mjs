@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -15,6 +15,7 @@ const PACKAGE_ID = "MEE-NIGHTLY-DROPLET-WORKER-V1";
 const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
+const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
 const REQUIRED_FILES = [
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
   "scripts/audits/market_evidence_lifecycle_remaining_drain_v1.mjs",
@@ -161,9 +162,62 @@ function commandText(command) {
   return command.join(" ");
 }
 
+function ensureSupabaseShimDir() {
+  const shimDir = path.join(os.tmpdir(), "grookai-mee-nightly-bin");
+  mkdirSync(shimDir, { recursive: true });
+
+  if (process.platform === "win32") {
+    const shimPath = path.join(shimDir, "supabase.cmd");
+    writeFileSync(
+      shimPath,
+      [
+        "@echo off",
+        `if exist "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" %*`,
+        "if not errorlevel 9009 exit /b %errorlevel%",
+        "where supabase >nul 2>nul && supabase %* && exit /b %errorlevel%",
+        "npx --yes supabase %*",
+        "",
+      ].join("\r\n"),
+    );
+    return shimDir;
+  }
+
+  const shimPath = path.join(shimDir, "supabase");
+  writeFileSync(
+    shimPath,
+    [
+      "#!/usr/bin/env bash",
+      "set -euo pipefail",
+      `LOCAL_SUPABASE="${path.join(LOCAL_BIN_DIR, "supabase")}"`,
+      'if [[ -x "${LOCAL_SUPABASE}" ]]; then',
+      '  exec "${LOCAL_SUPABASE}" "$@"',
+      "fi",
+      "for candidate in /usr/local/bin/supabase /usr/bin/supabase; do",
+      '  if [[ -x "${candidate}" ]]; then',
+      '    exec "${candidate}" "$@"',
+      "  fi",
+      "done",
+      'exec npx --yes supabase "$@"',
+      "",
+    ].join("\n"),
+  );
+  chmodSync(shimPath, 0o755);
+  return shimDir;
+}
+
+function commandEnv() {
+  const shimDir = ensureSupabaseShimDir();
+  const currentPath = process.env.PATH ?? "";
+  return {
+    ...process.env,
+    PATH: [shimDir, LOCAL_BIN_DIR, currentPath].filter(Boolean).join(path.delimiter),
+  };
+}
+
 function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
   const result = spawnSync(command[0], command.slice(1), {
     cwd: REPO_ROOT,
+    env: commandEnv(),
     encoding: "utf8",
     stdio: "pipe",
     timeout: timeoutMs,
