@@ -1,0 +1,17 @@
+[Unit]
+Description=Grookai Market Evidence Engine Nightly Worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/grookai_vault
+EnvironmentFile=/etc/grookai/mee-nightly.env
+ExecStart=/usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
+TimeoutStartSec=8h
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

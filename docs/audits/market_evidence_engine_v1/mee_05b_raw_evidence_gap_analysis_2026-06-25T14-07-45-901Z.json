@@ -1,0 +1,2706 @@
+{
+  "generated_at": "2026-06-25T14:07:45.901Z",
+  "contract": "MARKET_EVIDENCE_ENGINE_V1",
+  "phase": "MEE-05B_RAW_EVIDENCE_GAP_ANALYSIS_V1",
+  "mode": "local_gap_analysis_only",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_rollups": false,
+    "migration_apply": false,
+    "public_price_publication": false
+  },
+  "summary": {
+    "reviewed_target_count": 5000,
+    "no_match_target_count": 420,
+    "candidate_evidence_count": 20918,
+    "ambiguous_or_blocked_candidate_count": 8267,
+    "csv_pokemon_card_rows": 73149
+  },
+  "counts": {
+    "no_match_by_gap_reason": {
+      "name_present_number_missing": 218,
+      "name_number_present_set_alias_or_variant_gap": 129,
+      "no_name_in_pricecharting_csv": 65,
+      "name_present_prefixed_number_gap": 8
+    },
+    "no_match_by_set_code": {
+      "me02.5": 122,
+      "ecard1": 69,
+      "me03": 46,
+      "ex6": 40,
+      "me01": 39,
+      "ex4": 30,
+      "exu": 24,
+      "pl2": 14,
+      "col1": 5,
+      "dp6": 4,
+      "pl4": 4,
+      "smp": 4,
+      "sv01": 3,
+      "dp3": 2,
+      "gym1": 2,
+      "neo4": 2,
+      "pgo": 2,
+      "sm11": 2,
+      "sv02": 2,
+      "dp7": 1,
+      "hgss1": 1,
+      "sm2": 1,
+      "sv03.5": 1
+    },
+    "ambiguous_or_blocked_by_disposition": {
+      "review_ambiguous_variant": 7173,
+      "blocked_wrong_print_run": 1094
+    },
+    "ambiguous_or_blocked_by_variant_label": {
+      "Reverse Holo": 5014,
+      "1st Edition": 956,
+      "Holo": 543,
+      "Cosmos Holo": 198,
+      "Prerelease Staff": 186,
+      "Prize Pack": 178,
+      "Jumbo": 118,
+      "1999-2000": 94,
+      "Cracked Ice": 93,
+      "Staff": 89,
+      "Prerelease": 87,
+      "Stamped": 79,
+      "Gold Star": 57,
+      "Master Ball": 56,
+      "No Symbol": 48,
+      "Cracked Ice Holo": 29,
+      "Pokemon League": 29,
+      "Shadowless": 24,
+      "EB Games": 16,
+      "League": 15,
+      "Regional Championships": 13,
+      "1st Place": 12,
+      "2nd Place": 12,
+      "3rd Place": 12,
+      "Crosshatch Holo": 12,
+      "Double Holo Error": 12,
+      "Pre-Release Staff": 12,
+      "1st Edition Double Holo Error": 11,
+      "GameStop": 11,
+      "National Championships": 11,
+      "Reverse": 10,
+      "Cosmos": 9,
+      "Pre-Release": 9,
+      "1st Place League": 7,
+      "National Championships Staff": 7,
+      "All Nippon Airways": 6,
+      "Prize Pack Cosmos Holo": 6,
+      "Stamp": 6,
+      "Non-Holo": 5,
+      "Crosshatch Pokemon League": 4,
+      "Holiday Calendar": 4,
+      "Horizons": 4,
+      "Metal": 4,
+      "Regional Championship Staff": 4,
+      "Stamped Asia Promo": 4,
+      "Winner": 4,
+      "Worlds 11 Staff": 4,
+      "1st Edition Error": 3,
+      "1st Edition Prerelease": 3,
+      "1st Edition Red Dot Error": 3,
+      "2nd Place League": 3,
+      "Build-A-Bear": 3,
+      "City Holo": 3,
+      "City Holo Staff": 3,
+      "Crosshatch League Promo": 3,
+      "Defense": 3,
+      "Defense + Reverse Holo": 3,
+      "Destiny Deoxys": 3,
+      "Energy Misprint": 3,
+      "Gamestop": 3,
+      "General Mills 2017": 3,
+      "Gym Challenge": 3,
+      "Highlighter Error": 3,
+      "Legendary Pokemon": 3,
+      "Normal": 3,
+      "Normal + Reverse Holo": 3,
+      "Platinum Stamped": 3,
+      "Play": 3,
+      "Pokemon League Holo": 3,
+      "Secret Rare": 3,
+      "Snowflake Stamp": 3,
+      "Speed": 3,
+      "Speed + Reverse Holo": 3,
+      "Top Thirty-Two": 3,
+      "W Stamp": 3,
+      "4th Place League": 2,
+      "Cosmo Holo": 2,
+      "Crosshatch Holo Staff": 2,
+      "Crosshatch League": 2,
+      "Crosshatch Staff": 2,
+      "Finalist": 2,
+      "Gym Challenge Promo": 2,
+      "Jumbo Stamped": 2,
+      "League Holo": 2,
+      "National Championship Staff": 2,
+      "Pokemon Day": 2,
+      "Prize Pack Series 7": 2,
+      "Promo": 2,
+      "Quarter-Finalist": 2,
+      "Regional Championship": 2,
+      "Regional Championships Staff": 2,
+      "Reverse Holo League": 2,
+      "Shogakukan Elementary": 2,
+      "Top Sixteen": 2,
+      "Worlds Staff": 2,
+      "2026 Pizza Hong Kong": 1,
+      "3rd Place League": 1,
+      "Asia Exclusive Gym Promo": 1,
+      "Champion": 1,
+      "Club Promo": 1,
+      "Cosmic Holo": 1,
+      "Cosmos Holo Gamestop": 1,
+      "Cosmos Holo Prize Pack": 1,
+      "Cosmos Holo Stamped": 1,
+      "EB Games Stamped": 1,
+      "Energy": 1,
+      "Gym Stamped": 1,
+      "Holo + Deck Exclusive": 1,
+      "League Challenge 1st Place": 1,
+      "League Promo": 1,
+      "Misprint": 1,
+      "Non Holo": 1,
+      "Wildfire Theme Deck": 1,
+      "World Championships": 1
+    }
+  },
+  "samples": {
+    "no_match_targets": [
+      {
+        "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "gv_id": "GV-PK-COL-SL1",
+        "name": "Deoxys",
+        "set_code": "col1",
+        "number_plain": "1",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 91,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Deoxys #1",
+          "Deoxys [Reverse Holo] #1"
+        ]
+      },
+      {
+        "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "gv_id": "GV-PK-COL-SL10",
+        "name": "Rayquaza",
+        "set_code": "col1",
+        "number_plain": "10",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 1,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Rayquaza #10"
+        ]
+      },
+      {
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "name": "Ho-Oh",
+        "set_code": "col1",
+        "number_plain": "5",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 48,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Ho-Oh #SL5"
+        ]
+      },
+      {
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "name": "Kyogre",
+        "set_code": "col1",
+        "number_plain": "6",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 51,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Kyogre #6",
+          "Kyogre [Reverse Holo] #6"
+        ]
+      },
+      {
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "name": "Palkia",
+        "set_code": "col1",
+        "number_plain": "8",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 35,
+        "exact_number_match_count": 1,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Palkia #8"
+        ]
+      },
+      {
+        "card_print_id": "f63d9425-9fa5-43e6-8c64-2d44591db15d",
+        "gv_id": "GV-PK-SW-41",
+        "name": "Wormadam Plant Cloak",
+        "set_code": "dp3",
+        "number_plain": "41",
+        "gap_reason": "no_name_in_pricecharting_csv",
+        "name_match_count": 0,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": []
+      },
+      {
+        "card_print_id": "68602e0b-c3b8-4e50-94fd-461f092aa533",
+        "gv_id": "GV-PK-SW-42",
+        "name": "Wormadam Sandy Cloak",
+        "set_code": "dp3",
+        "number_plain": "42",
+        "gap_reason": "name_present_number_missing",
+        "name_match_count": 1,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": [
+          "Wormadam Sandy Cloak #10"
+        ]
+      },
+      {
+        "card_print_id": "407c72f8-e3d9-468a-9381-7bc2a75cdb75",
+        "gv_id": "GV-PK-LA-1",
+        "name": "Deoxys Normal Forme",
+        "set_code": "dp6",
+        "number_plain": "1",
+        "gap_reason": "no_name_in_pricecharting_csv",
+        "name_match_count": 0,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": []
+      },
+      {
+        "card_print_id": "af18f0d4-50df-4c07-959d-7bd67ca600a6",
+        "gv_id": "GV-PK-LA-24",
+        "name": "Deoxys Attack Forme",
+        "set_code": "dp6",
+        "number_plain": "24",
+        "gap_reason": "no_name_in_pricecharting_csv",
+        "name_match_count": 0,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": []
+      },
+      {
+        "card_print_id": "fe0ec1ab-64e0-446c-bd9c-a19cb3ce319e",
+        "gv_id": "GV-PK-LA-25",
+        "name": "Deoxys Defense Forme",
+        "set_code": "dp6",
+        "number_plain": "25",
+        "gap_reason": "no_name_in_pricecharting_csv",
+        "name_match_count": 0,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": []
+      },
+      {
+        "card_print_id": "9352da7a-a7b7-4527-b74d-81a22e9ab6e6",
+        "gv_id": "GV-PK-LA-26",
+        "name": "Deoxys Speed Forme",
+        "set_code": "dp6",
+        "number_plain": "26",
+        "gap_reason": "no_name_in_pricecharting_csv",
+        "name_match_count": 0,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 0,
+        "sample_csv_products": []
+      },
+      {
+        "card_print_id": "1bf5b85a-1990-4546-b38c-2a7ad9d12cbf",
+        "gv_id": "GV-PK-SF-SH2",
+        "name": "Duskull",
+        "set_code": "dp7",
+        "number_plain": "2",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 84,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Duskull #SH2"
+        ]
+      },
+      {
+        "card_print_id": "75d837bd-ac2f-486b-b19a-823c1b8e3213",
+        "gv_id": "GV-PK-EX-10",
+        "name": "Dugtrio",
+        "set_code": "ecard1",
+        "number_plain": "10",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 85,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Dugtrio #10",
+          "Dugtrio [Reverse Holo] #10"
+        ]
+      },
+      {
+        "card_print_id": "5788c590-1007-4caa-abf9-4519cbe4a295",
+        "gv_id": "GV-PK-EX-11",
+        "name": "Fearow",
+        "set_code": "ecard1",
+        "number_plain": "11",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 72,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Fearow #11",
+          "Fearow [Reverse Holo] #11"
+        ]
+      },
+      {
+        "card_print_id": "f6bffe6f-782b-423c-8ea1-319b32f84318",
+        "gv_id": "GV-PK-EX-12",
+        "name": "Feraligatr",
+        "set_code": "ecard1",
+        "number_plain": "12",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 78,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Feraligatr #12",
+          "Feraligatr [Reverse Holo] #12"
+        ]
+      },
+      {
+        "card_print_id": "54f43f16-d3d5-4634-baf1-6ff285581ee0",
+        "gv_id": "GV-PK-EX-13",
+        "name": "Gengar",
+        "set_code": "ecard1",
+        "number_plain": "13",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 134,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Gengar #13",
+          "Gengar [Reverse Holo] #13",
+          "Gengar #13"
+        ]
+      },
+      {
+        "card_print_id": "ce05b771-fc21-4410-8596-69db6cfdaa53",
+        "gv_id": "GV-PK-EX-14",
+        "name": "Golem",
+        "set_code": "ecard1",
+        "number_plain": "14",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 63,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Golem #14",
+          "Golem [Reverse Holo] #14"
+        ]
+      },
+      {
+        "card_print_id": "72f7bd14-0ff6-4a89-8f58-75669e3852dd",
+        "gv_id": "GV-PK-EX-15",
+        "name": "Kingler",
+        "set_code": "ecard1",
+        "number_plain": "15",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 48,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Kingler #15",
+          "Kingler [Reverse Holo] #15"
+        ]
+      },
+      {
+        "card_print_id": "78380239-30ba-4a8c-bda8-1a57ca2f2d13",
+        "gv_id": "GV-PK-EX-158",
+        "name": "Darkness Energy",
+        "set_code": "ecard1",
+        "number_plain": "158",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 70,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Darkness Energy [Holo] #158",
+          "Darkness Energy #158",
+          "Darkness Energy [Reverse Holo] #158"
+        ]
+      },
+      {
+        "card_print_id": "a2715805-40c9-421a-a373-5f990560b2e2",
+        "gv_id": "GV-PK-EX-159",
+        "name": "Metal Energy",
+        "set_code": "ecard1",
+        "number_plain": "159",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Metal Energy [Holo] #159",
+          "Metal Energy #159",
+          "Metal Energy [Reverse Holo] #159"
+        ]
+      },
+      {
+        "card_print_id": "f1bb52b2-df55-4462-abd4-337bdd4fea1a",
+        "gv_id": "GV-PK-EX-16",
+        "name": "Machamp",
+        "set_code": "ecard1",
+        "number_plain": "16",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 116,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Machamp #16",
+          "Machamp [Reverse Holo] #16",
+          "Machamp #16",
+          "Machamp [Reverse Holo] #16"
+        ]
+      },
+      {
+        "card_print_id": "43df6b1d-6632-44cb-92bd-ad803adaf8f9",
+        "gv_id": "GV-PK-EX-17",
+        "name": "Magby",
+        "set_code": "ecard1",
+        "number_plain": "17",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 36,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Magby #17",
+          "Magby [Reverse Holo] #17"
+        ]
+      },
+      {
+        "card_print_id": "4d9cc8c4-0bd7-4df0-bdeb-c89d716ac8f1",
+        "gv_id": "GV-PK-EX-18",
+        "name": "Meganium",
+        "set_code": "ecard1",
+        "number_plain": "18",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 53,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Meganium #18",
+          "Meganium [Reverse Holo] #18"
+        ]
+      },
+      {
+        "card_print_id": "587d434d-7f03-46e7-b4f0-f2d4574708e9",
+        "gv_id": "GV-PK-EX-19",
+        "name": "Mew",
+        "set_code": "ecard1",
+        "number_plain": "19",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 110,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Mew #19",
+          "Mew [Reverse Holo] #19"
+        ]
+      },
+      {
+        "card_print_id": "45a75548-cb03-4bc2-9b15-4e96f03d9399",
+        "gv_id": "GV-PK-EX-2",
+        "name": "Ampharos",
+        "set_code": "ecard1",
+        "number_plain": "2",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 81,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Ampharos #2",
+          "Ampharos [Reverse Holo] #2"
+        ]
+      },
+      {
+        "card_print_id": "62846f30-d950-4b11-ba89-c46556544b02",
+        "gv_id": "GV-PK-EX-20",
+        "name": "Mewtwo",
+        "set_code": "ecard1",
+        "number_plain": "20",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 128,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Mewtwo #20",
+          "Mewtwo [Reverse Holo] #20"
+        ]
+      },
+      {
+        "card_print_id": "5c0c0852-1f69-45fa-933b-967da78ea2aa",
+        "gv_id": "GV-PK-EX-21",
+        "name": "Ninetales",
+        "set_code": "ecard1",
+        "number_plain": "21",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 130,
+        "exact_number_match_count": 6,
+        "prefixed_number_match_count": 6,
+        "sample_csv_products": [
+          "Ninetales #21",
+          "Ninetales [Reverse Holo] #21",
+          "Ninetales #21",
+          "Ninetales [Reverse Holo] #21",
+          "Ninetales #21"
+        ]
+      },
+      {
+        "card_print_id": "9151040a-043c-43bf-995f-98bbec014221",
+        "gv_id": "GV-PK-EX-22",
+        "name": "Pichu",
+        "set_code": "ecard1",
+        "number_plain": "22",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 58,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Pichu #22",
+          "Pichu [Reverse Holo] #22"
+        ]
+      },
+      {
+        "card_print_id": "f2b9a868-b6d9-4d40-b2f4-cff2bb89176b",
+        "gv_id": "GV-PK-EX-23",
+        "name": "Pidgeot",
+        "set_code": "ecard1",
+        "number_plain": "23",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Pidgeot #23",
+          "Pidgeot [Reverse Holo] #23",
+          "Pidgeot #23",
+          "Pidgeot [1st Edition] #23"
+        ]
+      },
+      {
+        "card_print_id": "d9cb4710-d346-4c76-8a35-1015fcee999d",
+        "gv_id": "GV-PK-EX-24",
+        "name": "Poliwrath",
+        "set_code": "ecard1",
+        "number_plain": "24",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 85,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Poliwrath #24",
+          "Poliwrath [Reverse Holo] #24"
+        ]
+      },
+      {
+        "card_print_id": "e74fecf0-99e8-4b88-8911-1c80f181eaf2",
+        "gv_id": "GV-PK-EX-26",
+        "name": "Rapidash",
+        "set_code": "ecard1",
+        "number_plain": "26",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 100,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Rapidash #26",
+          "Rapidash [Reverse Holo] #26"
+        ]
+      },
+      {
+        "card_print_id": "d95530d2-5107-4e1a-a023-d550945bcc16",
+        "gv_id": "GV-PK-EX-27",
+        "name": "Skarmory",
+        "set_code": "ecard1",
+        "number_plain": "27",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 95,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Skarmory #27",
+          "Skarmory [Reverse Holo] #27"
+        ]
+      },
+      {
+        "card_print_id": "6b2819af-5691-4d67-bba1-082b64170d26",
+        "gv_id": "GV-PK-EX-28",
+        "name": "Typhlosion",
+        "set_code": "ecard1",
+        "number_plain": "28",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 56,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Typhlosion #28",
+          "Typhlosion [Reverse Holo] #28"
+        ]
+      },
+      {
+        "card_print_id": "2aa2955f-2d61-43fe-a8c8-5dce9525a8f8",
+        "gv_id": "GV-PK-EX-29",
+        "name": "Tyranitar",
+        "set_code": "ecard1",
+        "number_plain": "29",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 88,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Tyranitar #29",
+          "Tyranitar [Reverse Holo] #29",
+          "Tyranitar [1st Edition] #29"
+        ]
+      },
+      {
+        "card_print_id": "78fa0b6b-8863-4ef2-8e14-1b4e5de219fa",
+        "gv_id": "GV-PK-EX-3",
+        "name": "Arbok",
+        "set_code": "ecard1",
+        "number_plain": "3",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 62,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Arbok #3",
+          "Arbok [Reverse Holo] #3",
+          "Arbok #3"
+        ]
+      },
+      {
+        "card_print_id": "def8528e-5f28-4ae0-827f-69df1bea3ba0",
+        "gv_id": "GV-PK-EX-30",
+        "name": "Venusaur",
+        "set_code": "ecard1",
+        "number_plain": "30",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 95,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Venusaur #30",
+          "Venusaur [Reverse Holo] #30",
+          "Venusaur #30"
+        ]
+      },
+      {
+        "card_print_id": "277b663e-1c8e-40fb-8f98-a1b723c7567c",
+        "gv_id": "GV-PK-EX-31",
+        "name": "Vileplume",
+        "set_code": "ecard1",
+        "number_plain": "31",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 82,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Vileplume #31",
+          "Vileplume [Reverse Holo] #31",
+          "Vileplume #31",
+          "Vileplume [1st Edition] #31"
+        ]
+      },
+      {
+        "card_print_id": "f8264151-2277-46c6-bfe3-e9cca4751aec",
+        "gv_id": "GV-PK-EX-32",
+        "name": "Weezing",
+        "set_code": "ecard1",
+        "number_plain": "32",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 79,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Weezing #32",
+          "Weezing [Reverse Holo] #32"
+        ]
+      },
+      {
+        "card_print_id": "b4e373f7-35b1-4406-b797-074f8527b207",
+        "gv_id": "GV-PK-EX-33",
+        "name": "Alakazam",
+        "set_code": "ecard1",
+        "number_plain": "33",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 5,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Alakazam #33",
+          "Alakazam [For Position Only] #33",
+          "Alakazam [Reverse Holo] #33",
+          "Alakazam [Gold Star 1st Edition] #33",
+          "Alakazam [Gold Star] #33"
+        ]
+      },
+      {
+        "card_print_id": "38559d7f-c6af-4f8a-9782-56531ccccdf0",
+        "gv_id": "GV-PK-EX-34",
+        "name": "Ampharos",
+        "set_code": "ecard1",
+        "number_plain": "34",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 81,
+        "exact_number_match_count": 5,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Ampharos #34",
+          "Ampharos [For Position Only] #34",
+          "Ampharos [Reverse Holo] #34",
+          "Ampharos #34",
+          "Ampharos [Reverse Holofoil] #34"
+        ]
+      },
+      {
+        "card_print_id": "9185c291-60cb-455d-819d-2939dfb61d9f",
+        "gv_id": "GV-PK-EX-35",
+        "name": "Arbok",
+        "set_code": "ecard1",
+        "number_plain": "35",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 62,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Arbok #35",
+          "Arbok [For Position Only] #35",
+          "Arbok [Reverse Holo] #35"
+        ]
+      },
+      {
+        "card_print_id": "298c2708-842c-4468-ab7e-9cb95d36047b",
+        "gv_id": "GV-PK-EX-36",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "36",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Blastoise #36",
+          "Blastoise [For Position Only] #36",
+          "Blastoise [Reverse Holo] #36"
+        ]
+      },
+      {
+        "card_print_id": "239363f8-7ef4-451f-8c85-b27b2f046667",
+        "gv_id": "GV-PK-EX-37",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "37",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Blastoise #37",
+          "Blastoise [Reverse Holo] #37"
+        ]
+      },
+      {
+        "card_print_id": "e03f1f89-2a7e-4095-95a5-778fb2b491ea",
+        "gv_id": "GV-PK-EX-38",
+        "name": "Butterfree",
+        "set_code": "ecard1",
+        "number_plain": "38",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 88,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Butterfree #38",
+          "Butterfree [Reverse Holo] #38"
+        ]
+      },
+      {
+        "card_print_id": "f65d6d7a-5238-47fd-8a78-a99007f7afda",
+        "gv_id": "GV-PK-EX-39",
+        "name": "Charizard",
+        "set_code": "ecard1",
+        "number_plain": "39",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 178,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Charizard #39",
+          "Charizard #39",
+          "Charizard [For Position Only] #39",
+          "Charizard [Reverse Holo] #39"
+        ]
+      },
+      {
+        "card_print_id": "9d8cdcec-e6a2-4070-a6eb-bb45999f30d4",
+        "gv_id": "GV-PK-EX-4",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "4",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Blastoise #4",
+          "Blastoise [Reverse Holo] #4"
+        ]
+      },
+      {
+        "card_print_id": "316177d8-49dd-41ec-a35c-57de92c17701",
+        "gv_id": "GV-PK-EX-40",
+        "name": "Charizard",
+        "set_code": "ecard1",
+        "number_plain": "40",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 178,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Charizard #40",
+          "Charizard [Reverse Holo] #40"
+        ]
+      },
+      {
+        "card_print_id": "f434e369-8e89-45b2-92ee-bfbd341feb27",
+        "gv_id": "GV-PK-EX-41",
+        "name": "Clefable",
+        "set_code": "ecard1",
+        "number_plain": "41",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 98,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Clefable #41",
+          "Clefable [For Position Only] #41",
+          "Clefable [Reverse Holo] #41"
+        ]
+      },
+      {
+        "card_print_id": "55d4efd7-9c89-4d4c-a314-ac34dc62e379",
+        "gv_id": "GV-PK-EX-42",
+        "name": "Cloyster",
+        "set_code": "ecard1",
+        "number_plain": "42",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 59,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Cloyster #42",
+          "Cloyster [Reverse Holo] #42"
+        ]
+      },
+      {
+        "card_print_id": "10b07ee5-18d2-4822-ae56-e2f3b6027a39",
+        "gv_id": "GV-PK-EX-43",
+        "name": "Dragonite",
+        "set_code": "ecard1",
+        "number_plain": "43",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 99,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Dragonite #43",
+          "Dragonite [Reverse Holo] #43",
+          "Dragonite #43",
+          "Dragonite [1st Edition] #43"
+        ]
+      }
+    ],
+    "prefixed_number_gap_targets": [
+      {
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "name": "Ho-Oh",
+        "set_code": "col1",
+        "number_plain": "5",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 48,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Ho-Oh #SL5"
+        ]
+      },
+      {
+        "card_print_id": "1bf5b85a-1990-4546-b38c-2a7ad9d12cbf",
+        "gv_id": "GV-PK-SF-SH2",
+        "name": "Duskull",
+        "set_code": "dp7",
+        "number_plain": "2",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 84,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Duskull #SH2"
+        ]
+      },
+      {
+        "card_print_id": "556a801c-bf26-4315-94cb-a023e6d1244b",
+        "gv_id": "GV-PK-RR-RT1",
+        "name": "Fan Rotom",
+        "set_code": "pl2",
+        "number_plain": "1",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 23,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Fan Rotom #RT1"
+        ]
+      },
+      {
+        "card_print_id": "5e9cae28-ec79-4d4b-8e9b-c716056c3dc8",
+        "gv_id": "GV-PK-RR-RT3",
+        "name": "Heat Rotom",
+        "set_code": "pl2",
+        "number_plain": "3",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 14,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Heat Rotom #RT3"
+        ]
+      },
+      {
+        "card_print_id": "5fefb496-b9cd-4dbe-bec6-63cd90b151f1",
+        "gv_id": "GV-PK-AR-AR1",
+        "name": "Arceus",
+        "set_code": "pl4",
+        "number_plain": "1",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 41,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Arceus #AR1"
+        ]
+      },
+      {
+        "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+        "gv_id": "GV-PK-AR-SH12",
+        "name": "Shinx",
+        "set_code": "pl4",
+        "number_plain": "12",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 79,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Shinx #SH12"
+        ]
+      },
+      {
+        "card_print_id": "74710bb3-5e5c-48f5-a642-086042df54e5",
+        "gv_id": "GV-PK-AR-AR6",
+        "name": "Arceus",
+        "set_code": "pl4",
+        "number_plain": "6",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 41,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Arceus #AR6"
+        ]
+      },
+      {
+        "card_print_id": "47871621-a579-4429-805d-6d81d2959530",
+        "gv_id": "GV-PK-AR-AR9",
+        "name": "Arceus",
+        "set_code": "pl4",
+        "number_plain": "9",
+        "gap_reason": "name_present_prefixed_number_gap",
+        "name_match_count": 41,
+        "exact_number_match_count": 0,
+        "prefixed_number_match_count": 1,
+        "sample_csv_products": [
+          "Arceus #AR9"
+        ]
+      }
+    ],
+    "set_alias_or_variant_gap_targets": [
+      {
+        "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "gv_id": "GV-PK-COL-SL1",
+        "name": "Deoxys",
+        "set_code": "col1",
+        "number_plain": "1",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 91,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Deoxys #1",
+          "Deoxys [Reverse Holo] #1"
+        ]
+      },
+      {
+        "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "gv_id": "GV-PK-COL-SL10",
+        "name": "Rayquaza",
+        "set_code": "col1",
+        "number_plain": "10",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 1,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Rayquaza #10"
+        ]
+      },
+      {
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "name": "Kyogre",
+        "set_code": "col1",
+        "number_plain": "6",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 51,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Kyogre #6",
+          "Kyogre [Reverse Holo] #6"
+        ]
+      },
+      {
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "name": "Palkia",
+        "set_code": "col1",
+        "number_plain": "8",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 35,
+        "exact_number_match_count": 1,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Palkia #8"
+        ]
+      },
+      {
+        "card_print_id": "75d837bd-ac2f-486b-b19a-823c1b8e3213",
+        "gv_id": "GV-PK-EX-10",
+        "name": "Dugtrio",
+        "set_code": "ecard1",
+        "number_plain": "10",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 85,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Dugtrio #10",
+          "Dugtrio [Reverse Holo] #10"
+        ]
+      },
+      {
+        "card_print_id": "5788c590-1007-4caa-abf9-4519cbe4a295",
+        "gv_id": "GV-PK-EX-11",
+        "name": "Fearow",
+        "set_code": "ecard1",
+        "number_plain": "11",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 72,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Fearow #11",
+          "Fearow [Reverse Holo] #11"
+        ]
+      },
+      {
+        "card_print_id": "f6bffe6f-782b-423c-8ea1-319b32f84318",
+        "gv_id": "GV-PK-EX-12",
+        "name": "Feraligatr",
+        "set_code": "ecard1",
+        "number_plain": "12",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 78,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Feraligatr #12",
+          "Feraligatr [Reverse Holo] #12"
+        ]
+      },
+      {
+        "card_print_id": "54f43f16-d3d5-4634-baf1-6ff285581ee0",
+        "gv_id": "GV-PK-EX-13",
+        "name": "Gengar",
+        "set_code": "ecard1",
+        "number_plain": "13",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 134,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Gengar #13",
+          "Gengar [Reverse Holo] #13",
+          "Gengar #13"
+        ]
+      },
+      {
+        "card_print_id": "ce05b771-fc21-4410-8596-69db6cfdaa53",
+        "gv_id": "GV-PK-EX-14",
+        "name": "Golem",
+        "set_code": "ecard1",
+        "number_plain": "14",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 63,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Golem #14",
+          "Golem [Reverse Holo] #14"
+        ]
+      },
+      {
+        "card_print_id": "72f7bd14-0ff6-4a89-8f58-75669e3852dd",
+        "gv_id": "GV-PK-EX-15",
+        "name": "Kingler",
+        "set_code": "ecard1",
+        "number_plain": "15",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 48,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Kingler #15",
+          "Kingler [Reverse Holo] #15"
+        ]
+      },
+      {
+        "card_print_id": "78380239-30ba-4a8c-bda8-1a57ca2f2d13",
+        "gv_id": "GV-PK-EX-158",
+        "name": "Darkness Energy",
+        "set_code": "ecard1",
+        "number_plain": "158",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 70,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Darkness Energy [Holo] #158",
+          "Darkness Energy #158",
+          "Darkness Energy [Reverse Holo] #158"
+        ]
+      },
+      {
+        "card_print_id": "a2715805-40c9-421a-a373-5f990560b2e2",
+        "gv_id": "GV-PK-EX-159",
+        "name": "Metal Energy",
+        "set_code": "ecard1",
+        "number_plain": "159",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Metal Energy [Holo] #159",
+          "Metal Energy #159",
+          "Metal Energy [Reverse Holo] #159"
+        ]
+      },
+      {
+        "card_print_id": "f1bb52b2-df55-4462-abd4-337bdd4fea1a",
+        "gv_id": "GV-PK-EX-16",
+        "name": "Machamp",
+        "set_code": "ecard1",
+        "number_plain": "16",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 116,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Machamp #16",
+          "Machamp [Reverse Holo] #16",
+          "Machamp #16",
+          "Machamp [Reverse Holo] #16"
+        ]
+      },
+      {
+        "card_print_id": "43df6b1d-6632-44cb-92bd-ad803adaf8f9",
+        "gv_id": "GV-PK-EX-17",
+        "name": "Magby",
+        "set_code": "ecard1",
+        "number_plain": "17",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 36,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Magby #17",
+          "Magby [Reverse Holo] #17"
+        ]
+      },
+      {
+        "card_print_id": "4d9cc8c4-0bd7-4df0-bdeb-c89d716ac8f1",
+        "gv_id": "GV-PK-EX-18",
+        "name": "Meganium",
+        "set_code": "ecard1",
+        "number_plain": "18",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 53,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Meganium #18",
+          "Meganium [Reverse Holo] #18"
+        ]
+      },
+      {
+        "card_print_id": "587d434d-7f03-46e7-b4f0-f2d4574708e9",
+        "gv_id": "GV-PK-EX-19",
+        "name": "Mew",
+        "set_code": "ecard1",
+        "number_plain": "19",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 110,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Mew #19",
+          "Mew [Reverse Holo] #19"
+        ]
+      },
+      {
+        "card_print_id": "45a75548-cb03-4bc2-9b15-4e96f03d9399",
+        "gv_id": "GV-PK-EX-2",
+        "name": "Ampharos",
+        "set_code": "ecard1",
+        "number_plain": "2",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 81,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Ampharos #2",
+          "Ampharos [Reverse Holo] #2"
+        ]
+      },
+      {
+        "card_print_id": "62846f30-d950-4b11-ba89-c46556544b02",
+        "gv_id": "GV-PK-EX-20",
+        "name": "Mewtwo",
+        "set_code": "ecard1",
+        "number_plain": "20",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 128,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Mewtwo #20",
+          "Mewtwo [Reverse Holo] #20"
+        ]
+      },
+      {
+        "card_print_id": "5c0c0852-1f69-45fa-933b-967da78ea2aa",
+        "gv_id": "GV-PK-EX-21",
+        "name": "Ninetales",
+        "set_code": "ecard1",
+        "number_plain": "21",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 130,
+        "exact_number_match_count": 6,
+        "prefixed_number_match_count": 6,
+        "sample_csv_products": [
+          "Ninetales #21",
+          "Ninetales [Reverse Holo] #21",
+          "Ninetales #21",
+          "Ninetales [Reverse Holo] #21",
+          "Ninetales #21"
+        ]
+      },
+      {
+        "card_print_id": "9151040a-043c-43bf-995f-98bbec014221",
+        "gv_id": "GV-PK-EX-22",
+        "name": "Pichu",
+        "set_code": "ecard1",
+        "number_plain": "22",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 58,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Pichu #22",
+          "Pichu [Reverse Holo] #22"
+        ]
+      },
+      {
+        "card_print_id": "f2b9a868-b6d9-4d40-b2f4-cff2bb89176b",
+        "gv_id": "GV-PK-EX-23",
+        "name": "Pidgeot",
+        "set_code": "ecard1",
+        "number_plain": "23",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Pidgeot #23",
+          "Pidgeot [Reverse Holo] #23",
+          "Pidgeot #23",
+          "Pidgeot [1st Edition] #23"
+        ]
+      },
+      {
+        "card_print_id": "d9cb4710-d346-4c76-8a35-1015fcee999d",
+        "gv_id": "GV-PK-EX-24",
+        "name": "Poliwrath",
+        "set_code": "ecard1",
+        "number_plain": "24",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 85,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Poliwrath #24",
+          "Poliwrath [Reverse Holo] #24"
+        ]
+      },
+      {
+        "card_print_id": "e74fecf0-99e8-4b88-8911-1c80f181eaf2",
+        "gv_id": "GV-PK-EX-26",
+        "name": "Rapidash",
+        "set_code": "ecard1",
+        "number_plain": "26",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 100,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Rapidash #26",
+          "Rapidash [Reverse Holo] #26"
+        ]
+      },
+      {
+        "card_print_id": "d95530d2-5107-4e1a-a023-d550945bcc16",
+        "gv_id": "GV-PK-EX-27",
+        "name": "Skarmory",
+        "set_code": "ecard1",
+        "number_plain": "27",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 95,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Skarmory #27",
+          "Skarmory [Reverse Holo] #27"
+        ]
+      },
+      {
+        "card_print_id": "6b2819af-5691-4d67-bba1-082b64170d26",
+        "gv_id": "GV-PK-EX-28",
+        "name": "Typhlosion",
+        "set_code": "ecard1",
+        "number_plain": "28",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 56,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Typhlosion #28",
+          "Typhlosion [Reverse Holo] #28"
+        ]
+      },
+      {
+        "card_print_id": "2aa2955f-2d61-43fe-a8c8-5dce9525a8f8",
+        "gv_id": "GV-PK-EX-29",
+        "name": "Tyranitar",
+        "set_code": "ecard1",
+        "number_plain": "29",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 88,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Tyranitar #29",
+          "Tyranitar [Reverse Holo] #29",
+          "Tyranitar [1st Edition] #29"
+        ]
+      },
+      {
+        "card_print_id": "78fa0b6b-8863-4ef2-8e14-1b4e5de219fa",
+        "gv_id": "GV-PK-EX-3",
+        "name": "Arbok",
+        "set_code": "ecard1",
+        "number_plain": "3",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 62,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Arbok #3",
+          "Arbok [Reverse Holo] #3",
+          "Arbok #3"
+        ]
+      },
+      {
+        "card_print_id": "def8528e-5f28-4ae0-827f-69df1bea3ba0",
+        "gv_id": "GV-PK-EX-30",
+        "name": "Venusaur",
+        "set_code": "ecard1",
+        "number_plain": "30",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 95,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Venusaur #30",
+          "Venusaur [Reverse Holo] #30",
+          "Venusaur #30"
+        ]
+      },
+      {
+        "card_print_id": "277b663e-1c8e-40fb-8f98-a1b723c7567c",
+        "gv_id": "GV-PK-EX-31",
+        "name": "Vileplume",
+        "set_code": "ecard1",
+        "number_plain": "31",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 82,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Vileplume #31",
+          "Vileplume [Reverse Holo] #31",
+          "Vileplume #31",
+          "Vileplume [1st Edition] #31"
+        ]
+      },
+      {
+        "card_print_id": "f8264151-2277-46c6-bfe3-e9cca4751aec",
+        "gv_id": "GV-PK-EX-32",
+        "name": "Weezing",
+        "set_code": "ecard1",
+        "number_plain": "32",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 79,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Weezing #32",
+          "Weezing [Reverse Holo] #32"
+        ]
+      },
+      {
+        "card_print_id": "b4e373f7-35b1-4406-b797-074f8527b207",
+        "gv_id": "GV-PK-EX-33",
+        "name": "Alakazam",
+        "set_code": "ecard1",
+        "number_plain": "33",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 66,
+        "exact_number_match_count": 5,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Alakazam #33",
+          "Alakazam [For Position Only] #33",
+          "Alakazam [Reverse Holo] #33",
+          "Alakazam [Gold Star 1st Edition] #33",
+          "Alakazam [Gold Star] #33"
+        ]
+      },
+      {
+        "card_print_id": "38559d7f-c6af-4f8a-9782-56531ccccdf0",
+        "gv_id": "GV-PK-EX-34",
+        "name": "Ampharos",
+        "set_code": "ecard1",
+        "number_plain": "34",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 81,
+        "exact_number_match_count": 5,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Ampharos #34",
+          "Ampharos [For Position Only] #34",
+          "Ampharos [Reverse Holo] #34",
+          "Ampharos #34",
+          "Ampharos [Reverse Holofoil] #34"
+        ]
+      },
+      {
+        "card_print_id": "9185c291-60cb-455d-819d-2939dfb61d9f",
+        "gv_id": "GV-PK-EX-35",
+        "name": "Arbok",
+        "set_code": "ecard1",
+        "number_plain": "35",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 62,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Arbok #35",
+          "Arbok [For Position Only] #35",
+          "Arbok [Reverse Holo] #35"
+        ]
+      },
+      {
+        "card_print_id": "298c2708-842c-4468-ab7e-9cb95d36047b",
+        "gv_id": "GV-PK-EX-36",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "36",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Blastoise #36",
+          "Blastoise [For Position Only] #36",
+          "Blastoise [Reverse Holo] #36"
+        ]
+      },
+      {
+        "card_print_id": "239363f8-7ef4-451f-8c85-b27b2f046667",
+        "gv_id": "GV-PK-EX-37",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "37",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Blastoise #37",
+          "Blastoise [Reverse Holo] #37"
+        ]
+      },
+      {
+        "card_print_id": "e03f1f89-2a7e-4095-95a5-778fb2b491ea",
+        "gv_id": "GV-PK-EX-38",
+        "name": "Butterfree",
+        "set_code": "ecard1",
+        "number_plain": "38",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 88,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Butterfree #38",
+          "Butterfree [Reverse Holo] #38"
+        ]
+      },
+      {
+        "card_print_id": "f65d6d7a-5238-47fd-8a78-a99007f7afda",
+        "gv_id": "GV-PK-EX-39",
+        "name": "Charizard",
+        "set_code": "ecard1",
+        "number_plain": "39",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 178,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Charizard #39",
+          "Charizard #39",
+          "Charizard [For Position Only] #39",
+          "Charizard [Reverse Holo] #39"
+        ]
+      },
+      {
+        "card_print_id": "9d8cdcec-e6a2-4070-a6eb-bb45999f30d4",
+        "gv_id": "GV-PK-EX-4",
+        "name": "Blastoise",
+        "set_code": "ecard1",
+        "number_plain": "4",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 109,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Blastoise #4",
+          "Blastoise [Reverse Holo] #4"
+        ]
+      },
+      {
+        "card_print_id": "316177d8-49dd-41ec-a35c-57de92c17701",
+        "gv_id": "GV-PK-EX-40",
+        "name": "Charizard",
+        "set_code": "ecard1",
+        "number_plain": "40",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 178,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Charizard #40",
+          "Charizard [Reverse Holo] #40"
+        ]
+      },
+      {
+        "card_print_id": "f434e369-8e89-45b2-92ee-bfbd341feb27",
+        "gv_id": "GV-PK-EX-41",
+        "name": "Clefable",
+        "set_code": "ecard1",
+        "number_plain": "41",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 98,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Clefable #41",
+          "Clefable [For Position Only] #41",
+          "Clefable [Reverse Holo] #41"
+        ]
+      },
+      {
+        "card_print_id": "55d4efd7-9c89-4d4c-a314-ac34dc62e379",
+        "gv_id": "GV-PK-EX-42",
+        "name": "Cloyster",
+        "set_code": "ecard1",
+        "number_plain": "42",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 59,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Cloyster #42",
+          "Cloyster [Reverse Holo] #42"
+        ]
+      },
+      {
+        "card_print_id": "10b07ee5-18d2-4822-ae56-e2f3b6027a39",
+        "gv_id": "GV-PK-EX-43",
+        "name": "Dragonite",
+        "set_code": "ecard1",
+        "number_plain": "43",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 99,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Dragonite #43",
+          "Dragonite [Reverse Holo] #43",
+          "Dragonite #43",
+          "Dragonite [1st Edition] #43"
+        ]
+      },
+      {
+        "card_print_id": "678f9cac-c71c-48e9-95ee-0a5042d9fdfb",
+        "gv_id": "GV-PK-EX-44",
+        "name": "Dugtrio",
+        "set_code": "ecard1",
+        "number_plain": "44",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 85,
+        "exact_number_match_count": 4,
+        "prefixed_number_match_count": 4,
+        "sample_csv_products": [
+          "Dugtrio #44",
+          "Dugtrio [For Position Only] #44",
+          "Dugtrio [Reverse Holo] #44",
+          "Dugtrio #44"
+        ]
+      },
+      {
+        "card_print_id": "6a679066-9720-43ce-85ba-483046d821c1",
+        "gv_id": "GV-PK-EX-45",
+        "name": "Fearow",
+        "set_code": "ecard1",
+        "number_plain": "45",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 72,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Fearow #45",
+          "Fearow [Reverse Holo] #45"
+        ]
+      },
+      {
+        "card_print_id": "9fcb7ccc-09d4-460f-8ebe-311c6caa33de",
+        "gv_id": "GV-PK-EX-46",
+        "name": "Feraligatr",
+        "set_code": "ecard1",
+        "number_plain": "46",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 78,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Feraligatr #46",
+          "Feraligatr [Reverse Holo] #46"
+        ]
+      },
+      {
+        "card_print_id": "9f154713-4da6-444a-9684-4f48c2fafbc8",
+        "gv_id": "GV-PK-EX-48",
+        "name": "Gengar",
+        "set_code": "ecard1",
+        "number_plain": "48",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 134,
+        "exact_number_match_count": 3,
+        "prefixed_number_match_count": 3,
+        "sample_csv_products": [
+          "Gengar #48",
+          "Gengar [Reverse Holo] #48",
+          "Gengar #48"
+        ]
+      },
+      {
+        "card_print_id": "dc5e62f8-cc7b-4b8f-b736-21a0e38d4867",
+        "gv_id": "GV-PK-EX-49",
+        "name": "Golem",
+        "set_code": "ecard1",
+        "number_plain": "49",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 63,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Golem #49",
+          "Golem [Reverse Holo] #49"
+        ]
+      },
+      {
+        "card_print_id": "14ef8127-fe00-48f2-9467-eaef055fbe72",
+        "gv_id": "GV-PK-EX-5",
+        "name": "Butterfree",
+        "set_code": "ecard1",
+        "number_plain": "5",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 88,
+        "exact_number_match_count": 5,
+        "prefixed_number_match_count": 5,
+        "sample_csv_products": [
+          "Butterfree #5",
+          "Butterfree [Reverse Holo] #5",
+          "Butterfree #5",
+          "Butterfree [Reverse Holo] #5",
+          "Butterfree #5"
+        ]
+      },
+      {
+        "card_print_id": "9c577684-3380-4d46-a304-bf4158f02fa3",
+        "gv_id": "GV-PK-EX-50",
+        "name": "Kingler",
+        "set_code": "ecard1",
+        "number_plain": "50",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 48,
+        "exact_number_match_count": 2,
+        "prefixed_number_match_count": 2,
+        "sample_csv_products": [
+          "Kingler #50",
+          "Kingler [Reverse Holo] #50"
+        ]
+      },
+      {
+        "card_print_id": "d948d070-165a-418a-b077-c2e8d59865a9",
+        "gv_id": "GV-PK-EX-51",
+        "name": "Machamp",
+        "set_code": "ecard1",
+        "number_plain": "51",
+        "gap_reason": "name_number_present_set_alias_or_variant_gap",
+        "name_match_count": 116,
+        "exact_number_match_count": 6,
+        "prefixed_number_match_count": 6,
+        "sample_csv_products": [
+          "Machamp #51",
+          "Machamp [Reverse Holo] #51",
+          "Machamp #51",
+          "Machamp [1st Edition] #51",
+          "Machamp #51"
+        ]
+      }
+    ],
+    "ambiguous_or_blocked_candidates": [
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 28.28,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 1044.5,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 262.01,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 625,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 5128.79,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 2120.72,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 19.99,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 395.31,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 202.19,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 871.39,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 6633.23,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 2800,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 15.42,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 775.76,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 72.99,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 260,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 2091.88,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 1000,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 14.88,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 380,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 193.66,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 369.44,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 2380.52,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 1525,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 12.69,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 503.7,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 130.95,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 300,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 2110.5,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 999,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 75,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 1178,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 620,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 1050,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 6012.01,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 3456.86,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 17.88,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 1375,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 90.03,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1999-2000",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 380,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 1931.9,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 1025,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 113.9,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 633.05,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 295,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 19.11,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "Shadowless",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 70.35,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "Shadowless",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 55.41,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "Shadowless",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Dragonair [1st Edition] #18 | Pokemon Base Set",
+        "raw_price": 138.74,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "set_code": "GV-PK-BS",
+        "raw_title": "Dragonair [1st Edition] #18 | Pokemon Base Set",
+        "raw_price": 628.3,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "variant_label": "1st Edition",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "key": "number_prefix_alias_matching",
+      "applies_when": "name_present_prefixed_number_gap is material",
+      "action": "Add governed source-number aliases such as BW01 -> 01 for promo-style lanes before rerunning acquisition."
+    },
+    {
+      "key": "set_alias_matching",
+      "applies_when": "name_number_present_set_alias_or_variant_gap is material",
+      "action": "Add approved set aliases before widening source coverage."
+    },
+    {
+      "key": "variant_lane_review",
+      "applies_when": "review_ambiguous_variant and blocked_wrong_print_run remain material",
+      "action": "Keep variant-labeled PriceCharting rows review-gated; do not promote as market truth."
+    }
+  ]
+}

@@ -1,0 +1,2228 @@
+{
+  "generated_at": "2026-06-25T13:19:28.068Z",
+  "contract": "MARKET_EVIDENCE_ENGINE_V1",
+  "phase": "MEE-05A_RAW_EVIDENCE_REVIEW_GATE_V1",
+  "mode": "local_review_gate_only",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_rollups": false,
+    "migration_apply": false,
+    "public_price_publication": false,
+    "raw_evidence_objects_created": false,
+    "raw_evidence_objects_persisted_to_db": false,
+    "review_artifact_created": true
+  },
+  "input_summary": {
+    "source_phase": "MEE-04D_PRICECHARTING_CSV_RAW_EVIDENCE_V1",
+    "source_generated_at": "2026-06-25T05:53:31.341Z",
+    "candidate_evidence_count": 19359,
+    "reviewed_target_count": 5000
+  },
+  "summary": {
+    "reviewed_target_count": 5000,
+    "targets_with_candidate_evidence": 4153,
+    "targets_without_candidate_evidence": 847,
+    "candidate_evidence_count": 19359,
+    "candidates_without_blocking_flags": 11462,
+    "candidates_with_blocking_flags": 7897,
+    "direct_publishable_candidate_count": 0,
+    "non_review_gated_candidate_count": 0,
+    "review_required_candidate_count": 19359,
+    "warehouse_ready_reference_candidate_count": 19359
+  },
+  "counts": {
+    "target_status_counts": {
+      "candidate_evidence_created": 4153,
+      "no_pricecharting_csv_match": 847
+    },
+    "source_counts": {
+      "pricecharting_reference": 19359
+    },
+    "confidence_counts": {
+      "high": 11462,
+      "medium": 7897
+    },
+    "condition_counts": {
+      "graded_reference": 6850,
+      "loose_ungraded": 7296,
+      "sealed_or_new_reference": 5213
+    },
+    "disposition_counts": {
+      "blocked_wrong_print_run": 1094,
+      "review_ambiguous_variant": 6803,
+      "review_high_confidence_reference": 11462
+    },
+    "exclusion_flag_counts": {
+      "ambiguous_variant": 7897,
+      "manual_review_required": 19359,
+      "wrong_print_run": 1094
+    }
+  },
+  "proofs": {
+    "no_candidate_can_publish_directly": true,
+    "every_candidate_is_review_gated": true,
+    "no_database_write_boundary": true,
+    "no_pricing_rollup_boundary": true,
+    "no_public_price_publication_boundary": true
+  },
+  "samples": {
+    "no_match_targets": [
+      {
+        "card_print_id": "66648d82-14c6-4521-a89a-40550b377fff",
+        "gv_id": "GV-PK-PR-BLW-BW01",
+        "name": "Snivy",
+        "set_code": "bwp",
+        "number_plain": "01",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "b3c8142d-dafb-4bb1-aa69-b4dfcd263b01",
+        "gv_id": "GV-PK-PR-BLW-BW03",
+        "name": "Oshawott",
+        "set_code": "bwp",
+        "number_plain": "03",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+        "gv_id": "GV-PK-PR-BLW-BW04",
+        "name": "Reshiram",
+        "set_code": "bwp",
+        "number_plain": "04",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+        "gv_id": "GV-PK-PR-BLW-BW05",
+        "name": "Zekrom",
+        "set_code": "bwp",
+        "number_plain": "05",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "bacb23df-f1b5-4fa0-8a8a-3ae25fb71fb8",
+        "gv_id": "GV-PK-PR-BLW-BW06",
+        "name": "Snivy",
+        "set_code": "bwp",
+        "number_plain": "06",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "a80b32c9-4a5c-4712-85ed-6ed13679a836",
+        "gv_id": "GV-PK-PR-BLW-BW07",
+        "name": "Tepig",
+        "set_code": "bwp",
+        "number_plain": "07",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "f9e64d90-8785-48b1-9a1e-b9ec3e2e88db",
+        "gv_id": "GV-PK-PR-BLW-BW08",
+        "name": "Oshawott",
+        "set_code": "bwp",
+        "number_plain": "08",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "68e5dd92-fe3a-4110-8f50-cd3c57a880a1",
+        "gv_id": "GV-PK-PR-BLW-BW09",
+        "name": "Zoroark",
+        "set_code": "bwp",
+        "number_plain": "09",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "8625746f-0915-4e7d-bed2-c07bf784a899",
+        "gv_id": "GV-PK-PR-BLW-BW10",
+        "name": "Axew",
+        "set_code": "bwp",
+        "number_plain": "10",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "5e4d14ea-71b5-4ae6-812d-91a0133e4748",
+        "gv_id": "GV-PK-PR-BLW-BW101",
+        "name": "Genesect",
+        "set_code": "bwp",
+        "number_plain": "101",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "cd019b06-a64e-452c-a6dd-1da08b90dad5",
+        "gv_id": "GV-PK-PR-BLW-BW11",
+        "name": "Pansage",
+        "set_code": "bwp",
+        "number_plain": "11",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+        "gv_id": "GV-PK-PR-BLW-BW12",
+        "name": "Zorua",
+        "set_code": "bwp",
+        "number_plain": "12",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "75833158-fdcc-4273-98ad-cc0945346a89",
+        "gv_id": "GV-PK-PR-BLW-BW14",
+        "name": "Pansage",
+        "set_code": "bwp",
+        "number_plain": "14",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "11777338-e4bd-47e4-aa49-d31469f37f99",
+        "gv_id": "GV-PK-PR-BLW-BW15",
+        "name": "Pidove",
+        "set_code": "bwp",
+        "number_plain": "15",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "cc968ea9-e81c-4181-9337-c8adbcb0dfd6",
+        "gv_id": "GV-PK-PR-BLW-BW16",
+        "name": "Axew",
+        "set_code": "bwp",
+        "number_plain": "16",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "279927b5-f6db-4e68-ae15-4b23b9891bd6",
+        "gv_id": "GV-PK-PR-BLW-BW17",
+        "name": "Ducklett",
+        "set_code": "bwp",
+        "number_plain": "17",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "f3dfeb31-8f74-44c8-9b55-5a0168999fe4",
+        "gv_id": "GV-PK-PR-BLW-BW18",
+        "name": "Darumaka",
+        "set_code": "bwp",
+        "number_plain": "18",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "8cd70f14-89fd-48be-ba01-76ea989a7243",
+        "gv_id": "GV-PK-PR-BLW-BW19",
+        "name": "Zoroark",
+        "set_code": "bwp",
+        "number_plain": "19",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "57768595-1685-440a-8d1c-534d53d2ba4b",
+        "gv_id": "GV-PK-PR-BLW-BW20",
+        "name": "Serperior",
+        "set_code": "bwp",
+        "number_plain": "20",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "29ce6a06-a684-4b20-8792-1b7ec1bcfd78",
+        "gv_id": "GV-PK-PR-BLW-BW21",
+        "name": "Emboar",
+        "set_code": "bwp",
+        "number_plain": "21",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "25cbdb85-b3b3-4e77-ab1c-30319041f06e",
+        "gv_id": "GV-PK-PR-BLW-BW22",
+        "name": "Samurott",
+        "set_code": "bwp",
+        "number_plain": "22",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "38f69dee-0ce9-4784-a3df-a1301cc9eab7",
+        "gv_id": "GV-PK-PR-BLW-BW23",
+        "name": "Reshiram",
+        "set_code": "bwp",
+        "number_plain": "23",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "ae86c359-7516-4a6e-be12-8be7ccdbf8f9",
+        "gv_id": "GV-PK-PR-BLW-BW24",
+        "name": "Zekrom",
+        "set_code": "bwp",
+        "number_plain": "24",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "b55e3d5c-0f15-467f-b40a-1252f0523a72",
+        "gv_id": "GV-PK-PR-BLW-BW26",
+        "name": "Axew",
+        "set_code": "bwp",
+        "number_plain": "26",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "4fd1ba8e-44a3-4acd-8992-616e1bf85ebe",
+        "gv_id": "GV-PK-PR-BLW-BW27",
+        "name": "Litwick",
+        "set_code": "bwp",
+        "number_plain": "27",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "dcdddef8-1f41-4545-9562-d725395261c6",
+        "gv_id": "GV-PK-PR-BLW-28-WORLDS-11-STAFF-STAMP",
+        "name": "Tropical Beach",
+        "set_code": "bwp",
+        "number_plain": "28",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "3fb6b255-a389-4d58-a6eb-8f9b6b336a43",
+        "gv_id": "GV-PK-PR-BLW-28-WORLDS-11-TOP-16-STAMP",
+        "name": "Tropical Beach",
+        "set_code": "bwp",
+        "number_plain": "28",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "72b523ed-7903-4a7a-8b00-956a9febf619",
+        "gv_id": "GV-PK-PR-BLW-BW32",
+        "name": "Victini",
+        "set_code": "bwp",
+        "number_plain": "32",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "98b318cc-75c4-4893-821d-064b165a621d",
+        "gv_id": "GV-PK-PR-BLW-BW33",
+        "name": "Riolu",
+        "set_code": "bwp",
+        "number_plain": "33",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "168b3533-dec9-4e29-b973-c5b631db9336",
+        "gv_id": "GV-PK-PR-BLW-BW35",
+        "name": "Meowth",
+        "set_code": "bwp",
+        "number_plain": "35",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "4ada0ccb-aa6c-4925-9ed7-4d12535c2acb",
+        "gv_id": "GV-PK-PR-BLW-BW36",
+        "name": "Reshiram-EX",
+        "set_code": "bwp",
+        "number_plain": "36",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "762f00ec-c31c-4476-8f42-0c763ed15383",
+        "gv_id": "GV-PK-PR-BLW-BW37",
+        "name": "Kyurem-EX",
+        "set_code": "bwp",
+        "number_plain": "37",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "abbf0232-510f-4401-af5e-6fe9d3a7a465",
+        "gv_id": "GV-PK-PR-BLW-BW38",
+        "name": "Zekrom-EX",
+        "set_code": "bwp",
+        "number_plain": "38",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "2ddff040-2d9a-45b9-ad5c-67a456736de9",
+        "gv_id": "GV-PK-PR-BLW-BW39",
+        "name": "Battle City",
+        "set_code": "bwp",
+        "number_plain": "39",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e",
+        "gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP",
+        "name": "Volcarona",
+        "set_code": "bwp",
+        "number_plain": "40",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c",
+        "gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP",
+        "name": "Volcarona",
+        "set_code": "bwp",
+        "number_plain": "40",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "eafffa0f-0214-40ec-857c-b3066fa2a5cc",
+        "gv_id": "GV-PK-PR-BLW-BW41",
+        "name": "Thundurus",
+        "set_code": "bwp",
+        "number_plain": "41",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      },
+      {
+        "card_print_id": "35730c9c-1c87-4fb2-8169-2dc85a3a809b",
+        "gv_id": "GV-PK-PR-BLW-BW42",
+        "name": "Tornadus",
+        "set_code": "bwp",
+        "number_plain": "42",
+        "status": "no_pricecharting_csv_match",
+        "match_count": 0,
+        "best_match_score": null,
+        "best_match_reason": null
+      }
+    ],
+    "high_confidence_reference_candidates": [
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam #1 | Pokemon Base Set",
+        "raw_price": 32.21,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam #1 | Pokemon Base Set",
+        "raw_price": 356.13,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam #1 | Pokemon Base Set",
+        "raw_price": 136,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo #10 | Pokemon Base Set",
+        "raw_price": 31.31,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo #10 | Pokemon Base Set",
+        "raw_price": 375,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo #10 | Pokemon Base Set",
+        "raw_price": 152.25,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking #11 | Pokemon Base Set",
+        "raw_price": 16.87,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking #11 | Pokemon Base Set",
+        "raw_price": 168.67,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking #11 | Pokemon Base Set",
+        "raw_price": 80.39,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales #12 | Pokemon Base Set",
+        "raw_price": 16,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales #12 | Pokemon Base Set",
+        "raw_price": 184.43,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales #12 | Pokemon Base Set",
+        "raw_price": 82.73,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath #13 | Pokemon Base Set",
+        "raw_price": 13.49,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath #13 | Pokemon Base Set",
+        "raw_price": 130.61,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath #13 | Pokemon Base Set",
+        "raw_price": 69,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur #15 | Pokemon Base Set",
+        "raw_price": 83.99,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur #15 | Pokemon Base Set",
+        "raw_price": 585,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur #15 | Pokemon Base Set",
+        "raw_price": 281.19,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos #16 | Pokemon Base Set",
+        "raw_price": 25.75,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos #16 | Pokemon Base Set",
+        "raw_price": 170,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos #16 | Pokemon Base Set",
+        "raw_price": 86.64,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill #17 | Pokemon Base Set",
+        "raw_price": 2.65,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill #17 | Pokemon Base Set",
+        "raw_price": 47.11,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill #17 | Pokemon Base Set",
+        "raw_price": 21.48,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "raw_title": "Dragonair #18 | Pokemon Base Set",
+        "raw_price": 8.48,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "raw_title": "Dragonair #18 | Pokemon Base Set",
+        "raw_price": 48.17,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "raw_title": "Dragonair #18 | Pokemon Base Set",
+        "raw_price": 40,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+        "gv_id": "GV-PK-BS-19",
+        "source": "pricecharting_reference",
+        "raw_title": "Dugtrio #19 | Pokemon Base Set",
+        "raw_price": 4.28,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+        "gv_id": "GV-PK-BS-19",
+        "source": "pricecharting_reference",
+        "raw_title": "Dugtrio #19 | Pokemon Base Set",
+        "raw_price": 46.54,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+        "gv_id": "GV-PK-BS-19",
+        "source": "pricecharting_reference",
+        "raw_title": "Dugtrio #19 | Pokemon Base Set",
+        "raw_price": 24.5,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+        "gv_id": "GV-PK-BS-2",
+        "source": "pricecharting_reference",
+        "raw_title": "Blastoise #2 | Pokemon Base Set",
+        "raw_price": 105.87,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+        "gv_id": "GV-PK-BS-2",
+        "source": "pricecharting_reference",
+        "raw_title": "Blastoise #2 | Pokemon Base Set",
+        "raw_price": 935,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+        "gv_id": "GV-PK-BS-2",
+        "source": "pricecharting_reference",
+        "raw_title": "Blastoise #2 | Pokemon Base Set",
+        "raw_price": 375,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "2b60c7da-0db3-48a2-91a8-219d585b7544",
+        "gv_id": "GV-PK-BS-20",
+        "source": "pricecharting_reference",
+        "raw_title": "Electabuzz #20 | Pokemon Base Set",
+        "raw_price": 5.99,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "2b60c7da-0db3-48a2-91a8-219d585b7544",
+        "gv_id": "GV-PK-BS-20",
+        "source": "pricecharting_reference",
+        "raw_title": "Electabuzz #20 | Pokemon Base Set",
+        "raw_price": 35.89,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "2b60c7da-0db3-48a2-91a8-219d585b7544",
+        "gv_id": "GV-PK-BS-20",
+        "source": "pricecharting_reference",
+        "raw_title": "Electabuzz #20 | Pokemon Base Set",
+        "raw_price": 31.11,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b409d7cf-7db3-4134-b29f-f2c1834c99ac",
+        "gv_id": "GV-PK-BS-21",
+        "source": "pricecharting_reference",
+        "raw_title": "Electrode #21 | Pokemon Base Set",
+        "raw_price": 5.05,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b409d7cf-7db3-4134-b29f-f2c1834c99ac",
+        "gv_id": "GV-PK-BS-21",
+        "source": "pricecharting_reference",
+        "raw_title": "Electrode #21 | Pokemon Base Set",
+        "raw_price": 36.14,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b409d7cf-7db3-4134-b29f-f2c1834c99ac",
+        "gv_id": "GV-PK-BS-21",
+        "source": "pricecharting_reference",
+        "raw_title": "Electrode #21 | Pokemon Base Set",
+        "raw_price": 24.76,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cc846773-e6d2-4070-ad05-fbd1c1d297ae",
+        "gv_id": "GV-PK-BS-22",
+        "source": "pricecharting_reference",
+        "raw_title": "Pidgeotto #22 | Pokemon Base Set",
+        "raw_price": 6,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cc846773-e6d2-4070-ad05-fbd1c1d297ae",
+        "gv_id": "GV-PK-BS-22",
+        "source": "pricecharting_reference",
+        "raw_title": "Pidgeotto #22 | Pokemon Base Set",
+        "raw_price": 34.81,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cc846773-e6d2-4070-ad05-fbd1c1d297ae",
+        "gv_id": "GV-PK-BS-22",
+        "source": "pricecharting_reference",
+        "raw_title": "Pidgeotto #22 | Pokemon Base Set",
+        "raw_price": 29.23,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "6c2a2528-7393-4ba2-925a-c402ac8cd6e4",
+        "gv_id": "GV-PK-BS-3",
+        "source": "pricecharting_reference",
+        "raw_title": "Chansey #3 | Pokemon Base Set",
+        "raw_price": 16.6,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "6c2a2528-7393-4ba2-925a-c402ac8cd6e4",
+        "gv_id": "GV-PK-BS-3",
+        "source": "pricecharting_reference",
+        "raw_title": "Chansey #3 | Pokemon Base Set",
+        "raw_price": 342.5,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "6c2a2528-7393-4ba2-925a-c402ac8cd6e4",
+        "gv_id": "GV-PK-BS-3",
+        "source": "pricecharting_reference",
+        "raw_title": "Chansey #3 | Pokemon Base Set",
+        "raw_price": 81.5,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "932dd84c-b48a-48d9-b380-d22f304bedd1",
+        "gv_id": "GV-PK-BS-5",
+        "source": "pricecharting_reference",
+        "raw_title": "Clefairy #5 | Pokemon Base Set",
+        "raw_price": 14.97,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "932dd84c-b48a-48d9-b380-d22f304bedd1",
+        "gv_id": "GV-PK-BS-5",
+        "source": "pricecharting_reference",
+        "raw_title": "Clefairy #5 | Pokemon Base Set",
+        "raw_price": 275,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "932dd84c-b48a-48d9-b380-d22f304bedd1",
+        "gv_id": "GV-PK-BS-5",
+        "source": "pricecharting_reference",
+        "raw_title": "Clefairy #5 | Pokemon Base Set",
+        "raw_price": 69.73,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "4300206c-277b-4a0a-956e-e06020131ca0",
+        "gv_id": "GV-PK-BS-6",
+        "source": "pricecharting_reference",
+        "raw_title": "Gyarados #6 | Pokemon Base Set",
+        "raw_price": 23.99,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "4300206c-277b-4a0a-956e-e06020131ca0",
+        "gv_id": "GV-PK-BS-6",
+        "source": "pricecharting_reference",
+        "raw_title": "Gyarados #6 | Pokemon Base Set",
+        "raw_price": 240.1,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "high",
+        "disposition": "review_high_confidence_reference",
+        "exclusion_flags": [
+          "manual_review_required"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      }
+    ],
+    "blocked_or_ambiguous_candidates": [
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 28.28,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 1044.5,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1999-2000] #1 | Pokemon Base Set",
+        "raw_price": 262.01,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 625,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 5128.79,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "gv_id": "GV-PK-BS-1",
+        "source": "pricecharting_reference",
+        "raw_title": "Alakazam [1st Edition] #1 | Pokemon Base Set",
+        "raw_price": 2120.72,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 19.99,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 395.31,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1999-2000] #10 | Pokemon Base Set",
+        "raw_price": 202.19,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 871.39,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 6633.23,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "gv_id": "GV-PK-BS-10",
+        "source": "pricecharting_reference",
+        "raw_title": "Mewtwo [1st Edition] #10 | Pokemon Base Set",
+        "raw_price": 2800,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 15.42,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 775.76,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1999-2000] #11 | Pokemon Base Set",
+        "raw_price": 72.99,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 260,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 2091.88,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "gv_id": "GV-PK-BS-11",
+        "source": "pricecharting_reference",
+        "raw_title": "Nidoking [1st Edition] #11 | Pokemon Base Set",
+        "raw_price": 1000,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 14.88,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 380,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1999-2000] #12 | Pokemon Base Set",
+        "raw_price": 193.66,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 369.44,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 2380.52,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "gv_id": "GV-PK-BS-12",
+        "source": "pricecharting_reference",
+        "raw_title": "Ninetales [1st Edition] #12 | Pokemon Base Set",
+        "raw_price": 1525,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 12.69,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 503.7,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1999-2000] #13 | Pokemon Base Set",
+        "raw_price": 130.95,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 300,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 2110.5,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+        "gv_id": "GV-PK-BS-13",
+        "source": "pricecharting_reference",
+        "raw_title": "Poliwrath [1st Edition] #13 | Pokemon Base Set",
+        "raw_price": 999,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 75,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 1178,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1999-2000] #15 | Pokemon Base Set",
+        "raw_price": 620,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 1050,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 6012.01,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+        "gv_id": "GV-PK-BS-15",
+        "source": "pricecharting_reference",
+        "raw_title": "Venusaur [1st Edition] #15 | Pokemon Base Set",
+        "raw_price": 3456.86,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 17.88,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 1375,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1999-2000] #16 | Pokemon Base Set",
+        "raw_price": 90.03,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 380,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 1931.9,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+        "gv_id": "GV-PK-BS-16",
+        "source": "pricecharting_reference",
+        "raw_title": "Zapdos [1st Edition] #16 | Pokemon Base Set",
+        "raw_price": 1025,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 113.9,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 633.05,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [1st Edition] #17 | Pokemon Base Set",
+        "raw_price": 295,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 19.11,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 70.35,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "source": "pricecharting_reference",
+        "raw_title": "Beedrill [Shadowless] #17 | Pokemon Base Set",
+        "raw_price": 55.41,
+        "condition_hint": "sealed_or_new_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "raw_title": "Dragonair [1st Edition] #18 | Pokemon Base Set",
+        "raw_price": 138.74,
+        "condition_hint": "loose_ungraded",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+        "gv_id": "GV-PK-BS-18",
+        "source": "pricecharting_reference",
+        "raw_title": "Dragonair [1st Edition] #18 | Pokemon Base Set",
+        "raw_price": 628.3,
+        "condition_hint": "graded_reference",
+        "match_confidence_hint": "medium",
+        "disposition": "blocked_wrong_print_run",
+        "exclusion_flags": [
+          "ambiguous_variant",
+          "manual_review_required",
+          "wrong_print_run"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      }
+    ]
+  }
+}
