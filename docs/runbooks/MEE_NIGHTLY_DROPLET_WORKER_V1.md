@@ -15,11 +15,11 @@ Create `/etc/grookai/mee-nightly.env` from:
 deploy/env/mee-nightly.env.example
 ```
 
-Fill either `SUPABASE_SERVICE_ROLE_KEY` or `SUPABASE_SECRET_KEY`.
+Fill `SUPABASE_SECRET_KEY`.
 
 Fill either:
 
-- `EBAY_BROWSE_TOKEN`, or
+- `EBAY_BROWSE_ACCESS_TOKEN`, or
 - `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET`
 
 Preferred installer:

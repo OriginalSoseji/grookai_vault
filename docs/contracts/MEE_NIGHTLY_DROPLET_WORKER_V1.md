@@ -19,8 +19,8 @@ It must not publish prices.
 ## Required Environment
 
 - `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `EBAY_BROWSE_TOKEN`
+- `SUPABASE_SECRET_KEY`
+- `EBAY_BROWSE_ACCESS_TOKEN`
 - `MEE_NIGHTLY_ALLOW_RUN=1`
 
 ## Lifecycle
