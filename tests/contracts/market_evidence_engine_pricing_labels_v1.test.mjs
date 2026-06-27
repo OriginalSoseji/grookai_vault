@@ -9,8 +9,8 @@ function source(relativePath) {
 test("card pricing rail labels reference and market lanes explicitly", () => {
   const pricingRail = source("apps/web/src/components/pricing/CardPagePricingRail.tsx");
 
-  assert.match(pricingRail, /Reference pricing: JustTCG/);
-  assert.match(pricingRail, /Market data: eBay/);
+  assert.doesNotMatch(pricingRail, /JustTCG/);
+  assert.match(pricingRail, /Active listing evidence: eBay/);
   assert.match(pricingRail, /source=\{pricing\?\.primary_source\}/);
   assert.doesNotMatch(pricingRail, />\* Market reference</);
 });
