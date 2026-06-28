@@ -1,0 +1,76 @@
+{
+  "package_id": "MEE-NIGHTLY-POST-INGEST-ORCHESTRATOR-V1",
+  "mode": "plan_plus_worker",
+  "status": "ready_for_readback_only_timer_install",
+  "created_at": "2026-06-28",
+  "package_fingerprint_sha256": "d359724289fb1776617f876df481debe40b214763cea3708f79a364b83be8f54",
+  "summary": "Designed and implemented the automated non-public post-ingest MEE workflow that runs after acquisition and before any future publication gate.",
+  "phase_order": [
+    "preflight_lock_and_context",
+    "acquisition_completion_readback",
+    "lifecycle_projection_plan",
+    "lifecycle_projection_apply_gate",
+    "candidate_cleanup_classification",
+    "cleanup_event_seed_gate",
+    "internal_readbacks",
+    "blocker_policy_closeout",
+    "lifecycle_rollup_summary_refresh",
+    "publication_gate_recheck",
+    "final_report"
+  ],
+  "boundaries": {
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "function_invocation": false,
+    "public_pricing": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "identity_writes": false,
+    "card_print_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "failure_guards": [
+    "missing_required_environment",
+    "lock_not_acquired",
+    "acquisition_run_incomplete_or_ambiguous",
+    "lifecycle_stage_order_mismatch",
+    "duplicate_target_evidence_risk",
+    "conflicting_cleanup_event_exists",
+    "public_boundary_leak",
+    "readback_count_mismatch",
+    "phase_timeout"
+  ],
+  "idempotency": {
+    "run_key_required": true,
+    "default_on_existing_targets": "stop",
+    "future_skip_existing_requires_package_identity_proof": true,
+    "cleanup_events_append_only": true,
+    "raw_evidence_mutation_allowed": false
+  },
+  "hashes": {
+    "contract_sha256": "7046509e2204eb0f24f6602125add3e678587d0ed87637f0f63ea3dd47bdbaf8",
+    "runbook_sha256": "2b51549fd4c81ffa1d5ad2ade38eb10d6fc9acd25e8271556e1aa1b8261df573",
+    "plan_sha256": "c1d82c80622a8e8dd2b0ab9d7d00e60ef551abb79bcaca3978831667252a3441",
+    "script_plan_sha256": "996ac4b5918bdeca63ed6d0d6b4cc5a9ba40c70fea92ae7cafe3741cd5f85ebb",
+    "worker_sha256": "f729fbb8ad83bfe31a8c7cef2feb08836459e77d068747b457245afb1fbb23dd",
+    "preflight_sql_sha256": "111bc216c567c2e321fd1cc77fe0fa825b79b28b2c52e73eda1b53cdfcd7ddcc",
+    "readback_sql_sha256": "05985dfdda81d61bf3cf52ff8cf2ccaff2483cdf453a039865be908484e2f150",
+    "installer_sha256": "df532562e8e4ff7cf4a4d31537994051305a669db5b9ab4cac651eaddf007e2c",
+    "verifier_sha256": "ca398be66f541e6528ddf19791e71b2b9ae38d14439ead91e28250b1f3f6e964",
+    "service_candidate_sha256": "0fd2036a799546ca9303a8cd009a566fe9cd6cd3fd98757f02299a7fabfaaada",
+    "timer_candidate_sha256": "48a4ab1d2abd7d1798da24356ba867c0f75682d50148793c81d54a6a57d9eaa0",
+    "markdown_report_sha256": "5a6707f85e24f25a95b672fc1daf4ff4abc0814dfa06ab2d975d1787c595801d",
+    "env_example_sha256": "886dadf87e133f15ee1996d515286ebbd3975c358443f805614f56f6829c4079",
+    "contract_test_sha256": "038bb1fc92f792df765a7287f5ba9a84464e019701cd4751513ac67fdedfc66a"
+  },
+  "next_step": {
+    "package_id": "MEE-NIGHTLY-POST-INGEST-TIMER-INSTALL-V1",
+    "scope": "Install the post-ingest systemd timer with derived materialized-summary refresh enabled and broad internal writes disabled."
+  }
+}

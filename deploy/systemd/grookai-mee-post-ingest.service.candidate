@@ -1,0 +1,19 @@
+[Unit]
+Description=Grookai Market Evidence Engine Post-Ingest Orchestrator
+Wants=network-online.target
+After=network-online.target grookai-mee-nightly.service
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_vault_mee_nightly
+EnvironmentFile=/etc/grookai/mee-nightly.env
+ExecStart=/usr/bin/flock -n /tmp/grookai-mee-post-ingest.lock /usr/bin/env bash -lc 'node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --run'
+TimeoutStartSec=3h
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target
+

@@ -22,6 +22,18 @@ const artifactsAvailable = (() => {
 })();
 const artifactTest = artifactsAvailable ? test : test.skip;
 
+test("MEE lifecycle batch planner keeps reference source filtering explicit and optional", () => {
+  const script = readFileSync(
+    new URL("../../scripts/audits/market_evidence_lifecycle_backfill_batch_plan_v1.mjs", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(script, /process\.env\.MEE_LIFECYCLE_REFERENCE_SOURCES/);
+  assert.match(script, /\.split\(",">\)|\.split\(","\)/);
+  assert.match(script, /REFERENCE_SOURCES\.length > 0 \? `and c\.source in \(\$\{sqlInList\(REFERENCE_SOURCES\)\}\)` : ""/);
+  assert.match(script, /function sqlInList\(values\)/);
+});
+
 artifactTest("MEE_CORE_LIFECYCLE_BACKFILL_BATCH_PLAN_V1 prepares a bounded local plan only", () => {
   const script = readFileSync(
     new URL("../../scripts/audits/market_evidence_lifecycle_backfill_batch_plan_v1.mjs", import.meta.url),

@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Grookai Market Evidence Engine Post-Ingest Orchestrator daily
+
+[Timer]
+OnCalendar=*-*-* 03:35:00
+Persistent=true
+RandomizedDelaySec=600
+Unit=grookai-mee-post-ingest.service
+
+[Install]
+WantedBy=timers.target
+

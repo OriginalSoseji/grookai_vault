@@ -11,7 +11,7 @@ test("strict filtered rollup plan is local-only and filters before medians", () 
   assert.match(script, /MARKET-LISTING-STRICT-FILTERED-ROLLUP-PLAN-V1/);
   assert.match(script, /local_strict_filtered_rollup_plan_no_writes_no_provider_calls/);
   assert.match(script, /strict_filtered_review_ready_internal_candidate/);
-  assert.match(script, /titleGate\(row\)/);
+  assert.match(script, /evaluateMarketListingTitleGateV1\(\{/);
   assert.match(script, /median_active_ask/);
   assert.match(script, /app_visible_pricing:\s*false/);
   assert.match(script, /public_price_rollups:\s*false/);

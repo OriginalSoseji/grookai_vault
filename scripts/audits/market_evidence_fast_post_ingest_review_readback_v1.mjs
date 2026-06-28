@@ -42,12 +42,18 @@ function sha256Json(value) {
 }
 
 function parseRows(output) {
-  const firstBrace = output.indexOf("{");
-  const lastBrace = output.lastIndexOf("}");
-  if (firstBrace === -1 || lastBrace <= firstBrace) {
+  const firstArray = output.indexOf("[");
+  const firstObject = output.indexOf("{");
+  const starts = [firstArray, firstObject].filter((index) => index >= 0);
+  const firstJson = starts.length ? Math.min(...starts) : -1;
+  const lastArray = output.lastIndexOf("]");
+  const lastObject = output.lastIndexOf("}");
+  const lastJson = Math.max(lastArray, lastObject);
+  if (firstJson === -1 || lastJson <= firstJson) {
     throw new Error(`Could not parse Supabase query JSON output: ${output.slice(0, 500)}`);
   }
-  return JSON.parse(output.slice(firstBrace, lastBrace + 1)).rows ?? [];
+  const parsed = JSON.parse(output.slice(firstJson, lastJson + 1));
+  return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
 function supabaseReadOnlyQuery(sql) {
@@ -55,7 +61,10 @@ function supabaseReadOnlyQuery(sql) {
   const tempSql = path.join(tempDir, "query.sql");
   try {
     writeFileSync(tempSql, sql);
-    const output = execFileSync("supabase", ["db", "query", "--linked", "-f", tempSql], {
+    const targetArgs = process.env.SUPABASE_DB_URL
+      ? ["--db-url", process.env.SUPABASE_DB_URL]
+      : ["--linked"];
+    const output = execFileSync("supabase", ["db", "query", "--output", "json", ...targetArgs, "-f", tempSql], {
       cwd: REPO_ROOT,
       encoding: "utf8",
       maxBuffer: 1024 * 1024 * 20,
