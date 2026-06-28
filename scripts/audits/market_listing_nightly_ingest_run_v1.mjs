@@ -50,7 +50,7 @@ const PHASES = [
   },
   {
     key: "card_candidate_rollup_plan",
-    command: ["node", "scripts/audits/market_listing_card_candidate_rollup_plan_v1.mjs"],
+    command: ["node", "scripts/audits/market_listing_card_candidate_rollup_plan_v1.mjs", "--run-key={runKey}"],
     provider_calls: false,
     db_writes: false,
   },

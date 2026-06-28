@@ -13,8 +13,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
-const RUN_KEY = "MEE-11L-DAILY-BATCH-58975dc50904";
 const PAGE_SIZE = 1000;
+
+function parseArgs(argv) {
+  return {
+    runKey: argv.find((arg) => arg.startsWith("--run-key="))?.slice("--run-key=".length) ?? null,
+  };
+}
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -172,7 +177,7 @@ function addRollupSignal(groups, row) {
   groups.set(key, group);
 }
 
-function rollupRow(group, generatedAt) {
+function rollupRow(group, generatedAt, runKey) {
   const prices = [...group.prices].sort((left, right) => left - right);
   const evidenceVersion = group.evidence_class === "slab"
     ? "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1"
@@ -201,7 +206,7 @@ function rollupRow(group, generatedAt) {
       q25: rounded(percentile(prices, 0.25)),
       q75: rounded(percentile(prices, 0.75)),
       p95: rounded(percentile(prices, 0.95)),
-      source_run_key: RUN_KEY,
+      source_run_key: runKey,
       review_only: true,
     },
     needs_review: true,
@@ -257,18 +262,23 @@ function renderMarkdown(report) {
 }
 
 async function main() {
+  const args = parseArgs(process.argv.slice(2));
   const generatedAt = new Date().toISOString();
   const stamp = generatedAt.replace(/[:.]/g, "-");
   const outputDir = path.join(REPO_ROOT, AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}`);
   mkdirSync(outputDir, { recursive: true });
 
   const supabase = createBackendClient();
-  const runResult = await supabaseRequest(() => supabase
-    .from("market_listing_acquisition_runs")
-    .select("id")
-    .eq("run_key", RUN_KEY)
-    .single());
+  const runResult = await supabaseRequest(() => {
+    const query = supabase
+      .from("market_listing_acquisition_runs")
+      .select("id,run_key");
+    return args.runKey
+      ? query.eq("run_key", args.runKey).single()
+      : query.order("created_at", { ascending: false }).limit(1).single();
+  });
   const runId = runResult.data.id;
+  const resolvedRunKey = runResult.data.run_key;
 
   const candidatePath = path.join(outputDir, "market_listing_card_candidates.jsonl");
   const rollupPath = path.join(outputDir, "market_listing_rollups.jsonl");
@@ -314,7 +324,7 @@ async function main() {
   const rollupClassCounts = {};
   for (const group of [...groups.values()].sort((left, right) =>
     left.evidence_class.localeCompare(right.evidence_class) || left.gv_id.localeCompare(right.gv_id))) {
-    writeRow(rollupStream, rollupRow(group, generatedAt), rollupHash);
+    writeRow(rollupStream, rollupRow(group, generatedAt, resolvedRunKey), rollupHash);
     rollupCount += 1;
     countInto(rollupClassCounts, group.evidence_class);
   }
@@ -328,7 +338,7 @@ async function main() {
     row_file_hashes: rowFileHashes,
     candidate_count: candidateCount,
     rollup_count: rollupCount,
-    source_run_key: RUN_KEY,
+    source_run_key: resolvedRunKey,
   });
   const packageFingerprint = sha256({
     package_id: PACKAGE_ID,
@@ -349,7 +359,7 @@ async function main() {
     generated_at: generatedAt,
     mode: "candidate_rollup_plan_only_no_writes",
     source_readback_fingerprint_sha256: EXPECTED_SOURCE_READBACK_FINGERPRINT,
-    source_run_key: RUN_KEY,
+    source_run_key: resolvedRunKey,
     package_fingerprint_sha256: packageFingerprint,
     row_manifest_hash_sha256: rowManifestHash,
     row_file_hashes_sha256: rowFileHashes,

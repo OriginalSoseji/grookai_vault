@@ -46,6 +46,9 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /const dryRun = argv\.includes\("--dry-run"\) \|\| !run/);
   assert.match(script, /MEE_NIGHTLY_ALLOW_RUN !== "1"/);
   assert.match(script, /SUPABASE_DB_URL_present/);
+  assert.match(script, /MEE_NIGHTLY_PROVIDER_CALLS_ENABLED/);
+  assert.match(script, /MEE_NIGHTLY_NORMALIZATION_ONLY/);
+  assert.match(script, /call_ceiling_exceeds_max/);
   assert.match(script, /market_evidence_db_query_v1\.mjs/);
   assert.match(script, /ensureSupabaseShimDir/);
   assert.match(script, /npx --yes supabase/);
@@ -121,6 +124,9 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(timer, /RandomizedDelaySec=900/);
   assert.match(cron, /15 3 \* \* \*/);
   assert.match(env, /MEE_NIGHTLY_ALLOW_RUN=1/);
+  assert.match(env, /MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=0/);
+  assert.match(env, /MEE_NIGHTLY_NORMALIZATION_ONLY=0/);
+  assert.match(env, /MEE_NIGHTLY_MAX_CALL_CEILING=4000/);
   assert.match(env, /SUPABASE_DB_URL=/);
   assert.match(env, /EBAY_CLIENT_ID/);
   assert.match(env, /EBAY_CLIENT_SECRET/);

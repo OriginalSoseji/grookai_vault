@@ -1,8 +1,10 @@
-import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+import "../../backend/env.mjs";
+import { marketEvidenceQueryRows } from "../lib/market_evidence_db_query_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,13 +29,8 @@ function sha256(value) {
   return createHash("sha256").update(JSON.stringify(stable(value))).digest("hex");
 }
 
-function runSql(sql) {
-  const raw = execFileSync("supabase", ["db", "query", sql, "--linked"], {
-    cwd: REPO_ROOT,
-    encoding: "utf8",
-    maxBuffer: 128 * 1024 * 1024,
-  });
-  return JSON.parse(raw).rows ?? [];
+async function runSql(sql) {
+  return marketEvidenceQueryRows(sql);
 }
 
 function parseJsonRow(rows) {
@@ -81,7 +78,7 @@ function renderMarkdown(report) {
   ].join("\n");
 }
 
-const coverage = parseJsonRow(runSql(`
+const coverage = parseJsonRow(await runSql(`
 select jsonb_build_object(
   'source_totals', jsonb_build_object(
     'reference_normalized_evidence', (
@@ -149,7 +146,7 @@ select jsonb_build_object(
 ) as report;
 `));
 
-const stageIntegrity = parseJsonRow(runSql(`
+const stageIntegrity = parseJsonRow(await runSql(`
 with duplicate_observation_keys as (
   select
     source,
@@ -211,7 +208,7 @@ select jsonb_build_object(
 ) as report;
 `));
 
-const publicBoundary = parseJsonRow(runSql(`
+const publicBoundary = parseJsonRow(await runSql(`
 select jsonb_build_object(
   'pricing_observations_count', (select count(*)::int from public.pricing_observations),
   'ebay_active_prices_latest_count', (select count(*)::int from public.ebay_active_prices_latest),

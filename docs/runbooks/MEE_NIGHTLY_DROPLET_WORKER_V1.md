@@ -22,6 +22,9 @@ Fill either:
 - `EBAY_BROWSE_ACCESS_TOKEN`, or
 - `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET`
 
+Leave `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=0` when you are out of provider calls.
+Use `MEE_NIGHTLY_NORMALIZATION_ONLY=1` or `--normalization-only` to reprocess existing warehouse rows without acquisition.
+
 Preferred installer:
 
 ```bash
@@ -43,6 +46,18 @@ Dry run may create local audit artifacts. It does not request provider acquisiti
 
 ```bash
 MEE_NIGHTLY_ALLOW_RUN=1 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=4000
+```
+
+Provider acquisition run:
+
+```bash
+MEE_NIGHTLY_ALLOW_RUN=1 MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=4000
+```
+
+No-call normalization-only run:
+
+```bash
+MEE_NIGHTLY_ALLOW_RUN=1 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --normalization-only --call-ceiling=1
 ```
 
 ## Schedule
