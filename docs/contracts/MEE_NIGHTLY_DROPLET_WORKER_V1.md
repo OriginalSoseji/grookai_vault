@@ -23,21 +23,25 @@ It must not publish prices.
 - `SUPABASE_DB_URL`
 - `EBAY_BROWSE_ACCESS_TOKEN`
 - `MEE_NIGHTLY_ALLOW_RUN=1`
+- `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1` for acquisition runs.
+- `MEE_NIGHTLY_NORMALIZATION_ONLY=1` for no-provider reprocessing runs.
+- `MEE_NIGHTLY_MAX_CALL_CEILING` to cap acquisition calls.
 
 ## Lifecycle
 
 1. Acquire a Postgres advisory lock.
 2. Run fast MEE readback.
-3. Run bounded market listing ingestion.
-4. Drain eligible lifecycle projection.
-5. Run quality scoring readback.
-6. Build quality-gate internal action plan.
-7. Preflight quality-gate action package.
-8. Apply quality-gate actions.
-9. Run quality-gate readback.
-10. Run final fast readback.
-11. Refresh foundation checkpoint.
-12. Release the advisory lock.
+3. Run bounded market listing ingestion, or skip provider acquisition when running normalization-only.
+4. Optionally run the no-provider normalization/GVID reprocessing runner.
+5. Drain eligible lifecycle projection.
+6. Run quality scoring readback.
+7. Build quality-gate internal action plan.
+8. Preflight quality-gate action package.
+9. Apply quality-gate actions.
+10. Run quality-gate readback.
+11. Run final fast readback.
+12. Refresh foundation checkpoint.
+13. Release the advisory lock.
 
 ## Allowed Writes
 
@@ -69,6 +73,9 @@ It must not publish prices.
 
 - `--dry-run` is the default.
 - `--run` requires `MEE_NIGHTLY_ALLOW_RUN=1`.
+- Provider acquisition requires `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1`.
+- `--normalization-only` or `MEE_NIGHTLY_NORMALIZATION_ONLY=1` runs only no-provider reprocessing phases.
+- `--call-ceiling` must not exceed `MEE_NIGHTLY_MAX_CALL_CEILING`.
 - The worker takes a DB advisory lock before running.
 - Any failed phase stops later phases.
 - Final readback must prove public pricing remains sealed.

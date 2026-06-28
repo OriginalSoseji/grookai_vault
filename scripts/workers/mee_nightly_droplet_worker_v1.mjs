@@ -18,6 +18,8 @@ const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
 const REQUIRED_FILES = [
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+  "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
+  "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
   "scripts/audits/market_evidence_lifecycle_remaining_drain_v1.mjs",
   "scripts/audits/market_evidence_fast_post_ingest_review_readback_v1.mjs",
   "scripts/audits/market_evidence_quality_scoring_read_model_v1.mjs",
@@ -52,6 +54,21 @@ const PHASES = [
     ],
     providerCalls: true,
     dbWrites: true,
+  },
+  {
+    key: "normalization_only_reprocess",
+    command: [
+      "node",
+      "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
+      "--run",
+    ],
+    dryRunCommand: [
+      "node",
+      "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
+    ],
+    providerCalls: false,
+    dbWrites: true,
+    normalizationOnly: true,
   },
   {
     key: "lifecycle_projection_drain",
@@ -147,6 +164,9 @@ function parseArgs(argv) {
     runKey,
     skipProvider: argv.includes("--skip-provider"),
     skipApply: argv.includes("--skip-apply"),
+    normalizationOnly: argv.includes("--normalization-only") || process.env.MEE_NIGHTLY_NORMALIZATION_ONLY === "1",
+    providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
+    maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
   };
 }
 
@@ -275,7 +295,7 @@ function releaseLock(args) {
 }
 
 function phasePlan(args) {
-  return PHASES.map((phase) => {
+  return PHASES.filter((phase) => args.normalizationOnly || !phase.normalizationOnly).map((phase) => {
     const selected = args.run ? phase.command : phase.dryRunCommand;
     return {
       key: phase.key,
@@ -293,7 +313,12 @@ function preflight(args) {
   const findings = [];
   if (missingFiles.length) findings.push("required_worker_file_missing");
   if (args.run && process.env.MEE_NIGHTLY_ALLOW_RUN !== "1") findings.push("MEE_NIGHTLY_ALLOW_RUN_not_set_to_1");
-  if (args.run && args.skipProvider) findings.push("run_requested_with_skip_provider");
+  if (args.run && args.skipProvider && !args.normalizationOnly) findings.push("run_requested_with_skip_provider");
+  if (args.run && !args.providerCallsEnabled && !args.normalizationOnly) findings.push("provider_calls_disabled");
+  if (args.run && args.providerCallsEnabled && (!Number.isFinite(args.maxCallCeiling) || args.maxCallCeiling <= 0)) {
+    findings.push("invalid_max_call_ceiling");
+  }
+  if (args.run && args.providerCallsEnabled && args.callCeiling > args.maxCallCeiling) findings.push("call_ceiling_exceeds_max");
   return {
     missing_files: missingFiles,
     env: {
@@ -301,6 +326,9 @@ function preflight(args) {
       SUPABASE_URL_present: Boolean(process.env.SUPABASE_URL),
       SUPABASE_SECRET_KEY_present: Boolean(process.env.SUPABASE_SECRET_KEY),
       SUPABASE_DB_URL_present: Boolean(process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL),
+      MEE_NIGHTLY_PROVIDER_CALLS_ENABLED: args.providerCallsEnabled,
+      MEE_NIGHTLY_NORMALIZATION_ONLY: args.normalizationOnly,
+      MEE_NIGHTLY_MAX_CALL_CEILING: args.maxCallCeiling,
       EBAY_AUTH_PRESENT: Boolean(
         process.env.EBAY_BROWSE_ACCESS_TOKEN || (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET),
       ),
@@ -373,6 +401,14 @@ try {
 
   if (findings.length === 0) {
     for (const phase of PHASES) {
+      if (phase.normalizationOnly && !args.normalizationOnly) {
+        execution.push({ phase: phase.key, skipped: true, reason: "normalization_only_phase_not_requested" });
+        continue;
+      }
+      if (args.normalizationOnly && phase.providerCalls) {
+        execution.push({ phase: phase.key, skipped: true, reason: "normalization_only_skips_provider_phase" });
+        continue;
+      }
       if (!args.run && !phase.dryRunCommand) {
         execution.push({ phase: phase.key, skipped: true, reason: "run_only_phase_skipped_in_dry_run" });
         continue;
