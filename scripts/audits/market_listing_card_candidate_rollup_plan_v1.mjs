@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
+import { resolveMarketListingTitleTargetV1 } from "../../backend/pricing/market_listing_title_retarget_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
 export const PACKAGE_ID = "MARKET-LISTING-CARD-CANDIDATE-ROLLUP-PLAN-V1";
@@ -124,6 +125,7 @@ function candidateRow(row, generatedAt) {
       listing_title: obs.listing_title,
       query_text: target.query_text ?? null,
       strategy: eventPayload.strategy ?? target.strategy ?? null,
+      title_retarget: eventPayload.title_retarget ?? null,
       listing_evidence_class: evidenceClass,
       listing_evidence_tags: eventPayload.listing_evidence_tags ?? [],
     },
@@ -175,6 +177,130 @@ function addRollupSignal(groups, row) {
   if (row.obs?.seller_key) group.sellers.add(row.obs.seller_key);
   for (const flag of eventPayload.ingestion_exclusion_flags ?? []) countInto(group.exclusion_counts, flag);
   groups.set(key, group);
+}
+
+async function fetchRetargetCatalog(supabase) {
+  const rows = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const to = from + PAGE_SIZE - 1;
+    const { data } = await supabaseRequest(() => supabase
+      .from("card_prints")
+      .select("id,gv_id,name,set_code,number,number_plain,printed_set_abbrev,printed_total,rarity,set:sets(name)")
+      .not("gv_id", "is", null)
+      .order("id", { ascending: true })
+      .range(from, to));
+    if (!data?.length) break;
+    rows.push(...data.map((row) => ({
+      card_print_id: row.id,
+      gv_id: row.gv_id,
+      name: row.name,
+      set_code: row.set_code,
+      set_name: row.set?.name ?? null,
+      number: row.number,
+      number_plain: row.number_plain,
+      printed_set_abbrev: row.printed_set_abbrev,
+      printed_total: row.printed_total,
+      rarity: row.rarity,
+    })));
+    if (data.length < PAGE_SIZE) break;
+  }
+  return rows;
+}
+
+function normalizeNumberKey(value) {
+  return String(value ?? "").replace(/^#/, "").replace(/^0+(\d)/, "$1").trim();
+}
+
+function buildRetargetCatalogIndex(catalog) {
+  const byNumber = new Map();
+  for (const card of catalog) {
+    const key = normalizeNumberKey(card.number_plain ?? card.number);
+    if (!key) continue;
+    const rows = byNumber.get(key) ?? [];
+    rows.push(card);
+    byNumber.set(key, rows);
+  }
+  return { byNumber };
+}
+
+function titleNumberKeys(title) {
+  const text = String(title ?? "");
+  const keys = new Set();
+  for (const match of text.matchAll(/(^|[^0-9])0*(\d{1,4})\s*\/\s*0*(\d{1,4})([^0-9]|$)/g)) {
+    keys.add(normalizeNumberKey(match[2]));
+  }
+  for (const match of text.matchAll(/(^|[^0-9])#?\s*0*(\d{1,4})([^0-9/]|$)/g)) {
+    keys.add(normalizeNumberKey(match[2]));
+  }
+  return [...keys].filter(Boolean);
+}
+
+function plausibleCatalogForTitle(title, index) {
+  const seen = new Set();
+  const rows = [];
+  for (const key of titleNumberKeys(title)) {
+    for (const card of index.byNumber.get(key) ?? []) {
+      if (seen.has(card.card_print_id)) continue;
+      seen.add(card.card_print_id);
+      rows.push(card);
+    }
+  }
+  return rows;
+}
+
+function withResolvedTitleTarget(row, catalogIndex) {
+  const obs = Array.isArray(row.obs) ? (row.obs[0] ?? {}) : (row.obs ?? {});
+  const originalPayload = row.event_payload ?? {};
+  const originalTarget = originalPayload.target ?? {};
+  const plausibleCatalog = plausibleCatalogForTitle(obs.listing_title, catalogIndex);
+  const resolution = resolveMarketListingTitleTargetV1({
+    listingTitle: obs.listing_title,
+    originalTarget,
+    catalog: plausibleCatalog,
+  });
+
+  return {
+    row: {
+      ...row,
+      event_payload: {
+        ...originalPayload,
+        target: resolution.target,
+        title_retarget: {
+          version: resolution.version,
+          status: resolution.status,
+          retargeted: resolution.retargeted,
+          score: resolution.score ?? null,
+          reasons: resolution.reasons ?? [],
+          original_gv_id: originalTarget.gv_id ?? null,
+          original_card_print_id: originalTarget.card_print_id ?? null,
+          resolved_gv_id: resolution.target?.gv_id ?? null,
+          resolved_card_print_id: resolution.target?.card_print_id ?? null,
+        },
+      },
+    },
+    resolution,
+  };
+}
+
+async function fetchPriceEventsForObservations(supabase, observations) {
+  const rows = [];
+  const observationById = new Map(observations.map((observation) => [observation.id, observation]));
+  const ids = observations.map((observation) => observation.id);
+  for (let index = 0; index < ids.length; index += 100) {
+    const chunk = ids.slice(index, index + 100);
+    const { data } = await supabaseRequest(() => supabase
+      .from("market_listing_price_events")
+      .select("id,observation_id,source,source_listing_id,current_total_ask_price,currency,observed_at,event_payload")
+      .in("observation_id", chunk)
+      .order("id", { ascending: true }));
+    for (const row of data ?? []) {
+      rows.push({
+        ...row,
+        obs: observationById.get(row.observation_id) ?? {},
+      });
+    }
+  }
+  return rows.sort((left, right) => String(left.id).localeCompare(String(right.id)));
 }
 
 function rollupRow(group, generatedAt, runKey) {
@@ -269,6 +395,8 @@ async function main() {
   mkdirSync(outputDir, { recursive: true });
 
   const supabase = createBackendClient();
+  const retargetCatalog = await fetchRetargetCatalog(supabase);
+  const retargetCatalogIndex = buildRetargetCatalogIndex(retargetCatalog);
   const runResult = await supabaseRequest(() => {
     const query = supabase
       .from("market_listing_acquisition_runs")
@@ -287,23 +415,27 @@ async function main() {
   const rollupHash = createHash("sha256");
   const groups = new Map();
   const classCounts = {};
+  const retargetCounts = {};
   let candidateCount = 0;
   let scannedCount = 0;
   let skippedCount = 0;
 
   for (let from = 0; ; from += PAGE_SIZE) {
     const to = from + PAGE_SIZE - 1;
-    const { data } = await supabaseRequest(() => supabase
-      .from("market_listing_price_events")
-      .select("id,observation_id,source,source_listing_id,current_total_ask_price,currency,observed_at,event_payload,obs:market_listing_observations!market_listing_price_events_observation_id_fkey(raw_snapshot_id,acquisition_run_id,listing_title,condition_text,seller_key)", { count: from === 0 ? "exact" : undefined })
-      .eq("obs.acquisition_run_id", runId)
-      .not("event_payload->target", "is", null)
+    const { data: observations } = await supabaseRequest(() => supabase
+      .from("market_listing_observations")
+      .select("id,raw_snapshot_id,acquisition_run_id,listing_title,condition_text,seller_key")
+      .eq("acquisition_run_id", runId)
       .order("id", { ascending: true })
       .range(from, to));
-    if (!data?.length) break;
+    if (!observations?.length) break;
 
-    for (const row of data) {
+    const data = await fetchPriceEventsForObservations(supabase, observations);
+
+    for (const sourceRow of data) {
       scannedCount += 1;
+      const { row, resolution } = withResolvedTitleTarget(sourceRow, retargetCatalogIndex);
+      countInto(retargetCounts, resolution.status);
       const evidenceClass = row.event_payload?.listing_evidence_class;
       countInto(classCounts, evidenceClass ?? "unknown");
       const target = row.event_payload?.target ?? {};
@@ -315,7 +447,7 @@ async function main() {
       candidateCount += 1;
       addRollupSignal(groups, row);
     }
-    if (data.length < PAGE_SIZE) break;
+    if (observations.length < PAGE_SIZE) break;
   }
   await closeStream(candidateStream);
 
@@ -370,6 +502,8 @@ async function main() {
     summary: {
       scanned_price_events: scannedCount,
       skipped_non_candidate_events: skippedCount,
+      retarget_catalog_size: retargetCatalog.length,
+      title_retarget_counts: sortedObject(retargetCounts),
       evidence_class_counts: sortedObject(classCounts),
       rollup_class_counts: sortedObject(rollupClassCounts),
     },
