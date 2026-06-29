@@ -257,6 +257,9 @@ function projectObservation({ request, item, observedAt }) {
     target: {
       card_print_id: request.card_print_id,
       gv_id: request.gv_id,
+      card_printing_id: request.card_printing_id ?? null,
+      printing_gv_id: request.printing_gv_id ?? null,
+      finish_key: request.finish_key ?? null,
       query_key: request.query_key,
       strategy: request.strategy,
       query_text: request.query_text,
@@ -413,6 +416,8 @@ export async function buildMarketListingAcquisitionSmokeFetchReportV1({
     total_ask_price: observation.total_ask_price,
     currency: observation.currency,
     gv_id: observation.target.gv_id,
+    printing_gv_id: observation.target.printing_gv_id ?? null,
+    finish_key: observation.target.finish_key ?? null,
     listing_evidence_class: observation.listing_evidence_class,
     listing_evidence_tags: observation.listing_evidence_tags,
   })));
@@ -459,6 +464,7 @@ export async function buildMarketListingAcquisitionSmokeFetchReportV1({
       projected_observation_count: projectedObservations.length,
       unique_listing_count: new Set(projectedObservations.map((observation) => observation.source_listing_id).filter(Boolean)).size,
       unique_target_count_with_results: new Set(projectedObservations.map((observation) => observation.target.card_print_id).filter(Boolean)).size,
+      unique_printing_target_count_with_results: new Set(projectedObservations.map((observation) => observation.target.card_printing_id).filter(Boolean)).size,
     },
     boundary: {
       provider_calls: true,

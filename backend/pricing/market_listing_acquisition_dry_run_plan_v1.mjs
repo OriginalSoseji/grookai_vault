@@ -46,7 +46,9 @@ function quote(value) {
 function normalizeCard(row) {
   return {
     card_print_id: row.card_print_id ?? row.id ?? null,
+    card_printing_id: row.card_printing_id ?? null,
     gv_id: row.gv_id ?? null,
+    printing_gv_id: row.printing_gv_id ?? null,
     name: compact(row.name),
     set_code: compact(row.set_code).toLowerCase() || null,
     set_name: compact(row.set_name ?? row.sets_name ?? row.expansion_name) || null,
@@ -55,12 +57,16 @@ function normalizeCard(row) {
     number_plain: compact(row.number_plain) || null,
     rarity: compact(row.rarity) || null,
     variant_key: compact(row.variant_key) || null,
+    finish_key: compact(row.finish_key) || null,
+    ebay_query_text: compact(row.ebay_query_text) || null,
+    acquisition_priority: compact(row.acquisition_priority) || null,
     identity_domain: compact(row.identity_domain) || null,
     printed_identity_modifier: compact(row.printed_identity_modifier) || null,
   };
 }
 
 function priorityFor(card) {
+  if (card.acquisition_priority) return card.acquisition_priority;
   const setCode = card.set_code ?? "";
   const modifier = `${card.printed_identity_modifier ?? ""} ${card.identity_domain ?? ""}`.toLowerCase();
   if (HIGH_PRIORITY_SET_CODE_PATTERNS.some((pattern) => pattern.test(setCode))) return "priority_special_lane";
@@ -86,6 +92,9 @@ function acquisitionPriorityScore(card) {
   const rarity = card.rarity ?? "";
   let score = 100;
 
+  if (priority === "priority_variant_special_finish") score += 1200;
+  if (priority === "priority_variant_finish") score += 1100;
+  if (priority === "variant_finish") score += 800;
   if (priority === "priority_special_lane") score += 1000;
   if (priority === "priority_world_championship") score += 950;
   if (priority === "priority_base_print_run") score += 900;
@@ -97,6 +106,7 @@ function acquisitionPriorityScore(card) {
 }
 
 function buildQueryTerms(card, strategy) {
+  if (strategy === "variant_finish" && card.ebay_query_text) return card.ebay_query_text;
   const terms = ["Pokemon", quote(card.name)].filter(Boolean);
   const setName = card.set_name || card.printed_set_abbrev || card.set_code;
   const number = card.number_plain || card.number;
@@ -125,6 +135,7 @@ function buildQueryTerms(card, strategy) {
 }
 
 function strategiesFor(card) {
+  if (card.card_printing_id && card.finish_key) return ["variant_finish"];
   const priority = priorityFor(card);
   if (priority === "priority_special_lane" || priority === "priority_world_championship" || priority === "priority_base_print_run") {
     return ["special_lane", "strict_identity", "name_number"];
@@ -146,11 +157,15 @@ function buildRequest(card, strategy, ordinal, options) {
     strategy,
     query_text: queryText,
     card_print_id: card.card_print_id,
+    card_printing_id: card.card_printing_id,
     gv_id: card.gv_id,
+    printing_gv_id: card.printing_gv_id,
   });
   const targetHints = {
     card_print_id: card.card_print_id,
+    card_printing_id: card.card_printing_id,
     gv_id: card.gv_id,
+    printing_gv_id: card.printing_gv_id,
     name: card.name,
     set_code: card.set_code,
     set_name: card.set_name,
@@ -159,6 +174,7 @@ function buildRequest(card, strategy, ordinal, options) {
     number_plain: card.number_plain,
     rarity: card.rarity,
     variant_key: card.variant_key,
+    finish_key: card.finish_key,
     priority: priorityFor(card),
     acquisition_priority_score: acquisitionPriorityScore(card),
   };
@@ -171,7 +187,9 @@ function buildRequest(card, strategy, ordinal, options) {
     request_status: "planned_not_fetched",
     source_fetch_allowed_by_this_package: false,
     card_print_id: card.card_print_id,
+    card_printing_id: card.card_printing_id,
     gv_id: card.gv_id,
+    printing_gv_id: card.printing_gv_id,
     strategy,
     query_text: queryText,
     query_filters: {
@@ -241,7 +259,9 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
   const requestManifestHash = sha256(acquisitionRequests.map((request) => ({
     query_key: request.query_key,
     card_print_id: request.card_print_id,
+    card_printing_id: request.card_printing_id,
     gv_id: request.gv_id,
+    printing_gv_id: request.printing_gv_id,
     strategy: request.strategy,
     query_text: request.query_text,
     query_filters: request.query_filters,

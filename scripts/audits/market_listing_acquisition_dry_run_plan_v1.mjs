@@ -51,35 +51,82 @@ function runSupabaseQuery(sql) {
 
 function loadTargets(limit) {
   const sql = `
-    select
-      cp.id as card_print_id,
-      cp.gv_id,
-      cp.name,
-      cp.set_code,
-      s.name as set_name,
-      cp.printed_set_abbrev,
-      cp.number,
-      cp.number_plain,
-      cp.rarity,
-      cp.variant_key,
-      cp.identity_domain,
-      cp.printed_identity_modifier
-    from public.card_prints cp
-    left join public.sets s on s.id = cp.set_id
-    where cp.gv_id is not null
-      and cp.name is not null
+    with parent_without_child as (
+      select
+        cp.id as card_print_id,
+        null::uuid as card_printing_id,
+        cp.gv_id,
+        null::text as printing_gv_id,
+        cp.name,
+        cp.set_code,
+        s.name as set_name,
+        cp.printed_set_abbrev,
+        cp.number,
+        cp.number_plain,
+        cp.rarity,
+        cp.variant_key,
+        null::text as finish_key,
+        null::text as ebay_query_text,
+        null::text as acquisition_priority,
+        cp.identity_domain,
+        cp.printed_identity_modifier,
+        cp.updated_at
+      from public.card_prints cp
+      left join public.sets s on s.id = cp.set_id
+      where cp.gv_id is not null
+        and cp.name is not null
+        and not exists (
+          select 1
+          from public.card_printings child
+          where child.card_print_id = cp.id
+        )
+    ),
+    variant_targets as (
+      select
+        target.card_print_id,
+        target.card_printing_id,
+        target.gv_id,
+        target.printing_gv_id,
+        target.name,
+        target.set_code,
+        target.set_name,
+        null::text as printed_set_abbrev,
+        target.number,
+        target.number_plain,
+        target.rarity,
+        null::text as variant_key,
+        target.finish_key,
+        target.ebay_query_text,
+        target.acquisition_priority,
+        null::text as identity_domain,
+        null::text as printed_identity_modifier,
+        now() as updated_at
+      from public.v_market_listing_variant_query_targets_v1 target
+      where target.gv_id is not null
+        and target.name is not null
+        and target.ebay_query_text is not null
+    )
+    select *
+    from (
+      select * from variant_targets
+      union all
+      select * from parent_without_child
+    ) target
     order by
       case
-        when cp.set_code ~* '^(wcd|tk-|base-|mcd|mep|bwp|np|ex)' then 0
+        when target.acquisition_priority = 'priority_variant_special_finish' then -2
+        when target.acquisition_priority = 'priority_variant_finish' then -1
+        when target.set_code ~* '^(wcd|tk-|base-|mcd|mep|bwp|np|ex)' then 0
         else 1
       end,
       case
-        when lower(coalesce(cp.rarity, '')) in ('common', 'uncommon', 'rare') then 2
-        when cp.rarity is null or btrim(cp.rarity) = '' then 1
+        when lower(coalesce(target.rarity, '')) in ('common', 'uncommon', 'rare') then 2
+        when target.rarity is null or btrim(target.rarity) = '' then 1
         else 0
       end,
-      cp.updated_at desc nulls last,
-      cp.gv_id
+      target.updated_at desc nulls last,
+      target.gv_id,
+      target.finish_key nulls last
     limit ${limit};
   `;
   return runSupabaseQuery(sql);
