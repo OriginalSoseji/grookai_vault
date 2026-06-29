@@ -1,0 +1,60 @@
+{
+  "package_id": "MEE-SPECIAL-LANE-CLEANUP-POLICY-V1",
+  "generated_at": "2026-06-27",
+  "total_rows": 39180,
+  "distinct_candidate_ids": 39180,
+  "distinct_card_prints": 338,
+  "public_boundary_leak_rows": 0,
+  "rows_by_family": {
+    "base_print_run": 252,
+    "mcdonalds": 3658,
+    "mep_black_star_promos": 6658,
+    "promo_or_alt_distribution": 3599,
+    "trainer_kit": 14306,
+    "world_championship_deck": 10707
+  },
+  "card_prints_by_family": {
+    "base_print_run": 5,
+    "mcdonalds": 55,
+    "mep_black_star_promos": 29,
+    "promo_or_alt_distribution": 68,
+    "trainer_kit": 80,
+    "world_championship_deck": 101
+  },
+  "rows_by_evidence_lane": {
+    "raw_single": 38919,
+    "slab": 261
+  },
+  "examples_by_family": {
+    "base_print_run": {
+      "gv_id": "GV-PK-BASE1-13-SHADOWLESS",
+      "listing_title": "POLIWRATH - BASE SET HOLO RARE WOTC Pokemon Card 13/102 NM/LP",
+      "handling": "print_run_exactness_required"
+    },
+    "mcdonalds": {
+      "gv_id": "GV-PK-MCD-2011-11",
+      "listing_title": "Pidove 11/12 Holo McDonalds Promo 2011 Pokemon",
+      "handling": "exact_card_evidence_required"
+    },
+    "mep_black_star_promos": {
+      "gv_id": "GV-PK-MEP-005",
+      "listing_title": "Drifloon 005 Holo ME: Mega Evolution Promo NM/M Pokemon",
+      "handling": "exact_card_or_program_evidence_required"
+    },
+    "promo_or_alt_distribution": {
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+      "listing_title": "Pokemon TCG Black and White Promos #BW29 Victory Cup LP",
+      "handling": "distribution_lane_review_required"
+    },
+    "trainer_kit": {
+      "gv_id": "GV-PK-TK-tk-bw-e-1",
+      "listing_title": "Lillipup - 81/114 - POKEMON LEAGUE PROMO - Black & White Base - Pokemon Card - 1",
+      "handling": "separate_source_matching_required"
+    },
+    "world_championship_deck": {
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "listing_title": "Pokemon TCG Blaziken 3 EX Battle Stadium Rare HP",
+      "handling": "exact_card_evidence_required"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "bw9-88",
+  "name": "Raticate",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1",
+    "Team Plasma"
+  ],
+  "hp": "70",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesFrom": "Rattata",
+  "attacks": [
+    {
+      "name": "Transfer Junk",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "Put a Team Plasma Pokémon, a Team Plasma Trainer card, and a Team Plasma Energy card from your discard pile into your hand."
+    },
+    {
+      "name": "Bite",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": ""
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "88",
+  "artist": "5ban Graphics",
+  "rarity": "Rare",
+  "flavorText": "With its long fangs, this surprisingly violent Pokémon can gnaw away even thick concrete with ease.",
+  "nationalPokedexNumbers": [
+    20
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/88.png",
+    "large": "https://images.pokemontcg.io/bw9/88_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-88",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.39,
+        "mid": 0.87,
+        "high": 19.98,
+        "market": 0.83,
+        "directLow": 0.79
+      },
+      "reverseHolofoil": {
+        "low": 1.3,
+        "mid": 3.62,
+        "high": 36,
+        "market": 3.89,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-88",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 0.42,
+      "lowPrice": 0.05,
+      "trendPrice": 0.35,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.6,
+      "reverseHoloLow": 0.38,
+      "reverseHoloTrend": 2.27,
+      "lowPriceExPlus": 0.1,
+      "avg1": 0.7,
+      "avg7": 0.31,
+      "avg30": 0.45,
+      "reverseHoloAvg1": 0.3,
+      "reverseHoloAvg7": 1.6,
+      "reverseHoloAvg30": 1.79
+    }
+  }
+}

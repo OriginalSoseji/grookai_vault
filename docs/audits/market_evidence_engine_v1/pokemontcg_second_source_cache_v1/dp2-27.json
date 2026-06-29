@@ -1,0 +1,119 @@
+{
+  "id": "dp2-27",
+  "name": "Kricketune",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "38",
+  "hp": "80",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Kricketot",
+  "attacks": [
+    {
+      "name": "Sore Performance",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "20",
+      "text": "The Defending Pokémon is now Asleep."
+    },
+    {
+      "name": "Concerto",
+      "cost": [
+        "Grass",
+        "Grass"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "40+",
+      "text": "Does 40 damage plus 10 more damage for each Kricketot and each Kricketune you have in play."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp2",
+    "name": "Mysterious Treasures",
+    "series": "Diamond & Pearl",
+    "printedTotal": 123,
+    "total": 124,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MT",
+    "releaseDate": "2007/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp2/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp2/logo.png"
+    }
+  },
+  "number": "27",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "It crosses its knifelike arms in front of its chest when it cries. It can compose melodies ad lib.",
+  "nationalPokedexNumbers": [
+    402
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp2/27.png",
+    "large": "https://images.pokemontcg.io/dp2/27_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp2-27",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.2,
+        "mid": 0.64,
+        "high": 19.98,
+        "market": 0.64,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 0.99,
+        "mid": 1.81,
+        "high": 28.3,
+        "market": 1.24,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp2-27",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 0.25,
+      "lowPrice": 0.02,
+      "trendPrice": 0.28,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0.82,
+      "reverseHoloLow": 0.2,
+      "reverseHoloTrend": 1.79,
+      "lowPriceExPlus": 0.08,
+      "avg1": 0.45,
+      "avg7": 0.29,
+      "avg30": 0.23,
+      "reverseHoloAvg1": 2,
+      "reverseHoloAvg7": 1.06,
+      "reverseHoloAvg30": 1.43
+    }
+  }
+}

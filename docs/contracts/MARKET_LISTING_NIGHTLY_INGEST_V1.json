@@ -1,0 +1,83 @@
+{
+  "contract": "MARKET_LISTING_NIGHTLY_INGEST_V1",
+  "status": "candidate",
+  "date": "2026-06-26",
+  "default_call_ceiling": 4000,
+  "source": "ebay_active",
+  "provider_route": "ebay_browse_api",
+  "allowed_tables": [
+    "market_listing_acquisition_runs",
+    "market_listing_query_cache",
+    "market_listing_raw_snapshots",
+    "market_listing_observations",
+    "market_listing_seller_snapshots",
+    "market_listing_price_events",
+    "market_listing_card_candidates",
+    "market_listing_rollups"
+  ],
+  "required_pipeline_order": [
+    "preflight",
+    "build_or_load_acquisition_batch",
+    "fetch_to_local_artifacts",
+    "classify_listing_evidence",
+    "insert_internal_warehouse_rows",
+    "build_review_only_card_candidates",
+    "apply_strict_title_evidence_filter",
+    "compute_strict_filtered_internal_rollups",
+    "final_readback_and_morning_report"
+  ],
+  "required_row_flags": {
+    "needs_review": true,
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "strict_filtering": {
+    "filter_before_median": true,
+    "separate_raw_single_and_slab": true,
+    "base_set_first_edition_requires_title_token": true,
+    "base_set_shadowless_requires_title_token": true,
+    "base_set_1999_2000_requires_title_token": true,
+    "base_print_run_requires_exact_number_and_base_set_context": true,
+    "exclude_lot_bulk_choose_card_playset_foreign_noise": true
+  },
+  "blocked_writes": [
+    "pricing_observations",
+    "ebay_active_prices_latest",
+    "card_prints",
+    "card_printings",
+    "vault",
+    "user_data",
+    "image_storage",
+    "public_pricing_views"
+  ],
+  "blocked_actions": [
+    "migrations",
+    "public_pricing",
+    "app_visible_pricing",
+    "public_price_rollups",
+    "identity_table_writes",
+    "vault_writes",
+    "image_writes",
+    "global_apply",
+    "merge",
+    "deploy",
+    "sold_completed_ebay_pricing_claims"
+  ],
+  "same_run_repair": {
+    "allowed": true,
+    "tables": [
+      "market_listing_acquisition_runs",
+      "market_listing_query_cache",
+      "market_listing_raw_snapshots",
+      "market_listing_observations",
+      "market_listing_seller_snapshots",
+      "market_listing_price_events",
+      "market_listing_card_candidates",
+      "market_listing_rollups"
+    ],
+    "only_same_run_key": true,
+    "prior_run_deletes_allowed": false
+  }
+}

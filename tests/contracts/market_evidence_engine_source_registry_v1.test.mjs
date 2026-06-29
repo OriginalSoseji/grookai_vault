@@ -21,10 +21,15 @@ test("MEE source registry includes the initial multi-source lanes without direct
     [
       "ebay_active",
       "ebay_sold_candidate",
-      "justtcg_reference",
+      "ebay_user_export",
       "manual_review_candidate",
+      "pokemontcg_io_reference",
       "pricecharting_reference",
+      "tcgcsv_reference",
+      "tcgdex_cardmarket_reference",
+      "tcgdex_tcgplayer_reference",
       "tcgplayer_reference_candidate",
+      "tcgplayer_user_export",
     ],
   );
 
@@ -33,7 +38,13 @@ test("MEE source registry includes the initial multi-source lanes without direct
   }
 
   assert.equal(getMarketEvidenceSourceV1("ebay_active")?.source_type, "active_listing");
-  assert.equal(getMarketEvidenceSourceV1("justtcg_reference")?.pricing_lane, "reference");
+  assert.equal(getMarketEvidenceSourceV1("ebay_user_export")?.source_type, "user_uploaded_export");
+  assert.equal(getMarketEvidenceSourceV1("pokemontcg_io_reference")?.acquisition_mode, "free_api_reference");
+  assert.equal(getMarketEvidenceSourceV1("justtcg_reference"), null);
+  assert.equal(getMarketEvidenceSourceV1("pricecharting_reference")?.acquisition_mode, "licensed_export_optional");
+  assert.equal(getMarketEvidenceSourceV1("tcgcsv_reference")?.acquisition_mode, "public_snapshot_api");
+  assert.equal(getMarketEvidenceSourceV1("tcgdex_tcgplayer_reference")?.acquisition_mode, "free_api_reference");
+  assert.equal(getMarketEvidenceSourceV1("tcgdex_cardmarket_reference")?.source_type, "reference_price");
 });
 
 test("MEE evidence object contract normalizes candidate evidence but keeps it non-publishable", () => {

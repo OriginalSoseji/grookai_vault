@@ -1,0 +1,207 @@
+[
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "observation_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "raw_snapshot_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "card_print_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "gv_id",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "source",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "source_listing_id",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "match_version",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "match_status",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "match_confidence",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "title_features",
+    "data_type": "jsonb"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "set_features",
+    "data_type": "jsonb"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "number_features",
+    "data_type": "jsonb"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "finish_features",
+    "data_type": "jsonb"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "condition_features",
+    "data_type": "jsonb"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "exclusion_flags",
+    "data_type": "ARRAY"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "needs_review",
+    "data_type": "boolean"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "can_publish_price_directly",
+    "data_type": "boolean"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "candidate_hash",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_card_candidates",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "raw_snapshot_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "acquisition_run_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "query_cache_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "source",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "source_listing_id",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "listing_url",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "listing_title",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "listing_status",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "listing_format",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "ask_price",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "shipping_price",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "total_ask_price",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "currency",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "quantity_available",
+    "data_type": "integer"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "quantity_sold",
+    "data_type": "integer"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "condition_text",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "item_location",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "seller_key",
+    "data_type": "text"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "observed_at",
+    "data_type": "timestamp with time zone"
+  },
+  {
+    "table_name": "market_listing_observations",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone"
+  }
+]

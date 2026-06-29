@@ -1,0 +1,124 @@
+{
+  "id": "bw11-108",
+  "name": "Tornadus",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "110",
+  "types": [
+    "Colorless"
+  ],
+  "attacks": [
+    {
+      "name": "Energy Wheel",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "Move an Energy from 1 of your Benched Pokémon to this Pokémon."
+    },
+    {
+      "name": "Hurricane",
+      "cost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80",
+      "text": "Move a basic Energy from this Pokémon to 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Fighting",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw11",
+    "name": "Legendary Treasures",
+    "series": "Black & White",
+    "printedTotal": 113,
+    "total": 140,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "LTR",
+    "releaseDate": "2013/11/06",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw11/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw11/logo.png"
+    }
+  },
+  "number": "108",
+  "artist": "Miki Tanaka",
+  "rarity": "Rare Holo",
+  "flavorText": "The lower half of its body is wrapped in a cloud of energy. It zooms through the sky at 200 mph.",
+  "nationalPokedexNumbers": [
+    641
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw11/108.png",
+    "large": "https://images.pokemontcg.io/bw11/108_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw11-108",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 1.61,
+        "mid": 2.8,
+        "high": 44.99,
+        "market": 2.66,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 3,
+        "mid": 4.73,
+        "high": 54.99,
+        "market": 3.8,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw11-108",
+    "updatedAt": "2025/12/28",
+    "prices": {
+      "averageSellPrice": 3.05,
+      "lowPrice": 0.74,
+      "trendPrice": 2.67,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 3.5,
+      "reverseHoloTrend": 4,
+      "lowPriceExPlus": 0.74,
+      "avg1": 2.5,
+      "avg7": 3,
+      "avg30": 3.09,
+      "reverseHoloAvg1": 4.99,
+      "reverseHoloAvg7": 3.75,
+      "reverseHoloAvg30": 2.1
+    }
+  }
+}

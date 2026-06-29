@@ -1,0 +1,77 @@
+{
+  "id": "bw7-137",
+  "name": "Computer Search",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Item",
+    "ACE SPEC"
+  ],
+  "rules": [
+    "Discard 2 cards from your hand. (If you can't discard 2 cards, you can't play this card.) Search your deck for a card and put it into your hand. Shuffle your deck afterward.",
+    "You may play as many Item cards as you like during your turn (before your attack).",
+    "You can't have more than 1 ACE SPEC card in your deck."
+  ],
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "137",
+  "artist": "Ryo Ueda",
+  "rarity": "Rare ACE",
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/137.png",
+    "large": "https://images.pokemontcg.io/bw7/137_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-137",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 13.38,
+        "mid": 17.7,
+        "high": 123.28,
+        "market": 16.77,
+        "directLow": 13.99
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-137",
+    "updatedAt": "2025/11/21",
+    "prices": {
+      "averageSellPrice": 5.25,
+      "lowPrice": 2.5,
+      "trendPrice": 11.49,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 5,
+      "reverseHoloTrend": 12.78,
+      "lowPriceExPlus": 2.98,
+      "avg1": 3.5,
+      "avg7": 12.56,
+      "avg30": 10.49,
+      "reverseHoloAvg1": 2.99,
+      "reverseHoloAvg7": 16.06,
+      "reverseHoloAvg30": 13.44
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "bw7-48",
+  "name": "Keldeo",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "90",
+  "types": [
+    "Water"
+  ],
+  "attacks": [
+    {
+      "name": "Rising Lunge",
+      "cost": [
+        "Water",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "20+",
+      "text": "Flip a coin. If heads, this attack does 20 more damage."
+    },
+    {
+      "name": "Hydro Kick",
+      "cost": [
+        "Water",
+        "Water",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": ""
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Grass",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "48",
+  "artist": "Naoki Saito",
+  "rarity": "Rare",
+  "flavorText": "By blasting water from its hooves, it can glide across water. It excels at using leg moves while battling.",
+  "nationalPokedexNumbers": [
+    647
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/48.png",
+    "large": "https://images.pokemontcg.io/bw7/48_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-48",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.3,
+        "mid": 0.6,
+        "high": 19.84,
+        "market": 0.61,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 0.95,
+        "mid": 1.88,
+        "high": 33,
+        "market": 1.33,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-48",
+    "updatedAt": "2026/02/24",
+    "prices": {
+      "averageSellPrice": 0.71,
+      "lowPrice": 0.04,
+      "trendPrice": 0.43,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0.65,
+      "reverseHoloLow": 0.3,
+      "reverseHoloTrend": 0.96,
+      "lowPriceExPlus": 0.1,
+      "avg1": 0.34,
+      "avg7": 0.24,
+      "avg30": 0.52,
+      "reverseHoloAvg1": 0.3,
+      "reverseHoloAvg7": 0.81,
+      "reverseHoloAvg30": 1.41
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "dp4-104",
+  "name": "Darkrai LV.X",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Level-Up"
+  ],
+  "level": "X",
+  "hp": "100",
+  "types": [
+    "Darkness"
+  ],
+  "evolvesFrom": "Darkrai",
+  "rules": [
+    "Put this card onto your Active Darkrai. Darkrai LV.X can use any attack, Poké-Power, or Poké-Body from its previous level."
+  ],
+  "abilities": [
+    {
+      "name": "Dark Shadow",
+      "text": "Each basic Darkness Energy card attached to your Darkness Pokémon now has the effect \"If the Pokémon Darkness Energy is attached to attacks, the attack does 10 more damage to the Active Pokémon (before applying Weakness and Resistance).\" You can't use more than 1 Dark Shadow Poké-Body each turn.",
+      "type": "Poké-Body"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Endless Darkness",
+      "cost": [
+        "Darkness",
+        "Darkness",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "40",
+      "text": "The Defending Pokémon is now Asleep. Flip 2 coins instead of 1 between turns. If either of them is tails, the Defending Pokémon is still Asleep. If both of them are tails, the Defending Pokémon is Knocked Out."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp4",
+    "name": "Great Encounters",
+    "series": "Diamond & Pearl",
+    "printedTotal": 106,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "GE",
+    "releaseDate": "2008/02/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp4/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp4/logo.png"
+    }
+  },
+  "number": "104",
+  "artist": "Shizurow",
+  "rarity": "Rare Holo LV.X",
+  "nationalPokedexNumbers": [
+    491
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp4/104.png",
+    "large": "https://images.pokemontcg.io/dp4/104_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp4-104",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 144.99,
+        "mid": 209.3,
+        "high": 900.34,
+        "market": 165.67,
+        "directLow": 199.99
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp4-104",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 25.55,
+      "lowPrice": 4.99,
+      "trendPrice": 28.59,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 14.28,
+      "lowPriceExPlus": 20,
+      "avg1": 5,
+      "avg7": 27.83,
+      "avg30": 22.94,
+      "reverseHoloAvg1": 20,
+      "reverseHoloAvg7": 8.13,
+      "reverseHoloAvg30": 9.16
+    }
+  }
+}

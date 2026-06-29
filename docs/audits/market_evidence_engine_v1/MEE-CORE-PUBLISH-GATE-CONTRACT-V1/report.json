@@ -1,0 +1,44 @@
+{
+  "package_id": "MEE-CORE-PUBLISH-GATE-CONTRACT-V1",
+  "generated_at": "2026-06-27T05:23:02.003Z",
+  "mode": "contract_only_publish_gate",
+  "package_fingerprint_sha256": "7c9f62e8c1d7d89f4065a51ce6f1dcdd269dd08ff7fb1fd8b01a55a04dd6d736",
+  "publish_gate_status": "contract_defined_no_public_apply",
+  "gate_rules": [
+    "Only resolved review_confirmed_internal_candidate rows may be considered.",
+    "Evidence lane must be raw_single or slab, never mixed_raw_slab.",
+    "All public flags must still be false before publish-gate apply.",
+    "Source mix, confidence, freshness, outlier rules, and replay references must be present.",
+    "Reference metrics alone cannot publish.",
+    "Active listing asking prices alone cannot publish as market truth.",
+    "Publish gate writes require a separate future approval and must never be bundled with ingest or review actions."
+  ],
+  "current_allowed_public_writes": false,
+  "next_recommendation": {
+    "package_id": "MEE-CORE-DAILY-RUNBOOK-V1",
+    "reason": "Publish gate contract exists. The final foundation blocker is the daily runbook.",
+    "allowed_scope": "Documentation/runbook only. No acquisition, no provider calls, no DB writes, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

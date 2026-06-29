@@ -95,7 +95,7 @@ export default function PricingTrustSummary({ trustState, referencePricing }: Pr
         {showReference ? (
           <div className="rounded-[14px] border border-sky-200 bg-sky-50 px-3 py-3 text-xs text-sky-800">
             <span className="font-semibold uppercase tracking-[0.14em]">Reference</span>
-            <span className="ml-2">Reference price: ~{referenceValue} (JustTCG)</span>
+            <span className="ml-2">Reference price: ~{referenceValue}</span>
           </div>
         ) : null}
       </div>

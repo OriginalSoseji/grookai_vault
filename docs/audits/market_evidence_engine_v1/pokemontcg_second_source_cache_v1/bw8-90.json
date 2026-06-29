@@ -1,0 +1,126 @@
+{
+  "id": "bw8-90",
+  "name": "Klinklang",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2",
+    "Team Plasma"
+  ],
+  "hp": "140",
+  "types": [
+    "Metal"
+  ],
+  "evolvesFrom": "Klang",
+  "abilities": [
+    {
+      "name": "Plasma Steel",
+      "text": "Prevent all damage done to your Metal Pokémon by attacks from your opponent's Pokémon-EX.",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Heavy Bullet",
+      "cost": [
+        "Metal",
+        "Metal",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": "Flip a coin. If heads, this attack does 20 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "bw8",
+    "name": "Plasma Storm",
+    "series": "Black & White",
+    "printedTotal": 135,
+    "total": 138,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLS",
+    "releaseDate": "2013/02/06",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw8/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw8/logo.png"
+    }
+  },
+  "number": "90",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Holo",
+  "flavorText": "The minigear spins at high speed. Then the energy from the red core charges the minigear to make it ready to fire.",
+  "nationalPokedexNumbers": [
+    601
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw8/90.png",
+    "large": "https://images.pokemontcg.io/bw8/90_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw8-90",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 0.87,
+        "mid": 1.53,
+        "high": 26.44,
+        "market": 1.71,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1.67,
+        "mid": 3.5,
+        "high": 33,
+        "market": 2.09,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw8-90",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 1.93,
+      "lowPrice": 0.15,
+      "trendPrice": 2.62,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.65,
+      "reverseHoloLow": 0.15,
+      "reverseHoloTrend": 1.93,
+      "lowPriceExPlus": 0.4,
+      "avg1": 3,
+      "avg7": 1.88,
+      "avg30": 1.89,
+      "reverseHoloAvg1": 2.5,
+      "reverseHoloAvg7": 2.48,
+      "reverseHoloAvg30": 2.17
+    }
+  }
+}

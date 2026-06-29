@@ -1,0 +1,126 @@
+{
+  "id": "bw9-73",
+  "name": "Bisharp",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1",
+    "Team Plasma"
+  ],
+  "hp": "100",
+  "types": [
+    "Darkness"
+  ],
+  "evolvesFrom": "Pawniard",
+  "attacks": [
+    {
+      "name": "Slash",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "40",
+      "text": ""
+    },
+    {
+      "name": "Dragon Slayer",
+      "cost": [
+        "Darkness",
+        "Darkness",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80+",
+      "text": "If the Defending Pokémon is a Dragon Pokémon, this attack does 40 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "73",
+  "artist": "5ban Graphics",
+  "rarity": "Rare",
+  "flavorText": "This pitiless Pokémon commands a group of Pawniard to hound prey into immobility. It then moves in to finish the prey off.",
+  "nationalPokedexNumbers": [
+    625
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/73.png",
+    "large": "https://images.pokemontcg.io/bw9/73_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-73",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.5,
+        "mid": 1,
+        "high": 5,
+        "market": 1.09,
+        "directLow": 1.08
+      },
+      "reverseHolofoil": {
+        "low": 1.5,
+        "mid": 4.07,
+        "high": 40.9,
+        "market": 4,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-73",
+    "updatedAt": "2026/01/19",
+    "prices": {
+      "averageSellPrice": 1.49,
+      "lowPrice": 0.1,
+      "trendPrice": 0.9,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.21,
+      "reverseHoloLow": 0.45,
+      "reverseHoloTrend": 4.79,
+      "lowPriceExPlus": 0.1,
+      "avg1": 0.7,
+      "avg7": 1,
+      "avg30": 0.74,
+      "reverseHoloAvg1": 1.42,
+      "reverseHoloAvg7": 5.12,
+      "reverseHoloAvg30": 2.55
+    }
+  }
+}

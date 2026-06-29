@@ -1,0 +1,39 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-DISPOSITIONS-SCHEMA-CANDIDATE-V1",
+  "mode": "plan_only_local_schema_candidate",
+  "migration_file": "supabase/migrations/20260625080000_market_evidence_review_dispositions_v1.sql",
+  "sql_candidate": "docs/sql/mee_core_internal_review_dispositions_v1_migration_candidate.sql",
+  "rollback_dry_run_sql": "docs/sql/mee_core_internal_review_dispositions_v1_rollback_dry_run.sql",
+  "readback_sql": "docs/sql/mee_core_internal_review_dispositions_v1_readback.sql",
+  "migration_hash_sha256": "E175C56D372A5AAF50464535A344562198C596A98A5273398AD001B1BF3339BD",
+  "sql_candidate_hash_sha256": "E175C56D372A5AAF50464535A344562198C596A98A5273398AD001B1BF3339BD",
+  "rollback_dry_run_sql_hash_sha256": "1E4EFBC6392D8F1FE95382072B07987ED08D93E9D9ED4A5EA6B5B2E7913B2036",
+  "readback_sql_hash_sha256": "1028BFA91ACCD43F128AA2E9BB874278AF988C25B7A216D5AC12C9C5AB41AEC2",
+  "proposed_objects": [
+    "public.market_evidence_review_dispositions"
+  ],
+  "proposed_counts": {
+    "tables": 1,
+    "indexes": 4,
+    "service_role_policies": 1
+  },
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": []
+}

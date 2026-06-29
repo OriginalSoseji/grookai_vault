@@ -1,0 +1,117 @@
+{
+  "id": "bwp-BW09",
+  "name": "Zoroark",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "100",
+  "types": [
+    "Darkness"
+  ],
+  "evolvesFrom": "Zorua",
+  "attacks": [
+    {
+      "name": "Nasty Plot",
+      "cost": [
+        "Darkness"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "Search your deck for a card and put it into your hand. Shuffle your deck afterward."
+    },
+    {
+      "name": "Foul Play",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "",
+      "text": "Choose 1 of the Defending Pokémon's attacks and use it as this attack."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW09",
+  "artist": "Naoki Saito",
+  "rarity": "Promo",
+  "flavorText": "Each has the ability to fool a large group of people simultaneously. They protect their lair with illusory scenery.",
+  "nationalPokedexNumbers": [
+    571
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW09.png",
+    "large": "https://images.pokemontcg.io/bwp/BW09_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW09",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 2.19,
+        "mid": 4.96,
+        "high": 50.3,
+        "market": 4.47,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW09",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 2.56,
+      "lowPrice": 0.2,
+      "trendPrice": 2.49,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 1.13,
+      "lowPriceExPlus": 0.99,
+      "avg1": 1.15,
+      "avg7": 2.08,
+      "avg30": 3.28,
+      "reverseHoloAvg1": 1.99,
+      "reverseHoloAvg7": 1.13,
+      "reverseHoloAvg30": 1.17
+    }
+  }
+}

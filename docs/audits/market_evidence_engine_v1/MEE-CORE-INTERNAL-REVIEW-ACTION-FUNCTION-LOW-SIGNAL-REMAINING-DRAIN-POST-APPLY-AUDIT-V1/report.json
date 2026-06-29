@@ -1,0 +1,117 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-REMAINING-DRAIN-POST-APPLY-AUDIT-V1",
+  "generated_at": "2026-06-27T02:25:16.698Z",
+  "mode": "run_only_low_signal_remaining_drain_post_apply_audit_read_only",
+  "package_fingerprint_sha256": "86624490cc820546639aea3528fc97941264409d285d74ff2a98d30136eddbd1",
+  "source": {
+    "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-REMAINING-DRAIN-PLAN-V1",
+    "package_fingerprint_sha256": "b21c27179f29d96b26fcad410753a1b9555c23ae236d7e5616f3172c29b3f031",
+    "row_manifest_sha256": "c35053de84118c1655e16342bebbd90125d2d41d98cd25146cb9feb755a99050"
+  },
+  "audit": {
+    "expected_target_rows": 219,
+    "matching_action_event_rows": 219,
+    "distinct_event_disposition_rows": 219,
+    "updated_target_rows": 219,
+    "remaining_eligible_low_signal_rows": 0,
+    "event_public_flag_rows": 0,
+    "target_public_flag_rows": 0,
+    "pricing_observations_count": 0,
+    "public_pricing_view_references": 0,
+    "low_signal_status": [
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": false,
+        "publishable": false,
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved",
+        "rows": 380
+      }
+    ],
+    "remaining_review_status": [
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending",
+        "rows": 1536
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_classification_fix",
+        "review_lane": "classification_review",
+        "review_status": "pending",
+        "rows": 19
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending",
+        "rows": 213
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": false,
+        "publishable": false,
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved",
+        "rows": 380
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_reference_only",
+        "review_lane": "reference_only_review",
+        "review_status": "pending",
+        "rows": 4
+      }
+    ]
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-QUEUE-AUDIT-V1",
+    "reason": "Low-signal monitor rows are fully resolved. Audit classification_review next because classification defects should be blocked or corrected before high-signal or publication-gate work.",
+    "allowed_scope": "Read-only audit and plan only for classification_review rows; no provider calls, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "hashes": {
+    "source_row_manifest_sha256": "c35053de84118c1655e16342bebbd90125d2d41d98cd25146cb9feb755a99050",
+    "readback_sql_sha256": "3bfdf3405662d9c56372f07d949d4ceaa4414d35911dc9299fa2cba17ddeab0e"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

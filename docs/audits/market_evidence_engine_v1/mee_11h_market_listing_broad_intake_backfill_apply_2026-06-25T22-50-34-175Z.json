@@ -1,0 +1,247 @@
+{
+  "package_id": "MARKET-LISTING-BROAD-INTAKE-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-25T22:50:34.175Z",
+  "applied": false,
+  "remote_rows_verified": true,
+  "mode": "readback_only",
+  "plan_artifact": "docs/audits/market_evidence_engine_v1/mee_11g_market_listing_broad_intake_backfill_plan_2026-06-25T22-44-14-553Z.json",
+  "package_fingerprint_sha256": "36159efc9466172ab85d41234ac403237e8c443977f625101ce7a8111e908d0e",
+  "row_manifest_hash_sha256": "7a4b430455774c98fe0f77bbf7d4ef371f67122559fb30985549a55a2a06665e",
+  "source_package_fingerprint_sha256": "15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1",
+  "raw_snapshot_manifest_hash_sha256": "0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c",
+  "projected_observation_manifest_hash_sha256": "7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "proposed_table_row_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 5,
+    "market_listing_raw_snapshots": 25,
+    "market_listing_observations": 25,
+    "market_listing_seller_snapshots": 23,
+    "market_listing_price_events": 25,
+    "market_listing_card_candidates": 0,
+    "market_listing_rollups": 0
+  },
+  "expected_readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 5,
+    "market_listing_raw_snapshots": 25,
+    "market_listing_observations": 25,
+    "market_listing_seller_snapshots": 23,
+    "market_listing_price_events": 25
+  },
+  "remote_collision_summary": {
+    "checked": true,
+    "id_collisions": {
+      "market_listing_acquisition_runs": [
+        "7a29927d-dc97-a64f-14ab-50a0b7501ac4"
+      ],
+      "market_listing_query_cache": [
+        "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "faaece60-e406-06a3-627a-8f13fce09896",
+        "6d547fb7-7fe8-6451-ca22-af86d535ebc8"
+      ],
+      "market_listing_raw_snapshots": [
+        "ae32f265-5325-b4aa-4e8d-435714379ce7",
+        "23c340f3-a474-d969-4a34-7dbd0be76bd1",
+        "2dcb5c19-a115-f070-dca9-2c2da68a01b8",
+        "97b91117-6a5d-3bc4-09a8-06e6c5400dde",
+        "0b9b8a49-aea1-2a60-1067-ff8ce2c8736c",
+        "daba9efb-99ff-8777-a937-73432a6d419d",
+        "49fc1f73-6e42-2f08-1c60-cdb0645e3a52",
+        "79a15738-c48a-6a39-47ab-cb2075453ba3",
+        "ec5532ca-6652-1626-370b-fbfe5b0ad974",
+        "a9647b19-3c53-71a4-d031-3c375979bdaa",
+        "039d5d80-5f16-493e-5887-6d2264d6a91b",
+        "13c48c91-8286-5380-2e1a-e7f5153854fd",
+        "4183344e-ef3f-2219-7c20-0a27810d15e1",
+        "14d5c83c-d491-5a8f-b738-e0a8264c0cbb",
+        "c27b5c0f-bc35-df74-ecec-2710fc11123a",
+        "99edb375-b831-7c9b-99ff-2f54b4e74b85",
+        "d6ffddc4-d325-e029-6d3b-bb366ae4e68e",
+        "ef6b724f-76ee-223c-a406-8799715feaa9",
+        "02fd36fc-2c9f-3472-038c-aec98c9fc082",
+        "7365014a-054b-6301-4af1-76fc6a7d93be",
+        "ad4cae16-b917-9525-9c28-7badd88f868d",
+        "6c0e46a8-ef3b-c4c3-7035-e5f4af8cb484",
+        "acfd298b-d137-4b76-0e57-f66a33897159",
+        "7c7983a4-1b20-8038-6afc-65374bc2def9",
+        "12091483-74cb-333a-ace7-232dba9d7036"
+      ],
+      "market_listing_observations": [
+        "b9bddecf-b318-56e9-1a26-fad83713d1aa",
+        "df02568b-3210-4d52-2244-38831d7135cf",
+        "a40d5a39-cf29-aa3c-ae74-4f6f8315067a",
+        "49138035-4dde-3a38-c46c-b982bcc4da51",
+        "9cc81138-e653-b91e-f8ac-90c30186a72b",
+        "9be4666e-cb5f-ff00-aa19-6e57d4e5fd95",
+        "73eb2fce-dd83-ea32-2f30-3415478723fd",
+        "22f22b94-8495-28ed-745f-8f2518aa09d6",
+        "64666519-b778-9413-77d7-cdd794e3ad03",
+        "735e1cc1-c5ad-01ba-99c0-e943589a3c0d",
+        "0bf7fdcc-bc6c-3e08-bedf-4233c25f725f",
+        "393f1f20-4295-4280-30b1-979dae784cd6",
+        "f2411146-9533-2c40-3964-bb0f3a1eff46",
+        "f36109d0-4cbc-f90d-7f48-d879d15245ae",
+        "9a880c7d-8dd4-79e5-2ed2-f3705ed8b861",
+        "deb88d66-1867-f2cc-7e6c-ece5a6f3f33d",
+        "4d529261-f49d-ce18-2d7e-3e2f45cce00a",
+        "f3e15e88-2925-0045-b015-25ca9c7bd0f1",
+        "3029ab4f-028a-fee6-5650-cb12bf5a3cce",
+        "0d6e03c5-e36d-c85a-91e4-d65f7eae1048",
+        "201f0044-b04d-0711-c5dd-ec9098a430ff",
+        "e596457d-f0d3-b54a-8307-a6189ef271f3",
+        "cabf3cbb-7bd5-85a3-1659-450cd903ea6d",
+        "c1e3bbdc-a6e2-5b6d-e92d-6d9b74847412",
+        "c965041a-e9ba-50cb-f043-20f53f5131b1"
+      ],
+      "market_listing_seller_snapshots": [
+        "8439685a-94a1-e22a-40cd-b34bfe876734",
+        "59f5375e-0c99-0003-47cc-0a8535b931b7",
+        "f69b4d00-0615-a5aa-145b-f1acedebea74",
+        "7f6075a9-2bfb-dd11-419b-e7a84ef11ca6",
+        "3776c484-5022-c429-2707-c8c5b3aa3064",
+        "1855fadf-50c7-af58-78d2-729b4c068514",
+        "b540b790-6650-f62d-ea4d-d566dfb27008",
+        "95f991cb-83dd-81c9-3307-74100a5ba784",
+        "54370029-540a-d38d-e46a-1d3238b8a762",
+        "70d3c5e8-94b7-98fb-bc03-d8c6e1093013",
+        "90296922-4f48-5b37-53f5-102ffbc00703",
+        "eaeb8292-4d60-45f4-6a62-12054be970ef",
+        "44b33db8-e507-e74e-b4e3-b3d84b9935cb",
+        "f0a7f123-f903-e256-1efc-ac76e84cc093",
+        "47a73feb-3c4a-4e98-708f-cfc52943a5b8",
+        "b6652ca7-94b3-f4d3-29ec-ded6d5c43d72",
+        "c8956fbd-9662-6f6a-ecf8-a45767e43cfe",
+        "64348f07-eeaf-6e20-c296-bc68902f7392",
+        "fd9885f6-ca58-ff79-fc88-3716d2605c19",
+        "3e4847db-4e48-f220-3bd0-03864db2bc87",
+        "300c8020-d1a1-5292-349a-8fea4dadd748",
+        "bcc40701-2b91-6f77-8437-81a28fb7611a",
+        "7e2d25b0-bb02-ab23-9ea3-23ff1ef02fde"
+      ],
+      "market_listing_price_events": [
+        "d82ad631-bc0a-bea5-dc6a-524fab50fd92",
+        "28fcad93-1fe3-2c0f-53aa-d09a305adafb",
+        "fa026d26-4e73-be8e-edb1-96ca50b7eeda",
+        "627805c2-9a7a-18d5-689d-5265b08e6167",
+        "3cbb1203-9742-7b78-097f-59be1148a46f",
+        "7aee568c-aaad-ef78-b5c3-3be1d7fb5e77",
+        "45036092-49e0-5828-3493-13412db6aa35",
+        "6b0f4dc4-0e20-347c-5de4-8305bc0cdaad",
+        "f187c62a-4894-9cf8-2b58-8b39e9d74be0",
+        "571386c2-6407-c0fb-a7a3-ad038c275817",
+        "259bd0ac-79c9-aeb3-799a-b673c5bc8c40",
+        "b32e60e3-43a1-589a-b74c-4986f14ea137",
+        "b1d7a65e-173a-924b-00b0-136168897465",
+        "63baf11e-705e-f63d-ec70-e0a2ca5e4abc",
+        "b40b69bb-728f-d8cb-69dd-62b8ce05de35",
+        "0750da28-2610-1308-b441-83344ce5f434",
+        "2a2edf35-d034-7133-deec-d7234592484c",
+        "95c5a0de-b77d-aef6-5003-4a9e2c392067",
+        "b59d2cb8-4e17-bc04-954f-5c747a436ff8",
+        "23a75efd-e4a4-67fd-080a-c25e63518e2b",
+        "0806df0f-1091-9af7-406b-bb2aa56c7618",
+        "481ff6e6-1879-981b-6a32-09a83014009f",
+        "3af15edd-0aa0-e7ff-401a-cef57d7fda03",
+        "4cbf2b5d-8425-1128-e22d-033a2f8752d9",
+        "e57ae4f4-b955-34ec-edf4-f59e8cf51239"
+      ]
+    },
+    "id_collision_count": 104,
+    "raw_listing_collision_count": 25,
+    "raw_listing_collision_samples": [
+      {
+        "id": "4183344e-ef3f-2219-7c20-0a27810d15e1",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127834125820|0",
+        "payload_hash": "42ddf8b33f54e5833cc56778e4faa427dbf04a7d3b881967a60097eefa4c19f6"
+      },
+      {
+        "id": "2dcb5c19-a115-f070-dca9-2c2da68a01b8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127920720665|0",
+        "payload_hash": "e7d144216656f71d0aa9e0e30b26649091e66bde16a15521db3d8d3ba516c57b"
+      },
+      {
+        "id": "039d5d80-5f16-493e-5887-6d2264d6a91b",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127939841637|0",
+        "payload_hash": "2b3349c49be181d316fb9215596eaea46af849417e5f4d439d2543134bba85dc"
+      },
+      {
+        "id": "7365014a-054b-6301-4af1-76fc6a7d93be",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137396449566|435627756347",
+        "payload_hash": "1be6aaade6a53d3eecb702dd3cef548f3d3093e23fb2fd4266076bd20faa3a2f"
+      },
+      {
+        "id": "12091483-74cb-333a-ace7-232dba9d7036",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137427681550|435638772995",
+        "payload_hash": "879ce4d978332b4636f860c35181f440a5175b890048fedd5a99ab17fb57cf11"
+      },
+      {
+        "id": "99edb375-b831-7c9b-99ff-2f54b4e74b85",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156731105968|458522716440",
+        "payload_hash": "7c09c31254e8bb627582302eaa14edf116260eb5f98bec07222c51d47be0b9d7"
+      },
+      {
+        "id": "a9647b19-3c53-71a4-d031-3c375979bdaa",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156747546217|458988651324",
+        "payload_hash": "8a71e63e20cbd6321e34e26f2ea58acefeedfd0d522327d10983ef37f18cf9b0"
+      },
+      {
+        "id": "daba9efb-99ff-8777-a937-73432a6d419d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156804393182|458729138405",
+        "payload_hash": "cd333cd56def62e957cbd6388ce44942f6753ce45530f3a87f16bd3d503f6e61"
+      },
+      {
+        "id": "23c340f3-a474-d969-4a34-7dbd0be76bd1",
+        "source": "ebay_active",
+        "source_listing_id": "v1|157999291863|0",
+        "payload_hash": "31b8becc816bfcc4c055cb1db8b425277db0b9c9a4c69700904e2c288e2961af"
+      },
+      {
+        "id": "14d5c83c-d491-5a8f-b738-e0a8264c0cbb",
+        "source": "ebay_active",
+        "source_listing_id": "v1|178232336781|0",
+        "payload_hash": "30c879439622771ce40ff67818a62a2e30a4e1216ae7e9e52d2c5be906afeb9d"
+      }
+    ]
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "card_candidate_writes": false,
+    "rollup_writes": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "apply_result": null,
+  "readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 5,
+    "market_listing_raw_snapshots": 25,
+    "market_listing_observations": 25,
+    "market_listing_seller_snapshots": 23,
+    "market_listing_price_events": 25
+  }
+}

@@ -24,8 +24,12 @@ Initial sources:
 
 - `ebay_active`
 - `ebay_sold_candidate`
+- `ebay_user_export`
+- `pokemontcg_io_reference`
 - `pricecharting_reference`
+- `tcgcsv_reference`
 - `tcgplayer_reference_candidate`
+- `tcgplayer_user_export`
 - `justtcg_reference`
 - `manual_review_candidate`
 
@@ -43,6 +47,8 @@ Every source has:
 ```text
 can_publish_price_directly = false
 ```
+
+PriceCharting is intentionally modeled as an optional licensed/export benchmark lane, not a required engine dependency. The default next acquisition queues should prefer non-API or user-owned evidence lanes unless a PriceCharting run is explicitly requested.
 
 ## Evidence Object Contract
 
@@ -90,8 +96,11 @@ Use:
 Examples:
 
 - JustTCG reference lane
+- PokemonTCG.io embedded TCGplayer/Cardmarket price buckets
+- TCGCSV TCGplayer product and price snapshots
 - PriceCharting reference candidate
 - TCGplayer product reference candidate
+- user/admin-provided TCGplayer export rows
 
 Use:
 
@@ -108,6 +117,7 @@ Examples:
 - high-value ambiguous evidence
 - source pages with weak identity match
 - cards where print-run/finish/stamp identity is unclear
+- user/admin-provided eBay export rows that need classification
 
 Use:
 

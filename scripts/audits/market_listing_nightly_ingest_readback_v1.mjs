@@ -11,8 +11,8 @@ const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
 const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-READBACK-V1";
-const STRICT_RAW_ROLLUP_VERSION = "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
-const STRICT_SLAB_ROLLUP_VERSION = "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
+const BASE_STRICT_RAW_ROLLUP_VERSION = "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
+const BASE_STRICT_SLAB_ROLLUP_VERSION = "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -36,11 +36,19 @@ function rel(filePath) {
 }
 
 function runSql(sql) {
-  return execFileSync("supabase", ["db", "query", sql, "--linked"], {
+  const targetArgs = process.env.SUPABASE_DB_URL
+    ? ["--db-url", process.env.SUPABASE_DB_URL]
+    : ["--linked"];
+  return execFileSync("supabase", ["db", "query", "--output", "json", sql, ...targetArgs], {
     cwd: REPO_ROOT,
     encoding: "utf8",
     maxBuffer: 128 * 1024 * 1024,
   });
+}
+
+function parseSupabaseRows(output) {
+  const parsed = JSON.parse(output);
+  return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
 function parseArgs(argv) {
@@ -51,6 +59,25 @@ function parseArgs(argv) {
 
 function sqlString(value) {
   return `'${String(value).replaceAll("'", "''")}'`;
+}
+
+function normalizeRollupVersionSuffix(raw) {
+  if (!raw) return "";
+  const suffix = raw
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  if (!suffix) throw new Error("[market-listing-nightly-readback] run key normalized to empty rollup suffix");
+  return suffix.slice(0, 80);
+}
+
+function strictRollupVersionsForRun(runKey) {
+  const suffix = normalizeRollupVersionSuffix(runKey);
+  return {
+    raw: suffix ? `${BASE_STRICT_RAW_ROLLUP_VERSION}__${suffix}` : BASE_STRICT_RAW_ROLLUP_VERSION,
+    slab: suffix ? `${BASE_STRICT_SLAB_ROLLUP_VERSION}__${suffix}` : BASE_STRICT_SLAB_ROLLUP_VERSION,
+  };
 }
 
 function renderMarkdown(report) {
@@ -115,6 +142,7 @@ function renderMarkdown(report) {
 const args = parseArgs(process.argv.slice(2));
 const contractText = readFileSync(path.join(REPO_ROOT, CONTRACT_PATH), "utf8");
 const contractHash = sha256(contractText);
+const strictRollupVersions = strictRollupVersionsForRun(args.runKey);
 
 const runFilter = args.runKey
   ? `where run_key = ${sqlString(args.runKey)}`
@@ -207,13 +235,13 @@ candidate_state as (
 strict_rollups as (
   select *
   from public.market_listing_rollups
-  where rollup_version in ('${STRICT_RAW_ROLLUP_VERSION}', '${STRICT_SLAB_ROLLUP_VERSION}')
+  where rollup_version in (${sqlString(strictRollupVersions.raw)}, ${sqlString(strictRollupVersions.slab)})
 ),
 strict_rollup_state as (
   select jsonb_build_object(
     'total', count(*),
-    'raw_single', count(*) filter (where rollup_version = '${STRICT_RAW_ROLLUP_VERSION}'),
-    'slab', count(*) filter (where rollup_version = '${STRICT_SLAB_ROLLUP_VERSION}'),
+    'raw_single', count(*) filter (where rollup_version = ${sqlString(strictRollupVersions.raw)}),
+    'slab', count(*) filter (where rollup_version = ${sqlString(strictRollupVersions.slab)}),
     'with_gv_id', count(*) filter (where gv_id is not null and btrim(gv_id) <> ''),
     'strict_title_filtered_true', count(*) filter (where rollup_payload->>'strict_title_filtered' = 'true'),
     'review_ready', count(*) filter (where rollup_payload->>'review_bucket' = 'strict_filtered_review_ready_internal_candidate'),
@@ -282,8 +310,8 @@ select jsonb_build_object(
 )::text as report;
 `;
 
-const queryResult = JSON.parse(runSql(sql));
-const rawReport = queryResult.rows?.[0]?.report;
+const queryResultRows = parseSupabaseRows(runSql(sql));
+const rawReport = queryResultRows?.[0]?.report;
 if (!rawReport) throw new Error("[market-listing-nightly-readback] failed to parse SQL report");
 const parsed = JSON.parse(rawReport);
 
@@ -311,6 +339,7 @@ if (surface.v_card_pricing_ui_v1?.references_market_reference) findings.push("pu
 const reportPayloadForHash = {
   contract_hash_sha256: contractHash,
   run_key: args.runKey,
+  strict_rollup_versions: strictRollupVersions,
   parsed,
   findings,
 };
@@ -320,6 +349,7 @@ const report = {
   generated_at: new Date().toISOString(),
   mode: "read_only_nightly_ingest_morning_report_no_writes",
   run_key: args.runKey,
+  strict_rollup_versions: strictRollupVersions,
   contract_path: CONTRACT_PATH,
   contract_hash_sha256: contractHash,
   package_fingerprint_sha256: sha256(reportPayloadForHash),

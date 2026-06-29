@@ -1,0 +1,121 @@
+{
+  "id": "bw8-61",
+  "name": "Gallade",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "140",
+  "types": [
+    "Psychic"
+  ],
+  "evolvesFrom": "Kirlia",
+  "attacks": [
+    {
+      "name": "Powerful Storm",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "20×",
+      "text": "Does 20 damage times the amount of Energy attached to all of your Pokémon."
+    },
+    {
+      "name": "Swift Lunge",
+      "cost": [
+        "Psychic",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80",
+      "text": "Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "bw8",
+    "name": "Plasma Storm",
+    "series": "Black & White",
+    "printedTotal": 135,
+    "total": 138,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLS",
+    "releaseDate": "2013/02/06",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw8/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw8/logo.png"
+    }
+  },
+  "number": "61",
+  "artist": "kawayoo",
+  "rarity": "Rare Holo",
+  "flavorText": "When trying to protect someone, it extends its elbows as if they were swords and fights savagely.",
+  "nationalPokedexNumbers": [
+    475
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw8/61.png",
+    "large": "https://images.pokemontcg.io/bw8/61_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw8-61",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 1.65,
+        "mid": 3.47,
+        "high": 40.6,
+        "market": 3.25,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 3.19,
+        "mid": 7.06,
+        "high": 71.5,
+        "market": 7.12,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw8-61",
+    "updatedAt": "2026/02/04",
+    "prices": {
+      "averageSellPrice": 2.12,
+      "lowPrice": 0.4,
+      "trendPrice": 1.94,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 3.27,
+      "reverseHoloLow": 0.59,
+      "reverseHoloTrend": 4.3,
+      "lowPriceExPlus": 0.73,
+      "avg1": 4,
+      "avg7": 1.74,
+      "avg30": 2.2,
+      "reverseHoloAvg1": 1,
+      "reverseHoloAvg7": 3.15,
+      "reverseHoloAvg30": 3.77
+    }
+  }
+}

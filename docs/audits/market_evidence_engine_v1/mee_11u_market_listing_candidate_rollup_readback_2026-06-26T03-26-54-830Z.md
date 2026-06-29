@@ -1,0 +1,393 @@
+# MEE-11U Market Listing Candidate Rollup Readback
+
+- Package: `MARKET-LISTING-CANDIDATE-ROLLUP-READBACK-V1`
+- Fingerprint: `1631b2d51bea0d9efaa56aad6fad1167f06ce01e2d924a045c00a0c088bbfaec`
+
+## Counts
+
+```json
+{
+  "candidates": {
+    "slab": 32682,
+    "total": 108600,
+    "raw_single": 75918,
+    "needs_review_false": 0,
+    "direct_publish_true": 0,
+    "with_exclusion_flags": 6852
+  },
+  "rollups": {
+    "slab": 1068,
+    "total": 2275,
+    "raw_single": 1207,
+    "app_visible_true": 0,
+    "publishable_true": 0,
+    "market_truth_true": 0,
+    "needs_review_false": 0
+  }
+}
+```
+
+## Candidate Confidence
+
+```json
+[
+  {
+    "evidence_class": "raw_single",
+    "q25_confidence": 0.58,
+    "q75_confidence": 0.58,
+    "candidate_count": 75918,
+    "median_confidence": 0.58
+  },
+  {
+    "evidence_class": "slab",
+    "q25_confidence": 0.55,
+    "q75_confidence": 0.55,
+    "candidate_count": 32682,
+    "median_confidence": 0.55
+  }
+]
+```
+
+## Rollup Quality
+
+```json
+[
+  {
+    "rollup_count": 1207,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "max_observed_ask": 238519.14,
+    "median_of_medians": 14.04,
+    "seller_count_gte_2": 1163,
+    "listing_count_gte_3": 1130,
+    "listing_count_gte_5": 1087,
+    "median_listing_count": 43
+  },
+  {
+    "rollup_count": 1068,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "max_observed_ask": 3500000,
+    "median_of_medians": 163.27,
+    "seller_count_gte_2": 941,
+    "listing_count_gte_3": 904,
+    "listing_count_gte_5": 817,
+    "median_listing_count": 16
+  }
+]
+```
+
+## Top Rollups
+
+```json
+[
+  {
+    "gv_id": "GV-PK-TK-tk-xy-latia-30",
+    "currency": "USD",
+    "seller_count": 110,
+    "listing_count": 411,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 1.99,
+    "maximum_active_ask": 20,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-bw-e-30",
+    "currency": "USD",
+    "seller_count": 103,
+    "listing_count": 399,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.1,
+    "maximum_active_ask": 65.31,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-sm-l-30",
+    "currency": "USD",
+    "seller_count": 142,
+    "listing_count": 394,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 1.99,
+    "maximum_active_ask": 14.24,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-xy-sy-30",
+    "currency": "USD",
+    "seller_count": 130,
+    "listing_count": 380,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.49,
+    "maximum_active_ask": 225,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-xy-p-30",
+    "currency": "USD",
+    "seller_count": 121,
+    "listing_count": 377,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 1.99,
+    "maximum_active_ask": 726.43,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-xy-latio-30",
+    "currency": "USD",
+    "seller_count": 140,
+    "listing_count": 365,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.01,
+    "maximum_active_ask": 22.32,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-LM-10",
+    "currency": "USD",
+    "seller_count": 145,
+    "listing_count": 257,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 408.2,
+    "maximum_active_ask": 38999,
+    "minimum_active_ask": 24.99
+  },
+  {
+    "gv_id": "GV-PK-DF-12",
+    "currency": "USD",
+    "seller_count": 103,
+    "listing_count": 255,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 45.63,
+    "maximum_active_ask": 399.99,
+    "minimum_active_ask": 0.88
+  },
+  {
+    "gv_id": "GV-PK-DF-2",
+    "currency": "USD",
+    "seller_count": 105,
+    "listing_count": 248,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 39.99,
+    "maximum_active_ask": 250,
+    "minimum_active_ask": 1.74
+  },
+  {
+    "gv_id": "GV-PK-DS-2",
+    "currency": "USD",
+    "seller_count": 125,
+    "listing_count": 243,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 15,
+    "maximum_active_ask": 157.88,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-EM-9",
+    "currency": "USD",
+    "seller_count": 151,
+    "listing_count": 243,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 650,
+    "maximum_active_ask": 85000,
+    "minimum_active_ask": 19.75
+  },
+  {
+    "gv_id": "GV-PK-HP-108",
+    "currency": "USD",
+    "seller_count": 148,
+    "listing_count": 239,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 6,
+    "maximum_active_ask": 144.85,
+    "minimum_active_ask": 0.77
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-bw-z-30",
+    "currency": "USD",
+    "seller_count": 97,
+    "listing_count": 238,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.47,
+    "maximum_active_ask": 65.76,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-DR-10",
+    "currency": "USD",
+    "seller_count": 134,
+    "listing_count": 230,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 247.08,
+    "maximum_active_ask": 24005.99,
+    "minimum_active_ask": 15
+  },
+  {
+    "gv_id": "GV-PK-DS-17",
+    "currency": "USD",
+    "seller_count": 97,
+    "listing_count": 223,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 600,
+    "maximum_active_ask": 120000,
+    "minimum_active_ask": 30.5
+  },
+  {
+    "gv_id": "GV-PK-TK-tk-xy-n-30",
+    "currency": "USD",
+    "seller_count": 112,
+    "listing_count": 223,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.49,
+    "maximum_active_ask": 65.76,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-DS-18",
+    "currency": "USD",
+    "seller_count": 145,
+    "listing_count": 221,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 3.49,
+    "maximum_active_ask": 585,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-DF-10",
+    "currency": "USD",
+    "seller_count": 132,
+    "listing_count": 220,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 298.85,
+    "maximum_active_ask": 25000,
+    "minimum_active_ask": 24.99
+  },
+  {
+    "gv_id": "GV-PK-LM-6",
+    "currency": "USD",
+    "seller_count": 104,
+    "listing_count": 220,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 12.99,
+    "maximum_active_ask": 9999,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-PK-8",
+    "currency": "USD",
+    "seller_count": 100,
+    "listing_count": 219,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 8.43,
+    "maximum_active_ask": 89,
+    "minimum_active_ask": 1.5
+  },
+  {
+    "gv_id": "GV-PK-DS-9",
+    "currency": "USD",
+    "seller_count": 128,
+    "listing_count": 218,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 342.05,
+    "maximum_active_ask": 17093.79,
+    "minimum_active_ask": 23.49
+  },
+  {
+    "gv_id": "GV-PK-PK-108",
+    "currency": "USD",
+    "seller_count": 126,
+    "listing_count": 218,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 4.99,
+    "maximum_active_ask": 84.23,
+    "minimum_active_ask": 0.77
+  },
+  {
+    "gv_id": "GV-PK-PK-6",
+    "currency": "USD",
+    "seller_count": 118,
+    "listing_count": 218,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 556,
+    "maximum_active_ask": 35009.99,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-LM-3",
+    "currency": "USD",
+    "seller_count": 137,
+    "listing_count": 210,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 13.1,
+    "maximum_active_ask": 59.07,
+    "minimum_active_ask": 0.7
+  },
+  {
+    "gv_id": "GV-PK-CG-4",
+    "currency": "USD",
+    "seller_count": 112,
+    "listing_count": 209,
+    "rollup_version": "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 799,
+    "maximum_active_ask": 369420,
+    "minimum_active_ask": 23.99
+  },
+  {
+    "gv_id": "GV-PK-EM-7",
+    "currency": "USD",
+    "seller_count": 93,
+    "listing_count": 208,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 13,
+    "maximum_active_ask": 104.49,
+    "minimum_active_ask": 1.7
+  },
+  {
+    "gv_id": "GV-PK-HP-15",
+    "currency": "USD",
+    "seller_count": 137,
+    "listing_count": 207,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 25.99,
+    "maximum_active_ask": 306.36,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-EM-102",
+    "currency": "USD",
+    "seller_count": 148,
+    "listing_count": 206,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 2.17,
+    "maximum_active_ask": 255.99,
+    "minimum_active_ask": 0.99
+  },
+  {
+    "gv_id": "GV-PK-CG-3",
+    "currency": "USD",
+    "seller_count": 105,
+    "listing_count": 204,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 9.56,
+    "maximum_active_ask": 103.52,
+    "minimum_active_ask": 1
+  },
+  {
+    "gv_id": "GV-PK-DR-3",
+    "currency": "USD",
+    "seller_count": 101,
+    "listing_count": 202,
+    "rollup_version": "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1",
+    "median_active_ask": 10,
+    "maximum_active_ask": 179.14,
+    "minimum_active_ask": 1.3
+  }
+]
+```
+
+## Findings
+
+- none
+
+## Next Approval Prompt
+
+```text
+Approve real MARKET-LISTING-REVIEW-GATE-THRESHOLD-PLAN-V1 plan only. Source readback fingerprint: 1631b2d51bea0d9efaa56aad6fad1167f06ce01e2d924a045c00a0c088bbfaec. Scope: prepare a local review-gate threshold plan for internal market_listing_rollups only, separating raw_single and slab lanes and keeping all outputs review-only and not app-visible. No DB writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No provider calls. No source fetches. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.
+```

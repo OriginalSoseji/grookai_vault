@@ -1,0 +1,123 @@
+{
+  "id": "dp1-7",
+  "name": "Luxray",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "48",
+  "hp": "120",
+  "types": [
+    "Lightning"
+  ],
+  "evolvesFrom": "Luxio",
+  "abilities": [
+    {
+      "name": "Gleam Eyes",
+      "text": "Once during your turn, when you play Luxray from your hand to evolve 1 of your Pokémon, you may look at your opponent's hand. If your opponent's Bench isn't full, choose 1 Basic Pokémon from your opponent's hand, and put it onto his or her Bench. Then, switch it with the Defending Pokémon.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Lightning Star",
+      "cost": [
+        "Lightning",
+        "Lightning",
+        "Lightning",
+        "Lightning"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80",
+      "text": "Move all Lightning Energy attached to Luxray to 1 of your Benched Pokémon. (Ignore this effect if you don't have any Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "+30"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Metal",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp1",
+    "name": "Diamond & Pearl",
+    "series": "Diamond & Pearl",
+    "printedTotal": 130,
+    "total": 130,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "DP",
+    "releaseDate": "2007/05/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp1/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp1/logo.png"
+    }
+  },
+  "number": "7",
+  "artist": "Mikiko Takeda",
+  "rarity": "Rare Holo",
+  "flavorText": "It has eyes that can see through anything. It spots and captures prey hiding behind objects.",
+  "nationalPokedexNumbers": [
+    405
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp1/7.png",
+    "large": "https://images.pokemontcg.io/dp1/7_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp1-7",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 10.81,
+        "mid": 30.24,
+        "high": 107.8,
+        "market": 23.86,
+        "directLow": 89.86
+      },
+      "reverseHolofoil": {
+        "low": 15,
+        "mid": 31.99,
+        "high": 513,
+        "market": 16.48,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp1-7",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 4.89,
+      "lowPrice": 0.35,
+      "trendPrice": 5.69,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.91,
+      "reverseHoloLow": 0.35,
+      "reverseHoloTrend": 4.89,
+      "lowPriceExPlus": 1.99,
+      "avg1": 1,
+      "avg7": 3.4,
+      "avg30": 5.78,
+      "reverseHoloAvg1": 5.4,
+      "reverseHoloAvg7": 4.05,
+      "reverseHoloAvg30": 3.55
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-ROLLUP-REFRESH-APPLY-V1",
+  "generated_at": "2026-06-25T20:10:15.414Z",
+  "mode": "apply_requested",
+  "rollup_version": "MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1",
+  "package_fingerprint_sha256": "cd7b04fba4e2f7d672267a15b20be4846223051b03c0377cfa7ba0425408672f",
+  "row_manifest_hash_sha256": "1f29724993b556969857df8752d4598867f10fd10250e8d24ba8e1b5b1952d8d",
+  "proposed_rollup_rows": 993,
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": true,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false
+  },
+  "approval_text_matched": true,
+  "ready_for_apply": true,
+  "applied": true,
+  "inserted_rows": 993,
+  "readback": {
+    "row_count": 993,
+    "status_counts": {
+      "blocked_special_lane_review": 24,
+      "review_required_context": 702,
+      "review_required_high_variance": 249,
+      "review_required_single_source": 18
+    },
+    "source_count_counts": {
+      "1": 244,
+      "2": 749
+    },
+    "unsafe_rows": 0
+  },
+  "findings": []
+}

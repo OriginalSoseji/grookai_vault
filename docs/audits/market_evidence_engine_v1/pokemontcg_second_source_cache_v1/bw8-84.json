@@ -1,0 +1,125 @@
+{
+  "id": "bw8-84",
+  "name": "Liepard",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1",
+    "Team Plasma"
+  ],
+  "hp": "80",
+  "types": [
+    "Darkness"
+  ],
+  "evolvesFrom": "Purrloin",
+  "attacks": [
+    {
+      "name": "Silent Claw",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "Your opponent reveal his or her hand. Discard a Supporter card you find there. Use the effect of that card as the effect of this attack."
+    },
+    {
+      "name": "Fake Out",
+      "cost": [
+        "Darkness",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw8",
+    "name": "Plasma Storm",
+    "series": "Black & White",
+    "printedTotal": 135,
+    "total": 138,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLS",
+    "releaseDate": "2013/02/06",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw8/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw8/logo.png"
+    }
+  },
+  "number": "84",
+  "artist": "5ban Graphics",
+  "rarity": "Rare",
+  "flavorText": "Their beautiful form comes from the muscles they have developed. They run silently in the night.",
+  "nationalPokedexNumbers": [
+    510
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw8/84.png",
+    "large": "https://images.pokemontcg.io/bw8/84_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw8-84",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.85,
+        "mid": 1.18,
+        "high": 19.98,
+        "market": 1.2,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1.09,
+        "mid": 3,
+        "high": 35.6,
+        "market": 2.9,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw8-84",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 0,
+      "lowPrice": 0.05,
+      "trendPrice": 0.75,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 3.98,
+      "reverseHoloLow": 0.8,
+      "reverseHoloTrend": 3.66,
+      "lowPriceExPlus": 0.5,
+      "avg1": 0.49,
+      "avg7": 0.78,
+      "avg30": 0.89,
+      "reverseHoloAvg1": 3.95,
+      "reverseHoloAvg7": 3.03,
+      "reverseHoloAvg30": 2.65
+    }
+  }
+}

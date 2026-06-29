@@ -1,0 +1,76 @@
+{
+  "id": "bw8-135",
+  "name": "Colress",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Supporter",
+    "Team Plasma"
+  ],
+  "rules": [
+    "Shuffle your hand into your deck. Then, draw a number of cards equal to the number of Benched Pokémon (both yours and your opponent's).",
+    "You may play only 1 Supporter card during your turn (before your attack)."
+  ],
+  "set": {
+    "id": "bw8",
+    "name": "Plasma Storm",
+    "series": "Black & White",
+    "printedTotal": 135,
+    "total": 138,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLS",
+    "releaseDate": "2013/02/06",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw8/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw8/logo.png"
+    }
+  },
+  "number": "135",
+  "artist": "Kanako Eo",
+  "rarity": "Rare Ultra",
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw8/135.png",
+    "large": "https://images.pokemontcg.io/bw8/135_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw8-135",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 54.19,
+        "mid": 94.98,
+        "high": 591.2,
+        "market": 96.81,
+        "directLow": 116.17
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw8-135",
+    "updatedAt": "2025/12/07",
+    "prices": {
+      "averageSellPrice": 85,
+      "lowPrice": 8.98,
+      "trendPrice": 68.61,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 11.99,
+      "reverseHoloLow": 40,
+      "reverseHoloTrend": 10.86,
+      "lowPriceExPlus": 22.99,
+      "avg1": 85,
+      "avg7": 52.73,
+      "avg30": 39.75,
+      "reverseHoloAvg1": 11.99,
+      "reverseHoloAvg7": 19.86,
+      "reverseHoloAvg30": 16.78
+    }
+  }
+}

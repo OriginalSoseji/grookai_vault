@@ -1,0 +1,119 @@
+{
+  "id": "dp5-19",
+  "name": "Flareon",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "43",
+  "hp": "90",
+  "types": [
+    "Fire"
+  ],
+  "evolvesFrom": "Eevee",
+  "attacks": [
+    {
+      "name": "Fire Fang",
+      "cost": [
+        "Fire"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "30",
+      "text": "Flip a coin. If heads, the Defending Pokémon is now Burned."
+    },
+    {
+      "name": "Kindle",
+      "cost": [
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": "Discard an Energy card attached to Flareon and then discard an Energy card attached to the Defending Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp5",
+    "name": "Majestic Dawn",
+    "series": "Diamond & Pearl",
+    "printedTotal": 100,
+    "total": 100,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MD",
+    "releaseDate": "2008/05/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp5/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp5/logo.png"
+    }
+  },
+  "number": "19",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "It has a flame sac in its body. Its body temperature tops 1,650 degrees Fahrenheit before battle.",
+  "nationalPokedexNumbers": [
+    136
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp5/19.png",
+    "large": "https://images.pokemontcg.io/dp5/19_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp5-19",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 8.42,
+        "mid": 15,
+        "high": 309.9,
+        "market": 12.31,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 26.89,
+        "mid": 39.78,
+        "high": 650,
+        "market": 49.99,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp5-19",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 3.57,
+      "lowPrice": 1,
+      "trendPrice": 3.63,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 8.16,
+      "reverseHoloLow": 2,
+      "reverseHoloTrend": 9.25,
+      "lowPriceExPlus": 4,
+      "avg1": 4.5,
+      "avg7": 4.39,
+      "avg30": 3.69,
+      "reverseHoloAvg1": 7,
+      "reverseHoloAvg7": 8.13,
+      "reverseHoloAvg30": 6.72
+    }
+  }
+}

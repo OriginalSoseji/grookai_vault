@@ -137,14 +137,19 @@ Future implementations may evaluate these provider classes:
 The following are candidate reference sources only until separately implemented and verified:
 
 - TCGCSV daily/current snapshots
+- PokemonTCG.io embedded TCGplayer/Cardmarket reference price buckets
 - TCGdex card response pricing
 - Pokewallet free-tier card pricing
 - JustTCG free-tier pricing
-- PriceCharting authorized CSV/API exports
+- PriceCharting authorized CSV/API exports, as optional reference benchmarks only
+- user/admin-uploaded eBay listing or sold-item exports
+- user/admin-uploaded TCGplayer inventory, sales, or market exports
 - user-provided TCGplayer/eBay/seller exports
 - admin-reviewed rare-card evidence
 
 No candidate source is authoritative merely because it exists.
+
+The engine must not require a paid provider to function. Paid or licensed sources may improve coverage, benchmark matching, or corroborate other evidence, but Grookai pricing must remain source-pluggable and capable of operating from user-owned exports, free/reference lanes, and reviewed manual evidence.
 
 ## Provider Mapping Rules
 

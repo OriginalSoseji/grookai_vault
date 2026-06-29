@@ -1,0 +1,57 @@
+{
+  "package_id": "MEE-CORE-BATCH-REVIEW-ACTION-WORKFLOW-V1",
+  "generated_at": "2026-06-27T05:23:01.992Z",
+  "mode": "plan_only_batch_review_action_workflow",
+  "package_fingerprint_sha256": "39ce2ce20a6896b7e4558eeab97a263aed45127cbe092631b74251166ef8aa89",
+  "workflow_status": "ready_for_single_safe_internal_apply_package",
+  "source": {
+    "orchestrator_package_id": "MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1",
+    "orchestrator_fingerprint": "876e629b79ac08463dff8506b5b9a08921179c9f93d7b5afbacfeaa4388e6a8f",
+    "lane_policy_package_id": "MEE-CORE-REVIEW-LANE-POLICY-CONTRACT-V1",
+    "lane_policy_fingerprint": "ff2746becc6bc77d927734b7cb7ff5122d085bfbfbd08e0d39ab87949689394a"
+  },
+  "batch_plan": {
+    "safe_internal_action_rows": 550,
+    "actions": {
+      "require_split": 550
+    },
+    "applies_public_pricing": false,
+    "creates_market_truth": false,
+    "sets_public_flags": false,
+    "one_approval_per_post_ingest_cycle": true
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-PUBLISH-GATE-CONTRACT-V1",
+    "reason": "Batch review action workflow exists. The next foundation blocker is the separate publish gate contract.",
+    "allowed_scope": "Contract only. No DB writes, no provider calls, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "hashes": {
+    "row_manifest_sha256": "a1b20d39495ae76afa2f24b1158183dc85fa51d288f5ce4e8afe812a214ff416",
+    "apply_sql_sha256": "e39091c11747b4382c03aabb827cab3e6ca74a5c1c66a819561d63c3dadba5c4",
+    "preflight_sql_sha256": "ff9d2f079d03be6b2eecc1fd3eb34f38b82a7c8b16a2ebeb4dc703a6ba901eb5",
+    "readback_sql_sha256": "a2c8941820b1660f24ddacd4da01115f9223f4973572de9621adcd7f309fc50d",
+    "rollback_sql_sha256": "a47e7cacc13d5d63186d5411e789e0ba945174c525a8d12c8975ae3ee4cf49e6"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

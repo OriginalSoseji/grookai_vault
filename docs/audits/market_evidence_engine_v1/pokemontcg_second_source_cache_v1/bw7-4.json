@@ -1,0 +1,125 @@
+{
+  "id": "bw7-4",
+  "name": "Bellossom",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "110",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Gloom",
+  "attacks": [
+    {
+      "name": "Grass Knot",
+      "cost": [
+        "Grass"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "10+",
+      "text": "Does 20 more damage for each Colorless in the Defending Pokémon's Retreat Cost."
+    },
+    {
+      "name": "Petal Dance",
+      "cost": [
+        "Grass",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "50×",
+      "text": "Flip 3 coins. This attack does 50 damage times the number of heads. This Pokémon is now Confused."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Water",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "4",
+  "artist": "Mizue",
+  "rarity": "Rare",
+  "flavorText": "When the heavy rainfall season ends, it is drawn out by warm sunlight to dance in the open.",
+  "nationalPokedexNumbers": [
+    182
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/4.png",
+    "large": "https://images.pokemontcg.io/bw7/4_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-4",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.52,
+        "mid": 0.76,
+        "high": 19.98,
+        "market": 0.75,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2.99,
+        "mid": 4.68,
+        "high": 69.8,
+        "market": 2.7,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-4",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 0.44,
+      "lowPrice": 0.05,
+      "trendPrice": 0.53,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.63,
+      "reverseHoloLow": 0.15,
+      "reverseHoloTrend": 1.5,
+      "lowPriceExPlus": 0.2,
+      "avg1": 0.2,
+      "avg7": 0.74,
+      "avg30": 0.53,
+      "reverseHoloAvg1": 3,
+      "reverseHoloAvg7": 1.84,
+      "reverseHoloAvg30": 1.19
+    }
+  }
+}

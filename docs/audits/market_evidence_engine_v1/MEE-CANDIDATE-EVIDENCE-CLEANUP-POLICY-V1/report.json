@@ -1,0 +1,83 @@
+{
+  "package_id": "MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1",
+  "mode": "plan_only_candidate_evidence_cleanup_policy",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "apply_candidate_reason": "This package defines cleanup policy only; candidate evidence requires a separate approved action model before mutation.",
+  "audit": {
+    "total_gate_rows": 470,
+    "total_card_prints_with_candidates": 470,
+    "total_candidate_rows": 52630,
+    "card_primary_resolution_lanes": {
+      "special_lane_manual_review": 338,
+      "exclusion_flag_review": 60,
+      "matcher_confidence_review": 42,
+      "high_value_manual_review": 30
+    },
+    "candidate_cleanup_outcomes": {
+      "require_special_lane_policy": 39180,
+      "quarantine_candidate": 1671,
+      "require_matcher_reclassify": 9610,
+      "require_high_value_review": 2169
+    },
+    "candidate_match_status_counts": {
+      "needs_review": 52630
+    },
+    "public_boundary_candidate_rows": 0,
+    "generated_at": "2026-06-27"
+  },
+  "cleanup_outcomes": {
+    "require_special_lane_policy": 39180,
+    "quarantine_candidate": 1671,
+    "require_matcher_reclassify": 9610,
+    "require_high_value_review": 2169
+  },
+  "card_primary_resolution_lanes": {
+    "special_lane_manual_review": 338,
+    "exclusion_flag_review": 60,
+    "matcher_confidence_review": 42,
+    "high_value_manual_review": 30
+  },
+  "public_boundary_candidate_rows": 0,
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "artifacts": {
+    "contract": "docs/contracts/MEE_CANDIDATE_EVIDENCE_CLEANUP_POLICY_V1.md",
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/report.json",
+    "candidate_schema": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_schema.json",
+    "candidate_rows_audit": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_rows_audit.json",
+    "candidate_cleanup_manifest": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_cleanup_manifest.json",
+    "candidate_cleanup_summary": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_cleanup_summary.json",
+    "policy_manifest": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/policy_manifest.json",
+    "preflight_sql": "docs/sql/mee_candidate_evidence_cleanup_policy_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_candidate_evidence_cleanup_policy_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_candidate_evidence_cleanup_policy_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_CANDIDATE_EVIDENCE_CLEANUP_POLICY_V1.md": "86f74db889355d1893d9a623744d1c3739b6028ca14b7666c610866278a606d2",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1.md": "81110fed600d94b915f418c0263954020f8a0399d31d5ebb25a28b899cbeae43",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_schema.json": "fd5a4dfb85e4ecaeba96154d0b58b82ac41b1cb30778ec92438a392e274e2a0e",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_rows_audit.json": "a5ae44c3efb777a6bc0b6b18ce1d65d76e0330657fb0e66468b4ada787c7b235",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_cleanup_manifest.json": "4adc32da1b49708a6b0af526189c21b393b225fbf5ed3475e768e3608c8231cc",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/candidate_cleanup_summary.json": "4ad397d5e49017f6bf5a18fe663f727523486eb5c0e7bd666496e079cedd58cb",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1/policy_manifest.json": "05c476942fb6680a586d6985ce2cd7d507be9f5a2ed00db5f6887463c46716d3",
+    "docs/sql/mee_candidate_evidence_cleanup_policy_v1_preflight.sql": "605ec1d1c51e7b26520a8e7133a3af6e41da760df1afc5edd95a43555077b4fc",
+    "docs/sql/mee_candidate_evidence_cleanup_policy_v1_readback.sql": "e2f29854ef683fbd0e7969bf7236d91156fcd658876d526b579d94110c9b262c",
+    "tests/contracts/mee_candidate_evidence_cleanup_policy_v1.test.mjs": "2d77784665552692b87d5e97e5ade191228ab9c92cc76b52fcbafdf5938cd075"
+  },
+  "package_fingerprint_sha256": "2753effa54079e83780cdeda8685494be2c7a195aa6c87825b942bd565500f77",
+  "next_step": "Create a candidate cleanup action model/schema plan for quarantine/reclassification/hold decisions, still without public pricing.",
+  "findings": []
+}

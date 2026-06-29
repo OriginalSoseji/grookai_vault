@@ -1,0 +1,247 @@
+{
+  "package_id": "MARKET-LISTING-DAILY-BATCH-SIGNAL-READBACK-V1",
+  "generated_at": "2026-06-26T03:00:15.404Z",
+  "mode": "read_only_signal_audit_no_writes",
+  "package_fingerprint_sha256": "3ecef7a22b6209c5a68fc591d58d6e63519dd97c0327259b74f39afe7b281d95",
+  "source_run_key": "MEE-11L-DAILY-BATCH-58975dc50904",
+  "table_counts": {
+    "market_listing_query_cache": 4000,
+    "market_listing_observations": 129665,
+    "market_listing_price_events": 129665,
+    "market_listing_raw_snapshots": 129665,
+    "market_listing_acquisition_runs": 1,
+    "market_listing_seller_snapshots": 23856
+  },
+  "evidence_class_counts": {
+    "slab": 32682,
+    "raw_single": 75918,
+    "excluded_or_ambiguous": 21065
+  },
+  "price_distribution": [
+    {
+      "p90": 56.386,
+      "p95": 108.914,
+      "q25": 2.49,
+      "q75": 19.99,
+      "median": 6.29,
+      "max_price": 6000,
+      "min_price": 0.7,
+      "listing_count": 21065,
+      "evidence_class": "excluded_or_ambiguous",
+      "unique_listing_count": 19388
+    },
+    {
+      "p90": 85.58,
+      "p95": 157.87,
+      "q25": 2.65,
+      "q75": 30,
+      "median": 8.99,
+      "max_price": 238519.14,
+      "min_price": 0.7,
+      "listing_count": 75918,
+      "evidence_class": "raw_single",
+      "unique_listing_count": 57321
+    },
+    {
+      "p90": 2255.99,
+      "p95": 5000,
+      "q25": 75,
+      "q75": 649.99,
+      "median": 205.98,
+      "max_price": 3500000,
+      "min_price": 0.99,
+      "listing_count": 32682,
+      "evidence_class": "slab",
+      "unique_listing_count": 24161
+    }
+  ],
+  "top_target_counts": [
+    {
+      "gv_id": "GV-PK-TK-tk-xy-latia-30",
+      "median": 1.99,
+      "card_print_id": "ab64d660-f399-4450-8812-a6ed10b05cf2",
+      "listing_count": 411,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-bw-e-30",
+      "median": 2.1,
+      "card_print_id": "f358b973-8dbb-48b5-abaa-de5f737ab24f",
+      "listing_count": 399,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-sm-l-30",
+      "median": 1.99,
+      "card_print_id": "362ce988-4601-417d-abb5-f323c35c0d82",
+      "listing_count": 394,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-xy-sy-30",
+      "median": 2.49,
+      "card_print_id": "ec4a3acc-18e1-4785-bb6e-96273454d4cf",
+      "listing_count": 380,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-xy-p-30",
+      "median": 1.99,
+      "card_print_id": "20737606-d498-4d9e-bef2-59d0ee55eb8d",
+      "listing_count": 377,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-xy-latio-30",
+      "median": 2.01,
+      "card_print_id": "c33bcef4-9291-4a3d-a0e1-b7a6aa827dfc",
+      "listing_count": 365,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-LM-10",
+      "median": 408.2,
+      "card_print_id": "95bfc36b-9510-4155-a882-0dca6300b1f8",
+      "listing_count": 257,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-DF-12",
+      "median": 45.63,
+      "card_print_id": "bbe31487-e4fc-46e1-a27d-928ce5417bff",
+      "listing_count": 255,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DF-2",
+      "median": 39.99,
+      "card_print_id": "944c5732-03ed-4f0c-8d88-df6f96b829b2",
+      "listing_count": 248,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DS-2",
+      "median": 15,
+      "card_print_id": "bc9786a4-0dcc-49f1-b833-8d22a99de1c2",
+      "listing_count": 243,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-EM-9",
+      "median": 650,
+      "card_print_id": "08e7b748-f78e-44ba-bd55-8da18b980a8b",
+      "listing_count": 243,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-HP-108",
+      "median": 6,
+      "card_print_id": "407b9808-5907-46cd-9b37-be714e3cce1f",
+      "listing_count": 239,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-bw-z-30",
+      "median": 2.47,
+      "card_print_id": "46ddc9d9-e477-49f7-8dc8-09fbb01f29a4",
+      "listing_count": 238,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DR-10",
+      "median": 247.08,
+      "card_print_id": "cb38d687-1c3b-4c30-aa2e-465534cd81aa",
+      "listing_count": 230,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-DS-17",
+      "median": 600,
+      "card_print_id": "bf28eb3d-54fe-44a8-8c9d-edfe5d67d3c8",
+      "listing_count": 223,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-TK-tk-xy-n-30",
+      "median": 2.49,
+      "card_print_id": "4c81e7c8-110c-4305-a731-5a8e978f28a9",
+      "listing_count": 223,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DS-18",
+      "median": 3.49,
+      "card_print_id": "6757068f-76bd-439b-9433-711630cb1c6b",
+      "listing_count": 221,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-LM-6",
+      "median": 12.99,
+      "card_print_id": "18ec1dbc-073a-4dbe-9fe5-d96a9b4b9aaf",
+      "listing_count": 220,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DF-10",
+      "median": 298.845,
+      "card_print_id": "cad7f417-5d63-4813-832e-247ff54ee829",
+      "listing_count": 220,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-PK-8",
+      "median": 8.43,
+      "card_print_id": "07539f47-84e1-4e2b-8268-53ef24ab258d",
+      "listing_count": 219,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-DS-9",
+      "median": 342.05,
+      "card_print_id": "7e09ce84-1bd6-44cf-aa70-18ca81255655",
+      "listing_count": 218,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-PK-6",
+      "median": 556,
+      "card_print_id": "fdd5a3b6-487f-4613-bd09-40e5edb1d659",
+      "listing_count": 218,
+      "evidence_class": "slab"
+    },
+    {
+      "gv_id": "GV-PK-PK-108",
+      "median": 4.99,
+      "card_print_id": "aba036c5-ac51-4a69-aaad-43306bbd955a",
+      "listing_count": 218,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-LM-3",
+      "median": 13.1,
+      "card_print_id": "267a49f0-f717-40b2-878e-2ffa9713b7a0",
+      "listing_count": 210,
+      "evidence_class": "raw_single"
+    },
+    {
+      "gv_id": "GV-PK-CG-4",
+      "median": 799,
+      "card_print_id": "579bbeee-78b9-46e8-b56f-aaf52c6cd3ac",
+      "listing_count": 209,
+      "evidence_class": "slab"
+    }
+  ],
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false
+  },
+  "findings": [],
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-CARD-CANDIDATE-ROLLUP-PLAN-V1 plan only. Source readback fingerprint: 3ecef7a22b6209c5a68fc591d58d6e63519dd97c0327259b74f39afe7b281d95. Scope: prepare review-only card candidate and internal rollup plan from the verified MEE-11L daily batch warehouse rows only, keeping raw_single and slab evidence separated. No DB writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No provider calls. No source fetches. No deletes. No merges. No global apply."
+}

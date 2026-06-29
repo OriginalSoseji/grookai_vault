@@ -1,0 +1,625 @@
+{
+  "package_id": "MEE-PRICE-PUBLICATION-CANDIDATE-EXPORT-V1",
+  "mode": "read_only_internal_future_publication_candidate_export",
+  "generated_at": "2026-06-29T03:49:31.387Z",
+  "candidate_count": 11,
+  "review_band_summary": [
+    {
+      "review_band": "standard_candidate",
+      "rows": 11,
+      "min_candidate_median": 19.99,
+      "max_candidate_median": 90,
+      "median_candidate_median": 51.99
+    }
+  ],
+  "public_boundary": {
+    "can_publish_price_directly_rows": 0,
+    "publishable_rows": 0,
+    "app_visible_rows": 0,
+    "market_truth_rows": 0
+  },
+  "candidates": [
+    {
+      "card_print_id": "f79016ee-3940-471e-865a-8c7cea606da2",
+      "gv_id": "GV-PK-EM-104",
+      "card_name": "Lightning Energy",
+      "set_code": "ex9",
+      "printed_set_abbrev": null,
+      "number": "104",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 19.99,
+      "candidate_low": 9.8,
+      "candidate_high": 40.32,
+      "minimum_active_ask": 7.99,
+      "maximum_active_ask": 48.96,
+      "evidence_count": 98,
+      "seller_count": 24,
+      "spread_ratio": 4.1143,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Lightning Energy 104/106 EX Emerald Holo Pokemon Card TCG 2005 HP/D",
+          "condition_text": "Ungraded",
+          "total_ask_price": 10
+        },
+        {
+          "title": "Lightning Energy 104/106 EX Emerald Holo Pokemon Card TCG 2005 HP/D",
+          "condition_text": "Ungraded",
+          "total_ask_price": 10
+        },
+        {
+          "title": "2005 Pokemon, Emerald, #104/106 Lightning Energy, Holo Rare HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 9.99
+        },
+        {
+          "title": "2005 Pokemon, Emerald, #104/106 Lightning Energy, Holo Rare HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 9.99
+        },
+        {
+          "title": "LIGHTNING ENERGY 104 POKEMON HOLO RARE EMERALD | NM/M",
+          "condition_text": "Ungraded",
+          "total_ask_price": 19.99
+        }
+      ]
+    },
+    {
+      "card_print_id": "b87c3cda-bcb6-4506-ab3c-de213273f75a",
+      "gv_id": "GV-PK-TRR-6",
+      "card_name": "Dark Hypno",
+      "set_code": "ex7",
+      "printed_set_abbrev": null,
+      "number": "6",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 65.96,
+      "candidate_low": 40,
+      "candidate_high": 92.25,
+      "minimum_active_ask": 10.53,
+      "maximum_active_ask": 99.99,
+      "evidence_count": 70,
+      "seller_count": 19,
+      "spread_ratio": 2.3062,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Dark Hypno 6/109 Holo Rare Team Rocket Returns Pokemon Holo Lightly Played",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45.72
+        },
+        {
+          "title": "Dark Hypno 6/109 Holo Rare Team Rocket Returns Pokemon Holo Lightly Played",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45.72
+        },
+        {
+          "title": "Dark Hypno 6/109 Holo Rare Team Rocket Returns Pokemon Holo Lightly Played",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45.72
+        },
+        {
+          "title": "Dark Hypno 6/109 Holo Rare Team Rocket Returns Pokemon Holo Lightly Played",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45.72
+        },
+        {
+          "title": "Dark Hypno 6/109 Holo Rare Team Rocket Returns Pokemon Holo Lightly Played",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45.72
+        }
+      ]
+    },
+    {
+      "card_print_id": "fbb19eab-cc36-4211-acab-571eb5b1ac01",
+      "gv_id": "GV-PK-LM-14",
+      "card_name": "Wailord",
+      "set_code": "ex12",
+      "printed_set_abbrev": null,
+      "number": "14",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 40,
+      "candidate_low": 24.17,
+      "candidate_high": 100.07,
+      "minimum_active_ask": 14.99,
+      "maximum_active_ask": 256.99,
+      "evidence_count": 68,
+      "seller_count": 30,
+      "spread_ratio": 4.1403,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [
+        "broad_seller_diversity"
+      ],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "The Pokemon Company Wailord 14/92 Legend Maker Holo Rare English 2006 120 HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 40
+        },
+        {
+          "title": "The Pokemon Company Wailord 14/92 Legend Maker Holo Rare English 2006 120 HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 40
+        },
+        {
+          "title": "The Pokemon Company Wailord 14/92 Legend Maker Holo Rare English 2006 120 HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 40
+        },
+        {
+          "title": "The Pokemon Company Wailord 14/92 Legend Maker Holo Rare English 2006 120 HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 40
+        },
+        {
+          "title": "The Pokemon Company Wailord 14/92 Legend Maker Holo Rare English 2006 120 HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 40
+        }
+      ]
+    },
+    {
+      "card_print_id": "2805e95f-ffbd-43a2-bf2f-81aff1313794",
+      "gv_id": "GV-PK-CG-89",
+      "card_name": "Aggron ex",
+      "set_code": "ex14",
+      "printed_set_abbrev": null,
+      "number": "89",
+      "rarity": "Rare Holo EX",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 51.99,
+      "candidate_low": 39,
+      "candidate_high": 130.42,
+      "minimum_active_ask": 33,
+      "maximum_active_ask": 180.47,
+      "evidence_count": 66,
+      "seller_count": 15,
+      "spread_ratio": 3.3441,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Aggron EX 89/100 EX Crystal Guardians 2006 Holo CREASED Pokemon Card SWIRL HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45
+        },
+        {
+          "title": "Aggron EX 89/100 EX Crystal Guardians 2006 Holo CREASED Pokemon Card SWIRL HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45
+        },
+        {
+          "title": "Aggron EX 89/100 EX Crystal Guardians 2006 Holo CREASED Pokemon Card SWIRL HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45
+        },
+        {
+          "title": "Aggron EX 89/100 EX Crystal Guardians 2006 Holo CREASED Pokemon Card SWIRL HP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 45
+        },
+        {
+          "title": "2006 Pokemon Crystal Guardians 89/100 Aggron ex HP (Damaged)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 39
+        }
+      ]
+    },
+    {
+      "card_print_id": "3354561e-cae0-4b64-a087-f661507627d0",
+      "gv_id": "GV-PK-DR-12",
+      "card_name": "Torkoal",
+      "set_code": "ex3",
+      "printed_set_abbrev": null,
+      "number": "12",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 34.99,
+      "candidate_low": 14.45,
+      "candidate_high": 83.74,
+      "minimum_active_ask": 10.53,
+      "maximum_active_ask": 108.13,
+      "evidence_count": 59,
+      "seller_count": 16,
+      "spread_ratio": 5.7952,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Pokemon Torkoal Holo Rare Dragon 12/97 LP Reverse Holo",
+          "condition_text": "Ungraded",
+          "total_ask_price": 39.99
+        },
+        {
+          "title": "Pokemon Torkoal Holo Rare Dragon 12/97 LP Reverse Holo",
+          "condition_text": "Ungraded",
+          "total_ask_price": 39.99
+        },
+        {
+          "title": "Pokemon Torkoal Holo Rare Dragon 12/97 LP Reverse Holo",
+          "condition_text": "Ungraded",
+          "total_ask_price": 39.99
+        },
+        {
+          "title": "Pokemon Torkoal Holo Rare Dragon 12/97 LP Reverse Holo",
+          "condition_text": "Ungraded",
+          "total_ask_price": 39.99
+        },
+        {
+          "title": "Torkoal 12/97 Dragon Reverse Holographic Pokemon Card Fermi Bubbles Grading D+",
+          "condition_text": "Ungraded",
+          "total_ask_price": 30
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b67bbe0-370d-4db1-af41-020f3c4e576e",
+      "gv_id": "GV-PK-HP-101",
+      "card_name": "Mightyena ex",
+      "set_code": "ex13",
+      "printed_set_abbrev": null,
+      "number": "101",
+      "rarity": "Rare Holo EX",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 79,
+      "candidate_low": 40,
+      "candidate_high": 178.05,
+      "minimum_active_ask": 15.98,
+      "maximum_active_ask": 224,
+      "evidence_count": 58,
+      "seller_count": 15,
+      "spread_ratio": 4.4512,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Mightyena EX Holo Card 101/110 Pokemon TCG Holon Phantoms ( Swirl ) 🌀",
+          "condition_text": "Ungraded",
+          "total_ask_price": 224
+        },
+        {
+          "title": "Mightyena EX Holo Card 101/110 Pokemon TCG Holon Phantoms ( Swirl ) 🌀",
+          "condition_text": "Ungraded",
+          "total_ask_price": 175
+        },
+        {
+          "title": "Mightyena EX Holo Card 101/110 Pokemon TCG Holon Phantoms ( Swirl ) 🌀",
+          "condition_text": "Ungraded",
+          "total_ask_price": 175
+        },
+        {
+          "title": "Mightyena EX Holo Card 101/110 Pokemon TCG Holon Phantoms ( Swirl ) 🌀",
+          "condition_text": "Ungraded",
+          "total_ask_price": 224
+        },
+        {
+          "title": "(50% OFF) Mightyena ex 101/110 Holo EX Rare Holon Phantoms Pokemon Holo Damaged",
+          "condition_text": "Ungraded",
+          "total_ask_price": 16.02
+        }
+      ]
+    },
+    {
+      "card_print_id": "e54a1223-04a8-4bee-a76a-981a629dffac",
+      "gv_id": "GV-PK-MA-11",
+      "card_name": "Team Magma's Rhydon",
+      "set_code": "ex4",
+      "printed_set_abbrev": null,
+      "number": "11",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 30,
+      "candidate_low": 16,
+      "candidate_high": 50.98,
+      "minimum_active_ask": 14.99,
+      "maximum_active_ask": 50.98,
+      "evidence_count": 51,
+      "seller_count": 14,
+      "spread_ratio": 3.1862,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Team Magma's Rhydon 11/95 - Pokemon Team Magma vs Team Aqua - Reverse Holo (NM)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 44.81
+        },
+        {
+          "title": "Team Magma's Rhydon 11/95 - Pokemon Team Magma vs Team Aqua - Reverse Holo (NM)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 44.81
+        },
+        {
+          "title": "Team Magma's Rhydon 11/95 - Pokemon Team Magma vs Team Aqua - Reverse Holo (NM)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 44.84
+        },
+        {
+          "title": "Team Magma's Rhydon 11/95 - Pokemon Team Magma vs Team Aqua - Reverse Holo (NM)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 44.84
+        },
+        {
+          "title": "Team Magma's Rhydon 11/95 - Pokemon Team Magma vs Team Aqua - Reverse Holo (NM)",
+          "condition_text": "Ungraded",
+          "total_ask_price": 44.84
+        }
+      ]
+    },
+    {
+      "card_print_id": "31923b47-2da2-4fef-b8b8-9ae9fafdbdaa",
+      "gv_id": "GV-PK-HL-100",
+      "card_name": "Vileplume ex",
+      "set_code": "ex5",
+      "printed_set_abbrev": null,
+      "number": "100",
+      "rarity": "Rare Holo EX",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 73.98,
+      "candidate_low": 54.96,
+      "candidate_high": 186.69,
+      "minimum_active_ask": 48.73,
+      "maximum_active_ask": 192.39,
+      "evidence_count": 51,
+      "seller_count": 11,
+      "spread_ratio": 3.3968,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Vileplume Ex 100/101 EX Hidden Legends Ultra Rare Holo Pokemon Card LP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 140
+        },
+        {
+          "title": "Vileplume Ex 100/101 EX Hidden Legends Ultra Rare Holo Pokemon Card LP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 140
+        },
+        {
+          "title": "Vileplume Ex 100/101 EX Hidden Legends Ultra Rare Holo Pokemon Card LP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 140
+        },
+        {
+          "title": "Vileplume Ex 100/101 EX Hidden Legends Ultra Rare Holo Pokemon Card LP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 140
+        },
+        {
+          "title": "Vileplume ex - 100/101 - Pokemon Ex Hidden Legends Ultra Rare MP",
+          "condition_text": "Ungraded",
+          "total_ask_price": 66.74
+        }
+      ]
+    },
+    {
+      "card_print_id": "172d8b93-6586-4521-8b85-01f025d83936",
+      "gv_id": "GV-PK-SS-2",
+      "card_name": "Cacturne",
+      "set_code": "ex2",
+      "printed_set_abbrev": null,
+      "number": "2",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 24.02,
+      "candidate_low": 12.65,
+      "candidate_high": 99.99,
+      "minimum_active_ask": 12.22,
+      "maximum_active_ask": 137.63,
+      "evidence_count": 50,
+      "seller_count": 15,
+      "spread_ratio": 7.9043,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Cacturne 2/100 Sandstorm Reverse Holo Rare E Reader Series Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 14.45
+        },
+        {
+          "title": "Cacturne 2/100 Sandstorm Reverse Holo Rare E Reader Series Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 14.45
+        },
+        {
+          "title": "Cacturne 2/100 Sandstorm Reverse Holo Rare E Reader Series Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 14.45
+        },
+        {
+          "title": "Cacturne 2/100 Sandstorm Reverse Holo Rare E Reader Series Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 14.45
+        },
+        {
+          "title": "POKEMON CACTURNE 2/100 - EX Sandstorm - ENGLISH",
+          "condition_text": "Non gradata",
+          "total_ask_price": 62.49
+        }
+      ]
+    },
+    {
+      "card_print_id": "fe84c1c1-22af-4a2a-ac6d-df85efb9ef49",
+      "gv_id": "GV-PK-TRR-9",
+      "card_name": "Dark Slowking",
+      "set_code": "ex7",
+      "printed_set_abbrev": null,
+      "number": "9",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 90,
+      "candidate_low": 45.67,
+      "candidate_high": 101.71,
+      "minimum_active_ask": 29.99,
+      "maximum_active_ask": 105.67,
+      "evidence_count": 46,
+      "seller_count": 12,
+      "spread_ratio": 2.2271,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Dark Slowking 👑 🖤 EX Team Rocket Returns 9/109 Reverse Holo Stamped Pokemon",
+          "condition_text": "Ungraded",
+          "total_ask_price": 105.67
+        },
+        {
+          "title": "Dark Slowking 👑 🖤 EX Team Rocket Returns 9/109 Reverse Holo Stamped Pokemon",
+          "condition_text": "Ungraded",
+          "total_ask_price": 105.67
+        },
+        {
+          "title": "Dark Slowking 👑 🖤 EX Team Rocket Returns 9/109 Reverse Holo Stamped Pokemon",
+          "condition_text": "Ungraded",
+          "total_ask_price": 105.38
+        },
+        {
+          "title": "Dark Slowking 👑 🖤 EX Team Rocket Returns 9/109 Reverse Holo Stamped Pokemon",
+          "condition_text": "Ungraded",
+          "total_ask_price": 105.38
+        },
+        {
+          "title": "Dark Slowking Team Rocket Returns #9/109 Holo Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 48.48
+        }
+      ]
+    },
+    {
+      "card_print_id": "222a5c09-cba8-4e47-be68-e40e5fc21b8c",
+      "gv_id": "GV-PK-TRR-10",
+      "card_name": "Dark Steelix",
+      "set_code": "ex7",
+      "printed_set_abbrev": null,
+      "number": "10",
+      "rarity": "Rare Holo",
+      "price_policy_decision": "raw_single_policy_candidate",
+      "source_type": "active_listing",
+      "evidence_lane": "raw_single",
+      "confidence_tier": "high_confidence",
+      "currency": "USD",
+      "candidate_median": 75.99,
+      "candidate_low": 28.3,
+      "candidate_high": 168.5,
+      "minimum_active_ask": 12.99,
+      "maximum_active_ask": 200,
+      "evidence_count": 40,
+      "seller_count": 13,
+      "spread_ratio": 5.9541,
+      "signal_at": "2026-06-28T13:56:06.562Z",
+      "quality_flags": [],
+      "review_band": "standard_candidate",
+      "sample_titles": [
+        {
+          "title": "Dark Steelix 10/109 Reverse Holo EX Team Rocket Returns Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 100.99
+        },
+        {
+          "title": "Dark Steelix 10/109 Reverse Holo EX Team Rocket Returns Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 100.99
+        },
+        {
+          "title": "Dark Steelix 10/109 Reverse Holo EX Team Rocket Returns Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 100.99
+        },
+        {
+          "title": "Dark Steelix 10/109 Reverse Holo EX Team Rocket Returns Pokemon Card",
+          "condition_text": "Ungraded",
+          "total_ask_price": 100.99
+        },
+        {
+          "title": "Pokemon TCG Dark Steelix 10/109 Team Rocket Returns Reverse Holo Stamped",
+          "condition_text": "Unspecified",
+          "total_ask_price": 200
+        }
+      ]
+    }
+  ],
+  "boundary": {
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "function_invocation": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [
+    "All exported rows are internal future-publication-review candidates, not public prices.",
+    "Rows are raw_single only; slab and reference lanes remain held by policy.",
+    "Review bands identify rows that need title sample or spread inspection before any public handoff."
+  ],
+  "csv_sha256": "6f517d6fd44143a2efda83a0174cab44ea66d6bd0366c00d7e0f292dab3e2099",
+  "package_fingerprint_sha256": "8d0953702c4de8c8565592ac2cfa7888a1aeb9f062f8a9461ba9f1e6811032cb"
+}

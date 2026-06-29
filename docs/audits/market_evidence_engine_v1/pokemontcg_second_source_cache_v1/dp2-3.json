@@ -1,0 +1,118 @@
+{
+  "id": "dp2-3",
+  "name": "Ambipom",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "36",
+  "hp": "80",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesFrom": "Aipom",
+  "attacks": [
+    {
+      "name": "Tail Influence",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "Your opponent flips a coin until he or she gets heads. For each tails, remove an Energy card attached to the Defending Pokémon and put it on the bottom of your opponent's deck."
+    },
+    {
+      "name": "Charity Tail",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "80",
+      "text": "Before Ambipom does damage, your opponent may discard 2 cards from his or her hand. If he or she does, this attack's base damage is 10 instead of 80."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp2",
+    "name": "Mysterious Treasures",
+    "series": "Diamond & Pearl",
+    "printedTotal": 123,
+    "total": 124,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MT",
+    "releaseDate": "2007/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp2/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp2/logo.png"
+    }
+  },
+  "number": "3",
+  "artist": "Kouki Saitou",
+  "rarity": "Rare Holo",
+  "flavorText": "To eat, it deftly shucks nuts with its two tails. It rarely uses its arms now.",
+  "nationalPokedexNumbers": [
+    424
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp2/3.png",
+    "large": "https://images.pokemontcg.io/dp2/3_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp2-3",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 2.41,
+        "mid": 4.5,
+        "high": 33.3,
+        "market": 5.38,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2.19,
+        "mid": 3.59,
+        "high": 94.8,
+        "market": 2.78,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp2-3",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 4.06,
+      "lowPrice": 0.44,
+      "trendPrice": 4.52,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2,
+      "reverseHoloLow": 0.44,
+      "reverseHoloTrend": 1.71,
+      "lowPriceExPlus": 0.75,
+      "avg1": 1.99,
+      "avg7": 4.53,
+      "avg30": 3.36,
+      "reverseHoloAvg1": 1,
+      "reverseHoloAvg7": 1.82,
+      "reverseHoloAvg30": 1.85
+    }
+  }
+}

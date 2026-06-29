@@ -1,0 +1,41 @@
+{
+  "package_id": "MEE-CORE-REMAINING-REVIEW-SAFE-BATCH-V1",
+  "source_policy_fingerprint": "36d1a319e964101534ca41899ee9df7860143e88a5db9c1aa14dcee28fdbf46f",
+  "target_rows": 933,
+  "action_counts": {
+    "defer_more_evidence": 911,
+    "block_evidence": 18,
+    "defer_active_market_evidence": 4
+  },
+  "hashes": {
+    "row_manifest_sha256": "107d28f882644c5e39e6c231270aaab9fc699cc858b14570ffa8e1b4b7cb17dd",
+    "apply_sql_sha256": "dd7152efd5ad4bd71d20651d9b28f992624e5894091de12c56420dd0a783c6a3",
+    "preflight_sql_sha256": "b2848c49b1d08a5feb013e8f0fe8730d85bc02dc89e06f4e411dda106070624b",
+    "readback_sql_sha256": "7d3a178e1fd2e89ba2554dbb29bd6c5298c794ba2125b67cd50d171b70c93f68",
+    "rollback_sql_sha256": "4ae0f07fe385a533312e0c65a6d66c1aba65d3407499ccc5b101605fd28c05bf"
+  },
+  "findings": [],
+  "generated_at": "2026-06-27T05:38:18.263Z",
+  "mode": "plan_only_safe_internal_remaining_review_batch",
+  "package_fingerprint_sha256": "da9936d9d47a22fe6221fd15fe05fb2729e82d76b40b5fca1d66de873a50deb0",
+  "batch_status": "ready_for_single_safe_internal_apply",
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

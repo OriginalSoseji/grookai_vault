@@ -1,0 +1,80 @@
+{
+  "package_id": "MEE-SPECIAL-LANE-CLEANUP-POLICY-V1",
+  "mode": "plan_only_special_lane_cleanup_policy",
+  "generated_at": "2026-06-27",
+  "db_writes": false,
+  "cleanup_event_inserts": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "function_invocation": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "card_print_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "migrations": false,
+  "global_apply": false,
+  "audit": {
+    "total_rows": 39180,
+    "distinct_candidate_ids": 39180,
+    "distinct_card_prints": 338,
+    "public_boundary_leak_rows": 0,
+    "rows_by_family": {
+      "base_print_run": 252,
+      "mcdonalds": 3658,
+      "mep_black_star_promos": 6658,
+      "promo_or_alt_distribution": 3599,
+      "trainer_kit": 14306,
+      "world_championship_deck": 10707
+    },
+    "card_prints_by_family": {
+      "base_print_run": 5,
+      "mcdonalds": 55,
+      "mep_black_star_promos": 29,
+      "promo_or_alt_distribution": 68,
+      "trainer_kit": 80,
+      "world_championship_deck": 101
+    },
+    "rows_by_evidence_lane": {
+      "raw_single": 38919,
+      "slab": 261
+    }
+  },
+  "family_handling": {
+    "base_print_run": "print_run_exactness_required",
+    "mcdonalds": "exact_card_evidence_required",
+    "mep_black_star_promos": "exact_card_or_program_evidence_required",
+    "promo_or_alt_distribution": "distribution_lane_review_required",
+    "trainer_kit": "separate_source_matching_required",
+    "world_championship_deck": "exact_card_evidence_required"
+  },
+  "publication_gate_confirmation_allowed": false,
+  "apply_candidate_generated": false,
+  "artifacts": {
+    "contract": "docs/contracts/MEE_SPECIAL_LANE_CLEANUP_POLICY_V1.md",
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1/report.json",
+    "manifest": "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1/special_lane_manifest.json",
+    "summary": "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1/special_lane_summary.json",
+    "readback_sql": "docs/sql/mee_special_lane_cleanup_policy_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_special_lane_cleanup_policy_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_SPECIAL_LANE_CLEANUP_POLICY_V1.md": "94665790e29cc619a9bd93a65f1b284b556f3a5187b99d8bb1287d9d3e74ace2",
+    "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1.md": "c997e4f3142c3396cf423303df449f0aa8c3001485908d441a75491bc80f8f2c",
+    "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1/special_lane_manifest.json": "861b3038901a37aa7981ec261954177e70b17adc9c482dfe7f81c304284dfe06",
+    "docs/audits/market_evidence_engine_v1/MEE-SPECIAL-LANE-CLEANUP-POLICY-V1/special_lane_summary.json": "ad1dc854ace17b4c07aa8d5a917cf9492d31e80c465f1e416e18fc4bae0597b9",
+    "docs/sql/mee_special_lane_cleanup_policy_v1_readback.sql": "bded9b88aba6a72ee682a19dd53f0376638dc98f616d28396a9944cbd31aba5b",
+    "tests/contracts/mee_special_lane_cleanup_policy_v1.test.mjs": "1e7b2da4d43ca83ef8693fd42482b7e8f87165d93b0b97a33a3538c42e6a3576"
+  },
+  "package_fingerprint_sha256": "cb32ff285e727e51e738fa579f82dc2170f75a8f9b4cd8b584921cec3439589b",
+  "next_step": "Create the first family-specific policy, preferably Trainer Kit special-lane matching policy or World Championship exact-evidence policy.",
+  "findings": []
+}

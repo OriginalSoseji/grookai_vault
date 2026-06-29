@@ -1,0 +1,1065 @@
+{
+  "package_id": "MARKET-REFERENCE-POKEMONTCG-SECOND-SOURCE-ACQUISITION-V1",
+  "generated_at": "2026-06-25T19:14:37.070Z",
+  "mode": "free_api_second_source_acquisition_no_writes",
+  "batch_version": "MEE_09I_POKEMONTCG_IO_SECOND_SOURCE_BATCH_V1",
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "summary": {
+    "first_wave_targets": 25,
+    "resolved_pokemonapi_ids": 0,
+    "unresolved_pokemonapi_ids": 25,
+    "unique_pokemonapi_ids": 0,
+    "fetched_payloads": 0,
+    "fetch_error_count": 0,
+    "target_status_counts": {
+      "missing_pokemonapi_external_id": 25
+    },
+    "candidate_evidence_count": 0,
+    "evidence_currency_counts": {},
+    "evidence_finish_counts": {}
+  },
+  "batch": {
+    "generated_at": "2026-06-25T19:14:37.070Z",
+    "contract": "MARKET_EVIDENCE_ENGINE_V1",
+    "phase": "MEE_09I_POKEMONTCG_IO_SECOND_SOURCE_BATCH_V1",
+    "mode": "first_wave_second_source_batch",
+    "boundary": {
+      "provider_calls": false,
+      "source_fetches": false,
+      "db_writes": false,
+      "pricing_observations_writes": false,
+      "pricing_rollups": false,
+      "public_price_publication": false,
+      "app_visible_pricing": false
+    },
+    "summary": {
+      "input_work_items": 25,
+      "selected_targets": 25,
+      "source": "pokemontcg_io_reference"
+    },
+    "items": [
+      {
+        "card_print_id": "bb76be06-48cf-4daa-b4c0-ad390e3795a2",
+        "gv_id": "GV-PK-DRX-125",
+        "name": "Serperior",
+        "set_code": "bw6",
+        "number_plain": "125",
+        "rarity": "Rare Secret",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Serperior bw6 125",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1651.12,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "a622f43f-6ee4-4f5d-8e38-c18dfe28afed",
+        "gv_id": "GV-PK-PLS-136",
+        "name": "Charizard",
+        "set_code": "bw8",
+        "number_plain": "136",
+        "rarity": "Rare Secret",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Charizard bw8 136",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1626.53,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+        "gv_id": "GV-PK-LC-3",
+        "name": "Charizard",
+        "set_code": "base6",
+        "number_plain": "3",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Charizard base6 3",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1509.02,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "gv_id": "GV-PK-COL-SL10",
+        "name": "Rayquaza",
+        "set_code": "col1",
+        "number_plain": "10",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Rayquaza col1 10",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1501,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "c2dd04dc-ecd5-4e5e-91c9-7a014dacda45",
+        "gv_id": "GV-PK-PLF-122",
+        "name": "Ultra Ball",
+        "set_code": "bw9",
+        "number_plain": "122",
+        "rarity": "Rare Secret",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Ultra Ball bw9 122",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1401.57,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "51d1fc8b-c457-4e79-9f90-e63a8802d3c0",
+        "gv_id": "GV-PK-DCR-6",
+        "name": "Team Aqua's Kyogre-EX",
+        "set_code": "dc1",
+        "number_plain": "6",
+        "rarity": "Rare Ultra",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Team Aqua's Kyogre-EX dc1 6",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1264.82,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "c432b879-4b0b-4168-bf72-0c7ce7c8ccde",
+        "gv_id": "GV-PK-PLS-137",
+        "name": "Blastoise",
+        "set_code": "bw8",
+        "number_plain": "137",
+        "rarity": "Rare Secret",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Blastoise bw8 137",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1251.14,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5e4d14ea-71b5-4ae6-812d-91a0133e4748",
+        "gv_id": "GV-PK-PR-BLW-BW101",
+        "name": "Genesect",
+        "set_code": "bwp",
+        "number_plain": "101",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Genesect bwp 101",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1246.41,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "c6f4fea9-5256-407e-a606-c50acf0ee7c7",
+        "gv_id": "GV-PK-LTR-115",
+        "name": "Zekrom",
+        "set_code": "bw11",
+        "number_plain": "115",
+        "rarity": "Rare Secret",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Zekrom bw11 115",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1203.55,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Victory Cup bwp 31",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Victory Cup bwp 31",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Victory Cup bwp 31",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Victory Cup bwp 31",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "50385ac4-9060-4375-b898-7ea6574d5c82",
+        "gv_id": "GV-PK-DCR-15",
+        "name": "Team Magma's Groudon-EX",
+        "set_code": "dc1",
+        "number_plain": "15",
+        "rarity": "Rare Ultra",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Team Magma's Groudon-EX dc1 15",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1194.53,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "cbd44d1b-a396-4aed-815d-a98b2d4bd8d2",
+        "gv_id": "GV-PK-SW-3",
+        "name": "Charizard",
+        "set_code": "dp3",
+        "number_plain": "3",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Charizard dp3 3",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1192.42,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3981f858-4292-4e08-a124-02ce2d5126d6",
+        "gv_id": "GV-PK-PR-BLW-BW65",
+        "name": "Jigglypuff",
+        "set_code": "bwp",
+        "number_plain": "65",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Jigglypuff bwp 65",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1192.34,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "bc9b8f9b-a846-4797-b531-dfc3c09b2361",
+        "gv_id": "GV-PK-LA-142",
+        "name": "Magnezone LV.X",
+        "set_code": "dp6",
+        "number_plain": "142",
+        "rarity": "Rare Holo LV.X",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Magnezone LV.X dp6 142",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1183.92,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "1b90d17f-313d-47ac-8d4a-842a3f353871",
+        "gv_id": "GV-PK-PR-BLW-BW98",
+        "name": "Mew",
+        "set_code": "bwp",
+        "number_plain": "98",
+        "rarity": "Promo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Mew bwp 98",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1176.57,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+        "gv_id": "GV-PK-LC-18",
+        "name": "Venusaur",
+        "set_code": "base6",
+        "number_plain": "18",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Venusaur base6 18",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1173,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "4b33e616-37b6-41b6-b132-df752fa53e49",
+        "gv_id": "GV-PK-BCR-89",
+        "name": "Landorus-EX",
+        "set_code": "bw7",
+        "number_plain": "89",
+        "rarity": "Rare Holo EX",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Landorus-EX bw7 89",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1158.6,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "thin_evidence",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "name": "Kyogre",
+        "set_code": "col1",
+        "number_plain": "6",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Kyogre col1 6",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1156.49,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "b7400f51-7878-4e98-8fee-052bab45fd47",
+        "gv_id": "GV-PK-MD-98",
+        "name": "Glaceon LV.X",
+        "set_code": "dp5",
+        "number_plain": "98",
+        "rarity": "Rare Holo LV.X",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Glaceon LV.X dp5 98",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1153.32,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "name": "Ho-Oh",
+        "set_code": "col1",
+        "number_plain": "5",
+        "rarity": "Rare Holo",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Ho-Oh col1 5",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1152.59,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "3363d5bf-c924-4915-ba42-6797d1f206f8",
+        "gv_id": "GV-PK-LA-144",
+        "name": "Mewtwo LV.X",
+        "set_code": "dp6",
+        "number_plain": "144",
+        "rarity": "Rare Holo LV.X",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Mewtwo LV.X dp6 144",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1133.74,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      },
+      {
+        "card_print_id": "46e602fe-7163-4fb2-88e2-b23bf8b5908b",
+        "gv_id": "GV-PK-MD-97",
+        "name": "Garchomp LV.X",
+        "set_code": "dp5",
+        "number_plain": "97",
+        "rarity": "Rare Holo LV.X",
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "query_status": "planned_for_free_api_reference_lookup",
+        "query_text": "Garchomp LV.X dp5 97",
+        "pokemonapi_id": null,
+        "match_basis": null,
+        "priority_score": 1116.98,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "existing_sources": [
+          "tcgcsv_reference"
+        ],
+        "can_publish_price_directly": false,
+        "needs_review": true
+      }
+    ]
+  },
+  "acquisition": {
+    "generated_at": "2026-06-25T19:14:37.070Z",
+    "contract": "MARKET_EVIDENCE_ENGINE_V1",
+    "phase": "MEE_09I_POKEMONTCG_IO_SECOND_SOURCE_ACQUISITION_V1",
+    "mode": "free_api_reference_raw_evidence_only",
+    "boundary": {
+      "provider_calls": true,
+      "source_fetches": true,
+      "db_writes": false,
+      "pricing_rollups": false,
+      "migration_apply": false,
+      "public_price_publication": false,
+      "raw_evidence_objects_created": true,
+      "raw_evidence_objects_persisted_to_db": false,
+      "read_only_db_mapping_lookup": true
+    },
+    "summary": {
+      "pokemontcg_io_targets": 25,
+      "reviewed_targets": 25,
+      "candidate_evidence_count": 0,
+      "status_counts": {
+        "missing_pokemonapi_external_id": 25
+      },
+      "fetch_error_count": 0,
+      "unique_pokemonapi_ids": 0
+    },
+    "reviewed_targets": [
+      {
+        "card_print_id": "bb76be06-48cf-4daa-b4c0-ad390e3795a2",
+        "gv_id": "GV-PK-DRX-125",
+        "name": "Serperior",
+        "set_code": "bw6",
+        "number_plain": "125",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "a622f43f-6ee4-4f5d-8e38-c18dfe28afed",
+        "gv_id": "GV-PK-PLS-136",
+        "name": "Charizard",
+        "set_code": "bw8",
+        "number_plain": "136",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+        "gv_id": "GV-PK-LC-3",
+        "name": "Charizard",
+        "set_code": "base6",
+        "number_plain": "3",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "gv_id": "GV-PK-COL-SL10",
+        "name": "Rayquaza",
+        "set_code": "col1",
+        "number_plain": "10",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "c2dd04dc-ecd5-4e5e-91c9-7a014dacda45",
+        "gv_id": "GV-PK-PLF-122",
+        "name": "Ultra Ball",
+        "set_code": "bw9",
+        "number_plain": "122",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "51d1fc8b-c457-4e79-9f90-e63a8802d3c0",
+        "gv_id": "GV-PK-DCR-6",
+        "name": "Team Aqua's Kyogre-EX",
+        "set_code": "dc1",
+        "number_plain": "6",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "c432b879-4b0b-4168-bf72-0c7ce7c8ccde",
+        "gv_id": "GV-PK-PLS-137",
+        "name": "Blastoise",
+        "set_code": "bw8",
+        "number_plain": "137",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "5e4d14ea-71b5-4ae6-812d-91a0133e4748",
+        "gv_id": "GV-PK-PR-BLW-BW101",
+        "name": "Genesect",
+        "set_code": "bwp",
+        "number_plain": "101",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "c6f4fea9-5256-407e-a606-c50acf0ee7c7",
+        "gv_id": "GV-PK-LTR-115",
+        "name": "Zekrom",
+        "set_code": "bw11",
+        "number_plain": "115",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "50385ac4-9060-4375-b898-7ea6574d5c82",
+        "gv_id": "GV-PK-DCR-15",
+        "name": "Team Magma's Groudon-EX",
+        "set_code": "dc1",
+        "number_plain": "15",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "cbd44d1b-a396-4aed-815d-a98b2d4bd8d2",
+        "gv_id": "GV-PK-SW-3",
+        "name": "Charizard",
+        "set_code": "dp3",
+        "number_plain": "3",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "3981f858-4292-4e08-a124-02ce2d5126d6",
+        "gv_id": "GV-PK-PR-BLW-BW65",
+        "name": "Jigglypuff",
+        "set_code": "bwp",
+        "number_plain": "65",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "bc9b8f9b-a846-4797-b531-dfc3c09b2361",
+        "gv_id": "GV-PK-LA-142",
+        "name": "Magnezone LV.X",
+        "set_code": "dp6",
+        "number_plain": "142",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "1b90d17f-313d-47ac-8d4a-842a3f353871",
+        "gv_id": "GV-PK-PR-BLW-BW98",
+        "name": "Mew",
+        "set_code": "bwp",
+        "number_plain": "98",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+        "gv_id": "GV-PK-LC-18",
+        "name": "Venusaur",
+        "set_code": "base6",
+        "number_plain": "18",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "4b33e616-37b6-41b6-b132-df752fa53e49",
+        "gv_id": "GV-PK-BCR-89",
+        "name": "Landorus-EX",
+        "set_code": "bw7",
+        "number_plain": "89",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "name": "Kyogre",
+        "set_code": "col1",
+        "number_plain": "6",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "b7400f51-7878-4e98-8fee-052bab45fd47",
+        "gv_id": "GV-PK-MD-98",
+        "name": "Glaceon LV.X",
+        "set_code": "dp5",
+        "number_plain": "98",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "name": "Ho-Oh",
+        "set_code": "col1",
+        "number_plain": "5",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "3363d5bf-c924-4915-ba42-6797d1f206f8",
+        "gv_id": "GV-PK-LA-144",
+        "name": "Mewtwo LV.X",
+        "set_code": "dp6",
+        "number_plain": "144",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      },
+      {
+        "card_print_id": "46e602fe-7163-4fb2-88e2-b23bf8b5908b",
+        "gv_id": "GV-PK-MD-97",
+        "name": "Garchomp LV.X",
+        "set_code": "dp5",
+        "number_plain": "97",
+        "pokemonapi_id": null,
+        "status": "missing_pokemonapi_external_id",
+        "candidate_count": 0,
+        "provider_updated_at": {
+          "tcgplayer": null,
+          "cardmarket": null
+        }
+      }
+    ],
+    "candidate_evidence": []
+  },
+  "fetch_errors": [],
+  "findings": [],
+  "ready": true
+}

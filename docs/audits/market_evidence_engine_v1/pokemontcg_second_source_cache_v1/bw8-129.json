@@ -1,0 +1,77 @@
+{
+  "id": "bw8-129",
+  "name": "Scramble Switch",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Item",
+    "ACE SPEC"
+  ],
+  "rules": [
+    "Switch your Active Pokémon with 1 of your Benched Pokémon. Then, you may move as many Energy attached to the old Active Pokémon to the new Active Pokémon as you like.",
+    "You may play as many Item cards as you like during your turn (before your attack).",
+    "You can't have more than 1 ACE SPEC card in your deck."
+  ],
+  "set": {
+    "id": "bw8",
+    "name": "Plasma Storm",
+    "series": "Black & White",
+    "printedTotal": 135,
+    "total": 138,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLS",
+    "releaseDate": "2013/02/06",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw8/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw8/logo.png"
+    }
+  },
+  "number": "129",
+  "artist": "5ban Graphics",
+  "rarity": "Rare ACE",
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw8/129.png",
+    "large": "https://images.pokemontcg.io/bw8/129_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw8-129",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 3.3,
+        "mid": 7.13,
+        "high": 25,
+        "market": 7.38,
+        "directLow": 6.98
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw8-129",
+    "updatedAt": "2025/12/07",
+    "prices": {
+      "averageSellPrice": 5.58,
+      "lowPrice": 0.2,
+      "trendPrice": 4.56,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 4,
+      "reverseHoloTrend": 5.01,
+      "lowPriceExPlus": 4,
+      "avg1": 5,
+      "avg7": 3.86,
+      "avg30": 5.44,
+      "reverseHoloAvg1": 6.99,
+      "reverseHoloAvg7": 5,
+      "reverseHoloAvg30": 4.33
+    }
+  }
+}

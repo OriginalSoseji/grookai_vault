@@ -1,0 +1,23 @@
+{
+  "total_rows": 470,
+  "primary_resolution_lanes": {
+    "special_lane_manual_review": 338,
+    "matcher_confidence_review": 42,
+    "high_value_manual_review": 30,
+    "exclusion_flag_review": 60
+  },
+  "evidence_lanes": {
+    "raw_single": 378,
+    "slab": 92
+  },
+  "blocker_counts": {
+    "matcher_confidence_review_required": 470,
+    "candidate_evidence_review_required": 470,
+    "special_lane_policy_required": 383,
+    "high_value_manual_review_required": 103,
+    "evidence_volume_deficient": 14,
+    "seller_diversity_deficient": 15,
+    "exclusion_flag_review_required": 60
+  },
+  "manifest_sha256": "e29bea9425d79c86dbadb1d777eb38978693bb1951eb4c322bd5ef7d1bfb99a6"
+}

@@ -1,0 +1,77 @@
+{
+  "package_id": "MEE-CORE-FOUNDATION-COMPLETE-V2",
+  "source_fingerprints": {
+    "fast_readback": "745d9e4ef336e2968de6aa6ada651fdd6ce2a30e1b032af289f3702de1163f55",
+    "quality_taxonomy": "9df93c01b147687a1dce409a779da9d3883ba37a70840dc4fb3b30014d8c342c",
+    "quality_scoring": "bc3e40eacd56fdde6f8068462df4ddb05ce8e2da72afcf78222442b25fd53296",
+    "candidate_threshold": "b44fa84d772fba911f0e0155944a4638dd1136661244f594de262e390a9df7b6"
+  },
+  "foundation_status": "complete_internal_quality_gated",
+  "completed_foundation_layers": [
+    "provider_agnostic_lifecycle_state_and_transition_history",
+    "warehouse_projection_into_lifecycle_observations",
+    "internal_card_signal_and_review_queue_read_models",
+    "review_disposition_table_and_append_only_action_events",
+    "controlled_review_action_function_with_optimistic_locking",
+    "safe_internal_review_cleanup_batches",
+    "post_ingest_fast_review_readback",
+    "candidate_review_threshold_contract",
+    "quality_flag_taxonomy",
+    "quality_scoring_read_model_candidate",
+    "publish_gate_contract_boundary"
+  ],
+  "current_review_state": {
+    "remaining_safe_internal_action_rows": 0,
+    "reviewer_candidate_rows": 0,
+    "split_required_rows": 550,
+    "classification_blocked_rows": 19,
+    "monitor_resolved_rows": 380,
+    "reference_policy_hold_rows": 0,
+    "unknown_evidence_rows": 0,
+    "public_boundary_rows": 0
+  },
+  "current_quality_state": {
+    "candidate_evidence_rows": 0,
+    "low_match_confidence_rows": 0,
+    "lane_mismatch_rows": 0,
+    "hard_exclusion_rows": 0,
+    "manual_policy_rows": 0,
+    "quality_rollup_eligible_rows": 0
+  },
+  "remaining_non_foundation_work": [
+    "remote_apply_quality_scoring_internal_view_if_desired",
+    "nightly_scheduler_orchestration_at_3_to_4am",
+    "future_publish_gate_apply_package_after_review_thresholds_are_real",
+    "future_identity_confidence_v2_enhancement_for_new_ingests",
+    "future_lane_reclassification_model_for_new_ingests",
+    "future_manual_policy_model_for_new_ingests"
+  ],
+  "findings": [],
+  "generated_at": "2026-06-28T21:19:23.264Z",
+  "mode": "foundation_complete_current_state_checkpoint",
+  "package_fingerprint_sha256": "080439dc0d69dcff9835e8dc09a707bbb3303f04485547a526d36ba8a646e756",
+  "public_pricing_allowed_now": false,
+  "acquisition_allowed_by_this_package": false,
+  "boundary_proof": {
+    "db_writes": false,
+    "remote_migration_apply": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

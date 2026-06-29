@@ -1,0 +1,242 @@
+{
+  "package_id": "MARKET-REFERENCE-WAREHOUSE-READBACK-SMOKE-V1",
+  "generated_at": "2026-06-25T18:40:03.498Z",
+  "mode": "remote_readback_smoke_no_writes",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false
+  },
+  "expected_row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 10788,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 10788,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "candidate_source_counts": {
+    "pokemontcg_io_reference": 3618,
+    "tcgcsv_reference": 7407
+  },
+  "normalized_disposition_counts": {
+    "quarantined_metric:false": 2047,
+    "quarantined_price_outlier:false": 148,
+    "reference_model_candidate:true": 8830
+  },
+  "review_gate_counts": {
+    "candidates_without_review_gate": 0,
+    "candidates_direct_publishable": 0,
+    "candidates_missing_raw_snapshot_link": 0,
+    "normalized_direct_publishable": 0,
+    "normalized_missing_candidate_link": 0
+  },
+  "coverage": {
+    "report_count": 1,
+    "target_count": 1000,
+    "covered_target_count": 993,
+    "uncovered_target_count": 7
+  },
+  "distinct_card_counts": {
+    "candidate_cards": 993,
+    "normalized_cards": 993,
+    "model_eligible_cards": 993
+  },
+  "samples": {
+    "candidates": [
+      {
+        "gv_id": "GV-PK-BS-1",
+        "source": "tcgcsv_reference",
+        "raw_price": 83.58,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-1",
+        "source": "tcgcsv_reference",
+        "raw_price": 51.5,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-1",
+        "source": "tcgcsv_reference",
+        "raw_price": 70,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-1",
+        "source": "tcgcsv_reference",
+        "raw_price": 9999,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-1",
+        "source": "tcgcsv_reference",
+        "raw_price": 64,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-10",
+        "source": "tcgcsv_reference",
+        "raw_price": 78.78,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-10",
+        "source": "tcgcsv_reference",
+        "raw_price": 34.99,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-10",
+        "source": "tcgcsv_reference",
+        "raw_price": 67.74,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-10",
+        "source": "tcgcsv_reference",
+        "raw_price": 500,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-10",
+        "source": "tcgcsv_reference",
+        "raw_price": 62.12,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-11",
+        "source": "tcgcsv_reference",
+        "raw_price": 38.45,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      },
+      {
+        "gv_id": "GV-PK-BS-11",
+        "source": "tcgcsv_reference",
+        "raw_price": 24.71,
+        "currency": "USD",
+        "needs_review": true,
+        "can_publish_price_directly": false
+      }
+    ],
+    "model_eligible": [
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "source": "tcgcsv_reference",
+        "normalized_price": 83.58,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "source": "tcgcsv_reference",
+        "normalized_price": 51.5,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "source": "tcgcsv_reference",
+        "normalized_price": 70,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+        "source": "tcgcsv_reference",
+        "normalized_price": 64,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "source": "tcgcsv_reference",
+        "normalized_price": 78.78,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "source": "tcgcsv_reference",
+        "normalized_price": 34.99,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "source": "tcgcsv_reference",
+        "normalized_price": 67.74,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+        "source": "tcgcsv_reference",
+        "normalized_price": 62.12,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "source": "tcgcsv_reference",
+        "normalized_price": 38.45,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "source": "tcgcsv_reference",
+        "normalized_price": 24.71,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+        "source": "tcgcsv_reference",
+        "normalized_price": 31.64,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      },
+      {
+        "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "source": "tcgcsv_reference",
+        "normalized_price": 36.87,
+        "normalized_currency": "USD",
+        "model_disposition": "reference_model_candidate"
+      }
+    ]
+  },
+  "findings": [],
+  "ready": true
+}

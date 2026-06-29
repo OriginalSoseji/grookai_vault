@@ -1,0 +1,117 @@
+{
+  "id": "bwp-BW87",
+  "name": "Leafeon",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "90",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Eevee",
+  "attacks": [
+    {
+      "name": "Quick Attack",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "10+",
+      "text": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+      "name": "Energy Assist",
+      "cost": [
+        "Grass",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "40",
+      "text": "Attach a basic Energy card from your discard pile to 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Water",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW87",
+  "artist": "The Pokémon Company Art Team",
+  "rarity": "Promo",
+  "flavorText": "It basically does not fight. With cells similar to those of plants, it can perform photosynthesis.",
+  "nationalPokedexNumbers": [
+    470
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW87.png",
+    "large": "https://images.pokemontcg.io/bwp/BW87_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW87",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 54.38,
+        "mid": 105,
+        "high": 817.9,
+        "market": 68.81,
+        "directLow": 543.47
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW87",
+    "updatedAt": "2026/01/21",
+    "prices": {
+      "averageSellPrice": 13,
+      "lowPrice": 2,
+      "trendPrice": 12.99,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 4.91,
+      "lowPriceExPlus": 9,
+      "avg1": 10,
+      "avg7": 13.4,
+      "avg30": 15.2,
+      "reverseHoloAvg1": 5,
+      "reverseHoloAvg7": 4.91,
+      "reverseHoloAvg30": 4.85
+    }
+  }
+}

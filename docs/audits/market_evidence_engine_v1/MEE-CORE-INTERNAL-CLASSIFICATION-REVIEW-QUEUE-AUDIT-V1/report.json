@@ -1,0 +1,93 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-QUEUE-AUDIT-V1",
+  "generated_at": "2026-06-27T02:34:27.939Z",
+  "mode": "run_only_classification_review_queue_read_only_audit",
+  "package_fingerprint_sha256": "bc5cbb94b2c69c50a6155a7c9b5e854348fa199c352f389299626693393713f5",
+  "audit": {
+    "summary": {
+      "active_only_rows": 19,
+      "classification_blocked_rows": 19,
+      "exclusion_flagged_rows": 6,
+      "needs_review_rows": 19,
+      "no_raw_or_slab_classification_rows": 19,
+      "no_rollup_eligible_rows": 19,
+      "package_id": "MEE_CORE_INTERNAL_CLASSIFICATION_REVIEW_QUEUE_AUDIT_V1",
+      "pending_classification_rows": 19,
+      "pricing_observations_count": 0,
+      "public_flag_rows": 0,
+      "public_pricing_view_references": 0
+    },
+    "row_manifest_sha256": "a0be470bf1461ec01926b410806c4ca2f75905a82d26d367d3a28d7ae00c8205",
+    "row_count": 19,
+    "queue_breakdown": {
+      "active_only_rows": 19,
+      "no_rollup_eligible_rows": 19,
+      "no_raw_or_slab_classification_rows": 19,
+      "exclusion_flagged_rows": 6
+    },
+    "recommendations": {
+      "inspect_classification_rules": 13,
+      "inspect_exclusion_and_classification_rules": 6
+    },
+    "gv_ids": [
+      "GV-PK-DF-98",
+      "GV-PK-DR-94",
+      "GV-PK-HL-93",
+      "GV-PK-LM-86",
+      "GV-PK-MA-89",
+      "GV-PK-MA-92",
+      "GV-PK-MA-95",
+      "GV-PK-MCD-2014-11",
+      "GV-PK-MCD-2016-6",
+      "GV-PK-MCD-2019-4",
+      "GV-PK-MEP-053",
+      "GV-PK-MEP-067",
+      "GV-PK-PR-NP-5",
+      "GV-PK-RG-107",
+      "GV-PK-TK-tk-bw-e-13",
+      "GV-PK-TK-tk-bw-z-4",
+      "GV-PK-TRR-14",
+      "GV-PK-WCD-2009-STALLGON-13-LEGENDS_AWAKENED-144-MEWTWO_LVX",
+      "GV-PK-WCD-2016-NINJA_BLITZ-01-BREAKPOINT-41-GRENINJA_BREAK"
+    ],
+    "findings": []
+  },
+  "artifacts": {
+    "row_manifest": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-QUEUE-AUDIT-V1/row_manifest.jsonl",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-QUEUE-AUDIT-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-QUEUE-AUDIT-V1.md",
+    "readback_sql": "docs/sql/mee_core_internal_classification_review_queue_audit_v1_readback.sql",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_CLASSIFICATION_REVIEW_QUEUE_AUDIT_V1.md"
+  },
+  "hashes": {
+    "row_manifest_sha256": "a0be470bf1461ec01926b410806c4ca2f75905a82d26d367d3a28d7ae00c8205",
+    "readback_sql_sha256": "135fc0fcd37a35a8a755d8c2db34be3f8acd26bd59f3a4a068e265bb1a2bc1c0"
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-ACTION-PLAN-V1",
+    "reason": "Every classification_review row is blocked before rollup eligibility because the evidence has not been safely classified as raw_single or slab. Decide whether to fix classification rules or mark specific rows blocked.",
+    "allowed_scope": "Plan only. No DB writes, no provider calls, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "col1-SL6",
+  "name": "Kyogre",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "100",
+  "types": [
+    "Water"
+  ],
+  "attacks": [
+    {
+      "name": "Destructive Tsunami",
+      "cost": [
+        "Water",
+        "Water",
+        "Water",
+        "Water"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "",
+      "text": "Flip a coin. If heads, this attack does 40 damage to each of your opponent's Pokémon. If tails, this attack does 40 damage to each of your Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "SL6",
+  "artist": "Yuri Umemura",
+  "rarity": "Rare Holo",
+  "flavorText": "A mythical Pokémon said to have swelled the seas with rain and tidal waves. It battled with Groudon.",
+  "nationalPokedexNumbers": [
+    382
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/SL6.png",
+    "large": "https://images.pokemontcg.io/col1/SL6_hires.png"
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-SL6",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 84.83,
+      "lowPrice": 19.89,
+      "trendPrice": 127.58,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 105.85,
+      "lowPriceExPlus": 110,
+      "avg1": 100,
+      "avg7": 102.39,
+      "avg30": 185.79,
+      "reverseHoloAvg1": 60,
+      "reverseHoloAvg7": 141.57,
+      "reverseHoloAvg30": 62.78
+    }
+  }
+}

@@ -6,9 +6,12 @@ import {
 const DEFAULT_SOURCES = [
   'ebay_active',
   'ebay_sold_candidate',
+  'ebay_user_export',
+  'pokemontcg_io_reference',
   'pricecharting_reference',
+  'tcgcsv_reference',
   'tcgplayer_reference_candidate',
-  'justtcg_reference',
+  'tcgplayer_user_export',
   'manual_review_candidate',
 ];
 
@@ -114,6 +117,32 @@ function buildSourceQuery(target, source) {
     };
   }
 
+  if (source === 'pokemontcg_io_reference') {
+    const query = compactSpaces(`${identity.name} ${identity.set_code ?? ''} ${identity.number_plain ?? ''}`);
+    return {
+      ...common,
+      query_kind: 'free_api_card_reference_lookup',
+      query_text: query,
+      search_url_template: null,
+      inclusion_hints: ['card_print_id', 'pokemonapi_external_id_or_set_number_name', 'tcgplayer_price_hash', 'cardmarket_price_hash'],
+      exclusion_hints: ['wrong_set', 'wrong_number', 'wrong_finish', 'wrong_print_run', 'ambiguous_variant'],
+      evidence_goal: 'free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data',
+    };
+  }
+
+  if (source === 'ebay_user_export') {
+    const query = compactSpaces(`${identity.exact_terms} ${target.rarity ?? ''}`);
+    return {
+      ...common,
+      query_kind: 'user_uploaded_export_lookup',
+      query_text: query,
+      search_url_template: null,
+      inclusion_hints: ['name', 'set_code_or_set_name', 'number_plain', 'sold_or_listing_export_row'],
+      exclusion_hints: ['lot_or_bundle', 'sealed_product', 'proxy_or_reprint', 'foreign_language', 'graded_or_slab', 'ambiguous_variant'],
+      evidence_goal: 'map user/admin-owned eBay export rows without live API dependence',
+    };
+  }
+
   if (source === 'tcgplayer_reference_candidate') {
     const query = compactSpaces(`${identity.name} ${identity.set_code ?? ''} ${identity.number_plain ?? ''}`);
     return {
@@ -127,16 +156,29 @@ function buildSourceQuery(target, source) {
     };
   }
 
-  if (source === 'justtcg_reference') {
-    const query = compactSpaces(`${target.gv_id} ${identity.name} ${identity.set_code ?? ''} ${identity.number_plain ?? ''}`);
+  if (source === 'tcgcsv_reference') {
+    const query = compactSpaces(`${identity.name} ${identity.set_code ?? ''} ${identity.number_plain ?? ''}`);
     return {
       ...common,
-      query_kind: 'existing_reference_lane_lookup',
+      query_kind: 'public_snapshot_group_lookup',
       query_text: query,
       search_url_template: null,
-      inclusion_hints: ['card_print_id', 'gv_id', 'existing_reference_lane'],
-      exclusion_hints: ['wrong_set', 'wrong_number', 'ambiguous_variant'],
-      evidence_goal: 'existing JustTCG reference lane corroboration',
+      inclusion_hints: ['tcgcsv_group', 'product_name', 'product_number', 'price_subtype'],
+      exclusion_hints: ['wrong_set', 'wrong_number', 'wrong_finish', 'wrong_print_run', 'ambiguous_variant'],
+      evidence_goal: 'free TCGCSV TCGplayer product/price snapshot reference buckets',
+    };
+  }
+
+  if (source === 'tcgplayer_user_export') {
+    const query = compactSpaces(`${identity.name} ${identity.set_code ?? ''} ${identity.number_plain ?? ''} ${target.rarity ?? ''}`);
+    return {
+      ...common,
+      query_kind: 'user_uploaded_export_lookup',
+      query_text: query,
+      search_url_template: null,
+      inclusion_hints: ['name', 'set_code_or_set_name', 'number_plain', 'condition_or_marketplace_bucket'],
+      exclusion_hints: ['wrong_set', 'wrong_number', 'wrong_finish', 'ambiguous_variant'],
+      evidence_goal: 'map user/admin-owned TCGplayer export rows without API dependence',
     };
   }
 

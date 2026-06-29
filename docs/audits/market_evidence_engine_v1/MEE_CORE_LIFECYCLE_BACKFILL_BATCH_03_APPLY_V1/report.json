@@ -1,0 +1,61 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-BACKFILL-BATCH-03-APPLY-V1",
+  "generated_at": "2026-06-26T16:14:05.776Z",
+  "mode": "bounded_lifecycle_backfill_apply",
+  "source_plan_fingerprint": "06860a3ab0d54291ee13326e0f8d4ba4591fa671125662a5b39d295b3efaf8e0",
+  "package_fingerprint_sha256": "8231822c25cb6be209b8b1682078bf1897d5b38dd03dfb62d501c2219bdaf26f",
+  "apply_summary": {
+    "inserted_market_evidence_observations": 5000,
+    "inserted_market_evidence_lifecycle_events": 35000
+  },
+  "readback": {
+    "observations": {
+      "expected": 5000,
+      "actual": 5000
+    },
+    "events": {
+      "expected": 35000,
+      "actual": 35000,
+      "distinct_event_hashes": 35000
+    },
+    "current_view": {
+      "expected": 5000,
+      "actual": 5000,
+      "app_visible_true": 0,
+      "market_truth_true": 0
+    },
+    "public_pricing_surface": {
+      "pricing_observations_count": 0,
+      "ebay_active_prices_latest_count": 1690,
+      "v_card_pricing_references_market_evidence": false
+    }
+  },
+  "public_surface": {
+    "pricing_observations_count": 0,
+    "ebay_active_prices_latest_count": 1690,
+    "v_card_pricing_references_market_evidence": false
+  },
+  "package_readback_sql": {
+    "executed": true,
+    "output_artifact": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_03_APPLY_V1/package_readback_output.txt",
+    "output_sha256": "61a2318a1de33d54538b8313a4aa88ac786723d650d5e769f08d2bfc20bc72ed"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

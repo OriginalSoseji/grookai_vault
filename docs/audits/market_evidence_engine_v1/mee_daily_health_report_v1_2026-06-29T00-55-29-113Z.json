@@ -1,0 +1,358 @@
+{
+  "package_id": "MEE-DAILY-HEALTH-REPORT-V1",
+  "generated_at": "2026-06-29T00:55:29.088Z",
+  "health_status": "pass",
+  "query_results": {
+    "reference_candidates_by_source": {
+      "key": "reference_candidates_by_source",
+      "ok": true,
+      "rows": [
+        {
+          "source": "ebay_active",
+          "rows": 15,
+          "latest_created_at": "2026-06-25T21:14:27.760Z"
+        },
+        {
+          "source": "pokemontcg_io_reference",
+          "rows": 14592,
+          "latest_created_at": "2026-06-29T00:40:42.052Z"
+        },
+        {
+          "source": "tcgcsv_reference",
+          "rows": 7605,
+          "latest_created_at": "2026-06-29T00:44:36.307Z"
+        },
+        {
+          "source": "tcgdex_cardmarket_reference",
+          "rows": 200069,
+          "latest_created_at": "2026-06-28T16:01:32.259Z"
+        },
+        {
+          "source": "tcgdex_tcgplayer_reference",
+          "rows": 110675,
+          "latest_created_at": "2026-06-28T16:01:32.259Z"
+        }
+      ]
+    },
+    "reference_normalized_by_source": {
+      "key": "reference_normalized_by_source",
+      "ok": true,
+      "rows": [
+        {
+          "source": "pokemontcg_io_reference",
+          "rows": 14592,
+          "latest_normalized_at": "2026-06-29T00:41:04.282Z"
+        },
+        {
+          "source": "tcgcsv_reference",
+          "rows": 7605,
+          "latest_normalized_at": "2026-06-29T00:44:37.750Z"
+        },
+        {
+          "source": "tcgdex_cardmarket_reference",
+          "rows": 200069,
+          "latest_normalized_at": "2026-06-28T16:14:12.985Z"
+        },
+        {
+          "source": "tcgdex_tcgplayer_reference",
+          "rows": 110675,
+          "latest_normalized_at": "2026-06-28T16:14:12.985Z"
+        }
+      ]
+    },
+    "listing_warehouse_counts": {
+      "key": "listing_warehouse_counts",
+      "ok": true,
+      "rows": [
+        {
+          "table_name": "market_listing_acquisition_runs",
+          "rows": 4,
+          "latest_created_at": "2026-06-27T07:40:54.746Z"
+        },
+        {
+          "table_name": "market_listing_card_candidates",
+          "rows": 183635,
+          "latest_created_at": "2026-06-27T08:33:59.414Z"
+        },
+        {
+          "table_name": "market_listing_observations",
+          "rows": 218866,
+          "latest_created_at": "2026-06-27T07:40:54.746Z"
+        },
+        {
+          "table_name": "market_listing_price_events",
+          "rows": 218866,
+          "latest_created_at": "2026-06-27T07:40:54.746Z"
+        },
+        {
+          "table_name": "market_listing_query_cache",
+          "rows": 4005,
+          "latest_created_at": "2026-06-26T02:07:43.127Z"
+        },
+        {
+          "table_name": "market_listing_raw_snapshots",
+          "rows": 218866,
+          "latest_created_at": "2026-06-27T07:40:54.746Z"
+        },
+        {
+          "table_name": "market_listing_rollups",
+          "rows": 10701,
+          "latest_created_at": "2026-06-28T13:56:06.562Z"
+        }
+      ]
+    },
+    "lifecycle_current_state": {
+      "key": "lifecycle_current_state",
+      "ok": true,
+      "rows": [
+        {
+          "metric": "lifecycle_public_boundary_rows",
+          "rows": 0,
+          "latest_created_at": null
+        },
+        {
+          "metric": "market_evidence_lifecycle_events",
+          "rows": 3537849,
+          "latest_created_at": "2026-06-28T19:58:27.881Z"
+        },
+        {
+          "metric": "market_evidence_observations",
+          "rows": 505407,
+          "latest_created_at": "2026-06-28T19:58:14.176Z"
+        }
+      ]
+    },
+    "review_disposition_status": {
+      "key": "review_disposition_status",
+      "ok": true,
+      "rows": [
+        {
+          "review_lane": "candidate_review",
+          "review_status": "blocked",
+          "review_disposition": "review_blocked",
+          "rows": 231
+        },
+        {
+          "review_lane": "candidate_review",
+          "review_status": "blocked",
+          "review_disposition": "review_split_required",
+          "rows": 544
+        },
+        {
+          "review_lane": "candidate_review",
+          "review_status": "resolved",
+          "review_disposition": "review_defer_more_evidence",
+          "rows": 761
+        },
+        {
+          "review_lane": "classification_review",
+          "review_status": "blocked",
+          "review_disposition": "review_reclassify",
+          "rows": 19
+        },
+        {
+          "review_lane": "high_signal_review",
+          "review_status": "blocked",
+          "review_disposition": "review_blocked",
+          "rows": 8
+        },
+        {
+          "review_lane": "high_signal_review",
+          "review_status": "blocked",
+          "review_disposition": "review_split_required",
+          "rows": 6
+        },
+        {
+          "review_lane": "high_signal_review",
+          "review_status": "resolved",
+          "review_disposition": "review_defer_more_evidence",
+          "rows": 199
+        },
+        {
+          "review_lane": "low_signal_monitor",
+          "review_status": "resolved",
+          "review_disposition": "monitor_only",
+          "rows": 380
+        },
+        {
+          "review_lane": "reference_only_review",
+          "review_status": "resolved",
+          "review_disposition": "review_defer_active_market_evidence",
+          "rows": 4
+        }
+      ]
+    },
+    "publication_gate_candidates": {
+      "key": "publication_gate_candidates",
+      "ok": true,
+      "rows": [
+        {
+          "gate_decision": "blocked_classification",
+          "evidence_lane": "classification_blocked",
+          "rows": 19
+        },
+        {
+          "gate_decision": "blocked_lane_split_required",
+          "evidence_lane": "mixed_raw_slab",
+          "rows": 574
+        },
+        {
+          "gate_decision": "blocked_low_signal",
+          "evidence_lane": "low_signal",
+          "rows": 156
+        },
+        {
+          "gate_decision": "blocked_low_signal",
+          "evidence_lane": "unknown",
+          "rows": 18
+        },
+        {
+          "gate_decision": "blocked_reference_only",
+          "evidence_lane": "reference_metric",
+          "rows": 915
+        },
+        {
+          "gate_decision": "defer_review_confirmation",
+          "evidence_lane": "raw_single",
+          "rows": 378
+        },
+        {
+          "gate_decision": "defer_review_confirmation",
+          "evidence_lane": "slab",
+          "rows": 92
+        }
+      ]
+    },
+    "normalization_assignment_queue": {
+      "key": "normalization_assignment_queue",
+      "ok": true,
+      "rows": [
+        {
+          "source": "ebay_active",
+          "assignment_queue_reason": "excluded_or_ambiguous_non_candidate",
+          "rows": 34210
+        },
+        {
+          "source": "ebay_active",
+          "assignment_queue_reason": "missing_candidate",
+          "rows": 1021
+        }
+      ]
+    },
+    "public_boundary_probe": {
+      "key": "public_boundary_probe",
+      "ok": true,
+      "rows": [
+        {
+          "lifecycle_public_rows": 0,
+          "disposition_public_rows": 0,
+          "listing_candidate_direct_publish_rows": 0
+        }
+      ]
+    }
+  },
+  "latest_artifacts": {
+    "reference_delta_writer": [
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_warehouse_delta_writer_v1_2026-06-29T00-43-59-021Z.json",
+        "mtime_ms": 1782693877959.682,
+        "package_fingerprint_sha256": "ad37785edf551c901508308de3ee5574149f0bf0e25a61dfbb1e7512a7e58214",
+        "findings": [],
+        "mode": "guarded_run_missing_rows_only"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_warehouse_delta_writer_v1_2026-06-29T00-39-54-431Z.json",
+        "mtime_ms": 1782693668471.0725,
+        "package_fingerprint_sha256": "988b08a6b57d4c720076fbcdd687da52abaeb5e88cdaa2c34cf3816a31177e4a",
+        "findings": [],
+        "mode": "guarded_run_missing_rows_only"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_warehouse_delta_writer_v1_2026-06-29T00-37-59-430Z.json",
+        "mtime_ms": 1782693517621.63,
+        "package_fingerprint_sha256": "e26d266911601c10a640e29e679d632a287cce99e411ea34fa941718613bca3e",
+        "findings": [
+          "tcgdex_audit_missing",
+          "preflight_findings_block_run"
+        ],
+        "mode": "guarded_run_missing_rows_only"
+      }
+    ],
+    "reference_refresh_worker": [
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_source_refresh_worker_v1_2026-06-29T00-43-41-615Z.json",
+        "mtime_ms": 1782693838785.5684,
+        "package_fingerprint_sha256": "6bba6c0262cd175c68ebf18a8f3830cbe6cbcad2466a1933cfb1006d3a60e035",
+        "findings": [],
+        "mode": "run"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_source_refresh_worker_v1_2026-06-29T00-37-34-351Z.json",
+        "mtime_ms": 1782693479188.5166,
+        "package_fingerprint_sha256": "c9f074a3c56cc5689b80c098447b4087b0f7d5ff05bedcddf0b7e011d7aff916",
+        "findings": [],
+        "mode": "run"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_reference_source_refresh_worker_v1_2026-06-29T00-34-11-689Z.json",
+        "mtime_ms": 1782693251699.838,
+        "package_fingerprint_sha256": "d071f71d4e28aa935f9478ba84818f2ad64e376cfbbe29dec8555d6ae4a97fc1",
+        "findings": [],
+        "mode": "dry_run"
+      }
+    ],
+    "post_ingest_orchestrator": [
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_nightly_post_ingest_orchestrator_v1_2026-06-29T00-45-34-340Z.json",
+        "mtime_ms": 1782694006351.0532,
+        "package_fingerprint_sha256": "f00ec8e8decf72778080b0f1ff05864f1ae589b9fccf499e56e485d8c132ed13",
+        "findings": [],
+        "mode": "dry_run_plan_only"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_nightly_post_ingest_orchestrator_v1_2026-06-29T00-45-18-472Z.json",
+        "mtime_ms": 1782693918485.7993,
+        "package_fingerprint_sha256": "01fd0f66865f40bea45022dee11b140056a97fe6b70e43dbda92e207ef3f4c65",
+        "findings": [],
+        "mode": "dry_run_plan_only"
+      },
+      {
+        "path": "docs/audits/market_evidence_engine_v1/mee_nightly_post_ingest_orchestrator_v1_2026-06-28T21-31-09-644Z.json",
+        "mtime_ms": 1782682421336.7375,
+        "package_fingerprint_sha256": "c89ebff74664136b25cb7f47a85b60122d5a9277b1a8139253538227232ea4a7",
+        "findings": [],
+        "mode": "run_readbacks_only"
+      }
+    ],
+    "foundation_checkpoint": []
+  },
+  "systemd_timers": {
+    "available": true,
+    "status": 0,
+    "stdout_tail": "NEXT                            LEFT LAST                         PASSED UNIT                                ACTIVATES\nMon 2026-06-29 02:49:51 UTC 1h 54min -                                 - grookai-mee-reference-refresh.timer grookai-mee-reference-refresh.service\nMon 2026-06-29 03:25:37 UTC 2h 30min Sun 2026-06-28 06:48:16 UTC 18h ago grookai-mee-nightly.timer           grookai-mee-nightly.service\nMon 2026-06-29 03:38:22 UTC 2h 42min Sun 2026-06-28 06:39:05 UTC       - grookai-mee-post-ingest.timer       grookai-mee-post-ingest.service\n\n3 timers listed.\n",
+    "stderr_tail": ""
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "function_invocation": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "package_fingerprint_sha256": "e57e7653dd23228e5a5788c396e05804e494aebad70bfe5956673eac569e7d20"
+}

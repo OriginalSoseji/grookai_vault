@@ -1,0 +1,3531 @@
+{
+  "generated_at": "2026-06-25T17:21:16.543Z",
+  "contract": "MARKET_EVIDENCE_ENGINE_V1",
+  "phase": "MEE-06A_POKEMONTCG_IO_REFERENCE_EVIDENCE_V1",
+  "mode": "free_api_reference_raw_evidence_only",
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "db_writes": false,
+    "pricing_rollups": false,
+    "migration_apply": false,
+    "public_price_publication": false,
+    "raw_evidence_objects_created": true,
+    "raw_evidence_objects_persisted_to_db": false,
+    "read_only_db_mapping_lookup": true
+  },
+  "summary": {
+    "pokemontcg_io_targets": 250,
+    "reviewed_targets": 250,
+    "candidate_evidence_count": 0,
+    "status_counts": {
+      "pokemonapi_payload_missing": 152,
+      "missing_pokemonapi_external_id": 98
+    },
+    "unique_pokemonapi_ids": 152,
+    "fetch_error_count": 152
+  },
+  "reviewed_targets": [
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "name": "Alakazam",
+      "set_code": "base1",
+      "number_plain": "1",
+      "pokemonapi_id": "base1-1",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "name": "Mewtwo",
+      "set_code": "base1",
+      "number_plain": "10",
+      "pokemonapi_id": "base1-10",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "name": "Nidoking",
+      "set_code": "base1",
+      "number_plain": "11",
+      "pokemonapi_id": "base1-11",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "name": "Ninetales",
+      "set_code": "base1",
+      "number_plain": "12",
+      "pokemonapi_id": "base1-12",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "name": "Poliwrath",
+      "set_code": "base1",
+      "number_plain": "13",
+      "pokemonapi_id": "base1-13",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "name": "Venusaur",
+      "set_code": "base1",
+      "number_plain": "15",
+      "pokemonapi_id": "base1-15",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "name": "Zapdos",
+      "set_code": "base1",
+      "number_plain": "16",
+      "pokemonapi_id": "base1-16",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "name": "Beedrill",
+      "set_code": "base1",
+      "number_plain": "17",
+      "pokemonapi_id": "base1-17",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "name": "Dragonair",
+      "set_code": "base1",
+      "number_plain": "18",
+      "pokemonapi_id": "base1-18",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "name": "Dugtrio",
+      "set_code": "base1",
+      "number_plain": "19",
+      "pokemonapi_id": "base1-19",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+      "gv_id": "GV-PK-BS-2",
+      "name": "Blastoise",
+      "set_code": "base1",
+      "number_plain": "2",
+      "pokemonapi_id": "base1-2",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2b60c7da-0db3-48a2-91a8-219d585b7544",
+      "gv_id": "GV-PK-BS-20",
+      "name": "Electabuzz",
+      "set_code": "base1",
+      "number_plain": "20",
+      "pokemonapi_id": "base1-20",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b409d7cf-7db3-4134-b29f-f2c1834c99ac",
+      "gv_id": "GV-PK-BS-21",
+      "name": "Electrode",
+      "set_code": "base1",
+      "number_plain": "21",
+      "pokemonapi_id": "base1-21",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "cc846773-e6d2-4070-ad05-fbd1c1d297ae",
+      "gv_id": "GV-PK-BS-22",
+      "name": "Pidgeotto",
+      "set_code": "base1",
+      "number_plain": "22",
+      "pokemonapi_id": "base1-22",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6c2a2528-7393-4ba2-925a-c402ac8cd6e4",
+      "gv_id": "GV-PK-BS-3",
+      "name": "Chansey",
+      "set_code": "base1",
+      "number_plain": "3",
+      "pokemonapi_id": "base1-3",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "932dd84c-b48a-48d9-b380-d22f304bedd1",
+      "gv_id": "GV-PK-BS-5",
+      "name": "Clefairy",
+      "set_code": "base1",
+      "number_plain": "5",
+      "pokemonapi_id": "base1-5",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4300206c-277b-4a0a-956e-e06020131ca0",
+      "gv_id": "GV-PK-BS-6",
+      "name": "Gyarados",
+      "set_code": "base1",
+      "number_plain": "6",
+      "pokemonapi_id": "base1-6",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "44a7a89d-e032-4620-9010-e39ee82868ff",
+      "gv_id": "GV-PK-BS-70",
+      "name": "Clefairy Doll",
+      "set_code": "base1",
+      "number_plain": "70",
+      "pokemonapi_id": "base1-70",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fffd7563-fd40-4613-87d9-221a747751a0",
+      "gv_id": "GV-PK-BS-71",
+      "name": "Computer Search",
+      "set_code": "base1",
+      "number_plain": "71",
+      "pokemonapi_id": "base1-71",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "21ed2317-b29f-4144-8160-575e32269e36",
+      "gv_id": "GV-PK-BS-72",
+      "name": "Devolution Spray",
+      "set_code": "base1",
+      "number_plain": "72",
+      "pokemonapi_id": "base1-72",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "791f18dc-8307-49ca-8776-83fdb671e1ad",
+      "gv_id": "GV-PK-BS-74",
+      "name": "Item Finder",
+      "set_code": "base1",
+      "number_plain": "74",
+      "pokemonapi_id": "base1-74",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ad396471-07b8-42d4-8cc4-d4e28fc9ffe6",
+      "gv_id": "GV-PK-BS-75",
+      "name": "Lass",
+      "set_code": "base1",
+      "number_plain": "75",
+      "pokemonapi_id": "base1-75",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f98caa3b-27ea-44a0-93ed-f4ad3f0a83cf",
+      "gv_id": "GV-PK-BS-76",
+      "name": "Pokémon Breeder",
+      "set_code": "base1",
+      "number_plain": "76",
+      "pokemonapi_id": "base1-76",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "14461f2b-6d79-4dda-b89b-ad0407c47f9d",
+      "gv_id": "GV-PK-BS-77",
+      "name": "Pokémon Trader",
+      "set_code": "base1",
+      "number_plain": "77",
+      "pokemonapi_id": "base1-77",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "13345525-4115-48ab-a341-c0ef78e917eb",
+      "gv_id": "GV-PK-BS-78",
+      "name": "Scoop Up",
+      "set_code": "base1",
+      "number_plain": "78",
+      "pokemonapi_id": "base1-78",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ae57c92d-4ed4-4c26-90a6-edb98bfb9d16",
+      "gv_id": "GV-PK-BS-79",
+      "name": "Super Energy Removal",
+      "set_code": "base1",
+      "number_plain": "79",
+      "pokemonapi_id": "base1-79",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "11e15972-9f09-4dde-91d3-98a80748d5af",
+      "gv_id": "GV-PK-BS-9",
+      "name": "Magneton",
+      "set_code": "base1",
+      "number_plain": "9",
+      "pokemonapi_id": "base1-9",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+      "gv_id": "GV-PK-JU-1",
+      "name": "Clefable",
+      "set_code": "base2",
+      "number_plain": "1",
+      "pokemonapi_id": "base2-1",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+      "gv_id": "GV-PK-JU-10",
+      "name": "Scyther",
+      "set_code": "base2",
+      "number_plain": "10",
+      "pokemonapi_id": "base2-10",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+      "gv_id": "GV-PK-JU-11",
+      "name": "Snorlax",
+      "set_code": "base2",
+      "number_plain": "11",
+      "pokemonapi_id": "base2-11",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+      "gv_id": "GV-PK-JU-12",
+      "name": "Vaporeon",
+      "set_code": "base2",
+      "number_plain": "12",
+      "pokemonapi_id": "base2-12",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+      "gv_id": "GV-PK-JU-13",
+      "name": "Venomoth",
+      "set_code": "base2",
+      "number_plain": "13",
+      "pokemonapi_id": "base2-13",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+      "gv_id": "GV-PK-JU-14",
+      "name": "Victreebel",
+      "set_code": "base2",
+      "number_plain": "14",
+      "pokemonapi_id": "base2-14",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+      "gv_id": "GV-PK-JU-15",
+      "name": "Vileplume",
+      "set_code": "base2",
+      "number_plain": "15",
+      "pokemonapi_id": "base2-15",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+      "gv_id": "GV-PK-JU-16",
+      "name": "Wigglytuff",
+      "set_code": "base2",
+      "number_plain": "16",
+      "pokemonapi_id": "base2-16",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "7bf4c9f2-4713-40df-a462-7f36164c6391",
+      "gv_id": "GV-PK-JU-17",
+      "name": "Clefable",
+      "set_code": "base2",
+      "number_plain": "17",
+      "pokemonapi_id": "base2-17",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "139df386-af8f-4e58-8f0a-23da7988c90f",
+      "gv_id": "GV-PK-JU-18",
+      "name": "Electrode",
+      "set_code": "base2",
+      "number_plain": "18",
+      "pokemonapi_id": "base2-18",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f7b186ea-c27d-4ddb-83c9-248691747105",
+      "gv_id": "GV-PK-JU-19",
+      "name": "Flareon",
+      "set_code": "base2",
+      "number_plain": "19",
+      "pokemonapi_id": "base2-19",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+      "gv_id": "GV-PK-JU-2",
+      "name": "Electrode",
+      "set_code": "base2",
+      "number_plain": "2",
+      "pokemonapi_id": "base2-2",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c6071c50-bd9a-418c-b2c6-116ff72faf49",
+      "gv_id": "GV-PK-JU-20",
+      "name": "Jolteon",
+      "set_code": "base2",
+      "number_plain": "20",
+      "pokemonapi_id": "base2-20",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2c0c2b45-edba-4f37-81e5-a0d197518a2a",
+      "gv_id": "GV-PK-JU-21",
+      "name": "Kangaskhan",
+      "set_code": "base2",
+      "number_plain": "21",
+      "pokemonapi_id": "base2-21",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1b169d02-6793-4d8b-9d77-c9cdeb26ee9e",
+      "gv_id": "GV-PK-JU-22",
+      "name": "Mr. Mime",
+      "set_code": "base2",
+      "number_plain": "22",
+      "pokemonapi_id": "base2-22",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4bffb982-60d9-477a-9ff7-9ae335dda4e2",
+      "gv_id": "GV-PK-JU-23",
+      "name": "Nidoqueen",
+      "set_code": "base2",
+      "number_plain": "23",
+      "pokemonapi_id": "base2-23",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a6bffe64-1c11-4247-b772-21c5ad0dc2a5",
+      "gv_id": "GV-PK-JU-25",
+      "name": "Pinsir",
+      "set_code": "base2",
+      "number_plain": "25",
+      "pokemonapi_id": "base2-25",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "19d64ad6-bb32-43ab-a7ca-99f480cea84f",
+      "gv_id": "GV-PK-JU-27",
+      "name": "Snorlax",
+      "set_code": "base2",
+      "number_plain": "27",
+      "pokemonapi_id": "base2-27",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bb8526cb-3ebe-4faa-b0cd-d0178660b0fc",
+      "gv_id": "GV-PK-JU-28",
+      "name": "Vaporeon",
+      "set_code": "base2",
+      "number_plain": "28",
+      "pokemonapi_id": "base2-28",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a91c528e-9e42-4519-b777-3361bd9b7a58",
+      "gv_id": "GV-PK-JU-29",
+      "name": "Venomoth",
+      "set_code": "base2",
+      "number_plain": "29",
+      "pokemonapi_id": "base2-29",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+      "gv_id": "GV-PK-JU-3",
+      "name": "Flareon",
+      "set_code": "base2",
+      "number_plain": "3",
+      "pokemonapi_id": "base2-3",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d84484b4-b616-4a30-a323-0de3aecfef9f",
+      "gv_id": "GV-PK-JU-30",
+      "name": "Victreebel",
+      "set_code": "base2",
+      "number_plain": "30",
+      "pokemonapi_id": "base2-30",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "eca69a92-d4c0-47f2-abea-5b34cf04d64f",
+      "gv_id": "GV-PK-JU-31",
+      "name": "Vileplume",
+      "set_code": "base2",
+      "number_plain": "31",
+      "pokemonapi_id": "base2-31",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "575b90b7-8f37-446e-828b-8511c87ef653",
+      "gv_id": "GV-PK-JU-32",
+      "name": "Wigglytuff",
+      "set_code": "base2",
+      "number_plain": "32",
+      "pokemonapi_id": "base2-32",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+      "gv_id": "GV-PK-JU-4",
+      "name": "Jolteon",
+      "set_code": "base2",
+      "number_plain": "4",
+      "pokemonapi_id": "base2-4",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+      "gv_id": "GV-PK-JU-5",
+      "name": "Kangaskhan",
+      "set_code": "base2",
+      "number_plain": "5",
+      "pokemonapi_id": "base2-5",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+      "gv_id": "GV-PK-JU-6",
+      "name": "Mr. Mime",
+      "set_code": "base2",
+      "number_plain": "6",
+      "pokemonapi_id": "base2-6",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+      "gv_id": "GV-PK-JU-7",
+      "name": "Nidoqueen",
+      "set_code": "base2",
+      "number_plain": "7",
+      "pokemonapi_id": "base2-7",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+      "gv_id": "GV-PK-JU-8",
+      "name": "Pidgeot",
+      "set_code": "base2",
+      "number_plain": "8",
+      "pokemonapi_id": "base2-8",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+      "gv_id": "GV-PK-JU-9",
+      "name": "Pinsir",
+      "set_code": "base2",
+      "number_plain": "9",
+      "pokemonapi_id": "base2-9",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "3967ee54-a542-430d-817a-74f7c43912a3",
+      "gv_id": "GV-PK-FO-1",
+      "name": "Aerodactyl",
+      "set_code": "base3",
+      "number_plain": "1",
+      "pokemonapi_id": "base3-1",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "df81ec76-1aff-4da6-9763-12e6f8d6835e",
+      "gv_id": "GV-PK-FO-10",
+      "name": "Lapras",
+      "set_code": "base3",
+      "number_plain": "10",
+      "pokemonapi_id": "base3-10",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "9590e865-4214-4acd-91a6-2053db380384",
+      "gv_id": "GV-PK-FO-11",
+      "name": "Magneton",
+      "set_code": "base3",
+      "number_plain": "11",
+      "pokemonapi_id": "base3-11",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8babd543-efb0-4ce9-ba61-aa9153c65583",
+      "gv_id": "GV-PK-FO-12",
+      "name": "Moltres",
+      "set_code": "base3",
+      "number_plain": "12",
+      "pokemonapi_id": "base3-12",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b8e30e49-c141-40bd-b1b3-cb104f1b50ba",
+      "gv_id": "GV-PK-FO-13",
+      "name": "Muk",
+      "set_code": "base3",
+      "number_plain": "13",
+      "pokemonapi_id": "base3-13",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ba57703f-6d0e-4747-ab83-8fe86e6f45f2",
+      "gv_id": "GV-PK-FO-14",
+      "name": "Raichu",
+      "set_code": "base3",
+      "number_plain": "14",
+      "pokemonapi_id": "base3-14",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+      "gv_id": "GV-PK-FO-15",
+      "name": "Zapdos",
+      "set_code": "base3",
+      "number_plain": "15",
+      "pokemonapi_id": "base3-15",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "369466bd-a18d-4d59-afaa-757e76d3e689",
+      "gv_id": "GV-PK-FO-16",
+      "name": "Aerodactyl",
+      "set_code": "base3",
+      "number_plain": "16",
+      "pokemonapi_id": "base3-16",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b8a90fe2-35e4-4524-a11b-d38ca96753c4",
+      "gv_id": "GV-PK-FO-17",
+      "name": "Articuno",
+      "set_code": "base3",
+      "number_plain": "17",
+      "pokemonapi_id": "base3-17",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4ce2a6e6-17fe-4d53-bcd9-1b14373cb5fc",
+      "gv_id": "GV-PK-FO-18",
+      "name": "Ditto",
+      "set_code": "base3",
+      "number_plain": "18",
+      "pokemonapi_id": "base3-18",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "83736177-023e-4303-a1d0-580b3018fdbb",
+      "gv_id": "GV-PK-FO-2",
+      "name": "Articuno",
+      "set_code": "base3",
+      "number_plain": "2",
+      "pokemonapi_id": "base3-2",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c79a13ee-006e-40b6-a40e-5e1023e496d8",
+      "gv_id": "GV-PK-FO-20",
+      "name": "Gengar",
+      "set_code": "base3",
+      "number_plain": "20",
+      "pokemonapi_id": "base3-20",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "85ac1d4f-4212-4b86-9687-c0255b6ed00a",
+      "gv_id": "GV-PK-FO-21",
+      "name": "Haunter",
+      "set_code": "base3",
+      "number_plain": "21",
+      "pokemonapi_id": "base3-21",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "881261f4-a1c4-44ed-89de-33d18f26af99",
+      "gv_id": "GV-PK-FO-22",
+      "name": "Hitmonlee",
+      "set_code": "base3",
+      "number_plain": "22",
+      "pokemonapi_id": "base3-22",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bdd853c3-e720-45ab-a64c-ca32f6412023",
+      "gv_id": "GV-PK-FO-23",
+      "name": "Hypno",
+      "set_code": "base3",
+      "number_plain": "23",
+      "pokemonapi_id": "base3-23",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ccf7cf4a-a529-4d4d-bb54-c7a35a01dd89",
+      "gv_id": "GV-PK-FO-24",
+      "name": "Kabutops",
+      "set_code": "base3",
+      "number_plain": "24",
+      "pokemonapi_id": "base3-24",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6e4ec079-a1e3-4746-a6f6-87399a4acea5",
+      "gv_id": "GV-PK-FO-25",
+      "name": "Lapras",
+      "set_code": "base3",
+      "number_plain": "25",
+      "pokemonapi_id": "base3-25",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "845e9b26-467a-4672-b1d7-0e16cc621576",
+      "gv_id": "GV-PK-FO-26",
+      "name": "Magneton",
+      "set_code": "base3",
+      "number_plain": "26",
+      "pokemonapi_id": "base3-26",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "feb86e7a-ed47-459e-8bd5-a1ce6fef8a82",
+      "gv_id": "GV-PK-FO-27",
+      "name": "Moltres",
+      "set_code": "base3",
+      "number_plain": "27",
+      "pokemonapi_id": "base3-27",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "450015f4-aebc-417a-9c8d-5c599635df61",
+      "gv_id": "GV-PK-FO-28",
+      "name": "Muk",
+      "set_code": "base3",
+      "number_plain": "28",
+      "pokemonapi_id": "base3-28",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e8452792-6cc1-4f18-9237-3d0ef52118e7",
+      "gv_id": "GV-PK-FO-29",
+      "name": "Raichu",
+      "set_code": "base3",
+      "number_plain": "29",
+      "pokemonapi_id": "base3-29",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8b974c79-d7b5-408d-892b-590997e13282",
+      "gv_id": "GV-PK-FO-3",
+      "name": "Ditto",
+      "set_code": "base3",
+      "number_plain": "3",
+      "pokemonapi_id": "base3-3",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "30c64a37-0a53-4ace-ae5e-6994aba0e1c8",
+      "gv_id": "GV-PK-FO-30",
+      "name": "Zapdos",
+      "set_code": "base3",
+      "number_plain": "30",
+      "pokemonapi_id": "base3-30",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "5a9fa0b4-f043-482e-9e27-491b17386075",
+      "gv_id": "GV-PK-FO-4",
+      "name": "Dragonite",
+      "set_code": "base3",
+      "number_plain": "4",
+      "pokemonapi_id": "base3-4",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c9e8fd1d-3ef1-4715-9299-11dda3388ff1",
+      "gv_id": "GV-PK-FO-5",
+      "name": "Gengar",
+      "set_code": "base3",
+      "number_plain": "5",
+      "pokemonapi_id": "base3-5",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "97387678-d001-4662-9930-532a9601ce84",
+      "gv_id": "GV-PK-FO-6",
+      "name": "Haunter",
+      "set_code": "base3",
+      "number_plain": "6",
+      "pokemonapi_id": "base3-6",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fbad3046-b90f-4edb-8cec-36cc320ff813",
+      "gv_id": "GV-PK-FO-7",
+      "name": "Hitmonlee",
+      "set_code": "base3",
+      "number_plain": "7",
+      "pokemonapi_id": "base3-7",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "abb2eb56-4d26-4403-ab4a-4225a7f97c5a",
+      "gv_id": "GV-PK-FO-9",
+      "name": "Kabutops",
+      "set_code": "base3",
+      "number_plain": "9",
+      "pokemonapi_id": "base3-9",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "624ae7f7-9fcb-4db5-b6d2-cdb22dcdbe2c",
+      "gv_id": "GV-PK-B2-1",
+      "name": "Alakazam",
+      "set_code": "base4",
+      "number_plain": "1",
+      "pokemonapi_id": "base4-1",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a55e666e-1203-4208-83e1-1071edebe098",
+      "gv_id": "GV-PK-B2-10",
+      "name": "Mewtwo",
+      "set_code": "base4",
+      "number_plain": "10",
+      "pokemonapi_id": "base4-10",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "83ab7eeb-8a78-468c-82d2-200e16f0ce19",
+      "gv_id": "GV-PK-B2-101",
+      "name": "Computer Search",
+      "set_code": "base4",
+      "number_plain": "101",
+      "pokemonapi_id": "base4-101",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "608e5f8a-fc62-41a0-81c9-e48954d7d7d1",
+      "gv_id": "GV-PK-B2-103",
+      "name": "Item Finder",
+      "set_code": "base4",
+      "number_plain": "103",
+      "pokemonapi_id": "base4-103",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "11f338c3-0c0d-4bdd-99dc-a62c45b6c45a",
+      "gv_id": "GV-PK-B2-104",
+      "name": "Lass",
+      "set_code": "base4",
+      "number_plain": "104",
+      "pokemonapi_id": "base4-104",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+      "gv_id": "GV-PK-B2-105",
+      "name": "Pokémon Breeder",
+      "set_code": "base4",
+      "number_plain": "105",
+      "pokemonapi_id": "base4-105",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+      "gv_id": "GV-PK-B2-106",
+      "name": "Pokémon Trader",
+      "set_code": "base4",
+      "number_plain": "106",
+      "pokemonapi_id": "base4-106",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bbfdae91-e85b-4621-8f8a-b6f41e047571",
+      "gv_id": "GV-PK-B2-107",
+      "name": "Scoop Up",
+      "set_code": "base4",
+      "number_plain": "107",
+      "pokemonapi_id": "base4-107",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b2363089-8ef1-41f7-a8cb-e2179f3cb286",
+      "gv_id": "GV-PK-B2-11",
+      "name": "Nidoking",
+      "set_code": "base4",
+      "number_plain": "11",
+      "pokemonapi_id": "base4-11",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e867da6e-4435-4319-9243-ed9bfcf07853",
+      "gv_id": "GV-PK-B2-12",
+      "name": "Nidoqueen",
+      "set_code": "base4",
+      "number_plain": "12",
+      "pokemonapi_id": "base4-12",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "550d4644-5cca-4801-8520-cf16c6a4820c",
+      "gv_id": "GV-PK-B2-13",
+      "name": "Ninetales",
+      "set_code": "base4",
+      "number_plain": "13",
+      "pokemonapi_id": "base4-13",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2846df5c-cc18-4048-9950-8909696c91bb",
+      "gv_id": "GV-PK-B2-14",
+      "name": "Pidgeot",
+      "set_code": "base4",
+      "number_plain": "14",
+      "pokemonapi_id": "base4-14",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e5b06693-a143-4abe-8843-ea1328e54fdf",
+      "gv_id": "GV-PK-B2-15",
+      "name": "Poliwrath",
+      "set_code": "base4",
+      "number_plain": "15",
+      "pokemonapi_id": "base4-15",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ab49deb8-7355-4fba-82eb-e63efcbfaec1",
+      "gv_id": "GV-PK-B2-17",
+      "name": "Scyther",
+      "set_code": "base4",
+      "number_plain": "17",
+      "pokemonapi_id": "base4-17",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "411aeb7c-10cd-48c3-935b-d199c670ed5b",
+      "gv_id": "GV-PK-B2-18",
+      "name": "Venusaur",
+      "set_code": "base4",
+      "number_plain": "18",
+      "pokemonapi_id": "base4-18",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "67833e22-37e3-4525-9b9c-cd403252d9e9",
+      "gv_id": "GV-PK-B2-19",
+      "name": "Wigglytuff",
+      "set_code": "base4",
+      "number_plain": "19",
+      "pokemonapi_id": "base4-19",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "16196783-6617-431c-a246-773efd71b7fa",
+      "gv_id": "GV-PK-B2-2",
+      "name": "Blastoise",
+      "set_code": "base4",
+      "number_plain": "2",
+      "pokemonapi_id": "base4-2",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "dae698a9-dcd1-451b-9dc5-4b6b2af7470a",
+      "gv_id": "GV-PK-B2-20",
+      "name": "Zapdos",
+      "set_code": "base4",
+      "number_plain": "20",
+      "pokemonapi_id": "base4-20",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ef6e308a-9f54-4b03-b420-053d2d0e8112",
+      "gv_id": "GV-PK-B2-21",
+      "name": "Beedrill",
+      "set_code": "base4",
+      "number_plain": "21",
+      "pokemonapi_id": "base4-21",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "61925644-0c1d-4dd0-8728-0389d91fcd29",
+      "gv_id": "GV-PK-B2-22",
+      "name": "Dragonair",
+      "set_code": "base4",
+      "number_plain": "22",
+      "pokemonapi_id": "base4-22",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "919a69ac-7d25-47f2-aa39-5a66908a26d0",
+      "gv_id": "GV-PK-B2-23",
+      "name": "Dugtrio",
+      "set_code": "base4",
+      "number_plain": "23",
+      "pokemonapi_id": "base4-23",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b88080f2-2f14-49ac-9118-43af326c5493",
+      "gv_id": "GV-PK-B2-24",
+      "name": "Electabuzz",
+      "set_code": "base4",
+      "number_plain": "24",
+      "pokemonapi_id": "base4-24",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e0e4e011-c2fd-4839-908e-31d1258efb2a",
+      "gv_id": "GV-PK-B2-25",
+      "name": "Electrode",
+      "set_code": "base4",
+      "number_plain": "25",
+      "pokemonapi_id": "base4-25",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "12c53ed7-1b9c-4c49-99da-7193ad365b33",
+      "gv_id": "GV-PK-B2-26",
+      "name": "Kangaskhan",
+      "set_code": "base4",
+      "number_plain": "26",
+      "pokemonapi_id": "base4-26",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4ae378cb-bdcb-4fda-9600-51d2109ab1b3",
+      "gv_id": "GV-PK-B2-27",
+      "name": "Mr. Mime",
+      "set_code": "base4",
+      "number_plain": "27",
+      "pokemonapi_id": "base4-27",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fddb6c6c-f2f5-45b7-989f-4db4024eaf07",
+      "gv_id": "GV-PK-B2-28",
+      "name": "Pidgeotto",
+      "set_code": "base4",
+      "number_plain": "28",
+      "pokemonapi_id": "base4-28",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d363e43a-4819-4ba1-b439-ec575d508703",
+      "gv_id": "GV-PK-B2-29",
+      "name": "Pinsir",
+      "set_code": "base4",
+      "number_plain": "29",
+      "pokemonapi_id": "base4-29",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "af6e6a04-e9f5-4ede-9692-cb1e34c3c4a9",
+      "gv_id": "GV-PK-B2-3",
+      "name": "Chansey",
+      "set_code": "base4",
+      "number_plain": "3",
+      "pokemonapi_id": "base4-3",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "698f7390-8359-4e42-8324-380780784c5e",
+      "gv_id": "GV-PK-B2-30",
+      "name": "Snorlax",
+      "set_code": "base4",
+      "number_plain": "30",
+      "pokemonapi_id": "base4-30",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e2bfe08b-2be1-4c03-bdb8-87cedaa797c6",
+      "gv_id": "GV-PK-B2-31",
+      "name": "Venomoth",
+      "set_code": "base4",
+      "number_plain": "31",
+      "pokemonapi_id": "base4-31",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ebf8e1aa-321d-4079-b6c1-ce5d64d30b10",
+      "gv_id": "GV-PK-B2-32",
+      "name": "Victreebel",
+      "set_code": "base4",
+      "number_plain": "32",
+      "pokemonapi_id": "base4-32",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d50a42a9-7303-47b5-bc81-27b6025e60de",
+      "gv_id": "GV-PK-B2-4",
+      "name": "Charizard",
+      "set_code": "base4",
+      "number_plain": "4",
+      "pokemonapi_id": "base4-4",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4dd4c301-fc7f-4204-89f8-e858f3255a62",
+      "gv_id": "GV-PK-B2-6",
+      "name": "Clefairy",
+      "set_code": "base4",
+      "number_plain": "6",
+      "pokemonapi_id": "base4-6",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "5740c2f7-bff8-43b3-ac62-ba6c338b1ade",
+      "gv_id": "GV-PK-B2-7",
+      "name": "Gyarados",
+      "set_code": "base4",
+      "number_plain": "7",
+      "pokemonapi_id": "base4-7",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e94ca9f9-dd8c-481c-ae83-8c7c44132de7",
+      "gv_id": "GV-PK-B2-8",
+      "name": "Hitmonchan",
+      "set_code": "base4",
+      "number_plain": "8",
+      "pokemonapi_id": "base4-8",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b298356b-7515-4e2a-a4ee-e2ac818a9f33",
+      "gv_id": "GV-PK-B2-9",
+      "name": "Magneton",
+      "set_code": "base4",
+      "number_plain": "9",
+      "pokemonapi_id": "base4-9",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "badfe551-ac5e-4237-85e1-f459e24d93d2",
+      "gv_id": "GV-PK-TR-1",
+      "name": "Dark Alakazam",
+      "set_code": "base5",
+      "number_plain": "1",
+      "pokemonapi_id": "base5-1",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6a857166-d0d7-4670-be7d-a5d826eda47f",
+      "gv_id": "GV-PK-TR-10",
+      "name": "Dark Machamp",
+      "set_code": "base5",
+      "number_plain": "10",
+      "pokemonapi_id": "base5-10",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e85ae6a8-3d24-43c8-866a-d486425ad250",
+      "gv_id": "GV-PK-TR-11",
+      "name": "Dark Magneton",
+      "set_code": "base5",
+      "number_plain": "11",
+      "pokemonapi_id": "base5-11",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fdaca8f4-9bb9-404b-a787-150cdd2ea210",
+      "gv_id": "GV-PK-TR-12",
+      "name": "Dark Slowbro",
+      "set_code": "base5",
+      "number_plain": "12",
+      "pokemonapi_id": "base5-12",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "502e1ca2-715c-42e5-b84a-49cd960a0fe0",
+      "gv_id": "GV-PK-TR-13",
+      "name": "Dark Vileplume",
+      "set_code": "base5",
+      "number_plain": "13",
+      "pokemonapi_id": "base5-13",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "71e3bea8-1681-4cd3-a9b2-e75de533b110",
+      "gv_id": "GV-PK-TR-14",
+      "name": "Dark Weezing",
+      "set_code": "base5",
+      "number_plain": "14",
+      "pokemonapi_id": "base5-14",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d4698712-37ef-416a-8bb1-b274d4b43ec3",
+      "gv_id": "GV-PK-TR-16",
+      "name": "Rocket's Sneak Attack",
+      "set_code": "base5",
+      "number_plain": "16",
+      "pokemonapi_id": "base5-16",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2491a0e3-f4f5-4bc8-98b0-8cc093637ea4",
+      "gv_id": "GV-PK-TR-17",
+      "name": "Rainbow Energy",
+      "set_code": "base5",
+      "number_plain": "17",
+      "pokemonapi_id": "base5-17",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4cc11a05-5304-4b8c-badd-ccf899270bb8",
+      "gv_id": "GV-PK-TR-18",
+      "name": "Dark Alakazam",
+      "set_code": "base5",
+      "number_plain": "18",
+      "pokemonapi_id": "base5-18",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+      "gv_id": "GV-PK-TR-19",
+      "name": "Dark Arbok",
+      "set_code": "base5",
+      "number_plain": "19",
+      "pokemonapi_id": "base5-19",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "5aea44a0-5b71-4afc-920f-87b5c5ade3ac",
+      "gv_id": "GV-PK-TR-2",
+      "name": "Dark Arbok",
+      "set_code": "base5",
+      "number_plain": "2",
+      "pokemonapi_id": "base5-2",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "70254747-c4e3-495a-b401-9a5867c41e26",
+      "gv_id": "GV-PK-TR-21",
+      "name": "Dark Charizard",
+      "set_code": "base5",
+      "number_plain": "21",
+      "pokemonapi_id": "base5-21",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "32397d6c-b234-4509-ab2f-fc4b5999c039",
+      "gv_id": "GV-PK-TR-22",
+      "name": "Dark Dragonite",
+      "set_code": "base5",
+      "number_plain": "22",
+      "pokemonapi_id": "base5-22",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "10abe4e7-a8a8-4e63-8391-feff1912724f",
+      "gv_id": "GV-PK-TR-23",
+      "name": "Dark Dugtrio",
+      "set_code": "base5",
+      "number_plain": "23",
+      "pokemonapi_id": "base5-23",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d43239f6-0653-4a5d-ac7f-ef87402d2f2d",
+      "gv_id": "GV-PK-TR-24",
+      "name": "Dark Golbat",
+      "set_code": "base5",
+      "number_plain": "24",
+      "pokemonapi_id": "base5-24",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a6f81836-0ede-4c57-b24f-198cda530443",
+      "gv_id": "GV-PK-TR-25",
+      "name": "Dark Gyarados",
+      "set_code": "base5",
+      "number_plain": "25",
+      "pokemonapi_id": "base5-25",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8d6c5403-050d-49f4-82cd-44fc646ba1d6",
+      "gv_id": "GV-PK-TR-27",
+      "name": "Dark Machamp",
+      "set_code": "base5",
+      "number_plain": "27",
+      "pokemonapi_id": "base5-27",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "8b2e247d-6c3d-4120-8a89-553f294fca7f",
+      "gv_id": "GV-PK-TR-28",
+      "name": "Dark Magneton",
+      "set_code": "base5",
+      "number_plain": "28",
+      "pokemonapi_id": "base5-28",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "56268ba1-37e3-4ca2-8b79-172d8328c7b8",
+      "gv_id": "GV-PK-TR-29",
+      "name": "Dark Slowbro",
+      "set_code": "base5",
+      "number_plain": "29",
+      "pokemonapi_id": "base5-29",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "34719ab4-bfff-461f-84c2-3c81da36bc71",
+      "gv_id": "GV-PK-TR-3",
+      "name": "Dark Blastoise",
+      "set_code": "base5",
+      "number_plain": "3",
+      "pokemonapi_id": "base5-3",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f5593a31-dd0c-4805-947e-83658770ea17",
+      "gv_id": "GV-PK-TR-30",
+      "name": "Dark Vileplume",
+      "set_code": "base5",
+      "number_plain": "30",
+      "pokemonapi_id": "base5-30",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "9e761e1f-7c01-4325-8e0f-456d34ceaede",
+      "gv_id": "GV-PK-TR-31",
+      "name": "Dark Weezing",
+      "set_code": "base5",
+      "number_plain": "31",
+      "pokemonapi_id": "base5-31",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4579a179-6585-4bea-9bfd-0f9f8bfb4f04",
+      "gv_id": "GV-PK-TR-4",
+      "name": "Dark Charizard",
+      "set_code": "base5",
+      "number_plain": "4",
+      "pokemonapi_id": "base5-4",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "7078e85f-2279-4d5c-8faf-07b95482d804",
+      "gv_id": "GV-PK-TR-5",
+      "name": "Dark Dragonite",
+      "set_code": "base5",
+      "number_plain": "5",
+      "pokemonapi_id": "base5-5",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2ef7ca1f-b65a-4425-9dab-6bc91215b7f2",
+      "gv_id": "GV-PK-TR-6",
+      "name": "Dark Dugtrio",
+      "set_code": "base5",
+      "number_plain": "6",
+      "pokemonapi_id": "base5-6",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a6ec6786-8beb-4bad-a084-9f5cb987fd5a",
+      "gv_id": "GV-PK-TR-7",
+      "name": "Dark Golbat",
+      "set_code": "base5",
+      "number_plain": "7",
+      "pokemonapi_id": "base5-7",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b4c80f17-1114-4567-8b54-ca9879c094bb",
+      "gv_id": "GV-PK-TR-71",
+      "name": "Here Comes Team Rocket!",
+      "set_code": "base5",
+      "number_plain": "71",
+      "pokemonapi_id": "base5-71",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c49af63b-04e5-42af-9e66-67075845424d",
+      "gv_id": "GV-PK-TR-72",
+      "name": "Rocket's Sneak Attack",
+      "set_code": "base5",
+      "number_plain": "72",
+      "pokemonapi_id": "base5-72",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+      "gv_id": "GV-PK-TR-8",
+      "name": "Dark Gyarados",
+      "set_code": "base5",
+      "number_plain": "8",
+      "pokemonapi_id": "base5-8",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "81c9b829-9b3e-4f82-a7bb-cce6a1a63620",
+      "gv_id": "GV-PK-TR-80",
+      "name": "Rainbow Energy",
+      "set_code": "base5",
+      "number_plain": "80",
+      "pokemonapi_id": "base5-80",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "513c0ad6-bc7f-47b8-8ffb-2a1c7eeb7feb",
+      "gv_id": "GV-PK-TR-9",
+      "name": "Dark Hypno",
+      "set_code": "base5",
+      "number_plain": "9",
+      "pokemonapi_id": "base5-9",
+      "status": "pokemonapi_payload_missing",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fd852708-bb5d-4a35-8c1a-10756ed4747d",
+      "gv_id": "GV-PK-LC-1",
+      "name": "Alakazam",
+      "set_code": "base6",
+      "number_plain": "1",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "49d498d4-c40c-4f57-b41c-2c2e87c13ce1",
+      "gv_id": "GV-PK-LC-10",
+      "name": "Flareon",
+      "set_code": "base6",
+      "number_plain": "10",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "edf32d07-d0fe-4bad-b703-808d3d1dea26",
+      "gv_id": "GV-PK-LC-102",
+      "name": "Pokémon Breeder",
+      "set_code": "base6",
+      "number_plain": "102",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f40cdad0-2bfc-432a-9a95-f7a5262a9ccf",
+      "gv_id": "GV-PK-LC-103",
+      "name": "Pokémon Trader",
+      "set_code": "base6",
+      "number_plain": "103",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "682775c6-a712-4c8a-9853-b4bcd7a650b4",
+      "gv_id": "GV-PK-LC-104",
+      "name": "Scoop Up",
+      "set_code": "base6",
+      "number_plain": "104",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "be7b6873-636a-4d95-8507-7edca2659aea",
+      "gv_id": "GV-PK-LC-11",
+      "name": "Gengar",
+      "set_code": "base6",
+      "number_plain": "11",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1d5b5cce-1150-4a3f-8b24-eaa9518037d2",
+      "gv_id": "GV-PK-LC-13",
+      "name": "Hitmonlee",
+      "set_code": "base6",
+      "number_plain": "13",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b948b309-e60a-4adf-88ea-f83ef43e92ea",
+      "gv_id": "GV-PK-LC-14",
+      "name": "Jolteon",
+      "set_code": "base6",
+      "number_plain": "14",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f158d8bc-69bf-4f26-ac34-c14c0acc3ad7",
+      "gv_id": "GV-PK-LC-15",
+      "name": "Machamp",
+      "set_code": "base6",
+      "number_plain": "15",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f5a89565-79d5-44b5-befb-779556e3a4aa",
+      "gv_id": "GV-PK-LC-16",
+      "name": "Muk",
+      "set_code": "base6",
+      "number_plain": "16",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+      "gv_id": "GV-PK-LC-18",
+      "name": "Venusaur",
+      "set_code": "base6",
+      "number_plain": "18",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4f5169b3-25cc-4ba0-a191-ab601bf8b1c8",
+      "gv_id": "GV-PK-LC-19",
+      "name": "Zapdos",
+      "set_code": "base6",
+      "number_plain": "19",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a71d1607-d3f4-4d72-b135-af5c5fb5f2d3",
+      "gv_id": "GV-PK-LC-20",
+      "name": "Beedrill",
+      "set_code": "base6",
+      "number_plain": "20",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f508366b-c319-42d8-b8e4-992578689dd8",
+      "gv_id": "GV-PK-LC-21",
+      "name": "Butterfree",
+      "set_code": "base6",
+      "number_plain": "21",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "66cf8395-e31a-4d88-a0c2-68c65d146c3a",
+      "gv_id": "GV-PK-LC-22",
+      "name": "Electrode",
+      "set_code": "base6",
+      "number_plain": "22",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c3c44f38-1f85-4702-a1fa-89a83d1b57ca",
+      "gv_id": "GV-PK-LC-23",
+      "name": "Exeggutor",
+      "set_code": "base6",
+      "number_plain": "23",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "76961ad5-d424-4780-b584-c94c2be33431",
+      "gv_id": "GV-PK-LC-24",
+      "name": "Golem",
+      "set_code": "base6",
+      "number_plain": "24",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+      "gv_id": "GV-PK-LC-25",
+      "name": "Hypno",
+      "set_code": "base6",
+      "number_plain": "25",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "25c55ab3-113e-4ce7-838c-472a7c8a5e7c",
+      "gv_id": "GV-PK-LC-26",
+      "name": "Jynx",
+      "set_code": "base6",
+      "number_plain": "26",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "401c82b6-dc66-45c1-95bf-c90e04eae06e",
+      "gv_id": "GV-PK-LC-27",
+      "name": "Kabutops",
+      "set_code": "base6",
+      "number_plain": "27",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a04d60de-499b-40eb-a19d-6de531260a70",
+      "gv_id": "GV-PK-LC-28",
+      "name": "Magneton",
+      "set_code": "base6",
+      "number_plain": "28",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1af45394-3432-4bfe-b2dd-3ba8cfccabd3",
+      "gv_id": "GV-PK-LC-29",
+      "name": "Mewtwo",
+      "set_code": "base6",
+      "number_plain": "29",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+      "gv_id": "GV-PK-LC-3",
+      "name": "Charizard",
+      "set_code": "base6",
+      "number_plain": "3",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c374af68-e1af-4007-aff6-d091f2ebc5ef",
+      "gv_id": "GV-PK-LC-30",
+      "name": "Moltres",
+      "set_code": "base6",
+      "number_plain": "30",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "3597c725-a56d-4368-a192-f95bc440b9cd",
+      "gv_id": "GV-PK-LC-31",
+      "name": "Nidoking",
+      "set_code": "base6",
+      "number_plain": "31",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "44cb8bbd-6470-43bc-b7bf-0e485e2fc127",
+      "gv_id": "GV-PK-LC-32",
+      "name": "Nidoqueen",
+      "set_code": "base6",
+      "number_plain": "32",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b25317ea-137a-4c49-a32d-c05a4cc2d0aa",
+      "gv_id": "GV-PK-LC-33",
+      "name": "Pidgeot",
+      "set_code": "base6",
+      "number_plain": "33",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e2f9b364-e3bc-42cb-a9a1-98807542d078",
+      "gv_id": "GV-PK-LC-34",
+      "name": "Pidgeotto",
+      "set_code": "base6",
+      "number_plain": "34",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "84dd4ec9-5359-4675-8cda-2f23cca90345",
+      "gv_id": "GV-PK-LC-35",
+      "name": "Rhydon",
+      "set_code": "base6",
+      "number_plain": "35",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f443a31c-1740-4dde-9319-a779dd857646",
+      "gv_id": "GV-PK-LC-4",
+      "name": "Dark Blastoise",
+      "set_code": "base6",
+      "number_plain": "4",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bc9e4ac9-227c-4a4c-99d2-1ad83f8497e3",
+      "gv_id": "GV-PK-LC-6",
+      "name": "Dark Persian",
+      "set_code": "base6",
+      "number_plain": "6",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "554c3973-f5c2-41d4-9b0a-90779ca68ec8",
+      "gv_id": "GV-PK-LC-7",
+      "name": "Dark Raichu",
+      "set_code": "base6",
+      "number_plain": "7",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "fbf70f66-ef68-4b4c-95a4-fafe2da79520",
+      "gv_id": "GV-PK-LC-8",
+      "name": "Dark Slowbro",
+      "set_code": "base6",
+      "number_plain": "8",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "266c30a5-8630-4a0a-8407-db785ca1c848",
+      "gv_id": "GV-PK-LC-9",
+      "name": "Dark Vaporeon",
+      "set_code": "base6",
+      "number_plain": "9",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "5837a0ba-2690-457e-9c79-0576a59b7395",
+      "gv_id": "GV-PK-BLW-10",
+      "name": "Lilligant",
+      "set_code": "bw1",
+      "number_plain": "10",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "9995b831-25aa-4eec-a3c3-d48a5eca2bba",
+      "gv_id": "GV-PK-BLW-113",
+      "name": "Reshiram",
+      "set_code": "bw1",
+      "number_plain": "113",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "16fbd2b0-488c-47e3-99a2-b8499cd3fb5b",
+      "gv_id": "GV-PK-BLW-114",
+      "name": "Zekrom",
+      "set_code": "bw1",
+      "number_plain": "114",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "265ae727-cda7-4245-9f18-15d832df28fd",
+      "gv_id": "GV-PK-BLW-12",
+      "name": "Maractus",
+      "set_code": "bw1",
+      "number_plain": "12",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "33da0af1-33ba-4e22-ad7f-8c4263207a5d",
+      "gv_id": "GV-PK-BLW-14",
+      "name": "Sawsbuck",
+      "set_code": "bw1",
+      "number_plain": "14",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ca13aea4-f970-4f02-bdb9-3ac1faeef613",
+      "gv_id": "GV-PK-BLW-19",
+      "name": "Emboar",
+      "set_code": "bw1",
+      "number_plain": "19",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+      "gv_id": "GV-PK-BLW-25",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "number_plain": "25",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+      "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "number_plain": "25",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+      "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "number_plain": "25",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "21550df4-17aa-4819-94bc-2188491af76b",
+      "gv_id": "GV-PK-BLW-26",
+      "name": "Reshiram",
+      "set_code": "bw1",
+      "number_plain": "26",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "59acb9c9-179e-45ff-bc19-d2f1632dc24f",
+      "gv_id": "GV-PK-BLW-31",
+      "name": "Samurott",
+      "set_code": "bw1",
+      "number_plain": "31",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "dda309b4-6dbf-4054-a91f-f61267249950",
+      "gv_id": "GV-PK-BLW-32",
+      "name": "Samurott",
+      "set_code": "bw1",
+      "number_plain": "32",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2d20428b-9ea8-418e-89f6-b902f8d0cf83",
+      "gv_id": "GV-PK-BLW-37",
+      "name": "Swanna",
+      "set_code": "bw1",
+      "number_plain": "37",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4a3e9009-6b16-43ec-a641-dd9ebc6c8729",
+      "gv_id": "GV-PK-BLW-39",
+      "name": "Alomomola",
+      "set_code": "bw1",
+      "number_plain": "39",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "85cf4f80-e9c7-41e1-a2b1-2e029fde3eae",
+      "gv_id": "GV-PK-BLW-43",
+      "name": "Zebstrika",
+      "set_code": "bw1",
+      "number_plain": "43",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "163190d0-63fd-4942-875d-5b7eaa9e3fc4",
+      "gv_id": "GV-PK-BLW-46",
+      "name": "Galvantula",
+      "set_code": "bw1",
+      "number_plain": "46",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "520fdae6-723e-4402-b060-19d44ba5248c",
+      "gv_id": "GV-PK-BLW-47",
+      "name": "Zekrom",
+      "set_code": "bw1",
+      "number_plain": "47",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b59ae30d-3cc0-472d-9287-91e659b9a1ec",
+      "gv_id": "GV-PK-BLW-49",
+      "name": "Musharna",
+      "set_code": "bw1",
+      "number_plain": "49",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ec407506-c7dc-4fbd-8052-4848e2248bd7",
+      "gv_id": "GV-PK-BLW-5",
+      "name": "Serperior",
+      "set_code": "bw1",
+      "number_plain": "5",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+      "gv_id": "GV-PK-BLW-54",
+      "name": "Scolipede",
+      "set_code": "bw1",
+      "number_plain": "54",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f11ba081-37cb-49be-9fcb-43f5f9fb8c92",
+      "gv_id": "GV-PK-BLW-57",
+      "name": "Reuniclus",
+      "set_code": "bw1",
+      "number_plain": "57",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bf52e4d2-9d2d-4d72-a1dd-59dc1e143b23",
+      "gv_id": "GV-PK-BLW-6",
+      "name": "Serperior",
+      "set_code": "bw1",
+      "number_plain": "6",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "7833b08b-722f-4ae9-89fa-030f650a6612",
+      "gv_id": "GV-PK-BLW-61",
+      "name": "Throh",
+      "set_code": "bw1",
+      "number_plain": "61",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4f021610-c409-4ec8-b818-5cd89513da66",
+      "gv_id": "GV-PK-BLW-65",
+      "name": "Krookodile",
+      "set_code": "bw1",
+      "number_plain": "65",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d2340840-fa22-4846-b0aa-83fbdcfb0859",
+      "gv_id": "GV-PK-BLW-67",
+      "name": "Liepard",
+      "set_code": "bw1",
+      "number_plain": "67",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "bd879413-47e2-487d-b03c-9a6a89b9e6dc",
+      "gv_id": "GV-PK-BLW-69",
+      "name": "Scrafty",
+      "set_code": "bw1",
+      "number_plain": "69",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ff04e723-81e8-457f-8519-bf80bfeaa363",
+      "gv_id": "GV-PK-BLW-73",
+      "name": "Mandibuzz",
+      "set_code": "bw1",
+      "number_plain": "73",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "4ead7f1a-a3eb-4106-8836-b0b05dd878e8",
+      "gv_id": "GV-PK-BLW-76",
+      "name": "Klinklang",
+      "set_code": "bw1",
+      "number_plain": "76",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "cfc868a6-6066-4e72-850e-0fc07334fc70",
+      "gv_id": "GV-PK-BLW-83",
+      "name": "Stoutland",
+      "set_code": "bw1",
+      "number_plain": "83",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "aa019212-b8a3-41e2-af00-471c668f73e3",
+      "gv_id": "GV-PK-BLW-86",
+      "name": "Unfezant",
+      "set_code": "bw1",
+      "number_plain": "86",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "a1ee7bd3-40f8-4cef-b518-5e850322685c",
+      "gv_id": "GV-PK-BLW-89",
+      "name": "Cinccino",
+      "set_code": "bw1",
+      "number_plain": "89",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2a933e2f-8599-447d-8648-4305a19d00fe",
+      "gv_id": "GV-PK-BLW-91",
+      "name": "Bouffalant",
+      "set_code": "bw1",
+      "number_plain": "91",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "c7c6ec08-eebb-499b-866d-cf1ff9654da1",
+      "gv_id": "GV-PK-PLB-10",
+      "name": "Genesect",
+      "set_code": "bw10",
+      "number_plain": "10",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "9fb78b53-3e6b-4b30-b41f-f4cce11fc8da",
+      "gv_id": "GV-PK-PLB-104",
+      "name": "Dusknoir",
+      "set_code": "bw10",
+      "number_plain": "104",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b11e7055-2014-4eb9-8131-ca1f6da24729",
+      "gv_id": "GV-PK-PLB-105",
+      "name": "Rare Candy",
+      "set_code": "bw10",
+      "number_plain": "105",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2a41842d-b8b6-439c-9a6d-11355346990e",
+      "gv_id": "GV-PK-PLB-13",
+      "name": "Volcarona",
+      "set_code": "bw10",
+      "number_plain": "13",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "33fa423d-19cc-46a4-a3ff-09bac0c836ee",
+      "gv_id": "GV-PK-PLB-16",
+      "name": "Blastoise",
+      "set_code": "bw10",
+      "number_plain": "16",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ab129e56-4c2d-4c72-87d1-236c1de6a4ac",
+      "gv_id": "GV-PK-PLB-2",
+      "name": "Masquerain",
+      "set_code": "bw10",
+      "number_plain": "2",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "142f57d8-c100-4cf4-b1e0-53c3f6c4580d",
+      "gv_id": "GV-PK-PLB-20",
+      "name": "Suicune",
+      "set_code": "bw10",
+      "number_plain": "20",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1deae851-07e3-47d5-ad3a-5e87782d2639",
+      "gv_id": "GV-PK-PLB-23",
+      "name": "Froslass",
+      "set_code": "bw10",
+      "number_plain": "23",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "882a3e5c-89c7-4fa7-ad56-9e7b0ba66c80",
+      "gv_id": "GV-PK-PLB-28",
+      "name": "Carracosta",
+      "set_code": "bw10",
+      "number_plain": "28",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "171389e7-dc32-4a58-b9d5-4105ba1dfb45",
+      "gv_id": "GV-PK-PLB-30",
+      "name": "Kyurem-EX",
+      "set_code": "bw10",
+      "number_plain": "30",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b3ada5c7-04d7-4a82-8e0a-0723960c06fe",
+      "gv_id": "GV-PK-PLB-33",
+      "name": "Eelektross",
+      "set_code": "bw10",
+      "number_plain": "33",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "78c1d2b5-fa4b-4bae-a19a-1b0e67e82fcc",
+      "gv_id": "GV-PK-PLB-35",
+      "name": "Drifblim",
+      "set_code": "bw10",
+      "number_plain": "35",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6e286367-148a-4dc9-ad15-b1288fb3292a",
+      "gv_id": "GV-PK-PLB-36",
+      "name": "Uxie",
+      "set_code": "bw10",
+      "number_plain": "36",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "794ef394-833d-4040-8319-e077fa41e213",
+      "gv_id": "GV-PK-PLB-37",
+      "name": "Mesprit",
+      "set_code": "bw10",
+      "number_plain": "37",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "ac7bd9a6-a112-4c14-8c07-523c9769d8c5",
+      "gv_id": "GV-PK-PLB-38",
+      "name": "Azelf",
+      "set_code": "bw10",
+      "number_plain": "38",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "13a94883-c595-495d-aca4-c49b50bb9a58",
+      "gv_id": "GV-PK-PLB-4",
+      "name": "Cradily",
+      "set_code": "bw10",
+      "number_plain": "4",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "3e63d2b8-81b3-4a95-88c7-116e55e71486",
+      "gv_id": "GV-PK-PLB-44",
+      "name": "Reuniclus",
+      "set_code": "bw10",
+      "number_plain": "44",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "b1d8fc40-d62c-4f4e-a270-b83679257107",
+      "gv_id": "GV-PK-PLB-46",
+      "name": "Golurk",
+      "set_code": "bw10",
+      "number_plain": "46",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "7bcff2e5-19f4-4e2d-b29e-a2ba362aec75",
+      "gv_id": "GV-PK-PLB-49",
+      "name": "Machamp",
+      "set_code": "bw10",
+      "number_plain": "49",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "f3b2cdcb-5047-42b0-bd42-11065a0e0198",
+      "gv_id": "GV-PK-PLB-50",
+      "name": "Machamp",
+      "set_code": "bw10",
+      "number_plain": "50",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "16a73d3f-866d-48ce-ad96-083b6c404fe8",
+      "gv_id": "GV-PK-PLB-54",
+      "name": "Archeops",
+      "set_code": "bw10",
+      "number_plain": "54",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "25f02c54-c53b-469a-abec-2b8561fcfadd",
+      "gv_id": "GV-PK-PLB-56",
+      "name": "Houndoom",
+      "set_code": "bw10",
+      "number_plain": "56",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "9d87801e-493d-4439-a3d2-73eb03ab1ee1",
+      "gv_id": "GV-PK-PLB-59",
+      "name": "Aggron",
+      "set_code": "bw10",
+      "number_plain": "59",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "e39e3687-1de8-467d-acc3-b3c8d394cb87",
+      "gv_id": "GV-PK-PLB-60",
+      "name": "Jirachi-EX",
+      "set_code": "bw10",
+      "number_plain": "60",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1cf302ce-d4ba-43d8-8c4e-67691e9c3583",
+      "gv_id": "GV-PK-PLB-61",
+      "name": "Escavalier",
+      "set_code": "bw10",
+      "number_plain": "61",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "84d18da8-c522-4d90-a2c5-b294cdb01353",
+      "gv_id": "GV-PK-PLB-64",
+      "name": "Salamence",
+      "set_code": "bw10",
+      "number_plain": "64",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "d21b2705-53f4-4b53-a4a9-e955b0c532da",
+      "gv_id": "GV-PK-PLB-69",
+      "name": "Haxorus",
+      "set_code": "bw10",
+      "number_plain": "69",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "955b79f8-b3b1-4ff0-aa5d-3d3789a9de9b",
+      "gv_id": "GV-PK-PLB-74",
+      "name": "Porygon-Z",
+      "set_code": "bw10",
+      "number_plain": "74",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "6d443d20-dce5-4bf0-8c05-632331723d42",
+      "gv_id": "GV-PK-PLB-9",
+      "name": "Virizion-EX",
+      "set_code": "bw10",
+      "number_plain": "9",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "884cf51a-6a00-43df-ab72-cd4b78f1e597",
+      "gv_id": "GV-PK-PLB-92",
+      "name": "G Booster",
+      "set_code": "bw10",
+      "number_plain": "92",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "1ebf70ab-6fff-4390-b2d9-0af802509a65",
+      "gv_id": "GV-PK-PLB-93",
+      "name": "G Scope",
+      "set_code": "bw10",
+      "number_plain": "93",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    },
+    {
+      "card_print_id": "2577c428-3028-44c7-b688-596a3b83c14f",
+      "gv_id": "GV-PK-PLB-94",
+      "name": "Master Ball",
+      "set_code": "bw10",
+      "number_plain": "94",
+      "pokemonapi_id": null,
+      "status": "missing_pokemonapi_external_id",
+      "candidate_count": 0,
+      "provider_updated_at": {
+        "tcgplayer": null,
+        "cardmarket": null
+      }
+    }
+  ],
+  "candidate_evidence": []
+}

@@ -1,0 +1,31 @@
+{
+  "run_id": "MEE-CORE-LIFECYCLE-REMAINING-DRAIN-V1",
+  "generated_at": "2026-06-28T20:01:18.941Z",
+  "started_at": "2026-06-28T20:00:03.508Z",
+  "mode": "remaining_lifecycle_drain_run_only",
+  "package_fingerprint_sha256": "249d0b22f124937c923bc89786d42b04a7dfbab7da91b049da5fdf95657cd629",
+  "batch_size_limit": 10000,
+  "wait_between_batches_ms": 60000,
+  "stopped_reason": "no_eligible_source_rows_remaining",
+  "batch_count": 0,
+  "total_inserted_observations": 0,
+  "total_inserted_lifecycle_events": 0,
+  "batches": [],
+  "boundary_proof": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

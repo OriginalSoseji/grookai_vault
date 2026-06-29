@@ -75,12 +75,8 @@ export function getVaultInstancePricingModeLabel(mode: VaultInstancePricingMode)
 
 export function getVaultInstancePricingSourceLabel(source?: string | null) {
   const normalized = typeof source === "string" ? source.trim().toLowerCase() : "";
-  if (normalized === "justtcg") {
-    return "JustTCG";
-  }
-
   if (normalized === "ebay") {
-    return "eBay";
+    return "eBay active listing evidence";
   }
 
   return "Market reference";

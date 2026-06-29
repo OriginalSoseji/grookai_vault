@@ -35,8 +35,12 @@ Each target receives planned query entries for:
 
 - `ebay_active`
 - `ebay_sold_candidate`
+- `ebay_user_export`
+- `pokemontcg_io_reference`
 - `pricecharting_reference`
+- `tcgcsv_reference`
 - `tcgplayer_reference_candidate`
+- `tcgplayer_user_export`
 - `justtcg_reference`
 - `manual_review_candidate`
 

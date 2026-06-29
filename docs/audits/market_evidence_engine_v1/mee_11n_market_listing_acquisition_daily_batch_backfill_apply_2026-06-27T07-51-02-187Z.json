@@ -1,0 +1,66 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-27T07:51:02.187Z",
+  "applied": false,
+  "remote_rows_verified": false,
+  "mode": "readback_only",
+  "plan_artifact": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-27T07-40-54-744Z.json",
+  "package_fingerprint_sha256": "8e1f48a13fc630ef9c7129603bb0b23ea489e88ac364aa8180f2c4bb5bc7da78",
+  "row_manifest_hash_sha256": "e3f225bd29964120cd4aeb131578cd1ecff5077d5e98cbfa8b8fec0a02fdec8e",
+  "source_package_fingerprint_sha256": "efc3fb2642a541f1345f833b003e43be75e74f3ab271098b861b81fa2e16b92d",
+  "request_results_manifest_hash_sha256": "f2793cd7f245419d56fb9db3e246385417fc782d90913375985ff516cfaf05bd",
+  "raw_snapshot_manifest_hash_sha256": "c0c075f68d2d76adaff9ceef96de24ac0406adf42663ed294710375ee3bc62ad",
+  "projected_observation_manifest_hash_sha256": "f08a8eebbe8f1820955591b203b3e85d9ab5b43243dfa42d65c137c3adf430f9",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "proposed_table_row_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 3000,
+    "market_listing_raw_snapshots": 98439,
+    "market_listing_observations": 98439,
+    "market_listing_seller_snapshots": 19208,
+    "market_listing_price_events": 98439,
+    "market_listing_card_candidates": 0,
+    "market_listing_rollups": 0
+  },
+  "expected_readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 3000,
+    "market_listing_raw_snapshots": 98439,
+    "market_listing_observations": 98439,
+    "market_listing_seller_snapshots": 19208,
+    "market_listing_price_events": 98439
+  },
+  "remote_collision_summary": {
+    "checked": false
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "card_candidate_writes": false,
+    "rollup_writes": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "apply_result": null,
+  "readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 0,
+    "market_listing_raw_snapshots": 88180,
+    "market_listing_observations": 88180,
+    "market_listing_seller_snapshots": 1000,
+    "market_listing_price_events": 10144
+  }
+}

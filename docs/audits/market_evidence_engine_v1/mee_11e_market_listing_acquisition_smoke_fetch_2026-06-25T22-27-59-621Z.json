@@ -1,0 +1,106 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-SMOKE-FETCH-V1",
+  "version": "MEE_11E_MARKET_LISTING_ACQUISITION_SMOKE_FETCH_V1",
+  "generated_at": "2026-06-25T22:27:59.145Z",
+  "mode": "approved_provider_fetch_local_artifacts_only",
+  "source_package_fingerprint_sha256": "d559f29dccb92922cf9e945e3a00e4e6ac4221779f7d91b8fba789f0005362cb",
+  "request_manifest_hash_sha256": "4752a516ed812b95cf34c555b2520ae628b7babe7fddffbe96bc9cfc446ad277",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "package_fingerprint_sha256": "3b1cbc61210ee89c84f14b9581225f6998682e6b75411aebe2578f2f0974c8c8",
+  "raw_snapshot_manifest_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "projected_observation_manifest_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "summary": {
+    "approved_request_count": 5,
+    "attempted_request_count": 5,
+    "request_limit": 5,
+    "result_limit": 5,
+    "fetch_status_counts": {
+      "fetched_error": 5
+    },
+    "provider_total_sum": 0,
+    "fetched_item_count": 0,
+    "projected_observation_count": 0,
+    "unique_listing_count": 0,
+    "unique_target_count_with_results": 0
+  },
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "local_artifacts_only": true,
+    "db_writes": false,
+    "market_listing_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "request_results": [
+    {
+      "query_key": "66a7848d451b50f044410a1be535eae4c0250d3b409699f509e6073865015fea",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "special_lane",
+      "query_text": "Pokemon \"Blaziken\" \"2004 World Championships Deck: Blaziken Tech\" \"3\" \"2004 World Championships Deck: Blaziken Tech\"",
+      "fetch_status": "fetched_error",
+      "response_status": null,
+      "reason": "fetch failed",
+      "provider_total": 0,
+      "fetched_item_count": 0
+    },
+    {
+      "query_key": "92d6a180ac598008494c8f87b47de38e628571047cf91239dd5004fb7b5e2158",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "strict_identity",
+      "query_text": "Pokemon \"Blaziken\" \"2004 World Championships Deck: Blaziken Tech\" \"3\"",
+      "fetch_status": "fetched_error",
+      "response_status": null,
+      "reason": "fetch failed",
+      "provider_total": 0,
+      "fetched_item_count": 0
+    },
+    {
+      "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "name_number",
+      "query_text": "Pokemon \"Blaziken\" 3",
+      "fetch_status": "fetched_error",
+      "response_status": null,
+      "reason": "fetch failed",
+      "provider_total": 0,
+      "fetched_item_count": 0
+    },
+    {
+      "query_key": "4306782499e85ef23658c09703ab819d2f287447c7e00d749b351cd07395848a",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-02-EX_TEAM_MAGMA_VS-89-BLAZIKEN_EX",
+      "strategy": "special_lane",
+      "query_text": "Pokemon \"Blaziken ex\" \"2004 World Championships Deck: Blaziken Tech\" \"89\" \"2004 World Championships Deck: Blaziken Tech\"",
+      "fetch_status": "fetched_error",
+      "response_status": null,
+      "reason": "fetch failed",
+      "provider_total": 0,
+      "fetched_item_count": 0
+    },
+    {
+      "query_key": "095915da8b28f8516d1523dca62cb898a9ac0c06cf5281db3bbb85199d789658",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-02-EX_TEAM_MAGMA_VS-89-BLAZIKEN_EX",
+      "strategy": "strict_identity",
+      "query_text": "Pokemon \"Blaziken ex\" \"2004 World Championships Deck: Blaziken Tech\" \"89\"",
+      "fetch_status": "fetched_error",
+      "response_status": null,
+      "reason": "fetch failed",
+      "provider_total": 0,
+      "fetched_item_count": 0
+    }
+  ],
+  "raw_snapshots": [],
+  "projected_observations": [],
+  "findings": [],
+  "ready_for_local_db_backfill_plan": false,
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-SMOKE-FETCH-DB-BACKFILL-PLAN-V1 plan only. Package fingerprint: 3b1cbc61210ee89c84f14b9581225f6998682e6b75411aebe2578f2f0974c8c8. Raw snapshot manifest hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. Projected observation manifest hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. Scope: prepare DB backfill apply package from the local MEE-11E smoke fetch artifacts only, targeting market_listing_* warehouse tables only. No provider calls. No source fetches. No DB writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply."
+}

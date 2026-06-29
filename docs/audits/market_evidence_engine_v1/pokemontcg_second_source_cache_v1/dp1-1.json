@@ -1,0 +1,124 @@
+{
+  "id": "dp1-1",
+  "name": "Dialga",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "level": "68",
+  "hp": "90",
+  "types": [
+    "Metal"
+  ],
+  "attacks": [
+    {
+      "name": "Time Bellow",
+      "cost": [
+        "Metal"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "10",
+      "text": "Draw a card."
+    },
+    {
+      "name": "Flash Cannon",
+      "cost": [
+        "Metal",
+        "Metal",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "40",
+      "text": "You may return all Energy cards attached to Dialga to your hand. If you do, remove the highest Stage Evolution card from the Defending Pokémon and shuffle that card into your opponent's deck."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "+20"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp1",
+    "name": "Diamond & Pearl",
+    "series": "Diamond & Pearl",
+    "printedTotal": 130,
+    "total": 130,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "DP",
+    "releaseDate": "2007/05/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp1/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp1/logo.png"
+    }
+  },
+  "number": "1",
+  "artist": "Nakaoka",
+  "rarity": "Rare Holo",
+  "flavorText": "It has the power to control time. It appears in Sinnoh-region myths as an ancient deity.",
+  "nationalPokedexNumbers": [
+    483
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp1/1.png",
+    "large": "https://images.pokemontcg.io/dp1/1_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp1-1",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 13.69,
+        "mid": 34.5,
+        "high": 455.2,
+        "market": 40.08,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 18.76,
+        "mid": 22.86,
+        "high": 309.4,
+        "market": 28.63,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp1-1",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 5.98,
+      "lowPrice": 0.99,
+      "trendPrice": 7.87,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 4.09,
+      "reverseHoloLow": 1.99,
+      "reverseHoloTrend": 3.25,
+      "lowPriceExPlus": 3.6,
+      "avg1": 24.99,
+      "avg7": 6.78,
+      "avg30": 7.42,
+      "reverseHoloAvg1": 4.51,
+      "reverseHoloAvg7": 4,
+      "reverseHoloAvg30": 4.96
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "dp4-8",
+  "name": "Sceptile",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "52",
+  "hp": "100",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Grovyle",
+  "abilities": [
+    {
+      "name": "Wild Growth",
+      "text": "Each basic Grass Energy card attached to your Grass Pokémon provides GrassGrass Energy instead. You can't use more than 1 Wild Growth Poké-Body each turn.",
+      "type": "Poké-Body"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Leaf Blade",
+      "cost": [
+        "Grass",
+        "Grass",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "50+",
+      "text": "Flip a coin. If heads, this attack does 50 damage plus 20 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "+30"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Water",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "dp4",
+    "name": "Great Encounters",
+    "series": "Diamond & Pearl",
+    "printedTotal": 106,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "GE",
+    "releaseDate": "2008/02/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp4/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp4/logo.png"
+    }
+  },
+  "number": "8",
+  "artist": "Masakazu Fukuda",
+  "rarity": "Rare Holo",
+  "flavorText": "The leaves that grow on its arms can slice down thick trees. It is without peer in jungle combat.",
+  "nationalPokedexNumbers": [
+    254
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp4/8.png",
+    "large": "https://images.pokemontcg.io/dp4/8_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp4-8",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 30,
+        "mid": 75.99,
+        "high": 139.98,
+        "market": 17.23,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 23.99,
+        "mid": 27.27,
+        "high": 763.1,
+        "market": 15,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp4-8",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 4.57,
+      "lowPrice": 0.8,
+      "trendPrice": 2.53,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 7.68,
+      "reverseHoloLow": 1.4,
+      "reverseHoloTrend": 6.64,
+      "lowPriceExPlus": 5,
+      "avg1": 1,
+      "avg7": 3.49,
+      "avg30": 6,
+      "reverseHoloAvg1": 20,
+      "reverseHoloAvg7": 8.26,
+      "reverseHoloAvg30": 5.38
+    }
+  }
+}

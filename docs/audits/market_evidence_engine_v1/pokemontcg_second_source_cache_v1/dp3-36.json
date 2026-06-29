@@ -1,0 +1,119 @@
+{
+  "id": "dp3-36",
+  "name": "Plusle",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "level": "30",
+  "hp": "60",
+  "types": [
+    "Lightning"
+  ],
+  "abilities": [
+    {
+      "name": "Plus Charge",
+      "text": "Once during your turn (before your attack), if any of your Pokémon were Knocked Out during your opponent's last turn, you may search your discard pile for up to 2 basic Energy cards, show them to your opponent, and put them into your hand. You can't use more than 1 Plus Charge Poké-Power each turn. This power can't be used if Plusle is affected by a Special Condition.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Tag Play +",
+      "cost": [
+        "Lightning"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "20",
+      "text": "If you have Minun on your Bench, you may do 20 damage to any 1 Benched Pokémon instead. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "+10"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Metal",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp3",
+    "name": "Secret Wonders",
+    "series": "Diamond & Pearl",
+    "printedTotal": 132,
+    "total": 132,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "SW",
+    "releaseDate": "2007/11/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp3/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp3/logo.png"
+    }
+  },
+  "number": "36",
+  "artist": "Masakazu Fukuda",
+  "rarity": "Rare",
+  "flavorText": "It cheers on friends with pom-poms made of sparks. It drains power from telephone poles.",
+  "nationalPokedexNumbers": [
+    311
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp3/36.png",
+    "large": "https://images.pokemontcg.io/dp3/36_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp3-36",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 3.33,
+        "mid": 9.99,
+        "high": 45.8,
+        "market": 3.45,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 9.99,
+        "mid": 10,
+        "high": 109.8,
+        "market": 10,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp3-36",
+    "updatedAt": "2026/05/14",
+    "prices": {
+      "averageSellPrice": 1.73,
+      "lowPrice": 0.1,
+      "trendPrice": 1.49,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.42,
+      "reverseHoloLow": 0.35,
+      "reverseHoloTrend": 2.79,
+      "lowPriceExPlus": 0.45,
+      "avg1": 0.3,
+      "avg7": 1.76,
+      "avg30": 1.41,
+      "reverseHoloAvg1": 7.99,
+      "reverseHoloAvg7": 2.34,
+      "reverseHoloAvg30": 2.97
+    }
+  }
+}

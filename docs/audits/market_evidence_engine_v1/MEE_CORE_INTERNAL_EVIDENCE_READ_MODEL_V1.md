@@ -1,0 +1,253 @@
+# MEE Core Internal Evidence Read Model V1
+
+Generated: 2026-06-26T18:41:50.355Z
+
+Mode: plan only, local artifacts only
+
+## Summary
+
+- Package: `MEE-CORE-INTERNAL-EVIDENCE-READ-MODEL-V1`
+- Fingerprint: `da20bef5781cdcba1bd8aeca72d370fe8f74b1537543ed7f634430a95927083d`
+- Cards with evidence: 2088
+- Cards with both reference and active listing evidence: 63
+- Internal read model candidates: 2
+- Findings: 0
+
+## Proposed Read Models
+
+- `v_market_evidence_card_signal_summary_v1`: one row per card print with source mix, review burden, rollup eligibility, and non-public readiness flags.
+- `v_market_evidence_card_review_queue_v1`: card-level review prioritization derived from source mix and review burden.
+
+## Audit Snapshot
+
+```json
+{
+  "observation_rows_read": 119628,
+  "final_lifecycle_events_read": 119628,
+  "cards_with_evidence": 2088,
+  "cards_with_reference_evidence": 927,
+  "cards_with_active_listing_evidence": 1224,
+  "cards_with_both_reference_and_active": 63,
+  "cards_with_internal_rollup_candidate_flag": 1539,
+  "cards_with_any_publishable_flag": 0,
+  "cards_with_any_app_visible_flag": 0,
+  "cards_with_any_market_truth_flag": 0,
+  "evidence_bucket_counts": {
+    "25-99": 621,
+    "100+": 429,
+    "10-24": 281,
+    "3-9": 600,
+    "1-2": 157
+  },
+  "top_evidence_cards": [
+    {
+      "card_print_id": "20737606-d498-4d9e-bef2-59d0ee55eb8d",
+      "sample_gv_id": "GV-PK-TK-tk-xy-p-30",
+      "evidence_count": 422,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 422,
+      "rollup_eligible_count": 30,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "ec4a3acc-18e1-4785-bb6e-96273454d4cf",
+      "sample_gv_id": "GV-PK-TK-tk-xy-sy-30",
+      "evidence_count": 414,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 414,
+      "rollup_eligible_count": 34,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "ab64d660-f399-4450-8812-a6ed10b05cf2",
+      "sample_gv_id": "GV-PK-TK-tk-xy-latia-30",
+      "evidence_count": 398,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 398,
+      "rollup_eligible_count": 32,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "f358b973-8dbb-48b5-abaa-de5f737ab24f",
+      "sample_gv_id": "GV-PK-TK-tk-bw-e-30",
+      "evidence_count": 397,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 397,
+      "rollup_eligible_count": 33,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "362ce988-4601-417d-abb5-f323c35c0d82",
+      "sample_gv_id": "GV-PK-TK-tk-sm-l-30",
+      "evidence_count": 380,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 380,
+      "rollup_eligible_count": 19,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "c33bcef4-9291-4a3d-a0e1-b7a6aa827dfc",
+      "sample_gv_id": "GV-PK-TK-tk-xy-latio-30",
+      "evidence_count": 377,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 377,
+      "rollup_eligible_count": 26,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "bc9786a4-0dcc-49f1-b833-8d22a99de1c2",
+      "sample_gv_id": "GV-PK-DS-2",
+      "evidence_count": 335,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 335,
+      "rollup_eligible_count": 18,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "bbe31487-e4fc-46e1-a27d-928ce5417bff",
+      "sample_gv_id": "GV-PK-DF-12",
+      "evidence_count": 329,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 329,
+      "rollup_eligible_count": 23,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "c21fa9f9-7157-4c80-8361-81f0ce88f4e1",
+      "sample_gv_id": "GV-PK-DS-5",
+      "evidence_count": 314,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 314,
+      "rollup_eligible_count": 26,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "d919a551-b1e0-4a45-9d65-4fb885a1745a",
+      "sample_gv_id": "GV-PK-LM-5",
+      "evidence_count": 313,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 313,
+      "rollup_eligible_count": 21,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "406ac265-71d9-46dc-ae01-0db87758e5c1",
+      "sample_gv_id": "GV-PK-RG-10",
+      "evidence_count": 312,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 312,
+      "rollup_eligible_count": 21,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "944c5732-03ed-4f0c-8d88-df6f96b829b2",
+      "sample_gv_id": "GV-PK-DF-2",
+      "evidence_count": 311,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 311,
+      "rollup_eligible_count": 28,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "cad7f417-5d63-4813-832e-247ff54ee829",
+      "sample_gv_id": "GV-PK-DF-10",
+      "evidence_count": 307,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 307,
+      "rollup_eligible_count": 30,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "579bbeee-78b9-46e8-b56f-aaf52c6cd3ac",
+      "sample_gv_id": "GV-PK-CG-4",
+      "evidence_count": 297,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 297,
+      "rollup_eligible_count": 15,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "634ae142-9357-4cb4-bf5a-246c976d3007",
+      "sample_gv_id": "GV-PK-CG-2",
+      "evidence_count": 296,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 296,
+      "rollup_eligible_count": 22,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "42902562-922c-4644-be06-8958ce9d9b0e",
+      "sample_gv_id": "GV-PK-DS-8",
+      "evidence_count": 296,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 296,
+      "rollup_eligible_count": 14,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "68db629a-11cd-4dbc-af11-4514ee5f7f4e",
+      "sample_gv_id": "GV-PK-UF-17",
+      "evidence_count": 295,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 295,
+      "rollup_eligible_count": 28,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "08e7b748-f78e-44ba-bd55-8da18b980a8b",
+      "sample_gv_id": "GV-PK-EM-9",
+      "evidence_count": 289,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 289,
+      "rollup_eligible_count": 22,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "bf28eb3d-54fe-44a8-8c9d-edfe5d67d3c8",
+      "sample_gv_id": "GV-PK-DS-17",
+      "evidence_count": 288,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 288,
+      "rollup_eligible_count": 25,
+      "internal_rollup_candidate": true
+    },
+    {
+      "card_print_id": "6757068f-76bd-439b-9433-711630cb1c6b",
+      "sample_gv_id": "GV-PK-DS-18",
+      "evidence_count": 286,
+      "reference_evidence_count": 0,
+      "active_listing_evidence_count": 286,
+      "rollup_eligible_count": 19,
+      "internal_rollup_candidate": true
+    }
+  ]
+}
+```
+
+## Boundaries
+
+```json
+{
+  "db_writes": false,
+  "remote_migration_apply": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "migrations": false,
+  "global_apply": false
+}
+```
+
+## Findings
+
+- none

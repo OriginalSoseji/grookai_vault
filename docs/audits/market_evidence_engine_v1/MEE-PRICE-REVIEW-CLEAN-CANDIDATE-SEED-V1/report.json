@@ -1,0 +1,47 @@
+{
+  "package_id": "MEE-PRICE-REVIEW-CLEAN-CANDIDATE-SEED-V1",
+  "mode": "internal_clean_price_candidate_approval_seed",
+  "generated_at": "2026-06-29T03:59:31.137Z",
+  "preflight": {
+    "target_rows": 11,
+    "existing_event_rows": 0,
+    "unsafe_boundary_rows": 0
+  },
+  "inserted_rows": 11,
+  "apply_sql_sha256": "ba590a9388bb61e1a956aab5a8802bb40cc208581e3396f7338fe350215f95ed",
+  "readback_sql_sha256": "e64e9f4fa86b79e4e9fc19de3d1b0da7658a2ce0b208083b712f94f9b7a54306",
+  "boundary": {
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "readback": {
+    "package_id": "MEE_PRICE_REVIEW_CLEAN_CANDIDATE_SEED_V1",
+    "price_review_event_rows": 11,
+    "approved_internal_rows": 11,
+    "public_boundary": {
+      "app_visible_rows": 0,
+      "publishable_rows": 0,
+      "market_truth_rows": 0,
+      "can_publish_price_directly_rows": 0
+    },
+    "writes_pricing_observations": false,
+    "writes_ebay_active_prices_latest": false,
+    "public_pricing_view": false,
+    "app_visible_pricing": false,
+    "public_price_rollup": false,
+    "market_truth": false
+  },
+  "findings": []
+}

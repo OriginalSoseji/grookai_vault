@@ -1,0 +1,191 @@
+{
+  "package_id": "MEE-CORE-FOUNDATION-COMPLETION-PLAN-V1",
+  "generated_at": "2026-06-27T04:51:30.344Z",
+  "mode": "plan_only_foundation_completion_freeze_and_next_sequence",
+  "package_fingerprint_sha256": "4ca99f94bb3f6e1e9668858e8b722748761fbf91f0b6ee82b9534193e0c67f49",
+  "foundation_status": "not_complete",
+  "completed": [
+    {
+      "id": "core_lifecycle_contract",
+      "status": "complete",
+      "proof": "MARKET_EVIDENCE_ENGINE_CORE_V1 checkpoint defines provider-agnostic lifecycle and boundaries."
+    },
+    {
+      "id": "lifecycle_tables_and_read_models",
+      "status": "complete",
+      "proof": "119628 lifecycle observations and 837396 lifecycle events are present."
+    },
+    {
+      "id": "review_dispositions",
+      "status": "complete",
+      "proof": "2152 internal review dispositions exist."
+    },
+    {
+      "id": "review_action_audit_trail",
+      "status": "complete",
+      "proof": "399 review action events exist and remain internal-only."
+    },
+    {
+      "id": "low_signal_internal_cleanup",
+      "status": "complete",
+      "proof": "Low-signal monitor lane is resolved/monitor_only from prior drain audit."
+    },
+    {
+      "id": "classification_blocked_routing",
+      "status": "complete",
+      "proof": "19 classification rows routed to review_reclassify; 0 pending classification rows remain."
+    },
+    {
+      "id": "high_signal_queue_audit",
+      "status": "complete",
+      "proof": "213 high-signal rows audited and separated by evidence lane."
+    }
+  ],
+  "blockers": [
+    {
+      "id": "post_ingest_review_orchestrator",
+      "status": "blocking",
+      "required_next_package": "MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1",
+      "reason": "Without this, every ingest reopens manual lane-by-lane approvals. The orchestrator must produce one deterministic status/readback and one safe internal review-action plan."
+    },
+    {
+      "id": "lane_policy_contract",
+      "status": "blocking",
+      "required_next_package": "MEE-CORE-REVIEW-LANE-POLICY-CONTRACT-V1",
+      "reason": "The policy for low-signal, classification-blocked, mixed raw/slab, reference-only, high-signal raw-single/slab, and candidate-review lanes must be explicit and reusable."
+    },
+    {
+      "id": "batch_review_action_workflow",
+      "status": "blocking",
+      "required_next_package": "MEE-CORE-BATCH-REVIEW-ACTION-WORKFLOW-V1",
+      "reason": "Internal review actions need one post-ingest apply package with preflight, readback, rollback, and public-boundary guards."
+    },
+    {
+      "id": "publish_gate_contract",
+      "status": "blocking",
+      "required_next_package": "MEE-CORE-PUBLISH-GATE-CONTRACT-V1",
+      "reason": "No internal signal can become public until a separate publication gate defines freshness, confidence, source mix, evidence-lane, review-status, and replay requirements."
+    },
+    {
+      "id": "runbook",
+      "status": "blocking",
+      "required_next_package": "MEE-CORE-DAILY-RUNBOOK-V1",
+      "reason": "The operator flow must be ingestion -> orchestrator -> safe internal review actions -> audit -> stop before publish unless separately approved."
+    }
+  ],
+  "freeze": {
+    "acquisition_frozen_until_foundation_complete": true,
+    "public_pricing_frozen_until_publish_gate": true,
+    "app_visible_pricing_frozen_until_publish_gate": true,
+    "pricing_observations_writes_allowed": false,
+    "ebay_active_prices_latest_writes_allowed": false,
+    "identity_vault_image_writes_allowed": false
+  },
+  "next_sequence": [
+    "MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1 plan only",
+    "MEE-CORE-REVIEW-LANE-POLICY-CONTRACT-V1 plan only",
+    "MEE-CORE-BATCH-REVIEW-ACTION-WORKFLOW-V1 schema/plan only if needed",
+    "MEE-CORE-PUBLISH-GATE-CONTRACT-V1 plan only",
+    "MEE-CORE-DAILY-RUNBOOK-V1"
+  ],
+  "readback": {
+    "disposition_status": [
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending",
+        "rows": 1536
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": false,
+        "publishable": false,
+        "review_disposition": "review_reclassify",
+        "review_lane": "classification_review",
+        "review_status": "blocked",
+        "rows": 19
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending",
+        "rows": 213
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": false,
+        "publishable": false,
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved",
+        "rows": 380
+      },
+      {
+        "app_visible": false,
+        "market_truth": false,
+        "needs_review": true,
+        "publishable": false,
+        "review_disposition": "review_pending_reference_only",
+        "review_lane": "reference_only_review",
+        "review_status": "pending",
+        "rows": 4
+      }
+    ],
+    "object_counts": {
+      "lifecycle_event_rows": 837396,
+      "lifecycle_observation_rows": 119628,
+      "pricing_observations_count": 0,
+      "public_pricing_view_market_evidence_references": 0,
+      "review_action_event_rows": 399,
+      "review_disposition_rows": 2152
+    },
+    "package_id": "MEE_CORE_FOUNDATION_COMPLETION_PLAN_V1",
+    "public_boundary": {
+      "app_visible_rows": 0,
+      "can_publish_price_directly_rows": 0,
+      "market_truth_rows": 0,
+      "publication_gate_candidate_rows": 0,
+      "publishable_rows": 0
+    }
+  },
+  "source_hashes": {
+    "core_checkpoint": "7b85b2f7b1dd2ee7264a86e6b13315309b7a6b7d19c8cfcd17673d48000e8b92",
+    "classification_post_apply": "365e64aa7690ff855a59c8b7d2afb8b103ff595c9e84e579059c904dd9b5f0a8",
+    "high_signal_audit": "0b54d01f757ae769a093de2bc2bf9233c59d9a35a918f36a91c80cb32eaea258"
+  },
+  "hashes": {
+    "readback_sql_sha256": "1448f11574734fc6125c4ec0c4c782e46a1f3be90204768508fc2a494cf03275"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

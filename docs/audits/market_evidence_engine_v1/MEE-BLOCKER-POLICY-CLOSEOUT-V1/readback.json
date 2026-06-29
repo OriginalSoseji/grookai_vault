@@ -1,0 +1,226 @@
+{
+  "package_id": "MEE-BLOCKER-POLICY-CLOSEOUT-V1",
+  "generated_at": "2026-06-28",
+  "source_package_id": "MEE-CANDIDATE-CLEANUP-EVENT-SEED-PLAN-V1",
+  "cleanup_state": [
+    {
+      "cleanup_state": "needs_high_value_review",
+      "cleanup_action": "require_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "card_prints": 14,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "needs_high_value_review",
+      "cleanup_action": "require_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "card_prints": 16,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "needs_matcher_reclassify",
+      "cleanup_action": "require_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "card_prints": 41,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "needs_matcher_reclassify",
+      "cleanup_action": "require_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "card_prints": 59,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "needs_special_lane_policy",
+      "cleanup_action": "require_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 38919,
+      "card_prints": 323,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "needs_special_lane_policy",
+      "cleanup_action": "require_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "slab",
+      "rows": 261,
+      "card_prints": 15,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "quarantined",
+      "cleanup_action": "quarantine_candidate",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "raw_single",
+      "rows": 622,
+      "card_prints": 125,
+      "leaks": 0
+    },
+    {
+      "cleanup_state": "quarantined",
+      "cleanup_action": "quarantine_candidate",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "slab",
+      "rows": 1049,
+      "card_prints": 60,
+      "leaks": 0
+    }
+  ],
+  "special_by_family": [
+    {
+      "family": "base_print_run",
+      "evidence_lane": "raw_single",
+      "rows": 195,
+      "card_prints": 4,
+      "leaks": 0
+    },
+    {
+      "family": "base_print_run",
+      "evidence_lane": "slab",
+      "rows": 57,
+      "card_prints": 1,
+      "leaks": 0
+    },
+    {
+      "family": "mcdonalds",
+      "evidence_lane": "raw_single",
+      "rows": 3658,
+      "card_prints": 55,
+      "leaks": 0
+    },
+    {
+      "family": "mep_black_star_promos",
+      "evidence_lane": "raw_single",
+      "rows": 6657,
+      "card_prints": 28,
+      "leaks": 0
+    },
+    {
+      "family": "mep_black_star_promos",
+      "evidence_lane": "slab",
+      "rows": 1,
+      "card_prints": 1,
+      "leaks": 0
+    },
+    {
+      "family": "promo_or_alt_distribution",
+      "evidence_lane": "raw_single",
+      "rows": 3508,
+      "card_prints": 61,
+      "leaks": 0
+    },
+    {
+      "family": "promo_or_alt_distribution",
+      "evidence_lane": "slab",
+      "rows": 91,
+      "card_prints": 7,
+      "leaks": 0
+    },
+    {
+      "family": "trainer_kit",
+      "evidence_lane": "raw_single",
+      "rows": 14306,
+      "card_prints": 80,
+      "leaks": 0
+    },
+    {
+      "family": "world_championship_deck",
+      "evidence_lane": "raw_single",
+      "rows": 10595,
+      "card_prints": 95,
+      "leaks": 0
+    },
+    {
+      "family": "world_championship_deck",
+      "evidence_lane": "slab",
+      "rows": 112,
+      "card_prints": 6,
+      "leaks": 0
+    }
+  ],
+  "matcher_high_value_by_lane": [
+    {
+      "cleanup_state": "needs_high_value_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "card_prints": 14
+    },
+    {
+      "cleanup_state": "needs_high_value_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "card_prints": 16
+    },
+    {
+      "cleanup_state": "needs_matcher_reclassify",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "card_prints": 41
+    },
+    {
+      "cleanup_state": "needs_matcher_reclassify",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "card_prints": 59
+    }
+  ],
+  "publication_gate": [
+    {
+      "gate_decision": "blocked_classification",
+      "evidence_lane": "classification_blocked",
+      "rows": 19,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "blocked_lane_split_required",
+      "evidence_lane": "mixed_raw_slab",
+      "rows": 574,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "low_signal",
+      "rows": 156,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "unknown",
+      "rows": 18,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "blocked_reference_only",
+      "evidence_lane": "reference_metric",
+      "rows": 915,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "raw_single",
+      "rows": 378,
+      "leaks": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "slab",
+      "rows": 92,
+      "leaks": 0
+    }
+  ],
+  "publication_gate_totals": {
+    "rows": 2152,
+    "would_be_publication_candidate_rows": 0,
+    "leaks": 0
+  }
+}
