@@ -6,7 +6,7 @@ export default function PricingDisclosure() {
       <p className="mb-2">Grookai Value is evidence-anchored and may be adjusted by bounded live market pressure.</p>
 
       <p className="mb-2">
-        Available Today uses active listing asks as buy-now pressure, not sold-comparable proof or guaranteed market value.
+        Lowest Available Today uses active listing asks as buy-now pressure, not sold-comparable proof or guaranteed market value.
       </p>
 
       <p>

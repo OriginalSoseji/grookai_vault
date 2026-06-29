@@ -11,8 +11,10 @@ test("card pricing rail labels reference and market lanes explicitly", () => {
 
   assert.doesNotMatch(pricingRail, /JustTCG/);
   assert.match(pricingRail, /Evidence-anchored Grookai Value/);
-  assert.match(pricingRail, /Available Today/);
+  assert.match(pricingRail, /Lowest Available Today/);
   assert.match(pricingRail, /eBay active ask/);
+  assert.match(pricingRail, /Median active ask/);
+  assert.match(pricingRail, /Ask Range/);
   assert.match(pricingRail, /Active asks are asking-price evidence, not sold comps\./);
   assert.doesNotMatch(pricingRail, /source=\{pricing\?\.primary_source\}/);
   assert.doesNotMatch(pricingRail, />\* Market reference</);

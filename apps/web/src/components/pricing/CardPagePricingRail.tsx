@@ -105,13 +105,18 @@ function GrookaiValueBlock({ pricing }: { pricing: CardPricingUiRecord | null })
     typeof highPrice === "number";
 
   if (typeof midPrice !== "number") {
+    const noValuationAnchor = pricing.grookai_value_block_reason === "blocked_no_valuation_anchor";
+
     return (
       <div className="space-y-1.5">
-        <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">Grookai Value unavailable</p>
+        <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">
+          {noValuationAnchor ? "Building confidence..." : "Insufficient valuation evidence"}
+        </p>
         <p className="text-xs leading-5 text-slate-500">
-          {pricing.grookai_value_block_reason === "blocked_no_valuation_anchor"
-            ? "No reference market anchor available yet."
-            : formatPricingLabel(pricing.grookai_value_block_reason) ?? "More evidence is required before showing a value."}
+          {noValuationAnchor
+            ? "No trusted valuation exists yet. Current market is shown below."
+            : formatPricingLabel(pricing.grookai_value_block_reason) ??
+              "More evidence is required before showing Grookai Value. Current market is shown below if available."}
         </p>
       </div>
     );
@@ -146,7 +151,7 @@ function ActiveAskBlock({ pricing }: { pricing: CardPricingUiRecord | null }) {
   if (!pricing || typeof pricing.active_ask_mid !== "number") {
     return (
       <div className="space-y-1.5 border-t border-slate-200/70 pt-4 dark:border-slate-800">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Available Today</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Lowest Available Today</p>
         <p className="text-xs leading-5 text-slate-500">No active ask signal available.</p>
       </div>
     );
@@ -155,21 +160,29 @@ function ActiveAskBlock({ pricing }: { pricing: CardPricingUiRecord | null }) {
   const lowPrice = typeof pricing.active_ask_low === "number" ? pricing.active_ask_low : null;
   const midPrice = pricing.active_ask_mid;
   const highPrice = typeof pricing.active_ask_high === "number" ? pricing.active_ask_high : null;
+  const minimumPrice = typeof pricing.active_ask_minimum === "number" ? pricing.active_ask_minimum : null;
+  const maximumPrice = typeof pricing.active_ask_maximum === "number" ? pricing.active_ask_maximum : null;
+  const headlinePrice = minimumPrice ?? lowPrice ?? midPrice;
   const hasLowMidHigh =
     typeof lowPrice === "number" &&
     typeof midPrice === "number" &&
     typeof highPrice === "number";
+  const hasAskRange = typeof minimumPrice === "number" && typeof maximumPrice === "number";
   const marketPressure = formatMarketPressure(pricing);
 
   return (
     <div className="space-y-2 border-t border-slate-200/70 pt-4 dark:border-slate-800">
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Available Today</p>
-        <p className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">{formatUsdPrice(midPrice)}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Lowest Available Today</p>
+        <p className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">{formatUsdPrice(headlinePrice)}</p>
         <p className="text-xs leading-5 text-slate-500">
           {pricing.pricing_scope === "card_printing" ? "eBay active ask for selected variant" : "eBay active ask"}
           {pricing.active_ask_listing_count ? ` · ${pricing.active_ask_listing_count} listings` : ""}
           {pricing.active_ask_seller_count ? ` · ${pricing.active_ask_seller_count} sellers` : ""}
+        </p>
+        <p className="text-xs leading-5 text-slate-500">
+          Median active ask {formatUsdPrice(midPrice)}
+          {hasAskRange ? ` · Ask Range ${formatUsdPrice(minimumPrice)} - ${formatUsdPrice(maximumPrice)}` : ""}
         </p>
         {marketPressure ? <p className="text-xs leading-5 text-slate-500">{marketPressure}</p> : null}
       </div>

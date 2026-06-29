@@ -107,16 +107,20 @@ test("app pricing reads do not use active ask as Grookai Value", () => {
   assert.match(publicHelper, /rawPriceSource = rawPrice !== undefined \? "grookai_value"/);
 });
 
-test("pricing UI copy separates Grookai Value and Available Today", () => {
+test("pricing UI copy separates Grookai Value and Lowest Available Today", () => {
   const rail = read(pricingRailPath);
   const disclosure = read(pricingDisclosurePath);
 
   assert.match(rail, /Evidence-anchored Grookai Value/);
-  assert.match(rail, /Available Today/);
+  assert.match(rail, /Lowest Available Today/);
   assert.match(rail, /eBay active ask/);
+  assert.match(rail, /Median active ask/);
+  assert.match(rail, /Ask Range/);
+  assert.match(rail, /Building confidence/);
+  assert.match(rail, /No trusted valuation exists yet\. Current market is shown below\./);
   assert.match(rail, /Active asks are asking-price evidence, not sold comps\./);
   assert.match(disclosure, /Grookai Value is evidence-anchored/);
-  assert.match(disclosure, /Available Today uses active listing asks/);
+  assert.match(disclosure, /Lowest Available Today uses active listing asks/);
 });
 
 test("signed-in card pricing hydration route is tracked and auth-gated", () => {
