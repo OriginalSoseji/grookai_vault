@@ -76,8 +76,10 @@ test("app pricing reads require bridge safety fields before showing price", () =
   const cardHelper = read(cardPricingHelperPath);
   const publicHelper = read(publicPricingHelperPath);
 
+  assert.match(cardHelper, /get_market_evidence_public_pricing_bridge_variant_aware_v1/);
+  assert.match(publicHelper, /v_market_evidence_public_pricing_bridge_reference_anchored_v1/);
+
   for (const helper of [cardHelper, publicHelper]) {
-    assert.match(helper, /v_market_evidence_public_pricing_bridge_reference_anchored_v1/);
     assert.match(helper, /grookai_value_mid/);
     assert.match(helper, /market_truth\s*={0,2}\s*false|market_truth\s*===\s*false/);
     assert.match(helper, /sold_comp\s*={0,2}\s*false|sold_comp\s*===\s*false/);
@@ -122,7 +124,7 @@ test("signed-in card pricing hydration route is tracked and auth-gated", () => {
   const rail = read(pricingRailPath);
   const gitignore = read(".gitignore");
 
-  assert.match(route, /getCardPricingUiByCardPrintIdWithClient/);
+  assert.match(route, /getCardPricingUiRowsByCardPrintIdWithClient/);
   assert.match(route, /createRouteHandlerClient/);
   assert.match(route, /createServerAdminClient/);
   assert.match(route, /auth\.getUser\(\)/);
@@ -130,6 +132,7 @@ test("signed-in card pricing hydration route is tracked and auth-gated", () => {
   assert.match(route, /extractBearerToken/);
   assert.match(route, /Sign in required\./);
   assert.match(route, /card_print_id/);
+  assert.match(route, /pricingRecords/);
   assert.match(route, /Cache-Control["']:\s*["']private,\s*no-store/);
   assert.match(rail, /supabase\.auth\.getSession\(\)/);
   assert.match(rail, /Authorization:\s*`Bearer \$\{session\.access_token\}`/);

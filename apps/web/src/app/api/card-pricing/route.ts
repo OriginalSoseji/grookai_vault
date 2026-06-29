@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCardPricingUiByCardPrintIdWithClient } from "@/lib/pricing/getCardPricingUiByCardPrintId";
+import {
+  getCardPricingUiRowsByCardPrintIdWithClient,
+} from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 
@@ -47,10 +49,13 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const pricingRecords = await getCardPricingUiRowsByCardPrintIdWithClient(adminClient, cardPrintId);
+
   return NextResponse.json(
     {
       ok: true,
-      pricing: await getCardPricingUiByCardPrintIdWithClient(adminClient, cardPrintId),
+      pricing: pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null,
+      pricingRecords,
     },
     { headers: { "Cache-Control": "private, no-store" } },
   );

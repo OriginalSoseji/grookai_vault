@@ -13,6 +13,9 @@ type CardPagePricingRailProps = {
   gvId: string;
   cardPrintId?: string | null;
   pricing: CardPricingUiRecord | null;
+  pricingRecords?: CardPricingUiRecord[];
+  selectedCardPrintingId?: string | null;
+  selectedPrintingGvId?: string | null;
 };
 
 function PricingLowMidHigh({
@@ -164,7 +167,7 @@ function ActiveAskBlock({ pricing }: { pricing: CardPricingUiRecord | null }) {
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Available Today</p>
         <p className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">{formatUsdPrice(midPrice)}</p>
         <p className="text-xs leading-5 text-slate-500">
-          eBay active ask
+          {pricing.pricing_scope === "card_printing" ? "eBay active ask for selected variant" : "eBay active ask"}
           {pricing.active_ask_listing_count ? ` · ${pricing.active_ask_listing_count} listings` : ""}
           {pricing.active_ask_seller_count ? ` · ${pricing.active_ask_seller_count} sellers` : ""}
         </p>
@@ -231,13 +234,50 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
   );
 }
 
-export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, cardPrintId = null, pricing }: CardPagePricingRailProps) {
+function selectPricingRecord(args: {
+  records: CardPricingUiRecord[];
+  selectedCardPrintingId?: string | null;
+  selectedPrintingGvId?: string | null;
+  fallbackPricing: CardPricingUiRecord | null;
+}) {
+  const selectedCardPrintingId = args.selectedCardPrintingId?.trim();
+  const selectedPrintingGvId = args.selectedPrintingGvId?.trim();
+
+  if (selectedCardPrintingId) {
+    const byCardPrintingId = args.records.find((record) => record.card_printing_id === selectedCardPrintingId);
+    if (byCardPrintingId) return byCardPrintingId;
+  }
+
+  if (selectedPrintingGvId) {
+    const byPrintingGvId = args.records.find((record) => record.printing_gv_id === selectedPrintingGvId);
+    if (byPrintingGvId) return byPrintingGvId;
+  }
+
+  return args.records.find((record) => record.pricing_scope === "parent") ?? args.fallbackPricing ?? args.records[0] ?? null;
+}
+
+export default function CardPagePricingRail({
+  isAuthenticated,
+  loginHref,
+  gvId,
+  cardPrintId = null,
+  pricing,
+  pricingRecords = [],
+  selectedCardPrintingId = null,
+  selectedPrintingGvId = null,
+}: CardPagePricingRailProps) {
   const viewer = useClientViewer(null);
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
-  const [clientPricing, setClientPricing] = useState<CardPricingUiRecord | null>(pricing);
+  const [clientPricingRecords, setClientPricingRecords] = useState<CardPricingUiRecord[]>(pricingRecords);
+  const selectedPricing = selectPricingRecord({
+    records: clientPricingRecords,
+    selectedCardPrintingId,
+    selectedPrintingGvId,
+    fallbackPricing: pricing,
+  });
 
   useEffect(() => {
-    if (!effectiveIsAuthenticated || clientPricing || !cardPrintId) {
+    if (!effectiveIsAuthenticated || clientPricingRecords.length > 0 || !cardPrintId) {
       return;
     }
 
@@ -257,10 +297,12 @@ export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, 
         headers,
         signal: controller.signal,
       });
-      const payload = response.ok ? ((await response.json()) as { pricing?: CardPricingUiRecord | null }) : null;
+      const payload = response.ok
+        ? ((await response.json()) as { pricing?: CardPricingUiRecord | null; pricingRecords?: CardPricingUiRecord[] })
+        : null;
 
-      if (payload && "pricing" in payload) {
-        setClientPricing(payload.pricing ?? null);
+      if (payload && "pricingRecords" in payload) {
+        setClientPricingRecords(payload.pricingRecords ?? (payload.pricing ? [payload.pricing] : []));
       }
     }
 
@@ -269,11 +311,11 @@ export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, 
       .catch(() => undefined);
 
     return () => controller.abort();
-  }, [cardPrintId, clientPricing, effectiveIsAuthenticated]);
+  }, [cardPrintId, clientPricingRecords.length, effectiveIsAuthenticated]);
 
   if (!effectiveIsAuthenticated) {
     return <LockedPricingState loginHref={loginHref} />;
   }
 
-  return <AuthenticatedPricingState gvId={gvId} pricing={clientPricing} />;
+  return <AuthenticatedPricingState gvId={gvId} pricing={selectedPricing} />;
 }

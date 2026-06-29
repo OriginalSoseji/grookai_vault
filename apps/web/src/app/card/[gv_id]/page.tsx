@@ -5,18 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
-import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
-import PrintingSelector from "@/components/cards/PrintingSelector";
+import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
-import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
+import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
-import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
-import ShareCardButton from "@/components/ShareCardButton";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
-import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
+import type { AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
@@ -43,7 +40,7 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
-import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
+import { getCardPricingUiRowsByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
@@ -451,8 +448,8 @@ export default async function CardPage({
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
-  const [pricingUi, setLogoPath, ownedPrintingCounts, networkOffers] = await Promise.all([
-    canViewPricing && resolvedCard.id ? getCardPricingUiByCardPrintId(resolvedCard.id) : Promise.resolve(null),
+  const [pricingRecords, setLogoPath, ownedPrintingCounts, networkOffers] = await Promise.all([
+    canViewPricing && resolvedCard.id ? getCardPricingUiRowsByCardPrintId(resolvedCard.id) : Promise.resolve([]),
     resolvedCard.set_code
       ? getSetLogoAssetPathMap([resolvedCard.set_code]).then((logos) =>
           logos.get(resolvedCard.set_code!.toLowerCase()),
@@ -476,6 +473,7 @@ export default async function CardPage({
         })
       : Promise.resolve([]),
   ]);
+  const pricingUi = pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null;
   const identityWatermarkStyle = {
     "--wm-opacity-desktop": "0.05",
     "--wm-blur-desktop": "8px",
@@ -779,47 +777,23 @@ export default async function CardPage({
               </div>
             </div>
 
-            <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
-              <div className="gv-action-panel p-5 sm:p-6">
-                <CardPagePricingRail
-                  isAuthenticated={canViewPricing}
-                  loginHref={loginHref}
-                  gvId={resolvedCard.gv_id}
-                  cardPrintId={resolvedCard.id}
-                  pricing={pricingUi}
-                />
-              </div>
-
-              <div className="gv-action-panel space-y-5 p-5 sm:p-6">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
-                  <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
-                  {vaultCount > 0 && (ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabCount > 0) ? (
-                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                      {[ownedObjectSummary.rawCount > 0 ? `${ownedObjectSummary.rawCount} raw` : null, ownedObjectSummary.slabCount > 0 ? `${ownedObjectSummary.slabCount} slab` : null]
-                        .filter((value): value is string => value !== null)
-                        .join(" • ")}
-                    </p>
-                  ) : null}
-                </div>
-
-                <AddToVaultCardAction
-                  action={addToVaultAction}
-                  isAuthenticated={Boolean(user)}
-                  loginHref={loginHref}
-                  currentPath={currentCardPath}
-                  gvId={resolvedCard.gv_id}
-                  printings={displayPrintingsWithOwnedCounts}
-                  initialPrintingId={searchParams?.printing ?? null}
-                />
-
-                <div className="flex flex-wrap items-center gap-3">
-                  {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedDisplayIdentity.display_name} /> : null}
-                  <CompareCardButton gvId={resolvedCard.gv_id} />
-                  <ShareCardButton gvId={resolvedCard.gv_id} />
-                </div>
-              </div>
-            </aside>
+            <CardPageMarketVaultPanels
+              addToVaultAction={addToVaultAction}
+              createSlabAction={createSlabAction}
+              isAuthenticated={Boolean(user)}
+              loginHref={loginHref}
+              currentPath={currentCardPath}
+              gvId={resolvedCard.gv_id}
+              cardPrintId={resolvedCard.id}
+              cardName={resolvedDisplayIdentity.display_name}
+              printings={displayPrintingsWithOwnedCounts}
+              initialPrintingId={searchParams?.printing ?? null}
+              pricing={pricingUi}
+              pricingRecords={pricingRecords}
+              ownershipLabel={ownershipLabel}
+              rawCount={ownedObjectSummary.rawCount}
+              slabCount={ownedObjectSummary.slabCount}
+            />
           </div>
         </div>
       </section>

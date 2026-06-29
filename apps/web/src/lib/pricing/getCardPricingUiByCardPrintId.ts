@@ -2,10 +2,14 @@ import "server-only";
 
 import { cache } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 
 type CardPricingUiRow = {
+  pricing_scope: string | null;
   card_print_id: string | null;
+  card_printing_id: string | null;
+  printing_gv_id: string | null;
+  assigned_finish_key: string | null;
   gv_id: string | null;
   currency: string | null;
   reference_anchor_low: number | null;
@@ -44,7 +48,11 @@ type CardPricingUiRow = {
 };
 
 export type CardPricingUiRecord = {
+  pricing_scope?: "parent" | "card_printing";
   card_print_id: string;
+  card_printing_id?: string;
+  printing_gv_id?: string;
+  assigned_finish_key?: string;
   gv_id?: string;
   currency?: string;
   reference_anchor_low?: number;
@@ -98,34 +106,9 @@ function toNumber(value: number | null | undefined) {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
 }
 
-type CardPricingUiClient = Pick<SupabaseClient, "from">;
+type CardPricingUiClient = Pick<SupabaseClient, "from" | "rpc">;
 
-export async function getCardPricingUiByCardPrintIdWithClient(
-  supabase: CardPricingUiClient,
-  cardPrintId: string,
-): Promise<CardPricingUiRecord | null> {
-  const normalizedCardPrintId = cardPrintId.trim();
-  if (!normalizedCardPrintId) {
-    return null;
-  }
-
-  const { data, error } = await supabase
-    .from("v_market_evidence_public_pricing_bridge_reference_anchored_v1")
-    .select(
-      "card_print_id,gv_id,currency,reference_anchor_low,reference_anchor_mid,reference_anchor_high,reference_source_count,reference_eligible_evidence_count,reference_review_flags,grookai_value_low,grookai_value_mid,grookai_value_high,grookai_value_basis,grookai_value_block_reason,active_ask_low,active_ask_mid,active_ask_high,raw_active_ask_minimum,raw_active_ask_maximum,active_ask_listing_count,active_ask_seller_count,active_ask_signal_at,market_pressure_pct,market_pressure_status,lane_policy,condition_policy,grookai_value_condition_label,active_ask_condition_label,confidence_label,freshness_label,signed_in_only,market_truth,sold_comp,active_listing_evidence,publishable,app_visible",
-    )
-    .eq("card_print_id", normalizedCardPrintId)
-    .maybeSingle();
-
-  if (error) {
-    console.error("[pricing:ui] getCardPricingUiByCardPrintId failed", {
-      cardPrintId: normalizedCardPrintId,
-      error,
-    });
-    return null;
-  }
-
-  const row = (data ?? null) as CardPricingUiRow | null;
+function mapPricingRow(row: CardPricingUiRow | null): CardPricingUiRecord | null {
   if (!row?.card_print_id) {
     return null;
   }
@@ -144,7 +127,11 @@ export async function getCardPricingUiByCardPrintIdWithClient(
   const hasGrookaiValue = typeof grookaiValueMid === "number";
 
   return {
+    pricing_scope: row.pricing_scope === "card_printing" ? "card_printing" : "parent",
     card_print_id: row.card_print_id,
+    card_printing_id: row.card_printing_id ?? undefined,
+    printing_gv_id: row.printing_gv_id ?? undefined,
+    assigned_finish_key: row.assigned_finish_key ?? undefined,
     gv_id: row.gv_id ?? undefined,
     currency: row.currency ?? undefined,
     reference_anchor_low: toNumber(row.reference_anchor_low),
@@ -217,8 +204,62 @@ export async function getCardPricingUiByCardPrintIdWithClient(
   };
 }
 
+function sortPricingRecords(records: CardPricingUiRecord[]) {
+  return [...records].sort((left, right) => {
+    if (left.pricing_scope !== right.pricing_scope) {
+      return left.pricing_scope === "parent" ? -1 : 1;
+    }
+    return String(left.assigned_finish_key ?? left.printing_gv_id ?? "").localeCompare(
+      String(right.assigned_finish_key ?? right.printing_gv_id ?? ""),
+    );
+  });
+}
+
+export async function getCardPricingUiRowsByCardPrintIdWithClient(
+  supabase: CardPricingUiClient,
+  cardPrintId: string,
+): Promise<CardPricingUiRecord[]> {
+  const normalizedCardPrintId = cardPrintId.trim();
+  if (!normalizedCardPrintId) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .rpc("get_market_evidence_public_pricing_bridge_variant_aware_v1", {
+      p_card_print_id: normalizedCardPrintId,
+    });
+
+  if (error) {
+    console.error("[pricing:ui] getCardPricingUiRowsByCardPrintId failed", {
+      cardPrintId: normalizedCardPrintId,
+      error,
+    });
+    return [];
+  }
+
+  return sortPricingRecords(
+    ((data ?? []) as CardPricingUiRow[])
+      .map((row) => mapPricingRow(row))
+      .filter((row): row is CardPricingUiRecord => row !== null),
+  );
+}
+
+export async function getCardPricingUiByCardPrintIdWithClient(
+  supabase: CardPricingUiClient,
+  cardPrintId: string,
+): Promise<CardPricingUiRecord | null> {
+  const records = await getCardPricingUiRowsByCardPrintIdWithClient(supabase, cardPrintId);
+  return records.find((record) => record.pricing_scope === "parent") ?? records[0] ?? null;
+}
+
 export const getCardPricingUiByCardPrintId = cache(async function getCardPricingUiByCardPrintId(
   cardPrintId: string,
 ): Promise<CardPricingUiRecord | null> {
-  return getCardPricingUiByCardPrintIdWithClient(createServerComponentClient(), cardPrintId);
+  return getCardPricingUiByCardPrintIdWithClient(createServerAdminClient(), cardPrintId);
+});
+
+export const getCardPricingUiRowsByCardPrintId = cache(async function getCardPricingUiRowsByCardPrintId(
+  cardPrintId: string,
+): Promise<CardPricingUiRecord[]> {
+  return getCardPricingUiRowsByCardPrintIdWithClient(createServerAdminClient(), cardPrintId);
 });
