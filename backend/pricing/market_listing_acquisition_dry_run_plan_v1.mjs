@@ -6,7 +6,9 @@ export const MARKET_LISTING_SCHEMA_PACKAGE_FINGERPRINT_V1 = "8d8f44b084cb19b4d6a
 
 export const DEFAULT_DAILY_CALL_CEILING = 4000;
 export const DEFAULT_MAX_RESULTS_PER_CALL = 200;
-export const DEFAULT_DRY_RUN_TARGET_LIMIT = 1000;
+export const DEFAULT_DRY_RUN_TARGET_LIMIT = 6000;
+export const DEFAULT_SET_SHELF_PAGE_BUDGET = 2400;
+export const DEFAULT_SET_SHELF_MAX_PAGES_PER_SET = 50;
 
 const HIGH_PRIORITY_SET_CODE_PATTERNS = [
   /^wcd/i,
@@ -65,7 +67,12 @@ function normalizeCard(row) {
   };
 }
 
+function setDisplayName(card) {
+  return compact(card.set_name || card.printed_set_abbrev || card.set_code);
+}
+
 function priorityFor(card) {
+  if (card.target_kind === "set_shelf") return "priority_set_shelf";
   if (card.acquisition_priority) return card.acquisition_priority;
   const setCode = card.set_code ?? "";
   const modifier = `${card.printed_identity_modifier ?? ""} ${card.identity_domain ?? ""}`.toLowerCase();
@@ -88,12 +95,14 @@ function isCollectorRarity(rarity) {
 }
 
 function acquisitionPriorityScore(card) {
+  if (card.target_kind === "set_shelf") return Number(card.query_score) || 1000;
   const priority = priorityFor(card);
   const rarity = card.rarity ?? "";
   let score = 100;
 
   if (priority === "priority_variant_special_finish") score += 1200;
   if (priority === "priority_variant_finish") score += 1100;
+  if (priority === "priority_set_shelf") score += 1150;
   if (priority === "variant_finish") score += 800;
   if (priority === "priority_special_lane") score += 1000;
   if (priority === "priority_world_championship") score += 950;
@@ -105,7 +114,119 @@ function acquisitionPriorityScore(card) {
   return score;
 }
 
+function valueTierScoreForSet(cards) {
+  let score = 0;
+  for (const card of cards) {
+    if (isCollectorRarity(card.rarity)) score += 20;
+    const name = compact(card.name).toLowerCase();
+    if (/\b(charizard|pikachu|umbreon|eevee|mewtwo|mew|rayquaza|lugia|gengar|greninja|sylveon|leafeon|glaceon|espeon|vaporeon|jolteon|flareon)\b/.test(name)) {
+      score += 30;
+    }
+    if (/\b(special illustration|illustration|secret|hyper|rainbow|gold|shiny)\b/i.test(card.rarity ?? "")) {
+      score += 25;
+    }
+  }
+  return score;
+}
+
+function cardPriorityScoreForSet(cards) {
+  return Math.min(300, cards.reduce((sum, card) => sum + Math.max(0, acquisitionPriorityScore(card) - 100), 0) / Math.max(1, cards.length));
+}
+
+function setShelfBaseScore(set) {
+  return Math.round(
+    200 // expected_results: broad set shelves should often fill a 200-result page.
+    + Math.min(250, set.card_count * 2)
+    + Math.min(250, set.collector_count * 12)
+    + cardPriorityScoreForSet(set.cards)
+    + valueTierScoreForSet(set.cards)
+    - (set.weak_name ? 120 : 0)
+  );
+}
+
+function buildSetShelves(cards, { pageBudget, maxPagesPerSet, maxResultsPerCall }) {
+  const groups = new Map();
+  for (const card of cards) {
+    const key = card.set_code || setDisplayName(card).toLowerCase();
+    const setName = setDisplayName(card);
+    if (!key || !setName) continue;
+    const group = groups.get(key) ?? {
+      target_kind: "set_shelf",
+      set_key: key,
+      set_code: card.set_code,
+      set_name: setName,
+      printed_set_abbrev: card.printed_set_abbrev,
+      card_count: 0,
+      collector_count: 0,
+      special_lane_count: 0,
+      weak_name: setName.length < 3,
+      cards: [],
+    };
+    group.card_count += 1;
+    if (isCollectorRarity(card.rarity)) group.collector_count += 1;
+    if (priorityFor(card).startsWith("priority_")) group.special_lane_count += 1;
+    group.cards.push(card);
+    groups.set(key, group);
+  }
+
+  const shelves = [...groups.values()]
+    .map((set) => ({
+      ...set,
+      query_score: setShelfBaseScore(set),
+    }))
+    .sort((left, right) =>
+      right.query_score - left.query_score
+      || right.collector_count - left.collector_count
+      || right.card_count - left.card_count
+      || String(left.set_name).localeCompare(String(right.set_name))
+    );
+
+  const requests = [];
+  for (const set of shelves) {
+    if (requests.length >= pageBudget) break;
+    const pageCount = Math.max(
+      1,
+      Math.min(
+        maxPagesPerSet,
+        Math.ceil((set.query_score + set.card_count * 8 + set.collector_count * 25) / 100),
+      ),
+    );
+    const setQuery = compact(`Pokemon ${quote(set.set_name)}`);
+    const setCardQuery = compact(`Pokemon ${quote(set.set_name)} card`);
+    const slabQuery = compact(`Pokemon ${quote(set.set_name)} PSA BGS CGC`);
+    const sealedQuery = compact(`Pokemon ${quote(set.set_name)} sealed booster box etb pack`);
+    const languageQuery = compact(`Pokemon ${quote(set.set_name)} Japanese Korean Chinese Spanish German`);
+    const templates = [
+      { lane: "set_shelf_broad", query_text: setQuery, weight: 0.55 },
+      { lane: "set_shelf_singles", query_text: setCardQuery, weight: 0.25 },
+      { lane: "set_shelf_slabs", query_text: slabQuery, weight: 0.1 },
+      { lane: "set_shelf_sealed", query_text: sealedQuery, weight: 0.05 },
+      { lane: "set_shelf_language", query_text: languageQuery, weight: 0.05 },
+    ].filter((template) => template.query_text);
+
+    for (const template of templates) {
+      const templatePages = Math.max(1, Math.floor(pageCount * template.weight));
+      for (let page = 0; page < templatePages; page += 1) {
+        if (requests.length >= pageBudget) break;
+        requests.push({
+          set,
+          strategy: template.lane,
+          query_text: template.query_text,
+          offset: page * maxResultsPerCall,
+          query_score: Math.round(set.query_score * template.weight) - page,
+        });
+      }
+    }
+  }
+  return requests.sort((left, right) =>
+    right.query_score - left.query_score
+    || String(left.set.set_name).localeCompare(String(right.set.set_name))
+    || left.offset - right.offset
+  );
+}
+
 function buildQueryTerms(card, strategy) {
+  if (strategy?.startsWith("set_shelf_") && card.query_text) return card.query_text;
   if (strategy === "variant_finish" && card.ebay_query_text) return card.ebay_query_text;
   const terms = ["Pokemon", quote(card.name)].filter(Boolean);
   const setName = card.set_name || card.printed_set_abbrev || card.set_code;
@@ -160,8 +281,10 @@ function buildRequest(card, strategy, ordinal, options) {
     card_printing_id: card.card_printing_id,
     gv_id: card.gv_id,
     printing_gv_id: card.printing_gv_id,
+    offset: card.offset ?? 0,
   });
   const targetHints = {
+    target_kind: card.target_kind ?? "card_identity",
     card_print_id: card.card_print_id,
     card_printing_id: card.card_printing_id,
     gv_id: card.gv_id,
@@ -177,6 +300,8 @@ function buildRequest(card, strategy, ordinal, options) {
     finish_key: card.finish_key,
     priority: priorityFor(card),
     acquisition_priority_score: acquisitionPriorityScore(card),
+    query_score: card.query_score ?? null,
+    shelf_intelligence_allowed: strategy?.startsWith("set_shelf_") ? true : false,
   };
 
   return {
@@ -198,6 +323,7 @@ function buildRequest(card, strategy, ordinal, options) {
       buying_options: ["FIXED_PRICE", "AUCTION"],
       fieldgroups: ["MATCHING_ITEMS"],
     },
+    offset: Number.isFinite(Number(card.offset)) ? Number(card.offset) : 0,
     target_hints: targetHints,
     expected_max_result_count: options.maxResultsPerCall,
     expected_call_count: 1,
@@ -226,6 +352,8 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
   dryRunTargetLimit = DEFAULT_DRY_RUN_TARGET_LIMIT,
   schemaMigrationHash = MARKET_LISTING_SCHEMA_MIGRATION_HASH_V1,
   schemaPackageFingerprint = MARKET_LISTING_SCHEMA_PACKAGE_FINGERPRINT_V1,
+  setShelfPageBudget = DEFAULT_SET_SHELF_PAGE_BUDGET,
+  setShelfMaxPagesPerSet = DEFAULT_SET_SHELF_MAX_PAGES_PER_SET,
 } = {}) {
   if (!Array.isArray(targets)) {
     throw new Error("[market-listing-dry-run] targets must be an array");
@@ -250,6 +378,24 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
     .slice(0, dryRunTargetLimit);
 
   const acquisitionRequests = [];
+  const setShelfPlans = buildSetShelves(normalizedTargets, {
+    pageBudget: Math.max(0, Math.min(Number(setShelfPageBudget) || 0, dailyCallCeiling)),
+    maxPagesPerSet: Math.max(1, Number(setShelfMaxPagesPerSet) || DEFAULT_SET_SHELF_MAX_PAGES_PER_SET),
+    maxResultsPerCall,
+  });
+  for (const plan of setShelfPlans) {
+    acquisitionRequests.push(buildRequest({
+      ...plan.set,
+      card_print_id: null,
+      card_printing_id: null,
+      gv_id: null,
+      printing_gv_id: null,
+      name: plan.set.set_name,
+      query_text: plan.query_text,
+      offset: plan.offset,
+      query_score: plan.query_score,
+    }, plan.strategy, acquisitionRequests.length + 1, { maxResultsPerCall }));
+  }
   for (const card of normalizedTargets) {
     for (const strategy of strategiesFor(card)) {
       acquisitionRequests.push(buildRequest(card, strategy, acquisitionRequests.length + 1, { maxResultsPerCall }));
@@ -265,6 +411,7 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
     strategy: request.strategy,
     query_text: request.query_text,
     query_filters: request.query_filters,
+    offset: request.offset ?? 0,
   })));
   const plannedCallCount = acquisitionRequests.reduce((sum, request) => sum + request.expected_call_count, 0);
   const estimatedMaxListingEnvelope = plannedCallCount * maxResultsPerCall;
@@ -317,6 +464,8 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
       max_results_per_call: maxResultsPerCall,
       estimated_max_listing_envelope: estimatedMaxListingEnvelope,
       estimated_day_count_at_ceiling: dayCountAtCeiling,
+      set_shelf_request_count: acquisitionRequests.filter((request) => request.strategy?.startsWith("set_shelf_")).length,
+      card_identity_request_count: acquisitionRequests.filter((request) => !request.strategy?.startsWith("set_shelf_")).length,
       priority_counts: countBy(normalizedTargets, priorityFor),
       rarity_priority_counts: countBy(normalizedTargets, (card) => isLowPriorityRarity(card.rarity) ? "low_priority_common_rare" : "normal_or_collector_priority"),
       strategy_counts: countBy(acquisitionRequests, (request) => request.strategy),

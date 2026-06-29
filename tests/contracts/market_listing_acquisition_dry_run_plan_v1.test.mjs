@@ -28,6 +28,7 @@ test("MEE-11D builds an ebay active listing dry-run plan without fetch or writes
   const report = buildMarketListingAcquisitionDryRunPlanV1({
     targets: [target(1), target(2)],
     generatedAt: "2026-06-25T00:00:00.000Z",
+    setShelfPageBudget: 0,
   });
 
   assert.equal(report.version, MARKET_LISTING_ACQUISITION_DRY_RUN_PLAN_VERSION);
@@ -73,6 +74,7 @@ test("MEE-11D deprioritizes common and ordinary rare targets without excluding t
       }),
     ],
     generatedAt: "2026-06-25T00:00:00.000Z",
+    setShelfPageBudget: 0,
   });
 
   assert.equal(report.summary.planned_target_count, 3);
@@ -88,11 +90,35 @@ test("MEE-11D reports when planned calls exceed a one-day ceiling but stays appr
     targets: [target(1), target(2), target(3), target(4)],
     dailyCallCeiling: 3,
     generatedAt: "2026-06-25T00:00:00.000Z",
+    setShelfPageBudget: 0,
   });
 
   assert.equal(report.ready_for_acquisition_approval, true);
   assert.ok(report.findings.includes("planned_calls_exceed_single_day_ceiling"));
   assert.equal(report.summary.estimated_day_count_at_ceiling > 1, true);
+});
+
+test("MEE-11D plans set-shelf pages before exact card requests for broad acquisition", () => {
+  const report = buildMarketListingAcquisitionDryRunPlanV1({
+    targets: [
+      target(1, { name: "Pikachu ex", set_code: "sv8pt5", set_name: "Prismatic Evolutions", rarity: "Special illustration rare" }),
+      target(2, { name: "Umbreon ex", set_code: "sv8pt5", set_name: "Prismatic Evolutions", rarity: "Special illustration rare" }),
+      target(3, { name: "Common Test", set_code: "sv8pt5", set_name: "Prismatic Evolutions", rarity: "Common" }),
+      target(4, { name: "Charizard", set_code: "pl4", set_name: "Arceus", rarity: "Rare Holo" }),
+    ],
+    generatedAt: "2026-06-25T00:00:00.000Z",
+    dailyCallCeiling: 20,
+    setShelfPageBudget: 8,
+    setShelfMaxPagesPerSet: 6,
+  });
+
+  assert.equal(report.summary.set_shelf_request_count > 0, true);
+  assert.equal(report.acquisition_requests[0].strategy.startsWith("set_shelf_"), true);
+  assert.equal(report.acquisition_requests[0].target_hints.target_kind, "set_shelf");
+  assert.equal(report.acquisition_requests[0].card_print_id, null);
+  assert.equal(report.acquisition_requests[0].target_hints.shelf_intelligence_allowed, true);
+  assert.equal(report.acquisition_requests.some((request) => request.offset > 0), true);
+  assert.equal(report.summary.estimated_max_listing_envelope, report.summary.acquisition_request_count * 200);
 });
 
 test("MEE-11D audit script does not contain provider fetches or pricing writes", () => {

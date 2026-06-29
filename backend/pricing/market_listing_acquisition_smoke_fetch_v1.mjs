@@ -264,6 +264,11 @@ function projectObservation({ request, item, observedAt }) {
       strategy: request.strategy,
       query_text: request.query_text,
       offset: Number.isFinite(Number(request.offset)) ? Number(request.offset) : 0,
+      target_kind: request.target_hints?.target_kind ?? (request.strategy?.startsWith("set_shelf_") ? "set_shelf" : "card_identity"),
+      set_code: request.target_hints?.set_code ?? null,
+      set_name: request.target_hints?.set_name ?? null,
+      shelf_intelligence_allowed: request.target_hints?.shelf_intelligence_allowed === true,
+      query_score: request.target_hints?.query_score ?? null,
     },
   };
 }

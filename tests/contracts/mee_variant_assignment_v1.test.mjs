@@ -102,6 +102,7 @@ test("acquisition dry-run planner preserves child variant target identity", () =
     dryRunTargetLimit: 1,
     dailyCallCeiling: 10,
     maxResultsPerCall: 200,
+    setShelfPageBudget: 0,
   });
 
   assert.equal(report.summary.planned_target_count, 1);

@@ -31,6 +31,8 @@ function parseArgs(argv) {
     targetLimit: getNumber("target-limit", DEFAULT_DRY_RUN_TARGET_LIMIT),
     dailyCallCeiling: getNumber("daily-call-ceiling", DEFAULT_DAILY_CALL_CEILING),
     maxResultsPerCall: getNumber("max-results-per-call", DEFAULT_MAX_RESULTS_PER_CALL),
+    setShelfPageBudget: getNumber("set-shelf-page-budget", null),
+    setShelfMaxPagesPerSet: getNumber("set-shelf-max-pages-per-set", null),
   };
 }
 
@@ -41,12 +43,13 @@ function runSupabaseQuery(sql) {
     maxBuffer: 64 * 1024 * 1024,
     stdio: ["ignore", "pipe", "pipe"],
   });
-  const jsonStart = output.indexOf("{");
-  const jsonEnd = output.lastIndexOf("}");
-  if (jsonStart < 0 || jsonEnd < jsonStart) {
+  const jsonStart = output.search(/[\[{]/);
+  if (jsonStart < 0) {
     throw new Error("[market-listing-dry-run] unable to parse Supabase JSON output");
   }
-  return JSON.parse(output.slice(jsonStart, jsonEnd + 1)).rows ?? [];
+  const trimmed = output.slice(jsonStart).trim();
+  const parsed = JSON.parse(trimmed);
+  return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
 function loadTargets(limit) {
@@ -220,6 +223,8 @@ if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.res
       dryRunTargetLimit: args.targetLimit,
       dailyCallCeiling: args.dailyCallCeiling,
       maxResultsPerCall: args.maxResultsPerCall,
+      ...(args.setShelfPageBudget === null ? {} : { setShelfPageBudget: args.setShelfPageBudget }),
+      ...(args.setShelfMaxPagesPerSet === null ? {} : { setShelfMaxPagesPerSet: args.setShelfMaxPagesPerSet }),
     });
     const artifacts = writeReport(report);
     console.log(JSON.stringify({
