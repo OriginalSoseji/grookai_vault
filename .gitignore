@@ -117,6 +117,8 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/card-pricing/
+!apps/web/src/app/api/card-pricing/route.ts
 !apps/web/src/app/api/assistant/
 apps/web/src/app/api/assistant/*
 !apps/web/src/app/api/assistant/search-interpretation/

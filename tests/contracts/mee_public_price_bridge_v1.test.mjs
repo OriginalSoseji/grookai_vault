@@ -23,6 +23,7 @@ const remoteApplyReportPath = "docs/audits/market_evidence_engine_v1/MEE-PUBLIC-
 const remoteApplyMarkdownPath = "docs/audits/market_evidence_engine_v1/MEE-PUBLIC-PRICE-BRIDGE-V1-REMOTE-SCHEMA-APPLY.md";
 const cardPricingHelperPath = "apps/web/src/lib/pricing/getCardPricingUiByCardPrintId.ts";
 const publicPricingHelperPath = "apps/web/src/lib/pricing/getPublicPricingByCardIds.ts";
+const cardPricingRoutePath = "apps/web/src/app/api/card-pricing/route.ts";
 const pricingRailPath = "apps/web/src/components/pricing/CardPagePricingRail.tsx";
 const pricingDisclosurePath = "apps/web/src/components/common/PricingDisclosure.tsx";
 
@@ -97,6 +98,19 @@ test("pricing UI copy states active listing estimates are not sold comps", () =>
   assert.match(disclosure, /Active listing estimates are asking-price evidence, not sold-comparable proof or guaranteed market value\./);
 });
 
+test("signed-in card pricing hydration route is tracked and auth-gated", () => {
+  const route = read(cardPricingRoutePath);
+  const gitignore = read(".gitignore");
+
+  assert.match(route, /getCardPricingUiByCardPrintId/);
+  assert.match(route, /createRouteHandlerClient/);
+  assert.match(route, /auth\.getUser\(\)/);
+  assert.match(route, /Sign in required\./);
+  assert.match(route, /card_print_id/);
+  assert.match(route, /Cache-Control["']:\s*["']private,\s*no-store/);
+  assert.match(gitignore, /!apps\/web\/src\/app\/api\/card-pricing\/route\.ts/);
+});
+
 test("MEE public price bridge remote readback has closed truth boundaries", () => {
   const report = loadJson(remoteApplyReportPath);
 
@@ -118,7 +132,7 @@ test("MEE public price bridge remote readback has closed truth boundaries", () =
 });
 
 test("MEE public price bridge artifacts exist", () => {
-  for (const artifactPath of [bridgeSqlPath, readbackSqlPath, migrationPath, contractPath, checkpointPath, remoteApplyReportPath, remoteApplyMarkdownPath]) {
+  for (const artifactPath of [bridgeSqlPath, readbackSqlPath, migrationPath, contractPath, checkpointPath, cardPricingRoutePath, remoteApplyReportPath, remoteApplyMarkdownPath]) {
     assert.equal(existsSync(new URL(`../../${artifactPath}`, import.meta.url)), true, artifactPath);
   }
 });
