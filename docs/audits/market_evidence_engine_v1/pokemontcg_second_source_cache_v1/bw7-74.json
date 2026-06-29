@@ -1,0 +1,121 @@
+{
+  "id": "bw7-74",
+  "name": "Scolipede",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "150",
+  "types": [
+    "Psychic"
+  ],
+  "evolvesFrom": "Whirlipede",
+  "abilities": [
+    {
+      "name": "Poison Point",
+      "text": "If this Pokémon is your Active Pokémon and is damaged by an opponent's attack (even if this Pokémon is Knocked Out), this Attacking Pokémon is now Poisoned.",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Venoshock",
+      "cost": [
+        "Psychic",
+        "Psychic",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80+",
+      "text": "If the Defending Pokémon is Poisoned, this attack does 40 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "74",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Holo",
+  "flavorText": "It clasps its prey with the claws on its neck until it stops moving. Then it finishes it off with deadly poison.",
+  "nationalPokedexNumbers": [
+    545
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/74.png",
+    "large": "https://images.pokemontcg.io/bw7/74_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-74",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 2.89,
+        "mid": 4.19,
+        "high": 48.1,
+        "market": 3.99,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 5.8,
+        "mid": 9.95,
+        "high": 119.8,
+        "market": 10.99,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-74",
+    "updatedAt": "2026/01/21",
+    "prices": {
+      "averageSellPrice": 3.98,
+      "lowPrice": 0.1,
+      "trendPrice": 4.19,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0.1,
+      "reverseHoloTrend": 3.15,
+      "lowPriceExPlus": 0.99,
+      "avg1": 2.95,
+      "avg7": 4.51,
+      "avg30": 3.74,
+      "reverseHoloAvg1": 2,
+      "reverseHoloAvg7": 3.87,
+      "reverseHoloAvg30": 2.72
+    }
+  }
+}

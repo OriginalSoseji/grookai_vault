@@ -1,0 +1,114 @@
+{
+  "id": "dp2-123",
+  "name": "Magmortar LV.X",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Level-Up"
+  ],
+  "level": "X",
+  "hp": "130",
+  "types": [
+    "Fire"
+  ],
+  "evolvesFrom": "Magmortar",
+  "rules": [
+    "Put this card onto your Active Magmortar. Magmortar LV.X can use any attack, Poké-Power, or Poké-Body from its previous level."
+  ],
+  "abilities": [
+    {
+      "name": "Torrid Wave",
+      "text": "Once during your turn (before your attack), if Magmortar is your Active Pokémon, you may choose 1 of the Defending Pokémon. That Pokémon is now Burned. Put 3 damage counters instead of 2 on that Pokémon between turns. This power can't be used if Magmortar is affected by a Special Condition.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Flame Bluster",
+      "cost": [
+        "Fire",
+        "Fire",
+        "Fire",
+        "Fire"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "",
+      "text": "Discard 2 Fire Energy attached to Magmortar. Choose 1 of your opponent's Pokémon. This attack does 100 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) During your next turn, Magmortar can't use Flame Bluster."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "dp2",
+    "name": "Mysterious Treasures",
+    "series": "Diamond & Pearl",
+    "printedTotal": 123,
+    "total": 124,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MT",
+    "releaseDate": "2007/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp2/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp2/logo.png"
+    }
+  },
+  "number": "123",
+  "artist": "Shizurow",
+  "rarity": "Rare Holo LV.X",
+  "nationalPokedexNumbers": [
+    467
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp2/123.png",
+    "large": "https://images.pokemontcg.io/dp2/123_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp2-123",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 36.97,
+        "mid": 44.38,
+        "high": 409.8,
+        "market": 66.41,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp2-123",
+    "updatedAt": "2025/12/07",
+    "prices": {
+      "averageSellPrice": 18.43,
+      "lowPrice": 7,
+      "trendPrice": 43.99,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 16.51,
+      "lowPriceExPlus": 20,
+      "avg1": 45,
+      "avg7": 23.57,
+      "avg30": 45.31,
+      "reverseHoloAvg1": 8,
+      "reverseHoloAvg7": 16.71,
+      "reverseHoloAvg30": 11.51
+    }
+  }
+}

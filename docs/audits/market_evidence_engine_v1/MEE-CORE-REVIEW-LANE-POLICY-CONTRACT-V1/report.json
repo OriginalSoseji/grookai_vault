@@ -1,0 +1,268 @@
+{
+  "package_id": "MEE-CORE-REVIEW-LANE-POLICY-CONTRACT-V1",
+  "generated_at": "2026-06-27T05:09:36.186Z",
+  "mode": "plan_only_review_lane_policy_contract",
+  "package_fingerprint_sha256": "ff2746becc6bc77d927734b7cb7ff5122d085bfbfbd08e0d39ab87949689394a",
+  "global_policy": {
+    "providers_create_market_truth": false,
+    "active_listings_are_market_truth": false,
+    "reference_metrics_are_market_truth": false,
+    "review_actions_can_publish_prices": false,
+    "lane_policy_can_write_pricing_observations": false,
+    "lane_policy_can_write_ebay_active_prices_latest": false,
+    "lane_policy_can_set_public_flags": false,
+    "public_pricing_requires_separate_publish_gate": true,
+    "post_ingest_orchestrator_is_plan_only_until_batch_workflow": true
+  },
+  "lane_policies": [
+    {
+      "policy_id": "low_signal_monitor_auto_monitor",
+      "review_lane": "low_signal_monitor",
+      "evidence_lane": "*",
+      "eligible_statuses": [
+        "pending",
+        "in_review",
+        "resolved"
+      ],
+      "eligible_dispositions": [
+        "*"
+      ],
+      "action_name": "confirm_monitor_only",
+      "reason_code": null,
+      "automation_class": "auto_safe_internal",
+      "resulting_status": "resolved",
+      "resulting_disposition": "monitor_only",
+      "can_be_in_batch_apply": true,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Low-signal evidence is explicitly not enough for candidate pricing; it can be resolved to monitor-only."
+    },
+    {
+      "policy_id": "classification_blocked_request_reclassification",
+      "review_lane": "classification_review",
+      "evidence_lane": "classification_blocked",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "review_pending_classification_fix"
+      ],
+      "action_name": "request_reclassification",
+      "reason_code": "classification_noise",
+      "automation_class": "auto_safe_internal",
+      "resulting_status": "blocked",
+      "resulting_disposition": "review_reclassify",
+      "can_be_in_batch_apply": true,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Classification-blocked evidence cannot be confirmed; routing it back to reclassification is safe and internal."
+    },
+    {
+      "policy_id": "mixed_raw_slab_require_split",
+      "review_lane": [
+        "candidate_review",
+        "high_signal_review"
+      ],
+      "evidence_lane": "mixed_raw_slab",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "review_pending_candidate",
+        "review_pending_high_signal"
+      ],
+      "action_name": "require_split",
+      "reason_code": "mixed_raw_slab_requires_split",
+      "automation_class": "auto_safe_internal",
+      "resulting_status": "blocked",
+      "resulting_disposition": "review_split_required",
+      "can_be_in_batch_apply": true,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Raw singles and slabs must never be rolled together. Split-required blocks the row until the evidence is separated."
+    },
+    {
+      "policy_id": "raw_single_internal_candidate_review_hold",
+      "review_lane": [
+        "candidate_review",
+        "high_signal_review"
+      ],
+      "evidence_lane": "raw_single",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "review_pending_candidate",
+        "review_pending_high_signal"
+      ],
+      "action_name": "confirm_internal_candidate",
+      "reason_code": "approved_internal_raw_single_signal",
+      "automation_class": "reviewer_or_explicit_policy_required",
+      "resulting_status": "resolved",
+      "resulting_disposition": "review_confirmed_internal_candidate",
+      "can_be_in_batch_apply": false,
+      "can_be_publish_gate_candidate": true,
+      "rationale": "Raw-single signals may become internal candidates, but confirmation can feed a future publish gate and therefore requires explicit review/policy."
+    },
+    {
+      "policy_id": "slab_internal_candidate_review_hold",
+      "review_lane": [
+        "candidate_review",
+        "high_signal_review"
+      ],
+      "evidence_lane": "slab",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "review_pending_candidate",
+        "review_pending_high_signal"
+      ],
+      "action_name": "confirm_internal_candidate",
+      "reason_code": "approved_internal_slab_signal",
+      "automation_class": "reviewer_or_explicit_policy_required",
+      "resulting_status": "resolved",
+      "resulting_disposition": "review_confirmed_internal_candidate",
+      "can_be_in_batch_apply": false,
+      "can_be_publish_gate_candidate": true,
+      "rationale": "Slab signals may become internal candidates, but confirmation can feed a future publish gate and therefore requires explicit review/policy."
+    },
+    {
+      "policy_id": "reference_metric_hold",
+      "review_lane": [
+        "candidate_review",
+        "high_signal_review",
+        "reference_only_review"
+      ],
+      "evidence_lane": "reference_metric",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "review_pending_candidate",
+        "review_pending_high_signal",
+        "review_pending_reference_only"
+      ],
+      "action_name": "defer_more_evidence_or_defer_active_market_evidence",
+      "reason_code": "reference_only_no_market_support",
+      "automation_class": "hold_until_reference_policy",
+      "resulting_status": "pending_or_resolved",
+      "resulting_disposition": "policy_dependent",
+      "can_be_in_batch_apply": false,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Reference metrics are evidence, not market truth. They must hold until reference-only policy and active-market support rules are explicit."
+    },
+    {
+      "policy_id": "unknown_evidence_manual_hold",
+      "review_lane": "*",
+      "evidence_lane": "unknown",
+      "eligible_statuses": [
+        "pending",
+        "in_review"
+      ],
+      "eligible_dispositions": [
+        "*"
+      ],
+      "action_name": "defer_more_evidence",
+      "reason_code": "manual_hold",
+      "automation_class": "hold_until_manual_review",
+      "resulting_status": "pending_or_resolved",
+      "resulting_disposition": "policy_dependent",
+      "can_be_in_batch_apply": false,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Unknown evidence cannot be safely actioned without manual inspection or stronger classification."
+    },
+    {
+      "policy_id": "terminal_no_action",
+      "review_lane": "*",
+      "evidence_lane": "*",
+      "eligible_statuses": [
+        "blocked",
+        "resolved"
+      ],
+      "eligible_dispositions": [
+        "*"
+      ],
+      "action_name": null,
+      "reason_code": null,
+      "automation_class": "no_action",
+      "resulting_status": "unchanged",
+      "resulting_disposition": "unchanged",
+      "can_be_in_batch_apply": false,
+      "can_be_publish_gate_candidate": false,
+      "rationale": "Resolved or blocked rows are already routed. They should not be reprocessed without a new explicit package."
+    }
+  ],
+  "automation_classes": {
+    "auto_safe_internal": 3,
+    "reviewer_or_explicit_policy_required": 2,
+    "hold_until_reference_policy": 1,
+    "hold_until_manual_review": 1,
+    "no_action": 1
+  },
+  "current_policy_impact": {
+    "current_orchestrator_package": "MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1",
+    "current_orchestrator_fingerprint": "876e629b79ac08463dff8506b5b9a08921179c9f93d7b5afbacfeaa4388e6a8f",
+    "safe_internal_action_count": 550,
+    "held_action_count": 1203,
+    "safe_internal_actions_by_action": {
+      "require_split": 550
+    },
+    "held_actions_by_action": {
+      "confirm_internal_candidate": 270,
+      "defer_more_evidence": 929,
+      "defer_active_market_evidence": 4
+    },
+    "safe_internal_actions_allowed_now": [
+      "confirm_monitor_only",
+      "request_reclassification",
+      "require_split"
+    ],
+    "current_safe_internal_action_to_apply_next": "require_split",
+    "current_safe_internal_action_rows_to_apply_next": 550
+  },
+  "foundation_status": {
+    "foundation_before_this_package": "not_complete",
+    "blocker_satisfied_by_this_package": "lane_policy_contract",
+    "foundation_after_this_package": "not_complete",
+    "remaining_blockers": [
+      "batch_review_action_workflow",
+      "publish_gate_contract",
+      "runbook"
+    ]
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-BATCH-REVIEW-ACTION-WORKFLOW-V1",
+    "reason": "Lane policy is now explicit. The next foundation blocker is turning orchestrator-safe actions into one approved batch package with preflight, apply, readback, rollback, and public-boundary proofs.",
+    "allowed_scope": "Schema/plan only if needed. No acquisition, no provider calls, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "source_hashes": {
+    "foundation_completion": "cda42f72bb5317f5dec349dc59d3a097285f1a55a087384a4af153235a175184",
+    "post_ingest_orchestrator": "8fe9e0d7f842949f4390562a26067f57647f40deaba0c8842bb87072a1475d5e",
+    "review_action_workflow": "25808d09ec42fe5151a912bfff568354e468dd19ca2253b6b79994d3bb35d2bb"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

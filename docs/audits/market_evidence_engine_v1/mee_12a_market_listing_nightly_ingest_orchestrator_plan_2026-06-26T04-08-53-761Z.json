@@ -1,0 +1,131 @@
+{
+  "package_id": "MARKET-LISTING-NIGHTLY-INGEST-ORCHESTRATOR-PLAN-V1",
+  "generated_at": "2026-06-26T04:08:53.761Z",
+  "mode": "local_orchestrator_plan_no_provider_calls_no_db_writes",
+  "contract_path": "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json",
+  "contract_hash_sha256": "2b87af4aa106d5ee621c2c212a9c6508e70ef9a41186b6a8b82b9b58644813d0",
+  "package_fingerprint_sha256": "2546c69e126edddea7ab57ebdb4454283287ef79c0b95656295156949bd63387",
+  "call_ceiling": 4000,
+  "ready_for_overnight_run_approval": false,
+  "phase_plan": [
+    {
+      "ordinal": 1,
+      "name": "Build prioritized acquisition worklist",
+      "status": "available",
+      "command": "node scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs",
+      "boundary": "local artifact only; no provider calls; no DB writes"
+    },
+    {
+      "ordinal": 2,
+      "name": "Slice one bounded daily/nightly batch",
+      "status": "available",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs --call-limit=4000",
+      "boundary": "local artifact only; no provider calls; no DB writes"
+    },
+    {
+      "ordinal": 3,
+      "name": "Fetch eBay active listing evidence",
+      "status": "available_after_single_approval",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_fetch_v1.mjs --batch-plan=<phase-2-artifact>",
+      "boundary": "provider calls allowed only within approved call ceiling; local artifacts only"
+    },
+    {
+      "ordinal": 4,
+      "name": "Prepare warehouse backfill package",
+      "status": "available",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_backfill_plan_v1.mjs --fetch=<phase-3-artifact>",
+      "boundary": "local package only; no provider calls; no DB writes"
+    },
+    {
+      "ordinal": 5,
+      "name": "Apply internal warehouse rows",
+      "status": "available_after_single_approval",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_backfill_apply_v1.mjs --plan=<phase-4-artifact>",
+      "boundary": "market_listing_* warehouse inserts only; no candidates or rollups"
+    },
+    {
+      "ordinal": 6,
+      "name": "Compute strict-filtered candidate and rollup package",
+      "status": "partially_available",
+      "command": "node scripts/audits/market_listing_strict_filtered_rollup_plan_v1.mjs",
+      "boundary": "currently local artifact only; strict title filtering before medians"
+    },
+    {
+      "ordinal": 7,
+      "name": "Apply strict-filtered review-only candidates and rollups",
+      "status": "available_after_single_approval",
+      "command": "node scripts/audits/market_listing_strict_filtered_rollup_apply_v1.mjs --plan=<phase-6-artifact>",
+      "boundary": "market_listing_card_candidates and market_listing_rollups only; all rows non-public and review-only"
+    },
+    {
+      "ordinal": 8,
+      "name": "Final morning readback",
+      "status": "missing_implementation",
+      "command": null,
+      "boundary": "read-only report; confirms no public/app-visible pricing"
+    }
+  ],
+  "existing_script_check": [
+    {
+      "path": "scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "scripts/audits/market_listing_acquisition_daily_batch_fetch_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "scripts/audits/market_listing_acquisition_daily_batch_backfill_plan_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "scripts/audits/market_listing_acquisition_daily_batch_backfill_apply_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "scripts/audits/market_listing_strict_filtered_rollup_plan_v1.mjs",
+      "exists": true
+    },
+    {
+      "path": "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.md",
+      "exists": true
+    },
+    {
+      "path": "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json",
+      "exists": true
+    }
+  ],
+  "missing_implementation": [
+    {
+      "path": "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+      "reason": "needed to execute the one-approval end-to-end nightly run under MARKET_LISTING_NIGHTLY_INGEST_V1"
+    },
+    {
+      "path": "scripts/audits/market_listing_nightly_ingest_readback_v1.mjs",
+      "reason": "needed for the final morning report required by the contract"
+    }
+  ],
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false
+  },
+  "findings": [
+    "nightly_orchestrator_missing_final_apply_or_readback_scripts"
+  ],
+  "recommended_next_step": "Build the missing strict-filtered apply and nightly readback scripts before attempting a one-approval overnight run.",
+  "approval_prompt_for_future_run": "Approve real MARKET-LISTING-NIGHTLY-INGEST-V1 run only. Contract hash: 2b87af4aa106d5ee621c2c212a9c6508e70ef9a41186b6a8b82b9b58644813d0. Scope: run one bounded overnight Market Listing ingestion cycle using existing approved market_listing_* warehouse schema only. Allow up to 4000 ebay_active Browse API calls, local acquisition artifacts, warehouse inserts into market_listing_acquisition_runs, market_listing_query_cache, market_listing_raw_snapshots, market_listing_observations, market_listing_seller_snapshots, market_listing_price_events, review-only market_listing_card_candidates, and internal-only market_listing_rollups. Keep raw_single and slab lanes separated. Apply strict title evidence filtering before rollup medians are calculated. Keep all candidates and rollups needs_review=true, publishable=false, app_visible=false, market_truth=false, and can_publish_price_directly=false where applicable. No public pricing views. No app-visible pricing. No pricing_observations writes. No ebay_active_prices_latest writes. No JustTCG public pricing. No identity-table writes. No card_prints/card_printings writes. No vault writes. No image/storage writes. No migrations. No deletes except exact same-run market_listing_* repair cleanup. No merges. No global apply. Produce final audit report before stopping."
+}

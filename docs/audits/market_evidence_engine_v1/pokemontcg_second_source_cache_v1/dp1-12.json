@@ -1,0 +1,125 @@
+{
+  "id": "dp1-12",
+  "name": "Rhyperior",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "61",
+  "hp": "140",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Rhydon",
+  "abilities": [
+    {
+      "name": "Earth Fissure",
+      "text": "Once during your turn, when you play Rhyperior from your hand to evolve 1 of your Pokémon, you may discard the top 3 cards from your opponent's deck.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Rock Wrecker",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80",
+      "text": "This attack's damage isn't affected by Weakness or Resistance. Rhyperior can't attack during your next turn."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "+30"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "dp1",
+    "name": "Diamond & Pearl",
+    "series": "Diamond & Pearl",
+    "printedTotal": 130,
+    "total": 130,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "DP",
+    "releaseDate": "2007/05/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp1/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp1/logo.png"
+    }
+  },
+  "number": "12",
+  "artist": "Nakaoka",
+  "rarity": "Rare Holo",
+  "flavorText": "It puts rocks in holes in its palms and uses its muscles to shoot them. Geodude are shot at rare times.",
+  "nationalPokedexNumbers": [
+    464
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp1/12.png",
+    "large": "https://images.pokemontcg.io/dp1/12_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp1-12",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 4.88,
+        "mid": 11.55,
+        "high": 220,
+        "market": 4.96,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 3.75,
+        "mid": 5.12,
+        "high": 44.5,
+        "market": 4.99,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp1-12",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 1.82,
+      "lowPrice": 0.4,
+      "trendPrice": 2.32,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.04,
+      "reverseHoloLow": 0.4,
+      "reverseHoloTrend": 2.22,
+      "lowPriceExPlus": 2,
+      "avg1": 1.2,
+      "avg7": 2.36,
+      "avg30": 2.49,
+      "reverseHoloAvg1": 1.75,
+      "reverseHoloAvg7": 2.43,
+      "reverseHoloAvg30": 2.35
+    }
+  }
+}

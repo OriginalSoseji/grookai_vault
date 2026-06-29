@@ -1,0 +1,120 @@
+{
+  "id": "bwp-BW94",
+  "name": "Eevee",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "60",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesTo": [
+    "Vaporeon",
+    "Jolteon",
+    "Flareon",
+    "Sylveon",
+    "Espeon",
+    "Umbreon",
+    "Leafeon",
+    "Glaceon"
+  ],
+  "attacks": [
+    {
+      "name": "Growl",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "During your opponent's next turn, any damage done by attacks from the Defending Pokémon is reduced by 20 (before applying Weakness and Resistance)."
+    },
+    {
+      "name": "Quick Attack",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "10+",
+      "text": "Flip a coin. If heads, this attack does 10 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW94",
+  "artist": "The Pokémon Company Art Team",
+  "rarity": "Promo",
+  "flavorText": "Thanks to its unstable genetic makeup, this special Pokémon conceals many different possible evolutions.",
+  "nationalPokedexNumbers": [
+    133
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW94.png",
+    "large": "https://images.pokemontcg.io/bwp/BW94_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW94",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 75.96,
+        "mid": 99.97,
+        "high": 699.98,
+        "market": 86.3,
+        "directLow": 699.98
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW94",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 12.39,
+      "lowPrice": 2.5,
+      "trendPrice": 11.37,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 10.71,
+      "lowPriceExPlus": 7.5,
+      "avg1": 8,
+      "avg7": 8,
+      "avg30": 16.48,
+      "reverseHoloAvg1": 12.89,
+      "reverseHoloAvg7": 9.14,
+      "reverseHoloAvg30": 8.53
+    }
+  }
+}

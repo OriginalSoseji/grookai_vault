@@ -1,0 +1,260 @@
+{
+  "package_id": "MEE-PRICE-REVIEW-ACTION-MODEL-V1-REMOTE-SCHEMA-APPLY",
+  "mode": "targeted_remote_schema_apply_internal_price_review_action_model",
+  "generated_at": "2026-06-29T03:55:10.323Z",
+  "applied_objects": [
+    "public.market_evidence_price_review_events",
+    "public.v_market_evidence_price_review_current_v1",
+    "public.v_market_evidence_internal_approved_price_signals_v1"
+  ],
+  "migration_sha256": "54739ea12118c52fd7f4d5570b3e19bd4bffa02b3fe063818f7e152527aa0cd7",
+  "readback_sql_sha256": "b97355f885dd2b074fd67e2ffba2c6b4b039a8392c8a92ebe6623ac348ef6714",
+  "boundary": {
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "db_push": false,
+    "global_apply": false
+  },
+  "readback": {
+    "package_id": "MEE_PRICE_REVIEW_ACTION_MODEL_V1",
+    "event_rows": "0",
+    "current_rows": "0",
+    "approved_internal_rows": "0",
+    "public_boundary": {
+      "app_visible_rows": 0,
+      "publishable_rows": 0,
+      "market_truth_rows": 0,
+      "can_publish_price_directly_rows": 0
+    },
+    "writes_pricing_observations": false,
+    "writes_ebay_active_prices_latest": false,
+    "public_pricing_view": false,
+    "app_visible_pricing": false,
+    "public_price_rollup": false,
+    "market_truth": false
+  },
+  "grants": [
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "market_evidence_price_review_events",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_market_evidence_internal_approved_price_signals_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_market_evidence_price_review_current_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE"
+    }
+  ],
+  "findings": []
+}

@@ -1,0 +1,364 @@
+{
+  "objectCounts": {
+    "table_count": 1,
+    "view_count": 2,
+    "supporting_index_count": 4,
+    "total_index_count": 5,
+    "policy_count": 2,
+    "cleanup_event_rows": 0,
+    "migration_history_rows": 1
+  },
+  "grants": [
+    {
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "table_name": "market_listing_candidate_cleanup_events"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "market_listing_candidate_cleanup_events"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "v_market_listing_candidate_cleanup_current_v1"
+    }
+  ],
+  "policies": [
+    {
+      "policyname": "market_listing_candidate_cleanup_events_service_role_insert",
+      "cmd": "INSERT",
+      "roles": "{service_role}"
+    },
+    {
+      "policyname": "market_listing_candidate_cleanup_events_service_role_select",
+      "cmd": "SELECT",
+      "roles": "{service_role}"
+    }
+  ],
+  "columns": [
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "contract_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "cleanup_policy_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "candidate_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "card_print_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "gv_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "observation_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "source_listing_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "evidence_lane",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "cleanup_action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "cleanup_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "reason_code",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "match_status_at_action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "match_confidence_at_action",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "exclusion_flags_at_action",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "needs_review_at_action",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "can_publish_price_directly_at_action",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "reviewer_actor",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "review_note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "action_payload",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "can_publish_price_directly",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "publishable",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "app_visible",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "market_truth",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "market_listing_candidate_cleanup_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "card_print_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "gv_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "evidence_lane",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "cleanup_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "quarantined_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "matcher_reclassify_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "special_lane_policy_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "high_value_review_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "keep_review_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "deferred_more_evidence_candidate_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "public_boundary_leak_rows",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1",
+      "column_name": "latest_cleanup_event_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "cleanup_event_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "candidate_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "card_print_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "gv_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "observation_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "source_listing_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "evidence_lane",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "cleanup_action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "cleanup_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "reason_code",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "match_status_at_action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "match_confidence_at_action",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "exclusion_flags_at_action",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "needs_review_at_action",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "can_publish_price_directly_at_action",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "reviewer_actor",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "review_note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "action_payload",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "can_publish_price_directly",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "publishable",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "app_visible",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "market_truth",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "v_market_listing_candidate_cleanup_current_v1",
+      "column_name": "cleanup_event_created_at",
+      "data_type": "timestamp with time zone"
+    }
+  ],
+  "migration": [
+    {
+      "version": "20260625120000",
+      "name": "market_listing_candidate_cleanup_action_model_v1",
+      "statement_count": 1
+    }
+  ]
+}

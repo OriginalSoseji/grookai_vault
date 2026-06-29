@@ -1,0 +1,172 @@
+[
+  {
+    "condition_text": "Ungraded",
+    "evidence_lane": "raw_single",
+    "rows": 21294
+  },
+  {
+    "condition_text": "Graded",
+    "evidence_lane": "slab",
+    "rows": 1705
+  },
+  {
+    "condition_text": "Graded",
+    "evidence_lane": "raw_single",
+    "rows": 1436
+  },
+  {
+    "condition_text": "Ungraded",
+    "evidence_lane": "slab",
+    "rows": 521
+  },
+  {
+    "condition_text": "Used",
+    "evidence_lane": "raw_single",
+    "rows": 359
+  },
+  {
+    "condition_text": "Non gradata",
+    "evidence_lane": "raw_single",
+    "rows": 182
+  },
+  {
+    "condition_text": "Non grad├⌐e",
+    "evidence_lane": "raw_single",
+    "rows": 114
+  },
+  {
+    "condition_text": "__null__",
+    "evidence_lane": "raw_single",
+    "rows": 85
+  },
+  {
+    "condition_text": "Unspecified",
+    "evidence_lane": "raw_single",
+    "rows": 55
+  },
+  {
+    "condition_text": "Occasion",
+    "evidence_lane": "raw_single",
+    "rows": 40
+  },
+  {
+    "condition_text": "Nicht bewertet",
+    "evidence_lane": "raw_single",
+    "rows": 35
+  },
+  {
+    "condition_text": "Valutata",
+    "evidence_lane": "slab",
+    "rows": 27
+  },
+  {
+    "condition_text": "Valutata",
+    "evidence_lane": "raw_single",
+    "rows": 25
+  },
+  {
+    "condition_text": "Non gradata",
+    "evidence_lane": "slab",
+    "rows": 17
+  },
+  {
+    "condition_text": "Non grad├⌐",
+    "evidence_lane": "raw_single",
+    "rows": 15
+  },
+  {
+    "condition_text": "Used",
+    "evidence_lane": "slab",
+    "rows": 12
+  },
+  {
+    "condition_text": "Bewertet",
+    "evidence_lane": "raw_single",
+    "rows": 10
+  },
+  {
+    "condition_text": "Usato",
+    "evidence_lane": "raw_single",
+    "rows": 8
+  },
+  {
+    "condition_text": "Bewertet",
+    "evidence_lane": "slab",
+    "rows": 8
+  },
+  {
+    "condition_text": "Clasificada",
+    "evidence_lane": "slab",
+    "rows": 7
+  },
+  {
+    "condition_text": "Grad├⌐e",
+    "evidence_lane": "raw_single",
+    "rows": 5
+  },
+  {
+    "condition_text": "Non grad├⌐e",
+    "evidence_lane": "slab",
+    "rows": 5
+  },
+  {
+    "condition_text": "Gebraucht",
+    "evidence_lane": "raw_single",
+    "rows": 4
+  },
+  {
+    "condition_text": "Sin clasificar",
+    "evidence_lane": "raw_single",
+    "rows": 4
+  },
+  {
+    "condition_text": "New with tags",
+    "evidence_lane": "raw_single",
+    "rows": 3
+  },
+  {
+    "condition_text": "Unspecified",
+    "evidence_lane": "slab",
+    "rows": 3
+  },
+  {
+    "condition_text": "Clasificada",
+    "evidence_lane": "raw_single",
+    "rows": 2
+  },
+  {
+    "condition_text": "Grad├⌐e",
+    "evidence_lane": "slab",
+    "rows": 2
+  },
+  {
+    "condition_text": "New",
+    "evidence_lane": "raw_single",
+    "rows": 1
+  },
+  {
+    "condition_text": "__null__",
+    "evidence_lane": "slab",
+    "rows": 1
+  },
+  {
+    "condition_text": "Grad├⌐",
+    "evidence_lane": "slab",
+    "rows": 1
+  },
+  {
+    "condition_text": "Occasion",
+    "evidence_lane": "slab",
+    "rows": 1
+  },
+  {
+    "condition_text": "Sin clasificar",
+    "evidence_lane": "slab",
+    "rows": 1
+  },
+  {
+    "condition_text": "Usato",
+    "evidence_lane": "slab",
+    "rows": 1
+  }
+]

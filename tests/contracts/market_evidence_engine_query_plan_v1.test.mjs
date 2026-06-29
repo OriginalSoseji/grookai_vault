@@ -33,17 +33,20 @@ test("MEE-04B builds a local multi-source query plan without evidence claims", (
   assert.equal(plan.boundary.db_writes, false);
   assert.equal(plan.boundary.source_urls_are_templates_only, true);
   assert.equal(plan.summary.target_count, 1);
-  assert.equal(plan.summary.source_count, 6);
-  assert.equal(plan.summary.planned_query_count, 6);
+  assert.equal(plan.summary.source_count, 9);
+  assert.equal(plan.summary.planned_query_count, 9);
 
   const sources = plan.targets[0].source_queries.map((query) => query.source).sort();
   assert.deepEqual(sources, [
     "ebay_active",
     "ebay_sold_candidate",
-    "justtcg_reference",
+    "ebay_user_export",
     "manual_review_candidate",
+    "pokemontcg_io_reference",
     "pricecharting_reference",
+    "tcgcsv_reference",
     "tcgplayer_reference_candidate",
+    "tcgplayer_user_export",
   ]);
 
   for (const query of plan.targets[0].source_queries) {

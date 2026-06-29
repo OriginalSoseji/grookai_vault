@@ -1,0 +1,3931 @@
+{
+  "package_id": "MARKET-LISTING-BROAD-INTAKE-BACKFILL-PLAN-V1",
+  "version": "MEE_11G_MARKET_LISTING_BROAD_INTAKE_BACKFILL_PLAN_V1",
+  "generated_at": "2026-06-25T22:44:14.542Z",
+  "mode": "db_backfill_plan_only_no_writes",
+  "source_package_fingerprint_sha256": "15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1",
+  "expected_source_package_fingerprint_sha256": "15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1",
+  "raw_snapshot_manifest_hash_sha256": "0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c",
+  "expected_raw_snapshot_manifest_hash_sha256": "0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c",
+  "projected_observation_manifest_hash_sha256": "7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f",
+  "expected_projected_observation_manifest_hash_sha256": "7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "expected_schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "package_fingerprint_sha256": "36159efc9466172ab85d41234ac403237e8c443977f625101ce7a8111e908d0e",
+  "row_manifest_hash_sha256": "7a4b430455774c98fe0f77bbf7d4ef371f67122559fb30985549a55a2a06665e",
+  "proposed_table_row_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 5,
+    "market_listing_raw_snapshots": 25,
+    "market_listing_observations": 25,
+    "market_listing_seller_snapshots": 23,
+    "market_listing_price_events": 25,
+    "market_listing_card_candidates": 0,
+    "market_listing_rollups": 0
+  },
+  "counts": {
+    "observation_currency_counts": {
+      "USD": 25
+    },
+    "observation_condition_counts": {
+      "Graded": 1,
+      "Non gradata": 1,
+      "Ungraded": 23
+    },
+    "seller_snapshot_count": 23,
+    "clean_observation_count": 20,
+    "exclusion_flag_counts": {
+      "japanese": 5,
+      "sealed": 1
+    }
+  },
+  "apply_order": [
+    "market_listing_acquisition_runs",
+    "market_listing_query_cache",
+    "market_listing_raw_snapshots",
+    "market_listing_observations",
+    "market_listing_seller_snapshots",
+    "market_listing_price_events"
+  ],
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "ready_for_apply_approval": true,
+  "rows": {
+    "acquisitionRunRows": [
+      {
+        "id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "run_key": "MEE-11F-BROAD-INTAKE-SMOKE-15707ae9fdce",
+        "contract_version": "MEE_11G_MARKET_LISTING_BROAD_INTAKE_BACKFILL_PLAN_V1",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "acquisition_strategy": "broad_pokemon_single_card_intake_smoke",
+        "status": "completed",
+        "requested_call_ceiling": 5,
+        "consumed_call_count": 5,
+        "requested_listing_ceiling": 25,
+        "observed_listing_count": 25,
+        "cached_query_count": 0,
+        "error_count": 0,
+        "options": {
+          "smoke_package_id": "MARKET-LISTING-BROAD-INTAKE-SMOKE-V1",
+          "smoke_package_fingerprint": "15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1",
+          "raw_snapshot_manifest_hash": "0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c",
+          "projected_observation_manifest_hash": "7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f",
+          "request_limit": 5,
+          "result_limit": 5
+        },
+        "summary": {
+          "query_count": 5,
+          "request_limit": 5,
+          "result_limit": 5,
+          "fetch_status_counts": {
+            "fetched_success": 5
+          },
+          "provider_total_sum": 778761,
+          "fetched_item_count": 25,
+          "projected_observation_count": 25,
+          "unique_listing_count": 25,
+          "exclusion_flag_counts": {
+            "japanese": 5,
+            "sealed": 1
+          },
+          "clean_observation_count": 20
+        },
+        "artifact_paths": [],
+        "artifact_hashes": [
+          "15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1",
+          "0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c",
+          "7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f"
+        ],
+        "started_at": "2026-06-25T22:38:19.767Z",
+        "finished_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "queryCacheRows": [
+      {
+        "id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "query_key": "6268de1375fcdc3ab9c28edabc06aec27789aa70f364075c24eb6715b5f3be02",
+        "query_text": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+        "query_filters": {
+          "category_ids": [
+            "183454"
+          ],
+          "limit": 5,
+          "fieldgroups": [
+            "MATCHING_ITEMS"
+          ],
+          "negative_terms_in_query": true
+        },
+        "target_hints": {
+          "strategy": "broad_pokemon_single_card_intake",
+          "broad_intake": true,
+          "card_matching_deferred": true
+        },
+        "page_cursor": null,
+        "result_count": 5,
+        "response_hash": "4d00ad062e7e104a8699e709affc4311da09532471d9217aa28b9af34ade8aa4",
+        "cache_status": "fresh",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "expires_at": null,
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "query_key": "6f9d09a825564d82e6e5095e8255f88db0ad4b1a3ec8d4f773a06d51d33f0f55",
+        "query_text": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+        "query_filters": {
+          "category_ids": [
+            "183454"
+          ],
+          "limit": 5,
+          "fieldgroups": [
+            "MATCHING_ITEMS"
+          ],
+          "negative_terms_in_query": true
+        },
+        "target_hints": {
+          "strategy": "broad_pokemon_single_card_intake",
+          "broad_intake": true,
+          "card_matching_deferred": true
+        },
+        "page_cursor": null,
+        "result_count": 5,
+        "response_hash": "782f3d30607d088bd931e84dec4ad14e1b1f9aea23244e35173bc740ecbf326e",
+        "cache_status": "fresh",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "expires_at": null,
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "query_key": "6326f8b9e593f706ff060da6bfb08f634d01eb30bb304d59f2d225d5728de09d",
+        "query_text": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+        "query_filters": {
+          "category_ids": [
+            "183454"
+          ],
+          "limit": 5,
+          "fieldgroups": [
+            "MATCHING_ITEMS"
+          ],
+          "negative_terms_in_query": true
+        },
+        "target_hints": {
+          "strategy": "broad_pokemon_single_card_intake",
+          "broad_intake": true,
+          "card_matching_deferred": true
+        },
+        "page_cursor": null,
+        "result_count": 5,
+        "response_hash": "263173695157f30bd6f5e56cace59be47b6534aa0dd49d95b26aea30b80e3ae6",
+        "cache_status": "fresh",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "expires_at": null,
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "query_key": "c1f39eca903e6eee91fd4ff365dd7d03c4e3be217c00dd9160fed48fc89a4c4f",
+        "query_text": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+        "query_filters": {
+          "category_ids": [
+            "183454"
+          ],
+          "limit": 5,
+          "fieldgroups": [
+            "MATCHING_ITEMS"
+          ],
+          "negative_terms_in_query": true
+        },
+        "target_hints": {
+          "strategy": "broad_pokemon_single_card_intake",
+          "broad_intake": true,
+          "card_matching_deferred": true
+        },
+        "page_cursor": null,
+        "result_count": 5,
+        "response_hash": "a754b92406774085739aa5b0c45704b6355d60a4b562b79e434731807c8ebd4d",
+        "cache_status": "fresh",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "expires_at": null,
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "query_key": "cda391af92ac0da0acaf0ab612caa491a866e3d49f1d1110bd188fede4ffc325",
+        "query_text": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+        "query_filters": {
+          "category_ids": [
+            "183454"
+          ],
+          "limit": 5,
+          "fieldgroups": [
+            "MATCHING_ITEMS"
+          ],
+          "negative_terms_in_query": true
+        },
+        "target_hints": {
+          "strategy": "broad_pokemon_single_card_intake",
+          "broad_intake": true,
+          "card_matching_deferred": true
+        },
+        "page_cursor": null,
+        "result_count": 5,
+        "response_hash": "8ab5d5f7f7b73ae188faf26addf4ccacaa133556b1feef0cc5c6cfacdd510c16",
+        "cache_status": "fresh",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "expires_at": null,
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "rawSnapshotRows": [
+      {
+        "id": "ae32f265-5325-b4aa-4e8d-435714379ce7",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|377169644388|0",
+        "source_url": "https://www.ebay.com/itm/377169644388?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item57d1100b64:g:0jQAAeSw9XlqPMI2",
+        "raw_payload": {
+          "itemId": "v1|377169644388|0",
+          "title": "Hoopa 155/XY-P Movie Promo Full Art Holo Foil Japanese Pokemon Single Card VG",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/0jQAAeSw9XlqPMI2/s-l225.jpg"
+          },
+          "price": {
+            "value": "69.55",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C377169644388%7C0",
+          "seller": {
+            "username": "sunnydaytrading.japan",
+            "feedbackPercentage": "99.9",
+            "feedbackScore": 2760
+          },
+          "marketingPrice": {
+            "originalPrice": {
+              "value": "110.00",
+              "currency": "USD"
+            },
+            "discountPercentage": "37",
+            "discountAmount": {
+              "value": "40.45",
+              "currency": "USD"
+            }
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/0jQAAeSw9XlqPMI2/s-l960.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-07-21T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-08-04T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "14087645854",
+          "itemWebUrl": "https://www.ebay.com/itm/377169644388?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item57d1100b64:g:0jQAAeSw9XlqPMI2",
+          "itemLocation": {
+            "country": "JP"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/SYIAAeSwcVhqPMIR/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "377169644388",
+          "availableCoupons": true,
+          "itemOriginDate": "2026-05-08T06:16:19.000Z",
+          "itemCreationDate": "2026-05-08T06:16:19.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "ef0053d9cb42eae4245a5e13ab92b5760bb77c50161b84f1f99a4001546cc0f9",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "23c340f3-a474-d969-4a34-7dbd0be76bd1",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|157999291863|0",
+        "source_url": "https://www.ebay.com/itm/157999291863?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item24c97dddd7:g:1tkAAeSw77hqLqyI&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYcNrj81oR%2BasLm%2B1Jofh4Qv6mp3ztiS5RwE%2B7kWWTAe2327RqRyId6c1KzA%2BBEy2D0UDMPKgkj6d%2B0y%2FwNMD6jbZ0rV2WDO1ixD%2Fn6MLal42Q3uMYTdmAOwH147WLH62epFf8E87dOm2y6E0pb2zeqmnuyrIyfpKlNmZsbVM4CfnjpbcfLBHDtwYn0Z%2F5z1cQ9H9is5uABp4tol8vnYRFKrYEomn5mzGs6ZJH00qrIeOEOj4P2q4Hto6moNMvbU5KVuc3Z3wTAW0hGvl2U6LvubL6GuBtpr8ztfH%2BYcYILG9iAJlOanZDN7yI%2B3jzuFhE%2FO5J9HTNQxk71mL1Bf9L1heF5oNcSUxuZBANk0a1Bqw%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|157999291863|0",
+          "title": "Pokemon TCG Fernando Mendoza V Basic English Standard Card 999 HP Single",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/1tkAAeSw77hqLqyI/s-l225.jpg"
+          },
+          "price": {
+            "value": "55.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C157999291863%7C0",
+          "seller": {
+            "username": "clekardzkyle",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 19
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/1tkAAeSw77hqLqyI/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "CALCULATED"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/157999291863?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item24c97dddd7:g:1tkAAeSw77hqLqyI&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYcNrj81oR%2BasLm%2B1Jofh4Qv6mp3ztiS5RwE%2B7kWWTAe2327RqRyId6c1KzA%2BBEy2D0UDMPKgkj6d%2B0y%2FwNMD6jbZ0rV2WDO1ixD%2Fn6MLal42Q3uMYTdmAOwH147WLH62epFf8E87dOm2y6E0pb2zeqmnuyrIyfpKlNmZsbVM4CfnjpbcfLBHDtwYn0Z%2F5z1cQ9H9is5uABp4tol8vnYRFKrYEomn5mzGs6ZJH00qrIeOEOj4P2q4Hto6moNMvbU5KVuc3Z3wTAW0hGvl2U6LvubL6GuBtpr8ztfH%2BYcYILG9iAJlOanZDN7yI%2B3jzuFhE%2FO5J9HTNQxk71mL1Bf9L1heF5oNcSUxuZBANk0a1Bqw%3D%3D",
+          "itemLocation": {
+            "postalCode": "441**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/iNMAAeSwXQNqLqyQ/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "157999291863",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-14T13:30:10.000Z",
+          "itemCreationDate": "2026-06-14T13:30:10.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "31b8becc816bfcc4c055cb1db8b425277db0b9c9a4c69700904e2c288e2961af",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "2dcb5c19-a115-f070-dca9-2c2da68a01b8",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|127920720665|0",
+        "source_url": "https://www.ebay.com/itm/127920720665?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc8ab4b19:g:HeQAAeSwmGpqLcSy&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGb2fD74iIHEfRJUFnAz%2BTzoDCcitY%2FV5kC1ceb6ElSeP8an23SpEiqxuLFffsupO%2Bf%2Fa%2BqyfYb%2FE7pXciZc1EwMhK3TDBFZTuY8%2FaOVUilvZ4%2Ftbtft53xti81ZZO3zSg8tufTn%2Bo3Ih6Zdx%2BppSpFmKFiPKkKP8eo5vYGjcITyDlmDmjB7EH73%2F63UcHlyJD%2FsNiDz%2BOUDj7JPXG6iQGQk9djp5lSpbVY2JBNXHf2AUufcI5dhBcH8yPIQu2wnmFy4zVlxLsm%2Fp9xMSlVl7CccwSo1fjICMf%2BssGmRDy8usKGnQeK%2Bu%2BzwusGlv9U98FeXw%2FRMpyZcw2KczwLu3%2BUoqk%2FAaPbUjd6SdsXQPfFIDQ%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|127920720665|0",
+          "title": "Pokemon TCG Archeops 051/086 (Single Card)- PokAcmon Fossil Musuem Promo-Unopened",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/HeQAAeSwmGpqLcSy/s-l225.jpg"
+          },
+          "price": {
+            "value": "70.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C127920720665%7C0",
+          "seller": {
+            "username": "tyforg-50",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 104
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/HeQAAeSwmGpqLcSy/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/127920720665?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc8ab4b19:g:HeQAAeSwmGpqLcSy&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGb2fD74iIHEfRJUFnAz%2BTzoDCcitY%2FV5kC1ceb6ElSeP8an23SpEiqxuLFffsupO%2Bf%2Fa%2BqyfYb%2FE7pXciZc1EwMhK3TDBFZTuY8%2FaOVUilvZ4%2Ftbtft53xti81ZZO3zSg8tufTn%2Bo3Ih6Zdx%2BppSpFmKFiPKkKP8eo5vYGjcITyDlmDmjB7EH73%2F63UcHlyJD%2FsNiDz%2BOUDj7JPXG6iQGQk9djp5lSpbVY2JBNXHf2AUufcI5dhBcH8yPIQu2wnmFy4zVlxLsm%2Fp9xMSlVl7CccwSo1fjICMf%2BssGmRDy8usKGnQeK%2Bu%2BzwusGlv9U98FeXw%2FRMpyZcw2KczwLu3%2BUoqk%2FAaPbUjd6SdsXQPfFIDQ%3D%3D",
+          "itemLocation": {
+            "postalCode": "280**",
+            "country": "US"
+          },
+          "adultOnly": false,
+          "legacyItemId": "127920720665",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-13T21:11:41.000Z",
+          "itemCreationDate": "2026-06-13T21:11:41.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "e7d144216656f71d0aa9e0e30b26649091e66bde16a15521db3d8d3ba516c57b",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "97b91117-6a5d-3bc4-09a8-06e6c5400dde",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|366502252908|0",
+        "source_url": "https://www.ebay.com/itm/366502252908?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item55553c916c:g:0sIAAeSwQJpqPKAL&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYFEdFRii0i83nBl5HTF9atKNyzvfwUghrz8hR6hKYorKufhqIzLQFmCWCYAKr31V9NbbbPgOwFcqprxVHjY%2BQRMBld4jjtENBz1ONdPvPLGKH4VuEbjK2zLVa5DQhAXjT0ukGet4ggNJuiSWAilRNx7rbYxJW31hVIZIRB6AWpSEWXqzoesLMV2wxgmFR3R6meiuHoQR%2BaL5zTwF2jxJV96lzL3Mi7PUc6AXMv%2BGdhlkl8dNDKMtbmsqAVDsj6P38vsCy%2BdPsAx9nJBG%2BRCXHKEsIiwDwKpHxLckU%2BuO%2FogAnTV5qKckYvq%2BgbswL063qa5IG1xFYzUtEmXBhRUm1q0b7dZpUq69ZpoBguzpYXZA%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|366502252908|0",
+          "title": "Pokemon TCG Trading Card Single - Back Shown - Pokemon Franchise Collectible",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/0sIAAeSwQJpqPKAL/s-l225.jpg"
+          },
+          "price": {
+            "value": "400.99",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C366502252908%7C0",
+          "seller": {
+            "username": "melcl7116",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 14
+          },
+          "condition": "Graded",
+          "conditionId": "2750",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/0sIAAeSwQJpqPKAL/s-l1200.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "CALCULATED"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/366502252908?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item55553c916c:g:0sIAAeSwQJpqPKAL&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYFEdFRii0i83nBl5HTF9atKNyzvfwUghrz8hR6hKYorKufhqIzLQFmCWCYAKr31V9NbbbPgOwFcqprxVHjY%2BQRMBld4jjtENBz1ONdPvPLGKH4VuEbjK2zLVa5DQhAXjT0ukGet4ggNJuiSWAilRNx7rbYxJW31hVIZIRB6AWpSEWXqzoesLMV2wxgmFR3R6meiuHoQR%2BaL5zTwF2jxJV96lzL3Mi7PUc6AXMv%2BGdhlkl8dNDKMtbmsqAVDsj6P38vsCy%2BdPsAx9nJBG%2BRCXHKEsIiwDwKpHxLckU%2BuO%2FogAnTV5qKckYvq%2BgbswL063qa5IG1xFYzUtEmXBhRUm1q0b7dZpUq69ZpoBguzpYXZA%3D%3D",
+          "itemLocation": {
+            "postalCode": "156**",
+            "country": "US"
+          },
+          "adultOnly": false,
+          "legacyItemId": "366502252908",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-25T03:29:19.000Z",
+          "itemCreationDate": "2026-06-25T03:29:19.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "de03e94cecfa9ac429fe8530516b2c884e20f343b38e258ca2628bd1899d8bc5",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "0b9b8a49-aea1-2a60-1067-ff8ce2c8736c",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|227146440373|526580677918",
+        "source_url": "https://www.ebay.com/itm/227146440373?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=526580677918&hash=item34e2fb9eb5:g:73AAAeSwE1VqKkWa",
+        "raw_payload": {
+          "itemId": "v1|227146440373|526580677918",
+          "title": "Pokemon Trading Card Sword & Shield VMax: Choose Your Card",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=227146440373",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/73AAAeSwE1VqKkWa/s-l225.jpg"
+          },
+          "price": {
+            "value": "12.99",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C227146440373%7C526580677918",
+          "seller": {
+            "username": "calebdann1",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 2753
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/73AAAeSwE1VqKkWa/s-l1200.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "CALCULATED"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "22052417373",
+          "itemWebUrl": "https://www.ebay.com/itm/227146440373?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=526580677918&hash=item34e2fb9eb5:g:73AAAeSwE1VqKkWa",
+          "itemLocation": {
+            "postalCode": "934**",
+            "country": "US"
+          },
+          "adultOnly": false,
+          "legacyItemId": "227146440373",
+          "availableCoupons": false,
+          "itemOriginDate": "2025-12-25T18:56:54.000Z",
+          "itemCreationDate": "2025-12-25T18:56:54.000Z",
+          "topRatedBuyingExperience": true,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "5610d5c768c24136d76ac1c53ff10650b2a224a478ff4da759255861758c8da3",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "daba9efb-99ff-8777-a937-73432a6d419d",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|156804393182|458729138405",
+        "source_url": "https://www.ebay.com/itm/156804393182?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458729138405&hash=item24824528de:g:omQAAeSwpG5omUO8",
+        "raw_payload": {
+          "itemId": "v1|156804393182|458729138405",
+          "title": "Snorlax Munchlax Pokemon Card! Holo/Reverse Holo Rare EX V VMAX Full Art Cards!",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=156804393182",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/omQAAeSwpG5omUO8/s-l225.jpg"
+          },
+          "price": {
+            "value": "799.99",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C156804393182%7C458729138405",
+          "seller": {
+            "username": "overstackedcards",
+            "feedbackPercentage": "99.9",
+            "feedbackScore": 20984
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/omQAAeSwpG5omUO8/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/156804393182?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458729138405&hash=item24824528de:g:omQAAeSwpG5omUO8",
+          "itemLocation": {
+            "postalCode": "762**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/GZYAAOSwuGhnzDk1/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "156804393182",
+          "availableCoupons": false,
+          "itemOriginDate": "2025-03-17T11:30:01.000Z",
+          "itemCreationDate": "2025-03-17T11:30:01.000Z",
+          "topRatedBuyingExperience": true,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "cd333cd56def62e957cbd6388ce44942f6753ce45530f3a87f16bd3d503f6e61",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "49fc1f73-6e42-2f08-1c60-cdb0645e3a52",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|206373197825|0",
+        "source_url": "https://www.ebay.com/itm/206373197825?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300ccd1801:g:tV0AAeSw9fxqPaXM&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbDWG5%2Bm%2BkF8ifXG90kXaOtGCJ%2FJiOmSfsk0vhHY2RcawuN0GyiyiF%2FIfHO%2BnZ0DCo7hLi3Y7V0fMQE4UQRrkJs2Bf6F1hnUMLfTwCmX5yEha2N21ZZkHKYU%2FhHww7wGmPYo0ysCrYn%2Bb5KXublumrDMRONEGj%2FGFXxJmeLYsvtnAFEiJ2qXHVbINkXDrGtDmHLEwTXmqUKdIlMXxPIgXe%2FdLg33cp3SN2TDWPBve0uuGrhiaod8rxjDHw4b1O70iVyHqvP3We7YVoTG5fVUGZnJGCGWKPzFssIjfbj4iaaODRT3ray8zaR4rFULutX8v%2FoLyeUASZjiaDrA2VMcrZr",
+        "raw_payload": {
+          "itemId": "v1|206373197825|0",
+          "title": "Pokemon Scorbunny 053 Promo Full Art Holo Card English Mega Evolution Promo 2026",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/tV0AAeSw9fxqPaXM/s-l225.jpg"
+          },
+          "price": {
+            "value": "16.95",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C206373197825%7C0",
+          "seller": {
+            "username": "butteryblake",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 397
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/tV0AAeSw9fxqPaXM/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/206373197825?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300ccd1801:g:tV0AAeSw9fxqPaXM&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbDWG5%2Bm%2BkF8ifXG90kXaOtGCJ%2FJiOmSfsk0vhHY2RcawuN0GyiyiF%2FIfHO%2BnZ0DCo7hLi3Y7V0fMQE4UQRrkJs2Bf6F1hnUMLfTwCmX5yEha2N21ZZkHKYU%2FhHww7wGmPYo0ysCrYn%2Bb5KXublumrDMRONEGj%2FGFXxJmeLYsvtnAFEiJ2qXHVbINkXDrGtDmHLEwTXmqUKdIlMXxPIgXe%2FdLg33cp3SN2TDWPBve0uuGrhiaod8rxjDHw4b1O70iVyHqvP3We7YVoTG5fVUGZnJGCGWKPzFssIjfbj4iaaODRT3ray8zaR4rFULutX8v%2FoLyeUASZjiaDrA2VMcrZr",
+          "itemLocation": {
+            "postalCode": "548**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/KNMAAeSwn75qPaXJ/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "206373197825",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-25T22:04:08.000Z",
+          "itemCreationDate": "2026-06-25T22:04:08.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "3cd08338449e17f91789c23833b3112d0ad7d49a154738fa77a8f0a0443b2ec1",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "79a15738-c48a-6a39-47ab-cb2075453ba3",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|800125031801|657293077060",
+        "source_url": "https://www.ebay.com/itm/800125031801?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=657293077060&hash=itemba4b2b1579:g:vscAAeSwEBxqIjTX&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGa3FA2d0UVzBEzks1sYxS3pYBC57w3OfZ%2FJjhzL6t4EDNBqjloRQprJWGBytBn8qQrZHN862P%2FX98ff2G3gXClpT8cuDAs7l6dvh9EWlM49cXsxHOLfwCkEkGEFtgnCGZ1OWb9vJEq12QQwCkbS5ENEg7PX97ioSihDpz7R1cYSj9Xlrx2SfJWJZW8KhEAE%2F48FTuYescyCvwkq276Z007EtCzfMyU0ECaGVA0UKQQ4QXy4vuB7ToCT8On6M1kuznQF%2FtY6PMJzPQ1W7%2BjphJKygZUto4iVl8AZgUfUFiCb1tPuqFWdXR5xi0wZZvS4y004Yups4sVwX%2F5cgLu71AhE",
+        "raw_payload": {
+          "itemId": "v1|800125031801|657293077060",
+          "title": "Pokemon TCG Jungle Unlimited Choose Your Card! English",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=800125031801",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/vscAAeSwEBxqIjTX/s-l225.jpg"
+          },
+          "price": {
+            "value": "18.88",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C800125031801%7C657293077060",
+          "seller": {
+            "username": "gator_gaming",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 643
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/vscAAeSwEBxqIjTX/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "25043363498",
+          "itemWebUrl": "https://www.ebay.com/itm/800125031801?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=657293077060&hash=itemba4b2b1579:g:vscAAeSwEBxqIjTX&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGa3FA2d0UVzBEzks1sYxS3pYBC57w3OfZ%2FJjhzL6t4EDNBqjloRQprJWGBytBn8qQrZHN862P%2FX98ff2G3gXClpT8cuDAs7l6dvh9EWlM49cXsxHOLfwCkEkGEFtgnCGZ1OWb9vJEq12QQwCkbS5ENEg7PX97ioSihDpz7R1cYSj9Xlrx2SfJWJZW8KhEAE%2F48FTuYescyCvwkq276Z007EtCzfMyU0ECaGVA0UKQQ4QXy4vuB7ToCT8On6M1kuznQF%2FtY6PMJzPQ1W7%2BjphJKygZUto4iVl8AZgUfUFiCb1tPuqFWdXR5xi0wZZvS4y004Yups4sVwX%2F5cgLu71AhE",
+          "itemLocation": {
+            "postalCode": "146**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/gtQAAeSwRfVqIjVQ/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "800125031801",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-05T02:27:44.000Z",
+          "itemCreationDate": "2026-06-05T02:27:44.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "af467e6d47e57bfbb0f8e9c0d329eb28e435621518e848f61fd7ec46a86241e0",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "ec5532ca-6652-1626-370b-fbfe5b0ad974",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|206367201381|0",
+        "source_url": "https://www.ebay.com/itm/206367201381?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300c719865:g:jIsAAeSwallqOlTa&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGZOZYOdepABtcHvbaCtV4VtblP1DC4tkulIu6uGsApi2zELEaNcc3l6CRxEHfKMGz0t%2BQkjsnA6%2FxaOsEcL59tuNeF65mpgfzZWKWHEebZ8qDMXf42jcFV3w4B1Nqke7uFn8fUGxQ7pVV4A15o2q%2FxLWK5%2FJ5AFG%2BYtHyZKB2XqRESqTHTehPGWPB32Ob0CpBDVWO7KXhZIrWXg%2BrjFYbDxrmkN3CinL7rlcIwl%2FfHOeLb1B4FZrZCuro53VUndbX9bBCXWuQaSv7lYUpn4s68ze3mEmciPRNkzbRieeBoMsM4de5ILjXtHkgxLynR8DrkOfi91tdBUrvsMcyZOxe%2BU",
+        "raw_payload": {
+          "itemId": "v1|206367201381|0",
+          "title": "Pokemon S-Chinese Card Terastal Gathering Umbreon ex CSV9.5C-239/208 SAR Holo",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/jIsAAeSwallqOlTa/s-l225.jpg"
+          },
+          "price": {
+            "value": "226.88",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C206367201381%7C0",
+          "seller": {
+            "username": "cardsgallery194",
+            "feedbackPercentage": "99.8",
+            "feedbackScore": 8615
+          },
+          "marketingPrice": {
+            "discountPercentage": "0"
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/jIsAAeSwallqOlTa/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-07-20T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-24T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/206367201381?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300c719865:g:jIsAAeSwallqOlTa&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGZOZYOdepABtcHvbaCtV4VtblP1DC4tkulIu6uGsApi2zELEaNcc3l6CRxEHfKMGz0t%2BQkjsnA6%2FxaOsEcL59tuNeF65mpgfzZWKWHEebZ8qDMXf42jcFV3w4B1Nqke7uFn8fUGxQ7pVV4A15o2q%2FxLWK5%2FJ5AFG%2BYtHyZKB2XqRESqTHTehPGWPB32Ob0CpBDVWO7KXhZIrWXg%2BrjFYbDxrmkN3CinL7rlcIwl%2FfHOeLb1B4FZrZCuro53VUndbX9bBCXWuQaSv7lYUpn4s68ze3mEmciPRNkzbRieeBoMsM4de5ILjXtHkgxLynR8DrkOfi91tdBUrvsMcyZOxe%2BU",
+          "itemLocation": {
+            "country": "CN"
+          },
+          "adultOnly": false,
+          "legacyItemId": "206367201381",
+          "availableCoupons": true,
+          "itemOriginDate": "2026-06-23T09:36:36.000Z",
+          "itemCreationDate": "2026-06-23T09:36:36.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "e9f92e22154afd6429071ce2ed481a965d87090cc35b04526e5da299b3ba15f3",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "a9647b19-3c53-71a4-d031-3c375979bdaa",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|156747546217|458988651324",
+        "source_url": "https://www.ebay.com/itm/156747546217?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458988651324&hash=item247ee1be69:g:mdsAAeSwhaRpMPCJ",
+        "raw_payload": {
+          "itemId": "v1|156747546217|458988651324",
+          "title": "Pikachu Raichu Pichu Pokemon Card! Holo/Reverse Holo Rare EX VMAX Full Art Cards",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=156747546217",
+          "leafCategoryIds": [
+            "183454",
+            "183455"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "183455",
+              "categoryName": "CCG Mixed Card Lots"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/mdsAAeSwhaRpMPCJ/s-l225.jpg"
+          },
+          "price": {
+            "value": "349.99",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C156747546217%7C458988651324",
+          "seller": {
+            "username": "overstackedcards",
+            "feedbackPercentage": "99.9",
+            "feedbackScore": 20984
+          },
+          "marketingPrice": {
+            "originalPrice": {
+              "value": "499.00",
+              "currency": "USD"
+            },
+            "discountPercentage": "30",
+            "discountAmount": {
+              "value": "149.01",
+              "currency": "USD"
+            }
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/mdsAAeSwhaRpMPCJ/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "20072462742",
+          "itemWebUrl": "https://www.ebay.com/itm/156747546217?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458988651324&hash=item247ee1be69:g:mdsAAeSwhaRpMPCJ",
+          "itemLocation": {
+            "postalCode": "762**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/Va0AAOSwO7JnozXU/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "156747546217",
+          "availableCoupons": false,
+          "itemOriginDate": "2025-03-01T12:38:34.000Z",
+          "itemCreationDate": "2025-03-01T12:38:34.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "8a71e63e20cbd6321e34e26f2ea58acefeedfd0d522327d10983ef37f18cf9b0",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "039d5d80-5f16-493e-5887-6d2264d6a91b",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|127939841637|0",
+        "source_url": "https://www.ebay.com/itm/127939841637?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc9cf0e65:g:1LgAAeSwwQBqKQGj",
+        "raw_payload": {
+          "itemId": "v1|127939841637|0",
+          "title": "Pikachu 090/XY-P Battle Festa 2014 Promo Full Art Holo Japanese Pokemon Card MP!",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/1LgAAeSwwQBqKQGj/s-l225.jpg"
+          },
+          "price": {
+            "value": "65.80",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C127939841637%7C0",
+          "seller": {
+            "username": "fe_272381",
+            "feedbackPercentage": "0.0",
+            "feedbackScore": 0
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/1LgAAeSwwQBqKQGj/s-l1200.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "epid": "23084244922",
+          "itemWebUrl": "https://www.ebay.com/itm/127939841637?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc9cf0e65:g:1LgAAeSwwQBqKQGj",
+          "itemLocation": {
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/kRoAAeSwh75qKP0u/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "127939841637",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-24T14:28:16.000Z",
+          "itemCreationDate": "2026-06-24T14:28:16.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "2b3349c49be181d316fb9215596eaea46af849417e5f4d439d2543134bba85dc",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "13c48c91-8286-5380-2e1a-e7f5153854fd",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|398091382653|0",
+        "source_url": "https://www.ebay.com/itm/398091382653?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5cb0186f7d:g:z3AAAeSw0Q9qOC~6&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGY4hiHz%2FEkvp8YzK%2BL8mHf9uAOT84n%2FCTT9N2miV2%2FDWyhI60vgHuC%2Be5q%2FyUv8e3dUwpSWaVglW8EO4uYBA1UfXTMEvFihygFoW4ZCoA1iaEIAsOJrxTP7KB7OC8x2lSIXdzEP%2BEz1mMyNV5YmW56inZseeIMrH4U%2B%2BeZs0M8oSJ540D8kO3TeOcIANkKhGmvMBsScy1%2BwEfXa5ocdlCUG1kWAalvOT7esc5ZvxVSNDmDj9vWi8IBwzGHLIIVRSVr7XAVku0SBMtYcOwzO6CZ4Zj%2B5O0Fr7z4dw8%2Fg5tmW1CX1Do3I3TXPvOxnhog3zDTGoC0oUAAKnA1ChkZfw4uQZlDO0sWCTp1tyUyZvlyMYg%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|398091382653|0",
+          "title": "[Pre-order] Pokemon Korea Mega Festa 2026 Magikarp Promo Card 040/M-P Limited",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/z3AAAeSw0Q9qOC~6/s-l225.jpg"
+          },
+          "price": {
+            "value": "179.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C398091382653%7C0",
+          "seller": {
+            "username": "brickpokecollect",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 18
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/z3AAAeSw0Q9qOC~6/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-07-15T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-29T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/398091382653?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5cb0186f7d:g:z3AAAeSw0Q9qOC~6&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGY4hiHz%2FEkvp8YzK%2BL8mHf9uAOT84n%2FCTT9N2miV2%2FDWyhI60vgHuC%2Be5q%2FyUv8e3dUwpSWaVglW8EO4uYBA1UfXTMEvFihygFoW4ZCoA1iaEIAsOJrxTP7KB7OC8x2lSIXdzEP%2BEz1mMyNV5YmW56inZseeIMrH4U%2B%2BeZs0M8oSJ540D8kO3TeOcIANkKhGmvMBsScy1%2BwEfXa5ocdlCUG1kWAalvOT7esc5ZvxVSNDmDj9vWi8IBwzGHLIIVRSVr7XAVku0SBMtYcOwzO6CZ4Zj%2B5O0Fr7z4dw8%2Fg5tmW1CX1Do3I3TXPvOxnhog3zDTGoC0oUAAKnA1ChkZfw4uQZlDO0sWCTp1tyUyZvlyMYg%3D%3D",
+          "itemLocation": {
+            "country": "KR"
+          },
+          "adultOnly": false,
+          "legacyItemId": "398091382653",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-21T18:44:49.000Z",
+          "itemCreationDate": "2026-06-21T18:44:49.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "3b389eeff66d0628fbc1053f76ece17f35b2f1a34a45f0144b97de69991e4e74",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "4183344e-ef3f-2219-7c20-0a27810d15e1",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|127834125820|0",
+        "source_url": "https://www.ebay.com/itm/127834125820?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc381f5fc:g:b~gAAeSwkB5p8LFx&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZNPIvm3NlfG%2FjuyD%2FckdL%2BGguprEr0iKVHzW%2BBwGWxcRVRBUMIwWPd0pC6Q1%2B6aQ4%2FROoAUP9DjTPV9xbpuoijBh5muNjYCotuL4aeUfQtsOHhweTt%2BVH7XCM1RuRmS7M1jEVFG1KVwVwWQF50tua2d2ojm0gg7o0bLEfXdqlvF0RHuZ0hBk6bcHzNqUa8jTYL3IdyvTRhcx2CDShsUPJ0My%2FiosZWxVuh01nYGWc0%2B%2BpmkqcoI50tSztt2OB39bNAy60vbpmyryubSmaqvbsl9wV2FaQnYmpqzvLfnJd3nsZWehh%2BHJgER6Egfa0r%2FSMR9rJ4alqidPHHGNf6du9bkTH5nu1uV002U7L5DQ%2B6Rw%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|127834125820|0",
+          "title": "PTCG Pokemon Card Victini SV-P-265/SV-P PROMO Chinese",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/b~gAAeSwkB5p8LFx/s-l225.jpg"
+          },
+          "price": {
+            "value": "279.99",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C127834125820%7C0",
+          "seller": {
+            "username": "whitebear-1",
+            "feedbackPercentage": "99.7",
+            "feedbackScore": 762
+          },
+          "marketingPrice": {
+            "discountPercentage": "0"
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/b~gAAeSwkB5p8LFx/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-07-25T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-09-02T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/127834125820?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc381f5fc:g:b~gAAeSwkB5p8LFx&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZNPIvm3NlfG%2FjuyD%2FckdL%2BGguprEr0iKVHzW%2BBwGWxcRVRBUMIwWPd0pC6Q1%2B6aQ4%2FROoAUP9DjTPV9xbpuoijBh5muNjYCotuL4aeUfQtsOHhweTt%2BVH7XCM1RuRmS7M1jEVFG1KVwVwWQF50tua2d2ojm0gg7o0bLEfXdqlvF0RHuZ0hBk6bcHzNqUa8jTYL3IdyvTRhcx2CDShsUPJ0My%2FiosZWxVuh01nYGWc0%2B%2BpmkqcoI50tSztt2OB39bNAy60vbpmyryubSmaqvbsl9wV2FaQnYmpqzvLfnJd3nsZWehh%2BHJgER6Egfa0r%2FSMR9rJ4alqidPHHGNf6du9bkTH5nu1uV002U7L5DQ%2B6Rw%3D%3D",
+          "itemLocation": {
+            "country": "CN"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/BEQAAeSwH-dp8LF1/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/PQ0AAeSwX8Rp8LF1/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/~ssAAeSwTU5p8LFy/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/ZEYAAeSwtppp8LFz/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "127834125820",
+          "availableCoupons": true,
+          "itemOriginDate": "2026-04-28T13:10:32.000Z",
+          "itemCreationDate": "2026-04-28T13:10:32.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "42ddf8b33f54e5833cc56778e4faa427dbf04a7d3b881967a60097eefa4c19f6",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "14d5c83c-d491-5a8f-b738-e0a8264c0cbb",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|178232336781|0",
+        "source_url": "https://www.ebay.com/itm/178232336781?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item297f79a18d:g:jIUAAeSwE99qM1xi&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZpFiEjTi3RBZ%2B%2BIhD9MYfKKCV8ddJ6uP97%2F4faIIVueNpRsjBszR7Fp1bus9E0JIWXPu0DFim6FxOLrjT61KTMpy3RcXl7kAgKC12VmsqTMDEkJbBSJSAbUgrWlaKkGdkyTKCR1M%2FA5hrSVh0HcG%2F3x0tpuGle73PfWRS%2B41xmwPOpCPm5gEKjgFsjnXLO%2BkBVOkF5AcuY7k7Sg3IN5or584gVsmSRGtWZ8QPBj8FeXbnf6Af3%2BivPCdAblkZp2X%2FqwieKoO5smb3pLfHzlq%2Fq3WBhCdllr0OUpT%2FnGdukb0n%2FBPdYrU7ManT%2BBzj3AkvUJE9oaMHsCYBf8%2F4o0DT2tyAAHWcHPX%2FHXuMZCkR3lg%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|178232336781|0",
+          "title": "Pokemon Korea Mega Festa 2026 Magikarp Promo Card 040/M-P Korean Exclusive Event",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/jIUAAeSwE99qM1xi/s-l225.jpg"
+          },
+          "price": {
+            "value": "198.99",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C178232336781%7C0",
+          "seller": {
+            "username": "seoulpick",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 20
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/jIUAAeSwE99qM1xi/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-07-15T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-29T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/178232336781?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item297f79a18d:g:jIUAAeSwE99qM1xi&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZpFiEjTi3RBZ%2B%2BIhD9MYfKKCV8ddJ6uP97%2F4faIIVueNpRsjBszR7Fp1bus9E0JIWXPu0DFim6FxOLrjT61KTMpy3RcXl7kAgKC12VmsqTMDEkJbBSJSAbUgrWlaKkGdkyTKCR1M%2FA5hrSVh0HcG%2F3x0tpuGle73PfWRS%2B41xmwPOpCPm5gEKjgFsjnXLO%2BkBVOkF5AcuY7k7Sg3IN5or584gVsmSRGtWZ8QPBj8FeXbnf6Af3%2BivPCdAblkZp2X%2FqwieKoO5smb3pLfHzlq%2Fq3WBhCdllr0OUpT%2FnGdukb0n%2FBPdYrU7ManT%2BBzj3AkvUJE9oaMHsCYBf8%2F4o0DT2tyAAHWcHPX%2FHXuMZCkR3lg%3D%3D",
+          "itemLocation": {
+            "country": "KR"
+          },
+          "adultOnly": false,
+          "legacyItemId": "178232336781",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-18T02:52:51.000Z",
+          "itemCreationDate": "2026-06-18T02:52:51.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "30c879439622771ce40ff67818a62a2e30a4e1216ae7e9e52d2c5be906afeb9d",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "c27b5c0f-bc35-df74-ecec-2710fc11123a",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|318488804217|0",
+        "source_url": "https://www.ebay.com/itm/318488804217?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4a27697b79:g:QMUAAeSwZJ9pzA73",
+        "raw_payload": {
+          "itemId": "v1|318488804217|0",
+          "title": "Pikachu 227/S-P & Cramorant 226/S-P Stamp Box Promo Pokemon Card Japanese Sealed",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/QMUAAeSwZJ9pzA73/s-l225.jpg"
+          },
+          "price": {
+            "value": "86.50",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C318488804217%7C0",
+          "seller": {
+            "username": "je_532959",
+            "feedbackPercentage": "0.0",
+            "feedbackScore": 0
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/QMUAAeSwZJ9pzA73/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/318488804217?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4a27697b79:g:QMUAAeSwZJ9pzA73",
+          "itemLocation": {
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/jrwAAeSwU4JpzA8K/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/9hoAAeSwgZNpztXH/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/3BUAAeSw59BpztXH/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/sW0AAeSwCEdpztZa/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/hLkAAeSwNtJpztaQ/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/mnsAAeSwiSJpztaf/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/iLgAAeSwur5p4p-u/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "318488804217",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-22T07:49:03.000Z",
+          "itemCreationDate": "2026-06-23T19:49:06.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "25454037ed5444d67ee4bd3770eb8f0d589301923459076bb033a899e0158727",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "99edb375-b831-7c9b-99ff-2f54b4e74b85",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|156731105968|458522716440",
+        "source_url": "https://www.ebay.com/itm/156731105968?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458522716440&hash=item247de6e2b0:g:LVAAAOSwp-xoMZgj",
+        "raw_payload": {
+          "itemId": "v1|156731105968|458522716440",
+          "title": "Pokemon Trainer Gallery: Choose Your Card! Full Art Galarian Trainer Gallery SIR",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=156731105968",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/LVAAAOSwp-xoMZgj/s-l225.jpg"
+          },
+          "price": {
+            "value": "14.99",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C156731105968%7C458522716440",
+          "seller": {
+            "username": "overstackedcards",
+            "feedbackPercentage": "99.9",
+            "feedbackScore": 20984
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/LVAAAOSwp-xoMZgj/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "20056463671",
+          "itemWebUrl": "https://www.ebay.com/itm/156731105968?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458522716440&hash=item247de6e2b0:g:LVAAAOSwp-xoMZgj",
+          "itemLocation": {
+            "postalCode": "762**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/GuMAAOSwFYxnu~S7/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "156731105968",
+          "availableCoupons": false,
+          "itemOriginDate": "2025-02-24T04:44:00.000Z",
+          "itemCreationDate": "2025-02-24T04:44:00.000Z",
+          "topRatedBuyingExperience": true,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "7c09c31254e8bb627582302eaa14edf116260eb5f98bec07222c51d47be0b9d7",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "d6ffddc4-d325-e029-6d3b-bb366ae4e68e",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|336612120428|0",
+        "source_url": "https://www.ebay.com/itm/336612120428?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e5fa5576c:g:GEgAAeSwIiFqHHfn&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZwst3Ev0lra9%2B2qv2mAneQC6DWCGwQK2J%2Fxuz42H36x5tVLkX4UOP8pl0jvKOJejeeo4NxJbSqjR%2F40sdjHj6JdgfGcCHY9%2Fu1BXtSFvbuM%2BSBAQEJWNx%2FrAmv%2BuwB%2FIEkDC0KeO9%2Fsp09vvBQ1ICSpgKTI5DRM3p7IvoP9pfHI7YxgKqWjoMZRg20ifF4oXqqznbz3TmFQfFsgMIsojFzLBJNmSNrXwwAjEY%2FUhYm8DT%2F64EqsvX062pmTW%2F4uksX5yxUwhruoO01cOl5pFNgZdPtTExzfdRzucaPA3Rvb4277sR4FtkWC0%2B6E33WxD0qIBGOfGxHA0SmT6nd4eML5%2FrQt9PflWyxWmZ%2FMBkyBA%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|336612120428|0",
+          "title": "Mom BW Pokemon Trainer Full Art Sexy Waifu doujin ACG Card",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "GCC: carte singole"
+            },
+            {
+              "categoryId": "1",
+              "categoryName": "Collezionismo"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Giochi di carte collezionabili"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/GEgAAeSwIiFqHHfn/s-l225.jpg"
+          },
+          "price": {
+            "value": "14.65",
+            "currency": "USD",
+            "convertedFromValue": "12.90",
+            "convertedFromCurrency": "EUR"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C336612120428%7C0",
+          "seller": {
+            "username": "cardth96",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 4
+          },
+          "condition": "Non gradata",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/GEgAAeSwIiFqHHfn/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "7.38",
+                "currency": "USD",
+                "convertedFromValue": "6.50",
+                "convertedFromCurrency": "EUR"
+              },
+              "minEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-17T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/336612120428?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e5fa5576c:g:GEgAAeSwIiFqHHfn&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZwst3Ev0lra9%2B2qv2mAneQC6DWCGwQK2J%2Fxuz42H36x5tVLkX4UOP8pl0jvKOJejeeo4NxJbSqjR%2F40sdjHj6JdgfGcCHY9%2Fu1BXtSFvbuM%2BSBAQEJWNx%2FrAmv%2BuwB%2FIEkDC0KeO9%2Fsp09vvBQ1ICSpgKTI5DRM3p7IvoP9pfHI7YxgKqWjoMZRg20ifF4oXqqznbz3TmFQfFsgMIsojFzLBJNmSNrXwwAjEY%2FUhYm8DT%2F64EqsvX062pmTW%2F4uksX5yxUwhruoO01cOl5pFNgZdPtTExzfdRzucaPA3Rvb4277sR4FtkWC0%2B6E33WxD0qIBGOfGxHA0SmT6nd4eML5%2FrQt9PflWyxWmZ%2FMBkyBA%3D%3D",
+          "itemLocation": {
+            "postalCode": "10***",
+            "country": "IT"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/E7gAAeSw~qpqHHfn/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/YXUAAeSwUNBqHHfn/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "336612120428",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-05-31T18:04:35.000Z",
+          "itemCreationDate": "2026-05-31T18:04:35.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_IT"
+        },
+        "payload_hash": "b606dc18e0f1cd52351a234da72f59342dfdc6716e771d02010f5bb4f94b0f05",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "ef6b724f-76ee-223c-a406-8799715feaa9",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|336649436285|0",
+        "source_url": "https://www.ebay.com/itm/336649436285?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e61debc7d:g:qncAAeSwwa9qHjxk&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGafvIWvRV483QH6Y13ayhCZ7F4vN8%2F7JngTFZWaAIURvQXCRx7Am8NKm%2BXMM18kOt3fu4UGvHkIZ1BCNB%2FC6Yj5DGIzMcnT6O7SF4ZkxXx%2ByCPwj0VY6KZ5CTEU7kqXv9sX%2FmI0kCzk20AlvkozTm0rZ2RQX83wC7UnXMP%2FIkXwhLQ9PdCSObILSzXOj1mz03kI8C5%2FQ93NaTOuWANZG4Tzy85p14A%2FrA6BHMwAHF%2Bs%2Bv8cGAllr9lBBCbk3nLDbELTTJFV2FzMzGh1EJTD1GCy4MYn66Q5h2aT0E7dQukmS97YosFebCjkdXzsQ82Df9LZlEqsOMDIyhFayF7lhaVHLXwSuPBdPujAezJVa3a10Q%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|336649436285|0",
+          "title": "Xerosic�??s Machinations Full Art 089/064 Pokemon Trainer Card NM",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/qncAAeSwwa9qHjxk/s-l225.jpg"
+          },
+          "price": {
+            "value": "7.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C336649436285%7C0",
+          "seller": {
+            "username": "lexi.moon",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 1
+          },
+          "marketingPrice": {
+            "originalPrice": {
+              "value": "9.69",
+              "currency": "USD"
+            },
+            "discountPercentage": "28",
+            "discountAmount": {
+              "value": "2.69",
+              "currency": "USD"
+            }
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/qncAAeSwwa9qHjxk/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "CALCULATED"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "epid": "24071592705",
+          "itemWebUrl": "https://www.ebay.com/itm/336649436285?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e61debc7d:g:qncAAeSwwa9qHjxk&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGafvIWvRV483QH6Y13ayhCZ7F4vN8%2F7JngTFZWaAIURvQXCRx7Am8NKm%2BXMM18kOt3fu4UGvHkIZ1BCNB%2FC6Yj5DGIzMcnT6O7SF4ZkxXx%2ByCPwj0VY6KZ5CTEU7kqXv9sX%2FmI0kCzk20AlvkozTm0rZ2RQX83wC7UnXMP%2FIkXwhLQ9PdCSObILSzXOj1mz03kI8C5%2FQ93NaTOuWANZG4Tzy85p14A%2FrA6BHMwAHF%2Bs%2Bv8cGAllr9lBBCbk3nLDbELTTJFV2FzMzGh1EJTD1GCy4MYn66Q5h2aT0E7dQukmS97YosFebCjkdXzsQ82Df9LZlEqsOMDIyhFayF7lhaVHLXwSuPBdPujAezJVa3a10Q%3D%3D",
+          "itemLocation": {
+            "postalCode": "442**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/f0QAAeSwiSdqHjxX/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/p9MAAeSwCitqHjxW/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/tF0AAeSwyUlqHjxW/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "336649436285",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-02T02:20:36.000Z",
+          "itemCreationDate": "2026-06-21T02:27:24.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "0c3f75e0aca75482a2bd8de1a83cc0e19251e535d4e08cd06e3dbc6fd99abaf7",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "02fd36fc-2c9f-3472-038c-aec98c9fc082",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|287417188153|0",
+        "source_url": "https://www.ebay.com/itm/287417188153?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item42eb663f39:g:75MAAeSwM8pqPI-u&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZOf%2FBMVL3%2FRgL8Kvmyvsy57e%2F6yWDj9UqYih8GSZzQqvkMjBtM3%2B29Btd72yqS3k05unsaLlLiTCaWyjLfZJIoJO18irhHj10zLncnsb0rOhcvxR3dEqZ4HeKg9hBJ31n1r7H8NZIz4eyJHkHXVL%2FAP3%2BADVceXDXrKDS8wwbIfdh0bFTpu3wr%2FMWDz9ZOxN7Vit8dHhEbx0%2FxJ%2FNYaN5n3IBmtrRcDrpue6CNSPPtrGWjUve8FPiH7r6lDVv--xFZEt%2BQfz1qywqtxvdKg7dbyyoa7RMYZl0%2FQyhtrJrcx3mryFcgHaTbsqPvU1is6HAMdN72wG1PZEOlgIjcWP1fsfT3jy2Q%2FDKQq9ebaXoyvw%3D%3D",
+        "raw_payload": {
+          "itemId": "v1|287417188153|0",
+          "title": "21 Trainer Card From Pokemon",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/75MAAeSwM8pqPI-u/s-l225.jpg"
+          },
+          "price": {
+            "value": "9.50",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C287417188153%7C0",
+          "seller": {
+            "username": "csmvferguson2013",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 917
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/75MAAeSwM8pqPI-u/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "3.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-03T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/287417188153?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item42eb663f39:g:75MAAeSwM8pqPI-u&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZOf%2FBMVL3%2FRgL8Kvmyvsy57e%2F6yWDj9UqYih8GSZzQqvkMjBtM3%2B29Btd72yqS3k05unsaLlLiTCaWyjLfZJIoJO18irhHj10zLncnsb0rOhcvxR3dEqZ4HeKg9hBJ31n1r7H8NZIz4eyJHkHXVL%2FAP3%2BADVceXDXrKDS8wwbIfdh0bFTpu3wr%2FMWDz9ZOxN7Vit8dHhEbx0%2FxJ%2FNYaN5n3IBmtrRcDrpue6CNSPPtrGWjUve8FPiH7r6lDVv--xFZEt%2BQfz1qywqtxvdKg7dbyyoa7RMYZl0%2FQyhtrJrcx3mryFcgHaTbsqPvU1is6HAMdN72wG1PZEOlgIjcWP1fsfT3jy2Q%2FDKQq9ebaXoyvw%3D%3D",
+          "itemLocation": {
+            "postalCode": "856**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/BbsAAeSwa4pqPI-u/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/k48AAeSwbqtqPI-u/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/TPkAAeSwz6xqPI-u/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/TFcAAeSwEHxqPI-v/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/g8AAAeSwtOZqPI-v/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/g8kAAeSwtOZqPI-w/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/VlwAAeSw-ghqPI-w/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/Uy4AAeSwH5NqPI-x/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/MaYAAeSwq1dqPI-x/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "287417188153",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-25T02:19:02.000Z",
+          "itemCreationDate": "2026-06-25T02:19:02.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "c3fc2a7c987b0d7442ac4ccb211e765ed574a7b94ba1d41c9410eb535f056e5e",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "7365014a-054b-6301-4af1-76fc6a7d93be",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|137396449566|435627756347",
+        "source_url": "https://www.ebay.com/itm/137396449566?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435627756347&hash=item1ffd77711e:g:NW8AAeSwlmBqMsXo",
+        "raw_payload": {
+          "itemId": "v1|137396449566|435627756347",
+          "title": "Pokemon - ILLUSTRATION RARE/TRAINER GALLERY Choose Your Card A-H [EN-VAR] [IRAH]",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=137396449566",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/NW8AAeSwlmBqMsXo/s-l225.jpg"
+          },
+          "price": {
+            "value": "38.00",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C137396449566%7C435627756347",
+          "seller": {
+            "username": "thecoziking",
+            "feedbackPercentage": "99.7",
+            "feedbackScore": 8723
+          },
+          "marketingPrice": {
+            "originalPrice": {
+              "value": "40.00",
+              "currency": "USD"
+            },
+            "discountPercentage": "5",
+            "discountAmount": {
+              "value": "2.00",
+              "currency": "USD"
+            },
+            "priceTreatment": "MARKDOWN"
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/NW8AAeSwlmBqMsXo/s-l960.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "CALCULATED"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "7091649272",
+          "itemWebUrl": "https://www.ebay.com/itm/137396449566?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435627756347&hash=item1ffd77711e:g:NW8AAeSwlmBqMsXo",
+          "itemLocation": {
+            "postalCode": "106**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/N2QAAeSwF6JqKDWq/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "137396449566",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-09T15:39:28.000Z",
+          "itemCreationDate": "2026-06-09T15:39:28.000Z",
+          "topRatedBuyingExperience": true,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "1be6aaade6a53d3eecb702dd3cef548f3d3093e23fb2fd4266076bd20faa3a2f",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "ad4cae16-b917-9525-9c28-7badd88f868d",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|375558343298|645140503118",
+        "source_url": "https://www.ebay.com/itm/375558343298?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=645140503118&hash=item5771058a82:g:~zcAAeSwKdFos1Fp",
+        "raw_payload": {
+          "itemId": "v1|375558343298|645140503118",
+          "title": "Pokemon EX Singles - Choose Your Card - All Available - Full Art-Double Rare",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=375558343298",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/~zcAAeSwKdFos1Fp/s-l225.jpg"
+          },
+          "price": {
+            "value": "2.25",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C375558343298%7C645140503118",
+          "seller": {
+            "username": "pokechrispr",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 2468
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/~zcAAeSwKdFos1Fp/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.99",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-02T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/375558343298?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=645140503118&hash=item5771058a82:g:~zcAAeSwKdFos1Fp",
+          "itemLocation": {
+            "postalCode": "338**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/kcYAAeSwPIZqDyC-/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "375558343298",
+          "availableCoupons": false,
+          "itemOriginDate": "2024-07-26T23:37:29.000Z",
+          "itemCreationDate": "2024-07-26T23:37:29.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "d8f49cca8f59622164d358c8e62c06951e38b4d429da8c0c58d1890be5089e38",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "6c0e46a8-ef3b-c4c3-7035-e5f4af8cb484",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|336622046278|0",
+        "source_url": "https://www.ebay.com/itm/336622046278?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e603ccc46:g:GP0AAeSwE8pqIwI7&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYaa%2FgtObQkYSsLBnhR%2B911%2BafHhVlkisgB3Ah1L5L%2FUA5pZApKRYCOMvRvIiGi%2BS%2BsvY4jHEznRCAKguyHITJC4sts8LG29BSN4IuYmJXGtKGbfaTjFBrLL%2B02Z1c1dDeKgOMb2nowcKD2W8IKNSYMz5R9F7CyZIYRD8wQesPKjdSeFfZWT4kOV0LnuHLTcPd3DfcI9%2BSMOn9wAZJs9VQ7AofRWozq72nd%2FJ0GyTknvR1%2F4dB83Ax5zF7%2BpMMjZ7%2Fem2iEZnPesFRftzYmyxjrw%2FZrBUeXSLFIOdYPV7KWA6xLaYXKIbCmqo2MDsC%2FI3ogIUFVKDlSn1T8gfFOiXkb",
+        "raw_payload": {
+          "itemId": "v1|336622046278|0",
+          "title": "2025 Mega DREAM EX MA Complete Set of 10 223-232/193 M2a Pokemon Card Japanese",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/GP0AAeSwE8pqIwI7/s-l225.jpg"
+          },
+          "price": {
+            "value": "158.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C336622046278%7C0",
+          "seller": {
+            "username": "japan_mint_vault",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 12
+          },
+          "marketingPrice": {
+            "discountPercentage": "0"
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/GP0AAeSwE8pqIwI7/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "7.00",
+                "currency": "USD"
+              }
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/336622046278?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e603ccc46:g:GP0AAeSwE8pqIwI7&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYaa%2FgtObQkYSsLBnhR%2B911%2BafHhVlkisgB3Ah1L5L%2FUA5pZApKRYCOMvRvIiGi%2BS%2BsvY4jHEznRCAKguyHITJC4sts8LG29BSN4IuYmJXGtKGbfaTjFBrLL%2B02Z1c1dDeKgOMb2nowcKD2W8IKNSYMz5R9F7CyZIYRD8wQesPKjdSeFfZWT4kOV0LnuHLTcPd3DfcI9%2BSMOn9wAZJs9VQ7AofRWozq72nd%2FJ0GyTknvR1%2F4dB83Ax5zF7%2BpMMjZ7%2Fem2iEZnPesFRftzYmyxjrw%2FZrBUeXSLFIOdYPV7KWA6xLaYXKIbCmqo2MDsC%2FI3ogIUFVKDlSn1T8gfFOiXkb",
+          "itemLocation": {
+            "country": "JP"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/S-4AAeSwmnBqIwI7/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/c5IAAeSwNFdqIwI7/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/qkkAAeSwO1dqIwI7/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/UzkAAeSwzHlqIwI8/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/kVwAAeSw1B5qIwI8/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/RooAAeSwAx5qIwI8/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/QPsAAeSwPZdqIwI8/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/hvgAAeSw-jpqIwI9/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/PMwAAeSwMq5qIwI9/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/hwkAAeSwA2NqIwI9/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/2gIAAeSwv8dqIwJR/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "336622046278",
+          "availableCoupons": true,
+          "itemOriginDate": "2026-06-05T17:08:40.000Z",
+          "itemCreationDate": "2026-06-05T17:08:40.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "8e89f14645975d8bdb2422f6e0b67ffd8e2583b0391bc66db89a4a386664b2d6",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "acfd298b-d137-4b76-0e57-f66a33897159",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|396759174005|665238483410",
+        "source_url": "https://www.ebay.com/itm/396759174005?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=665238483410&hash=item5c60b08b75:g:yxIAAOSwlc5n~auL&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGaGu%2BvGphr%2Fp26M5kmoiqeRLgyzJPWCh8azoH0oLC6iPMk0koD0obejnfcfD%2Fnc35obWjWr9ToHGFez%2FQ%2BUu6opDvhKYtDs8DlnF5C7Dpyscp0xJQGWUhuZmERX8kwYwK%2BvkYVUF4IKc4K82m4NmlbNjJKGBRe5pWJ%2BmkvJketFf2l835jsVUJnRcJwpezTKUQ6r76%2B4A17R0b%2FTu4HK602%2FBnIkenTYEYwEdDNsyRXXBQhNyve2sx4J%2FxGn%2FmOASbbghjlKtzfYbE8ixCXwXkf83QttZDeHTAVjOtcdMZAfj7s6c%2FwibnMzmHsfGCDTELlnrJfROJiBIRXhGW9jOlP",
+        "raw_payload": {
+          "itemId": "v1|396759174005|665238483410",
+          "title": "Pokemon ex - choose your card, Ultra Rare , English NM Cards",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=396759174005",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/yxIAAOSwlc5n~auL/s-l225.jpg"
+          },
+          "price": {
+            "value": "3.99",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C396759174005%7C665238483410",
+          "seller": {
+            "username": "ec-cards-store",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 875
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/yxIAAOSwlc5n~auL/s-l960.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-03T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/396759174005?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=665238483410&hash=item5c60b08b75:g:yxIAAOSwlc5n~auL&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGaGu%2BvGphr%2Fp26M5kmoiqeRLgyzJPWCh8azoH0oLC6iPMk0koD0obejnfcfD%2Fnc35obWjWr9ToHGFez%2FQ%2BUu6opDvhKYtDs8DlnF5C7Dpyscp0xJQGWUhuZmERX8kwYwK%2BvkYVUF4IKc4K82m4NmlbNjJKGBRe5pWJ%2BmkvJketFf2l835jsVUJnRcJwpezTKUQ6r76%2B4A17R0b%2FTu4HK602%2FBnIkenTYEYwEdDNsyRXXBQhNyve2sx4J%2FxGn%2FmOASbbghjlKtzfYbE8ixCXwXkf83QttZDeHTAVjOtcdMZAfj7s6c%2FwibnMzmHsfGCDTELlnrJfROJiBIRXhGW9jOlP",
+          "itemLocation": {
+            "postalCode": "117**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/9n4AAeSwuOVoSLrK/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "396759174005",
+          "availableCoupons": false,
+          "itemOriginDate": "2025-04-08T14:57:11.000Z",
+          "itemCreationDate": "2025-06-18T09:23:39.000Z",
+          "topRatedBuyingExperience": true,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "c702ac1e05efe5001582590b4341ab677abdeda67fc4e9c8958b4d0681e31401",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "7c7983a4-1b20-8038-6afc-65374bc2def9",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|397322993900|0",
+        "source_url": "https://www.ebay.com/itm/397322993900?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5c824bc0ec:g:G6QAAeSwDbNpJ8mh&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbvl9B0iRqwQXBtfrF1h%2B%2BuF2vNC6VrmtKZTxul07TzVNzIVZAD%2BeuImdgXyvCW%2BoIQlW2CGhJ41lSAnZYi6Oq5Mb%2BtoaGUOtgP9rl3AlymD5xlVj4xVvHrZWCuArtGiu4qNe9%2Fnego3KDvnGNHG%2BX4cKKJT%2B2kz5KvWVxRfGNyJzf5vPpYuaWpf45wlHIUGxH2%2Fr%2BZOX9Pze2bIfEZffZEpDvkztExyYdYzqsvFGW672rcE%2FH20KmfRGN99pUzr6ft%2Bo70CVXQoWYL2rNkKrzdo8dWh%2FtHlmoXOAqw7DFifk4lrP0nnobt9byQ1GJJFqudslXD%2FYsMF85dZOf6dy0h",
+        "raw_payload": {
+          "itemId": "v1|397322993900|0",
+          "title": "Mega DREAM EX MA Complete Set of 10 223-232/193 M2a Pokemon Card Japanese 2025",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/G6QAAeSwDbNpJ8mh/s-l225.jpg"
+          },
+          "price": {
+            "value": "160.00",
+            "currency": "USD"
+          },
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C397322993900%7C0",
+          "seller": {
+            "username": "yuumi98",
+            "feedbackPercentage": "97.9",
+            "feedbackScore": 4958
+          },
+          "marketingPrice": {
+            "discountPercentage": "0"
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/G6QAAeSwDbNpJ8mh/s-l1600.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-08-05T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-08-19T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "itemWebUrl": "https://www.ebay.com/itm/397322993900?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5c824bc0ec:g:G6QAAeSwDbNpJ8mh&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbvl9B0iRqwQXBtfrF1h%2B%2BuF2vNC6VrmtKZTxul07TzVNzIVZAD%2BeuImdgXyvCW%2BoIQlW2CGhJ41lSAnZYi6Oq5Mb%2BtoaGUOtgP9rl3AlymD5xlVj4xVvHrZWCuArtGiu4qNe9%2Fnego3KDvnGNHG%2BX4cKKJT%2B2kz5KvWVxRfGNyJzf5vPpYuaWpf45wlHIUGxH2%2Fr%2BZOX9Pze2bIfEZffZEpDvkztExyYdYzqsvFGW672rcE%2FH20KmfRGN99pUzr6ft%2Bo70CVXQoWYL2rNkKrzdo8dWh%2FtHlmoXOAqw7DFifk4lrP0nnobt9byQ1GJJFqudslXD%2FYsMF85dZOf6dy0h",
+          "itemLocation": {
+            "country": "JP"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/1yoAAeSwVUxpoSbq/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/VB4AAeSw2W9pJ8mh/s-l225.jpg"
+            },
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/WgoAAeSwLPFpJ8mh/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "397322993900",
+          "availableCoupons": true,
+          "itemOriginDate": "2025-11-26T13:24:55.000Z",
+          "itemCreationDate": "2025-11-26T13:24:55.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": true,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "5f6702b087fbd48e96f6e2421830aff85f9f975db8ce7a51be0950f44ce08198",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "12091483-74cb-333a-ace7-232dba9d7036",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "provider_route": "ebay_browse_api",
+        "source_listing_id": "v1|137427681550|435638772995",
+        "source_url": "https://www.ebay.com/itm/137427681550?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435638772995&hash=item1fff54010e:g:AMYAAeSwfyhqMZgh",
+        "raw_payload": {
+          "itemId": "v1|137427681550|435638772995",
+          "title": "Pokemon EX Singles - Choose Your Card -All Available -Full Art -Double Rare NM",
+          "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=137427681550",
+          "leafCategoryIds": [
+            "183454"
+          ],
+          "categories": [
+            {
+              "categoryId": "183454",
+              "categoryName": "CCG Individual Cards"
+            },
+            {
+              "categoryId": "220",
+              "categoryName": "Toys & Hobbies"
+            },
+            {
+              "categoryId": "2536",
+              "categoryName": "Collectible Card Games"
+            }
+          ],
+          "image": {
+            "imageUrl": "https://i.ebayimg.com/images/g/AMYAAeSwfyhqMZgh/s-l225.jpg"
+          },
+          "price": {
+            "value": "1.20",
+            "currency": "USD"
+          },
+          "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+          "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C137427681550%7C435638772995",
+          "seller": {
+            "username": "pokesellerlo",
+            "feedbackPercentage": "100.0",
+            "feedbackScore": 2
+          },
+          "marketingPrice": {
+            "originalPrice": {
+              "value": "1.83",
+              "currency": "USD"
+            },
+            "discountPercentage": "34",
+            "discountAmount": {
+              "value": "0.63",
+              "currency": "USD"
+            }
+          },
+          "condition": "Ungraded",
+          "conditionId": "4000",
+          "thumbnailImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/AMYAAeSwfyhqMZgh/s-l1200.jpg"
+            }
+          ],
+          "shippingOptions": [
+            {
+              "shippingCostType": "FIXED",
+              "shippingCost": {
+                "value": "1.32",
+                "currency": "USD"
+              },
+              "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+              "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+            }
+          ],
+          "buyingOptions": [
+            "FIXED_PRICE"
+          ],
+          "epid": "14062134135",
+          "itemWebUrl": "https://www.ebay.com/itm/137427681550?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435638772995&hash=item1fff54010e:g:AMYAAeSwfyhqMZgh",
+          "itemLocation": {
+            "postalCode": "236**",
+            "country": "US"
+          },
+          "additionalImages": [
+            {
+              "imageUrl": "https://i.ebayimg.com/images/g/hYQAAeSwBdhqMN0T/s-l225.jpg"
+            }
+          ],
+          "adultOnly": false,
+          "legacyItemId": "137427681550",
+          "availableCoupons": false,
+          "itemOriginDate": "2026-06-18T01:27:02.000Z",
+          "itemCreationDate": "2026-06-18T01:27:02.000Z",
+          "topRatedBuyingExperience": false,
+          "priorityListing": false,
+          "listingMarketplaceId": "EBAY_US"
+        },
+        "payload_hash": "879ce4d978332b4636f860c35181f440a5175b890048fedd5a99ab17fb57cf11",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "ingested_at": "2026-06-25T22:44:14.542Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "observationRows": [
+      {
+        "id": "b9bddecf-b318-56e9-1a26-fad83713d1aa",
+        "raw_snapshot_id": "ae32f265-5325-b4aa-4e8d-435714379ce7",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|377169644388|0",
+        "listing_url": "https://www.ebay.com/itm/377169644388?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item57d1100b64:g:0jQAAeSw9XlqPMI2",
+        "listing_title": "Hoopa 155/XY-P Movie Promo Full Art Holo Foil Japanese Pokemon Single Card VG",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 69.55,
+        "shipping_price": 0,
+        "total_ask_price": 69.55,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "JP",
+        "seller_key": "sunnydaytrading.japan",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "df02568b-3210-4d52-2244-38831d7135cf",
+        "raw_snapshot_id": "23c340f3-a474-d969-4a34-7dbd0be76bd1",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|157999291863|0",
+        "listing_url": "https://www.ebay.com/itm/157999291863?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item24c97dddd7:g:1tkAAeSw77hqLqyI&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYcNrj81oR%2BasLm%2B1Jofh4Qv6mp3ztiS5RwE%2B7kWWTAe2327RqRyId6c1KzA%2BBEy2D0UDMPKgkj6d%2B0y%2FwNMD6jbZ0rV2WDO1ixD%2Fn6MLal42Q3uMYTdmAOwH147WLH62epFf8E87dOm2y6E0pb2zeqmnuyrIyfpKlNmZsbVM4CfnjpbcfLBHDtwYn0Z%2F5z1cQ9H9is5uABp4tol8vnYRFKrYEomn5mzGs6ZJH00qrIeOEOj4P2q4Hto6moNMvbU5KVuc3Z3wTAW0hGvl2U6LvubL6GuBtpr8ztfH%2BYcYILG9iAJlOanZDN7yI%2B3jzuFhE%2FO5J9HTNQxk71mL1Bf9L1heF5oNcSUxuZBANk0a1Bqw%3D%3D",
+        "listing_title": "Pokemon TCG Fernando Mendoza V Basic English Standard Card 999 HP Single",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 55,
+        "shipping_price": null,
+        "total_ask_price": 55,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "clekardzkyle",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "a40d5a39-cf29-aa3c-ae74-4f6f8315067a",
+        "raw_snapshot_id": "2dcb5c19-a115-f070-dca9-2c2da68a01b8",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127920720665|0",
+        "listing_url": "https://www.ebay.com/itm/127920720665?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc8ab4b19:g:HeQAAeSwmGpqLcSy&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGb2fD74iIHEfRJUFnAz%2BTzoDCcitY%2FV5kC1ceb6ElSeP8an23SpEiqxuLFffsupO%2Bf%2Fa%2BqyfYb%2FE7pXciZc1EwMhK3TDBFZTuY8%2FaOVUilvZ4%2Ftbtft53xti81ZZO3zSg8tufTn%2Bo3Ih6Zdx%2BppSpFmKFiPKkKP8eo5vYGjcITyDlmDmjB7EH73%2F63UcHlyJD%2FsNiDz%2BOUDj7JPXG6iQGQk9djp5lSpbVY2JBNXHf2AUufcI5dhBcH8yPIQu2wnmFy4zVlxLsm%2Fp9xMSlVl7CccwSo1fjICMf%2BssGmRDy8usKGnQeK%2Bu%2BzwusGlv9U98FeXw%2FRMpyZcw2KczwLu3%2BUoqk%2FAaPbUjd6SdsXQPfFIDQ%3D%3D",
+        "listing_title": "Pokemon TCG Archeops 051/086 (Single Card)- PokAcmon Fossil Musuem Promo-Unopened",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 70,
+        "shipping_price": 0,
+        "total_ask_price": 70,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "tyforg-50",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "49138035-4dde-3a38-c46c-b982bcc4da51",
+        "raw_snapshot_id": "97b91117-6a5d-3bc4-09a8-06e6c5400dde",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|366502252908|0",
+        "listing_url": "https://www.ebay.com/itm/366502252908?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item55553c916c:g:0sIAAeSwQJpqPKAL&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGYFEdFRii0i83nBl5HTF9atKNyzvfwUghrz8hR6hKYorKufhqIzLQFmCWCYAKr31V9NbbbPgOwFcqprxVHjY%2BQRMBld4jjtENBz1ONdPvPLGKH4VuEbjK2zLVa5DQhAXjT0ukGet4ggNJuiSWAilRNx7rbYxJW31hVIZIRB6AWpSEWXqzoesLMV2wxgmFR3R6meiuHoQR%2BaL5zTwF2jxJV96lzL3Mi7PUc6AXMv%2BGdhlkl8dNDKMtbmsqAVDsj6P38vsCy%2BdPsAx9nJBG%2BRCXHKEsIiwDwKpHxLckU%2BuO%2FogAnTV5qKckYvq%2BgbswL063qa5IG1xFYzUtEmXBhRUm1q0b7dZpUq69ZpoBguzpYXZA%3D%3D",
+        "listing_title": "Pokemon TCG Trading Card Single - Back Shown - Pokemon Franchise Collectible",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 400.99,
+        "shipping_price": null,
+        "total_ask_price": 400.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Graded",
+        "item_location": "US",
+        "seller_key": "melcl7116",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "9cc81138-e653-b91e-f8ac-90c30186a72b",
+        "raw_snapshot_id": "0b9b8a49-aea1-2a60-1067-ff8ce2c8736c",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "471e4018-1cf3-7c90-53df-ce70259ce7d3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|227146440373|526580677918",
+        "listing_url": "https://www.ebay.com/itm/227146440373?_skw=pokemon+card+single+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=526580677918&hash=item34e2fb9eb5:g:73AAAeSwE1VqKkWa",
+        "listing_title": "Pokemon Trading Card Sword & Shield VMax: Choose Your Card",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 12.99,
+        "shipping_price": null,
+        "total_ask_price": 12.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "calebdann1",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "9be4666e-cb5f-ff00-aa19-6e57d4e5fd95",
+        "raw_snapshot_id": "daba9efb-99ff-8777-a937-73432a6d419d",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156804393182|458729138405",
+        "listing_url": "https://www.ebay.com/itm/156804393182?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458729138405&hash=item24824528de:g:omQAAeSwpG5omUO8",
+        "listing_title": "Snorlax Munchlax Pokemon Card! Holo/Reverse Holo Rare EX V VMAX Full Art Cards!",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 799.99,
+        "shipping_price": 0,
+        "total_ask_price": 799.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "overstackedcards",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "73eb2fce-dd83-ea32-2f30-3415478723fd",
+        "raw_snapshot_id": "49fc1f73-6e42-2f08-1c60-cdb0645e3a52",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|206373197825|0",
+        "listing_url": "https://www.ebay.com/itm/206373197825?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300ccd1801:g:tV0AAeSw9fxqPaXM&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbDWG5%2Bm%2BkF8ifXG90kXaOtGCJ%2FJiOmSfsk0vhHY2RcawuN0GyiyiF%2FIfHO%2BnZ0DCo7hLi3Y7V0fMQE4UQRrkJs2Bf6F1hnUMLfTwCmX5yEha2N21ZZkHKYU%2FhHww7wGmPYo0ysCrYn%2Bb5KXublumrDMRONEGj%2FGFXxJmeLYsvtnAFEiJ2qXHVbINkXDrGtDmHLEwTXmqUKdIlMXxPIgXe%2FdLg33cp3SN2TDWPBve0uuGrhiaod8rxjDHw4b1O70iVyHqvP3We7YVoTG5fVUGZnJGCGWKPzFssIjfbj4iaaODRT3ray8zaR4rFULutX8v%2FoLyeUASZjiaDrA2VMcrZr",
+        "listing_title": "Pokemon Scorbunny 053 Promo Full Art Holo Card English Mega Evolution Promo 2026",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 16.95,
+        "shipping_price": 0,
+        "total_ask_price": 16.95,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "butteryblake",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "22f22b94-8495-28ed-745f-8f2518aa09d6",
+        "raw_snapshot_id": "79a15738-c48a-6a39-47ab-cb2075453ba3",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|800125031801|657293077060",
+        "listing_url": "https://www.ebay.com/itm/800125031801?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=657293077060&hash=itemba4b2b1579:g:vscAAeSwEBxqIjTX&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGa3FA2d0UVzBEzks1sYxS3pYBC57w3OfZ%2FJjhzL6t4EDNBqjloRQprJWGBytBn8qQrZHN862P%2FX98ff2G3gXClpT8cuDAs7l6dvh9EWlM49cXsxHOLfwCkEkGEFtgnCGZ1OWb9vJEq12QQwCkbS5ENEg7PX97ioSihDpz7R1cYSj9Xlrx2SfJWJZW8KhEAE%2F48FTuYescyCvwkq276Z007EtCzfMyU0ECaGVA0UKQQ4QXy4vuB7ToCT8On6M1kuznQF%2FtY6PMJzPQ1W7%2BjphJKygZUto4iVl8AZgUfUFiCb1tPuqFWdXR5xi0wZZvS4y004Yups4sVwX%2F5cgLu71AhE",
+        "listing_title": "Pokemon TCG Jungle Unlimited Choose Your Card! English",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 18.88,
+        "shipping_price": 0,
+        "total_ask_price": 18.88,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "gator_gaming",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "64666519-b778-9413-77d7-cdd794e3ad03",
+        "raw_snapshot_id": "ec5532ca-6652-1626-370b-fbfe5b0ad974",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|206367201381|0",
+        "listing_url": "https://www.ebay.com/itm/206367201381?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item300c719865:g:jIsAAeSwallqOlTa&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGZOZYOdepABtcHvbaCtV4VtblP1DC4tkulIu6uGsApi2zELEaNcc3l6CRxEHfKMGz0t%2BQkjsnA6%2FxaOsEcL59tuNeF65mpgfzZWKWHEebZ8qDMXf42jcFV3w4B1Nqke7uFn8fUGxQ7pVV4A15o2q%2FxLWK5%2FJ5AFG%2BYtHyZKB2XqRESqTHTehPGWPB32Ob0CpBDVWO7KXhZIrWXg%2BrjFYbDxrmkN3CinL7rlcIwl%2FfHOeLb1B4FZrZCuro53VUndbX9bBCXWuQaSv7lYUpn4s68ze3mEmciPRNkzbRieeBoMsM4de5ILjXtHkgxLynR8DrkOfi91tdBUrvsMcyZOxe%2BU",
+        "listing_title": "Pokemon S-Chinese Card Terastal Gathering Umbreon ex CSV9.5C-239/208 SAR Holo",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 226.88,
+        "shipping_price": 0,
+        "total_ask_price": 226.88,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "CN",
+        "seller_key": "cardsgallery194",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "735e1cc1-c5ad-01ba-99c0-e943589a3c0d",
+        "raw_snapshot_id": "a9647b19-3c53-71a4-d031-3c375979bdaa",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "31d815b1-9862-807f-7cfe-8f7904e99c8d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156747546217|458988651324",
+        "listing_url": "https://www.ebay.com/itm/156747546217?_skw=pokemon+holo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458988651324&hash=item247ee1be69:g:mdsAAeSwhaRpMPCJ",
+        "listing_title": "Pikachu Raichu Pichu Pokemon Card! Holo/Reverse Holo Rare EX VMAX Full Art Cards",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 349.99,
+        "shipping_price": 0,
+        "total_ask_price": 349.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "overstackedcards",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "0bf7fdcc-bc6c-3e08-bedf-4233c25f725f",
+        "raw_snapshot_id": "039d5d80-5f16-493e-5887-6d2264d6a91b",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127939841637|0",
+        "listing_url": "https://www.ebay.com/itm/127939841637?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc9cf0e65:g:1LgAAeSwwQBqKQGj",
+        "listing_title": "Pikachu 090/XY-P Battle Festa 2014 Promo Full Art Holo Japanese Pokemon Card MP!",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 65.8,
+        "shipping_price": 0,
+        "total_ask_price": 65.8,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "fe_272381",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "393f1f20-4295-4280-30b1-979dae784cd6",
+        "raw_snapshot_id": "13c48c91-8286-5380-2e1a-e7f5153854fd",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|398091382653|0",
+        "listing_url": "https://www.ebay.com/itm/398091382653?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5cb0186f7d:g:z3AAAeSw0Q9qOC~6&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGY4hiHz%2FEkvp8YzK%2BL8mHf9uAOT84n%2FCTT9N2miV2%2FDWyhI60vgHuC%2Be5q%2FyUv8e3dUwpSWaVglW8EO4uYBA1UfXTMEvFihygFoW4ZCoA1iaEIAsOJrxTP7KB7OC8x2lSIXdzEP%2BEz1mMyNV5YmW56inZseeIMrH4U%2B%2BeZs0M8oSJ540D8kO3TeOcIANkKhGmvMBsScy1%2BwEfXa5ocdlCUG1kWAalvOT7esc5ZvxVSNDmDj9vWi8IBwzGHLIIVRSVr7XAVku0SBMtYcOwzO6CZ4Zj%2B5O0Fr7z4dw8%2Fg5tmW1CX1Do3I3TXPvOxnhog3zDTGoC0oUAAKnA1ChkZfw4uQZlDO0sWCTp1tyUyZvlyMYg%3D%3D",
+        "listing_title": "[Pre-order] Pokemon Korea Mega Festa 2026 Magikarp Promo Card 040/M-P Limited",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 179,
+        "shipping_price": 0,
+        "total_ask_price": 179,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "KR",
+        "seller_key": "brickpokecollect",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f2411146-9533-2c40-3964-bb0f3a1eff46",
+        "raw_snapshot_id": "4183344e-ef3f-2219-7c20-0a27810d15e1",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127834125820|0",
+        "listing_url": "https://www.ebay.com/itm/127834125820?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item1dc381f5fc:g:b~gAAeSwkB5p8LFx&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZNPIvm3NlfG%2FjuyD%2FckdL%2BGguprEr0iKVHzW%2BBwGWxcRVRBUMIwWPd0pC6Q1%2B6aQ4%2FROoAUP9DjTPV9xbpuoijBh5muNjYCotuL4aeUfQtsOHhweTt%2BVH7XCM1RuRmS7M1jEVFG1KVwVwWQF50tua2d2ojm0gg7o0bLEfXdqlvF0RHuZ0hBk6bcHzNqUa8jTYL3IdyvTRhcx2CDShsUPJ0My%2FiosZWxVuh01nYGWc0%2B%2BpmkqcoI50tSztt2OB39bNAy60vbpmyryubSmaqvbsl9wV2FaQnYmpqzvLfnJd3nsZWehh%2BHJgER6Egfa0r%2FSMR9rJ4alqidPHHGNf6du9bkTH5nu1uV002U7L5DQ%2B6Rw%3D%3D",
+        "listing_title": "PTCG Pokemon Card Victini SV-P-265/SV-P PROMO Chinese",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 279.99,
+        "shipping_price": 0,
+        "total_ask_price": 279.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "CN",
+        "seller_key": "whitebear-1",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f36109d0-4cbc-f90d-7f48-d879d15245ae",
+        "raw_snapshot_id": "14d5c83c-d491-5a8f-b738-e0a8264c0cbb",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|178232336781|0",
+        "listing_url": "https://www.ebay.com/itm/178232336781?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item297f79a18d:g:jIUAAeSwE99qM1xi&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZpFiEjTi3RBZ%2B%2BIhD9MYfKKCV8ddJ6uP97%2F4faIIVueNpRsjBszR7Fp1bus9E0JIWXPu0DFim6FxOLrjT61KTMpy3RcXl7kAgKC12VmsqTMDEkJbBSJSAbUgrWlaKkGdkyTKCR1M%2FA5hrSVh0HcG%2F3x0tpuGle73PfWRS%2B41xmwPOpCPm5gEKjgFsjnXLO%2BkBVOkF5AcuY7k7Sg3IN5or584gVsmSRGtWZ8QPBj8FeXbnf6Af3%2BivPCdAblkZp2X%2FqwieKoO5smb3pLfHzlq%2Fq3WBhCdllr0OUpT%2FnGdukb0n%2FBPdYrU7ManT%2BBzj3AkvUJE9oaMHsCYBf8%2F4o0DT2tyAAHWcHPX%2FHXuMZCkR3lg%3D%3D",
+        "listing_title": "Pokemon Korea Mega Festa 2026 Magikarp Promo Card 040/M-P Korean Exclusive Event",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 198.99,
+        "shipping_price": 0,
+        "total_ask_price": 198.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "KR",
+        "seller_key": "seoulpick",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "9a880c7d-8dd4-79e5-2ed2-f3705ed8b861",
+        "raw_snapshot_id": "c27b5c0f-bc35-df74-ecec-2710fc11123a",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "36ee4bca-32f0-0af8-4a7b-46b20830b7cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|318488804217|0",
+        "listing_url": "https://www.ebay.com/itm/318488804217?_skw=pokemon+promo+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4a27697b79:g:QMUAAeSwZJ9pzA73",
+        "listing_title": "Pikachu 227/S-P & Cramorant 226/S-P Stamp Box Promo Pokemon Card Japanese Sealed",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 86.5,
+        "shipping_price": 0,
+        "total_ask_price": 86.5,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "je_532959",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "deb88d66-1867-f2cc-7e6c-ece5a6f3f33d",
+        "raw_snapshot_id": "99edb375-b831-7c9b-99ff-2f54b4e74b85",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156731105968|458522716440",
+        "listing_url": "https://www.ebay.com/itm/156731105968?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=458522716440&hash=item247de6e2b0:g:LVAAAOSwp-xoMZgj",
+        "listing_title": "Pokemon Trainer Gallery: Choose Your Card! Full Art Galarian Trainer Gallery SIR",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 14.99,
+        "shipping_price": 0,
+        "total_ask_price": 14.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "overstackedcards",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "4d529261-f49d-ce18-2d7e-3e2f45cce00a",
+        "raw_snapshot_id": "d6ffddc4-d325-e029-6d3b-bb366ae4e68e",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336612120428|0",
+        "listing_url": "https://www.ebay.com/itm/336612120428?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e5fa5576c:g:GEgAAeSwIiFqHHfn&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZwst3Ev0lra9%2B2qv2mAneQC6DWCGwQK2J%2Fxuz42H36x5tVLkX4UOP8pl0jvKOJejeeo4NxJbSqjR%2F40sdjHj6JdgfGcCHY9%2Fu1BXtSFvbuM%2BSBAQEJWNx%2FrAmv%2BuwB%2FIEkDC0KeO9%2Fsp09vvBQ1ICSpgKTI5DRM3p7IvoP9pfHI7YxgKqWjoMZRg20ifF4oXqqznbz3TmFQfFsgMIsojFzLBJNmSNrXwwAjEY%2FUhYm8DT%2F64EqsvX062pmTW%2F4uksX5yxUwhruoO01cOl5pFNgZdPtTExzfdRzucaPA3Rvb4277sR4FtkWC0%2B6E33WxD0qIBGOfGxHA0SmT6nd4eML5%2FrQt9PflWyxWmZ%2FMBkyBA%3D%3D",
+        "listing_title": "Mom BW Pokemon Trainer Full Art Sexy Waifu doujin ACG Card",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 14.65,
+        "shipping_price": 7.38,
+        "total_ask_price": 22.03,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Non gradata",
+        "item_location": "IT",
+        "seller_key": "cardth96",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f3e15e88-2925-0045-b015-25ca9c7bd0f1",
+        "raw_snapshot_id": "ef6b724f-76ee-223c-a406-8799715feaa9",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336649436285|0",
+        "listing_url": "https://www.ebay.com/itm/336649436285?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e61debc7d:g:qncAAeSwwa9qHjxk&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGafvIWvRV483QH6Y13ayhCZ7F4vN8%2F7JngTFZWaAIURvQXCRx7Am8NKm%2BXMM18kOt3fu4UGvHkIZ1BCNB%2FC6Yj5DGIzMcnT6O7SF4ZkxXx%2ByCPwj0VY6KZ5CTEU7kqXv9sX%2FmI0kCzk20AlvkozTm0rZ2RQX83wC7UnXMP%2FIkXwhLQ9PdCSObILSzXOj1mz03kI8C5%2FQ93NaTOuWANZG4Tzy85p14A%2FrA6BHMwAHF%2Bs%2Bv8cGAllr9lBBCbk3nLDbELTTJFV2FzMzGh1EJTD1GCy4MYn66Q5h2aT0E7dQukmS97YosFebCjkdXzsQ82Df9LZlEqsOMDIyhFayF7lhaVHLXwSuPBdPujAezJVa3a10Q%3D%3D",
+        "listing_title": "Xerosic�??s Machinations Full Art 089/064 Pokemon Trainer Card NM",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 7,
+        "shipping_price": null,
+        "total_ask_price": 7,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "lexi.moon",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "3029ab4f-028a-fee6-5650-cb12bf5a3cce",
+        "raw_snapshot_id": "02fd36fc-2c9f-3472-038c-aec98c9fc082",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "source_listing_id": "v1|287417188153|0",
+        "listing_url": "https://www.ebay.com/itm/287417188153?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item42eb663f39:g:75MAAeSwM8pqPI-u&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGZOf%2FBMVL3%2FRgL8Kvmyvsy57e%2F6yWDj9UqYih8GSZzQqvkMjBtM3%2B29Btd72yqS3k05unsaLlLiTCaWyjLfZJIoJO18irhHj10zLncnsb0rOhcvxR3dEqZ4HeKg9hBJ31n1r7H8NZIz4eyJHkHXVL%2FAP3%2BADVceXDXrKDS8wwbIfdh0bFTpu3wr%2FMWDz9ZOxN7Vit8dHhEbx0%2FxJ%2FNYaN5n3IBmtrRcDrpue6CNSPPtrGWjUve8FPiH7r6lDVv--xFZEt%2BQfz1qywqtxvdKg7dbyyoa7RMYZl0%2FQyhtrJrcx3mryFcgHaTbsqPvU1is6HAMdN72wG1PZEOlgIjcWP1fsfT3jy2Q%2FDKQq9ebaXoyvw%3D%3D",
+        "listing_title": "21 Trainer Card From Pokemon",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 9.5,
+        "shipping_price": 3,
+        "total_ask_price": 12.5,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "csmvferguson2013",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "0d6e03c5-e36d-c85a-91e4-d65f7eae1048",
+        "raw_snapshot_id": "7365014a-054b-6301-4af1-76fc6a7d93be",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "faaece60-e406-06a3-627a-8f13fce09896",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137396449566|435627756347",
+        "listing_url": "https://www.ebay.com/itm/137396449566?_skw=pokemon+trainer+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435627756347&hash=item1ffd77711e:g:NW8AAeSwlmBqMsXo",
+        "listing_title": "Pokemon - ILLUSTRATION RARE/TRAINER GALLERY Choose Your Card A-H [EN-VAR] [IRAH]",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 38,
+        "shipping_price": null,
+        "total_ask_price": 38,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "thecoziking",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "201f0044-b04d-0711-c5dd-ec9098a430ff",
+        "raw_snapshot_id": "ad4cae16-b917-9525-9c28-7badd88f868d",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|375558343298|645140503118",
+        "listing_url": "https://www.ebay.com/itm/375558343298?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=645140503118&hash=item5771058a82:g:~zcAAeSwKdFos1Fp",
+        "listing_title": "Pokemon EX Singles - Choose Your Card - All Available - Full Art-Double Rare",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 2.25,
+        "shipping_price": 0.99,
+        "total_ask_price": 3.24,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "pokechrispr",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "e596457d-f0d3-b54a-8307-a6189ef271f3",
+        "raw_snapshot_id": "6c0e46a8-ef3b-c4c3-7035-e5f4af8cb484",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336622046278|0",
+        "listing_url": "https://www.ebay.com/itm/336622046278?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item4e603ccc46:g:GP0AAeSwE8pqIwI7&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYaa%2FgtObQkYSsLBnhR%2B911%2BafHhVlkisgB3Ah1L5L%2FUA5pZApKRYCOMvRvIiGi%2BS%2BsvY4jHEznRCAKguyHITJC4sts8LG29BSN4IuYmJXGtKGbfaTjFBrLL%2B02Z1c1dDeKgOMb2nowcKD2W8IKNSYMz5R9F7CyZIYRD8wQesPKjdSeFfZWT4kOV0LnuHLTcPd3DfcI9%2BSMOn9wAZJs9VQ7AofRWozq72nd%2FJ0GyTknvR1%2F4dB83Ax5zF7%2BpMMjZ7%2Fem2iEZnPesFRftzYmyxjrw%2FZrBUeXSLFIOdYPV7KWA6xLaYXKIbCmqo2MDsC%2FI3ogIUFVKDlSn1T8gfFOiXkb",
+        "listing_title": "2025 Mega DREAM EX MA Complete Set of 10 223-232/193 M2a Pokemon Card Japanese",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 158,
+        "shipping_price": 7,
+        "total_ask_price": 165,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "JP",
+        "seller_key": "japan_mint_vault",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "cabf3cbb-7bd5-85a3-1659-450cd903ea6d",
+        "raw_snapshot_id": "acfd298b-d137-4b76-0e57-f66a33897159",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|396759174005|665238483410",
+        "listing_url": "https://www.ebay.com/itm/396759174005?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=665238483410&hash=item5c60b08b75:g:yxIAAOSwlc5n~auL&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGaGu%2BvGphr%2Fp26M5kmoiqeRLgyzJPWCh8azoH0oLC6iPMk0koD0obejnfcfD%2Fnc35obWjWr9ToHGFez%2FQ%2BUu6opDvhKYtDs8DlnF5C7Dpyscp0xJQGWUhuZmERX8kwYwK%2BvkYVUF4IKc4K82m4NmlbNjJKGBRe5pWJ%2BmkvJketFf2l835jsVUJnRcJwpezTKUQ6r76%2B4A17R0b%2FTu4HK602%2FBnIkenTYEYwEdDNsyRXXBQhNyve2sx4J%2FxGn%2FmOASbbghjlKtzfYbE8ixCXwXkf83QttZDeHTAVjOtcdMZAfj7s6c%2FwibnMzmHsfGCDTELlnrJfROJiBIRXhGW9jOlP",
+        "listing_title": "Pokemon ex - choose your card, Ultra Rare , English NM Cards",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 3.99,
+        "shipping_price": 0,
+        "total_ask_price": 3.99,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "ec-cards-store",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "c1e3bbdc-a6e2-5b6d-e92d-6d9b74847412",
+        "raw_snapshot_id": "7c7983a4-1b20-8038-6afc-65374bc2def9",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|397322993900|0",
+        "listing_url": "https://www.ebay.com/itm/397322993900?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&hash=item5c824bc0ec:g:G6QAAeSwDbNpJ8mh&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbvl9B0iRqwQXBtfrF1h%2B%2BuF2vNC6VrmtKZTxul07TzVNzIVZAD%2BeuImdgXyvCW%2BoIQlW2CGhJ41lSAnZYi6Oq5Mb%2BtoaGUOtgP9rl3AlymD5xlVj4xVvHrZWCuArtGiu4qNe9%2Fnego3KDvnGNHG%2BX4cKKJT%2B2kz5KvWVxRfGNyJzf5vPpYuaWpf45wlHIUGxH2%2Fr%2BZOX9Pze2bIfEZffZEpDvkztExyYdYzqsvFGW672rcE%2FH20KmfRGN99pUzr6ft%2Bo70CVXQoWYL2rNkKrzdo8dWh%2FtHlmoXOAqw7DFifk4lrP0nnobt9byQ1GJJFqudslXD%2FYsMF85dZOf6dy0h",
+        "listing_title": "Mega DREAM EX MA Complete Set of 10 223-232/193 M2a Pokemon Card Japanese 2025",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 160,
+        "shipping_price": 0,
+        "total_ask_price": 160,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "JP",
+        "seller_key": "yuumi98",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "c965041a-e9ba-50cb-f043-20f53f5131b1",
+        "raw_snapshot_id": "12091483-74cb-333a-ace7-232dba9d7036",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "query_cache_id": "6d547fb7-7fe8-6451-ca22-af86d535ebc8",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137427681550|435638772995",
+        "listing_url": "https://www.ebay.com/itm/137427681550?_skw=pokemon+ex+card+-bulk+-lot+-proxy+-custom+-jumbo+-code&var=435638772995&hash=item1fff54010e:g:AMYAAeSwfyhqMZgh",
+        "listing_title": "Pokemon EX Singles - Choose Your Card -All Available -Full Art -Double Rare NM",
+        "listing_status": "active",
+        "listing_format": "fixed_price",
+        "ask_price": 1.2,
+        "shipping_price": 1.32,
+        "total_ask_price": 2.52,
+        "currency": "USD",
+        "quantity_available": null,
+        "quantity_sold": null,
+        "condition_text": "Ungraded",
+        "item_location": "US",
+        "seller_key": "pokesellerlo",
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "sellerSnapshotRows": [
+      {
+        "id": "8439685a-94a1-e22a-40cd-b34bfe876734",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "ae32f265-5325-b4aa-4e8d-435714379ce7",
+        "source": "ebay_active",
+        "seller_key": "sunnydaytrading.japan",
+        "seller_username": "sunnydaytrading.japan",
+        "feedback_score": 2760,
+        "feedback_percentage": 99.9,
+        "seller_location": "JP",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "59f5375e-0c99-0003-47cc-0a8535b931b7",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "23c340f3-a474-d969-4a34-7dbd0be76bd1",
+        "source": "ebay_active",
+        "seller_key": "clekardzkyle",
+        "seller_username": "clekardzkyle",
+        "feedback_score": 19,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f69b4d00-0615-a5aa-145b-f1acedebea74",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "2dcb5c19-a115-f070-dca9-2c2da68a01b8",
+        "source": "ebay_active",
+        "seller_key": "tyforg-50",
+        "seller_username": "tyforg-50",
+        "feedback_score": 104,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "7f6075a9-2bfb-dd11-419b-e7a84ef11ca6",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "97b91117-6a5d-3bc4-09a8-06e6c5400dde",
+        "source": "ebay_active",
+        "seller_key": "melcl7116",
+        "seller_username": "melcl7116",
+        "feedback_score": 14,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "3776c484-5022-c429-2707-c8c5b3aa3064",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "0b9b8a49-aea1-2a60-1067-ff8ce2c8736c",
+        "source": "ebay_active",
+        "seller_key": "calebdann1",
+        "seller_username": "calebdann1",
+        "feedback_score": 2753,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "1855fadf-50c7-af58-78d2-729b4c068514",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "daba9efb-99ff-8777-a937-73432a6d419d",
+        "source": "ebay_active",
+        "seller_key": "overstackedcards",
+        "seller_username": "overstackedcards",
+        "feedback_score": 20984,
+        "feedback_percentage": 99.9,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b540b790-6650-f62d-ea4d-d566dfb27008",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "49fc1f73-6e42-2f08-1c60-cdb0645e3a52",
+        "source": "ebay_active",
+        "seller_key": "butteryblake",
+        "seller_username": "butteryblake",
+        "feedback_score": 397,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "95f991cb-83dd-81c9-3307-74100a5ba784",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "79a15738-c48a-6a39-47ab-cb2075453ba3",
+        "source": "ebay_active",
+        "seller_key": "gator_gaming",
+        "seller_username": "gator_gaming",
+        "feedback_score": 643,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "54370029-540a-d38d-e46a-1d3238b8a762",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "ec5532ca-6652-1626-370b-fbfe5b0ad974",
+        "source": "ebay_active",
+        "seller_key": "cardsgallery194",
+        "seller_username": "cardsgallery194",
+        "feedback_score": 8615,
+        "feedback_percentage": 99.8,
+        "seller_location": "CN",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "70d3c5e8-94b7-98fb-bc03-d8c6e1093013",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "039d5d80-5f16-493e-5887-6d2264d6a91b",
+        "source": "ebay_active",
+        "seller_key": "fe_272381",
+        "seller_username": "fe_272381",
+        "feedback_score": 0,
+        "feedback_percentage": 0,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "90296922-4f48-5b37-53f5-102ffbc00703",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "13c48c91-8286-5380-2e1a-e7f5153854fd",
+        "source": "ebay_active",
+        "seller_key": "brickpokecollect",
+        "seller_username": "brickpokecollect",
+        "feedback_score": 18,
+        "feedback_percentage": 100,
+        "seller_location": "KR",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "eaeb8292-4d60-45f4-6a62-12054be970ef",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "4183344e-ef3f-2219-7c20-0a27810d15e1",
+        "source": "ebay_active",
+        "seller_key": "whitebear-1",
+        "seller_username": "whitebear-1",
+        "feedback_score": 762,
+        "feedback_percentage": 99.7,
+        "seller_location": "CN",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "44b33db8-e507-e74e-b4e3-b3d84b9935cb",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "14d5c83c-d491-5a8f-b738-e0a8264c0cbb",
+        "source": "ebay_active",
+        "seller_key": "seoulpick",
+        "seller_username": "seoulpick",
+        "feedback_score": 20,
+        "feedback_percentage": 100,
+        "seller_location": "KR",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f0a7f123-f903-e256-1efc-ac76e84cc093",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "c27b5c0f-bc35-df74-ecec-2710fc11123a",
+        "source": "ebay_active",
+        "seller_key": "je_532959",
+        "seller_username": "je_532959",
+        "feedback_score": 0,
+        "feedback_percentage": 0,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "47a73feb-3c4a-4e98-708f-cfc52943a5b8",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "d6ffddc4-d325-e029-6d3b-bb366ae4e68e",
+        "source": "ebay_active",
+        "seller_key": "cardth96",
+        "seller_username": "cardth96",
+        "feedback_score": 4,
+        "feedback_percentage": 100,
+        "seller_location": "IT",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b6652ca7-94b3-f4d3-29ec-ded6d5c43d72",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "ef6b724f-76ee-223c-a406-8799715feaa9",
+        "source": "ebay_active",
+        "seller_key": "lexi.moon",
+        "seller_username": "lexi.moon",
+        "feedback_score": 1,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "c8956fbd-9662-6f6a-ecf8-a45767e43cfe",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "02fd36fc-2c9f-3472-038c-aec98c9fc082",
+        "source": "ebay_active",
+        "seller_key": "csmvferguson2013",
+        "seller_username": "csmvferguson2013",
+        "feedback_score": 917,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "64348f07-eeaf-6e20-c296-bc68902f7392",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "7365014a-054b-6301-4af1-76fc6a7d93be",
+        "source": "ebay_active",
+        "seller_key": "thecoziking",
+        "seller_username": "thecoziking",
+        "feedback_score": 8723,
+        "feedback_percentage": 99.7,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "fd9885f6-ca58-ff79-fc88-3716d2605c19",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "ad4cae16-b917-9525-9c28-7badd88f868d",
+        "source": "ebay_active",
+        "seller_key": "pokechrispr",
+        "seller_username": "pokechrispr",
+        "feedback_score": 2468,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "3e4847db-4e48-f220-3bd0-03864db2bc87",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "6c0e46a8-ef3b-c4c3-7035-e5f4af8cb484",
+        "source": "ebay_active",
+        "seller_key": "japan_mint_vault",
+        "seller_username": "japan_mint_vault",
+        "feedback_score": 12,
+        "feedback_percentage": 100,
+        "seller_location": "JP",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "300c8020-d1a1-5292-349a-8fea4dadd748",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "acfd298b-d137-4b76-0e57-f66a33897159",
+        "source": "ebay_active",
+        "seller_key": "ec-cards-store",
+        "seller_username": "ec-cards-store",
+        "feedback_score": 875,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "bcc40701-2b91-6f77-8437-81a28fb7611a",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "7c7983a4-1b20-8038-6afc-65374bc2def9",
+        "source": "ebay_active",
+        "seller_key": "yuumi98",
+        "seller_username": "yuumi98",
+        "feedback_score": 4958,
+        "feedback_percentage": 97.9,
+        "seller_location": "JP",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "7e2d25b0-bb02-ab23-9ea3-23ff1ef02fde",
+        "acquisition_run_id": "7a29927d-dc97-a64f-14ab-50a0b7501ac4",
+        "raw_snapshot_id": "12091483-74cb-333a-ace7-232dba9d7036",
+        "source": "ebay_active",
+        "seller_key": "pokesellerlo",
+        "seller_username": "pokesellerlo",
+        "feedback_score": 2,
+        "feedback_percentage": 100,
+        "seller_location": "US",
+        "store_name": null,
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "priceEventRows": [
+      {
+        "id": "d82ad631-bc0a-bea5-dc6a-524fab50fd92",
+        "observation_id": "b9bddecf-b318-56e9-1a26-fad83713d1aa",
+        "source": "ebay_active",
+        "source_listing_id": "v1|377169644388|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 69.55,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [
+            "japanese"
+          ],
+          "provider_total_for_query": 7305
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "28fcad93-1fe3-2c0f-53aa-d09a305adafb",
+        "observation_id": "df02568b-3210-4d52-2244-38831d7135cf",
+        "source": "ebay_active",
+        "source_listing_id": "v1|157999291863|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 55,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 7305
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "fa026d26-4e73-be8e-edb1-96ca50b7eeda",
+        "observation_id": "a40d5a39-cf29-aa3c-ae74-4f6f8315067a",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127920720665|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 70,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 7305
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "627805c2-9a7a-18d5-689d-5265b08e6167",
+        "observation_id": "49138035-4dde-3a38-c46c-b982bcc4da51",
+        "source": "ebay_active",
+        "source_listing_id": "v1|366502252908|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 400.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 7305
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "3cbb1203-9742-7b78-097f-59be1148a46f",
+        "observation_id": "9cc81138-e653-b91e-f8ac-90c30186a72b",
+        "source": "ebay_active",
+        "source_listing_id": "v1|227146440373|526580677918",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 12.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon card single -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 7305
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "7aee568c-aaad-ef78-b5c3-3be1d7fb5e77",
+        "observation_id": "9be4666e-cb5f-ff00-aa19-6e57d4e5fd95",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156804393182|458729138405",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 799.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 463433
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "45036092-49e0-5828-3493-13412db6aa35",
+        "observation_id": "73eb2fce-dd83-ea32-2f30-3415478723fd",
+        "source": "ebay_active",
+        "source_listing_id": "v1|206373197825|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 16.95,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 463433
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "6b0f4dc4-0e20-347c-5de4-8305bc0cdaad",
+        "observation_id": "22f22b94-8495-28ed-745f-8f2518aa09d6",
+        "source": "ebay_active",
+        "source_listing_id": "v1|800125031801|657293077060",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 18.88,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 463433
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "f187c62a-4894-9cf8-2b58-8b39e9d74be0",
+        "observation_id": "64666519-b778-9413-77d7-cdd794e3ad03",
+        "source": "ebay_active",
+        "source_listing_id": "v1|206367201381|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 226.88,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 463433
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "571386c2-6407-c0fb-a7a3-ad038c275817",
+        "observation_id": "735e1cc1-c5ad-01ba-99c0-e943589a3c0d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156747546217|458988651324",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 349.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon holo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 463433
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "259bd0ac-79c9-aeb3-799a-b673c5bc8c40",
+        "observation_id": "0bf7fdcc-bc6c-3e08-bedf-4233c25f725f",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127939841637|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 65.8,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [
+            "japanese"
+          ],
+          "provider_total_for_query": 88235
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b32e60e3-43a1-589a-b74c-4986f14ea137",
+        "observation_id": "393f1f20-4295-4280-30b1-979dae784cd6",
+        "source": "ebay_active",
+        "source_listing_id": "v1|398091382653|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 179,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 88235
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b1d7a65e-173a-924b-00b0-136168897465",
+        "observation_id": "f2411146-9533-2c40-3964-bb0f3a1eff46",
+        "source": "ebay_active",
+        "source_listing_id": "v1|127834125820|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 279.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 88235
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "63baf11e-705e-f63d-ec70-e0a2ca5e4abc",
+        "observation_id": "f36109d0-4cbc-f90d-7f48-d879d15245ae",
+        "source": "ebay_active",
+        "source_listing_id": "v1|178232336781|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 198.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 88235
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b40b69bb-728f-d8cb-69dd-62b8ce05de35",
+        "observation_id": "9a880c7d-8dd4-79e5-2ed2-f3705ed8b861",
+        "source": "ebay_active",
+        "source_listing_id": "v1|318488804217|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 86.5,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon promo card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [
+            "sealed",
+            "japanese"
+          ],
+          "provider_total_for_query": 88235
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "0750da28-2610-1308-b441-83344ce5f434",
+        "observation_id": "deb88d66-1867-f2cc-7e6c-ece5a6f3f33d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|156731105968|458522716440",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 14.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 34976
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "2a2edf35-d034-7133-deec-d7234592484c",
+        "observation_id": "4d529261-f49d-ce18-2d7e-3e2f45cce00a",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336612120428|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 22.03,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 34976
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "95c5a0de-b77d-aef6-5003-4a9e2c392067",
+        "observation_id": "f3e15e88-2925-0045-b015-25ca9c7bd0f1",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336649436285|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 7,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 34976
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "b59d2cb8-4e17-bc04-954f-5c747a436ff8",
+        "observation_id": "3029ab4f-028a-fee6-5650-cb12bf5a3cce",
+        "source": "ebay_active",
+        "source_listing_id": "v1|287417188153|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 12.5,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 34976
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "23a75efd-e4a4-67fd-080a-c25e63518e2b",
+        "observation_id": "0d6e03c5-e36d-c85a-91e4-d65f7eae1048",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137396449566|435627756347",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 38,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon trainer card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 34976
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "0806df0f-1091-9af7-406b-bb2aa56c7618",
+        "observation_id": "201f0044-b04d-0711-c5dd-ec9098a430ff",
+        "source": "ebay_active",
+        "source_listing_id": "v1|375558343298|645140503118",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 3.24,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 184812
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "481ff6e6-1879-981b-6a32-09a83014009f",
+        "observation_id": "e596457d-f0d3-b54a-8307-a6189ef271f3",
+        "source": "ebay_active",
+        "source_listing_id": "v1|336622046278|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 165,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [
+            "japanese"
+          ],
+          "provider_total_for_query": 184812
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "3af15edd-0aa0-e7ff-401a-cef57d7fda03",
+        "observation_id": "cabf3cbb-7bd5-85a3-1659-450cd903ea6d",
+        "source": "ebay_active",
+        "source_listing_id": "v1|396759174005|665238483410",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 3.99,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 184812
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "4cbf2b5d-8425-1128-e22d-033a2f8752d9",
+        "observation_id": "c1e3bbdc-a6e2-5b6d-e92d-6d9b74847412",
+        "source": "ebay_active",
+        "source_listing_id": "v1|397322993900|0",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 160,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [
+            "japanese"
+          ],
+          "provider_total_for_query": 184812
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      },
+      {
+        "id": "e57ae4f4-b955-34ec-edf4-f59e8cf51239",
+        "observation_id": "c965041a-e9ba-50cb-f043-20f53f5131b1",
+        "source": "ebay_active",
+        "source_listing_id": "v1|137427681550|435638772995",
+        "event_type": "first_seen",
+        "previous_observation_id": null,
+        "previous_total_ask_price": null,
+        "current_total_ask_price": 2.52,
+        "currency": "USD",
+        "event_payload": {
+          "broad_intake_query": "pokemon ex card -bulk -lot -proxy -custom -jumbo -code",
+          "ingestion_exclusion_flags": [],
+          "provider_total_for_query": 184812
+        },
+        "observed_at": "2026-06-25T22:38:19.767Z",
+        "created_at": "2026-06-25T22:44:14.542Z"
+      }
+    ],
+    "cardCandidateRows": [],
+    "rollupRows": []
+  },
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-BROAD-INTAKE-BACKFILL-APPLY-V1 apply only. Package fingerprint: 36159efc9466172ab85d41234ac403237e8c443977f625101ce7a8111e908d0e. Row manifest hash: 7a4b430455774c98fe0f77bbf7d4ef371f67122559fb30985549a55a2a06665e. Source package fingerprint: 15707ae9fdce5423c7dc04133d102df96e3c8c0650309c91ec01cfd53677e1a1. Raw snapshot manifest hash: 0efb8cd015a1ba1a7a047ffe8de3621a9bd13457aa1779d8b925615e316d038c. Projected observation manifest hash: 7c66f33bf09e02879048cba91c44ea32de0c85fa6e05f745d2a774245c6fe80f. Schema migration hash: 2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4. Scope: insert 1 market_listing_acquisition_runs row, 5 market_listing_query_cache rows, 25 market_listing_raw_snapshots rows, 25 market_listing_observations rows, 23 market_listing_seller_snapshots rows, and 25 market_listing_price_events rows from local MEE-11F broad intake smoke artifacts only. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No card candidate writes. No rollup writes. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

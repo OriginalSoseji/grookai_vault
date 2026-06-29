@@ -1,0 +1,119 @@
+{
+  "id": "bwp-BW36",
+  "name": "Reshiram-EX",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic",
+    "EX"
+  ],
+  "hp": "180",
+  "types": [
+    "Fire"
+  ],
+  "rules": [
+    "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+  ],
+  "attacks": [
+    {
+      "name": "Glinting Claw",
+      "cost": [
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "50+",
+      "text": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+      "name": "Brave Fire",
+      "cost": [
+        "Fire",
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "150",
+      "text": "Flip a coin. If tails, this Pokémon does 50 damage to itself."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW36",
+  "artist": "Shizurow",
+  "rarity": "Promo",
+  "nationalPokedexNumbers": [
+    643
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW36.png",
+    "large": "https://images.pokemontcg.io/bwp/BW36_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW36",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 5,
+        "mid": 8.99,
+        "high": 9999,
+        "market": 8.18,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW36",
+    "updatedAt": "2026/04/18",
+    "prices": {
+      "averageSellPrice": 4.09,
+      "lowPrice": 1,
+      "trendPrice": 5.55,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 3.74,
+      "lowPriceExPlus": 2,
+      "avg1": 1,
+      "avg7": 4.85,
+      "avg30": 5.85,
+      "reverseHoloAvg1": 0.99,
+      "reverseHoloAvg7": 2.77,
+      "reverseHoloAvg30": 2.86
+    }
+  }
+}

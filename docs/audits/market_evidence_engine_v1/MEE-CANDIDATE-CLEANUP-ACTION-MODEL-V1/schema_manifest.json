@@ -1,0 +1,76 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1",
+  "mode": "plan_only_schema_candidate",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "migration_candidate": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql",
+  "sql_candidate": "docs/sql/mee_candidate_cleanup_action_model_v1_migration_candidate.sql",
+  "rollback_dry_run_sql": "docs/sql/mee_candidate_cleanup_action_model_v1_rollback_dry_run.sql",
+  "readback_sql": "docs/sql/mee_candidate_cleanup_action_model_v1_readback.sql",
+  "proposed_objects": {
+    "tables": [
+      "public.market_listing_candidate_cleanup_events"
+    ],
+    "views": [
+      "public.v_market_listing_candidate_cleanup_current_v1",
+      "public.v_market_listing_candidate_cleanup_card_summary_v1"
+    ],
+    "indexes": [
+      "idx_market_listing_candidate_cleanup_events_candidate_created",
+      "idx_market_listing_candidate_cleanup_events_card_lane",
+      "idx_market_listing_candidate_cleanup_events_action_reason",
+      "idx_market_listing_candidate_cleanup_events_public_boundary"
+    ],
+    "policies": [
+      "market_listing_candidate_cleanup_events_service_role_select",
+      "market_listing_candidate_cleanup_events_service_role_insert"
+    ]
+  },
+  "allowed_cleanup_actions": [
+    "keep_review",
+    "quarantine_candidate",
+    "require_matcher_reclassify",
+    "require_special_lane_policy",
+    "require_high_value_review",
+    "defer_until_more_evidence"
+  ],
+  "allowed_cleanup_states": [
+    "review_open",
+    "quarantined",
+    "needs_matcher_reclassify",
+    "needs_special_lane_policy",
+    "needs_high_value_review",
+    "deferred_more_evidence"
+  ],
+  "allowed_reason_codes": [
+    "candidate_rows_still_need_review",
+    "match_confidence_below_policy",
+    "exclusion_flags_present",
+    "special_lane_manual_review",
+    "high_value_manual_review",
+    "insufficient_listing_count",
+    "insufficient_seller_diversity",
+    "manual_hold"
+  ],
+  "grants": [
+    "service_role: cleanup_events select",
+    "service_role: cleanup_events insert",
+    "service_role: cleanup_current view select",
+    "service_role: cleanup_card_summary view select"
+  ],
+  "no_update_grant": true,
+  "no_delete_grant": true,
+  "public_boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  }
+}
+

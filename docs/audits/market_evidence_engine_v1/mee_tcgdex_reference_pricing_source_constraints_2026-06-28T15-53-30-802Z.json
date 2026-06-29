@@ -1,0 +1,63 @@
+{
+  "package_id": "MARKET-REFERENCE-TCGDEX-PRICING-SOURCE-CONSTRAINTS-V1",
+  "generated_at": "2026-06-28T15:53:30.802Z",
+  "mode": "local_migration_candidate_only",
+  "ready": true,
+  "applied": false,
+  "source_audit_fingerprint_sha256": "da6b070aef331e3b3e193e841038232b58031f2ef31fe38790119cd2bf8ba899",
+  "backfill_plan_fingerprint_sha256": "60ed28faf7ed421344fe4637e421d0b1e7029a563fc8ee1d46caede95e0aa4c9",
+  "package_fingerprint_sha256": "1ce51b00c3705b11a9257579e8749031eb829a5bf673e8f0b950f589928a240b",
+  "migration_sql_hash_sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63",
+  "candidate_sql_hash_sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63",
+  "candidate_sql_path": "docs/sql/market_reference_tcgdex_pricing_source_constraints_v1_migration_candidate.sql",
+  "migration_sql_path": "supabase/migrations/20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql",
+  "proposed_changes": {
+    "table_count": 0,
+    "index_count": 0,
+    "new_policy_count": 0,
+    "altered_constraint_tables": [
+      "market_reference_candidates",
+      "market_reference_normalized_evidence"
+    ],
+    "allowed_sources_added": [
+      "tcgdex_tcgplayer_reference",
+      "tcgdex_cardmarket_reference"
+    ],
+    "service_role_only_policies_preserved": true,
+    "candidate_review_gate_preserved": true,
+    "candidate_direct_publish_block_preserved": true,
+    "active_listing_model_eligible_block_preserved": true
+  },
+  "boundary": {
+    "remote_migration_apply": false,
+    "evidence_backfill": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "price_rollups": false,
+    "identity_table_writes": false,
+    "card_print_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "package_files": [
+    {
+      "path": "docs/sql/market_reference_tcgdex_pricing_source_constraints_v1_migration_candidate.sql",
+      "sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63"
+    },
+    {
+      "path": "supabase/migrations/20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql",
+      "sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63"
+    }
+  ],
+  "approval_prompt_for_next_step": "Approve real MARKET-REFERENCE-TCGDEX-PRICING-SOURCE-CONSTRAINTS-V1 TARGETED-REMOTE-SCHEMA-APPLY only. Migration hash: e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63. Package fingerprint: 1ce51b00c3705b11a9257579e8749031eb829a5bf673e8f0b950f589928a240b. Source audit fingerprint: da6b070aef331e3b3e193e841038232b58031f2ef31fe38790119cd2bf8ba899. Backfill plan fingerprint: 60ed28faf7ed421344fe4637e421d0b1e7029a563fc8ee1d46caede95e0aa4c9. Scope: execute supabase/migrations/20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql against linked Supabase project ycdxbpibncqcchqiihfz only, extending internal market_reference_candidates and market_reference_normalized_evidence constraints to allow TCGdex TCGPlayer/Cardmarket reference evidence sources. No evidence backfill. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No card_prints/card_printings writes. No vault writes. No image/storage writes. No deletes. No upserts. No merges. No db push. No global apply."
+}

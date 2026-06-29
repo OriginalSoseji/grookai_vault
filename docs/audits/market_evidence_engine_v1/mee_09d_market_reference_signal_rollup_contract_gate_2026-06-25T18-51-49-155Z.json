@@ -1,0 +1,41 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-ROLLUP-CONTRACT-GATE-V1",
+  "generated_at": "2026-06-25T18:51:49.153Z",
+  "mode": "contract_gate_no_writes",
+  "boundary": {
+    "db_writes": false,
+    "migration_created": false,
+    "migration_applied": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "dry_run_sql_path": "docs/sql/market_reference_signal_rollups_v1_guarded_dry_run.sql",
+  "candidate_sql_path": "docs/sql/market_reference_signal_rollups_v1_migration_candidate.sql",
+  "contract_doc_path": "docs/plans/market_evidence_engine_v1/MEE_09D_REFERENCE_SIGNAL_ROLLUP_CONTRACT_V1.md",
+  "dry_run_sql_hash_sha256": "63d0cf9e73c102ebd4329c34c6b954864bf17f7c7ab09858fb2d451ead35daf0",
+  "candidate_sql_hash_sha256": "eb2f1aa4a01977d455e131ec7f90b3d8250e2501f65cdc6199a9b2072dd82d41",
+  "contract_doc_hash_sha256": "4f53ecd8a926d72363ab93a8d903a0e63ada9f2945e0752e867f5b1622b192c3",
+  "package_fingerprint_sha256": "fb3304645565dc89b69ea0745a51f0ea14a6be90554debc7be75e620a5e0ee1d",
+  "rollup_migration_count": 0,
+  "rollup_migrations": [],
+  "findings": [],
+  "ready_for_migration_file_candidate": true,
+  "package_files": [
+    {
+      "path": "docs/sql/market_reference_signal_rollups_v1_guarded_dry_run.sql",
+      "sha256": "63d0cf9e73c102ebd4329c34c6b954864bf17f7c7ab09858fb2d451ead35daf0"
+    },
+    {
+      "path": "docs/sql/market_reference_signal_rollups_v1_migration_candidate.sql",
+      "sha256": "eb2f1aa4a01977d455e131ec7f90b3d8250e2501f65cdc6199a9b2072dd82d41"
+    },
+    {
+      "path": "docs/plans/market_evidence_engine_v1/MEE_09D_REFERENCE_SIGNAL_ROLLUP_CONTRACT_V1.md",
+      "sha256": "4f53ecd8a926d72363ab93a8d903a0e63ada9f2945e0752e867f5b1622b192c3"
+    }
+  ]
+}

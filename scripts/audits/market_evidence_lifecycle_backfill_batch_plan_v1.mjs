@@ -19,6 +19,10 @@ const LISTING_LIMIT = Number.parseInt(process.env.MEE_LIFECYCLE_LISTING_LIMIT ??
 const LISTING_KEYSET_CREATED_AT = process.env.MEE_LIFECYCLE_LISTING_KEYSET_CREATED_AT ?? null;
 const LISTING_KEYSET_AFTER_ID = process.env.MEE_LIFECYCLE_LISTING_KEYSET_AFTER_ID ?? null;
 const FAST_ACTIVE_LISTING_DRAIN = process.env.MEE_LIFECYCLE_FAST_ACTIVE_LISTING_DRAIN === "1";
+const REFERENCE_SOURCES = (process.env.MEE_LIFECYCLE_REFERENCE_SOURCES ?? "")
+  .split(",")
+  .map((source) => source.trim())
+  .filter(Boolean);
 
 const STAGES = [
   ["acquired", 1],
@@ -55,6 +59,10 @@ function localUuid(seed) {
 function q(value) {
   if (value === null || value === undefined) return "null";
   return `'${String(value).replaceAll("'", "''")}'`;
+}
+
+function sqlInList(values) {
+  return values.map((value) => q(value)).join(", ");
 }
 
 function runSql(sql) {
@@ -500,6 +508,7 @@ select
 from public.market_reference_normalized_evidence n
 join public.market_reference_candidates c on c.id = n.candidate_id
 where c.raw_snapshot_id is not null
+  ${REFERENCE_SOURCES.length > 0 ? `and c.source in (${sqlInList(REFERENCE_SOURCES)})` : ""}
   and not exists (
     select 1
     from public.market_evidence_observations existing

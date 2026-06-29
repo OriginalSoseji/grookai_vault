@@ -1,0 +1,119 @@
+{
+  "id": "bw9-16",
+  "name": "Chandelure",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2",
+    "Team Plasma"
+  ],
+  "hp": "130",
+  "types": [
+    "Fire"
+  ],
+  "evolvesFrom": "Lampent",
+  "abilities": [
+    {
+      "name": "Flare Navigate",
+      "text": "Once during your turn (before your attack), you may search your deck for a Fire Energy card and attach it to 1 of your Pokémon. If you do, put 1 damage counter on that Pokémon. Shuffle your deck afterward.",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Absorb Life",
+      "cost": [
+        "Fire",
+        "Fire",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": "Heal 30 damage from this Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "16",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Holo",
+  "flavorText": "The spirits burned up in its ominous flame lose their way and wander this world forever.",
+  "nationalPokedexNumbers": [
+    609
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/16.png",
+    "large": "https://images.pokemontcg.io/bw9/16_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-16",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 3.74,
+        "mid": 6.27,
+        "high": 43,
+        "market": 6,
+        "directLow": 26.92
+      },
+      "reverseHolofoil": {
+        "low": 5,
+        "mid": 8.83,
+        "high": 43.6,
+        "market": 9.81,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-16",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 3.63,
+      "lowPrice": 0.99,
+      "trendPrice": 4.03,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 9,
+      "reverseHoloLow": 1.19,
+      "reverseHoloTrend": 7.29,
+      "lowPriceExPlus": 1.19,
+      "avg1": 4.85,
+      "avg7": 4.25,
+      "avg30": 3.11,
+      "reverseHoloAvg1": 7,
+      "reverseHoloAvg7": 8,
+      "reverseHoloAvg30": 5.66
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "package_id": "MARKET-REFERENCE-POKEMONTCG-SECOND-SOURCE-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-25T20:02:51.720Z",
+  "mode": "apply_requested",
+  "package_fingerprint_sha256": "ed2c4e8d233c5a7a770b7b01bbcc4cc76f584dca75470bb5c613ad05a7d1cb58",
+  "expected_package_fingerprint_sha256": "ed2c4e8d233c5a7a770b7b01bbcc4cc76f584dca75470bb5c613ad05a7d1cb58",
+  "manifest_hash_sha256": "e8a91143648af9076118642afb82da02be8e2086fc7f91995f7cc497afd713fc",
+  "normalized_artifact_hash_sha256": "387d7dd270c26f1a0b5a4ad41506abe0b6d54a08f890c2f755b94d2c23d92eda",
+  "proposed_table_row_counts": {
+    "market_reference_candidates": 10720,
+    "market_reference_normalized_evidence": 10720
+  },
+  "remote_collision_summary": {
+    "checked": true,
+    "candidate_hashes_checked": 10720,
+    "candidate_hash_collisions": 0,
+    "collision_samples": []
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": true,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "migrations": false
+  },
+  "approval_required": true,
+  "approval_text_matched": true,
+  "findings": [],
+  "ready_for_apply": true,
+  "applied": true,
+  "apply_result": {
+    "market_reference_candidates_inserted": 10720,
+    "market_reference_normalized_evidence_inserted": 10720
+  }
+}

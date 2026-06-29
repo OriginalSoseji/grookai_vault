@@ -1,0 +1,187 @@
+{
+  "package_id": "MEE-REFERENCE-WAREHOUSE-AUTOMATED-APPLY-V1",
+  "generated_at": "2026-06-28T23:14:34.282Z",
+  "contract_version": "MEE_REFERENCE_WAREHOUSE_AUTOMATED_APPLY_POLICY_V1",
+  "mode": "plan_only_no_remote_apply",
+  "objective": "Define the nightly-safe path from refreshed free/reference artifacts into internal market_reference warehouse rows, internal assignment/quality views, and non-public signal rollups.",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "remote_apply": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "future_automation_boundary": {
+    "allowed_internal_writes_after_separate_apply_contract": [
+      "market_reference_acquisition_runs",
+      "market_reference_raw_snapshots",
+      "market_reference_candidates",
+      "market_reference_normalized_evidence",
+      "market_reference_coverage_reports"
+    ],
+    "allowed_rollup_write": "append-only market_reference_signal_rollups with new rollup_version",
+    "disallowed_forever_in_this_package": [
+      "pricing_observations",
+      "ebay_active_prices_latest",
+      "public pricing views",
+      "identity tables",
+      "card_prints/card_printings",
+      "vault tables",
+      "image/storage tables"
+    ]
+  },
+  "sources": [
+    {
+      "source": "tcgdex_tcgplayer_reference",
+      "label": "TCGDex TCGplayer Reference",
+      "acquisition_mode": "free_api_reference",
+      "source_type": "reference_price",
+      "truth_role": "free_reference_signal",
+      "can_publish_price_directly": false,
+      "requires_review_before_truth": true,
+      "accepted_input_artifacts": [
+        "mee_tcgdex_reference_pricing_audit_*.json"
+      ]
+    },
+    {
+      "source": "tcgdex_cardmarket_reference",
+      "label": "TCGDex Cardmarket Reference",
+      "acquisition_mode": "free_api_reference",
+      "source_type": "reference_price",
+      "truth_role": "free_reference_signal",
+      "can_publish_price_directly": false,
+      "requires_review_before_truth": true,
+      "accepted_input_artifacts": [
+        "mee_tcgdex_reference_pricing_audit_*.json"
+      ]
+    },
+    {
+      "source": "pokemontcg_io_reference",
+      "label": "PokemonTCG.io Reference",
+      "acquisition_mode": "free_api_reference",
+      "source_type": "reference_price",
+      "truth_role": "free_reference_signal",
+      "can_publish_price_directly": false,
+      "requires_review_before_truth": true,
+      "accepted_input_artifacts": [
+        "mee_06a_pokemontcg_io_reference_evidence_*.json",
+        "mee_06c_normalized_reference_evidence_*.json"
+      ]
+    },
+    {
+      "source": "tcgcsv_reference",
+      "label": "TCGCSV TCGplayer Reference",
+      "acquisition_mode": "public_snapshot_api",
+      "source_type": "reference_price",
+      "truth_role": "free_reference_signal",
+      "can_publish_price_directly": false,
+      "requires_review_before_truth": true,
+      "accepted_input_artifacts": [
+        "mee_06b_tcgcsv_reference_evidence_*.json",
+        "mee_06c_normalized_reference_evidence_*.json"
+      ]
+    }
+  ],
+  "lifecycle_stages": [
+    {
+      "stage": "artifact_discovery",
+      "writes": false,
+      "rule": "Select the newest successful reference refresh artifacts for each source and record hashes before planning rows."
+    },
+    {
+      "stage": "warehouse_preflight",
+      "writes": false,
+      "rule": "Verify source constraints, service-role RLS, public-boundary flags, and duplicate natural keys before insert planning."
+    },
+    {
+      "stage": "row_projection",
+      "writes": false,
+      "rule": "Project acquisition, raw snapshot, candidate, normalized evidence, and coverage rows locally with stable hashes."
+    },
+    {
+      "stage": "missing_row_insert",
+      "writes": true,
+      "rule": "Future automation may insert only missing rows by natural key. Existing evidence rows are never updated, upserted, deleted, or merged."
+    },
+    {
+      "stage": "assignment_queue_refresh",
+      "writes": false,
+      "rule": "Read internal assignment and quality views after warehouse writes; uncertain rows remain queued."
+    },
+    {
+      "stage": "internal_signal_rollup_refresh",
+      "writes": true,
+      "rule": "Future automation may append a new internal rollup_version only when all rollup rows remain review-gated and non-public."
+    },
+    {
+      "stage": "publication_gate_recheck",
+      "writes": false,
+      "rule": "Re-read publication gate and bridge views. This package never writes public pricing or app-visible rollups."
+    }
+  ],
+  "idempotency": {
+    "acquisition_runs": "run_key unique; skip already-present run_key",
+    "raw_snapshots": "source + source_object_type + source_object_id + payload_hash unique; skip exact duplicate raw payloads",
+    "candidates": "source + candidate_hash unique; skip exact duplicate candidate rows",
+    "normalized_evidence": "candidate_id + normalizer_version unique; insert only after candidate_id is resolved",
+    "coverage_reports": "report_key unique; skip already-present report_key",
+    "rollups": "rollup_version must be new; preserve old versions for replay"
+  },
+  "failure_guards": [
+    "unsupported_source_constraint",
+    "source_registry_boundary_failed",
+    "artifact_hash_mismatch",
+    "candidate_hash_duplicate_inside_package",
+    "raw_snapshot_key_duplicate_inside_package",
+    "missing_candidate_id_for_normalized_row",
+    "direct_publish_flag_detected",
+    "needs_review_false_detected",
+    "public_boundary_leak_detected",
+    "identity_table_write_detected",
+    "price_publication_write_detected",
+    "rollup_version_already_exists",
+    "readback_count_mismatch"
+  ],
+  "required_readbacks": [
+    "docs/sql/mee_reference_warehouse_automated_apply_v1_preflight.sql",
+    "docs/sql/mee_reference_warehouse_automated_apply_v1_readback.sql",
+    "public.v_market_evidence_normalization_assignment_queue_v1",
+    "public.v_market_evidence_candidate_quality_scores_v1",
+    "public.v_market_evidence_publication_gate_candidates_v1",
+    "public.v_market_evidence_publication_bridge_candidates_v1"
+  ],
+  "nightly_order": [
+    "grookai-mee-reference-refresh.timer",
+    "future_reference_warehouse_apply_phase",
+    "grookai-mee-nightly.timer",
+    "grookai-mee-post-ingest.timer"
+  ],
+  "proofs": {
+    "all_sources_registered": true,
+    "all_sources_review_gated": true,
+    "no_source_can_publish_directly": true,
+    "no_public_boundary_write_in_plan": true,
+    "coverage_strategy_outside_contract": true
+  },
+  "package_fingerprint_sha256": "b2e009848b3b81a51c6e924182f34f0e5008acc7b1cf5249fe0b4fa2d5f215f8",
+  "artifacts": {
+    "preflight_sql": "docs/sql/mee_reference_warehouse_automated_apply_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_reference_warehouse_automated_apply_v1_readback.sql",
+    "preflight_sql_sha256": "56e644ea937d8853e550320fdbbb366ed5ddcecc1424450c9d954d93fae405dd",
+    "readback_sql_sha256": "80ae83b5bda666bb28c65c84949fc9862e51a7f363d3077e53653d237f821200"
+  }
+}

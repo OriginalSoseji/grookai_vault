@@ -1,0 +1,202 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1",
+  "mode": "run_only_post_seed_readback",
+  "generated_at": "2026-06-27",
+  "source_apply_package": "MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1",
+  "db_writes": false,
+  "cleanup_event_inserts": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "function_invocation": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "card_print_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "migrations": false,
+  "global_apply": false,
+  "cleanup_event_readback": {
+    "cleanup_event_rows": 52630,
+    "distinct_candidate_ids": 52630,
+    "distinct_card_prints": 470,
+    "public_boundary_leak_rows": 0
+  },
+  "cleanup_current_summary": [
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "raw_single",
+      "rows": 622,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "slab",
+      "rows": 1049,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 38919,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "slab",
+      "rows": 261,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "cleanup_card_summary": {
+    "card_summary_rows": 470,
+    "card_summary_public_boundary_leak_rows": 0,
+    "cleanup_candidate_rows": 52630,
+    "quarantined_candidate_rows": 1671,
+    "matcher_reclassify_candidate_rows": 9610,
+    "special_lane_policy_candidate_rows": 39180,
+    "high_value_review_candidate_rows": 2169,
+    "keep_review_candidate_rows": 0,
+    "deferred_more_evidence_candidate_rows": 0
+  },
+  "cleanup_card_by_lane": [
+    {
+      "evidence_lane": "raw_single",
+      "card_summary_rows": 378,
+      "cleanup_candidate_rows": 46743,
+      "quarantined_candidate_rows": 622,
+      "matcher_reclassify_candidate_rows": 6106,
+      "special_lane_policy_candidate_rows": 38919,
+      "high_value_review_candidate_rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "evidence_lane": "slab",
+      "card_summary_rows": 92,
+      "cleanup_candidate_rows": 5887,
+      "quarantined_candidate_rows": 1049,
+      "matcher_reclassify_candidate_rows": 3504,
+      "special_lane_policy_candidate_rows": 261,
+      "high_value_review_candidate_rows": 1073,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "publication_gate": [
+    {
+      "gate_decision": "blocked_classification",
+      "evidence_lane": "classification_blocked",
+      "rows": 19,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_lane_split_required",
+      "evidence_lane": "mixed_raw_slab",
+      "rows": 574,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "low_signal",
+      "rows": 156,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "unknown",
+      "rows": 18,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_reference_only",
+      "evidence_lane": "reference_metric",
+      "rows": 915,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "raw_single",
+      "rows": 378,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "slab",
+      "rows": 92,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "held_review_confirmation": {
+    "held_rows": 470,
+    "raw_single_rows": 378,
+    "slab_rows": 92,
+    "public_boundary_leak_rows": 0
+  },
+  "cleanup_vs_held": {
+    "held_card_rows": 470,
+    "cleanup_card_rows": 470,
+    "matched_held_cleanup_rows": 470,
+    "held_without_cleanup_rows": 0
+  },
+  "publication_gate_error": null,
+  "artifacts": {
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1/report.json",
+    "readback_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1/readback.json",
+    "readback_sql": "docs/sql/mee_candidate_cleanup_post_seed_readback_v1.sql",
+    "contract_test": "tests/contracts/mee_candidate_cleanup_post_seed_readback_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1.md": "d43d8c5c58a71bd9d2447a9bf0574aba4492e0dbe73faa41ff65d6b370667dcc",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1/readback.json": "1fa053bfacc02323bf7d64a409fbe392415aab8242ab3a76e9bddce1080cdb31",
+    "docs/sql/mee_candidate_cleanup_post_seed_readback_v1.sql": "a9996411e2bd907d964e3d0b7d60d47fa4a590867764bf636c52804206873d65",
+    "tests/contracts/mee_candidate_cleanup_post_seed_readback_v1.test.mjs": "db87b9e4bb49fe861d7f12b69f0a2407aa36c1f1b27bff165909c814cbe60ab4"
+  },
+  "package_fingerprint_sha256": "9358db142bce2ae6e625aa122420e2a85e586e71be1377c06d473bc59610647a",
+  "findings": []
+}

@@ -178,8 +178,31 @@ function fillCommand(command, args) {
   );
 }
 
+function executionCommand(command) {
+  if (
+    command[0] === "supabase" &&
+    command[1] === "db" &&
+    command[2] === "query" &&
+    command.includes("--linked") &&
+    process.env.SUPABASE_DB_URL
+  ) {
+    const withoutLinked = command.filter((part) => part !== "--linked");
+    const hasOutput = withoutLinked.includes("--output");
+    return [
+      ...withoutLinked.slice(0, 3),
+      ...(hasOutput ? [] : ["--output", "json"]),
+      "--db-url",
+      process.env.SUPABASE_DB_URL,
+      ...withoutLinked.slice(3),
+    ];
+  }
+  return command;
+}
+
 function commandText(command) {
-  return command.join(" ");
+  return command
+    .map((part) => (part === process.env.SUPABASE_DB_URL ? "<SUPABASE_DB_URL>" : part))
+    .join(" ");
 }
 
 function translatedCommand(command) {
@@ -250,7 +273,7 @@ function commandEnv() {
 }
 
 function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
-  const actualCommand = translatedCommand(command);
+  const actualCommand = executionCommand(translatedCommand(command));
   const result = spawnSync(actualCommand[0], actualCommand.slice(1), {
     cwd: REPO_ROOT,
     env: commandEnv(),
@@ -272,9 +295,12 @@ function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
 function runSupabaseSql(sql) {
   const tempDir = mkdtempSync(path.join(os.tmpdir(), "mee-nightly-lock-"));
   const tempSql = path.join(tempDir, "query.sql");
+  const targetArgs = process.env.SUPABASE_DB_URL
+    ? ["--db-url", process.env.SUPABASE_DB_URL]
+    : ["--linked"];
   try {
     writeFileSync(tempSql, sql);
-    return runCommand(["supabase", "db", "query", "--linked", "-f", tempSql], 1000 * 60 * 3);
+    return runCommand(["supabase", "db", "query", "--output", "json", ...targetArgs, "-f", tempSql], 1000 * 60 * 3);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }

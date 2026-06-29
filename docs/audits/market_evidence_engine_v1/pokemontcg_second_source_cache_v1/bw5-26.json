@@ -1,0 +1,118 @@
+{
+  "id": "bw5-26",
+  "name": "Kyogre-EX",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic",
+    "EX"
+  ],
+  "hp": "170",
+  "types": [
+    "Water"
+  ],
+  "rules": [
+    "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+  ],
+  "attacks": [
+    {
+      "name": "Smash Turn",
+      "cost": [
+        "Water",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "You may switch this Pokémon with 1 of your Benched Pokémon."
+    },
+    {
+      "name": "Dual Splash",
+      "cost": [
+        "Water",
+        "Water",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "",
+      "text": "This attack does 50 damage to 2 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw5",
+    "name": "Dark Explorers",
+    "series": "Black & White",
+    "printedTotal": 108,
+    "total": 111,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "DEX",
+    "releaseDate": "2012/05/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw5/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw5/logo.png"
+    }
+  },
+  "number": "26",
+  "artist": "Shizurow",
+  "rarity": "Rare Holo EX",
+  "nationalPokedexNumbers": [
+    382
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw5/26.png",
+    "large": "https://images.pokemontcg.io/bw5/26_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw5-26",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 38.5,
+        "mid": 100.51,
+        "high": 1499.6,
+        "market": 100.51,
+        "directLow": 99.98
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw5-26",
+    "updatedAt": "2026/06/08",
+    "prices": {
+      "averageSellPrice": 21.83,
+      "lowPrice": 1.5,
+      "trendPrice": 20.48,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 6.3,
+      "lowPriceExPlus": 8.99,
+      "avg1": 33.5,
+      "avg7": 22.07,
+      "avg30": 17.85,
+      "reverseHoloAvg1": 5.97,
+      "reverseHoloAvg7": 7.03,
+      "reverseHoloAvg30": 6.13
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "total_gate_rows": 470,
+  "total_card_prints_with_candidates": 470,
+  "total_candidate_rows": 52630,
+  "card_primary_resolution_lanes": {
+    "special_lane_manual_review": 338,
+    "exclusion_flag_review": 60,
+    "matcher_confidence_review": 42,
+    "high_value_manual_review": 30
+  },
+  "candidate_cleanup_outcomes": {
+    "require_special_lane_policy": 39180,
+    "quarantine_candidate": 1671,
+    "require_matcher_reclassify": 9610,
+    "require_high_value_review": 2169
+  },
+  "candidate_match_status_counts": {
+    "needs_review": 52630
+  },
+  "public_boundary_candidate_rows": 0,
+  "generated_at": "2026-06-27"
+}

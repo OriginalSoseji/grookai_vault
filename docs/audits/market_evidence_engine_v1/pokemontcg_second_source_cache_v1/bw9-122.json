@@ -1,0 +1,76 @@
+{
+  "id": "bw9-122",
+  "name": "Ultra Ball",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Item"
+  ],
+  "rules": [
+    "Discard 2 cards from your hand. (If you can't discard 2 cards, you can't play this card.) Search your deck for a Pokémon, reveal it, and put it into your hand. Shuffle your deck afterward.",
+    "You may play as many Item cards as you like during your turn (before your attack)."
+  ],
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "122",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Secret",
+  "legalities": {
+    "unlimited": "Legal",
+    "standard": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/122.png",
+    "large": "https://images.pokemontcg.io/bw9/122_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-122",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 799.99,
+        "mid": 1122.1,
+        "high": 1200,
+        "market": 710.72,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-122",
+    "updatedAt": "2025/11/25",
+    "prices": {
+      "averageSellPrice": 103.25,
+      "lowPrice": 50,
+      "trendPrice": 141.72,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 37.08,
+      "lowPriceExPlus": 179.9,
+      "avg1": 156,
+      "avg7": 140.33,
+      "avg30": 157.3,
+      "reverseHoloAvg1": 90,
+      "reverseHoloAvg7": 53.82,
+      "reverseHoloAvg30": 100.41
+    }
+  }
+}

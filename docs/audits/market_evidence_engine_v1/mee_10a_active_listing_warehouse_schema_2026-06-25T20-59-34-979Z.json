@@ -1,0 +1,68 @@
+{
+  "package_id": "MARKET-REFERENCE-ACTIVE-LISTING-WAREHOUSE-SCHEMA-V1",
+  "generated_at": "2026-06-25T20:59:34.979Z",
+  "mode": "local_migration_candidate_only",
+  "ready": true,
+  "applied": false,
+  "source_backfill_plan_fingerprint_sha256": "7c9daf3aa23a5c366a12cc60add9c079d1a3e106c083f854d4551df4be0c1be0",
+  "candidate_evidence_manifest_hash_sha256": "18a642c2731441f83dfcd2908e375af0ad3fd62211eb6ca6e8088cc7c4e4e168",
+  "package_fingerprint_sha256": "90dd41c35fe3bdeba555951963c57ad04b5970940d561adc3eedc3a23f22e7ab",
+  "migration_sql_hash_sha256": "9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807",
+  "candidate_sql_hash_sha256": "9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807",
+  "candidate_sql_path": "docs/sql/market_reference_active_listing_warehouse_schema_v1_migration_candidate.sql",
+  "migration_sql_path": "supabase/migrations/20260625020000_market_reference_active_listing_warehouse_schema_v1.sql",
+  "plan_doc_path": "docs/plans/market_evidence_engine_v1/MEE_10A_ACTIVE_LISTING_WAREHOUSE_SCHEMA_V1.md",
+  "proposed_changes": {
+    "table_count": 0,
+    "index_count": 0,
+    "new_policy_count": 0,
+    "altered_constraint_tables": [
+      "market_reference_raw_snapshots",
+      "market_reference_candidates"
+    ],
+    "allowed_sources_added": [
+      "ebay_active"
+    ],
+    "allowed_source_types_added": [
+      "active_listing"
+    ],
+    "service_role_only_policies_preserved": true,
+    "candidate_review_gate_preserved": true,
+    "candidate_direct_publish_block_preserved": true
+  },
+  "boundary": {
+    "remote_migration_apply": false,
+    "evidence_backfill": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "package_files": [
+    {
+      "path": "docs/sql/market_reference_active_listing_warehouse_schema_v1_migration_candidate.sql",
+      "sha256": "9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807"
+    },
+    {
+      "path": "supabase/migrations/20260625020000_market_reference_active_listing_warehouse_schema_v1.sql",
+      "sha256": "9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807"
+    },
+    {
+      "path": "docs/plans/market_evidence_engine_v1/MEE_10A_ACTIVE_LISTING_WAREHOUSE_SCHEMA_V1.md",
+      "sha256": "cce0cb07941e893703ee583b37c1f45e1b8a31174c19a98f2caaf64c584c7ff8"
+    }
+  ],
+  "approval_required_for_next_step": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-REFERENCE-ACTIVE-LISTING-WAREHOUSE-SCHEMA-V1 TARGETED-REMOTE-SCHEMA-APPLY only. Migration hash: 9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807. Package fingerprint: 90dd41c35fe3bdeba555951963c57ad04b5970940d561adc3eedc3a23f22e7ab. Source backfill plan fingerprint: 7c9daf3aa23a5c366a12cc60add9c079d1a3e106c083f854d4551df4be0c1be0. Scope: execute supabase/migrations/20260625020000_market_reference_active_listing_warehouse_schema_v1.sql against linked Supabase project ycdxbpibncqcchqiihfz only, extending internal market_reference_* warehouse constraints for reviewed ebay_active active-listing evidence. Then mark only migration version 20260625020000 as applied in Supabase migration history. No evidence backfill. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No db push. No global apply."
+}

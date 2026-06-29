@@ -30,14 +30,22 @@ Optional source selection:
 npm run mee:acquisition-batch -- --limit=100 --sources=pricecharting_reference,tcgplayer_reference_candidate
 ```
 
+PriceCharting benchmark batch:
+
+```powershell
+npm run mee:acquisition-batch -- --limit=5000 --sources=pricecharting_reference
+```
+
 ## Default Sources
 
-The default batch excludes eBay lanes until an approved access method is selected.
+The default batch excludes live/API provider lanes until an approved access method is selected. It favors user-owned export lanes and existing internal/free-reference lanes so the engine does not depend on a paid provider.
 
 Default lanes:
 
-- `pricecharting_reference`
-- `tcgplayer_reference_candidate`
+- `pokemontcg_io_reference`
+- `tcgcsv_reference`
+- `ebay_user_export`
+- `tcgplayer_user_export`
 - `justtcg_reference`
 - `manual_review_candidate`
 

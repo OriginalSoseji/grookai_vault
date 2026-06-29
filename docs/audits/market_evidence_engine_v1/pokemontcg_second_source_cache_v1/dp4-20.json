@@ -1,0 +1,121 @@
+{
+  "id": "dp4-20",
+  "name": "Kingler",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "33",
+  "hp": "90",
+  "types": [
+    "Water"
+  ],
+  "evolvesFrom": "Krabby",
+  "attacks": [
+    {
+      "name": "Crabhammer",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": ""
+    },
+    {
+      "name": "Scissor Blow",
+      "cost": [
+        "Water",
+        "Water",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80",
+      "text": "If the Defending Pokémon would be be Knocked Out by this attack, Kingler does 30 damage to itself."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "dp4",
+    "name": "Great Encounters",
+    "series": "Diamond & Pearl",
+    "printedTotal": 106,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "GE",
+    "releaseDate": "2008/02/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp4/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp4/logo.png"
+    }
+  },
+  "number": "20",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "The larger pincer has 10,000-horsepower strength. However, it is so heavy, it is difficult to aim.",
+  "nationalPokedexNumbers": [
+    99
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp4/20.png",
+    "large": "https://images.pokemontcg.io/dp4/20_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp4-20",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.9,
+        "mid": 2.18,
+        "high": 31.9,
+        "market": 2.11,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 3.3,
+        "mid": 5.79,
+        "high": 100,
+        "market": 6.28,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp4-20",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 0.54,
+      "lowPrice": 0.1,
+      "trendPrice": 0.6,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.74,
+      "reverseHoloLow": 0.2,
+      "reverseHoloTrend": 2.06,
+      "lowPriceExPlus": 0.3,
+      "avg1": 0.8,
+      "avg7": 0.53,
+      "avg30": 0.64,
+      "reverseHoloAvg1": 2.5,
+      "reverseHoloAvg7": 1.69,
+      "reverseHoloAvg30": 1.43
+    }
+  }
+}

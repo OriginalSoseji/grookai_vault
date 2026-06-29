@@ -1,0 +1,80 @@
+{
+  "package_id": "MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1",
+  "mode": "plan_only_internal_confirmation_policy",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "apply_candidate_reason": "All current defer_review_confirmation rows remain policy holds under deterministic confirmation requirements.",
+  "audit_input": {
+    "review_confirmation_manifest": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/defer_review_confirmation_manifest.json",
+    "enriched_candidate_policy_audit": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/enriched_candidate_policy_audit.json"
+  },
+  "current_audit": {
+    "total_review_confirmation_rows": 470,
+    "raw_single_rows": 378,
+    "slab_rows": 92,
+    "policy_hold_rows": 470,
+    "policy_confirmable_rows": 0,
+    "public_boundary_leak_rows": 0
+  },
+  "hold_reasons": {
+    "match_confidence_below_policy": 470,
+    "candidate_rows_still_need_review": 470,
+    "special_lane_manual_review": 383,
+    "high_value_manual_review": 103,
+    "exclusion_flags_present": 60,
+    "insufficient_seller_diversity": 15,
+    "insufficient_listing_count": 14
+  },
+  "policy_thresholds": {
+    "raw_single": {
+      "minimum_matched_listing_count": 5,
+      "minimum_distinct_seller_count": 3,
+      "minimum_match_confidence": 0.9,
+      "stale_after_days": 14,
+      "high_value_manual_review_p95_usd": 250
+    },
+    "slab": {
+      "minimum_matched_listing_count": 3,
+      "minimum_distinct_seller_count": 2,
+      "minimum_match_confidence": 0.9,
+      "stale_after_days": 30,
+      "high_value_manual_review_p95_usd": 500
+    }
+  },
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "artifacts": {
+    "contract": "docs/contracts/MEE_PUBLICATION_GATE_REVIEW_CONFIRMATION_POLICY_V1.md",
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/report.json",
+    "policy_manifest": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/policy_manifest.json",
+    "enriched_candidate_policy_audit": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/enriched_candidate_policy_audit.json",
+    "preflight_sql": "docs/sql/mee_publication_gate_review_confirmation_policy_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_publication_gate_review_confirmation_policy_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_publication_gate_review_confirmation_policy_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_PUBLICATION_GATE_REVIEW_CONFIRMATION_POLICY_V1.md": "0d6f96ab2a527c52c5f517838608ad23d1cd83d0a18f53b28cc45896d171b5e5",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1.md": "1318e42dc23b0d73750fdd67962bfa5c89c5cae21723aaa8b76a44041b5ee9c5",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/policy_manifest.json": "27abf6b78f6ee43948b58acc37c568c47482ee0562a8bb4d8a4184dbd72c7146",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/enriched_candidate_policy_audit.json": "30077ec5d588d483b2a8b33446fc0476cca77c27962dc95e4ec2d6dfd80fb3c3",
+    "docs/sql/mee_publication_gate_review_confirmation_policy_v1_preflight.sql": "5252dad7486c201337af87747fd9ea7b6ab7f38ff1acfd57edd57028550ce6cb",
+    "docs/sql/mee_publication_gate_review_confirmation_policy_v1_readback.sql": "54ec97e574ce94b32f94c9377a28232f422fbe2c96abbd309edf8c5162bc918e",
+    "tests/contracts/mee_publication_gate_review_confirmation_policy_v1.test.mjs": "bf09b09ec690da14123010ebfb51e0638f2e0e3f15fcefda47cb919184f8b48f"
+  },
+  "package_fingerprint_sha256": "228f34b1f3390a44b41e6c4bf4f1d97e3ebb3df82b01b9debe4db6a9726f1117",
+  "next_step": "Resolve candidate-level needs_review and confidence blockers before generating any confirm_internal_candidate apply package.",
+  "findings": []
+}
+

@@ -1,0 +1,120 @@
+{
+  "id": "dp1-22",
+  "name": "Clefable",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "37",
+  "hp": "90",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesFrom": "Clefairy",
+  "attacks": [
+    {
+      "name": "Double Slap",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30×",
+      "text": "Flip 2 coins. This attack does 30 damage times the number of heads."
+    },
+    {
+      "name": "Metronome",
+      "cost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "",
+      "text": "Choose 1 of the Defending Pokémon's attacks. Metronome copies that attack except for its Energy cost. (You must still do anything else in order to use that attack.) Clefable performs that attack."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp1",
+    "name": "Diamond & Pearl",
+    "series": "Diamond & Pearl",
+    "printedTotal": 130,
+    "total": 130,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "DP",
+    "releaseDate": "2007/05/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp1/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp1/logo.png"
+    }
+  },
+  "number": "22",
+  "artist": "Ken Sugimori",
+  "rarity": "Rare",
+  "flavorText": "Rarely seen by people, it is said to be drawn by the full moon to play at deserted lakes.",
+  "nationalPokedexNumbers": [
+    36
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp1/22.png",
+    "large": "https://images.pokemontcg.io/dp1/22_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp1-22",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 1,
+        "mid": 1.84,
+        "high": 56.9,
+        "market": 3.45,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 4,
+        "mid": 7.03,
+        "high": 99.8,
+        "market": 7.03,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp1-22",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 1.47,
+      "lowPrice": 0.19,
+      "trendPrice": 1.27,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.87,
+      "reverseHoloLow": 0.35,
+      "reverseHoloTrend": 1.9,
+      "lowPriceExPlus": 0.49,
+      "avg1": 0.3,
+      "avg7": 0.75,
+      "avg30": 1.28,
+      "reverseHoloAvg1": 0.9,
+      "reverseHoloAvg7": 1.55,
+      "reverseHoloAvg30": 1.63
+    }
+  }
+}

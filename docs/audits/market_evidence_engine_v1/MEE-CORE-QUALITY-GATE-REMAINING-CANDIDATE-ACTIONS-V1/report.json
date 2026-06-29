@@ -1,0 +1,40 @@
+{
+  "package_id": "MEE-CORE-QUALITY-GATE-REMAINING-CANDIDATE-ACTIONS-V1",
+  "target_disposition_rows": 0,
+  "row_manifest_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "action_summary": [],
+  "evidence_summary": {
+    "candidate_evidence_rows": 0,
+    "exclude_rows": 0,
+    "reclassify_lane_rows": 0,
+    "manual_policy_rows": 0,
+    "identity_confidence_rows": 0,
+    "quality_rollup_eligible_rows": 0
+  },
+  "apply_sql_sha256": "4446ecad38cbe239794e83496781321f07043ab0fc5a8fe3757e874a96b416bf",
+  "preflight_sql_sha256": "c109fad2d2ccfd480b98c5ea1f914e19cc0320d51c5f2667b1cdc087d8501e45",
+  "readback_sql_sha256": "1e977fbc2d1713a1ab1f9622c35a503910fde33b872f7d38b91d364ed850b01f",
+  "rollback_sql_sha256": "c24b39b67209d37928a72ea9088762c1f9b45847e8d5f8f72c1f7cebd947e924",
+  "findings": [],
+  "generated_at": "2026-06-27T14:04:01.910Z",
+  "mode": "apply_package_quality_gate_remaining_candidate_actions",
+  "package_status": "noop_no_pending_candidate_rows",
+  "package_fingerprint_sha256": "7ee3665f81581f71d7a8a071cf5b58d9d002e996068c8bafbca8d69ebb495a3f",
+  "boundary_proof": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

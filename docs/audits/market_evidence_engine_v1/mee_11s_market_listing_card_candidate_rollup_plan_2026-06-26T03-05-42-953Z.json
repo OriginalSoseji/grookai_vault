@@ -1,0 +1,54 @@
+{
+  "package_id": "MARKET-LISTING-CARD-CANDIDATE-ROLLUP-PLAN-V1",
+  "generated_at": "2026-06-26T03:05:42.953Z",
+  "mode": "candidate_rollup_plan_only_no_writes",
+  "source_readback_fingerprint_sha256": "3ecef7a22b6209c5a68fc591d58d6e63519dd97c0327259b74f39afe7b281d95",
+  "source_run_key": "MEE-11L-DAILY-BATCH-58975dc50904",
+  "package_fingerprint_sha256": "8d88939703699fca8745a36bb8dc957d29a0323798b666bbb6bb67418cf67786",
+  "row_manifest_hash_sha256": "8fd35140b5e38b8f898fa6c55ee01767478abf8ffd454117991f3168692bc37e",
+  "row_file_hashes_sha256": {
+    "cardCandidateRows": "7a4531bff97386812df4901a4c00acd7acaf98ae63692e6d1585c85176f9b806",
+    "rollupRows": "d2f1b73593bc80be8174377d4591198e9be66752a90e0b804d980b2b526704d0"
+  },
+  "proposed_table_row_counts": {
+    "market_listing_card_candidates": 108600,
+    "market_listing_rollups": 2275
+  },
+  "summary": {
+    "scanned_price_events": 130686,
+    "skipped_non_candidate_events": 22086,
+    "evidence_class_counts": {
+      "excluded_or_ambiguous": 21065,
+      "raw_single": 75918,
+      "slab": 32682,
+      "unknown": 1021
+    },
+    "rollup_class_counts": {
+      "raw_single": 1207,
+      "slab": 1068
+    }
+  },
+  "row_files": {
+    "cardCandidateRows": "docs/audits/market_evidence_engine_v1/mee_11s_market_listing_card_candidate_rollup_plan_2026-06-26T03-05-42-953Z/market_listing_card_candidates.jsonl",
+    "rollupRows": "docs/audits/market_evidence_engine_v1/mee_11s_market_listing_card_candidate_rollup_plan_2026-06-26T03-05-42-953Z/market_listing_rollups.jsonl"
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "ready_for_apply_approval": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-CARD-CANDIDATE-ROLLUP-APPLY-V1 apply only. Package fingerprint: 8d88939703699fca8745a36bb8dc957d29a0323798b666bbb6bb67418cf67786. Row manifest hash: 8fd35140b5e38b8f898fa6c55ee01767478abf8ffd454117991f3168692bc37e. Source readback fingerprint: 3ecef7a22b6209c5a68fc591d58d6e63519dd97c0327259b74f39afe7b281d95. Scope: insert 108600 review-only market_listing_card_candidates rows and 2275 internal-only market_listing_rollups rows from local MEE-11S artifacts only, keeping raw_single and slab rollups separated and not app-visible. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

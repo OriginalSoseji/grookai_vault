@@ -1,0 +1,62 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-BACKFILL-BATCH-22-APPLY-V1",
+  "generated_at": "2026-06-27T09:40:05.193Z",
+  "mode": "bounded_lifecycle_backfill_apply",
+  "source_plan_fingerprint": "2a02e77eda0c4fe0fe182b58f8e42e3393ea493b63a19cf0e0d62ca371d66736",
+  "package_fingerprint_sha256": "53fa592dbd239133bd51919aff128c3086542522268cb014234a33c05dd5afe1",
+  "apply_summary": {
+    "inserted_market_evidence_observations": 5035,
+    "inserted_market_evidence_lifecycle_events": 35245
+  },
+  "readback": {
+    "observations": {
+      "expected": 5035,
+      "actual": 5035
+    },
+    "events": {
+      "expected": 35245,
+      "actual": 35245,
+      "distinct_event_hashes": 35245
+    },
+    "current_view": {
+      "expected": 5035,
+      "actual": 5035,
+      "app_visible_true": 0,
+      "market_truth_true": 0
+    },
+    "public_pricing_surface": {
+      "pricing_observations_count": 0,
+      "ebay_active_prices_latest_count": 1690,
+      "v_card_pricing_references_market_evidence": false
+    }
+  },
+  "public_surface": {
+    "pricing_observations_count": 0,
+    "ebay_active_prices_latest_count": 1690,
+    "v_card_pricing_references_market_evidence": false
+  },
+  "package_readback_sql": {
+    "executed": false,
+    "skipped_reason": "chunked_service_key_readback_used_for_large_batch",
+    "output_artifact": null,
+    "output_sha256": null
+  },
+  "findings": [],
+  "boundary_proof": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

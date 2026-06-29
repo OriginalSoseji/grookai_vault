@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-06-27T21:23:14-06:00",
+  "foundation_status": "complete_internal_assignment_verified",
+  "public_pricing_allowed_now": false,
+  "acquisition_allowed_by_this_package": false,
+  "provider_calls_used_by_closeout": false,
+  "db_writes_used_by_closeout": false,
+  "approved_schema_apply_in_scope": "public.v_market_evidence_normalization_assignment_queue_v1",
+  "lifecycle": {
+    "market_evidence_observations": 194663,
+    "active_listing_observations": 183638,
+    "reference_observations": 11025,
+    "missing_card_print_id": 0,
+    "missing_gv_id": 0,
+    "market_evidence_lifecycle_events": 1362641,
+    "public_boundary_leak_events": 0,
+    "rollup_eligible_events": 16333,
+    "needs_review_events": 1362641
+  },
+  "source_mix": [
+    {
+      "source_type": "active_listing",
+      "source": "ebay_active",
+      "rows": 183638
+    },
+    {
+      "source_type": "reference",
+      "source": "tcgcsv_reference",
+      "rows": 7407
+    },
+    {
+      "source_type": "reference",
+      "source": "pokemontcg_io_reference",
+      "rows": 3618
+    }
+  ],
+  "normalization_assignment_queue": {
+    "total_queue_rows": 35231,
+    "excluded_or_ambiguous_non_candidate": 34210,
+    "missing_candidate": 1021,
+    "missing_card_print_id": 0,
+    "missing_gv_id": 0,
+    "public_boundary_violation": 0,
+    "actionable_identity_or_boundary_rows": 0
+  },
+  "access_readback": {
+    "public_select": false,
+    "anon_select": false,
+    "authenticated_select": false,
+    "service_role_select": true
+  },
+  "review_dashboard": {
+    "publication_gate_handoff_candidates": 0,
+    "review_public_boundary_leak_rows": 0,
+    "representative_queues": [
+      "classification_blocked_queue",
+      "high_signal_candidate_queue",
+      "low_signal_monitor",
+      "mixed_raw_slab_split_queue",
+      "reference_only_queue",
+      "standard_candidate_review",
+      "unknown_evidence_review"
+    ]
+  },
+  "complete_layers": [
+    "provider_specific_warehouse_preservation",
+    "provider_agnostic_lifecycle_observations",
+    "ordered_lifecycle_transition_history",
+    "normalization_assignment_to_card_print_id_and_gv_id",
+    "internal_evidence_summary_read_models",
+    "internal_review_queue_read_models",
+    "review_dispositions",
+    "append_only_review_action_events",
+    "controlled_review_action_function",
+    "internal_dashboard_read_models",
+    "internal_quality_scoring_read_model",
+    "normalization_assignment_queue",
+    "public_boundary_closed"
+  ],
+  "not_complete_layers": [
+    "public_pricing_publication_gate_implementation",
+    "app_visible_market_evidence_pricing",
+    "sold_comp_provider_integration",
+    "automated_nightly_acquisition_reenable",
+    "operator_review_ui",
+    "public_price_confidence_labels"
+  ],
+  "next_contract": "MEE-PUBLICATION-GATE-DESIGN-V1",
+  "decision": "Market Evidence Engine foundation is closed for internal lifecycle, assignment, review, and safety-gated evidence handling. Public pricing remains disabled."
+}

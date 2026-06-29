@@ -1,0 +1,201 @@
+# Market Evidence Cleanup Baseline V1
+
+- Package: `MARKET-EVIDENCE-CLEANUP-BASELINE-V1`
+- Fingerprint: `fc70b2d5a34a6f5378ec1a219eb0e0e1933342e0743f86bcf5cd078bf6d1575e`
+- Mode: `read_only_cleanup_baseline_no_writes_no_provider_calls`
+
+## Executive Summary
+
+- Reference candidates: 21760
+- Reference signal rollups: 1986
+- Listing observations: 130686
+- Listing candidates: 108600
+- Listing rollups: 2275
+- Listing candidates assigned to GVID: 108600
+- Listing rollups assigned to GVID: 2275
+- App-visible listing rollups: 0
+- App-visible reference rollups: 0
+- Public pricing view references JustTCG: false
+
+## Reference Warehouse
+
+```json
+{
+  "table_counts": {
+    "market_reference_candidates": 21760,
+    "market_reference_raw_snapshots": 10788,
+    "market_reference_signal_rollups": 1986,
+    "market_reference_acquisition_runs": 5,
+    "market_reference_coverage_reports": 1,
+    "market_reference_normalized_evidence": 21745
+  },
+  "signal_rollups": {
+    "total": 1986,
+    "with_gv_id": 1986,
+    "app_visible_true": 0,
+    "by_review_status": {
+      "review_required_context": 860,
+      "blocked_special_lane_review": 48,
+      "review_required_high_variance": 490,
+      "review_required_single_source": 588
+    },
+    "publishable_true": 0,
+    "by_rollup_version": {
+      "MEE_09F_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_V1": 993,
+      "MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1": 993
+    },
+    "market_truth_true": 0,
+    "needs_review_false": 0,
+    "with_card_print_id": 1986
+  },
+  "candidate_counts": {
+    "total": 21760,
+    "by_source": {
+      "ebay_active": 15,
+      "tcgcsv_reference": 7407,
+      "pokemontcg_io_reference": 14338
+    },
+    "with_gv_id": 21760,
+    "needs_review_false": 0,
+    "with_card_print_id": 21760,
+    "direct_publish_true": 0
+  },
+  "normalized_evidence": {
+    "total": 21745,
+    "by_disposition": {
+      "quarantined_metric": 2982,
+      "quarantined_price_outlier": 208,
+      "reference_model_candidate": 18555
+    },
+    "model_eligible_true": 18555,
+    "model_eligible_false": 3190
+  }
+}
+```
+
+## Listing Warehouse
+
+```json
+{
+  "runs": {
+    "by_status": {
+      "completed": 3
+    },
+    "total_runs": 3,
+    "total_error_count": 4,
+    "total_consumed_call_count": 4010,
+    "total_observed_listing_count": 169769
+  },
+  "rollups": {
+    "slab": 1068,
+    "total": 2275,
+    "raw_single": 1207,
+    "with_gv_id": 2275,
+    "app_visible_true": 0,
+    "publishable_true": 0,
+    "by_rollup_version": {
+      "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1": 1068,
+      "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1": 1207
+    },
+    "market_truth_true": 0,
+    "needs_review_false": 0,
+    "with_card_print_id": 2275
+  },
+  "price_events": {
+    "slab": 32682,
+    "total": 130686,
+    "raw_single": 75918,
+    "with_target_gv_id": 129665,
+    "with_target_payload": 129665,
+    "excluded_or_ambiguous": 21065,
+    "without_evidence_class": 1021,
+    "with_target_card_print_id": 129665
+  },
+  "table_counts": {
+    "market_listing_rollups": 2275,
+    "market_listing_query_cache": 4005,
+    "market_listing_observations": 130686,
+    "market_listing_price_events": 130686,
+    "market_listing_raw_snapshots": 130686,
+    "market_listing_card_candidates": 108600,
+    "market_listing_acquisition_runs": 3,
+    "market_listing_seller_snapshots": 24288
+  },
+  "card_candidates": {
+    "slab": 32682,
+    "total": 108600,
+    "raw_single": 75918,
+    "with_gv_id": 108600,
+    "by_match_version": {
+      "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1": 108600
+    },
+    "needs_review_false": 0,
+    "with_card_print_id": 108600,
+    "direct_publish_true": 0,
+    "with_exclusion_flags": 6852
+  }
+}
+```
+
+## Assignment State
+
+```json
+{
+  "stored_listing_evidence_rows": 130686,
+  "targeted_listing_evidence_rows": 129665,
+  "review_only_listing_candidate_rows_with_gv_id": 108600,
+  "internal_listing_rollup_rows_with_gv_id": 2275,
+  "review_only_reference_candidate_rows_with_gv_id": 21760,
+  "internal_reference_signal_rows_with_gv_id": 1986,
+  "note": "GVID/card_print_id assignment is present for candidates and rollups, but all market evidence remains review-only and non-public."
+}
+```
+
+## Trust Boundary
+
+```json
+{
+  "provider_calls": false,
+  "source_fetches": false,
+  "db_writes": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_view_writes": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "vault_writes": false,
+  "image_writes": false,
+  "deletes": false
+}
+```
+
+## Public Pricing Surface
+
+```json
+{
+  "pricing_observations": {
+    "total": 0,
+    "distinct_card_print_ids": 0
+  },
+  "v_card_pricing_ui_v1": {
+    "exists": true,
+    "definition_md5": "6621f9428731334061ae9f8c560e7d77",
+    "references_justtcg": false,
+    "references_market_listing": false,
+    "references_market_reference": false
+  },
+  "ebay_active_prices_latest": {
+    "total": 1690,
+    "distinct_card_print_ids": 1690
+  }
+}
+```
+
+## Findings
+
+- none
+
+## Recommended Next Step
+
+Proceed to a read-only review-gate threshold plan for internal market_listing_rollups. Keep raw_single and slab lanes separated and keep all outputs review-only.

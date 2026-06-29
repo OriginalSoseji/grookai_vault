@@ -1,0 +1,77 @@
+{
+  "id": "bw10-94",
+  "name": "Master Ball",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Item",
+    "ACE SPEC"
+  ],
+  "rules": [
+    "Search your deck for a Pokémon, reveal it, and put it into your hand. Shuffle your deck afterward.",
+    "You may play as many Item cards as you like during your turn (before your attack).",
+    "You can't have more than 1 ACE SPEC card in your deck."
+  ],
+  "set": {
+    "id": "bw10",
+    "name": "Plasma Blast",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 105,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLB",
+    "releaseDate": "2013/08/14",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw10/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw10/logo.png"
+    }
+  },
+  "number": "94",
+  "artist": "5ban Graphics",
+  "rarity": "Rare ACE",
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw10/94.png",
+    "large": "https://images.pokemontcg.io/bw10/94_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw10-94",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 5,
+        "mid": 12.98,
+        "high": 60,
+        "market": 16.61,
+        "directLow": 21.59
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw10-94",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 8.03,
+      "lowPrice": 2.99,
+      "trendPrice": 9.26,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 5,
+      "reverseHoloTrend": 12.35,
+      "lowPriceExPlus": 9,
+      "avg1": 2,
+      "avg7": 10.86,
+      "avg30": 17.24,
+      "reverseHoloAvg1": 12,
+      "reverseHoloAvg7": 11.14,
+      "reverseHoloAvg30": 8.39
+    }
+  }
+}

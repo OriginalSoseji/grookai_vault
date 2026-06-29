@@ -1,0 +1,130 @@
+{
+  "id": "dp3-29",
+  "name": "Golem",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "52",
+  "hp": "130",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Graveler",
+  "attacks": [
+    {
+      "name": "Double Throw",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "",
+      "text": "Choose 2 of your opponent's Pokémon. This attack does 30 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+      "name": "Megaton Rock",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80",
+      "text": "You may do 40 damage instead of 80 to the Defending Pokémon. If you do, during your opponent's next turn, any damage done to Golem by attacks is reduced by 40 (after applying Weakness and Resistance)."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Grass",
+      "value": "+30"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "dp3",
+    "name": "Secret Wonders",
+    "series": "Diamond & Pearl",
+    "printedTotal": 132,
+    "total": 132,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "SW",
+    "releaseDate": "2007/11/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp3/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp3/logo.png"
+    }
+  },
+  "number": "29",
+  "artist": "Naoyo Kimura",
+  "rarity": "Rare",
+  "flavorText": "It sheds its hide once a year. Its boulderlike body is so tough, even dynamite can't harm it.",
+  "nationalPokedexNumbers": [
+    76
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp3/29.png",
+    "large": "https://images.pokemontcg.io/dp3/29_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp3-29",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.85,
+        "mid": 1.91,
+        "high": 28.1,
+        "market": 1.91,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1.95,
+        "mid": 3.14,
+        "high": 59.9,
+        "market": 1.98,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp3-29",
+    "updatedAt": "2026/06/14",
+    "prices": {
+      "averageSellPrice": 0.9,
+      "lowPrice": 0.05,
+      "trendPrice": 0.66,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.64,
+      "reverseHoloLow": 0.4,
+      "reverseHoloTrend": 1.58,
+      "lowPriceExPlus": 0.3,
+      "avg1": 0.49,
+      "avg7": 0.74,
+      "avg30": 0.98,
+      "reverseHoloAvg1": 0.54,
+      "reverseHoloAvg7": 2.15,
+      "reverseHoloAvg30": 2.21
+    }
+  }
+}

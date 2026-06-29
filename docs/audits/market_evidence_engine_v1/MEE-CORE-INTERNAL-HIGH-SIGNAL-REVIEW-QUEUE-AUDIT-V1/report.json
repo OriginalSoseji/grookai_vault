@@ -1,0 +1,131 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-HIGH-SIGNAL-REVIEW-QUEUE-AUDIT-V1",
+  "generated_at": "2026-06-27T03:23:32.054Z",
+  "mode": "run_only_high_signal_review_queue_read_only_audit",
+  "package_fingerprint_sha256": "0a490fcfe4678c659ca5436df7fdfb3c5bacfdabeb107abb425d69503b96e788",
+  "audit": {
+    "summary": {
+      "active_listing_involved_rows": 16,
+      "exclusion_flagged_rows": 213,
+      "internal_rollup_candidate_rows": 213,
+      "mixed_raw_slab_count_rows": 6,
+      "mixed_raw_slab_lane_rows": 6,
+      "needs_review_rows": 213,
+      "package_id": "MEE_CORE_INTERNAL_HIGH_SIGNAL_REVIEW_QUEUE_AUDIT_V1",
+      "pending_high_signal_rows": 213,
+      "pricing_observations_count": 0,
+      "public_flag_rows": 0,
+      "public_pricing_view_references": 0,
+      "quality_flagged_rows": 213,
+      "raw_single_lane_rows": 10,
+      "reference_involved_rows": 213,
+      "reference_metric_lane_rows": 197,
+      "reference_only_rows": 197,
+      "rollup_threshold_ready_rows": 213,
+      "slab_lane_rows": 0,
+      "source_family_ready_rows": 213
+    },
+    "lane_summary": [
+      {
+        "active_listing_evidence_count": 0,
+        "evidence_count": 5055,
+        "evidence_lane": "reference_metric",
+        "exclusion_flag_count": 5055,
+        "quality_flag_count": 1075,
+        "raw_single_count": 0,
+        "reference_evidence_count": 5055,
+        "rollup_eligible_count": 4355,
+        "rows": 197,
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 784,
+        "evidence_count": 860,
+        "evidence_lane": "raw_single",
+        "exclusion_flag_count": 83,
+        "quality_flag_count": 746,
+        "raw_single_count": 71,
+        "reference_evidence_count": 76,
+        "rollup_eligible_count": 124,
+        "rows": 10,
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 696,
+        "evidence_count": 721,
+        "evidence_lane": "mixed_raw_slab",
+        "exclusion_flag_count": 28,
+        "quality_flag_count": 646,
+        "raw_single_count": 48,
+        "reference_evidence_count": 25,
+        "rollup_eligible_count": 77,
+        "rows": 6,
+        "slab_count": 11
+      }
+    ],
+    "recommendations": {
+      "plan_require_split": 6,
+      "plan_confirm_internal_raw_single_candidate": 10,
+      "plan_reference_crosscheck_or_hold": 197
+    },
+    "row_count": 213,
+    "sample_gv_ids": [
+      "GV-PK-PR-BLW-BW05",
+      "GV-PK-PR-BLW-BW09",
+      "GV-PK-PR-BLW-BW101",
+      "GV-PK-PR-BLW-BW19",
+      "GV-PK-PR-BLW-BW72",
+      "GV-PK-PR-BLW-BW99",
+      "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+      "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+      "GV-PK-PR-BLW-53-PRERELEASE-STAMP",
+      "GV-PK-PR-BLW-BW07",
+      "GV-PK-PR-BLW-BW44",
+      "GV-PK-PR-BLW-BW46",
+      "GV-PK-PR-BLW-BW54",
+      "GV-PK-PR-BLW-BW60",
+      "GV-PK-PR-BLW-BW61",
+      "GV-PK-PR-BLW-BW65",
+      "GV-PK-B2-1",
+      "GV-PK-B2-10",
+      "GV-PK-B2-101",
+      "GV-PK-B2-103",
+      "GV-PK-B2-104",
+      "GV-PK-B2-105",
+      "GV-PK-B2-106",
+      "GV-PK-B2-107",
+      "GV-PK-B2-11"
+    ]
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-INTERNAL-HIGH-SIGNAL-REVIEW-ACTION-PLAN-V1",
+    "reason": "High-signal rows are internal candidates only. Split mixed raw/slab rows first, then plan separate confirm_internal_candidate packages for raw_single and slab lanes after review.",
+    "allowed_scope": "Plan only. No DB writes, no provider calls, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "hashes": {
+    "row_manifest_sha256": "1b4768cd2c6226a4d45f15d8e0f9d1def25cfdc5eb1671be99b5412adc263e4b",
+    "readback_sql_sha256": "b53edd77583a86eb0a281f96622db582638595e42063b10e9a0ad9646da524f9"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

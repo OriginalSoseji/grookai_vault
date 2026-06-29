@@ -1,0 +1,210 @@
+{
+  "package_id": "MEE-BLOCKER-POLICY-CLOSEOUT-V1",
+  "mode": "bundled_run_plan_closeout",
+  "generated_at": "2026-06-28",
+  "db_writes": false,
+  "cleanup_event_inserts": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "function_invocation": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "card_print_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "migrations": false,
+  "global_apply": false,
+  "policy_coverage": {
+    "special_lanes": {
+      "trainer_kit": "separate_source_matching_required",
+      "world_championship_deck": "exact_card_evidence_required",
+      "mep_black_star_promos": "exact_card_or_program_evidence_required",
+      "mcdonalds": "exact_card_evidence_required",
+      "promo_or_alt_distribution": "distribution_lane_review_required",
+      "base_print_run": "print_run_exactness_required"
+    },
+    "matcher_reclassify": "deterministic_reclassification_required",
+    "high_value_review": "manual_high_value_review_required",
+    "quarantine": "excluded_until_reviewed",
+    "final_publication_gate": "no_public_candidates"
+  },
+  "readback_summary": {
+    "cleanup_state": [
+      {
+        "cleanup_state": "needs_high_value_review",
+        "cleanup_action": "require_high_value_review",
+        "reason_code": "high_value_manual_review",
+        "evidence_lane": "raw_single",
+        "rows": 1096,
+        "card_prints": 14,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "needs_high_value_review",
+        "cleanup_action": "require_high_value_review",
+        "reason_code": "high_value_manual_review",
+        "evidence_lane": "slab",
+        "rows": 1073,
+        "card_prints": 16,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "needs_matcher_reclassify",
+        "cleanup_action": "require_matcher_reclassify",
+        "reason_code": "match_confidence_below_policy",
+        "evidence_lane": "raw_single",
+        "rows": 6106,
+        "card_prints": 41,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "needs_matcher_reclassify",
+        "cleanup_action": "require_matcher_reclassify",
+        "reason_code": "match_confidence_below_policy",
+        "evidence_lane": "slab",
+        "rows": 3504,
+        "card_prints": 59,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "needs_special_lane_policy",
+        "cleanup_action": "require_special_lane_policy",
+        "reason_code": "special_lane_manual_review",
+        "evidence_lane": "raw_single",
+        "rows": 38919,
+        "card_prints": 323,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "needs_special_lane_policy",
+        "cleanup_action": "require_special_lane_policy",
+        "reason_code": "special_lane_manual_review",
+        "evidence_lane": "slab",
+        "rows": 261,
+        "card_prints": 15,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "quarantined",
+        "cleanup_action": "quarantine_candidate",
+        "reason_code": "exclusion_flags_present",
+        "evidence_lane": "raw_single",
+        "rows": 622,
+        "card_prints": 125,
+        "leaks": 0
+      },
+      {
+        "cleanup_state": "quarantined",
+        "cleanup_action": "quarantine_candidate",
+        "reason_code": "exclusion_flags_present",
+        "evidence_lane": "slab",
+        "rows": 1049,
+        "card_prints": 60,
+        "leaks": 0
+      }
+    ],
+    "special_by_family": [
+      {
+        "family": "base_print_run",
+        "evidence_lane": "raw_single",
+        "rows": 195,
+        "card_prints": 4,
+        "leaks": 0
+      },
+      {
+        "family": "base_print_run",
+        "evidence_lane": "slab",
+        "rows": 57,
+        "card_prints": 1,
+        "leaks": 0
+      },
+      {
+        "family": "mcdonalds",
+        "evidence_lane": "raw_single",
+        "rows": 3658,
+        "card_prints": 55,
+        "leaks": 0
+      },
+      {
+        "family": "mep_black_star_promos",
+        "evidence_lane": "raw_single",
+        "rows": 6657,
+        "card_prints": 28,
+        "leaks": 0
+      },
+      {
+        "family": "mep_black_star_promos",
+        "evidence_lane": "slab",
+        "rows": 1,
+        "card_prints": 1,
+        "leaks": 0
+      },
+      {
+        "family": "promo_or_alt_distribution",
+        "evidence_lane": "raw_single",
+        "rows": 3508,
+        "card_prints": 61,
+        "leaks": 0
+      },
+      {
+        "family": "promo_or_alt_distribution",
+        "evidence_lane": "slab",
+        "rows": 91,
+        "card_prints": 7,
+        "leaks": 0
+      },
+      {
+        "family": "trainer_kit",
+        "evidence_lane": "raw_single",
+        "rows": 14306,
+        "card_prints": 80,
+        "leaks": 0
+      },
+      {
+        "family": "world_championship_deck",
+        "evidence_lane": "raw_single",
+        "rows": 10595,
+        "card_prints": 95,
+        "leaks": 0
+      },
+      {
+        "family": "world_championship_deck",
+        "evidence_lane": "slab",
+        "rows": 112,
+        "card_prints": 6,
+        "leaks": 0
+      }
+    ],
+    "publication_gate_totals": {
+      "rows": 2152,
+      "would_be_publication_candidate_rows": 0,
+      "leaks": 0
+    }
+  },
+  "artifacts": {
+    "contract": "docs/contracts/MEE_BLOCKER_POLICY_CLOSEOUT_V1.md",
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-BLOCKER-POLICY-CLOSEOUT-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-BLOCKER-POLICY-CLOSEOUT-V1/report.json",
+    "readback_json": "docs/audits/market_evidence_engine_v1/MEE-BLOCKER-POLICY-CLOSEOUT-V1/readback.json",
+    "readback_sql": "docs/sql/mee_blocker_policy_closeout_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_blocker_policy_closeout_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_BLOCKER_POLICY_CLOSEOUT_V1.md": "ecc26f677dc4065f5d2cfed975d5e1d16d8a61a6ac7ef8eae72156561d3bf8cd",
+    "docs/audits/market_evidence_engine_v1/MEE-BLOCKER-POLICY-CLOSEOUT-V1.md": "0d4db6f0ef29a10f2e25b45a05b55ddb8e036cdbfdba448636b06b40ac4555d4",
+    "docs/audits/market_evidence_engine_v1/MEE-BLOCKER-POLICY-CLOSEOUT-V1/readback.json": "833f14b37e12632ea1b5ba651ac53406c80868f82ff0785c92ca6a6e41b01795",
+    "docs/sql/mee_blocker_policy_closeout_v1_readback.sql": "d2a2413f226efa17d30fc27cf72ae2c45123567b04d144a9d3b1ced1dc74bf6e",
+    "tests/contracts/mee_blocker_policy_closeout_v1.test.mjs": "955250693d0b26df8f671cd9dce6bbca02818c49b83615ba8442bdad3a6dd5c1"
+  },
+  "package_fingerprint_sha256": "70a77616f1feedf18f1bae8369369db9f88143eae2a35760681481927b66de18",
+  "foundation_status": "blocker_policy_layer_closed_non_public",
+  "next_step": "Build the nightly post-ingest orchestrator that applies these internal policies automatically, with public pricing disabled by default.",
+  "findings": []
+}

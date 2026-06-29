@@ -71,3 +71,8 @@ export async function fetchPokemonCardsBySetId(setId, page = 1, pageSize = 250) 
     totalCount: body?.totalCount ?? body?.total ?? 0,
   };
 }
+
+export async function fetchPokemonCardById(cardId) {
+  const body = await pokemonApiFetch(`/cards/${encodeURIComponent(cardId)}`);
+  return body?.data ?? null;
+}

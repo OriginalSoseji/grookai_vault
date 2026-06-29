@@ -1,0 +1,119 @@
+{
+  "id": "dp6-17",
+  "name": "Yanmega",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "47",
+  "hp": "90",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Yanma",
+  "attacks": [
+    {
+      "name": "Sonic Wave",
+      "cost": [],
+      "convertedEnergyCost": 0,
+      "damage": "10",
+      "text": "Does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    },
+    {
+      "name": "Pursue and Turn",
+      "cost": [
+        "Grass",
+        "Grass",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "60+",
+      "text": "If the Defending Pokémon already has 2 or more damage counters on it, this attack does 60 damage plus 20 more damage and switch Yanmega with 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "+20"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Fighting",
+      "value": "-20"
+    }
+  ],
+  "set": {
+    "id": "dp6",
+    "name": "Legends Awakened",
+    "series": "Diamond & Pearl",
+    "printedTotal": 146,
+    "total": 146,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "LA",
+    "releaseDate": "2008/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp6/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp6/logo.png"
+    }
+  },
+  "number": "17",
+  "artist": "Kent Kanetsuna",
+  "rarity": "Rare Holo",
+  "flavorText": "By churning its wings, it creates shock waves that inflict critical internal injuries to foes.",
+  "nationalPokedexNumbers": [
+    469
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp6/17.png",
+    "large": "https://images.pokemontcg.io/dp6/17_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp6-17",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 3.26,
+        "mid": 5,
+        "high": 156.6,
+        "market": 8.35,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2.99,
+        "mid": 5.92,
+        "high": 53,
+        "market": 6.06,
+        "directLow": 6.11
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp6-17",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 1.41,
+      "lowPrice": 0.15,
+      "trendPrice": 1.62,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.48,
+      "reverseHoloLow": 0.5,
+      "reverseHoloTrend": 1.58,
+      "lowPriceExPlus": 0.22,
+      "avg1": 1,
+      "avg7": 1.61,
+      "avg30": 1.38,
+      "reverseHoloAvg1": 3,
+      "reverseHoloAvg7": 1.6,
+      "reverseHoloAvg30": 1.57
+    }
+  }
+}

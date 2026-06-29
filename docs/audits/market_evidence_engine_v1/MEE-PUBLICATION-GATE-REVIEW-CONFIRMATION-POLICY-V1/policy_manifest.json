@@ -1,0 +1,114 @@
+{
+  "package_id": "MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1",
+  "mode": "plan_only_internal_confirmation_policy",
+  "generated_at": "2026-06-27",
+  "policy_version": "MEE_PUBLICATION_GATE_REVIEW_CONFIRMATION_POLICY_V1",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "action_under_policy": "confirm_internal_candidate",
+  "eligible_gate_decision": "defer_review_confirmation",
+  "eligible_evidence_lanes": [
+    "raw_single",
+    "slab"
+  ],
+  "hard_requirements": {
+    "review_lane": [
+      "candidate_review",
+      "high_signal_review"
+    ],
+    "review_status": [
+      "pending",
+      "in_review"
+    ],
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false,
+    "candidate_rows_needing_review": 0,
+    "candidate_rows_with_exclusions": 0,
+    "candidate_can_publish_true": 0,
+    "minimum_match_confidence": 0.9
+  },
+  "lane_thresholds": {
+    "raw_single": {
+      "minimum_matched_listing_count": 5,
+      "minimum_distinct_seller_count": 3,
+      "stale_after_days": 14,
+      "minimum_match_confidence": 0.9,
+      "high_value_manual_review_p95_usd": 250
+    },
+    "slab": {
+      "minimum_matched_listing_count": 3,
+      "minimum_distinct_seller_count": 2,
+      "stale_after_days": 30,
+      "minimum_match_confidence": 0.9,
+      "high_value_manual_review_p95_usd": 500
+    }
+  },
+  "special_lane_manual_review_patterns": [
+    "GV-PK-WCD",
+    "GV-PK-MCD",
+    "GV-PK-MEP",
+    "GV-PK-TK",
+    "GV-PK-PR-",
+    "GV-PK-BASE1",
+    "GV-PK-B1-SHADOWLESS",
+    "GV-PK-B1-1ED",
+    "GV-PK-B1-1999"
+  ],
+  "current_audit": {
+    "total_review_confirmation_rows": 470,
+    "policy_hold_rows": 470,
+    "policy_confirmable_rows": 0,
+    "by_lane": {
+      "raw_single": {
+        "rows": 378,
+        "policy_hold_rows": 378,
+        "policy_confirmable_rows": 0,
+        "hold_reasons": {
+          "match_confidence_below_policy": 378,
+          "candidate_rows_still_need_review": 378,
+          "special_lane_manual_review": 323,
+          "high_value_manual_review": 30,
+          "insufficient_listing_count": 8,
+          "insufficient_seller_diversity": 10
+        }
+      },
+      "slab": {
+        "rows": 92,
+        "policy_hold_rows": 92,
+        "policy_confirmable_rows": 0,
+        "hold_reasons": {
+          "match_confidence_below_policy": 92,
+          "candidate_rows_still_need_review": 92,
+          "special_lane_manual_review": 60,
+          "high_value_manual_review": 73,
+          "insufficient_listing_count": 6,
+          "insufficient_seller_diversity": 5,
+          "exclusion_flags_present": 60
+        }
+      }
+    },
+    "hold_reasons": {
+      "match_confidence_below_policy": 470,
+      "candidate_rows_still_need_review": 470,
+      "special_lane_manual_review": 383,
+      "high_value_manual_review": 103,
+      "exclusion_flags_present": 60,
+      "insufficient_seller_diversity": 15,
+      "insufficient_listing_count": 14
+    },
+    "public_boundary_leak_rows": 0
+  },
+  "decision": {
+    "generate_apply_candidate": false,
+    "reason": "All 470 current review-confirmation rows remain policy holds; no row satisfies direct internal confirmation requirements."
+  }
+}
+

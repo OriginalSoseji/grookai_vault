@@ -1,0 +1,75 @@
+{
+  "package_id": "MEE-PRICE-CANDIDATE-MODEL-V1-REMOTE-SCHEMA-APPLY",
+  "mode": "targeted_remote_schema_apply_only_corrected_grants",
+  "generated_at": "2026-06-29T02:04:27.194Z",
+  "sql_path": "docs/sql/mee_price_candidate_model_v1_view_candidate.sql",
+  "sql_hash_sha256": "3ac60c51510538bd002caaf4a1456a1797dbbe3f7e140b0bad64565990b201ff",
+  "applied_object": "public.v_market_evidence_price_candidates_v1",
+  "readback": {
+    "total_candidate_rows": 16833,
+    "priced_candidate_rows": 16833,
+    "can_publish_price_directly_rows": 0,
+    "publishable_rows": 0,
+    "app_visible_rows": 0,
+    "market_truth_rows": 0,
+    "raw_single_high_confidence_internal_candidates": 988,
+    "slab_high_confidence_internal_candidates": 820,
+    "reference_context_rows": 14572
+  },
+  "grants": [
+    {
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "boundary": {
+    "evidence_backfill": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "db_push": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "package_fingerprint_sha256": "69f466157ff2a5ce4b3c852a7ecb772eb77a06a3595635af04dd17ea910ff791"
+}

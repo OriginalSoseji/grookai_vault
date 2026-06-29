@@ -1,0 +1,46 @@
+{
+  "package_id": "MEE-CORE-QUALITY-SCORING-READ-MODEL-V1",
+  "source_taxonomy_fingerprint": "9df93c01b147687a1dce409a779da9d3883ba37a70840dc4fb3b30014d8c342c",
+  "gate_summary": {
+    "candidate_evidence_rows": 0,
+    "hard_exclusion_rows": 0,
+    "lane_mismatch_rows": 0,
+    "low_match_confidence_rows": 0,
+    "manual_policy_rows": 0,
+    "quality_rollup_eligible_rows": 0,
+    "review_required_without_exclusion_rows": 0
+  },
+  "lane_summary": [],
+  "action_summary": [],
+  "boundary": {
+    "auto_confirm_rows": 0,
+    "public_boundary_block_rows": 0,
+    "score_public_flag_rows": 0
+  },
+  "findings": [],
+  "view_candidate_sql_sha256": "085da9b642b4570f3bdb4b4716c2005adb50a79feef5f35448ece7c29376cf91",
+  "readback_sql_sha256": "aafd2493f94f52bc0fd8d334709f96b7909030d997a0a0170368176e55e34e52",
+  "generated_at": "2026-06-27T14:04:00.171Z",
+  "mode": "plan_only_internal_quality_scoring_read_model_candidate",
+  "package_fingerprint_sha256": "bc3e40eacd56fdde6f8068462df4ddb05ce8e2da72afcf78222442b25fd53296",
+  "read_model_status": "clear_no_pending_candidate_evidence",
+  "boundary_proof": {
+    "db_writes": false,
+    "remote_migration_apply": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "confirm_internal_candidate_actions": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  }
+}

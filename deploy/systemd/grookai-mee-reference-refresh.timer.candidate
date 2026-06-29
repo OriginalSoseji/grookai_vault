@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Grookai Market Evidence Engine Reference Source Refresh daily
+
+[Timer]
+OnCalendar=*-*-* 02:45:00
+Persistent=true
+RandomizedDelaySec=300
+Unit=grookai-mee-reference-refresh.service
+
+[Install]
+WantedBy=timers.target
+

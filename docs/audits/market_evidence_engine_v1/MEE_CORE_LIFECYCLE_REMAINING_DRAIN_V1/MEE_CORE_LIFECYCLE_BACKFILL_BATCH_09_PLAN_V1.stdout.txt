@@ -1,0 +1,29 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-BACKFILL-BATCH-09-V1",
+  "package_fingerprint_sha256": "ed8010a8702c3b2e0e6add67f5adfc5d7552a60b8f64c88371997dfd41268cef",
+  "row_counts": {
+    "reference_observations": 0,
+    "active_listing_observations": 10000,
+    "market_evidence_observations": 10000,
+    "market_evidence_lifecycle_events": 70000
+  },
+  "manifest_hashes": {
+    "market_evidence_observations_jsonl_sha256": "6bf39d83facee175fa3ec3d1aea633eb2d4016000cc397056cddeb0975085d49",
+    "market_evidence_lifecycle_events_jsonl_sha256": "432c99ffba40429525d1f90473b12b85261dce8ed98fff42469c2ed33c9b2b31",
+    "readback_sql_sha256": "b5b10d524f5786c84fb535ca2f05a204f905db7beff843b0a120a60c9dc95b27"
+  },
+  "duplicate_risk": {
+    "observation_ids_unique": true,
+    "observation_keys_unique": true,
+    "event_hashes_unique": true,
+    "excludes_existing_market_evidence_observations": true
+  },
+  "findings": [],
+  "artifacts": {
+    "observations_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_09_PLAN_V1/market_evidence_observations.jsonl",
+    "lifecycle_events_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_09_PLAN_V1/market_evidence_lifecycle_events.jsonl",
+    "readback_sql": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_09_PLAN_V1/readback.sql",
+    "manifest_json": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_09_PLAN_V1/manifest.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_09_PLAN_V1.md"
+  }
+}

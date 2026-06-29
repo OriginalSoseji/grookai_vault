@@ -1,0 +1,125 @@
+{
+  "id": "dp2-26",
+  "name": "Gyarados",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "49",
+  "hp": "120",
+  "types": [
+    "Water"
+  ],
+  "evolvesFrom": "Magikarp",
+  "abilities": [
+    {
+      "name": "Dragon DNA",
+      "text": "Gyarados can use any attack from its Basic Pokémon. (You still have to pay for that attack's Energy cost.) If Gyarados uses any attack from its Basic Pokémon, that attack does 30 more damage to the Defending Pokémon (before applying Weakness and Resistance).",
+      "type": "Poké-Body"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Enrage",
+      "cost": [
+        "Water",
+        "Water",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80",
+      "text": "Flip a coin until you get tails. For each heads, choose 1 card from your opponent's hand without looking and discard it. If the first coin is tails, Gyarados is now Confused."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "+30"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Fighting",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "dp2",
+    "name": "Mysterious Treasures",
+    "series": "Diamond & Pearl",
+    "printedTotal": 123,
+    "total": 124,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MT",
+    "releaseDate": "2007/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp2/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp2/logo.png"
+    }
+  },
+  "number": "26",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "Once it appears, its rage never settles until it has razed the fields and mountains around it.",
+  "nationalPokedexNumbers": [
+    130
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp2/26.png",
+    "large": "https://images.pokemontcg.io/dp2/26_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp2-26",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 9.04,
+        "mid": 19.95,
+        "high": 141.7,
+        "market": 8.74,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 20.88,
+        "mid": 42.99,
+        "high": 168.1,
+        "market": 29.99,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp2-26",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 2.66,
+      "lowPrice": 0.25,
+      "trendPrice": 2.56,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 4.51,
+      "reverseHoloLow": 1.95,
+      "reverseHoloTrend": 3.35,
+      "lowPriceExPlus": 1.99,
+      "avg1": 0.85,
+      "avg7": 1.97,
+      "avg30": 1.92,
+      "reverseHoloAvg1": 2.99,
+      "reverseHoloAvg7": 4.97,
+      "reverseHoloAvg30": 6.35
+    }
+  }
+}

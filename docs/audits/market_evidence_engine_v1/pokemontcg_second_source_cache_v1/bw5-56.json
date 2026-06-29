@@ -1,0 +1,126 @@
+{
+  "id": "bw5-56",
+  "name": "Excadrill",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "120",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Drilbur",
+  "attacks": [
+    {
+      "name": "Tunnel Strike",
+      "cost": [
+        "Fighting"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "This attack does 30 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+      "name": "Dig Uppercut",
+      "cost": [
+        "Fighting",
+        "Fighting"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "50",
+      "text": "Put a card from your discard pile into your hand."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "bw5",
+    "name": "Dark Explorers",
+    "series": "Black & White",
+    "printedTotal": 108,
+    "total": 111,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "DEX",
+    "releaseDate": "2012/05/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw5/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw5/logo.png"
+    }
+  },
+  "number": "56",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "More than 300 feet below the surface, they build mazelike nests. Their activity can be destructive to subway tunnels.",
+  "nationalPokedexNumbers": [
+    530
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw5/56.png",
+    "large": "https://images.pokemontcg.io/bw5/56_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw5-56",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.35,
+        "mid": 0.67,
+        "high": 19.98,
+        "market": 0.64,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2.03,
+        "mid": 2.39,
+        "high": 80,
+        "market": 1.98,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw5-56",
+    "updatedAt": "2026/02/19",
+    "prices": {
+      "averageSellPrice": 0.64,
+      "lowPrice": 0.1,
+      "trendPrice": 0.82,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.2,
+      "reverseHoloLow": 0.34,
+      "reverseHoloTrend": 1.66,
+      "lowPriceExPlus": 0.5,
+      "avg1": 0.6,
+      "avg7": 0.64,
+      "avg30": 0.73,
+      "reverseHoloAvg1": 2.2,
+      "reverseHoloAvg7": 1.71,
+      "reverseHoloAvg30": 1.36
+    }
+  }
+}

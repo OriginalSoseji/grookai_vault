@@ -1,0 +1,481 @@
+{
+  "package_id": "MEE-PUBLIC-PRICE-BRIDGE-V1-REMOTE-SCHEMA-APPLY",
+  "source_package_id": "MEE_PUBLIC_PRICE_BRIDGE_V1",
+  "mode": "targeted_remote_schema_apply_authenticated_public_price_bridge",
+  "applied_objects": [
+    "public.v_market_evidence_public_price_bridge_v1",
+    "public.v_card_pricing_ui_v1"
+  ],
+  "migration_version": "20260625180000",
+  "migration_name": "mee_public_price_bridge_v1",
+  "sql_path": "docs/sql/mee_public_price_bridge_v1.sql",
+  "readback_sql_path": "docs/sql/mee_public_price_bridge_v1_readback.sql",
+  "sql_hash_sha256": "5b3ecf704e76a3239f6195d7f295e65bc8e52ba4253187ce858daeafe9c685f1",
+  "readback_sql_hash_sha256": "77f5fa07c134fc1b474a498ba982d48f086b7902083120ac398eb914b83615e7",
+  "boundary": {
+    "evidence_backfill": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "justtcg_public_pricing": false,
+    "sold_comp_truth": false,
+    "market_truth": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "merges": false,
+    "db_push": false,
+    "global_apply": false
+  },
+  "readback": {
+    "package_id": "MEE_PUBLIC_PRICE_BRIDGE_V1",
+    "bridge_rows": 11,
+    "ui_rows": 11,
+    "boundary": {
+      "stale_rows": 0,
+      "sold_comp_rows": 0,
+      "market_truth_rows": 0,
+      "unexpected_source_rows": 0,
+      "non_active_listing_rows": 0
+    },
+    "writes_pricing_observations": false,
+    "writes_ebay_active_prices_latest": false,
+    "app_visible_pricing": true,
+    "sold_comp_truth": false,
+    "market_truth": false
+  },
+  "grants": [
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "columns": [
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "primary_price",
+      "data_type": "numeric",
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "ordinal_position": 2
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "primary_source",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "grookai_value",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "min_price",
+      "data_type": "numeric",
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "ordinal_position": 5
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "max_price",
+      "data_type": "numeric",
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "ordinal_position": 6
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "variant_count",
+      "data_type": "bigint",
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "ordinal_position": 7
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "ebay_median_price",
+      "data_type": "numeric",
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "ordinal_position": 8
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "ebay_listing_count",
+      "data_type": "integer",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 9
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "currency",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "pricing_basis",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "display_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "confidence_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 13
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "freshness_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 14
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "signal_at",
+      "data_type": "timestamp with time zone",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 15
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 16
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "market_truth",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 17
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "sold_comp",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 18
+    },
+    {
+      "table_name": "v_card_pricing_ui_v1",
+      "column_name": "active_listing_evidence",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 19
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "gv_id",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "currency",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "primary_price",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "grookai_value",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "min_price",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "max_price",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "minimum_active_ask",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "maximum_active_ask",
+      "data_type": "numeric",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "active_listing_count",
+      "data_type": "integer",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 10
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "seller_count",
+      "data_type": "integer",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 11
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "signal_at",
+      "data_type": "timestamp with time zone",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 13
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "primary_source",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 14
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "pricing_basis",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 15
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "display_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 16
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "confidence_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 17
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "freshness_label",
+      "data_type": "text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 18
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "app_visible",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 19
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "market_truth",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 20
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "sold_comp",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 21
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "active_listing_evidence",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 22
+    },
+    {
+      "table_name": "v_market_evidence_public_price_bridge_v1",
+      "column_name": "signed_in_only",
+      "data_type": "boolean",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 23
+    }
+  ],
+  "migration_history_marked": true,
+  "findings": []
+}

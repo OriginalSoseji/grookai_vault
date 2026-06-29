@@ -1,0 +1,124 @@
+{
+  "id": "bw2-12",
+  "name": "Whimsicott",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "80",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Cottonee",
+  "attacks": [
+    {
+      "name": "Encore",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "20",
+      "text": "Choose 1 of the Defending Pokémon's attacks. During your opponent's next turn, that Pokémon can only use that attack."
+    },
+    {
+      "name": "U-turn",
+      "cost": [
+        "Grass",
+        "Grass"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "40",
+      "text": "Switch this Pokémon with 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Water",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw2",
+    "name": "Emerging Powers",
+    "series": "Black & White",
+    "printedTotal": 98,
+    "total": 98,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "EPO",
+    "releaseDate": "2011/08/31",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw2/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw2/logo.png"
+    }
+  },
+  "number": "12",
+  "artist": "Mizue",
+  "rarity": "Rare",
+  "flavorText": "Riding whirlwinds, they appear. These Pokémon sneak through gaps into houses and cause all sorts of mischief.",
+  "nationalPokedexNumbers": [
+    547
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw2/12.png",
+    "large": "https://images.pokemontcg.io/bw2/12_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw2-12",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.6,
+        "mid": 1.99,
+        "high": 999.99,
+        "market": 1.54,
+        "directLow": 2.09
+      },
+      "reverseHolofoil": {
+        "low": 2.15,
+        "mid": 2.74,
+        "high": 14.99,
+        "market": 4.13,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw2-12",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 0.77,
+      "lowPrice": 0.02,
+      "trendPrice": 1.05,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0.59,
+      "reverseHoloLow": 0.26,
+      "reverseHoloTrend": 1.62,
+      "lowPriceExPlus": 0.02,
+      "avg1": 0.79,
+      "avg7": 0.96,
+      "avg30": 0.79,
+      "reverseHoloAvg1": 0.59,
+      "reverseHoloAvg7": 1.59,
+      "reverseHoloAvg30": 1.45
+    }
+  }
+}

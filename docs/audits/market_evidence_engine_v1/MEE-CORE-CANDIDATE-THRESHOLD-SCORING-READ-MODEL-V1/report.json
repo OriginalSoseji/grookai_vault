@@ -1,0 +1,90 @@
+{
+  "package_id": "MEE-CORE-CANDIDATE-THRESHOLD-SCORING-READ-MODEL-V1",
+  "source_threshold_contract_fingerprint": "39f67222b3d267a5d68ae36460b840aa5e01fc639aebb1ad089f35562e5fcac6",
+  "candidate_rows": 270,
+  "bucket_summary": [
+    {
+      "rows": 10,
+      "threshold_bucket": "blocked_quality_flags",
+      "threshold_lane": "high_signal_raw_single"
+    },
+    {
+      "rows": 224,
+      "threshold_bucket": "blocked_quality_flags",
+      "threshold_lane": "raw_single"
+    },
+    {
+      "rows": 36,
+      "threshold_bucket": "blocked_quality_flags",
+      "threshold_lane": "slab"
+    }
+  ],
+  "score_summary": [
+    {
+      "rows": 10,
+      "threshold_lane": "high_signal_raw_single",
+      "threshold_score": 3
+    },
+    {
+      "rows": 24,
+      "threshold_lane": "raw_single",
+      "threshold_score": 1
+    },
+    {
+      "rows": 101,
+      "threshold_lane": "raw_single",
+      "threshold_score": 2
+    },
+    {
+      "rows": 99,
+      "threshold_lane": "raw_single",
+      "threshold_score": 3
+    },
+    {
+      "rows": 11,
+      "threshold_lane": "slab",
+      "threshold_score": 1
+    },
+    {
+      "rows": 19,
+      "threshold_lane": "slab",
+      "threshold_score": 2
+    },
+    {
+      "rows": 6,
+      "threshold_lane": "slab",
+      "threshold_score": 3
+    }
+  ],
+  "boundary": {
+    "auto_confirm_rows": 0,
+    "score_public_flag_rows": 0,
+    "source_public_flag_rows": 0
+  },
+  "findings": [],
+  "view_candidate_sql_sha256": "e5a9dbc0405741152293f07f885bee6a5a8f63c67a578abd81cbac6192db8c90",
+  "readback_sql_sha256": "17a2244d9905211486b0716536361e4b23807f98f1a3c1c9eb0809aef15f99ad",
+  "generated_at": "2026-06-27T05:47:17.956Z",
+  "mode": "plan_only_internal_scoring_read_model_candidate",
+  "package_fingerprint_sha256": "b44fa84d772fba911f0e0155944a4638dd1136661244f594de262e390a9df7b6",
+  "read_model_status": "candidate_ready_no_remote_apply",
+  "boundary_proof": {
+    "db_writes": false,
+    "remote_migration_apply": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "confirm_internal_candidate_actions": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  }
+}

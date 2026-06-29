@@ -1,0 +1,120 @@
+{
+  "id": "bw6-97",
+  "name": "Hydreigon",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "150",
+  "types": [
+    "Dragon"
+  ],
+  "evolvesFrom": "Zweilous",
+  "abilities": [
+    {
+      "name": "Dark Trance",
+      "text": "As often as you like during your turn (before your attack), you may move a Darkness Energy attached to 1 of your Pokémon to another of your Pokémon.",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Dragonblast",
+      "cost": [
+        "Psychic",
+        "Darkness",
+        "Darkness",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "140",
+      "text": "Discard 2 Darkness Energy attached to this Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Dragon",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "bw6",
+    "name": "Dragons Exalted",
+    "series": "Black & White",
+    "printedTotal": 124,
+    "total": 128,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "DRX",
+    "releaseDate": "2012/08/15",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw6/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw6/logo.png"
+    }
+  },
+  "number": "97",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Holo",
+  "flavorText": "This brutal Pokémon travels the skies on its six wings. Anything that moves seems like a foe to it, triggering its attack.",
+  "nationalPokedexNumbers": [
+    635
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw6/97.png",
+    "large": "https://images.pokemontcg.io/bw6/97_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw6-97",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 1.49,
+        "mid": 4.61,
+        "high": 26.7,
+        "market": 4.81,
+        "directLow": 2.08
+      },
+      "reverseHolofoil": {
+        "low": 1,
+        "mid": 3.3,
+        "high": 42.5,
+        "market": 2.96,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw6-97",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 3.02,
+      "lowPrice": 0.2,
+      "trendPrice": 3.86,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.5,
+      "reverseHoloLow": 0.3,
+      "reverseHoloTrend": 2.17,
+      "lowPriceExPlus": 0.6,
+      "avg1": 1.43,
+      "avg7": 2.65,
+      "avg30": 2.3,
+      "reverseHoloAvg1": 2.5,
+      "reverseHoloAvg7": 1.96,
+      "reverseHoloAvg30": 1.99
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "package_id": "MARKET-REFERENCE-WAREHOUSE-BACKFILL-APPLY-V1",
+  "mode": "apply_requested",
+  "generated_at": "2026-06-25T18:25:39.934Z",
+  "approval_required": true,
+  "approval_text_matched": true,
+  "manifest_hash_sha256": "f8bdcb1fe884436f5d179cd2a5595e44f7aeec55b5f4e4c45e72069b5e4fd722",
+  "migration_hash_sha256": "2044ee540f6351324d251426c241dcf2e11fbadc2dcbdad15681df50e6f5ca8f",
+  "package_fingerprint_sha256": "b089f21753be1e22d192108791a9a86f678acf7baf9d039dd94f2c7c8822d747",
+  "proposed_table_row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 11025,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "expected_table_row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 11025,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": true,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false
+  },
+  "findings": [
+    "apply_failed:[market-reference-backfill-apply] insert failed for market_reference_acquisition_runs: Could not find the table 'public.market_reference_acquisition_runs' in the schema cache"
+  ],
+  "ready_for_apply": false,
+  "applied": false
+}

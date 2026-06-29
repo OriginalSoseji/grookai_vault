@@ -1,0 +1,153 @@
+{
+  "package_id": "MARKET-LISTING-NIGHTLY-INGEST-RUN-V1",
+  "generated_at": "2026-06-26T04:27:42.724Z",
+  "mode": "run_requested",
+  "run_attempted": false,
+  "ready_for_run_approval": false,
+  "contract_path": "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json",
+  "contract_hash_sha256": "2b87af4aa106d5ee621c2c212a9c6508e70ef9a41186b6a8b82b9b58644813d0",
+  "package_fingerprint_sha256": "f5dc0c31a942d64fd8ec6126b38a8c56ba9da03e265804c0e90f2498b3a464e9",
+  "call_ceiling": 4000,
+  "run_key": "MEE-NIGHTLY-2026-06-26",
+  "phase_plan": [
+    {
+      "key": "dry_run_plan",
+      "command": "node scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs",
+      "provider_calls": false,
+      "db_writes": false
+    },
+    {
+      "key": "daily_batch_plan",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs --call-limit=4000",
+      "provider_calls": false,
+      "db_writes": false
+    },
+    {
+      "key": "daily_batch_fetch",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_fetch_v1.mjs",
+      "provider_calls": true,
+      "db_writes": false
+    },
+    {
+      "key": "daily_batch_backfill_plan",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_backfill_plan_v1.mjs",
+      "provider_calls": false,
+      "db_writes": false
+    },
+    {
+      "key": "daily_batch_backfill_apply",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_backfill_apply_v1.mjs --allow-dynamic-plan --apply",
+      "provider_calls": false,
+      "db_writes": true
+    },
+    {
+      "key": "strict_filtered_rollup_plan",
+      "command": "node scripts/audits/market_listing_strict_filtered_rollup_plan_v1.mjs",
+      "provider_calls": false,
+      "db_writes": false
+    },
+    {
+      "key": "strict_filtered_rollup_apply",
+      "command": "node scripts/audits/market_listing_strict_filtered_rollup_apply_v1.mjs --run-key=MEE-NIGHTLY-2026-06-26 --apply",
+      "provider_calls": false,
+      "db_writes": true
+    },
+    {
+      "key": "nightly_readback",
+      "command": "node scripts/audits/market_listing_nightly_ingest_readback_v1.mjs --run-key=MEE-NIGHTLY-2026-06-26",
+      "provider_calls": false,
+      "db_writes": false
+    }
+  ],
+  "preflight": {
+    "existing_scripts": [
+      {
+        "phase": "dry_run_plan",
+        "script_exists": true
+      },
+      {
+        "phase": "daily_batch_plan",
+        "script_exists": true
+      },
+      {
+        "phase": "daily_batch_fetch",
+        "script_exists": true
+      },
+      {
+        "phase": "daily_batch_backfill_plan",
+        "script_exists": true
+      },
+      {
+        "phase": "daily_batch_backfill_apply",
+        "script_exists": true
+      },
+      {
+        "phase": "strict_filtered_rollup_plan",
+        "script_exists": true
+      },
+      {
+        "phase": "strict_filtered_rollup_apply",
+        "script_exists": true
+      },
+      {
+        "phase": "nightly_readback",
+        "script_exists": true
+      }
+    ],
+    "planned_strict_rollup_versions": [
+      "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1__MEE_NIGHTLY_2026_06_26",
+      "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1__MEE_NIGHTLY_2026_06_26"
+    ],
+    "strict_rollup_presence": {
+      "by_version": {},
+      "existing_planned_strict_rollup_count": 0
+    },
+    "dynamic_backfill_apply_support": true,
+    "missing_scripts": []
+  },
+  "execution": [
+    {
+      "phase": "dry_run_plan",
+      "command": "node scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs",
+      "status": 0,
+      "stdout_tail": "{\n  \"package_id\": \"MARKET-LISTING-ACQUISITION-DRY-RUN-PLAN-V1\",\n  \"ready_for_acquisition_approval\": true,\n  \"package_fingerprint_sha256\": \"9b615a0066801f7ae37783ed9b71456275183a05519456cecc8c98120dfb0bac\",\n  \"request_manifest_hash_sha256\": \"626ff410be7d944d92b073900f6b47971d74b588b0eff906546cd882fb096eed\",\n  \"summary\": {\n    \"input_target_count\": 1000,\n    \"planned_target_count\": 1000,\n    \"acquisition_request_count\": 3000,\n    \"planned_call_count\": 3000,\n    \"daily_call_ceiling\": 4000,\n    \"max_results_per_call\": 200,\n    \"estimated_max_listing_envelope\": 600000,\n    \"estimated_day_count_at_ceiling\": 1,\n    \"priority_counts\": {\n      \"priority_special_lane\": 1000\n    },\n    \"rarity_priority_counts\": {\n      \"normal_or_collector_priority\": 1000\n    },\n    \"strategy_counts\": {\n      \"name_number\": 1000,\n      \"special_lane\": 1000,\n      \"strict_identity\": 1000\n    }\n  },\n  \"findings\": [],\n  \"artifacts\": {\n    \"jsonPath\": \"docs/audits/market_evidence_engine_v1/mee_11d_market_listing_acquisition_dry_run_plan_2026-06-26T04-27-42-060Z.json\",\n    \"mdPath\": \"docs/audits/market_evidence_engine_v1/mee_11d_market_listing_acquisition_dry_run_plan_2026-06-26T04-27-42-060Z.md\"\n  },\n  \"approval_prompt_for_next_step\": \"Approve real MARKET-LISTING-ACQUISITION-SMOKE-FETCH-V1 acquisition only. Package fingerprint: 9b615a0066801f7ae37783ed9b71456275183a05519456cecc8c98120dfb0bac. Request manifest hash: 626ff410be7d944d92b073900f6b47971d74b588b0eff906546cd882fb096eed. Schema migration hash: 2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4. Scope: fetch a capped local-artifact-only smoke batch from the MEE-11D dry-run plan, using ebay_active Browse API requests only and writing local acquisition artifacts only. No DB writes. No market_listing_* writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.\"\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "phase": "daily_batch_plan",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs --call-limit=4000",
+      "status": 0,
+      "stdout_tail": "{\n  \"package_id\": \"MARKET-LISTING-ACQUISITION-DAILY-BATCH-PLAN-V1\",\n  \"ready_for_acquisition_approval\": true,\n  \"package_fingerprint_sha256\": \"1f9428050a4e364135d49494861d8b8b3ea0c269758026d514f631c27e0c6a58\",\n  \"request_manifest_hash_sha256\": \"c2e3c357ec910c401044a662039accd7696955020e532a22deaa6cb74d83f3a5\",\n  \"summary\": {\n    \"batch_ordinal\": 1,\n    \"start_index\": 0,\n    \"next_start_index\": 3000,\n    \"source_request_count\": 3000,\n    \"batch_request_count\": 3000,\n    \"remaining_request_count\": 0,\n    \"daily_call_ceiling\": 4000,\n    \"call_limit\": 4000,\n    \"estimated_max_listing_envelope\": 600000,\n    \"priority_counts\": {\n      \"priority_special_lane\": 3000\n    },\n    \"rarity_priority_counts\": {\n      \"normal_or_collector_priority\": 3000\n    },\n    \"strategy_counts\": {\n      \"name_number\": 1000,\n      \"special_lane\": 1000,\n      \"strict_identity\": 1000\n    }\n  },\n  \"findings\": [],\n  \"artifacts\": {\n    \"jsonPath\": \"docs/audits/market_evidence_engine_v1/mee_11k_market_listing_acquisition_daily_batch_plan_2026-06-26T04-27-42-167Z.json\",\n    \"mdPath\": \"docs/audits/market_evidence_engine_v1/mee_11k_market_listing_acquisition_daily_batch_plan_2026-06-26T04-27-42-167Z.md\"\n  },\n  \"approval_prompt_for_next_step\": \"Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-FETCH-V1 acquisition only. Package fingerprint: 1f9428050a4e364135d49494861d8b8b3ea0c269758026d514f631c27e0c6a58. Request manifest hash: c2e3c357ec910c401044a662039accd7696955020e532a22deaa6cb74d83f3a5. Source dry-run fingerprint: 9b615a0066801f7ae37783ed9b71456275183a05519456cecc8c98120dfb0bac. Schema migration hash: 2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4. Scope: fetch 3000 prioritized ebay_active Browse API request pages from the local MEE-11K daily batch plan only and write local acquisition artifacts only, including slab listings classified separately from raw singles. No DB writes. No market_listing_* writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.\"\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "phase": "daily_batch_fetch",
+      "command": "node scripts/audits/market_listing_acquisition_daily_batch_fetch_v1.mjs",
+      "status": 1,
+      "stdout_tail": "[dotenv@17.2.3] injecting env (21) from .env.local -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops\n{\n  \"package_id\": \"MARKET-LISTING-ACQUISITION-DAILY-BATCH-FETCH-V1\",\n  \"ready_for_local_db_backfill_plan\": false,\n  \"package_fingerprint_sha256\": \"0ea9b5f361afc6898f0fd4d37278d191560d5a0327780ba64f5c6d6829002b57\",\n  \"request_results_manifest_hash_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n  \"raw_snapshot_manifest_hash_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n  \"projected_observation_manifest_hash_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n  \"summary\": {\n    \"approved_request_count\": 3000,\n    \"attempted_request_count\": 0,\n    \"fetch_status_counts\": {},\n    \"provider_total_sum\": 0,\n    \"fetched_item_count\": 0,\n    \"projected_observation_count\": 0,\n    \"unique_listing_count\": 0,\n    \"unique_target_count_with_results\": 0,\n    \"evidence_class_counts\": {},\n    \"exclusion_flag_counts\": {},\n    \"strategy_counts\": {},\n    \"slab_observation_count\": 0,\n    \"raw_single_observation_count\": 0\n  },\n  \"findings\": [\n    \"package_fingerprint_mismatch\",\n    \"request_manifest_hash_mismatch\",\n    \"source_dry_run_fingerprint_mismatch\"\n  ],\n  \"artifacts\": {\n    \"jsonPath\": \"docs/audits/market_evidence_engine_v1/mee_11l_market_listing_acquisition_daily_batch_fetch_2026-06-26T04-27-42-243Z.json\",\n    \"mdPath\": \"docs/audits/market_evidence_engine_v1/mee_11l_market_listing_acquisition_daily_batch_fetch_2026-06-26T04-27-42-243Z.md\"\n  },\n  \"approval_prompt_for_next_step\": \"Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-PLAN-V1 plan only. Package fingerprint: 0ea9b5f361afc6898f0fd4d37278d191560d5a0327780ba64f5c6d6829002b57. Request results manifest hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Raw snapshot manifest hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Projected observation manifest hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Scope: prepare DB backfill apply package from local MEE-11L daily batch fetch artifacts only, targeting market_listing_* warehouse tables only and preserving slab/raw-single classification metadata. No provider calls. No source fetches. No DB writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.\"\n}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "boundary": {
+    "provider_calls": true,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "migrations": false
+  },
+  "findings": [
+    "phase_failed:daily_batch_fetch"
+  ],
+  "recommended_next_step": "Ready for the single nightly approval prompt.",
+  "approval_prompt_for_future_run": "Approve real MARKET-LISTING-NIGHTLY-INGEST-V1 run only. Package fingerprint: f5dc0c31a942d64fd8ec6126b38a8c56ba9da03e265804c0e90f2498b3a464e9. Contract hash: 2b87af4aa106d5ee621c2c212a9c6508e70ef9a41186b6a8b82b9b58644813d0. Scope: run one bounded overnight Market Listing ingestion cycle using existing approved market_listing_* warehouse schema only. Allow up to 4000 ebay_active Browse API calls, local acquisition artifacts, warehouse inserts into market_listing_acquisition_runs, market_listing_query_cache, market_listing_raw_snapshots, market_listing_observations, market_listing_seller_snapshots, market_listing_price_events, review-only market_listing_card_candidates, and internal-only market_listing_rollups. Keep raw_single and slab lanes separated. Apply strict title evidence filtering before rollup medians are calculated. Keep all candidates and rollups needs_review=true, publishable=false, app_visible=false, market_truth=false, and can_publish_price_directly=false where applicable. No public pricing views. No app-visible pricing. No pricing_observations writes. No ebay_active_prices_latest writes. No JustTCG public pricing. No identity-table writes. No card_prints/card_printings writes. No vault writes. No image/storage writes. No migrations. No deletes except exact same-run market_listing_* repair cleanup. No merges. No global apply. Produce final audit report before stopping."
+}

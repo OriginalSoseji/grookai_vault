@@ -16,7 +16,7 @@ type CardPagePricingRailProps = {
 
 function PricingSourceLabel({ source }: { source: CardPricingUiRecord["primary_source"] }) {
   if (source === "ebay") {
-    return <p className="text-[11px] text-slate-400">Active listing evidence: eBay</p>;
+    return <p className="text-[11px] text-slate-400">Active listing evidence: eBay. Not a sold-comp price.</p>;
   }
 
   return null;
@@ -73,7 +73,14 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
     <div className="space-y-2">
       <div className="space-y-1">
         <p className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">{formatUsdPrice(midPrice)}</p>
-        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Near Mint</p>
+        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+          {pricing.display_label ?? "Market estimate from active listing evidence"}
+        </p>
+        <p className="text-xs text-slate-500">
+          Raw single estimate
+          {pricing.ebay_listing_count ? ` · ${pricing.ebay_listing_count} active listings` : ""}
+          {pricing.confidence_label ? ` · ${pricing.confidence_label} confidence` : ""}
+        </p>
       </div>
       {hasLowMidHigh ? (
         <PricingLowMidHigh low={lowPrice} mid={midPrice} high={highPrice} />

@@ -1,0 +1,194 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1",
+  "mode": "apply_only_cleanup_event_seed",
+  "generated_at": "2026-06-27",
+  "linked_project": "ycdxbpibncqcchqiihfz",
+  "source_package_id": "MEE-CANDIDATE-CLEANUP-EVENT-SEED-PLAN-V1",
+  "source_package_fingerprint_sha256": "97ed89e81f7e34f88ecb02c491f35c9e8b550b8e04bbe54b430aedde96ce085d",
+  "target_table": "public.market_listing_candidate_cleanup_events",
+  "cleanup_event_inserts": true,
+  "inserted_rows": 52630,
+  "distinct_candidate_ids": 52630,
+  "public_boundary_leak_rows": 0,
+  "preflight": {
+    "target_candidate_rows": 52630,
+    "distinct_target_candidate_rows": 52630,
+    "existing_cleanup_event_rows_for_targets": 0
+  },
+  "applied_chunks": [
+    {
+      "chunk": 1,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_001.sql",
+      "rows": 5000,
+      "ms": 5127,
+      "sha256": "ea84f0fc262a764125fbaaa5822470d3e17193390614df475a1ca31cdc0d16bc"
+    },
+    {
+      "chunk": 2,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_002.sql",
+      "rows": 5000,
+      "ms": 3410,
+      "sha256": "20af2d2a3ceb589aaaaf943cde60214f09693358106c54686bbc1c1abd5fd4c2"
+    },
+    {
+      "chunk": 3,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_003.sql",
+      "rows": 5000,
+      "ms": 2952,
+      "sha256": "111b3d0601c190ad2cde3365b6ad0730c66a7b2d934d9c15cd47a9f0854bf374"
+    },
+    {
+      "chunk": 4,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_004.sql",
+      "rows": 5000,
+      "ms": 3006,
+      "sha256": "36c288183df443a6f50225c407f140df02132912000e616f822cea74f2f021a5"
+    },
+    {
+      "chunk": 5,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_005.sql",
+      "rows": 5000,
+      "ms": 2818,
+      "sha256": "eec3cf58bb1751fd1ee422c641402e93ca718245ce680e3714457822b80857c3"
+    },
+    {
+      "chunk": 6,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_006.sql",
+      "rows": 5000,
+      "ms": 2306,
+      "sha256": "8f5c9795f7cfb1d19837276b3bd1af1564708c2500a54a7bdcbd87e22628c0ed"
+    },
+    {
+      "chunk": 7,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_007.sql",
+      "rows": 5000,
+      "ms": 1928,
+      "sha256": "a96c8f257c3d0169ade71b0d9224b693a1c8502a1c3a6a1e33096607324c7172"
+    },
+    {
+      "chunk": 8,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_008.sql",
+      "rows": 5000,
+      "ms": 1949,
+      "sha256": "6f34e236152e351b4926e1e59f8e9bc5c332fda4078bae73cf33262a140308ca"
+    },
+    {
+      "chunk": 9,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_009.sql",
+      "rows": 5000,
+      "ms": 1870,
+      "sha256": "f4d4fe4be9693973693a2887f6b29b22de50c66979a7dc921630202d565c0588"
+    },
+    {
+      "chunk": 10,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_010.sql",
+      "rows": 5000,
+      "ms": 2747,
+      "sha256": "5e69d7ab1be3db4cd7f77b31eb35cda3cfbdaac9bdfbfe0106de7105735fadab"
+    },
+    {
+      "chunk": 11,
+      "path": "docs/sql/mee_candidate_cleanup_event_seed_v1/mee_candidate_cleanup_event_seed_v1_apply_candidate_part_011.sql",
+      "rows": 2630,
+      "ms": 1250,
+      "sha256": "67660786f3febfdba24d9ede7287a562c9d57c24a7c29718bc7aa613787faebb"
+    }
+  ],
+  "readback_by_action": [
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "raw_single",
+      "rows": 622,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "slab",
+      "rows": 1049,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 38919,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "slab",
+      "rows": 261,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "provider_calls": false,
+  "source_fetches": false,
+  "function_invocation": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "card_print_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "migrations": false,
+  "global_apply": false,
+  "artifacts": {
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1/report.json",
+    "apply_readback": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1/apply_readback.json"
+  },
+  "artifact_hashes_sha256": {
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1.md": "31754fa65aee62724fbd9633d4947ff8e633f89a7fb2ec5c8e3708644463d1ae",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-APPLY-V1/apply_readback.json": "e0af2f0392d0c8e73769a6ecab7828ecc7bde830133e9232b5df7f6631b0d3ea",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-PLAN-V1/row_manifest.json": "d0ba53260edbd62173d5ffb47c837f359f8bb1c61ad5b55f7d2cf73a4f31e877",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-EVENT-SEED-PLAN-V1/hashes.json": "a61b0a5ec94d4c460ae8fba6003669d19638d8ac06a7dc44c306ccb37c41b71d",
+    "tests/contracts/mee_candidate_cleanup_event_seed_plan_v1.test.mjs": "ed06e322547fd56a281af04279e884ac11709cb0e21febc48e9b12a0e0626db3"
+  },
+  "package_fingerprint_sha256": "8c7dd77b48d3a0f78c3400c3580e8e1875c73d1eb152160f7a51d63d84f1e998",
+  "findings": []
+}

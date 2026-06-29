@@ -1,0 +1,98 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-PLAN-V1",
+  "version": "MEE_11M_MARKET_LISTING_ACQUISITION_DAILY_BATCH_BACKFILL_PLAN_V1",
+  "generated_at": "2026-06-26T02:07:43.127Z",
+  "mode": "db_backfill_plan_only_no_writes",
+  "source_package_fingerprint_sha256": "58975dc5090431a83ca4b513fa3d8be97fc182c541580d796a63260a4808514a",
+  "request_results_manifest_hash_sha256": "69f37f83fad3afffd897c7b3fee45fd53d070ad16ac1c07408b83eaca47bad0c",
+  "raw_snapshot_manifest_hash_sha256": "27cf71b55eebc84ce5444871435bee61dfafdd7fd17fe1a6182a9628bfec131a",
+  "projected_observation_manifest_hash_sha256": "85abe190326dadf92ccbccd041ef4e76043a984868c468f337660b6630247a2a",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "package_fingerprint_sha256": "2ebd59a1c8b56e8f613ebd7c5a616a82c655bb0b2eed9899b71d309ba2226c44",
+  "row_manifest_hash_sha256": "92b002b5831f77b75c4ede1445a5dd2993bbee7df1a41ae78f83b539b185704a",
+  "row_file_hashes_sha256": {
+    "acquisitionRunRows": "89011cf5b22c4c2d4d22187f307db21a5e3221c30b359036723d2a05138ea157",
+    "queryCacheRows": "415cf9638d4fc932d3c18f3f0430d4845aebe94023dd51f795055796405a900d",
+    "rawSnapshotRows": "0dad3ab096915e7d662843638d734ee6c8b3a9f2cf67fd1f6cf40ce2ef13fdb5",
+    "observationRows": "5f802214bd6fde418ec7c0cdfe85345c68c465e774e1b514500d8131d32365ab",
+    "sellerSnapshotRows": "2bf2745cf7cf44a740876c8d379b26e7f59d6e65291cb6660701332abb536128",
+    "priceEventRows": "8805ca95822068d9200b897537eab86927bb3ef236325b437216dcf32ec10836"
+  },
+  "proposed_table_row_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 4000,
+    "market_listing_raw_snapshots": 129665,
+    "market_listing_observations": 129665,
+    "market_listing_seller_snapshots": 23856,
+    "market_listing_price_events": 129665,
+    "market_listing_card_candidates": 0,
+    "market_listing_rollups": 0
+  },
+  "summary": {
+    "source_projected_observation_count": 168744,
+    "deduped_observation_count": 129665,
+    "evidence_class_counts": {
+      "excluded_or_ambiguous": 21065,
+      "raw_single": 75918,
+      "slab": 32682
+    },
+    "exclusion_flag_counts": {
+      "bulk": 75,
+      "choose_your_card": 3229,
+      "code_card": 18,
+      "complete_set": 537,
+      "custom_fake": 141,
+      "foreign_language": 18137,
+      "jumbo": 319,
+      "lot": 4297,
+      "menu_listing": 795,
+      "minimum_order": 353,
+      "proxy_custom": 24,
+      "sealed": 3077,
+      "sleeve_accessory": 221
+    },
+    "dedupe_summary": {
+      "duplicate_raw_payload_rows_skipped": 39079,
+      "duplicate_seller_rows_skipped": 105809
+    }
+  },
+  "row_files": {
+    "acquisitionRunRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_acquisition_runs.jsonl",
+    "queryCacheRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_query_cache.jsonl",
+    "rawSnapshotRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_raw_snapshots.jsonl",
+    "observationRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_observations.jsonl",
+    "sellerSnapshotRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_seller_snapshots.jsonl",
+    "priceEventRows": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z/market_listing_price_events.jsonl"
+  },
+  "apply_order": [
+    "market_listing_acquisition_runs",
+    "market_listing_query_cache",
+    "market_listing_raw_snapshots",
+    "market_listing_observations",
+    "market_listing_seller_snapshots",
+    "market_listing_price_events"
+  ],
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "card_candidate_writes": false,
+    "rollup_writes": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "ready_for_apply_approval": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-APPLY-V1 apply only. Package fingerprint: 2ebd59a1c8b56e8f613ebd7c5a616a82c655bb0b2eed9899b71d309ba2226c44. Row manifest hash: 92b002b5831f77b75c4ede1445a5dd2993bbee7df1a41ae78f83b539b185704a. Source package fingerprint: 58975dc5090431a83ca4b513fa3d8be97fc182c541580d796a63260a4808514a. Request results manifest hash: 69f37f83fad3afffd897c7b3fee45fd53d070ad16ac1c07408b83eaca47bad0c. Raw snapshot manifest hash: 27cf71b55eebc84ce5444871435bee61dfafdd7fd17fe1a6182a9628bfec131a. Projected observation manifest hash: 85abe190326dadf92ccbccd041ef4e76043a984868c468f337660b6630247a2a. Schema migration hash: 2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4. Scope: insert 1 market_listing_acquisition_runs row, 4000 market_listing_query_cache rows, 129665 market_listing_raw_snapshots rows, 129665 market_listing_observations rows, 23856 market_listing_seller_snapshots rows, and 129665 market_listing_price_events rows from local MEE-11M daily batch backfill row artifacts only, preserving slab/raw-single classification metadata in event_payload. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No card candidate writes. No rollup writes. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

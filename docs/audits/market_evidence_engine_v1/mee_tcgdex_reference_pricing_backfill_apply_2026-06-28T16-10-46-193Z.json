@@ -1,0 +1,72 @@
+{
+  "package_id": "MEE-TCGDEX-REFERENCE-PRICING-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-28T16:10:46.193Z",
+  "mode": "apply_requested",
+  "ready_for_apply": true,
+  "applied": true,
+  "package_fingerprint_sha256": "0bb6f6165450e5bc3f8f4c0db4bd53fb514c2de581750485ae681b6e5f9d8ca4",
+  "audit_package_fingerprint_sha256": "da6b070aef331e3b3e193e841038232b58031f2ef31fe38790119cd2bf8ba899",
+  "backfill_plan_fingerprint_sha256": "60ed28faf7ed421344fe4637e421d0b1e7029a563fc8ee1d46caede95e0aa4c9",
+  "row_hashes": {
+    "candidate_rows_hash": "f4864fffb268dba1bb4c1d784d7d12e84dca2d98e095f23dad8920cc7a10cea7",
+    "normalized_rows_hash": "543bb50256c54ed34831816ec08ea9de962b7d1629d2e2ba2ac443375ebe2a4e"
+  },
+  "proposed_table_row_counts": {
+    "market_reference_candidates": 310744,
+    "market_reference_normalized_evidence": 310744,
+    "unique_card_prints": 19134,
+    "model_eligible_rows": 285396,
+    "quarantined_rows": 25348
+  },
+  "remote_preflight_source_counts": {
+    "market_reference_candidates": {
+      "tcgdex_tcgplayer_reference": 110675,
+      "tcgdex_cardmarket_reference": 200069
+    },
+    "market_reference_normalized_evidence": {
+      "tcgdex_tcgplayer_reference": 0,
+      "tcgdex_cardmarket_reference": 0
+    }
+  },
+  "transport": {
+    "chunk_size": 1000
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": true,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "card_print_writes": false,
+    "card_printing_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "apply_result": {
+    "market_reference_candidates_inserted": 0,
+    "market_reference_candidates_reused_for_resume": 310744,
+    "market_reference_normalized_evidence_inserted": 310744
+  },
+  "readback": {
+    "market_reference_candidates": {
+      "tcgdex_tcgplayer_reference": 110675,
+      "tcgdex_cardmarket_reference": 200069
+    },
+    "market_reference_normalized_evidence": {
+      "tcgdex_tcgplayer_reference": 110675,
+      "tcgdex_cardmarket_reference": 200069
+    },
+    "total_candidates": 310744,
+    "total_normalized": 310744
+  },
+  "findings": []
+}

@@ -1,0 +1,672 @@
+{
+  "package_id": "MEE-TCGDEX-REFERENCE-SIGNAL-ROLLUP-REFRESH-V1",
+  "generated_at": "2026-06-28T16:28:41.825Z",
+  "mode": "dry_run_report_only",
+  "rollup_version": "MEE_13A_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_TCGDEX_REFERENCE_PRICING_V1",
+  "ready_for_apply": false,
+  "applied": false,
+  "package_fingerprint_sha256": "73e1b8bbde0c16a7c2bc269b57847df0b4c46fadb14abbd714526c91a1fcc434",
+  "row_manifest_hash_sha256": "fc6f8cc9199598a9d77ee8ee310300ed9e990c1147a4a1543dd9dfd7abce7cfe",
+  "proposed_rollup_rows": 9596,
+  "existing_rows_for_rollup_version": 0,
+  "input_counts": {
+    "candidates": 332504,
+    "normalized_evidence": 332489,
+    "tcgdex_candidates": 319219,
+    "tcgdex_normalized": 315811,
+    "signal_candidates": 9596,
+    "reviewed_signals": 9596,
+    "multi_source_signal_count": 364,
+    "single_source_signal_count": 9232,
+    "currency_excluded_evidence_count": 211227
+  },
+  "rollup_summary": {
+    "row_count": 9596,
+    "publishable_count": 0,
+    "app_visible_count": 0,
+    "market_truth_count": 0,
+    "status_counts": {
+      "blocked_special_lane_review": 268,
+      "review_required_context": 277,
+      "review_required_high_variance": 4459,
+      "review_required_single_source": 4592
+    },
+    "variance_band_counts": {
+      "bounded_variance": 2948,
+      "extreme_variance": 2902,
+      "high_variance": 1580,
+      "moderate_variance": 2166
+    },
+    "flag_counts": {
+      "extreme_variance": 2902,
+      "high_variance": 1580,
+      "moderate_variance": 2166,
+      "non_usd_evidence_excluded": 9110,
+      "quarantined_context_present": 9559,
+      "single_source_only": 9232,
+      "special_lane_review_required": 268,
+      "thin_evidence": 74
+    },
+    "source_count_counts": {
+      "1": 9232,
+      "2": 302,
+      "3": 62
+    }
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "identity_table_writes": false,
+    "card_print_writes": false,
+    "card_printing_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "inserted_rows": 0,
+  "readback": null,
+  "findings": [
+    "tcgdex_candidate_count_mismatch",
+    "tcgdex_normalized_count_mismatch"
+  ],
+  "samples": [
+    {
+      "gv_id": "GV-PK-AOR-1",
+      "card_print_id": "969f6559-3605-480f-be9c-3702ca7b5317",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 0.22,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-10",
+      "card_print_id": "b05b4559-450c-45ad-a3de-271e13df0f53",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 0.19,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-100",
+      "card_print_id": "23ad749f-6b11-42b5-b7ee-6df8c6ee7579",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 4,
+      "reference_median": 6.96,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 4
+        },
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 1,
+          "marketprice": 1,
+          "midprice": 1
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-11",
+      "card_print_id": "d2271593-bc2d-48c9-a2cf-32e40919bd68",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 7,
+      "reference_median": 0.42,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 7
+        },
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-12",
+      "card_print_id": "dfc65ae7-a06d-474a-b55f-a0d22cbc0a50",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 12,
+      "reference_median": 0.42,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 12
+        },
+        "source_metric_counts": {
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-13",
+      "card_print_id": "4ee9d458-34a6-481c-9565-1c0d463a022d",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 14,
+      "reference_median": 0.68,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 14
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-14",
+      "card_print_id": "78e7e5ba-4c93-4c11-a81f-c71bfebc1e5a",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 0.56,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-15",
+      "card_print_id": "7fc9bf8f-a3f9-4dcd-9c5a-65f8ab398845",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 16,
+      "reference_median": 9.7,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 16
+        },
+        "source_metric_counts": {
+          "directlowprice": 4,
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-16",
+      "card_print_id": "630829f4-4c3a-4b84-a78f-311f7dbf6fe3",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 14,
+      "reference_median": 0.14,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 14
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-17",
+      "card_print_id": "ff7ae0e7-12a9-4fdb-9d07-72916277f203",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 8,
+      "reference_median": 0.52,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 8
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-18",
+      "card_print_id": "795e254e-d402-436b-9b1f-b2c9e01aff19",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 7,
+      "reference_median": 0.51,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 7
+        },
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-19",
+      "card_print_id": "27f6c9f4-4560-42ac-ab1b-1c4cb44ba359",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 0.31,
+      "variance_band": "extreme_variance",
+      "review_flags": [
+        "extreme_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-2",
+      "card_print_id": "f4923fa8-d6c6-4b77-b7db-fc01ac6ee2d1",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 16,
+      "reference_median": 0.19,
+      "variance_band": "extreme_variance",
+      "review_flags": [
+        "extreme_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 16
+        },
+        "source_metric_counts": {
+          "directlowprice": 4,
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-20",
+      "card_print_id": "085e1360-d689-4677-b554-82307793f45d",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 14,
+      "reference_median": 0.62,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 14
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 4,
+          "marketprice": 4,
+          "midprice": 4
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-21",
+      "card_print_id": "363671be-a315-4303-92a2-f74706b4827a",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 8,
+      "reference_median": 49.77,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 8
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-22",
+      "card_print_id": "79a2fdf5-3fb1-48c0-8b74-82753a7467bb",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 0.77,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-23",
+      "card_print_id": "95f92b6a-f1a2-4232-82ff-cbe09000a242",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 8,
+      "reference_median": 0.15,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 8
+        },
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-24",
+      "card_print_id": "251821be-9bad-4971-b57d-d76c5d6cdb8f",
+      "review_status": "review_required_high_variance",
+      "source_count": 1,
+      "eligible_evidence_count": 7,
+      "reference_median": 0.3,
+      "variance_band": "high_variance",
+      "review_flags": [
+        "high_variance",
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 7
+        },
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-25",
+      "card_print_id": "ca46712b-05ac-4b04-84da-d0ae8d46338b",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 4,
+      "reference_median": 3.88,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 4
+        },
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 1,
+          "marketprice": 1,
+          "midprice": 1
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    },
+    {
+      "gv_id": "GV-PK-AOR-26",
+      "card_print_id": "ee3893f5-e980-4b1e-b581-a8fc5e7cac40",
+      "review_status": "review_required_single_source",
+      "source_count": 1,
+      "eligible_evidence_count": 6,
+      "reference_median": 2.64,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "single_source_only",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ],
+      "source_summary": {
+        "sources": [
+          "tcgdex_tcgplayer_reference"
+        ],
+        "source_counts": {
+          "tcgdex_tcgplayer_reference": 6
+        },
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "signal_band": "single_source_reference_candidate"
+      }
+    }
+  ]
+}

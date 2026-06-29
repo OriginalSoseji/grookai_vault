@@ -1,0 +1,117 @@
+{
+  "id": "dp3-7",
+  "name": "Gardevoir",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "55",
+  "hp": "110",
+  "types": [
+    "Psychic"
+  ],
+  "evolvesFrom": "Kirlia",
+  "abilities": [
+    {
+      "name": "Telepass",
+      "text": "Once during your turn (before your attack), you may search your opponent's discard pile for a Supporter card and use the effect of that card as the effect of this power. (The Supporter card remains in your opponent's discard pile.) You can't use more than 1 Telepass Poké-Power each turn. This power can't be used if Gardevoir is affected by a Special Condition.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Psychic Lock",
+      "cost": [
+        "Psychic",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "60",
+      "text": "During your opponent's next turn, your opponent can't use any Poké-Powers on his or her Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "+30"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp3",
+    "name": "Secret Wonders",
+    "series": "Diamond & Pearl",
+    "printedTotal": 132,
+    "total": 132,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "SW",
+    "releaseDate": "2007/11/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp3/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp3/logo.png"
+    }
+  },
+  "number": "7",
+  "artist": "Atsuko Nishida",
+  "rarity": "Rare Holo",
+  "flavorText": "It will try to guard its trusted Trainer with its life. It has the ability to see the future.",
+  "nationalPokedexNumbers": [
+    282
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp3/7.png",
+    "large": "https://images.pokemontcg.io/dp3/7_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp3-7",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 30,
+        "mid": 67.76,
+        "high": 270,
+        "market": 55.19,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 58.49,
+        "mid": 134.99,
+        "high": 251.5,
+        "market": 46.32,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp3-7",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 10.55,
+      "lowPrice": 2.25,
+      "trendPrice": 14.45,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 10,
+      "reverseHoloLow": 2.25,
+      "reverseHoloTrend": 11.77,
+      "lowPriceExPlus": 11.95,
+      "avg1": 9.99,
+      "avg7": 12.42,
+      "avg30": 10.61,
+      "reverseHoloAvg1": 6.96,
+      "reverseHoloAvg7": 9.1,
+      "reverseHoloAvg30": 9.04
+    }
+  }
+}

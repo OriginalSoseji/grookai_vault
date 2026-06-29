@@ -1,0 +1,4896 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-ACQUISITION-WORKLIST-V1",
+  "generated_at": "2026-06-25T20:12:27.294Z",
+  "mode": "read_only_acquisition_worklist",
+  "rollup_version": "MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "summary": {
+    "total_rollups": 993,
+    "single_source_rollups": 244,
+    "first_wave_review_required_single_source": 18,
+    "high_variance_single_source": 202,
+    "special_lane_single_source": 24,
+    "proposed_source_counts": {
+      "ebay_active": 234,
+      "ebay_sold_candidate": 210,
+      "justtcg_reference": 244,
+      "manual_review_candidate": 24,
+      "pokemontcg_io_reference": 244,
+      "tcgplayer_reference_candidate": 10
+    },
+    "existing_source_counts": {
+      "tcgcsv_reference": 244
+    },
+    "review_status_counts": {
+      "blocked_special_lane_review": 24,
+      "review_required_high_variance": 202,
+      "review_required_single_source": 18
+    }
+  },
+  "first_wave_sample": [
+    {
+      "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 150,
+      "reference_median": 399.95,
+      "reference_high": 499.99,
+      "price_ratio": 3.33,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1203.3,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 150,
+      "reference_median": 399.95,
+      "reference_high": 499.99,
+      "price_ratio": 3.33,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1203.3,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 150,
+      "reference_median": 399.95,
+      "reference_high": 499.99,
+      "price_ratio": 3.33,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1203.3,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 150,
+      "reference_median": 399.95,
+      "reference_high": 499.99,
+      "price_ratio": 3.33,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1203.3,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "gv_id": "GV-PK-COL-SL6",
+      "name": "Kyogre",
+      "set_code": "col1",
+      "provider_number": "SL6",
+      "number_plain": "6",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 299.75,
+      "reference_median": 309.98,
+      "reference_high": 449.87,
+      "price_ratio": 1.5,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1156.49,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+      "gv_id": "GV-PK-COL-SL5",
+      "name": "Ho-Oh",
+      "set_code": "col1",
+      "provider_number": "SL5",
+      "number_plain": "5",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 222.96,
+      "reference_median": 300,
+      "reference_high": 577.64,
+      "price_ratio": 2.59,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1152.59,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+      "gv_id": "GV-PK-COL-SL1",
+      "name": "Deoxys",
+      "set_code": "col1",
+      "provider_number": "SL1",
+      "number_plain": "1",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 148.99,
+      "reference_median": 169.99,
+      "reference_high": 310,
+      "price_ratio": 2.08,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1087.07,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "gv_id": "GV-PK-COL-SL8",
+      "name": "Palkia",
+      "set_code": "col1",
+      "provider_number": "SL8",
+      "number_plain": "8",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 115,
+      "reference_median": 168.25,
+      "reference_high": 294.98,
+      "price_ratio": 2.57,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1086.7,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 53.84,
+      "reference_median": 79.79,
+      "reference_high": 160.95,
+      "price_ratio": 2.99,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1042.89,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 53.84,
+      "reference_median": 79.79,
+      "reference_high": 160.95,
+      "price_ratio": 2.99,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1042.89,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 53.84,
+      "reference_median": 79.79,
+      "reference_high": 160.95,
+      "price_ratio": 2.99,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1042.89,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 53.84,
+      "reference_median": 79.79,
+      "reference_high": 160.95,
+      "price_ratio": 2.99,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1042.89,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "moderate_variance",
+      "reference_low": 49.08,
+      "reference_median": 72.18,
+      "reference_high": 250,
+      "price_ratio": 5.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1041.18,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "moderate_variance",
+      "reference_low": 49.08,
+      "reference_median": 72.18,
+      "reference_high": 250,
+      "price_ratio": 5.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1041.18,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "moderate_variance",
+      "reference_low": 49.08,
+      "reference_median": 72.18,
+      "reference_high": 250,
+      "price_ratio": 5.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1041.18,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "moderate_variance",
+      "reference_low": 49.08,
+      "reference_median": 72.18,
+      "reference_high": 250,
+      "price_ratio": 5.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1041.18,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "gv_id": "GV-PK-PR-BLW-BW05",
+      "name": "Zekrom",
+      "set_code": "bwp",
+      "provider_number": "BW05",
+      "number_plain": "05",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "moderate_variance",
+      "reference_low": 1,
+      "reference_median": 2.99,
+      "reference_high": 6.81,
+      "price_ratio": 6.81,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1008.31,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "name": "Reshiram",
+      "set_code": "bwp",
+      "provider_number": "BW04",
+      "number_plain": "04",
+      "rarity": "Promo",
+      "review_status": "review_required_single_source",
+      "variance_band": "bounded_variance",
+      "reference_low": 2.29,
+      "reference_median": 4.45,
+      "reference_high": 4.7,
+      "price_ratio": 2.05,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "tcgplayer_reference_candidate"
+      ],
+      "priority_score": 1004.28,
+      "reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    }
+  ],
+  "high_variance_sample": [
+    {
+      "card_print_id": "be7b6873-636a-4d95-8507-7edca2659aea",
+      "gv_id": "GV-PK-LC-11",
+      "name": "Gengar",
+      "set_code": "base6",
+      "provider_number": "11",
+      "number_plain": "11",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_high_variance",
+      "variance_band": "high_variance",
+      "reference_low": 122,
+      "reference_median": 984.92,
+      "reference_high": 1999.98,
+      "price_ratio": 16.39,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1358.85,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "f443a31c-1740-4dde-9319-a779dd857646",
+      "gv_id": "GV-PK-LC-4",
+      "name": "Dark Blastoise",
+      "set_code": "base6",
+      "provider_number": "4",
+      "number_plain": "4",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 64,
+      "reference_median": 254.82,
+      "reference_high": 2999.99,
+      "price_ratio": 46.87,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1124.28,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "a3700b46-7def-49de-a77b-39e2494626d0",
+      "gv_id": "GV-PK-GE-105",
+      "name": "Dialga LV.X",
+      "set_code": "dp4",
+      "provider_number": "105",
+      "number_plain": "105",
+      "rarity": "Rare Holo LV.X",
+      "review_status": "review_required_high_variance",
+      "variance_band": "high_variance",
+      "reference_low": 79.99,
+      "reference_median": 524.99,
+      "reference_high": 799.99,
+      "price_ratio": 10,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1122.49,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "f508366b-c319-42d8-b8e4-992578689dd8",
+      "gv_id": "GV-PK-LC-21",
+      "name": "Butterfree",
+      "set_code": "base6",
+      "provider_number": "21",
+      "number_plain": "21",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 3.73,
+      "reference_median": 140.51,
+      "reference_high": 1999.99,
+      "price_ratio": 536.19,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1120.26,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b25317ea-137a-4c49-a32d-c05a4cc2d0aa",
+      "gv_id": "GV-PK-LC-33",
+      "name": "Pidgeot",
+      "set_code": "base6",
+      "provider_number": "33",
+      "number_plain": "33",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 4.53,
+      "reference_median": 81.02,
+      "reference_high": 1150,
+      "price_ratio": 253.86,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1090.51,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "a71d1607-d3f4-4d72-b135-af5c5fb5f2d3",
+      "gv_id": "GV-PK-LC-20",
+      "name": "Beedrill",
+      "set_code": "base6",
+      "provider_number": "20",
+      "number_plain": "20",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 3,
+      "reference_median": 77.59,
+      "reference_high": 299.99,
+      "price_ratio": 100,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1088.8,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "84dd4ec9-5359-4675-8cda-2f23cca90345",
+      "gv_id": "GV-PK-LC-35",
+      "name": "Rhydon",
+      "set_code": "base6",
+      "provider_number": "35",
+      "number_plain": "35",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 2.69,
+      "reference_median": 74.03,
+      "reference_high": 316.49,
+      "price_ratio": 117.65,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1087.01,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+      "gv_id": "GV-PK-LC-25",
+      "name": "Hypno",
+      "set_code": "base6",
+      "provider_number": "25",
+      "number_plain": "25",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 3.39,
+      "reference_median": 63.19,
+      "reference_high": 699.99,
+      "price_ratio": 206.49,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1081.6,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "c374af68-e1af-4007-aff6-d091f2ebc5ef",
+      "gv_id": "GV-PK-LC-30",
+      "name": "Moltres",
+      "set_code": "base6",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 11.11,
+      "reference_median": 118.1,
+      "reference_high": 749.99,
+      "price_ratio": 67.51,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1076.56,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "682775c6-a712-4c8a-9853-b4bcd7a650b4",
+      "gv_id": "GV-PK-LC-104",
+      "name": "Scoop Up",
+      "set_code": "base6",
+      "provider_number": "104",
+      "number_plain": "104",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 4,
+      "reference_median": 33.19,
+      "reference_high": 469.9,
+      "price_ratio": 117.48,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1066.6,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "a04d60de-499b-40eb-a19d-6de531260a70",
+      "gv_id": "GV-PK-LC-28",
+      "name": "Magneton",
+      "set_code": "base6",
+      "provider_number": "28",
+      "number_plain": "28",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 1.7,
+      "reference_median": 19.87,
+      "reference_high": 620.66,
+      "price_ratio": 365.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1059.94,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "f3b2cdcb-5047-42b0-bd42-11065a0e0198",
+      "gv_id": "GV-PK-PLB-50",
+      "name": "Machamp",
+      "set_code": "bw10",
+      "provider_number": "50",
+      "number_plain": "50",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.44,
+      "reference_median": 19.86,
+      "reference_high": 106.65,
+      "price_ratio": 242.39,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1059.93,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cb67b447-fc93-4008-b848-e06c28f11d26",
+      "gv_id": "GV-PK-LTR-31",
+      "name": "Gyarados",
+      "set_code": "bw11",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.25,
+      "reference_median": 9.29,
+      "reference_high": 29.82,
+      "price_ratio": 119.28,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1054.65,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3f2a1054-868d-45e8-b1c3-1b0803346ee8",
+      "gv_id": "GV-PK-COL-28",
+      "name": "Mismagius",
+      "set_code": "col1",
+      "provider_number": "28",
+      "number_plain": "28",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.5,
+      "reference_median": 8.46,
+      "reference_high": 52.49,
+      "price_ratio": 104.98,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1054.23,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fbf70f66-ef68-4b4c-95a4-fafe2da79520",
+      "gv_id": "GV-PK-LC-8",
+      "name": "Dark Slowbro",
+      "set_code": "base6",
+      "provider_number": "8",
+      "number_plain": "8",
+      "rarity": "Rare Holo",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 41.91,
+      "reference_median": 158.54,
+      "reference_high": 999.99,
+      "price_ratio": 23.86,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1053.13,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "f40cdad0-2bfc-432a-9a95-f7a5262a9ccf",
+      "gv_id": "GV-PK-LC-103",
+      "name": "Pokémon Trader",
+      "set_code": "base6",
+      "provider_number": "103",
+      "number_plain": "103",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 1.3,
+      "reference_median": 4.51,
+      "reference_high": 337.8,
+      "price_ratio": 259.85,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1052.26,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "981f272f-4909-428a-8ac4-6ea671778bd2",
+      "gv_id": "GV-PK-GE-19",
+      "name": "Hypno",
+      "set_code": "dp4",
+      "provider_number": "19",
+      "number_plain": "19",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.95,
+      "reference_median": 3.44,
+      "reference_high": 96.84,
+      "price_ratio": 101.94,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1051.72,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "e78a7997-5973-446f-92f2-3b9332c4de01",
+      "gv_id": "GV-PK-MT-37",
+      "name": "Unown [I]",
+      "set_code": "dp2",
+      "provider_number": "37",
+      "number_plain": "37",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.68,
+      "reference_median": 2.95,
+      "reference_high": 79.98,
+      "price_ratio": 117.62,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1051.47,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "c56f6e9d-dd20-4a59-a9f8-92bb5f7d2ef4",
+      "gv_id": "GV-PK-COL-23",
+      "name": "Ampharos",
+      "set_code": "col1",
+      "provider_number": "23",
+      "number_plain": "23",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 1.41,
+      "reference_median": 2.54,
+      "reference_high": 715.89,
+      "price_ratio": 507.72,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1051.27,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "1cbc4395-3aa9-4c8d-989b-e4827acdc06f",
+      "gv_id": "GV-PK-PLF-29",
+      "name": "Vanilluxe",
+      "set_code": "bw9",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.25,
+      "reference_median": 1.98,
+      "reference_high": 59.61,
+      "price_ratio": 238.44,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.99,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "2703fde3-a2fe-45d9-9aac-73bf55aac44d",
+      "gv_id": "GV-PK-DP-36",
+      "name": "Purugly",
+      "set_code": "dp1",
+      "provider_number": "36",
+      "number_plain": "36",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.99,
+      "reference_median": 6.75,
+      "reference_high": 96.59,
+      "price_ratio": 97.57,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.95,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "c7fb4cfa-ca76-474e-859e-9dd33719504c",
+      "gv_id": "GV-PK-PLS-37",
+      "name": "Vanilluxe",
+      "set_code": "bw8",
+      "provider_number": "37",
+      "number_plain": "37",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.32,
+      "reference_median": 1.24,
+      "reference_high": 96.93,
+      "price_ratio": 302.91,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.62,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "843cbd82-9792-4f38-80a8-2726ab8e462d",
+      "gv_id": "GV-PK-EPO-72",
+      "name": "Ferrothorn",
+      "set_code": "bw2",
+      "provider_number": "72",
+      "number_plain": "72",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.17,
+      "reference_median": 1.05,
+      "reference_high": 25.28,
+      "price_ratio": 148.71,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.53,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cf7c0f1f-6a43-47ae-b54d-7a207d085c8d",
+      "gv_id": "GV-PK-DEX-88",
+      "name": "Stoutland",
+      "set_code": "bw5",
+      "provider_number": "88",
+      "number_plain": "88",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.13,
+      "reference_median": 1,
+      "reference_high": 18.51,
+      "price_ratio": 142.38,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.5,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+      "gv_id": "GV-PK-BLW-54",
+      "name": "Scolipede",
+      "set_code": "bw1",
+      "provider_number": "54",
+      "number_plain": "54",
+      "rarity": "Rare",
+      "review_status": "review_required_high_variance",
+      "variance_band": "extreme_variance",
+      "reference_low": 0.35,
+      "reference_median": 0.86,
+      "reference_high": 96.91,
+      "price_ratio": 276.89,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ],
+      "priority_score": 1050.43,
+      "reasons": [
+        "single_source_reference_signal",
+        "high_variance_requires_source_corroboration",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    }
+  ],
+  "special_lane_sample": [
+    {
+      "card_print_id": "b7967dc8-70f6-4b88-9d4f-e44fe508a102",
+      "gv_id": "GV-PK-PR-BLW-84-PRERELEASE-STAMP",
+      "name": "Porygon-Z",
+      "set_code": "bwp",
+      "provider_number": "84",
+      "number_plain": "84",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "extreme_variance",
+      "reference_low": 18.36,
+      "reference_median": 127.47,
+      "reference_high": 399.99,
+      "price_ratio": 21.79,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 885.53,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fba4b7b8-f900-4d35-bdd7-8f82246a7fcb",
+      "gv_id": "GV-PK-PR-BLW-84-STAFF-PRERELEASE-STAMP",
+      "name": "Porygon-Z",
+      "set_code": "bwp",
+      "provider_number": "84",
+      "number_plain": "84",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "extreme_variance",
+      "reference_low": 18.36,
+      "reference_median": 127.47,
+      "reference_high": 399.99,
+      "price_ratio": 21.79,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 885.53,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e",
+      "gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP",
+      "name": "Volcarona",
+      "set_code": "bwp",
+      "provider_number": "40",
+      "number_plain": "40",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "extreme_variance",
+      "reference_low": 16.69,
+      "reference_median": 121.48,
+      "reference_high": 385,
+      "price_ratio": 23.07,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 883.81,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c",
+      "gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP",
+      "name": "Volcarona",
+      "set_code": "bwp",
+      "provider_number": "40",
+      "number_plain": "40",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "extreme_variance",
+      "reference_low": 16.69,
+      "reference_median": 121.48,
+      "reference_high": 385,
+      "price_ratio": 23.07,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 883.81,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca",
+      "gv_id": "GV-PK-PR-BLW-48-PRERELEASE-STAMP",
+      "name": "Altaria",
+      "set_code": "bwp",
+      "provider_number": "48",
+      "number_plain": "48",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 33.5,
+      "reference_median": 244.66,
+      "reference_high": 350,
+      "price_ratio": 10.45,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 832.78,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b",
+      "gv_id": "GV-PK-PR-BLW-48-STAFF-PRERELEASE-STAMP",
+      "name": "Altaria",
+      "set_code": "bwp",
+      "provider_number": "48",
+      "number_plain": "48",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 33.5,
+      "reference_median": 244.66,
+      "reference_high": 350,
+      "price_ratio": 10.45,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 832.78,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "99b54c90-f9e0-4125-bcf1-3fb564c9aeb1",
+      "gv_id": "GV-PK-PR-BLW-75-PRERELEASE-STAMP",
+      "name": "Metagross",
+      "set_code": "bwp",
+      "provider_number": "75",
+      "number_plain": "75",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 49.75,
+      "reference_median": 236.5,
+      "reference_high": 600,
+      "price_ratio": 12.06,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 830.31,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "da426096-26a3-4947-9c5a-45ed3db73fdf",
+      "gv_id": "GV-PK-PR-BLW-75-STAFF-PRERELEASE-STAMP",
+      "name": "Metagross",
+      "set_code": "bwp",
+      "provider_number": "75",
+      "number_plain": "75",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 49.75,
+      "reference_median": 236.5,
+      "reference_high": 600,
+      "price_ratio": 12.06,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 830.31,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "a9cd7cc2-f0d3-421d-807b-a0c39bf148ac",
+      "gv_id": "GV-PK-DP-52-PRERELEASE-STAMP",
+      "name": "Luxio",
+      "set_code": "dp1",
+      "provider_number": "52",
+      "number_plain": "52",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.25,
+      "reference_median": 1.32,
+      "reference_high": 4.72,
+      "price_ratio": 18.88,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 719.54,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "4e4e2604-5401-4cd7-98bd-e86a3812ead3",
+      "gv_id": "GV-PK-DP-52-STAFF-PRERELEASE-STAMP",
+      "name": "Luxio",
+      "set_code": "dp1",
+      "provider_number": "52",
+      "number_plain": "52",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.25,
+      "reference_median": 1.32,
+      "reference_high": 4.72,
+      "price_ratio": 18.88,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 719.54,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3eb71b5a-62c5-4df5-8080-3cb86705d758",
+      "gv_id": "GV-PK-MT-48-PRERELEASE-STAMP",
+      "name": "Gabite",
+      "set_code": "dp2",
+      "provider_number": "48",
+      "number_plain": "48",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.22,
+      "reference_median": 1.05,
+      "reference_high": 3.1,
+      "price_ratio": 14.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 714.62,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "c2e05fd9-c41d-4523-a1ca-41e57e1860a2",
+      "gv_id": "GV-PK-MT-48-STAFF-PRERELEASE-STAMP",
+      "name": "Gabite",
+      "set_code": "dp2",
+      "provider_number": "48",
+      "number_plain": "48",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.22,
+      "reference_median": 1.05,
+      "reference_high": 3.1,
+      "price_ratio": 14.09,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 714.62,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "ba0f4bec-31af-4c09-830c-0faeb9df0c26",
+      "gv_id": "GV-PK-SW-106-ORIGINS-GAME-FAIR-2008-STAFF-STAMP",
+      "name": "Shellos East Sea",
+      "set_code": "dp3",
+      "provider_number": "106",
+      "number_plain": "106",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.25,
+      "reference_median": 1.12,
+      "reference_high": 3.4,
+      "price_ratio": 13.6,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 714.16,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "ff85e81b-039a-4b4d-b9be-8d5db925587b",
+      "gv_id": "GV-PK-MD-42-PRERELEASE-STAMP",
+      "name": "Mothim",
+      "set_code": "dp5",
+      "provider_number": "42",
+      "number_plain": "42",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.25,
+      "reference_median": 1.06,
+      "reference_high": 3.39,
+      "price_ratio": 13.56,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 714.09,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02",
+      "gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP",
+      "name": "Arcanine",
+      "set_code": "bw4",
+      "provider_number": "12",
+      "number_plain": "12",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.9,
+      "reference_median": 5.25,
+      "reference_high": 9.77,
+      "price_ratio": 10.86,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 713.49,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104",
+      "gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP",
+      "name": "Arcanine",
+      "set_code": "bw4",
+      "provider_number": "12",
+      "number_plain": "12",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "high_variance",
+      "reference_low": 0.9,
+      "reference_median": 5.25,
+      "reference_high": 9.77,
+      "price_ratio": 10.86,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 713.49,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d8ace098-946b-4034-94ce-63a398d46f0d",
+      "gv_id": "GV-PK-PR-BLW-53-PRERELEASE-STAMP",
+      "name": "Flygon",
+      "set_code": "bwp",
+      "provider_number": "53",
+      "number_plain": "53",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 50,
+      "reference_median": 157.47,
+      "reference_high": 299.98,
+      "price_ratio": 6,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 584.74,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "0e5c0b8f-a67b-4f55-a0b9-e0ba3e412e3e",
+      "gv_id": "GV-PK-PR-BLW-53-STAFF-PRERELEASE-STAMP",
+      "name": "Flygon",
+      "set_code": "bwp",
+      "provider_number": "53",
+      "number_plain": "53",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 50,
+      "reference_median": 157.47,
+      "reference_high": 299.98,
+      "price_ratio": 6,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 584.74,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fef78d29-f738-4acd-ab1d-55629893f933",
+      "gv_id": "GV-PK-PR-BLW-51-PRERELEASE-STAMP",
+      "name": "Crobat",
+      "set_code": "bwp",
+      "provider_number": "51",
+      "number_plain": "51",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 34.31,
+      "reference_median": 71.24,
+      "reference_high": 190,
+      "price_ratio": 5.54,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 541.16,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b9cac5c8-9963-4366-ba0c-14c1f76a97ac",
+      "gv_id": "GV-PK-PR-BLW-51-STAFF-PRERELEASE-STAMP",
+      "name": "Crobat",
+      "set_code": "bwp",
+      "provider_number": "51",
+      "number_plain": "51",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 34.31,
+      "reference_median": 71.24,
+      "reference_high": 190,
+      "price_ratio": 5.54,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 541.16,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1",
+      "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+      "name": "Victini",
+      "set_code": "bw3",
+      "provider_number": "43",
+      "number_plain": "43",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "bounded_variance",
+      "reference_low": 8.93,
+      "reference_median": 14.65,
+      "reference_high": 19.88,
+      "price_ratio": 2.23,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 509.56,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d",
+      "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+      "name": "Victini",
+      "set_code": "bw3",
+      "provider_number": "43",
+      "number_plain": "43",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "bounded_variance",
+      "reference_low": 8.93,
+      "reference_median": 14.65,
+      "reference_high": 19.88,
+      "price_ratio": 2.23,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 509.56,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+      "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "provider_number": "25",
+      "number_plain": "25",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 0.39,
+      "reference_median": 0.86,
+      "reference_high": 2.22,
+      "price_ratio": 5.69,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 506.12,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+      "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "provider_number": "25",
+      "number_plain": "25",
+      "rarity": "Promo",
+      "review_status": "blocked_special_lane_review",
+      "variance_band": "moderate_variance",
+      "reference_low": 0.39,
+      "reference_median": 0.86,
+      "reference_high": 2.22,
+      "price_ratio": 5.69,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "proposed_sources": [
+        "pokemontcg_io_reference",
+        "justtcg_reference",
+        "ebay_active",
+        "manual_review_candidate"
+      ],
+      "priority_score": 506.12,
+      "reasons": [
+        "single_source_reference_signal",
+        "special_lane_requires_exact_variant_evidence",
+        "quarantined_context_present"
+      ],
+      "can_publish_price_directly": false
+    }
+  ],
+  "representative_query_plan": {
+    "generated_at": "2026-06-25T20:12:28.662Z",
+    "contract": "MARKET_EVIDENCE_ENGINE_V1",
+    "phase": "MEE-04B_MULTI_SOURCE_QUERY_PLAN_V1",
+    "mode": "local_query_plan_only",
+    "boundary": {
+      "provider_calls": false,
+      "db_writes": false,
+      "pricing_rollups": false,
+      "migration_apply": false,
+      "source_urls_are_templates_only": true
+    },
+    "registry_sources": [
+      {
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "pricing_lane": "market_evidence",
+        "acquisition_mode": "approved_api",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "ebay_sold_candidate",
+        "source_type": "sold_comp_candidate",
+        "pricing_lane": "market_evidence",
+        "acquisition_mode": "approved_path_required",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "pricecharting_reference",
+        "source_type": "reference_price",
+        "pricing_lane": "reference",
+        "acquisition_mode": "licensed_export_optional",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "pokemontcg_io_reference",
+        "source_type": "reference_price",
+        "pricing_lane": "reference",
+        "acquisition_mode": "free_api_reference",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "ebay_user_export",
+        "source_type": "user_uploaded_export",
+        "pricing_lane": "market_evidence",
+        "acquisition_mode": "operator_uploaded_export",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "tcgplayer_reference_candidate",
+        "source_type": "marketplace_product_candidate",
+        "pricing_lane": "reference",
+        "acquisition_mode": "approved_path_required",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "tcgcsv_reference",
+        "source_type": "reference_price",
+        "pricing_lane": "reference",
+        "acquisition_mode": "public_snapshot_api",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "tcgplayer_user_export",
+        "source_type": "user_uploaded_export",
+        "pricing_lane": "reference",
+        "acquisition_mode": "operator_uploaded_export",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "justtcg_reference",
+        "source_type": "reference_price",
+        "pricing_lane": "reference",
+        "acquisition_mode": "existing_reference_lane",
+        "can_publish_price_directly": false
+      },
+      {
+        "source": "manual_review_candidate",
+        "source_type": "manual_review_candidate",
+        "pricing_lane": "review",
+        "acquisition_mode": "operator_curated",
+        "can_publish_price_directly": false
+      }
+    ],
+    "options": {
+      "limit": 18,
+      "sources": [
+        "tcgcsv_reference",
+        "pokemontcg_io_reference",
+        "tcgplayer_reference_candidate",
+        "ebay_active",
+        "ebay_sold_candidate"
+      ]
+    },
+    "summary": {
+      "target_count": 18,
+      "source_count": 5,
+      "planned_query_count": 90
+    },
+    "targets": [
+      {
+        "ordinal": 1,
+        "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2031",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 2,
+        "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2031",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 3,
+        "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2031",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 4,
+        "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+        "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "31",
+        "rarity": "Promo",
+        "priority_score": 1203.3,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 31",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2031",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+            "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 31 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2031%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 5,
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "name": "Kyogre",
+        "set_code": "col1",
+        "number_plain": "6",
+        "rarity": "Rare Holo",
+        "priority_score": 1156.49,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Kyogre col1 6",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Kyogre col1 6",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Kyogre col1 6",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Kyogre%20col1%206",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Kyogre col1 6 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Kyogre%20col1%206%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Kyogre col1 6 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Kyogre%20col1%206%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 6,
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "name": "Ho-Oh",
+        "set_code": "col1",
+        "number_plain": "5",
+        "rarity": "Rare Holo",
+        "priority_score": 1152.59,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Ho-Oh col1 5",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Ho-Oh col1 5",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Ho-Oh col1 5",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Ho-Oh%20col1%205",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Ho-Oh col1 5 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Ho-Oh%20col1%205%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Ho-Oh col1 5 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Ho-Oh%20col1%205%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 7,
+        "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "gv_id": "GV-PK-COL-SL1",
+        "name": "Deoxys",
+        "set_code": "col1",
+        "number_plain": "1",
+        "rarity": "Rare Holo",
+        "priority_score": 1087.07,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Deoxys col1 1",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Deoxys col1 1",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Deoxys col1 1",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Deoxys%20col1%201",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Deoxys col1 1 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Deoxys%20col1%201%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Deoxys col1 1 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Deoxys%20col1%201%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 8,
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "name": "Palkia",
+        "set_code": "col1",
+        "number_plain": "8",
+        "rarity": "Rare Holo",
+        "priority_score": 1086.7,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Palkia col1 8",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Palkia col1 8",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Palkia col1 8",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Palkia%20col1%208",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Palkia col1 8 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Palkia%20col1%208%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Palkia col1 8 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Palkia%20col1%208%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 9,
+        "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "rarity": "Promo",
+        "priority_score": 1042.89,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2030",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 10,
+        "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "rarity": "Promo",
+        "priority_score": 1042.89,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2030",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 11,
+        "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "rarity": "Promo",
+        "priority_score": 1042.89,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2030",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 12,
+        "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "30",
+        "rarity": "Promo",
+        "priority_score": 1042.89,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 30",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2030",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 30 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2030%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 13,
+        "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "rarity": "Promo",
+        "priority_score": 1041.18,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2029",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 14,
+        "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "rarity": "Promo",
+        "priority_score": 1041.18,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2029",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 15,
+        "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "rarity": "Promo",
+        "priority_score": 1041.18,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2029",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 16,
+        "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+        "name": "Victory Cup",
+        "set_code": "bwp",
+        "number_plain": "29",
+        "rarity": "Promo",
+        "priority_score": 1041.18,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Victory Cup bwp 29",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Victory%20Cup%20bwp%2029",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Victory Cup bwp 29 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Victory%20Cup%20bwp%2029%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 17,
+        "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+        "gv_id": "GV-PK-PR-BLW-BW05",
+        "name": "Zekrom",
+        "set_code": "bwp",
+        "number_plain": "05",
+        "rarity": "Promo",
+        "priority_score": 1008.31,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+            "gv_id": "GV-PK-PR-BLW-BW05",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Zekrom bwp 05",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+            "gv_id": "GV-PK-PR-BLW-BW05",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Zekrom bwp 05",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+            "gv_id": "GV-PK-PR-BLW-BW05",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Zekrom bwp 05",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Zekrom%20bwp%2005",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+            "gv_id": "GV-PK-PR-BLW-BW05",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Zekrom bwp 05 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Zekrom%20bwp%2005%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+            "gv_id": "GV-PK-PR-BLW-BW05",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Zekrom bwp 05 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Zekrom%20bwp%2005%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      },
+      {
+        "ordinal": 18,
+        "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+        "gv_id": "GV-PK-PR-BLW-BW04",
+        "name": "Reshiram",
+        "set_code": "bwp",
+        "number_plain": "04",
+        "rarity": "Promo",
+        "priority_score": 1004.28,
+        "worklist_reasons": [
+          "single_source_reference_signal",
+          "first_wave_single_source_status",
+          "quarantined_context_present"
+        ],
+        "source_queries": [
+          {
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "tcgcsv_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "public_snapshot_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "public_snapshot_group_lookup",
+            "query_text": "Reshiram bwp 04",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "tcgcsv_group",
+              "product_name",
+              "product_number",
+              "price_subtype"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free TCGCSV TCGplayer product/price snapshot reference buckets"
+          },
+          {
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "pokemontcg_io_reference",
+            "source_type": "reference_price",
+            "acquisition_mode": "free_api_reference",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "free_api_card_reference_lookup",
+            "query_text": "Reshiram bwp 04",
+            "search_url_template": null,
+            "inclusion_hints": [
+              "card_print_id",
+              "pokemonapi_external_id_or_set_number_name",
+              "tcgplayer_price_hash",
+              "cardmarket_price_hash"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "wrong_print_run",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "free reference price buckets from PokemonTCG.io embedded TCGplayer/Cardmarket data"
+          },
+          {
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "tcgplayer_reference_candidate",
+            "source_type": "marketplace_product_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "reference_search_terms",
+            "query_text": "Reshiram bwp 04",
+            "search_url_template": "https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q=Reshiram%20bwp%2004",
+            "inclusion_hints": [
+              "name",
+              "set_code_or_set_name",
+              "number_plain"
+            ],
+            "exclusion_hints": [
+              "wrong_set",
+              "wrong_number",
+              "wrong_finish",
+              "ambiguous_variant"
+            ],
+            "evidence_goal": "marketplace product candidate for reference and identity corroboration"
+          },
+          {
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "acquisition_mode": "approved_api",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "api_search_terms",
+            "query_text": "Pokemon Reshiram bwp 04 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Reshiram%20bwp%2004%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "pokemon_card"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language",
+              "graded_or_slab"
+            ],
+            "evidence_goal": "active asking-price candidates only"
+          },
+          {
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "ebay_sold_candidate",
+            "source_type": "sold_comp_candidate",
+            "acquisition_mode": "approved_path_required",
+            "can_publish_price_directly": false,
+            "requires_review_before_truth": true,
+            "query_status": "planned_not_fetched",
+            "query_kind": "approved_path_required",
+            "query_text": "Pokemon Reshiram bwp 04 -proxy -custom -reprint -lot -bundle -sealed",
+            "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Reshiram%20bwp%2004%20-proxy%20-custom%20-reprint%20-lot%20-bundle%20-sealed&LH_Sold=1&LH_Complete=1",
+            "inclusion_hints": [
+              "name",
+              "set_code",
+              "number_plain",
+              "sold_completed_signal"
+            ],
+            "exclusion_hints": [
+              "lot_or_bundle",
+              "sealed_product",
+              "proxy_or_reprint",
+              "foreign_language"
+            ],
+            "evidence_goal": "sold comp candidates only after approved access path"
+          }
+        ]
+      }
+    ]
+  },
+  "findings": [],
+  "ready": true
+}

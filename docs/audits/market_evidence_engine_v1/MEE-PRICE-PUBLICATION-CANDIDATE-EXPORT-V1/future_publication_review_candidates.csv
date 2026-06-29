@@ -1,0 +1,12 @@
+gv_id,card_name,set_code,number,rarity,currency,candidate_median,candidate_low,candidate_high,minimum_active_ask,maximum_active_ask,evidence_count,seller_count,spread_ratio,review_band,quality_flags,signal_at
+GV-PK-EM-104,Lightning Energy,ex9,104,Rare Holo,USD,19.99,9.8,40.32,7.99,48.96,98,24,4.1143,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-TRR-6,Dark Hypno,ex7,6,Rare Holo,USD,65.96,40,92.25,10.53,99.99,70,19,2.3062,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-LM-14,Wailord,ex12,14,Rare Holo,USD,40,24.17,100.07,14.99,256.99,68,30,4.1403,standard_candidate,broad_seller_diversity,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-CG-89,Aggron ex,ex14,89,Rare Holo EX,USD,51.99,39,130.42,33,180.47,66,15,3.3441,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-DR-12,Torkoal,ex3,12,Rare Holo,USD,34.99,14.45,83.74,10.53,108.13,59,16,5.7952,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-HP-101,Mightyena ex,ex13,101,Rare Holo EX,USD,79,40,178.05,15.98,224,58,15,4.4512,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-MA-11,Team Magma's Rhydon,ex4,11,Rare Holo,USD,30,16,50.98,14.99,50.98,51,14,3.1862,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-HL-100,Vileplume ex,ex5,100,Rare Holo EX,USD,73.98,54.96,186.69,48.73,192.39,51,11,3.3968,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-SS-2,Cacturne,ex2,2,Rare Holo,USD,24.02,12.65,99.99,12.22,137.63,50,15,7.9043,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-TRR-9,Dark Slowking,ex7,9,Rare Holo,USD,90,45.67,101.71,29.99,105.67,46,12,2.2271,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)
+GV-PK-TRR-10,Dark Steelix,ex7,10,Rare Holo,USD,75.99,28.3,168.5,12.99,200,40,13,5.9541,standard_candidate,,Sun Jun 28 2026 07:56:06 GMT-0600 (Mountain Daylight Time)

@@ -1,0 +1,56 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-TINY-INVOKE-PLAN-V1",
+  "generated_at": "2026-06-27T00:22:56.557Z",
+  "mode": "plan_only_tiny_review_action_function_invoke",
+  "package_fingerprint_sha256": "faadf2fb30998f236a79cc1bbfe1ab5faa14b52863c767a7c5ebc9d599e3d340",
+  "target": {
+    "disposition_id": "008c3618-9ee5-4ba0-8e60-e829d67f0002",
+    "card_print_id": "7371ad81-a1e3-4f4a-950c-1a0d20a46720",
+    "gv_id": "GV-PK-MCD-2016-5",
+    "review_lane": "low_signal_monitor",
+    "evidence_lane": "raw_single",
+    "review_status": "resolved",
+    "review_disposition": "monitor_only",
+    "updated_at": "2026-06-26 19:45:24.907445+00",
+    "action_name": "confirm_monitor_only"
+  },
+  "hashes": {
+    "row_manifest_sha256": "7e0f32364a157e981ec5f4d31f97cb153960f069be4b9a37d226370eaa01d567",
+    "apply_sql_sha256": "da4f5ed45a177da85ab073e22dc535e2be68c1ddd4ca9da3629eb8e115b54543",
+    "rollback_sql_sha256": "c7bb96ca9111aa3a5bfe63b30d697b21636989a785b04f7aa1f15e54e6c1f7fa",
+    "readback_sql_sha256": "b7f460d45aa1ffd9e7657a1b1ad46c7d0d3494f0ccb399af65ede7350c637200",
+    "preflight_sql_sha256": "4a6c72de078c59e665d43240d669fb457dc68ac2f396bf1547b074099ddb45e2"
+  },
+  "artifacts": {
+    "row_manifest": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-TINY-INVOKE-PLAN-V1/row_manifest.jsonl",
+    "apply_sql": "docs/sql/mee_core_internal_review_action_function_tiny_invoke_v1_apply_candidate.sql",
+    "rollback_sql": "docs/sql/mee_core_internal_review_action_function_tiny_invoke_v1_rollback_candidate.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_action_function_tiny_invoke_v1_readback.sql",
+    "preflight_sql": "docs/sql/mee_core_internal_review_action_function_tiny_invoke_v1_preflight.sql",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-TINY-INVOKE-PLAN-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-TINY-INVOKE-PLAN-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_ACTION_FUNCTION_TINY_INVOKE_PLAN_V1.md"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes_executed": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

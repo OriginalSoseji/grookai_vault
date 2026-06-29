@@ -1,0 +1,95 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1",
+  "mode": "plan_only_schema_candidate",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "merges": false,
+  "global_apply": false,
+  "schema_candidate": {
+    "migration_file": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql",
+    "table_name": "public.market_listing_candidate_cleanup_events",
+    "current_view": "public.v_market_listing_candidate_cleanup_current_v1",
+    "card_summary_view": "public.v_market_listing_candidate_cleanup_card_summary_v1",
+    "proposed_table_count": 1,
+    "proposed_view_count": 2,
+    "proposed_index_count": 4,
+    "proposed_service_role_policy_count": 2,
+    "allowed_cleanup_actions": [
+      "keep_review",
+      "quarantine_candidate",
+      "require_matcher_reclassify",
+      "require_special_lane_policy",
+      "require_high_value_review",
+      "defer_until_more_evidence"
+    ],
+    "allowed_cleanup_states": [
+      "review_open",
+      "quarantined",
+      "needs_matcher_reclassify",
+      "needs_special_lane_policy",
+      "needs_high_value_review",
+      "deferred_more_evidence"
+    ],
+    "allowed_reason_codes": [
+      "candidate_rows_still_need_review",
+      "match_confidence_below_policy",
+      "exclusion_flags_present",
+      "special_lane_manual_review",
+      "high_value_manual_review",
+      "insufficient_listing_count",
+      "insufficient_seller_diversity",
+      "manual_hold"
+    ],
+    "grants": [
+      "service_role: cleanup_events select",
+      "service_role: cleanup_events insert",
+      "service_role: cleanup_current view select",
+      "service_role: cleanup_card_summary view select"
+    ],
+    "no_update_grant": true,
+    "no_delete_grant": true
+  },
+  "boundary_proof": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "artifacts": {
+    "contract": "docs/contracts/MEE_CANDIDATE_CLEANUP_ACTION_MODEL_V1.md",
+    "plan": "docs/plans/market_evidence_engine_v1/MEE_CANDIDATE_CLEANUP_ACTION_MODEL_V1.md",
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1/report.json",
+    "schema_manifest": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1/schema_manifest.json",
+    "migration_candidate": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql",
+    "sql_candidate": "docs/sql/mee_candidate_cleanup_action_model_v1_migration_candidate.sql",
+    "rollback_dry_run_sql": "docs/sql/mee_candidate_cleanup_action_model_v1_rollback_dry_run.sql",
+    "readback_sql": "docs/sql/mee_candidate_cleanup_action_model_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_candidate_cleanup_action_model_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_CANDIDATE_CLEANUP_ACTION_MODEL_V1.md": "3f1cfc4fc92ae10886b1318d4e1b7a6185c2c9aa94a4e7c45de4836537f34c9b",
+    "docs/plans/market_evidence_engine_v1/MEE_CANDIDATE_CLEANUP_ACTION_MODEL_V1.md": "d5fa646013be30712345234401b1c90c23714d5c5f8f15e82fe437f9ccdbc336",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1.md": "387106d902c9d3ed701e2e407a2f66928e3a332e697bf8b45fce64ea3004b28d",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-V1/schema_manifest.json": "2a9c1800c462aa393f82ac3e63278fdd607e60794607020d9cb57ccfd92ca414",
+    "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql": "f9bb21d9a6fcb9c7d9bc1b814fac809f070a0ab1e554db995fc878d76fc3723b",
+    "docs/sql/mee_candidate_cleanup_action_model_v1_migration_candidate.sql": "f9bb21d9a6fcb9c7d9bc1b814fac809f070a0ab1e554db995fc878d76fc3723b",
+    "docs/sql/mee_candidate_cleanup_action_model_v1_rollback_dry_run.sql": "029b87a5e5c664bac660f4455075dbd8cd18a2a0af2eb0a8c454642009b223b8",
+    "docs/sql/mee_candidate_cleanup_action_model_v1_readback.sql": "5876c723c575e65c0982616ab7bad4e936fe0e67c2bd1a2d451ce01dad7de4bc",
+    "tests/contracts/mee_candidate_cleanup_action_model_v1.test.mjs": "8936ae6841f30ebf797c10df07efd8c86b7b2fabf751d7cda950f7d470293633"
+  },
+  "package_fingerprint_sha256": "011428707606f4b6e40b4702b8a1fb0cca6249170213079c0062a6b771241d8a",
+  "next_step": "Request targeted remote schema apply only if this local schema candidate is accepted; then seed cleanup events in a separate non-public package.",
+  "findings": []
+}

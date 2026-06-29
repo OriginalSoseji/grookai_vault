@@ -1,0 +1,119 @@
+{
+  "id": "bw7-122",
+  "name": "Stoutland",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "140",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesFrom": "Herdier",
+  "abilities": [
+    {
+      "name": "Sentinel",
+      "text": "As long as this Pokémon is your Active Pokémon, your opponent can't play any Supporter cards from his or her hand.",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Wild Tackle",
+      "cost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "90",
+      "text": "Flip a coin. If tails, this Pokémon does 20 damage to itself."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "122",
+  "artist": "Shin Nagasawa",
+  "rarity": "Rare Holo",
+  "flavorText": "Being wrapped in its long fur is so comfortable that a person would be fine even overnight on a wintry mountain.",
+  "nationalPokedexNumbers": [
+    508
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/122.png",
+    "large": "https://images.pokemontcg.io/bw7/122_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-122",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 3.2,
+        "mid": 6.76,
+        "high": 59.9,
+        "market": 5.76,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 8.43,
+        "mid": 9.99,
+        "high": 60,
+        "market": 5.62,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-122",
+    "updatedAt": "2025/12/07",
+    "prices": {
+      "averageSellPrice": 3.21,
+      "lowPrice": 0.15,
+      "trendPrice": 3.52,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 1.5,
+      "reverseHoloTrend": 4.25,
+      "lowPriceExPlus": 1.99,
+      "avg1": 1.9,
+      "avg7": 3.21,
+      "avg30": 3.14,
+      "reverseHoloAvg1": 2.7,
+      "reverseHoloAvg7": 3.6,
+      "reverseHoloAvg30": 4.04
+    }
+  }
+}

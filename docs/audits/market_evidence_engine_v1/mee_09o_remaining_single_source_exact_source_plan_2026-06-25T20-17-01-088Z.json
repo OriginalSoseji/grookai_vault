@@ -1,0 +1,1998 @@
+{
+  "package_id": "MARKET-REFERENCE-REMAINING-SINGLE-SOURCE-EXACT-SOURCE-PLAN-V1",
+  "generated_at": "2026-06-25T20:17:01.079Z",
+  "plan_version": "MEE_09O_REMAINING_SINGLE_SOURCE_EXACT_SOURCE_PLAN_V1",
+  "mode": "exact_source_query_plan_no_fetch_no_writes",
+  "rollup_version": "MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "summary": {
+    "target_count": 18,
+    "route_count": 54,
+    "source_counts": {
+      "ebay_active": 18,
+      "ebay_sold_candidate": 18,
+      "manual_review_candidate": 18
+    },
+    "family_counts": {
+      "battle_road_victory_cup": 12,
+      "bw_black_star_promo": 2,
+      "call_of_legends_shiny_legend": 4
+    }
+  },
+  "targets": [
+    {
+      "ordinal": 1,
+      "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1203.3,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"1st Place\" BW31",
+      "exact_routes": [
+        {
+          "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP Victory Cup 31 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1203.3,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"1st Place\" BW31",
+      "exact_routes": [
+        {
+          "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP Victory Cup 31 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1203.3,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"1st Place\" BW31",
+      "exact_routes": [
+        {
+          "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP Victory Cup 31 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "31",
+      "number_plain": "31",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1203.3,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"1st Place\" BW31",
+      "exact_routes": [
+        {
+          "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"1st Place\" BW31 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%221st%20Place%22%20BW31%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP Victory Cup 31 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "gv_id": "GV-PK-COL-SL6",
+      "name": "Kyogre",
+      "set_code": "col1",
+      "provider_number": "SL6",
+      "number_plain": "6",
+      "rarity": "Rare Holo",
+      "family": "call_of_legends_shiny_legend",
+      "priority_score": 1156.49,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL",
+      "exact_routes": [
+        {
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "gv_id": "GV-PK-COL-SL6",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Kyogre%20%22Call%20of%20Legends%22%20SL6%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "gv_id": "GV-PK-COL-SL6",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Kyogre%20%22Call%20of%20Legends%22%20SL6%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "gv_id": "GV-PK-COL-SL6",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-COL-SL6 Kyogre SL6 call_of_legends_shiny_legend",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+      "gv_id": "GV-PK-COL-SL5",
+      "name": "Ho-Oh",
+      "set_code": "col1",
+      "provider_number": "SL5",
+      "number_plain": "5",
+      "rarity": "Rare Holo",
+      "family": "call_of_legends_shiny_legend",
+      "priority_score": 1152.59,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL",
+      "exact_routes": [
+        {
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Ho-Oh%20%22Call%20of%20Legends%22%20SL5%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Ho-Oh%20%22Call%20of%20Legends%22%20SL5%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-COL-SL5 Ho-Oh SL5 call_of_legends_shiny_legend",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 7,
+      "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+      "gv_id": "GV-PK-COL-SL1",
+      "name": "Deoxys",
+      "set_code": "col1",
+      "provider_number": "SL1",
+      "number_plain": "1",
+      "rarity": "Rare Holo",
+      "family": "call_of_legends_shiny_legend",
+      "priority_score": 1087.07,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Deoxys \"Call of Legends\" SL1 Shiny SL",
+      "exact_routes": [
+        {
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "gv_id": "GV-PK-COL-SL1",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Deoxys \"Call of Legends\" SL1 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Deoxys%20%22Call%20of%20Legends%22%20SL1%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "gv_id": "GV-PK-COL-SL1",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Deoxys \"Call of Legends\" SL1 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Deoxys%20%22Call%20of%20Legends%22%20SL1%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "gv_id": "GV-PK-COL-SL1",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-COL-SL1 Deoxys SL1 call_of_legends_shiny_legend",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "gv_id": "GV-PK-COL-SL8",
+      "name": "Palkia",
+      "set_code": "col1",
+      "provider_number": "SL8",
+      "number_plain": "8",
+      "rarity": "Rare Holo",
+      "family": "call_of_legends_shiny_legend",
+      "priority_score": 1086.7,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL",
+      "exact_routes": [
+        {
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Palkia%20%22Call%20of%20Legends%22%20SL8%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Palkia%20%22Call%20of%20Legends%22%20SL8%20Shiny%20SL%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-COL-SL8 Palkia SL8 call_of_legends_shiny_legend",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 9,
+      "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1042.89,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"2nd Place\" BW30",
+      "exact_routes": [
+        {
+          "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP Victory Cup 30 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 10,
+      "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1042.89,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"2nd Place\" BW30",
+      "exact_routes": [
+        {
+          "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP Victory Cup 30 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1042.89,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"2nd Place\" BW30",
+      "exact_routes": [
+        {
+          "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP Victory Cup 30 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "30",
+      "number_plain": "30",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1042.89,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"2nd Place\" BW30",
+      "exact_routes": [
+        {
+          "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%222nd%20Place%22%20BW30%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP Victory Cup 30 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 13,
+      "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1041.18,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"3rd Place\" BW29",
+      "exact_routes": [
+        {
+          "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2011\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202011%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP Victory Cup 29 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 14,
+      "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1041.18,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"3rd Place\" BW29",
+      "exact_routes": [
+        {
+          "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Autumn%202012%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP Victory Cup 29 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1041.18,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"3rd Place\" BW29",
+      "exact_routes": [
+        {
+          "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202012%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP Victory Cup 29 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 16,
+      "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "provider_number": "29",
+      "number_plain": "29",
+      "rarity": "Promo",
+      "family": "battle_road_victory_cup",
+      "priority_score": 1041.18,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"3rd Place\" BW29",
+      "exact_routes": [
+        {
+          "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20%22Victory%20Cup%22%20%22Battle%20Road%22%20%22Spring%202013%22%20%223rd%20Place%22%20BW29%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP Victory Cup 29 battle_road_victory_cup",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 17,
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "gv_id": "GV-PK-PR-BLW-BW05",
+      "name": "Zekrom",
+      "set_code": "bwp",
+      "provider_number": "BW05",
+      "number_plain": "05",
+      "rarity": "Promo",
+      "family": "bw_black_star_promo",
+      "priority_score": 1008.31,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Zekrom BW05 \"Black Star Promo\"",
+      "exact_routes": [
+        {
+          "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+          "gv_id": "GV-PK-PR-BLW-BW05",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Zekrom BW05 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Zekrom%20BW05%20%22Black%20Star%20Promo%22%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+          "gv_id": "GV-PK-PR-BLW-BW05",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Zekrom BW05 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Zekrom%20BW05%20%22Black%20Star%20Promo%22%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+          "gv_id": "GV-PK-PR-BLW-BW05",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-BW05 Zekrom BW05 bw_black_star_promo",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "name": "Reshiram",
+      "set_code": "bwp",
+      "provider_number": "BW04",
+      "number_plain": "04",
+      "rarity": "Promo",
+      "family": "bw_black_star_promo",
+      "priority_score": 1004.28,
+      "existing_sources": [
+        "tcgcsv_reference"
+      ],
+      "worklist_reasons": [
+        "single_source_reference_signal",
+        "first_wave_single_source_status",
+        "quarantined_context_present"
+      ],
+      "base_terms": "Pokemon Reshiram BW04 \"Black Star Promo\"",
+      "exact_routes": [
+        {
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "acquisition_mode": "approved_api",
+          "query_kind": "exact_event_or_promo_api_search_terms",
+          "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Reshiram%20BW04%20%22Black%20Star%20Promo%22%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german%20-psa%20-bgs%20-cgc%20-graded%20-slab",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "active raw asking-price evidence candidates for review only"
+        },
+        {
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "source": "ebay_sold_candidate",
+          "source_type": "sold_comp_candidate",
+          "acquisition_mode": "approved_path_required",
+          "query_kind": "exact_event_or_promo_sold_search_terms",
+          "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german",
+          "search_url_template": "https://www.ebay.com/sch/i.html?_nkw=Pokemon%20Reshiram%20BW04%20%22Black%20Star%20Promo%22%20-proxy%20-custom%20-reprint%20-replica%20-lot%20-bundle%20-sealed%20-pack%20-booster%20-japanese%20-spanish%20-german&LH_Sold=1&LH_Complete=1",
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "pokemon_card",
+            "exact_name_or_event_title",
+            "exact_number_or_promo_number",
+            "event_season_year_when_present",
+            "placement_stamp_when_present"
+          ],
+          "exclusion_hints": [
+            "lot_or_bundle",
+            "sealed_product",
+            "proxy_or_reprint",
+            "foreign_language",
+            "graded_or_slab_for_raw_active",
+            "wrong_event_year",
+            "wrong_place_stamp",
+            "wrong_promo_number"
+          ],
+          "evidence_goal": "sold/completed comp candidates for review only"
+        },
+        {
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "source": "manual_review_candidate",
+          "source_type": "manual_review_candidate",
+          "acquisition_mode": "operator_curated",
+          "query_kind": "operator_review_seed",
+          "query_text": "GV-PK-PR-BLW-BW04 Reshiram BW04 bw_black_star_promo",
+          "search_url_template": null,
+          "can_publish_price_directly": false,
+          "requires_review_before_truth": true,
+          "query_status": "planned_not_fetched",
+          "inclusion_hints": [
+            "exact_variant_context",
+            "event_stamp_text",
+            "raw_or_sold_comp_evidence"
+          ],
+          "exclusion_hints": [
+            "ambiguous_variant",
+            "source_terms_unclear",
+            "manual_review_required"
+          ],
+          "evidence_goal": "human review seed for high-value or exact event-stamped cards"
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "ready": true,
+  "source_worklist_artifact": "docs/audits/market_evidence_engine_v1/mee_09h_market_reference_signal_acquisition_worklist_2026-06-25T20-12-28-663Z.json",
+  "plan_hash": "26025f364fef1fc76213523120aa3b2515f866925bf2f3f7e7aa22a832eca47b"
+}

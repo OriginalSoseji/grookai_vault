@@ -1,0 +1,1978 @@
+{
+  "generated_at": "2026-06-25T17:12:57.950Z",
+  "contract": "MARKET_EVIDENCE_ENGINE_V1",
+  "phase": "MEE-06B_TCGCSV_REFERENCE_EVIDENCE_V1",
+  "mode": "public_snapshot_reference_raw_evidence_only",
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "db_writes": false,
+    "pricing_rollups": false,
+    "migration_apply": false,
+    "public_price_publication": false,
+    "raw_evidence_objects_created": true,
+    "raw_evidence_objects_persisted_to_db": false,
+    "read_only_db_set_catalog_lookup": true
+  },
+  "summary": {
+    "tcgcsv_targets": 10,
+    "reviewed_targets": 10,
+    "candidate_evidence_count": 49,
+    "status_counts": {
+      "candidate_evidence_created": 10
+    },
+    "groups_loaded": 217,
+    "groups_fetched": 5
+  },
+  "reviewed_targets": [
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "name": "Alakazam",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "1",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "name": "Mewtwo",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "10",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "name": "Nidoking",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "11",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "name": "Ninetales",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "12",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 4
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "name": "Poliwrath",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "13",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "name": "Venusaur",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "15",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "name": "Zapdos",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "16",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "name": "Beedrill",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "17",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "name": "Dragonair",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "18",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "name": "Dugtrio",
+      "set_code": "base1",
+      "set_name": "Base Set",
+      "number_plain": "19",
+      "status": "candidate_evidence_created",
+      "matched_group_count": 5,
+      "matched_groups": [
+        {
+          "group_id": 22873,
+          "name": "SV01: Scarlet & Violet Base Set"
+        },
+        {
+          "group_id": 2585,
+          "name": "SWSH01: Sword & Shield Base Set"
+        },
+        {
+          "group_id": 1863,
+          "name": "SM Base Set"
+        },
+        {
+          "group_id": 1387,
+          "name": "XY Base Set"
+        },
+        {
+          "group_id": 604,
+          "name": "Base Set"
+        }
+      ],
+      "candidate_count": 5
+    }
+  ],
+  "candidate_evidence": [
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42346/pokemon-base-set-alakazam",
+      "raw_title": "Alakazam | Base Set | Holofoil marketPrice",
+      "raw_price": 83.58,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42346,
+        "product_name": "Alakazam",
+        "product_number": "001/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:08:33.207",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42346/pokemon-base-set-alakazam",
+      "raw_title": "Alakazam | Base Set | Holofoil lowPrice",
+      "raw_price": 51.5,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42346,
+        "product_name": "Alakazam",
+        "product_number": "001/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:08:33.207",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42346/pokemon-base-set-alakazam",
+      "raw_title": "Alakazam | Base Set | Holofoil midPrice",
+      "raw_price": 70,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42346,
+        "product_name": "Alakazam",
+        "product_number": "001/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:08:33.207",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42346/pokemon-base-set-alakazam",
+      "raw_title": "Alakazam | Base Set | Holofoil highPrice",
+      "raw_price": 9999,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42346,
+        "product_name": "Alakazam",
+        "product_number": "001/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:08:33.207",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "b8e8cc5e-cc82-40b1-b202-0ebdc7593742",
+      "gv_id": "GV-PK-BS-1",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42346/pokemon-base-set-alakazam",
+      "raw_title": "Alakazam | Base Set | Holofoil directLowPrice",
+      "raw_price": 64,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42346,
+        "product_name": "Alakazam",
+        "product_number": "001/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:08:33.207",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42347/pokemon-base-set-mewtwo",
+      "raw_title": "Mewtwo | Base Set | Holofoil marketPrice",
+      "raw_price": 78.78,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42347,
+        "product_name": "Mewtwo",
+        "product_number": "010/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:14:10.29",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42347/pokemon-base-set-mewtwo",
+      "raw_title": "Mewtwo | Base Set | Holofoil lowPrice",
+      "raw_price": 34.99,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42347,
+        "product_name": "Mewtwo",
+        "product_number": "010/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:14:10.29",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42347/pokemon-base-set-mewtwo",
+      "raw_title": "Mewtwo | Base Set | Holofoil midPrice",
+      "raw_price": 67.74,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42347,
+        "product_name": "Mewtwo",
+        "product_number": "010/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:14:10.29",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42347/pokemon-base-set-mewtwo",
+      "raw_title": "Mewtwo | Base Set | Holofoil highPrice",
+      "raw_price": 500,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42347,
+        "product_name": "Mewtwo",
+        "product_number": "010/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:14:10.29",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fb36d02b-fcd9-42e8-a1a3-d919dc9d2f1f",
+      "gv_id": "GV-PK-BS-10",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42347/pokemon-base-set-mewtwo",
+      "raw_title": "Mewtwo | Base Set | Holofoil directLowPrice",
+      "raw_price": 62.12,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42347,
+        "product_name": "Mewtwo",
+        "product_number": "010/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:14:10.29",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42351/pokemon-base-set-nidoking",
+      "raw_title": "Nidoking | Base Set | Holofoil marketPrice",
+      "raw_price": 38.45,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42351,
+        "product_name": "Nidoking",
+        "product_number": "011/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-19T00:32:03.81",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42351/pokemon-base-set-nidoking",
+      "raw_title": "Nidoking | Base Set | Holofoil lowPrice",
+      "raw_price": 24.71,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42351,
+        "product_name": "Nidoking",
+        "product_number": "011/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-19T00:32:03.81",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42351/pokemon-base-set-nidoking",
+      "raw_title": "Nidoking | Base Set | Holofoil midPrice",
+      "raw_price": 31.64,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42351,
+        "product_name": "Nidoking",
+        "product_number": "011/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-19T00:32:03.81",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42351/pokemon-base-set-nidoking",
+      "raw_title": "Nidoking | Base Set | Holofoil highPrice",
+      "raw_price": 510.23,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42351,
+        "product_name": "Nidoking",
+        "product_number": "011/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-19T00:32:03.81",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "fce0338a-de7b-4133-8f91-61472747f150",
+      "gv_id": "GV-PK-BS-11",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42351/pokemon-base-set-nidoking",
+      "raw_title": "Nidoking | Base Set | Holofoil directLowPrice",
+      "raw_price": 388.65,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42351,
+        "product_name": "Nidoking",
+        "product_number": "011/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-19T00:32:03.81",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42352/pokemon-base-set-ninetales",
+      "raw_title": "Ninetales | Base Set | Holofoil marketPrice",
+      "raw_price": 36.87,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42352,
+        "product_name": "Ninetales",
+        "product_number": "012/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:34:24.71",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42352/pokemon-base-set-ninetales",
+      "raw_title": "Ninetales | Base Set | Holofoil lowPrice",
+      "raw_price": 15.6,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42352,
+        "product_name": "Ninetales",
+        "product_number": "012/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:34:24.71",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42352/pokemon-base-set-ninetales",
+      "raw_title": "Ninetales | Base Set | Holofoil midPrice",
+      "raw_price": 31.75,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42352,
+        "product_name": "Ninetales",
+        "product_number": "012/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:34:24.71",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+      "gv_id": "GV-PK-BS-12",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42352/pokemon-base-set-ninetales",
+      "raw_title": "Ninetales | Base Set | Holofoil highPrice",
+      "raw_price": 9999,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42352,
+        "product_name": "Ninetales",
+        "product_number": "012/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:34:24.71",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42353/pokemon-base-set-poliwrath",
+      "raw_title": "Poliwrath | Base Set | Holofoil marketPrice",
+      "raw_price": 38.05,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42353,
+        "product_name": "Poliwrath",
+        "product_number": "013/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:48:12.18",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42353/pokemon-base-set-poliwrath",
+      "raw_title": "Poliwrath | Base Set | Holofoil lowPrice",
+      "raw_price": 19.4,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42353,
+        "product_name": "Poliwrath",
+        "product_number": "013/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:48:12.18",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42353/pokemon-base-set-poliwrath",
+      "raw_title": "Poliwrath | Base Set | Holofoil midPrice",
+      "raw_price": 28.75,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42353,
+        "product_name": "Poliwrath",
+        "product_number": "013/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:48:12.18",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42353/pokemon-base-set-poliwrath",
+      "raw_title": "Poliwrath | Base Set | Holofoil highPrice",
+      "raw_price": 9999,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42353,
+        "product_name": "Poliwrath",
+        "product_number": "013/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:48:12.18",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d9fe6e48-1f68-47c2-881a-4ae590ef19ba",
+      "gv_id": "GV-PK-BS-13",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42353/pokemon-base-set-poliwrath",
+      "raw_title": "Poliwrath | Base Set | Holofoil directLowPrice",
+      "raw_price": 24.61,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42353,
+        "product_name": "Poliwrath",
+        "product_number": "013/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-03T01:48:12.18",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42355/pokemon-base-set-venusaur",
+      "raw_title": "Venusaur | Base Set | Holofoil marketPrice",
+      "raw_price": 155.78,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42355,
+        "product_name": "Venusaur",
+        "product_number": "015/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-10T17:35:36.22",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42355/pokemon-base-set-venusaur",
+      "raw_title": "Venusaur | Base Set | Holofoil lowPrice",
+      "raw_price": 104.36,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42355,
+        "product_name": "Venusaur",
+        "product_number": "015/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-10T17:35:36.22",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42355/pokemon-base-set-venusaur",
+      "raw_title": "Venusaur | Base Set | Holofoil midPrice",
+      "raw_price": 170.7,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42355,
+        "product_name": "Venusaur",
+        "product_number": "015/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-10T17:35:36.22",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42355/pokemon-base-set-venusaur",
+      "raw_title": "Venusaur | Base Set | Holofoil highPrice",
+      "raw_price": 1199,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42355,
+        "product_name": "Venusaur",
+        "product_number": "015/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-10T17:35:36.22",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "3058f3ee-db8c-4073-b862-f6073dac4126",
+      "gv_id": "GV-PK-BS-15",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42355/pokemon-base-set-venusaur",
+      "raw_title": "Venusaur | Base Set | Holofoil directLowPrice",
+      "raw_price": 180,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42355,
+        "product_name": "Venusaur",
+        "product_number": "015/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-06-10T17:35:36.22",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42356/pokemon-base-set-zapdos",
+      "raw_title": "Zapdos | Base Set | Holofoil marketPrice",
+      "raw_price": 55.09,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42356,
+        "product_name": "Zapdos",
+        "product_number": "016/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:13:07.93",
+        "subtype_name": "Holofoil",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42356/pokemon-base-set-zapdos",
+      "raw_title": "Zapdos | Base Set | Holofoil lowPrice",
+      "raw_price": 30.67,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42356,
+        "product_name": "Zapdos",
+        "product_number": "016/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:13:07.93",
+        "subtype_name": "Holofoil",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42356/pokemon-base-set-zapdos",
+      "raw_title": "Zapdos | Base Set | Holofoil midPrice",
+      "raw_price": 44.99,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42356,
+        "product_name": "Zapdos",
+        "product_number": "016/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:13:07.93",
+        "subtype_name": "Holofoil",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42356/pokemon-base-set-zapdos",
+      "raw_title": "Zapdos | Base Set | Holofoil highPrice",
+      "raw_price": 129.96,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42356,
+        "product_name": "Zapdos",
+        "product_number": "016/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:13:07.93",
+        "subtype_name": "Holofoil",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "cdd49bb0-1b66-4b9a-814b-e846b0b0d5fc",
+      "gv_id": "GV-PK-BS-16",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42356/pokemon-base-set-zapdos",
+      "raw_title": "Zapdos | Base Set | Holofoil directLowPrice",
+      "raw_price": 79.98,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "holo",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42356,
+        "product_name": "Zapdos",
+        "product_number": "016/102",
+        "product_rarity": "Holo Rare",
+        "product_modified_on": "2026-02-17T13:13:07.93",
+        "subtype_name": "Holofoil",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42357/pokemon-base-set-beedrill",
+      "raw_title": "Beedrill | Base Set | Normal marketPrice",
+      "raw_price": 5.3,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42357,
+        "product_name": "Beedrill",
+        "product_number": "017/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2023-06-16T18:04:57.767",
+        "subtype_name": "Normal",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42357/pokemon-base-set-beedrill",
+      "raw_title": "Beedrill | Base Set | Normal lowPrice",
+      "raw_price": 1.91,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42357,
+        "product_name": "Beedrill",
+        "product_number": "017/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2023-06-16T18:04:57.767",
+        "subtype_name": "Normal",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42357/pokemon-base-set-beedrill",
+      "raw_title": "Beedrill | Base Set | Normal midPrice",
+      "raw_price": 3.81,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42357,
+        "product_name": "Beedrill",
+        "product_number": "017/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2023-06-16T18:04:57.767",
+        "subtype_name": "Normal",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42357/pokemon-base-set-beedrill",
+      "raw_title": "Beedrill | Base Set | Normal highPrice",
+      "raw_price": 9999,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42357,
+        "product_name": "Beedrill",
+        "product_number": "017/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2023-06-16T18:04:57.767",
+        "subtype_name": "Normal",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+      "gv_id": "GV-PK-BS-17",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42357/pokemon-base-set-beedrill",
+      "raw_title": "Beedrill | Base Set | Normal directLowPrice",
+      "raw_price": 46.1,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42357,
+        "product_name": "Beedrill",
+        "product_number": "017/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2023-06-16T18:04:57.767",
+        "subtype_name": "Normal",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42358/pokemon-base-set-dragonair",
+      "raw_title": "Dragonair | Base Set | Normal marketPrice",
+      "raw_price": 17.8,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42358,
+        "product_name": "Dragonair",
+        "product_number": "018/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:52:00.703",
+        "subtype_name": "Normal",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42358/pokemon-base-set-dragonair",
+      "raw_title": "Dragonair | Base Set | Normal lowPrice",
+      "raw_price": 8,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42358,
+        "product_name": "Dragonair",
+        "product_number": "018/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:52:00.703",
+        "subtype_name": "Normal",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42358/pokemon-base-set-dragonair",
+      "raw_title": "Dragonair | Base Set | Normal midPrice",
+      "raw_price": 12.29,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42358,
+        "product_name": "Dragonair",
+        "product_number": "018/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:52:00.703",
+        "subtype_name": "Normal",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42358/pokemon-base-set-dragonair",
+      "raw_title": "Dragonair | Base Set | Normal highPrice",
+      "raw_price": 199.99,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42358,
+        "product_name": "Dragonair",
+        "product_number": "018/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:52:00.703",
+        "subtype_name": "Normal",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "d4131a35-f4e8-4c0a-a459-8b273f14bed5",
+      "gv_id": "GV-PK-BS-18",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42358/pokemon-base-set-dragonair",
+      "raw_title": "Dragonair | Base Set | Normal directLowPrice",
+      "raw_price": 146.52,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42358,
+        "product_name": "Dragonair",
+        "product_number": "018/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:52:00.703",
+        "subtype_name": "Normal",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42359/pokemon-base-set-dugtrio",
+      "raw_title": "Dugtrio | Base Set | Normal marketPrice",
+      "raw_price": 11.06,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:marketPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42359,
+        "product_name": "Dugtrio",
+        "product_number": "019/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:53:23.16",
+        "subtype_name": "Normal",
+        "metric": "marketPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42359/pokemon-base-set-dugtrio",
+      "raw_title": "Dugtrio | Base Set | Normal lowPrice",
+      "raw_price": 3.99,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:lowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42359,
+        "product_name": "Dugtrio",
+        "product_number": "019/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:53:23.16",
+        "subtype_name": "Normal",
+        "metric": "lowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42359/pokemon-base-set-dugtrio",
+      "raw_title": "Dugtrio | Base Set | Normal midPrice",
+      "raw_price": 7,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:midPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42359,
+        "product_name": "Dugtrio",
+        "product_number": "019/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:53:23.16",
+        "subtype_name": "Normal",
+        "metric": "midPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42359/pokemon-base-set-dugtrio",
+      "raw_title": "Dugtrio | Base Set | Normal highPrice",
+      "raw_price": 110.96,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:highPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42359,
+        "product_name": "Dugtrio",
+        "product_number": "019/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:53:23.16",
+        "subtype_name": "Normal",
+        "metric": "highPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    },
+    {
+      "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+      "gv_id": "GV-PK-BS-19",
+      "source": "tcgcsv_reference",
+      "source_type": "reference_price",
+      "source_url": "https://www.tcgplayer.com/product/42359/pokemon-base-set-dugtrio",
+      "raw_title": "Dugtrio | Base Set | Normal directLowPrice",
+      "raw_price": 39.95,
+      "currency": "USD",
+      "condition_hint": "tcgcsv:directLowPrice",
+      "finish_hint": "normal",
+      "observed_at": "2026-06-25T17:12:57.950Z",
+      "match_confidence_hint": "high",
+      "exclusion_flags": [
+        "manual_review_required"
+      ],
+      "needs_review": true,
+      "raw_payload": {
+        "lane": "tcgcsv_reference_v1",
+        "group_id": 604,
+        "group_name": "Base Set",
+        "product_id": 42359,
+        "product_name": "Dugtrio",
+        "product_number": "019/102",
+        "product_rarity": "Rare",
+        "product_modified_on": "2026-06-02T02:53:23.16",
+        "subtype_name": "Normal",
+        "metric": "directLowPrice",
+        "match_basis": "tcgcsv_group_name_product_name_number"
+      },
+      "contract_version": "MARKET_EVIDENCE_OBJECT_CONTRACT_V1",
+      "can_publish_price_directly": false
+    }
+  ]
+}

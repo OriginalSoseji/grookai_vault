@@ -1,0 +1,2572 @@
+{
+  "package_id": "MARKET-REFERENCE-ACTIVE-LISTING-NORMALIZATION-PLAN-V1",
+  "generated_at": "2026-06-25T21:25:04.830Z",
+  "version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+  "mode": "local_active_listing_normalization_policy_plan_only",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "market_truth": false
+  },
+  "summary": {
+    "normalized_evidence_count": 15,
+    "model_eligible_count": 0,
+    "review_required_count": 13,
+    "quarantined_count": 2,
+    "blocked_count": 0,
+    "direct_publishable_count": 0
+  },
+  "counts": {
+    "source_counts": {
+      "ebay_active": 15
+    },
+    "currency_counts": {
+      "USD": 15
+    },
+    "disposition_counts": {
+      "quarantined_active_listing_context": 2,
+      "review_required_active_listing": 13
+    },
+    "quality_flag_counts": {
+      "active_listing_unverified": 15,
+      "graded_listing_context": 2,
+      "manual_review_required": 15,
+      "sold_comp_missing": 15
+    }
+  },
+  "schema_status": {
+    "current_market_reference_normalized_evidence_allows_ebay_active": false,
+    "current_disposition_constraint_allows_active_listing_review_candidate": false,
+    "requires_schema_extension_before_persisting_normalized_rows": true
+  },
+  "findings": [],
+  "ready_for_schema_plan": true,
+  "normalized_evidence": [
+    {
+      "candidate_id": "d8b2aff0-fcb6-4916-9b84-731524ff0029",
+      "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+      "gv_id": "GV-PK-COL-SL1",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/298343689125?_skw=Pokemon+Deoxys+%22Call+of+Legends%22+SL1+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4576ab6ba5:g:HSkAAeSwFd5qELFt",
+      "raw_title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+      "normalized_price": 344.99,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "d8b2aff0-fcb6-4916-9b84-731524ff0029",
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "gv_id": "GV-PK-COL-SL1",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/298343689125?_skw=Pokemon+Deoxys+%22Call+of+Legends%22+SL1+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4576ab6ba5:g:HSkAAeSwFd5qELFt",
+          "raw_title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+          "raw_price": 344.99,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "344.99",
+              "currency": "USD"
+            },
+            "title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+            "item_id": "v1|298343689125|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Deoxys \"Call of Legends\" SL1 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "faa642ef6d92e79d915edb076f9f30f89a8704ca05c0e60445be440e4cd6efd2"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "da1bddd9-e209-4de8-af65-fc79ce447a42",
+      "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+      "gv_id": "GV-PK-COL-SL5",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/800162481768?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=itemba4d668668:g:KPYAAeSwbqtqKxlI",
+      "raw_title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+      "normalized_price": 238.16,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "da1bddd9-e209-4de8-af65-fc79ce447a42",
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/800162481768?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=itemba4d668668:g:KPYAAeSwbqtqKxlI",
+          "raw_title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+          "raw_price": 238.16,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "238.16",
+              "currency": "USD",
+              "convertedFromValue": "339.00",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+            "item_id": "v1|800162481768|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "231d5eb0-1936-41ea-b04e-a2a49f934f39",
+      "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+      "gv_id": "GV-PK-COL-SL5",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/357550060087?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item533fa4f237:g:-b8AAeSwD2NotQr4&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGbSaXV%2FOzDo2STzKAR3ZZnvexp3yX2AjO3uEAc8%2BROtFzDVoaV%2FlMLq1Dn4vAYcb9O9o5j96SLpktVfIeOpd8we6ss1gYBYT8r%2FNHiu3OfO044%2BM0jB5xMSUkZlbrkn3OCU%2BKa%2F3MvDzChHvy3ZYPZjuvVbm4D0f3Yz9Wg5fxU6b6DI9HMUUNpZRMcRsBlGUO55xA8YisGlk9KJBG%2B7IBQTSEkwbVMt3ft2tWQLMQXeHpvihHHUnu6jCZhvUzBpV9WhyMHXRRyPI34p%2F9tSJiPqiviEgDvPz0Rw%2BQewbHyBxyNtBv1Lx%2FmeT0m%2BWBJ8W%2FyKvs%2BAMPe%2FK8%2FR5a9HvunN2XLo3in%2B3x62NpWGs2Ezyp4Mo5eb3yuJwY8r3tQ8fuFJUsNRtSADaQnwUiIQsNE2DoPAnyvuV8%2BJGGOdJnyNMaj7VZcqkx0xhXwtlBC3PwnpfHSnl1z2HoEO1dA2MqUFdW%2BwRH8%2Blm1ivAOV5Nw27bRZi1p6aYogxHlRL6tDWRw%3D",
+      "raw_title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+      "normalized_price": 250,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "231d5eb0-1936-41ea-b04e-a2a49f934f39",
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/357550060087?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item533fa4f237:g:-b8AAeSwD2NotQr4&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGbSaXV%2FOzDo2STzKAR3ZZnvexp3yX2AjO3uEAc8%2BROtFzDVoaV%2FlMLq1Dn4vAYcb9O9o5j96SLpktVfIeOpd8we6ss1gYBYT8r%2FNHiu3OfO044%2BM0jB5xMSUkZlbrkn3OCU%2BKa%2F3MvDzChHvy3ZYPZjuvVbm4D0f3Yz9Wg5fxU6b6DI9HMUUNpZRMcRsBlGUO55xA8YisGlk9KJBG%2B7IBQTSEkwbVMt3ft2tWQLMQXeHpvihHHUnu6jCZhvUzBpV9WhyMHXRRyPI34p%2F9tSJiPqiviEgDvPz0Rw%2BQewbHyBxyNtBv1Lx%2FmeT0m%2BWBJ8W%2FyKvs%2BAMPe%2FK8%2FR5a9HvunN2XLo3in%2B3x62NpWGs2Ezyp4Mo5eb3yuJwY8r3tQ8fuFJUsNRtSADaQnwUiIQsNE2DoPAnyvuV8%2BJGGOdJnyNMaj7VZcqkx0xhXwtlBC3PwnpfHSnl1z2HoEO1dA2MqUFdW%2BwRH8%2Blm1ivAOV5Nw27bRZi1p6aYogxHlRL6tDWRw%3D",
+          "raw_title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+          "raw_price": 250,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "250.00",
+              "currency": "USD"
+            },
+            "title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+            "item_id": "v1|357550060087|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "60ac4679-4f0f-488f-be4f-fe4a29dc541f",
+      "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+      "gv_id": "GV-PK-COL-SL5",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/286817356427?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item42c7a58a8b:g:aYUAAeSwe-doxMYL",
+      "raw_title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+      "normalized_price": 288,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "60ac4679-4f0f-488f-be4f-fe4a29dc541f",
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "gv_id": "GV-PK-COL-SL5",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/286817356427?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item42c7a58a8b:g:aYUAAeSwe-doxMYL",
+          "raw_title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+          "raw_price": 288,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "288.00",
+              "currency": "USD"
+            },
+            "title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+            "item_id": "v1|286817356427|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "4e6efda1-0e1c-4c5f-baa5-b3d1d47b99b9",
+      "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "gv_id": "GV-PK-COL-SL6",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/178205182418?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item297ddb49d2:g:MYMAAeSwdOFqJ0Iv&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGaHS7QG27eVaHrcJ0qL%2FEVlp1nrDJhCm7hxkjx8ihnR8vYJdaqzDSz65hDBDA7DRpqmQyWezUKC6UfhN0uOnLS2kpa3KYS%2FakkUZeQNc1y6wMz2bjZUrK5wVUSTtzX1QUOufIiVtKEeTJZGFoqIFWdICxGY1A7NTINxtHoHJXB7jvxBxZ6LFJ7Xnmm3sfD5WRKUr%2F0%2FzuznAXSLS%2BwX67P7zc0qZpbjV7fwAHMGqpxmCf4AVNIv9vw3n91f3uxES3JZ8WhKvp7R2YRrHAr9mB7fA%2FE8n8UOAfvbWvok4%2F6byDUNf7VYhCe%2B6%2FO%2Fvbi8BP4Gdn4NNdo7GSdkZYBtZeReN%2FmwXKMMi3vC4cumg2kT%2BYLfPZ6ZPCuPWkXbfD7Mkav1OxaE2i6Xu8GlL%2Bh2sIdL5KejmEsOcb1pMoKQdUuR0z6bSFnCnUIxf8mufpLRC%2B%2Fm5Vpb%2FXnuYZ3dfdafxreaPfMXtdbdRwAoddsrsa9tdwbIhAE8oijPFI5NVSsoV4Q%3D",
+      "raw_title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+      "normalized_price": 351.26,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "4e6efda1-0e1c-4c5f-baa5-b3d1d47b99b9",
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "gv_id": "GV-PK-COL-SL6",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/178205182418?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item297ddb49d2:g:MYMAAeSwdOFqJ0Iv&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGaHS7QG27eVaHrcJ0qL%2FEVlp1nrDJhCm7hxkjx8ihnR8vYJdaqzDSz65hDBDA7DRpqmQyWezUKC6UfhN0uOnLS2kpa3KYS%2FakkUZeQNc1y6wMz2bjZUrK5wVUSTtzX1QUOufIiVtKEeTJZGFoqIFWdICxGY1A7NTINxtHoHJXB7jvxBxZ6LFJ7Xnmm3sfD5WRKUr%2F0%2FzuznAXSLS%2BwX67P7zc0qZpbjV7fwAHMGqpxmCf4AVNIv9vw3n91f3uxES3JZ8WhKvp7R2YRrHAr9mB7fA%2FE8n8UOAfvbWvok4%2F6byDUNf7VYhCe%2B6%2FO%2Fvbi8BP4Gdn4NNdo7GSdkZYBtZeReN%2FmwXKMMi3vC4cumg2kT%2BYLfPZ6ZPCuPWkXbfD7Mkav1OxaE2i6Xu8GlL%2Bh2sIdL5KejmEsOcb1pMoKQdUuR0z6bSFnCnUIxf8mufpLRC%2B%2Fm5Vpb%2FXnuYZ3dfdafxreaPfMXtdbdRwAoddsrsa9tdwbIhAE8oijPFI5NVSsoV4Q%3D",
+          "raw_title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+          "raw_price": 351.26,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "351.26",
+              "currency": "USD",
+              "convertedFromValue": "499.99",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+            "item_id": "v1|178205182418|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "decaf7fc11f90d08e6a7b1968036ed513607464df7dc52d862c7928edc71615f"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "05b23242-2a4c-4d29-a2d6-340978b01f01",
+      "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "gv_id": "GV-PK-COL-SL6",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/227368108528?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34f03201f0:g:UCYAAeSwR5dqHejk",
+      "raw_title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+      "normalized_price": 1200,
+      "normalized_currency": "USD",
+      "condition_hint": "Graded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "quarantined_active_listing_context",
+      "model_eligible": false,
+      "evidence_quality_score": 0.05,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "graded_listing_context",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "05b23242-2a4c-4d29-a2d6-340978b01f01",
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "gv_id": "GV-PK-COL-SL6",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/227368108528?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34f03201f0:g:UCYAAeSwR5dqHejk",
+          "raw_title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+          "raw_price": 1200,
+          "currency": "USD",
+          "condition_hint": "Graded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "1200.00",
+              "currency": "USD"
+            },
+            "title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+            "item_id": "v1|227368108528|0",
+            "provider": "ebay_browse",
+            "condition": "Graded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "decaf7fc11f90d08e6a7b1968036ed513607464df7dc52d862c7928edc71615f"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "b49a3670-7c26-4ee5-879a-65fe2dfa06fc",
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "gv_id": "GV-PK-COL-SL8",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/177966782585?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item296fa59879:g:R14AAeSwi3ppuGQc&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGZJIQkGh5CbA1OlVlFnDCse8ZLB8EV7VvJs7aOTnGggQJ6C3gea9bwWq2qOQFIYXadSFe%2BCRNB%2FJgBXjqDzxx5kKT1THjAGlUHGbJO8Avi4dUwB0rA%2BdLkeuQyca%2FclBt1FyWjmuAO04NA1rWloTPl3jHOyWCRNQeYSHJ0gZNVD1mauoinDf3FBmpzFqkvfJkoJl6oWaLgQx1CZ5UHe6X7YTd%2B9MomRcHhJo8u%2BMbAjho8GvoFHHqFADWTf4xI6gPF0DKRLHz8%2FnfapddDhuasnPHK1zsvbUnSWCgiBdvo6hGttVh6CoEts2vICayiMU2viUMAr7OE8C0nvSw%2Bsvgz96mY8IyCiEzPcO7yqWe9J96ed2Gkin%2FaRjKlc8S1DNPD10cX6b9bBmcRR9kDq7XBix%2F5YAJFPowQLmFIgwXoc8zTxpp%2B3LpnzSz%2FlfyWHKtfrO3pieRQf5JZQVJTiNCgjltyMdQB%2Bz40e1ZwxP2OiTznHJhhcXJMRFIBlIoIJ9%2Fs%3D",
+      "raw_title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+      "normalized_price": 189.68,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "b49a3670-7c26-4ee5-879a-65fe2dfa06fc",
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/177966782585?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item296fa59879:g:R14AAeSwi3ppuGQc&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGZJIQkGh5CbA1OlVlFnDCse8ZLB8EV7VvJs7aOTnGggQJ6C3gea9bwWq2qOQFIYXadSFe%2BCRNB%2FJgBXjqDzxx5kKT1THjAGlUHGbJO8Avi4dUwB0rA%2BdLkeuQyca%2FclBt1FyWjmuAO04NA1rWloTPl3jHOyWCRNQeYSHJ0gZNVD1mauoinDf3FBmpzFqkvfJkoJl6oWaLgQx1CZ5UHe6X7YTd%2B9MomRcHhJo8u%2BMbAjho8GvoFHHqFADWTf4xI6gPF0DKRLHz8%2FnfapddDhuasnPHK1zsvbUnSWCgiBdvo6hGttVh6CoEts2vICayiMU2viUMAr7OE8C0nvSw%2Bsvgz96mY8IyCiEzPcO7yqWe9J96ed2Gkin%2FaRjKlc8S1DNPD10cX6b9bBmcRR9kDq7XBix%2F5YAJFPowQLmFIgwXoc8zTxpp%2B3LpnzSz%2FlfyWHKtfrO3pieRQf5JZQVJTiNCgjltyMdQB%2Bz40e1ZwxP2OiTznHJhhcXJMRFIBlIoIJ9%2Fs%3D",
+          "raw_title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+          "raw_price": 189.68,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "189.68",
+              "currency": "USD",
+              "convertedFromValue": "269.99",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+            "item_id": "v1|177966782585|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "aa26241e-181c-4ec2-81ba-b916bb60cd5c",
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "gv_id": "GV-PK-COL-SL8",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/127929826996?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item1dc9363eb4:g:rE8AAeSw4rJqNHXG",
+      "raw_title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+      "normalized_price": 152.5,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "aa26241e-181c-4ec2-81ba-b916bb60cd5c",
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/127929826996?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item1dc9363eb4:g:rE8AAeSw4rJqNHXG",
+          "raw_title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+          "raw_price": 152.5,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "152.50",
+              "currency": "USD"
+            },
+            "title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+            "item_id": "v1|127929826996|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "5d8ee887-8334-4b2a-a25d-226cc2182709",
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "gv_id": "GV-PK-COL-SL8",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/236867860166?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item37266cb6c6:g:0jcAAeSwOQlqKCfj",
+      "raw_title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+      "normalized_price": 450,
+      "normalized_currency": "USD",
+      "condition_hint": "Graded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "quarantined_active_listing_context",
+      "model_eligible": false,
+      "evidence_quality_score": 0.05,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "graded_listing_context",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "5d8ee887-8334-4b2a-a25d-226cc2182709",
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "gv_id": "GV-PK-COL-SL8",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/236867860166?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item37266cb6c6:g:0jcAAeSwOQlqKCfj",
+          "raw_title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+          "raw_price": 450,
+          "currency": "USD",
+          "condition_hint": "Graded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "450.00",
+              "currency": "USD"
+            },
+            "title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+            "item_id": "v1|236867860166|0",
+            "provider": "ebay_browse",
+            "condition": "Graded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "ac2a676a-62b9-46e7-9fab-a083770de6bc",
+      "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/198367794987?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2012%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2e2fa4572b:g:2DgAAeSwCmBqDU0K",
+      "raw_title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+      "normalized_price": 106.07,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "ac2a676a-62b9-46e7-9fab-a083770de6bc",
+          "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/198367794987?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2012%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2e2fa4572b:g:2DgAAeSwCmBqDU0K",
+          "raw_title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+          "raw_price": 106.07,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "106.07",
+              "currency": "USD",
+              "convertedFromValue": "150.98",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+            "item_id": "v1|198367794987|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "20d73944a4382c8a68f89d7a2b7d9839415f5e10413cc7d7093ecafee5ced1cf"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "523ba121-ee17-4d31-b651-ecbea815c7f0",
+      "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/266956972655?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3e27e0226f:g:JjEAAOSw~zNmw7Zx",
+      "raw_title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+      "normalized_price": 89.95,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "523ba121-ee17-4d31-b651-ecbea815c7f0",
+          "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+          "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/266956972655?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3e27e0226f:g:JjEAAOSw~zNmw7Zx",
+          "raw_title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+          "raw_price": 89.95,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "89.95",
+              "currency": "USD"
+            },
+            "title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+            "item_id": "v1|266956972655|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "8f847a6ec41f7f9a27fa0565b05f1441e64542d5bee45079399106576d9b4627"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "1270775b-a972-468e-a45e-dcd7ee706a60",
+      "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/236889234299?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Autumn+2012%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3727b2db7b:g:oxQAAeSwallqN1x3",
+      "raw_title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+      "normalized_price": 150,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "1270775b-a972-468e-a45e-dcd7ee706a60",
+          "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/236889234299?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Autumn+2012%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3727b2db7b:g:oxQAAeSwallqN1x3",
+          "raw_title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+          "raw_price": 150,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "150.00",
+              "currency": "USD"
+            },
+            "title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+            "item_id": "v1|236889234299|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "f2ae39ff19528dcaa70a062c8649b4f7d83bea7895dd3d43789a33e337f2ba49"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "05e8891e-ab1d-4b82-af67-4ef7c311a95f",
+      "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/336243477501?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4e49ac4bfd:g:o4oAAeSwMs9o9sRs",
+      "raw_title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+      "normalized_price": 100,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "05e8891e-ab1d-4b82-af67-4ef7c311a95f",
+          "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+          "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/336243477501?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4e49ac4bfd:g:o4oAAeSwMs9o9sRs",
+          "raw_title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+          "raw_price": 100,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "100.00",
+              "currency": "USD"
+            },
+            "title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+            "item_id": "v1|336243477501|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "US",
+            "acquisition_request_key": "048daabf44d57fb1280696a030c793c8fdf47eca5e8592b61fc1e59c04521944"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "d340dbce-a882-449f-91b3-2056e2ea32cd",
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/204070147622?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2f83875626:g:P2EAAOSwMuxhL4rZ",
+      "raw_title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+      "normalized_price": 5.62,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "d340dbce-a882-449f-91b3-2056e2ea32cd",
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/204070147622?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2f83875626:g:P2EAAOSwMuxhL4rZ",
+          "raw_title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+          "raw_price": 5.62,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "5.62",
+              "currency": "USD",
+              "convertedFromValue": "8.00",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+            "item_id": "v1|204070147622|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "0a93fd6fc2b320de490c02247679fd2714cb3af620bb6d1918cb8c62c7e2e99f"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    },
+    {
+      "candidate_id": "2ae7915c-c7c6-43f7-8a27-6e8ac5102d3d",
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "source": "ebay_active",
+      "source_type": "active_listing",
+      "source_url": "https://www.ebay.com/itm/227356680683?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34ef83a1eb:g:HkYAAeSwGnFpyTv~",
+      "raw_title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+      "normalized_price": 4.57,
+      "normalized_currency": "USD",
+      "condition_hint": "Ungraded",
+      "finish_hint": null,
+      "observed_at": "2026-06-25T20:28:03.462+00:00",
+      "match_confidence_hint": "exact_candidate",
+      "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+      "metric_key": "active_listing_ask",
+      "metric_family": "active_listing_ask_bucket",
+      "model_disposition": "review_required_active_listing",
+      "model_eligible": false,
+      "evidence_quality_score": 0.2,
+      "weight_hint": 0,
+      "quality_flags": [
+        "active_listing_unverified",
+        "manual_review_required",
+        "sold_comp_missing"
+      ],
+      "needs_review": true,
+      "can_publish_price_directly": false,
+      "normalized_payload": {
+        "source_candidate": {
+          "id": "2ae7915c-c7c6-43f7-8a27-6e8ac5102d3d",
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "gv_id": "GV-PK-PR-BLW-BW04",
+          "source": "ebay_active",
+          "source_type": "active_listing",
+          "source_url": "https://www.ebay.com/itm/227356680683?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34ef83a1eb:g:HkYAAeSwGnFpyTv~",
+          "raw_title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+          "raw_price": 4.57,
+          "currency": "USD",
+          "condition_hint": "Ungraded",
+          "finish_hint": null,
+          "observed_at": "2026-06-25T20:28:03.462+00:00",
+          "match_confidence_hint": "exact_candidate",
+          "exclusion_flags": [
+            "manual_review_required"
+          ],
+          "needs_review": true,
+          "can_publish_price_directly": false,
+          "raw_payload": {
+            "price": {
+              "value": "4.57",
+              "currency": "USD",
+              "convertedFromValue": "6.50",
+              "convertedFromCurrency": "CAD"
+            },
+            "title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+            "item_id": "v1|227356680683|0",
+            "provider": "ebay_browse",
+            "condition": "Ungraded",
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+            "buying_options": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "item_location_country": "CA",
+            "acquisition_request_key": "0a93fd6fc2b320de490c02247679fd2714cb3af620bb6d1918cb8c62c7e2e99f"
+          }
+        },
+        "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+      }
+    }
+  ],
+  "samples": {
+    "review_required": [
+      {
+        "candidate_id": "d8b2aff0-fcb6-4916-9b84-731524ff0029",
+        "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "gv_id": "GV-PK-COL-SL1",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/298343689125?_skw=Pokemon+Deoxys+%22Call+of+Legends%22+SL1+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4576ab6ba5:g:HSkAAeSwFd5qELFt",
+        "raw_title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+        "normalized_price": 344.99,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "d8b2aff0-fcb6-4916-9b84-731524ff0029",
+            "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+            "gv_id": "GV-PK-COL-SL1",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/298343689125?_skw=Pokemon+Deoxys+%22Call+of+Legends%22+SL1+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4576ab6ba5:g:HSkAAeSwFd5qELFt",
+            "raw_title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+            "raw_price": 344.99,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "344.99",
+                "currency": "USD"
+              },
+              "title": "Pokemon TCG Deoxys Shiny SL1 Call of Legends Shiny Holo Rare Basic HP80",
+              "item_id": "v1|298343689125|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Deoxys \"Call of Legends\" SL1 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "faa642ef6d92e79d915edb076f9f30f89a8704ca05c0e60445be440e4cd6efd2"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "da1bddd9-e209-4de8-af65-fc79ce447a42",
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/800162481768?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=itemba4d668668:g:KPYAAeSwbqtqKxlI",
+        "raw_title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+        "normalized_price": 238.16,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "da1bddd9-e209-4de8-af65-fc79ce447a42",
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/800162481768?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=itemba4d668668:g:KPYAAeSwbqtqKxlI",
+            "raw_title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+            "raw_price": 238.16,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "238.16",
+                "currency": "USD",
+                "convertedFromValue": "339.00",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "Ho-Oh (Shiny) SL5 Call of Legends MP/HP+ 2011 Pokemon Card",
+              "item_id": "v1|800162481768|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "231d5eb0-1936-41ea-b04e-a2a49f934f39",
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/357550060087?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item533fa4f237:g:-b8AAeSwD2NotQr4&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGbSaXV%2FOzDo2STzKAR3ZZnvexp3yX2AjO3uEAc8%2BROtFzDVoaV%2FlMLq1Dn4vAYcb9O9o5j96SLpktVfIeOpd8we6ss1gYBYT8r%2FNHiu3OfO044%2BM0jB5xMSUkZlbrkn3OCU%2BKa%2F3MvDzChHvy3ZYPZjuvVbm4D0f3Yz9Wg5fxU6b6DI9HMUUNpZRMcRsBlGUO55xA8YisGlk9KJBG%2B7IBQTSEkwbVMt3ft2tWQLMQXeHpvihHHUnu6jCZhvUzBpV9WhyMHXRRyPI34p%2F9tSJiPqiviEgDvPz0Rw%2BQewbHyBxyNtBv1Lx%2FmeT0m%2BWBJ8W%2FyKvs%2BAMPe%2FK8%2FR5a9HvunN2XLo3in%2B3x62NpWGs2Ezyp4Mo5eb3yuJwY8r3tQ8fuFJUsNRtSADaQnwUiIQsNE2DoPAnyvuV8%2BJGGOdJnyNMaj7VZcqkx0xhXwtlBC3PwnpfHSnl1z2HoEO1dA2MqUFdW%2BwRH8%2Blm1ivAOV5Nw27bRZi1p6aYogxHlRL6tDWRw%3D",
+        "raw_title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+        "normalized_price": 250,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "231d5eb0-1936-41ea-b04e-a2a49f934f39",
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/357550060087?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item533fa4f237:g:-b8AAeSwD2NotQr4&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGbSaXV%2FOzDo2STzKAR3ZZnvexp3yX2AjO3uEAc8%2BROtFzDVoaV%2FlMLq1Dn4vAYcb9O9o5j96SLpktVfIeOpd8we6ss1gYBYT8r%2FNHiu3OfO044%2BM0jB5xMSUkZlbrkn3OCU%2BKa%2F3MvDzChHvy3ZYPZjuvVbm4D0f3Yz9Wg5fxU6b6DI9HMUUNpZRMcRsBlGUO55xA8YisGlk9KJBG%2B7IBQTSEkwbVMt3ft2tWQLMQXeHpvihHHUnu6jCZhvUzBpV9WhyMHXRRyPI34p%2F9tSJiPqiviEgDvPz0Rw%2BQewbHyBxyNtBv1Lx%2FmeT0m%2BWBJ8W%2FyKvs%2BAMPe%2FK8%2FR5a9HvunN2XLo3in%2B3x62NpWGs2Ezyp4Mo5eb3yuJwY8r3tQ8fuFJUsNRtSADaQnwUiIQsNE2DoPAnyvuV8%2BJGGOdJnyNMaj7VZcqkx0xhXwtlBC3PwnpfHSnl1z2HoEO1dA2MqUFdW%2BwRH8%2Blm1ivAOV5Nw27bRZi1p6aYogxHlRL6tDWRw%3D",
+            "raw_title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+            "raw_price": 250,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "250.00",
+                "currency": "USD"
+              },
+              "title": "Pokemon Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+              "item_id": "v1|357550060087|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "60ac4679-4f0f-488f-be4f-fe4a29dc541f",
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "gv_id": "GV-PK-COL-SL5",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/286817356427?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item42c7a58a8b:g:aYUAAeSwe-doxMYL",
+        "raw_title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+        "normalized_price": 288,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "60ac4679-4f0f-488f-be4f-fe4a29dc541f",
+            "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+            "gv_id": "GV-PK-COL-SL5",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/286817356427?_skw=Pokemon+Ho-Oh+%22Call+of+Legends%22+SL5+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item42c7a58a8b:g:aYUAAeSwe-doxMYL",
+            "raw_title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+            "raw_price": 288,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "288.00",
+                "currency": "USD"
+              },
+              "title": "Pokemon card Ho-Oh Shiny Holo Rare Card Call of Legends SL5",
+              "item_id": "v1|286817356427|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Ho-Oh \"Call of Legends\" SL5 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "411a744c94652f36a85dde8be70c53d1aec5b3a41fa059fb8ec3254f1b75444e"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "4e6efda1-0e1c-4c5f-baa5-b3d1d47b99b9",
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/178205182418?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item297ddb49d2:g:MYMAAeSwdOFqJ0Iv&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGaHS7QG27eVaHrcJ0qL%2FEVlp1nrDJhCm7hxkjx8ihnR8vYJdaqzDSz65hDBDA7DRpqmQyWezUKC6UfhN0uOnLS2kpa3KYS%2FakkUZeQNc1y6wMz2bjZUrK5wVUSTtzX1QUOufIiVtKEeTJZGFoqIFWdICxGY1A7NTINxtHoHJXB7jvxBxZ6LFJ7Xnmm3sfD5WRKUr%2F0%2FzuznAXSLS%2BwX67P7zc0qZpbjV7fwAHMGqpxmCf4AVNIv9vw3n91f3uxES3JZ8WhKvp7R2YRrHAr9mB7fA%2FE8n8UOAfvbWvok4%2F6byDUNf7VYhCe%2B6%2FO%2Fvbi8BP4Gdn4NNdo7GSdkZYBtZeReN%2FmwXKMMi3vC4cumg2kT%2BYLfPZ6ZPCuPWkXbfD7Mkav1OxaE2i6Xu8GlL%2Bh2sIdL5KejmEsOcb1pMoKQdUuR0z6bSFnCnUIxf8mufpLRC%2B%2Fm5Vpb%2FXnuYZ3dfdafxreaPfMXtdbdRwAoddsrsa9tdwbIhAE8oijPFI5NVSsoV4Q%3D",
+        "raw_title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+        "normalized_price": 351.26,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "4e6efda1-0e1c-4c5f-baa5-b3d1d47b99b9",
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/178205182418?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item297ddb49d2:g:MYMAAeSwdOFqJ0Iv&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGaHS7QG27eVaHrcJ0qL%2FEVlp1nrDJhCm7hxkjx8ihnR8vYJdaqzDSz65hDBDA7DRpqmQyWezUKC6UfhN0uOnLS2kpa3KYS%2FakkUZeQNc1y6wMz2bjZUrK5wVUSTtzX1QUOufIiVtKEeTJZGFoqIFWdICxGY1A7NTINxtHoHJXB7jvxBxZ6LFJ7Xnmm3sfD5WRKUr%2F0%2FzuznAXSLS%2BwX67P7zc0qZpbjV7fwAHMGqpxmCf4AVNIv9vw3n91f3uxES3JZ8WhKvp7R2YRrHAr9mB7fA%2FE8n8UOAfvbWvok4%2F6byDUNf7VYhCe%2B6%2FO%2Fvbi8BP4Gdn4NNdo7GSdkZYBtZeReN%2FmwXKMMi3vC4cumg2kT%2BYLfPZ6ZPCuPWkXbfD7Mkav1OxaE2i6Xu8GlL%2Bh2sIdL5KejmEsOcb1pMoKQdUuR0z6bSFnCnUIxf8mufpLRC%2B%2Fm5Vpb%2FXnuYZ3dfdafxreaPfMXtdbdRwAoddsrsa9tdwbIhAE8oijPFI5NVSsoV4Q%3D",
+            "raw_title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+            "raw_price": 351.26,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "351.26",
+                "currency": "USD",
+                "convertedFromValue": "499.99",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "Kyogre SL6 - Call of Legends Shiny Secret Rare Holo Pokemon TCG MP",
+              "item_id": "v1|178205182418|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "decaf7fc11f90d08e6a7b1968036ed513607464df7dc52d862c7928edc71615f"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "b49a3670-7c26-4ee5-879a-65fe2dfa06fc",
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/177966782585?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item296fa59879:g:R14AAeSwi3ppuGQc&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGZJIQkGh5CbA1OlVlFnDCse8ZLB8EV7VvJs7aOTnGggQJ6C3gea9bwWq2qOQFIYXadSFe%2BCRNB%2FJgBXjqDzxx5kKT1THjAGlUHGbJO8Avi4dUwB0rA%2BdLkeuQyca%2FclBt1FyWjmuAO04NA1rWloTPl3jHOyWCRNQeYSHJ0gZNVD1mauoinDf3FBmpzFqkvfJkoJl6oWaLgQx1CZ5UHe6X7YTd%2B9MomRcHhJo8u%2BMbAjho8GvoFHHqFADWTf4xI6gPF0DKRLHz8%2FnfapddDhuasnPHK1zsvbUnSWCgiBdvo6hGttVh6CoEts2vICayiMU2viUMAr7OE8C0nvSw%2Bsvgz96mY8IyCiEzPcO7yqWe9J96ed2Gkin%2FaRjKlc8S1DNPD10cX6b9bBmcRR9kDq7XBix%2F5YAJFPowQLmFIgwXoc8zTxpp%2B3LpnzSz%2FlfyWHKtfrO3pieRQf5JZQVJTiNCgjltyMdQB%2Bz40e1ZwxP2OiTznHJhhcXJMRFIBlIoIJ9%2Fs%3D",
+        "raw_title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+        "normalized_price": 189.68,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "b49a3670-7c26-4ee5-879a-65fe2dfa06fc",
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/177966782585?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item296fa59879:g:R14AAeSwi3ppuGQc&amdata=enc%3AAQALAAABkACCtXRWQnOEpyOqnQQ8KGZJIQkGh5CbA1OlVlFnDCse8ZLB8EV7VvJs7aOTnGggQJ6C3gea9bwWq2qOQFIYXadSFe%2BCRNB%2FJgBXjqDzxx5kKT1THjAGlUHGbJO8Avi4dUwB0rA%2BdLkeuQyca%2FclBt1FyWjmuAO04NA1rWloTPl3jHOyWCRNQeYSHJ0gZNVD1mauoinDf3FBmpzFqkvfJkoJl6oWaLgQx1CZ5UHe6X7YTd%2B9MomRcHhJo8u%2BMbAjho8GvoFHHqFADWTf4xI6gPF0DKRLHz8%2FnfapddDhuasnPHK1zsvbUnSWCgiBdvo6hGttVh6CoEts2vICayiMU2viUMAr7OE8C0nvSw%2Bsvgz96mY8IyCiEzPcO7yqWe9J96ed2Gkin%2FaRjKlc8S1DNPD10cX6b9bBmcRR9kDq7XBix%2F5YAJFPowQLmFIgwXoc8zTxpp%2B3LpnzSz%2FlfyWHKtfrO3pieRQf5JZQVJTiNCgjltyMdQB%2Bz40e1ZwxP2OiTznHJhhcXJMRFIBlIoIJ9%2Fs%3D",
+            "raw_title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+            "raw_price": 189.68,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "189.68",
+                "currency": "USD",
+                "convertedFromValue": "269.99",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "Palkia (Shiny) SL8 - Call of Legends Holo Rare Pokemon TCG MP",
+              "item_id": "v1|177966782585|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "aa26241e-181c-4ec2-81ba-b916bb60cd5c",
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/127929826996?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item1dc9363eb4:g:rE8AAeSw4rJqNHXG",
+        "raw_title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+        "normalized_price": 152.5,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "aa26241e-181c-4ec2-81ba-b916bb60cd5c",
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/127929826996?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item1dc9363eb4:g:rE8AAeSw4rJqNHXG",
+            "raw_title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+            "raw_price": 152.5,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "152.50",
+                "currency": "USD"
+              },
+              "title": "Pokemon TCG Shiny Palkia Call Of Legends SL8 Holo Rare Card 2011 LP/MP",
+              "item_id": "v1|127929826996|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "ac2a676a-62b9-46e7-9fab-a083770de6bc",
+        "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/198367794987?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2012%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2e2fa4572b:g:2DgAAeSwCmBqDU0K",
+        "raw_title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+        "normalized_price": 106.07,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "ac2a676a-62b9-46e7-9fab-a083770de6bc",
+            "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/198367794987?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2012%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2e2fa4572b:g:2DgAAeSwCmBqDU0K",
+            "raw_title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+            "raw_price": 106.07,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "106.07",
+                "currency": "USD",
+                "convertedFromValue": "150.98",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "Victory Cup - BW29 - Pokemon Black White Battle Road Spring 2012 3rd Place NM",
+              "item_id": "v1|198367794987|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2012\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "20d73944a4382c8a68f89d7a2b7d9839415f5e10413cc7d7093ecafee5ced1cf"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "523ba121-ee17-4d31-b651-ecbea815c7f0",
+        "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+        "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/266956972655?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3e27e0226f:g:JjEAAOSw~zNmw7Zx",
+        "raw_title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+        "normalized_price": 89.95,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "523ba121-ee17-4d31-b651-ecbea815c7f0",
+            "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+            "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/266956972655?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%223rd+Place%22+BW29+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3e27e0226f:g:JjEAAOSw~zNmw7Zx",
+            "raw_title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+            "raw_price": 89.95,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "89.95",
+                "currency": "USD"
+              },
+              "title": "Pokemon Victory Cup BW29 Battle Road 3rd Place Spring 2013 Promo MISPRINT NM!!",
+              "item_id": "v1|266956972655|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"3rd Place\" BW29 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "8f847a6ec41f7f9a27fa0565b05f1441e64542d5bee45079399106576d9b4627"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "1270775b-a972-468e-a45e-dcd7ee706a60",
+        "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/236889234299?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Autumn+2012%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3727b2db7b:g:oxQAAeSwallqN1x3",
+        "raw_title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+        "normalized_price": 150,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "1270775b-a972-468e-a45e-dcd7ee706a60",
+            "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/236889234299?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Autumn+2012%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item3727b2db7b:g:oxQAAeSwallqN1x3",
+            "raw_title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+            "raw_price": 150,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "150.00",
+                "currency": "USD"
+              },
+              "title": "Pokemon Victory Cup BW30 Battle Road 2nd Place Autumn 2012 Promo Holofoil CLEAN",
+              "item_id": "v1|236889234299|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Autumn 2012\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "f2ae39ff19528dcaa70a062c8649b4f7d83bea7895dd3d43789a33e337f2ba49"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "05e8891e-ab1d-4b82-af67-4ef7c311a95f",
+        "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+        "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/336243477501?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4e49ac4bfd:g:o4oAAeSwMs9o9sRs",
+        "raw_title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+        "normalized_price": 100,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "05e8891e-ab1d-4b82-af67-4ef7c311a95f",
+            "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+            "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/336243477501?_skw=Pokemon+%22Victory+Cup%22+%22Battle+Road%22+%22Spring+2013%22+%222nd+Place%22+BW30+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item4e49ac4bfd:g:o4oAAeSwMs9o9sRs",
+            "raw_title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+            "raw_price": 100,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "100.00",
+                "currency": "USD"
+              },
+              "title": "Pokemon VICTORY CUP BW30 Battle Road Spring 2013 2nd Place PROMO Card - NM/MINT",
+              "item_id": "v1|336243477501|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon \"Victory Cup\" \"Battle Road\" \"Spring 2013\" \"2nd Place\" BW30 -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "048daabf44d57fb1280696a030c793c8fdf47eca5e8592b61fc1e59c04521944"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "d340dbce-a882-449f-91b3-2056e2ea32cd",
+        "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+        "gv_id": "GV-PK-PR-BLW-BW04",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/204070147622?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2f83875626:g:P2EAAOSwMuxhL4rZ",
+        "raw_title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+        "normalized_price": 5.62,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "d340dbce-a882-449f-91b3-2056e2ea32cd",
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/204070147622?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item2f83875626:g:P2EAAOSwMuxhL4rZ",
+            "raw_title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+            "raw_price": 5.62,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "5.62",
+                "currency": "USD",
+                "convertedFromValue": "8.00",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "Pokemon Reshiram BW04 Holo Black Star Promo Card",
+              "item_id": "v1|204070147622|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "0a93fd6fc2b320de490c02247679fd2714cb3af620bb6d1918cb8c62c7e2e99f"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "2ae7915c-c7c6-43f7-8a27-6e8ac5102d3d",
+        "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+        "gv_id": "GV-PK-PR-BLW-BW04",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/227356680683?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34ef83a1eb:g:HkYAAeSwGnFpyTv~",
+        "raw_title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+        "normalized_price": 4.57,
+        "normalized_currency": "USD",
+        "condition_hint": "Ungraded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "review_required_active_listing",
+        "model_eligible": false,
+        "evidence_quality_score": 0.2,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "2ae7915c-c7c6-43f7-8a27-6e8ac5102d3d",
+            "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+            "gv_id": "GV-PK-PR-BLW-BW04",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/227356680683?_skw=Pokemon+Reshiram+BW04+%22Black+Star+Promo%22+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34ef83a1eb:g:HkYAAeSwGnFpyTv~",
+            "raw_title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+            "raw_price": 4.57,
+            "currency": "USD",
+            "condition_hint": "Ungraded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "4.57",
+                "currency": "USD",
+                "convertedFromValue": "6.50",
+                "convertedFromCurrency": "CAD"
+              },
+              "title": "2011 - Reshiram BW04 Holo Black Star Promo - Black & White Pokemon Card LP/MP",
+              "item_id": "v1|227356680683|0",
+              "provider": "ebay_browse",
+              "condition": "Ungraded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Reshiram BW04 \"Black Star Promo\" -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "CA",
+              "acquisition_request_key": "0a93fd6fc2b320de490c02247679fd2714cb3af620bb6d1918cb8c62c7e2e99f"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      }
+    ],
+    "quarantined": [
+      {
+        "candidate_id": "05b23242-2a4c-4d29-a2d6-340978b01f01",
+        "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+        "gv_id": "GV-PK-COL-SL6",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/227368108528?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34f03201f0:g:UCYAAeSwR5dqHejk",
+        "raw_title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+        "normalized_price": 1200,
+        "normalized_currency": "USD",
+        "condition_hint": "Graded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "quarantined_active_listing_context",
+        "model_eligible": false,
+        "evidence_quality_score": 0.05,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "graded_listing_context",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "05b23242-2a4c-4d29-a2d6-340978b01f01",
+            "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+            "gv_id": "GV-PK-COL-SL6",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/227368108528?_skw=Pokemon+Kyogre+%22Call+of+Legends%22+SL6+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item34f03201f0:g:UCYAAeSwR5dqHejk",
+            "raw_title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+            "raw_price": 1200,
+            "currency": "USD",
+            "condition_hint": "Graded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "1200.00",
+                "currency": "USD"
+              },
+              "title": "Kyogre Shiny - SL6 Call of Legends 2011 Pokemon Card TAG 7",
+              "item_id": "v1|227368108528|0",
+              "provider": "ebay_browse",
+              "condition": "Graded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Kyogre \"Call of Legends\" SL6 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "decaf7fc11f90d08e6a7b1968036ed513607464df7dc52d862c7928edc71615f"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      },
+      {
+        "candidate_id": "5d8ee887-8334-4b2a-a25d-226cc2182709",
+        "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+        "gv_id": "GV-PK-COL-SL8",
+        "source": "ebay_active",
+        "source_type": "active_listing",
+        "source_url": "https://www.ebay.com/itm/236867860166?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item37266cb6c6:g:0jcAAeSwOQlqKCfj",
+        "raw_title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+        "normalized_price": 450,
+        "normalized_currency": "USD",
+        "condition_hint": "Graded",
+        "finish_hint": null,
+        "observed_at": "2026-06-25T20:28:03.462+00:00",
+        "match_confidence_hint": "exact_candidate",
+        "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+        "metric_key": "active_listing_ask",
+        "metric_family": "active_listing_ask_bucket",
+        "model_disposition": "quarantined_active_listing_context",
+        "model_eligible": false,
+        "evidence_quality_score": 0.05,
+        "weight_hint": 0,
+        "quality_flags": [
+          "active_listing_unverified",
+          "graded_listing_context",
+          "manual_review_required",
+          "sold_comp_missing"
+        ],
+        "needs_review": true,
+        "can_publish_price_directly": false,
+        "normalized_payload": {
+          "source_candidate": {
+            "id": "5d8ee887-8334-4b2a-a25d-226cc2182709",
+            "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+            "gv_id": "GV-PK-COL-SL8",
+            "source": "ebay_active",
+            "source_type": "active_listing",
+            "source_url": "https://www.ebay.com/itm/236867860166?_skw=Pokemon+Palkia+%22Call+of+Legends%22+SL8+Shiny+SL+-proxy+-custom+-reprint+-replica+-lot+-bundle+-sealed+-pack+-booster+-japanese+-spanish+-german+-psa+-bgs+-cgc+-graded+-slab&hash=item37266cb6c6:g:0jcAAeSwOQlqKCfj",
+            "raw_title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+            "raw_price": 450,
+            "currency": "USD",
+            "condition_hint": "Graded",
+            "finish_hint": null,
+            "observed_at": "2026-06-25T20:28:03.462+00:00",
+            "match_confidence_hint": "exact_candidate",
+            "exclusion_flags": [
+              "manual_review_required"
+            ],
+            "needs_review": true,
+            "can_publish_price_directly": false,
+            "raw_payload": {
+              "price": {
+                "value": "450.00",
+                "currency": "USD"
+              },
+              "title": "Pokemon 2011 Call of Legends Palkia SL8 Shiny Holo Rare SGC 8",
+              "item_id": "v1|236867860166|0",
+              "provider": "ebay_browse",
+              "condition": "Graded",
+              "categories": [
+                {
+                  "categoryId": "183454",
+                  "categoryName": "CCG Individual Cards"
+                },
+                {
+                  "categoryId": "220",
+                  "categoryName": "Toys & Hobbies"
+                },
+                {
+                  "categoryId": "2536",
+                  "categoryName": "Collectible Card Games"
+                }
+              ],
+              "query_text": "Pokemon Palkia \"Call of Legends\" SL8 Shiny SL -proxy -custom -reprint -replica -lot -bundle -sealed -pack -booster -japanese -spanish -german -psa -bgs -cgc -graded -slab",
+              "buying_options": [
+                "FIXED_PRICE",
+                "BEST_OFFER"
+              ],
+              "item_location_country": "US",
+              "acquisition_request_key": "0e7137212a24b4dbaa53590647587a007130f1a3f5bd8cc58369a709b34ff6fb"
+            }
+          },
+          "policy_note": "Active listings are review evidence only until sold-comparable support and manual review are added."
+        }
+      }
+    ],
+    "blocked": []
+  },
+  "ready": true
+}

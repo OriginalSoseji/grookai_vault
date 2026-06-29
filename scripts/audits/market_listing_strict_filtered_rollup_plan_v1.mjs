@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
+import { evaluateMarketListingTitleGateV1, MARKET_LISTING_TITLE_GATE_VERSION } from "../../backend/pricing/market_listing_title_gate_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -48,62 +49,6 @@ function rel(filePath) {
   return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
 }
 
-function lower(value) {
-  return String(value ?? "").toLowerCase();
-}
-
-function includesAny(text, needles) {
-  return needles.some((needle) => text.includes(needle));
-}
-
-function parseBaseLane(gvId) {
-  if (!gvId?.startsWith("GV-PK-BASE1-")) return null;
-  const body = gvId.replace("GV-PK-BASE1-", "");
-  if (body.endsWith("-FIRST-EDITION")) return { lane: "first_edition", number: body.replace("-FIRST-EDITION", "") };
-  if (body.endsWith("-SHADOWLESS")) return { lane: "shadowless", number: body.replace("-SHADOWLESS", "") };
-  if (body.endsWith("-1999-2000")) return { lane: "1999_2000", number: body.replace("-1999-2000", "") };
-  return { lane: "base_or_unlimited", number: body };
-}
-
-function numberPattern(number) {
-  const escaped = String(number).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`(^|[^0-9])${escaped}\\s*(/|of|#|$|[^0-9])`, "i");
-}
-
-function titleGate(row) {
-  const text = lower(row.listing_title);
-  const reasons = [];
-  const baseLane = parseBaseLane(row.gv_id);
-  const hasPokemon = text.includes("pokemon") || text.includes("pokémon") || text.includes("pok├");
-  const hasLotNoise = includesAny(text, [" lot ", "bundle", "choose a card", "buy 3 get 3", "playset", "x4 ", "4x "]);
-  const hasForeignNoise = includesAny(text, ["japanese", "italiano", "dutch", "german", "french", "spanish", "korean", "chinese"]);
-
-  if (!hasPokemon) reasons.push("missing_pokemon_token");
-  if (hasLotNoise) reasons.push("lot_or_bulk_title_noise");
-  if (hasForeignNoise) reasons.push("foreign_language_title_noise");
-
-  if (baseLane) {
-    const hasBaseSet = includesAny(text, ["base set", "base-set"]);
-    const hasExactNumber = baseLane.number ? numberPattern(baseLane.number).test(text) : false;
-    const hasBaseSet2 = includesAny(text, ["base set 2", "base 2", "/130"]);
-    const hasFirstEdition = includesAny(text, ["1st edition", "first edition", "1st. edition"]);
-    const hasShadowless = text.includes("shadowless");
-    const has1999_2000 = includesAny(text, ["1999-2000", "4th print", "fourth print"]);
-
-    if (!hasBaseSet) reasons.push("base_lane_missing_base_set");
-    if (!hasExactNumber) reasons.push("base_lane_missing_exact_number");
-    if (hasBaseSet2) reasons.push("base_lane_has_base_set_2_noise");
-    if (baseLane.lane === "first_edition" && !hasFirstEdition) reasons.push("first_edition_lane_missing_title_token");
-    if (baseLane.lane === "shadowless" && !hasShadowless) reasons.push("shadowless_lane_missing_title_token");
-    if (baseLane.lane === "1999_2000" && !has1999_2000) reasons.push("1999_2000_lane_missing_title_token");
-  }
-
-  return {
-    passes: reasons.length === 0,
-    reasons,
-  };
-}
-
 function percentile(sortedValues, p) {
   if (!sortedValues.length) return null;
   const index = (sortedValues.length - 1) * p;
@@ -120,6 +65,21 @@ function round(value) {
 
 function increment(map, key, amount = 1) {
   map[key] = (map[key] ?? 0) + amount;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function supabaseReadWithRetry(label, factory, attempts = 4) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const result = await factory();
+    if (!result.error) return result;
+    lastError = result.error;
+    if (attempt < attempts) await sleep(500 * attempt);
+  }
+  throw new Error(`[market-listing-strict-filtered-rollup-plan] ${label} failed: ${lastError?.message ?? "unknown error"}`);
 }
 
 function groupKey(row) {
@@ -201,7 +161,7 @@ async function fetchCandidateRows() {
   const rows = [];
   for (let from = 0; ; from += PAGE_SIZE) {
     const to = from + PAGE_SIZE - 1;
-    const { data, error } = await supabase
+    const { data } = await supabaseReadWithRetry(`candidate page ${from}-${to}`, () => supabase
       .from("market_listing_card_candidates")
       .select(`
         card_print_id,
@@ -220,8 +180,7 @@ async function fetchCandidateRows() {
       `)
       .eq("match_version", CANDIDATE_VERSION)
       .order("id", { ascending: true })
-      .range(from, to);
-    if (error) throw new Error(`[market-listing-strict-filtered-rollup-plan] candidate page failed: ${error.message}`);
+      .range(from, to));
     if (!data?.length) break;
 
     for (const row of data) {
@@ -235,6 +194,8 @@ async function fetchCandidateRows() {
         source_listing_id: row.source_listing_id,
         evidence_class: evidenceClass,
         listing_title: obs.listing_title,
+        query_text: row.title_features?.query_text ?? null,
+        strategy: row.title_features?.strategy ?? null,
         total_ask_price: obs.total_ask_price,
         currency: obs.currency,
         seller_key: obs.seller_key,
@@ -253,7 +214,36 @@ async function fetchCandidateRows() {
   ));
 }
 
+async function fetchCardMetadata(candidateRows) {
+  const supabase = createBackendClient();
+  const ids = [...new Set(candidateRows.map((row) => row.card_print_id).filter(Boolean))];
+  const map = new Map();
+  for (let index = 0; index < ids.length; index += 200) {
+    const chunk = ids.slice(index, index + 200);
+    const { data } = await supabaseReadWithRetry(`card metadata page ${index}-${index + chunk.length - 1}`, () => supabase
+      .from("card_prints")
+      .select("id,gv_id,name,set_code,number,number_plain,printed_set_abbrev,printed_identity_modifier,identity_domain,set:sets(name)")
+      .in("id", chunk));
+    for (const row of data ?? []) {
+      map.set(row.id, {
+        id: row.id,
+        gv_id: row.gv_id,
+        name: row.name,
+        set_code: row.set_code,
+        set_name: row.set?.name ?? null,
+        number: row.number,
+        number_plain: row.number_plain,
+        printed_set_abbrev: row.printed_set_abbrev,
+        printed_identity_modifier: row.printed_identity_modifier,
+        identity_domain: row.identity_domain,
+      });
+    }
+  }
+  return map;
+}
+
 const candidateRows = await fetchCandidateRows();
+const cardMetadata = await fetchCardMetadata(candidateRows);
 const groups = new Map();
 const exclusionReasonCounts = {};
 const candidateCounts = {
@@ -265,6 +255,13 @@ const candidateCounts = {
   slab_total: 0,
   slab_passed: 0,
 };
+
+function titleGate(row) {
+  return evaluateMarketListingTitleGateV1({
+    ...row,
+    card: cardMetadata.get(row.card_print_id) ?? null,
+  });
+}
 
 for (const row of candidateRows) {
   increment(candidateCounts, `${row.evidence_class}_total`);
@@ -319,6 +316,7 @@ if (candidateCounts.strict_title_excluded > 0) findings.push("strict_title_filte
 const generatedAt = new Date().toISOString();
 const reportPayloadForHash = {
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
+  title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
   candidate_counts: candidateCounts,
   rollup_bucket_counts: bucketCounts,
   evidence_bucket_counts: evidenceBucketCounts,
@@ -338,6 +336,7 @@ const report = {
   generated_at: generatedAt,
   mode: "local_strict_filtered_rollup_plan_no_writes_no_provider_calls",
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
+  title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
   package_fingerprint_sha256: sha256(reportPayloadForHash),
   summary: {
     candidate_rows_total: candidateCounts.total,

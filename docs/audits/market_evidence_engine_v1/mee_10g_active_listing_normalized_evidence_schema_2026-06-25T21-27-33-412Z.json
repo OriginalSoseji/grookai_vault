@@ -1,0 +1,65 @@
+{
+  "package_id": "MARKET-REFERENCE-ACTIVE-LISTING-NORMALIZED-EVIDENCE-SCHEMA-V1",
+  "generated_at": "2026-06-25T21:27:33.412Z",
+  "mode": "local_migration_candidate_only",
+  "ready": true,
+  "applied": false,
+  "package_fingerprint_sha256": "d1bf67580def34c834c68c2ae38b12bab178a503ac8861733f23330b2956f489",
+  "migration_sql_hash_sha256": "0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90",
+  "candidate_sql_hash_sha256": "0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90",
+  "candidate_sql_path": "docs/sql/market_reference_active_listing_normalized_evidence_schema_v1_migration_candidate.sql",
+  "migration_sql_path": "supabase/migrations/20260625030000_market_reference_active_listing_normalized_evidence_schema_v1.sql",
+  "plan_doc_path": "docs/plans/market_evidence_engine_v1/MEE_10G_ACTIVE_LISTING_NORMALIZED_EVIDENCE_SCHEMA_V1.md",
+  "proposed_changes": {
+    "table_count": 0,
+    "index_count": 0,
+    "new_policy_count": 0,
+    "altered_constraint_tables": [
+      "market_reference_normalized_evidence"
+    ],
+    "allowed_sources_added": [
+      "ebay_active"
+    ],
+    "allowed_dispositions_added": [
+      "review_required_active_listing",
+      "quarantined_active_listing_context"
+    ],
+    "active_listing_model_eligible_false_enforced": true,
+    "service_role_only_policies_preserved": true
+  },
+  "boundary": {
+    "remote_migration_apply": false,
+    "evidence_backfill": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "package_files": [
+    {
+      "path": "docs/sql/market_reference_active_listing_normalized_evidence_schema_v1_migration_candidate.sql",
+      "sha256": "0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90"
+    },
+    {
+      "path": "supabase/migrations/20260625030000_market_reference_active_listing_normalized_evidence_schema_v1.sql",
+      "sha256": "0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90"
+    },
+    {
+      "path": "docs/plans/market_evidence_engine_v1/MEE_10G_ACTIVE_LISTING_NORMALIZED_EVIDENCE_SCHEMA_V1.md",
+      "sha256": "4bc000903b15a01e4dff1159a7b5c47f532f521cabdd4b9b5e8bd8951631d739"
+    }
+  ],
+  "approval_required_for_next_step": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-REFERENCE-ACTIVE-LISTING-NORMALIZED-EVIDENCE-SCHEMA-V1 TARGETED-REMOTE-SCHEMA-APPLY only. Migration hash: 0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90. Package fingerprint: d1bf67580def34c834c68c2ae38b12bab178a503ac8861733f23330b2956f489. Scope: execute supabase/migrations/20260625030000_market_reference_active_listing_normalized_evidence_schema_v1.sql against linked Supabase project ycdxbpibncqcchqiihfz only, extending internal market_reference_normalized_evidence constraints for review-only ebay_active normalized evidence with model_eligible=false. Then mark only migration version 20260625030000 as applied in Supabase migration history. No evidence backfill. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No db push. No global apply."
+}

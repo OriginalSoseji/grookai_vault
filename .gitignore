@@ -142,6 +142,23 @@ docs/audits/**/cache/
 docs/audits/image_truth_v1/*.jsonl
 docs/audits/master_index_promo_origin_v1/*.jsonl
 
+# Market Evidence Engine local payload dumps.
+# Keep contracts, migrations, scripts, SQL candidates, and summary reports tracked;
+# keep bulky raw/provider/backfill payloads local so release branches stay pushable.
+docs/audits/market_evidence_engine_v1/**/*.jsonl
+docs/audits/market_evidence_engine_v1/**/apply.sql
+docs/audits/market_evidence_engine_v1/**/readback.sql
+docs/audits/market_evidence_engine_v1/**/cleanup_event_seed_rows.json
+docs/audits/market_evidence_engine_v1/**/candidate_rows_audit.json
+docs/audits/market_evidence_engine_v1/**/special_lane_manifest.json
+docs/audits/market_evidence_engine_v1/**/market_listing_card_candidates.jsonl
+docs/audits/market_evidence_engine_v1/**/market_listing_observations.jsonl
+docs/audits/market_evidence_engine_v1/**/market_listing_price_events*.jsonl
+docs/audits/market_evidence_engine_v1/**/market_listing_raw_snapshots.jsonl
+docs/audits/market_evidence_engine_v1/**/projected_observations.jsonl
+docs/audits/market_evidence_engine_v1/**/raw_snapshots.jsonl
+docs/audits/market_evidence_engine_v1/mee_*.json
+
 # local dev
 apps/web/.tmp-*
 build_web.log

@@ -1,0 +1,114 @@
+{
+  "id": "dp2-14",
+  "name": "Mesprit",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "level": "50",
+  "hp": "60",
+  "types": [
+    "Psychic"
+  ],
+  "abilities": [
+    {
+      "name": "Upper Material",
+      "text": "If you have Uxie and Azelf in play, the Retreat Cost for each Uxie, Mesprit, and Azelf (both yours and your opponent's) is 0.",
+      "type": "Poké-Body"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Teleportation Burst",
+      "cost": [
+        "Psychic",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "You may switch Mesprit with 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "+20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp2",
+    "name": "Mysterious Treasures",
+    "series": "Diamond & Pearl",
+    "printedTotal": 123,
+    "total": 124,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "MT",
+    "releaseDate": "2007/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp2/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp2/logo.png"
+    }
+  },
+  "number": "14",
+  "artist": "Ryo Ueda",
+  "rarity": "Rare Holo",
+  "flavorText": "Known as \"The Being of Emotion.\" It taught humans the nobility of sorrow, pain, and joy.",
+  "nationalPokedexNumbers": [
+    481
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp2/14.png",
+    "large": "https://images.pokemontcg.io/dp2/14_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp2-14",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 4.35,
+        "mid": 31.96,
+        "high": 159.9,
+        "market": 14.53,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 8.41,
+        "mid": 10.99,
+        "high": 137.9,
+        "market": 13.58,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp2-14",
+    "updatedAt": "2026/06/23",
+    "prices": {
+      "averageSellPrice": 25.36,
+      "lowPrice": 0.45,
+      "trendPrice": 8.22,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.66,
+      "reverseHoloLow": 0.45,
+      "reverseHoloTrend": 1.25,
+      "lowPriceExPlus": 2.75,
+      "avg1": 3,
+      "avg7": 9.87,
+      "avg30": 11.9,
+      "reverseHoloAvg1": 2.9,
+      "reverseHoloAvg7": 1.78,
+      "reverseHoloAvg30": 2.8
+    }
+  }
+}

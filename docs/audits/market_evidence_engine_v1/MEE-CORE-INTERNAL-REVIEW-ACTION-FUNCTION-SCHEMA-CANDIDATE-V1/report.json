@@ -1,0 +1,93 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-SCHEMA-CANDIDATE-V1",
+  "generated_at": "2026-06-26T20:27:06.649Z",
+  "mode": "plan_only_internal_review_action_function_schema_candidate",
+  "package_fingerprint_sha256": "5de312992d413cc504bf93c9d6c1092cbb90e1d982eb7a7ed93fe613ddd0a2ec",
+  "source_workflow": {
+    "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-WORKFLOW-V1",
+    "fingerprint_sha256": "7ac114dcbb32b8b28d4712671c4de268decbb24dcbbda7025d2a0a7ae6386835",
+    "contract_hash_sha256": "25808d09ec42fe5151a912bfff568354e468dd19ca2253b6b79994d3bb35d2bb"
+  },
+  "source_action_events_schema": {
+    "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-EVENTS-SCHEMA-CANDIDATE-V1",
+    "migration_hash_sha256": "8b56c0f2edd36aac3e47fb376a87c02ee22b31da1202848f44af83a6e9b33216"
+  },
+  "schema_candidate": {
+    "migration_file": "supabase/migrations/20260625100000_market_evidence_review_action_function_v1.sql",
+    "function_name": "public.apply_market_evidence_review_action_v1",
+    "proposed_function_count": 1,
+    "allowed_actions": [
+      "start_review",
+      "confirm_internal_candidate",
+      "require_split",
+      "block_evidence",
+      "block_classification",
+      "request_reclassification",
+      "defer_more_evidence",
+      "reference_crosscheck",
+      "defer_active_market_evidence",
+      "confirm_monitor_only"
+    ],
+    "allowed_reason_codes": [
+      "approved_internal_raw_single_signal",
+      "approved_internal_slab_signal",
+      "mixed_raw_slab_requires_split",
+      "classification_noise",
+      "wrong_identity",
+      "unresolved_match_ambiguity",
+      "lot_bulk_sealed_proxy_noise",
+      "reference_only_no_market_support",
+      "low_signal_sample",
+      "insufficient_source_independence",
+      "stale_signal",
+      "special_lane_ambiguous",
+      "manual_hold"
+    ],
+    "grants": [
+      "service_role: execute"
+    ],
+    "writes_when_invoked": [
+      "insert one market_evidence_review_action_events row",
+      "update only the matching market_evidence_review_dispositions row"
+    ],
+    "optimistic_locking": true,
+    "public_flags_forced_false": true
+  },
+  "hashes": {
+    "migration_sql_sha256": "99132c3c9f7f17715acfe8e67b26f1b5cd9811d69734a21ffb7ecf795a76de3b",
+    "noop_dry_run_sql_sha256": "dfa5a9ec92581af2fc82e2da2a2ea274a48e3feb7f43b3ec48c98e9f5dac504a",
+    "rollback_dry_run_sql_sha256": "32b575f360899b009a345a4014e224226e4c9ca2442c1c4dd6c580ba665b14a7",
+    "readback_sql_sha256": "3d3c8462aa7a1f88ca4c9dbc772cc35ea57f33e32701bf174a804ab089697b15"
+  },
+  "artifacts": {
+    "migration_candidate": "supabase/migrations/20260625100000_market_evidence_review_action_function_v1.sql",
+    "sql_candidate": "docs/sql/mee_core_internal_review_action_function_v1_migration_candidate.sql",
+    "noop_dry_run_sql": "docs/sql/mee_core_internal_review_action_function_v1_noop_dry_run.sql",
+    "rollback_dry_run_sql": "docs/sql/mee_core_internal_review_action_function_v1_rollback_dry_run.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_action_function_v1_readback.sql",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-SCHEMA-CANDIDATE-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-SCHEMA-CANDIDATE-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_ACTION_FUNCTION_SCHEMA_CANDIDATE_V1.md"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "actual_action_event_inserts": false,
+    "actual_disposition_updates": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "package_id": "MARKET-LISTING-CARD-CANDIDATE-ROLLUP-APPLY-V1",
+  "generated_at": "2026-06-26T03:13:53.026Z",
+  "applied": false,
+  "remote_rows_verified": false,
+  "mode": "dry_run",
+  "plan_artifact": "docs/audits/market_evidence_engine_v1/mee_11s_market_listing_card_candidate_rollup_plan_2026-06-26T03-08-27-732Z.json",
+  "package_fingerprint_sha256": "c2c4a7de394de8abbc3b4f6361e648f2741a6995eef03bfc505cda737e2edbd9",
+  "row_manifest_hash_sha256": "963575b361071c26c573bbc300163bbe1385df2b8742d048864ddeba324cd9bc",
+  "source_readback_fingerprint_sha256": "3ecef7a22b6209c5a68fc591d58d6e63519dd97c0327259b74f39afe7b281d95",
+  "proposed_table_row_counts": {
+    "market_listing_card_candidates": 108600,
+    "market_listing_rollups": 2275
+  },
+  "expected_readback_counts": {
+    "market_listing_card_candidates": 108600,
+    "market_listing_rollups": 2275
+  },
+  "remote_collision_summary": {
+    "checked": true,
+    "candidate_id_collision_count": 0,
+    "rollup_id_collision_count": 0,
+    "candidate_hash_collision_count": 0,
+    "rollup_key_collision_count": 0,
+    "candidate_id_collision_samples": [],
+    "rollup_id_collision_samples": [],
+    "candidate_hash_collision_samples": [],
+    "rollup_key_collision_samples": []
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [
+    "apply_flag_missing"
+  ],
+  "apply_result": null,
+  "readback_counts": null
+}

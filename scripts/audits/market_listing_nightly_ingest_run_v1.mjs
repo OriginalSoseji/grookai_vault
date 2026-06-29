@@ -131,11 +131,19 @@ function contractHash() {
 }
 
 function runSql(sql) {
-  return execFileSync("supabase", ["db", "query", sql, "--linked"], {
+  const targetArgs = process.env.SUPABASE_DB_URL
+    ? ["--db-url", process.env.SUPABASE_DB_URL]
+    : ["--linked"];
+  return execFileSync("supabase", ["db", "query", "--output", "json", sql, ...targetArgs], {
     cwd: REPO_ROOT,
     encoding: "utf8",
     maxBuffer: 32 * 1024 * 1024,
   });
+}
+
+function parseSupabaseRows(output) {
+  const parsed = JSON.parse(output);
+  return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
 function normalizeRollupVersionSuffix(raw) {
@@ -166,8 +174,8 @@ function queryRollupPresence(rollupVersions) {
       group by rollup_version
     ) s;
   `;
-  const result = JSON.parse(runSql(sql));
-  return JSON.parse(result.rows?.[0]?.report ?? "{}");
+  const rows = parseSupabaseRows(runSql(sql));
+  return JSON.parse(rows?.[0]?.report ?? "{}");
 }
 
 function commandText(command, args) {

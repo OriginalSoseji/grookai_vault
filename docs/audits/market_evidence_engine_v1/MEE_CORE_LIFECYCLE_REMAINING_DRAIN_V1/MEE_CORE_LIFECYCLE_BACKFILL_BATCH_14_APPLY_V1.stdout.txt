@@ -1,0 +1,13 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-BACKFILL-BATCH-14-APPLY-V1",
+  "package_fingerprint_sha256": "e1a9473ec8049376def6ba5fd459bc36e7f0a6e7ff09c86d894455034d5f80d8",
+  "apply_summary": {
+    "inserted_market_evidence_observations": 4622,
+    "inserted_market_evidence_lifecycle_events": 32354
+  },
+  "findings": [],
+  "artifacts": {
+    "json": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_14_APPLY_V1/report.json",
+    "markdown": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_14_APPLY_V1.md"
+  }
+}

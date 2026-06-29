@@ -1,0 +1,34 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-EVIDENCE-READ-MODEL-SCHEMA-CANDIDATE-V1",
+  "mode": "plan_only_local_schema_candidate",
+  "migration_file": "supabase/migrations/20260625070000_market_evidence_internal_read_model_v1.sql",
+  "sql_candidate": "docs/sql/mee_core_internal_evidence_read_model_v1_migration_candidate.sql",
+  "rollback_dry_run_sql": "docs/sql/mee_core_internal_evidence_read_model_v1_rollback_dry_run.sql",
+  "readback_sql": "docs/sql/mee_core_internal_evidence_read_model_v1_readback.sql",
+  "migration_hash_sha256": "5D26257DB0C987922B942E56D7E8924901784A31FDCCDE9C21740EA0CA30D5E1",
+  "sql_candidate_hash_sha256": "5D26257DB0C987922B942E56D7E8924901784A31FDCCDE9C21740EA0CA30D5E1",
+  "rollback_dry_run_sql_hash_sha256": "9796D2B503BC9C86987CEB7E0CEB53E24EAF91EA41C4A3A8C58BD8B7500426AB",
+  "proposed_objects": [
+    "public.v_market_evidence_card_signal_summary_v1",
+    "public.v_market_evidence_card_review_queue_v1"
+  ],
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "findings": []
+}

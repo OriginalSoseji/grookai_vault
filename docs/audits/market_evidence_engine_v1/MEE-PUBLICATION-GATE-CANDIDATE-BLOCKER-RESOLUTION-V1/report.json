@@ -1,0 +1,73 @@
+{
+  "package_id": "MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1",
+  "mode": "plan_only_candidate_blocker_resolution",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "apply_candidate_reason": "The 470 held publication-gate rows still have candidate-level review and confidence blockers; no confirm_internal_candidate package is safe.",
+  "input_artifact": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1/enriched_candidate_policy_audit.json",
+  "current_audit": {
+    "total_rows": 470,
+    "raw_single_rows": 378,
+    "slab_rows": 92,
+    "policy_confirmable_rows": 0
+  },
+  "primary_resolution_lanes": {
+    "special_lane_manual_review": 338,
+    "matcher_confidence_review": 42,
+    "high_value_manual_review": 30,
+    "exclusion_flag_review": 60
+  },
+  "blocker_counts": {
+    "matcher_confidence_review_required": 470,
+    "candidate_evidence_review_required": 470,
+    "special_lane_policy_required": 383,
+    "high_value_manual_review_required": 103,
+    "evidence_volume_deficient": 14,
+    "seller_diversity_deficient": 15,
+    "exclusion_flag_review_required": 60
+  },
+  "resolution_order": [
+    "public_boundary_check",
+    "exclusion_flag_review",
+    "special_lane_manual_review",
+    "high_value_manual_review",
+    "insufficient_evidence_defer",
+    "matcher_confidence_review",
+    "candidate_evidence_review",
+    "future_confirmation_policy_recheck"
+  ],
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "artifacts": {
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1/report.json",
+    "blocker_resolution_manifest": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1/blocker_resolution_manifest.json",
+    "blocker_resolution_summary": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1/blocker_resolution_summary.json",
+    "preflight_sql": "docs/sql/mee_publication_gate_candidate_blocker_resolution_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_publication_gate_candidate_blocker_resolution_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_publication_gate_candidate_blocker_resolution_v1.test.mjs"
+  },
+  "artifact_hashes_sha256": {
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1.md": "6f58711036297e2e385c12d6c55e900e50bf1ed69c151a5050fda2265bc7d63c",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1/blocker_resolution_manifest.json": "e29bea9425d79c86dbadb1d777eb38978693bb1951eb4c322bd5ef7d1bfb99a6",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-CANDIDATE-BLOCKER-RESOLUTION-V1/blocker_resolution_summary.json": "9756812cf2b8d58890ab250e9746e001e249cb11b269f1291433e3202898b350",
+    "docs/sql/mee_publication_gate_candidate_blocker_resolution_v1_preflight.sql": "269decaf024e5fbf57c17828df1f88ed37795fc3565c7c4ce5daf974ce3ed2d6",
+    "docs/sql/mee_publication_gate_candidate_blocker_resolution_v1_readback.sql": "54c202071d057c3cb13802c15f2b6d39cc4cee2d16e93cdda86c97f9f36e2bdb",
+    "tests/contracts/mee_publication_gate_candidate_blocker_resolution_v1.test.mjs": "a5ed78fd97f80bedeb6262cc6380b07c16ec23bce389e84ff6c240c8017a74da"
+  },
+  "package_fingerprint_sha256": "56c8b4eb511dd409416f1d20aef2e911b7322aa3c8dcecfe52d4dc9dde5a9f50",
+  "next_step": "Create a candidate evidence cleanup plan that resolves exclusion flags, special-lane policy holds, high-value holds, matcher confidence, and candidate needs_review without publishing prices.",
+  "findings": []
+}
+

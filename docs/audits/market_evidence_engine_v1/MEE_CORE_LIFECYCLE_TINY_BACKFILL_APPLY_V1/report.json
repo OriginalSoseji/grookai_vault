@@ -1,0 +1,166 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-TINY-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-26T15:27:11.839Z",
+  "mode": "targeted_tiny_insert_apply",
+  "source_plan_fingerprint": "aabb3f8d7556afed1ff8a85a75cc44007f7d468a225f60f813650251b0218e2f",
+  "source_projection_fingerprint": "99d6f31b5aab277785f1631ba9167a4c6382db9fda717df76803ef4d8e3af34d",
+  "package_fingerprint_sha256": "ccae8cc94580eb30ce15fec487d603f369ce5de0eb2cea7db8052fd10c0717a9",
+  "apply_sql_path": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_TINY_BACKFILL_APPLY_V1/apply.sql",
+  "apply_sql_sha256": "54689bda0a010f03b63c0b71081a8b116d6a920d8ba596862bf7b91cfd66a977",
+  "apply_summary": {
+    "creates_app_visible_pricing": false,
+    "creates_public_pricing_view": false,
+    "inserted_market_evidence_lifecycle_events": 42,
+    "inserted_market_evidence_observations": 6,
+    "package_id": "MEE-CORE-LIFECYCLE-TINY-BACKFILL-APPLY-V1",
+    "writes_ebay_active_prices_latest": false,
+    "writes_identity_tables": false,
+    "writes_image_or_storage_tables": false,
+    "writes_pricing_observations": false,
+    "writes_vault_tables": false
+  },
+  "readback": {
+    "events": {
+      "actual": 42,
+      "expected": 42,
+      "distinct_event_hashes": 42
+    },
+    "current_view": {
+      "actual": 6,
+      "expected": 6,
+      "app_visible_true": 0,
+      "market_truth_true": 0,
+      "rollup_eligible_state_count": 6
+    },
+    "observations": {
+      "actual": 6,
+      "expected": 6
+    },
+    "stage_sequences": [
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "1f678516-0156-4676-aefa-cfa2fd25dbc6",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      },
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "4ecb7360-0b47-442f-a610-ee529f1e6e5a",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      },
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "8045dbf8-8fe3-4e00-acdd-a1ce76a2ffe6",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      },
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "9df9367e-7249-49ce-a30e-0d9c7a2088a2",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      },
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "c14fbcfb-629a-4934-ae0b-9a7bc4ff2780",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      },
+      {
+        "stages": [
+          "acquired",
+          "raw_stored",
+          "normalized",
+          "matched",
+          "classified",
+          "quality_gated",
+          "rollup_eligible"
+        ],
+        "event_count": 7,
+        "observation_id": "d11bac55-63ce-4571-ad35-e079bcb90085",
+        "app_visible_leak": false,
+        "publishable_leak": false,
+        "market_truth_leak": false,
+        "needs_review_leak": false
+      }
+    ],
+    "public_pricing_surface": {
+      "pricing_observations_count": 0,
+      "v_card_pricing_references_market_evidence": false
+    }
+  },
+  "findings": [],
+  "boundary_proof": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

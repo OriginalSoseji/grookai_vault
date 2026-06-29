@@ -72,7 +72,7 @@ test("MEE-04C builds a dry-run acquisition batch without creating evidence or pr
   }
 });
 
-test("MEE-04C defaults away from eBay lanes until an access method is approved", () => {
+test("MEE-04C defaults to non-API/user-owned lanes and keeps live provider lanes opt-in", () => {
   const batch = buildMarketEvidenceAcquisitionBatchV1({
     queryPlan: sampleQueryPlan(),
     limit: 8,
@@ -82,8 +82,14 @@ test("MEE-04C defaults away from eBay lanes until an access method is approved",
   const sources = new Set(batch.items.map((item) => item.source));
   assert.equal(sources.has("ebay_active"), false);
   assert.equal(sources.has("ebay_sold_candidate"), false);
-  assert.equal(sources.has("pricecharting_reference"), true);
+  assert.equal(sources.has("pricecharting_reference"), false);
+  assert.equal(sources.has("tcgplayer_reference_candidate"), false);
+  assert.equal(sources.has("pokemontcg_io_reference"), true);
+  assert.equal(sources.has("tcgcsv_reference"), true);
+  assert.equal(sources.has("ebay_user_export"), true);
+  assert.equal(sources.has("tcgplayer_user_export"), true);
   assert.equal(sources.has("manual_review_candidate"), true);
+  assert.equal(sources.has("justtcg_reference"), false);
 });
 
 test("MEE-04C rejects malformed inputs", () => {

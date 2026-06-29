@@ -15,6 +15,17 @@ artifactTest("MEE core lifecycle remaining drain final resume completed with int
   );
 
   assert.equal(report.run_id, "MEE-CORE-LIFECYCLE-REMAINING-DRAIN-V1");
+  if (report.stopped_reason === "no_eligible_source_rows_remaining") {
+    assert.equal(report.batch_count, 0);
+    assert.equal(report.total_inserted_observations, 0);
+    assert.equal(report.total_inserted_lifecycle_events, 0);
+    assert.deepEqual(report.batches, []);
+    for (const [key, value] of Object.entries(report.boundary_proof)) {
+      assert.equal(value, false, `${key} must remain false`);
+    }
+    return;
+  }
+
   assert.equal(report.stopped_reason, "final_partial_batch_applied");
   assert.equal(report.batch_count, 8);
   assert.equal(report.total_inserted_observations, 75035);

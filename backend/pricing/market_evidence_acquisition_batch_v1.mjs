@@ -1,9 +1,10 @@
 import { getMarketEvidenceSourceV1 } from './market_evidence_source_registry_v1.mjs';
 
 const DEFAULT_SOURCES = [
-  'pricecharting_reference',
-  'tcgplayer_reference_candidate',
-  'justtcg_reference',
+  'pokemontcg_io_reference',
+  'tcgcsv_reference',
+  'ebay_user_export',
+  'tcgplayer_user_export',
   'manual_review_candidate',
 ];
 

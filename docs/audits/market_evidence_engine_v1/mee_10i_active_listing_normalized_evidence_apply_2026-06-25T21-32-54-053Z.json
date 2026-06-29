@@ -1,0 +1,60 @@
+{
+  "package_id": "MARKET-REFERENCE-ACTIVE-LISTING-NORMALIZED-EVIDENCE-APPLY-V1",
+  "generated_at": "2026-06-25T21:32:54.053Z",
+  "mode": "dry_run_report_only",
+  "package_fingerprint_sha256": "3fcf9fbacc04680d56ceafb9eb4b3c9a3e70f8b41942d5c4e250f7a62d6ba36c",
+  "row_manifest_hash_sha256": "cf27211e34f750f176234a3ce439c505e5a33ac2e45a9bee210de63c34a8840e",
+  "active_listing_normalized_schema_migration_hash_sha256": "0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90",
+  "active_listing_normalized_schema_package_fingerprint_sha256": "d1bf67580def34c834c68c2ae38b12bab178a503ac8861733f23330b2956f489",
+  "normalizer_version": "MEE_10F_ACTIVE_LISTING_NORMALIZATION_PLAN_V1",
+  "proposed_table_row_counts": {
+    "market_reference_normalized_evidence": 15,
+    "model_eligible": 0
+  },
+  "disposition_counts": {
+    "quarantined_active_listing_context": 2,
+    "review_required_active_listing": 13
+  },
+  "quality_flag_counts": {
+    "active_listing_unverified": 15,
+    "graded_listing_context": 2,
+    "manual_review_required": 15,
+    "sold_comp_missing": 15
+  },
+  "duplicate_summary": {
+    "checked": true,
+    "candidate_ids_checked": 15,
+    "duplicate_rows": 0,
+    "duplicate_samples": []
+  },
+  "remote_row_count_summary": {
+    "checked": true,
+    "ebay_active_normalized_rows": 0,
+    "ebay_active_model_eligible_rows": 0
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "approval_required": true,
+  "approval_text_matched": false,
+  "findings": [],
+  "ready_for_apply": true,
+  "applied": false,
+  "apply_result": null,
+  "approval_prompt_for_apply": "Approve real MARKET-REFERENCE-ACTIVE-LISTING-NORMALIZED-EVIDENCE-APPLY-V1 apply only. Package fingerprint: 3fcf9fbacc04680d56ceafb9eb4b3c9a3e70f8b41942d5c4e250f7a62d6ba36c. Row manifest hash: cf27211e34f750f176234a3ce439c505e5a33ac2e45a9bee210de63c34a8840e. Active-listing normalized schema migration hash: 0c7c9ef9b750036f1ed9a2a0e0144b77fa147175ee12c971d91d18b84ff31a90. Scope: insert 15 review-only ebay_active normalized evidence rows into market_reference_normalized_evidence only, with model_eligible=false for every row. No candidate writes. No raw snapshot writes. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}
