@@ -34,6 +34,14 @@ export type OwnerVaultItemsResult = {
   publicCollectionHref: string | null;
 };
 
+export type OwnerVaultItemResult = {
+  item: VaultCardData | null;
+  canonicalRow: CanonicalVaultCollectorRow | null;
+  itemsError: string | null;
+  publicProfileHref: string | null;
+  publicCollectionHref: string | null;
+};
+
 function pickLatestIsoTimestamp(left: string | null, right: string | null) {
   if (!left) {
     return right;
@@ -156,9 +164,28 @@ function normalizeVaultItems(
     });
 }
 
-export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItemsResult> {
+async function getOwnerPublicProfileHrefs(userId: string) {
   const supabase = createServerComponentClient();
+  const { data: profileData, error: profileError } = await supabase
+    .from("public_profiles")
+    .select("slug,public_profile_enabled,vault_sharing_enabled")
+    .eq("user_id", userId)
+    .maybeSingle();
 
+  const profile = (profileData ?? null) as PublicProfileRow | null;
+  const publicProfileHref =
+    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}` : null;
+  const publicCollectionHref =
+    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
+
+  return {
+    publicProfileHref,
+    publicCollectionHref,
+    profileError: profileError?.message ?? null,
+  };
+}
+
+export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItemsResult> {
   let canonicalRows: CanonicalVaultCollectorRow[] = [];
   let itemsError: string | null = null;
 
@@ -190,28 +217,71 @@ export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItem
     });
   }
 
-  const { data: profileData, error: profileError } = await supabase
-    .from("public_profiles")
-    .select("slug,public_profile_enabled,vault_sharing_enabled")
-    .eq("user_id", userId)
-    .maybeSingle();
+  const profileHrefs = await getOwnerPublicProfileHrefs(userId);
 
   const items = normalizeVaultItems(
     canonicalRows,
     messageSummaryByCardPrintId,
   );
 
-  const profile = (profileData ?? null) as PublicProfileRow | null;
-  const publicProfileHref =
-    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}` : null;
-  const publicCollectionHref =
-    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
-
   return {
     items,
     canonicalRows,
-    itemsError: itemsError ?? profileError?.message ?? null,
-    publicProfileHref,
-    publicCollectionHref,
+    itemsError: itemsError ?? profileHrefs.profileError,
+    publicProfileHref: profileHrefs.publicProfileHref,
+    publicCollectionHref: profileHrefs.publicCollectionHref,
+  };
+}
+
+export async function getOwnerVaultItem(userId: string, cardPrintId: string): Promise<OwnerVaultItemResult> {
+  const normalizedCardPrintId = cardPrintId.trim();
+  if (!normalizedCardPrintId) {
+    return {
+      item: null,
+      canonicalRow: null,
+      itemsError: null,
+      publicProfileHref: null,
+      publicCollectionHref: null,
+    };
+  }
+
+  let canonicalRows: CanonicalVaultCollectorRow[] = [];
+  let itemsError: string | null = null;
+
+  try {
+    canonicalRows = await getCanonicalVaultCollectorRows(userId, { cardPrintIds: [normalizedCardPrintId] });
+  } catch (error) {
+    itemsError = error instanceof Error ? error.message : "Unknown canonical vault read error";
+  }
+
+  let messageSummaryByCardPrintId = new Map<string, { activeCount: number; unreadCount: number }>();
+  try {
+    const messageSummaries = await getOwnedCardMessageSummaries(userId, [normalizedCardPrintId]);
+    messageSummaryByCardPrintId = new Map(
+      messageSummaries.map((summary) => [
+        summary.cardPrintId,
+        {
+          activeCount: summary.activeCount,
+          unreadCount: summary.unreadCount,
+        },
+      ]),
+    );
+  } catch (error) {
+    console.error("[vault] owned card message summary lookup failed", {
+      userId,
+      cardPrintId: normalizedCardPrintId,
+      error,
+    });
+  }
+
+  const profileHrefs = await getOwnerPublicProfileHrefs(userId);
+  const items = normalizeVaultItems(canonicalRows, messageSummaryByCardPrintId);
+
+  return {
+    item: items[0] ?? null,
+    canonicalRow: canonicalRows[0] ?? null,
+    itemsError: itemsError ?? profileHrefs.profileError,
+    publicProfileHref: profileHrefs.publicProfileHref,
+    publicCollectionHref: profileHrefs.publicCollectionHref,
   };
 }

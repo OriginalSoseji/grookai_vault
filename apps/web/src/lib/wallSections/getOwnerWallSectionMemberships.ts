@@ -113,3 +113,95 @@ export async function getOwnerWallSectionMemberships(
     loadError: null,
   };
 }
+
+export async function getOwnerWallSectionMembershipsBatch(
+  userId: string,
+  vaultItemInstanceIds: string[],
+): Promise<OwnerWallSectionMembershipModel[]> {
+  const normalizedUserId = userId.trim();
+  const normalizedInstanceIds = Array.from(
+    new Set(vaultItemInstanceIds.map((value) => normalizeVaultItemInstanceId(value)).filter(Boolean)),
+  );
+
+  if (!normalizedUserId || normalizedInstanceIds.length === 0) {
+    return normalizedInstanceIds.map((instanceId) => ({
+      instanceId,
+      sections: [],
+      loadError: "Section assignments could not be loaded.",
+    }));
+  }
+
+  const client = createServerComponentClient();
+  const [
+    { data: instanceRows, error: instanceError },
+    { data: sectionRows, error: sectionError },
+    { data: membershipRows, error: membershipError },
+  ] = await Promise.all([
+    client
+      .from("vault_item_instances")
+      .select("id,user_id,archived_at")
+      .eq("user_id", normalizedUserId)
+      .is("archived_at", null)
+      .in("id", normalizedInstanceIds),
+    client
+      .from("wall_sections")
+      .select("id,name,position,is_active,is_public")
+      .eq("user_id", normalizedUserId)
+      .order("position", { ascending: true })
+      .order("created_at", { ascending: true }),
+    client
+      .from("wall_section_memberships")
+      .select("vault_item_instance_id,section_id")
+      .in("vault_item_instance_id", normalizedInstanceIds),
+  ]);
+
+  const ownershipError = instanceError?.message ?? null;
+  const sectionLoadError = sectionError?.message ?? membershipError?.message ?? null;
+  const ownedInstanceIds = new Set(
+    ((instanceRows ?? []) as VaultInstanceOwnershipRow[])
+      .filter((row) => row.id && row.user_id === normalizedUserId && !row.archived_at)
+      .map((row) => row.id as string),
+  );
+  const baseSections = ((sectionRows ?? []) as WallSectionRow[])
+    .map((row) => toMembershipSection(row, new Set()))
+    .filter((section): section is OwnerWallSectionMembership => Boolean(section));
+  const assignedSectionIdsByInstanceId = new Map<string, Set<string>>();
+
+  for (const row of (membershipRows ?? []) as Array<{ vault_item_instance_id: string | null; section_id: string | null }>) {
+    if (!row.vault_item_instance_id || !row.section_id) {
+      continue;
+    }
+
+    const current = assignedSectionIdsByInstanceId.get(row.vault_item_instance_id) ?? new Set<string>();
+    current.add(row.section_id);
+    assignedSectionIdsByInstanceId.set(row.vault_item_instance_id, current);
+  }
+
+  return normalizedInstanceIds.map((instanceId) => {
+    if (ownershipError || !ownedInstanceIds.has(instanceId)) {
+      return {
+        instanceId,
+        sections: [],
+        loadError: ownershipError ?? "You can only assign cards you own.",
+      };
+    }
+
+    if (sectionLoadError) {
+      return {
+        instanceId,
+        sections: [],
+        loadError: sectionLoadError,
+      };
+    }
+
+    const assignedSectionIds = assignedSectionIdsByInstanceId.get(instanceId) ?? new Set<string>();
+    return {
+      instanceId,
+      sections: baseSections.map((section) => ({
+        ...section,
+        is_member: assignedSectionIds.has(section.id),
+      })),
+      loadError: null,
+    };
+  });
+}

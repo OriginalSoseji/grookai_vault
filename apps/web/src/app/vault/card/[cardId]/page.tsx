@@ -17,8 +17,8 @@ import {
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
 import { createServerComponentClient } from "@/lib/supabase/server";
-import { getOwnerVaultItems } from "@/lib/vault/getOwnerVaultItems";
-import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
+import { getOwnerVaultItem } from "@/lib/vault/getOwnerVaultItems";
+import { getOwnerWallSectionMembershipsBatch } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -47,8 +47,7 @@ export default async function VaultManageCardPage({
   }
 
   const decodedCardId = decodeURIComponent(params.cardId);
-  const { items, itemsError, publicProfileHref, publicCollectionHref } = await getOwnerVaultItems(user.id);
-  const item = items.find((candidate) => candidate.card_id === decodedCardId);
+  const { item, itemsError, publicProfileHref, publicCollectionHref } = await getOwnerVaultItem(user.id, decodedCardId);
 
   if (!item) {
     notFound();
@@ -67,13 +66,13 @@ export default async function VaultManageCardPage({
     activeMessageCount: item.active_message_count,
   });
   const displayIdentity = resolveDisplayIdentity(item);
-  const sectionMembershipEntries = await Promise.all(
-    item.copy_items.map(async (copy) => [
-      copy.instance_id,
-      await getOwnerWallSectionMemberships(user.id, copy.instance_id),
-    ] as const),
+  const sectionMembershipModels = await getOwnerWallSectionMembershipsBatch(
+    user.id,
+    item.copy_items.map((copy) => copy.instance_id),
   );
-  const sectionMembershipByInstanceId = new Map(sectionMembershipEntries);
+  const sectionMembershipByInstanceId = new Map(
+    sectionMembershipModels.map((model) => [model.instanceId, model] as const),
+  );
 
   return (
     <>
@@ -167,6 +166,7 @@ export default async function VaultManageCardPage({
                   {primaryActionHref ? (
                     <Link
                       href={primaryActionHref}
+                      prefetch={false}
                       className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-4 py-2 text-sm font-medium text-white shadow-[0_14px_30px_-24px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
                     >
                       {primaryActionLabel}

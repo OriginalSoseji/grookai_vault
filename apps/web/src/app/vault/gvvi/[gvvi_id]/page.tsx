@@ -92,23 +92,19 @@ export default async function VaultInstancePage({
     uploadedImageUrl: detail.frontImageUrl,
     canonicalImageUrl: detail.imageUrl,
   });
-  const sectionMembershipModel = await getOwnerWallSectionMemberships(user.id, detail.instanceId);
-  let messageSummary:
-    | {
-        activeCount: number;
-        unreadCount: number;
-      }
-    | null = null;
-  try {
-    const [summary] = await getOwnedCardMessageSummaries(user.id, [detail.cardPrintId]);
-    messageSummary = summary ?? null;
-  } catch (error) {
-    console.error("[vault:gvvi] message summary lookup failed", {
-      userId: user.id,
-      cardPrintId: detail.cardPrintId,
-      error,
-    });
-  }
+  const [sectionMembershipModel, messageSummary] = await Promise.all([
+    getOwnerWallSectionMemberships(user.id, detail.instanceId),
+    getOwnedCardMessageSummaries(user.id, [detail.cardPrintId])
+      .then(([summary]) => summary ?? null)
+      .catch((error) => {
+        console.error("[vault:gvvi] message summary lookup failed", {
+          userId: user.id,
+          cardPrintId: detail.cardPrintId,
+          error,
+        });
+        return null;
+      }),
+  ]);
   const messagesHref =
     messageSummary && messageSummary.activeCount > 0
       ? buildOwnedCardMessagesHref({
@@ -129,6 +125,7 @@ export default async function VaultInstancePage({
             <>
               <Link
                 href="/vault"
+                prefetch={false}
                 className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
               >
                 Back to vault
@@ -136,6 +133,7 @@ export default async function VaultInstancePage({
               {detail.gvId ? (
                 <Link
                   href={`/card/${detail.gvId}`}
+                  prefetch={false}
                   className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
                 >
                   View card
@@ -318,6 +316,7 @@ export default async function VaultInstancePage({
                 <div>
                   <Link
                     href={messagesHref}
+                    prefetch={false}
                     className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
                   >
                     View messages
@@ -359,6 +358,7 @@ export default async function VaultInstancePage({
                 {publicSharePath ? (
                   <Link
                     href={publicSharePath}
+                    prefetch={false}
                     className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
                   >
                     Open public page

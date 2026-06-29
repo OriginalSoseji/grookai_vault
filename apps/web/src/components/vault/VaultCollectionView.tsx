@@ -805,10 +805,11 @@ export function VaultCollectionView({
                 imageSrc={item.image_url}
                 imageAlt={item.display_name}
                 imageHref={`/card/${item.gv_id}`}
+                imagePrefetch={false}
                 imageFallbackLabel={item.display_name}
                 imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
                 title={
-                  <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
+                  <Link href={`/card/${item.gv_id}`} prefetch={false} className="line-clamp-2 block transition hover:text-slate-700">
                     {item.display_name}
                   </Link>
                 }

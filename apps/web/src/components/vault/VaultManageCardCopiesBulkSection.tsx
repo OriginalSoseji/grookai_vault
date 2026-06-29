@@ -221,6 +221,7 @@ export default function VaultManageCardCopiesBulkSection({
                 {copyHref ? (
                   <Link
                     href={copyHref}
+                    prefetch={false}
                     className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                   >
                     Open copy

@@ -10,6 +10,7 @@ type PokemonCardGridTileProps = {
   imageFallbackSrc?: string;
   imageAlt: string;
   imageHref?: string;
+  imagePrefetch?: boolean;
   imageLoading?: "eager" | "lazy";
   imageFallbackLabel?: string;
   imageClassName?: string;
@@ -155,6 +156,7 @@ export default function PokemonCardGridTile({
   imageFallbackSrc,
   imageAlt,
   imageHref,
+  imagePrefetch,
   imageLoading,
   imageFallbackLabel,
   imageClassName,
@@ -186,7 +188,7 @@ export default function PokemonCardGridTile({
       {utility ? <div className="gv-visual-card-utility">{utility}</div> : null}
 
       <div className={CONTENT_STACK_BY_DENSITY[density]}>
-        {imageHref ? <Link href={imageHref}>{image}</Link> : image}
+        {imageHref ? <Link href={imageHref} prefetch={imagePrefetch}>{image}</Link> : image}
 
         <div className={BODY_STACK_BY_DENSITY[density]}>
           <div className="space-y-1.5">

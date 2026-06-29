@@ -124,7 +124,11 @@ void main() {
   test('grouped card copy rows expose exact-copy membership UI only', () {
     expect(
       groupedCardPageSource,
-      contains('getOwnerWallSectionMemberships(user.id, copy.instance_id)'),
+      contains('getOwnerWallSectionMembershipsBatch('),
+    );
+    expect(
+      groupedCardPageSource,
+      contains('item.copy_items.map((copy) => copy.instance_id)'),
     );
     expect(groupedCardPageSource, contains('VaultManageCardCopiesBulkSection'));
     expect(groupedBulkCopiesSource, contains('VaultManageCopyCurationControls'));
