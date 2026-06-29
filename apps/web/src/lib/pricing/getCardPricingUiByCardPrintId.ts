@@ -6,28 +6,83 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 type CardPricingUiRow = {
   card_print_id: string | null;
-  primary_price: number | null;
-  primary_source: string | null;
-  grookai_value: number | null;
-  min_price: number | null;
-  max_price: number | null;
-  variant_count: number | null;
-  ebay_median_price: number | null;
-  ebay_listing_count: number | null;
-  display_label: string | null;
-  pricing_basis: string | null;
+  gv_id: string | null;
+  currency: string | null;
+  reference_anchor_low: number | null;
+  reference_anchor_mid: number | null;
+  reference_anchor_high: number | null;
+  reference_source_count: number | null;
+  reference_eligible_evidence_count: number | null;
+  reference_review_flags: string[] | null;
+  grookai_value_low: number | null;
+  grookai_value_mid: number | null;
+  grookai_value_high: number | null;
+  grookai_value_basis: string | null;
+  grookai_value_block_reason: string | null;
+  active_ask_low: number | null;
+  active_ask_mid: number | null;
+  active_ask_high: number | null;
+  raw_active_ask_minimum: number | null;
+  raw_active_ask_maximum: number | null;
+  active_ask_listing_count: number | null;
+  active_ask_seller_count: number | null;
+  active_ask_signal_at: string | null;
+  market_pressure_pct: number | null;
+  market_pressure_status: string | null;
+  lane_policy: string | null;
+  condition_policy: string | null;
+  grookai_value_condition_label: string | null;
+  active_ask_condition_label: string | null;
   confidence_label: string | null;
   freshness_label: string | null;
-  signal_at: string | null;
+  signed_in_only: boolean | null;
   market_truth: boolean | null;
   sold_comp: boolean | null;
   active_listing_evidence: boolean | null;
+  publishable: boolean | null;
+  app_visible: boolean | null;
 };
 
 export type CardPricingUiRecord = {
   card_print_id: string;
+  gv_id?: string;
+  currency?: string;
+  reference_anchor_low?: number;
+  reference_anchor_mid?: number;
+  reference_anchor_high?: number;
+  reference_source_count?: number;
+  reference_eligible_evidence_count?: number;
+  reference_review_flags?: string[];
+  grookai_value_low?: number;
+  grookai_value_mid?: number;
+  grookai_value_high?: number;
+  grookai_value_basis?: string;
+  grookai_value_block_reason?: string;
+  active_ask_low?: number;
+  active_ask_mid?: number;
+  active_ask_high?: number;
+  active_ask_minimum?: number;
+  active_ask_maximum?: number;
+  active_ask_listing_count?: number;
+  active_ask_seller_count?: number;
+  active_ask_signal_at?: string;
+  market_pressure_pct?: number;
+  market_pressure_status?: string;
+  lane_policy?: string;
+  condition_policy?: string;
+  grookai_value_condition_label?: string;
+  active_ask_condition_label?: string;
+  confidence_label?: "high" | "medium" | "limited";
+  freshness_label?: "fresh" | "aging" | "stale" | "no_active_ask";
+  market_truth?: false;
+  sold_comp?: false;
+  active_listing_evidence?: boolean;
+  publishable?: false;
+  app_visible?: false;
+  // Legacy card/grid compatibility fields. These now map to Grookai Value,
+  // never to active ask when Grookai Value is blocked.
   primary_price?: number;
-  primary_source?: "ebay";
+  primary_source?: "grookai_value";
   grookai_value?: number;
   min_price?: number;
   max_price?: number;
@@ -35,13 +90,8 @@ export type CardPricingUiRecord = {
   ebay_median_price?: number;
   ebay_listing_count?: number;
   display_label?: string;
-  pricing_basis?: "active_listing_market_estimate";
-  confidence_label?: "high" | "medium" | "low";
-  freshness_label?: "fresh" | "aging";
+  pricing_basis?: "evidence_anchored_grookai_value" | "active_listing_only_no_grookai_value";
   signal_at?: string;
-  market_truth?: false;
-  sold_comp?: false;
-  active_listing_evidence?: true;
 };
 
 function toNumber(value: number | null | undefined) {
@@ -60,9 +110,9 @@ export async function getCardPricingUiByCardPrintIdWithClient(
   }
 
   const { data, error } = await supabase
-    .from("v_card_pricing_ui_v1")
+    .from("v_market_evidence_public_pricing_bridge_reference_anchored_v1")
     .select(
-      "card_print_id,primary_price,primary_source,grookai_value,min_price,max_price,variant_count,ebay_median_price,ebay_listing_count,display_label,pricing_basis,confidence_label,freshness_label,signal_at,market_truth,sold_comp,active_listing_evidence",
+      "card_print_id,gv_id,currency,reference_anchor_low,reference_anchor_mid,reference_anchor_high,reference_source_count,reference_eligible_evidence_count,reference_review_flags,grookai_value_low,grookai_value_mid,grookai_value_high,grookai_value_basis,grookai_value_block_reason,active_ask_low,active_ask_mid,active_ask_high,raw_active_ask_minimum,raw_active_ask_maximum,active_ask_listing_count,active_ask_seller_count,active_ask_signal_at,market_pressure_pct,market_pressure_status,lane_policy,condition_policy,grookai_value_condition_label,active_ask_condition_label,confidence_label,freshness_label,signed_in_only,market_truth,sold_comp,active_listing_evidence,publishable,app_visible",
     )
     .eq("card_print_id", normalizedCardPrintId)
     .maybeSingle();
@@ -80,37 +130,90 @@ export async function getCardPricingUiByCardPrintIdWithClient(
     return null;
   }
 
-  const isSafeMarketEstimate =
-    row.primary_source === "ebay" &&
-    row.pricing_basis === "active_listing_market_estimate" &&
-    row.active_listing_evidence === true &&
+  const hasClosedPublicBoundary =
     row.market_truth === false &&
-    row.sold_comp === false;
-  const primarySource: "ebay" | undefined = isSafeMarketEstimate ? "ebay" : undefined;
-  const primaryPrice = primarySource ? toNumber(row.primary_price) : undefined;
+    row.sold_comp === false &&
+    row.publishable === false &&
+    row.app_visible === false;
+  if (!hasClosedPublicBoundary) {
+    return null;
+  }
+
+  const grookaiValueMid = toNumber(row.grookai_value_mid);
+  const activeAskMid = toNumber(row.active_ask_mid);
+  const hasGrookaiValue = typeof grookaiValueMid === "number";
 
   return {
     card_print_id: row.card_print_id,
-    primary_price: primaryPrice,
-    primary_source: primarySource,
-    grookai_value: primarySource ? toNumber(row.grookai_value) : undefined,
-    min_price: primarySource ? toNumber(row.min_price) : undefined,
-    max_price: primarySource ? toNumber(row.max_price) : undefined,
-    variant_count: primarySource && typeof row.variant_count === "number" && Number.isFinite(row.variant_count) ? row.variant_count : undefined,
-    ebay_median_price: toNumber(row.ebay_median_price),
-    ebay_listing_count:
-      typeof row.ebay_listing_count === "number" && Number.isFinite(row.ebay_listing_count) ? row.ebay_listing_count : undefined,
-    display_label: primarySource ? row.display_label ?? "Market estimate from active listing evidence" : undefined,
-    pricing_basis: primarySource ? "active_listing_market_estimate" : undefined,
+    gv_id: row.gv_id ?? undefined,
+    currency: row.currency ?? undefined,
+    reference_anchor_low: toNumber(row.reference_anchor_low),
+    reference_anchor_mid: toNumber(row.reference_anchor_mid),
+    reference_anchor_high: toNumber(row.reference_anchor_high),
+    reference_source_count:
+      typeof row.reference_source_count === "number" && Number.isFinite(row.reference_source_count)
+        ? row.reference_source_count
+        : undefined,
+    reference_eligible_evidence_count:
+      typeof row.reference_eligible_evidence_count === "number" && Number.isFinite(row.reference_eligible_evidence_count)
+        ? row.reference_eligible_evidence_count
+        : undefined,
+    reference_review_flags: Array.isArray(row.reference_review_flags) ? row.reference_review_flags : undefined,
+    grookai_value_low: toNumber(row.grookai_value_low),
+    grookai_value_mid: grookaiValueMid,
+    grookai_value_high: toNumber(row.grookai_value_high),
+    grookai_value_basis: row.grookai_value_basis ?? undefined,
+    grookai_value_block_reason: row.grookai_value_block_reason ?? undefined,
+    active_ask_low: toNumber(row.active_ask_low),
+    active_ask_mid: activeAskMid,
+    active_ask_high: toNumber(row.active_ask_high),
+    active_ask_minimum: toNumber(row.raw_active_ask_minimum),
+    active_ask_maximum: toNumber(row.raw_active_ask_maximum),
+    active_ask_listing_count:
+      typeof row.active_ask_listing_count === "number" && Number.isFinite(row.active_ask_listing_count)
+        ? row.active_ask_listing_count
+        : undefined,
+    active_ask_seller_count:
+      typeof row.active_ask_seller_count === "number" && Number.isFinite(row.active_ask_seller_count)
+        ? row.active_ask_seller_count
+        : undefined,
+    active_ask_signal_at: row.active_ask_signal_at ?? undefined,
+    market_pressure_pct: toNumber(row.market_pressure_pct),
+    market_pressure_status: row.market_pressure_status ?? undefined,
+    lane_policy: row.lane_policy ?? undefined,
+    condition_policy: row.condition_policy ?? undefined,
+    grookai_value_condition_label: row.grookai_value_condition_label ?? undefined,
+    active_ask_condition_label: row.active_ask_condition_label ?? undefined,
     confidence_label:
-      primarySource && (row.confidence_label === "high" || row.confidence_label === "medium" || row.confidence_label === "low")
+      row.confidence_label === "high" || row.confidence_label === "medium" || row.confidence_label === "limited"
         ? row.confidence_label
         : undefined,
-    freshness_label: primarySource && (row.freshness_label === "fresh" || row.freshness_label === "aging") ? row.freshness_label : undefined,
-    signal_at: primarySource ? row.signal_at ?? undefined : undefined,
-    market_truth: primarySource ? false : undefined,
-    sold_comp: primarySource ? false : undefined,
-    active_listing_evidence: primarySource ? true : undefined,
+    freshness_label:
+      row.freshness_label === "fresh" ||
+      row.freshness_label === "aging" ||
+      row.freshness_label === "stale" ||
+      row.freshness_label === "no_active_ask"
+        ? row.freshness_label
+        : undefined,
+    market_truth: false,
+    sold_comp: false,
+    active_listing_evidence: row.active_listing_evidence === true,
+    publishable: false,
+    app_visible: false,
+    primary_price: hasGrookaiValue ? grookaiValueMid : undefined,
+    primary_source: hasGrookaiValue ? "grookai_value" : undefined,
+    grookai_value: hasGrookaiValue ? grookaiValueMid : undefined,
+    min_price: hasGrookaiValue ? toNumber(row.grookai_value_low) : undefined,
+    max_price: hasGrookaiValue ? toNumber(row.grookai_value_high) : undefined,
+    variant_count: hasGrookaiValue ? row.reference_eligible_evidence_count ?? undefined : undefined,
+    ebay_median_price: activeAskMid,
+    ebay_listing_count:
+      typeof row.active_ask_listing_count === "number" && Number.isFinite(row.active_ask_listing_count)
+        ? row.active_ask_listing_count
+        : undefined,
+    display_label: hasGrookaiValue ? "Evidence-anchored Grookai Value" : "Active ask only - no valuation anchor",
+    pricing_basis: hasGrookaiValue ? "evidence_anchored_grookai_value" : "active_listing_only_no_grookai_value",
+    signal_at: row.active_ask_signal_at ?? undefined,
   };
 }
 

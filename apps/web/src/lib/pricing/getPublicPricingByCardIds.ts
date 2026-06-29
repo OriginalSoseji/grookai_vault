@@ -2,30 +2,25 @@
  * STABILIZATION RULE:
  *
  * Current active pricing authority:
- * - Engine: Market Evidence Engine approved internal price signals
- * - App-facing read surface: v_market_evidence_public_price_bridge_v1
+ * - Engine: Market Evidence Engine evidence-anchored public bridge
+ * - App-facing read surface: v_market_evidence_public_pricing_bridge_reference_anchored_v1
  *
- * All product-facing reads must continue through v_market_evidence_public_price_bridge_v1.
- *
- * Do not bypass this surface to read lower-level pricing tables directly.
- * Do not treat reference APIs, active listing warehouse rows, or review events
- * as public pricing unless the bridge exposes them.
- *
- * See: MEE_PUBLIC_PRICE_BRIDGE_V1.md
+ * Product-facing reads must continue through the bridge. Do not bypass this
+ * surface to read lower-level pricing tables directly.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 type PublicBridgePriceRow = {
   card_print_id: string | null;
-  primary_price: number | null;
-  primary_source: string | null;
-  signal_at: string | null;
+  grookai_value_mid: number | null;
+  active_ask_signal_at: string | null;
   confidence_label: string | null;
-  active_listing_count: number | null;
-  pricing_basis: string | null;
+  active_ask_listing_count: number | null;
+  grookai_value_block_reason: string | null;
   market_truth: boolean | null;
   sold_comp: boolean | null;
-  active_listing_evidence: boolean | null;
+  publishable: boolean | null;
+  app_visible: boolean | null;
 };
 
 export type CanonicalRawPricingRecord = {
@@ -46,11 +41,6 @@ export type PublicPricingRecord = CanonicalRawPricingRecord;
 
 type PricingClient = SupabaseClient;
 
-function isAllowedPublicPricingSource(source: string | null | undefined) {
-  const normalized = source?.trim().toLowerCase();
-  return normalized === "ebay";
-}
-
 export async function getPublicPricingByCardIds(
   supabase: PricingClient,
   cardPrintIds: string[],
@@ -61,9 +51,9 @@ export async function getPublicPricingByCardIds(
   }
 
   const { data, error } = await supabase
-    .from("v_market_evidence_public_price_bridge_v1")
+    .from("v_market_evidence_public_pricing_bridge_reference_anchored_v1")
     .select(
-      "card_print_id,primary_price,primary_source,signal_at,confidence_label,active_listing_count,pricing_basis,market_truth,sold_comp,active_listing_evidence",
+      "card_print_id,grookai_value_mid,active_ask_signal_at,confidence_label,active_ask_listing_count,grookai_value_block_reason,market_truth,sold_comp,publishable,app_visible",
     )
     .in("card_print_id", uniqueIds);
 
@@ -74,20 +64,20 @@ export async function getPublicPricingByCardIds(
   return new Map(
     ((data ?? []) as PublicBridgePriceRow[])
       .filter((row): row is PublicBridgePriceRow & { card_print_id: string } => Boolean(row.card_print_id))
-      .filter((row) => isAllowedPublicPricingSource(row.primary_source))
       .filter(
         (row) =>
-          row.pricing_basis === "active_listing_market_estimate" &&
-          row.active_listing_evidence === true &&
+          row.grookai_value_block_reason === null &&
           row.market_truth === false &&
-          row.sold_comp === false,
+          row.sold_comp === false &&
+          row.publishable === false &&
+          row.app_visible === false,
       )
       .map((row) => {
-        const rawPrice = typeof row.primary_price === "number" ? row.primary_price : undefined;
-        const rawPriceSource = rawPrice !== undefined ? row.primary_source ?? undefined : undefined;
-        const rawPriceTs = rawPrice !== undefined ? row.signal_at ?? undefined : undefined;
+        const rawPrice = typeof row.grookai_value_mid === "number" ? row.grookai_value_mid : undefined;
+        const rawPriceSource = rawPrice !== undefined ? "grookai_value" : undefined;
+        const rawPriceTs = rawPrice !== undefined ? row.active_ask_signal_at ?? undefined : undefined;
         const confidence =
-          row.confidence_label === "high" ? 0.9 : row.confidence_label === "medium" ? 0.75 : row.confidence_label === "low" ? 0.5 : undefined;
+          row.confidence_label === "high" ? 0.9 : row.confidence_label === "medium" ? 0.75 : row.confidence_label === "limited" ? 0.5 : undefined;
 
         return [
           row.card_print_id,
@@ -99,8 +89,8 @@ export async function getPublicPricingByCardIds(
             latest_price: rawPrice,
             confidence,
             listing_count:
-              typeof row.active_listing_count === "number" && Number.isFinite(row.active_listing_count)
-                ? row.active_listing_count
+              typeof row.active_ask_listing_count === "number" && Number.isFinite(row.active_ask_listing_count)
+                ? row.active_ask_listing_count
                 : undefined,
             price_source: rawPriceSource,
             updated_at: rawPriceTs,

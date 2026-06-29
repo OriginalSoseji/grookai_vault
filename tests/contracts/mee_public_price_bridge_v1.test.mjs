@@ -77,25 +77,44 @@ test("app pricing reads require bridge safety fields before showing price", () =
   const publicHelper = read(publicPricingHelperPath);
 
   for (const helper of [cardHelper, publicHelper]) {
-    assert.match(helper, /v_market_evidence_public_price_bridge_v1|v_card_pricing_ui_v1/);
-    assert.match(helper, /pricing_basis/);
-    assert.match(helper, /active_listing_market_estimate/);
-    assert.match(helper, /active_listing_evidence\s*={0,2}\s*true|active_listing_evidence\s*===\s*true/);
+    assert.match(helper, /v_market_evidence_public_pricing_bridge_reference_anchored_v1/);
+    assert.match(helper, /grookai_value_mid/);
     assert.match(helper, /market_truth\s*={0,2}\s*false|market_truth\s*===\s*false/);
     assert.match(helper, /sold_comp\s*={0,2}\s*false|sold_comp\s*===\s*false/);
+    assert.match(helper, /publishable\s*={0,2}\s*false|publishable\s*===\s*false/);
+    assert.match(helper, /app_visible\s*={0,2}\s*false|app_visible\s*===\s*false/);
   }
 
+  assert.match(cardHelper, /active_ask_mid/);
+  assert.match(cardHelper, /grookai_value_block_reason/);
+  assert.match(publicHelper, /grookai_value_block_reason\s*===\s*null/);
+  assert.doesNotMatch(publicHelper, /v_market_evidence_public_price_bridge_v1/);
   assert.doesNotMatch(publicHelper, /v_best_prices_all_gv_v1/);
   assert.doesNotMatch(publicHelper, /card_print_active_prices/);
 });
 
-test("pricing UI copy states active listing estimates are not sold comps", () => {
+test("app pricing reads do not use active ask as Grookai Value", () => {
+  const cardHelper = read(cardPricingHelperPath);
+  const publicHelper = read(publicPricingHelperPath);
+
+  assert.doesNotMatch(cardHelper, /primary_source:\s*"ebay"/);
+  assert.doesNotMatch(cardHelper, /pricing_basis:\s*"active_listing_market_estimate"/);
+  assert.match(cardHelper, /primary_source:\s*hasGrookaiValue\s*\?\s*"grookai_value"/);
+  assert.match(cardHelper, /ebay_median_price:\s*activeAskMid/);
+  assert.match(publicHelper, /const rawPrice = typeof row\.grookai_value_mid/);
+  assert.match(publicHelper, /rawPriceSource = rawPrice !== undefined \? "grookai_value"/);
+});
+
+test("pricing UI copy separates Grookai Value and Available Today", () => {
   const rail = read(pricingRailPath);
   const disclosure = read(pricingDisclosurePath);
 
-  assert.match(rail, /Active listing evidence: eBay\. Not a sold-comp price\./);
-  assert.match(rail, /Raw single estimate/);
-  assert.match(disclosure, /Active listing estimates are asking-price evidence, not sold-comparable proof or guaranteed market value\./);
+  assert.match(rail, /Evidence-anchored Grookai Value/);
+  assert.match(rail, /Available Today/);
+  assert.match(rail, /eBay active ask/);
+  assert.match(rail, /Active asks are asking-price evidence, not sold comps\./);
+  assert.match(disclosure, /Grookai Value is evidence-anchored/);
+  assert.match(disclosure, /Available Today uses active listing asks/);
 });
 
 test("signed-in card pricing hydration route is tracked and auth-gated", () => {
