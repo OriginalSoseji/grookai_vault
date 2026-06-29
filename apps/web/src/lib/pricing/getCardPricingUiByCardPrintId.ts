@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type CardPricingUiRow = {
@@ -47,7 +48,10 @@ function toNumber(value: number | null | undefined) {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
 }
 
-export const getCardPricingUiByCardPrintId = cache(async function getCardPricingUiByCardPrintId(
+type CardPricingUiClient = Pick<SupabaseClient, "from">;
+
+export async function getCardPricingUiByCardPrintIdWithClient(
+  supabase: CardPricingUiClient,
   cardPrintId: string,
 ): Promise<CardPricingUiRecord | null> {
   const normalizedCardPrintId = cardPrintId.trim();
@@ -55,7 +59,6 @@ export const getCardPricingUiByCardPrintId = cache(async function getCardPricing
     return null;
   }
 
-  const supabase = createServerComponentClient();
   const { data, error } = await supabase
     .from("v_card_pricing_ui_v1")
     .select(
@@ -109,4 +112,10 @@ export const getCardPricingUiByCardPrintId = cache(async function getCardPricing
     sold_comp: primarySource ? false : undefined,
     active_listing_evidence: primarySource ? true : undefined,
   };
+}
+
+export const getCardPricingUiByCardPrintId = cache(async function getCardPricingUiByCardPrintId(
+  cardPrintId: string,
+): Promise<CardPricingUiRecord | null> {
+  return getCardPricingUiByCardPrintIdWithClient(createServerComponentClient(), cardPrintId);
 });
