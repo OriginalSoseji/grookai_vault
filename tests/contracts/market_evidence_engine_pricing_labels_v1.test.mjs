@@ -10,8 +10,11 @@ test("card pricing rail labels reference and market lanes explicitly", () => {
   const pricingRail = source("apps/web/src/components/pricing/CardPagePricingRail.tsx");
 
   assert.doesNotMatch(pricingRail, /JustTCG/);
-  assert.match(pricingRail, /Active listing evidence: eBay/);
-  assert.match(pricingRail, /source=\{pricing\?\.primary_source\}/);
+  assert.match(pricingRail, /Evidence-anchored Grookai Value/);
+  assert.match(pricingRail, /Available Today/);
+  assert.match(pricingRail, /eBay active ask/);
+  assert.match(pricingRail, /Active asks are asking-price evidence, not sold comps\./);
+  assert.doesNotMatch(pricingRail, /source=\{pricing\?\.primary_source\}/);
   assert.doesNotMatch(pricingRail, />\* Market reference</);
 });
 
