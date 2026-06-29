@@ -37,10 +37,15 @@ function parseArgs(argv) {
 }
 
 function runSupabaseQuery(sql) {
-  const output = execFileSync("supabase", ["db", "query", sql, "--linked"], {
+  const useDbUrl = Boolean(process.env.SUPABASE_DB_URL);
+  const env = { ...process.env };
+  if (useDbUrl) delete env.SUPABASE_ACCESS_TOKEN;
+  const targetArgs = useDbUrl ? ["--db-url", process.env.SUPABASE_DB_URL] : ["--linked"];
+  const output = execFileSync("supabase", ["db", "query", sql, "--output", "json", ...targetArgs], {
     cwd: REPO_ROOT,
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
+    env,
     stdio: ["ignore", "pipe", "pipe"],
   });
   const jsonStart = output.search(/[\[{]/);
