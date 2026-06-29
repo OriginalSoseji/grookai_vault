@@ -186,6 +186,7 @@ with parent_rows as (
     end as lane_policy,
     case
       when reference_median is null then 'blocked_no_valuation_anchor'
+      when reference_rollup_version is not null then 'blocked_reference_requires_review'
       when reference_currency <> 'USD' then 'blocked_non_usd_reference'
       when reference_source_count < 1 then 'blocked_no_reference_source'
       when reference_median <= 0 then 'blocked_invalid_reference_median'

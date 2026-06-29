@@ -106,15 +106,18 @@ function GrookaiValueBlock({ pricing }: { pricing: CardPricingUiRecord | null })
 
   if (typeof midPrice !== "number") {
     const noValuationAnchor = pricing.grookai_value_block_reason === "blocked_no_valuation_anchor";
+    const referenceRequiresReview = pricing.grookai_value_block_reason === "blocked_reference_requires_review";
 
     return (
       <div className="space-y-1.5">
         <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">
-          {noValuationAnchor ? "Building confidence..." : "Insufficient valuation evidence"}
+          {noValuationAnchor || referenceRequiresReview ? "Building confidence..." : "Insufficient valuation evidence"}
         </p>
         <p className="text-xs leading-5 text-slate-500">
           {noValuationAnchor
             ? "No trusted valuation exists yet. Current market is shown below."
+            : referenceRequiresReview
+              ? "Reference evidence is under review before Grookai Value can be shown. Current market is shown below if available."
             : formatPricingLabel(pricing.grookai_value_block_reason) ??
               "More evidence is required before showing Grookai Value. Current market is shown below if available."}
         </p>

@@ -118,6 +118,7 @@ test("pricing UI copy separates Grookai Value and Lowest Available Today", () =>
   assert.match(rail, /Ask Range/);
   assert.match(rail, /Building confidence/);
   assert.match(rail, /No trusted valuation exists yet\. Current market is shown below\./);
+  assert.match(rail, /Reference evidence is under review before Grookai Value can be shown\./);
   assert.match(rail, /Active asks are asking-price evidence, not sold comps\./);
   assert.match(disclosure, /Grookai Value is evidence-anchored/);
   assert.match(disclosure, /Lowest Available Today uses active listing asks/);

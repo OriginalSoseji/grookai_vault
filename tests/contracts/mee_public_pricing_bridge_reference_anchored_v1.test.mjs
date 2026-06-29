@@ -171,6 +171,8 @@ test("reference anchored SQL candidate separates Grookai Value from active ask",
   assert.match(sql, /market_pressure_status/i);
   assert.match(sql, /grookai_value_block_reason/i);
   assert.match(sql, /blocked_no_valuation_anchor/i);
+  assert.match(sql, /blocked_reference_requires_review/i);
+  assert.match(sql, /reference_review_status\s+is\s+distinct\s+from\s+'review_ready_multi_source'/i);
   assert.match(sql, /raw_and_slab_available_separated/i);
   assert.match(sql, /condition_unknown_reference_range/i);
 
@@ -189,8 +191,11 @@ test("reference anchored readback guards public boundary and Mightyena regressio
   const readback = stripSqlComments(read(readbackSqlPath));
 
   assert.match(readback, /GV-PK-HP-101/);
+  assert.match(readback, /GV-PK-ASC-276/);
   assert.match(readback, /active_only_grookai_value_leak_rows/);
   assert.match(readback, /disagreement_active_ask_overwrite_rows/);
+  assert.match(readback, /review_required_grookai_value_leak_rows/);
+  assert.match(readback, /ascended_pikachu_regression_row/);
   assert.match(readback, /writes_pricing_observations/);
   assert.match(readback, /writes_ebay_active_prices_latest/);
   assert.match(readback, /uses_justtcg_public_pricing/);

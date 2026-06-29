@@ -9,6 +9,10 @@ with bridge as (
   select *
   from bridge
   where gv_id = 'GV-PK-HP-101'
+), ascended_pikachu as (
+  select *
+  from bridge
+  where gv_id = 'GV-PK-ASC-276'
 ), boundary as (
   select
     count(*) filter (where market_truth)::int as market_truth_rows,
@@ -22,7 +26,11 @@ with bridge as (
     count(*) filter (
       where grookai_value_mid = active_ask_mid
         and market_pressure_status in ('active_listings_above_reference', 'active_listings_below_reference')
-    )::int as disagreement_active_ask_overwrite_rows
+    )::int as disagreement_active_ask_overwrite_rows,
+    count(*) filter (
+      where grookai_value_mid is not null
+        and reference_review_status is distinct from 'review_ready_multi_source'
+    )::int as review_required_grookai_value_leak_rows
   from bridge
 )
 select
@@ -33,9 +41,9 @@ select
   (select count(*)::int from bridge where grookai_value_block_reason is not null) as blocked_value_rows,
   (select to_jsonb(boundary) from boundary) as boundary,
   (select to_jsonb(mightyena) from mightyena limit 1) as mightyena_regression_row,
+  (select to_jsonb(ascended_pikachu) from ascended_pikachu limit 1) as ascended_pikachu_regression_row,
   false::boolean as writes_pricing_observations,
   false::boolean as writes_ebay_active_prices_latest,
   false::boolean as uses_justtcg_public_pricing,
   false::boolean as sold_comp_truth,
   false::boolean as market_truth;
-

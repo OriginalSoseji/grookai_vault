@@ -171,6 +171,7 @@ with latest_reference_rollups as (
     end as lane_policy,
     case
       when reference_median is null then 'blocked_no_valuation_anchor'
+      when reference_review_status is distinct from 'review_ready_multi_source' then 'blocked_reference_requires_review'
       when reference_currency <> 'USD' then 'blocked_non_usd_reference'
       when reference_source_count < 1 then 'blocked_no_reference_source'
       when reference_median <= 0 then 'blocked_invalid_reference_median'
@@ -267,4 +268,3 @@ from scored;
 
 revoke all on public.v_market_evidence_public_pricing_bridge_reference_anchored_v1 from public, anon, authenticated, service_role;
 grant select on public.v_market_evidence_public_pricing_bridge_reference_anchored_v1 to authenticated, service_role;
-

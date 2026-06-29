@@ -43,6 +43,7 @@ test("bounded card-detail function filters by card_print_id before variant evide
   assert.match(sql, /where bridge\.card_print_id = p_card_print_id/i);
   assert.match(sql, /where reference\.card_print_id = p_card_print_id/i);
   assert.match(sql, /where active\.card_print_id = p_card_print_id/i);
+  assert.match(sql, /blocked_reference_requires_review/i);
   assert.match(sql, /security definer/i);
   assert.match(sql, /grant execute on function public\.get_market_evidence_public_pricing_bridge_variant_aware_v1\(uuid\) to authenticated, service_role/i);
 });
@@ -51,6 +52,7 @@ test("variant-aware bridge keeps active ask out of Grookai Value without referen
   const sql = stripSqlComments(read(sqlPath));
 
   assert.match(sql, /when reference_median is null then 'blocked_no_valuation_anchor'/i);
+  assert.match(sql, /blocked_reference_requires_review/i);
   assert.match(sql, /when reference_median is null then null::numeric/i);
   assert.match(sql, /raw_active_ask_mid is not null as active_listing_evidence/i);
   assert.match(sql, /false as market_truth/i);
@@ -71,10 +73,13 @@ test("readback includes Arceus Charizard variant regression and boundary guards"
   const readback = stripSqlComments(read(readbackPath));
 
   assert.match(readback, /GV-PK-AR-1/);
+  assert.match(readback, /GV-PK-ASC-276/);
   assert.match(readback, /variant_active_ask_rows/);
   assert.match(readback, /variant_grookai_value_rows/);
   assert.match(readback, /public_boundary_leak_rows/);
   assert.match(readback, /active_only_grookai_value_leak_rows/);
+  assert.match(readback, /review_required_grookai_value_leak_rows/);
+  assert.match(readback, /ascended_pikachu_regression_rows/);
   assert.match(readback, /printing_gv_id/);
   assert.match(readback, /assigned_finish_key/);
 });
