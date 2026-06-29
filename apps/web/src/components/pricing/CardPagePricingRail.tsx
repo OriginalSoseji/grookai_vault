@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
+import { supabase } from "@/lib/supabaseClient";
 import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 
 type CardPagePricingRailProps = {
@@ -157,16 +158,28 @@ export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, 
     const controller = new AbortController();
     const params = new URLSearchParams({ card_print_id: cardPrintId });
 
-    fetch(`/api/card-pricing?${params.toString()}`, {
-      cache: "no-store",
-      signal: controller.signal,
-    })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((payload: { pricing?: CardPricingUiRecord | null } | null) => {
-        if (payload && "pricing" in payload) {
-          setClientPricing(payload.pricing ?? null);
-        }
-      })
+    async function loadPricing() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const headers = session?.access_token
+        ? { Authorization: `Bearer ${session.access_token}` }
+        : undefined;
+      const response = await fetch(`/api/card-pricing?${params.toString()}`, {
+        cache: "no-store",
+        credentials: "same-origin",
+        headers,
+        signal: controller.signal,
+      });
+      const payload = response.ok ? ((await response.json()) as { pricing?: CardPricingUiRecord | null }) : null;
+
+      if (payload && "pricing" in payload) {
+        setClientPricing(payload.pricing ?? null);
+      }
+    }
+
+    loadPricing()
+      .then(() => undefined)
       .catch(() => undefined);
 
     return () => controller.abort();

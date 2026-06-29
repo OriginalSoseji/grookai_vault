@@ -100,14 +100,21 @@ test("pricing UI copy states active listing estimates are not sold comps", () =>
 
 test("signed-in card pricing hydration route is tracked and auth-gated", () => {
   const route = read(cardPricingRoutePath);
+  const rail = read(pricingRailPath);
   const gitignore = read(".gitignore");
 
-  assert.match(route, /getCardPricingUiByCardPrintId/);
+  assert.match(route, /getCardPricingUiByCardPrintIdWithClient/);
   assert.match(route, /createRouteHandlerClient/);
+  assert.match(route, /createServerAdminClient/);
   assert.match(route, /auth\.getUser\(\)/);
+  assert.match(route, /auth\.getUser\(bearerToken\)/);
+  assert.match(route, /extractBearerToken/);
   assert.match(route, /Sign in required\./);
   assert.match(route, /card_print_id/);
   assert.match(route, /Cache-Control["']:\s*["']private,\s*no-store/);
+  assert.match(rail, /supabase\.auth\.getSession\(\)/);
+  assert.match(rail, /Authorization:\s*`Bearer \$\{session\.access_token\}`/);
+  assert.match(rail, /credentials:\s*"same-origin"/);
   assert.match(gitignore, /!apps\/web\/src\/app\/api\/card-pricing\/route\.ts/);
 });
 
@@ -132,7 +139,7 @@ test("MEE public price bridge remote readback has closed truth boundaries", () =
 });
 
 test("MEE public price bridge artifacts exist", () => {
-  for (const artifactPath of [bridgeSqlPath, readbackSqlPath, migrationPath, contractPath, checkpointPath, cardPricingRoutePath, remoteApplyReportPath, remoteApplyMarkdownPath]) {
+  for (const artifactPath of [bridgeSqlPath, readbackSqlPath, migrationPath, contractPath, checkpointPath, cardPricingRoutePath, pricingRailPath, remoteApplyReportPath, remoteApplyMarkdownPath]) {
     assert.equal(existsSync(new URL(`../../${artifactPath}`, import.meta.url)), true, artifactPath);
   }
 });
