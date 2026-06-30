@@ -130,6 +130,21 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         _ownershipAdapter.peek(cardPrintId);
   }
 
+  void _openCardDetails(PublicSetCard card) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CardDetailScreen(
+          cardPrintId: card.cardPrintId,
+          gvId: card.gvId,
+          name: card.name,
+          number: card.number,
+          rarity: card.rarity,
+          imageUrl: card.displayImageUrl,
+        ),
+      ),
+    );
+  }
+
   Future<void> _openSetGallery(int initialIndex) async {
     final detail = _detail;
     if (detail == null || detail.cards.isEmpty) {
@@ -141,6 +156,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
           (card) => CardZoomGalleryItem(
             label: '#${card.number} • ${_setCardGalleryLabel(card)}',
             imageUrl: card.displayImageUrl,
+            onViewDetails: () => _openCardDetails(card),
           ),
         )
         .toList(growable: false);
@@ -1031,20 +1047,18 @@ class _SetCardGridTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => CardDetailScreen(
-                cardPrintId: card.cardPrintId,
-                gvId: card.gvId,
-                name: card.name,
-                number: card.number,
-                rarity: card.rarity,
-                imageUrl: card.displayImageUrl,
-              ),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CardDetailScreen(
+              cardPrintId: card.cardPrintId,
+              gvId: card.gvId,
+              name: card.name,
+              number: card.number,
+              rarity: card.rarity,
+              imageUrl: card.displayImageUrl,
             ),
-          );
-        },
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1142,6 +1156,51 @@ class _SetCardGridTile extends StatelessWidget {
                             ),
                           );
                         },
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 5,
+                    top: variantLabel == null ? 5 : 39,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: colorScheme.surface.withValues(alpha: 0.90),
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(
+                          color: colorScheme.outline.withValues(alpha: 0.08),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 7,
+                          vertical: 5,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.info_outline_rounded,
+                              size: 12,
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.70,
+                              ),
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              'Details',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: 0.72,
+                                    ),
+                                    fontSize: 9.8,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

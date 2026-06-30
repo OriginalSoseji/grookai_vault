@@ -58,7 +58,11 @@ export async function getPublicPricingByCardIds(
     .in("card_print_id", uniqueIds);
 
   if (error) {
-    throw error;
+    console.warn("[pricing] public bridge read failed; search will continue without pricing enrichment", {
+      message: error.message,
+      code: error.code,
+    });
+    return new Map();
   }
 
   return new Map(

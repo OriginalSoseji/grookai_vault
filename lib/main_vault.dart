@@ -89,6 +89,8 @@ class _VaultItemTile extends StatelessWidget {
         height: compact ? 56 : 64,
         borderRadius: compact ? 10 : 12,
         padding: const EdgeInsets.all(3),
+        onViewDetails: onTap,
+        detailsLabel: 'Manage card',
       );
     }
 
@@ -321,6 +323,7 @@ class _VaultGridTile extends StatelessWidget {
                     child: _VaultGridArtwork(
                       imageUrl: imageUrl,
                       name: displayIdentity.displayName,
+                      onViewDetails: onTap,
                     ),
                   ),
                   Positioned(
@@ -438,10 +441,15 @@ class _VaultGridTile extends StatelessWidget {
 }
 
 class _VaultGridArtwork extends StatelessWidget {
-  const _VaultGridArtwork({required this.imageUrl, required this.name});
+  const _VaultGridArtwork({
+    required this.imageUrl,
+    required this.name,
+    this.onViewDetails,
+  });
 
   final String? imageUrl;
   final String name;
+  final VoidCallback? onViewDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -450,6 +458,8 @@ class _VaultGridArtwork extends StatelessWidget {
       imageUrl: imageUrl,
       borderRadius: 13,
       padding: const EdgeInsets.all(1.0),
+      onViewDetails: onViewDetails,
+      detailsLabel: 'Manage card',
     );
   }
 }
@@ -1053,6 +1063,10 @@ class VaultPageState extends State<VaultPage> {
                             height: 118,
                             borderRadius: 14,
                             padding: const EdgeInsets.all(5),
+                            onViewDetails: cardPrintId.isEmpty
+                                ? null
+                                : () => _openManageCardRow(row),
+                            detailsLabel: 'Manage card',
                           ),
                         ),
                       ),
@@ -1637,6 +1651,7 @@ class VaultPageState extends State<VaultPage> {
       height: 60,
       borderRadius: 10,
       padding: const EdgeInsets.all(3),
+      enableTapToZoom: false,
     );
   }
 }
@@ -1792,7 +1807,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
         _rows = const [];
         _ownershipByCardPrintId = const <String, OwnershipState>{};
         _resolverMeta = null;
-        _searchError = error is Error ? error.toString() : 'Search failed.';
+        _searchError = _formatSearchFailure(error);
       });
     } finally {
       if (mounted) {

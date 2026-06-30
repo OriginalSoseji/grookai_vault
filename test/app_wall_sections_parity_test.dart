@@ -49,6 +49,11 @@ void main() {
     },
   );
 
+  test('public collector relationship refresh preserves loaded Wall view', () {
+    expect(collectorScreen, contains('_resultWithRefreshedProfile'));
+    expect(collectorScreen, contains('wallView: current.wallView'));
+  });
+
   test('app owner can add section from the collector rail', () {
     expect(collectorScreen, contains('+ Add Section'));
     expect(collectorScreen, contains('New section name'));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../utils/display_image_contract.dart';
 import 'card_zoom_viewer.dart';
@@ -19,6 +20,8 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.showShadow = true,
     this.filterQuality = FilterQuality.low,
     this.onTapToZoom,
+    this.onViewDetails,
+    this.detailsLabel = 'View details',
     this.imageTruthLabel,
     this.imageTruthStrong = false,
     super.key,
@@ -36,6 +39,8 @@ class CardSurfaceArtwork extends StatelessWidget {
   final bool showShadow;
   final FilterQuality filterQuality;
   final VoidCallback? onTapToZoom;
+  final VoidCallback? onViewDetails;
+  final String detailsLabel;
   final String? imageTruthLabel;
   final bool imageTruthStrong;
 
@@ -83,14 +88,20 @@ class CardSurfaceArtwork extends StatelessWidget {
                 return Padding(
                   padding: padding,
                   child: _hasImage
-                      ? Image.network(
-                          _resolvedImageUrl!,
+                      ? CachedNetworkImage(
+                          imageUrl: _resolvedImageUrl!,
                           fit: BoxFit.contain,
                           alignment: Alignment.center,
-                          cacheWidth: cacheWidth,
-                          cacheHeight: cacheHeight,
+                          fadeInDuration: Duration.zero,
+                          fadeOutDuration: Duration.zero,
+                          memCacheWidth: cacheWidth,
+                          memCacheHeight: cacheHeight,
+                          maxWidthDiskCache: cacheWidth,
+                          maxHeightDiskCache: cacheHeight,
                           filterQuality: filterQuality,
-                          errorBuilder: (context, error, stackTrace) =>
+                          placeholder: (context, url) =>
+                              _ArtworkSkeleton(compact: compact),
+                          errorWidget: (context, url, error) =>
                               _ArtworkFallback(label: label, compact: compact),
                         )
                       : _ArtworkFallback(label: label, compact: compact),
@@ -147,6 +158,8 @@ class CardSurfaceArtwork extends StatelessWidget {
               context,
               label: label,
               imageUrl: _resolvedImageUrl,
+              onViewDetails: onViewDetails,
+              detailsLabel: detailsLabel,
             ),
         borderRadius: BorderRadius.circular(borderRadius),
         child: child,
@@ -253,6 +266,31 @@ class _ImageTruthChip extends StatelessWidget {
             fontWeight: FontWeight.w900,
             letterSpacing: 0.2,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ArtworkSkeleton extends StatelessWidget {
+  const _ArtworkSkeleton({required this.compact});
+
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.52),
+        borderRadius: BorderRadius.circular(compact ? 7 : 12),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.style_rounded,
+          size: compact ? 16 : 24,
+          color: colorScheme.onSurfaceVariant.withValues(alpha: 0.26),
         ),
       ),
     );

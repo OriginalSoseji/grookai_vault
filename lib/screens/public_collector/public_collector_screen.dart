@@ -510,6 +510,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           profile: refreshedProfile,
           collectionCards: current.collectionCards,
           inPlayCards: current.inPlayCards,
+          wallView: current.wallView,
         );
       case PublicCollectorSurfaceState.notFound:
       case PublicCollectorSurfaceState.unavailable:
@@ -1425,30 +1426,31 @@ class _PublicCardTile extends StatelessWidget {
       card.number != '—' ? '#${card.number}' : null,
       card.rarity,
     ].whereType<String>().toList();
+    void openCardDetails() {
+      final gvviId = (card.gvviId ?? '').trim();
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => gvviId.isNotEmpty
+              ? PublicGvviScreen(gvviId: gvviId)
+              : CardDetailScreen(
+                  cardPrintId: card.cardPrintId,
+                  gvId: card.gvId,
+                  name: card.name,
+                  setName: card.setName,
+                  setCode: card.setCode,
+                  number: card.number,
+                  rarity: card.rarity,
+                  imageUrl: card.imageUrl,
+                ),
+        ),
+      );
+    }
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(22),
-        onTap: () {
-          final gvviId = (card.gvviId ?? '').trim();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => gvviId.isNotEmpty
-                  ? PublicGvviScreen(gvviId: gvviId)
-                  : CardDetailScreen(
-                      cardPrintId: card.cardPrintId,
-                      gvId: card.gvId,
-                      name: card.name,
-                      setName: card.setName,
-                      setCode: card.setCode,
-                      number: card.number,
-                      rarity: card.rarity,
-                      imageUrl: card.imageUrl,
-                    ),
-            ),
-          );
-        },
+        onTap: openCardDetails,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -1464,6 +1466,7 @@ class _PublicCardTile extends StatelessWidget {
                       padding: const EdgeInsets.all(1.5),
                       backgroundColor: colorScheme.surfaceContainerLow
                           .withValues(alpha: 0.52),
+                      onViewDetails: openCardDetails,
                     ),
                   ),
                   if (imagePresentation.compactBadgeLabel != null)

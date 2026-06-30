@@ -272,6 +272,25 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                       height: 84,
                       borderRadius: 12,
                       padding: const EdgeInsets.all(4),
+                      onViewDetails: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => CardDetailScreen(
+                              cardPrintId: _thread.cardPrintId,
+                              gvId: _thread.gvId,
+                              name: _thread.cardName,
+                              setName: _thread.setName,
+                              number: _thread.number,
+                              imageUrl: _thread.imageUrl,
+                              contactVaultItemId: _thread.vaultItemId,
+                              contactOwnerDisplayName:
+                                  _thread.counterpartDisplayName,
+                              contactOwnerUserId: _thread.counterpartUserId,
+                            ),
+                          ),
+                        );
+                      },
+                      detailsLabel: 'View card',
                     ),
                     const SizedBox(width: 12),
                     Expanded(

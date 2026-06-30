@@ -362,6 +362,33 @@ class CardPrintRepository {
       );
     }
 
+    try {
+      return await _searchCardPrintsViaWebResolver(
+        options: options,
+        trimmed: trimmed,
+        identityFilter: identityFilter,
+        searchLimit: searchLimit,
+      );
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('search:web_resolver_failed fallback=local error=$error');
+      }
+
+      return _searchCardPrintsResolvedFallback(
+        client: client,
+        options: options,
+        defaultLimit: defaultLimit,
+        searchLimit: searchLimit,
+      );
+    }
+  }
+
+  static Future<CardPrintSearchResult> _searchCardPrintsViaWebResolver({
+    required CardSearchOptions options,
+    required String trimmed,
+    required String? identityFilter,
+    required int searchLimit,
+  }) async {
     final resolverUri = Uri.parse(grookaiWebBaseUrl)
         .resolve('/api/resolver/search')
         .replace(
@@ -432,6 +459,35 @@ class CardPrintRepository {
       provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
+    );
+  }
+
+  static Future<CardPrintSearchResult> _searchCardPrintsResolvedFallback({
+    required SupabaseClient client,
+    required CardSearchOptions options,
+    required int defaultLimit,
+    required int searchLimit,
+  }) async {
+    final normalizedIdentityFilter = _normalizeIdentityFilter(
+      options.identityFilter,
+    );
+    final fallbackOptions = options.query.trim().isNotEmpty
+        ? options
+        : normalizedIdentityFilter != null
+        ? options.copyWith(query: normalizedIdentityFilter.replaceAll('_', ' '))
+        : options;
+    final rows = await searchCardPrints(
+      client: client,
+      options: fallbackOptions,
+      defaultLimit: defaultLimit,
+      searchLimit: searchLimit,
+    );
+
+    return CardPrintSearchResult(
+      rows: rows,
+      provisionalRows: const <PublicProvisionalCard>[],
+      meta: null,
+      source: 'local_resolver_fallback',
     );
   }
 

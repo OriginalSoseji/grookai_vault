@@ -21,6 +21,7 @@ import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
+import 'screens/network/network_nearby_map_screen.dart';
 import 'screens/network/network_nearby_screen.dart';
 import 'screens/network/network_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
@@ -97,6 +98,11 @@ const double _kWallMatchGridChildAspectRatio = 0.5;
 const double _kWallMatchTitleHeight = 40;
 const double _kWallMatchMetaHeight = 22;
 const double _kWallMatchBottomRhythmHeight = 27;
+
+String _formatSearchFailure(Object error) {
+  debugPrint('Search failed: $error');
+  return 'Search is temporarily limited. Showing local results when available.';
+}
 
 String _normalizePublicCollectorSlugInput(String value) {
   var normalized = value.trim().toLowerCase();
@@ -1484,6 +1490,8 @@ class _SearchResultActionSheet extends StatelessWidget {
                     imageTruthLabel: imagePresentation.compactBadgeLabel,
                     imageTruthStrong:
                         imagePresentation.isCollisionRepresentative,
+                    onViewDetails: interactionLocked ? null : onViewCard,
+                    detailsLabel: 'View card',
                   ),
                 ),
               ),
@@ -1957,6 +1965,7 @@ class _ActionSheetMetadataText extends StatelessWidget {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  _configureAppImageCache();
   AppBootTiming.mark('main_start');
   PlatformDispatcher.instance.onError = (error, stackTrace) {
     if (_isInvalidRefreshTokenRecoveryError(error)) {
@@ -1983,12 +1992,18 @@ Future<void> main() async {
   AppBootTiming.mark('supabase_initialize_start');
   await Supabase.initialize(
     url: url,
-    anonKey: key,
+    publishableKey: key,
     authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
   );
   AppBootTiming.mark('supabase_initialize_complete');
   AppBootTiming.mark('runApp');
   runApp(const MyApp());
+}
+
+void _configureAppImageCache() {
+  final cache = PaintingBinding.instance.imageCache;
+  cache.maximumSize = 1600;
+  cache.maximumSizeBytes = 192 << 20;
 }
 
 bool _isInvalidRefreshTokenRecoveryError(Object error) {
@@ -3006,7 +3021,7 @@ class HomePageState extends State<HomePage> {
         _resolverMeta = null;
         _hasMoreVisibleResults = false;
         _isHydratingMoreResults = false;
-        _searchError = error is Error ? error.toString() : 'Search failed.';
+        _searchError = _formatSearchFailure(error);
         _loading = false;
       });
     }

@@ -1306,29 +1306,30 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       final ownershipState = _relatedVersionOwnershipState(
                         cardPrintId,
                       );
+                      void openRelatedVersion() {
+                        Navigator.of(context).pop();
+                        Navigator.of(this.context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => CardDetailScreen(
+                              cardPrintId: _cleanText(row['id']),
+                              gvId: _cleanText(row['gv_id']),
+                              name: _cleanText(row['name']),
+                              setName: setName,
+                              setCode: setCode,
+                              number: number,
+                              rarity: rarity,
+                              imageUrl: imageUrl,
+                            ),
+                          ),
+                        );
+                      }
 
                       return Material(
                         color: colorScheme.surface,
                         borderRadius: BorderRadius.circular(18),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(18),
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            Navigator.of(this.context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => CardDetailScreen(
-                                  cardPrintId: _cleanText(row['id']),
-                                  gvId: _cleanText(row['gv_id']),
-                                  name: _cleanText(row['name']),
-                                  setName: setName,
-                                  setCode: setCode,
-                                  number: number,
-                                  rarity: rarity,
-                                  imageUrl: imageUrl,
-                                ),
-                              ),
-                            );
-                          },
+                          onTap: openRelatedVersion,
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Row(
@@ -1343,6 +1344,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                       borderRadius: 12,
                                       padding: const EdgeInsets.all(4),
                                       showZoomAffordance: imageUrl.isNotEmpty,
+                                      onViewDetails: openRelatedVersion,
+                                      detailsLabel: 'View version',
                                     ),
                                   ),
                                 ),
@@ -2498,10 +2501,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final primaryValue = primaryPrice ?? grookaiValue;
     final primaryLabel = primaryPrice != null ? 'Market' : 'Value';
     final primarySource = _pricingSourceName(data['primary_source'] as String?);
-    final pricingFooterParts = <String>[
-      if (primarySource != null) primarySource,
-      if (_hasVaultContext) 'In your vault',
-    ];
+    final pricingFooterParts = <String>[];
+    if (primarySource != null) {
+      pricingFooterParts.add(primarySource);
+    }
+    if (_hasVaultContext) {
+      pricingFooterParts.add('In your vault');
+    }
     final pricingContext = <Widget>[
       if (minPrice != null)
         _buildPricingMetricChip(

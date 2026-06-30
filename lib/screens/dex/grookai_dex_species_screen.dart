@@ -516,6 +516,7 @@ class _DexCardTile extends StatelessWidget {
                 padding: const EdgeInsets.all(1.5),
                 imageTruthLabel: imagePresentation.compactBadgeLabel,
                 imageTruthStrong: imagePresentation.isCollisionRepresentative,
+                onViewDetails: onTap,
               ),
               const SizedBox(width: 12),
               Expanded(

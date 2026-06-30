@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/display_identity.dart';
@@ -165,6 +167,29 @@ void main() {
     expect(
       resolveDisplayName(cameoTrainer),
       'Arcade Game · Cameo: Pikachu · picture',
+    );
+  });
+
+  test('mobile resolver search falls back to deterministic local search', () {
+    final modelSource = File('lib/models/card_print.dart').readAsStringSync();
+    final mainSource = File('lib/main.dart').readAsStringSync();
+    final vaultSource = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(modelSource, contains('_searchCardPrintsViaWebResolver'));
+    expect(modelSource, contains('_searchCardPrintsResolvedFallback'));
+    expect(modelSource, contains("source: 'local_resolver_fallback'"));
+    expect(modelSource, contains('search:web_resolver_failed fallback=local'));
+    expect(
+      RegExp(
+        r'try\s*\{[\s\S]*_searchCardPrintsViaWebResolver[\s\S]*\}\s*catch',
+      ).hasMatch(modelSource),
+      isTrue,
+    );
+    expect(mainSource, contains('_formatSearchFailure(error)'));
+    expect(vaultSource, contains('_formatSearchFailure(error)'));
+    expect(
+      mainSource,
+      contains('Search is temporarily limited. Showing local results'),
     );
   });
 }

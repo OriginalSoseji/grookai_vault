@@ -296,6 +296,7 @@ class _NearbyCardRow extends StatelessWidget {
               height: 118,
               borderRadius: 16,
               showShadow: false,
+              onViewDetails: onOpenCard,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -337,13 +338,11 @@ class _NearbyCardRow extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 6),
-                  Text(
-                    'From ${row.ownerDisplayName}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.78),
-                      fontWeight: FontWeight.w700,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: _NearbyCollectorWallLink(
+                      ownerDisplayName: row.ownerDisplayName,
+                      onOpenWall: onOpenWall,
                     ),
                   ),
                   if (row.matchReason == 'viewer_wishlist') ...[
@@ -404,6 +403,53 @@ class _NearbyCardRow extends StatelessWidget {
     final date = _formatDate(row.createdAt);
     if (date.isEmpty) return row.gvId;
     return '${row.gvId} • $date';
+  }
+}
+
+class _NearbyCollectorWallLink extends StatelessWidget {
+  const _NearbyCollectorWallLink({
+    required this.ownerDisplayName,
+    required this.onOpenWall,
+  });
+
+  final String ownerDisplayName;
+  final VoidCallback onOpenWall;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final normalizedName = ownerDisplayName.trim().isEmpty
+        ? 'collector'
+        : ownerDisplayName.trim();
+
+    // NEARBY_COLLECTOR_NAME_WALL_LINK_V1
+    // The visible collector identity must be a direct path to the public Wall,
+    // not a plain text label that leaves the Wall hidden behind a separate CTA.
+    return TextButton.icon(
+      onPressed: onOpenWall,
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 2),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        alignment: Alignment.centerLeft,
+        visualDensity: VisualDensity.compact,
+      ),
+      icon: Icon(
+        Icons.person_pin_circle_outlined,
+        size: 15,
+        color: colorScheme.primary.withValues(alpha: 0.82),
+      ),
+      label: Text(
+        'From $normalizedName',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: colorScheme.primary.withValues(alpha: 0.90),
+          fontWeight: FontWeight.w800,
+        ),
+      ),
+    );
   }
 }
 

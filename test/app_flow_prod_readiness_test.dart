@@ -83,4 +83,94 @@ void main() {
     expect(service, contains("'identity_scan_get_v1?event_id=\$eventId'"));
     expect(service, contains("'identity_scan_event_results'"));
   });
+
+  test('Dex is drawer-only and not a bottom navigation destination', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final bottomNavBlock = RegExp(
+      r'child: NavigationBar\([\s\S]*?destinations: const \[[\s\S]*?\n\s*\],\n\s*\),',
+    ).firstMatch(shell)!.group(0)!;
+
+    expect(bottomNavBlock, contains("label: 'Search'"));
+    expect(bottomNavBlock, contains("label: 'Feed'"));
+    expect(bottomNavBlock, contains("label: 'Scan'"));
+    expect(bottomNavBlock, contains("label: 'Wall'"));
+    expect(bottomNavBlock, contains("label: 'Vault'"));
+    expect(bottomNavBlock, isNot(contains("label: 'Dex'")));
+    expect(bottomNavBlock, isNot(contains('_openDex()')));
+    expect(shell, contains("label: 'Grookai Dex'"));
+    expect(shell, contains('onTap: () => _closeThenAsync(context, onOpenDex)'));
+  });
+
+  test('card artwork uses disk-backed cached image rendering', () {
+    final artwork = File(
+      'lib/widgets/card_surface_artwork.dart',
+    ).readAsStringSync();
+    final zoomViewer = File(
+      'lib/widgets/card_zoom_viewer.dart',
+    ).readAsStringSync();
+    final main = File('lib/main.dart').readAsStringSync();
+
+    expect(artwork, contains('CachedNetworkImage'));
+    expect(artwork, contains('memCacheWidth'));
+    expect(artwork, contains('maxWidthDiskCache'));
+    expect(zoomViewer, contains('CachedNetworkImageProvider'));
+    expect(main, contains('_configureAppImageCache'));
+  });
+
+  test('set card image zoom is not a details dead end', () {
+    final setDetail = File(
+      'lib/screens/sets/public_set_detail_screen.dart',
+    ).readAsStringSync();
+    final zoomViewer = File(
+      'lib/widgets/card_zoom_viewer.dart',
+    ).readAsStringSync();
+    final cardArtwork = File(
+      'lib/widgets/card_surface_artwork.dart',
+    ).readAsStringSync();
+    final publicCollector = File(
+      'lib/screens/public_collector/public_collector_screen.dart',
+    ).readAsStringSync();
+    final dexSpecies = File(
+      'lib/screens/dex/grookai_dex_species_screen.dart',
+    ).readAsStringSync();
+    final networkNearby = File(
+      'lib/screens/network/network_nearby_screen.dart',
+    ).readAsStringSync();
+    final networkInbox = File(
+      'lib/screens/network/network_inbox_screen.dart',
+    ).readAsStringSync();
+    final networkThread = File(
+      'lib/screens/network/network_thread_screen.dart',
+    ).readAsStringSync();
+    final cardDetail = File('lib/card_detail_screen.dart').readAsStringSync();
+    final search = File('lib/main.dart').readAsStringSync();
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(setDetail, contains('void _openCardDetails(PublicSetCard card)'));
+    expect(setDetail, contains('onViewDetails: () => _openCardDetails(card)'));
+    expect(setDetail, contains("'Details'"));
+
+    expect(zoomViewer, contains('final VoidCallback? onViewDetails;'));
+    expect(zoomViewer, contains("this.detailsLabel = 'View details'"));
+    expect(zoomViewer, contains('FilledButton.icon'));
+    expect(zoomViewer, contains('_handleViewDetails(currentItem)'));
+
+    expect(cardArtwork, contains('final VoidCallback? onViewDetails;'));
+    expect(cardArtwork, contains('onViewDetails: onViewDetails'));
+
+    expect(publicCollector, contains('void openCardDetails()'));
+    expect(publicCollector, contains('onViewDetails: openCardDetails'));
+    expect(dexSpecies, contains('onViewDetails: onTap'));
+    expect(networkNearby, contains('onViewDetails: onOpenCard'));
+    expect(networkInbox, contains('onViewDetails: () {'));
+    expect(networkInbox, contains('onOpenThread();'));
+    expect(networkThread, contains("detailsLabel: 'View card'"));
+    expect(cardDetail, contains('void openRelatedVersion()'));
+    expect(cardDetail, contains('onViewDetails: openRelatedVersion'));
+    expect(
+      search,
+      contains('onViewDetails: interactionLocked ? null : onViewCard'),
+    );
+    expect(vault, contains("detailsLabel: 'Manage card'"));
+  });
 }
