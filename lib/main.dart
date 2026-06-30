@@ -34,7 +34,6 @@ import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'screens/scanner/scanner_build_placeholder_screen.dart';
 import 'services/network/card_engagement_service.dart';
-import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
 import 'services/auth/oauth_callback_uri_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';

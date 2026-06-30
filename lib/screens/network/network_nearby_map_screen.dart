@@ -56,15 +56,15 @@ class _NetworkNearbyMapScreenState extends State<NetworkNearbyMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nearby Map')),
+      appBar: AppBar(title: const Text('Store Map')),
       body: SafeArea(
         child: FutureBuilder<LocalCommunityFeedPage>(
           future: _future,
           builder: (context, snapshot) {
             if (!kLocalCommunityFeedV1Enabled) {
               return const _NearbyMapMessageState(
-                icon: Icons.map_outlined,
-                title: 'Nearby Map is not enabled yet',
+                icon: Icons.storefront_outlined,
+                title: 'Store Map is not enabled yet',
                 body: 'Local collector discovery is gated for internal review.',
               );
             }
@@ -240,7 +240,7 @@ class _NearbyMapHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'NEARBY MAP',
+              'STORE MAP',
               style: theme.textTheme.labelSmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.58),
                 fontWeight: FontWeight.w900,
@@ -249,7 +249,7 @@ class _NearbyMapHeader extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Stores on the map. Collectors in a list.',
+              'Stores on the map. Collectors nearby.',
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: 0,

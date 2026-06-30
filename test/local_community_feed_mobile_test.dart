@@ -29,12 +29,13 @@ void main() {
     expect(screen, isNot(contains('NetworkStreamService')));
   });
 
-  test('Nearby Map keeps collectors list-only and reserves map for stores', () {
+  test('Store Map keeps collectors list-only and reserves map for stores', () {
     final mapScreen = File(
       'lib/screens/network/network_nearby_map_screen.dart',
     ).readAsStringSync();
 
     expect(mapScreen, contains('class NetworkNearbyMapScreen'));
+    expect(mapScreen, contains("AppBar(title: const Text('Store Map'))"));
     expect(mapScreen, contains('LocalCommunityFeedService'));
     expect(
       mapScreen,
@@ -55,16 +56,22 @@ void main() {
     expect(mapScreen, isNot(contains('collector_local_discovery_settings')));
   });
 
-  test('Nearby is drawer-only and feature flagged', () {
+  test('Nearby collectors and Store Map are wired into app navigation', () {
     final shell = File('lib/main_shell.dart').readAsStringSync();
     final main = File('lib/main.dart').readAsStringSync();
+    final service = File(
+      'lib/services/network/local_community_feed_service.dart',
+    ).readAsStringSync();
 
-    expect(shell, contains('kLocalCommunityFeedV1Enabled'));
+    expect(service, contains('defaultValue: true'));
     expect(shell, contains('NetworkNearbyScreen'));
     expect(main, contains("screens/network/network_nearby_map_screen.dart"));
     expect(shell, contains('NetworkNearbyMapScreen'));
-    expect(shell, contains("label: 'Nearby'"));
-    expect(shell, contains("label: 'Nearby Map'"));
+    expect(shell, contains("label: 'Nearby Collectors'"));
+    expect(shell, contains("label: 'Store Map'"));
+    expect(shell, contains('onOpenNearby'));
+    expect(shell, contains('onOpenStoreMap'));
+    expect(shell, isNot(contains('if (kLocalCommunityFeedV1Enabled)')));
     expect(shell, isNot(contains('_ShellDestination.nearby')));
   });
 }

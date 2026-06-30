@@ -725,6 +725,8 @@ class _AppShellState extends State<AppShell> {
                   onOpenDex: () => unawaited(_openDex()),
                   onOpenSets: () => unawaited(_openSets()),
                   onOpenCompare: () => unawaited(_openCompare()),
+                  onOpenNearby: () => unawaited(_openNearby()),
+                  onOpenStoreMap: () => unawaited(_openNearbyMap()),
                   onOpenMessages: () => unawaited(_openMessages()),
                   onOpenAccount: () => unawaited(_openAccountHub()),
                   onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
@@ -884,6 +886,8 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
+    required this.onOpenNearby,
+    required this.onOpenStoreMap,
     required this.onOpenMessages,
     required this.onOpenAccount,
     required this.onOpenMenu,
@@ -898,6 +902,8 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenDex;
   final VoidCallback onOpenSets;
   final VoidCallback onOpenCompare;
+  final VoidCallback onOpenNearby;
+  final VoidCallback onOpenStoreMap;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
   final VoidCallback onOpenMenu;
@@ -986,6 +992,16 @@ class _GrookaiDesktopRail extends StatelessWidget {
               icon: Icons.compare_arrows_rounded,
               label: 'Compare',
               onTap: onOpenCompare,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.radar_rounded,
+              label: 'Nearby',
+              onTap: onOpenNearby,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.storefront_outlined,
+              label: 'Store Map',
+              onTap: onOpenStoreMap,
             ),
             const Spacer(),
             _GrookaiRailTile(
@@ -1143,18 +1159,16 @@ class _GrookaiAppDrawer extends StatelessWidget {
           selected: currentDestination == _ShellDestination.feed,
           onTap: () => _closeThen(context, onOpenFeed),
         ),
-        if (kLocalCommunityFeedV1Enabled)
-          _GrookaiDrawerTile(
-            icon: Icons.radar_rounded,
-            label: 'Nearby',
-            onTap: () => _closeThenAsync(context, onOpenNearby),
-          ),
-        if (kLocalCommunityFeedV1Enabled)
-          _GrookaiDrawerTile(
-            icon: Icons.map_outlined,
-            label: 'Nearby Map',
-            onTap: () => _closeThenAsync(context, onOpenNearbyMap),
-          ),
+        _GrookaiDrawerTile(
+          icon: Icons.radar_rounded,
+          label: 'Nearby Collectors',
+          onTap: () => _closeThenAsync(context, onOpenNearby),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.storefront_outlined,
+          label: 'Store Map',
+          onTap: () => _closeThenAsync(context, onOpenNearbyMap),
+        ),
         _GrookaiDrawerTile(
           icon: Icons.person_rounded,
           label: 'My Wall',
