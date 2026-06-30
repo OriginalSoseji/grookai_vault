@@ -1332,7 +1332,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   static const bool _kAuthDiagnostics = false;
-  static const String _kGoogleRedirectUri = 'grookaivault://login-callback';
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -1400,12 +1399,12 @@ class _LoginPageState extends State<LoginPage> {
     });
     try {
       _debugGoogleOAuthTap(
-        'launch redirect=$_kGoogleRedirectUri currentSessionPresent='
+        'launch redirect=${OAuthCallbackUriService.redirectUri} currentSessionPresent='
         '${supabase.auth.currentSession != null}',
       );
       final launched = await supabase.auth.signInWithOAuth(
         OAuthProvider.google,
-        redirectTo: kIsWeb ? null : _kGoogleRedirectUri,
+        redirectTo: kIsWeb ? null : OAuthCallbackUriService.redirectUri,
       );
       _debugGoogleOAuthTap('launch result=$launched');
       _debugAuth('google launched=$launched');

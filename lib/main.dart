@@ -36,6 +36,7 @@ import 'screens/scanner/scanner_build_placeholder_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
+import 'services/auth/oauth_callback_uri_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
@@ -1993,7 +1994,10 @@ Future<void> main() async {
   await Supabase.initialize(
     url: url,
     publishableKey: key,
-    authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
+    authOptions: const FlutterAuthClientOptions(
+      authFlowType: AuthFlowType.pkce,
+      detectSessionInUri: false,
+    ),
   );
   AppBootTiming.mark('supabase_initialize_complete');
   AppBootTiming.mark('runApp');
@@ -2320,11 +2324,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<bool> _maybeHandleAuthCallback(Uri uri) async {
-    if (!_isLoginCallbackUri(uri)) {
+    final callbackUri = OAuthCallbackUriService.extractLoginCallback(uri);
+    if (callbackUri == null) {
       return false;
     }
 
-    _debugGoogleOAuth('callback matched uri=${_describeUri(uri)}');
+    _debugGoogleOAuth(
+      'callback matched uri=${OAuthCallbackUriService.describe(callbackUri)}',
+    );
     if (_authCallbackInFlight) {
       _debugGoogleOAuth(
         'callback ignored because auth callback already in flight',
@@ -2332,7 +2339,7 @@ class _MyAppState extends State<MyApp> {
       return true;
     }
 
-    if (!_hasOAuthPayload(uri)) {
+    if (!OAuthCallbackUriService.hasOAuthPayload(callbackUri)) {
       _debugGoogleOAuth('callback had no auth payload');
       return true;
     }
@@ -2340,7 +2347,7 @@ class _MyAppState extends State<MyApp> {
     _authCallbackInFlight = true;
     try {
       _debugGoogleOAuth('calling getSessionFromUrl');
-      await Supabase.instance.client.auth.getSessionFromUrl(uri);
+      await Supabase.instance.client.auth.getSessionFromUrl(callbackUri);
       _debugGoogleOAuth(
         'getSessionFromUrl returned sessionPresent='
         '${Supabase.instance.client.auth.currentSession != null}',
@@ -2358,39 +2365,8 @@ class _MyAppState extends State<MyApp> {
     return true;
   }
 
-  bool _isLoginCallbackUri(Uri uri) {
-    return uri.scheme.toLowerCase() == 'grookaivault' &&
-        uri.host.toLowerCase() == 'login-callback';
-  }
-
-  bool _hasOAuthPayload(Uri uri) {
-    if (uri.queryParameters.containsKey('code') ||
-        uri.queryParameters.containsKey('error') ||
-        uri.queryParameters.containsKey('error_description')) {
-      return true;
-    }
-
-    final fragment = uri.fragment;
-    return fragment.contains('access_token=') ||
-        fragment.contains('refresh_token=') ||
-        fragment.contains('error_description=');
-  }
-
   String _describeUri(Uri? uri) {
-    if (uri == null) {
-      return 'null';
-    }
-
-    final queryKeys = uri.queryParameters.keys.toList(growable: false);
-    final fragment = uri.fragment;
-    final fragmentKeys = fragment
-        .split('&')
-        .map((part) => part.split('=').first.trim())
-        .where((part) => part.isNotEmpty)
-        .toList(growable: false);
-
-    return '${uri.scheme}://${uri.host}${uri.path}'
-        ' queryKeys=$queryKeys fragmentKeys=$fragmentKeys';
+    return OAuthCallbackUriService.describe(uri);
   }
 
   void _debugGoogleOAuth(String message) {
