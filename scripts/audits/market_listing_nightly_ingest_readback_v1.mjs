@@ -4,6 +4,10 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import pg from "pg";
+
+import "../../backend/env.mjs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
@@ -13,6 +17,7 @@ const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-READBACK-V1";
 const BASE_STRICT_RAW_ROLLUP_VERSION = "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
 const BASE_STRICT_SLAB_ROLLUP_VERSION = "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
+const { Client } = pg;
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -35,7 +40,23 @@ function rel(filePath) {
   return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
 }
 
-function runSql(sql) {
+async function runSql(sql) {
+  if (process.env.SUPABASE_DB_URL) {
+    const client = new Client({
+      connectionString: process.env.SUPABASE_DB_URL,
+      connectionTimeoutMillis: 15_000,
+      query_timeout: 180_000,
+      statement_timeout: 180_000,
+      ssl: { rejectUnauthorized: false },
+    });
+    await client.connect();
+    try {
+      const result = await client.query(sql);
+      return JSON.stringify(result.rows);
+    } finally {
+      await client.end();
+    }
+  }
   const targetArgs = process.env.SUPABASE_DB_URL
     ? ["--db-url", process.env.SUPABASE_DB_URL]
     : ["--linked"];
@@ -310,7 +331,7 @@ select jsonb_build_object(
 )::text as report;
 `;
 
-const queryResultRows = parseSupabaseRows(runSql(sql));
+const queryResultRows = parseSupabaseRows(await runSql(sql));
 const rawReport = queryResultRows?.[0]?.report;
 if (!rawReport) throw new Error("[market-listing-nightly-readback] failed to parse SQL report");
 const parsed = JSON.parse(rawReport);

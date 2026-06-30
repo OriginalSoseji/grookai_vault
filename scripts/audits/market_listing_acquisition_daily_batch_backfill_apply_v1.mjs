@@ -4,6 +4,8 @@ import path from "node:path";
 import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 
+import pg from "pg";
+
 import "../../backend/env.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
@@ -21,6 +23,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
 const PLAN_PREFIX = "mee_11m_market_listing_acquisition_daily_batch_backfill_plan_";
+const { Client } = pg;
 
 const APPLY_ORDER = [
   ["market_listing_acquisition_runs", "acquisitionRunRows", "market_listing_acquisition_runs"],
@@ -235,6 +238,141 @@ function validatePlan(plan, collision, args) {
   return findings;
 }
 
+async function firstRowValue(filePath, getValue) {
+  for await (const row of readJsonLines(filePath)) return getValue(row);
+  return null;
+}
+
+async function queryPgRows(sql, params) {
+  const client = new Client({
+    connectionString: process.env.SUPABASE_DB_URL,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  await client.connect();
+  try {
+    const result = await client.query(sql, params);
+    return result.rows;
+  } finally {
+    await client.end();
+  }
+}
+
+async function dynamicIdCollisions(plan, runId) {
+  const result = Object.fromEntries(APPLY_ORDER.map(([table]) => [table, []]));
+  const tableQueries = [
+    [
+      "market_listing_acquisition_runs",
+      "select id from public.market_listing_acquisition_runs where id = $1",
+      [runId],
+    ],
+    ...APPLY_ORDER
+      .filter(([table]) => table !== "market_listing_acquisition_runs" && table !== "market_listing_price_events")
+      .map(([table]) => [
+        table,
+        `select id from public.${table} where acquisition_run_id = $1`,
+        [runId],
+      ]),
+    [
+      "market_listing_price_events",
+      `select pe.id
+         from public.market_listing_price_events pe
+         join public.market_listing_observations o on o.id = pe.observation_id
+        where o.acquisition_run_id = $1`,
+      [runId],
+    ],
+  ];
+
+  for (const [table, sql, params] of tableQueries) {
+    result[table] = (await queryPgRows(sql, params)).map((row) => row.id);
+  }
+  return result;
+}
+
+async function dynamicRawPayloadCollisions(plan) {
+  const rawRows = [];
+  const listingIds = new Set();
+  for await (const row of readJsonLines(plan.row_files.rawSnapshotRows)) {
+    if (!row.source_listing_id || !row.payload_hash) continue;
+    rawRows.push({
+      planned_id: row.id,
+      source_listing_id: row.source_listing_id,
+      payload_hash: row.payload_hash,
+    });
+    listingIds.add(row.source_listing_id);
+  }
+
+  const existingByKey = new Map();
+  const ids = [...listingIds];
+  for (let index = 0; index < ids.length; index += 5_000) {
+    const chunk = ids.slice(index, index + 5_000);
+    const rows = await queryPgRows(
+      `select id, source_listing_id, payload_hash
+         from public.market_listing_raw_snapshots
+        where source = 'ebay_active'
+          and source_listing_id = any($1::text[])`,
+      [chunk],
+    );
+    for (const row of rows) {
+      const key = `${row.source_listing_id}:${row.payload_hash}`;
+      if (!existingByKey.has(key)) existingByKey.set(key, new Set());
+      existingByKey.get(key).add(row.id);
+    }
+  }
+
+  const seen = new Set();
+  const collisions = [];
+  for (const row of rawRows) {
+    const key = `${row.source_listing_id}:${row.payload_hash}`;
+    const existingIds = existingByKey.get(key);
+    if (seen.has(key) || (existingIds && !existingIds.has(row.planned_id))) {
+      collisions.push(row.planned_id);
+      continue;
+    }
+    seen.add(key);
+  }
+  return collisions;
+}
+
+async function dynamicSellerCollisions(plan) {
+  const seen = new Set();
+  const collisions = [];
+  for await (const row of readJsonLines(plan.row_files.sellerSnapshotRows)) {
+    if (!row.source || !row.seller_key || !row.observed_at) continue;
+    const key = `${row.source}:${row.seller_key}:${row.observed_at}`;
+    if (seen.has(key)) {
+      collisions.push(row.id);
+      continue;
+    }
+    seen.add(key);
+  }
+  return collisions;
+}
+
+async function dynamicCollisionSummary(plan) {
+  if (!process.env.SUPABASE_DB_URL) {
+    return { checked: false, skipped_for_dynamic_plan: true, reason: "SUPABASE_DB_URL_unavailable" };
+  }
+  const runId = await firstRowValue(plan.row_files.acquisitionRunRows, (row) => row.id);
+  const idCollisions = await dynamicIdCollisions(plan, runId);
+  const rawPayloadCollisionPlannedIds = await dynamicRawPayloadCollisions(plan);
+  const sellerUniqueCollisionPlannedIds = await dynamicSellerCollisions(plan);
+  return {
+    checked: true,
+    dynamic_collision_check: true,
+    id_collisions: idCollisions,
+    id_collision_count: Object.values(idCollisions).reduce((sum, rows) => sum + rows.length, 0),
+    raw_payload_collision_count: rawPayloadCollisionPlannedIds.length,
+    raw_payload_collision_planned_ids: rawPayloadCollisionPlannedIds,
+    raw_payload_collision_samples: rawPayloadCollisionPlannedIds.slice(0, 10),
+    seller_unique_collision_count: sellerUniqueCollisionPlannedIds.length,
+    seller_unique_collision_planned_ids: sellerUniqueCollisionPlannedIds,
+    seller_unique_collision_samples: sellerUniqueCollisionPlannedIds.slice(0, 10),
+  };
+}
+
 async function insertJsonlRows(supabase, table, filePath, chunkSize, options = {}) {
   let inserted = 0;
   let skipped = 0;
@@ -242,13 +380,13 @@ async function insertJsonlRows(supabase, table, filePath, chunkSize, options = {
   const progressEvery = options.progressEvery ?? 10_000;
   async function flush() {
     if (!chunk.length) return;
-    const { data, error } = await supabaseRequest(() => supabase
+    const rowCount = chunk.length;
+    const { error } = await supabaseRequest(() => supabase
       .from(table)
-      .insert(chunk)
-      .select("id"));
+      .insert(chunk));
     if (error) throw new Error(`[market-listing-daily-backfill-apply] insert failed for ${table}: ${error.message}`);
-    inserted += data?.length ?? chunk.length;
-    if (inserted % progressEvery < chunk.length) {
+    inserted += rowCount;
+    if (inserted % progressEvery < rowCount) {
       console.error(`[market-listing-daily-backfill-apply] inserted ${inserted} into ${table}`);
     }
     chunk = [];
@@ -366,6 +504,8 @@ async function countByIn(supabase, table, column, values) {
 }
 
 async function readbackCounts(supabase, plan) {
+  if (process.env.SUPABASE_DB_URL) return readbackCountsWithPg(plan);
+
   const acquisitionRun = await firstRow(plan.row_files.acquisitionRunRows);
   const runId = acquisitionRun?.id;
   const observationIds = await collectColumnFromJsonl(plan.row_files.observationRows, (row) => row.id);
@@ -386,6 +526,56 @@ async function readbackCounts(supabase, plan) {
     result[table] = count ?? 0;
   }
   return result;
+}
+
+async function readbackCountsWithPg(plan) {
+  const acquisitionRun = await firstRow(plan.row_files.acquisitionRunRows);
+  const runId = acquisitionRun?.id;
+  const client = new Client({
+    connectionString: process.env.SUPABASE_DB_URL,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 60_000,
+    statement_timeout: 60_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  await client.connect();
+  try {
+    const count = async (sql, params) => {
+      const result = await client.query(sql, params);
+      return Number(result.rows[0]?.count ?? 0);
+    };
+    return {
+      market_listing_acquisition_runs: await count(
+        "select count(*)::int as count from public.market_listing_acquisition_runs where id = $1",
+        [runId],
+      ),
+      market_listing_query_cache: await count(
+        "select count(*)::int as count from public.market_listing_query_cache where acquisition_run_id = $1",
+        [runId],
+      ),
+      market_listing_raw_snapshots: await count(
+        "select count(*)::int as count from public.market_listing_raw_snapshots where acquisition_run_id = $1",
+        [runId],
+      ),
+      market_listing_observations: await count(
+        "select count(*)::int as count from public.market_listing_observations where acquisition_run_id = $1",
+        [runId],
+      ),
+      market_listing_seller_snapshots: await count(
+        "select count(*)::int as count from public.market_listing_seller_snapshots where acquisition_run_id = $1",
+        [runId],
+      ),
+      market_listing_price_events: await count(
+        `select count(*)::int as count
+           from public.market_listing_price_events pe
+           join public.market_listing_observations o on o.id = pe.observation_id
+          where o.acquisition_run_id = $1`,
+        [runId],
+      ),
+    };
+  } finally {
+    await client.end();
+  }
 }
 
 function expectedReadbackCounts(plan) {
@@ -445,7 +635,11 @@ async function main() {
   const stamp = generatedAt.replace(/[:.]/g, "-");
   const plan = await readPlan(args.planPath);
   const supabase = createBackendClient();
-  const collision = args.readbackOnly ? { checked: false } : await collisionSummary(supabase, plan.data);
+  const collision = args.readbackOnly
+    ? { checked: false }
+    : args.allowDynamicPlan
+      ? await dynamicCollisionSummary(plan.data)
+      : await collisionSummary(supabase, plan.data);
   const findings = validatePlan(plan.data, collision, args);
   let applyResult = null;
   let readback = null;

@@ -3,6 +3,8 @@ import { createWriteStream, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import pg from "pg";
+
 import "../../backend/env.mjs";
 import { resolveMarketListingTitleTargetV1 } from "../../backend/pricing/market_listing_title_retarget_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
@@ -15,6 +17,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
 const PAGE_SIZE = 1000;
+const { Client } = pg;
 
 function parseArgs(argv) {
   return {
@@ -283,6 +286,8 @@ function withResolvedTitleTarget(row, catalogIndex) {
 }
 
 async function fetchPriceEventsForObservations(supabase, observations) {
+  if (process.env.SUPABASE_DB_URL) return fetchPriceEventsForObservationsWithPg(observations);
+
   const rows = [];
   const observationById = new Map(observations.map((observation) => [observation.id, observation]));
   const ids = observations.map((observation) => observation.id);
@@ -299,6 +304,42 @@ async function fetchPriceEventsForObservations(supabase, observations) {
         obs: observationById.get(row.observation_id) ?? {},
       });
     }
+  }
+  return rows.sort((left, right) => String(left.id).localeCompare(String(right.id)));
+}
+
+async function fetchPriceEventsForObservationsWithPg(observations) {
+  const rows = [];
+  const observationById = new Map(observations.map((observation) => [observation.id, observation]));
+  const ids = observations.map((observation) => observation.id);
+  const client = new Client({
+    connectionString: process.env.SUPABASE_DB_URL,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 60_000,
+    statement_timeout: 60_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  await client.connect();
+  try {
+    for (let index = 0; index < ids.length; index += 1_000) {
+      const chunk = ids.slice(index, index + 1_000);
+      const result = await client.query(
+        `select id, observation_id, source, source_listing_id, current_total_ask_price,
+                currency, observed_at, event_payload
+           from public.market_listing_price_events
+          where observation_id = any($1::uuid[])
+          order by id asc`,
+        [chunk],
+      );
+      for (const row of result.rows) {
+        rows.push({
+          ...row,
+          obs: observationById.get(row.observation_id) ?? {},
+        });
+      }
+    }
+  } finally {
+    await client.end();
   }
   return rows.sort((left, right) => String(left.id).localeCompare(String(right.id)));
 }
@@ -420,15 +461,20 @@ async function main() {
   let scannedCount = 0;
   let skippedCount = 0;
 
-  for (let from = 0; ; from += PAGE_SIZE) {
-    const to = from + PAGE_SIZE - 1;
-    const { data: observations } = await supabaseRequest(() => supabase
-      .from("market_listing_observations")
-      .select("id,raw_snapshot_id,acquisition_run_id,listing_title,condition_text,seller_key")
-      .eq("acquisition_run_id", runId)
-      .order("id", { ascending: true })
-      .range(from, to));
+  let lastObservationId = null;
+  for (;;) {
+    const { data: observations } = await supabaseRequest(() => {
+      let query = supabase
+        .from("market_listing_observations")
+        .select("id,raw_snapshot_id,acquisition_run_id,listing_title,condition_text,seller_key")
+        .eq("acquisition_run_id", runId)
+        .order("id", { ascending: true })
+        .limit(PAGE_SIZE);
+      if (lastObservationId) query = query.gt("id", lastObservationId);
+      return query;
+    });
     if (!observations?.length) break;
+    lastObservationId = observations.at(-1).id;
 
     const data = await fetchPriceEventsForObservations(supabase, observations);
 

@@ -3,12 +3,14 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
 const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
+const { Client } = pg;
 
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-RUN-V1";
 const DEFAULT_CALL_CEILING = 4000;
@@ -130,15 +132,33 @@ function contractHash() {
   return sha256(readFileSync(path.join(REPO_ROOT, CONTRACT_PATH), "utf8"));
 }
 
-function runSql(sql) {
+async function runSql(sql) {
+  if (process.env.SUPABASE_DB_URL) {
+    const client = new Client({
+      connectionString: process.env.SUPABASE_DB_URL,
+      connectionTimeoutMillis: 15_000,
+      query_timeout: 60_000,
+      statement_timeout: 60_000,
+      ssl: { rejectUnauthorized: false },
+    });
+    await client.connect();
+    try {
+      const result = await client.query(sql);
+      return result.rows;
+    } finally {
+      await client.end();
+    }
+  }
+
   const targetArgs = process.env.SUPABASE_DB_URL
     ? ["--db-url", process.env.SUPABASE_DB_URL]
     : ["--linked"];
-  return execFileSync("supabase", ["db", "query", "--output", "json", sql, ...targetArgs], {
+  const output = execFileSync("supabase", ["db", "query", "--output", "json", sql, ...targetArgs], {
     cwd: REPO_ROOT,
     encoding: "utf8",
     maxBuffer: 32 * 1024 * 1024,
   });
+  return parseSupabaseRows(output);
 }
 
 function parseSupabaseRows(output) {
@@ -161,7 +181,7 @@ function strictRollupVersionsForRun(runKey) {
   return BASE_STRICT_ROLLUP_VERSIONS.map((version) => `${version}__${suffix}`);
 }
 
-function queryRollupPresence(rollupVersions) {
+async function queryRollupPresence(rollupVersions) {
   const sql = `
     select jsonb_build_object(
       'existing_planned_strict_rollup_count', count(*),
@@ -174,7 +194,7 @@ function queryRollupPresence(rollupVersions) {
       group by rollup_version
     ) s;
   `;
-  const rows = parseSupabaseRows(runSql(sql));
+  const rows = await runSql(sql);
   return JSON.parse(rows?.[0]?.report ?? "{}");
 }
 
@@ -253,7 +273,7 @@ const existingScripts = PHASES.map((phase) => ({
 }));
 const missingScripts = existingScripts.filter((item) => !item.script_exists);
 const plannedStrictRollupVersions = strictRollupVersionsForRun(args.runKey);
-const strictRollupPresence = queryRollupPresence(plannedStrictRollupVersions);
+const strictRollupPresence = await queryRollupPresence(plannedStrictRollupVersions);
 const dynamicBackfillApplySupport = fileContains(
   "scripts/audits/market_listing_acquisition_daily_batch_backfill_apply_v1.mjs",
   /--allow-dynamic-plan|dynamic_idempotent_apply/i,

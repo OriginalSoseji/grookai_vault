@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 import {
   DEFAULT_DAILY_CALL_CEILING,
@@ -14,6 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const { Client } = pg;
 
 function rel(filePath) {
   return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
@@ -36,7 +38,24 @@ function parseArgs(argv) {
   };
 }
 
-function runSupabaseQuery(sql) {
+async function runSupabaseQuery(sql) {
+  if (process.env.SUPABASE_DB_URL) {
+    const client = new Client({
+      connectionString: process.env.SUPABASE_DB_URL,
+      connectionTimeoutMillis: 15_000,
+      query_timeout: 60_000,
+      statement_timeout: 60_000,
+      ssl: { rejectUnauthorized: false },
+    });
+    await client.connect();
+    try {
+      const result = await client.query(sql);
+      return result.rows;
+    } finally {
+      await client.end();
+    }
+  }
+
   const useDbUrl = Boolean(process.env.SUPABASE_DB_URL);
   const env = { ...process.env };
   if (useDbUrl) delete env.SUPABASE_ACCESS_TOKEN;
@@ -57,7 +76,7 @@ function runSupabaseQuery(sql) {
   return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
-function loadTargets(limit) {
+async function loadTargets(limit) {
   const sql = `
     with parent_without_child as (
       select
@@ -222,7 +241,7 @@ function writeReport(report) {
 if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.resolve(process.argv[1])) {
   try {
     const args = parseArgs(process.argv.slice(2));
-    const targets = loadTargets(args.targetLimit);
+    const targets = await loadTargets(args.targetLimit);
     const report = buildMarketListingAcquisitionDryRunPlanV1({
       targets,
       dryRunTargetLimit: args.targetLimit,

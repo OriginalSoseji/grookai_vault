@@ -39,6 +39,12 @@ function readBatchPlan(filePath) {
   return JSON.parse(readFileSync(resolved, "utf8"));
 }
 
+function redactSecretText(value) {
+  return String(value ?? "")
+    .replace(/Authorization:\s*Basic\s+[A-Za-z0-9+/=._-]+/gi, "Authorization: Basic <redacted>")
+    .replace(/access_token["']?\s*:\s*["'][^"']+["']/gi, 'access_token":"<redacted>"');
+}
+
 function ensureBrowseToken() {
   if (process.env.EBAY_BROWSE_ACCESS_TOKEN?.trim()) return;
   const clientId = process.env.EBAY_CLIENT_ID?.trim();
@@ -46,10 +52,10 @@ function ensureBrowseToken() {
   if (!clientId || !clientSecret) return;
   const baseUrl = (process.env.EBAY_OAUTH_BASE_URL || "https://api.ebay.com").replace(/\/+$/, "");
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
-  const output = execFileSync("curl.exe", [
+  const curlBin = process.platform === "win32" ? "curl.exe" : "curl";
+  const curlArgs = [
     "-sS",
     "-L",
-    "--ssl-no-revoke",
     "-X",
     "POST",
     `${baseUrl}/identity/v1/oauth2/token`,
@@ -59,10 +65,19 @@ function ensureBrowseToken() {
     "Content-Type: application/x-www-form-urlencoded",
     "--data",
     "grant_type=client_credentials&scope=https%3A%2F%2Fapi.ebay.com%2Foauth%2Fapi_scope",
-  ], {
-    encoding: "utf8",
-    maxBuffer: 10 * 1024 * 1024,
-  });
+  ];
+  if (process.platform === "win32") curlArgs.splice(2, 0, "--ssl-no-revoke");
+  let output;
+  try {
+    output = execFileSync(curlBin, curlArgs, {
+      encoding: "utf8",
+      maxBuffer: 10 * 1024 * 1024,
+    });
+  } catch (error) {
+    const status = error?.status ?? error?.code ?? "unknown";
+    const stderr = redactSecretText(error?.stderr?.toString?.() ?? error?.message ?? "");
+    throw new Error(`[market-listing-daily-batch-fetch] eBay OAuth token request failed: ${status}${stderr ? ` ${stderr}` : ""}`);
+  }
   const payload = JSON.parse(output);
   if (payload.access_token) process.env.EBAY_BROWSE_ACCESS_TOKEN = payload.access_token;
 }

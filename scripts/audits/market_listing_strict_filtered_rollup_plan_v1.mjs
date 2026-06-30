@@ -159,11 +159,13 @@ function renderMarkdown(report) {
 async function fetchCandidateRows() {
   const supabase = createBackendClient();
   const rows = [];
-  for (let from = 0; ; from += PAGE_SIZE) {
-    const to = from + PAGE_SIZE - 1;
-    const { data } = await supabaseReadWithRetry(`candidate page ${from}-${to}`, () => supabase
-      .from("market_listing_card_candidates")
-      .select(`
+  let lastCandidateId = null;
+  for (;;) {
+    const { data } = await supabaseReadWithRetry(`candidate page after ${lastCandidateId ?? "start"}`, () => {
+      let query = supabase
+        .from("market_listing_card_candidates")
+        .select(`
+        id,
         card_print_id,
         gv_id,
         source_listing_id,
@@ -178,10 +180,14 @@ async function fetchCandidateRows() {
           condition_text
         )
       `)
-      .eq("match_version", CANDIDATE_VERSION)
-      .order("id", { ascending: true })
-      .range(from, to));
+        .eq("match_version", CANDIDATE_VERSION)
+        .order("id", { ascending: true })
+        .limit(PAGE_SIZE);
+      if (lastCandidateId) query = query.gt("id", lastCandidateId);
+      return query;
+    });
     if (!data?.length) break;
+    lastCandidateId = data.at(-1).id;
 
     for (const row of data) {
       const obs = firstRelated(row.obs);
