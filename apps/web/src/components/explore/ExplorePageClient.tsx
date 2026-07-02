@@ -2,6 +2,7 @@
 
 import { Fragment, type ReactNode } from "react";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -13,15 +14,11 @@ import {
   normalizeIdentityFilterKey,
   type IdentityFilterKey,
 } from "@/lib/cards/identitySearch";
-import CompareTray from "@/components/compare/CompareTray";
 import {
   POKEMON_CARD_BROWSE_GRID_CLASSNAME,
   POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME,
 } from "@/components/cards/pokemonCardGridLayout";
-import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
 import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
-import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
-import PublicProvisionalSearchSection from "@/components/provisional/PublicProvisionalSearchSection";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
@@ -64,6 +61,20 @@ type ImageConfidenceFilter =
   | "representative"
   | "missing_variant_visual";
 type SearchResultIntent = "exact_version" | "identity" | "cameo" | "related";
+type CompareTrayProps = {
+  cards: string[];
+  addHref?: string;
+};
+type ExploreCardResultProps = {
+  card: ExploreRow;
+  href: string;
+  canViewPricing: boolean;
+  signInHref?: string;
+  matchReason?: string;
+};
+type PublicProvisionalSearchSectionProps = {
+  cards: PublicProvisionalCard[];
+};
 type AssistantBoundaryPreview = {
   ok: boolean;
   assistant_available?: boolean;
@@ -83,6 +94,22 @@ type AssistantBoundaryPreview = {
 };
 
 const INITIAL_VISIBLE_RESULT_COUNT = 32;
+const CompareTray = dynamic<CompareTrayProps>(
+  () => import("@/components/compare/CompareTray"),
+  { ssr: false },
+);
+const ExploreCardListItem = dynamic<ExploreCardResultProps>(
+  () => import("@/components/explore/ExploreCardListItem"),
+  { ssr: false },
+);
+const ExploreCardDetailsRow = dynamic<ExploreCardResultProps>(
+  () => import("@/components/explore/ExploreCardDetailsRow"),
+  { ssr: false },
+);
+const PublicProvisionalSearchSection = dynamic<PublicProvisionalSearchSectionProps>(
+  () => import("@/components/provisional/PublicProvisionalSearchSection"),
+  { ssr: false },
+);
 
 const SEARCH_RESULT_INTENT_COPY: Record<
   SearchResultIntent,
