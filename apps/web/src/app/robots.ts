@@ -14,6 +14,8 @@ export default function robots(): MetadataRoute.Robots {
           "/u/",
         ],
         disallow: [
+          "/ids",
+          "/ids/cards",
           "/vault",
           "/profile",
           "/account",

@@ -201,6 +201,11 @@ test("card SEO exposes full sitemap index and product identifiers", () => {
   assert.match(sitemapHelpers, /\/card\/\$\{encodeURIComponent\(card\.gv_id\)\}/);
   assert.doesNotMatch(sitemapHelpers, /CARD_LIMIT = 5000/);
   assert.match(robots, /sitemap: "https:\/\/grookaivault\.com\/sitemap\.xml"/);
+  assert.match(robots, /"\/card\/"/);
+  assert.match(robots, /"\/sitemaps\/"/);
+  assert.match(robots, /"\/ids"/);
+  assert.match(robots, /"\/ids\/cards"/);
+  assert.match(robots, /"\/api\/"/);
   assert.match(cardPage, /type="application\/ld\+json"/);
   assert.match(cardPage, /"@type": "Product"/);
   assert.match(cardPage, /sku: card\.gv_id/);
@@ -227,4 +232,29 @@ test("card SEO exposes exact GV IDs through visible internal links", () => {
   assert.match(idsCardRoute, /"X-Robots-Tag": "noindex, nofollow"/);
   assert.doesNotMatch(sitemapHelpers, /`\$\{origin\}\/ids`/);
   assert.match(sitemapHelpers, /\/card\/\$\{encodeURIComponent\(card\.gv_id\)\}/);
+});
+
+test("legal terms protect catalog data without blocking card indexing", () => {
+  const legalPage = readSource("app", "legal", "page.tsx");
+  const layout = readSource("app", "layout.tsx");
+  const robots = readSource("app", "robots.ts");
+  const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+
+  assert.match(legalPage, /Terms and Legal/);
+  assert.match(legalPage, /Catalog Data, Grookai IDs, and Automated Access/);
+  assert.match(legalPage, /Grookai IDs, catalog structure, metadata compilations/);
+  assert.match(legalPage, /personal, non-commercial collector use/);
+  assert.match(legalPage, /automated scraping, crawling/);
+  assert.match(legalPage, /bulk downloading, dataset creation, mirroring/);
+  assert.match(legalPage, /competitive use, or AI\/model training/);
+  assert.match(legalPage, /Public availability/);
+  assert.match(legalPage, /Search engines may crawl public card pages/);
+  assert.match(legalPage, /Commercial, API, bulk data, research, or data-licensing access/);
+  assert.match(legalPage, /not legal advice/);
+  assert.match(layout, /href="\/legal"[\s\S]*Terms/);
+  assert.match(robots, /"\/ids"/);
+  assert.match(robots, /"\/ids\/cards"/);
+  assert.match(robots, /"\/api\/"/);
+  assert.match(robots, /"\/card\/"/);
+  assert.doesNotMatch(cardPage, /noindex/);
 });
