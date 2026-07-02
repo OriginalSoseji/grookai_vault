@@ -73,6 +73,7 @@ test("public card image chooses an initial source before hydration", () => {
 
 test("explore search is bounded and language-aware for public performance", () => {
   const searchRoute = readSource("app", "api", "resolver", "search", "route.ts");
+  const exploreRows = readSource("lib", "explore", "getExploreRows.ts");
   const exploreClient = readSource("components", "explore", "ExplorePageClient.tsx");
   const gridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
   const publicCardImage = readSource("components", "PublicCardImage.tsx");
@@ -82,6 +83,11 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(searchRoute, /RESOLVER_RESPONSE_TIMEOUT_MS = 4200/);
   assert.match(searchRoute, /languageScope !== "ja" &&/);
   assert.match(searchRoute, /web_ranked_resolver_v2_degraded_soft_timeout/);
+  assert.match(exploreRows, /const SPECIES_FAMILY_SEARCH_LIMIT = 360/);
+  assert.match(exploreRows, /JAPANESE_SPECIES_ALIASES_BY_SLUG/);
+  assert.match(exploreRows, /\["pikachu", \["ピカチュウ"\]\]/);
+  assert.match(exploreRows, /fetchSpeciesFamilyRows/);
+  assert.match(exploreRows, /trusted_species_printed_name_match/);
   assert.match(exploreClient, /const INITIAL_VISIBLE_RESULT_COUNT = 24/);
   assert.match(exploreClient, /const SEARCH_API_RESULT_LIMIT = 48/);
   assert.match(exploreClient, /params\.set\("limit", String\(SEARCH_API_RESULT_LIMIT\)\)/);
