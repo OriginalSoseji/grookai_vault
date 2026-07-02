@@ -1034,6 +1034,37 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   transform: translateY(-1px);
 }
 
+.gv-search-result-card.gv-visual-card {
+  border-radius: 22px;
+}
+
+.gv-search-result-card .gv-visual-card-image {
+  border-radius: 17px;
+  background: linear-gradient(180deg, rgba(246, 248, 252, 0.32) 0%, rgba(238, 243, 249, 0.14) 100%);
+}
+
+.gv-search-result-card .gv-visual-card-utility {
+  right: 0.55rem;
+  top: 0.55rem;
+}
+
+.gv-card-compare-floating {
+  box-shadow: 0 10px 24px -18px rgba(15, 23, 42, 0.72);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gv-search-result-card .gv-card-compare-floating:not(.gv-card-compare-floating-selected) {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+
+  .gv-search-result-card:hover .gv-card-compare-floating,
+  .gv-search-result-card .gv-card-compare-floating:focus-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .gv-set-logo-wash {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.86) 38%, rgba(255, 255, 255, 0.82) 100%);
@@ -1274,6 +1305,10 @@ html.gv-dark .gv-visual-card-image {
   background:
     radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.34), transparent 15rem),
     rgba(8, 12, 22, 0.46);
+}
+
+html.gv-dark .gv-search-result-card .gv-visual-card-image {
+  background: rgba(8, 12, 22, 0.28);
 }
 
 html.gv-dark .gv-visual-card {
