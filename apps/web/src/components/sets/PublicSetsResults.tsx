@@ -6,6 +6,11 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import PublicSetTile from "@/components/sets/PublicSetTile";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import {
+  getPublicLanguageScopeLabel,
+  matchesPublicSetLanguageScope,
+  normalizePublicLanguageScope,
+} from "@/lib/publicLanguageScope";
+import {
   getPublicSetEra,
   getPublicSetEraLabel,
   getPublicSetLane,
@@ -160,15 +165,21 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const rawFilter = searchParams.get("filter") ?? "all";
   const rawEra = searchParams.get("era") ?? "all";
   const rawLane = searchParams.get("lane") ?? "all";
+  const rawLanguageScope = searchParams.get("lang") ?? "all";
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const [visibleSetCount, setVisibleSetCount] = useState(INITIAL_VISIBLE_SET_COUNT);
   const normalizedQuery = normalizeSetQuery(rawQuery);
   const activeFilter = normalizePublicSetFilter(rawFilter);
   const activeEra = normalizePublicSetEra(rawEra);
   const activeLane = normalizePublicSetLane(rawLane);
+  const activeLanguageScope = normalizePublicLanguageScope(rawLanguageScope);
+  const languageScopedSets = useMemo(
+    () => sets.filter((setInfo) => matchesPublicSetLanguageScope(setInfo, activeLanguageScope)),
+    [sets, activeLanguageScope],
+  );
   const searchedSets = useMemo(
-    () => filterPublicSetsClient(sets, rawQuery),
-    [sets, rawQuery],
+    () => filterPublicSetsClient(languageScopedSets, rawQuery),
+    [languageScopedSets, rawQuery],
   );
   const filteredAndSortedSets = useMemo(
     () =>
@@ -183,6 +194,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const activeFilterLabel = PUBLIC_SET_FILTER_OPTIONS.find((option) => option.value === activeFilter)?.label ?? "All Sets";
   const activeEraLabel = getPublicSetEraLabel(activeEra);
   const activeLaneLabel = getPublicSetLaneLabel(activeLane);
+  const activeLanguageScopeLabel = getPublicLanguageScopeLabel(activeLanguageScope);
   const setLogoPathByCode = new Map(logoEntries);
   const laneScopedSets = searchedSets.filter((setInfo) => activeLane === "all" || getPublicSetLane(setInfo) === activeLane);
   const eraScopedSets = searchedSets.filter((setInfo) => activeEra === "all" || getPublicSetEra(setInfo) === activeEra);
@@ -200,7 +212,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
 
   useEffect(() => {
     setVisibleSetCount(INITIAL_VISIBLE_SET_COUNT);
-  }, [normalizedQuery, activeFilter, activeEra, activeLane]);
+  }, [normalizedQuery, activeFilter, activeEra, activeLane, activeLanguageScope]);
 
   function buildFacetHref(updates: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString());
@@ -236,6 +248,11 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
             {activeLane !== "all" ? (
               <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
                 {activeLaneLabel}
+              </span>
+            ) : null}
+            {activeLanguageScope !== "all" ? (
+              <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                {activeLanguageScopeLabel}
               </span>
             ) : null}
             <span className="text-xs text-slate-400">

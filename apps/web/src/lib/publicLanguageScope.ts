@@ -23,6 +23,22 @@ export function isJapanesePublicCardIdentity(value?: string | null) {
   return normalized.includes("-JPN-") || normalized.startsWith("GV-PK-JPN-");
 }
 
+export function isJapanesePublicSetIdentity(value: {
+  code?: string | null;
+  normalized_code?: string | null;
+  name?: string | null;
+}) {
+  const code = (value.code ?? value.normalized_code ?? "").trim().toUpperCase();
+  const name = (value.name ?? "").trim().toUpperCase();
+
+  return (
+    code.startsWith("JPN-") ||
+    code.includes("-JPN-") ||
+    code.startsWith("JP-") ||
+    name.includes("JAPANESE")
+  );
+}
+
 export function matchesPublicLanguageScope(
   value: { gv_id?: string | null },
   scope: PublicLanguageScope,
@@ -32,5 +48,21 @@ export function matchesPublicLanguageScope(
   }
 
   const isJapanese = isJapanesePublicCardIdentity(value.gv_id);
+  return scope === "ja" ? isJapanese : !isJapanese;
+}
+
+export function matchesPublicSetLanguageScope(
+  value: {
+    code?: string | null;
+    normalized_code?: string | null;
+    name?: string | null;
+  },
+  scope: PublicLanguageScope,
+) {
+  if (scope === "all") {
+    return true;
+  }
+
+  const isJapanese = isJapanesePublicSetIdentity(value);
   return scope === "ja" ? isJapanese : !isJapanese;
 }

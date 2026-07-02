@@ -21,7 +21,11 @@ import {
   type PublicSetFilter,
   type PublicSetLane,
 } from "@/lib/publicSets.shared";
-import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
+import {
+  PUBLIC_LANGUAGE_SCOPE_OPTIONS,
+  normalizePublicLanguageScope,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 
 export default function PublicSetsToolbar() {
   const pathname = usePathname();
@@ -45,6 +49,7 @@ export default function PublicSetsToolbar() {
     nextFilter: PublicSetFilter,
     nextEra: PublicSetEra,
     nextLane: PublicSetLane,
+    nextLanguageScope: PublicLanguageScope = currentLanguageScope,
   ) {
     const params = new URLSearchParams();
     const trimmedQuery = nextQuery.trim();
@@ -65,8 +70,8 @@ export default function PublicSetsToolbar() {
       params.set("lane", nextLane);
     }
 
-    if (currentLanguageScope !== "all") {
-      params.set("lang", currentLanguageScope);
+    if (nextLanguageScope !== "all") {
+      params.set("lang", nextLanguageScope);
     }
 
     if (compareCardsParam) {
@@ -92,6 +97,18 @@ export default function PublicSetsToolbar() {
 
   function handleLaneChange(nextLane: PublicSetLane) {
     router.push(buildNextUrl(query, currentFilter, currentEra, nextLane));
+  }
+
+  function handleLanguageChange(nextLanguageScope: PublicLanguageScope) {
+    router.push(
+      buildNextUrl(
+        query,
+        currentFilter,
+        currentEra,
+        currentLane,
+        nextLanguageScope,
+      ),
+    );
   }
 
   function handleReset() {
@@ -134,7 +151,35 @@ export default function PublicSetsToolbar() {
             </div>
           </SearchToolbarField>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[170px_180px_190px_auto] lg:items-end">
+          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[210px_170px_180px_190px_auto] lg:items-end">
+            <SearchToolbarField label="Language" className="min-w-0">
+              <div
+                className="inline-flex h-11 w-full rounded-[14px] border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+                role="radiogroup"
+                aria-label="Set language scope"
+              >
+                {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
+                  const active = currentLanguageScope === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => handleLanguageChange(option.value)}
+                      className={`min-w-0 flex-1 rounded-[11px] px-2 text-xs font-semibold transition ${
+                        active
+                          ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                          : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                      }`}
+                    >
+                      {option.shortLabel}
+                    </button>
+                  );
+                })}
+              </div>
+            </SearchToolbarField>
+
             <SearchToolbarField label="Era" className="min-w-0">
               <SearchToolbarSelect
                 id="public-sets-era"
