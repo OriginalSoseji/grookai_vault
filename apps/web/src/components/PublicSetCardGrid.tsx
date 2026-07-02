@@ -151,6 +151,7 @@ export default function PublicSetCardGrid({
               imageSrc={selectedImageUrl ?? cardFallbackImageUrl ?? undefined}
               imageAlt={getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)}
               imageHref={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
+              imageSizes="(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
               imageLoading={index < 12 ? "eager" : "lazy"}
               imageOverlay={
                 imagePresentation.compactBadgeLabel ? (

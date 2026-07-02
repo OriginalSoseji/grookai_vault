@@ -10,9 +10,10 @@ type CardZoomModalProps = {
   alt: string;
   imageClassName: string;
   fallbackClassName: string;
+  sizes?: string;
 };
 
-export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, fallbackClassName }: CardZoomModalProps) {
+export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, fallbackClassName, sizes }: CardZoomModalProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -55,6 +56,7 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
         alt={alt}
         imageClassName={imageClassName}
         fallbackClassName={fallbackClassName}
+        sizes={sizes}
       />
     );
   }
@@ -111,6 +113,7 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
           alt={alt}
           imageClassName={`${imageClassName} transition duration-150 hover:scale-[1.02]`}
           fallbackClassName={fallbackClassName}
+          sizes={sizes}
         />
       </button>
 

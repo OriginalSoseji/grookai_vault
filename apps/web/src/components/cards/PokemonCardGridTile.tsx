@@ -12,6 +12,7 @@ type PokemonCardGridTileProps = {
   imageHref?: string;
   imagePrefetch?: boolean;
   imageLoading?: "eager" | "lazy";
+  imageSizes?: string;
   imageFallbackLabel?: string;
   imageClassName?: string;
   imageOverlay?: ReactNode;
@@ -86,6 +87,7 @@ function renderImage({
   imageFallbackSrc,
   imageAlt,
   imageLoading,
+  imageSizes,
   imageFallbackLabel,
   imageClassName,
   imageOverlay,
@@ -95,6 +97,7 @@ function renderImage({
   imageFallbackSrc?: string;
   imageAlt: string;
   imageLoading?: "eager" | "lazy";
+  imageSizes?: string;
   imageFallbackLabel?: string;
   imageClassName?: string;
   imageOverlay?: ReactNode;
@@ -108,6 +111,7 @@ function renderImage({
         fallbackSrc={imageFallbackSrc}
         alt={imageAlt}
         loading={imageLoading}
+        sizes={imageSizes}
         imageClassName={`aspect-[3/4] w-full rounded-[20px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
         fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[20px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
@@ -158,6 +162,7 @@ export default function PokemonCardGridTile({
   imageHref,
   imagePrefetch,
   imageLoading,
+  imageSizes,
   imageFallbackLabel,
   imageClassName,
   imageOverlay,
@@ -176,6 +181,7 @@ export default function PokemonCardGridTile({
     imageFallbackSrc,
     imageAlt,
     imageLoading,
+    imageSizes,
     imageFallbackLabel,
     imageClassName,
     imageOverlay,

@@ -458,7 +458,7 @@ export default async function CardPage({
     user && resolvedCard.id
       ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
       : Promise.resolve(new Map()),
-    resolvedCard.id
+    user && resolvedCard.id
       ? getCardStreamRows({
           cardPrintId: resolvedCard.id,
           excludeUserId: user?.id ?? null,
@@ -604,6 +604,7 @@ export default async function CardPage({
                 )}
                 imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+                sizes="(max-width: 1024px) 86vw, 430px"
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
@@ -1016,6 +1017,7 @@ export default async function CardPage({
                         alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
                         imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
                         fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
+                        sizes="74px"
                       />
                       {relatedImagePresentation.compactBadgeLabel ? (
                         <CardImageTruthBadge
@@ -1205,6 +1207,7 @@ export default async function CardPage({
                     alt={getCardImageAltText(previousDisplayIdentity.display_name, adjacentCards.previous)}
                     imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                     fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                    sizes="48px"
                   />
                   {previousImagePresentation.compactBadgeLabel ? (
                     <CardImageTruthBadge
@@ -1251,6 +1254,7 @@ export default async function CardPage({
                     alt={getCardImageAltText(nextDisplayIdentity.display_name, adjacentCards.next)}
                     imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                     fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                    sizes="48px"
                   />
                   {nextImagePresentation.compactBadgeLabel ? (
                     <CardImageTruthBadge

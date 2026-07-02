@@ -56,6 +56,11 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
       imageFallbackSrc={card.display_image_fallback_url}
       imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
       imageHref={href}
+      imageSizes={
+        isLarge
+          ? "(max-width: 640px) 58vw, (max-width: 1024px) 34vw, 280px"
+          : "(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
+      }
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
           <CardImageTruthBadge
