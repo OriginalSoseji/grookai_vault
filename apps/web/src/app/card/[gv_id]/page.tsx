@@ -50,6 +50,7 @@ import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardTo
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
+import type { CardDetail } from "@/types/cards";
 
 type DetailItem = { label: string; value: string };
 
@@ -150,6 +151,98 @@ function buildCardHref(gvId: string, compareCardsParam?: string, printingReferen
   return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
 
+function asAbsoluteUrl(value: string | null | undefined, origin?: string | null) {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) return undefined;
+
+  try {
+    return new URL(normalizedValue).toString();
+  } catch {
+    if (origin && normalizedValue.startsWith("/")) {
+      return `${origin}${normalizedValue}`;
+    }
+    return undefined;
+  }
+}
+
+function jsonLdMarkup(value: Record<string, unknown>) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+function buildCardProductJsonLd({
+  card,
+  canonicalUrl,
+  collectorNumber,
+  displayName,
+  finishLabels,
+  imageUrl,
+  illustratorName,
+  languageLabel,
+  printedName,
+  setName,
+}: {
+  card: CardDetail;
+  canonicalUrl?: string;
+  collectorNumber?: string;
+  displayName: string;
+  finishLabels: string[];
+  imageUrl?: string;
+  illustratorName?: string;
+  languageLabel: string;
+  printedName?: string;
+  setName?: string;
+}) {
+  const additionalProperty = [
+    { name: "Grookai Vault ID", value: card.gv_id },
+    collectorNumber ? { name: "Collector number", value: collectorNumber } : null,
+    setName ? { name: "Set", value: setName } : null,
+    card.set_code ? { name: "Set code", value: card.set_code.toUpperCase() } : null,
+    card.rarity ? { name: "Rarity", value: card.rarity } : null,
+    languageLabel ? { name: "Language", value: languageLabel } : null,
+    finishLabels.length > 0 ? { name: "Finishes", value: finishLabels.join(", ") } : null,
+    illustratorName ? { name: "Illustrator", value: illustratorName } : null,
+    printedName ? { name: "Printed name", value: printedName } : null,
+  ]
+    .filter((property): property is { name: string; value: string } => Boolean(property?.value))
+    .map((property) => ({
+      "@type": "PropertyValue",
+      name: property.name,
+      value: property.value,
+    }));
+
+  const description = [
+    `${displayName} trading card`,
+    setName ? `from ${setName}` : undefined,
+    collectorNumber ? `with collector number ${collectorNumber}` : undefined,
+    `and Grookai Vault ID ${card.gv_id}.`,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(" ");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: displayName,
+    alternateName: printedName && printedName !== displayName ? printedName : undefined,
+    description,
+    sku: card.gv_id,
+    mpn: card.gv_id,
+    brand: {
+      "@type": "Brand",
+      name: "Pokemon",
+    },
+    category: "Pokemon trading card",
+    image: imageUrl,
+    url: canonicalUrl,
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "Grookai Vault ID",
+      value: card.gv_id,
+    },
+    additionalProperty,
+  };
+}
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
@@ -212,6 +305,8 @@ export default async function CardPage({
     permanentRedirect(buildCardHref(card.gv_id, compareCardsParam, searchParams?.printing));
   }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
+  const siteOrigin = getSiteOrigin();
+  const canonicalCardUrl = siteOrigin ? `${siteOrigin}/card/${resolvedCard.gv_id}` : undefined;
   const selectedRoutePrinting = searchParams?.printing
     ? findPrintingByReference(
         (resolvedCard.display_printings ?? []).filter((printing) => !printing.is_display_fallback),
@@ -545,10 +640,26 @@ export default async function CardPage({
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
     : "This card can be added to your Vault";
+  const cardProductJsonLd = buildCardProductJsonLd({
+    card: resolvedCard,
+    canonicalUrl: canonicalCardUrl,
+    collectorNumber: collectorNumberLine,
+    displayName: resolvedDisplayIdentity.display_name,
+    finishLabels,
+    imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallback, siteOrigin),
+    illustratorName,
+    languageLabel: getCardLanguageLabel(resolvedCard.gv_id),
+    printedName: resolvedDisplayIdentity.printed_name ?? undefined,
+    setName,
+  });
 
   return (
     <div className={`space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdMarkup(cardProductJsonLd) }}
+      />
       <section className="gv-product-hero isolate">
         {setLogoPath ? (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
