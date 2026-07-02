@@ -1956,6 +1956,10 @@ function rowMatchesScopedTextTokens(
     ...tokenizeNormalizedQuery(row.set_code),
     ...tokenizeNormalizedQuery(row.printed_set_abbrev),
   ]);
+  const identifierTokens = uniqueValues([
+    ...tokenizeNormalizedQuery(row.gv_id),
+    ...tokenizeNormalizedQuery(row.number),
+  ]);
 
   if (rowMatchesNameFamily(row.name, scopedTokens)) {
     return true;
@@ -1966,6 +1970,7 @@ function rowMatchesScopedTextTokens(
       bestTokenSimilarity(token, nameTokens),
       bestTokenSimilarity(token, identityTokens),
       bestTokenSimilarity(token, setTokens),
+      bestTokenSimilarity(token, identifierTokens),
     );
     return bestSimilarity >= 0.88;
   });
@@ -3017,19 +3022,29 @@ function applyLanguageScopeQuery<
   return request;
 }
 
-function buildSafeIlikeOrExpression(token: string) {
+function buildStructuredFastSearchOrExpression(token: string) {
   const safeToken = token.replace(/[^a-z0-9-]/gi, "");
   if (!safeToken) {
     return null;
   }
 
-  return [
-    `name.ilike.%${safeToken}%`,
-    `number.ilike.%${safeToken}%`,
-    `gv_id.ilike.%${safeToken}%`,
-    `set_code.ilike.%${safeToken}%`,
-    `printed_set_abbrev.ilike.%${safeToken}%`,
-  ].join(",");
+  const normalizedLower = safeToken.toLowerCase();
+  const normalizedUpper = safeToken.toUpperCase();
+  const expressions = new Set<string>();
+  expressions.add(`gv_id.ilike.${safeToken}%`);
+  expressions.add(`set_code.eq.${normalizedLower}`);
+  expressions.add(`printed_set_abbrev.ilike.${safeToken}%`);
+
+  if (/^[a-z]*\d+[a-z0-9-]*$/i.test(safeToken)) {
+    expressions.add(`number.eq.${normalizedUpper}`);
+    const digits = safeToken.replace(/\D/g, "");
+    if (digits) {
+      expressions.add(`number.eq.${digits}`);
+      expressions.add(`number.eq.${digits.padStart(3, "0")}`);
+    }
+  }
+
+  return Array.from(expressions).join(",");
 }
 
 function cleanFastSearchToken(token: string) {
@@ -3072,6 +3087,31 @@ async function fetchLanguageScopedTextRows(
     for (const row of (data ?? []) as CardPrintLookupRow[]) {
       rowsById.set(row.id, row);
     }
+
+    if (rowsById.size > 0) {
+      return applyLanguageScopeRows([...rowsById.values()], languageScope);
+    }
+  }
+
+  if (query.expectedSetCodes.length > 0) {
+    const setRows = (
+      await Promise.all(
+        normalizeExpectedSetCodes(query.expectedSetCodes).map((setCode) =>
+          fetchCardRowsBySetCode(setCode),
+        ),
+      )
+    ).flat();
+
+    const languageScopedSetRows = applyLanguageScopeRows(setRows, languageScope);
+    if (tokens.length === 0) {
+      return languageScopedSetRows;
+    }
+
+    for (const row of languageScopedSetRows) {
+      if (rowMatchesScopedTextTokens(row, query)) {
+        rowsById.set(row.id, row);
+      }
+    }
   }
 
   const runTokenRequest = async (token: string, mode: "name" | "broad") => {
@@ -3088,7 +3128,10 @@ async function fetchLanguageScopedTextRows(
     const request =
       mode === "name"
         ? scopedRequest.ilike("name", `%${safeToken}%`)
-        : scopedRequest.or(buildSafeIlikeOrExpression(safeToken) ?? `name.ilike.%${safeToken}%`);
+        : scopedRequest.or(
+            buildStructuredFastSearchOrExpression(safeToken) ??
+              `gv_id.ilike.${safeToken}%`,
+          );
     const { data, error } = await request;
     if (error) {
       throw new Error(error.message);
@@ -3097,16 +3140,19 @@ async function fetchLanguageScopedTextRows(
     return (data ?? []) as CardPrintLookupRow[];
   };
 
-  for (const token of tokens) {
-    const safeToken = cleanFastSearchToken(token);
-    if (!safeToken) {
-      continue;
-    }
+  const tokenResults = await Promise.all(
+    tokens.map(async (token) => {
+      const safeToken = cleanFastSearchToken(token);
+      if (!safeToken) {
+        return [] as CardPrintLookupRow[];
+      }
 
-    const nameRows = await runTokenRequest(safeToken, "name");
-    const candidateRows =
-      nameRows.length > 0 ? nameRows : await runTokenRequest(safeToken, "broad");
+      const nameRows = await runTokenRequest(safeToken, "name");
+      return nameRows.length > 0 ? nameRows : runTokenRequest(safeToken, "broad");
+    }),
+  );
 
+  for (const candidateRows of tokenResults) {
     for (const row of candidateRows) {
       if (rowMatchesScopedTextTokens(row, query)) {
         rowsById.set(row.id, row);
