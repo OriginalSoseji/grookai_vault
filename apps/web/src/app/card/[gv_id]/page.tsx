@@ -256,12 +256,17 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const metadataImageUrl =
     normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
 
-  const titleParts = [displayName, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
+  const collectorNumberLabel = displayIdentity.displayPrintedNumber
+    ? `#${displayIdentity.displayPrintedNumber}`
+    : undefined;
+  const titleParts = [card.gv_id, displayName, card.set_name, collectorNumberLabel].filter(
+    (value): value is string => Boolean(value),
+  );
   const title = `${titleParts.join(" • ")} | Grookai Vault`;
   const description = [
-    `View card details for ${displayName}`,
+    `${card.gv_id} is the Grookai Vault canonical ID for ${displayName}`,
     card.set_name ? `from ${card.set_name}` : undefined,
-    displayIdentity.displayPrintedNumber ? `#${displayIdentity.displayPrintedNumber}` : undefined,
+    collectorNumberLabel,
     "including finishes and collection info on Grookai Vault.",
   ]
     .filter((value): value is string => Boolean(value))
@@ -763,6 +768,9 @@ export default async function CardPage({
                     </p>
                   ) : null}
                   <div className="flex flex-wrap items-center gap-2">
+                    <p className="inline-flex w-fit rounded-full border border-slate-200/80 bg-slate-50/90 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
+                      Grookai ID {resolvedCard.gv_id}
+                    </p>
                     {identitySubtitle ? (
                       <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
                     ) : null}
