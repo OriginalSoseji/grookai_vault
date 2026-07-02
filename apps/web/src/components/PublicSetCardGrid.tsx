@@ -179,6 +179,9 @@ export default function PublicSetCardGrid({
                   {identitySubtitle ? (
                     <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}
+                  <span className="gv-hi-metadata block truncate font-mono text-[11px] font-semibold uppercase tracking-[0.12em]">
+                    Grookai ID {card.gv_id}
+                  </span>
                 </Link>
               }
               subtitle={<span className="block truncate">{setLabel}</span>}
