@@ -1179,10 +1179,6 @@ export default function ExplorePageClient({
     ?? (normalizedQuery
       ? "Grookai is using deterministic card identity, finish, set, ownership, image, and variant signals to narrow the catalog."
       : "Search the catalog by collector language, variants, finishes, stamps, artists, ownership, and years.");
-  const discoverySupportingCopy = variantFamilyCopy?.why_collectors_care
-    ?? (interpretedLabels.length > 0
-      ? "The cards below are grouped as collector objects first, with database identifiers kept secondary."
-      : "Results are presented as collectible identities, not just rows.");
   const emptyStateTitle = ownershipRequiresSignIn
     ? "Sign in to search your vault"
     : ownershipState === "owned" && viewer.isAuthenticated
@@ -1313,6 +1309,38 @@ export default function ExplorePageClient({
     }
     return buildPathWithCompareCards("/explore", params.toString(), compareCards);
   };
+  const languageScopeControl = (
+    <div className="flex flex-wrap items-center gap-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Language
+      </p>
+      <div
+        className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+        role="radiogroup"
+        aria-label="Language scope"
+      >
+        {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
+          const active = languageScope === option.value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => commitLanguageScope(option.value)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                active
+                  ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                  : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              }`}
+            >
+              {option.shortLabel}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
   const presetSearchStrip = (
     <section className="gv-collector-panel gv-search-showcase px-5 py-5 sm:px-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -1352,81 +1380,102 @@ export default function ExplorePageClient({
       </div>
     </section>
   );
+  const compactPresetStrip = (
+    <section className="gv-command-surface px-4 py-3 sm:px-5">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex shrink-0 items-center gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+            Presets
+          </p>
+          <Link
+            href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+            className="hidden rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50 sm:inline-flex"
+          >
+            Sentence search
+          </Link>
+        </div>
+        <div className="flex gap-2 overflow-x-auto pb-1 lg:justify-end lg:pb-0">
+          {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+            <Link
+              key={preset.key}
+              href={buildScopedExploreHref(preset.query)}
+              className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+              title={preset.description}
+            >
+              {preset.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 
   return (
     <div
       className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
-      <div className="gv-collector-panel px-5 py-6 md:px-8 md:py-8">
-        <div className="space-y-1 md:hidden">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-            Discover
-          </p>
-          <h1 className="text-[1.9rem] font-black tracking-tight text-slate-950 dark:text-slate-50">
-            Discover cards
-          </h1>
-          <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
-            Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
-          </p>
-          <div className="flex flex-wrap gap-2 pt-px">
-            <Link
-              href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-            >
-              Browse Sets
-            </Link>
-            <Link
-              href={buildScopedExploreHref("q=Pikachu")}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-            >
-              Browse Pokémon
-            </Link>
+      {isDiscoveryMode ? (
+        <div className="gv-collector-panel px-5 py-6 md:px-8 md:py-8">
+          <div className="space-y-1 md:hidden">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+              Discover
+            </p>
+            <h1 className="text-[1.9rem] font-black tracking-tight text-slate-950 dark:text-slate-50">
+              Discover cards
+            </h1>
+            <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
+              Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-px">
+              <Link
+                href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Sets
+              </Link>
+              <Link
+                href={buildScopedExploreHref("q=Pikachu")}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Pokémon
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden space-y-3 md:block">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
+              Grookai Search
+            </p>
+            <h1 className="max-w-4xl text-[clamp(3.5rem,7vw,6.75rem)] font-black leading-[0.92] tracking-tight text-slate-950 dark:text-slate-50">
+              Search collector reality.
+            </h1>
+            <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
+              Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
+            </p>
+          </div>
+
+          <div className="mt-5 border-t border-slate-200/70 pt-4 dark:border-slate-800/70">
+            {languageScopeControl}
           </div>
         </div>
-
-        <div className="hidden space-y-3 md:block">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-            Grookai Search
-          </p>
-          <h1 className="max-w-4xl text-[clamp(3.5rem,7vw,6.75rem)] font-black leading-[0.92] tracking-tight text-slate-950 dark:text-slate-50">
-            Search collector reality.
-          </h1>
-          <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
-            Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
-          </p>
-        </div>
-
-        <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-200/70 pt-4 dark:border-slate-800/70">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-            Language
-          </p>
-          <div
-            className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
-            role="radiogroup"
-            aria-label="Language scope"
-          >
-            {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
-              const active = languageScope === option.value;
-              return (
-                <button
-                  key={option.value}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => commitLanguageScope(option.value)}
-                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                    active
-                      ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
-                      : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  {option.shortLabel}
-                </button>
-              );
-            })}
+      ) : (
+        <div className="gv-command-surface px-4 py-3 sm:px-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                Grookai Search
+              </p>
+              <h1 className="mt-1 truncate text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+                {normalizedQuery || discoveryTitle}
+              </h1>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                {resultCountLabel}
+              </p>
+            </div>
+            {languageScopeControl}
           </div>
         </div>
-      </div>
+      )}
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
@@ -1444,61 +1493,39 @@ export default function ExplorePageClient({
           />
         </>
       ) : (
-        <div className="gv-collector-search-results space-y-6">
-          <section className="gv-discovery-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
-            <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] lg:items-end">
-              <div className="space-y-4">
+        <div className="gv-collector-search-results space-y-4">
+          <section className="gv-command-surface px-4 py-3 sm:px-5">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="gv-discovery-eyebrow">{discoveryEyebrow}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    {discoveryEyebrow}
+                  </span>
                   {variantFamilyCopy?.confidence ? (
-                    <span className="gv-discovery-pill">
-                      {formatFilterValue(variantFamilyCopy.confidence)} confidence
+                    <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+                      {formatFilterValue(variantFamilyCopy.confidence)}
+                    </span>
+                  ) : null}
+                  {loading && displayRows.length > 0 ? (
+                    <span className="rounded-full bg-slate-950 px-2.5 py-1 text-[11px] font-semibold text-white dark:bg-white dark:text-slate-950">
+                      Refreshing
                     </span>
                   ) : null}
                 </div>
-                <div className="space-y-3">
-                  <h2 className="max-w-4xl text-[2.75rem] font-semibold leading-[0.96] tracking-normal text-slate-950 dark:text-white sm:text-[4rem] lg:text-[5.2rem]">
-                    {discoveryTitle}
-                  </h2>
-                  <p className="max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
-                    {discoveryDescription}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {interpretedLabels.slice(0, 5).map((label) => (
-                    <span key={label} className="gv-discovery-chip">
-                      {label}
-                    </span>
-                  ))}
-                  {residualQuery ? (
-                    <span className="gv-discovery-chip gv-discovery-chip-muted">
-                      Text: {residualQuery}
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-
-              <div className="gv-discovery-proof-card p-4 sm:p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                  Discovery result
+                <h2 className="mt-1 truncate text-xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+                  {discoveryTitle}
+                </h2>
+                <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  {variantFamilyCopy?.how_to_identify ?? discoveryDescription}
                 </p>
-                <p className="mt-2 text-3xl font-semibold tracking-normal text-slate-950 dark:text-white">
+              </div>
+              <div className="shrink-0 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left shadow-sm dark:border-slate-700 dark:bg-slate-900/80 lg:text-right">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                  Results
+                </p>
+                <p className="mt-1 text-2xl font-semibold text-slate-950 dark:text-slate-50">
                   {discoveryCountLabel}
                 </p>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                  {discoverySupportingCopy}
-                </p>
-                {variantFamilyCopy?.how_to_identify ? (
-                  <div className="mt-4 rounded-2xl bg-white/70 p-3 text-sm leading-6 text-slate-600 dark:bg-white/[0.06] dark:text-slate-300">
-                    <span className="font-semibold text-slate-950 dark:text-white">How to identify: </span>
-                    {variantFamilyCopy.how_to_identify}
-                  </div>
-                ) : null}
-                {loading && displayRows.length > 0 ? (
-                  <span className="mt-4 inline-flex rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white dark:bg-white dark:text-slate-950">
-                    Refreshing
-                  </span>
-                ) : null}
               </div>
             </div>
           </section>
@@ -1613,7 +1640,7 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
-          {presetSearchStrip}
+          {compactPresetStrip}
 
           {visibleIdentityFilters.length > 1 ? (
             <div className="gv-command-surface flex flex-wrap gap-2 px-4 py-3">
