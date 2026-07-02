@@ -41,6 +41,7 @@ const SEARCH_LIMIT = 80;
 const TOKEN_SEARCH_LIMIT = 40;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 500;
+const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 40;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set([
@@ -847,6 +848,78 @@ async function buildExploreRows(
       };
     }),
   );
+}
+
+function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
+  const tcgdexCardId = extractTcgdexCardId(row.external_ids);
+  const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
+
+  return {
+    id: row.id,
+    gv_id: row.gv_id ?? "",
+    name: row.name ?? "Unknown",
+    number: row.number ?? "",
+    set_name: row.printed_set_abbrev ?? row.set_code ?? undefined,
+    rarity: row.rarity ?? undefined,
+    artist: row.artist ?? undefined,
+    image_url: row.image_url ?? undefined,
+    representative_image_url: row.representative_image_url ?? undefined,
+    image_source: row.image_source ?? undefined,
+    set_code: row.set_code ?? undefined,
+    printed_set_abbrev: row.printed_set_abbrev ?? undefined,
+    tcgdex_set_id: tcgdexSetId,
+    variant_key: row.variant_key?.trim() || undefined,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+    variants: row.variants ?? undefined,
+    search_object_type: row.search_object_type,
+    search_card_printing_id: row.search_card_printing_id ?? undefined,
+    printing_gv_id: row.printing_gv_id ?? undefined,
+    selected_printing_gv_id: row.selected_printing_gv_id ?? undefined,
+    finish_key: row.finish_key ?? undefined,
+    finish_label: row.finish_label ?? undefined,
+    display_discriminator: row.display_discriminator ?? undefined,
+    route_query: row.route_query ?? undefined,
+  };
+}
+
+function limitRowsBeforeEnrichment(
+  rows: CardPrintLookupRow[],
+  query: ResolverQuery,
+  sortMode: SortMode,
+) {
+  if (sortMode !== "relevance" || rows.length <= PRE_ENRICHMENT_RELEVANCE_LIMIT) {
+    return rows;
+  }
+
+  return rows
+    .map((row, index) => ({
+      row,
+      index,
+      sortableRow: lookupRowToPreRankExploreRow(row),
+    }))
+    .sort((left, right) => {
+      const leftScore = scoreRow(left.sortableRow, query);
+      const rightScore = scoreRow(right.sortableRow, query);
+      if (leftScore !== rightScore) return rightScore - leftScore;
+
+      const nameCompare = left.sortableRow.name.localeCompare(right.sortableRow.name);
+      if (nameCompare !== 0) return nameCompare;
+
+      const setCompare = (left.sortableRow.set_code ?? "").localeCompare(right.sortableRow.set_code ?? "");
+      if (setCompare !== 0) return setCompare;
+
+      const numberCompare = left.sortableRow.number.localeCompare(right.sortableRow.number, undefined, {
+        numeric: true,
+      });
+      if (numberCompare !== 0) return numberCompare;
+
+      const gvCompare = left.sortableRow.gv_id.localeCompare(right.sortableRow.gv_id);
+      if (gvCompare !== 0) return gvCompare;
+
+      return left.index - right.index;
+    })
+    .slice(0, PRE_ENRICHMENT_RELEVANCE_LIMIT)
+    .map(({ row }) => row);
 }
 
 function getRowVariantCueSet(row: ExploreRow) {
@@ -3170,25 +3243,26 @@ export async function getExploreRowsForLanguageScopedTextSearch(
 ): Promise<ExploreRow[]> {
   const query = await buildResolverQuery(normalizeQuery(rawQuery));
   const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+  const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId =
     sortMode === "value_high" || sortMode === "value_low"
       ? await getPublicPricingByCardIds(
           supabase,
-          exactRows.map((row) => row.id),
+          enrichmentRows.map((row) => row.id),
         )
       : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
-    exactRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
     {
       skipChildDisplayImageFallbacks:
-        exactRows.length > 24 &&
+        enrichmentRows.length > 24 &&
         sortMode !== "value_high" &&
         sortMode !== "value_low",
     },
@@ -3886,6 +3960,15 @@ export async function getExploreRowsPacketWithTiming(
   });
   Object.assign(exactFiltersStage, timedExactFilters.timing);
   exactRows = timedExactFilters.value;
+
+  const shouldLimitBeforeEnrichment =
+    sortMode === "relevance" &&
+    typeof exactReleaseYear !== "number" &&
+    typeof releaseYearMin !== "number" &&
+    typeof releaseYearMax !== "number";
+  if (shouldLimitBeforeEnrichment) {
+    exactRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
+  }
 
   const timedSetMetadata = await measureStage(() =>
     fetchPublicSetMetadata(
