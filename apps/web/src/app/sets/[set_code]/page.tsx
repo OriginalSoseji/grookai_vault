@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
@@ -9,11 +10,45 @@ import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
 import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import type { PublicWorldChampionshipDecklist } from "@/lib/publicSets.shared";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 const INITIAL_CARD_CHUNK = 24;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { set_code: string };
+}): Promise<Metadata> {
+  const setDetail = await getPublicSetByCode(params.set_code);
+  if (!setDetail) {
+    return { title: "Set not found | Grookai Vault" };
+  }
+
+  const siteOrigin = getSiteOrigin();
+  const setCode = setDetail.code.toUpperCase();
+  const title = `${setDetail.name} ${setCode} card IDs | Grookai Vault`;
+  const description = `${setDetail.name} ${setCode} card checklist with Grookai Vault canonical card IDs, collector numbers, and direct card detail links.`;
+
+  return {
+    title,
+    description,
+    alternates: siteOrigin ? { canonical: `${siteOrigin}/sets/${setDetail.code}` } : undefined,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: siteOrigin ? `${siteOrigin}/sets/${setDetail.code}` : undefined,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 function formatReleaseDate(value?: string) {
   if (!value) {
@@ -106,6 +141,9 @@ export default async function SetPage({
                 <span className="gv-metadata-pill">{setDetail.printed_total} printed cards</span>
               ) : null}
               <span className="gv-metadata-pill">{masterSetStats.parentPrintCount} card identities</span>
+              <Link href={`/sets/${encodeURIComponent(setDetail.code)}/ids`} className="gv-metadata-pill transition hover:border-slate-400 hover:text-slate-950 dark:hover:border-white/30 dark:hover:text-slate-50">
+                Card ID registry
+              </Link>
             </div>
 
             {printRunExplanation ? (

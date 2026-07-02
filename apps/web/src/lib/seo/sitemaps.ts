@@ -160,10 +160,21 @@ export async function getSetSitemapEntries() {
     }
   }
 
-  return publicSets.map((setInfo) => ({
-    loc: `${origin}/sets/${encodeURIComponent(setInfo.code)}`,
-    lastmod: setTimestampsByCode.get(setInfo.code),
-  }));
+  return publicSets.flatMap((setInfo) => {
+    const encodedSetCode = encodeURIComponent(setInfo.code);
+    const lastmod = setTimestampsByCode.get(setInfo.code);
+
+    return [
+      {
+        loc: `${origin}/sets/${encodedSetCode}`,
+        lastmod,
+      },
+      {
+        loc: `${origin}/sets/${encodedSetCode}/ids`,
+        lastmod,
+      },
+    ];
+  });
 }
 
 export async function getPublicProfileSitemapEntries() {

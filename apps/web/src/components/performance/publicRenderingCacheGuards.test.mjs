@@ -210,6 +210,8 @@ test("card SEO exposes full sitemap index and product identifiers", () => {
 
 test("card SEO exposes exact GV IDs through visible internal links", () => {
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+  const setPage = readSource("app", "sets", "[set_code]", "page.tsx");
+  const setIdsPage = readSource("app", "sets", "[set_code]", "ids", "page.tsx");
   const setGrid = readSource("components", "PublicSetCardGrid.tsx");
   const layout = readSource("app", "layout.tsx");
   const idRegistry = readSource("lib", "seo", "idRegistry.ts");
@@ -220,6 +222,15 @@ test("card SEO exposes exact GV IDs through visible internal links", () => {
   assert.match(cardPage, /\[card\.gv_id, displayName, card\.set_name, collectorNumberLabel\]/);
   assert.match(cardPage, /Grookai Vault canonical ID/);
   assert.match(cardPage, /Grookai ID \{resolvedCard\.gv_id\}/);
+  assert.match(setPage, /card IDs \| Grookai Vault/);
+  assert.match(setPage, /Card ID registry/);
+  assert.match(setPage, /\/sets\/\$\{encodeURIComponent\(setDetail\.code\)\}\/ids/);
+  assert.match(setIdsPage, /Grookai card ID registry/);
+  assert.match(setIdsPage, /"@type": "CollectionPage"/);
+  assert.match(setIdsPage, /"@type": "ItemList"/);
+  assert.match(setIdsPage, /propertyID: "Grookai Vault ID"/);
+  assert.match(setIdsPage, /href=\{getCardUrl\(card\.gv_id\)\}/);
+  assert.match(setIdsPage, /\{card\.gv_id\}/);
   assert.match(setGrid, /Grookai ID \{card\.gv_id\}/);
   assert.match(layout, /href="\/ids"/);
   assert.match(idRegistry, /ID_REGISTRY_PAGE_SIZE = 1_000/);
@@ -227,4 +238,5 @@ test("card SEO exposes exact GV IDs through visible internal links", () => {
   assert.match(idsCardPage, /href=\{`\/card\/\$\{encodeURIComponent\(entry\.gvId\)\}`\}/);
   assert.match(idsCardPage, /\{entry\.gvId\}/);
   assert.match(sitemapHelpers, /`\$\{origin\}\/ids`/);
+  assert.match(sitemapHelpers, /`\$\{origin\}\/sets\/\$\{encodedSetCode\}\/ids`/);
 });
