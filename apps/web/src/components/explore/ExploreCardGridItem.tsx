@@ -62,7 +62,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       imageSizes={
         isLarge
           ? "(max-width: 640px) 58vw, (max-width: 1024px) 34vw, 280px"
-          : "(max-width: 640px) 42vw, (max-width: 1024px) 28vw, (max-width: 1536px) 20vw, 180px"
+          : "(max-width: 640px) 42vw, (max-width: 1024px) 28vw, (max-width: 1536px) 20vw, 168px"
       }
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
@@ -113,7 +113,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" />
         ) : null
       }
-      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[172px]"}
+      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[160px]"}
       className="gv-search-result-card"
     />
   );

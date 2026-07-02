@@ -35,25 +35,25 @@ type PokemonCardGridBadgeProps = {
 };
 
 const TILE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-2.5",
-  default: "p-4",
-  large: "p-5",
-};
-
-const IMAGE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
   compact: "p-2",
   default: "p-4",
   large: "p-5",
 };
 
+const IMAGE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
+  compact: "p-1.5",
+  default: "p-4",
+  large: "p-5",
+};
+
 const CONTENT_STACK_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "space-y-2",
+  compact: "space-y-1.5",
   default: "space-y-3",
   large: "space-y-3.5",
 };
 
 const BODY_STACK_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "space-y-2",
+  compact: "space-y-1.5",
   default: "space-y-2.5",
   large: "space-y-3",
 };

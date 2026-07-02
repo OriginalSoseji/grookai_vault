@@ -103,18 +103,24 @@ test("explore search keeps results compact and cards above supporting tools", ()
   const gridTile = readSource("components", "cards", "PokemonCardGridTile.tsx");
   const compareButton = readSource("components", "compare", "CompareCardButton.tsx");
   const globals = readSource("app", "globals.css");
+  const exploreRows = readSource("lib", "explore", "getExploreRows.ts");
 
-  assert.match(gridLayout, /grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
+  assert.match(gridLayout, /grid-cols-2 items-start gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
   assert.match(gridItem, /const density = isLarge \? "large" : "compact"/);
   assert.match(gridItem, /typeof card\.raw_price === "number"/);
   assert.match(gridItem, /variant="floating"/);
   assert.match(gridItem, /gv-search-result-card/);
-  assert.match(gridItem, /max-w-\[172px\]/);
-  assert.match(gridTile, /compact: "p-2\.5"/);
+  assert.match(gridItem, /max-w-\[160px\]/);
+  assert.match(gridTile, /compact: "p-2"/);
+  assert.match(gridTile, /compact: "p-1\.5"/);
   assert.match(compareButton, /variant\?: "default" \| "compact" \| "floating"/);
   assert.match(compareButton, /gv-card-compare-floating/);
   assert.match(globals, /\.gv-search-result-card\.gv-visual-card/);
   assert.match(globals, /\.gv-search-result-card \.gv-card-compare-floating:not\(\.gv-card-compare-floating-selected\)/);
+  assert.match(exploreRows, /function compareRowsByDataQuality/);
+  assert.match(exploreRows, /getImageRelevanceQuality/);
+  assert.match(exploreRows, /hasKnownSetName/);
+  assert.match(exploreRows, /const qualityCompare = compareRowsByDataQuality/);
   assert.match(exploreClient, /const resultControls = \(/);
   assert.match(exploreClient, /const presetPillStrip = \(/);
   assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);
