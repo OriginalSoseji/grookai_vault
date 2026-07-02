@@ -42,6 +42,7 @@ const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
 const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
+const SPECIES_FAMILY_SEARCH_LIMIT = 360;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set([
@@ -63,6 +64,16 @@ const VARIANT_QUERY_CUE_TOKENS = new Set([
   "full",
   "masterball",
   "pokeball",
+]);
+const DECORATOR_STOPWORDS_FOR_SEARCH = new Set([
+  "ex",
+  "gx",
+  "v",
+  "vmax",
+  "vstar",
+  "lv",
+  "x",
+  "break",
 ]);
 const PROMO_SET_CODE_PATTERN =
   /^(?:swshp|svp|smp|basep|bwp|xyp|dpp|pr-[a-z0-9]+)$/i;
@@ -94,9 +105,14 @@ const TRAIT_INTENT_PARTIAL_BONUS = 60;
 const TRAIT_INTENT_MISS_PENALTY = -80;
 const NAME_FAMILY_MATCH_BONUS = 140;
 const CLEAN_SINGLE_NAME_MATCH_BONUS = 360;
+const TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS = 1900;
+const TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS = 1250;
 const DECORATED_NAME_FALLBACK_PENALTY = -220;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
+const JAPANESE_SPECIES_ALIASES_BY_SLUG = new Map<string, string[]>([
+  ["pikachu", ["ピカチュウ"]],
+]);
 
 type VariantCue =
   | "alt_art"
@@ -117,6 +133,9 @@ type CollectorNumberExpectation = {
 
 type ExploreRow = ExploreResultCard & {
   printed_total?: number;
+  search_family_tokens?: string[];
+  search_family_slug?: string | null;
+  search_family_printed_name_match?: boolean;
 };
 
 type BuildExploreRowsOptions = {
@@ -200,6 +219,32 @@ type CardPrintLookupRow = {
   display_discriminator?: string | null;
   route_query?: string | null;
   search_rank_score?: number | null;
+  search_family_tokens?: string[];
+  search_family_slug?: string | null;
+  search_family_printed_name_match?: boolean;
+};
+
+type DexSpeciesSearchRow = {
+  species_id: string | null;
+  display_name: string | null;
+  slug: string | null;
+};
+
+type DexSpeciesCardPrintRow = {
+  card_print_id: string | null;
+  gv_id?: string | null;
+  name?: string | null;
+  species_slug: string | null;
+  species_display_name: string | null;
+  source?: string | null;
+  evidence?: {
+    resolution_method?: string | null;
+    printed_name_species_matches?: Array<{
+      species_slug?: string | null;
+      evidence_keys?: string[] | null;
+      evidence_names?: string[] | null;
+    }> | null;
+  } | null;
 };
 
 type TcgdexSetRow = {
@@ -845,6 +890,9 @@ async function buildExploreRows(
         finish_label: row.finish_label ?? undefined,
         display_discriminator: row.display_discriminator ?? undefined,
         route_query: row.route_query ?? undefined,
+        search_family_tokens: row.search_family_tokens,
+        search_family_slug: row.search_family_slug,
+        search_family_printed_name_match: row.search_family_printed_name_match,
       };
     }),
   );
@@ -879,6 +927,9 @@ function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
     finish_label: row.finish_label ?? undefined,
     display_discriminator: row.display_discriminator ?? undefined,
     route_query: row.route_query ?? undefined,
+    search_family_tokens: row.search_family_tokens,
+    search_family_slug: row.search_family_slug,
+    search_family_printed_name_match: row.search_family_printed_name_match,
   };
 }
 
@@ -1214,12 +1265,19 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     .join(" ");
   const nameTokens = tokenizeNormalizedQuery(row.name);
   const identityTokens = tokenizeNormalizedQuery(buildIdentitySearchText(row));
+  const familyTokens = row.search_family_tokens ?? [];
   const finishTokens = tokenizeNormalizedQuery(
     [row.finish_key, row.finish_label, row.display_discriminator, row.printing_gv_id]
       .filter(Boolean)
       .join(" "),
   );
-  const matchesNameFamily = rowMatchesNameFamily(row.name, query.textTokens);
+  const primaryFamilyTokens = getPrimaryFamilyTokensFromTokens(query.textTokens);
+  const matchesSpeciesFamily =
+    familyTokens.length > 0 &&
+    primaryFamilyTokens.length > 0 &&
+    primaryFamilyTokens.every((token) => familyTokens.includes(token));
+  const matchesNameFamily =
+    rowMatchesNameFamily(row.name, query.textTokens) || matchesSpeciesFamily;
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_name),
     ...tokenizeNormalizedQuery(row.set_code),
@@ -1274,17 +1332,23 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
   for (const token of query.textTokens) {
     const nameSimilarity = bestTokenSimilarity(token, nameTokens);
     const identitySimilarity = bestTokenSimilarity(token, identityTokens);
+    const familySimilarity = bestTokenSimilarity(token, familyTokens);
     const setSimilarity = bestTokenSimilarity(token, setTokens);
     const gvSimilarity = bestTokenSimilarity(token, gvTokens);
     const bestSimilarity = Math.max(
       nameSimilarity,
       identitySimilarity,
+      familySimilarity,
       bestTokenSimilarity(token, finishTokens),
       setSimilarity,
       gvSimilarity,
     );
     const bestSource =
-      nameSimilarity >= identitySimilarity && nameSimilarity >= setSimilarity
+      familySimilarity > nameSimilarity &&
+      familySimilarity >= identitySimilarity &&
+      familySimilarity >= setSimilarity
+        ? "family"
+        : nameSimilarity >= identitySimilarity && nameSimilarity >= setSimilarity
         ? "name"
         : identitySimilarity >= setSimilarity
           ? "identity"
@@ -1295,6 +1359,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_exact_name"
+          : bestSource === "family"
+            ? "text_token_exact_species_family"
           : bestSource === "identity"
             ? "text_token_exact_identity"
             : "text_token_exact_set",
@@ -1302,12 +1368,16 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 240
             : 280
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 220
+              : 270
           : bestSource === "identity"
             ? 250
             : 260,
       );
       matchedTextTokens += 1;
-      if (nameSimilarity >= 1) exactNameMatches += 1;
+      if (nameSimilarity >= 1 || familySimilarity >= 1) exactNameMatches += 1;
       continue;
     }
 
@@ -1316,6 +1386,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_prefix_name"
+          : bestSource === "family"
+            ? "text_token_prefix_species_family"
           : bestSource === "identity"
             ? "text_token_prefix_identity"
             : "text_token_prefix_set",
@@ -1323,6 +1395,10 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 180
             : 220
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 170
+              : 210
           : bestSource === "identity"
             ? 190
             : 210,
@@ -1336,6 +1412,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_partial_name"
+          : bestSource === "family"
+            ? "text_token_partial_species_family"
           : bestSource === "identity"
             ? "text_token_partial_identity"
             : "text_token_partial_set",
@@ -1343,6 +1421,10 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 120
             : 150
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 120
+              : 145
           : bestSource === "identity"
             ? 140
             : 150,
@@ -1379,6 +1461,31 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     );
   }
 
+  if (row.search_family_printed_name_match && query.textTokens.length > 0) {
+    addScoreComponent(
+      components,
+      "trusted_species_printed_name_match",
+      query.hasStrongDisambiguator
+        ? Math.round(TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS * 0.45)
+        : TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS,
+    );
+
+    if (
+      !queryContainsNameDecoratorTokens(query.tokens) &&
+      tokenizeNormalizedQuery(row.name).some((token) =>
+        DECORATOR_STOPWORDS_FOR_SEARCH.has(token),
+      )
+    ) {
+      addScoreComponent(
+        components,
+        "trusted_species_decorated_printed_name_match",
+        query.hasStrongDisambiguator
+          ? Math.round(TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS * 0.35)
+          : TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS,
+      );
+    }
+  }
+
   if (
     query.textTokens.length > 0 &&
     matchesNameFamily &&
@@ -1389,7 +1496,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
 
   if (
     query.significantTextTokens.length === 1 &&
-    normalizedName === query.significantTextTokens[0]
+    (normalizedName === query.significantTextTokens[0] ||
+      familyTokens.includes(query.significantTextTokens[0]))
   ) {
     addScoreComponent(components, "clean_single_name_match", CLEAN_SINGLE_NAME_MATCH_BONUS);
   } else if (
@@ -2025,6 +2133,7 @@ function rowMatchesScopedTextTokens(
 
   const nameTokens = tokenizeNormalizedQuery(row.name);
   const identityTokens = tokenizeNormalizedQuery(buildIdentitySearchText(row));
+  const familyTokens = row.search_family_tokens ?? [];
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_code),
     ...tokenizeNormalizedQuery(row.printed_set_abbrev),
@@ -2042,6 +2151,7 @@ function rowMatchesScopedTextTokens(
     const bestSimilarity = Math.max(
       bestTokenSimilarity(token, nameTokens),
       bestTokenSimilarity(token, identityTokens),
+      bestTokenSimilarity(token, familyTokens),
       bestTokenSimilarity(token, setTokens),
       bestTokenSimilarity(token, identifierTokens),
     );
@@ -2704,7 +2814,7 @@ async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
       throw new Error(error.message);
     }
 
-    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
       rowsById.set(row.id, row);
     }
   }
@@ -2760,7 +2870,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
       throw new Error(error.message);
     }
 
-    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
       results.set(row.id, row);
     }
   }
@@ -3095,6 +3205,248 @@ function applyLanguageScopeQuery<
   return request;
 }
 
+function getSpeciesSearchTokens(query: ResolverQuery) {
+  return uniqueValues(
+    (query.significantTextTokens.length > 0
+      ? query.significantTextTokens
+      : query.textTokens
+    )
+      .filter((token) => token.length >= 3 && !GENERIC_TOKENS.has(token))
+      .slice(0, 2),
+  );
+}
+
+function sanitizeSpeciesSearchToken(token: string) {
+  return token.replace(/[^a-z0-9-]/gi, "").toLowerCase();
+}
+
+function buildSpeciesFamilyTokens(row: {
+  species_display_name?: string | null;
+  display_name?: string | null;
+  species_slug?: string | null;
+  slug?: string | null;
+}) {
+  return uniqueValues([
+    ...tokenizeNormalizedQuery(row.species_display_name),
+    ...tokenizeNormalizedQuery(row.display_name),
+    ...tokenizeNormalizedQuery(row.species_slug),
+    ...tokenizeNormalizedQuery(row.slug),
+  ]);
+}
+
+function normalizeNonLatinAlias(value: string | null | undefined) {
+  const normalized = (value ?? "").trim().toLowerCase();
+  return /[^\u0000-\u007f]/.test(normalized) ? normalized : "";
+}
+
+function getPrintedNameEvidenceValues(row: DexSpeciesCardPrintRow) {
+  return (row.evidence?.printed_name_species_matches ?? [])
+    .filter((match) => match.species_slug === row.species_slug)
+    .flatMap((match) => [
+      ...(match.evidence_keys ?? []),
+      ...(match.evidence_names ?? []),
+    ])
+    .map(normalizeNonLatinAlias)
+    .filter(Boolean);
+}
+
+function buildTrustedPrintedNameAliasesBySlug(rows: DexSpeciesCardPrintRow[]) {
+  const countsBySlug = new Map<string, Map<string, number>>();
+  for (const row of rows) {
+    const slug = row.species_slug?.trim().toLowerCase();
+    if (!slug) {
+      continue;
+    }
+
+    const aliasCounts = countsBySlug.get(slug) ?? new Map<string, number>();
+    for (const alias of uniqueValues(getPrintedNameEvidenceValues(row))) {
+      aliasCounts.set(alias, (aliasCounts.get(alias) ?? 0) + 1);
+    }
+    countsBySlug.set(slug, aliasCounts);
+  }
+
+  const trustedBySlug = new Map<string, Set<string>>();
+  for (const [slug, aliasCounts] of countsBySlug.entries()) {
+    const trustedAliases = [...aliasCounts.entries()]
+      .filter(([, count]) => count >= 3)
+      .map(([alias]) => alias);
+    if (trustedAliases.length > 0) {
+      trustedBySlug.set(slug, new Set(trustedAliases));
+    }
+  }
+
+  return trustedBySlug;
+}
+
+function rowMatchesTrustedPrintedNameAlias(
+  row: DexSpeciesCardPrintRow,
+  trustedAliasesBySlug: Map<string, Set<string>>,
+) {
+  const slug = row.species_slug?.trim().toLowerCase();
+  if (!slug) {
+    return false;
+  }
+
+  const trustedAliases = trustedAliasesBySlug.get(slug);
+  const explicitAliases = JAPANESE_SPECIES_ALIASES_BY_SLUG.get(slug);
+  const aliases = explicitAliases
+    ? new Set(explicitAliases.map(normalizeNonLatinAlias).filter(Boolean))
+    : trustedAliases;
+  if (!aliases || aliases.size === 0) {
+    return false;
+  }
+
+  const normalizedName = normalizeNonLatinAlias(row.name);
+  if (!normalizedName) {
+    return false;
+  }
+
+  return [...aliases].some((alias) => normalizedName.includes(alias));
+}
+
+function isReliableSpeciesSearchMapping(
+  row: DexSpeciesCardPrintRow,
+  query: ResolverQuery,
+  trustedAliasesBySlug: Map<string, Set<string>>,
+) {
+  const scopedTokens = getSpeciesSearchTokens(query);
+  const rowNameTokens = tokenizeNormalizedQuery(row.name);
+  if (
+    scopedTokens.some((token) =>
+      bestTokenSimilarity(token, rowNameTokens) >= 0.88,
+    )
+  ) {
+    return true;
+  }
+
+  return rowMatchesTrustedPrintedNameAlias(row, trustedAliasesBySlug);
+}
+
+async function fetchSpeciesFamilyRows(
+  query: ResolverQuery,
+  languageScope: PublicLanguageScope,
+  selectClause: string,
+) {
+  const tokens = getSpeciesSearchTokens(query);
+  if (tokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const speciesBySlug = new Map<string, DexSpeciesSearchRow>();
+
+  for (const token of tokens) {
+    const safeToken = sanitizeSpeciesSearchToken(token);
+    if (!safeToken) {
+      continue;
+    }
+
+    const { data, error } = await supabase
+      .from("v_grookai_dex_species_v1")
+      .select("species_id,display_name,slug")
+      .eq("active", true)
+      .or(`display_name.ilike.${safeToken}%,slug.ilike.${safeToken}%`)
+      .limit(8);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as DexSpeciesSearchRow[]) {
+      const slug = row.slug?.trim().toLowerCase();
+      if (slug) {
+        speciesBySlug.set(slug, row);
+      }
+    }
+  }
+
+  if (speciesBySlug.size === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  let mappingRequest = supabase
+    .from("v_grookai_dex_card_prints_v1")
+    .select("card_print_id,gv_id,name,species_slug,species_display_name,source,evidence")
+    .in("species_slug", [...speciesBySlug.keys()])
+    .eq("mapping_active", true)
+    .eq("counts_for_completion", true)
+    .in("role", [
+      "primary",
+      "tag_team",
+      "multi_subject",
+      "trainer_owned",
+      "form_subject",
+      "manual_override",
+    ])
+    .limit(SPECIES_FAMILY_SEARCH_LIMIT);
+
+  mappingRequest = applyLanguageScopeQuery(mappingRequest, languageScope);
+  const { data: mappingRows, error: mappingError } = await mappingRequest;
+  if (mappingError) {
+    throw new Error(mappingError.message);
+  }
+
+  const mappedRows = (mappingRows ?? []) as DexSpeciesCardPrintRow[];
+  const trustedAliasesBySlug = buildTrustedPrintedNameAliasesBySlug(mappedRows);
+  const familyTokensByCardPrintId = new Map<string, string[]>();
+  const printedNameMatchByCardPrintId = new Map<string, boolean>();
+  for (const row of mappedRows) {
+    const printedNameMatch = rowMatchesTrustedPrintedNameAlias(
+      row,
+      trustedAliasesBySlug,
+    );
+    if (!isReliableSpeciesSearchMapping(row, query, trustedAliasesBySlug)) {
+      continue;
+    }
+
+    const cardPrintId = row.card_print_id?.trim();
+    const slug = row.species_slug?.trim().toLowerCase();
+    if (!cardPrintId || !slug) {
+      continue;
+    }
+
+    const familyTokens = uniqueValues([
+      ...(familyTokensByCardPrintId.get(cardPrintId) ?? []),
+      ...buildSpeciesFamilyTokens(row),
+      ...buildSpeciesFamilyTokens(speciesBySlug.get(slug) ?? row),
+    ]);
+    familyTokensByCardPrintId.set(cardPrintId, familyTokens);
+    if (printedNameMatch) {
+      printedNameMatchByCardPrintId.set(cardPrintId, true);
+    }
+  }
+
+  const cardPrintIds = [...familyTokensByCardPrintId.keys()];
+  if (cardPrintIds.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const rowsById = new Map<string, CardPrintLookupRow>();
+  for (const idChunk of chunkArray(cardPrintIds, 200)) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .in("id", idChunk);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
+      const familyTokens = familyTokensByCardPrintId.get(row.id) ?? [];
+      rowsById.set(row.id, {
+        ...row,
+        search_family_tokens: familyTokens,
+        search_family_slug: null,
+        search_family_printed_name_match:
+          printedNameMatchByCardPrintId.get(row.id) ?? false,
+      });
+    }
+  }
+
+  return applyLanguageScopeRows([...rowsById.values()], languageScope);
+}
+
 function buildStructuredFastSearchOrExpression(token: string) {
   const safeToken = token.replace(/[^a-z0-9-]/gi, "");
   if (!safeToken) {
@@ -3230,6 +3582,17 @@ async function fetchLanguageScopedTextRows(
       if (rowMatchesScopedTextTokens(row, query)) {
         rowsById.set(row.id, row);
       }
+    }
+  }
+
+  const speciesFamilyRows = await fetchSpeciesFamilyRows(
+    query,
+    languageScope,
+    selectClause,
+  );
+  for (const row of speciesFamilyRows) {
+    if (rowMatchesScopedTextTokens(row, query)) {
+      rowsById.set(row.id, row);
     }
   }
 
