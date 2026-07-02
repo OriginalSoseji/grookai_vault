@@ -85,8 +85,17 @@ function formatMarketPressure(pricing: CardPricingUiRecord) {
 function PricingEmptyState() {
   return (
     <div className="space-y-1.5">
-      <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">No pricing data available</p>
+      <p className="text-base font-semibold tracking-tight text-slate-950 dark:text-slate-100">No pricing data yet</p>
       <p className="text-xs leading-5 text-slate-500">Pricing for this card is not available yet.</p>
+    </div>
+  );
+}
+
+function PricingLoadingState() {
+  return (
+    <div className="space-y-1.5">
+      <p className="text-base font-semibold tracking-tight text-slate-950 dark:text-slate-100">Loading pricing</p>
+      <p className="text-xs leading-5 text-slate-500">Market data will appear here when available.</p>
     </div>
   );
 }
@@ -230,21 +239,31 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
   );
 }
 
-function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: CardPricingUiRecord | null }) {
+function AuthenticatedPricingState({
+  gvId,
+  pricing,
+  isLoading = false,
+}: {
+  gvId: string;
+  pricing: CardPricingUiRecord | null;
+  isLoading?: boolean;
+}) {
   return (
     <div className="gv-card-pricing-panel px-1 py-1">
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>
-          <GrookaiValueBlock pricing={pricing} />
+          {isLoading ? <PricingLoadingState /> : <GrookaiValueBlock pricing={pricing} />}
         </div>
-        <ActiveAskBlock pricing={pricing} />
-        <Link
-          href={`/card/${encodeURIComponent(gvId)}/market`}
-          className="inline-flex text-sm text-slate-500 transition hover:text-slate-950"
-        >
-          View market analysis →
-        </Link>
+        {isLoading ? null : <ActiveAskBlock pricing={pricing} />}
+        {isLoading ? null : (
+          <Link
+            href={`/card/${encodeURIComponent(gvId)}/market`}
+            className="inline-flex text-sm text-slate-500 transition hover:text-slate-950"
+          >
+            View market analysis →
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -285,6 +304,9 @@ export default function CardPagePricingRail({
   const viewer = useClientViewer(null);
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
   const [clientPricingRecords, setClientPricingRecords] = useState<CardPricingUiRecord[]>(pricingRecords);
+  const [isLoadingPricing, setIsLoadingPricing] = useState(() =>
+    Boolean(effectiveIsAuthenticated && pricingRecords.length === 0 && cardPrintId),
+  );
   const selectedPricing = selectPricingRecord({
     records: clientPricingRecords,
     selectedCardPrintingId,
@@ -299,6 +321,7 @@ export default function CardPagePricingRail({
 
     const controller = new AbortController();
     const params = new URLSearchParams({ card_print_id: cardPrintId });
+    setIsLoadingPricing(true);
 
     async function loadPricing() {
       const {
@@ -320,11 +343,12 @@ export default function CardPagePricingRail({
       if (payload && "pricingRecords" in payload) {
         setClientPricingRecords(payload.pricingRecords ?? (payload.pricing ? [payload.pricing] : []));
       }
+      setIsLoadingPricing(false);
     }
 
     loadPricing()
       .then(() => undefined)
-      .catch(() => undefined);
+      .catch(() => setIsLoadingPricing(false));
 
     return () => controller.abort();
   }, [cardPrintId, clientPricingRecords.length, effectiveIsAuthenticated]);
@@ -333,5 +357,5 @@ export default function CardPagePricingRail({
     return <LockedPricingState loginHref={loginHref} />;
   }
 
-  return <AuthenticatedPricingState gvId={gvId} pricing={selectedPricing} />;
+  return <AuthenticatedPricingState gvId={gvId} pricing={selectedPricing} isLoading={isLoadingPricing && !selectedPricing} />;
 }

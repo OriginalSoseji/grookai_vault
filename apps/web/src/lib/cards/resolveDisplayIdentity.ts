@@ -2,6 +2,7 @@ import {
   getPrintedIdentityModifierDisplayLabel,
   getVariantDisplayLabel,
 } from "@/lib/cards/displayDiscriminator";
+import { JAPANESE_POKEMON_NAME_TO_ENGLISH } from "@/lib/cards/pokemonJapaneseNameMap";
 
 export type CardPrint = {
   name: string;
@@ -32,6 +33,10 @@ const NEVER_SUPPRESS_DUPLICATE_MEANING_SUBTITLES = new Set([
   "prerelease",
   "staff",
 ]);
+
+const JAPANESE_POKEMON_NAME_RULES = Array.from(
+  JAPANESE_POKEMON_NAME_TO_ENGLISH.entries(),
+).sort((left, right) => right[0].length - left[0].length);
 
 function normalizeToken(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_");
@@ -64,6 +69,23 @@ function normalizeJapanesePikachuSuffix(value: string) {
   return /^[a-z0-9][a-z0-9.+-]*$/i.test(suffix) ? suffix : "";
 }
 
+function containsJapaneseText(value: string) {
+  return /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u.test(value);
+}
+
+function normalizeTrailingPrintedSuffix(value: string) {
+  const suffix = value.trim().replace(/\s+/g, "");
+  if (!suffix) {
+    return "";
+  }
+
+  if (suffix === "（デルタ種）") {
+    return "Delta Species";
+  }
+
+  return /^[a-z0-9][a-z0-9.+-]*$/i.test(suffix) ? suffix : "";
+}
+
 function resolveEnglishPrimaryNameForJapanesePrintedName(value: string) {
   const normalized = value.trim();
   const rules: Array<{ prefix: string; englishName: string }> = [
@@ -81,6 +103,19 @@ function resolveEnglishPrimaryNameForJapanesePrintedName(value: string) {
       normalized.slice(rule.prefix.length),
     );
     return suffix ? `${rule.englishName} ${suffix}` : rule.englishName;
+  }
+
+  if (containsJapaneseText(normalized)) {
+    for (const [japaneseName, englishName] of JAPANESE_POKEMON_NAME_RULES) {
+      if (!normalized.startsWith(japaneseName)) {
+        continue;
+      }
+
+      const suffix = normalizeTrailingPrintedSuffix(
+        normalized.slice(japaneseName.length),
+      );
+      return suffix ? `${englishName} ${suffix}` : englishName;
+    }
   }
 
   return null;

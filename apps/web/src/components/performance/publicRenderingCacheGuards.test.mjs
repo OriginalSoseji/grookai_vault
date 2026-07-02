@@ -141,16 +141,44 @@ test("explore search keeps results compact and cards above supporting tools", ()
 
 test("japanese pikachu display keeps english primary and printed name secondary", () => {
   const displayIdentity = readSource("lib", "cards", "resolveDisplayIdentity.ts");
+  const japaneseNameMap = readSource("lib", "cards", "pokemonJapaneseNameMap.ts");
   const exploreGridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
   const exploreListItem = readSource("components", "explore", "ExploreCardListItem.tsx");
   const setGrid = readSource("components", "PublicSetCardGrid.tsx");
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
 
-  assert.match(displayIdentity, /prefix: "ピカチュウ", englishName: "Pikachu"/);
-  assert.match(displayIdentity, /return suffix \? `\$\{rule\.englishName\} \$\{suffix\}` : rule\.englishName/);
+  assert.match(displayIdentity, /JAPANESE_POKEMON_NAME_TO_ENGLISH/);
+  assert.match(displayIdentity, /JAPANESE_POKEMON_NAME_RULES/);
+  assert.match(displayIdentity, /normalized\.startsWith\(japaneseName\)/);
+  assert.match(japaneseNameMap, /\["ピカチュウ", "Pikachu"\]/);
+  assert.match(japaneseNameMap, /\["コイル", "Magnemite"\]/);
   assert.match(displayIdentity, /printed_name/);
   assert.match(exploreGridItem, /displayIdentity\.printed_name/);
   assert.match(exploreListItem, /displayIdentity\.printed_name/);
   assert.match(setGrid, /displayIdentity\.printed_name/);
-  assert.match(cardPage, /Japanese printed name: \{resolvedDisplayIdentity\.printed_name\}/);
+  assert.match(cardPage, /\{resolvedDisplayIdentity\.printed_name\}/);
+  assert.doesNotMatch(cardPage, /Japanese printed name/);
+});
+
+test("card detail streams lower panels after exact card information", () => {
+  const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+  const pricingRail = readSource("components", "pricing", "CardPagePricingRail.tsx");
+
+  assert.match(cardPage, /const card = await getPublicCardByGvId\(params\.gv_id\)/);
+  assert.match(cardPage, /getCardPricingUiRowsByCardPrintId/);
+  assert.match(cardPage, /pricingRecords=\{pricingRecords\}/);
+  assert.match(cardPage, /<Suspense fallback=\{null\}>\s*<CardNetworkOffersSection/);
+  assert.match(cardPage, /<Suspense fallback=\{null\}>\s*<NearbyCardsSection/);
+  assert.match(cardPage, /async function CardNetworkOffersSection/);
+  assert.match(cardPage, /async function NearbyCardsSection/);
+  assert.match(cardPage, /\{ label: "Language", value: getCardLanguageLabel\(resolvedCard\.gv_id\) \}/);
+  assert.match(cardPage, /<h2>Card information<\/h2>/);
+  assert.match(cardPage, /<h2>Other versions of this card<\/h2>/);
+  assert.ok(
+    cardPage.indexOf("<h2>Card information</h2>") < cardPage.indexOf("<h2>Other versions of this card</h2>"),
+    "card detail information should render before other versions",
+  );
+  assert.match(pricingRail, /function PricingLoadingState/);
+  assert.match(pricingRail, /isLoadingPricing && !selectedPricing/);
+  assert.doesNotMatch(pricingRail, /No pricing data available/);
 });
