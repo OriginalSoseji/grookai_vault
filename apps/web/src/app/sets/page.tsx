@@ -2,9 +2,18 @@ import PublicSetsToolbar from "@/components/sets/PublicSetsToolbar";
 import PublicSetsResults from "@/components/sets/PublicSetsResults";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSets } from "@/lib/publicSets";
+import {
+  matchesPublicSetLanguageScope,
+  normalizePublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 
-export const dynamic = "force-static";
 export const revalidate = 300;
+
+type SetsPageProps = {
+  searchParams?: {
+    lang?: string;
+  };
+};
 
 function isSpecialSetName(name: string, code: string) {
   const normalizedName = name.toLowerCase();
@@ -23,8 +32,12 @@ function isSpecialSetName(name: string, code: string) {
   );
 }
 
-export default async function SetsPage() {
-  const sets = await getPublicSets();
+export default async function SetsPage({ searchParams }: SetsPageProps) {
+  const languageScope = normalizePublicLanguageScope(searchParams?.lang);
+  const allSets = await getPublicSets();
+  const sets = allSets.filter((setInfo) =>
+    matchesPublicSetLanguageScope(setInfo, languageScope),
+  );
   const setLogoPathByCode = await getSetLogoAssetPathMap(sets.map((setInfo) => setInfo.code));
   const totalCards = sets.reduce((sum, setInfo) => sum + setInfo.card_count, 0);
   const specialCount = sets.filter((setInfo) => isSpecialSetName(setInfo.name, setInfo.code)).length;
