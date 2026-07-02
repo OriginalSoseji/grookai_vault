@@ -20,6 +20,10 @@ import {
   tokenizeSetWords,
 } from "@/lib/publicSets.shared";
 import {
+  matchesPublicLanguageScope,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
+import {
   normalizeQuery,
   type NormalizedQueryPacket,
 } from "@/lib/resolver/normalizeQuery";
@@ -233,6 +237,7 @@ type SmartFilterDiscoveryOptions = {
   finishKeys?: string[];
   stampLabels?: string[];
   imageState?: SmartFilterImageState;
+  languageScope?: PublicLanguageScope;
 };
 
 type PublicSetMetadata = {
@@ -2970,6 +2975,169 @@ function rowMatchesSmartDiscoveryText(
   return tokens.every((token) => haystack.includes(token));
 }
 
+function rowMatchesLanguageScope(
+  row: { gv_id?: string | null },
+  languageScope: PublicLanguageScope = "all",
+) {
+  return matchesPublicLanguageScope(row, languageScope);
+}
+
+function applyLanguageScopeRows<T extends { gv_id?: string | null }>(
+  rows: T[],
+  languageScope: PublicLanguageScope = "all",
+) {
+  if (languageScope === "all") {
+    return rows;
+  }
+
+  return rows.filter((row) => rowMatchesLanguageScope(row, languageScope));
+}
+
+function applyLanguageScopeQuery<
+  T extends {
+    ilike: (column: string, pattern: string) => T;
+    not: (column: string, operator: string, value: string) => T;
+  },
+>(request: T, languageScope: PublicLanguageScope = "all") {
+  if (languageScope === "ja") {
+    return request.ilike("gv_id", "GV-PK-JPN-%");
+  }
+
+  if (languageScope === "en") {
+    return request.not("gv_id", "ilike", "GV-PK-JPN-%");
+  }
+
+  return request;
+}
+
+function buildSafeIlikeOrExpression(token: string) {
+  const safeToken = token.replace(/[^a-z0-9-]/gi, "");
+  if (!safeToken) {
+    return null;
+  }
+
+  return [
+    `name.ilike.%${safeToken}%`,
+    `number.ilike.%${safeToken}%`,
+    `gv_id.ilike.%${safeToken}%`,
+    `set_code.ilike.%${safeToken}%`,
+    `printed_set_abbrev.ilike.%${safeToken}%`,
+  ].join(",");
+}
+
+function cleanFastSearchToken(token: string) {
+  return token.replace(/[^a-z0-9-]/gi, "");
+}
+
+async function fetchLanguageScopedTextRows(
+  query: ResolverQuery,
+  languageScope: PublicLanguageScope,
+) {
+  const tokens = (query.significantTextTokens.length > 0
+    ? query.significantTextTokens
+    : query.textTokens
+  )
+    .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
+    .slice(0, 4);
+
+  if (tokens.length === 0 && !query.directGvId) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  if (query.directGvId) {
+    const directRequest = applyLanguageScopeQuery(
+      supabase
+        .from("card_prints")
+        .select(selectClause)
+        .eq("gv_id", query.directGvId)
+        .limit(1),
+      languageScope,
+    );
+    const { data, error } = await directRequest;
+    if (error) {
+      throw new Error(error.message);
+    }
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+  }
+
+  const runTokenRequest = async (token: string, mode: "name" | "broad") => {
+    const safeToken = cleanFastSearchToken(token);
+    if (!safeToken) {
+      return [] as CardPrintLookupRow[];
+    }
+
+    const baseRequest = supabase
+      .from("card_prints")
+      .select(selectClause)
+      .limit(languageScope === "ja" ? 180 : 140);
+    const scopedRequest = applyLanguageScopeQuery(baseRequest, languageScope);
+    const request =
+      mode === "name"
+        ? scopedRequest.ilike("name", `%${safeToken}%`)
+        : scopedRequest.or(buildSafeIlikeOrExpression(safeToken) ?? `name.ilike.%${safeToken}%`);
+    const { data, error } = await request;
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return (data ?? []) as CardPrintLookupRow[];
+  };
+
+  for (const token of tokens) {
+    const safeToken = cleanFastSearchToken(token);
+    if (!safeToken) {
+      continue;
+    }
+
+    const nameRows = await runTokenRequest(safeToken, "name");
+    const candidateRows =
+      nameRows.length > 0 ? nameRows : await runTokenRequest(safeToken, "broad");
+
+    for (const row of candidateRows) {
+      if (rowMatchesScopedTextTokens(row, query)) {
+        rowsById.set(row.id, row);
+      }
+    }
+  }
+
+  return applyLanguageScopeRows([...rowsById.values()], languageScope);
+}
+
+export async function getExploreRowsForLanguageScopedTextSearch(
+  rawQuery: string,
+  languageScope: PublicLanguageScope,
+  sortMode: SortMode,
+): Promise<ExploreRow[]> {
+  const query = await buildResolverQuery(normalizeQuery(rawQuery));
+  const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const supabase = createServerComponentClient();
+  const pricingByCardId =
+    sortMode === "value_high" || sortMode === "value_low"
+      ? await getPublicPricingByCardIds(
+          supabase,
+          exactRows.map((row) => row.id),
+        )
+      : new Map<string, PublicPricingRecord>();
+  const rows = await buildExploreRows(
+    exactRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+  );
+
+  return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+}
+
 async function fetchCardRowsBySmartText(textQuery?: string) {
   const tokens = getSmartDiscoveryTextTokens(textQuery);
   if (tokens.length === 0) {
@@ -3106,6 +3274,10 @@ async function filterSmartDiscoveryRowsByScope(
   }
 
   return rows.filter((row) => {
+    if (!rowMatchesLanguageScope(row, options.languageScope)) {
+      return false;
+    }
+
     if (!rowMatchesSmartDiscoveryText(row, options.textQuery)) {
       return false;
     }
@@ -3275,7 +3447,10 @@ async function fetchSmartDiscoveryChildRows(
 export async function getExploreRowsForSmartFilterDiscovery(
   options: SmartFilterDiscoveryOptions,
 ): Promise<ExploreRow[]> {
-  const parentRows = await fetchSmartDiscoverySeedParentRows(options);
+  const parentRows = applyLanguageScopeRows(
+    await fetchSmartDiscoverySeedParentRows(options),
+    options.languageScope,
+  );
   const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
   const shouldRequireChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
@@ -3318,7 +3493,10 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return getExploreRowsForSmartFilterDiscovery(options);
   }
 
-  let parentRows = await fetchCardRowsByStructuredTextQuery(query);
+  let parentRows = applyLanguageScopeRows(
+    await fetchCardRowsByStructuredTextQuery(query),
+    options.languageScope,
+  );
 
   const exactSetCode = normalizeSetCode(options.exactSetCode);
   const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
@@ -3397,7 +3575,7 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   const exactRows = await filterSmartDiscoveryRowsByScope(
     shouldUseChildScope
       ? await fetchSmartDiscoveryChildRows(options, parentRows)
-      : parentRows,
+      : applyLanguageScopeRows(parentRows, options.languageScope),
     options,
   );
   const query = await buildResolverQuery(normalizeQuery(""));
@@ -3464,6 +3642,7 @@ export async function getExploreRowsPacketWithTiming(
   identityFilter: IdentityFilterKey = "all",
   releaseYearMin?: number,
   releaseYearMax?: number,
+  languageScope: PublicLanguageScope = "all",
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
@@ -3591,7 +3770,7 @@ export async function getExploreRowsPacketWithTiming(
   }
 
   const timedExactFilters = await measureStage(() => {
-    let filteredRows = exactRows;
+    let filteredRows = applyLanguageScopeRows(exactRows, languageScope);
 
     if (query.expectedSetCodes.length > 0) {
       const expectedSetCodeSet = new Set(

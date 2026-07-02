@@ -8,6 +8,7 @@ import {
 } from "@/lib/provisional/getPromotionTransitionState";
 import {
   getExploreRowsForOwnedSmartFilterDiscovery,
+  getExploreRowsForLanguageScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
   getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
@@ -215,6 +216,35 @@ function buildSmartFilterDiscoveryMeta(
   };
 }
 
+function buildDegradedSearchMeta(query: string): ResolverMeta {
+  const nameTokens = query
+    .toLowerCase()
+    .match(/[a-z0-9]+/g)
+    ?.filter(Boolean) ?? [];
+
+  return {
+    resolverState: "NO_MATCH",
+    topScore: null,
+    candidateCount: 0,
+    autoResolved: false,
+    intentSummary: {
+      expectedSetCodes: [],
+      nameTokens,
+    },
+    structuredEvidenceFlags: null,
+  };
+}
+
+function isTimeoutLikeError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error ?? "");
+  return (
+    message.includes("statement timeout") ||
+    message.includes("canceling statement") ||
+    message.includes("The operation was aborted") ||
+    message.includes("AbortError")
+  );
+}
+
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => resolve(fallback), timeoutMs);
@@ -346,6 +376,10 @@ export async function GET(request: NextRequest) {
     !query &&
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
+  const shouldUseFastTextSearch =
+    Boolean(query) &&
+    !hasCatalogDiscoveryScope &&
+    !hasSmartOwnershipIntent;
 
   if (!query && !exactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
@@ -388,11 +422,21 @@ export async function GET(request: NextRequest) {
               finishKeys: effectiveSmartSearchIntent.finishKeys,
               stampLabels: effectiveSmartSearchIntent.stampLabels,
               imageState: effectiveSmartSearchIntent.imageState,
+              languageScope,
             }),
           ).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
           }))
+        : shouldUseFastTextSearch
+          ? getExploreRowsForLanguageScopedTextSearch(
+              query,
+              languageScope,
+              sortMode,
+            ).then((rows) => ({
+              rows,
+              meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+            }))
         : shouldUseSmartFilterDiscovery
           ? getExploreRowsForSmartFilterDiscovery({
             sortMode,
@@ -405,6 +449,7 @@ export async function GET(request: NextRequest) {
             finishKeys: effectiveSmartSearchIntent.finishKeys,
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
+            languageScope,
           }).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -421,6 +466,7 @@ export async function GET(request: NextRequest) {
                 finishKeys: effectiveSmartSearchIntent.finishKeys,
                 stampLabels: effectiveSmartSearchIntent.stampLabels,
                 imageState: effectiveSmartSearchIntent.imageState,
+                languageScope,
               }).then((rows) => ({
                 rows,
                 meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -434,6 +480,7 @@ export async function GET(request: NextRequest) {
                 identityFilter,
                 releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
                 releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+                languageScope,
               }),
       includeProvisional
         ? getPublicProvisionalCardsFailClosed({
@@ -513,10 +560,37 @@ export async function GET(request: NextRequest) {
           : error
             ? JSON.stringify(error)
             : "Resolver request failed.";
+    if (isTimeoutLikeError(error)) {
+      console.warn("[public-search] resolver timed out; returning degraded empty result", {
+        query,
+        languageScope,
+      });
+
+      return NextResponse.json(
+        {
+          ok: true,
+          query,
+          smart_search: effectiveSmartSearchIntent,
+          rows: [],
+          canonical: [],
+          provisional: [],
+          meta: buildDegradedSearchMeta(query),
+          source: "web_ranked_resolver_v2_degraded_timeout",
+        },
+        {
+          headers: {
+            "Cache-Control": effectiveSmartSearchIntent.ownedState
+              ? "private, no-store"
+              : "public, s-maxage=30, stale-while-revalidate=120",
+          },
+        },
+      );
+    }
+
     return NextResponse.json(
       {
         ok: false,
-        error: message,
+        error: process.env.NODE_ENV === "production" ? "Search is temporarily unavailable." : message,
       },
       { status: 500 },
     );

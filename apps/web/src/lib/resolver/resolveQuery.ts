@@ -5,6 +5,7 @@
 
 import type { IdentityFilterKey } from "@/lib/cards/identitySearch";
 import { getExploreRowsPacketWithTiming } from "@/lib/explore/getExploreRows";
+import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { normalizeQuery } from "@/lib/resolver/normalizeQuery";
 import { resolvePublicSearchPacketWithTiming } from "@/lib/publicSearchResolver";
 
@@ -41,6 +42,7 @@ type RankedResolveOptions = {
   identityFilter: IdentityFilterKey;
   releaseYearMin?: number;
   releaseYearMax?: number;
+  languageScope?: PublicLanguageScope;
 };
 
 export type ResolverState =
@@ -315,6 +317,7 @@ export async function resolveQueryWithMeta(
     options.identityFilter,
     options.releaseYearMin,
     options.releaseYearMax,
+    options.languageScope,
   );
   const meta = buildRankedResolverMeta(resolved.rows, resolved.timing, packet);
 
