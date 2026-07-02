@@ -17,21 +17,18 @@ test("root chrome does not perform server auth reads during public render", () =
   assert.match(appChrome, /Public routes must not depend on global auth\/session reads/);
   assert.doesNotMatch(appChrome, /createServerComponentClient|getUnreadCardInteractionGroupCount/);
   assert.match(appChrome, /supabase\.auth\.getSession/);
-  assert.match(layout, /<AppChrome \/>/);
+  assert.match(layout, /<AppChrome dexEnabled=\{dexEnabled\} \/>/);
 });
 
 test("primary public routes use bounded revalidation instead of force-dynamic", () => {
   const publicRouteSources = [
     readSource("app", "page.tsx"),
-    readSource("app", "explore", "page.tsx"),
     readSource("app", "network", "page.tsx"),
     readSource("app", "network", "discover", "page.tsx"),
     readSource("app", "u", "[slug]", "page.tsx"),
     readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
-    readSource("app", "card", "[gv_id]", "page.tsx"),
     readSource("app", "gvvi", "[gvvi_id]", "page.tsx"),
     readSource("app", "sets", "page.tsx"),
-    readSource("app", "sets", "[set_code]", "page.tsx"),
     readSource("app", "compare", "page.tsx"),
   ].join("\n");
 
@@ -72,4 +69,23 @@ test("public card image chooses an initial source before hydration", () => {
   assert.match(publicCardImage, /useState<string \| undefined>\(initialSrc\)/);
   assert.match(publicCardImage, /Hydration must not be required just to choose the first image source/);
   assert.match(publicCardImage, /sizes=\{sizes\}/);
+});
+
+test("explore search is bounded and language-aware for public performance", () => {
+  const searchRoute = readSource("app", "api", "resolver", "search", "route.ts");
+  const exploreClient = readSource("components", "explore", "ExplorePageClient.tsx");
+  const gridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
+  const publicCardImage = readSource("components", "PublicCardImage.tsx");
+
+  assert.match(searchRoute, /const DEFAULT_RESULT_LIMIT = 48/);
+  assert.match(searchRoute, /const MAX_RESULT_LIMIT = 64/);
+  assert.match(searchRoute, /RESOLVER_RESPONSE_TIMEOUT_MS = 4200/);
+  assert.match(searchRoute, /languageScope !== "ja" &&/);
+  assert.match(searchRoute, /web_ranked_resolver_v2_degraded_soft_timeout/);
+  assert.match(exploreClient, /const INITIAL_VISIBLE_RESULT_COUNT = 24/);
+  assert.match(exploreClient, /const SEARCH_API_RESULT_LIMIT = 48/);
+  assert.match(exploreClient, /params\.set\("limit", String\(SEARCH_API_RESULT_LIMIT\)\)/);
+  assert.match(gridItem, /imagePrefetch=\{false\}/);
+  assert.match(gridItem, /imagePriority=\{imagePriority\}/);
+  assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
 });

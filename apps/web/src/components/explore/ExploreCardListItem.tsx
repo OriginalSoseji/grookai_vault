@@ -52,7 +52,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   return (
     <li className="gv-visual-card px-4 py-4">
       <div className="flex items-start justify-between gap-4">
-        <Link href={href} className="flex min-w-0 flex-1 items-start gap-4">
+        <Link href={href} prefetch={false} className="flex min-w-0 flex-1 items-start gap-4">
           <PublicCardImage
             src={card.display_image_url ?? card.image_url}
             fallbackSrc={card.display_image_fallback_url}
