@@ -101,16 +101,36 @@ test("explore search keeps results compact and cards above supporting tools", ()
   const gridLayout = readSource("components", "cards", "pokemonCardGridLayout.ts");
   const gridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
   const gridTile = readSource("components", "cards", "PokemonCardGridTile.tsx");
+  const compareButton = readSource("components", "compare", "CompareCardButton.tsx");
+  const globals = readSource("app", "globals.css");
 
   assert.match(gridLayout, /grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
   assert.match(gridItem, /const density = isLarge \? "large" : "compact"/);
   assert.match(gridItem, /typeof card\.raw_price === "number"/);
-  assert.match(gridItem, /max-w-\[180px\]/);
+  assert.match(gridItem, /variant="floating"/);
+  assert.match(gridItem, /gv-search-result-card/);
+  assert.match(gridItem, /max-w-\[172px\]/);
   assert.match(gridTile, /compact: "p-2\.5"/);
+  assert.match(compareButton, /variant\?: "default" \| "compact" \| "floating"/);
+  assert.match(compareButton, /gv-card-compare-floating/);
+  assert.match(globals, /\.gv-search-result-card\.gv-visual-card/);
+  assert.match(globals, /\.gv-search-result-card \.gv-card-compare-floating:not\(\.gv-card-compare-floating-selected\)/);
   assert.match(exploreClient, /const resultControls = \(/);
   assert.match(exploreClient, /const presetPillStrip = \(/);
   assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);
   assert.match(exploreClient, /\{hasExplicitSmartFilters \? \(/);
+
+  const thumbGridStart = exploreClient.indexOf('viewMode === "thumb-lg"');
+  const listGridStart = exploreClient.indexOf('viewMode === "list"');
+  const firstThumbGroupHeader = exploreClient.indexOf("renderGroupHeader(group)", thumbGridStart);
+  assert.ok(
+    thumbGridStart > listGridStart,
+    "thumbnail grid branch should be present after list branch",
+  );
+  assert.ok(
+    firstThumbGroupHeader === -1,
+    "thumbnail grid branches should not render an extra result-group header above cards",
+  );
 });
 
 test("japanese pikachu display keeps english primary and printed name secondary", () => {

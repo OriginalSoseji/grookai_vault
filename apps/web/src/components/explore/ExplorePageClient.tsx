@@ -2029,8 +2029,7 @@ export default function ExplorePageClient({
           ) : viewMode === "thumb-lg" ? (
             <div className="space-y-5">
               {visibleResultGroups.map((group, groupIndex) => (
-                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
-                  {renderGroupHeader(group)}
+                <section key={`${group.intent}-${groupIndex}`}>
                   <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
                     {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem
@@ -2052,8 +2051,7 @@ export default function ExplorePageClient({
           ) : (
             <div className="space-y-5">
               {visibleResultGroups.map((group, groupIndex) => (
-                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
-                  {renderGroupHeader(group)}
+                <section key={`${group.intent}-${groupIndex}`}>
                   <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
                     {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem

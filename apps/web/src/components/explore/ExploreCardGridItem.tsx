@@ -51,7 +51,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   return (
     <PokemonCardGridTile
       density={density}
-      utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
+      utility={<CompareCardButton gvId={card.gv_id} variant="floating" />}
       imageSrc={card.display_image_url ?? card.image_url}
       imageFallbackSrc={card.display_image_fallback_url}
       imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
@@ -113,7 +113,8 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" />
         ) : null
       }
-      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[180px]"}
+      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[172px]"}
+      className="gv-search-result-card"
     />
   );
 }
