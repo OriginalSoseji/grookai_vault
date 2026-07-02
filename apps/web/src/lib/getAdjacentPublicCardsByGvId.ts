@@ -39,6 +39,12 @@ type CardNavigationRow = {
     | null;
 };
 
+type CardNavigationOrderRow = {
+  gv_id: string | null;
+  number: string | null;
+  number_plain: string | null;
+};
+
 export type AdjacentPublicCard = {
   gv_id: string;
   name: string;
@@ -81,7 +87,10 @@ function splitPrintedNumber(value: string, numberPlain?: string | null) {
   };
 }
 
-function comparePrintedNumbers(left: CardNavigationRow, right: CardNavigationRow) {
+function comparePrintedNumbers(
+  left: Pick<CardNavigationRow, "number" | "number_plain">,
+  right: Pick<CardNavigationRow, "number" | "number_plain">,
+) {
   const leftParts = splitPrintedNumber(left.number ?? "", left.number_plain);
   const rightParts = splitPrintedNumber(right.number ?? "", right.number_plain);
 
@@ -176,9 +185,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
 
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
-    .select(
-      "id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,sets(identity_model)",
-    )
+    .select("gv_id,number,number_plain")
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);
 
@@ -186,8 +193,8 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
     return {};
   }
 
-  const orderedRows = (setRows as CardNavigationRow[])
-    .filter((row): row is CardNavigationRow & { gv_id: string } => Boolean(row.gv_id))
+  const orderedRows = (setRows as CardNavigationOrderRow[])
+    .filter((row): row is CardNavigationOrderRow & { gv_id: string } => Boolean(row.gv_id))
     .sort((left, right) => {
       const numberCompare = comparePrintedNumbers(left, right);
       if (numberCompare !== 0) return numberCompare;
@@ -199,7 +206,33 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
     return {};
   }
 
-  const adjacentRows = [orderedRows[currentIndex - 1], orderedRows[currentIndex + 1]].filter(
+  const adjacentIds = [orderedRows[currentIndex - 1], orderedRows[currentIndex + 1]]
+    .map((row) => row?.gv_id)
+    .filter((value): value is string => Boolean(value));
+
+  if (adjacentIds.length === 0) {
+    return {};
+  }
+
+  const { data: adjacentRowsData, error: adjacentError } = await supabase
+    .from("card_prints")
+    .select(
+      "id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,sets(identity_model)",
+    )
+    .in("gv_id", adjacentIds);
+
+  if (adjacentError || !adjacentRowsData) {
+    return {};
+  }
+
+  const adjacentRowByGvId = new Map(
+    (adjacentRowsData as CardNavigationRow[])
+      .filter((row): row is CardNavigationRow & { gv_id: string } => Boolean(row.gv_id))
+      .map((row) => [row.gv_id, row]),
+  );
+  const previousRow = adjacentRowByGvId.get(orderedRows[currentIndex - 1]?.gv_id ?? "");
+  const nextRow = adjacentRowByGvId.get(orderedRows[currentIndex + 1]?.gv_id ?? "");
+  const adjacentRows = [previousRow, nextRow].filter(
     (row): row is CardNavigationRow & { gv_id: string } => Boolean(row),
   );
   const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
@@ -208,8 +241,8 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
   );
 
   const [previous, next] = await Promise.all([
-    toAdjacentCard(orderedRows[currentIndex - 1], childDisplayImageFallbacks),
-    toAdjacentCard(orderedRows[currentIndex + 1], childDisplayImageFallbacks),
+    toAdjacentCard(previousRow, childDisplayImageFallbacks),
+    toAdjacentCard(nextRow, childDisplayImageFallbacks),
   ]);
 
   return { previous, next };
