@@ -1756,6 +1756,8 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   bool _loading = false;
   String? _searchError;
   Timer? _debounce;
+  int _searchRequestVersion = 0;
+  String _languageScope = 'all';
 
   @override
   void initState() {
@@ -1771,12 +1773,20 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   }
 
   Future<void> _fetch(String query) async {
+    final requestVersion = ++_searchRequestVersion;
     setState(() => _loading = true);
     try {
       final resolved = await CardPrintRepository.searchCardPrintsResolved(
         client: supabase,
-        options: CardSearchOptions(query: query),
+        options: CardSearchOptions(
+          query: query,
+          limit: _kSearchResolverLimit,
+          languageScope: _languageScope,
+        ),
       );
+      if (!mounted || requestVersion != _searchRequestVersion) {
+        return;
+      }
       final cardPrintIds = resolved.rows
           .map((row) => row.id.trim())
           .where((id) => id.isNotEmpty)
@@ -1790,7 +1800,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
       final ownershipByCardPrintId = _ownershipAdapter.snapshotForIds(
         cardPrintIds,
       );
-      if (!mounted) {
+      if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
       setState(() {
@@ -1800,7 +1810,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
         _searchError = null;
       });
     } catch (error) {
-      if (!mounted) {
+      if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
       setState(() {
@@ -1810,7 +1820,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
         _searchError = _formatSearchFailure(error);
       });
     } finally {
-      if (mounted) {
+      if (mounted && requestVersion == _searchRequestVersion) {
         setState(() => _loading = false);
       }
     }
@@ -1821,6 +1831,22 @@ class _CatalogPickerState extends State<_CatalogPicker> {
     _debounce = Timer(const Duration(milliseconds: 300), () {
       _fetch(s.trim());
     });
+  }
+
+  void _handleLanguageScopeChanged(String scope) {
+    final normalizedScope = _normalizeSearchLanguageScope(scope);
+    if (_languageScope == normalizedScope) {
+      return;
+    }
+
+    setState(() {
+      _languageScope = normalizedScope;
+      _rows = const [];
+      _ownershipByCardPrintId = const <String, OwnershipState>{};
+      _resolverMeta = null;
+      _searchError = null;
+    });
+    _fetch(_q.text.trim());
   }
 
   @override
@@ -1859,6 +1885,13 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                 controller: _q,
                 onChanged: _onChanged,
                 onSubmitted: _fetch,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+              child: _SearchLanguageScopeSelector(
+                value: _languageScope,
+                onChanged: _handleLanguageScopeChanged,
               ),
             ),
             if (_searchError != null)
