@@ -110,6 +110,12 @@ const TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS = 1250;
 const DECORATED_NAME_FALLBACK_PENALTY = -220;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
+const EXACT_IMAGE_RELEVANCE_QUALITY = 4;
+const REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY = 1;
+const MISSING_IMAGE_RELEVANCE_QUALITY = 0;
+const KNOWN_SET_RELEVANCE_QUALITY = 3;
+const COLLECTOR_NUMBER_RELEVANCE_QUALITY = 2;
+const RARITY_RELEVANCE_QUALITY = 1;
 const JAPANESE_SPECIES_ALIASES_BY_SLUG = new Map<string, string[]>([
   ["pikachu", ["ピカチュウ"]],
 ]);
@@ -912,6 +918,7 @@ function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
     artist: row.artist ?? undefined,
     image_url: row.image_url ?? undefined,
     representative_image_url: row.representative_image_url ?? undefined,
+    image_status: row.image_status ?? undefined,
     image_source: row.image_source ?? undefined,
     set_code: row.set_code ?? undefined,
     printed_set_abbrev: row.printed_set_abbrev ?? undefined,
@@ -952,6 +959,12 @@ function limitRowsBeforeEnrichment(
       const leftScore = scoreRow(left.sortableRow, query);
       const rightScore = scoreRow(right.sortableRow, query);
       if (leftScore !== rightScore) return rightScore - leftScore;
+
+      const qualityCompare = compareRowsByDataQuality(
+        left.sortableRow,
+        right.sortableRow,
+      );
+      if (qualityCompare !== 0) return qualityCompare;
 
       const nameCompare = left.sortableRow.name.localeCompare(right.sortableRow.name);
       if (nameCompare !== 0) return nameCompare;
@@ -1252,6 +1265,73 @@ function addScoreComponent(
 ) {
   if (!value) return;
   components[key] = (components[key] ?? 0) + value;
+}
+
+function hasKnownSetName(row: Pick<ExploreRow, "set_name" | "set_code" | "printed_set_abbrev">) {
+  const visibleSetName = row.set_name?.trim();
+  if (
+    visibleSetName &&
+    visibleSetName.toLowerCase() !== "unknown set"
+  ) {
+    return true;
+  }
+
+  return Boolean(row.set_code?.trim() || row.printed_set_abbrev?.trim());
+}
+
+function getImageRelevanceQuality(row: Pick<ExploreRow, "display_image_kind" | "image_status" | "display_image_url" | "image_url">) {
+  const displayKind = row.display_image_kind?.trim().toLowerCase();
+  const imageStatus = row.image_status?.trim().toLowerCase();
+
+  if (displayKind === "exact" || imageStatus === "exact") {
+    return EXACT_IMAGE_RELEVANCE_QUALITY;
+  }
+
+  if (
+    displayKind === "representative" ||
+    displayKind === "missing_variant_visual" ||
+    imageStatus?.startsWith("representative") ||
+    imageStatus === "missing_variant_visual"
+  ) {
+    return REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY;
+  }
+
+  return row.display_image_url || row.image_url
+    ? REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY
+    : MISSING_IMAGE_RELEVANCE_QUALITY;
+}
+
+function getRowRelevanceQualityScore(row: ExploreRow) {
+  return (
+    getImageRelevanceQuality(row) +
+    (hasKnownSetName(row) ? KNOWN_SET_RELEVANCE_QUALITY : 0) +
+    (row.number?.trim() ? COLLECTOR_NUMBER_RELEVANCE_QUALITY : 0) +
+    (row.rarity?.trim() ? RARITY_RELEVANCE_QUALITY : 0)
+  );
+}
+
+function compareRowsByDataQuality(a: ExploreRow, b: ExploreRow) {
+  const qualityCompare =
+    getRowRelevanceQualityScore(b) - getRowRelevanceQualityScore(a);
+  if (qualityCompare !== 0) return qualityCompare;
+
+  const imageCompare =
+    getImageRelevanceQuality(b) - getImageRelevanceQuality(a);
+  if (imageCompare !== 0) return imageCompare;
+
+  if (hasKnownSetName(a) !== hasKnownSetName(b)) {
+    return hasKnownSetName(a) ? -1 : 1;
+  }
+
+  if (Boolean(a.number?.trim()) !== Boolean(b.number?.trim())) {
+    return a.number?.trim() ? -1 : 1;
+  }
+
+  if (Boolean(a.rarity?.trim()) !== Boolean(b.rarity?.trim())) {
+    return a.rarity?.trim() ? -1 : 1;
+  }
+
+  return 0;
 }
 
 // Resolver Quality Pass V1:
@@ -1807,6 +1887,9 @@ function rankRows(rows: ExploreRow[], query: ResolverQuery) {
     const scoreB = scoreRow(b, query);
     if (scoreA !== scoreB) return scoreB - scoreA;
 
+    const qualityCompare = compareRowsByDataQuality(a, b);
+    if (qualityCompare !== 0) return qualityCompare;
+
     const nameCompare = a.name.localeCompare(b.name);
     if (nameCompare !== 0) return nameCompare;
 
@@ -1905,6 +1988,9 @@ function compareRowsByRelevance(
   const scoreA = scoreRow(a, query);
   const scoreB = scoreRow(b, query);
   if (scoreA !== scoreB) return scoreB - scoreA;
+
+  const qualityCompare = compareRowsByDataQuality(a, b);
+  if (qualityCompare !== 0) return qualityCompare;
 
   const nameCompare = a.name.localeCompare(b.name);
   if (nameCompare !== 0) return nameCompare;
