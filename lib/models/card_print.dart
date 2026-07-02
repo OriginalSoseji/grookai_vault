@@ -20,6 +20,7 @@ class CardSearchOptions {
     this.setCode,
     this.number,
     this.identityFilter,
+    this.languageScope = 'all',
   });
 
   final String query;
@@ -29,6 +30,7 @@ class CardSearchOptions {
   final String? setCode;
   final String? number;
   final String? identityFilter;
+  final String languageScope;
 
   CardSearchOptions copyWith({
     String? query,
@@ -38,6 +40,7 @@ class CardSearchOptions {
     String? setCode,
     String? number,
     String? identityFilter,
+    String? languageScope,
   }) {
     return CardSearchOptions(
       query: query ?? this.query,
@@ -47,6 +50,7 @@ class CardSearchOptions {
       setCode: setCode ?? this.setCode,
       number: number ?? this.number,
       identityFilter: identityFilter ?? this.identityFilter,
+      languageScope: languageScope ?? this.languageScope,
     );
   }
 }
@@ -236,6 +240,11 @@ String? _jsonText(Map<String, dynamic> json, String snakeKey, String camelKey) {
   return normalized.isEmpty ? null : normalized;
 }
 
+String _normalizeLanguageScope(String? value) {
+  final normalized = (value ?? '').trim().toLowerCase();
+  return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
+}
+
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
 
 ResolverSearchState? _parseResolverSearchState(String? value) {
@@ -395,6 +404,8 @@ class CardPrintRepository {
           queryParameters: {
             'limit': options.limit.clamp(1, searchLimit).toString(),
             if (trimmed.isNotEmpty) 'q': trimmed,
+            if (_normalizeLanguageScope(options.languageScope) != 'all')
+              'lang': _normalizeLanguageScope(options.languageScope),
             if (identityFilter != null && trimmed.isEmpty)
               'identity': identityFilter,
           },

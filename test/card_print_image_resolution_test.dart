@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/image_presentation.dart';
+import 'package:grookai_vault/utils/display_image_contract.dart';
 
 void main() {
   test('display_image_url is preferred over legacy image fields', () {
@@ -70,6 +71,33 @@ void main() {
     });
 
     expect(card.displayImage, isNull);
+  });
+
+  test('public Supabase storage images are routed through Grookai optimizer', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-6',
+      'name': 'Pikachu',
+      'set_code': 'sv',
+      'display_image_url':
+          'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/pikachu.webp',
+    });
+
+    expect(
+      card.displayImage,
+      startsWith('https://grookaivault.com/_next/image?'),
+    );
+    expect(card.displayImage, contains('w=828'));
+  });
+
+  test('optimized image URLs can be resized for thumbnail surfaces', () {
+    const original =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/pikachu.webp';
+    final large = normalizeDisplayImageUrl(original);
+    final thumbnail = normalizeDisplayImageUrl(large, width: 256);
+
+    expect(large, contains('w=828'));
+    expect(thumbnail, contains('w=256'));
+    expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
   });
 
   test('representative image presentation is explicit and honest', () {

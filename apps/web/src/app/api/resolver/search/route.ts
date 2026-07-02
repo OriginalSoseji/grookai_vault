@@ -30,6 +30,9 @@ import type { ExploreResultCard } from "@/components/explore/exploreResultTypes"
 
 export const revalidate = 120;
 
+const DEFAULT_RESULT_LIMIT = 80;
+const MAX_RESULT_LIMIT = 80;
+
 // LOCK: Canonical and provisional results must remain separate.
 // LOCK: Never merge provisional rows into canonical result arrays.
 function parseSortMode(value: string | null) {
@@ -64,6 +67,15 @@ function parseReleaseYear(value: string | null) {
 function parseReleaseYearBound(value: string | null) {
   const parsed = parseReleaseYear(value);
   return typeof parsed === "number" ? parsed : undefined;
+}
+
+function parseResultLimit(value: string | null) {
+  const parsed = Number.parseInt((value ?? "").trim(), 10);
+  if (!Number.isFinite(parsed)) {
+    return DEFAULT_RESULT_LIMIT;
+  }
+
+  return Math.min(Math.max(parsed, 1), MAX_RESULT_LIMIT);
 }
 
 function normalizeIllustrator(value: string | null) {
@@ -318,6 +330,7 @@ async function applySmartSearchPostFilters(
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
+  const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
@@ -508,6 +521,7 @@ export async function GET(request: NextRequest) {
       effectiveSmartSearchIntent,
       userId,
     );
+    const limitedCanonicalResults = smartFilteredCanonicalResults.slice(0, resultLimit);
     // LOCK: Canonical truth must replace promoted provisional visibility.
     // LOCK: Do not dual-render the same entity across canonical and provisional sections.
     // LOCK: Uniqueness suppression must use explicit canonical linkage only.
@@ -538,9 +552,11 @@ export async function GET(request: NextRequest) {
         ok: true,
         query,
         smart_search: responseSmartSearchIntent,
-        rows: smartFilteredCanonicalResults,
+        rows: limitedCanonicalResults,
         provisional: provisionalResultsForResponse,
         meta: resolved.meta,
+        limit: resultLimit,
+        returned_count: limitedCanonicalResults.length,
         source: "web_ranked_resolver_v2",
       },
       {
@@ -573,6 +589,8 @@ export async function GET(request: NextRequest) {
           rows: [],
           provisional: [],
           meta: buildDegradedSearchMeta(query),
+          limit: resultLimit,
+          returned_count: 0,
           source: "web_ranked_resolver_v2_degraded_timeout",
         },
         {

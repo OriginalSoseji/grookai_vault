@@ -44,8 +44,8 @@ class CardSurfaceArtwork extends StatelessWidget {
   final String? imageTruthLabel;
   final bool imageTruthStrong;
 
-  String? get _resolvedImageUrl => normalizeDisplayImageUrl(imageUrl);
-  bool get _hasImage => (_resolvedImageUrl ?? '').isNotEmpty;
+  String? get _zoomImageUrl => normalizeDisplayImageUrl(imageUrl);
+  bool get _hasImage => (_zoomImageUrl ?? '').isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +80,10 @@ class CardSurfaceArtwork extends StatelessWidget {
                 // surfaces so thumbnails do not decode at source resolution.
                 final cacheWidth = _resolvedCacheWidth(context, constraints);
                 final cacheHeight = _resolvedCacheHeight(context, constraints);
+                final resolvedImageUrl = normalizeDisplayImageUrl(
+                  imageUrl,
+                  width: _optimizedImageWidth(cacheWidth),
+                );
                 final compact =
                     (height != null && height! <= 80) ||
                     (constraints.hasBoundedHeight &&
@@ -87,9 +91,9 @@ class CardSurfaceArtwork extends StatelessWidget {
 
                 return Padding(
                   padding: padding,
-                  child: _hasImage
+                  child: resolvedImageUrl != null
                       ? CachedNetworkImage(
-                          imageUrl: _resolvedImageUrl!,
+                          imageUrl: resolvedImageUrl,
                           fit: BoxFit.contain,
                           alignment: Alignment.center,
                           fadeInDuration: Duration.zero,
@@ -157,7 +161,7 @@ class CardSurfaceArtwork extends StatelessWidget {
             () => showCardImageZoom(
               context,
               label: label,
-              imageUrl: _resolvedImageUrl,
+              imageUrl: _zoomImageUrl,
               onViewDetails: onViewDetails,
               detailsLabel: detailsLabel,
             ),
@@ -219,6 +223,17 @@ class CardSurfaceArtwork extends StatelessWidget {
       return constraints.maxWidth / _kCardSurfaceArtworkAspectRatio;
     }
     return null;
+  }
+
+  int? _optimizedImageWidth(int? cacheWidth) {
+    if (cacheWidth == null || cacheWidth <= 0) {
+      return null;
+    }
+
+    if (cacheWidth <= 160) return 256;
+    if (cacheWidth <= 320) return 384;
+    if (cacheWidth <= 480) return 640;
+    return 828;
   }
 }
 
