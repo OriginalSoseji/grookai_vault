@@ -34,6 +34,13 @@ import {
   type ExploreViewMode,
 } from "@/lib/exploreViewModes";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
+import {
+  getPublicLanguageScopeLabel,
+  matchesPublicLanguageScope,
+  normalizePublicLanguageScope,
+  PUBLIC_LANGUAGE_SCOPE_OPTIONS,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
@@ -75,7 +82,7 @@ type AssistantBoundaryPreview = {
   message?: string;
 };
 
-const INITIAL_VISIBLE_RESULT_COUNT = 48;
+const INITIAL_VISIBLE_RESULT_COUNT = 32;
 
 const SEARCH_RESULT_INTENT_COPY: Record<
   SearchResultIntent,
@@ -530,6 +537,7 @@ export default function ExplorePageClient({
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
   const imageConfidenceFilter = parseImageConfidenceFilter(searchParams.get("image"));
+  const languageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const smartYearMin = (searchParams.get("year_min") ?? "").trim();
   const smartYearMax = (searchParams.get("year_max") ?? "").trim();
   const smartFinish = (searchParams.get("finish") ?? "").trim();
@@ -646,6 +654,10 @@ export default function ExplorePageClient({
           params.set("image_state", smartImageState);
         }
 
+        if (languageScope !== "all") {
+          params.set("lang", languageScope);
+        }
+
         if (shouldServerFilterByIdentity) {
           params.set("identity", identityFilter);
         }
@@ -711,6 +723,7 @@ export default function ExplorePageClient({
     smartStamp,
     smartOwned,
     smartImageState,
+    languageScope,
     hasExplicitSmartFilters,
     identityFilter,
     shouldServerFilterByIdentity,
@@ -732,6 +745,7 @@ export default function ExplorePageClient({
     smartImageState,
     identityFilter,
     imageConfidenceFilter,
+    languageScope,
   ]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
@@ -788,6 +802,21 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitLanguageScope = (nextScope: PublicLanguageScope) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextScope === "all") {
+      params.delete("lang");
+    } else {
+      params.set("lang", nextScope);
+    }
+
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -809,10 +838,13 @@ export default function ExplorePageClient({
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
-      ? rows.filter((row) =>
-          matchesImageConfidenceFilter(row, imageConfidenceFilter),
-        )
+      ? rows
+          .filter((row) => matchesPublicLanguageScope(row, languageScope))
+          .filter((row) =>
+            matchesImageConfidenceFilter(row, imageConfidenceFilter),
+          )
       : rows
+          .filter((row) => matchesPublicLanguageScope(row, languageScope))
           .filter((row) => matchesIdentityFilter(row, identityFilter))
           .filter((row) =>
             matchesImageConfidenceFilter(row, imageConfidenceFilter),
@@ -1069,6 +1101,14 @@ export default function ExplorePageClient({
           href: buildRemoveFilterHref(["identity"]),
         }
       : null,
+    languageScope !== "all"
+      ? {
+          key: "language",
+          label: "Language",
+          value: getPublicLanguageScopeLabel(languageScope),
+          href: buildRemoveFilterHref(["lang"]),
+        }
+      : null,
   ].filter(
     (
       chip,
@@ -1266,6 +1306,13 @@ export default function ExplorePageClient({
       </button>
     </div>
   ) : null;
+  const buildScopedExploreHref = (queryString: string) => {
+    const params = new URLSearchParams(queryString);
+    if (languageScope !== "all" && !params.has("lang")) {
+      params.set("lang", languageScope);
+    }
+    return buildPathWithCompareCards("/explore", params.toString(), compareCards);
+  };
   const presetSearchStrip = (
     <section className="gv-collector-panel gv-search-showcase px-5 py-5 sm:px-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -1278,11 +1325,7 @@ export default function ExplorePageClient({
           </p>
         </div>
         <Link
-          href={buildPathWithCompareCards(
-            "/explore",
-            "q=Build-A-Bear stamped cards",
-            compareCards,
-          )}
+          href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
           className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
         >
           Try sentence search
@@ -1292,7 +1335,7 @@ export default function ExplorePageClient({
         {COLLECTOR_SEARCH_PRESETS.map((preset) => (
           <Link
             key={preset.key}
-            href={buildPathWithCompareCards("/explore", preset.query, compareCards)}
+            href={buildScopedExploreHref(preset.query)}
             className="gv-search-preset-card group p-4 text-left"
           >
             <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
@@ -1327,17 +1370,13 @@ export default function ExplorePageClient({
           </p>
           <div className="flex flex-wrap gap-2 pt-px">
             <Link
-              href={buildPathWithCompareCards("/sets", "", compareCards)}
+              href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
               className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               Browse Sets
             </Link>
             <Link
-              href={buildPathWithCompareCards(
-                "/explore",
-                "q=Pikachu",
-                compareCards,
-              )}
+              href={buildScopedExploreHref("q=Pikachu")}
               className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               Browse Pokémon
@@ -1355,6 +1394,37 @@ export default function ExplorePageClient({
           <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
             Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
           </p>
+        </div>
+
+        <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-200/70 pt-4 dark:border-slate-800/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+            Language
+          </p>
+          <div
+            className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+            role="radiogroup"
+            aria-label="Language scope"
+          >
+            {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
+              const active = languageScope === option.value;
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => commitLanguageScope(option.value)}
+                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                    active
+                      ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                      : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                  }`}
+                >
+                  {option.shortLabel}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -1754,6 +1824,7 @@ export default function ExplorePageClient({
             </summary>
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
+              {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
               {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}
               {viewMode !== "thumb" ? <input type="hidden" name="view" value={viewMode} /> : null}
               {compareCards.length > 0 ? (

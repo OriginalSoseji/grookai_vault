@@ -11,10 +11,17 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import {
+  PUBLIC_SET_ERA_OPTIONS,
   PUBLIC_SET_FILTER_OPTIONS,
+  PUBLIC_SET_LANE_OPTIONS,
+  normalizePublicSetEra,
   normalizePublicSetFilter,
+  normalizePublicSetLane,
+  type PublicSetEra,
   type PublicSetFilter,
+  type PublicSetLane,
 } from "@/lib/publicSets.shared";
+import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
 
 export default function PublicSetsToolbar() {
   const pathname = usePathname();
@@ -22,6 +29,9 @@ export default function PublicSetsToolbar() {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q") ?? "";
   const currentFilter = normalizePublicSetFilter(searchParams.get("filter"));
+  const currentEra = normalizePublicSetEra(searchParams.get("era"));
+  const currentLane = normalizePublicSetLane(searchParams.get("lane"));
+  const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
@@ -30,7 +40,12 @@ export default function PublicSetsToolbar() {
     setQuery(currentQuery);
   }, [currentQuery]);
 
-  function buildNextUrl(nextQuery: string, nextFilter: PublicSetFilter) {
+  function buildNextUrl(
+    nextQuery: string,
+    nextFilter: PublicSetFilter,
+    nextEra: PublicSetEra,
+    nextLane: PublicSetLane,
+  ) {
     const params = new URLSearchParams();
     const trimmedQuery = nextQuery.trim();
 
@@ -40,6 +55,18 @@ export default function PublicSetsToolbar() {
 
     if (nextFilter !== "all") {
       params.set("filter", nextFilter);
+    }
+
+    if (nextEra !== "all") {
+      params.set("era", nextEra);
+    }
+
+    if (nextLane !== "all") {
+      params.set("lane", nextLane);
+    }
+
+    if (currentLanguageScope !== "all") {
+      params.set("lang", currentLanguageScope);
     }
 
     if (compareCardsParam) {
@@ -52,16 +79,27 @@ export default function PublicSetsToolbar() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push(buildNextUrl(query, currentFilter));
+    router.push(buildNextUrl(query, currentFilter, currentEra, currentLane));
   }
 
   function handleFilterChange(nextFilter: PublicSetFilter) {
-    router.push(buildNextUrl(query, nextFilter));
+    router.push(buildNextUrl(query, nextFilter, currentEra, currentLane));
+  }
+
+  function handleEraChange(nextEra: PublicSetEra) {
+    router.push(buildNextUrl(query, currentFilter, nextEra, currentLane));
+  }
+
+  function handleLaneChange(nextLane: PublicSetLane) {
+    router.push(buildNextUrl(query, currentFilter, currentEra, nextLane));
   }
 
   function handleReset() {
     setQuery("");
     const params = new URLSearchParams();
+    if (currentLanguageScope !== "all") {
+      params.set("lang", currentLanguageScope);
+    }
     if (compareCardsParam) {
       params.set("cards", compareCardsParam);
     }
@@ -69,7 +107,11 @@ export default function PublicSetsToolbar() {
     router.push(queryString ? `${pathname}?${queryString}` : pathname);
   }
 
-  const hasActiveFilters = currentQuery.trim().length > 0 || currentFilter !== "all";
+  const hasActiveFilters =
+    currentQuery.trim().length > 0 ||
+    currentFilter !== "all" ||
+    currentEra !== "all" ||
+    currentLane !== "all";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -92,13 +134,45 @@ export default function PublicSetsToolbar() {
             </div>
           </SearchToolbarField>
 
-          <div className="flex flex-col gap-3 sm:flex-row lg:w-auto lg:items-end">
-            <SearchToolbarField label="Filter" className="sm:min-w-[220px]">
+          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[170px_180px_190px_auto] lg:items-end">
+            <SearchToolbarField label="Era" className="min-w-0">
+              <SearchToolbarSelect
+                id="public-sets-era"
+                value={currentEra}
+                onChange={(event) => handleEraChange(normalizePublicSetEra(event.target.value))}
+                aria-label="Filter sets by era"
+                tone="soft"
+              >
+                {PUBLIC_SET_ERA_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
+            <SearchToolbarField label="Type" className="min-w-0">
+              <SearchToolbarSelect
+                id="public-sets-lane"
+                value={currentLane}
+                onChange={(event) => handleLaneChange(normalizePublicSetLane(event.target.value))}
+                aria-label="Filter sets by type"
+                tone="soft"
+              >
+                {PUBLIC_SET_LANE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
+            <SearchToolbarField label="Sort" className="min-w-0">
               <SearchToolbarSelect
                 id="public-sets-filter"
                 value={currentFilter}
                 onChange={(event) => handleFilterChange(normalizePublicSetFilter(event.target.value))}
-                aria-label="Filter sets"
+                aria-label="Sort or filter sets"
                 tone="soft"
               >
                 {PUBLIC_SET_FILTER_OPTIONS.map((option) => (
@@ -110,7 +184,7 @@ export default function PublicSetsToolbar() {
             </SearchToolbarField>
 
             {hasActiveFilters ? (
-              <SearchToolbarButton type="button" tone="secondary" onClick={handleReset}>
+              <SearchToolbarButton type="button" tone="secondary" onClick={handleReset} className="w-full sm:col-span-2 lg:col-span-1">
                 Reset
               </SearchToolbarButton>
             ) : null}

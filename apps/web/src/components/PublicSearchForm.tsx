@@ -9,11 +9,12 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
+import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
 import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 
 type PublicSearchFormProps = {
-  variant: "header" | "hero" | "mobile-compact";
+  variant: "header" | "hero" | "mobile-compact" | "command";
 };
 
 export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
@@ -23,6 +24,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const currentQuery = searchParams.get("q") ?? "";
   const currentView = searchParams.get("view");
   const currentSort = searchParams.get("sort");
+  const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const normalizedCurrentView = pathname === "/explore" && currentView ? normalizeExploreViewMode(currentView) : null;
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
@@ -44,6 +46,10 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
     if (compareCardsParam) {
       nextParams.set("cards", compareCardsParam);
+    }
+
+    if (currentLanguageScope !== "all") {
+      nextParams.set("lang", currentLanguageScope);
     }
 
     if (normalizedCurrentView) {
@@ -73,6 +79,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     return (
       <form action="/search" method="get" onSubmit={handleSubmit} className="w-full max-w-2xl">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <SearchToolbar surface="pill" className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -99,6 +106,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     return (
       <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <SearchToolbar surface="soft-pill">
@@ -134,6 +142,32 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     );
   }
 
+  if (variant === "command") {
+    return (
+      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
+        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
+        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
+        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
+        <SearchToolbar surface="none" className="flex w-full items-center gap-2">
+          <SearchToolbarInput
+            type="search"
+            name="q"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search cards, sets, numbers, or Grookai ID"
+            tone="soft"
+            shellClassName="min-w-0 flex-1"
+            aria-label="Search cards"
+          />
+          <SearchToolbarButton type="submit" tone="primary" className="shrink-0 px-4 sm:px-5">
+            Search
+          </SearchToolbarButton>
+        </SearchToolbar>
+      </form>
+    );
+  }
+
   return (
     <form
       action="/search"
@@ -142,6 +176,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       className="w-full"
     >
       {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+      {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
       {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
       {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
       <SearchToolbar surface="none" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">

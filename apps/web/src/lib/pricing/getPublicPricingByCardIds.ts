@@ -68,7 +68,13 @@ export async function getPublicPricingByCardIds(
     .in("card_print_id", uniqueIds);
 
   if (error) {
-    throw error;
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[pricing] public price bridge unavailable; continuing without prices", {
+        message: error.message,
+        code: error.code,
+      });
+    }
+    return new Map();
   }
 
   return new Map(

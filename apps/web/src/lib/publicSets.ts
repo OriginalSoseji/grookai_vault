@@ -13,6 +13,7 @@ import {
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   matchesPublicSetSearch,
+  isSpecialPublicSet,
   normalizePublicSetDisplayName,
   normalizePublicSetFilter,
   normalizeSetSearchQuery,
@@ -632,24 +633,6 @@ export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
   return sets.filter((setInfo) => matchesPublicSetSearch(setInfo, queryTokens));
 }
 
-function isSpecialSet(setInfo: PublicSetSummary) {
-  const code = normalizeSetCode(setInfo.code);
-  const name = normalizeSetQuery(setInfo.name);
-
-  if (code.includes("pt5") || code.includes(".5")) {
-    return true;
-  }
-
-  return [
-    "trainer gallery",
-    "radiant collection",
-    "shiny",
-    "fates",
-    "crown zenith",
-    "prismatic",
-  ].some((marker) => name.includes(marker));
-}
-
 function compareByName(left: PublicSetSummary, right: PublicSetSummary) {
   return left.name.localeCompare(right.name);
 }
@@ -705,7 +688,7 @@ export function applyPublicSetFilterAndSort(
     case "modern":
       return baseSets.filter((setInfo) => (setInfo.release_year ?? 0) >= 2020);
     case "special":
-      return baseSets.filter(isSpecialSet);
+      return baseSets.filter(isSpecialPublicSet);
     case "a-z":
       return baseSets.sort(compareByName);
     case "newest":

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
-import '../../utils/display_image_contract.dart';
 import 'public_set_detail_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
@@ -20,6 +19,8 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   String? _error;
   List<PublicSetSummary> _sets = const [];
   PublicSetFilter _activeFilter = PublicSetFilter.all;
+  PublicSetEra _activeEra = PublicSetEra.all;
+  PublicSetLane _activeLane = PublicSetLane.all;
 
   @override
   void initState() {
@@ -72,15 +73,29 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       sets: _sets,
       query: _searchController.text,
       filter: _activeFilter,
+      era: _activeEra,
+      lane: _activeLane,
     );
-    final discoverySets = trimmedQuery.isEmpty
-        ? filteredSets.take(6).toList()
-        : const <PublicSetSummary>[];
-    final showDiscovery =
+    final queryMatchedSets = PublicSetsService.filterAndSortSets(
+      sets: _sets,
+      query: _searchController.text,
+      filter: PublicSetFilter.all,
+      lane: _activeLane,
+    );
+    final eraScopedSets = PublicSetsService.filterAndSortSets(
+      sets: _sets,
+      query: _searchController.text,
+      filter: PublicSetFilter.all,
+      era: _activeEra,
+    );
+    final eraCounts = PublicSetsService.countSetsByEra(queryMatchedSets);
+    final laneCounts = PublicSetsService.countSetsByLane(eraScopedSets);
+    final groupedSets = PublicSetsService.groupSetsByEra(filteredSets);
+    final shouldGroupByEra =
         trimmedQuery.isEmpty &&
-        !_loading &&
-        _error == null &&
-        discoverySets.isNotEmpty;
+        _activeEra == PublicSetEra.all &&
+        _activeFilter != PublicSetFilter.alphabetical &&
+        _activeFilter != PublicSetFilter.oldest;
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -126,7 +141,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Start with a few standout sets or search the full public catalog.',
+                      'Search, filter by era, or jump into collector lanes without scrolling through every set.',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
                           alpha: 0.72,
@@ -137,49 +152,6 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              if (showDiscovery) ...[
-                const SizedBox(height: 16),
-                _SetsSurfaceCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // SETS_DISCOVERY_LITE_V1
-                      // Lightweight browse-first section so users can enter
-                      // sets discovery without typing.
-                      _SetsSectionHeader(
-                        title: 'Start here',
-                        description: _activeFilter == PublicSetFilter.all
-                            ? 'A few real sets from the live catalog to get browsing started.'
-                            : 'Quick entry points from the current filter so you can browse without typing.',
-                      ),
-                      const SizedBox(height: 14),
-                      SizedBox(
-                        height: 188,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: discoverySets.length,
-                          separatorBuilder: (_, _) => const SizedBox(width: 12),
-                          itemBuilder: (context, index) {
-                            final setInfo = discoverySets[index];
-                            return _SetDiscoveryTile(
-                              setInfo: setInfo,
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute<void>(
-                                    builder: (_) => PublicSetDetailScreen(
-                                      setCode: setInfo.code,
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
               const SizedBox(height: 20),
               _SetsSurfaceCard(
                 child: Column(
@@ -261,6 +233,71 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 12),
+                    _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
+                      label: 'Era',
+                      values: PublicSetsService.eraOptions,
+                      selectedValue: _activeEra,
+                      countFor: (value) => value == PublicSetEra.all
+                          ? queryMatchedSets.length
+                          : eraCounts[value] ?? 0,
+                      valueFor: (option) => option.value,
+                      labelFor: (option) => option.shortLabel,
+                      onSelected: (value) {
+                        setState(() {
+                          _activeEra = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
+                      label: 'Type',
+                      values: PublicSetsService.laneOptions,
+                      selectedValue: _activeLane,
+                      countFor: (value) => value == PublicSetLane.all
+                          ? eraScopedSets.length
+                          : laneCounts[value] ?? 0,
+                      valueFor: (option) => option.value,
+                      labelFor: (option) => option.label,
+                      onSelected: (value) {
+                        setState(() {
+                          _activeLane = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              _SetsSurfaceCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const _SetsSectionHeader(
+                      title: 'Browse by era',
+                      description:
+                          'Jump into the catalog by release era instead of scrolling through every set.',
+                    ),
+                    const SizedBox(height: 14),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: PublicSetsService.eraOptions
+                          .where((option) => option.value != PublicSetEra.all)
+                          .map((option) {
+                            return _SetFacetChip(
+                              label: option.label,
+                              count: eraCounts[option.value] ?? 0,
+                              selected: _activeEra == option.value,
+                              onTap: () {
+                                setState(() {
+                                  _activeEra = option.value;
+                                });
+                              },
+                            );
+                          })
+                          .toList(),
+                    ),
                   ],
                 ),
               ),
@@ -292,218 +329,24 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                     body: 'No sets matched the current search or filter.',
                   ),
                 )
+              else if (shouldGroupByEra)
+                _GroupedSetResults(
+                  groupedSets: groupedSets,
+                  onOpenSet: _openSet,
+                )
               else
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: filteredSets.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 14,
-                    crossAxisSpacing: 14,
-                    childAspectRatio: 0.94,
-                  ),
-                  itemBuilder: (context, index) {
-                    final setInfo = filteredSets[index];
-                    return _SetTile(
-                      setInfo: setInfo,
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) =>
-                                PublicSetDetailScreen(setCode: setInfo.code),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                _SetGrid(sets: filteredSets, onOpenSet: _openSet),
             ],
           ),
         ),
       ),
     );
   }
-}
 
-class _SetDiscoveryTile extends StatelessWidget {
-  const _SetDiscoveryTile({required this.setInfo, required this.onTap});
-
-  final PublicSetSummary setInfo;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final heroImageUrl = normalizeDisplayImageUrl(setInfo.heroImageUrl);
-    final infoParts = <String>[
-      if (setInfo.releaseYear != null) '${setInfo.releaseYear}',
-      if (setInfo.printedTotal != null) '${setInfo.printedTotal} cards',
-    ];
-
-    return SizedBox(
-      width: 188,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
-          onTap: onTap,
-          child: Ink(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: colorScheme.primary.withValues(alpha: 0.16),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  colorScheme.primary.withValues(alpha: 0.12),
-                  colorScheme.surface,
-                ],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.shadow.withValues(alpha: 0.05),
-                  blurRadius: 18,
-                  offset: const Offset(0, 10),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  if (heroImageUrl != null)
-                    Positioned.fill(
-                      child: IgnorePointer(
-                        // SETS_DISCOVERY_ART_PASS_V1
-                        // Hero art is used as a low-noise atmospheric layer in
-                        // the Start here rail, not as loud primary content.
-                        child: Opacity(
-                          opacity: 0.24,
-                          child: Image.network(
-                            heroImageUrl,
-                            fit: BoxFit.cover,
-                            alignment: Alignment.centerRight,
-                            filterQuality: FilterQuality.low,
-                            errorBuilder: (_, _, _) => const SizedBox.shrink(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  Positioned.fill(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            colorScheme.surface.withValues(alpha: 0.12),
-                            colorScheme.surface.withValues(alpha: 0.18),
-                            colorScheme.surface.withValues(alpha: 0.96),
-                          ],
-                          stops: const [0.0, 0.42, 1.0],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            colorScheme.surface,
-                            colorScheme.surface.withValues(alpha: 0.84),
-                            colorScheme.surface.withValues(alpha: 0.46),
-                          ],
-                          stops: const [0.0, 0.58, 1.0],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: colorScheme.surface.withValues(alpha: 0.54),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(7),
-                            child: Icon(
-                              Icons.auto_awesome_rounded,
-                              size: 18,
-                              color: colorScheme.primary,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          setInfo.code.toUpperCase(),
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 1.0,
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.62,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Expanded(
-                          child: Text(
-                            setInfo.name,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              height: 1.15,
-                            ),
-                          ),
-                        ),
-                        if (infoParts.isNotEmpty) ...[
-                          const SizedBox(height: 10),
-                          Text(
-                            infoParts.join(' • '),
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(
-                                alpha: 0.74,
-                              ),
-                              height: 1.35,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              '${setInfo.cardCount} cards',
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: colorScheme.primary,
-                              ),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_rounded,
-                              size: 18,
-                              color: colorScheme.primary,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+  void _openSet(PublicSetSummary setInfo) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PublicSetDetailScreen(setCode: setInfo.code),
       ),
     );
   }
@@ -611,6 +454,222 @@ class _SetFilterChip extends StatelessWidget {
       ),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.compact,
+    );
+  }
+}
+
+class _SetChoiceRow<TValue, TOption> extends StatelessWidget {
+  const _SetChoiceRow({
+    required this.label,
+    required this.values,
+    required this.selectedValue,
+    required this.countFor,
+    required this.valueFor,
+    required this.labelFor,
+    required this.onSelected,
+  });
+
+  final String label;
+  final List<TOption> values;
+  final TValue selectedValue;
+  final int Function(TValue value) countFor;
+  final TValue Function(TOption option) valueFor;
+  final String Function(TOption option) labelFor;
+  final ValueChanged<TValue> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label.toUpperCase(),
+          style: theme.textTheme.labelSmall?.copyWith(
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.0,
+            color: colorScheme.onSurface.withValues(alpha: 0.54),
+          ),
+        ),
+        const SizedBox(height: 8),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: values.map((option) {
+              final value = valueFor(option);
+              final selected = value == selectedValue;
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: _SetFacetChip(
+                  label: labelFor(option),
+                  count: countFor(value),
+                  selected: selected,
+                  compact: true,
+                  onTap: () => onSelected(value),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SetFacetChip extends StatelessWidget {
+  const _SetFacetChip({
+    required this.label,
+    required this.count,
+    required this.selected,
+    required this.onTap,
+    this.compact = false,
+  });
+
+  final String label;
+  final int count;
+  final bool selected;
+  final VoidCallback onTap;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final foreground = selected
+        ? colorScheme.onPrimary
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(999),
+        onTap: onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            color: selected
+                ? colorScheme.primary
+                : colorScheme.surfaceContainerHighest.withValues(alpha: 0.46),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: selected
+                  ? colorScheme.primary.withValues(alpha: 0.72)
+                  : colorScheme.outline.withValues(alpha: 0.14),
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: compact ? 10 : 12,
+            vertical: compact ? 7 : 9,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                label,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: foreground,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(width: 7),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: selected
+                      ? colorScheme.onPrimary.withValues(alpha: 0.16)
+                      : colorScheme.surface.withValues(alpha: 0.7),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
+                  child: Text(
+                    '$count',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: foreground.withValues(alpha: 0.78),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GroupedSetResults extends StatelessWidget {
+  const _GroupedSetResults({
+    required this.groupedSets,
+    required this.onOpenSet,
+  });
+
+  final Map<PublicSetEra, List<PublicSetSummary>> groupedSets;
+  final ValueChanged<PublicSetSummary> onOpenSet;
+
+  @override
+  Widget build(BuildContext context) {
+    final groups = PublicSetsService.eraOptions
+        .where((option) => option.value != PublicSetEra.all)
+        .map((option) {
+          final sets = groupedSets[option.value] ?? const <PublicSetSummary>[];
+          return MapEntry(option, sets);
+        })
+        .where((entry) => entry.value.isNotEmpty)
+        .toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (var index = 0; index < groups.length; index++) ...[
+          if (index > 0) const SizedBox(height: 22),
+          _SetsSurfaceCard(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _SetsSectionHeader(
+                  title: groups[index].key.label,
+                  description:
+                      '${groups[index].value.length} visible set${groups[index].value.length == 1 ? '' : 's'} in this era.',
+                ),
+                const SizedBox(height: 14),
+                _SetGrid(sets: groups[index].value, onOpenSet: onOpenSet),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _SetGrid extends StatelessWidget {
+  const _SetGrid({required this.sets, required this.onOpenSet});
+
+  final List<PublicSetSummary> sets;
+  final ValueChanged<PublicSetSummary> onOpenSet;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: sets.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 14,
+        crossAxisSpacing: 14,
+        childAspectRatio: 0.94,
+      ),
+      itemBuilder: (context, index) {
+        final setInfo = sets[index];
+        return _SetTile(setInfo: setInfo, onTap: () => onOpenSet(setInfo));
+      },
     );
   }
 }
