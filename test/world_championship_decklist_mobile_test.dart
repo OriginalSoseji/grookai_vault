@@ -2,6 +2,32 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/public/public_sets_service.dart';
 
 void main() {
+  test('mobile set organization classifies eras and lanes', () {
+    const svSet = PublicSetSummary(
+      code: 'sv03.5',
+      name: 'Pokemon 151',
+      cardCount: 207,
+      releaseYear: 2023,
+    );
+    const wcdSet = PublicSetSummary(
+      code: 'wcd2004-magma-spirit',
+      name: '2004 World Championships Deck: Magma Spirit',
+      cardCount: 60,
+      releaseYear: 2004,
+    );
+    const pendingPromo = PublicSetSummary(
+      code: 'jpn-promo-example',
+      name: 'Japanese Promo Example',
+      cardCount: 12,
+    );
+
+    expect(PublicSetsService.getSetEra(svSet), PublicSetEra.scarletViolet);
+    expect(PublicSetsService.getSetLane(svSet), PublicSetLane.special);
+    expect(PublicSetsService.getSetLane(wcdSet), PublicSetLane.world);
+    expect(PublicSetsService.getSetEra(pendingPromo), PublicSetEra.datePending);
+    expect(PublicSetsService.getSetLane(pendingPromo), PublicSetLane.promo);
+  });
+
   test('mobile WCD decklist model reconstructs internal deck quantities', () {
     const decklist = PublicWorldChampionshipDecklist(
       setCode: 'wcd2004-magma-spirit',

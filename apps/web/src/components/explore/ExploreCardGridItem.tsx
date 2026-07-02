@@ -29,11 +29,7 @@ function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
 }
 
-function getDiagnosticId(card: ExploreResultCard) {
-  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
-}
-
-export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
+export default function ExploreCardGridItem({ card, href, mode, canViewPricing }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -102,18 +98,6 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       }
       meta={<span>{metaLine}</span>}
       summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" /> : <LockedPrice size="grid" className="gv-hi-price" />}
-      footer={
-        <details className="group/details">
-          <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-            Identity proof
-          </summary>
-          <div className="mt-1.5 space-y-1 text-[11px] leading-4 text-slate-500 dark:text-slate-400">
-            <p className="truncate">{getDiagnosticId(card)}</p>
-            {matchReason ? <p className="truncate">{matchReason}</p> : null}
-            {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
-          </div>
-        </details>
-      }
       imageClassName={isLarge ? "max-w-[280px]" : undefined}
     />
   );

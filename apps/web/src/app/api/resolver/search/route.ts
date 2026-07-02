@@ -11,6 +11,10 @@ import {
   getExploreRowsForSmartFilterDiscovery,
   getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
+import {
+  matchesPublicLanguageScope,
+  normalizePublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
@@ -211,6 +215,45 @@ function buildSmartFilterDiscoveryMeta(
   };
 }
 
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => resolve(fallback), timeoutMs);
+    promise.then(
+      (value) => {
+        clearTimeout(timeout);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timeout);
+        reject(error);
+      },
+    );
+  });
+}
+
+function getPublicProvisionalCardsFailClosed(input: {
+  query: string;
+  setCode: string;
+  limit: number;
+}) {
+  return withTimeout(
+    getPublicProvisionalCards(input).catch((error) => {
+      if (error instanceof Error && error.message.startsWith("SECURITY:")) {
+        throw error;
+      }
+
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[public-provisional] search adapter failed closed", {
+          message: error instanceof Error ? error.message : "unknown",
+        });
+      }
+      return [];
+    }),
+    1200,
+    [],
+  );
+}
+
 async function applySmartSearchPostFilters(
   rows: ExploreResultCard[],
   smartSearchIntent: SmartSearchIntent,
@@ -245,6 +288,7 @@ async function applySmartSearchPostFilters(
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
+  const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
@@ -314,11 +358,16 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const supabase = createServerComponentClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    const userId = user?.id ?? null;
+    let userId: string | null = null;
+
+    if (hasSmartOwnershipIntent) {
+      const supabase = createServerComponentClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      userId = user?.id ?? null;
+    }
+
     const includeProvisional =
       !exactReleaseYear &&
       !hasSmartYearRange &&
@@ -387,25 +436,16 @@ export async function GET(request: NextRequest) {
                 releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
               }),
       includeProvisional
-        ? getPublicProvisionalCards({
+        ? getPublicProvisionalCardsFailClosed({
             query: rawQuery,
             setCode: exactSetCode,
             limit: 12,
-          }).catch((error) => {
-            if (error instanceof Error && error.message.startsWith("SECURITY:")) {
-              throw error;
-            }
-
-            if (process.env.NODE_ENV !== "production") {
-              console.warn("[public-provisional] search adapter failed closed", {
-                message: error instanceof Error ? error.message : "unknown",
-              });
-            }
-            return [];
           })
         : Promise.resolve([]),
     ]);
-    const canonicalResults = resolved.rows;
+    const canonicalResults = resolved.rows.filter((row) =>
+      matchesPublicLanguageScope(row, languageScope),
+    );
     const promotionTransitions = await getPromotionTransitionStateForCanonicalCards(
       canonicalResults.map((row) => row.id),
     );
@@ -465,7 +505,14 @@ export async function GET(request: NextRequest) {
       },
     );
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Resolver request failed.";
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof error === "string"
+          ? error
+          : error
+            ? JSON.stringify(error)
+            : "Resolver request failed.";
     return NextResponse.json(
       {
         ok: false,

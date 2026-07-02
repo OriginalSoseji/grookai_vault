@@ -229,6 +229,26 @@ export type PublicSetFilter =
   | "newest"
   | "oldest";
 
+export type PublicSetEra =
+  | "all"
+  | "sv"
+  | "swsh"
+  | "sm"
+  | "xy"
+  | "bw"
+  | "dp"
+  | "ex"
+  | "classic"
+  | "unknown";
+
+export type PublicSetLane =
+  | "all"
+  | "main"
+  | "special"
+  | "promo"
+  | "deck"
+  | "world";
+
 export const PUBLIC_SET_FILTER_OPTIONS: Array<{
   value: PublicSetFilter;
   label: string;
@@ -239,6 +259,35 @@ export const PUBLIC_SET_FILTER_OPTIONS: Array<{
   { value: "a-z", label: "A-Z" },
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
+];
+
+export const PUBLIC_SET_ERA_OPTIONS: Array<{
+  value: PublicSetEra;
+  label: string;
+  shortLabel: string;
+}> = [
+  { value: "all", label: "All eras", shortLabel: "All" },
+  { value: "sv", label: "Scarlet & Violet", shortLabel: "SV" },
+  { value: "swsh", label: "Sword & Shield", shortLabel: "SWSH" },
+  { value: "sm", label: "Sun & Moon", shortLabel: "SM" },
+  { value: "xy", label: "XY", shortLabel: "XY" },
+  { value: "bw", label: "Black & White", shortLabel: "BW" },
+  { value: "dp", label: "DP / HGSS", shortLabel: "DP" },
+  { value: "ex", label: "EX / e-Card", shortLabel: "EX" },
+  { value: "classic", label: "Classic", shortLabel: "Classic" },
+  { value: "unknown", label: "Date pending", shortLabel: "Pending" },
+];
+
+export const PUBLIC_SET_LANE_OPTIONS: Array<{
+  value: PublicSetLane;
+  label: string;
+}> = [
+  { value: "all", label: "All set types" },
+  { value: "main", label: "Main sets" },
+  { value: "special", label: "Special sets" },
+  { value: "promo", label: "Promos" },
+  { value: "deck", label: "Decks & kits" },
+  { value: "world", label: "Worlds decks" },
 ];
 
 export function normalizeSetQuery(value: string) {
@@ -357,6 +406,83 @@ export function matchesPublicSetSearch(
   );
 }
 
+export function isSpecialPublicSet(setInfo: PublicSetSearchCandidate) {
+  const code = normalizeSetQuery(setInfo.code ?? setInfo.normalized_code ?? "");
+  const name = normalizeSetQuery(setInfo.name ?? setInfo.normalized_name ?? "");
+
+  if (code.includes("pt5") || code.includes(".5")) {
+    return true;
+  }
+
+  return [
+    "trainer gallery",
+    "radiant collection",
+    "shiny",
+    "fates",
+    "crown zenith",
+    "prismatic",
+  ].some((marker) => name.includes(marker));
+}
+
+export function getPublicSetEra(setInfo: Pick<PublicSetSummary, "release_year">): PublicSetEra {
+  const year = setInfo.release_year;
+  if (typeof year !== "number") {
+    return "unknown";
+  }
+
+  if (year >= 2023) return "sv";
+  if (year >= 2020) return "swsh";
+  if (year >= 2017) return "sm";
+  if (year >= 2013) return "xy";
+  if (year >= 2011) return "bw";
+  if (year >= 2007) return "dp";
+  if (year >= 2003) return "ex";
+  return "classic";
+}
+
+export function getPublicSetLane(setInfo: PublicSetSearchCandidate): PublicSetLane {
+  const code = normalizeSetQuery(setInfo.code ?? setInfo.normalized_code ?? "");
+  const name = normalizeSetQuery(setInfo.name ?? setInfo.normalized_name ?? "");
+  const haystack = `${code} ${name}`;
+
+  if (code.startsWith("wcd") || haystack.includes("world championship")) {
+    return "world";
+  }
+
+  if (
+    haystack.includes("promo") ||
+    haystack.includes("promotional") ||
+    haystack.includes("black star") ||
+    haystack.includes("pokemon center")
+  ) {
+    return "promo";
+  }
+
+  if (
+    haystack.includes("deck") ||
+    haystack.includes("trainer kit") ||
+    haystack.includes("battle academy") ||
+    haystack.includes("league battle") ||
+    haystack.includes("starter set")
+  ) {
+    return "deck";
+  }
+
+  if (isSpecialPublicSet(setInfo)) {
+    return "special";
+  }
+
+  return "main";
+}
+
+export function getPublicSetEraLabel(era: PublicSetEra) {
+  return PUBLIC_SET_ERA_OPTIONS.find((option) => option.value === era)?.label ?? "All eras";
+}
+
+export function getPublicSetLaneLabel(lane: PublicSetLane) {
+  return PUBLIC_SET_LANE_OPTIONS.find((option) => option.value === lane)?.label ?? "All set types";
+}
+
 export function normalizePublicSetFilter(
   value?: string | null,
 ): PublicSetFilter {
@@ -371,6 +497,60 @@ export function normalizePublicSetFilter(
       return "newest";
     case "oldest":
       return "oldest";
+    default:
+      return "all";
+  }
+}
+
+export function normalizePublicSetEra(value?: string | null): PublicSetEra {
+  switch ((value ?? "").trim().toLowerCase()) {
+    case "sv":
+    case "scarlet-violet":
+      return "sv";
+    case "swsh":
+    case "sword-shield":
+      return "swsh";
+    case "sm":
+    case "sun-moon":
+      return "sm";
+    case "xy":
+      return "xy";
+    case "bw":
+    case "black-white":
+      return "bw";
+    case "dp":
+    case "dpp":
+    case "hgss":
+      return "dp";
+    case "ex":
+    case "ecard":
+      return "ex";
+    case "classic":
+    case "wotc":
+      return "classic";
+    case "unknown":
+    case "other":
+      return "unknown";
+    default:
+      return "all";
+  }
+}
+
+export function normalizePublicSetLane(value?: string | null): PublicSetLane {
+  switch ((value ?? "").trim().toLowerCase()) {
+    case "main":
+      return "main";
+    case "special":
+      return "special";
+    case "promo":
+    case "promos":
+      return "promo";
+    case "deck":
+    case "decks":
+      return "deck";
+    case "world":
+    case "worlds":
+      return "world";
     default:
       return "all";
   }

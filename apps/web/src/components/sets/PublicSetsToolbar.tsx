@@ -11,10 +11,21 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import {
+  PUBLIC_SET_ERA_OPTIONS,
   PUBLIC_SET_FILTER_OPTIONS,
+  PUBLIC_SET_LANE_OPTIONS,
+  normalizePublicSetEra,
   normalizePublicSetFilter,
+  normalizePublicSetLane,
+  type PublicSetEra,
   type PublicSetFilter,
+  type PublicSetLane,
 } from "@/lib/publicSets.shared";
+import {
+  PUBLIC_LANGUAGE_SCOPE_OPTIONS,
+  normalizePublicLanguageScope,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 
 export default function PublicSetsToolbar() {
   const pathname = usePathname();
@@ -22,6 +33,9 @@ export default function PublicSetsToolbar() {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q") ?? "";
   const currentFilter = normalizePublicSetFilter(searchParams.get("filter"));
+  const currentEra = normalizePublicSetEra(searchParams.get("era"));
+  const currentLane = normalizePublicSetLane(searchParams.get("lane"));
+  const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
@@ -30,7 +44,13 @@ export default function PublicSetsToolbar() {
     setQuery(currentQuery);
   }, [currentQuery]);
 
-  function buildNextUrl(nextQuery: string, nextFilter: PublicSetFilter) {
+  function buildNextUrl(
+    nextQuery: string,
+    nextFilter: PublicSetFilter,
+    nextEra: PublicSetEra,
+    nextLane: PublicSetLane,
+    nextLanguageScope: PublicLanguageScope = currentLanguageScope,
+  ) {
     const params = new URLSearchParams();
     const trimmedQuery = nextQuery.trim();
 
@@ -40,6 +60,18 @@ export default function PublicSetsToolbar() {
 
     if (nextFilter !== "all") {
       params.set("filter", nextFilter);
+    }
+
+    if (nextEra !== "all") {
+      params.set("era", nextEra);
+    }
+
+    if (nextLane !== "all") {
+      params.set("lane", nextLane);
+    }
+
+    if (nextLanguageScope !== "all") {
+      params.set("lang", nextLanguageScope);
     }
 
     if (compareCardsParam) {
@@ -52,16 +84,39 @@ export default function PublicSetsToolbar() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push(buildNextUrl(query, currentFilter));
+    router.push(buildNextUrl(query, currentFilter, currentEra, currentLane));
   }
 
   function handleFilterChange(nextFilter: PublicSetFilter) {
-    router.push(buildNextUrl(query, nextFilter));
+    router.push(buildNextUrl(query, nextFilter, currentEra, currentLane));
+  }
+
+  function handleEraChange(nextEra: PublicSetEra) {
+    router.push(buildNextUrl(query, currentFilter, nextEra, currentLane));
+  }
+
+  function handleLaneChange(nextLane: PublicSetLane) {
+    router.push(buildNextUrl(query, currentFilter, currentEra, nextLane));
+  }
+
+  function handleLanguageChange(nextLanguageScope: PublicLanguageScope) {
+    router.push(
+      buildNextUrl(
+        query,
+        currentFilter,
+        currentEra,
+        currentLane,
+        nextLanguageScope,
+      ),
+    );
   }
 
   function handleReset() {
     setQuery("");
     const params = new URLSearchParams();
+    if (currentLanguageScope !== "all") {
+      params.set("lang", currentLanguageScope);
+    }
     if (compareCardsParam) {
       params.set("cards", compareCardsParam);
     }
@@ -69,7 +124,11 @@ export default function PublicSetsToolbar() {
     router.push(queryString ? `${pathname}?${queryString}` : pathname);
   }
 
-  const hasActiveFilters = currentQuery.trim().length > 0 || currentFilter !== "all";
+  const hasActiveFilters =
+    currentQuery.trim().length > 0 ||
+    currentFilter !== "all" ||
+    currentEra !== "all" ||
+    currentLane !== "all";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -92,13 +151,73 @@ export default function PublicSetsToolbar() {
             </div>
           </SearchToolbarField>
 
-          <div className="flex flex-col gap-3 sm:flex-row lg:w-auto lg:items-end">
-            <SearchToolbarField label="Filter" className="sm:min-w-[220px]">
+          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[210px_170px_180px_190px_auto] lg:items-end">
+            <SearchToolbarField label="Language" className="min-w-0">
+              <div
+                className="inline-flex h-11 w-full rounded-[14px] border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+                role="radiogroup"
+                aria-label="Set language scope"
+              >
+                {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
+                  const active = currentLanguageScope === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => handleLanguageChange(option.value)}
+                      className={`min-w-0 flex-1 rounded-[11px] px-2 text-xs font-semibold transition ${
+                        active
+                          ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                          : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                      }`}
+                    >
+                      {option.shortLabel}
+                    </button>
+                  );
+                })}
+              </div>
+            </SearchToolbarField>
+
+            <SearchToolbarField label="Era" className="min-w-0">
+              <SearchToolbarSelect
+                id="public-sets-era"
+                value={currentEra}
+                onChange={(event) => handleEraChange(normalizePublicSetEra(event.target.value))}
+                aria-label="Filter sets by era"
+                tone="soft"
+              >
+                {PUBLIC_SET_ERA_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
+            <SearchToolbarField label="Type" className="min-w-0">
+              <SearchToolbarSelect
+                id="public-sets-lane"
+                value={currentLane}
+                onChange={(event) => handleLaneChange(normalizePublicSetLane(event.target.value))}
+                aria-label="Filter sets by type"
+                tone="soft"
+              >
+                {PUBLIC_SET_LANE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
+            <SearchToolbarField label="Sort" className="min-w-0">
               <SearchToolbarSelect
                 id="public-sets-filter"
                 value={currentFilter}
                 onChange={(event) => handleFilterChange(normalizePublicSetFilter(event.target.value))}
-                aria-label="Filter sets"
+                aria-label="Sort or filter sets"
                 tone="soft"
               >
                 {PUBLIC_SET_FILTER_OPTIONS.map((option) => (
@@ -110,7 +229,7 @@ export default function PublicSetsToolbar() {
             </SearchToolbarField>
 
             {hasActiveFilters ? (
-              <SearchToolbarButton type="button" tone="secondary" onClick={handleReset}>
+              <SearchToolbarButton type="button" tone="secondary" onClick={handleReset} className="w-full sm:col-span-2 lg:col-span-1">
                 Reset
               </SearchToolbarButton>
             ) : null}
