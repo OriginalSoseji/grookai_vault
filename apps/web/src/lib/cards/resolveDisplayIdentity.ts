@@ -16,6 +16,7 @@ export type CardPrint = {
 export type ResolvedDisplayIdentity = {
   display_name: string;
   base_name: string;
+  printed_name: string | null;
   suffix: string | null;
 };
 
@@ -50,6 +51,41 @@ function isLetterOrSymbolIdentity(value?: string | null) {
   return /^[\p{L}\p{N}★☆]$/u.test(normalized);
 }
 
+function normalizeJapanesePikachuSuffix(value: string) {
+  const suffix = value.trim().replace(/\s+/g, "");
+  if (!suffix) {
+    return "";
+  }
+
+  if (suffix === "（デルタ種）") {
+    return "Delta Species";
+  }
+
+  return /^[a-z0-9][a-z0-9.+-]*$/i.test(suffix) ? suffix : "";
+}
+
+function resolveEnglishPrimaryNameForJapanesePrintedName(value: string) {
+  const normalized = value.trim();
+  const rules: Array<{ prefix: string; englishName: string }> = [
+    { prefix: "そらをとぶピカチュウ", englishName: "Flying Pikachu" },
+    { prefix: "なみのりピカチュウ", englishName: "Surfing Pikachu" },
+    { prefix: "ピカチュウ", englishName: "Pikachu" },
+  ];
+
+  for (const rule of rules) {
+    if (!normalized.startsWith(rule.prefix)) {
+      continue;
+    }
+
+    const suffix = normalizeJapanesePikachuSuffix(
+      normalized.slice(rule.prefix.length),
+    );
+    return suffix ? `${rule.englishName} ${suffix}` : rule.englishName;
+  }
+
+  return null;
+}
+
 export function formatVariantKey(value?: string | null) {
   return getVariantDisplayLabel(value);
 }
@@ -59,7 +95,14 @@ export function formatPrintedIdentityModifier(value?: string | null) {
 }
 
 export function resolveDisplayIdentity(card: Partial<CardPrint> & { name?: string | null }): ResolvedDisplayIdentity {
-  const base_name = (card.name ?? "").trim() || "Unknown card";
+  const rawBaseName = (card.name ?? "").trim() || "Unknown card";
+  const englishPrimaryName =
+    resolveEnglishPrimaryNameForJapanesePrintedName(rawBaseName);
+  const base_name = englishPrimaryName ?? rawBaseName;
+  const printed_name =
+    englishPrimaryName && englishPrimaryName !== rawBaseName
+      ? rawBaseName
+      : null;
 
   let suffix = formatVariantKey(card.variant_key);
 
@@ -74,6 +117,7 @@ export function resolveDisplayIdentity(card: Partial<CardPrint> & { name?: strin
   return {
     display_name: suffix ? `${base_name} · ${suffix}` : base_name,
     base_name,
+    printed_name,
     suffix,
   };
 }

@@ -173,6 +173,9 @@ export default function PublicSetCardGrid({
                   className="block transition hover:text-slate-700"
                 >
                   <span className="block truncate">{displayIdentity.base_name}</span>
+                  {displayIdentity.printed_name ? (
+                    <span className="gv-hi-metadata block truncate text-xs font-medium">{displayIdentity.printed_name}</span>
+                  ) : null}
                   {identitySubtitle ? (
                     <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}

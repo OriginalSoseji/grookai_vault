@@ -95,3 +95,19 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(gridItem, /imagePriority=\{imagePriority\}/);
   assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
 });
+
+test("japanese pikachu display keeps english primary and printed name secondary", () => {
+  const displayIdentity = readSource("lib", "cards", "resolveDisplayIdentity.ts");
+  const exploreGridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
+  const exploreListItem = readSource("components", "explore", "ExploreCardListItem.tsx");
+  const setGrid = readSource("components", "PublicSetCardGrid.tsx");
+  const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+
+  assert.match(displayIdentity, /prefix: "ピカチュウ", englishName: "Pikachu"/);
+  assert.match(displayIdentity, /return suffix \? `\$\{rule\.englishName\} \$\{suffix\}` : rule\.englishName/);
+  assert.match(displayIdentity, /printed_name/);
+  assert.match(exploreGridItem, /displayIdentity\.printed_name/);
+  assert.match(exploreListItem, /displayIdentity\.printed_name/);
+  assert.match(setGrid, /displayIdentity\.printed_name/);
+  assert.match(cardPage, /Japanese printed name: \{resolvedDisplayIdentity\.printed_name\}/);
+});

@@ -670,6 +670,11 @@ export default async function CardPage({
                   <h1 className="gv-hi-card-identity max-w-3xl text-[3rem] leading-[0.96] tracking-normal sm:text-[4.2rem] lg:text-[5.35rem]">
                     {resolvedDisplayIdentity.base_name}
                   </h1>
+                  {resolvedDisplayIdentity.printed_name ? (
+                    <p className="gv-hi-metadata text-sm font-medium sm:text-base">
+                      Japanese printed name: {resolvedDisplayIdentity.printed_name}
+                    </p>
+                  ) : null}
                   <div className="flex flex-wrap items-center gap-2">
                     {identitySubtitle ? (
                       <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
