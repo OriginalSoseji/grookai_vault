@@ -118,6 +118,10 @@ type ExploreRow = ExploreResultCard & {
   printed_total?: number;
 };
 
+type BuildExploreRowsOptions = {
+  skipChildDisplayImageFallbacks?: boolean;
+};
+
 type SearchRpcRow = {
   id: string;
 };
@@ -758,14 +762,17 @@ async function buildExploreRows(
   setNameById: Map<string, string>,
   setMetadataByCode: Map<string, PublicSetMetadata>,
   pricingByCardId: Map<string, PublicPricingRecord>,
+  options: BuildExploreRowsOptions = {},
 ) {
   const rows = lookupRows.filter(
     (row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id),
   );
-  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
-    createServerComponentClient(),
-    rows,
-  );
+  const childDisplayImageFallbacks = options.skipChildDisplayImageFallbacks
+    ? new Map()
+    : await getChildDisplayImageFallbacks(
+        createServerComponentClient(),
+        rows,
+      );
 
   return Promise.all(
     rows.map(async (row) => {
@@ -3133,6 +3140,12 @@ export async function getExploreRowsForLanguageScopedTextSearch(
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
+    {
+      skipChildDisplayImageFallbacks:
+        exactRows.length > 24 &&
+        sortMode !== "value_high" &&
+        sortMode !== "value_low",
+    },
   );
 
   return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
