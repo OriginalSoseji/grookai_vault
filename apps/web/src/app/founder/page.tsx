@@ -134,6 +134,37 @@ type SearchAggregate = {
   count: number;
 };
 
+type AbuseReasonAggregate = {
+  reason: string;
+  count: number;
+};
+
+type AbuseLaneAggregate = {
+  lane: string;
+  count: number;
+};
+
+type AbuseRecentEvent = {
+  id: string;
+  created_at: string | null;
+  event_name: string;
+  path: string;
+  lane: string;
+  reason: string;
+  request_count: number | null;
+};
+
+type AbuseProtectionMetrics = {
+  signals24h: number;
+  throttles24h: number;
+  retiredRegistryHits24h: number;
+  apiSignals24h: number;
+  cardWalkingSignals7d: number;
+  topReasons: AbuseReasonAggregate[];
+  laneCounts: AbuseLaneAggregate[];
+  recentEvents: AbuseRecentEvent[];
+};
+
 function parseEventDate(value?: string | null) {
   if (!value) {
     return null;
@@ -154,6 +185,16 @@ function daysAgoDate(days: number) {
 function normalizeSearchTerm(value?: string | null) {
   const normalized = value?.trim().replace(/\s+/g, " ");
   return normalized ? normalized.toLowerCase() : null;
+}
+
+function getMetadataString(metadata: Record<string, unknown> | null, key: string) {
+  const value = metadata?.[key];
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
+function getMetadataNumber(metadata: Record<string, unknown> | null, key: string) {
+  const value = metadata?.[key];
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
 function aggregateTelemetryMetrics(events: WebEventRow[]): FounderMetric {
@@ -293,6 +334,89 @@ function aggregateTopViewedCardIds(events: WebEventRow[], limit = 10) {
   return Array.from(byGvId.entries())
     .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
     .slice(0, limit);
+}
+
+function aggregateAbuseProtectionMetrics(events: WebEventRow[]): AbuseProtectionMetrics {
+  const twentyFourHoursAgo = hoursAgoDate(24);
+  const sevenDaysAgo = daysAgoDate(7);
+  const reasons = new Map<string, number>();
+  const lanes = new Map<string, number>();
+  const recentEvents: AbuseRecentEvent[] = [];
+
+  let signals24h = 0;
+  let throttles24h = 0;
+  let retiredRegistryHits24h = 0;
+  let apiSignals24h = 0;
+  let cardWalkingSignals7d = 0;
+
+  for (const event of events) {
+    const eventName = event.event_name?.trim() || "";
+    if (eventName !== "abuse_signal" && eventName !== "abuse_throttled") {
+      continue;
+    }
+
+    const createdAt = parseEventDate(event.created_at);
+    if (!createdAt || createdAt < sevenDaysAgo) {
+      continue;
+    }
+
+    const lane = getMetadataString(event.metadata, "lane") ?? "unknown";
+    const reason = getMetadataString(event.metadata, "reason") ?? "unknown";
+    const is24h = createdAt >= twentyFourHoursAgo;
+
+    lanes.set(lane, (lanes.get(lane) ?? 0) + 1);
+    reasons.set(reason, (reasons.get(reason) ?? 0) + 1);
+
+    if (reason === "possible_card_id_walking") {
+      cardWalkingSignals7d += 1;
+    }
+
+    if (is24h) {
+      if (eventName === "abuse_signal") {
+        signals24h += 1;
+      }
+
+      if (eventName === "abuse_throttled") {
+        throttles24h += 1;
+      }
+
+      if (lane === "retired_registry") {
+        retiredRegistryHits24h += 1;
+      }
+
+      if (lane === "api") {
+        apiSignals24h += 1;
+      }
+    }
+
+    if (recentEvents.length < 8) {
+      recentEvents.push({
+        id: event.id,
+        created_at: event.created_at,
+        event_name: eventName,
+        path: event.path?.trim() || "Unknown path",
+        lane,
+        reason,
+        request_count: getMetadataNumber(event.metadata, "request_count"),
+      });
+    }
+  }
+
+  return {
+    signals24h,
+    throttles24h,
+    retiredRegistryHits24h,
+    apiSignals24h,
+    cardWalkingSignals7d,
+    topReasons: Array.from(reasons.entries())
+      .map(([reason, count]) => ({ reason, count }))
+      .sort((left, right) => right.count - left.count || left.reason.localeCompare(right.reason))
+      .slice(0, 6),
+    laneCounts: Array.from(lanes.entries())
+      .map(([lane, count]) => ({ lane, count }))
+      .sort((left, right) => right.count - left.count || left.lane.localeCompare(right.lane)),
+    recentEvents,
+  };
 }
 
 function mapTopViewedCards(
@@ -791,6 +915,7 @@ export default async function FounderPage() {
   const telemetryMetrics = aggregateTelemetryMetrics(telemetryRows);
   const topSearchTerms = aggregateTopSearchTerms(telemetryRows);
   const topViewedCardCounts = aggregateTopViewedCardIds(telemetryRows);
+  const abuseProtectionMetrics = aggregateAbuseProtectionMetrics(telemetryRows);
 
   const cardAggregates = aggregateCards(vaultRows);
   const topCardsByQty = [...cardAggregates]
@@ -903,6 +1028,106 @@ export default async function FounderPage() {
           <MetricCard label="Active Vault Users (7d)" value={telemetryMetrics.activeVaultUsers7d} detail="Distinct users from vault_opened or vault_add_success" />
           <MetricCard label="Cards Added To Vault (7d)" value={telemetryMetrics.cardsAddedToVault7d} detail="Summed quantity_delta from vault_add_success" />
         </div>
+      </PageSection>
+
+      <PageSection spacing="default">
+        <SectionHeader
+          title="Catalog Protection"
+          description="Abuse signals from retired registry probes, API bursts, search pressure, and observed card-ID walking."
+        />
+
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          <MetricCard label="Signals (24h)" value={abuseProtectionMetrics.signals24h} detail="Observed suspicious behavior without blocking normal card indexing" />
+          <MetricCard label="Throttles (24h)" value={abuseProtectionMetrics.throttles24h} detail="Requests returned 429 by the protection middleware" />
+          <MetricCard label="Retired ID Hits (24h)" value={abuseProtectionMetrics.retiredRegistryHits24h} detail="Requests to /ids or /ids/cards after retirement" />
+          <MetricCard label="API Signals (24h)" value={abuseProtectionMetrics.apiSignals24h} detail="API volume or probe signals" />
+          <MetricCard label="Card Walking (7d)" value={abuseProtectionMetrics.cardWalkingSignals7d} detail="Observed only; card pages remain crawlable" />
+        </div>
+
+        <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <div className="gv-premium-surface px-5 py-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Protection lanes</p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">Signal mix</h3>
+              </div>
+              <span className="rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+                7d
+              </span>
+            </div>
+
+            {abuseProtectionMetrics.laneCounts.length === 0 ? (
+              <p className="mt-5 text-sm leading-6 text-slate-600">No abuse signals have been recorded yet.</p>
+            ) : (
+              <div className="mt-5 space-y-4">
+                {abuseProtectionMetrics.laneCounts.map((lane) => {
+                  const maxCount = Math.max(...abuseProtectionMetrics.laneCounts.map((item) => item.count), 1);
+                  const widthPercent = Math.max(8, Math.round((lane.count / maxCount) * 100));
+                  return (
+                    <div key={lane.lane} className="space-y-2">
+                      <div className="flex items-center justify-between gap-3 text-sm">
+                        <span className="font-semibold text-slate-800">{lane.lane.replace(/_/g, " ")}</span>
+                        <span className="font-medium text-slate-500">{lane.count}</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-full rounded-full bg-slate-950" style={{ width: `${widthPercent}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div className="gv-premium-surface px-5 py-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Recent protection events</p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">Latest signals</h3>
+              </div>
+              <span className="rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+                Live
+              </span>
+            </div>
+
+            {abuseProtectionMetrics.recentEvents.length === 0 ? (
+              <p className="mt-5 text-sm leading-6 text-slate-600">No recent protection events.</p>
+            ) : (
+              <div className="mt-5 divide-y divide-slate-100">
+                {abuseProtectionMetrics.recentEvents.map((event) => (
+                  <div key={event.id} className="grid gap-2 py-3 sm:grid-cols-[minmax(0,1fr)_9rem] sm:items-center">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-slate-900">{event.reason.replace(/_/g, " ")}</p>
+                      <p className="truncate text-xs font-medium text-slate-500">
+                        {event.lane.replace(/_/g, " ")} - {event.path}
+                      </p>
+                    </div>
+                    <div className="text-left text-xs text-slate-500 sm:text-right">
+                      <p className="font-semibold text-slate-700">{event.event_name === "abuse_throttled" ? "Throttled" : "Observed"}</p>
+                      <p>
+                        {formatTimeAgo(event.created_at)}
+                        {event.request_count !== null ? ` - ${event.request_count} req` : ""}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {abuseProtectionMetrics.topReasons.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {abuseProtectionMetrics.topReasons.map((reason) => (
+              <span
+                key={reason.reason}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
+              >
+                {reason.reason.replace(/_/g, " ")}: {reason.count}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </PageSection>
 
       <PageSection spacing="default">

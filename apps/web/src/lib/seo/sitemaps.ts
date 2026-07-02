@@ -195,6 +195,5 @@ export function getStaticSitemapEntries() {
     { loc: `${origin}/` },
     { loc: `${origin}/sets` },
     { loc: `${origin}/explore` },
-    { loc: `${origin}/ids` },
   ];
 }

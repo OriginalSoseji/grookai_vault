@@ -119,11 +119,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/early-access" className="underline-offset-4 hover:text-slate-900 hover:underline">
                 Early Access
               </Link>
-              <Link href="/ids" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Card IDs
-              </Link>
               <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Legal
+                Terms
               </Link>
             </div>
           </PageContainer>
