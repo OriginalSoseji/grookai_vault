@@ -212,19 +212,19 @@ test("card SEO exposes exact GV IDs through visible internal links", () => {
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
   const setGrid = readSource("components", "PublicSetCardGrid.tsx");
   const layout = readSource("app", "layout.tsx");
-  const idRegistry = readSource("lib", "seo", "idRegistry.ts");
-  const idsPage = readSource("app", "ids", "page.tsx");
-  const idsCardPage = readSource("app", "ids", "cards", "[page]", "page.tsx");
+  const idsRoute = readSource("app", "ids", "route.ts");
+  const idsCardRoute = readSource("app", "ids", "cards", "[page]", "route.ts");
   const sitemapHelpers = readSource("lib", "seo", "sitemaps.ts");
 
   assert.match(cardPage, /\[card\.gv_id, displayName, card\.set_name, collectorNumberLabel\]/);
   assert.match(cardPage, /Grookai Vault canonical ID/);
   assert.match(cardPage, /Grookai ID \{resolvedCard\.gv_id\}/);
   assert.match(setGrid, /Grookai ID \{card\.gv_id\}/);
-  assert.match(layout, /href="\/ids"/);
-  assert.match(idRegistry, /ID_REGISTRY_PAGE_SIZE = 1_000/);
-  assert.match(idsPage, /href=\{`\/ids\/cards\/\$\{pageIndex\}`\}/);
-  assert.match(idsCardPage, /href=\{`\/card\/\$\{encodeURIComponent\(entry\.gvId\)\}`\}/);
-  assert.match(idsCardPage, /\{entry\.gvId\}/);
-  assert.match(sitemapHelpers, /`\$\{origin\}\/ids`/);
+  assert.doesNotMatch(layout, /href="\/ids"/);
+  assert.match(idsRoute, /status: 410/);
+  assert.match(idsRoute, /"X-Robots-Tag": "noindex, nofollow"/);
+  assert.match(idsCardRoute, /status: 410/);
+  assert.match(idsCardRoute, /"X-Robots-Tag": "noindex, nofollow"/);
+  assert.doesNotMatch(sitemapHelpers, /`\$\{origin\}\/ids`/);
+  assert.match(sitemapHelpers, /\/card\/\$\{encodeURIComponent\(card\.gv_id\)\}/);
 });
