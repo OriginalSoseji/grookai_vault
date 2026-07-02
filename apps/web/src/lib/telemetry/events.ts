@@ -6,6 +6,8 @@ export const WEB_EVENT_NAMES = [
   "vault_add_success",
   "account_created",
   "vault_opened",
+  "abuse_signal",
+  "abuse_throttled",
 ] as const;
 
 export type WebEventName = (typeof WEB_EVENT_NAMES)[number];

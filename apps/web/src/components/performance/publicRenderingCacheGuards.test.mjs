@@ -239,6 +239,9 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   const layout = readSource("app", "layout.tsx");
   const robots = readSource("app", "robots.ts");
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+  const middleware = readSource("middleware.ts");
+  const telemetryEvents = readSource("lib", "telemetry", "events.ts");
+  const founderPage = readSource("app", "founder", "page.tsx");
 
   assert.match(legalPage, /Terms and Legal/);
   assert.match(legalPage, /Catalog Data, Grookai IDs, and Automated Access/);
@@ -257,4 +260,20 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   assert.match(robots, /"\/api\/"/);
   assert.match(robots, /"\/card\/"/);
   assert.doesNotMatch(cardPage, /noindex/);
+  assert.match(telemetryEvents, /"abuse_signal"/);
+  assert.match(telemetryEvents, /"abuse_throttled"/);
+  assert.match(middleware, /retired_id_registry_probe/);
+  assert.match(middleware, /api_request_volume/);
+  assert.match(middleware, /possible_card_id_walking/);
+  assert.match(middleware, /process\.env\.NODE_ENV !== "production"/);
+  assert.match(middleware, /status: 429/);
+  assert.match(middleware, /"Retry-After"/);
+  assert.match(middleware, /X-Content-Type-Options/);
+  assert.match(middleware, /Referrer-Policy/);
+  assert.match(middleware, /Permissions-Policy/);
+  assert.match(founderPage, /Catalog Protection/);
+  assert.match(founderPage, /aggregateAbuseProtectionMetrics/);
+  assert.match(founderPage, /Signals \(24h\)/);
+  assert.match(founderPage, /Throttles \(24h\)/);
+  assert.match(founderPage, /Card Walking \(7d\)/);
 });

@@ -54,7 +54,7 @@ Implemented:
 - shared protected-route contract:
   - `apps/web/src/lib/auth/routeAccess.ts`
 - Next middleware guard:
-  - `apps/web/middleware.ts`
+  - `apps/web/src/middleware.ts`
 
 Protected route matcher V1:
 
