@@ -182,3 +182,28 @@ test("card detail streams lower panels after exact card information", () => {
   assert.match(pricingRail, /isLoadingPricing && !selectedPricing/);
   assert.doesNotMatch(pricingRail, /No pricing data available/);
 });
+
+test("card SEO exposes full sitemap index and product identifiers", () => {
+  const sitemapIndexRoute = readSource("app", "sitemap.xml", "route.ts");
+  const cardSitemapRoute = readSource("app", "sitemaps", "cards", "[page]", "sitemap.xml", "route.ts");
+  const sitemapHelpers = readSource("lib", "seo", "sitemaps.ts");
+  const robots = readSource("app", "robots.ts");
+  const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+
+  assert.match(sitemapIndexRoute, /sitemapIndexResponse/);
+  assert.match(sitemapIndexRoute, /getPublicCardSitemapPageCount/);
+  assert.match(cardSitemapRoute, /getCardSitemapEntries/);
+  assert.match(sitemapHelpers, /CARD_SITEMAP_PAGE_SIZE = 45_000/);
+  assert.match(sitemapHelpers, /SUPABASE_SITEMAP_FETCH_CHUNK_SIZE = 1_000/);
+  assert.match(sitemapHelpers, /select\("id", \{ count: "exact", head: true \}\)/);
+  assert.match(sitemapHelpers, /for \(let chunkStart = from/);
+  assert.match(sitemapHelpers, /\.range\(chunkStart, chunkEnd\)/);
+  assert.match(sitemapHelpers, /\/card\/\$\{encodeURIComponent\(card\.gv_id\)\}/);
+  assert.doesNotMatch(sitemapHelpers, /CARD_LIMIT = 5000/);
+  assert.match(robots, /sitemap: "https:\/\/grookaivault\.com\/sitemap\.xml"/);
+  assert.match(cardPage, /type="application\/ld\+json"/);
+  assert.match(cardPage, /"@type": "Product"/);
+  assert.match(cardPage, /sku: card\.gv_id/);
+  assert.match(cardPage, /mpn: card\.gv_id/);
+  assert.match(cardPage, /propertyID: "Grookai Vault ID"/);
+});
