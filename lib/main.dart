@@ -1,6 +1,5 @@
 // lib/main.dart
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
@@ -88,6 +87,13 @@ const Duration _kDrawerOpenDuration = Duration(milliseconds: 280);
 const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
+const int _kSearchResolverLimit = 32;
+const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
+    <MapEntry<String, String>>[
+      MapEntry<String, String>('all', 'All'),
+      MapEntry<String, String>('en', 'English'),
+      MapEntry<String, String>('ja', 'Japanese'),
+    ];
 const Duration _kFeedImpressionGateWindow = Duration(minutes: 3);
 const Duration _kFeedImpressionSkipLogWindow = Duration(seconds: 12);
 const double _kFeedImpressionVisibilityThreshold = 0.55;
@@ -102,6 +108,11 @@ const double _kWallMatchBottomRhythmHeight = 27;
 String _formatSearchFailure(Object error) {
   debugPrint('Search failed: $error');
   return 'Search is temporarily limited. Showing local results when available.';
+}
+
+String _normalizeSearchLanguageScope(String value) {
+  final normalized = value.trim().toLowerCase();
+  return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
 }
 
 String _normalizePublicCollectorSlugInput(String value) {
@@ -526,6 +537,98 @@ class _CatalogSearchField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SearchLanguageScopeSelector extends StatelessWidget {
+  const _SearchLanguageScopeSelector({
+    required this.value,
+    required this.onChanged,
+  });
+
+  final String value;
+  final ValueChanged<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final normalizedValue = _normalizeSearchLanguageScope(value);
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Text(
+            'Language',
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.2,
+            ),
+          ),
+          const SizedBox(width: 8),
+          for (
+            var index = 0;
+            index < _kSearchLanguageScopeOptions.length;
+            index++
+          ) ...[
+            if (index > 0) const SizedBox(width: 6),
+            _SearchLanguageScopeChip(
+              value: _kSearchLanguageScopeOptions[index].key,
+              label: _kSearchLanguageScopeOptions[index].value,
+              selected:
+                  normalizedValue == _kSearchLanguageScopeOptions[index].key,
+              onSelected: onChanged,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _SearchLanguageScopeChip extends StatelessWidget {
+  const _SearchLanguageScopeChip({
+    required this.value,
+    required this.label,
+    required this.selected,
+    required this.onSelected,
+  });
+
+  final String value;
+  final String label;
+  final bool selected;
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final bg = selected
+        ? colorScheme.primary.withValues(alpha: 0.10)
+        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
+    final border = selected ? colorScheme.primary : Colors.transparent;
+    final text = selected
+        ? colorScheme.primary
+        : colorScheme.onSurface.withValues(alpha: 0.68);
+
+    return ChoiceChip(
+      label: Text(
+        label,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: text,
+          fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
+        ),
+      ),
+      selected: selected,
+      onSelected: (_) => onSelected(value),
+      selectedColor: bg,
+      backgroundColor: bg,
+      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
     );
   }
 }
@@ -2555,12 +2658,12 @@ class HomePageState extends State<HomePage> {
   bool _loading = false;
   bool _loadingCuratedLanding = false;
   bool _hasMoreVisibleResults = false;
-  bool _isHydratingMoreResults = false;
   String? _searchError;
   Timer? _debounce;
   int _searchRequestVersion = 0;
   _RarityFilter _rarityFilter = _RarityFilter.all;
   String _identityFilter = kIdentityFilterAll;
+  String _languageScope = 'all';
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
@@ -2572,67 +2675,12 @@ class HomePageState extends State<HomePage> {
     return cards.sublist(0, limit);
   }
 
-  void _scheduleVisibleSearchResultHydration({
-    required List<CardPrint> filteredResults,
-    required int requestVersion,
-  }) {
-    if (filteredResults.length <= _visibleResults.length) {
-      return;
-    }
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _appendVisibleSearchResults(
-        filteredResults: filteredResults,
-        requestVersion: requestVersion,
-      );
-    });
-  }
-
-  void _appendVisibleSearchResults({
-    required List<CardPrint> filteredResults,
-    required int requestVersion,
-  }) {
-    if (!mounted || requestVersion != _searchRequestVersion) {
-      return;
-    }
-
-    final currentVisibleCount = _visibleResults.length;
-    if (currentVisibleCount >= filteredResults.length) {
-      if (_hasMoreVisibleResults || _isHydratingMoreResults) {
-        setState(() {
-          _hasMoreVisibleResults = false;
-          _isHydratingMoreResults = false;
-        });
-      }
-      return;
-    }
-
-    final nextVisibleCount = math.min(
-      currentVisibleCount + _kSearchFollowupBatchSize,
-      filteredResults.length,
-    );
-
-    setState(() {
-      _visibleResults = filteredResults.sublist(0, nextVisibleCount);
-      _hasMoreVisibleResults = nextVisibleCount < filteredResults.length;
-      _isHydratingMoreResults = nextVisibleCount < filteredResults.length;
-    });
-
-    if (nextVisibleCount < filteredResults.length) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _appendVisibleSearchResults(
-          filteredResults: filteredResults,
-          requestVersion: requestVersion,
-        );
-      });
-    }
-  }
-
   bool _shouldShowCuratedLanding([String? query]) {
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
-        !isIdentityFilterActive(_identityFilter);
+        !isIdentityFilterActive(_identityFilter) &&
+        _languageScope == 'all';
   }
 
   void _resetCuratedLandingState() {
@@ -2645,7 +2693,6 @@ class HomePageState extends State<HomePage> {
       _resultPricing = const {};
       _resolverMeta = null;
       _hasMoreVisibleResults = false;
-      _isHydratingMoreResults = false;
       _searchError = null;
       _loading = false;
     });
@@ -2959,7 +3006,9 @@ class HomePageState extends State<HomePage> {
         client: supabase,
         options: CardSearchOptions(
           query: trimmed,
+          limit: _kSearchResolverLimit,
           identityFilter: _identityFilter,
+          languageScope: _languageScope,
         ),
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -2979,16 +3028,9 @@ class HomePageState extends State<HomePage> {
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
         _hasMoreVisibleResults = hasMoreVisibleResults;
-        _isHydratingMoreResults = hasMoreVisibleResults;
         _searchError = null;
         _loading = false;
       });
-      if (hasMoreVisibleResults) {
-        _scheduleVisibleSearchResultHydration(
-          filteredResults: filteredResults,
-          requestVersion: requestVersion,
-        );
-      }
       var pricing = const <String, CardSurfacePricingData>{};
       try {
         pricing = await CardSurfacePricingService.fetchByCardPrintIds(
@@ -2997,6 +3039,9 @@ class HomePageState extends State<HomePage> {
         );
       } catch (_) {
         pricing = const <String, CardSurfacePricingData>{};
+      }
+      if (!mounted || requestVersion != _searchRequestVersion) {
+        return;
       }
       final ownershipStates = await _primeCatalogOwnershipStates(resolved.rows);
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -3020,7 +3065,6 @@ class HomePageState extends State<HomePage> {
         _resultPricing = const {};
         _resolverMeta = null;
         _hasMoreVisibleResults = false;
-        _isHydratingMoreResults = false;
         _searchError = _formatSearchFailure(error);
         _loading = false;
       });
@@ -3057,12 +3101,12 @@ class HomePageState extends State<HomePage> {
       _visibleResults = nextVisibleResults;
       _hasMoreVisibleResults =
           filteredCurrentResults.length > nextVisibleResults.length;
-      _isHydratingMoreResults = false;
     });
 
     if (currentQuery.trim().isEmpty &&
         filter == _RarityFilter.all &&
-        _identityFilter == kIdentityFilterAll) {
+        _identityFilter == kIdentityFilterAll &&
+        _languageScope == 'all') {
       _resetCuratedLandingState();
       return;
     }
@@ -3091,17 +3135,50 @@ class HomePageState extends State<HomePage> {
       _visibleResults = nextVisibleResults;
       _hasMoreVisibleResults =
           filteredCurrentResults.length > nextVisibleResults.length;
-      _isHydratingMoreResults = false;
     });
 
     if (currentQuery.trim().isEmpty &&
         normalizedFilter == kIdentityFilterAll &&
-        _rarityFilter == _RarityFilter.all) {
+        _rarityFilter == _RarityFilter.all &&
+        _languageScope == 'all') {
       _resetCuratedLandingState();
       return;
     }
 
     _runSearch(currentQuery);
+  }
+
+  void _handleLanguageScopeChanged(String scope) {
+    final normalizedScope = _normalizeSearchLanguageScope(scope);
+    if (_languageScope == normalizedScope) {
+      return;
+    }
+
+    setState(() {
+      _languageScope = normalizedScope;
+      _results = const [];
+      _visibleResults = const [];
+      _provisionalResults = const <PublicProvisionalCard>[];
+      _resultPricing = const {};
+      _resolverMeta = null;
+      _hasMoreVisibleResults = false;
+      _searchError = null;
+    });
+    _runSearch(_searchCtrl.text);
+  }
+
+  void _loadMoreSearchResults() {
+    final filteredResults = _applyCatalogFilters(_results);
+    final nextVisibleResults = _takeSearchResultBatch(
+      filteredResults,
+      _visibleResults.length + _kSearchFollowupBatchSize,
+    );
+
+    setState(() {
+      _visibleResults = nextVisibleResults;
+      _hasMoreVisibleResults =
+          filteredResults.length > nextVisibleResults.length;
+    });
   }
 
   Future<void> _openSetsScreen() async {
@@ -4103,6 +4180,11 @@ class HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(top: 6, bottom: 0),
               ),
               const SizedBox(height: 8),
+              _SearchLanguageScopeSelector(
+                value: _languageScope,
+                onChanged: _handleLanguageScopeChanged,
+              ),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   Expanded(
@@ -4262,6 +4344,19 @@ class HomePageState extends State<HomePage> {
                         kDebugMode &&
                         kFeedDebugOverlay &&
                         _showFeedDebugOverlay,
+                  ),
+                if (!showingCuratedLanding && _hasMoreVisibleResults)
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                    sliver: SliverToBoxAdapter(
+                      child: Center(
+                        child: OutlinedButton.icon(
+                          onPressed: _loadMoreSearchResults,
+                          icon: const Icon(Icons.expand_more_rounded, size: 18),
+                          label: const Text('Load more'),
+                        ),
+                      ),
+                    ),
                   ),
                 if (hasProvisionalResults)
                   SliverToBoxAdapter(
