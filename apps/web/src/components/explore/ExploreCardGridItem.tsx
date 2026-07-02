@@ -23,13 +23,14 @@ type ExploreCardGridItemProps = {
   mode: "thumb" | "thumb-lg";
   canViewPricing: boolean;
   matchReason?: string;
+  imagePriority?: boolean;
 };
 
 function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
 }
 
-export default function ExploreCardGridItem({ card, href, mode, canViewPricing }: ExploreCardGridItemProps) {
+export default function ExploreCardGridItem({ card, href, mode, canViewPricing, imagePriority = false }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -56,6 +57,9 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
       imageFallbackSrc={card.display_image_fallback_url}
       imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
       imageHref={href}
+      imagePrefetch={false}
+      imageLoading={imagePriority ? "eager" : "lazy"}
+      imagePriority={imagePriority}
       imageSizes={
         isLarge
           ? "(max-width: 640px) 58vw, (max-width: 1024px) 34vw, 280px"
@@ -71,7 +75,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
         ) : null
       }
       title={
-        <Link href={href} className="block transition hover:text-slate-700">
+        <Link href={href} prefetch={false} className="block transition hover:text-slate-700">
           <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>

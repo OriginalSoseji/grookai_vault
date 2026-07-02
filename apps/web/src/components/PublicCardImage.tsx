@@ -12,6 +12,7 @@ type PublicCardImageProps = {
   fallbackClassName: string;
   fallbackLabel?: ReactNode;
   loading?: "eager" | "lazy";
+  priority?: boolean;
   sizes?: string;
 };
 
@@ -23,6 +24,7 @@ export default function PublicCardImage({
   fallbackClassName,
   fallbackLabel = "Image unavailable",
   loading,
+  priority = false,
   sizes = "(max-width: 640px) 42vw, (max-width: 1024px) 25vw, 220px",
 }: PublicCardImageProps) {
   const normalizedPrimary = typeof src === "string" && src.trim().length > 0 ? src.trim() : undefined;
@@ -47,7 +49,9 @@ export default function PublicCardImage({
     <Image
       src={activeSrc}
       alt={alt}
-      loading={loading}
+      loading={priority ? undefined : loading}
+      priority={priority}
+      fetchPriority={priority ? "high" : undefined}
       className={imageClassName}
       width={1200}
       height={1600}

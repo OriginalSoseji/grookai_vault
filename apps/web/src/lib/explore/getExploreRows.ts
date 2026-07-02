@@ -37,11 +37,11 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
-const SEARCH_LIMIT = 80;
-const TOKEN_SEARCH_LIMIT = 40;
+const SEARCH_LIMIT = 64;
+const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
-const SMART_FILTER_DISCOVERY_LIMIT = 500;
-const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 40;
+const SMART_FILTER_DISCOVERY_LIMIT = 160;
+const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set([
@@ -3196,7 +3196,7 @@ async function fetchLanguageScopedTextRows(
     const baseRequest = supabase
       .from("card_prints")
       .select(selectClause)
-      .limit(languageScope === "ja" ? 180 : 140);
+      .limit(languageScope === "ja" ? 96 : 80);
     const scopedRequest = applyLanguageScopeQuery(baseRequest, languageScope);
     const request =
       mode === "name"
@@ -3596,17 +3596,18 @@ export async function getExploreRowsForSmartFilterDiscovery(
         : parentRows,
     options,
   );
+  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = await getPublicPricingByCardIds(
     supabase,
-    exactRows.map((row) => row.id),
+    enrichmentRows.map((row) => row.id),
   );
   const rows = await buildExploreRows(
-    exactRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
@@ -3661,16 +3662,17 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return [];
   }
 
+  const enrichmentRows = childScopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(childScopedRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = await getPublicPricingByCardIds(
     supabase,
-    childScopedRows.map((row) => row.id),
+    enrichmentRows.map((row) => row.id),
   );
   const rows = await buildExploreRows(
-    childScopedRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
@@ -3711,17 +3713,18 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
       : applyLanguageScopeRows(parentRows, options.languageScope),
     options,
   );
+  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = await getPublicPricingByCardIds(
     supabase,
-    exactRows.map((row) => row.id),
+    enrichmentRows.map((row) => row.id),
   );
   const rows = await buildExploreRows(
-    exactRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,

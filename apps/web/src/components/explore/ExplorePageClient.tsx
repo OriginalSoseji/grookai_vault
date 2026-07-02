@@ -93,7 +93,8 @@ type AssistantBoundaryPreview = {
   message?: string;
 };
 
-const INITIAL_VISIBLE_RESULT_COUNT = 32;
+const INITIAL_VISIBLE_RESULT_COUNT = 24;
+const SEARCH_API_RESULT_LIMIT = 48;
 const CompareTray = dynamic<CompareTrayProps>(
   () => import("@/components/compare/CompareTray"),
   { ssr: false },
@@ -685,6 +686,8 @@ export default function ExplorePageClient({
           params.set("lang", languageScope);
         }
 
+        params.set("limit", String(SEARCH_API_RESULT_LIMIT));
+
         if (shouldServerFilterByIdentity) {
           params.set("identity", identityFilter);
         }
@@ -866,11 +869,13 @@ export default function ExplorePageClient({
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
       ? rows
+          .filter((row) => Boolean(row.gv_id))
           .filter((row) => matchesPublicLanguageScope(row, languageScope))
           .filter((row) =>
             matchesImageConfidenceFilter(row, imageConfidenceFilter),
           )
       : rows
+          .filter((row) => Boolean(row.gv_id))
           .filter((row) => matchesPublicLanguageScope(row, languageScope))
           .filter((row) => matchesIdentityFilter(row, identityFilter))
           .filter((row) =>
@@ -1368,45 +1373,6 @@ export default function ExplorePageClient({
       </div>
     </div>
   );
-  const presetSearchStrip = (
-    <section className="gv-collector-panel gv-search-showcase px-5 py-5 sm:px-6">
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-            Collector presets
-          </p>
-          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-            Natural-language entry points for identity, finish, ownership, image truth, and variant families.
-          </p>
-        </div>
-        <Link
-          href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
-          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
-        >
-          Try sentence search
-        </Link>
-      </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-        {COLLECTOR_SEARCH_PRESETS.map((preset) => (
-          <Link
-            key={preset.key}
-            href={buildScopedExploreHref(preset.query)}
-            className="gv-search-preset-card group p-4 text-left"
-          >
-            <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
-              {preset.title}
-            </p>
-            <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
-              {preset.description}
-            </p>
-            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 transition group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-200">
-              Open preset
-            </p>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
   const compactPresetStrip = (
     <section className="gv-command-surface px-4 py-3 sm:px-5">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -1439,21 +1405,21 @@ export default function ExplorePageClient({
 
   return (
     <div
-      className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
+      className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
       {isDiscoveryMode ? (
-        <div className="gv-collector-panel px-5 py-6 md:px-8 md:py-8">
+        <div className="gv-command-surface px-4 py-4 sm:px-5">
           <div className="space-y-1 md:hidden">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
               Discover
             </p>
-            <h1 className="text-[1.9rem] font-black tracking-tight text-slate-950 dark:text-slate-50">
-              Discover cards
+            <h1 className="text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+              Search cards
             </h1>
             <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
               Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
             </p>
-            <div className="flex flex-wrap gap-2 pt-px">
+            <div className="flex flex-wrap gap-2 pt-1">
               <Link
                 href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
                 className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
@@ -1469,19 +1435,24 @@ export default function ExplorePageClient({
             </div>
           </div>
 
-          <div className="hidden space-y-3 md:block">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-              Grookai Search
-            </p>
-            <h1 className="max-w-4xl text-[clamp(3.5rem,7vw,6.75rem)] font-black leading-[0.92] tracking-tight text-slate-950 dark:text-slate-50">
-              Search collector reality.
-            </h1>
-            <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
-              Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
-            </p>
+          <div className="hidden items-center justify-between gap-5 md:flex">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Grookai Search
+              </p>
+              <h1 className="mt-1 text-[clamp(2.25rem,4vw,3.75rem)] font-semibold leading-[0.98] tracking-normal text-slate-950 dark:text-slate-50">
+                Search collector reality.
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
+              </p>
+            </div>
+            <div className="shrink-0">
+              {languageScopeControl}
+            </div>
           </div>
 
-          <div className="mt-5 border-t border-slate-200/70 pt-4 dark:border-slate-800/70">
+          <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
             {languageScopeControl}
           </div>
         </div>
@@ -1504,11 +1475,15 @@ export default function ExplorePageClient({
         </div>
       )}
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error ? (
+        <div className="rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100">
+          Search is taking longer than expected. Narrow the query with a set code, number, language, or filter.
+        </div>
+      ) : null}
 
       {isDiscoveryMode ? (
         <>
-          {presetSearchStrip}
+          {compactPresetStrip}
           {discoveryContent}
           <CompareTray
             cards={compareCards}
@@ -2122,7 +2097,7 @@ export default function ExplorePageClient({
                 <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
                   {renderGroupHeader(group)}
                   <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
-                    {group.rows.map((row) => (
+                    {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem
                         key={getResultKey(row)}
                         card={row}
@@ -2130,6 +2105,7 @@ export default function ExplorePageClient({
                         mode="thumb-lg"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
+                        imagePriority={groupIndex === 0 && rowIndex < 6}
                       />
                     ))}
                   </div>
@@ -2144,7 +2120,7 @@ export default function ExplorePageClient({
                 <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
                   {renderGroupHeader(group)}
                   <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
-                    {group.rows.map((row) => (
+                    {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem
                         key={getResultKey(row)}
                         card={row}
@@ -2152,6 +2128,7 @@ export default function ExplorePageClient({
                         mode="thumb"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
+                        imagePriority={groupIndex === 0 && rowIndex < 8}
                       />
                     ))}
                   </div>
