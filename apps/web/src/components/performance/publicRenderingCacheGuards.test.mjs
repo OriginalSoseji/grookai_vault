@@ -96,6 +96,23 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
 });
 
+test("explore search keeps results compact and cards above supporting tools", () => {
+  const exploreClient = readSource("components", "explore", "ExplorePageClient.tsx");
+  const gridLayout = readSource("components", "cards", "pokemonCardGridLayout.ts");
+  const gridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");
+  const gridTile = readSource("components", "cards", "PokemonCardGridTile.tsx");
+
+  assert.match(gridLayout, /grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
+  assert.match(gridItem, /const density = isLarge \? "large" : "compact"/);
+  assert.match(gridItem, /typeof card\.raw_price === "number"/);
+  assert.match(gridItem, /max-w-\[180px\]/);
+  assert.match(gridTile, /compact: "p-2\.5"/);
+  assert.match(exploreClient, /const resultControls = \(/);
+  assert.match(exploreClient, /const presetPillStrip = \(/);
+  assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);
+  assert.match(exploreClient, /\{hasExplicitSmartFilters \? \(/);
+});
+
 test("japanese pikachu display keeps english primary and printed name secondary", () => {
   const displayIdentity = readSource("lib", "cards", "resolveDisplayIdentity.ts");
   const exploreGridItem = readSource("components", "explore", "ExploreCardGridItem.tsx");

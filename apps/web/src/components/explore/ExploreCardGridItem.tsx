@@ -4,7 +4,6 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
-import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
@@ -41,7 +40,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
-  const density = isLarge ? "large" : "default";
+  const density = isLarge ? "large" : "compact";
   const primaryFinishLabel = getPrimaryFinishLabel(card);
   const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
     primaryFinishLabel,
@@ -63,7 +62,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       imageSizes={
         isLarge
           ? "(max-width: 640px) 58vw, (max-width: 1024px) 34vw, 280px"
-          : "(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
+          : "(max-width: 640px) 42vw, (max-width: 1024px) 28vw, (max-width: 1536px) 20vw, 180px"
       }
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
@@ -109,8 +108,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         </>
       }
       meta={<span>{metaLine}</span>}
-      summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" /> : <LockedPrice size="grid" className="gv-hi-price" />}
-      imageClassName={isLarge ? "max-w-[280px]" : undefined}
+      summary={
+        canViewPricing && typeof card.raw_price === "number" ? (
+          <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" />
+        ) : null
+      }
+      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[180px]"}
     />
   );
 }

@@ -281,46 +281,6 @@ function getDiscoveryTitle(payload: {
   return residual || collectorLabels[0] || payload.fallback;
 }
 
-function getCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
-  if (!familyCopy) {
-    return "collector results";
-  }
-
-  if (familyCopy.variant_category.includes("stamp")) {
-    return "stamped identities";
-  }
-
-  if (familyCopy.variant_category.includes("error")) {
-    return "recognized variants";
-  }
-
-  if (familyCopy.variant_category.includes("subset")) {
-    return "subset identities";
-  }
-
-  return "collector identities";
-}
-
-function getSingularCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
-  if (!familyCopy) {
-    return "collector result";
-  }
-
-  if (familyCopy.variant_category.includes("stamp")) {
-    return "stamped identity";
-  }
-
-  if (familyCopy.variant_category.includes("error")) {
-    return "recognized variant";
-  }
-
-  if (familyCopy.variant_category.includes("subset")) {
-    return "subset identity";
-  }
-
-  return "collector identity";
-}
-
 function isCameoLabel(value?: string | null) {
   const normalized = value?.trim().toLowerCase() ?? "";
   return (
@@ -1197,20 +1157,6 @@ export default function ExplorePageClient({
     smartSearchIntent,
     fallback: "Collector discovery",
   });
-  const discoveryNoun = getCollectorObjectNoun(variantFamilyCopy);
-  const discoveryCountLabel =
-    displayRows.length === 1
-      ? `1 ${getSingularCollectorObjectNoun(variantFamilyCopy)}`
-      : `${displayRows.length} ${discoveryNoun}`;
-  const discoveryEyebrow = variantFamilyCopy
-    ? "Family identified"
-    : interpretedLabels.length > 0
-      ? "Search understood"
-      : "Collector discovery";
-  const discoveryDescription = variantFamilyCopy?.why_it_exists
-    ?? (normalizedQuery
-      ? "Grookai is using deterministic card identity, finish, set, ownership, image, and variant signals to narrow the catalog."
-      : "Search the catalog by collector language, variants, finishes, stamps, artists, ownership, and years.");
   const emptyStateTitle = ownershipRequiresSignIn
     ? "Sign in to search your vault"
     : ownershipState === "owned" && viewer.isAuthenticated
@@ -1402,6 +1348,150 @@ export default function ExplorePageClient({
       </div>
     </section>
   );
+  const resultControls = (
+    <div className="flex flex-wrap items-center gap-2">
+      <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+        <span className="hidden sm:inline">Sort</span>
+        <select
+          value={sortMode}
+          onChange={(event) =>
+            commitSortMode(event.target.value as SortMode)
+          }
+          className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+        >
+          <option value="relevance">Relevance</option>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="set_order">Set order</option>
+          <option value="number">Collector number</option>
+          <option value="value_high">Value high to low</option>
+          <option value="value_low">Value low to high</option>
+        </select>
+      </label>
+      <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+        <span className="hidden sm:inline">Image</span>
+        <select
+          value={imageConfidenceFilter}
+          onChange={(event) =>
+            commitImageConfidenceFilter(
+              event.target.value as ImageConfidenceFilter,
+            )
+          }
+          className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+          aria-label="Image confidence filter"
+        >
+          <option value="all">All images</option>
+          <option value="exact">Exact images</option>
+          <option value="representative">Representative</option>
+          <option value="missing_variant_visual">Variant pending</option>
+        </select>
+      </label>
+      <ExploreViewModeToggle
+        value={viewMode}
+        onChange={commitViewMode}
+      />
+    </div>
+  );
+  const activeFilterStrip = activeFilterChips.length > 0 ? (
+    <div className="flex flex-wrap items-center gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Filters
+      </span>
+      {activeFilterChips.map((chip) => (
+        <Link
+          key={chip.key}
+          href={chip.href}
+          className="group inline-flex max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+          aria-label={`Remove ${chip.label} filter`}
+        >
+          <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">
+            {chip.label}
+          </span>
+          <span className="truncate font-semibold">{chip.value}</span>
+          <span
+            aria-hidden="true"
+            className="rounded-full bg-slate-100 px-1.5 text-[10px] font-bold text-slate-500 transition group-hover:bg-slate-950 group-hover:text-white dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-slate-100 dark:group-hover:text-slate-950"
+          >
+            x
+          </span>
+        </Link>
+      ))}
+      {activeFilterChips.length > 1 ? (
+        <Link
+          href={buildSmartSearchRefinementHref((params) => {
+            params.delete("q");
+            params.delete("set");
+            params.delete("year");
+            params.delete("year_min");
+            params.delete("year_max");
+            params.delete("finish");
+            params.delete("stamp");
+            params.delete("owned");
+            params.delete("image_state");
+            params.delete("image");
+            params.delete("illustrator");
+            params.delete("identity");
+          })}
+          className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+        >
+          Clear all
+        </Link>
+      ) : null}
+    </div>
+  ) : null;
+  const presetPillStrip = (
+    <div className="flex gap-2 overflow-x-auto border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      <span className="inline-flex shrink-0 items-center text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Presets
+      </span>
+      <Link
+        href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+        className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+      >
+        Sentence search
+      </Link>
+      {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+        <Link
+          key={preset.key}
+          href={buildScopedExploreHref(preset.query)}
+          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+          title={preset.description}
+        >
+          {preset.title}
+        </Link>
+      ))}
+    </div>
+  );
+  const identityFilterStrip = visibleIdentityFilters.length > 1 ? (
+    <div className="flex flex-wrap gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      {visibleIdentityFilters.map((option) => {
+        const selected = identityFilter === option.key;
+        const count = identityFilterCounts[option.key];
+
+        return (
+          <button
+            key={option.key}
+            type="button"
+            onClick={() => commitIdentityFilter(option.key)}
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition ${
+              selected
+                ? "border-slate-900 bg-slate-900 text-white dark:border-slate-100 dark:bg-slate-100 dark:text-slate-950"
+                : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600"
+            }`}
+          >
+            <span>{option.label}</span>
+            {count > 0 ? (
+              <span
+                className={`text-[10px] ${selected ? "text-white/80 dark:text-slate-950/70" : "text-slate-500"}`}
+              >
+                {count}
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </div>
+  ) : null;
 
   return (
     <div
@@ -1457,22 +1547,44 @@ export default function ExplorePageClient({
           </div>
         </div>
       ) : (
-        <div className="gv-command-surface px-4 py-3 sm:px-5">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div className="min-w-0">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                Grookai Search
-              </p>
-              <h1 className="mt-1 truncate text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
-                {normalizedQuery || discoveryTitle}
-              </h1>
-              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                {resultCountLabel}
-              </p>
+        <section className="gv-command-surface px-4 py-3 sm:px-5">
+          <div className="flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                  Grookai Search
+                </p>
+                {loading && displayRows.length > 0 ? (
+                  <span className="rounded-full bg-slate-950 px-2 py-0.5 text-[10px] font-semibold text-white dark:bg-white dark:text-slate-950">
+                    Refreshing
+                  </span>
+                ) : null}
+              </div>
+              <div className="mt-1 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+                <div className="min-w-0">
+                  <h1 className="truncate text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+                    {normalizedQuery || discoveryTitle}
+                  </h1>
+                  <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+                    {resultCountLabel}
+                    {variantFamilyCopy ? (
+                      <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
+                        Source-backed family copy
+                      </span>
+                    ) : null}
+                  </p>
+                </div>
+                {resultControls}
+              </div>
             </div>
-            {languageScopeControl}
+            <div className="shrink-0">
+              {languageScopeControl}
+            </div>
           </div>
-        </div>
+          {activeFilterStrip}
+          {presetPillStrip}
+          {identityFilterStrip}
+        </section>
       )}
 
       {error ? (
@@ -1495,187 +1607,8 @@ export default function ExplorePageClient({
           />
         </>
       ) : (
-        <div className="gv-collector-search-results space-y-4">
-          <section className="gv-command-surface px-4 py-3 sm:px-5">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    {discoveryEyebrow}
-                  </span>
-                  {variantFamilyCopy?.confidence ? (
-                    <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-                      {formatFilterValue(variantFamilyCopy.confidence)}
-                    </span>
-                  ) : null}
-                  {loading && displayRows.length > 0 ? (
-                    <span className="rounded-full bg-slate-950 px-2.5 py-1 text-[11px] font-semibold text-white dark:bg-white dark:text-slate-950">
-                      Refreshing
-                    </span>
-                  ) : null}
-                </div>
-                <h2 className="mt-1 truncate text-xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
-                  {discoveryTitle}
-                </h2>
-                <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                  {variantFamilyCopy?.how_to_identify ?? discoveryDescription}
-                </p>
-              </div>
-              <div className="shrink-0 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left shadow-sm dark:border-slate-700 dark:bg-slate-900/80 lg:text-right">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                  Results
-                </p>
-                <p className="mt-1 text-2xl font-semibold text-slate-950 dark:text-slate-50">
-                  {discoveryCountLabel}
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <div className="gv-command-surface flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              {resultCountLabel}
-              {variantFamilyCopy ? (
-                <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
-                  Source-backed family copy
-                </span>
-              ) : null}
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-                <span>Sort</span>
-                <select
-                  value={sortMode}
-                  onChange={(event) =>
-                    commitSortMode(event.target.value as SortMode)
-                  }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
-                >
-                  <option value="relevance">Relevance</option>
-                  <option value="newest">Newest first</option>
-                  <option value="oldest">Oldest first</option>
-                  <option value="set_order">Set order</option>
-                  <option value="number">Collector number</option>
-                  <option value="value_high">Value high to low</option>
-                  <option value="value_low">Value low to high</option>
-                </select>
-              </label>
-              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-                <span>Image</span>
-                <select
-                  value={imageConfidenceFilter}
-                  onChange={(event) =>
-                    commitImageConfidenceFilter(
-                      event.target.value as ImageConfidenceFilter,
-                    )
-                  }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
-                  aria-label="Image confidence filter"
-                >
-                  <option value="all">All images</option>
-                  <option value="exact">Exact images</option>
-                  <option value="representative">Representative</option>
-                  <option value="missing_variant_visual">Variant pending</option>
-                </select>
-              </label>
-              <ExploreViewModeToggle
-                value={viewMode}
-                onChange={commitViewMode}
-              />
-            </div>
-          </div>
-
-          {activeFilterChips.length > 0 ? (
-            <div className="gv-command-surface px-4 py-3">
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    Active filters
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                    {activeFilterChips.length} active filter{activeFilterChips.length === 1 ? "" : "s"} narrowing {displayRows.length} result{displayRows.length === 1 ? "" : "s"}.
-                  </p>
-                </div>
-                {activeFilterChips.length > 1 ? (
-                  <Link
-                    href={buildSmartSearchRefinementHref((params) => {
-                      params.delete("q");
-                      params.delete("set");
-                      params.delete("year");
-                      params.delete("year_min");
-                      params.delete("year_max");
-                      params.delete("finish");
-                      params.delete("stamp");
-                      params.delete("owned");
-                      params.delete("image_state");
-                      params.delete("image");
-                      params.delete("illustrator");
-                      params.delete("identity");
-                    })}
-                    className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
-                  >
-                    Clear all
-                  </Link>
-                ) : null}
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {activeFilterChips.map((chip) => (
-                  <Link
-                    key={chip.key}
-                    href={chip.href}
-                    className="group inline-flex max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
-                    aria-label={`Remove ${chip.label} filter`}
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
-                      {chip.label}
-                    </span>
-                    <span className="truncate font-semibold">{chip.value}</span>
-                    <span
-                      aria-hidden="true"
-                      className="rounded-full bg-slate-100 px-1.5 text-xs font-bold text-slate-500 transition group-hover:bg-slate-950 group-hover:text-white dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-slate-100 dark:group-hover:text-slate-950"
-                    >
-                      x
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          {compactPresetStrip}
-
-          {visibleIdentityFilters.length > 1 ? (
-            <div className="gv-command-surface flex flex-wrap gap-2 px-4 py-3">
-              {visibleIdentityFilters.map((option) => {
-                const selected = identityFilter === option.key;
-                const count = identityFilterCounts[option.key];
-
-                return (
-                  <button
-                    key={option.key}
-                    type="button"
-                    onClick={() => commitIdentityFilter(option.key)}
-                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
-                      selected
-                        ? "border-slate-900 bg-slate-900 text-white"
-                        : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-                    }`}
-                  >
-                    <span>{option.label}</span>
-                    {count > 0 ? (
-                      <span
-                        className={`text-[11px] ${selected ? "text-white/80" : "text-slate-500"}`}
-                      >
-                        {count}
-                      </span>
-                    ) : null}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
-
-          {resolverSummary ? (
+        <div className="gv-collector-search-results space-y-3">
+          {resolverSummary && displayRows.length === 0 ? (
             <div
               className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}
             >
@@ -1834,8 +1767,9 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
+          {hasExplicitSmartFilters ? (
           <details
-            open={hasExplicitSmartFilters}
+            open
             className="gv-soft-surface group px-4 py-3"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
@@ -1988,6 +1922,7 @@ export default function ExplorePageClient({
               </div>
             </form>
           </details>
+          ) : null}
 
           {loading && displayRows.length === 0 ? (
             loadingState

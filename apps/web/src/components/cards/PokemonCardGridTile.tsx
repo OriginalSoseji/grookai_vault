@@ -35,19 +35,19 @@ type PokemonCardGridBadgeProps = {
 };
 
 const TILE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-3",
+  compact: "p-2.5",
   default: "p-4",
   large: "p-5",
 };
 
 const IMAGE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-3",
+  compact: "p-2",
   default: "p-4",
   large: "p-5",
 };
 
 const CONTENT_STACK_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "space-y-2.5",
+  compact: "space-y-2",
   default: "space-y-3",
   large: "space-y-3.5",
 };
@@ -59,13 +59,13 @@ const BODY_STACK_BY_DENSITY: Record<ViewDensity, string> = {
 };
 
 const TITLE_TEXT_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "text-sm",
+  compact: "text-[13px]",
   default: "text-[15px]",
   large: "text-base",
 };
 
 const SUBTITLE_TEXT_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "text-xs",
+  compact: "text-[11px]",
   default: "text-sm",
   large: "text-sm",
 };
@@ -116,8 +116,8 @@ function renderImage({
         loading={imageLoading}
         priority={imagePriority}
         sizes={imageSizes}
-        imageClassName={`aspect-[3/4] w-full rounded-[20px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[20px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+        imageClassName={`aspect-[3/4] w-full rounded-[14px] object-contain transition duration-200 group-hover:scale-[1.012] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[14px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
