@@ -32,5 +32,15 @@ export function isOwnedVaultInstanceMediaPath(
     return false;
   }
 
-  return normalized === buildVaultInstanceMediaStoragePath(userId, instanceId, side);
+  return (
+    normalized === buildVaultInstanceMediaStoragePath(userId, instanceId, side)
+  );
+}
+
+export function isVaultInstanceMediaStoragePath(value?: string | null) {
+  const normalized = normalizeVaultInstanceMediaPath(value);
+  return Boolean(
+    normalized &&
+    /(^|\/)vault-instances\/[^/]+\/(?:front|back)\/current$/i.test(normalized),
+  );
 }

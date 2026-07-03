@@ -22,6 +22,9 @@ void main() {
   final manageCardScreen = File(
     'lib/screens/vault/vault_manage_card_screen.dart',
   ).readAsStringSync();
+  final networkStreamService = File(
+    'lib/services/network/network_stream_service.dart',
+  ).readAsStringSync();
 
   test(
     'app public collector service loads Wall and sections from parity views',
@@ -32,8 +35,22 @@ void main() {
       expect(collectorService, contains("from('v_section_cards_v1')"));
       expect(collectorService, contains('loadSectionCardsBySlug'));
       expect(collectorService, contains('display_image_url'));
+      expect(collectorService, contains('_resolveVaultInstanceMediaSignedUrl'));
+      expect(collectorService, contains('createSignedUrl'));
+      expect(collectorService, contains('vault-instances'));
     },
   );
+
+  test('app network feed preserves uploaded copy display images', () {
+    expect(networkStreamService, contains('display_image_url'));
+    expect(networkStreamService, contains('display_image_kind'));
+    expect(
+      networkStreamService,
+      contains('_resolveVaultInstanceMediaSignedUrl'),
+    );
+    expect(networkStreamService, contains('createSignedUrl'));
+    expect(networkStreamService, contains('user-card-images'));
+  });
 
   test(
     'app public collector rail renders Wall first and lazy-loads sections',

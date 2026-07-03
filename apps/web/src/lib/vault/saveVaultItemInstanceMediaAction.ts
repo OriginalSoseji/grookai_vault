@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { createVaultInstanceMediaProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   isOwnedVaultInstanceMediaPath,
@@ -47,7 +48,10 @@ export async function saveVaultItemInstanceMediaAction(
   }
 
   const normalizedInstanceId = input.instanceId.trim();
-  if (!normalizedInstanceId || (input.side !== "front" && input.side !== "back")) {
+  if (
+    !normalizedInstanceId ||
+    (input.side !== "front" && input.side !== "back")
+  ) {
     return {
       ok: false,
       instanceId: input.instanceId,
@@ -58,7 +62,7 @@ export async function saveVaultItemInstanceMediaAction(
 
   const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
-    .select("id,user_id,archived_at,gv_vi_id")
+    .select("id,user_id,archived_at,gv_vi_id,card_print_id")
     .eq("id", normalizedInstanceId)
     .eq("user_id", user.id)
     .is("archived_at", null)
@@ -75,7 +79,12 @@ export async function saveVaultItemInstanceMediaAction(
 
   if (
     input.storagePath &&
-    !isOwnedVaultInstanceMediaPath(user.id, normalizedInstanceId, input.side, input.storagePath)
+    !isOwnedVaultInstanceMediaPath(
+      user.id,
+      normalizedInstanceId,
+      input.side,
+      input.storagePath,
+    )
   ) {
     return {
       ok: false,
@@ -86,23 +95,33 @@ export async function saveVaultItemInstanceMediaAction(
   }
 
   const imageField = input.side === "front" ? "image_url" : "image_back_url";
-  const sourceField = input.side === "front" ? "image_source" : "image_back_source";
+  const sourceField =
+    input.side === "front" ? "image_source" : "image_back_source";
 
   let result: Extract<SaveVaultItemInstanceMediaResult, { ok: true }>;
 
   try {
-    result = await executeOwnerWriteV1<Extract<SaveVaultItemInstanceMediaResult, { ok: true }>>({
+    result = await executeOwnerWriteV1<
+      Extract<SaveVaultItemInstanceMediaResult, { ok: true }>
+    >({
       execution_name: "save_vault_item_instance_media",
       actor_id: user.id,
       write: async (context) => {
         context.setMetadata("source", "saveVaultItemInstanceMediaAction");
 
+        const updatePayload: Record<string, string | null> = {
+          [imageField]: input.storagePath,
+          [sourceField]: input.storagePath ? "user_photo" : null,
+        };
+        if (input.side === "front") {
+          updatePayload.image_display_mode = input.storagePath
+            ? "uploaded"
+            : "canonical";
+        }
+
         const { data, error } = await context.adminClient
           .from("vault_item_instances")
-          .update({
-            [imageField]: input.storagePath,
-            [sourceField]: input.storagePath ? "user_photo" : null,
-          })
+          .update(updatePayload)
           .eq("id", normalizedInstanceId)
           .eq("user_id", user.id)
           .is("archived_at", null)
@@ -137,11 +156,45 @@ export async function saveVaultItemInstanceMediaAction(
     };
   }
 
-  const gvviId = typeof instance.gv_vi_id === "string" ? instance.gv_vi_id.trim() : null;
+  const gvviId =
+    typeof instance.gv_vi_id === "string" ? instance.gv_vi_id.trim() : null;
   revalidatePath("/vault");
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
     revalidatePath(`/gvvi/${gvviId}`);
+  }
+
+  const cardPrintId =
+    typeof instance.card_print_id === "string"
+      ? instance.card_print_id.trim()
+      : null;
+  const admin = createServerAdminClient();
+  const [{ data: profileData }, { data: cardPrintData }] = await Promise.all([
+    admin
+      .from("public_profiles")
+      .select("slug")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    cardPrintId
+      ? admin
+          .from("card_prints")
+          .select("gv_id")
+          .eq("id", cardPrintId)
+          .maybeSingle()
+      : Promise.resolve({ data: null }),
+  ]);
+  const slug =
+    typeof profileData?.slug === "string" ? profileData.slug.trim() : null;
+  if (slug) {
+    revalidatePath(`/u/${slug}`);
+    revalidatePath(`/u/${slug}/collection`);
+  }
+  const gvId =
+    typeof cardPrintData?.gv_id === "string"
+      ? cardPrintData.gv_id.trim()
+      : null;
+  if (gvId) {
+    revalidatePath(`/card/${gvId}`);
   }
 
   return {

@@ -11,6 +11,8 @@ import {
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
+import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
+import { isVaultInstanceMediaStoragePath } from "@/lib/vaultInstanceMedia";
 import {
   normalizeDiscoverableVaultIntent,
   type DiscoverableVaultIntent,
@@ -166,6 +168,19 @@ function normalizeGradeValue(value: number | string | null | undefined) {
   return normalizeOptionalText(value);
 }
 
+async function resolvePublicImageValue(value: string | null | undefined) {
+  const normalized = normalizeOptionalText(value);
+  if (!normalized) {
+    return null;
+  }
+
+  if (!isVaultInstanceMediaStoragePath(normalized)) {
+    return normalized;
+  }
+
+  return (await resolveVaultInstanceMediaUrl(normalized)) ?? normalized;
+}
+
 function compareCreatedAtDescending(left: string | null, right: string | null) {
   const leftTime = left ? Date.parse(left) : Number.NEGATIVE_INFINITY;
   const rightTime = right ? Date.parse(right) : Number.NEGATIVE_INFINITY;
@@ -176,10 +191,10 @@ function buildGroupKey(ownerUserId: string, cardPrintId: string) {
   return `${ownerUserId}:${cardPrintId}`;
 }
 
-function normalizeRow(
+async function normalizeRow(
   row: CardStreamSourceRow,
   identityByCardPrintId: Map<string, CardStreamIdentityRow>,
-): CardStreamRow | null {
+): Promise<CardStreamRow | null> {
   const vaultItemId = normalizeOptionalText(row.vault_item_id);
   const ownerUserId = normalizeOptionalText(row.owner_user_id);
   const ownerSlug = normalizeOptionalText(row.owner_slug);
@@ -188,16 +203,28 @@ function normalizeRow(
   const intent = normalizeDiscoverableVaultIntent(row.intent);
   const gvId = normalizeOptionalText(row.gv_id);
 
-  if (!vaultItemId || !ownerUserId || !ownerSlug || !ownerDisplayName || !cardPrintId || !gvId) {
+  if (
+    !vaultItemId ||
+    !ownerUserId ||
+    !ownerSlug ||
+    !ownerDisplayName ||
+    !cardPrintId ||
+    !gvId
+  ) {
     return null;
   }
 
   const inPlayCount = Math.max(1, row.in_play_count ?? row.quantity ?? 1);
   const identityRow = identityByCardPrintId.get(cardPrintId);
-  const setRecord = Array.isArray(identityRow?.sets) ? identityRow.sets[0] : identityRow?.sets;
+  const setRecord = Array.isArray(identityRow?.sets)
+    ? identityRow.sets[0]
+    : identityRow?.sets;
   const displayImageUrl = resolveDisplayImageUrl({
-    display_image_url: row.display_image_url ?? identityRow?.display_image_url,
-    image_url: row.image_url ?? identityRow?.image_url,
+    display_image_url:
+      (await resolvePublicImageValue(row.display_image_url)) ??
+      identityRow?.display_image_url,
+    image_url:
+      (await resolvePublicImageValue(row.image_url)) ?? identityRow?.image_url,
     image_alt_url: identityRow?.image_alt_url,
     representative_image_url: identityRow?.representative_image_url,
   });
@@ -225,13 +252,19 @@ function normalizeRow(
     gvId,
     name: normalizeOptionalText(row.name) ?? "Unknown card",
     setCode: normalizeOptionalText(row.set_code) ?? "Unknown set",
-    setName: normalizeOptionalText(row.set_name) ?? normalizeOptionalText(row.set_code) ?? "Unknown set",
+    setName:
+      normalizeOptionalText(row.set_name) ??
+      normalizeOptionalText(row.set_code) ??
+      "Unknown set",
     number: normalizeOptionalText(row.number) ?? "—",
     variantKey: normalizeOptionalText(identityRow?.variant_key),
-    printedIdentityModifier: normalizeOptionalText(identityRow?.printed_identity_modifier),
+    printedIdentityModifier: normalizeOptionalText(
+      identityRow?.printed_identity_modifier,
+    ),
     setIdentityModel: normalizeOptionalText(setRecord?.identity_model),
     imageUrl: displayImageUrl,
-    displayImageKind: row.display_image_kind ?? identityRow?.display_image_kind ?? null,
+    displayImageKind:
+      row.display_image_kind ?? identityRow?.display_image_kind ?? null,
     imageStatus: normalizeOptionalText(identityRow?.image_status),
     imageNote: normalizeOptionalText(identityRow?.image_note),
     inPlayCopies: [],
@@ -240,7 +273,13 @@ function normalizeRow(
 
 async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
   const client = createPublicServerClient();
-  const normalizedIds = Array.from(new Set(cardPrintIds.map((value) => normalizeOptionalText(value)).filter((value): value is string => Boolean(value))));
+  const normalizedIds = Array.from(
+    new Set(
+      cardPrintIds
+        .map((value) => normalizeOptionalText(value))
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
   const identityByCardPrintId = new Map<string, CardStreamIdentityRow>();
 
   for (let index = 0; index < normalizedIds.length; index += 500) {
@@ -253,7 +292,9 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
       .in("id", batch);
 
     if (error) {
-      throw new Error(`[network:stream] card identity lookup failed: ${error.message}`);
+      throw new Error(
+        `[network:stream] card identity lookup failed: ${error.message}`,
+      );
     }
 
     const identityRows = (data ?? []) as CardStreamIdentityRow[];
@@ -295,7 +336,9 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
 
 async function fetchInPlayCopies(rows: CardStreamRow[]) {
   const admin = createServerAdminClient();
-  const requestedGroupKeys = new Set(rows.map((row) => buildGroupKey(row.ownerUserId, row.cardPrintId)));
+  const requestedGroupKeys = new Set(
+    rows.map((row) => buildGroupKey(row.ownerUserId, row.cardPrintId)),
+  );
   const ownerUserIds = Array.from(new Set(rows.map((row) => row.ownerUserId)));
 
   if (ownerUserIds.length === 0 || requestedGroupKeys.size === 0) {
@@ -314,7 +357,9 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     .order("id", { ascending: false });
 
   if (instancesError) {
-    throw new Error(`[network:stream] copy drilldown query failed: ${instancesError.message}`);
+    throw new Error(
+      `[network:stream] copy drilldown query failed: ${instancesError.message}`,
+    );
   }
 
   const slabCertIds = Array.from(
@@ -333,7 +378,9 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
       .in("id", slabCertIds);
 
     if (slabCertsError) {
-      throw new Error(`[network:stream] slab cert metadata query failed: ${slabCertsError.message}`);
+      throw new Error(
+        `[network:stream] slab cert metadata query failed: ${slabCertsError.message}`,
+      );
     }
 
     for (const row of (slabCerts ?? []) as SlabCertMetadataRow[]) {
@@ -353,7 +400,8 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
       ? slabCertById.get(normalizeOptionalText(row.slab_cert_id)!)
       : null;
     const cardPrintId =
-      normalizeOptionalText(row.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
+      normalizeOptionalText(row.card_print_id) ??
+      normalizeOptionalText(slabCert?.card_print_id);
     const intent = normalizeDiscoverableVaultIntent(row.intent);
 
     if (!ownerUserId || !vaultItemId || !cardPrintId || !intent) {
@@ -373,8 +421,12 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
       intent,
       conditionLabel: normalizeOptionalText(row.condition_label),
       isGraded: row.is_graded === true,
-      gradeCompany: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
-      gradeValue: normalizeGradeValue(slabCert?.grade) ?? normalizeOptionalText(row.grade_value),
+      gradeCompany:
+        normalizeOptionalText(slabCert?.grader) ??
+        normalizeOptionalText(row.grade_company),
+      gradeValue:
+        normalizeGradeValue(slabCert?.grade) ??
+        normalizeOptionalText(row.grade_value),
       gradeLabel: normalizeOptionalText(row.grade_label),
       certNumber: normalizeOptionalText(slabCert?.cert_number),
       createdAt: row.created_at ?? null,
@@ -385,7 +437,9 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
   for (const [groupKey, copies] of copiesByGroupKey.entries()) {
     copiesByGroupKey.set(
       groupKey,
-      [...copies].sort((left, right) => compareCreatedAtDescending(left.createdAt, right.createdAt)),
+      [...copies].sort((left, right) =>
+        compareCreatedAtDescending(left.createdAt, right.createdAt),
+      ),
     );
   }
 
@@ -408,7 +462,7 @@ export async function getCardStreamRows({
     .from("v_card_stream_v1")
     // LOCK: Stream rows are compatibility input; display image precedence is applied after card_prints enrichment.
     .select(
-      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
+      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
     )
     .order("created_at", { ascending: false })
     .order("vault_item_id", { ascending: false })
@@ -428,22 +482,31 @@ export async function getCardStreamRows({
 
   const { data, error } = await query;
   if (error) {
-    throw new Error(`[network:stream] card stream query failed: ${error.message}`);
+    throw new Error(
+      `[network:stream] card stream query failed: ${error.message}`,
+    );
   }
 
   const sourceRows = (data ?? []) as CardStreamSourceRow[];
   const identityByCardPrintId = await fetchCardStreamIdentityMap(
     sourceRows
       .map((row) => row.card_print_id)
-      .filter((value): value is string => typeof value === "string" && value.trim().length > 0),
+      .filter(
+        (value): value is string =>
+          typeof value === "string" && value.trim().length > 0,
+      ),
   );
-  const rows = sourceRows
-    .map((row) => normalizeRow(row, identityByCardPrintId))
-    .filter((row): row is CardStreamRow => row !== null);
+  const rows = (
+    await Promise.all(
+      sourceRows.map((row) => normalizeRow(row, identityByCardPrintId)),
+    )
+  ).filter((row): row is CardStreamRow => row !== null);
   const copiesByGroupKey = await fetchInPlayCopies(rows);
 
   return rows.map((row) => ({
     ...row,
-    inPlayCopies: copiesByGroupKey.get(buildGroupKey(row.ownerUserId, row.cardPrintId)) ?? [],
+    inPlayCopies:
+      copiesByGroupKey.get(buildGroupKey(row.ownerUserId, row.cardPrintId)) ??
+      [],
   }));
 }
