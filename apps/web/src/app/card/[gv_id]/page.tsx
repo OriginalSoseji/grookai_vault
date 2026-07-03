@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, type ComponentProps } from "react";
 import Link from "next/link";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
@@ -43,14 +43,16 @@ import {
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
-import { getCardPricingUiRowsByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
-import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
+import {
+  getOwnedPrintingCountsByCardPrintIds,
+  type OwnedPrintingCountsByCardPrintId,
+} from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 import type { CardCameo, CardDetail, RelatedCardPrint } from "@/types/cards";
@@ -763,17 +765,20 @@ export default async function CardPage({
   };
   let conditionSnapshots: ConditionSnapshotListItem[] = [];
   let assignmentCandidatesBySnapshotId: Record<string, AssignmentCandidate[]> = {};
+  let ownedPrintingCounts: OwnedPrintingCountsByCardPrintId = new Map();
 
   const signedInDataStartedAt = performance.now();
   if (user && resolvedCard.id) {
     try {
-      const [ownershipSummary, snapshots] = await Promise.all([
+      const [ownershipSummary, snapshots, printingCounts] = await Promise.all([
         getOwnedObjectSummaryForCard(user.id, resolvedCard.id),
         getConditionSnapshotsForCard(user.id, resolvedCard.id),
+        getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id]),
       ]);
       ownedObjectSummary = ownershipSummary;
       vaultCount = ownershipSummary.totalCount;
       conditionSnapshots = snapshots;
+      ownedPrintingCounts = printingCounts;
 
       const unassignedSnapshots = snapshots.filter((snapshot) => snapshot.assignment_state === "unassigned");
       if (unassignedSnapshots.length > 0) {
@@ -807,16 +812,12 @@ export default async function CardPage({
   const signedInDataMs = roundPerfMs(performance.now() - signedInDataStartedAt);
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
-  const canViewPricing = Boolean(user);
   const pricingStartedAt = performance.now();
-  const [pricingRecords, ownedPrintingCounts] = await Promise.all([
-    canViewPricing && resolvedCard.id ? getCardPricingUiRowsByCardPrintId(resolvedCard.id) : Promise.resolve([]),
-    user && resolvedCard.id
-      ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
-      : Promise.resolve(new Map()),
-  ]);
+  // Pricing is intentionally client-loaded for signed-in collectors so exact
+  // card identity, hero image, and vault actions are not blocked by market RPCs.
+  const pricingRecords: ComponentProps<typeof CardPageMarketVaultPanels>["pricingRecords"] = [];
   const pricingMs = roundPerfMs(performance.now() - pricingStartedAt);
-  const pricingUi = pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null;
+  const pricingUi = null;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const setCodeLabel = resolvedCard.set_code?.trim().toUpperCase();

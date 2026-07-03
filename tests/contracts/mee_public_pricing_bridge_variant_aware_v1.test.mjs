@@ -84,10 +84,11 @@ test("readback includes Arceus Charizard variant regression and boundary guards"
   assert.match(readback, /assigned_finish_key/);
 });
 
-test("card detail pricing reads one parent-plus-variant bundle", () => {
+test("card detail pricing client-loads one parent-plus-variant bundle", () => {
   const helper = read(helperPath);
   const route = read(routePath);
   const page = read(cardPagePath);
+  const rail = read(railPath);
 
   assert.match(helper, /\.rpc\("get_market_evidence_public_pricing_bridge_variant_aware_v1"/);
   assert.match(helper, /getCardPricingUiRowsByCardPrintIdWithClient/);
@@ -97,8 +98,11 @@ test("card detail pricing reads one parent-plus-variant bundle", () => {
   assert.match(helper, /createServerAdminClient/);
   assert.match(route, /pricingRecords/);
   assert.match(route, /getCardPricingUiRowsByCardPrintIdWithClient/);
-  assert.match(page, /getCardPricingUiRowsByCardPrintId/);
+  assert.doesNotMatch(page, /getCardPricingUiRowsByCardPrintId/);
+  assert.match(page, /Pricing is intentionally client-loaded/);
   assert.match(page, /pricingRecords=\{pricingRecords\}/);
+  assert.match(rail, /\/api\/card-pricing\?/);
+  assert.match(rail, /isLoadingPricing && !selectedPricing/);
 });
 
 test("variant selector drives pricing rail without per-click pricing fetches", () => {
