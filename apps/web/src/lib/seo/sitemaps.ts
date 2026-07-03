@@ -2,7 +2,6 @@ import "server-only";
 
 import { NextResponse } from "next/server";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
-import { getPublicSets } from "@/lib/publicSets";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 const BASE_URL = "https://grookaivault.com";
@@ -16,7 +15,7 @@ type CardSitemapRow = {
   updated_at: string | null;
 };
 
-type SetTimestampRow = {
+type SetSitemapRow = {
   code: string | null;
   updated_at: string | null;
 };
@@ -139,31 +138,23 @@ export async function getCardSitemapEntries(pageIndex: number) {
 export async function getSetSitemapEntries() {
   const origin = getSitemapOrigin();
   const admin = createServerAdminClient();
-  const publicSets = await getPublicSets();
-  const setTimestampsByCode = new Map<string, string | null>();
-  const setCodes = publicSets.map((setInfo) => setInfo.code).filter(Boolean);
 
-  if (setCodes.length > 0) {
-    const { data, error } = await admin
-      .from("sets")
-      .select("code,updated_at")
-      .in("code", setCodes);
+  const { data, error } = await admin
+    .from("sets")
+    .select("code,updated_at")
+    .not("code", "is", null)
+    .order("code", { ascending: true });
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    for (const row of (data ?? []) as SetTimestampRow[]) {
-      if (row.code) {
-        setTimestampsByCode.set(row.code, row.updated_at ?? null);
-      }
-    }
+  if (error) {
+    throw new Error(error.message);
   }
 
-  return publicSets.map((setInfo) => ({
-    loc: `${origin}/sets/${encodeURIComponent(setInfo.code)}`,
-    lastmod: setTimestampsByCode.get(setInfo.code),
-  }));
+  return ((data ?? []) as SetSitemapRow[])
+    .filter((setInfo): setInfo is SetSitemapRow & { code: string } => Boolean(setInfo.code))
+    .map((setInfo) => ({
+      loc: `${origin}/sets/${encodeURIComponent(setInfo.code)}`,
+      lastmod: setInfo.updated_at,
+    }));
 }
 
 export async function getPublicProfileSitemapEntries() {

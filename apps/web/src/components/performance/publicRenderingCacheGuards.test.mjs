@@ -190,6 +190,7 @@ test("card detail streams lower panels after exact card information", () => {
   const cardZoomModal = readSource("components", "compare", "CardZoomModal.tsx");
   const cardPerfProbe = readSource("components", "performance", "CardPagePerformanceProbe.tsx");
   const pricingRail = readSource("components", "pricing", "CardPagePricingRail.tsx");
+  const cardPricingRoute = readSource("app", "api", "card-pricing", "route.ts");
   const serverSupabase = readSource("lib", "supabase", "server.ts");
 
   assert.match(cardPage, /const card = await getPublicCardByGvId\(params\.gv_id, \{/);
@@ -199,8 +200,10 @@ test("card detail streams lower panels after exact card information", () => {
   assert.match(cardPage, /hasSupabaseServerAuthCookie/);
   assert.match(cardPage, /shouldReadAuthenticatedState\s*\?\s*await supabase\.auth\.getUser\(\)/);
   assert.doesNotMatch(cardPage, /getSetLogoAssetPathMap/);
-  assert.match(cardPage, /getCardPricingUiRowsByCardPrintId/);
   assert.match(cardPage, /pricingRecords=\{pricingRecords\}/);
+  assert.doesNotMatch(cardPage, /getCardPricingUiRowsByCardPrintId/);
+  assert.match(cardPage, /Pricing is intentionally client-loaded/);
+  assert.match(cardPricingRoute, /getCardPricingUiRowsByCardPrintIdWithClient/);
   assert.match(cardPage, /<CardZoomModal[\s\S]*priority/);
   assert.match(cardZoomModal, /priority = false/);
   assert.match(cardZoomModal, /priority=\{priority\}/);
