@@ -265,6 +265,13 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   assert.match(middleware, /retired_id_registry_probe/);
   assert.match(middleware, /api_request_volume/);
   assert.match(middleware, /possible_card_id_walking/);
+  assert.match(middleware, /UPSTASH_REDIS_REST_URL/);
+  assert.match(middleware, /UPSTASH_REDIS_REST_TOKEN/);
+  assert.match(middleware, /GROOKAI_RATE_LIMIT_REDIS_PREFIX/);
+  assert.match(middleware, /crypto\.subtle\.digest/);
+  assert.match(middleware, /incrementDurableRateLimit/);
+  assert.match(middleware, /incrementMemoryRateLimit/);
+  assert.match(middleware, /rate_limit_source/);
   assert.match(middleware, /process\.env\.NODE_ENV !== "production"/);
   assert.match(middleware, /status: 429/);
   assert.match(middleware, /"Retry-After"/);
