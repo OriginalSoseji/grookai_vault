@@ -1,8 +1,8 @@
 # IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
 
-- Generated: 2026-06-24T18:06:12.183Z
+- Generated: 2026-07-03T04:43:38.935Z
 - Mode: read_only_final_state_scan_no_write
-- Fingerprint: `0c6104f997623cf82f28183e2d0773124d0264927e8d61b5642cd2e14b136e85`
+- Fingerprint: `50c2b09b787ebf2f3711f162eb8fa5698a1ce8e19048f2c04ee3ebb654e9be9c`
 - Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
 - DB writes performed: false
 - Storage writes performed: false
@@ -12,28 +12,28 @@
 
 ## Core Coverage
 
-- Parent rows scanned: 27266
-- Parent rows with any image field: 27239
-- Parent rows with self-hosted image_path: 27192
-- Parent rows without any image field: 27
-- Parent weak-status rows: 473
-- English physical parent rows: 25254
-- English physical parent image gaps: 0
+- Parent rows scanned: 53147
+- Parent rows with any image field: 53058
+- Parent rows with self-hosted image_path: 53011
+- Parent rows without any image field: 89
+- Parent weak-status rows: 535
+- English physical parent rows: 51135
+- English physical parent image gaps: 62
 - TCG Pocket excluded parent rows: 2012
 - TCG Pocket excluded parent image gaps: 27
-- Child rows scanned: 44137
-- Child rows with any image field: 1058
-- Child rows with self-hosted image_path: 390
+- Child rows scanned: 69956
+- Child rows with any image field: 26877
+- Child rows with self-hosted image_path: 26209
 - Child rows without any image field: 43079
 - Child weak-status rows: 42741
 
 ## Priority Lanes
 
-- Priority parent rows: 2933
+- Priority parent rows: 2951
 - Priority parent image gaps: 0
-- Priority child rows: 706
+- Priority child rows: 724
 - Priority child image gaps: 0
-- McDonald's parent rows: 191
+- McDonald's parent rows: 209
 - McDonald's parent image gaps: 0
 - McDonald's parent rows without self-hosted image_path: 0
 - Trainer Kit parent rows: 450
@@ -58,10 +58,10 @@
 
 | key | count |
 | --- | ---: |
-| exact | 23019 |
+| exact | 48838 |
 | representative_shared | 2395 |
 | representative_shared_stamp | 1373 |
-| unknown | 328 |
+| unknown | 390 |
 | missing | 145 |
 | representative_shared_collision | 6 |
 
@@ -70,26 +70,36 @@
 | key | count |
 | --- | ---: |
 | unknown | 42741 |
+| exact | 25908 |
 | representative_shared | 997 |
 | representative_shared_stamp | 305 |
-| exact | 89 |
 | exact_parent_image | 5 |
 
 ## Parent Gap Sets
 
 | key | count |
 | --- | ---: |
+| jpn-DP1 | 37 |
 | unknown | 27 |
+| jpn-XY6 | 11 |
+| jpn-XY7 | 11 |
+| jpn-HSP | 3 |
 
 ## Parent Gap Scope
 
 | key | count |
 | --- | ---: |
+| english_physical | 62 |
 | tcg_pocket_excluded | 27 |
 
 ## English Physical Parent Gap Sets
 
-_None._
+| key | count |
+| --- | ---: |
+| jpn-DP1 | 37 |
+| jpn-XY6 | 11 |
+| jpn-XY7 | 11 |
+| jpn-HSP | 3 |
 
 ## TCG Pocket Excluded Parent Gap Sets
 

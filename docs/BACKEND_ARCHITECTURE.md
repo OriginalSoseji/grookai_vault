@@ -30,7 +30,8 @@ Build Grookai Vault as an enterprise-grade SaaS platform that a single person ca
 - Workers import the shared client from `backend/supabase_backend_client.mjs`.
 - No backend path uses raw HTTP to Supabase or Edge functions for core logic.
 - Example entries:
-  - `backend/pricing/import_prices_worker.mjs`
+  - `backend/pricing/pricing_job_runner_v1.mjs`
+  - `backend/pricing/ebay_browse_prices_worker.mjs`
   - `backend/infra/system_health_worker.mjs`
 
 ## Edge Functions
@@ -53,8 +54,8 @@ Build Grookai Vault as an enterprise-grade SaaS platform that a single person ca
 - Example:
 
 ```yaml
-- name: Import Prices Worker (Tunnel)
-  run: node backend/pricing/import_prices_worker.mjs
+- name: Pricing Job Runner
+  run: npm run pricing:worker:once --prefix backend
   env:
     SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
     SUPABASE_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
@@ -63,7 +64,7 @@ Build Grookai Vault as an enterprise-grade SaaS platform that a single person ca
 ## Naming Conventions
 
 - Slugs: kebab-case with versioning when needed (e.g., `import-prices-v3`).
-- Workers: `backend/<domain>/<worker>.mjs` (e.g., `backend/pricing/import_prices_worker.mjs`).
+- Workers: `backend/<domain>/<worker>.mjs` (e.g., `backend/pricing/pricing_job_runner_v1.mjs`).
 - Scripts: `scripts/run_<worker>.ps1` (e.g., `scripts/run_system_health_worker.ps1`).
 - Env: `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `BRIDGE_*`.
 
@@ -78,4 +79,3 @@ Build Grookai Vault as an enterprise-grade SaaS platform that a single person ca
 ---
 
 This document is the single source of truth for backend architecture decisions in Grookai Vault. All new backend work should align with the lanes/highway model and use the shared backend client.
-

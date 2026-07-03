@@ -17,7 +17,8 @@ Backend workers are the private highway for Grookai Vault. They execute pricing,
 backend/
   supabase_backend_client.mjs
   pricing/
-    import_prices_worker.mjs
+    pricing_job_runner_v1.mjs
+    ebay_browse_prices_worker.mjs
   infra/
     system_health_worker.mjs
   jobs/
@@ -101,8 +102,8 @@ Adopt the prefix `[domain-worker]` consistently per worker type.
 Use Node workers directly (tunnel/highway), not HTTP:
 
 ```yaml
-- name: Import Prices Worker (Tunnel)
-  run: node backend/pricing/import_prices_worker.mjs
+- name: Pricing Job Runner
+  run: npm run pricing:worker:once --prefix backend
   env:
     SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
     SUPABASE_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
@@ -124,4 +125,3 @@ Use Node workers directly (tunnel/highway), not HTTP:
 ---
 
 This guide complements `docs/BACKEND_ARCHITECTURE.md` and provides the practical patterns for creating, running, and integrating backend workers in Grookai Vault.
-

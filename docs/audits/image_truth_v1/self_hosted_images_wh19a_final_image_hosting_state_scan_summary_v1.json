@@ -1,26 +1,26 @@
 {
   "package_id": "IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN",
-  "generated_at": "2026-06-24T18:06:12.183Z",
+  "generated_at": "2026-07-03T04:43:38.935Z",
   "mode": "read_only_final_state_scan_no_write",
   "self_hosted_storage_path_prefix": "warehouse-derived/self-hosted-images-v1/",
   "metrics": {
-    "parent_rows_scanned": 27266,
-    "parent_rows_with_any_image_field": 27239,
-    "parent_rows_with_self_hosted_image_path": 27192,
-    "parent_rows_without_any_image_field": 27,
-    "parent_weak_status_rows": 473,
-    "english_physical_parent_rows": 25254,
-    "english_physical_parent_rows_without_any_image_field": 0,
+    "parent_rows_scanned": 53147,
+    "parent_rows_with_any_image_field": 53058,
+    "parent_rows_with_self_hosted_image_path": 53011,
+    "parent_rows_without_any_image_field": 89,
+    "parent_weak_status_rows": 535,
+    "english_physical_parent_rows": 51135,
+    "english_physical_parent_rows_without_any_image_field": 62,
     "tcg_pocket_excluded_parent_rows": 2012,
     "tcg_pocket_excluded_parent_rows_without_any_image_field": 27,
-    "child_rows_scanned": 44137,
-    "child_rows_with_any_image_field": 1058,
-    "child_rows_with_self_hosted_image_path": 390,
+    "child_rows_scanned": 69956,
+    "child_rows_with_any_image_field": 26877,
+    "child_rows_with_self_hosted_image_path": 26209,
     "child_rows_without_any_image_field": 43079,
     "child_weak_status_rows": 42741,
-    "priority_parent_rows": 2933,
+    "priority_parent_rows": 2951,
     "priority_parent_rows_without_any_image_field": 0,
-    "priority_child_rows": 706,
+    "priority_child_rows": 724,
     "priority_child_rows_without_any_image_field": 0,
     "world_championship_parent_rows": 1944,
     "world_championship_parent_rows_exact": 386,
@@ -31,7 +31,7 @@
     "world_championship_sets_with_60_card_deck_quantity_total": 80,
     "world_championship_sets_without_60_card_deck_quantity_total": 0,
     "world_championship_deck_quantity_sum_from_card_rows": 4800,
-    "mcdonalds_parent_rows": 191,
+    "mcdonalds_parent_rows": 209,
     "mcdonalds_parent_rows_without_any_image_field": 0,
     "mcdonalds_parent_rows_without_self_hosted_image_path": 0,
     "trainer_kit_parent_rows": 450,
@@ -41,55 +41,89 @@
     "base_set_print_run_lane_parent_rows_without_any_image_field": 0
   },
   "parent_image_status_counts": {
-    "exact": 23019,
+    "exact": 48838,
     "missing": 145,
     "representative_shared": 2395,
     "representative_shared_collision": 6,
     "representative_shared_stamp": 1373,
-    "unknown": 328
+    "unknown": 390
   },
   "child_image_status_counts": {
-    "exact": 89,
+    "exact": 25908,
     "exact_parent_image": 5,
     "representative_shared": 997,
     "representative_shared_stamp": 305,
     "unknown": 42741
   },
   "parent_image_source_counts": {
-    "identity": 27215,
+    "identity": 53034,
     "tcgdex": 2,
-    "unknown": 49
+    "unknown": 111
   },
   "child_image_source_counts": {
-    "identity": 1053,
+    "identity": 26872,
     "tcgdex": 5,
     "unknown": 43079
   },
   "parent_family_counts": {
     "base_set_print_run_lane": 314,
-    "mcdonalds": 191,
+    "mcdonalds": 209,
     "my_first_battle": 34,
-    "other": 24333,
+    "other": 50196,
     "trainer_kit": 450,
     "world_championship_deck": 1944
   },
   "child_family_counts": {
     "base_set_print_run_lane": 10,
-    "mcdonalds": 216,
+    "mcdonalds": 234,
     "my_first_battle": 34,
-    "other": 43431,
+    "other": 69232,
     "trainer_kit": 446
   },
   "parent_gap_scope_counts": {
+    "english_physical": 62,
     "tcg_pocket_excluded": 27
   },
   "parent_gap_sets_top_50": [
     {
+      "key": "jpn-DP1",
+      "count": 37
+    },
+    {
       "key": "unknown",
       "count": 27
+    },
+    {
+      "key": "jpn-XY6",
+      "count": 11
+    },
+    {
+      "key": "jpn-XY7",
+      "count": 11
+    },
+    {
+      "key": "jpn-HSP",
+      "count": 3
     }
   ],
-  "english_physical_parent_gap_sets_top_50": [],
+  "english_physical_parent_gap_sets_top_50": [
+    {
+      "key": "jpn-DP1",
+      "count": 37
+    },
+    {
+      "key": "jpn-XY6",
+      "count": 11
+    },
+    {
+      "key": "jpn-XY7",
+      "count": 11
+    },
+    {
+      "key": "jpn-HSP",
+      "count": 3
+    }
+  ],
   "tcg_pocket_excluded_parent_gap_sets_top_50": [
     {
       "key": "unknown",
@@ -741,7 +775,358 @@
         "image_note": null
       }
     ],
-    "english_physical_parent_rows_without_any_image_field": [],
+    "english_physical_parent_rows_without_any_image_field": [
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ケムッソ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "002",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "カラサリス",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "003",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "アゲハント",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "004",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "マユルド",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "005",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ドクケイル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "006",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "タネボー",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "007",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "スボミー",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "008",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ロゼリア",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "009",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ロズレイド",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "010",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ナエトル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "011",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ハヤシガメ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "012",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ドダイトス",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "013",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ドダイトス",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "014",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ミツハニー",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "015",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ビークイン",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "016",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "チェリンボ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "017",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "チェリム",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "018",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "マスキッパ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "019",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ポニータ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "020",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ギャロップ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "021",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ヒコザル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "022",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "モウカザル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "023",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ゴウカザル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "024",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ゴウカザル",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "025",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "トサキント",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "026",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
+        "image_note": null
+      }
+    ],
     "tcg_pocket_excluded_parent_rows_without_any_image_field": [
       {
         "gv_id": "GV-TCGP-P-A-99",
@@ -1455,5 +1840,5 @@
   "migrations_created": false,
   "exact_image_claim_changes_performed": false,
   "global_apply_performed": false,
-  "fingerprint": "0c6104f997623cf82f28183e2d0773124d0264927e8d61b5642cd2e14b136e85"
+  "fingerprint": "50c2b09b787ebf2f3711f162eb8fa5698a1ce8e19048f2c04ee3ebb654e9be9c"
 }

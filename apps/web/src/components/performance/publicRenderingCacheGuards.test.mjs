@@ -68,10 +68,12 @@ test("public card image chooses an initial source before hydration", () => {
   const nextConfig = readFileSync(join(sourceRoot, "..", "next.config.mjs"), "utf8");
 
   assert.match(publicCardImage, /const initialSrc = normalizedPrimary \?\? normalizedFallback/);
+  assert.match(publicCardImage, /normalizePublicCardImageSrc\(src\)/);
+  assert.match(publicCardImage, /shouldBypassNextImageOptimization\(activeSrc\)/);
   assert.match(publicCardImage, /useState<string \| undefined>\(initialSrc\)/);
   assert.match(publicCardImage, /Hydration must not be required just to choose the first image source/);
   assert.match(publicCardImage, /sizes=\{sizes\}/);
-  assert.match(publicCardImage, /unoptimized=\{unoptimized\}/);
+  assert.match(publicCardImage, /unoptimized=\{renderUnoptimized\}/);
   assert.match(cardZoomModal, /unoptimized = false/);
   assert.match(cardZoomModal, /unoptimized=\{unoptimized\}/);
   assert.match(nextConfig, /minimumCacheTTL:\s*60\s*\*\s*60\s*\*\s*24\s*\*\s*7/);
@@ -117,6 +119,7 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(gridItem, /imagePrefetch=\{false\}/);
   assert.match(gridItem, /imagePriority=\{imagePriority\}/);
   assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
+  assert.match(publicCardImage, /unoptimized=\{renderUnoptimized\}/);
 });
 
 test("explore search keeps results compact and cards above supporting tools", () => {
