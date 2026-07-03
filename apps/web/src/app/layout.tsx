@@ -122,6 +122,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
                 Terms
               </Link>
+              <Link href="/account/delete" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                Account Deletion
+              </Link>
             </div>
           </PageContainer>
         </footer>

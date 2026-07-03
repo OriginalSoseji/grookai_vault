@@ -1,4 +1,4 @@
-package com.example.grookai_vault.scanner
+package com.grookai.vault.scanner
 
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall

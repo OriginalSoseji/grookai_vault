@@ -1,4 +1,4 @@
-package com.example.grookai_vault.scanner
+package com.grookai.vault.scanner
 
 import android.content.Context
 import android.graphics.ImageFormat

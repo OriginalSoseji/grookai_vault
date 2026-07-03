@@ -1,9 +1,9 @@
-package com.example.grookai_vault
+package com.grookai.vault
 
 import android.content.Intent
-import com.example.grookai_vault.scanner.QuadDetectorV1Bridge
-import com.example.grookai_vault.scanner.ScannerCameraPhase0Bridge
-import com.example.grookai_vault.scanner.ScannerConditionCameraBridge
+import com.grookai.vault.scanner.QuadDetectorV1Bridge
+import com.grookai.vault.scanner.ScannerCameraPhase0Bridge
+import com.grookai.vault.scanner.ScannerConditionCameraBridge
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 

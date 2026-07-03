@@ -1,4 +1,4 @@
-package com.example.grookai_vault.scanner
+package com.grookai.vault.scanner
 
 import android.app.Activity
 import android.content.Context

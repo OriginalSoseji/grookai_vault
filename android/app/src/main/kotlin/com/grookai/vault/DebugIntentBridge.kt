@@ -1,4 +1,4 @@
-package com.example.grookai_vault
+package com.grookai.vault
 
 import android.content.Intent
 import io.flutter.embedding.engine.FlutterEngine
