@@ -64,11 +64,15 @@ test("Wall route does not eagerly fetch every custom section card grid", () => {
 
 test("public card image chooses an initial source before hydration", () => {
   const publicCardImage = readSource("components", "PublicCardImage.tsx");
+  const nextConfig = readFileSync(join(sourceRoot, "..", "next.config.mjs"), "utf8");
 
   assert.match(publicCardImage, /const initialSrc = normalizedPrimary \?\? normalizedFallback/);
   assert.match(publicCardImage, /useState<string \| undefined>\(initialSrc\)/);
   assert.match(publicCardImage, /Hydration must not be required just to choose the first image source/);
   assert.match(publicCardImage, /sizes=\{sizes\}/);
+  assert.match(nextConfig, /minimumCacheTTL:\s*60\s*\*\s*60\s*\*\s*24\s*\*\s*7/);
+  assert.match(nextConfig, /deviceSizes:\s*\[640,\s*750,\s*828,\s*1080,\s*1200\]/);
+  assert.doesNotMatch(nextConfig, /3840/);
 });
 
 test("explore search is bounded and language-aware for public performance", () => {
