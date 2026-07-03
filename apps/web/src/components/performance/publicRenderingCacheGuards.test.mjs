@@ -275,6 +275,7 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   assert.match(middleware, /process\.env\.NODE_ENV !== "production"/);
   assert.match(middleware, /status: 429/);
   assert.match(middleware, /"Retry-After"/);
+  assert.match(middleware, /X-Grookai-Rate-Limit-Source/);
   assert.match(middleware, /X-Content-Type-Options/);
   assert.match(middleware, /Referrer-Policy/);
   assert.match(middleware, /Permissions-Policy/);
