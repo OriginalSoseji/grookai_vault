@@ -167,6 +167,7 @@ test("japanese pikachu display keeps english primary and printed name secondary"
 test("card detail streams lower panels after exact card information", () => {
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
   const cardZoomModal = readSource("components", "compare", "CardZoomModal.tsx");
+  const cardPerfProbe = readSource("components", "performance", "CardPagePerformanceProbe.tsx");
   const pricingRail = readSource("components", "pricing", "CardPagePricingRail.tsx");
   const serverSupabase = readSource("lib", "supabase", "server.ts");
 
@@ -182,6 +183,14 @@ test("card detail streams lower panels after exact card information", () => {
   assert.match(cardPage, /<CardZoomModal[\s\S]*priority/);
   assert.match(cardZoomModal, /priority = false/);
   assert.match(cardZoomModal, /priority=\{priority\}/);
+  assert.match(cardPage, /isCardPagePerfEnabled\(searchParams\)/);
+  assert.match(cardPage, /logCardPageServerPerf\(perfEnabled, "initial_render_ready"/);
+  assert.match(cardPage, /serverInitialRenderMs=\{initialRenderMs\}/);
+  assert.match(cardPage, /perfEnabled=\{perfEnabled\}/);
+  assert.match(cardPerfProbe, /if \(!enabled\) return/);
+  assert.match(cardPerfProbe, /largest-contentful-paint/);
+  assert.match(cardPerfProbe, /\.gv-card-hero-image-stage img/);
+  assert.match(cardPerfProbe, /\[card-page:browser-perf\]/);
   assert.match(serverSupabase, /hasSupabaseServerAuthCookie/);
   assert.match(serverSupabase, /auth-token/);
   assert.match(cardPage, /async function StreamedArtworkCameosSection/);
