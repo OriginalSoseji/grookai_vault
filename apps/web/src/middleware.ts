@@ -15,6 +15,7 @@ const SIGNAL_DEDUPE_WINDOW_MS = 10 * 60_000;
 type RateLimitBucket = {
   count: number;
   resetAt: number;
+  source: "memory" | "durable";
 };
 
 type CardWalkBucket = {
@@ -34,6 +35,21 @@ const rateLimitBuckets = new Map<string, RateLimitBucket>();
 const cardWalkBuckets = new Map<string, CardWalkBucket>();
 const recentSignalKeys = new Map<string, number>();
 
+function getDurableRateLimitConfig() {
+  const restUrl = process.env.UPSTASH_REDIS_REST_URL?.replace(/\/+$/, "");
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!restUrl || !token) {
+    return null;
+  }
+
+  return {
+    restUrl,
+    token,
+    prefix: process.env.GROOKAI_RATE_LIMIT_REDIS_PREFIX ?? "gv:rate-limit:v1",
+  };
+}
+
 function getActorIp(request: NextRequest) {
   return (
     request.headers.get("cf-connecting-ip") ??
@@ -47,6 +63,17 @@ function getActorKey(request: NextRequest) {
   const ip = getActorIp(request);
   const userAgent = request.headers.get("user-agent")?.trim().slice(0, 120) || "missing-ua";
   return `${ip}|${userAgent}`;
+}
+
+async function getActorHash(actorKey: string) {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(actorKey),
+  );
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("")
+    .slice(0, 32);
 }
 
 function classifyRequest(pathname: string): AbuseClassification {
@@ -94,16 +121,107 @@ function classifyRequest(pathname: string): AbuseClassification {
   };
 }
 
-function incrementRateLimit(key: string, now: number) {
+function incrementMemoryRateLimit(key: string, now: number) {
   const current = rateLimitBuckets.get(key);
   if (!current || current.resetAt <= now) {
-    const next = { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+    const next = {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+      source: "memory" as const,
+    };
     rateLimitBuckets.set(key, next);
     return next;
   }
 
   current.count += 1;
   return current;
+}
+
+function getPipelineNumberResult(
+  response: Array<{ result?: unknown; error?: string }> | null,
+  index: number,
+) {
+  const value = response?.[index]?.result;
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+async function runUpstashPipeline(
+  commands: Array<Array<string | number>>,
+) {
+  const config = getDurableRateLimitConfig();
+  if (!config) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${config.restUrl}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${config.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commands),
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json();
+    return Array.isArray(data)
+      ? (data as Array<{ result?: unknown; error?: string }>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+async function incrementDurableRateLimit(
+  lane: AbuseClassification["lane"],
+  actorHash: string,
+  now: number,
+) {
+  const config = getDurableRateLimitConfig();
+  if (!config || lane === "none") {
+    return null;
+  }
+
+  const key = `${config.prefix}:${lane}:${actorHash}`;
+  const pipeline = await runUpstashPipeline([
+    ["INCR", key],
+    ["PTTL", key],
+  ]);
+  const count = getPipelineNumberResult(pipeline, 0);
+  let ttlMs = getPipelineNumberResult(pipeline, 1);
+
+  if (count === null) {
+    return null;
+  }
+
+  if (count === 1 || ttlMs === null || ttlMs < 0) {
+    await runUpstashPipeline([["PEXPIRE", key, RATE_LIMIT_WINDOW_MS]]);
+    ttlMs = RATE_LIMIT_WINDOW_MS;
+  }
+
+  return {
+    count,
+    resetAt: now + Math.max(1, ttlMs),
+    source: "durable" as const,
+  };
+}
+
+async function incrementClassifiedRateLimit(
+  lane: AbuseClassification["lane"],
+  actorHash: string,
+  now: number,
+) {
+  const durableBucket = await incrementDurableRateLimit(lane, actorHash, now);
+  if (durableBucket) {
+    return durableBucket;
+  }
+
+  return incrementMemoryRateLimit(`${lane}|${actorHash}`, now);
 }
 
 function getCardIdFromPath(pathname: string) {
@@ -173,13 +291,13 @@ function addSecurityHeaders(response: NextResponse) {
   return response;
 }
 
-function applyAbuseProtection(request: NextRequest, event: NextFetchEvent) {
+async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent) {
   const now = Date.now();
   const actorKey = getActorKey(request);
+  const actorHash = await getActorHash(actorKey);
   const classification = classifyRequest(request.nextUrl.pathname);
   const userAgent = request.headers.get("user-agent")?.trim() || "";
-  const rateLimitKey = `${classification.lane}|${actorKey}`;
-  const bucket = incrementRateLimit(rateLimitKey, now);
+  const bucket = await incrementClassifiedRateLimit(classification.lane, actorHash, now);
   const isMissingUserAgent = userAgent.length === 0;
   const isRetiredRegistryHit = classification.lane === "retired_registry";
   const isApiProbe = classification.lane === "api";
@@ -204,6 +322,7 @@ function applyAbuseProtection(request: NextRequest, event: NextFetchEvent) {
       reason: classification.reason,
       request_count: bucket.count,
       limit: classification.limit,
+      rate_limit_source: bucket.source,
       retry_after_seconds: retryAfterSeconds,
       user_agent: userAgent.slice(0, 180),
       ip_hint: getActorIp(request),
@@ -226,6 +345,7 @@ function applyAbuseProtection(request: NextRequest, event: NextFetchEvent) {
         reason,
         request_count: bucket.count,
         limit: classification.limit,
+        rate_limit_source: bucket.source,
         user_agent: userAgent.slice(0, 180),
         ip_hint: getActorIp(request),
         observed_only: !classification.enforce || isCardWalking,
@@ -285,7 +405,7 @@ async function applyProtectedRouteAuth(request: NextRequest) {
 }
 
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
-  const abuseResponse = applyAbuseProtection(request, event);
+  const abuseResponse = await applyAbuseProtection(request, event);
   if (abuseResponse) {
     return abuseResponse;
   }
