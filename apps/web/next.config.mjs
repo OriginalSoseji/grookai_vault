@@ -124,6 +124,11 @@ const nextConfig = {
     ];
   },
   images: {
+    // Card art is immutable once its canonical storage path is assigned. Keeping
+    // optimized derivatives warm avoids repeated 500ms+ image optimizer misses.
+    minimumCacheTTL: 60 * 60 * 24 * 7,
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [48, 64, 74, 96, 128, 160, 220, 320],
     remotePatterns: [
       {
         protocol: "https",
