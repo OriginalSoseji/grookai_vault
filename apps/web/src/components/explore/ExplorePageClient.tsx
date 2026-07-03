@@ -2048,7 +2048,7 @@ export default function ExplorePageClient({
                         mode="thumb-lg"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
-                        imagePriority={groupIndex === 0 && rowIndex < 6}
+                        imagePriority={groupIndex === 0 && rowIndex < 4}
                       />
                     ))}
                   </div>
@@ -2070,7 +2070,7 @@ export default function ExplorePageClient({
                         mode="thumb"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
-                        imagePriority={groupIndex === 0 && rowIndex < 8}
+                        imagePriority={groupIndex === 0 && rowIndex < 4}
                       />
                     ))}
                   </div>

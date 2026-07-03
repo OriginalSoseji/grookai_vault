@@ -27,6 +27,31 @@ export function createServerComponentClient() {
   });
 }
 
+export function hasSupabaseServerAuthCookie() {
+  const cookieStore = cookies();
+  const { url } = getSupabaseServerConfig();
+  const projectRef = (() => {
+    try {
+      return new URL(url).hostname.split(".")[0];
+    } catch {
+      return null;
+    }
+  })();
+  const expectedPrefix = projectRef ? `sb-${projectRef}-auth-token` : null;
+
+  return cookieStore.getAll().some((cookie) => {
+    if (expectedPrefix && cookie.name.startsWith(expectedPrefix)) {
+      return Boolean(cookie.value);
+    }
+
+    return (
+      cookie.name.startsWith("sb-") &&
+      cookie.name.includes("auth-token") &&
+      Boolean(cookie.value)
+    );
+  });
+}
+
 export function createRouteHandlerClient(request: NextRequest, response: NextResponse) {
   const { url, publishableKey } = getSupabaseServerConfig();
 

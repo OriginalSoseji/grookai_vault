@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Suspense, type CSSProperties } from "react";
-import Image from "next/image";
+import { Suspense } from "react";
 import Link from "next/link";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
@@ -41,14 +40,13 @@ import {
   getPublicRelatedPrintsByGvId,
 } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
-import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { getCardPricingUiRowsByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
@@ -688,9 +686,12 @@ export default async function CardPage({
   }
 
   const supabase = createServerComponentClient();
+  const shouldReadAuthenticatedState = hasSupabaseServerAuthCookie();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = shouldReadAuthenticatedState
+    ? await supabase.auth.getUser()
+    : { data: { user: null } };
   let vaultCount = 0;
   let ownedObjectSummary: OwnedObjectSummary = {
     totalCount: 0,
@@ -746,26 +747,13 @@ export default async function CardPage({
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
-  const [pricingRecords, setLogoPath, ownedPrintingCounts] = await Promise.all([
+  const [pricingRecords, ownedPrintingCounts] = await Promise.all([
     canViewPricing && resolvedCard.id ? getCardPricingUiRowsByCardPrintId(resolvedCard.id) : Promise.resolve([]),
-    resolvedCard.set_code
-      ? getSetLogoAssetPathMap([resolvedCard.set_code]).then((logos) =>
-          logos.get(resolvedCard.set_code!.toLowerCase()),
-        )
-      : Promise.resolve(undefined),
     user && resolvedCard.id
       ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
       : Promise.resolve(new Map()),
   ]);
   const pricingUi = pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null;
-  const identityWatermarkStyle = {
-    "--wm-opacity-desktop": "0.05",
-    "--wm-blur-desktop": "8px",
-    "--wm-scale-desktop": "1.12",
-    "--wm-opacity-mobile": "0.06",
-    "--wm-blur-mobile": "6px",
-    "--wm-scale-mobile": "1.14",
-  } as CSSProperties;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const setCodeLabel = resolvedCard.set_code?.trim().toUpperCase();
@@ -861,24 +849,6 @@ export default async function CardPage({
         dangerouslySetInnerHTML={{ __html: jsonLdMarkup(cardProductJsonLd) }}
       />
       <section className="gv-product-hero isolate">
-        {setLogoPath ? (
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-            <Image
-              src={setLogoPath}
-              alt=""
-              width={520}
-              height={260}
-              className="gv-ghost-watermark h-auto w-[78%] object-contain"
-              style={identityWatermarkStyle}
-            />
-          </div>
-        ) : null}
-        {setLogoPath ? (
-          <div
-            aria-hidden="true"
-            className="gv-card-identity-wash pointer-events-none absolute inset-0"
-          />
-        ) : null}
         <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(300px,440px)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:p-12">
           <div className="mx-auto flex w-full max-w-[380px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[430px]">
             <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
@@ -892,6 +862,7 @@ export default async function CardPage({
                 imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
                 sizes="(max-width: 1024px) 86vw, 430px"
+                priority
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
