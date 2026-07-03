@@ -294,6 +294,7 @@ type SmartFilterDiscoveryOptions = {
   stampLabels?: string[];
   imageState?: SmartFilterImageState;
   languageScope?: PublicLanguageScope;
+  includePricing?: boolean;
 };
 
 type PublicSetMetadata = {
@@ -3689,6 +3690,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   rawQuery: string,
   languageScope: PublicLanguageScope,
   sortMode: SortMode,
+  includePricing = false,
 ): Promise<ExploreRow[]> {
   const query = await buildResolverQuery(normalizeQuery(rawQuery));
   const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
@@ -3698,7 +3700,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   );
   const supabase = createServerComponentClient();
   const pricingByCardId =
-    sortMode === "value_high" || sortMode === "value_low"
+    includePricing || sortMode === "value_high" || sortMode === "value_low"
       ? await getPublicPricingByCardIds(
           supabase,
           enrichmentRows.map((row) => row.id),
@@ -4051,10 +4053,12 @@ export async function getExploreRowsForSmartFilterDiscovery(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    enrichmentRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
     enrichmentRows,
     new Map<string, string>(),
@@ -4116,10 +4120,12 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    enrichmentRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
     enrichmentRows,
     new Map<string, string>(),
@@ -4168,10 +4174,12 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    enrichmentRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
     enrichmentRows,
     new Map<string, string>(),
@@ -4228,6 +4236,7 @@ export async function getExploreRowsPacketWithTiming(
   releaseYearMin?: number,
   releaseYearMax?: number,
   languageScope: PublicLanguageScope = "all",
+  includePricing = false,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
@@ -4432,10 +4441,12 @@ export async function getExploreRowsPacketWithTiming(
 
   const supabase = createServerComponentClient();
   const timedPricing = await measureStage(() =>
-    getPublicPricingByCardIds(
-      supabase,
-      exactRows.map((row) => row.id),
-    ),
+    includePricing
+      ? getPublicPricingByCardIds(
+          supabase,
+          exactRows.map((row) => row.id),
+        )
+      : Promise.resolve(new Map<string, PublicPricingRecord>()),
   );
   Object.assign(fetchPricingStage, timedPricing.timing);
   const pricingByCardId = timedPricing.value;
@@ -4528,6 +4539,7 @@ export async function getExploreRowsWithTiming(
   exactIllustrator?: string,
   releaseYearMin?: number,
   releaseYearMax?: number,
+  includePricing = false,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   return getExploreRowsPacketWithTiming(
     normalizeQuery(rawQuery),
@@ -4538,6 +4550,8 @@ export async function getExploreRowsWithTiming(
     "all",
     releaseYearMin,
     releaseYearMax,
+    "all",
+    includePricing,
   );
 }
 
@@ -4549,6 +4563,7 @@ export async function getExploreRows(
   exactIllustrator?: string,
   releaseYearMin?: number,
   releaseYearMax?: number,
+  includePricing = false,
 ): Promise<ExploreRow[]> {
   return (
     await getExploreRowsWithTiming(
@@ -4559,6 +4574,7 @@ export async function getExploreRows(
       exactIllustrator,
       releaseYearMin,
       releaseYearMax,
+      includePricing,
     )
   ).rows;
 }

@@ -91,6 +91,7 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(exploreClient, /const INITIAL_VISIBLE_RESULT_COUNT = 24/);
   assert.match(exploreClient, /const SEARCH_API_RESULT_LIMIT = 48/);
   assert.match(exploreClient, /params\.set\("limit", String\(SEARCH_API_RESULT_LIMIT\)\)/);
+  assert.match(exploreClient, /params\.set\("include_pricing", "1"\)/);
   assert.match(gridItem, /imagePrefetch=\{false\}/);
   assert.match(gridItem, /imagePriority=\{imagePriority\}/);
   assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
@@ -121,6 +122,8 @@ test("explore search keeps results compact and cards above supporting tools", ()
   assert.match(exploreRows, /getImageRelevanceQuality/);
   assert.match(exploreRows, /hasKnownSetName/);
   assert.match(exploreRows, /const qualityCompare = compareRowsByDataQuality/);
+  assert.match(exploreRows, /includePricing = false/);
+  assert.match(exploreRows, /options\.includePricing/);
   assert.match(exploreClient, /const resultControls = \(/);
   assert.match(exploreClient, /const presetPillStrip = \(/);
   assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);

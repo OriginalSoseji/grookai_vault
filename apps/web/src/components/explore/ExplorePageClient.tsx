@@ -606,6 +606,14 @@ export default function ExplorePageClient({
           params.set("sort", sortMode);
         }
 
+        if (
+          effectiveCanViewPricing ||
+          sortMode === "value_high" ||
+          sortMode === "value_low"
+        ) {
+          params.set("include_pricing", "1");
+        }
+
         if (exactSetCode) {
           params.set("set", exactSetCode);
         }
@@ -717,6 +725,7 @@ export default function ExplorePageClient({
     hasExplicitSmartFilters,
     identityFilter,
     shouldServerFilterByIdentity,
+    effectiveCanViewPricing,
   ]);
 
   useEffect(() => {

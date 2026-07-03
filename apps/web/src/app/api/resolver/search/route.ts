@@ -102,6 +102,11 @@ function parseOwnedState(value: string | null): SmartSearchIntent["ownedState"] 
   return value === "owned" || value === "missing" ? value : undefined;
 }
 
+function parseBooleanParam(value: string | null) {
+  const normalized = (value ?? "").trim().toLowerCase();
+  return normalized === "1" || normalized === "true" || normalized === "yes";
+}
+
 function parseImageState(value: string | null): SmartSearchIntent["imageState"] {
   if (value === "exact" || value === "representative" || value === "missing") {
     return value;
@@ -354,6 +359,11 @@ export async function GET(request: NextRequest) {
   const explicitFinishKeys = parseMultiParam(request.nextUrl.searchParams, "finish");
   const explicitStampLabels = parseMultiParam(request.nextUrl.searchParams, "stamp");
   const explicitImageState = parseImageState(request.nextUrl.searchParams.get("image_state") ?? request.nextUrl.searchParams.get("image"));
+  const sortMode = parseSortMode(request.nextUrl.searchParams.get("sort"));
+  const includePricing =
+    parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
+    sortMode === "value_high" ||
+    sortMode === "value_low";
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator")) ?? smartSearchIntent.artist;
   const effectiveSmartSearchIntent: SmartSearchIntent = {
@@ -378,7 +388,6 @@ export async function GET(request: NextRequest) {
     ]),
   };
   const identityFilter = normalizeIdentityFilterKey(request.nextUrl.searchParams.get("identity"));
-  const sortMode = parseSortMode(request.nextUrl.searchParams.get("sort"));
   const hasSmartYearRange =
     typeof effectiveSmartSearchIntent.releaseYearMin === "number" ||
     typeof effectiveSmartSearchIntent.releaseYearMax === "number";
@@ -449,6 +458,7 @@ export async function GET(request: NextRequest) {
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
             languageScope,
+            includePricing,
           }),
         ).then((rows) => ({
           rows,
@@ -461,6 +471,7 @@ export async function GET(request: NextRequest) {
             query,
             languageScope,
             sortMode,
+            includePricing,
           ).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -469,23 +480,24 @@ export async function GET(request: NextRequest) {
           }))
       : shouldUseSmartFilterDiscovery
         ? getExploreRowsForSmartFilterDiscovery({
-          sortMode,
-          exactSetCode,
-          exactReleaseYear,
-          exactIllustrator,
-          identityFilter,
-          releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
-          releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
-          finishKeys: effectiveSmartSearchIntent.finishKeys,
-          stampLabels: effectiveSmartSearchIntent.stampLabels,
-          imageState: effectiveSmartSearchIntent.imageState,
-          languageScope,
-        }).then((rows) => ({
-          rows,
-          meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
-          smartSearchIntent: effectiveSmartSearchIntent,
-          degraded: false,
-        }))
+            sortMode,
+            exactSetCode,
+            exactReleaseYear,
+            exactIllustrator,
+            identityFilter,
+            releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+            releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+            finishKeys: effectiveSmartSearchIntent.finishKeys,
+            stampLabels: effectiveSmartSearchIntent.stampLabels,
+            imageState: effectiveSmartSearchIntent.imageState,
+            languageScope,
+            includePricing,
+          }).then((rows) => ({
+            rows,
+            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+            smartSearchIntent: effectiveSmartSearchIntent,
+            degraded: false,
+          }))
         : shouldUseStructuredTextExpansion
           ? getExploreRowsForSmartStructuredTextSearch(query, {
               sortMode,
@@ -499,6 +511,7 @@ export async function GET(request: NextRequest) {
               stampLabels: effectiveSmartSearchIntent.stampLabels,
               imageState: effectiveSmartSearchIntent.imageState,
               languageScope,
+              includePricing,
             }).then((rows) => ({
               rows,
               meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -515,6 +528,7 @@ export async function GET(request: NextRequest) {
               releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
               releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
               languageScope,
+              includePricing,
             }).then((resolved) => ({
               ...resolved,
               smartSearchIntent: effectiveSmartSearchIntent,
