@@ -17,6 +17,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import CardPagePerformanceProbe from "@/components/performance/CardPagePerformanceProbe";
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import {
@@ -249,6 +250,34 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
 
+type CardPageSearchParams = {
+  cards?: string;
+  printing?: string;
+  perf?: string;
+  gv_perf?: string;
+};
+
+function roundPerfMs(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+function isCardPagePerfEnabled(searchParams?: CardPageSearchParams) {
+  return searchParams?.perf === "1" || searchParams?.gv_perf === "1";
+}
+
+function logCardPageServerPerf(
+  enabled: boolean,
+  stage: string,
+  payload: Record<string, unknown>,
+) {
+  if (!enabled) return;
+
+  console.info("[card-page:server-perf]", {
+    stage,
+    ...payload,
+  });
+}
+
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
   const card = await getPublicCardByGvId(params.gv_id, {
     includePricing: false,
@@ -371,8 +400,20 @@ function ArtworkCameosSection({ cameoRows }: { cameoRows: CardCameo[] }) {
   );
 }
 
-async function StreamedArtworkCameosSection({ gvId }: { gvId: string }) {
+async function StreamedArtworkCameosSection({
+  gvId,
+  perfEnabled = false,
+}: {
+  gvId: string;
+  perfEnabled?: boolean;
+}) {
+  const startedAt = performance.now();
   const cameoRows = await getPublicCameosByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_artwork_cameos", {
+    gvId,
+    rowCount: cameoRows?.length ?? 0,
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
   return <ArtworkCameosSection cameoRows={cameoRows ?? []} />;
 }
 
@@ -475,11 +516,19 @@ function RelatedPrintsSection({
 async function StreamedRelatedPrintsSection({
   gvId,
   compareCards,
+  perfEnabled = false,
 }: {
   gvId: string;
   compareCards: string[];
+  perfEnabled?: boolean;
 }) {
+  const startedAt = performance.now();
   const relatedPrints = await getPublicRelatedPrintsByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_related_prints", {
+    gvId,
+    rowCount: relatedPrints?.length ?? 0,
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
   return <RelatedPrintsSection relatedPrints={relatedPrints ?? []} compareCards={compareCards} />;
 }
 
@@ -488,13 +537,17 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { cards?: string; printing?: string };
+  searchParams?: CardPageSearchParams;
 }) {
+  const perfEnabled = isCardPagePerfEnabled(searchParams);
+  const pageStartedAt = performance.now();
+  const cardLookupStartedAt = performance.now();
   const card = await getPublicCardByGvId(params.gv_id, {
     includePricing: false,
     includeRelatedPrints: false,
     includeCameos: false,
   });
+  const cardLookupMs = roundPerfMs(performance.now() - cardLookupStartedAt);
   if (!card) notFound();
 
   const resolvedCard = card;
@@ -686,12 +739,14 @@ export default async function CardPage({
   }
 
   const supabase = createServerComponentClient();
+  const authStartedAt = performance.now();
   const shouldReadAuthenticatedState = hasSupabaseServerAuthCookie();
   const {
     data: { user },
   } = shouldReadAuthenticatedState
     ? await supabase.auth.getUser()
     : { data: { user: null } };
+  const authMs = roundPerfMs(performance.now() - authStartedAt);
   let vaultCount = 0;
   let ownedObjectSummary: OwnedObjectSummary = {
     totalCount: 0,
@@ -705,6 +760,7 @@ export default async function CardPage({
   let conditionSnapshots: ConditionSnapshotListItem[] = [];
   let assignmentCandidatesBySnapshotId: Record<string, AssignmentCandidate[]> = {};
 
+  const signedInDataStartedAt = performance.now();
   if (user && resolvedCard.id) {
     try {
       const [ownershipSummary, snapshots] = await Promise.all([
@@ -744,15 +800,18 @@ export default async function CardPage({
       assignmentCandidatesBySnapshotId = {};
     }
   }
+  const signedInDataMs = roundPerfMs(performance.now() - signedInDataStartedAt);
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
+  const pricingStartedAt = performance.now();
   const [pricingRecords, ownedPrintingCounts] = await Promise.all([
     canViewPricing && resolvedCard.id ? getCardPricingUiRowsByCardPrintId(resolvedCard.id) : Promise.resolve([]),
     user && resolvedCard.id
       ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
       : Promise.resolve(new Map()),
   ]);
+  const pricingMs = roundPerfMs(performance.now() - pricingStartedAt);
   const pricingUi = pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
@@ -840,9 +899,34 @@ export default async function CardPage({
     printedName: resolvedDisplayIdentity.printed_name ?? undefined,
     setName,
   });
+  const initialRenderMs = roundPerfMs(performance.now() - pageStartedAt);
+  logCardPageServerPerf(perfEnabled, "initial_render_ready", {
+    requestedGvId: params.gv_id,
+    gvId: resolvedCard.gv_id,
+    cardLookupMs,
+    authMs,
+    signedInDataMs,
+    pricingMs,
+    initialRenderMs,
+    hasAuthCookie: shouldReadAuthenticatedState,
+    isAuthenticated: Boolean(user),
+    displayPrintingCount: resolvedCard.display_printings?.length ?? 0,
+    pricingRecordCount: pricingRecords.length,
+  });
 
   return (
     <div className={`space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+      <CardPagePerformanceProbe
+        enabled={perfEnabled}
+        gvId={resolvedCard.gv_id}
+        serverInitialRenderMs={initialRenderMs}
+        serverCardLookupMs={cardLookupMs}
+        serverAuthMs={authMs}
+        serverSignedInDataMs={signedInDataMs}
+        serverPricingMs={pricingMs}
+        hasAuthCookie={shouldReadAuthenticatedState}
+        isAuthenticated={Boolean(user)}
+      />
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
       <script
         type="application/ld+json"
@@ -1112,11 +1196,15 @@ export default async function CardPage({
       ) : null}
 
       <Suspense fallback={<CardLowerSectionFallback title="Artwork Cameos" />}>
-        <StreamedArtworkCameosSection gvId={resolvedCard.gv_id} />
+        <StreamedArtworkCameosSection gvId={resolvedCard.gv_id} perfEnabled={perfEnabled} />
       </Suspense>
 
       <Suspense fallback={<CardLowerSectionFallback title="Other Versions" />}>
-        <StreamedRelatedPrintsSection gvId={resolvedCard.gv_id} compareCards={compareCards} />
+        <StreamedRelatedPrintsSection
+          gvId={resolvedCard.gv_id}
+          compareCards={compareCards}
+          perfEnabled={perfEnabled}
+        />
       </Suspense>
 
       {user && hasOwnedItems ? (
@@ -1193,12 +1281,17 @@ export default async function CardPage({
             cardName={resolvedDisplayIdentity.display_name}
             loginHref={loginHref}
             currentPath={currentCardPath}
+            perfEnabled={perfEnabled}
           />
         </Suspense>
       ) : null}
 
       <Suspense fallback={null}>
-        <NearbyCardsSection gvId={resolvedCard.gv_id} compareCards={compareCards} />
+        <NearbyCardsSection
+          gvId={resolvedCard.gv_id}
+          compareCards={compareCards}
+          perfEnabled={perfEnabled}
+        />
       </Suspense>
 
       <PricingDisclosure />
@@ -1244,6 +1337,7 @@ async function CardNetworkOffersSection({
   cardName,
   loginHref,
   currentPath,
+  perfEnabled = false,
 }: {
   cardPrintId: string;
   gvId: string;
@@ -1251,7 +1345,9 @@ async function CardNetworkOffersSection({
   cardName: string;
   loginHref: string;
   currentPath: string;
+  perfEnabled?: boolean;
 }) {
+  const startedAt = performance.now();
   const networkOffers = await getCardStreamRows({
     cardPrintId,
     excludeUserId: viewerUserId,
@@ -1263,6 +1359,11 @@ async function CardNetworkOffersSection({
       error,
     });
     return [];
+  });
+  logCardPageServerPerf(perfEnabled, "streamed_network_offers", {
+    gvId,
+    rowCount: networkOffers.length,
+    ms: roundPerfMs(performance.now() - startedAt),
   });
 
   if (networkOffers.length === 0) return null;
@@ -1452,11 +1553,20 @@ function NearbyCardLink({
 async function NearbyCardsSection({
   gvId,
   compareCards,
+  perfEnabled = false,
 }: {
   gvId: string;
   compareCards: string[];
+  perfEnabled?: boolean;
 }) {
+  const startedAt = performance.now();
   const adjacentCards = await getAdjacentPublicCardsByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_nearby_cards", {
+    gvId,
+    hasPrevious: Boolean(adjacentCards.previous),
+    hasNext: Boolean(adjacentCards.next),
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
   if (!adjacentCards.previous && !adjacentCards.next) return null;
 
   return (
