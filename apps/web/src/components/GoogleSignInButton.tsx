@@ -31,11 +31,6 @@ export default function GoogleSignInButton({ className, label, nextPath, onError
     const redirectTo = new URL("/auth/callback", window.location.origin);
     redirectTo.searchParams.set("next", safeNextPath);
 
-    console.log("[Grookai OAuth] signInWithOAuth redirect", {
-      origin: window.location.origin,
-      redirectTo: redirectTo.toString(),
-    });
-
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
