@@ -314,6 +314,7 @@ async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent)
         "Content-Type": "text/plain; charset=utf-8",
         "Retry-After": String(retryAfterSeconds),
         "Cache-Control": "private, no-store",
+        "X-Grookai-Rate-Limit-Source": bucket.source,
       },
     });
 
