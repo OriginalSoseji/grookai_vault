@@ -35,7 +35,11 @@ import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
 import { getVaultIntentLabel } from "@/lib/network/intent";
-import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
+import {
+  getPublicCameosByGvId,
+  getPublicCardByGvId,
+  getPublicRelatedPrintsByGvId,
+} from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
@@ -50,7 +54,7 @@ import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardTo
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
-import type { CardDetail } from "@/types/cards";
+import type { CardCameo, CardDetail, RelatedCardPrint } from "@/types/cards";
 
 type DetailItem = { label: string; value: string };
 
@@ -248,7 +252,11 @@ export const revalidate = 0;
 export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
-  const card = await getPublicCardByGvId(params.gv_id);
+  const card = await getPublicCardByGvId(params.gv_id, {
+    includePricing: false,
+    includeRelatedPrints: false,
+    includeCameos: false,
+  });
   const siteOrigin = getSiteOrigin();
   if (!card) return { title: "Card not found | Grookai Vault" };
   const displayIdentity = getDisplayPrintedIdentity(card);
@@ -292,6 +300,191 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   };
 }
 
+function CardLowerSectionFallback({ title = "Loading card context" }: { title?: string }) {
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
+          {title}
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className="h-28 animate-pulse rounded-[16px] border border-slate-200 bg-slate-100/70 dark:border-slate-800 dark:bg-white/[0.04]"
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ArtworkCameosSection({ cameoRows }: { cameoRows: CardCameo[] }) {
+  if (cameoRows.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</p>
+        <h2>Visible in the artwork</h2>
+        <p>
+          Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {cameoRows.map((cameo) => {
+          const qualifierLabel = cameo.cameo_qualifiers?.length
+            ? cameo.cameo_qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
+            : null;
+          const href =
+            cameo.cameo_subject_type === "pokemon" && cameo.pokemon_ndex
+              ? `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} cameo`)}`
+              : `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} trainer cameo`)}`;
+          return (
+            <Link
+              key={`${cameo.cameo_subject_type}:${cameo.cameo_subject_name}:${cameo.pokemon_ndex ?? ""}`}
+              href={href}
+              className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
+            >
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                {cameo.cameo_subject_type === "trainer" ? "Trainer cameo" : "Pokemon cameo"}
+              </span>
+              <span className="mt-1 block text-sm font-semibold text-slate-950 dark:text-slate-50">
+                {cameo.cameo_subject_name}
+                {cameo.pokemon_ndex ? (
+                  <span className="ml-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    #{cameo.pokemon_ndex.padStart(3, "0")}
+                  </span>
+                ) : null}
+              </span>
+              {qualifierLabel ? (
+                <span className="mt-1 block text-xs capitalize text-slate-500 dark:text-slate-400">
+                  {qualifierLabel}
+                </span>
+              ) : null}
+            </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+async function StreamedArtworkCameosSection({ gvId }: { gvId: string }) {
+  const cameoRows = await getPublicCameosByGvId(gvId);
+  return <ArtworkCameosSection cameoRows={cameoRows ?? []} />;
+}
+
+function RelatedPrintsSection({
+  relatedPrints,
+  compareCards,
+}: {
+  relatedPrints: RelatedCardPrint[];
+  compareCards: string[];
+}) {
+  if (relatedPrints.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
+        <h2>Other versions of this card</h2>
+        <p>Read-only links to other prints that share this card name.</p>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        {relatedPrints.map((relatedCard) => {
+          const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
+          const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
+          const relatedSetLabel = relatedCard.set_name?.trim() || relatedSetCodeLabel || null;
+          const relatedIdentitySubtitle = resolveDisplayIdentitySubtitleForContext({
+            identitySubtitle: relatedDisplayIdentity.suffix,
+            visibleSetLabel: relatedSetLabel,
+          });
+          const relatedVariantLabels = getVariantLabels(relatedCard, 2);
+          const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
+          const relatedCardImageSrc =
+            normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
+          const relatedCardImageFallback =
+            normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
+            (relatedCard.display_image_kind === "exact"
+              ? buildExactExternalImageFallback(relatedCardImageSrc, relatedCard.tcgdex_external_id)
+              : null);
+          return (
+            <Link
+              key={relatedCard.gv_id}
+              href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
+              className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+            >
+              <div className="flex gap-3 md:flex-col md:items-start">
+                <div className="space-y-2">
+                  <PublicCardImage
+                    src={relatedCardImageSrc}
+                    fallbackSrc={relatedCardImageFallback ?? undefined}
+                    alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
+                    imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
+                    fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
+                    sizes="74px"
+                  />
+                  {relatedImagePresentation.compactBadgeLabel ? (
+                    <CardImageTruthBadge
+                      label={relatedImagePresentation.compactBadgeLabel}
+                      emphasis={relatedImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                    />
+                  ) : null}
+                </div>
+                <div className="min-w-0 space-y-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {relatedSetCodeLabel ? (
+                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        {relatedSetCodeLabel}
+                      </span>
+                    ) : null}
+                    {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
+                      {relatedDisplayIdentity.base_name}
+                    </p>
+                    {relatedIdentitySubtitle ? (
+                      <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
+                        {relatedIdentitySubtitle}
+                      </p>
+                    ) : null}
+                  </div>
+                  {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
+                  {relatedVariantLabels.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {relatedVariantLabels.map((label) => (
+                        <VariantBadge key={`${relatedCard.gv_id}-${label}`} label={label} />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+async function StreamedRelatedPrintsSection({
+  gvId,
+  compareCards,
+}: {
+  gvId: string;
+  compareCards: string[];
+}) {
+  const relatedPrints = await getPublicRelatedPrintsByGvId(gvId);
+  return <RelatedPrintsSection relatedPrints={relatedPrints ?? []} compareCards={compareCards} />;
+}
+
 export default async function CardPage({
   params,
   searchParams,
@@ -299,7 +492,11 @@ export default async function CardPage({
   params: { gv_id: string };
   searchParams?: { cards?: string; printing?: string };
 }) {
-  const card = await getPublicCardByGvId(params.gv_id);
+  const card = await getPublicCardByGvId(params.gv_id, {
+    includePricing: false,
+    includeRelatedPrints: false,
+    includeCameos: false,
+  });
   if (!card) notFound();
 
   const resolvedCard = card;
@@ -639,8 +836,6 @@ export default async function CardPage({
     typeof resolvedCard.printed_total === "number" ? { label: "Printed Total", value: `${resolvedCard.printed_total} cards` } : null,
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
-  const relatedPrints = resolvedCard.related_prints ?? [];
-  const cameoRows = resolvedCard.cameos ?? [];
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
@@ -945,136 +1140,13 @@ export default async function CardPage({
         </section>
       ) : null}
 
-      {cameoRows.length > 0 ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</p>
-            <h2>Visible in the artwork</h2>
-            <p>
-              Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {cameoRows.map((cameo) => {
-              const qualifierLabel = cameo.cameo_qualifiers?.length
-                ? cameo.cameo_qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
-                : null;
-              const href =
-                cameo.cameo_subject_type === "pokemon" && cameo.pokemon_ndex
-                  ? `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} cameo`)}`
-                  : `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} trainer cameo`)}`;
-              return (
-                <Link
-                  key={`${cameo.cameo_subject_type}:${cameo.cameo_subject_name}:${cameo.pokemon_ndex ?? ""}`}
-                  href={href}
-                  className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
-                >
-                  <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    {cameo.cameo_subject_type === "trainer" ? "Trainer cameo" : "Pokemon cameo"}
-                  </span>
-                  <span className="mt-1 block text-sm font-semibold text-slate-950 dark:text-slate-50">
-                    {cameo.cameo_subject_name}
-                    {cameo.pokemon_ndex ? (
-                      <span className="ml-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-                        #{cameo.pokemon_ndex.padStart(3, "0")}
-                      </span>
-                    ) : null}
-                  </span>
-                  {qualifierLabel ? (
-                    <span className="mt-1 block text-xs capitalize text-slate-500 dark:text-slate-400">
-                      {qualifierLabel}
-                    </span>
-                  ) : null}
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
+      <Suspense fallback={<CardLowerSectionFallback title="Artwork Cameos" />}>
+        <StreamedArtworkCameosSection gvId={resolvedCard.gv_id} />
+      </Suspense>
 
-      {relatedPrints.length > 0 ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
-            <h2>Other versions of this card</h2>
-            <p>Read-only links to other prints that share this card name.</p>
-          </div>
-          <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-            {relatedPrints.map((relatedCard) => {
-              const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
-              const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
-              const relatedSetLabel = relatedCard.set_name?.trim() || relatedSetCodeLabel || null;
-              const relatedIdentitySubtitle = resolveDisplayIdentitySubtitleForContext({
-                identitySubtitle: relatedDisplayIdentity.suffix,
-                visibleSetLabel: relatedSetLabel,
-              });
-              const relatedVariantLabels = getVariantLabels(relatedCard, 2);
-              const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
-              const relatedCardImageSrc =
-                normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
-              const relatedCardImageFallback =
-                normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
-                (relatedCard.display_image_kind === "exact"
-                  ? buildExactExternalImageFallback(relatedCardImageSrc, relatedCard.tcgdex_external_id)
-                  : null);
-              return (
-                <Link
-                  key={relatedCard.gv_id}
-                  href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-                  className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
-                >
-                  <div className="flex gap-3 md:flex-col md:items-start">
-                    <div className="space-y-2">
-                      <PublicCardImage
-                        src={relatedCardImageSrc}
-                        fallbackSrc={relatedCardImageFallback ?? undefined}
-                        alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
-                        imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
-                        fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
-                        sizes="74px"
-                      />
-                      {relatedImagePresentation.compactBadgeLabel ? (
-                        <CardImageTruthBadge
-                          label={relatedImagePresentation.compactBadgeLabel}
-                          emphasis={relatedImagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                        />
-                      ) : null}
-                    </div>
-                    <div className="min-w-0 space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        {relatedSetCodeLabel ? (
-                          <span className="inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-                            {relatedSetCodeLabel}
-                          </span>
-                        ) : null}
-                        {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
-                      </div>
-                      <div className="space-y-0.5">
-                        <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
-                          {relatedDisplayIdentity.base_name}
-                        </p>
-                        {relatedIdentitySubtitle ? (
-                          <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
-                            {relatedIdentitySubtitle}
-                          </p>
-                        ) : null}
-                      </div>
-                      {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
-                      {relatedVariantLabels.length > 0 ? (
-                        <div className="flex flex-wrap gap-1">
-                          {relatedVariantLabels.map((label) => (
-                            <VariantBadge key={`${relatedCard.gv_id}-${label}`} label={label} />
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
+      <Suspense fallback={<CardLowerSectionFallback title="Other Versions" />}>
+        <StreamedRelatedPrintsSection gvId={resolvedCard.gv_id} compareCards={compareCards} />
+      </Suspense>
 
       {user && hasOwnedItems ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">

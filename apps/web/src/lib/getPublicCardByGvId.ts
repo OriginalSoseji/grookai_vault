@@ -148,6 +148,12 @@ type CameoRow = {
   source_name: string | null;
 };
 
+type PublicCardDetailOptions = {
+  includePricing?: boolean;
+  includeRelatedPrints?: boolean;
+  includeCameos?: boolean;
+};
+
 function getCardPrintingsSelectColumns(
   includePublicIdentity: boolean,
   includeImageColumns: boolean,
@@ -638,7 +644,11 @@ async function getCameosByGvId(
 
 export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   gv_id: string,
+  options: PublicCardDetailOptions = {},
 ): Promise<CardDetail | null> {
+  const includePricing = options.includePricing ?? true;
+  const includeRelatedPrints = options.includeRelatedPrints ?? true;
+  const includeCameos = options.includeCameos ?? true;
   const supabase = createServerSupabase();
   const [includePrintingPublicIdentity, includeChildPrintingImageFields] =
     await Promise.all([
@@ -705,16 +715,18 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   const [fallbackSet, relatedPrints, imageFields, activeIdentity, cameos] =
     await Promise.all([
       getSetDetailsByCode(row.set_code),
-      getRelatedPrintsByName(supabase, row.name, row.id),
+      includeRelatedPrints
+        ? getRelatedPrintsByName(supabase, row.name, row.id)
+        : Promise.resolve(undefined),
       resolveCardImageFieldsV1(row),
       getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
-      getCameosByGvId(supabase, row.gv_id),
+      includeCameos ? getCameosByGvId(supabase, row.gv_id) : Promise.resolve(undefined),
     ]);
   // Pricing authority note:
   // Current active engine = v_grookai_value_v1_1
   // App-facing read surface = v_best_prices_all_gv_v1
   // Keep product reads on the compatibility surface during stabilization.
-  const pricingByCardId = row.id
+  const pricingByCardId = includePricing && row.id
     ? await getPublicPricingByCardIds(supabase, [row.id])
     : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
@@ -779,6 +791,39 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     related_prints: relatedPrints,
     cameos,
   };
+});
+
+export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelatedPrintsByGvId(
+  gvId: string,
+): Promise<RelatedCardPrint[] | undefined> {
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select("id,gv_id,name")
+    .in("gv_id", getCompatiblePublicGvIdCandidates(gvId))
+    .limit(2);
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  const row = pickResolvedPublicGvIdRow(
+    data as unknown as Pick<PublicCardRow, "id" | "gv_id" | "name">[],
+    gvId,
+  );
+  if (!row) {
+    return undefined;
+  }
+  assertCanonicalCardRouteRow(row, gvId);
+
+  return getRelatedPrintsByName(supabase, row.name, row.id);
+});
+
+export const getPublicCameosByGvId = cache(async function getPublicCameosByGvId(
+  gvId: string,
+): Promise<CardCameo[] | undefined> {
+  const supabase = createServerSupabase();
+  return getCameosByGvId(supabase, gvId);
 });
 
 export async function getStaticCardParams(
