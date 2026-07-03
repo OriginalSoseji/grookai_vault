@@ -133,6 +133,10 @@ function buildExactExternalImageFallback(primaryImageUrl: string | null | undefi
   return buildTcgDexImageUrl(tcgdexExternalId);
 }
 
+function isCanonImageProxyUrl(value: string | null | undefined) {
+  return value?.startsWith("/api/canon/image?") ?? false;
+}
+
 function formatReleaseDate(releaseDate?: string) {
   if (!releaseDate) return undefined;
   const match = releaseDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -947,6 +951,7 @@ export default async function CardPage({
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
                 sizes="(max-width: 1024px) 86vw, 430px"
                 priority
+                unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (

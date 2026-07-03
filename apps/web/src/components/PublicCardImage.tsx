@@ -14,6 +14,7 @@ type PublicCardImageProps = {
   loading?: "eager" | "lazy";
   priority?: boolean;
   sizes?: string;
+  unoptimized?: boolean;
 };
 
 export default function PublicCardImage({
@@ -26,6 +27,7 @@ export default function PublicCardImage({
   loading,
   priority = false,
   sizes = "(max-width: 640px) 42vw, (max-width: 1024px) 25vw, 220px",
+  unoptimized = false,
 }: PublicCardImageProps) {
   const normalizedPrimary = typeof src === "string" && src.trim().length > 0 ? src.trim() : undefined;
   const normalizedFallback =
@@ -56,6 +58,7 @@ export default function PublicCardImage({
       width={1200}
       height={1600}
       sizes={sizes}
+      unoptimized={unoptimized}
       onError={() => {
         if (canFallback && activeSrc === normalizedPrimary) {
           setActiveSrc(normalizedFallback);

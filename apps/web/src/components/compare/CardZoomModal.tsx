@@ -12,6 +12,7 @@ type CardZoomModalProps = {
   fallbackClassName: string;
   sizes?: string;
   priority?: boolean;
+  unoptimized?: boolean;
 };
 
 export default function CardZoomModal({
@@ -22,6 +23,7 @@ export default function CardZoomModal({
   fallbackClassName,
   sizes,
   priority = false,
+  unoptimized = false,
 }: CardZoomModalProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -67,6 +69,7 @@ export default function CardZoomModal({
         fallbackClassName={fallbackClassName}
         sizes={sizes}
         priority={priority}
+        unoptimized={unoptimized}
       />
     );
   }
@@ -101,6 +104,7 @@ export default function CardZoomModal({
                 imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[18px] bg-white object-contain shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
                 fallbackClassName="flex aspect-[3/4] max-h-[90dvh] w-[min(90vw,34rem)] items-center justify-center rounded-[18px] bg-white px-6 text-center text-sm text-slate-500 shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
                 sizes="90vw"
+                unoptimized={unoptimized}
               />
             </div>
           </div>,
@@ -125,6 +129,7 @@ export default function CardZoomModal({
           fallbackClassName={fallbackClassName}
           sizes={sizes}
           priority={priority}
+          unoptimized={unoptimized}
         />
       </button>
 

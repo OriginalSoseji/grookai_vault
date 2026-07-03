@@ -64,15 +64,32 @@ test("Wall route does not eagerly fetch every custom section card grid", () => {
 
 test("public card image chooses an initial source before hydration", () => {
   const publicCardImage = readSource("components", "PublicCardImage.tsx");
+  const cardZoomModal = readSource("components", "compare", "CardZoomModal.tsx");
   const nextConfig = readFileSync(join(sourceRoot, "..", "next.config.mjs"), "utf8");
 
   assert.match(publicCardImage, /const initialSrc = normalizedPrimary \?\? normalizedFallback/);
   assert.match(publicCardImage, /useState<string \| undefined>\(initialSrc\)/);
   assert.match(publicCardImage, /Hydration must not be required just to choose the first image source/);
   assert.match(publicCardImage, /sizes=\{sizes\}/);
+  assert.match(publicCardImage, /unoptimized=\{unoptimized\}/);
+  assert.match(cardZoomModal, /unoptimized = false/);
+  assert.match(cardZoomModal, /unoptimized=\{unoptimized\}/);
   assert.match(nextConfig, /minimumCacheTTL:\s*60\s*\*\s*60\s*\*\s*24\s*\*\s*7/);
   assert.match(nextConfig, /deviceSizes:\s*\[640,\s*750,\s*828,\s*1080,\s*1200\]/);
   assert.doesNotMatch(nextConfig, /3840/);
+});
+
+test("canonical catalog image route is immutable and does not redirect through signed URLs", () => {
+  const canonImageRoute = readSource("app", "api", "canon", "image", "route.ts");
+  const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+
+  assert.match(canonImageRoute, /normalizeWarehouseCanonImagePath/);
+  assert.match(canonImageRoute, /download\(path\)/);
+  assert.match(canonImageRoute, /max-age=31536000, immutable/);
+  assert.doesNotMatch(canonImageRoute, /NextResponse\.redirect/);
+  assert.doesNotMatch(canonImageRoute, /resolveVaultInstanceMediaUrl/);
+  assert.match(cardPage, /function isCanonImageProxyUrl/);
+  assert.match(cardPage, /unoptimized=\{isCanonImageProxyUrl\(resolvedCardImageSrc\)\}/);
 });
 
 test("explore search is bounded and language-aware for public performance", () => {
