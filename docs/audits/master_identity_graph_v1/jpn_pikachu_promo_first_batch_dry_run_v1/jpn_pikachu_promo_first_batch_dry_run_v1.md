@@ -1,6 +1,6 @@
 # Japanese Pikachu Promo First Batch Dry Run v1
 
-Generated: 2026-07-03T21:49:48.407Z
+Generated: 2026-07-03T21:55:46.211Z
 
 ## Scope
 
@@ -17,7 +17,7 @@ Generated: 2026-07-03T21:49:48.407Z
 - Proposed family review rows: 134
 - Reused-number inserts: 103
 - Missing-number inserts: 31
-- Payload fingerprint: `5167a2a5a5a791dd8248770b0f7b173332c8ff45df138bb14bc0a8f682663777`
+- Payload fingerprint: `b2e7b43973ef1f868aff84fc12b6eb49449dfafef2f8359ec348bf93be5b8c0e`
 - Preflight status: `pass`
 - GV ID collisions: 0
 - Identity hash collisions: 0
@@ -53,8 +53,8 @@ Generated: 2026-07-03T21:49:48.407Z
 | GV-PK-JPN-DPP-101-PIKACHU | Pikachu | 101/DP-P | jpn-dpp | insert_reused_promo_number_parent |
 | GV-PK-JPN-DPP-102-PIKACHU | Pikachu | 102/DP-P | jpn-dpp | insert_reused_promo_number_parent |
 | GV-PK-JPN-DPP-113-PIKACHU | Pikachu | 113/DP-P | jpn-dpp | insert_reused_promo_number_parent |
-| GV-PK-JPN-DPTP-043-PIKACHU-LV-X | Pikachu Lv X | 043/DPT-P | jpn-dptp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-005-SAPPOROS-PIKACHU | Sapporos Pikachu | 005/SM-P | jpn-smp | insert_missing_promo_parent |
+| GV-PK-JPN-DPTP-043-PIKACHU-LV-X | Pikachu LV.X | 043/DPT-P | jpn-dptp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-005-SAPPOROS-PIKACHU | Sapporo's Pikachu | 005/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SMP-013-PRETEND-TEAM-SKULL-PIKACHU | Pretend Team Skull Pikachu | 013/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SMP-014-PRETEND-GRUNT-PIKACHU | Pretend Grunt Pikachu | 014/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SMP-037-PONCHO-WEARING-PIKACHU | Poncho Wearing Pikachu | 037/SM-P | jpn-smp | insert_missing_promo_parent |
@@ -63,13 +63,13 @@ Generated: 2026-07-03T21:49:48.407Z
 | GV-PK-JPN-SMP-055-EASTERS-PIKACHU | Easters Pikachu | 055/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SMP-061-PIKACHU | Pikachu | 061/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-068-PIKACHU | Pikachu | 068/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-071-ASHS-PIKACHU | Ashs Pikachu | 071/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-072-ASHS-PIKACHU | Ashs Pikachu | 072/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-073-ASHS-PIKACHU | Ashs Pikachu | 073/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-074-ASHS-PIKACHU | Ashs Pikachu | 074/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-075-ASHS-PIKACHU | Ashs Pikachu | 075/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-076-ASHS-PIKACHU | Ashs Pikachu | 076/SM-P | jpn-smp | insert_reused_promo_number_parent |
-| GV-PK-JPN-SMP-086-ASHS-PIKACHU | Ashs Pikachu | 086/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-071-ASHS-PIKACHU | Ash's Pikachu | 071/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-072-ASHS-PIKACHU | Ash's Pikachu | 072/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-073-ASHS-PIKACHU | Ash's Pikachu | 073/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-074-ASHS-PIKACHU | Ash's Pikachu | 074/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-075-ASHS-PIKACHU | Ash's Pikachu | 075/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-076-ASHS-PIKACHU | Ash's Pikachu | 076/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-086-ASHS-PIKACHU | Ash's Pikachu | 086/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-088-TOHOKUS-PIKACHU | Tohokus Pikachu | 088/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SMP-114-PIKACHU | Pikachu | 114/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-168-PIKACHU | Pikachu | 168/SM-P | jpn-smp | insert_reused_promo_number_parent |
@@ -110,7 +110,7 @@ Generated: 2026-07-03T21:49:48.407Z
 | GV-PK-JPN-SMP-376-PIKACHU | Pikachu | 376/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-377-PIKACHU | Pikachu | 377/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-392-PLAYING-IN-THE-SEA-PIKACHU | Playing In The Sea Pikachu | 392/SM-P | jpn-smp | insert_missing_promo_parent |
-| GV-PK-JPN-SMP-393-PIKACHU-GX | Pikachu Gx | 393/SM-P | jpn-smp | insert_reused_promo_number_parent |
+| GV-PK-JPN-SMP-393-PIKACHU-GX | Pikachu GX | 393/SM-P | jpn-smp | insert_reused_promo_number_parent |
 | GV-PK-JPN-SMP-407-PRETEND-COMEDIAN-PIKACHU | Pretend Comedian Pikachu | 407/SM-P | jpn-smp | insert_missing_promo_parent |
 | GV-PK-JPN-SP-002-SHIBUYAS-PIKACHU | Shibuyas Pikachu | 002/S-P | jpn-sp | insert_missing_promo_parent |
 | GV-PK-JPN-SP-024-PIKACHU | Pikachu | 024/S-P | jpn-sp | insert_reused_promo_number_parent |

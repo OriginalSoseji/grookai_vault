@@ -47,12 +47,21 @@ function sha256(value) {
 }
 
 function slugToDisplayName(slug) {
-  return slug
+  const displayName = slug
     .replace(/-?(?:scarlet-and-violet|sword-and-shield|sun-and-moon|xy|black-and-white|diamond-and-pearl|platinum)-promos-\d+-(?:sv|s|sm|xy|bw|dp|dpt)-p$/i, '')
     .replace(/-/g, ' ')
     .replace(/\b\w/g, (letter) => letter.toUpperCase())
     .replace(/\bDxs\b/g, 'DX')
     .replace(/\bVmax\b/g, 'VMAX');
+
+  return displayName
+    .replace(/\bEx\b/g, 'ex')
+    .replace(/\bGx\b/g, 'GX')
+    .replace(/\bLv X\b/g, 'LV.X')
+    .replace(/\bSapporos\b/g, "Sapporo's")
+    .replace(/\bAshs\b/g, "Ash's")
+    .replace(/\bTeam Magmas\b/g, "Team Magma's")
+    .replace(/\bTeam Aquas\b/g, "Team Aqua's");
 }
 
 function candidateSlug(sourceUrl, numberKey) {
@@ -221,12 +230,39 @@ async function runPreflight(targets) {
   };
 }
 
+async function hydrateIdentityHashes(targets) {
+  const supabase = await supabaseClient();
+  const hydrated = [];
+
+  for (const target of targets) {
+    const { data, error } = await supabase.rpc('card_print_identity_hash_v1', {
+      p_identity_domain: target.identity_domain,
+      p_identity_key_version: 'pokemon_jpn:v1',
+      p_set_code_identity: target.set_code,
+      p_printed_number: target.number_plain,
+      p_normalized_printed_name: target.name,
+      p_source_name_raw: target.name,
+      p_identity_payload: target.identity_payload,
+    });
+
+    if (error) throw error;
+    hydrated.push({
+      ...target,
+      identity_key_version: 'pokemon_jpn:v1',
+      identity_key_hash: data,
+    });
+  }
+
+  return hydrated;
+}
+
 async function main() {
   const audit = JSON.parse(await fs.readFile(AUDIT_JSON, 'utf8'));
-  const targets = audit.comparison.two_source_actionable
+  const rawTargets = audit.comparison.two_source_actionable
     .map(buildTarget)
     .filter(Boolean)
     .sort((a, b) => a.gv_id.localeCompare(b.gv_id));
+  const targets = await hydrateIdentityHashes(rawTargets);
 
   const bySet = {};
   for (const target of targets) {
