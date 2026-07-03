@@ -92,6 +92,7 @@ test("explore search is bounded and language-aware for public performance", () =
   assert.match(exploreClient, /const SEARCH_API_RESULT_LIMIT = 48/);
   assert.match(exploreClient, /params\.set\("limit", String\(SEARCH_API_RESULT_LIMIT\)\)/);
   assert.match(exploreClient, /params\.set\("include_pricing", "1"\)/);
+  assert.match(exploreClient, /imagePriority=\{groupIndex === 0 && rowIndex < 4\}/);
   assert.match(gridItem, /imagePrefetch=\{false\}/);
   assert.match(gridItem, /imagePriority=\{imagePriority\}/);
   assert.match(publicCardImage, /fetchPriority=\{priority \? "high" : undefined\}/);
@@ -165,14 +166,24 @@ test("japanese pikachu display keeps english primary and printed name secondary"
 
 test("card detail streams lower panels after exact card information", () => {
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
+  const cardZoomModal = readSource("components", "compare", "CardZoomModal.tsx");
   const pricingRail = readSource("components", "pricing", "CardPagePricingRail.tsx");
+  const serverSupabase = readSource("lib", "supabase", "server.ts");
 
   assert.match(cardPage, /const card = await getPublicCardByGvId\(params\.gv_id, \{/);
   assert.match(cardPage, /includePricing: false/);
   assert.match(cardPage, /includeRelatedPrints: false/);
   assert.match(cardPage, /includeCameos: false/);
+  assert.match(cardPage, /hasSupabaseServerAuthCookie/);
+  assert.match(cardPage, /shouldReadAuthenticatedState\s*\?\s*await supabase\.auth\.getUser\(\)/);
+  assert.doesNotMatch(cardPage, /getSetLogoAssetPathMap/);
   assert.match(cardPage, /getCardPricingUiRowsByCardPrintId/);
   assert.match(cardPage, /pricingRecords=\{pricingRecords\}/);
+  assert.match(cardPage, /<CardZoomModal[\s\S]*priority/);
+  assert.match(cardZoomModal, /priority = false/);
+  assert.match(cardZoomModal, /priority=\{priority\}/);
+  assert.match(serverSupabase, /hasSupabaseServerAuthCookie/);
+  assert.match(serverSupabase, /auth-token/);
   assert.match(cardPage, /async function StreamedArtworkCameosSection/);
   assert.match(cardPage, /async function StreamedRelatedPrintsSection/);
   assert.match(cardPage, /getPublicCameosByGvId/);
