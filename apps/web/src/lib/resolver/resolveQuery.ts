@@ -43,6 +43,7 @@ type RankedResolveOptions = {
   releaseYearMin?: number;
   releaseYearMax?: number;
   languageScope?: PublicLanguageScope;
+  includePricing?: boolean;
 };
 
 export type ResolverState =
@@ -318,6 +319,7 @@ export async function resolveQueryWithMeta(
     options.releaseYearMin,
     options.releaseYearMax,
     options.languageScope,
+    options.includePricing,
   );
   const meta = buildRankedResolverMeta(resolved.rows, resolved.timing, packet);
 
