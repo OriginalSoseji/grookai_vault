@@ -183,7 +183,7 @@ class _VaultItemTile extends StatelessWidget {
                         ],
                         if (pricing?.hasVisibleValue == true) ...[
                           SizedBox(height: compact ? 4 : 5),
-                          CardSurfacePricePill(
+                          CardSurfacePriceText(
                             pricing: pricing,
                             size: compact
                                 ? CardSurfacePriceSize.dense
@@ -306,13 +306,13 @@ class _VaultGridTile extends StatelessWidget {
     const priceSlotHeight = 20.0;
 
     return Material(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.30),
-      borderRadius: BorderRadius.circular(15),
+      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
+      borderRadius: BorderRadius.circular(18),
       child: InkWell(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(18),
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -335,7 +335,7 @@ class _VaultGridTile extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       icon: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: colorScheme.surface.withValues(alpha: 0.84),
+                          color: colorScheme.surface.withValues(alpha: 0.72),
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: const Padding(
@@ -425,7 +425,7 @@ class _VaultGridTile extends StatelessWidget {
                     maintainAnimation: true,
                     maintainState: true,
                     maintainSize: true,
-                    child: CardSurfacePricePill(
+                    child: CardSurfacePriceText(
                       pricing: pricing,
                       size: CardSurfacePriceSize.grid,
                     ),
@@ -1042,10 +1042,10 @@ class VaultPageState extends State<VaultPage> {
             child: Material(
               color: Theme.of(
                 context,
-              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.45),
-              borderRadius: BorderRadius.circular(20),
+              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(18),
               child: InkWell(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(18),
                 onTap: cardPrintId.isEmpty
                     ? null
                     : () => _openManageCardRow(row),
@@ -1092,7 +1092,7 @@ class VaultPageState extends State<VaultPage> {
                       ),
                       if (pricing?.hasVisibleValue == true) ...[
                         const SizedBox(height: 6),
-                        CardSurfacePricePill(
+                        CardSurfacePriceText(
                           pricing: pricing,
                           size: CardSurfacePriceSize.dense,
                         ),

@@ -243,14 +243,9 @@ class _NetworkPosterFallback extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.primaryContainer.withValues(alpha: 0.85),
-            colorScheme.secondaryContainer.withValues(alpha: 0.72),
-            colorScheme.surfaceContainerHighest.withValues(alpha: 0.94),
-          ],
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.62),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.18),
         ),
       ),
       child: Center(

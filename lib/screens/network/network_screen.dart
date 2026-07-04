@@ -388,146 +388,111 @@ class NetworkScreenState extends State<NetworkScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.surface.withValues(alpha: 0.995),
-            colorScheme.surfaceContainerLowest.withValues(alpha: 0.96),
-            colorScheme.surface.withValues(alpha: 0.99),
-          ],
-        ),
-      ),
-      child: Stack(
-        children: [
-          const Positioned(
-            top: -70,
-            left: -36,
-            child: _NetworkAtmosphereOrb(
-              width: 230,
-              height: 230,
-              opacity: 0.22,
+      decoration: BoxDecoration(color: colorScheme.surface),
+      child: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          onRefresh: () => _loadRows(resetSession: true),
+          child: CustomScrollView(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-          ),
-          Positioned(
-            top: 110,
-            right: -48,
-            child: _NetworkAtmosphereOrb(
-              width: 210,
-              height: 210,
-              opacity: colorScheme.brightness == Brightness.dark ? 0.14 : 0.12,
-              color: colorScheme.secondaryContainer,
-            ),
-          ),
-          SafeArea(
-            bottom: false,
-            child: RefreshIndicator(
-              onRefresh: () => _loadRows(resetSession: true),
-              child: CustomScrollView(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            // ignore: deprecated_member_use
+            cacheExtent: 960,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: _NetworkFeedModeToggle(
+                    value: _feedMode,
+                    onChanged: (mode) {
+                      unawaited(_setFeedMode(mode));
+                    },
+                  ),
                 ),
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                // ignore: deprecated_member_use
-                cacheExtent: 960,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                      child: _NetworkFeedModeToggle(
-                        value: _feedMode,
-                        onChanged: (mode) {
-                          unawaited(_setFeedMode(mode));
-                        },
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            _IntentChip(
-                              label: 'All',
-                              selected: _intent == null,
-                              onPressed: () => _setIntent(null),
-                            ),
-                            const SizedBox(width: 8),
-                            _IntentChip(
-                              label: NetworkStreamService.getVaultIntentLabel(
-                                'trade',
-                              ),
-                              selected: _intent == 'trade',
-                              onPressed: () => _setIntent('trade'),
-                            ),
-                            const SizedBox(width: 8),
-                            _IntentChip(
-                              label: NetworkStreamService.getVaultIntentLabel(
-                                'sell',
-                              ),
-                              selected: _intent == 'sell',
-                              onPressed: () => _setIntent('sell'),
-                            ),
-                            const SizedBox(width: 8),
-                            _IntentChip(
-                              label: NetworkStreamService.getVaultIntentLabel(
-                                'showcase',
-                              ),
-                              selected: _intent == 'showcase',
-                              onPressed: () => _setIntent('showcase'),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(child: SizedBox(height: 6)),
-                  if (_provisionalCards.isNotEmpty)
-                    SliverToBoxAdapter(
-                      child: ProvisionalCardSection(
-                        cards: _provisionalCards,
-                        compact: true,
-                      ),
-                    ),
-                  // PERFORMANCE_P1_NETWORK_LAZY_RENDER
-                  // Uses lazy sliver rendering so Network feed scales without
-                  // eager whole-page builds in grid or list modes.
-                  _NetworkContentSliver(
-                    feedMode: _feedMode,
-                    rows: _rows,
-                    ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
-                    loading: _loading,
-                    showingCachedRows: _showingCachedRows,
-                    error: _error,
-                    emptyState: _emptyState,
-                    onRetry: () => _loadRows(resetSession: true),
-                  ),
-                  if (_loadingMore)
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
-                        child: Center(child: CircularProgressIndicator()),
-                      ),
-                    ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: shellContentBottomPadding(context, extra: 8),
-                    ),
-                  ),
-                ],
               ),
-            ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _IntentChip(
+                          label: 'All',
+                          selected: _intent == null,
+                          onPressed: () => _setIntent(null),
+                        ),
+                        const SizedBox(width: 8),
+                        _IntentChip(
+                          label: NetworkStreamService.getVaultIntentLabel(
+                            'trade',
+                          ),
+                          selected: _intent == 'trade',
+                          onPressed: () => _setIntent('trade'),
+                        ),
+                        const SizedBox(width: 8),
+                        _IntentChip(
+                          label: NetworkStreamService.getVaultIntentLabel(
+                            'sell',
+                          ),
+                          selected: _intent == 'sell',
+                          onPressed: () => _setIntent('sell'),
+                        ),
+                        const SizedBox(width: 8),
+                        _IntentChip(
+                          label: NetworkStreamService.getVaultIntentLabel(
+                            'showcase',
+                          ),
+                          selected: _intent == 'showcase',
+                          onPressed: () => _setIntent('showcase'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 6)),
+              if (_provisionalCards.isNotEmpty)
+                SliverToBoxAdapter(
+                  child: ProvisionalCardSection(
+                    cards: _provisionalCards,
+                    compact: true,
+                  ),
+                ),
+              // PERFORMANCE_P1_NETWORK_LAZY_RENDER
+              // Uses lazy sliver rendering so Network feed scales without
+              // eager whole-page builds in grid or list modes.
+              _NetworkContentSliver(
+                feedMode: _feedMode,
+                rows: _rows,
+                ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
+                loading: _loading,
+                showingCachedRows: _showingCachedRows,
+                error: _error,
+                emptyState: _emptyState,
+                onRetry: () => _loadRows(resetSession: true),
+              ),
+              if (_loadingMore)
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: shellContentBottomPadding(context, extra: 8),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -1999,43 +1964,6 @@ class _NetworkFeedModeToggle extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _NetworkAtmosphereOrb extends StatelessWidget {
-  const _NetworkAtmosphereOrb({
-    required this.width,
-    required this.height,
-    required this.opacity,
-    this.color,
-  });
-
-  final double width;
-  final double height;
-  final double opacity;
-  final Color? color;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return IgnorePointer(
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: [
-              (color ?? colorScheme.primaryContainer).withValues(
-                alpha: opacity,
-              ),
-              Colors.transparent,
-            ],
-          ),
-        ),
       ),
     );
   }

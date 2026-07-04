@@ -25,6 +25,7 @@ import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/contact_owner_button.dart';
+import 'widgets/gv_surface.dart';
 import 'widgets/ownership/ownership_signal.dart';
 
 class CardDetailScreen extends StatefulWidget {
@@ -1462,15 +1463,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final sections = <Widget>[
       _buildHeroPanel(theme, colorScheme),
-      if (_printingOptions.isNotEmpty)
-        _buildPrintingOptionsSection(theme, colorScheme),
-      if (_variantOriginCopy != null)
-        _buildVariantOriginSection(theme, colorScheme),
       _buildActions(context, theme, colorScheme),
       if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
       if (_buildDetailEntries().isNotEmpty)
         _buildCardDetailsSection(theme, colorScheme),
+      if (_printingOptions.isNotEmpty)
+        _buildPrintingOptionsSection(theme, colorScheme),
+      if (_variantOriginCopy != null)
+        _buildVariantOriginSection(theme, colorScheme),
     ];
 
     return Scaffold(
@@ -1510,7 +1511,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildHeroImage(colorScheme),
+          _buildHeroImage(),
           if (imagePresentation.compactBadgeLabel != null) ...[
             const SizedBox(height: 12),
             Align(
@@ -1559,39 +1560,20 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  Widget _buildHeroImage(ColorScheme colorScheme) {
+  Widget _buildHeroImage() {
     final url = _cardImagePresentation.displayImageUrl ?? '';
 
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 286),
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(
-              color: colorScheme.outlineVariant.withValues(alpha: 0.42),
-            ),
-          ),
-          padding: const EdgeInsets.all(9),
-          child: Container(
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.62,
-              ),
-              borderRadius: BorderRadius.circular(18),
-            ),
-            padding: const EdgeInsets.all(6),
-            child: AspectRatio(
-              aspectRatio: 3 / 4,
-              child: CardSurfaceArtwork(
-                label: _displayTitle,
-                imageUrl: url,
-                borderRadius: 16,
-                padding: const EdgeInsets.all(4),
-                showZoomAffordance: url.isNotEmpty,
-              ),
-            ),
+        constraints: const BoxConstraints(maxWidth: 292),
+        child: AspectRatio(
+          aspectRatio: 3 / 4,
+          child: CardSurfaceArtwork(
+            label: _displayTitle,
+            imageUrl: url,
+            borderRadius: 22,
+            padding: EdgeInsets.zero,
+            showZoomAffordance: url.isNotEmpty,
           ),
         ),
       ),
@@ -1776,60 +1758,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     bool emphasize = false,
     bool soft = false,
   }) {
-    return Container(
-      decoration: _surfaceDecoration(
-        colorScheme,
-        emphasize: emphasize,
-        soft: soft,
-      ),
+    return GvSurface(
+      variant: emphasize
+          ? GvSurfaceVariant.floating
+          : soft
+          ? GvSurfaceVariant.resting
+          : GvSurfaceVariant.grouped,
+      borderRadius: 16,
       padding: padding,
       child: child,
-    );
-  }
-
-  BoxDecoration _surfaceDecoration(
-    ColorScheme colorScheme, {
-    bool emphasize = false,
-    bool soft = false,
-  }) {
-    return BoxDecoration(
-      color: soft
-          ? colorScheme.surfaceContainerLowest.withValues(alpha: 0.7)
-          : colorScheme.surface,
-      borderRadius: BorderRadius.circular(16),
-      border: Border.all(
-        color: colorScheme.outlineVariant.withValues(
-          alpha: emphasize
-              ? 0.6
-              : soft
-              ? 0.28
-              : 0.45,
-        ),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: colorScheme.shadow.withValues(
-            alpha: emphasize
-                ? 0.1
-                : soft
-                ? 0.025
-                : 0.06,
-          ),
-          blurRadius: emphasize
-              ? 16
-              : soft
-              ? 4
-              : 8,
-          offset: Offset(
-            0,
-            emphasize
-                ? 7
-                : soft
-                ? 1
-                : 3,
-          ),
-        ),
-      ],
     );
   }
 

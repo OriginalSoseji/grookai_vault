@@ -14,6 +14,7 @@ import '../../services/public/public_collector_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
+import '../../widgets/gv_surface.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
 import 'public_collector_relationship_screen.dart';
@@ -1084,19 +1085,8 @@ class _PublicCollectorHeader extends StatelessWidget {
         ? null
         : GrookaiWebRouteService.buildUri('/u/${profile.slug}');
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.06),
-            colorScheme.primaryContainer.withValues(alpha: 0.26),
-          ],
-        ),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
       padding: const EdgeInsets.fromLTRB(12, 11, 12, 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1319,12 +1309,8 @@ class _WallSectionCard extends StatelessWidget {
       return child!;
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1462,10 +1448,8 @@ class _PublicCardTile extends StatelessWidget {
                     child: CardSurfaceArtwork(
                       label: displayIdentity.displayName,
                       imageUrl: card.imageUrl,
-                      borderRadius: 22,
-                      padding: const EdgeInsets.all(1.5),
-                      backgroundColor: colorScheme.surfaceContainerLow
-                          .withValues(alpha: 0.52),
+                      borderRadius: 20,
+                      padding: EdgeInsets.zero,
                       onViewDetails: openCardDetails,
                     ),
                   ),
@@ -1599,7 +1583,7 @@ class _PublicCardTile extends StatelessWidget {
       return const _PricePlaceholderPill(label: 'Private');
     }
 
-    return CardSurfacePricePill(
+    return CardSurfacePriceText(
       pricing: card.pricing,
       size: CardSurfacePriceSize.grid,
       mode: displayMode == 'my_price'

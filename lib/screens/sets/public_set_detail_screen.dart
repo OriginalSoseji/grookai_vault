@@ -946,7 +946,7 @@ class _SetCardTile extends StatelessWidget {
                     SizedBox(height: compact ? 5 : 6),
                     SizedBox(
                       height: 22,
-                      child: CardSurfacePricePill(
+                      child: CardSurfacePriceText(
                         pricing: card.pricing,
                         size: compact
                             ? CardSurfacePriceSize.dense

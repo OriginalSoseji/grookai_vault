@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
+import '../../widgets/gv_surface.dart';
 import 'public_set_detail_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
@@ -116,43 +117,62 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
             padding: const EdgeInsets.fromLTRB(16, 18, 16, 28),
             children: [
               _SetsSurfaceCard(
-                emphasize: true,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'Public Sets'.toUpperCase(),
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1.1,
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.58,
-                        ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Sets',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.3,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            'Organized by era, release lane, and collector relevance.',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.66,
+                              ),
+                              fontWeight: FontWeight.w600,
+                              height: 1.25,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Browse Pokemon sets',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.5,
+                    const SizedBox(width: 12),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 11,
+                        vertical: 7,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Search, filter by era, or jump into collector lanes without scrolling through every set.',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.72,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.10,
                         ),
-                        height: 1.45,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: Text(
+                        '${_sets.length}',
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
               _SetsSurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -356,34 +376,16 @@ class _SetsSurfaceCard extends StatelessWidget {
   const _SetsSurfaceCard({
     required this.child,
     this.padding = const EdgeInsets.all(18),
-    this.emphasize = false,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
-  final bool emphasize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: emphasize ? 0.22 : 0.14),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(
-              alpha: emphasize ? 0.08 : 0.05,
-            ),
-            blurRadius: emphasize ? 28 : 22,
-            offset: Offset(0, emphasize ? 14 : 10),
-          ),
-        ],
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
+      borderRadius: 22,
       padding: padding,
       child: child,
     );

@@ -830,7 +830,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     final imagePresentation = _manageCardImagePresentation(data);
     final heroPrice = _pricing?.visibleValue == null
         ? null
-        : CardSurfacePricePill(
+        : CardSurfacePriceText(
             pricing: _pricing,
             size: CardSurfacePriceSize.list,
             mode: CardSurfacePriceMode.grookai,

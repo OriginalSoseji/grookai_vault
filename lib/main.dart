@@ -54,6 +54,7 @@ import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
 import 'utils/display_image_contract.dart';
+import 'widgets/gv_surface.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
@@ -324,21 +325,9 @@ class _ProductSurfaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.05),
-            blurRadius: 14,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
+      borderRadius: 22,
       padding: padding,
       child: child,
     );
@@ -633,6 +622,39 @@ class _SearchLanguageScopeChip extends StatelessWidget {
   }
 }
 
+class _SearchHeaderIconButton extends StatelessWidget {
+  const _SearchHeaderIconButton({
+    required this.icon,
+    required this.tooltip,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return IconButton(
+      tooltip: tooltip,
+      icon: Icon(icon, size: 18),
+      onPressed: onPressed,
+      visualDensity: VisualDensity.compact,
+      style: IconButton.styleFrom(
+        minimumSize: const Size(36, 36),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        backgroundColor: colorScheme.surfaceContainerHighest.withValues(
+          alpha: 0.28,
+        ),
+        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.72),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+    );
+  }
+}
+
 class _ResolverStatusBanner extends StatelessWidget {
   final CardSearchResolverMeta? meta;
   final String query;
@@ -906,14 +928,11 @@ class _CatalogCardTile extends StatelessWidget {
                           ],
                           if (pricing?.hasVisibleValue == true) ...[
                             SizedBox(height: compact ? 4 : 5),
-                            Opacity(
-                              opacity: 0.86,
-                              child: CardSurfacePricePill(
-                                pricing: pricing,
-                                size: compact
-                                    ? CardSurfacePriceSize.dense
-                                    : CardSurfacePriceSize.list,
-                              ),
+                            CardSurfacePriceText(
+                              pricing: pricing,
+                              size: compact
+                                  ? CardSurfacePriceSize.dense
+                                  : CardSurfacePriceSize.list,
                             ),
                           ],
                           _CatalogOwnershipSummaryLine(
@@ -1154,9 +1173,10 @@ class _CatalogCardGridTile extends StatelessWidget {
                       ),
                       if (pricing?.hasVisibleValue == true) ...[
                         const SizedBox(width: 6),
-                        CardSurfacePricePill(
+                        CardSurfacePriceText(
                           pricing: pricing,
                           size: CardSurfacePriceSize.grid,
+                          textAlign: TextAlign.right,
                         ),
                       ],
                     ],
@@ -1199,7 +1219,6 @@ class _CatalogGridArtwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
     final imagePresentation = _cardPrintImagePresentation(card);
 
@@ -1207,8 +1226,7 @@ class _CatalogGridArtwork extends StatelessWidget {
       label: displayIdentity.displayName,
       imageUrl: card.displayImage,
       borderRadius: 22,
-      padding: const EdgeInsets.all(1.5),
-      backgroundColor: colorScheme.surfaceContainerLow.withValues(alpha: 0.52),
+      padding: EdgeInsets.zero,
       enableTapToZoom: false,
       showShadow: false,
       filterQuality: FilterQuality.none,
@@ -1653,17 +1671,10 @@ class _SearchResultActionSheet extends StatelessWidget {
             if (pricing?.hasVisibleValue == true) ...[
               const SizedBox(height: 9),
               Center(
-                child: MediaQuery(
-                  data: MediaQuery.of(
-                    context,
-                  ).copyWith(textScaler: const TextScaler.linear(1.08)),
-                  child: Transform.scale(
-                    scale: 1.04,
-                    child: CardSurfacePricePill(
-                      pricing: pricing,
-                      size: CardSurfacePriceSize.list,
-                    ),
-                  ),
+                child: CardSurfacePriceText(
+                  pricing: pricing,
+                  size: CardSurfacePriceSize.list,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
@@ -4197,52 +4208,61 @@ class HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(top: 6, bottom: 0),
               ),
               const SizedBox(height: 8),
-              _SearchLanguageScopeSelector(
-                value: _languageScope,
-                onChanged: _handleLanguageScopeChanged,
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: FilledButton.tonalIcon(
-                      onPressed: _openSetsScreen,
-                      style: FilledButton.styleFrom(
-                        minimumSize: const Size(0, 36),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final utilityControls = Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _SearchHeaderIconButton(
+                        icon: Icons.grid_view_rounded,
+                        tooltip: 'Browse sets',
+                        onPressed: _openSetsScreen,
+                      ),
+                      const SizedBox(width: 7),
+                      _SearchHeaderIconButton(
+                        icon: Icons.alternate_email_rounded,
+                        tooltip: 'Open collector wall',
+                        onPressed: _openPublicCollectorBySlug,
+                      ),
+                      const SizedBox(width: 7),
+                      SharedCardViewModeButton(
+                        value: _viewMode,
+                        onChanged: (mode) {
+                          setState(() {
+                            _viewMode = mode;
+                          });
+                        },
+                      ),
+                    ],
+                  );
+
+                  if (constraints.maxWidth < 430) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _SearchLanguageScopeSelector(
+                          value: _languageScope,
+                          onChanged: _handleLanguageScopeChanged,
+                        ),
+                        const SizedBox(height: 7),
+                        utilityControls,
+                      ],
+                    );
+                  }
+
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: _SearchLanguageScopeSelector(
+                          value: _languageScope,
+                          onChanged: _handleLanguageScopeChanged,
                         ),
                       ),
-                      icon: const Icon(Icons.grid_view_rounded, size: 17),
-                      label: const Text('Browse sets'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: _openPublicCollectorBySlug,
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(0, 36),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      icon: const Icon(Icons.alternate_email_rounded, size: 17),
-                      label: const Text('Open slug'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  SharedCardViewModeButton(
-                    value: _viewMode,
-                    onChanged: (mode) {
-                      setState(() {
-                        _viewMode = mode;
-                      });
-                    },
-                  ),
-                ],
+                      const SizedBox(width: 8),
+                      utilityControls,
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 8),
               SingleChildScrollView(
