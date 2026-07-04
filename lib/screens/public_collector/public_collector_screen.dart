@@ -48,12 +48,16 @@ class PublicCollectorScreen extends StatefulWidget {
     required this.slug,
     this.initialSectionId,
     this.showAppBar = true,
+    this.embeddedInShell = false,
+    this.onOpenSettings,
     super.key,
   });
 
   final String slug;
   final String? initialSectionId;
   final bool showAppBar;
+  final bool embeddedInShell;
+  final VoidCallback? onOpenSettings;
 
   @override
   State<PublicCollectorScreen> createState() => _PublicCollectorScreenState();
@@ -143,7 +147,9 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       if (_selectedSectionId != _wallSectionId) {
         unawaited(_loadSectionCards(_selectedSectionId));
       }
-    } catch (_) {
+    } catch (error, stackTrace) {
+      debugPrint('PublicCollectorScreen load failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
       if (!mounted || loadVersion != _loadVersion) {
         return;
       }
@@ -510,7 +516,11 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final body = _CollectorScaffoldBody(child: _buildBody());
+    final body = _CollectorScaffoldBody(
+      embeddedInShell: widget.embeddedInShell,
+      onRefresh: _load,
+      child: _buildBody(),
+    );
 
     if (!widget.showAppBar) {
       return body;
@@ -577,7 +587,8 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         );
       case PublicCollectorViewState.empty:
         final result = _result;
-        if (result?.profile == null) {
+        final profile = result?.profile;
+        if (profile == null) {
           return const _StateCard(
             icon: Icons.inbox_rounded,
             title: 'No public Wall content yet',
@@ -586,23 +597,32 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           );
         }
 
+        final isOwner = _isSelfProfile(profile);
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _PublicCollectorHeader(
-              profile: result!.profile!,
-              showFollowAction: _shouldShowFollowAction(result.profile),
+              profile: profile,
+              showFollowAction: _shouldShowFollowAction(profile),
               isFollowing: _isFollowing,
               followStateLoading: _followStateLoading,
               followActionBusy: _followActionBusy,
               onFollowPressed: _handleFollowAction,
             ),
             const SizedBox(height: 12),
-            const _StateCard(
-              icon: Icons.inbox_rounded,
-              title: 'No cards yet',
-              body: 'This collector does not have any public Wall content yet.',
-            ),
+            if (widget.embeddedInShell && isOwner)
+              _OwnerWallEmptyState(
+                onReload: _load,
+                onOpenSettings: widget.onOpenSettings,
+              )
+            else
+              const _StateCard(
+                icon: Icons.inbox_rounded,
+                title: 'No cards yet',
+                body:
+                    'This collector does not have any public Wall content yet.',
+              ),
           ],
         );
       case PublicCollectorViewState.success:
@@ -628,7 +648,9 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           onFollowPressed: _handleFollowAction,
         );
       case PublicCollectorViewState.failure:
-        return _failureCard();
+        return widget.embeddedInShell
+            ? _OwnerWallLoadFailureState(onReload: _load)
+            : _failureCard();
     }
   }
 
@@ -886,26 +908,95 @@ class _PublicCollectorSegmentedContentState
 }
 
 class _CollectorScaffoldBody extends StatelessWidget {
-  const _CollectorScaffoldBody({required this.child});
+  const _CollectorScaffoldBody({
+    required this.child,
+    required this.embeddedInShell,
+    required this.onRefresh,
+  });
 
   final Widget child;
+  final bool embeddedInShell;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final bottomPadding = embeddedInShell
+        ? shellContentBottomPadding(context, extra: 8)
+        : shellContentBottomPadding(context, extra: 8);
 
-    return SafeArea(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: colorScheme.surface),
-        child: ListView(
-          padding: EdgeInsets.fromLTRB(
-            10,
-            8,
-            10,
-            shellContentBottomPadding(context, extra: 8),
+    final scrollBody = RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: EdgeInsets.fromLTRB(10, 8, 10, bottomPadding),
+        children: [child],
+      ),
+    );
+
+    final decorated = DecoratedBox(
+      decoration: BoxDecoration(color: colorScheme.surface),
+      child: scrollBody,
+    );
+
+    if (embeddedInShell) {
+      return decorated;
+    }
+
+    return SafeArea(child: decorated);
+  }
+}
+
+class _OwnerWallEmptyState extends StatelessWidget {
+  const _OwnerWallEmptyState({required this.onReload, this.onOpenSettings});
+
+  final Future<void> Function() onReload;
+  final VoidCallback? onOpenSettings;
+
+  @override
+  Widget build(BuildContext context) {
+    return _StateCard(
+      icon: Icons.dashboard_customize_outlined,
+      title: 'Your Wall has no visible cards yet',
+      body:
+          'Cards appear here after an exact copy is set to Showcase, Trade, or Sell. If you already added cards, refresh the Wall or check your public profile settings.',
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          FilledButton.icon(
+            onPressed: () => unawaited(onReload()),
+            icon: const Icon(Icons.refresh_rounded),
+            label: const Text('Refresh Wall'),
           ),
-          children: [child],
-        ),
+          if (onOpenSettings != null)
+            OutlinedButton.icon(
+              onPressed: onOpenSettings,
+              icon: const Icon(Icons.settings_outlined),
+              label: const Text('Account settings'),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OwnerWallLoadFailureState extends StatelessWidget {
+  const _OwnerWallLoadFailureState({required this.onReload});
+
+  final Future<void> Function() onReload;
+
+  @override
+  Widget build(BuildContext context) {
+    return _StateCard(
+      icon: Icons.wifi_tethering_error_rounded,
+      title: 'Unable to load My Wall',
+      body:
+          'The Wall data could not be loaded right now. Refresh to try again.',
+      action: FilledButton.icon(
+        onPressed: () => unawaited(onReload()),
+        icon: const Icon(Icons.refresh_rounded),
+        label: const Text('Retry'),
       ),
     );
   }

@@ -90,6 +90,15 @@ void main() {
     expect(collectorScreen, contains('widget.initialSectionId'));
   });
 
+  test('My Wall shell embeds collector surface without standalone chrome', () {
+    expect(mainShell, contains('showAppBar: false'));
+    expect(mainShell, contains('embeddedInShell: true'));
+    expect(collectorScreen, contains('final bool embeddedInShell'));
+    expect(collectorScreen, contains('RefreshIndicator'));
+    expect(collectorScreen, contains('_OwnerWallEmptyState'));
+    expect(collectorScreen, contains('_OwnerWallLoadFailureState'));
+  });
+
   test('GVVI section membership is exact-copy based', () {
     expect(gvviService, contains('class VaultGvviSectionMembership'));
     expect(gvviService, contains("from('wall_section_memberships')"));

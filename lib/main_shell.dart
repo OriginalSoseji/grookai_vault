@@ -2061,6 +2061,8 @@ class _MyWallTabState extends State<_MyWallTab> {
         key: ValueKey('my-wall-${_slug!}-$_contentVersion'),
         slug: _slug!,
         showAppBar: false,
+        embeddedInShell: true,
+        onOpenSettings: () => unawaited(widget.onOpenAccount()),
       );
     }
 
