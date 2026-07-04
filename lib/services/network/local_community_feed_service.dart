@@ -4,7 +4,7 @@ import '../../utils/display_image_contract.dart';
 
 const bool kLocalCommunityFeedV1Enabled = bool.fromEnvironment(
   'LOCAL_COMMUNITY_FEED_V1_ENABLED',
-  defaultValue: false,
+  defaultValue: true,
 );
 
 class LocalCommunityFeedPage {
