@@ -121,12 +121,14 @@ class CardPrint {
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
       (numberPlain ?? '').isNotEmpty ? numberPlain! : (number ?? '');
-  String? get displayImage => resolveDisplayImageUrl(
-    displayImageUrl: displayImageUrl,
-    imageUrl: imageUrl,
-    imageAltUrl: imageAltUrl,
-    representativeImageUrl: representativeImageUrl,
-  );
+  String? get displayImage =>
+      normalizeDisplayImageUrl(displayImageUrl) ??
+      normalizeWarehouseDisplayImagePath(imagePath) ??
+      resolveDisplayImageUrl(
+        imageUrl: imageUrl,
+        imageAltUrl: imageAltUrl,
+        representativeImageUrl: representativeImageUrl,
+      );
 
   CardPrint copyWith({
     String? imageUrl,
@@ -178,6 +180,23 @@ class CardPrint {
             (key, value) => MapEntry(key.toString(), value?.toString()),
           )
         : null;
+    final imagePath = _jsonText(json, 'image_path', 'imagePath');
+    final displayImageUrl =
+        normalizeDisplayImageUrl(
+          json['display_image_url'] ?? json['displayImageUrl'],
+        ) ??
+        normalizeWarehouseDisplayImagePath(imagePath) ??
+        resolveDisplayImageUrl(
+          imageUrl:
+              json['image_best'] ??
+              json['imageBest'] ??
+              json['image_url'] ??
+              json['imageUrl'],
+          imageAltUrl: json['image_alt_url'] ?? json['imageAltUrl'],
+          representativeImageUrl:
+              json['representative_image_url'] ??
+              json['representativeImageUrl'],
+        );
     return CardPrint(
       id: (json['id'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
@@ -196,7 +215,7 @@ class CardPrint {
       rarity: json['rarity']?.toString(),
       imageUrl: _jsonText(json, 'image_url', 'imageUrl'),
       imageAltUrl: _jsonText(json, 'image_alt_url', 'imageAltUrl'),
-      imagePath: _jsonText(json, 'image_path', 'imagePath'),
+      imagePath: imagePath,
       representativeImageUrl: _jsonText(
         json,
         'representative_image_url',
@@ -205,17 +224,7 @@ class CardPrint {
       imageStatus: _jsonText(json, 'image_status', 'imageStatus'),
       imageNote: _jsonText(json, 'image_note', 'imageNote'),
       imageSource: _jsonText(json, 'image_source', 'imageSource'),
-      displayImageUrl: resolveDisplayImageUrl(
-        displayImageUrl: json['display_image_url'] ?? json['displayImageUrl'],
-        imageUrl:
-            json['image_best'] ??
-            json['imageBest'] ??
-            json['image_url'] ??
-            json['imageUrl'],
-        imageAltUrl: json['image_alt_url'] ?? json['imageAltUrl'],
-        representativeImageUrl:
-            json['representative_image_url'] ?? json['representativeImageUrl'],
-      ),
+      displayImageUrl: displayImageUrl,
       displayImageKind: _jsonText(
         json,
         'display_image_kind',

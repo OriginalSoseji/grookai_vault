@@ -1,6 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
 import '../vault/vault_card_service.dart';
 
@@ -151,7 +150,6 @@ class GrookaiDexSpeciesDetail {
 
 class GrookaiDexService {
   static const int defaultPageSize = 100;
-  static const String _cardImageMediaBucket = 'user-card-images';
   static const String _legendaryTreasuresRc5CardPrintId =
       'efa15a49-a1f9-46b0-bd69-85111388328e';
   static const List<String> _legendaryTreasuresRc5BlockedImagePatterns = [
@@ -633,9 +631,9 @@ class GrookaiDexService {
         final metadata = _CardPrintChildImageMetadata(
           finishKey: _optional(row['finish_key']),
           imageUrl:
-              _resolvePublicMediaUrl(_optional(row['image_path'])) ??
-              _optional(row['image_url']) ??
-              _optional(row['image_alt_url']),
+              normalizeWarehouseDisplayImagePath(row['image_path']) ??
+              normalizeDisplayImageUrl(row['image_url']) ??
+              normalizeDisplayImageUrl(row['image_alt_url']),
           imageStatus: _optional(row['image_status']),
           imageNote: _optional(row['image_note']),
         );
@@ -859,21 +857,6 @@ class GrookaiDexService {
       score += 4;
     }
     return score;
-  }
-
-  static String? _resolvePublicMediaUrl(String? path) {
-    final normalized = _clean(path).replaceFirst(RegExp(r'^/+'), '');
-    final baseUrl = supabaseUrl.replaceFirst(RegExp(r'/+$'), '');
-    if (normalized.isEmpty || baseUrl.isEmpty) {
-      return null;
-    }
-
-    final encodedPath = normalized
-        .split('/')
-        .where((segment) => segment.isNotEmpty)
-        .map(Uri.encodeComponent)
-        .join('/');
-    return '$baseUrl/storage/v1/object/public/${Uri.encodeComponent(_cardImageMediaBucket)}/$encodedPath';
   }
 
   static Map<String, dynamic>? _firstNestedRecord(dynamic value) {
