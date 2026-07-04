@@ -1582,7 +1582,7 @@ class _LoginPageState extends State<LoginPage> {
             style: textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
               letterSpacing: 0.3,
-              color: scheme.onSurface.withValues(alpha: 0.88),
+              color: Colors.white.withValues(alpha: 0.82),
             ),
           ),
           const SizedBox(height: 20),
@@ -1594,6 +1594,7 @@ class _LoginPageState extends State<LoginPage> {
               letterSpacing: 0,
               height: 0.98,
               fontSize: 38,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 12),
@@ -1601,7 +1602,7 @@ class _LoginPageState extends State<LoginPage> {
             'Show your collection, connect with collectors, and act when it matters.',
             textAlign: TextAlign.center,
             style: textTheme.bodyMedium?.copyWith(
-              color: scheme.onSurface.withValues(alpha: 0.70),
+              color: Colors.white.withValues(alpha: 0.68),
               height: 1.42,
             ),
           ),
@@ -1638,10 +1639,11 @@ class _LoginPageState extends State<LoginPage> {
     return OutlinedButton(
       onPressed: _showEmailForm || _loading ? null : _showEmailEntry,
       style: OutlinedButton.styleFrom(
-        foregroundColor: scheme.onSurface,
+        foregroundColor: Colors.white.withValues(alpha: 0.88),
+        disabledForegroundColor: Colors.white.withValues(alpha: 0.38),
         backgroundColor: Colors.white.withValues(alpha: 0.01),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        side: BorderSide(color: Colors.white.withValues(alpha: 0.12)),
+        side: BorderSide(color: Colors.white.withValues(alpha: 0.22)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: const Text(
@@ -1805,9 +1807,7 @@ class _LoginPageState extends State<LoginPage> {
                                 'Use one Grookai identity across your vault, wall, and collector feed.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
-                                  color: scheme.onSurface.withValues(
-                                    alpha: 0.54,
-                                  ),
+                                  color: Colors.white.withValues(alpha: 0.46),
                                   height: 1.35,
                                 ),
                               ),
@@ -1842,44 +1842,23 @@ class _LoginBackgroundAura extends StatelessWidget {
       ),
       child: Stack(
         fit: StackFit.expand,
-        children: const [
-          Positioned(
-            top: -90,
-            left: -40,
-            child: _LoginGlowOrb(diameter: 240, color: Color(0x334A90E2)),
-          ),
-          Positioned(
-            right: -90,
-            top: 180,
-            child: _LoginGlowOrb(diameter: 260, color: Color(0x22C7F284)),
-          ),
-          Positioned(
-            left: 50,
-            bottom: -110,
-            child: _LoginGlowOrb(diameter: 220, color: Color(0x22F2A55A)),
+        children: [
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withValues(alpha: 0.035),
+                    Colors.transparent,
+                    Colors.white.withValues(alpha: 0.018),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LoginGlowOrb extends StatelessWidget {
-  const _LoginGlowOrb({required this.diameter, required this.color});
-
-  final double diameter;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        width: diameter,
-        height: diameter,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
-        ),
       ),
     );
   }
