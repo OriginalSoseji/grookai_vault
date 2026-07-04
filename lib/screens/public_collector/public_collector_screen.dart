@@ -11,9 +11,11 @@ import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/app_shell_metrics.dart';
+import '../../widgets/gv_chip.dart';
 import '../../widgets/gv_surface.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
@@ -1091,49 +1093,12 @@ class _SectionRailChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return ChoiceChip(
+    return GvChip(
+      label: label,
+      count: count,
       selected: selected,
       onSelected: (_) => onTap(),
-      label: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 132),
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-          const SizedBox(width: 5),
-          if (loading)
-            SizedBox(
-              width: 12,
-              height: 12,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: selected
-                    ? colorScheme.onPrimary
-                    : colorScheme.onSurface.withValues(alpha: 0.72),
-              ),
-            )
-          else
-            Text(
-              '$count',
-              style: theme.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: selected
-                    ? colorScheme.onPrimary.withValues(alpha: 0.78)
-                    : colorScheme.onSurface.withValues(alpha: 0.58),
-              ),
-            ),
-        ],
-      ),
+      enabled: !loading,
     );
   }
 }
@@ -1184,7 +1149,7 @@ class _PublicCollectorHeader extends StatelessWidget {
                 Text(
                   displayName,
                   style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w700,
                     letterSpacing: 0,
                     height: 1.0,
                   ),
@@ -1519,20 +1484,20 @@ class _PublicCardTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: openCardDetails,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             AspectRatio(
-              aspectRatio: 0.69,
+              aspectRatio: GvGridConstants.artworkAspectRatio,
               child: Stack(
                 children: [
                   Positioned.fill(
                     child: CardSurfaceArtwork(
                       label: displayIdentity.displayName,
                       imageUrl: card.imageUrl,
-                      borderRadius: 20,
+                      borderRadius: GvGridConstants.imageRadius,
                       padding: EdgeInsets.zero,
                       onViewDetails: openCardDetails,
                     ),
@@ -1553,41 +1518,32 @@ class _PublicCardTile extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: GvGridConstants.imageToTitleGap),
             SizedBox(
-              height: 40,
+              height: GvGridConstants.titleSlotHeight,
               child: Text(
                 displayIdentity.displayName,
-                maxLines: 2,
+                maxLines: GvGridConstants.titleMaxLines,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  height: 1.04,
-                  letterSpacing: 0,
-                ),
+                style: gvGridTitleStyle(theme),
               ),
             ),
-            const SizedBox(height: 3),
+            const SizedBox(height: GvGridConstants.titleToSubtitleGap),
             SizedBox(
-              height: 22,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Text(
-                      metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.60),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.02,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  _buildPricePill(card),
-                ],
+              height: GvGridConstants.subtitleSlotHeight,
+              child: Text(
+                metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
+                maxLines: GvGridConstants.subtitleMaxLines,
+                overflow: TextOverflow.ellipsis,
+                style: gvGridSubtitleStyle(theme, colorScheme),
+              ),
+            ),
+            const SizedBox(height: GvGridConstants.subtitleToPriceGap),
+            SizedBox(
+              height: GvGridConstants.priceSlotHeight,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _buildPricePill(card),
               ),
             ),
             if (ownershipState != null) ...[
@@ -1850,7 +1806,7 @@ class _AvatarBadge extends StatelessWidget {
                     child: Text(
                       initials,
                       style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         color: colorScheme.onPrimaryContainer,
                       ),
                     ),
@@ -1862,7 +1818,7 @@ class _AvatarBadge extends StatelessWidget {
                       child: Text(
                         initials,
                         style: theme.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w700,
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),
@@ -1945,7 +1901,7 @@ class _StateCard extends StatelessWidget {
                   'Public Wall',
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: colorScheme.primary,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w700,
                     letterSpacing: 0.2,
                   ),
                 ),

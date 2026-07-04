@@ -1335,7 +1335,7 @@ class _NetworkCollectorContext extends StatelessWidget {
                 : displayName.substring(0, 1).toUpperCase(),
             style: theme.textTheme.labelSmall?.copyWith(
               color: colorScheme.onSurface.withValues(alpha: 0.82),
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -1384,21 +1384,21 @@ class _NetworkIntentMarker extends StatelessWidget {
     final normalized = label.trim().toLowerCase();
     final tone = switch (normalized) {
       'trade' => (
-        background: const Color(0xFFE9F9EF),
-        border: const Color(0xFFB8E3C5),
-        foreground: const Color(0xFF17653A),
+        background: colorScheme.primary.withValues(alpha: 0.10),
+        border: colorScheme.primary.withValues(alpha: 0.18),
+        foreground: colorScheme.primary,
         icon: Icons.sync_alt_rounded,
       ),
       'sell' => (
-        background: const Color(0xFFEAF4FF),
-        border: const Color(0xFFB8D6F8),
-        foreground: const Color(0xFF1E5A94),
+        background: colorScheme.errorContainer.withValues(alpha: 0.34),
+        border: colorScheme.error.withValues(alpha: 0.18),
+        foreground: colorScheme.error,
         icon: Icons.sell_outlined,
       ),
       'showcase' => (
-        background: const Color(0xFFFEF3E6),
-        border: const Color(0xFFF4D2A3),
-        foreground: const Color(0xFF93591E),
+        background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.36),
+        border: colorScheme.outline.withValues(alpha: 0.12),
+        foreground: colorScheme.onSurface.withValues(alpha: 0.66),
         icon: Icons.auto_awesome_outlined,
       ),
       _ => (
@@ -1490,47 +1490,42 @@ class _NetworkActionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final actions = <Widget>[];
+    late final Widget primaryAction;
+    final overflowActions = <_NetworkOverflowAction>[];
+
     if (directContact != null) {
-      actions.add(
-        _NetworkPrimaryActionShell(
-          // LOCK: Contact language must stay calm, clear, and product-facing.
-          child: ContactOwnerButton(
-            vaultItemId: directContact!.vaultItemId,
-            cardPrintId: row.cardPrintId,
-            ownerUserId: row.ownerUserId,
-            ownerDisplayName: row.ownerDisplayName,
-            cardName: _networkDisplayName(row),
-            intent: directContact!.intent,
-            buttonLabel: primaryActionLabel,
-            variant: ContactOwnerButtonVariant.compact,
-          ),
+      primaryAction = _NetworkPrimaryActionShell(
+        // LOCK: Contact language must stay calm, clear, and product-facing.
+        child: ContactOwnerButton(
+          vaultItemId: directContact!.vaultItemId,
+          cardPrintId: row.cardPrintId,
+          ownerUserId: row.ownerUserId,
+          ownerDisplayName: row.ownerDisplayName,
+          cardName: _networkDisplayName(row),
+          intent: directContact!.intent,
+          buttonLabel: primaryActionLabel,
+          variant: ContactOwnerButtonVariant.compact,
         ),
       );
     } else if (onChooseCopy != null) {
-      actions.add(
-        _NetworkActionLink(
-          icon: Icons.question_answer_outlined,
-          label: 'Message collector',
-          onPressed: onChooseCopy!,
-          emphasized: true,
-        ),
+      primaryAction = _NetworkActionLink(
+        icon: Icons.question_answer_outlined,
+        label: 'Message collector',
+        onPressed: onChooseCopy!,
+        emphasized: true,
       );
-    }
-
-    if (directContact == null && onChooseCopy == null) {
-      actions.add(
-        _NetworkActionLink(
-          icon: Icons.open_in_new_rounded,
-          label: row.isDiscoverySource ? 'Open card' : 'View details',
-          onPressed: onViewDetails,
-        ),
+    } else {
+      primaryAction = _NetworkActionLink(
+        icon: Icons.open_in_new_rounded,
+        label: row.isDiscoverySource ? 'Open card' : 'View details',
+        onPressed: onViewDetails,
+        emphasized: true,
       );
     }
 
     if (directContact != null && onChooseCopy != null) {
-      actions.add(
-        _NetworkActionLink(
+      overflowActions.add(
+        _NetworkOverflowAction(
           icon: Icons.layers_outlined,
           label: 'Choose copy',
           onPressed: onChooseCopy!,
@@ -1538,7 +1533,75 @@ class _NetworkActionBar extends StatelessWidget {
       );
     }
 
-    return Wrap(spacing: 6, runSpacing: 2, children: actions);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(child: primaryAction),
+        if (overflowActions.isNotEmpty) ...[
+          const SizedBox(width: 4),
+          _NetworkActionOverflowMenu(actions: overflowActions),
+        ],
+      ],
+    );
+  }
+}
+
+class _NetworkOverflowAction {
+  const _NetworkOverflowAction({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+}
+
+class _NetworkActionOverflowMenu extends StatelessWidget {
+  const _NetworkActionOverflowMenu({required this.actions});
+
+  final List<_NetworkOverflowAction> actions;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return PopupMenuButton<_NetworkOverflowAction>(
+      tooltip: 'More actions',
+      onSelected: (action) => action.onPressed(),
+      itemBuilder: (context) {
+        return actions.map((action) {
+          return PopupMenuItem<_NetworkOverflowAction>(
+            value: action,
+            child: Row(
+              children: [
+                Icon(action.icon, size: 18),
+                const SizedBox(width: 10),
+                Text(action.label),
+              ],
+            ),
+          );
+        }).toList();
+      },
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.26),
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.10),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(7),
+          child: Icon(
+            Icons.more_horiz_rounded,
+            size: 18,
+            color: colorScheme.onSurface.withValues(alpha: 0.68),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -1764,7 +1827,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
             Text(
               _networkDisplayName(row),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 0,
               ),
             ),

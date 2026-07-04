@@ -78,16 +78,16 @@ class _VaultItemTile extends StatelessWidget {
       child: Dismissible(
         key: ValueKey(id),
         background: Container(
-          color: Colors.red,
+          color: colorScheme.error,
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(left: 16),
-          child: const Icon(Icons.delete, color: Colors.white),
+          child: Icon(Icons.delete, color: colorScheme.onError),
         ),
         secondaryBackground: Container(
-          color: Colors.red,
+          color: colorScheme.error,
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: 16),
-          child: const Icon(Icons.delete, color: Colors.white),
+          child: Icon(Icons.delete, color: colorScheme.onError),
         ),
         confirmDismiss: (_) async {
           if (onDelete == null) {
@@ -271,16 +271,11 @@ class _VaultGridTile extends StatelessWidget {
       'Qty $quantity',
     ];
     final metaLine = metaParts.join(' • ');
-    const imageBottomSpacing = 4.0;
-    const titleSlotHeight = 29.0;
-    const metaSlotHeight = 14.0;
-    const priceSlotHeight = 20.0;
-
     return Material(
       color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
@@ -290,7 +285,7 @@ class _VaultGridTile extends StatelessWidget {
               Stack(
                 children: [
                   AspectRatio(
-                    aspectRatio: 0.69,
+                    aspectRatio: GvGridConstants.artworkAspectRatio,
                     child: _VaultGridArtwork(
                       imageUrl: imageUrl,
                       name: displayIdentity.displayName,
@@ -352,43 +347,35 @@ class _VaultGridTile extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: imageBottomSpacing),
+              const SizedBox(height: GvGridConstants.imageToTitleGap),
               SizedBox(
-                height: titleSlotHeight,
+                height: GvGridConstants.titleSlotHeight,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     displayIdentity.displayName,
-                    maxLines: 2,
+                    maxLines: GvGridConstants.titleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      height: 1.05,
-                    ),
+                    style: gvGridTitleStyle(theme),
                   ),
                 ),
               ),
-              const SizedBox(height: 1),
+              const SizedBox(height: GvGridConstants.titleToSubtitleGap),
               SizedBox(
-                height: metaSlotHeight,
+                height: GvGridConstants.subtitleSlotHeight,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     metaLine,
-                    maxLines: 1,
+                    maxLines: GvGridConstants.subtitleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.68),
-                      fontSize: 10.2,
-                      fontWeight: FontWeight.w600,
-                      height: 1.0,
-                    ),
+                    style: gvGridSubtitleStyle(theme, colorScheme),
                   ),
                 ),
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: GvGridConstants.subtitleToPriceGap),
               SizedBox(
-                height: priceSlotHeight,
+                height: GvGridConstants.priceSlotHeight,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Visibility(
@@ -427,7 +414,7 @@ class _VaultGridArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: name,
       imageUrl: imageUrl,
-      borderRadius: 13,
+      borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.0),
       onViewDetails: onViewDetails,
       detailsLabel: 'Manage card',
@@ -1096,16 +1083,10 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Widget _buildVaultViewChip(_VaultStructuralView view, String label) {
-    return ChoiceChip(
-      label: Text(label),
+    return GvChip(
+      label: label,
       selected: _view == view,
       onSelected: (_) => _setView(view),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-      labelStyle: Theme.of(
-        context,
-      ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w600),
-      labelPadding: const EdgeInsets.symmetric(horizontal: 2),
     );
   }
 
@@ -1894,7 +1875,9 @@ class _CatalogPickerState extends State<_CatalogPicker> {
               height: 4,
               width: 36,
               decoration: BoxDecoration(
-                color: Colors.black26,
+                color: Theme.of(
+                  context,
+                ).colorScheme.shadow.withValues(alpha: 0.26),
                 borderRadius: BorderRadius.circular(3),
               ),
             ),
@@ -1921,9 +1904,9 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     _searchError!,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: Colors.red),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
                 ),
               ),

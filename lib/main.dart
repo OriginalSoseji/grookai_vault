@@ -54,11 +54,13 @@ import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
+import 'theme/gv_grid_constants.dart';
 import 'utils/display_image_contract.dart';
 import 'widgets/gv_surface.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
+import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
 import 'widgets/provisional/provisional_card_section.dart';
 
@@ -99,13 +101,6 @@ const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
 const Duration _kFeedImpressionGateWindow = Duration(minutes: 3);
 const Duration _kFeedImpressionSkipLogWindow = Duration(seconds: 12);
 const double _kFeedImpressionVisibilityThreshold = 0.55;
-const double _kWallMatchGridSpacing = 6;
-const double _kWallMatchGridOuterPadding = 10;
-const double _kWallMatchArtworkAspectRatio = 0.69;
-const double _kWallMatchGridChildAspectRatio = 0.5;
-const double _kWallMatchTitleHeight = 40;
-const double _kWallMatchMetaHeight = 22;
-const double _kWallMatchBottomRhythmHeight = 27;
 
 String _formatSearchFailure(Object error) {
   debugPrint('Search failed: $error');
@@ -594,31 +589,10 @@ class _SearchLanguageScopeChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bg = selected
-        ? colorScheme.primary.withValues(alpha: 0.10)
-        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
-    final border = selected ? colorScheme.primary : Colors.transparent;
-    final text = selected
-        ? colorScheme.primary
-        : colorScheme.onSurface.withValues(alpha: 0.68);
-
-    return ChoiceChip(
-      label: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: text,
-          fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
-        ),
-      ),
+    return GvChip(
+      label: label,
       selected: selected,
       onSelected: (_) => onSelected(value),
-      selectedColor: bg,
-      backgroundColor: bg,
-      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
     );
   }
 }
@@ -686,8 +660,8 @@ class _ResolverStatusBanner extends StatelessWidget {
       case ResolverSearchState.strongMatch:
         return const SizedBox.shrink();
       case ResolverSearchState.ambiguousMatch:
-        background = Colors.amber.withValues(alpha: 0.12);
-        border = Colors.amber.withValues(alpha: 0.6);
+        background = colorScheme.tertiaryContainer.withValues(alpha: 0.28);
+        border = colorScheme.tertiary.withValues(alpha: 0.40);
         title = 'Multiple plausible matches';
         body =
             'This query is still ambiguous. Review the ranked cards instead of treating the top result as certain.';
@@ -1017,7 +991,9 @@ class _CatalogFeedDebugOverlay extends StatelessWidget {
       return child;
     }
 
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
     final overlayTextStyle =
         (compact ? textTheme.labelSmall : textTheme.bodySmall)?.copyWith(
           color: Colors.white,
@@ -1050,7 +1026,7 @@ class _CatalogFeedDebugOverlay extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 220),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.76),
+                    color: colorScheme.shadow.withValues(alpha: 0.76),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Padding(
@@ -1127,62 +1103,62 @@ class _CatalogCardGridTile extends StatelessWidget {
           color: Colors.transparent,
           child: _PressScaleInkWell(
             onTap: onTap,
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
             pressedScale: 0.972,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AspectRatio(
-                  aspectRatio: _kWallMatchArtworkAspectRatio,
+                  aspectRatio: GvGridConstants.artworkAspectRatio,
                   child: _CatalogGridArtwork(card: card),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: GvGridConstants.imageToTitleGap),
                 SizedBox(
-                  height: _kWallMatchTitleHeight,
+                  height: GvGridConstants.titleSlotHeight,
                   child: Text(
                     displayIdentity.displayName,
-                    maxLines: 2,
+                    maxLines: GvGridConstants.titleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      height: 1.04,
-                      letterSpacing: 0,
-                    ),
+                    style: gvGridTitleStyle(theme),
                   ),
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: GvGridConstants.titleToSubtitleGap),
                 SizedBox(
-                  height: _kWallMatchMetaHeight,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          subtitle.isEmpty ? 'Card' : subtitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.60,
+                  height: GvGridConstants.subtitleSlotHeight,
+                  child: Text(
+                    subtitle.isEmpty ? 'Card' : subtitle,
+                    maxLines: GvGridConstants.subtitleMaxLines,
+                    overflow: TextOverflow.ellipsis,
+                    style: gvGridSubtitleStyle(theme, colorScheme),
+                  ),
+                ),
+                const SizedBox(height: GvGridConstants.subtitleToPriceGap),
+                SizedBox(
+                  height: GvGridConstants.priceSlotHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: pricing?.hasVisibleValue == true
+                        ? CardSurfacePriceText(
+                            pricing: pricing,
+                            size: CardSurfacePriceSize.grid,
+                            textAlign: TextAlign.left,
+                          )
+                        : Text(
+                            'Grookai Value',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.44,
+                              ),
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0,
                             ),
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.02,
                           ),
-                        ),
-                      ),
-                      if (pricing?.hasVisibleValue == true) ...[
-                        const SizedBox(width: 6),
-                        CardSurfacePriceText(
-                          pricing: pricing,
-                          size: CardSurfacePriceSize.grid,
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ],
                   ),
                 ),
                 SizedBox(
-                  height: _kWallMatchBottomRhythmHeight,
+                  height: GvGridConstants.ownershipSlotHeight,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: _CatalogOwnershipSummaryLine(
@@ -1224,7 +1200,7 @@ class _CatalogGridArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
       imageUrl: card.displayImage,
-      borderRadius: 22,
+      borderRadius: GvGridConstants.imageRadius,
       padding: EdgeInsets.zero,
       enableTapToZoom: false,
       showShadow: false,
@@ -2211,25 +2187,27 @@ class _GrookaiBootWarmupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppBootTiming.markOnce('boot_warmup_build');
-    return const ColoredBox(
-      color: Color(0xFF000000),
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return ColoredBox(
+      color: colorScheme.surface,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 104,
               height: 104,
               child: Image(image: AssetImage(_logoAsset)),
             ),
-            SizedBox(height: 22),
-            Text(
+            const SizedBox(height: 22),
+            const Text(
               'Grookai Vault',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 22,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 0,
                 decoration: TextDecoration.none,
               ),
@@ -2895,76 +2873,19 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _buildRarityChip(_RarityFilter filter, String label) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bool selected = _rarityFilter == filter;
-
-    Color bg;
-    Color border;
-    Color text;
-
-    if (selected) {
-      bg = colorScheme.primary.withValues(alpha: 0.10);
-      border = colorScheme.primary;
-      text = colorScheme.primary;
-    } else {
-      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
-      border = Colors.transparent;
-      text = colorScheme.onSurface.withValues(alpha: 0.68);
-    }
-
-    return ChoiceChip(
-      label: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: text,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-        ),
-      ),
-      selected: selected,
+    return GvChip(
+      label: label,
+      selected: _rarityFilter == filter,
       onSelected: (_) => _handleRarityFilterChanged(filter),
-      selectedColor: bg,
-      backgroundColor: bg,
-      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
     );
   }
 
   Widget _buildIdentityChip(IdentityFilterOption option, {required int count}) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bool selected = _identityFilter == option.key;
-
-    Color bg;
-    Color border;
-    Color text;
-
-    if (selected) {
-      bg = colorScheme.primary.withValues(alpha: 0.10);
-      border = colorScheme.primary;
-      text = colorScheme.primary;
-    } else {
-      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
-      border = Colors.transparent;
-      text = colorScheme.onSurface.withValues(alpha: 0.68);
-    }
-
-    return ChoiceChip(
-      label: Text(
-        count > 0 ? '${option.label} ($count)' : option.label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: text,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-        ),
-      ),
-      selected: selected,
+    return GvChip(
+      label: option.label,
+      count: count,
+      selected: _identityFilter == option.key,
       onSelected: (_) => _handleIdentityFilterChanged(option.key),
-      selectedColor: bg,
-      backgroundColor: bg,
-      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
     );
   }
 
@@ -3895,9 +3816,9 @@ class HomePageState extends State<HomePage> {
 
     return SliverPadding(
       padding: const EdgeInsets.fromLTRB(
-        _kWallMatchGridOuterPadding,
+        GvGridConstants.gridOuterPadding,
         6,
-        _kWallMatchGridOuterPadding,
+        GvGridConstants.gridOuterPadding,
         0,
       ),
       sliver: SliverGrid(
@@ -3914,9 +3835,9 @@ class HomePageState extends State<HomePage> {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: columns,
-          mainAxisSpacing: _kWallMatchGridSpacing,
-          crossAxisSpacing: _kWallMatchGridSpacing,
-          childAspectRatio: _kWallMatchGridChildAspectRatio,
+          mainAxisSpacing: GvGridConstants.gridSpacing,
+          crossAxisSpacing: GvGridConstants.gridSpacing,
+          childAspectRatio: GvGridConstants.gridChildAspectRatio,
         ),
       ),
     );
@@ -4196,7 +4117,7 @@ class HomePageState extends State<HomePage> {
                   child: Text(
                     _searchError!,
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: Colors.red,
+                      color: theme.colorScheme.error,
                     ),
                   ),
                 ),

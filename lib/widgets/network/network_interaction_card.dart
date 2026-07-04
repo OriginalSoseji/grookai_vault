@@ -14,7 +14,6 @@ class NetworkInteractionCard extends StatelessWidget {
     this.metadata,
     this.topContext,
     this.onTopContextPressed,
-    this.heroHook,
     this.supportingInfo,
     this.actionBar,
     this.layout = NetworkInteractionCardLayout.feed,
@@ -28,7 +27,6 @@ class NetworkInteractionCard extends StatelessWidget {
   final String? metadata;
   final Widget? topContext;
   final VoidCallback? onTopContextPressed;
-  final Widget? heroHook;
   final Widget? supportingInfo;
   final Widget? actionBar;
   final NetworkInteractionCardLayout layout;
@@ -73,20 +71,9 @@ class NetworkInteractionCard extends StatelessWidget {
                       borderRadius: radius,
                       child: AspectRatio(
                         aspectRatio: aspectRatio,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            _NetworkPosterArtwork(
-                              label: imageLabel,
-                              imageUrl: imageUrl,
-                            ),
-                            if (heroHook != null)
-                              Positioned(
-                                top: _isGrid ? 8 : 10,
-                                left: _isGrid ? 8 : 10,
-                                child: heroHook!,
-                              ),
-                          ],
+                        child: _NetworkPosterArtwork(
+                          label: imageLabel,
+                          imageUrl: imageUrl,
                         ),
                       ),
                     ),
@@ -105,7 +92,7 @@ class NetworkInteractionCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleLarge?.copyWith(
                             color: colorScheme.onSurface,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                             height: 1.03,
                             letterSpacing: 0,
                             fontSize: _isGrid ? 17.8 : 21.5,
