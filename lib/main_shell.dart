@@ -42,21 +42,6 @@ enum _ShellDestination {
   final int navIndex;
   final int stackIndex;
   final String title;
-
-  static _ShellDestination fromNavIndex(int index) {
-    switch (index) {
-      case 0:
-        return _ShellDestination.search;
-      case 1:
-        return _ShellDestination.feed;
-      case 3:
-        return _ShellDestination.wall;
-      case 4:
-        return _ShellDestination.vault;
-      default:
-        return _ShellDestination.feed;
-    }
-  }
 }
 
 class _AppShellState extends State<AppShell> {
@@ -74,6 +59,7 @@ class _AppShellState extends State<AppShell> {
   bool _handlingCanonicalLink = false;
   bool _handlingDebugAction = false;
   bool _scannerPrewarmInFlight = false;
+  bool _bottomNavCollapsed = false;
 
   @override
   void initState() {
@@ -399,6 +385,7 @@ class _AppShellState extends State<AppShell> {
     _ensureShellPageBuilt(destination);
     setState(() {
       _destination = destination;
+      _bottomNavCollapsed = false;
     });
     if (destination == _ShellDestination.wall) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -412,6 +399,24 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _openSets() async {
     await _pushPage<void>(const PublicSetsScreen());
+  }
+
+  bool _handleShellScroll(UserScrollNotification notification) {
+    if (notification.metrics.axis != Axis.vertical) {
+      return false;
+    }
+    final atTop =
+        notification.metrics.pixels <= notification.metrics.minScrollExtent + 8;
+    final shouldCollapse = notification.direction == ScrollDirection.reverse;
+    final shouldExpand =
+        notification.direction == ScrollDirection.forward || atTop;
+
+    if (shouldCollapse && !_bottomNavCollapsed) {
+      setState(() => _bottomNavCollapsed = true);
+    } else if (shouldExpand && _bottomNavCollapsed) {
+      setState(() => _bottomNavCollapsed = false);
+    }
+    return false;
   }
 
   Future<void> _openDex() async {
@@ -677,6 +682,10 @@ class _AppShellState extends State<AppShell> {
       index: _destination.stackIndex,
       children: shellChildren,
     );
+    final mobileShellBody = NotificationListener<UserScrollNotification>(
+      onNotification: _handleShellScroll,
+      child: shellBody,
+    );
 
     return Scaffold(
       key: _scaffoldKey,
@@ -736,129 +745,167 @@ class _AppShellState extends State<AppShell> {
                 Expanded(child: shellBody),
               ],
             )
-          : shellBody,
+          : mobileShellBody,
       bottomNavigationBar: isDesktopShell
           ? null
-          : AnimatedSlide(
-              duration: const Duration(milliseconds: 180),
+          : _buildMobileBottomDock(
+              context: context,
+              colorScheme: colorScheme,
+              keyboardVisible: keyboardVisible,
+              bottomSafeInset: bottomSafeInset,
+            ),
+    );
+  }
+
+  Widget _buildMobileBottomDock({
+    required BuildContext context,
+    required ColorScheme colorScheme,
+    required bool keyboardVisible,
+    required double bottomSafeInset,
+  }) {
+    final collapsed = _bottomNavCollapsed && !keyboardVisible;
+    return AnimatedSlide(
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
+      offset: keyboardVisible ? const Offset(0, 1.2) : Offset.zero,
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 160),
+        opacity: keyboardVisible ? 0 : 1,
+        child: SafeArea(
+          top: false,
+          minimum: EdgeInsets.fromLTRB(18, 4, 18, bottomSafeInset > 0 ? 4 : 14),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 190),
               curve: Curves.easeOutCubic,
-              offset: keyboardVisible ? const Offset(0, 1.2) : Offset.zero,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 160),
-                opacity: keyboardVisible ? 0 : 1,
-                child: SafeArea(
-                  top: false,
-                  minimum: EdgeInsets.fromLTRB(
-                    18,
-                    4,
-                    18,
-                    bottomSafeInset > 0 ? 4 : 14,
-                  ),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: GvSurface(
-                      variant: GvSurfaceVariant.glass,
-                      borderRadius: 34,
-                      padding: EdgeInsets.zero,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(34),
-                        child: NavigationBarTheme(
-                          data: NavigationBarTheme.of(context).copyWith(
-                            backgroundColor: Colors.transparent,
-                            indicatorColor: colorScheme.primary.withValues(
-                              alpha: 0.14,
-                            ),
-                            height: kShellBottomNavHeight,
-                            labelBehavior: NavigationDestinationLabelBehavior
-                                .onlyShowSelected,
-                            iconTheme: WidgetStateProperty.resolveWith((
-                              states,
-                            ) {
-                              if (states.contains(WidgetState.selected)) {
-                                return IconThemeData(
-                                  color: colorScheme.primary,
-                                  size: 20,
-                                );
-                              }
-                              return IconThemeData(
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.54,
-                                ),
-                                size: 19,
-                              );
-                            }),
-                            labelTextStyle: WidgetStateProperty.resolveWith((
-                              states,
-                            ) {
-                              final baseStyle = theme.textTheme.labelSmall;
-                              if (states.contains(WidgetState.selected)) {
-                                return baseStyle?.copyWith(
-                                  color: colorScheme.primary,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 10.4,
-                                  letterSpacing: 0.08,
-                                );
-                              }
-                              return baseStyle?.copyWith(
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.56,
-                                ),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 10.1,
-                                letterSpacing: 0.08,
-                              );
-                            }),
-                          ),
-                          child: NavigationBar(
-                            elevation: 0,
-                            labelPadding: const EdgeInsets.only(top: 1),
-                            selectedIndex: _destination.navIndex,
-                            onDestinationSelected: (index) {
-                              if (index == 2) {
-                                _startScanFlow();
-                                return;
-                              }
-                              _selectDestination(
-                                _ShellDestination.fromNavIndex(index),
-                              );
-                            },
-                            destinations: const [
-                              NavigationDestination(
-                                icon: Icon(Icons.search_rounded),
-                                selectedIcon: Icon(Icons.search_rounded),
-                                label: 'Search',
-                              ),
-                              NavigationDestination(
-                                icon: Icon(Icons.dynamic_feed_outlined),
-                                selectedIcon: Icon(Icons.dynamic_feed_rounded),
-                                label: 'Feed',
-                              ),
-                              NavigationDestination(
-                                icon: Icon(Icons.center_focus_strong_outlined),
-                                selectedIcon: Icon(
-                                  Icons.center_focus_strong_rounded,
-                                ),
-                                label: 'Scan',
-                              ),
-                              NavigationDestination(
-                                icon: Icon(Icons.person_outline_rounded),
-                                selectedIcon: Icon(Icons.person_rounded),
-                                label: 'Wall',
-                              ),
-                              NavigationDestination(
-                                icon: Icon(Icons.inventory_2_outlined),
-                                selectedIcon: Icon(Icons.inventory_2_rounded),
-                                label: 'Vault',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+              constraints: BoxConstraints(
+                maxWidth: collapsed ? 302 : 390,
+                minHeight: collapsed
+                    ? kShellBottomNavCollapsedHeight
+                    : kShellBottomNavHeight,
+              ),
+              child: GvSurface(
+                variant: GvSurfaceVariant.glass,
+                borderRadius: 34,
+                padding: EdgeInsets.symmetric(
+                  horizontal: collapsed ? 8 : 10,
+                  vertical: 8,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildDockButton(
+                      colorScheme: colorScheme,
+                      navIndex: 0,
+                      label: 'Search',
+                      icon: Icons.search_rounded,
+                      collapsed: collapsed,
+                      onPressed: () =>
+                          _selectDestination(_ShellDestination.search),
                     ),
-                  ),
+                    _buildDockButton(
+                      colorScheme: colorScheme,
+                      navIndex: 1,
+                      label: 'Feed',
+                      icon: Icons.dynamic_feed_rounded,
+                      collapsed: collapsed,
+                      onPressed: () =>
+                          _selectDestination(_ShellDestination.feed),
+                    ),
+                    _buildDockButton(
+                      colorScheme: colorScheme,
+                      navIndex: 2,
+                      label: 'Scan',
+                      icon: Icons.center_focus_strong_rounded,
+                      collapsed: collapsed,
+                      onPressed: _startScanFlow,
+                    ),
+                    _buildDockButton(
+                      colorScheme: colorScheme,
+                      navIndex: 3,
+                      label: 'Wall',
+                      icon: Icons.person_rounded,
+                      collapsed: collapsed,
+                      onPressed: () =>
+                          _selectDestination(_ShellDestination.wall),
+                    ),
+                    _buildDockButton(
+                      colorScheme: colorScheme,
+                      navIndex: 4,
+                      label: 'Vault',
+                      icon: Icons.inventory_2_rounded,
+                      collapsed: collapsed,
+                      onPressed: () =>
+                          _selectDestination(_ShellDestination.vault),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDockButton({
+    required ColorScheme colorScheme,
+    required int navIndex,
+    required String label,
+    required IconData icon,
+    required bool collapsed,
+    required VoidCallback onPressed,
+  }) {
+    final selected = _destination.navIndex == navIndex;
+    final foreground = selected
+        ? colorScheme.onPrimaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.68);
+    final background = selected
+        ? colorScheme.primaryContainer.withValues(alpha: 0.86)
+        : Colors.transparent;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: collapsed ? 2 : 3),
+      child: Tooltip(
+        message: label,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(999),
+          onTap: onPressed,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOutCubic,
+            width: collapsed ? 48 : (selected ? 86 : 52),
+            height: collapsed ? 38 : 42,
+            padding: EdgeInsets.symmetric(horizontal: collapsed ? 0 : 11),
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: selected ? 20 : 19, color: foreground),
+                if (!collapsed && selected) ...[
+                  const SizedBox(width: 7),
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: foreground,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0,
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -1544,7 +1591,7 @@ class _LoginPageState extends State<LoginPage> {
             textAlign: TextAlign.center,
             style: textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.9,
+              letterSpacing: 0,
               height: 0.98,
               fontSize: 38,
             ),

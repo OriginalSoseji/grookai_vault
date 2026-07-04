@@ -87,7 +87,7 @@ void main() {
   test('Dex is drawer-only and not a bottom navigation destination', () {
     final shell = File('lib/main_shell.dart').readAsStringSync();
     final bottomNavBlock = RegExp(
-      r'child: NavigationBar\([\s\S]*?destinations: const \[[\s\S]*?\n\s*\],\n\s*\),',
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
     ).firstMatch(shell)!.group(0)!;
 
     expect(bottomNavBlock, contains("label: 'Search'"));

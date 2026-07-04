@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
@@ -280,7 +281,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
     textTheme: base.textTheme.copyWith(
       headlineSmall: base.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -0.2,
+        letterSpacing: 0,
       ),
       titleMedium: base.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.w600,
@@ -361,7 +362,7 @@ class _ProductSectionHeading extends StatelessWidget {
                 title,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -0.2,
+                  letterSpacing: 0,
                 ),
               ),
               if (description.isNotEmpty) ...[
@@ -862,8 +863,8 @@ class _CatalogCardTile extends StatelessWidget {
       ..._catalogMetadataParts(card, compact: compact),
     ];
     final subtitle = subtitleParts.join(' • ');
-    final thumbWidth = compact ? 44.0 : 50.0;
-    final thumbHeight = compact ? 62.0 : 72.0;
+    final thumbWidth = compact ? 56.0 : 60.0;
+    final thumbHeight = compact ? 81.0 : 86.0;
 
     return _CatalogFeedImpressionObserver(
       cardId: card.id,
@@ -882,9 +883,7 @@ class _CatalogCardTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(compact ? 16 : 18),
             pressedScale: compact ? 0.982 : 0.978,
             child: Material(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.24,
-              ),
+              color: colorScheme.surface.withValues(alpha: 0.10),
               borderRadius: BorderRadius.circular(compact ? 16 : 18),
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -1145,9 +1144,9 @@ class _CatalogCardGridTile extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                       height: 1.04,
-                      letterSpacing: -0.3,
+                      letterSpacing: 0,
                     ),
                   ),
                 ),
@@ -4055,7 +4054,7 @@ class HomePageState extends State<HomePage> {
                 title,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -0.1,
+                  letterSpacing: 0,
                 ),
               ),
               if (subtitle != null) ...[

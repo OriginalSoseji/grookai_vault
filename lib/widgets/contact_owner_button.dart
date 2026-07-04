@@ -201,7 +201,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
               'Message ${widget.ownerDisplayName}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.3,
+                letterSpacing: 0,
               ),
             ),
             const SizedBox(height: 6),

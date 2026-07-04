@@ -879,7 +879,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             textAlign: TextAlign.center,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.55,
+              letterSpacing: 0,
               height: 1.02,
             ),
           ),

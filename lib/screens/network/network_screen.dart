@@ -1266,7 +1266,7 @@ class _NetworkDiscoveryContext extends StatelessWidget {
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: colorScheme.onSurface.withValues(alpha: 0.80),
-                    letterSpacing: -0.04,
+                    letterSpacing: 0,
                   ),
                 ),
                 if (sourceLabel.trim().isNotEmpty)
@@ -1340,7 +1340,7 @@ class _NetworkCollectorContext extends StatelessWidget {
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: colorScheme.onSurface.withValues(alpha: 0.80),
-                    letterSpacing: -0.04,
+                    letterSpacing: 0,
                   ),
                 ),
                 if (timestampLabel.trim().isNotEmpty)
@@ -1825,7 +1825,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
               _networkDisplayName(row),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.3,
+                letterSpacing: 0,
               ),
             ),
             const SizedBox(height: 6),

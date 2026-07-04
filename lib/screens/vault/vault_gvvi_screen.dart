@@ -1176,7 +1176,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               displayIdentity.displayName,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.55,
+                letterSpacing: 0,
                 height: 1.02,
               ),
             ),
@@ -1958,7 +1958,7 @@ class _VaultGvviPriceSurface extends StatelessWidget {
                   : 'No market reference available.'),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w800,
-            letterSpacing: -0.45,
+            letterSpacing: 0,
             height: 1.0,
           ),
         ),

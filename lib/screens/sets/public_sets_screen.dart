@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
-import '../../widgets/gv_surface.dart';
 import 'public_set_detail_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
@@ -101,7 +100,13 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sets'),
+        title: Text(
+          'Sets',
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0,
+          ),
+        ),
         actions: [
           IconButton(
             tooltip: 'Reload',
@@ -114,78 +119,39 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         child: RefreshIndicator(
           onRefresh: _load,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 18, 16, 28),
+            padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
             children: [
-              _SetsSurfaceCard(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 14,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sets',
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.3,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            'Organized by era, release lane, and collector relevance.',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(
-                                alpha: 0.66,
-                              ),
-                              fontWeight: FontWeight.w600,
-                              height: 1.25,
-                            ),
-                          ),
-                        ],
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Browse ${_sets.length} sets by era, language, and release lane.',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.66,
+                        ),
+                        fontWeight: FontWeight.w600,
+                        height: 1.3,
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 11,
-                        vertical: 7,
-                      ),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(
-                          alpha: 0.10,
-                        ),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text(
-                        '${_sets.length}',
-                        style: theme.textTheme.labelLarge?.copyWith(
-                          color: theme.colorScheme.primary,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 14),
+              TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: 'Search sets',
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 14),
               _SetsSurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        hintText: 'Search sets',
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                      onChanged: (_) => setState(() {}),
-                    ),
-                    const SizedBox(height: 14),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -288,7 +254,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +287,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: _SetsSectionHeader(
                   title: trimmedQuery.isEmpty
@@ -383,11 +349,20 @@ class _SetsSurfaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GvSurface(
-      variant: GvSurfaceVariant.grouped,
-      borderRadius: 22,
+    return Padding(
       padding: padding,
-      child: child,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Theme.of(
+                context,
+              ).colorScheme.outlineVariant.withValues(alpha: 0.18),
+            ),
+          ),
+        ),
+        child: Padding(padding: const EdgeInsets.only(top: 14), child: child),
+      ),
     );
   }
 }
@@ -410,7 +385,7 @@ class _SetsSectionHeader extends StatelessWidget {
           title,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
-            letterSpacing: -0.2,
+            letterSpacing: 0,
           ),
         ),
         const SizedBox(height: 6),
@@ -698,29 +673,36 @@ class _SetTile extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(24),
+            color: colorScheme.surface.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.14),
+              color: colorScheme.outline.withValues(alpha: 0.10),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: colorScheme.shadow.withValues(alpha: 0.05),
-                blurRadius: 22,
-                offset: const Offset(0, 10),
-              ),
-            ],
           ),
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.all(14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                setInfo.code.toUpperCase(),
-                style: theme.textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.0,
-                  color: colorScheme.onSurface.withValues(alpha: 0.58),
+              Container(
+                width: 54,
+                height: 38,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: colorScheme.primary.withValues(alpha: 0.16),
+                  ),
+                ),
+                child: Text(
+                  setInfo.code.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.6,
+                    color: colorScheme.primary,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),

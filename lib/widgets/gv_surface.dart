@@ -61,16 +61,10 @@ class GvSurface extends StatelessWidget {
 
   Color _surfaceColor(ColorScheme colorScheme) {
     return switch (variant) {
-      GvSurfaceVariant.resting => colorScheme.surfaceContainerLowest.withValues(
-        alpha: 0.76,
-      ),
-      GvSurfaceVariant.grouped => colorScheme.surfaceContainerLow.withValues(
-        alpha: 0.62,
-      ),
-      GvSurfaceVariant.floating => colorScheme.surfaceContainer.withValues(
-        alpha: 0.84,
-      ),
-      GvSurfaceVariant.glass => colorScheme.surface.withValues(alpha: 0.72),
+      GvSurfaceVariant.resting => colorScheme.surface.withValues(alpha: 0.28),
+      GvSurfaceVariant.grouped => colorScheme.surface.withValues(alpha: 0.18),
+      GvSurfaceVariant.floating => colorScheme.surface.withValues(alpha: 0.58),
+      GvSurfaceVariant.glass => colorScheme.surface.withValues(alpha: 0.70),
     };
   }
 
@@ -78,13 +72,13 @@ class GvSurface extends StatelessWidget {
     return switch (variant) {
       GvSurfaceVariant.resting => null,
       GvSurfaceVariant.grouped => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.46),
-      ),
-      GvSurfaceVariant.floating => Border.all(
         color: colorScheme.outlineVariant.withValues(alpha: 0.20),
       ),
+      GvSurfaceVariant.floating => Border.all(
+        color: colorScheme.outlineVariant.withValues(alpha: 0.16),
+      ),
       GvSurfaceVariant.glass => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.22),
+        color: colorScheme.outlineVariant.withValues(alpha: 0.18),
       ),
     };
   }
@@ -94,9 +88,9 @@ class GvSurface extends StatelessWidget {
       GvSurfaceVariant.resting || GvSurfaceVariant.grouped => null,
       GvSurfaceVariant.floating || GvSurfaceVariant.glass => [
         BoxShadow(
-          color: colorScheme.shadow.withValues(alpha: 0.14),
-          blurRadius: 26,
-          offset: const Offset(0, 12),
+          color: colorScheme.shadow.withValues(alpha: 0.18),
+          blurRadius: 34,
+          offset: const Offset(0, 18),
         ),
       ],
     };

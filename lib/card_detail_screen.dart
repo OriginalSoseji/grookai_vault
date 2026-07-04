@@ -1190,7 +1190,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   'Other Versions',
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -0.3,
+                    letterSpacing: 0,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1393,13 +1393,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       _buildHeroPanel(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
       _buildTrustRows(theme, colorScheme),
-      if (_buildDetailEntries().isNotEmpty)
-        _buildCardDetailsSection(theme, colorScheme),
-      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
       if (_printingOptions.isNotEmpty)
         _buildPrintingOptionsSection(theme, colorScheme),
       if (_variantOriginCopy != null)
         _buildVariantOriginSection(theme, colorScheme),
+      if (_buildDetailEntries().isNotEmpty)
+        _buildCardDetailsSection(theme, colorScheme),
+      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
     ];
 
     return Scaffold(
@@ -1434,10 +1434,20 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           onPressed: () => Navigator.of(context).maybePop(),
           icon: const Icon(Icons.chevron_left_rounded, size: 30),
         ),
-        IconButton(
-          tooltip: 'Share',
-          onPressed: _shareCard,
-          icon: const Icon(Icons.ios_share_rounded, size: 22),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              tooltip: 'Comments',
+              onPressed: _openCommentsSheet,
+              icon: const Icon(Icons.mode_comment_outlined, size: 21),
+            ),
+            IconButton(
+              tooltip: 'Share',
+              onPressed: _shareCard,
+              icon: const Icon(Icons.ios_share_rounded, size: 22),
+            ),
+          ],
         ),
       ],
     );
@@ -1692,18 +1702,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     required ColorScheme colorScheme,
     required Widget child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(14),
-    bool emphasize = false,
     bool soft = false,
   }) {
-    return GvSurface(
-      variant: emphasize
-          ? GvSurfaceVariant.floating
-          : soft
-          ? GvSurfaceVariant.resting
-          : GvSurfaceVariant.grouped,
-      borderRadius: 16,
-      padding: padding,
-      child: child,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Divider(
+          height: 1,
+          thickness: 1,
+          color: colorScheme.outlineVariant.withValues(alpha: 0.24),
+        ),
+        Padding(padding: padding, child: child),
+      ],
     );
   }
 
@@ -1877,42 +1887,57 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           _buildSectionLabel('Printings', theme, colorScheme),
           const SizedBox(height: 10),
           Wrap(
-            spacing: 8,
+            spacing: 10,
             runSpacing: 8,
             children: [
               for (final option in _printingOptions)
-                ChoiceChip(
-                  label: Text(option.finishName),
+                _buildPrintingOptionButton(
+                  label: option.finishName,
                   selected: option.id == selectedId,
-                  onSelected: (_) {
+                  onTap: () {
                     setState(() {
                       _selectedCardPrintingId = option.id;
                       _printingSelectionTouched = true;
                     });
                   },
-                  labelStyle: theme.textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: option.id == selectedId
-                        ? colorScheme.onPrimaryContainer
-                        : colorScheme.onSurface,
-                  ),
-                  selectedColor: colorScheme.primaryContainer,
-                  backgroundColor: colorScheme.surfaceContainerHighest
-                      .withValues(alpha: 0.55),
-                  side: BorderSide(
-                    color: option.id == selectedId
-                        ? colorScheme.primary.withValues(alpha: 0.45)
-                        : colorScheme.outlineVariant.withValues(alpha: 0.65),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: VisualDensity.compact,
+                  theme: theme,
+                  colorScheme: colorScheme,
                 ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPrintingOptionButton({
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: theme.textTheme.labelLarge?.copyWith(
+                color: selected ? colorScheme.primary : colorScheme.onSurface,
+                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+              ),
+            ),
+            if (selected) ...[
+              const SizedBox(width: 5),
+              Icon(Icons.check_rounded, size: 15, color: colorScheme.primary),
+            ],
+          ],
+        ),
       ),
     );
   }
@@ -1945,7 +1970,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       copy.familyLabel,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.15,
+                        letterSpacing: 0,
                       ),
                     ),
                   ],
@@ -2484,13 +2509,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 colorScheme: colorScheme,
               ),
               _buildGlassIconButton(
-                tooltip: 'Comments',
-                icon: Icons.mode_comment_outlined,
-                active: false,
-                onPressed: _openCommentsSheet,
-                colorScheme: colorScheme,
-              ),
-              _buildGlassIconButton(
                 tooltip: _canCompare ? 'Compare' : 'Share',
                 icon: _canCompare
                     ? Icons.compare_arrows_rounded
@@ -2659,7 +2677,7 @@ class _CardCommentsSheetState extends State<_CardCommentsSheet> {
                     'Comments',
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.4,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 4),

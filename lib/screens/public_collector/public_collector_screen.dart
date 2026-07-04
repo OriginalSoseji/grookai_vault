@@ -7,7 +7,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
-import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
@@ -30,18 +29,6 @@ ResolvedDisplayIdentity _publicCollectorDisplayIdentity(
     setIdentityModel: card.setIdentityModel,
     setCode: card.setCode,
     number: card.number == '—' ? null : card.number,
-  );
-}
-
-ResolvedImagePresentation _publicCollectorImagePresentation(
-  PublicCollectorCard card,
-) {
-  return resolveImagePresentationFromFields(
-    imageUrl: card.imageUrl,
-    displayImageUrl: card.imageUrl,
-    displayImageKind: card.displayImageKind,
-    imageStatus: card.imageStatus,
-    imageNote: card.imageNote,
   );
 }
 
@@ -1107,7 +1094,7 @@ class _PublicCollectorHeader extends StatelessWidget {
                   displayName,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -0.45,
+                    letterSpacing: 0,
                     height: 1.0,
                   ),
                   maxLines: 1,
@@ -1412,11 +1399,11 @@ class _PublicCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = _publicCollectorDisplayIdentity(card);
-    final imagePresentation = _publicCollectorImagePresentation(card);
     final metaParts = [
       card.setName ?? card.setCode,
       card.number != '—' ? '#${card.number}' : null,
       card.rarity,
+      card.conditionLabel,
     ].whereType<String>().toList();
     void openCardDetails() {
       final gvviId = (card.gvviId ?? '').trim();
@@ -1459,16 +1446,16 @@ class _PublicCardTile extends StatelessWidget {
                       onViewDetails: openCardDetails,
                     ),
                   ),
-                  if (imagePresentation.compactBadgeLabel != null)
+                  if (card.intent != null)
                     Positioned(
                       left: 6,
                       bottom: 6,
                       right: 6,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: _ImageStatusBadge(
-                          label: imagePresentation.compactBadgeLabel!,
-                          strong: imagePresentation.isCollisionRepresentative,
+                        child: _TileBadge(
+                          label: _intentLabel(card.intent!),
+                          tone: _intentTone(card.intent!),
                         ),
                       ),
                     ),
@@ -1485,7 +1472,7 @@ class _PublicCardTile extends StatelessWidget {
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w800,
                   height: 1.04,
-                  letterSpacing: -0.3,
+                  letterSpacing: 0,
                 ),
               ),
             ),
@@ -1510,31 +1497,6 @@ class _PublicCardTile extends StatelessWidget {
                   const SizedBox(width: 6),
                   _buildPricePill(card),
                 ],
-              ),
-            ),
-            const SizedBox(height: 5),
-            SizedBox(
-              height: 22,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Wrap(
-                  spacing: 5,
-                  runSpacing: 5,
-                  children: [
-                    if (card.intent != null)
-                      _TileBadge(
-                        label: _intentLabel(card.intent!),
-                        tone: _intentTone(card.intent!),
-                      )
-                    else
-                      const _TileBadge(label: 'Wall', tone: _BadgeTone.neutral),
-                    if (card.conditionLabel != null)
-                      _TileBadge(
-                        label: card.conditionLabel!,
-                        tone: _BadgeTone.neutral,
-                      ),
-                  ],
-                ),
               ),
             ),
             if (ownershipState != null) ...[
@@ -1648,19 +1610,19 @@ class _TileBadge extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final colors = switch (tone) {
       _BadgeTone.trade => (
-        background: const Color(0xFFF2FAF5),
-        border: const Color(0xFFD8ECDC),
-        foreground: const Color(0xFF2F6B48),
+        background: colorScheme.primaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.primary.withValues(alpha: 0.20),
+        foreground: colorScheme.onPrimaryContainer,
       ),
       _BadgeTone.sell => (
-        background: const Color(0xFFF3F7FD),
-        border: const Color(0xFFD7E4F4),
-        foreground: const Color(0xFF45658A),
+        background: colorScheme.secondaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.secondary.withValues(alpha: 0.20),
+        foreground: colorScheme.onSecondaryContainer,
       ),
       _BadgeTone.showcase => (
-        background: const Color(0xFFFFF6EA),
-        border: const Color(0xFFF0DFC1),
-        foreground: const Color(0xFF8A6535),
+        background: colorScheme.tertiaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.tertiary.withValues(alpha: 0.20),
+        foreground: colorScheme.onTertiaryContainer,
       ),
       _BadgeTone.neutral => (
         background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
@@ -1682,49 +1644,6 @@ class _TileBadge extends StatelessWidget {
           color: colors.foreground,
           fontWeight: FontWeight.w600,
           height: 1.0,
-        ),
-      ),
-    );
-  }
-}
-
-class _ImageStatusBadge extends StatelessWidget {
-  const _ImageStatusBadge({required this.label, this.strong = false});
-
-  final String label;
-  final bool strong;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final backgroundColor = strong
-        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
-        : colorScheme.surface.withValues(alpha: 0.94);
-    final borderColor = strong
-        ? colorScheme.tertiary.withValues(alpha: 0.22)
-        : colorScheme.outline.withValues(alpha: 0.12);
-    final textColor = strong
-        ? colorScheme.onTertiaryContainer
-        : colorScheme.onSurface.withValues(alpha: 0.78);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: borderColor),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-        child: Text(
-          label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: textColor,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 0.2,
-          ),
         ),
       ),
     );
@@ -1772,38 +1691,28 @@ class _ProfileStatChip extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onTap,
-        child: Ink(
-          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
-          decoration: BoxDecoration(
-            color: colorScheme.surface.withValues(alpha: 0.72),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: colorScheme.onSurface.withValues(alpha: 0.06),
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 14,
+              color: colorScheme.onSurface.withValues(alpha: 0.44),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                size: 14,
-                color: colorScheme.primary.withValues(alpha: 0.82),
+            const SizedBox(width: 5),
+            Text(
+              label,
+              style: theme.textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: colorScheme.onSurface.withValues(alpha: 0.64),
               ),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: colorScheme.onSurface.withValues(alpha: 0.72),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -1957,7 +1866,7 @@ class _StateCard extends StatelessWidget {
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 6),

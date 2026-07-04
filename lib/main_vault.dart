@@ -60,27 +60,6 @@ class _VaultItemTile extends StatelessWidget {
     }
     final subtitle = subtitleParts.join(' - ');
 
-    Color condColor;
-    switch (cond) {
-      case 'NM':
-        condColor = Colors.green;
-        break;
-      case 'LP':
-        condColor = Colors.lightGreen;
-        break;
-      case 'MP':
-        condColor = Colors.orange;
-        break;
-      case 'HP':
-        condColor = Colors.deepOrange;
-        break;
-      case 'DMG':
-        condColor = Colors.red;
-        break;
-      default:
-        condColor = Colors.grey;
-    }
-
     Widget thumb() {
       return CardSurfaceArtwork(
         label: displayIdentity.displayName,
@@ -91,27 +70,6 @@ class _VaultItemTile extends StatelessWidget {
         padding: const EdgeInsets.all(3),
         onViewDetails: onTap,
         detailsLabel: 'Manage card',
-      );
-    }
-
-    Widget condChip() {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: condColor.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: condColor.withValues(alpha: 0.8),
-            width: 0.7,
-          ),
-        ),
-        child: Text(
-          cond,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: condColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
       );
     }
 
@@ -139,7 +97,7 @@ class _VaultItemTile extends StatelessWidget {
           return false;
         },
         child: Material(
-          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+          color: colorScheme.surface.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(compact ? 10 : 12),
           child: InkWell(
             borderRadius: BorderRadius.circular(compact ? 10 : 12),
@@ -201,44 +159,57 @@ class _VaultItemTile extends StatelessWidget {
                           ),
                         ],
                         SizedBox(height: compact ? 4 : 5),
-                        Wrap(
-                          spacing: 6,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            condChip(),
-                            Text(
-                              'Qty: $ownedCount',
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                fontSize: compact ? 11.5 : null,
-                              ),
+                        Text(
+                          '$cond · $ownedCount ${ownedCount == 1 ? 'copy' : 'copies'}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.62,
                             ),
-                          ],
+                            fontWeight: FontWeight.w600,
+                            fontSize: compact ? 11.5 : null,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(width: compact ? 0 : 4),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.camera_alt, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onScan,
-                        tooltip: 'Scan (Condition + Fingerprint)',
+                  PopupMenuButton<_VaultGridAction>(
+                    tooltip: 'Card actions',
+                    icon: const Icon(Icons.more_horiz_rounded),
+                    onSelected: (action) {
+                      switch (action) {
+                        case _VaultGridAction.scan:
+                          onScan?.call();
+                          break;
+                        case _VaultGridAction.add:
+                          onIncrement?.call();
+                          break;
+                        case _VaultGridAction.remove:
+                          onDecrement?.call();
+                          break;
+                        case _VaultGridAction.delete:
+                          onDelete?.call();
+                          break;
+                      }
+                    },
+                    itemBuilder: (context) => const [
+                      PopupMenuItem(
+                        value: _VaultGridAction.scan,
+                        child: Text('Scan card'),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.add, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onIncrement,
-                        tooltip: 'Increase quantity',
+                      PopupMenuItem(
+                        value: _VaultGridAction.add,
+                        child: Text('Add quantity'),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.remove, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onDecrement,
-                        tooltip: 'Decrease quantity',
+                      PopupMenuItem(
+                        value: _VaultGridAction.remove,
+                        child: Text('Remove quantity'),
+                      ),
+                      PopupMenuItem(
+                        value: _VaultGridAction.delete,
+                        child: Text('Delete item'),
                       ),
                     ],
                   ),

@@ -311,7 +311,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     _data!.cardName,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.5,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -805,7 +805,7 @@ class _PublicGvviPriceRow extends StatelessWidget {
                     : 'No market reference available.'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.45,
+              letterSpacing: 0,
             ),
           ),
           if ((supporting ?? '').trim().isNotEmpty) ...[

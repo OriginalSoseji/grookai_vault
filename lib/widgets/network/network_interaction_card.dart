@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../card_surface_artwork.dart';
 
 enum NetworkInteractionCardLayout { feed, compactFeed, grid }
 
@@ -80,15 +81,9 @@ class NetworkInteractionCard extends StatelessWidget {
                       borderRadius: radius,
                       boxShadow: [
                         BoxShadow(
-                          color: colorScheme.shadow.withValues(alpha: 0.16),
-                          blurRadius: _isGrid ? 20 : 30,
-                          offset: const Offset(0, 14),
-                        ),
-                        BoxShadow(
-                          color: colorScheme.primary.withValues(alpha: 0.07),
-                          blurRadius: _isGrid ? 28 : 40,
-                          spreadRadius: -8,
-                          offset: const Offset(0, 16),
+                          color: colorScheme.shadow.withValues(alpha: 0.10),
+                          blurRadius: _isGrid ? 16 : 24,
+                          offset: const Offset(0, 10),
                         ),
                       ],
                     ),
@@ -130,7 +125,7 @@ class NetworkInteractionCard extends StatelessWidget {
                             color: colorScheme.onSurface,
                             fontWeight: FontWeight.w800,
                             height: 1.03,
-                            letterSpacing: -0.42,
+                            letterSpacing: 0,
                             fontSize: _isGrid ? 17.8 : 21.5,
                           ),
                         ),
@@ -202,32 +197,14 @@ class _NetworkPosterArtwork extends StatelessWidget {
       return _NetworkPosterFallback(label: label);
     }
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-        final cacheWidth =
-            ((constraints.maxWidth * devicePixelRatio).round().clamp(1, 4096)
-                    as num)
-                .toInt();
-        final cacheHeight =
-            ((constraints.maxHeight * devicePixelRatio).round().clamp(1, 4096)
-                    as num)
-                .toInt();
-
-        return DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.black),
-          child: Image.network(
-            resolvedImageUrl!,
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
-            cacheWidth: cacheWidth,
-            cacheHeight: cacheHeight,
-            filterQuality: FilterQuality.low,
-            errorBuilder: (context, error, stackTrace) =>
-                _NetworkPosterFallback(label: label),
-          ),
-        );
-      },
+    return CardSurfaceArtwork(
+      label: label,
+      imageUrl: resolvedImageUrl,
+      borderRadius: 0,
+      padding: EdgeInsets.zero,
+      frame: CardArtworkFrame.none,
+      enableTapToZoom: false,
+      filterQuality: FilterQuality.low,
     );
   }
 }
@@ -260,7 +237,7 @@ class _NetworkPosterFallback extends StatelessWidget {
               color: colorScheme.onPrimaryContainer.withValues(alpha: 0.88),
               fontWeight: FontWeight.w700,
               height: 1.15,
-              letterSpacing: -0.3,
+              letterSpacing: 0,
             ),
           ),
         ),

@@ -167,7 +167,7 @@ class _ProvisionalDetail extends StatelessWidget {
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
                   height: 1.05,
-                  letterSpacing: -0.4,
+                  letterSpacing: 0,
                 ),
               ),
               const SizedBox(height: 6),

@@ -107,8 +107,9 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     final isSearching = query.isNotEmpty;
     final metricSpecies =
         speciesPage?.allSpecies ?? const <GrookaiDexSpeciesSummary>[];
-    final ownedStartedCount =
-        metricSpecies.where((row) => row.ownedPrintCount > 0).length;
+    final ownedStartedCount = metricSpecies
+        .where((row) => row.ownedPrintCount > 0)
+        .length;
     final completeCount = metricSpecies
         .where(
           (row) =>
@@ -170,7 +171,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                       'Character completion, not just a checklist.',
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w900,
-                        letterSpacing: -0.9,
+                        letterSpacing: 0,
                         height: 0.98,
                       ),
                     ),
@@ -195,7 +196,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                                 '$pageCompletionPercent%',
                                 style: theme.textTheme.displaySmall?.copyWith(
                                   fontWeight: FontWeight.w900,
-                                  letterSpacing: -1.2,
+                                  letterSpacing: 0,
                                 ),
                               ),
                               Text(
@@ -394,7 +395,7 @@ class _DexSpeciesCard extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: theme.textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.w900,
-                                  letterSpacing: -0.7,
+                                  letterSpacing: 0,
                                   height: 1.02,
                                 ),
                               ),
@@ -415,7 +416,7 @@ class _DexSpeciesCard extends StatelessWidget {
                 '$ownedCount / $knownCount printings collected',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w900,
-                  letterSpacing: -0.35,
+                  letterSpacing: 0,
                   height: 1.05,
                 ),
               ),
@@ -560,7 +561,7 @@ class _DexInlineStat extends StatelessWidget {
           value,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w900,
-            letterSpacing: -0.2,
+            letterSpacing: 0,
           ),
         ),
         const SizedBox(height: 2),
