@@ -1918,23 +1918,44 @@ class _MyWallTab extends StatefulWidget {
 
 class _MyWallTabState extends State<_MyWallTab> {
   final SupabaseClient _client = Supabase.instance.client;
+  StreamSubscription<AuthState>? _authSubscription;
   bool _loading = true;
   bool _loadFailed = false;
   PublicCollectorEntryState _entryState =
       PublicCollectorEntryState.missingProfile;
   String? _slug;
   int _contentVersion = 0;
+  int _loadVersion = 0;
+  String? _lastUserId;
 
   @override
   void initState() {
     super.initState();
+    _lastUserId = _client.auth.currentUser?.id;
+    _authSubscription = _client.auth.onAuthStateChange.listen((event) {
+      final nextUserId = event.session?.user.id;
+      if (nextUserId == _lastUserId) {
+        return;
+      }
+      _lastUserId = nextUserId;
+      if (mounted) {
+        unawaited(_load());
+      }
+    });
     _load();
+  }
+
+  @override
+  void dispose() {
+    _authSubscription?.cancel();
+    super.dispose();
   }
 
   Future<void> reload() => _load();
 
   Future<void> _load() async {
-    final userId = _client.auth.currentUser?.id ?? '';
+    final loadVersion = ++_loadVersion;
+    final userId = (_client.auth.currentUser?.id ?? '').trim();
     if (mounted) {
       setState(() {
         _loading = true;
@@ -1942,13 +1963,26 @@ class _MyWallTabState extends State<_MyWallTab> {
       });
     }
 
+    if (userId.isEmpty) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+      setState(() {
+        _entryState = PublicCollectorEntryState.missingProfile;
+        _slug = null;
+        _loading = false;
+        _loadFailed = false;
+      });
+      return;
+    }
+
     try {
       final entry = await PublicCollectorService.resolveOwnEntry(
         client: _client,
         userId: userId,
-      );
+      ).timeout(const Duration(seconds: 12));
 
-      if (!mounted) {
+      if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 
@@ -1960,7 +1994,7 @@ class _MyWallTabState extends State<_MyWallTab> {
         _contentVersion++;
       });
     } catch (_) {
-      if (!mounted) {
+      if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 

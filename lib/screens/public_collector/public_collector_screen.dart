@@ -132,7 +132,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       final result = await PublicCollectorService.loadBySlug(
         client: _client,
         slug: _normalizedSlug,
-      );
+      ).timeout(const Duration(seconds: 12));
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -188,7 +188,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         client: _client,
         slug: _normalizedSlug,
         sectionId: normalizedSectionId,
-      );
+      ).timeout(const Duration(seconds: 12));
       if (!mounted) {
         return;
       }
