@@ -834,7 +834,11 @@ class _CatalogCardTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final compact = viewMode == AppCardViewMode.compactList;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-    final subtitleParts = _catalogMetadataParts(card, compact: compact);
+    final subtitleParts = <String>[
+      if ((displayIdentity.printedName ?? '').isNotEmpty)
+        displayIdentity.printedName!,
+      ..._catalogMetadataParts(card, compact: compact),
+    ];
     final subtitle = subtitleParts.join(' • ');
     final thumbWidth = compact ? 44.0 : 50.0;
     final thumbHeight = compact ? 62.0 : 72.0;
@@ -1088,11 +1092,11 @@ class _CatalogCardGridTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-    final subtitleParts = _catalogMetadataParts(
-      card,
-      compact: false,
-      includeRarity: false,
-    );
+    final subtitleParts = <String>[
+      if ((displayIdentity.printedName ?? '').isNotEmpty)
+        displayIdentity.printedName!,
+      ..._catalogMetadataParts(card, compact: false, includeRarity: false),
+    ];
     final subtitle = subtitleParts.join(' • ');
 
     return _CatalogFeedImpressionObserver(
@@ -1607,6 +1611,19 @@ class _SearchResultActionSheet extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+            if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+              const SizedBox(height: 3),
+              Text(
+                displayIdentity.printedName!,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
             if (hasSubtitle) ...[
               const SizedBox(height: 4),
               Center(

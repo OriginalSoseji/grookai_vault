@@ -893,6 +893,18 @@ class _SetCardTile extends StatelessWidget {
                                 height: 1.08,
                               ),
                     ),
+                    if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+                      SizedBox(height: compact ? 3 : 4),
+                      Text(
+                        displayIdentity.printedName!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.62),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                     if (variantLabel != null) ...[
                       SizedBox(height: compact ? 3 : 4),
                       Text(

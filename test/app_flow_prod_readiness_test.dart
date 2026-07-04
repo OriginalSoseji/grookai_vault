@@ -117,6 +117,32 @@ void main() {
     expect(main, contains('_configureAppImageCache'));
   });
 
+  test('mobile Japanese display mirrors web English primary contract', () {
+    final identity = File(
+      'lib/services/identity/display_identity.dart',
+    ).readAsStringSync();
+    final japaneseNameMap = File(
+      'lib/services/identity/pokemon_japanese_name_map.dart',
+    ).readAsStringSync();
+    final search = File('lib/main.dart').readAsStringSync();
+    final cardDetail = File('lib/card_detail_screen.dart').readAsStringSync();
+    final setDetail = File(
+      'lib/screens/sets/public_set_detail_screen.dart',
+    ).readAsStringSync();
+
+    expect(identity, contains('japanesePokemonNameToEnglish'));
+    expect(
+      identity,
+      contains('_resolveEnglishPrimaryNameForJapanesePrintedName'),
+    );
+    expect(identity, contains('printedName'));
+    expect(japaneseNameMap, contains("'ピカチュウ': 'Pikachu'"));
+    expect(japaneseNameMap, contains("'コイル': 'Magnemite'"));
+    expect(search, contains('displayIdentity.printedName'));
+    expect(cardDetail, contains('_displayIdentity.printedName'));
+    expect(setDetail, contains('displayIdentity.printedName'));
+  });
+
   test('set card image zoom is not a details dead end', () {
     final setDetail = File(
       'lib/screens/sets/public_set_detail_screen.dart',

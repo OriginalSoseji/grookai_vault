@@ -114,6 +114,35 @@ void main() {
     expect(formatVariantKey('play_pokemon_stamp'), 'Play Pokémon Stamp');
   });
 
+  test(
+    'Japanese printed names use English primary display with printed name secondary',
+    () {
+      final pikachu = CardPrint.fromJson(<String, dynamic>{
+        'id': 'jpn-pikachu',
+        'gv_id': 'GV-PK-JPN-SV8-033',
+        'name': 'ピカチュウex',
+        'set_code': 'jpn-sv8',
+        'number': '033',
+      });
+      final magnemite = CardPrint.fromJson(<String, dynamic>{
+        'id': 'jpn-magnemite',
+        'gv_id': 'GV-PK-JPN-BW7-023',
+        'name': 'コイル',
+        'set_code': 'jpn-bw7',
+        'number': '023',
+      });
+
+      final pikachuIdentity = resolveCardPrintDisplayIdentity(pikachu);
+      final magnemiteIdentity = resolveCardPrintDisplayIdentity(magnemite);
+
+      expect(pikachuIdentity.displayName, 'Pikachu ex');
+      expect(pikachuIdentity.printedName, 'ピカチュウex');
+      expect(resolveDisplayName(pikachu), 'Pikachu ex');
+      expect(magnemiteIdentity.displayName, 'Magnemite');
+      expect(magnemiteIdentity.printedName, 'コイル');
+    },
+  );
+
   test('child printing search contract displays selected finish context', () {
     final espurrReverse = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-print-me03-033',

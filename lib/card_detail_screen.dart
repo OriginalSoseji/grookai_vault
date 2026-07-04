@@ -1364,6 +1364,21 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
+                                      if ((displayIdentity.printedName ?? '')
+                                          .isNotEmpty) ...[
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          displayIdentity.printedName!,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: theme.textTheme.labelSmall
+                                              ?.copyWith(
+                                                color: colorScheme.onSurface
+                                                    .withValues(alpha: 0.62),
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ],
                                       const SizedBox(height: 3),
                                       Text(
                                         [
@@ -1676,6 +1691,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             height: 1.04,
           ),
         ),
+        if ((_displayIdentity.printedName ?? '').isNotEmpty) ...[
+          const SizedBox(height: 5),
+          Text(
+            _displayIdentity.printedName!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
         if (setName.isNotEmpty || _relatedVersions.isNotEmpty) ...[
           const SizedBox(height: 9),
           Wrap(
