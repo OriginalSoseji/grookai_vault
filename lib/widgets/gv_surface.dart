@@ -61,9 +61,11 @@ class GvSurface extends StatelessWidget {
 
   Color _surfaceColor(ColorScheme colorScheme) {
     return switch (variant) {
-      GvSurfaceVariant.resting => Colors.transparent,
+      GvSurfaceVariant.resting => colorScheme.surfaceContainerLowest.withValues(
+        alpha: 0.76,
+      ),
       GvSurfaceVariant.grouped => colorScheme.surfaceContainerLow.withValues(
-        alpha: 0.22,
+        alpha: 0.62,
       ),
       GvSurfaceVariant.floating => colorScheme.surfaceContainer.withValues(
         alpha: 0.84,
@@ -76,7 +78,7 @@ class GvSurface extends StatelessWidget {
     return switch (variant) {
       GvSurfaceVariant.resting => null,
       GvSurfaceVariant.grouped => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.16),
+        color: colorScheme.outlineVariant.withValues(alpha: 0.46),
       ),
       GvSurfaceVariant.floating => Border.all(
         color: colorScheme.outlineVariant.withValues(alpha: 0.20),

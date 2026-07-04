@@ -14,6 +14,7 @@ import '../../services/public/public_collector_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
+import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/gv_surface.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
@@ -910,7 +911,12 @@ class _CollectorScaffoldBody extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(color: colorScheme.surface),
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(10, 8, 10, 18),
+          padding: EdgeInsets.fromLTRB(
+            10,
+            8,
+            10,
+            shellContentBottomPadding(context, extra: 8),
+          ),
           children: [child],
         ),
       ),
