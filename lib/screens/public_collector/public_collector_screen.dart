@@ -1537,7 +1537,7 @@ class _PublicCardTile extends StatelessWidget {
                       onViewDetails: openCardDetails,
                     ),
                   ),
-                  if (card.intent != null)
+                  if (card.intent == 'trade' || card.intent == 'sell')
                     Positioned(
                       left: 6,
                       bottom: 6,
@@ -1561,7 +1561,7 @@ class _PublicCardTile extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.w700,
                   height: 1.04,
                   letterSpacing: 0,
                 ),

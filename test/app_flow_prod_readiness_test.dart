@@ -199,4 +199,50 @@ void main() {
     );
     expect(vault, contains("detailsLabel: 'Manage card'"));
   });
+
+  test('Feed inventory cards stay card-first and avoid FOMO hook copy', () {
+    final networkCard = File(
+      'lib/widgets/network/network_interaction_card.dart',
+    ).readAsStringSync();
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+
+    expect(networkScreen, contains('_buildInventoryContext'));
+    expect(networkScreen, contains("'Listed \$listedAge'"));
+    expect(networkScreen, contains("'Graded \$summary'"));
+    expect(networkScreen, contains("'Listed for sale'"));
+    expect(networkScreen, isNot(contains('Just listed')));
+    expect(networkScreen, isNot(contains('Available now')));
+    expect(networkScreen, isNot(contains('High-end pick')));
+    expect(networkScreen, isNot(contains('local_fire_department')));
+    expect(networkScreen, isNot(contains('heroHook:')));
+
+    final artworkIndex = networkCard.indexOf('_NetworkPosterArtwork');
+    final topContextIndex = networkCard.indexOf('if (topContext != null)');
+    expect(artworkIndex, greaterThanOrEqualTo(0));
+    expect(topContextIndex, greaterThan(artworkIndex));
+  });
+
+  test('Vault header promotes estimated value without fake trend math', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(vault, contains('estimatedValue'));
+    expect(vault, contains('_formatVaultValue'));
+    expect(vault, contains('visiblePrice * ownedCount'));
+    expect(vault, contains('valued copies'));
+    expect(vault, contains('30d trend pending'));
+  });
+
+  test('bottom dock collapse pauses while modal routes are active', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+
+    expect(shell, contains("ModalRoute.of(context)?.isCurrent == false"));
+    expect(
+      shell,
+      contains(
+        'final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible',
+      ),
+    );
+  });
 }

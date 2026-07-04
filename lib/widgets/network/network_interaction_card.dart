@@ -50,24 +50,6 @@ class NetworkInteractionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (topContext != null) ...[
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: contentHorizontalPadding,
-              ),
-              child: onTopContextPressed == null
-                  ? topContext!
-                  : Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(16),
-                        onTap: onTopContextPressed,
-                        child: topContext!,
-                      ),
-                    ),
-            ),
-            SizedBox(height: _isGrid ? 5 : 6),
-          ],
           Material(
             color: Colors.transparent,
             child: InkWell(
@@ -160,6 +142,19 @@ class NetworkInteractionCard extends StatelessWidget {
                                 const TextStyle(),
                             child: supportingInfo!,
                           ),
+                        ],
+                        if (topContext != null) ...[
+                          SizedBox(height: _isGrid ? 5 : 7),
+                          onTopContextPressed == null
+                              ? topContext!
+                              : Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(16),
+                                    onTap: onTopContextPressed,
+                                    child: topContext!,
+                                  ),
+                                ),
                         ],
                       ],
                     ),

@@ -979,7 +979,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
   }) {
     final ownershipState = ownershipStatesByCardPrintId[row.cardPrintId.trim()];
     final directContact = _groupedContactAnchor(row);
-    final hook = _buildHookData(row);
+    final inventoryContext = _buildInventoryContext(row);
     final primaryActionLabel = NetworkStreamService.getPrimaryContactLabel(row);
     final metadata = [
       row.setName,
@@ -1015,11 +1015,11 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
       layout: layout,
       onPressed: () =>
           _openNetworkPrimaryDestination(context, row, directContact),
-      heroHook: hook == null ? null : _NetworkHookBadge(data: hook),
       topContext: topContext,
       onTopContextPressed: topContextOnPressed,
       supportingInfo: _NetworkSupportingInfo(
         supportText: supportText,
+        inventoryContext: inventoryContext,
         ownershipState: ownershipState,
       ),
       actionBar: _NetworkActionBar(
@@ -1095,84 +1095,73 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
     return '\$${value.toStringAsFixed(2)}';
   }
 
-  _NetworkHookData? _buildHookData(NetworkStreamRow row) {
+  String? _buildInventoryContext(NetworkStreamRow row) {
     if (row.sourceType == NetworkStreamSourceType.dbHighEnd) {
-      return const _NetworkHookData(
-        label: 'High-end pick',
-        icon: Icons.workspace_premium_rounded,
-        highlighted: true,
-      );
+      return 'High-value market reference';
     }
 
     if (row.sourceType == NetworkStreamSourceType.dbRandomExplore) {
-      return const _NetworkHookData(
-        label: 'Explore pick',
-        icon: Icons.auto_awesome_outlined,
-      );
+      return 'Discovery reference';
     }
 
     if (row.isGraded) {
-      return _NetworkHookData(
-        label: NetworkStreamService.getOwnershipSummary(row),
-        icon: Icons.workspace_premium_rounded,
-        highlighted: true,
-      );
+      final summary = NetworkStreamService.getOwnershipSummary(row);
+      return summary.trim().isEmpty ? 'Graded copy' : 'Graded $summary';
     }
 
-    if (_isFreshListing(row.createdAt)) {
-      return const _NetworkHookData(
-        label: 'Just listed',
-        icon: Icons.bolt_rounded,
-        highlighted: true,
-      );
+    final listedAge = _listedAgeLabel(row.createdAt);
+    if (listedAge != null) {
+      return 'Listed $listedAge';
     }
 
     if (row.inPlayCount > 1) {
-      return _NetworkHookData(
-        label: '${row.inPlayCount} live',
-        icon: Icons.local_fire_department_outlined,
-        highlighted: true,
-      );
+      return '${row.inPlayCount} visible copies';
     }
 
     switch (NetworkStreamService.getPrimaryIntent(row)) {
       case 'sell':
-        return const _NetworkHookData(
-          label: 'Available now',
-          icon: Icons.sell_outlined,
-        );
+        return 'Listed for sale';
       case 'trade':
-        return const _NetworkHookData(
-          label: 'Open to trade',
-          icon: Icons.swap_horiz_rounded,
-        );
+        return 'Listed for trade';
       case 'showcase':
-        return const _NetworkHookData(
-          label: 'Collector pick',
-          icon: Icons.auto_awesome_outlined,
-        );
+        return 'Showcase copy';
       default:
         return null;
     }
   }
 
-  bool _isFreshListing(String? createdAt) {
+  String? _listedAgeLabel(String? createdAt) {
     final parsed = DateTime.tryParse(createdAt?.trim() ?? '');
     if (parsed == null) {
-      return false;
+      return null;
     }
 
-    return DateTime.now().difference(parsed.toLocal()).inHours <= 72;
+    final age = DateTime.now().difference(parsed.toLocal());
+    if (age.inMinutes < 1) {
+      return 'now';
+    }
+    if (age.inHours < 24) {
+      return '${age.inHours < 1 ? 1 : age.inHours}h ago';
+    }
+    if (age.inDays < 30) {
+      return '${age.inDays}d ago';
+    }
+    if (age.inDays < 365) {
+      return '${(age.inDays / 30).floor()}mo ago';
+    }
+    return '${(age.inDays / 365).floor()}y ago';
   }
 }
 
 class _NetworkSupportingInfo extends StatelessWidget {
   const _NetworkSupportingInfo({
     required this.supportText,
+    required this.inventoryContext,
     required this.ownershipState,
   });
 
   final String? supportText;
+  final String? inventoryContext;
   final OwnershipState? ownershipState;
 
   @override
@@ -1190,10 +1179,30 @@ class _NetworkSupportingInfo extends StatelessWidget {
             height: 1.3,
           ),
         ),
-      if (ownershipState?.owned == true)
+      if ((inventoryContext ?? '').trim().isNotEmpty)
         Padding(
           padding: EdgeInsets.only(
             top: (supportText ?? '').trim().isEmpty ? 0 : 4,
+          ),
+          child: Text(
+            inventoryContext!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0,
+            ),
+          ),
+        ),
+      if (ownershipState?.owned == true)
+        Padding(
+          padding: EdgeInsets.only(
+            top:
+                (supportText ?? '').trim().isEmpty &&
+                    (inventoryContext ?? '').trim().isEmpty
+                ? 0
+                : 4,
           ),
           child: Text(
             ownershipState!.ownedCount > 1
@@ -1421,75 +1430,6 @@ class _NetworkIntentMarker extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _NetworkHookData {
-  const _NetworkHookData({
-    required this.label,
-    required this.icon,
-    this.highlighted = false,
-  });
-
-  final String label;
-  final IconData icon;
-  final bool highlighted;
-}
-
-class _NetworkHookBadge extends StatelessWidget {
-  const _NetworkHookBadge({required this.data});
-
-  final _NetworkHookData data;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final foreground = data.highlighted
-        ? Colors.white
-        : colorScheme.onSurface.withValues(alpha: 0.90);
-    final background = data.highlighted
-        ? Colors.black.withValues(alpha: 0.52)
-        : colorScheme.surface.withValues(alpha: 0.78);
-    final border = data.highlighted
-        ? Colors.white.withValues(alpha: 0.12)
-        : colorScheme.outline.withValues(alpha: 0.08);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: border),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.18),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(data.icon, size: 14, color: foreground),
-            const SizedBox(width: 5),
-            Text(
-              data.label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style:
-                  Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: foreground,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.08,
-                  ) ??
-                  const TextStyle(),
-            ),
-          ],
-        ),
       ),
     );
   }

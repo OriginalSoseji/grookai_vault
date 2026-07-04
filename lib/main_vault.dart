@@ -548,6 +548,20 @@ class VaultPageState extends State<VaultPage> {
         .where((value) => value.isNotEmpty)
         .toSet()
         .length;
+    var estimatedValue = 0.0;
+    var pricedUniqueCount = 0;
+    var pricedCopyCount = 0;
+    for (final row in _items) {
+      final cardPrintId = (row['card_id'] ?? '').toString().trim();
+      final visiblePrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
+      final ownedCount = _ownedCountForRow(row);
+      if (visiblePrice == null || ownedCount <= 0) {
+        continue;
+      }
+      estimatedValue += visiblePrice * ownedCount;
+      pricedUniqueCount += 1;
+      pricedCopyCount += ownedCount;
+    }
 
     _derivedData = _VaultDerivedData(
       sortedRows: sortedRows,
@@ -561,6 +575,8 @@ class VaultPageState extends State<VaultPage> {
       totalCards: totalCards,
       setCount: setCount,
       lastAddedLabel: _lastAddedLabel(_items),
+      estimatedValue: pricedUniqueCount == 0 ? null : estimatedValue,
+      pricedCopyCount: pricedCopyCount,
     );
   }
 
@@ -1093,6 +1109,19 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
+  String _formatVaultValue(double value) {
+    if (value >= 1000000) {
+      return '\$${(value / 1000000).toStringAsFixed(2)}M';
+    }
+    if (value >= 10000) {
+      return '\$${(value / 1000).toStringAsFixed(1)}K';
+    }
+    if (value >= 1000) {
+      return '\$${value.toStringAsFixed(0)}';
+    }
+    return '\$${value.toStringAsFixed(2)}';
+  }
+
   Future<void> _openManageCardRow(Map<String, dynamic> row) async {
     final vaultItemId = _vaultItemIdForRow(row);
     final cardPrintId = (row['card_id'] ?? '').toString();
@@ -1450,7 +1479,21 @@ class VaultPageState extends State<VaultPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '$totalCards cards • ${_items.length} unique • $setCount sets • ${derivedData.lastAddedLabel}',
+                    derivedData.estimatedValue == null
+                        ? 'Grookai Value'
+                        : _formatVaultValue(derivedData.estimatedValue!),
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.w700,
+                      height: 1.0,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    derivedData.estimatedValue == null
+                        ? '$totalCards cards • ${_items.length} unique • $setCount sets • Value pending'
+                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies • 30d trend pending',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(
                         alpha: 0.66,
@@ -1651,6 +1694,8 @@ class _VaultDerivedData {
     required this.totalCards,
     required this.setCount,
     required this.lastAddedLabel,
+    required this.estimatedValue,
+    required this.pricedCopyCount,
   });
 
   const _VaultDerivedData.empty()
@@ -1664,7 +1709,9 @@ class _VaultDerivedData {
       bySetGroups = const <_VaultSetGroup>[],
       totalCards = 0,
       setCount = 0,
-      lastAddedLabel = 'No cards yet';
+      lastAddedLabel = 'No cards yet',
+      estimatedValue = null,
+      pricedCopyCount = 0;
 
   final List<Map<String, dynamic>> sortedRows;
   final List<Map<String, dynamic>> searchedRows;
@@ -1677,6 +1724,8 @@ class _VaultDerivedData {
   final int totalCards;
   final int setCount;
   final String lastAddedLabel;
+  final double? estimatedValue;
+  final int pricedCopyCount;
 }
 
 int _ownedCountForRow(Map<String, dynamic> row) {

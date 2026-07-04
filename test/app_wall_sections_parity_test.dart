@@ -80,6 +80,20 @@ void main() {
     expect(collectorService, contains("'is_public': true"));
   });
 
+  test('Wall card tiles keep showcase quiet and title weight restrained', () {
+    expect(
+      collectorScreen,
+      contains("if (card.intent == 'trade' || card.intent == 'sell')"),
+    );
+    expect(collectorScreen, contains('fontWeight: FontWeight.w700'));
+
+    final tileBlock = RegExp(
+      r'class _PublicCardTile extends StatelessWidget[\s\S]*?class _PublicViewerOwnershipHint',
+    ).firstMatch(collectorScreen)!.group(0)!;
+    expect(tileBlock, isNot(contains("card.intent != null")));
+    expect(tileBlock, isNot(contains('fontWeight: FontWeight.w800')));
+  });
+
   test('collector section deep links select the requested section', () {
     expect(
       routeService,

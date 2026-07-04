@@ -402,6 +402,12 @@ class _AppShellState extends State<AppShell> {
   }
 
   bool _handleShellScroll(UserScrollNotification notification) {
+    if (ModalRoute.of(context)?.isCurrent == false) {
+      if (_bottomNavCollapsed) {
+        setState(() => _bottomNavCollapsed = false);
+      }
+      return false;
+    }
     if (notification.metrics.axis != Axis.vertical) {
       return false;
     }
@@ -763,7 +769,8 @@ class _AppShellState extends State<AppShell> {
     required bool keyboardVisible,
     required double bottomSafeInset,
   }) {
-    final collapsed = _bottomNavCollapsed && !keyboardVisible;
+    final routeIsCurrent = ModalRoute.of(context)?.isCurrent ?? true;
+    final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible;
     return AnimatedSlide(
       duration: const Duration(milliseconds: 180),
       curve: Curves.easeOutCubic,
