@@ -665,15 +665,14 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isDark = theme.brightness == Brightness.dark;
     final isDesktopShell = MediaQuery.sizeOf(context).width >= 900;
+    final keyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
     final bottomSafeInset = MediaQuery.viewPaddingOf(context).bottom;
     final shellChildren = List<Widget>.generate(
       _ShellDestination.values.length,
       (index) => _shellPages[index] ?? const SizedBox.shrink(),
       growable: false,
     );
-    final navRadius = BorderRadius.circular(22);
     final shellBody = IndexedStack(
       index: _destination.stackIndex,
       children: shellChildren,
@@ -681,7 +680,7 @@ class _AppShellState extends State<AppShell> {
 
     return Scaffold(
       key: _scaffoldKey,
-      extendBody: false,
+      extendBody: !isDesktopShell,
       resizeToAvoidBottomInset: false,
       endDrawer: _GrookaiAppDrawer(
         currentDestination: _destination,
@@ -738,131 +737,122 @@ class _AppShellState extends State<AppShell> {
               ],
             )
           : shellBody,
-      // BOTTOM_NAV_CORRECTION_V1
-      // Compact dock geometry and safe-area handling so the bottom nav feels
-      // anchored, not oversized.
       bottomNavigationBar: isDesktopShell
           ? null
-          : SafeArea(
-              top: false,
-              minimum: EdgeInsets.fromLTRB(
-                10,
-                4,
-                10,
-                bottomSafeInset > 0 ? 2 : 6,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colorScheme.surface.withValues(
-                      alpha: isDark ? 0.985 : 0.975,
-                    ),
-                    borderRadius: navRadius,
-                    border: Border.all(
-                      color: colorScheme.outline.withValues(
-                        alpha: isDark ? 0.12 : 0.07,
-                      ),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: colorScheme.shadow.withValues(
-                          alpha: isDark ? 0.12 : 0.05,
-                        ),
-                        blurRadius: isDark ? 16 : 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+          : AnimatedSlide(
+              duration: const Duration(milliseconds: 180),
+              curve: Curves.easeOutCubic,
+              offset: keyboardVisible ? const Offset(0, 1.2) : Offset.zero,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 160),
+                opacity: keyboardVisible ? 0 : 1,
+                child: SafeArea(
+                  top: false,
+                  minimum: EdgeInsets.fromLTRB(
+                    18,
+                    4,
+                    18,
+                    bottomSafeInset > 0 ? 4 : 14,
                   ),
-                  child: ClipRRect(
-                    borderRadius: navRadius,
-                    child: NavigationBarTheme(
-                      data: NavigationBarTheme.of(context).copyWith(
-                        backgroundColor: Colors.transparent,
-                        indicatorColor: colorScheme.onSurface.withValues(
-                          alpha: isDark ? 0.09 : 0.045,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: GvSurface(
+                      variant: GvSurfaceVariant.glass,
+                      borderRadius: 34,
+                      padding: EdgeInsets.zero,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(34),
+                        child: NavigationBarTheme(
+                          data: NavigationBarTheme.of(context).copyWith(
+                            backgroundColor: Colors.transparent,
+                            indicatorColor: colorScheme.primary.withValues(
+                              alpha: 0.14,
+                            ),
+                            height: kShellBottomNavHeight,
+                            labelBehavior: NavigationDestinationLabelBehavior
+                                .onlyShowSelected,
+                            iconTheme: WidgetStateProperty.resolveWith((
+                              states,
+                            ) {
+                              if (states.contains(WidgetState.selected)) {
+                                return IconThemeData(
+                                  color: colorScheme.primary,
+                                  size: 20,
+                                );
+                              }
+                              return IconThemeData(
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.54,
+                                ),
+                                size: 19,
+                              );
+                            }),
+                            labelTextStyle: WidgetStateProperty.resolveWith((
+                              states,
+                            ) {
+                              final baseStyle = theme.textTheme.labelSmall;
+                              if (states.contains(WidgetState.selected)) {
+                                return baseStyle?.copyWith(
+                                  color: colorScheme.primary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 10.4,
+                                  letterSpacing: 0.08,
+                                );
+                              }
+                              return baseStyle?.copyWith(
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.56,
+                                ),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 10.1,
+                                letterSpacing: 0.08,
+                              );
+                            }),
+                          ),
+                          child: NavigationBar(
+                            elevation: 0,
+                            labelPadding: const EdgeInsets.only(top: 1),
+                            selectedIndex: _destination.navIndex,
+                            onDestinationSelected: (index) {
+                              if (index == 2) {
+                                _startScanFlow();
+                                return;
+                              }
+                              _selectDestination(
+                                _ShellDestination.fromNavIndex(index),
+                              );
+                            },
+                            destinations: const [
+                              NavigationDestination(
+                                icon: Icon(Icons.search_rounded),
+                                selectedIcon: Icon(Icons.search_rounded),
+                                label: 'Search',
+                              ),
+                              NavigationDestination(
+                                icon: Icon(Icons.dynamic_feed_outlined),
+                                selectedIcon: Icon(Icons.dynamic_feed_rounded),
+                                label: 'Feed',
+                              ),
+                              NavigationDestination(
+                                icon: Icon(Icons.center_focus_strong_outlined),
+                                selectedIcon: Icon(
+                                  Icons.center_focus_strong_rounded,
+                                ),
+                                label: 'Scan',
+                              ),
+                              NavigationDestination(
+                                icon: Icon(Icons.person_outline_rounded),
+                                selectedIcon: Icon(Icons.person_rounded),
+                                label: 'Wall',
+                              ),
+                              NavigationDestination(
+                                icon: Icon(Icons.inventory_2_outlined),
+                                selectedIcon: Icon(Icons.inventory_2_rounded),
+                                label: 'Vault',
+                              ),
+                            ],
+                          ),
                         ),
-                        height: kShellBottomNavHeight,
-                        labelBehavior:
-                            NavigationDestinationLabelBehavior.onlyShowSelected,
-                        iconTheme: WidgetStateProperty.resolveWith((states) {
-                          if (states.contains(WidgetState.selected)) {
-                            return IconThemeData(
-                              color: colorScheme.primary,
-                              size: 20,
-                            );
-                          }
-                          return IconThemeData(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.54,
-                            ),
-                            size: 19,
-                          );
-                        }),
-                        labelTextStyle: WidgetStateProperty.resolveWith((
-                          states,
-                        ) {
-                          final baseStyle = theme.textTheme.labelSmall;
-                          if (states.contains(WidgetState.selected)) {
-                            return baseStyle?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 10.4,
-                              letterSpacing: 0.08,
-                            );
-                          }
-                          return baseStyle?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.56,
-                            ),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 10.1,
-                            letterSpacing: 0.08,
-                          );
-                        }),
-                      ),
-                      child: NavigationBar(
-                        elevation: 0,
-                        labelPadding: const EdgeInsets.only(top: 1),
-                        selectedIndex: _destination.navIndex,
-                        onDestinationSelected: (index) {
-                          if (index == 2) {
-                            _startScanFlow();
-                            return;
-                          }
-                          _selectDestination(
-                            _ShellDestination.fromNavIndex(index),
-                          );
-                        },
-                        destinations: const [
-                          NavigationDestination(
-                            icon: Icon(Icons.search_rounded),
-                            selectedIcon: Icon(Icons.search_rounded),
-                            label: 'Search',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.dynamic_feed_outlined),
-                            selectedIcon: Icon(Icons.dynamic_feed_rounded),
-                            label: 'Feed',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.center_focus_strong_outlined),
-                            selectedIcon: Icon(
-                              Icons.center_focus_strong_rounded,
-                            ),
-                            label: 'Scan',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.person_outline_rounded),
-                            selectedIcon: Icon(Icons.person_rounded),
-                            label: 'Wall',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.inventory_2_outlined),
-                            selectedIcon: Icon(Icons.inventory_2_rounded),
-                            label: 'Vault',
-                          ),
-                        ],
                       ),
                     ),
                   ),
