@@ -24,6 +24,7 @@ import 'screens/network/network_inbox_screen.dart';
 import 'screens/network/network_nearby_map_screen.dart';
 import 'screens/network/network_nearby_screen.dart';
 import 'screens/network/network_screen.dart';
+import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';

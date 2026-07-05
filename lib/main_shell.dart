@@ -60,6 +60,7 @@ class _AppShellState extends State<AppShell> {
   bool _handlingDebugAction = false;
   bool _scannerPrewarmInFlight = false;
   bool _bottomNavCollapsed = false;
+  bool _relationshipRouteLoading = false;
 
   @override
   void initState() {
@@ -474,6 +475,83 @@ class _AppShellState extends State<AppShell> {
     }
   }
 
+  Future<void> _openOwnRelationships(
+    PublicCollectorRelationshipMode mode,
+  ) async {
+    final userId = (_supabase.auth.currentUser?.id ?? '').trim();
+    if (userId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sign in to view collector relationships.'),
+        ),
+      );
+      return;
+    }
+    if (_relationshipRouteLoading) {
+      return;
+    }
+
+    setState(() => _relationshipRouteLoading = true);
+    try {
+      final entry = await PublicCollectorService.resolveOwnEntry(
+        client: _supabase,
+        userId: userId,
+      ).timeout(const Duration(seconds: 12));
+
+      if (!mounted) {
+        return;
+      }
+
+      final slug = (entry.slug ?? '').trim();
+      if (entry.state != PublicCollectorEntryState.ready || slug.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Turn on your public Wall before viewing relationships.',
+            ),
+          ),
+        );
+        return;
+      }
+
+      final profile = await PublicCollectorService.loadPublicProfileBySlug(
+        client: _supabase,
+        slug: slug,
+      ).timeout(const Duration(seconds: 12));
+
+      if (!mounted) {
+        return;
+      }
+
+      if (profile == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Unable to load your collector profile.'),
+          ),
+        );
+        return;
+      }
+
+      _scaffoldKey.currentState?.closeEndDrawer();
+      await _pushPage<void>(
+        PublicCollectorRelationshipScreen(profile: profile, mode: mode),
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Unable to load collector relationships.'),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _relationshipRouteLoading = false);
+      }
+    }
+  }
+
   void _refreshCurrent() {
     switch (_destination) {
       case _ShellDestination.search:
@@ -698,12 +776,18 @@ class _AppShellState extends State<AppShell> {
       extendBody: !isDesktopShell,
       resizeToAvoidBottomInset: false,
       endDrawer: _GrookaiAppDrawer(
+        signedIn: _supabase.auth.currentUser != null,
+        relationshipRouteLoading: _relationshipRouteLoading,
         onOpenDex: _openDex,
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
+        onOpenFollowers: () =>
+            _openOwnRelationships(PublicCollectorRelationshipMode.followers),
+        onOpenFollowing: () =>
+            _openOwnRelationships(PublicCollectorRelationshipMode.following),
         themeMode: widget.themeMode,
         onThemeModeChanged: widget.onThemeModeChanged,
       ),
@@ -1137,22 +1221,30 @@ class _GrookaiRailTile extends StatelessWidget {
 
 class _GrookaiAppDrawer extends StatelessWidget {
   const _GrookaiAppDrawer({
+    required this.signedIn,
+    required this.relationshipRouteLoading,
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
+    required this.onOpenFollowers,
+    required this.onOpenFollowing,
     required this.themeMode,
     required this.onThemeModeChanged,
   });
 
+  final bool signedIn;
+  final bool relationshipRouteLoading;
   final Future<void> Function() onOpenDex;
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
+  final Future<void> Function() onOpenFollowers;
+  final Future<void> Function() onOpenFollowing;
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeModeChanged;
 
@@ -1215,6 +1307,26 @@ class _GrookaiAppDrawer extends StatelessWidget {
           label: 'Compare',
           onTap: () => _closeThenAsync(context, onOpenCompare),
         ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.group_outlined,
+            label: 'Followers',
+            enabled: !relationshipRouteLoading,
+            trailing: relationshipRouteLoading
+                ? const _GrookaiDrawerLoadingIndicator()
+                : null,
+            onTap: () => unawaited(onOpenFollowers()),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.people_alt_outlined,
+            label: 'Following',
+            enabled: !relationshipRouteLoading,
+            trailing: relationshipRouteLoading
+                ? const _GrookaiDrawerLoadingIndicator()
+                : null,
+            onTap: () => unawaited(onOpenFollowing()),
+          ),
         _GrookaiDrawerTile(
           icon: Icons.account_circle_rounded,
           label: 'Account',
@@ -1240,16 +1352,22 @@ class _GrookaiDrawerTile extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
+    this.enabled = true,
+    this.trailing,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final bool enabled;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final foreground = colorScheme.onSurface.withValues(alpha: 0.82);
+    final foreground = colorScheme.onSurface.withValues(
+      alpha: enabled ? 0.82 : 0.46,
+    );
 
     return ListTile(
       leading: Icon(icon, color: foreground),
@@ -1262,7 +1380,21 @@ class _GrookaiDrawerTile extends StatelessWidget {
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-      onTap: onTap,
+      trailing: trailing,
+      enabled: enabled,
+      onTap: enabled ? onTap : null,
+    );
+  }
+}
+
+class _GrookaiDrawerLoadingIndicator extends StatelessWidget {
+  const _GrookaiDrawerLoadingIndicator();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.square(
+      dimension: 18,
+      child: CircularProgressIndicator(strokeWidth: 2),
     );
   }
 }

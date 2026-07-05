@@ -133,7 +133,17 @@ void main() {
     expect(drawerBlock, contains("label: 'Grookai Dex'"));
     expect(drawerBlock, contains("label: 'Sets'"));
     expect(drawerBlock, contains("label: 'Compare'"));
+    expect(drawerBlock, contains('if (signedIn)'));
+    expect(drawerBlock, contains("label: 'Followers'"));
+    expect(drawerBlock, contains("label: 'Following'"));
+    expect(drawerBlock, contains('Icons.group_outlined'));
+    expect(drawerBlock, contains('Icons.people_alt_outlined'));
     expect(drawerBlock, contains("label: 'Account'"));
+    expect(shell, contains('PublicCollectorRelationshipScreen('));
+    expect(shell, contains('PublicCollectorRelationshipMode.followers'));
+    expect(shell, contains('PublicCollectorRelationshipMode.following'));
+    expect(shell, contains('PublicCollectorService.resolveOwnEntry'));
+    expect(shell, contains('PublicCollectorService.loadPublicProfileBySlug'));
     expect(shell, contains('Icons.collections_bookmark_rounded'));
     expect(
       shell,
