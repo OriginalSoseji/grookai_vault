@@ -29,6 +29,19 @@ void main() {
     expect(service, contains("result['gv_vi_id']"));
   });
 
+  test('card detail bottom actions stay fixed and scheme-colored', () {
+    final screen = File('lib/card_detail_screen.dart').readAsStringSync();
+
+    expect(screen, contains("tooltip: 'Compare'"));
+    expect(screen, contains('if (_canCompare)'));
+    expect(
+      screen,
+      isNot(contains("tooltip: _canCompare ? 'Compare' : 'Share'")),
+    );
+    expect(screen, isNot(contains('Colors.red.shade400')));
+    expect(screen, contains('final tint = active ? colorScheme.error'));
+  });
+
   test('visible Scan entry is deliberately parked behind construction gate', () {
     final main = File('lib/main.dart').readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();

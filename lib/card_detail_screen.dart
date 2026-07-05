@@ -1442,6 +1442,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               onPressed: _openCommentsSheet,
               icon: const Icon(Icons.mode_comment_outlined, size: 21),
             ),
+            if (_canCompare)
+              IconButton(
+                tooltip: 'Compare',
+                onPressed: _openCompareWorkspace,
+                icon: const Icon(Icons.compare_arrows_rounded, size: 22),
+              ),
             IconButton(
               tooltip: 'Share',
               onPressed: _shareCard,
@@ -2508,15 +2514,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 onPressed: _wantLoading ? null : _toggleWant,
                 colorScheme: colorScheme,
               ),
-              _buildGlassIconButton(
-                tooltip: _canCompare ? 'Compare' : 'Share',
-                icon: _canCompare
-                    ? Icons.compare_arrows_rounded
-                    : Icons.ios_share_rounded,
-                active: false,
-                onPressed: _canCompare ? _openCompareWorkspace : _shareCard,
-                colorScheme: colorScheme,
-              ),
             ],
           ),
         ),
@@ -2543,7 +2540,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     required VoidCallback? onPressed,
     required ColorScheme colorScheme,
   }) {
-    final tint = active ? Colors.red.shade400 : colorScheme.onSurface;
+    final tint = active ? colorScheme.error : colorScheme.onSurface;
     return IconButton(
       tooltip: tooltip,
       onPressed: onPressed,
