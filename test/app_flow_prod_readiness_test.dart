@@ -293,4 +293,17 @@ void main() {
     expect(dockButtonBlock, contains('BoxShape.circle'));
     expect(dockButtonBlock, contains('Text('));
   });
+
+  test('search controls do not hide secondary navigation shortcuts', () {
+    final search = File('lib/main.dart').readAsStringSync();
+
+    expect(search, isNot(contains('Browse sets')));
+    expect(search, isNot(contains('Open collector wall')));
+    expect(search, isNot(contains('Future<void> _openSetsScreen()')));
+    expect(
+      search,
+      isNot(contains('Future<void> _openPublicCollectorBySlug()')),
+    );
+    expect(search, isNot(contains('class _SearchHeaderIconButton')));
+  });
 }

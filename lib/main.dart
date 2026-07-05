@@ -597,39 +597,6 @@ class _SearchLanguageScopeChip extends StatelessWidget {
   }
 }
 
-class _SearchHeaderIconButton extends StatelessWidget {
-  const _SearchHeaderIconButton({
-    required this.icon,
-    required this.tooltip,
-    required this.onPressed,
-  });
-
-  final IconData icon;
-  final String tooltip;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return IconButton(
-      tooltip: tooltip,
-      icon: Icon(icon, size: 18),
-      onPressed: onPressed,
-      visualDensity: VisualDensity.compact,
-      style: IconButton.styleFrom(
-        minimumSize: const Size(36, 36),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        backgroundColor: colorScheme.surfaceContainerHighest.withValues(
-          alpha: 0.28,
-        ),
-        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.72),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      ),
-    );
-  }
-}
-
 class _ResolverStatusBanner extends StatelessWidget {
   final CardSearchResolverMeta? meta;
   final String query;
@@ -3129,30 +3096,6 @@ class HomePageState extends State<HomePage> {
     });
   }
 
-  Future<void> _openSetsScreen() async {
-    await Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (_) => const PublicSetsScreen()));
-  }
-
-  Future<void> _openPublicCollectorBySlug() async {
-    final slug = await _showPublicCollectorSlugPrompt(context);
-    if (!mounted) {
-      return;
-    }
-
-    final normalizedSlug = _normalizePublicCollectorSlugInput(slug ?? '');
-    if (normalizedSlug.isEmpty) {
-      return;
-    }
-
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => PublicCollectorScreen(slug: normalizedSlug),
-      ),
-    );
-  }
-
   Future<void> _openCompareScreen() async {
     await Navigator.of(
       context,
@@ -4133,18 +4076,6 @@ class HomePageState extends State<HomePage> {
                   final utilityControls = Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _SearchHeaderIconButton(
-                        icon: Icons.grid_view_rounded,
-                        tooltip: 'Browse sets',
-                        onPressed: _openSetsScreen,
-                      ),
-                      const SizedBox(width: 7),
-                      _SearchHeaderIconButton(
-                        icon: Icons.alternate_email_rounded,
-                        tooltip: 'Open collector wall',
-                        onPressed: _openPublicCollectorBySlug,
-                      ),
-                      const SizedBox(width: 7),
                       SharedCardViewModeButton(
                         value: _viewMode,
                         onChanged: (mode) {
