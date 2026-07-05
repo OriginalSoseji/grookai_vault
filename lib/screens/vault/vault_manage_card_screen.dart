@@ -12,6 +12,7 @@ import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_price.dart';
+import '../../widgets/gv_chip.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
@@ -867,7 +868,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             _ManageImageTruthNote(note: imagePresentation.detailNote!),
           ],
           const SizedBox(height: 10),
-          _PillLabel(
+          GvChip(
             label: data.isShared ? 'On Wall' : 'Private',
             tone: data.isShared
                 ? colorScheme.primary
@@ -895,7 +896,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           ),
           if ((data.rarity ?? '').isNotEmpty) ...[
             const SizedBox(height: 7),
-            _MetaChip(
+            GvChip(
               label: _formatRarity(data.rarity!),
               tone: colorScheme.secondary.withValues(alpha: 0.9),
             ),
@@ -907,10 +908,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             spacing: 5,
             runSpacing: 5,
             children: [
-              _CountChip(label: '${data.totalCopies} total'),
-              _CountChip(label: '${data.rawCount} raw'),
-              _CountChip(label: '${data.slabCount} slab'),
-              _CountChip(label: '${data.inPlayCount} visible'),
+              GvChip(label: '${data.totalCopies} total'),
+              GvChip(label: '${data.rawCount} raw'),
+              GvChip(label: '${data.slabCount} slab'),
+              GvChip(label: '${data.inPlayCount} visible'),
             ],
           ),
         ],
@@ -935,13 +936,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     final mixTags = <Widget>[
-      if (data.inPlayCount > 0) _InlineTag(label: '${data.inPlayCount} Public'),
+      if (data.inPlayCount > 0) GvChip(label: '${data.inPlayCount} Public'),
       for (final option in kVaultIntentOptions)
         if (option.value != 'hold')
           if ((copyIntentCounts[option.value] ?? 0) > 0)
-            _InlineTag(
-              label: '${option.label} ${copyIntentCounts[option.value]}',
-            ),
+            GvChip(label: '${option.label} ${copyIntentCounts[option.value]}'),
     ];
     final privateCopyIds = data.copies
         .where((copy) => normalizeVaultIntentValue(copy.intent) == 'hold')
@@ -1516,89 +1515,6 @@ class _ManageImageTruthNote extends StatelessWidget {
   }
 }
 
-class _PillLabel extends StatelessWidget {
-  const _PillLabel({required this.label, required this.tone});
-
-  final String label;
-  final Color tone;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: tone.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: tone,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.3,
-        ),
-      ),
-    );
-  }
-}
-
-class _MetaChip extends StatelessWidget {
-  const _MetaChip({required this.label, required this.tone});
-
-  final String label;
-  final Color tone;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-      decoration: BoxDecoration(
-        color: tone.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: tone,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-}
-
-class _CountChip extends StatelessWidget {
-  const _CountChip({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.18),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          fontSize: 10.5,
-          fontWeight: FontWeight.w500,
-          color: colorScheme.onSurface.withValues(alpha: 0.54),
-        ),
-      ),
-    );
-  }
-}
-
 class _ManageStatusTile extends StatelessWidget {
   const _ManageStatusTile({
     required this.label,
@@ -1915,10 +1831,10 @@ class _CopyRow extends StatelessWidget {
           spacing: 6,
           runSpacing: 6,
           children: [
-            _InlineTag(label: _intentLabel(copy.intent)),
-            _InlineTag(label: copy.conditionLabel),
+            GvChip(label: _intentLabel(copy.intent)),
+            GvChip(label: copy.conditionLabel),
             if ((copy.certNumber ?? '').isNotEmpty)
-              _InlineTag(label: copy.certNumber!),
+              GvChip(label: copy.certNumber!),
           ],
         ),
         const SizedBox(height: 10),
@@ -1927,8 +1843,8 @@ class _CopyRow extends StatelessWidget {
           runSpacing: 6,
           children: [
             for (final option in kVaultIntentOptions)
-              ChoiceChip(
-                label: Text(option.label),
+              GvChip(
+                label: option.label,
                 selected:
                     normalizeVaultIntentValue(copy.intent) == option.value,
                 onSelected: intentSaving || onIntentSelected == null
@@ -2178,34 +2094,6 @@ class _CopyPreviewActionChip extends StatelessWidget {
         minimumSize: const Size(0, 34),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
-  }
-}
-
-class _InlineTag extends StatelessWidget {
-  const _InlineTag({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.18),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
-      child: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          fontWeight: FontWeight.w600,
-          color: colorScheme.onSurface.withValues(alpha: 0.64),
-        ),
       ),
     );
   }

@@ -393,4 +393,28 @@ void main() {
     expect(vault, contains('GvGridConstants.tileTapRadius'));
     expect(vault, contains('GvGridConstants.imageRadius'));
   });
+
+  test('vault copy surfaces use shared GvChip component', () {
+    final chip = File('lib/widgets/gv_chip.dart').readAsStringSync();
+    final manage = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+    final gvvi = File(
+      'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+    final scoped = '$manage\n$gvvi';
+
+    expect(chip, contains('final Color? tone;'));
+    expect(scoped, contains('GvChip('));
+    for (final privateChip in [
+      '_PillLabel',
+      '_MetaChip',
+      '_CountChip',
+      '_InlineTag',
+      '_VaultGvviChip',
+      'ChoiceChip(',
+    ]) {
+      expect(scoped, isNot(contains(privateChip)));
+    }
+  });
 }
