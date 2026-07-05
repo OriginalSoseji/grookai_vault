@@ -101,6 +101,35 @@ void main() {
     expect(shell, contains('onTap: () => _closeThenAsync(context, onOpenDex)'));
   });
 
+  test('primary shell destinations are dock-only and drawer stays secondary', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final bottomNavBlock = RegExp(
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
+    ).firstMatch(shell)!.group(0)!;
+    final drawerBlock = RegExp(
+      r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
+    ).firstMatch(shell)!.group(0)!;
+
+    for (final label in ['Search', 'Feed', 'Wall', 'Vault']) {
+      expect(bottomNavBlock, contains("label: '$label'"));
+      expect(drawerBlock, isNot(contains("label: '$label'")));
+    }
+
+    expect(drawerBlock, isNot(contains("label: 'My Wall'")));
+    expect(drawerBlock, isNot(contains("label: 'Messages'")));
+    expect(drawerBlock, contains("label: 'Grookai Dex'"));
+    expect(drawerBlock, contains("label: 'Sets'"));
+    expect(drawerBlock, contains("label: 'Compare'"));
+    expect(drawerBlock, contains("label: 'Account'"));
+    expect(shell, contains('Icons.collections_bookmark_rounded'));
+    expect(
+      shell,
+      contains(
+        "if (isDesktopShell && _destination != _ShellDestination.search)",
+      ),
+    );
+  });
+
   test('card artwork uses disk-backed cached image rendering', () {
     final artwork = File(
       'lib/widgets/card_surface_artwork.dart',

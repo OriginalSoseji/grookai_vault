@@ -30,7 +30,7 @@ enum _ShellDestination {
   // Primary app navigation is behavior-first: Search, Feed, Scan, Wall, Vault.
   search(navIndex: 0, stackIndex: 0, title: 'Search'),
   feed(navIndex: 1, stackIndex: 1, title: 'Feed'),
-  wall(navIndex: 3, stackIndex: 2, title: 'My Wall'),
+  wall(navIndex: 3, stackIndex: 2, title: 'Wall'),
   vault(navIndex: 4, stackIndex: 3, title: 'Vault');
 
   const _ShellDestination({
@@ -568,7 +568,7 @@ class _AppShellState extends State<AppShell> {
     );
   }
 
-  List<Widget> _buildAppBarActions() {
+  List<Widget> _buildAppBarActions({required bool isDesktopShell}) {
     return [
       if (_destination == _ShellDestination.search)
         ValueListenableBuilder<List<String>>(
@@ -653,7 +653,7 @@ class _AppShellState extends State<AppShell> {
         tooltip: 'Messages',
         onPressed: _openMessages,
       ),
-      if (_destination != _ShellDestination.search)
+      if (isDesktopShell && _destination != _ShellDestination.search)
         _appBarActionButton(
           icon: Icons.refresh,
           tooltip: 'Refresh',
@@ -698,15 +698,9 @@ class _AppShellState extends State<AppShell> {
       extendBody: !isDesktopShell,
       resizeToAvoidBottomInset: false,
       endDrawer: _GrookaiAppDrawer(
-        currentDestination: _destination,
-        onOpenSearch: () => _selectDestination(_ShellDestination.search),
-        onOpenFeed: () => _selectDestination(_ShellDestination.feed),
-        onOpenWall: () => _selectDestination(_ShellDestination.wall),
-        onOpenVault: () => _selectDestination(_ShellDestination.vault),
         onOpenDex: _openDex,
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
-        onOpenMessages: _openMessages,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
@@ -722,7 +716,7 @@ class _AppShellState extends State<AppShell> {
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
-        actions: _buildAppBarActions(),
+        actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
       ),
       body: isDesktopShell
           ? Row(
@@ -832,7 +826,7 @@ class _AppShellState extends State<AppShell> {
                       colorScheme: colorScheme,
                       navIndex: 3,
                       label: 'Wall',
-                      icon: Icons.person_rounded,
+                      icon: Icons.collections_bookmark_rounded,
                       collapsed: collapsed,
                       onPressed: () =>
                           _selectDestination(_ShellDestination.wall),
@@ -1001,7 +995,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
               onTap: onOpenScan,
             ),
             _GrookaiRailTile(
-              icon: Icons.person_rounded,
+              icon: Icons.collections_bookmark_rounded,
               label: 'Wall',
               selected: currentDestination == _ShellDestination.wall,
               onTap: onOpenWall,
@@ -1113,15 +1107,9 @@ class _GrookaiRailTile extends StatelessWidget {
 
 class _GrookaiAppDrawer extends StatelessWidget {
   const _GrookaiAppDrawer({
-    required this.currentDestination,
-    required this.onOpenSearch,
-    required this.onOpenFeed,
-    required this.onOpenWall,
-    required this.onOpenVault,
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
-    required this.onOpenMessages,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
@@ -1129,15 +1117,9 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onThemeModeChanged,
   });
 
-  final _ShellDestination currentDestination;
-  final VoidCallback onOpenSearch;
-  final VoidCallback onOpenFeed;
-  final VoidCallback onOpenWall;
-  final VoidCallback onOpenVault;
   final Future<void> Function() onOpenDex;
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
-  final Future<void> Function() onOpenMessages;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
@@ -1161,7 +1143,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
                 'Grookai Vault',
                 style: Theme.of(
                   context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 4),
               Text(
@@ -1175,18 +1157,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
           ),
         ),
         const Divider(indent: 20, endIndent: 20),
-        _GrookaiDrawerTile(
-          icon: Icons.search_rounded,
-          label: 'Search',
-          selected: currentDestination == _ShellDestination.search,
-          onTap: () => _closeThen(context, onOpenSearch),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.dynamic_feed_rounded,
-          label: 'Feed',
-          selected: currentDestination == _ShellDestination.feed,
-          onTap: () => _closeThen(context, onOpenFeed),
-        ),
         if (kLocalCommunityFeedV1Enabled)
           _GrookaiDrawerTile(
             icon: Icons.radar_rounded,
@@ -1199,18 +1169,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
             label: 'Nearby Map',
             onTap: () => _closeThenAsync(context, onOpenNearbyMap),
           ),
-        _GrookaiDrawerTile(
-          icon: Icons.person_rounded,
-          label: 'My Wall',
-          selected: currentDestination == _ShellDestination.wall,
-          onTap: () => _closeThen(context, onOpenWall),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.inventory_2_rounded,
-          label: 'Vault',
-          selected: currentDestination == _ShellDestination.vault,
-          onTap: () => _closeThen(context, onOpenVault),
-        ),
         const Divider(indent: 20, endIndent: 20),
         _GrookaiDrawerTile(
           icon: Icons.catching_pokemon_rounded,
@@ -1228,11 +1186,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
           onTap: () => _closeThenAsync(context, onOpenCompare),
         ),
         _GrookaiDrawerTile(
-          icon: Icons.mail_rounded,
-          label: 'Messages',
-          onTap: () => _closeThenAsync(context, onOpenMessages),
-        ),
-        _GrookaiDrawerTile(
           icon: Icons.account_circle_rounded,
           label: 'Account',
           onTap: () => _closeThenAsync(context, onOpenAccount),
@@ -1246,11 +1199,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
     );
   }
 
-  void _closeThen(BuildContext context, VoidCallback action) {
-    Navigator.of(context).pop();
-    action();
-  }
-
   void _closeThenAsync(BuildContext context, Future<void> Function() action) {
     Navigator.of(context).pop();
     unawaited(action());
@@ -1262,20 +1210,16 @@ class _GrookaiDrawerTile extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
-    this.selected = false,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-  final bool selected;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final foreground = selected
-        ? colorScheme.primary
-        : colorScheme.onSurface.withValues(alpha: 0.82);
+    final foreground = colorScheme.onSurface.withValues(alpha: 0.82);
 
     return ListTile(
       leading: Icon(icon, color: foreground),
@@ -1283,11 +1227,9 @@ class _GrookaiDrawerTile extends StatelessWidget {
         label,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
           color: foreground,
-          fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+          fontWeight: FontWeight.w600,
         ),
       ),
-      selected: selected,
-      selectedTileColor: colorScheme.primary.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24),
       onTap: onTap,
