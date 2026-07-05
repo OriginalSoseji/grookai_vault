@@ -274,4 +274,23 @@ void main() {
       ),
     );
   });
+
+  test('bottom dock uses stable slots with persistent labels', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final bottomNavBlock = RegExp(
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
+    ).firstMatch(shell)!.group(0)!;
+    final dockButtonBlock = RegExp(
+      r'Widget _buildDockButton\([\s\S]*?\n\}',
+    ).firstMatch(shell)!.group(0)!;
+
+    expect(bottomNavBlock, contains('maxWidth: 390'));
+    expect(bottomNavBlock, contains('mainAxisSize: MainAxisSize.max'));
+    expect(bottomNavBlock, contains('Expanded('));
+    expect(bottomNavBlock, contains('isPrimaryAction: true'));
+    expect(dockButtonBlock, isNot(contains('selected ? 86 : 52')));
+    expect(dockButtonBlock, isNot(contains('if (!collapsed && selected)')));
+    expect(dockButtonBlock, contains('BoxShape.circle'));
+    expect(dockButtonBlock, contains('Text('));
+  });
 }

@@ -781,7 +781,7 @@ class _AppShellState extends State<AppShell> {
               duration: const Duration(milliseconds: 190),
               curve: Curves.easeOutCubic,
               constraints: BoxConstraints(
-                maxWidth: collapsed ? 302 : 390,
+                maxWidth: 390,
                 minHeight: collapsed
                     ? kShellBottomNavCollapsedHeight
                     : kShellBottomNavHeight,
@@ -790,55 +790,66 @@ class _AppShellState extends State<AppShell> {
                 variant: GvSurfaceVariant.glass,
                 borderRadius: 34,
                 padding: EdgeInsets.symmetric(
-                  horizontal: collapsed ? 8 : 10,
-                  vertical: 8,
+                  horizontal: 10,
+                  vertical: collapsed ? 6 : 8,
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    _buildDockButton(
-                      colorScheme: colorScheme,
-                      navIndex: 0,
-                      label: 'Search',
-                      icon: Icons.search_rounded,
-                      collapsed: collapsed,
-                      onPressed: () =>
-                          _selectDestination(_ShellDestination.search),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 0,
+                        label: 'Search',
+                        icon: Icons.search_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.search),
+                      ),
                     ),
-                    _buildDockButton(
-                      colorScheme: colorScheme,
-                      navIndex: 1,
-                      label: 'Feed',
-                      icon: Icons.dynamic_feed_rounded,
-                      collapsed: collapsed,
-                      onPressed: () =>
-                          _selectDestination(_ShellDestination.feed),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 1,
+                        label: 'Feed',
+                        icon: Icons.dynamic_feed_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.feed),
+                      ),
                     ),
-                    _buildDockButton(
-                      colorScheme: colorScheme,
-                      navIndex: 2,
-                      label: 'Scan',
-                      icon: Icons.center_focus_strong_rounded,
-                      collapsed: collapsed,
-                      onPressed: _startScanFlow,
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 2,
+                        label: 'Scan',
+                        icon: Icons.center_focus_strong_rounded,
+                        collapsed: collapsed,
+                        isPrimaryAction: true,
+                        onPressed: _startScanFlow,
+                      ),
                     ),
-                    _buildDockButton(
-                      colorScheme: colorScheme,
-                      navIndex: 3,
-                      label: 'Wall',
-                      icon: Icons.collections_bookmark_rounded,
-                      collapsed: collapsed,
-                      onPressed: () =>
-                          _selectDestination(_ShellDestination.wall),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 3,
+                        label: 'Wall',
+                        icon: Icons.collections_bookmark_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.wall),
+                      ),
                     ),
-                    _buildDockButton(
-                      colorScheme: colorScheme,
-                      navIndex: 4,
-                      label: 'Vault',
-                      icon: Icons.inventory_2_rounded,
-                      collapsed: collapsed,
-                      onPressed: () =>
-                          _selectDestination(_ShellDestination.vault),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 4,
+                        label: 'Vault',
+                        icon: Icons.inventory_2_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.vault),
+                      ),
                     ),
                   ],
                 ),
@@ -856,6 +867,7 @@ class _AppShellState extends State<AppShell> {
     required String label,
     required IconData icon,
     required bool collapsed,
+    bool isPrimaryAction = false,
     required VoidCallback onPressed,
   }) {
     final selected = _destination.navIndex == navIndex;
@@ -866,7 +878,7 @@ class _AppShellState extends State<AppShell> {
         ? colorScheme.primaryContainer.withValues(alpha: 0.86)
         : Colors.transparent;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: collapsed ? 2 : 3),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Tooltip(
         message: label,
         child: InkWell(
@@ -875,33 +887,51 @@ class _AppShellState extends State<AppShell> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
             curve: Curves.easeOutCubic,
-            width: collapsed ? 48 : (selected ? 86 : 52),
-            height: collapsed ? 38 : 42,
-            padding: EdgeInsets.symmetric(horizontal: collapsed ? 0 : 11),
+            height: collapsed ? 46 : 50,
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: background,
               borderRadius: BorderRadius.circular(999),
             ),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, size: selected ? 20 : 19, color: foreground),
-                if (!collapsed && selected) ...[
-                  const SizedBox(width: 7),
-                  Flexible(
-                    child: Text(
-                      label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: foreground,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0,
+                if (isPrimaryAction)
+                  Container(
+                    width: collapsed ? 28 : 30,
+                    height: collapsed ? 28 : 30,
+                    decoration: BoxDecoration(
+                      color: selected
+                          ? colorScheme.primary
+                          : colorScheme.primary.withValues(alpha: 0.16),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: colorScheme.primary.withValues(alpha: 0.46),
                       ),
                     ),
+                    child: Icon(
+                      icon,
+                      size: 17,
+                      color: selected
+                          ? colorScheme.onPrimary
+                          : colorScheme.primary,
+                    ),
+                  )
+                else
+                  Icon(icon, size: selected ? 19 : 18, color: foreground),
+                const SizedBox(height: 2),
+                Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: foreground,
+                    fontSize: collapsed ? 10 : 11,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
+                    letterSpacing: 0,
                   ),
-                ],
+                ),
               ],
             ),
           ),
