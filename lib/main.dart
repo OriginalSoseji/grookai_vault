@@ -4210,15 +4210,15 @@ class HomePageState extends State<HomePage> {
                     sliver: SliverToBoxAdapter(
                       child: _ProductEmptyState(
                         title: showingCuratedLanding
-                            ? 'No cards in the spotlight yet'
+                            ? 'Nothing trending yet'
                             : trimmed.isEmpty
-                            ? 'No cards surfaced yet'
+                            ? 'No cards yet'
                             : 'No results yet',
                         body: showingCuratedLanding
-                            ? 'Trending cards will surface here when the explore feed loads.'
+                            ? 'Check back soon.'
                             : trimmed.isEmpty
-                            ? 'Cards will appear here as the public explore catalog loads.'
-                            : 'Try another search term, set code, or collector number.',
+                            ? 'Cards will appear here when the catalog loads.'
+                            : 'Try a set code or card number.',
                       ),
                     ),
                   )

@@ -1264,9 +1264,11 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Your vault is empty'
+                    : 'No matching cards',
+                _search.trim().isEmpty
+                    ? 'Scan or search to add your first card.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1292,9 +1294,9 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
+                _search.trim().isEmpty ? 'No duplicates' : 'No matching cards',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Every card in your vault is one of a kind.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1320,9 +1322,9 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
+                _search.trim().isEmpty ? 'Nothing recent' : 'No matching cards',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Nothing added in the last 30 days.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1429,7 +1431,7 @@ class VaultPageState extends State<VaultPage> {
                 child: _buildVaultMessage(
                   _pokemonSearch.trim().isNotEmpty
                       ? 'No matching cards'
-                      : 'No cards found in your vault',
+                      : 'Your vault is empty',
                   _pokemonSearch.trim().isNotEmpty
                       ? 'Try a different Pokemon name.'
                       : 'Add cards to start browsing by Pokemon name.',
@@ -1547,7 +1549,7 @@ class VaultPageState extends State<VaultPage> {
                               const SizedBox(width: 6),
                               _buildVaultViewChip(
                                 _VaultStructuralView.duplicates,
-                                'Dupes',
+                                'Duplicates',
                               ),
                               const SizedBox(width: 6),
                               _buildVaultViewChip(

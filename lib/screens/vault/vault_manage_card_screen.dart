@@ -1130,9 +1130,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           const SizedBox(height: 12),
           if (data.copies.isEmpty)
             _SubtleEmptyState(
-              title: 'No copies surfaced yet',
+              title: 'No copies yet',
               body:
-                  'Exact copies will appear here when the vault instance read returns rows.',
+                  'Specific owned copies will appear here when this card is in your vault.',
             )
           else
             Column(

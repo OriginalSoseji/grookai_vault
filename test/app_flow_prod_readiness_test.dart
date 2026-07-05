@@ -306,4 +306,30 @@ void main() {
     );
     expect(search, isNot(contains('class _SearchHeaderIconButton')));
   });
+
+  test('app copy avoids internal vault jargon in visible labels', () {
+    final files = [
+      'lib/main.dart',
+      'lib/main_vault.dart',
+      'lib/screens/vault/vault_manage_card_screen.dart',
+      'lib/screens/vault/vault_gvvi_screen.dart',
+      'lib/screens/gvvi/public_gvvi_screen.dart',
+    ].map((path) => File(path).readAsStringSync()).join('\n');
+
+    for (final copy in [
+      'Dupes',
+      'structural vault shell',
+      'No cards found in your vault',
+      'No cards surfaced yet',
+      'No copies surfaced yet',
+      'Trending cards will surface here',
+      'This GVVI could not be loaded.',
+      "label: 'GVVI'",
+    ]) {
+      expect(files, isNot(contains(copy)));
+    }
+
+    expect(files, contains('Duplicates'));
+    expect(files, contains('Copy ID'));
+  });
 }

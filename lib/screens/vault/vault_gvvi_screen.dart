@@ -2012,7 +2012,7 @@ class _VaultIdentityGrid extends StatelessWidget {
       spacing: 7,
       runSpacing: 7,
       children: [
-        _VaultMeta(label: 'GVVI', value: data.gvviId),
+        _VaultMeta(label: 'Copy ID', value: data.gvviId),
         _VaultMeta(label: 'Set', value: data.setCode),
         _VaultMeta(label: 'Number', value: data.number),
         _VaultMeta(
