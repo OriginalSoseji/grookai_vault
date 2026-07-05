@@ -307,6 +307,18 @@ void main() {
     expect(search, isNot(contains('class _SearchHeaderIconButton')));
   });
 
+  test('search secondary filters are collapsed behind a sheet', () {
+    final search = File('lib/main.dart').readAsStringSync();
+
+    expect(search, contains('int get _activeSearchFilterCount'));
+    expect(search, contains("'Filters · \$activeCount'"));
+    expect(search, contains('Future<void> _openSearchFiltersSheet'));
+    expect(search, contains('showModalBottomSheet<void>'));
+    expect(search, contains('_buildSearchFilterButton('));
+    expect(search, isNot(contains('Widget _buildRarityChip(')));
+    expect(search, isNot(contains('Widget _buildIdentityChip(')));
+  });
+
   test('app copy avoids internal vault jargon in visible labels', () {
     final files = [
       'lib/main.dart',

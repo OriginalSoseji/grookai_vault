@@ -2839,20 +2839,205 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  Widget _buildRarityChip(_RarityFilter filter, String label) {
-    return GvChip(
-      label: label,
-      selected: _rarityFilter == filter,
-      onSelected: (_) => _handleRarityFilterChanged(filter),
+  int get _activeSearchFilterCount {
+    var count = 0;
+    if (_normalizeSearchLanguageScope(_languageScope) != 'all') {
+      count += 1;
+    }
+    if (isIdentityFilterActive(_identityFilter)) {
+      count += 1;
+    }
+    if (_rarityFilter != _RarityFilter.all) {
+      count += 1;
+    }
+    return count;
+  }
+
+  List<IdentityFilterOption> _visibleIdentityFilterOptions(
+    Map<String, int> identityFilterCounts,
+  ) {
+    return kIdentityFilterOptions
+        .where((option) {
+          if (option.key == kIdentityFilterAll) {
+            return true;
+          }
+          return (identityFilterCounts[option.key] ?? 0) > 0 ||
+              option.key == _identityFilter;
+        })
+        .toList(growable: false);
+  }
+
+  Widget _buildSearchFilterButton({
+    required ThemeData theme,
+    required Map<String, int> identityFilterCounts,
+    required List<IdentityFilterOption> visibleIdentityFilters,
+  }) {
+    final colorScheme = theme.colorScheme;
+    final activeCount = _activeSearchFilterCount;
+    return OutlinedButton.icon(
+      onPressed: () => _openSearchFiltersSheet(
+        identityFilterCounts: identityFilterCounts,
+        visibleIdentityFilters: visibleIdentityFilters,
+      ),
+      icon: const Icon(Icons.tune_rounded, size: 18),
+      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
+      style: OutlinedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
+        side: BorderSide(
+          color: activeCount == 0
+              ? colorScheme.outline.withValues(alpha: 0.26)
+              : colorScheme.primary.withValues(alpha: 0.7),
+        ),
+        backgroundColor: activeCount == 0
+            ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.24)
+            : colorScheme.primary.withValues(alpha: 0.1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        textStyle: theme.textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 
-  Widget _buildIdentityChip(IdentityFilterOption option, {required int count}) {
-    return GvChip(
-      label: option.label,
-      count: count,
-      selected: _identityFilter == option.key,
-      onSelected: (_) => _handleIdentityFilterChanged(option.key),
+  Future<void> _openSearchFiltersSheet({
+    required Map<String, int> identityFilterCounts,
+    required List<IdentityFilterOption> visibleIdentityFilters,
+  }) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final theme = Theme.of(context);
+            final colorScheme = theme.colorScheme;
+            final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
+            void refreshSheet(VoidCallback action) {
+              action();
+              setSheetState(() {});
+            }
+
+            return Padding(
+              padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + bottomInset),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Filters',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Refine by language, identity, and rarity.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.64),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    _SearchLanguageScopeSelector(
+                      value: _languageScope,
+                      onChanged: (value) => refreshSheet(
+                        () => _handleLanguageScopeChanged(value),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Identity',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final option in visibleIdentityFilters)
+                          GvChip(
+                            label: option.label,
+                            count: identityFilterCounts[option.key] ?? 0,
+                            selected: _identityFilter == option.key,
+                            onSelected: (_) => refreshSheet(
+                              () => _handleIdentityFilterChanged(option.key),
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Rarity',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        GvChip(
+                          label: 'All',
+                          selected: _rarityFilter == _RarityFilter.all,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(_RarityFilter.all),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Common',
+                          selected: _rarityFilter == _RarityFilter.common,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(
+                              _RarityFilter.common,
+                            ),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Uncommon',
+                          selected: _rarityFilter == _RarityFilter.uncommon,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(
+                              _RarityFilter.uncommon,
+                            ),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Rare',
+                          selected: _rarityFilter == _RarityFilter.rare,
+                          onSelected: (_) => refreshSheet(
+                            () =>
+                                _handleRarityFilterChanged(_RarityFilter.rare),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Ultra / Secret',
+                          selected: _rarityFilter == _RarityFilter.ultra,
+                          onSelected: (_) => refreshSheet(
+                            () =>
+                                _handleRarityFilterChanged(_RarityFilter.ultra),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -4029,15 +4214,9 @@ class HomePageState extends State<HomePage> {
     final identityFilterCounts = buildIdentityFilterCounts(
       showingCuratedLanding ? _trending : _results,
     );
-    final visibleIdentityFilters = kIdentityFilterOptions
-        .where((option) {
-          if (option.key == kIdentityFilterAll) {
-            return true;
-          }
-          return (identityFilterCounts[option.key] ?? 0) > 0 ||
-              option.key == _identityFilter;
-        })
-        .toList(growable: false);
+    final visibleIdentityFilters = _visibleIdentityFilterOptions(
+      identityFilterCounts,
+    );
     final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
         : _buildRows(cards);
@@ -4076,6 +4255,12 @@ class HomePageState extends State<HomePage> {
                   final utilityControls = Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      _buildSearchFilterButton(
+                        theme: theme,
+                        identityFilterCounts: identityFilterCounts,
+                        visibleIdentityFilters: visibleIdentityFilters,
+                      ),
+                      const SizedBox(width: 8),
                       SharedCardViewModeButton(
                         value: _viewMode,
                         onChanged: (mode) {
@@ -4088,71 +4273,20 @@ class HomePageState extends State<HomePage> {
                   );
 
                   if (constraints.maxWidth < 430) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _SearchLanguageScopeSelector(
-                          value: _languageScope,
-                          onChanged: _handleLanguageScopeChanged,
-                        ),
-                        const SizedBox(height: 7),
-                        utilityControls,
-                      ],
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: utilityControls,
                     );
                   }
 
                   return Row(
                     children: [
-                      Expanded(
-                        child: _SearchLanguageScopeSelector(
-                          value: _languageScope,
-                          onChanged: _handleLanguageScopeChanged,
-                        ),
-                      ),
+                      const Spacer(),
                       const SizedBox(width: 8),
                       utilityControls,
                     ],
                   );
                 },
-              ),
-              const SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (
-                      var index = 0;
-                      index < visibleIdentityFilters.length;
-                      index++
-                    ) ...[
-                      if (index > 0) const SizedBox(width: 6),
-                      _buildIdentityChip(
-                        visibleIdentityFilters[index],
-                        count:
-                            identityFilterCounts[visibleIdentityFilters[index]
-                                .key] ??
-                            0,
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-              const SizedBox(height: 6),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _buildRarityChip(_RarityFilter.all, 'All'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.common, 'Common'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.uncommon, 'Uncommon'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.rare, 'Rare'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.ultra, 'Ultra / Secret'),
-                  ],
-                ),
               ),
             ],
           ),
