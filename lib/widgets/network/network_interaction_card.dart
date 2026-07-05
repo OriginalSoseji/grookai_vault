@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/gv_grid_constants.dart';
 import '../../utils/display_image_contract.dart';
 import '../card_surface_artwork.dart';
 
@@ -38,9 +39,9 @@ class NetworkInteractionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final radius = BorderRadius.circular(_isGrid ? 22 : 26);
+    final radius = BorderRadius.circular(GvGridConstants.tileTapRadius);
     final sidePadding = _isGrid ? 0.0 : (_isCompactFeed ? 4.0 : 0.0);
-    final aspectRatio = _isGrid ? 0.71 : (_isCompactFeed ? 0.78 : 0.68);
+    const aspectRatio = GvGridConstants.cardAspectRatio;
     final contentHorizontalPadding = _isGrid ? 1.0 : 0.0;
 
     return Padding(

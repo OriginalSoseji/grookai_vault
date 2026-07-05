@@ -4,6 +4,7 @@ class GvGridConstants {
   const GvGridConstants._();
 
   static const double artworkAspectRatio = 2.5 / 3.5;
+  static const double cardAspectRatio = artworkAspectRatio;
   static const double imageRadius = 22;
   static const double tileTapRadius = 22;
 

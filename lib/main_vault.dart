@@ -1002,9 +1002,13 @@ class VaultPageState extends State<VaultPage> {
               color: Theme.of(
                 context,
               ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.14),
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(
+                GvGridConstants.tileTapRadius,
+              ),
               child: InkWell(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(
+                  GvGridConstants.tileTapRadius,
+                ),
                 onTap: cardPrintId.isEmpty
                     ? null
                     : () => _openManageCardRow(row),
@@ -1020,7 +1024,7 @@ class VaultPageState extends State<VaultPage> {
                             imageUrl: imageUrl,
                             width: 88,
                             height: 118,
-                            borderRadius: 14,
+                            borderRadius: GvGridConstants.imageRadius,
                             padding: const EdgeInsets.all(5),
                             onViewDetails: cardPrintId.isEmpty
                                 ? null

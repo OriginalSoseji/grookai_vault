@@ -357,4 +357,27 @@ void main() {
     expect(vault, contains('if (_view == _VaultStructuralView.all) ...['));
     expect(vault, contains("'Recently Added'"));
   });
+
+  test('card tile surfaces use shared grid geometry constants', () {
+    final constants = File(
+      'lib/theme/gv_grid_constants.dart',
+    ).readAsStringSync();
+    final networkCard = File(
+      'lib/widgets/network/network_interaction_card.dart',
+    ).readAsStringSync();
+    final setDetail = File(
+      'lib/screens/sets/public_set_detail_screen.dart',
+    ).readAsStringSync();
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(constants, contains('static const double cardAspectRatio'));
+    for (final rawRatio in ['0.68', '0.71', '0.78']) {
+      expect(networkCard, isNot(contains(rawRatio)));
+    }
+    expect(networkCard, contains('GvGridConstants.cardAspectRatio'));
+    expect(setDetail, contains('GvGridConstants.tileTapRadius'));
+    expect(setDetail, contains('GvGridConstants.imageRadius'));
+    expect(vault, contains('GvGridConstants.tileTapRadius'));
+    expect(vault, contains('GvGridConstants.imageRadius'));
+  });
 }
