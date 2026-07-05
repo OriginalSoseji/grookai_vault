@@ -344,4 +344,17 @@ void main() {
     expect(files, contains('Duplicates'));
     expect(files, contains('Copy ID'));
   });
+
+  test('vault filters are collapsed and search field stays stable', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(vault, contains('Future<void> _openVaultFiltersSheet()'));
+    expect(vault, contains('int get _activeVaultFilterCount'));
+    expect(vault, contains('Search vault · by card, set, or Pokemon'));
+    expect(vault, isNot(contains('Search Pokemon')));
+    expect(vault, isNot(contains('Widget _buildVaultViewChip(')));
+    expect(vault, isNot(contains('_activeSearchValueForView')));
+    expect(vault, contains('if (_view == _VaultStructuralView.all) ...['));
+    expect(vault, contains("'Recently Added'"));
+  });
 }

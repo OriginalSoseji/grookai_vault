@@ -753,22 +753,12 @@ class VaultPageState extends State<VaultPage> {
 
   void _handleSearchChanged() {
     final nextValue = _searchController.text;
-    if (_view == _VaultStructuralView.pokemon) {
-      if (nextValue == _pokemonSearch) {
-        return;
-      }
-      setState(() {
-        _pokemonSearch = nextValue;
-        _recomputeDerivedData();
-      });
-      return;
-    }
-
-    if (nextValue == _search) {
+    if (nextValue == _search && nextValue == _pokemonSearch) {
       return;
     }
     setState(() {
       _search = nextValue;
+      _pokemonSearch = nextValue;
       _recomputeDerivedData();
     });
   }
@@ -781,11 +771,6 @@ class VaultPageState extends State<VaultPage> {
     setState(() {
       _view = view;
     });
-    _replaceSearchControllerText(_activeSearchValueForView(view));
-  }
-
-  String _activeSearchValueForView(_VaultStructuralView view) {
-    return view == _VaultStructuralView.pokemon ? _pokemonSearch : _search;
   }
 
   void _replaceSearchControllerText(String value) {
@@ -1082,11 +1067,115 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
-  Widget _buildVaultViewChip(_VaultStructuralView view, String label) {
-    return GvChip(
-      label: label,
-      selected: _view == view,
-      onSelected: (_) => _setView(view),
+  String _vaultViewLabel(_VaultStructuralView view) {
+    return switch (view) {
+      _VaultStructuralView.all => 'All',
+      _VaultStructuralView.onWall => 'Wall',
+      _VaultStructuralView.duplicates => 'Duplicates',
+      _VaultStructuralView.recent => 'Recent',
+      _VaultStructuralView.bySet => 'Sets',
+      _VaultStructuralView.pokemon => 'Pokemon',
+    };
+  }
+
+  int get _activeVaultFilterCount {
+    return _view == _VaultStructuralView.all ? 0 : 1;
+  }
+
+  Widget _buildVaultFilterButton(ThemeData theme) {
+    final colorScheme = theme.colorScheme;
+    final activeCount = _activeVaultFilterCount;
+    return OutlinedButton.icon(
+      onPressed: _openVaultFiltersSheet,
+      icon: const Icon(Icons.tune_rounded, size: 18),
+      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
+      style: OutlinedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
+        side: BorderSide(
+          color: activeCount == 0
+              ? colorScheme.outline.withValues(alpha: 0.26)
+              : colorScheme.primary.withValues(alpha: 0.7),
+        ),
+        backgroundColor: activeCount == 0
+            ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.24)
+            : colorScheme.primary.withValues(alpha: 0.1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        textStyle: theme.textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openVaultFiltersSheet() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final theme = Theme.of(context);
+            final colorScheme = theme.colorScheme;
+            final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
+            void selectView(_VaultStructuralView view) {
+              _setView(view);
+              setSheetState(() {});
+            }
+
+            return Padding(
+              padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + bottomInset),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Filters',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Choose how your vault is grouped.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.64),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'View',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final view in _VaultStructuralView.values)
+                          GvChip(
+                            label: _vaultViewLabel(view),
+                            selected: _view == view,
+                            onSelected: (_) => selectView(view),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -1403,6 +1492,7 @@ class VaultPageState extends State<VaultPage> {
                           onPressed: () {
                             _replaceSearchControllerText(suggestion);
                             setState(() {
+                              _search = suggestion;
                               _pokemonSearch = suggestion;
                               _recomputeDerivedData();
                             });
@@ -1491,9 +1581,7 @@ class VaultPageState extends State<VaultPage> {
                         child: TextField(
                           controller: _searchController,
                           decoration: InputDecoration(
-                            hintText: _view == _VaultStructuralView.pokemon
-                                ? 'Search Pokemon'
-                                : 'Search vault',
+                            hintText: 'Search vault · by card, set, or Pokemon',
                             prefixIcon: const Icon(Icons.search),
                             isDense: true,
                             contentPadding: const EdgeInsets.symmetric(
@@ -1532,52 +1620,20 @@ class VaultPageState extends State<VaultPage> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
+                      _buildVaultFilterButton(theme),
+                      const SizedBox(width: 8),
                       Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              _buildVaultViewChip(
-                                _VaultStructuralView.all,
-                                'All',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.onWall,
-                                'Wall',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.duplicates,
-                                'Duplicates',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.recent,
-                                'Recent',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.bySet,
-                                'Sets',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.pokemon,
-                                'Pokemon',
-                              ),
-                            ],
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: SharedCardViewModeButton(
+                            value: _cardViewMode,
+                            onChanged: (mode) {
+                              setState(() {
+                                _cardViewMode = mode;
+                              });
+                            },
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      SharedCardViewModeButton(
-                        value: _cardViewMode,
-                        onChanged: (mode) {
-                          setState(() {
-                            _cardViewMode = mode;
-                          });
-                        },
                       ),
                     ],
                   ),
@@ -1587,25 +1643,27 @@ class VaultPageState extends State<VaultPage> {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           ...vaultContentSlivers,
-          const SliverToBoxAdapter(child: SizedBox(height: 18)),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Recently Added',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
+          if (_view == _VaultStructuralView.all) ...[
+            const SliverToBoxAdapter(child: SizedBox(height: 18)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Recently Added',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  _buildRecentVaultStrip(_items),
-                ],
+                    const SizedBox(height: 10),
+                    _buildRecentVaultStrip(_items),
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
           SliverToBoxAdapter(
             child: SizedBox(
               height: shellContentBottomPadding(context, extra: 8),
