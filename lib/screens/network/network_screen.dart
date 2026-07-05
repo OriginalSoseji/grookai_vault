@@ -1899,6 +1899,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
                           cardName: _networkDisplayName(row),
                           intent: copy.intent,
                           variant: ContactOwnerButtonVariant.outlined,
+                          closeParentOnSuccess: true,
                         ),
                         if ((copy.gvviId ?? '').trim().isNotEmpty) ...[
                           const SizedBox(height: 8),
