@@ -15,7 +15,7 @@ import {
 
 const DEFAULT_HOST = '127.0.0.1';
 const DEFAULT_PORT = 8795;
-const DEFAULT_ARTIFACT_DIR = '.tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1';
+const DEFAULT_ARTIFACT_DIR = 'backend/identity_v3/scanner_v5/fixtures/artifact';
 const MAX_BODY_BYTES = 16 * 1024 * 1024;
 
 function parseArgs(argv) {
@@ -251,19 +251,39 @@ function rankOcrSiblingsByEmbedding(ocrCandidates, embeddingCandidates) {
 function normalizeCandidates(candidates) {
   return (Array.isArray(candidates) ? candidates : [])
     .filter((candidate) => candidate && (candidate.id || candidate.gv_id || candidate.card_id))
-    .map((candidate) => ({
+    .map((candidate, index) => {
+      const distance = numericOrNull(candidate.distance);
+      const score = numericOrNull(candidate.score);
+      const confidence = numericOrNull(candidate.confidence) ??
+        score ??
+        (distance == null ? null : round6(Math.max(0, Math.min(1, 1 - distance))));
+      const name = candidate.display_name ?? candidate.name ?? null;
+      return {
       id: candidate.gv_id ?? candidate.id ?? candidate.card_id,
       card_id: candidate.card_id ?? null,
       gv_id: candidate.gv_id ?? null,
-      name: candidate.name ?? null,
+      display_name: name,
+      name,
       set: candidate.set ?? candidate.set_code ?? null,
       set_code: candidate.set_code ?? candidate.set ?? null,
       number: candidate.number ?? null,
       image_url: candidate.image_url ?? null,
-      distance: candidate.distance ?? null,
-      score: candidate.score ?? null,
+      confidence,
+      rank: positiveInt(candidate.rank, index + 1),
+      distance,
+      score,
       reason: candidate.reason ?? null,
-    }));
+    };
+  });
+}
+
+function numericOrNull(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function round6(value) {
+  return Number.isFinite(value) ? Math.round(value * 1_000_000) / 1_000_000 : null;
 }
 
 function retakeHint(sidecar) {

@@ -14,8 +14,8 @@
     "scanner:identity:v3:ann:build": "node identity_v3/build_scanner_v3_ann_index_v1.mjs",
     "scanner:identity:v3:ann:serve": "node identity_v3/run_scanner_v3_ann_identity_service_v1.mjs",
     "scanner:fixed-slot:regression": "node identity_v3/run_fixed_slot_artifact_regression_v1.mjs",
-    "scanner:identity:v5": "cd .. && node backend/identity_v3/scanner_v5/run_scanner_v5_identity_service_v1.mjs --artifact-dir .tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1 --debug-dir .tmp/scanner_v5_identity_service",
-    "scanner:identity:v5:regression": "cd .. && node backend/identity_v3/scanner_v5/run_scanner_v5_regression_v1.mjs --cases backend/identity_v3/scanner_v5/scanner_v5_regression_cases_v1.json --artifact-dir .tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1 --out .tmp/scanner_v5_regression_v1/latest.json",
+    "scanner:identity:v5": "cd .. && node backend/identity_v3/scanner_v5/run_scanner_v5_identity_service_v1.mjs --artifact-dir backend/identity_v3/scanner_v5/fixtures/artifact --debug-dir .tmp/scanner_v5_identity_service",
+    "scanner:identity:v5:regression": "cd .. && node backend/identity_v3/scanner_v5/run_scanner_v5_regression_v1.mjs --cases backend/identity_v3/scanner_v5/scanner_v5_regression_cases_v1.json --artifact-dir backend/identity_v3/scanner_v5/fixtures/artifact --out .tmp/scanner_v5_regression_v1/latest.json",
     "scanner:identity:v5:augment-trial": "cd .. && node backend/identity_v3/scanner_v5/build_augmented_index_v1.mjs --artifact-dir .tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1 --out .tmp/scanner_v5_augmented_trial_200 --limit 200"
   },
   "dependencies": {

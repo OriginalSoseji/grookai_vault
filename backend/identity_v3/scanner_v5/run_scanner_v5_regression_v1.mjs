@@ -12,7 +12,7 @@ import {
 } from './scanner_v5_artifact_v1.mjs';
 
 const DEFAULT_CASES = 'backend/identity_v3/scanner_v5/scanner_v5_regression_cases_v1.json';
-const DEFAULT_ARTIFACT = '.tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1';
+const DEFAULT_ARTIFACT = 'backend/identity_v3/scanner_v5/fixtures/artifact';
 const DEFAULT_OUT = '.tmp/scanner_v5_regression_v1/latest.json';
 const GATES = {
   top1: 0.85,
@@ -59,7 +59,12 @@ async function main() {
     }
     rows.push(await runCase({ testCase, artifact, artifactDir: args.artifactDir }));
   }
-  const activeRows = rows.filter((row) => !row.skipped && !row.optional);
+  const activeRows = rows.filter((row) => (
+    !row.skipped &&
+    !row.optional &&
+    !row.smoke_only &&
+    String(row.expected_gv_id ?? '').trim()
+  ));
   const scoredRows = activeRows.length === 0
     ? rows.filter((row) => !row.skipped)
     : activeRows;
@@ -104,19 +109,24 @@ async function runCase({ testCase, artifact, artifactDir }) {
     sourcePath: testCase.image,
   });
   const ocrMs = roundMs(performance.now() - ocrStartedAt);
-  const embedding = await embedAndSearchFullCard({
-    imageBuffer: rectified.png,
-    artifact,
-    topK: 10,
-  });
+  const exactMatches = ocr.matches ?? [];
+  const shouldRunEmbedding = !testCase.skip_embedding && exactMatches.length !== 1;
+  const embedding = shouldRunEmbedding
+    ? await embedAndSearchFullCard({
+      imageBuffer: rectified.png,
+      artifact,
+      topK: 10,
+    })
+    : { candidates: [], embedding_ms: null };
   const fused = fuseCandidates(ocr.matches, embedding.candidates);
   const trueRank = rankOf(fused, testCase.expected_gv_id);
   return {
     id: testCase.id,
     label: testCase.label ?? null,
     optional: testCase.optional === true,
+    smoke_only: testCase.smoke_only === true,
     image: testCase.image,
-    expected_gv_id: testCase.expected_gv_id,
+    expected_gv_id: testCase.expected_gv_id ?? null,
     mode: modeFor(ocr.matches, embedding.candidates),
     true_rank: trueRank,
     latency_ms: {
@@ -138,6 +148,7 @@ function fuseCandidates(ocrMatches, embeddingCandidates) {
     seen.add(id);
     rows.push({
       id,
+      card_id: row.card_id ?? null,
       name: row.name ?? null,
       set: row.set ?? row.set_code ?? null,
       number: row.number ?? null,

@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-07-05T00:00:00.000Z",
+  "artifact": "scanner_v5_fixture_artifact_v1",
+  "contract": "SCANNER_V5_FIXTURE_ARTIFACT_CONTRACT_V1",
+  "mode": "fixture_compact_candidate",
+  "model": "Xenova/clip-vit-base-patch32",
+  "embedding": {
+    "source": "fixture_zero_vectors",
+    "dimensions": 512,
+    "distance": "cosine_distance"
+  },
+  "reference_view_types": [
+    "full_card"
+  ],
+  "storage": {
+    "format": "compact_f32_shards_v1",
+    "vector_dtype": "float32le",
+    "vector_dimensions": 512,
+    "vector_bytes_per_embedding": 2048,
+    "metadata": "jsonl_without_embedding_vectors_v1"
+  },
+  "index": {
+    "reference_count": 3,
+    "reference_view_count": 3,
+    "shard_count": 1,
+    "shards": [
+      {
+        "view_type": "full_card",
+        "vector_file": "vectors/full_card.f32",
+        "metadata_file": "metadata/full_card.jsonl",
+        "vector_count": 3
+      }
+    ],
+    "metadata_file": "metadata.jsonl"
+  }
+}
