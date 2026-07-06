@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=Rambolt
+|image=WCS2007 Rambolt Deck.jpg
+|caption=Box art
+|size=280px
+|types={{e|Psychic}}
+|cards={{TCG ID|EX Legend Maker|Banette ex|85}}
+}}
+
+'''Rambolt''' is the name of the deck used by Jeremy Scharff-Kim, the Senior Division Champion in the {{TCG|2007 World Championships}}. It is one of the four {{TCGMerch|Diamond & Pearl|Series|2007 World Championships Decks}}, released on November 19, 2007. Each deck comes packaged with a 2007 World Championships Booklet. Each card features a silver border, Scharff-Kim's signature, and limited edition 2007 World Championships back. None of the cards are tournament legal.
+
+==Description==
+<i>Jeremy Scharff-Kim won the Senior Division by relying heavily on Banette ex and its potent Ghost moves. Banette ex evolves quickly, jumping into fast damage with Shadow Chant. And Jeremy utilized his other cards to nullify his opponents' comebacks, match after match, win after win!</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Shuppet|40}}|Psychic||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Legend Maker|Banette ex|85}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Banette|1}}|Psychic||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Deoxys|Lunatone|36}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Legend Maker|Solrock|25}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Deoxys|Solrock|47}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon's Magneton|22}}|Metal||Rare}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Buffer Piece|72}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Crystal Guardians|Castaway|72}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Crystal Guardians|Crystal Beach|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Crystal Shard|76}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Energy Switch|107}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Holon Mentor|75}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Scientist|97}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Holon Transceiver|98}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Phoebe's Stadium|79}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Unseen Forces|Pokémon Reversal|88}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Professor Elm's Training Method|79}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Power Keepers|Scott|81}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Dragon Frontiers|Strength Charm|81}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|TV Reporter|82}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Warp Point|116}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Power Keepers|Cyclone Energy|90}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Legend Maker|Rainbow Energy|81}}|Energy|Rainbow|Rare}}
+{{decklist/entry|1|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/entry|8|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Rambolt (TCG)]]
+[[zh:蓝魄（TCG）]]

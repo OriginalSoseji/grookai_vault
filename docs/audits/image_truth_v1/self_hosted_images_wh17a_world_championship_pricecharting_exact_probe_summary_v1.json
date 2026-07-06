@@ -1,0 +1,620 @@
+{
+  "package_id": "IMG-HOST-WH-17A-WORLD-CHAMPIONSHIP-PRICECHARTING-EXACT-PROBE",
+  "harvest_package_id": "IMG-HOST-WH-17E-WORLD-CHAMPIONSHIP-OVERNIGHT-HARVEST",
+  "generated_at": "2026-06-24T05:08:23.469Z",
+  "mode": "overnight_aggregate_exact_source_probe_no_db_no_storage_writes",
+  "source": "pricecharting_direct_product_pages",
+  "start_offset": 671,
+  "batch_limit": 100,
+  "max_batches": 25,
+  "batches_completed": 12,
+  "rows_probed": 1166,
+  "exact_image_candidate_rows": 207,
+  "blocked_rows": 959,
+  "nonproduction_assets_staged": 207,
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh17a_world_championship_pricecharting_exact_upload_manifest_v1.jsonl",
+  "aggregate_manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh17e_world_championship_overnight_harvest_manifest_v1.jsonl",
+  "aggregate_summary_json": "docs\\audits\\image_truth_v1\\self_hosted_images_wh17e_world_championship_overnight_harvest_summary_v1.json",
+  "standard_wh17a_manifest_rewritten": true,
+  "by_set_code_exact_candidates": {
+    "wcd2011-twinboar": 1,
+    "wcd2012-cmt-deck": 1,
+    "wcd2012-eeltwo": 3,
+    "wcd2012-pesadelo-prism": 1,
+    "wcd2012-terraki-mewtwo": 1,
+    "wcd2013-american-gothic": 5,
+    "wcd2013-anguille-sous-roche": 1,
+    "wcd2013-darkrai-deck": 1,
+    "wcd2013-ultimate-team-plasma": 1,
+    "wcd2014-crazy-punch": 4,
+    "wcd2014-emerald-king": 2,
+    "wcd2014-plasma-power": 3,
+    "wcd2014-trevgor": 2,
+    "wcd2015-honorstoise": 3,
+    "wcd2015-primal-groudon": 2,
+    "wcd2015-the-flying-hammer": 2,
+    "wcd2016-bebe-deck": 1,
+    "wcd2016-magical-symphony": 1,
+    "wcd2016-ninja-blitz": 1,
+    "wcd2017-golisodor": 11,
+    "wcd2017-ice-path-ftw": 9,
+    "wcd2017-infinite-force": 11,
+    "wcd2017-samurai-sniper": 17,
+    "wcd2018-buzzroc": 4,
+    "wcd2018-dragones-y-sombras": 13,
+    "wcd2018-garbanette": 4,
+    "wcd2018-victory-map": 5,
+    "wcd2019-mind-blown": 11,
+    "wcd2019-perfection": 3,
+    "wcd2019-pikarom-judge": 2,
+    "wcd2022-adp": 4,
+    "wcd2022-cheryl-again": 9,
+    "wcd2022-ice-rider-palkia": 15,
+    "wcd2022-the-shape-of-mew": 4,
+    "wcd2023-colorless-lugia": 11,
+    "wcd2023-lost-box-kyogre": 8,
+    "wcd2023-mews-revenge": 10,
+    "wcd2023-psychic-elegance": 20
+  },
+  "batches": [
+    {
+      "index": 1,
+      "offset": 671,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 10,
+      "blocked_rows": 90,
+      "fingerprint": "3ffe477a221fd2ab4398e425622674c4d30103684b969daf6dfd52ae7b113dd1"
+    },
+    {
+      "index": 2,
+      "offset": 771,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 6,
+      "blocked_rows": 94,
+      "fingerprint": "f9fda39a4dd0b3ed56bacce0b960830b582bc32ee5adcd314b74eabe206a2d14"
+    },
+    {
+      "index": 3,
+      "offset": 871,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 13,
+      "blocked_rows": 87,
+      "fingerprint": "01b88e60fd59b25cef19067cbb3a252806ba3ca094dd30f77c5fa72d649d8b0e"
+    },
+    {
+      "index": 4,
+      "offset": 971,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 5,
+      "blocked_rows": 95,
+      "fingerprint": "b8ef3e175520c5287362f9a766b2530611c26f2b50ecf12b5877387e02cf330d"
+    },
+    {
+      "index": 5,
+      "offset": 1071,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 15,
+      "blocked_rows": 85,
+      "fingerprint": "64917a180c969c1720c6fe291e8bae6303868c073794d7716deae05b081078ee"
+    },
+    {
+      "index": 6,
+      "offset": 1171,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 44,
+      "blocked_rows": 56,
+      "fingerprint": "c444a830b2ae406c19ad2d29c80b591c18a3046b8e5c24733b23034e70dbd82a"
+    },
+    {
+      "index": 7,
+      "offset": 1271,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 27,
+      "blocked_rows": 73,
+      "fingerprint": "2fbdd29adea8659d210e9724a719b5063f7620728155382c4e7eb5d0998381e5"
+    },
+    {
+      "index": 8,
+      "offset": 1371,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 17,
+      "blocked_rows": 83,
+      "fingerprint": "3d6714d42691bb867f78431724515dda5fc2731586077ce85c6d1b0ce133cd4d"
+    },
+    {
+      "index": 9,
+      "offset": 1471,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 37,
+      "blocked_rows": 63,
+      "fingerprint": "9733fd9e90ad87e7d511ad7af3823ae8978799ef4eb9449ce9a78d78294b30ca"
+    },
+    {
+      "index": 10,
+      "offset": 1571,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 33,
+      "blocked_rows": 67,
+      "fingerprint": "f9eb994244656295e582fa81755e0ab6cb0ed7882b4c15edea5a7e0d51c0eae0"
+    },
+    {
+      "index": 11,
+      "offset": 1671,
+      "rows_probed": 100,
+      "exact_image_candidate_rows": 0,
+      "blocked_rows": 100,
+      "fingerprint": "1e93e0a79917460c1c59d0e1d8cb921f058fef3c7f8e8f5bdbeeb712baeb0b5f"
+    },
+    {
+      "index": 12,
+      "offset": 1771,
+      "rows_probed": 66,
+      "exact_image_candidate_rows": 0,
+      "blocked_rows": 66,
+      "fingerprint": "87b30f317bac1dd1422253fbfcbd9ca59a44c9b062a2726a42fc2a1b4cd32331"
+    }
+  ],
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "global_apply_performed": false,
+  "samples": {
+    "exact_candidates": [
+      {
+        "gv_id": "GV-PK-WCD-2011-TWINBOAR-05-TRIUMPHANT-96-MAGNEZONE",
+        "set_code": "wcd2011-twinboar",
+        "name": "Magnezone",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2011/magnezone-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/mzvg7xup3cobecea/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2011-twinboar/gv-pk-wcd-2011-twinboar-05-triumphant-96-magnezone/05e51ec43c012d6a065b14ce.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-CMT_DECK-06-NEXT-54-MEWTWO_EX",
+        "set_code": "wcd2012-cmt-deck",
+        "name": "Mewtwo-EX",
+        "number": "Destinies 54",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/mewtwo-ex-54",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/yr3n7zyqj7c4idh3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-cmt-deck/gv-pk-wcd-2012-cmt-deck-06-next-54-mewtwo-ex/24a19de7aa3595f224397342.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-EELTWO-01-NEXT-54-MEWTWO_EX",
+        "set_code": "wcd2012-eeltwo",
+        "name": "Mewtwo-EX",
+        "number": "Destinies 54",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/mewtwo-ex-54",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/yr3n7zyqj7c4idh3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-eeltwo/gv-pk-wcd-2012-eeltwo-01-next-54-mewtwo-ex/24a19de7aa3595f224397342.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-EELTWO-15-CALL_OF_LEGENDS-78-DUAL_BALL",
+        "set_code": "wcd2012-eeltwo",
+        "name": "Dual Ball",
+        "number": "78",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/dual-ball-78",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/6jivr5pu45oowdwv/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-eeltwo/gv-pk-wcd-2012-eeltwo-15-call-of-legends-78-dual-ball/f2c38431d282f7d8d7617851.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-EELTWO-08-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2012-eeltwo",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/obupj5haxwvkshsw/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-eeltwo/gv-pk-wcd-2012-eeltwo-08-dark-explorers-96-n/e85db0e9166de1a3faae8f67.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-PESADELO_PRISM-07-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2012-pesadelo-prism",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/obupj5haxwvkshsw/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-pesadelo-prism/gv-pk-wcd-2012-pesadelo-prism-07-dark-explorers-96-n/e85db0e9166de1a3faae8f67.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2012-TERRAKI_MEWTWO-05-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2012-terraki-mewtwo",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/obupj5haxwvkshsw/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2012-terraki-mewtwo/gv-pk-wcd-2012-terraki-mewtwo-05-dark-explorers-96-n/e85db0e9166de1a3faae8f67.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-AMERICAN_GOTHIC-03-DARK_EXPLORERS-10-SHELMET",
+        "set_code": "wcd2013-american-gothic",
+        "name": "Shelmet",
+        "number": "10",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/shelmet-10",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/q35jwohtlhvexo4g/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-american-gothic/gv-pk-wcd-2013-american-gothic-03-dark-explorers-10-shelmet/10fc41c94b27dce6773582a5.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-AMERICAN_GOTHIC-17-DARK_EXPLORERS-102-ULTRA_BALL",
+        "set_code": "wcd2013-american-gothic",
+        "name": "Ultra Ball",
+        "number": "102",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/jvnjhsqz2xm2w27p/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-american-gothic/gv-pk-wcd-2013-american-gothic-17-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-AMERICAN_GOTHIC-02-DARK_EXPLORERS-11-ACCELGOR",
+        "set_code": "wcd2013-american-gothic",
+        "name": "Accelgor",
+        "number": "11",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/accelgor-11",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/mhc2xzms5zktladk/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-american-gothic/gv-pk-wcd-2013-american-gothic-02-dark-explorers-11-accelgor/06e9eefce278f68f22f5f8b4.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-AMERICAN_GOTHIC-08-BLACK_AND_WHITE-48-MUNNA",
+        "set_code": "wcd2013-american-gothic",
+        "name": "Munna",
+        "number": "48",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/munna-48",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/3dkxixk5c5bqotz4/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-american-gothic/gv-pk-wcd-2013-american-gothic-08-black-and-white-48-munna/63a5fa401706422571692722.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-AMERICAN_GOTHIC-11-BOUNDARIES-49-KELDEO_EX",
+        "set_code": "wcd2013-american-gothic",
+        "name": "Keldeo-EX",
+        "number": "Crossed 49",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/keldeo-ex-49",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/uh2vqnp7zovu7yht/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-american-gothic/gv-pk-wcd-2013-american-gothic-11-boundaries-49-keldeo-ex/7f9cc3223a4b562e54e1ab29.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-ANGUILLE_SOUS_ROCHE-12-DARK_EXPLORERS-102-ULTRA_BALL",
+        "set_code": "wcd2013-anguille-sous-roche",
+        "name": "Ultra Ball",
+        "number": "102",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/ultra-ball-102",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/jvnjhsqz2xm2w27p/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-anguille-sous-roche/gv-pk-wcd-2013-anguille-sous-roche-12-dark-explorers-102-ultra-ball/0c6c2d3752fb7271cec2cbb2.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-DARKRAI_DECK-09-DARK_EXPLORERS-93-DARK_PATCH",
+        "set_code": "wcd2013-darkrai-deck",
+        "name": "Dark Patch",
+        "number": "93",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/dark-patch-93",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/e342ed4382cbc168e84697f5ccc4a8a84ad9238d204325ef423937473ed8d9c6/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-darkrai-deck/gv-pk-wcd-2013-darkrai-deck-09-dark-explorers-93-dark-patch/3fd1c1cd0db78368f71b4674.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2013-ULTIMATE_TEAM_PLASMA-02-PLASMA-53-DEOXYS_EX",
+        "set_code": "wcd2013-ultimate-team-plasma",
+        "name": "Deoxys-EX",
+        "number": "Freeze 53",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2013/deoxys-ex-53",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/kdxx77kmigcfjecl/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2013-ultimate-team-plasma/gv-pk-wcd-2013-ultimate-team-plasma-02-plasma-53-deoxys-ex/23924cc2fc71de61cd194899.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-CRAZY_PUNCH-05-LEGENDARY-45-KELDEO_EX",
+        "set_code": "wcd2014-crazy-punch",
+        "name": "Keldeo-EX",
+        "number": "Treasures 45",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/keldeo-ex-45",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/42eqznkivunhapw3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-crazy-punch/gv-pk-wcd-2014-crazy-punch-05-legendary-45-keldeo-ex/cf50bf2a124a1ce1b7fb1dd5.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-CRAZY_PUNCH-04-FLASHFIRE-78-KANGASKHAN_EX",
+        "set_code": "wcd2014-crazy-punch",
+        "name": "Kangaskhan-EX",
+        "number": "78",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/kangaskhan-ex-78",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/hhgoutcagvkx47qn/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-crazy-punch/gv-pk-wcd-2014-crazy-punch-04-flashfire-78-kangaskhan-ex/f530aa5400abe72700e1a9ce.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-CRAZY_PUNCH-19-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2014-crazy-punch",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/6ssn6cdrlywtatj7/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-crazy-punch/gv-pk-wcd-2014-crazy-punch-19-dark-explorers-96-n/ca20c1fd8baee025c5e5c46f.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-CRAZY_PUNCH-25-FLASHFIRE-99-ULTRA_BALL",
+        "set_code": "wcd2014-crazy-punch",
+        "name": "Ultra Ball",
+        "number": "99",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/ultra-ball-99",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/l5tcib7b6efda727/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-crazy-punch/gv-pk-wcd-2014-crazy-punch-25-flashfire-99-ultra-ball/23bfb609e80514e1aa8c171c.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-EMERALD_KING-01-PLASMA-11-GENESECT_EX",
+        "set_code": "wcd2014-emerald-king",
+        "name": "Genesect-EX",
+        "number": "Blast 11",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/genesect-ex-11",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/eprzrl2sgwlzb3iq/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-emerald-king/gv-pk-wcd-2014-emerald-king-01-plasma-11-genesect-ex/ced08cb824cf45a4d0a36e38.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-EMERALD_KING-20-FLASHFIRE-99-ULTRA_BALL",
+        "set_code": "wcd2014-emerald-king",
+        "name": "Ultra Ball",
+        "number": "99",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/ultra-ball-99",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/l5tcib7b6efda727/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-emerald-king/gv-pk-wcd-2014-emerald-king-20-flashfire-99-ultra-ball/23bfb609e80514e1aa8c171c.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-PLASMA_POWER-01-PLASMA-53-DEOXYS_EX",
+        "set_code": "wcd2014-plasma-power",
+        "name": "Deoxys-EX",
+        "number": "Freeze 53",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/deoxys-ex-53",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/cd8333608b8e18c7bc2f5f3fd9dd4eca1f4637f0a96f9c0823fad3d670fc4978/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-plasma-power/gv-pk-wcd-2014-plasma-power-01-plasma-53-deoxys-ex/237fd31daf91a890b31aece5.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-PLASMA_POWER-11-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2014-plasma-power",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/6ssn6cdrlywtatj7/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-plasma-power/gv-pk-wcd-2014-plasma-power-11-dark-explorers-96-n/ca20c1fd8baee025c5e5c46f.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-PLASMA_POWER-19-FLASHFIRE-99-ULTRA_BALL",
+        "set_code": "wcd2014-plasma-power",
+        "name": "Ultra Ball",
+        "number": "99",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/ultra-ball-99",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/l5tcib7b6efda727/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-plasma-power/gv-pk-wcd-2014-plasma-power-19-flashfire-99-ultra-ball/23bfb609e80514e1aa8c171c.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-TREVGOR-05-FLASHFIRE-38-DUSKULL",
+        "set_code": "wcd2014-trevgor",
+        "name": "Duskull",
+        "number": "38",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/duskull-38",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/yjogdytjwn2kk3on/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-trevgor/gv-pk-wcd-2014-trevgor-05-flashfire-38-duskull/8283c59d1950c644588817bb.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2014-TREVGOR-15-DARK_EXPLORERS-96-N",
+        "set_code": "wcd2014-trevgor",
+        "name": "N",
+        "number": "96",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/n-96",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/6ssn6cdrlywtatj7/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2014-trevgor/gv-pk-wcd-2014-trevgor-15-dark-explorers-96-n/ca20c1fd8baee025c5e5c46f.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-HONORSTOISE-02-BOUNDARIES-49-KELDEO_EX",
+        "set_code": "wcd2015-honorstoise",
+        "name": "Keldeo-EX",
+        "number": "Crossed 49",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/keldeo-ex-49",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/vfryxiv6xtt7kzat/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-honorstoise/gv-pk-wcd-2015-honorstoise-02-boundaries-49-keldeo-ex/e9a2cca9c78f3ae22fd85563.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-HONORSTOISE-03-PLASMA-60-JIRACHI_EX",
+        "set_code": "wcd2015-honorstoise",
+        "name": "Jirachi-EX",
+        "number": "Blast 60",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/jirachi-ex-60",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/bhlzlcvjcwpifqxf/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-honorstoise/gv-pk-wcd-2015-honorstoise-03-plasma-60-jirachi-ex/21ad6d485ac2542448bf6f5f.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-HONORSTOISE-04-ROARING-77-SHAYMIN_EX",
+        "set_code": "wcd2015-honorstoise",
+        "name": "Shaymin-EX",
+        "number": "Skies 77",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/shaymin-ex-77",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/if7gcgnseswqaxep/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-honorstoise/gv-pk-wcd-2015-honorstoise-04-roaring-77-shaymin-ex/c1df907ebd61068ca947a245.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-PRIMAL_GROUDON-12-PHANTOM_FORCES-109-VS_SEEKER",
+        "set_code": "wcd2015-primal-groudon",
+        "name": "VS Seeker",
+        "number": "109",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/vs-seeker-109",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/o7znchdxthe6o7l6/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-primal-groudon/gv-pk-wcd-2015-primal-groudon-12-phantom-forces-109-vs-seeker/98505d0c0fc585412a381bbf.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-PRIMAL_GROUDON-14-ROARING_SKIES-86-MEGA_TURBO",
+        "set_code": "wcd2015-primal-groudon",
+        "name": "Mega Turbo",
+        "number": "86",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/mega-turbo-86",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/5r25lamlcmzv7bl7/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-primal-groudon/gv-pk-wcd-2015-primal-groudon-14-roaring-skies-86-mega-turbo/3ac7b0a868283dcea4d7291a.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-THE_FLYING_HAMMER-15-FURIOUS_FISTS-100-SUPER_SCOOP_UP",
+        "set_code": "wcd2015-the-flying-hammer",
+        "name": "Super Scoop Up",
+        "number": "100",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/super-scoop-up-100",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/f3icc5b2hrsqgzm7/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-the-flying-hammer/gv-pk-wcd-2015-the-flying-hammer-15-furious-fists-100-super-scoop-up/7f658662011c755601818d1a.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2015-THE_FLYING_HAMMER-17-PHANTOM_FORCES-109-VS_SEEKER",
+        "set_code": "wcd2015-the-flying-hammer",
+        "name": "VS Seeker",
+        "number": "109",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2015/vs-seeker-109",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/o7znchdxthe6o7l6/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2015-the-flying-hammer/gv-pk-wcd-2015-the-flying-hammer-17-phantom-forces-109-vs-seeker/98505d0c0fc585412a381bbf.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2016-BEBE_DECK-20-FATES_COLLIDE-113-ULTRA_BALL",
+        "set_code": "wcd2016-bebe-deck",
+        "name": "Ultra Ball",
+        "number": "113",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2016/ultra-ball-113",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/op3jcqvcbt36uetn/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2016-bebe-deck/gv-pk-wcd-2016-bebe-deck-20-fates-collide-113-ultra-ball/c6bfec2b229d1207bb61b89d.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2016-MAGICAL_SYMPHONY-03-ROARING-77-SHAYMIN_EX",
+        "set_code": "wcd2016-magical-symphony",
+        "name": "Shaymin-EX",
+        "number": "Skies 77",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2016/shaymin-ex-77",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/v7cr4kvjnwduaeyy/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2016-magical-symphony/gv-pk-wcd-2016-magical-symphony-03-roaring-77-shaymin-ex/fbf9425e0e8922fa85dccb9b.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2016-NINJA_BLITZ-02-BREAKPOINT-40-GRENINJA",
+        "set_code": "wcd2016-ninja-blitz",
+        "name": "Greninja",
+        "number": "40",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2016/greninja-40",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/ttmwb2mgpuoxhlee/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2016-ninja-blitz/gv-pk-wcd-2016-ninja-blitz-02-breakpoint-40-greninja/f422abb8f9ae30e1374f34a8.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-16-FATES_COLLIDE-105-N",
+        "set_code": "wcd2017-golisodor",
+        "name": "N",
+        "number": "105",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/n-105",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/55o7mzggz3nhrcu4/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-16-fates-collide-105-n/04fc65c6036e3872e179465e.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-17-BREAKPOINT-107-PROFESSOR_SYCAMORE",
+        "set_code": "wcd2017-golisodor",
+        "name": "Professor Sycamore",
+        "number": "107",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/professor-sycamore-107",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/hkcovfnq5kex5gpu/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-17-breakpoint-107-professor-sycamore/47ee125d650a4adc1aad23cf.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-08-BURNING_SHADOWS-112-ACEROLA",
+        "set_code": "wcd2017-golisodor",
+        "name": "Acerola",
+        "number": "112",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/acerola-112",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/kdwwyldsqjsb4p5f/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-08-burning-shadows-112-acerola/bb9762df706c6be2246c7c14.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-13-BURNING_SHADOWS-115-GUZMA",
+        "set_code": "wcd2017-golisodor",
+        "name": "Guzma",
+        "number": "115",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/guzma-115",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/3vsmrfkunmyvpvqw/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-13-burning-shadows-115-guzma/d8fcae3c02957cb2751e1a99.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-10-GUARDIANS_RISING-121-CHOICE_BAND",
+        "set_code": "wcd2017-golisodor",
+        "name": "Choice Band",
+        "number": "121",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/choice-band-121",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/e3iolvsrdykjiucx/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-10-guardians-rising-121-choice-band/6777d702f64f9cacc4f997c3.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-11-GUARDIANS_RISING-125-FIELD_BLOWER",
+        "set_code": "wcd2017-golisodor",
+        "name": "Field Blower",
+        "number": "125",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/field-blower-125",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/ekafbxhb7hbftcy3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-11-guardians-rising-125-field-blower/c0c3d84f781172e12ee5329b.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-09-BREAKTHROUGH-134-BRIGETTE",
+        "set_code": "wcd2017-golisodor",
+        "name": "Brigette",
+        "number": "134",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/brigette-134",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/tmavycfayectxv3o/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-09-breakthrough-134-brigette/598bd8eb292932ac59bbd2f9.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-20-SUN_AND_MOON-135-ULTRA_BALL",
+        "set_code": "wcd2017-golisodor",
+        "name": "Ultra Ball",
+        "number": "135",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/ultra-ball-135",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/7qdbwmoc7k2h7fxo/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-20-sun-and-moon-135-ultra-ball/cf25b81b33e76692940f4220.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-12-BREAKTHROUGH-137-FLOAT_STONE",
+        "set_code": "wcd2017-golisodor",
+        "name": "Float Stone",
+        "number": "137",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/float-stone-137",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/tpeup6italhprgv3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-12-breakthrough-137-float-stone/c3024011749f61088dd70d63.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-01-BURNING-17-GOLISOPOD_GX",
+        "set_code": "wcd2017-golisodor",
+        "name": "Golisopod-GX",
+        "number": "Shadows 17",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/golisopod-gx-17",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/xcthdrjpt5wav3m3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-01-burning-17-golisopod-gx/3afd9717ff26c0f0519e3f2a.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-GOLISODOR-06-GUARDIANS-60-TAPU_LELE_GX",
+        "set_code": "wcd2017-golisodor",
+        "name": "Tapu Lele-GX",
+        "number": "Rising 60",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/tapu-lele-gx-60",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/dt72m4ahjhypgamb/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-golisodor/gv-pk-wcd-2017-golisodor-06-guardians-60-tapu-lele-gx/a778e7b0573ae4d2847d3248.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-ICE_PATH_FTW-19-BREAKPOINT-107-PROFESSOR_SYCAMORE",
+        "set_code": "wcd2017-ice-path-ftw",
+        "name": "Professor Sycamore",
+        "number": "107",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/professor-sycamore-107",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/hkcovfnq5kex5gpu/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-ice-path-ftw/gv-pk-wcd-2017-ice-path-ftw-19-breakpoint-107-professor-sycamore/47ee125d650a4adc1aad23cf.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-ICE_PATH_FTW-11-GUARDIANS_RISING-121-CHOICE_BAND",
+        "set_code": "wcd2017-ice-path-ftw",
+        "name": "Choice Band",
+        "number": "121",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/choice-band-121",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/e3iolvsrdykjiucx/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-ice-path-ftw/gv-pk-wcd-2017-ice-path-ftw-11-guardians-rising-121-choice-band/6777d702f64f9cacc4f997c3.jpg"
+      },
+      {
+        "gv_id": "GV-PK-WCD-2017-ICE_PATH_FTW-12-GUARDIANS_RISING-125-FIELD_BLOWER",
+        "set_code": "wcd2017-ice-path-ftw",
+        "name": "Field Blower",
+        "number": "125",
+        "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2017/field-blower-125",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/ekafbxhb7hbftcy3/1600.jpg",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/wcd2017-ice-path-ftw/gv-pk-wcd-2017-ice-path-ftw-12-guardians-rising-125-field-blower/c0c3d84f781172e12ee5329b.jpg"
+      }
+    ]
+  },
+  "fingerprint": "e99bbccb6109608287f5c948fa04a4d78ebc9e7383380e1485200bea78066c3f"
+}

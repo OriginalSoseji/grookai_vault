@@ -10,7 +10,10 @@ type PokemonCardGridTileProps = {
   imageFallbackSrc?: string;
   imageAlt: string;
   imageHref?: string;
+  imagePrefetch?: boolean;
   imageLoading?: "eager" | "lazy";
+  imagePriority?: boolean;
+  imageSizes?: string;
   imageFallbackLabel?: string;
   imageClassName?: string;
   imageOverlay?: ReactNode;
@@ -32,37 +35,37 @@ type PokemonCardGridBadgeProps = {
 };
 
 const TILE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-3",
+  compact: "p-2",
   default: "p-4",
   large: "p-5",
 };
 
 const IMAGE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-3",
+  compact: "p-1.5",
   default: "p-4",
   large: "p-5",
 };
 
 const CONTENT_STACK_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "space-y-2.5",
+  compact: "space-y-1.5",
   default: "space-y-3",
   large: "space-y-3.5",
 };
 
 const BODY_STACK_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "space-y-2",
+  compact: "space-y-1.5",
   default: "space-y-2.5",
   large: "space-y-3",
 };
 
 const TITLE_TEXT_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "text-sm",
+  compact: "text-[13px]",
   default: "text-[15px]",
   large: "text-base",
 };
 
 const SUBTITLE_TEXT_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "text-xs",
+  compact: "text-[11px]",
   default: "text-sm",
   large: "text-sm",
 };
@@ -85,6 +88,8 @@ function renderImage({
   imageFallbackSrc,
   imageAlt,
   imageLoading,
+  imagePriority,
+  imageSizes,
   imageFallbackLabel,
   imageClassName,
   imageOverlay,
@@ -94,6 +99,8 @@ function renderImage({
   imageFallbackSrc?: string;
   imageAlt: string;
   imageLoading?: "eager" | "lazy";
+  imagePriority?: boolean;
+  imageSizes?: string;
   imageFallbackLabel?: string;
   imageClassName?: string;
   imageOverlay?: ReactNode;
@@ -107,8 +114,10 @@ function renderImage({
         fallbackSrc={imageFallbackSrc}
         alt={imageAlt}
         loading={imageLoading}
-        imageClassName={`aspect-[3/4] w-full rounded-[20px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[20px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+        priority={imagePriority}
+        sizes={imageSizes}
+        imageClassName={`aspect-[3/4] w-full rounded-[14px] object-contain transition duration-200 group-hover:scale-[1.012] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[14px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
@@ -155,7 +164,10 @@ export default function PokemonCardGridTile({
   imageFallbackSrc,
   imageAlt,
   imageHref,
+  imagePrefetch,
   imageLoading,
+  imagePriority,
+  imageSizes,
   imageFallbackLabel,
   imageClassName,
   imageOverlay,
@@ -174,6 +186,8 @@ export default function PokemonCardGridTile({
     imageFallbackSrc,
     imageAlt,
     imageLoading,
+    imagePriority,
+    imageSizes,
     imageFallbackLabel,
     imageClassName,
     imageOverlay,
@@ -186,7 +200,7 @@ export default function PokemonCardGridTile({
       {utility ? <div className="gv-visual-card-utility">{utility}</div> : null}
 
       <div className={CONTENT_STACK_BY_DENSITY[density]}>
-        {imageHref ? <Link href={imageHref}>{image}</Link> : image}
+        {imageHref ? <Link href={imageHref} prefetch={imagePrefetch}>{image}</Link> : image}
 
         <div className={BODY_STACK_BY_DENSITY[density]}>
           <div className="space-y-1.5">

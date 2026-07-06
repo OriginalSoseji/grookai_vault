@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=CMT
+|image=WCS2012 CMT Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}{{e|Grass}}
+|cards={{TCG ID|Triumphant|Celebi|92}}, [[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}, {{TCG ID|Noble Victories|Terrakion|73}}
+}}
+
+'''CMT''' is the name of the deck used by Zachary Bokhari, a Junior Division Semi-Finalist in the [[2012 World Championships]]. The deck is a variant of the {{TCG|CMT}} {{TCG|Deck archetype|archetype}}, substituting {{TCG ID|Emerging Powers|Tornadus|89}} for {{TCG ID|Noble Victories|Terrakion|73}} to counter decks that emerged over the course of the 2011-2012 season, specifically those including [[Darkrai-EX (Dark Explorers 63)|Darkrai]]{{EX}}. The deck makes principal use of {{TCG ID|Triumphant|Celebi|92}} to provide Energy, along with [[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}} and Terrakion to deal substantial damage.
+
+CMT is one of the four {{TCGMerch|Black & White|Series|2012 World Championships Decks}}, released in November 2012. Each deck comes packaged with a 2012 World Championships Booklet, Deck Box, and Special Pin. Each card features a silver border, Bokhari's signature, and limited edition 2012 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''The way that Zachary Bokhari built his deck for the 2012 World Championships made an unlikely star out of Celebi Prime—its Energy-gathering power making sure that Mewtwo-EX and Tornadus-EX had all the resources needed to deliver attack after devastating attack. A supporting cast packed with deck-drawing ability and just enough healing power to make a difference helped Zachary's CMT deck leave a trail of opponents' Pokémon needing an EMT!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|Triumphant|Celebi|92}}|Grass||SuperRare Holo}}
+{{decklist/entry|2|{{TCG ID|Call of Legends|Smeargle|21}}|Colorless||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Noble Victories|Terrakion|73}}|Fighting||Rare Holo}}
+{{decklist/entry|1|[[Tornadus-EX (Dark Explorers 90)|Tornadus]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Shaymin|8}}|Grass||Rare Holo}}
+{{decklist/entry|3|[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|Call of Legends|Professor Oak's New Theory|83}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Random Receiver|99}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Call of Legends|Dual Ball|78}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Noble Victories|Eviolite|91}}|Item|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Revive|102}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Energy Search|93}}|Item||Common}}
+{{decklist/entry|1|{{TCG ID|Black & White|Energy Retrieval|92}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|PlusPower|96}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Skyarrow Bridge|91}}|Stadium||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Potion|100}}|Item||Common}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Double Colorless Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|6|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/entry|3|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:CMT (TCG)]]

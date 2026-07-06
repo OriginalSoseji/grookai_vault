@@ -42,6 +42,9 @@ void main() {
   final mappingSource = File(
     'apps/web/src/lib/wallSections/publicWallSectionCardMapping.ts',
   ).readAsStringSync();
+  final networkStreamSource = File(
+    'apps/web/src/lib/network/getCardStreamRows.ts',
+  ).readAsStringSync();
   final revalidateSource = File(
     'apps/web/src/lib/wallSections/revalidateWallSectionPaths.ts',
   ).readAsStringSync();
@@ -155,8 +158,18 @@ void main() {
     expect(mappingSource, contains('display_image_url'));
     expect(mappingSource, contains('representative_image_url'));
     expect(mappingSource, contains('resolveDisplayImageUrl'));
+    expect(mappingSource, contains('resolveVaultInstanceMediaUrl'));
+    expect(mappingSource, contains('isVaultInstanceMediaStoragePath'));
+    expect(mappingSource, contains('existing.image_url = card.image_url'));
     expect(gridSource, contains('card.gv_vi_id ?? card.vault_item_id'));
     expect(gridSource, contains('key={cardKey}'));
+  });
+
+  test('network feed selects and resolves instance display images', () {
+    expect(networkStreamSource, contains('display_image_url'));
+    expect(networkStreamSource, contains('display_image_kind'));
+    expect(networkStreamSource, contains('resolveVaultInstanceMediaUrl'));
+    expect(networkStreamSource, contains('isVaultInstanceMediaStoragePath'));
   });
 
   test(

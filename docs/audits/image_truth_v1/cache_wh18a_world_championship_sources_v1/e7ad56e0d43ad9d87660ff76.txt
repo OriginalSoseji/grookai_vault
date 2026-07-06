@@ -1,0 +1,50 @@
+{{DeckInfobox
+|title=Perfection
+|image=WCS2019 Perfection Deck.jpg
+|caption=Box art
+|release=November 22, 2019
+|types={{e|Fire}}{{e|Psychic}}
+}}
+
+'''Perfection''' is the name of the deck used by Henry Brand, the Masters Division champion at the [[2019 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2019 World Championships Decks}} released November 22, 2019. Each deck comes with a Worlds 2019 deckbox, a Worlds 2019 pin, a booklet about the championships, and a TCGO code card. The cards included in the deck aren't the prints actually used in the deck, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''The new TAG TEAM of Mewtwo & Mew-GX was a popular choice at the World Championships, and Henry Brand of Australia guided it to victory in the Masters Division! The key is the Perfection Ability, which allows Mewtwo & Mew-GX to use the attacks of any Pokémon-GX on the player's Bench or in their discard pile. The deck includes a single copy of many powerful Pokémon-GX, plus multiple ways to discard them—which results in an impressive arsenal of attack options. Perfection!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Mewtwo & Mew-GX (Unified Minds 71)|Mewtwo & Mew]]{{TT GX}}|Psychic||Rare}}
+{{decklist/entry|3|[[Dedenne-GX (Unbroken Bonds 57)|Dedenne]]{{GX}}|Lightning||Rare}}
+{{decklist/entry|1|[[Cobalion-GX (Team Up 106)|Cobalion]]{{GX}}|Metal||Rare}}
+{{decklist/entry|1|[[Espeon & Deoxys-GX (Unified Minds 72)|Espeon & Deoxys]]{{TT GX}}|Psychic||Rare}}
+{{decklist/entry|1|[[Jirachi-GX (Unified Minds 79)|Jirachi]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|[[Latios-GX (Unified Minds 78)|Latios]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|[[Magcargo-GX (Lost Thunder 44)|Magcargo]]{{GX}}|Fire||Rare}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Marshadow|81}}|Psychic||Rare}}
+{{decklist/entry|1|[[Naganadel-GX (Unified Minds 160)|Naganadel]]{{Red GX}}|Dragon||Rare}}
+{{decklist/entry|1|[[Reshiram & Charizard-GX (Unbroken Bonds 20)|Reshiram & Charizard]]{{TT GX}}|Fire||Rare}}
+{{decklist/entry|1|[[Solgaleo-GX (SM Promo 104)|Solgaleo]]{{GX}}|Metal||Rare}}
+{{decklist/entry|4|{{TCG ID|Celestial Storm|Acro Bike|123}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Team Up|Bill's Analysis|133}}|Supporter||Rare}}
+{{decklist/entry|4|{{TCG ID|Unified Minds|Cherish Ball|191}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Lost Thunder|Custom Catcher|171}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Electromagnetic Radar|169}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Fire Crystal|173}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unified Minds|Giant Hearth|197}}|Stadium||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Forbidden Light|Mysterious Treasure|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unbroken Bonds|Pokégear 3.0|182}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Celestial Storm|Switch|147}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Team Up|Viridian Forest|156}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unbroken Bonds|Welder|189}}|Supporter||Uncommon}}
+{{decklist/entry|8|{{TCG|Fire Energy}}|Energy|Fire|None}}
+{{decklist/entry|3|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Perfection (TCG)]]
+[[ja:Perfection]]
+[[zh:完美无缺（TCG）]]

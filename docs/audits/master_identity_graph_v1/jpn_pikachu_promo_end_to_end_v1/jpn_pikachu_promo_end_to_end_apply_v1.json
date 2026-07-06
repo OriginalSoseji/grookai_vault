@@ -1,0 +1,2586 @@
+{
+  "package_id": "jpn_pikachu_promo_first_batch_end_to_end_v1",
+  "generated_at": "2026-07-03T22:13:59.173Z",
+  "apply_status": "applied_committed",
+  "source_package_id": "jpn_pikachu_promo_first_batch_v1",
+  "counts": {
+    "targets": 134,
+    "images_staged": 134,
+    "storage_uploaded": 0,
+    "storage_existing": 134
+  },
+  "stop_findings": [],
+  "db_apply": {
+    "applied": true,
+    "preflight": {
+      "existing_child_rows": 0,
+      "existing_printing_gv_rows": 0,
+      "existing_active_species_rows": 0
+    },
+    "stop_findings": [],
+    "writes": {
+      "parent_image_updates": 134,
+      "child_printing_inserts": 134,
+      "species_link_inserts": 134,
+      "family_review_updates": 134
+    },
+    "proof": {
+      "finalized_parent_images": 134,
+      "finalized_child_printings": 134,
+      "finalized_species_links": 134,
+      "approved_review_rows": 134
+    },
+    "payload_fingerprint_sha256": "cab3d9e0ed1728fca94c49b26d60fa549a7fbfe0688cc90aff26b316062513e7"
+  },
+  "image_manifest": [
+    {
+      "gv_id": "GV-PK-JPN-BWP-108-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number": "108",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31984/pikachu-black-and-white-promos-108-bw-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/d3/bd/78/d3bd7892545ccd367b7c9fbe50cb989a5ac4a7967715c73d3c90e52dc6aa1718.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-108-pikachu/6cf55b75a7a4dfc0c8c586c9.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-108-pikachu/6cf55b75a7a4dfc0c8c586c9.jpg",
+      "sha256": "6cf55b75a7a4dfc0c8c586c9277cff9d8bce157db2c196f92e8188af2c5e99c7",
+      "size_bytes": 172887,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-120-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number": "120",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31996/pikachu-black-and-white-promos-120-bw-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/b6/37/68/b637686282f19670a001c806ca9456c09ceab52b159a5782f466ea4c512a131f.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-120-pikachu/6a42cc2b4cdcdb31f8225de0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-120-pikachu/6a42cc2b4cdcdb31f8225de0.jpg",
+      "sha256": "6a42cc2b4cdcdb31f8225de0d94ec3a785231a40f75ae5620cebd884ac1a6f87",
+      "size_bytes": 184897,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-151-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number": "151",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32027/pikachu-black-and-white-promos-151-bw-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/ae/eb/df/aeebdf08b2d7ec7f9cd8f4ffcd24de8fdadd78f0cb51f605f96e282b2aff774d.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-151-pikachu/c095327b93dd1a65785745d5.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-151-pikachu/c095327b93dd1a65785745d5.jpg",
+      "sha256": "c095327b93dd1a65785745d5b534a0d7efd44b7e5e778a6843841692bd8d0fc7",
+      "size_bytes": 177242,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-163-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number": "163",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32039/pikachu-black-and-white-promos-163-bw-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/30/b7/85/30b785002a599ec21e9e652135133f3c2e556305df65da57c9bf33144aeaf6a2.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-163-pikachu/616d9714347a5d264ca2b5a4.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-163-pikachu/616d9714347a5d264ca2b5a4.jpg",
+      "sha256": "616d9714347a5d264ca2b5a4b8d5cecadd540b9873ec25eb5bd450b6cb645756",
+      "size_bytes": 152505,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-025-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "025",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32318/pikachu-diamond-and-pearl-promos-025-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/9d/33/7c/9d337c00625f245acbf01c8c1159500ac04b39aa7e40d55416d343114234cc52.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-025-pikachu/0150b55088c05f1a82e474bd.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-025-pikachu/0150b55088c05f1a82e474bd.jpg",
+      "sha256": "0150b55088c05f1a82e474bdc3a3b5d6eaa183d6a28939d95d2119c54e3db999",
+      "size_bytes": 14437,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-048-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "048",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32341/pikachu-diamond-and-pearl-promos-048-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e0/c4/51/e0c451b24056a8ac4c43f44958920325356da4d2fd96d14eb6d1aafb2df87408.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-048-pikachu/a3f518ae5e0bd586dc82027a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-048-pikachu/a3f518ae5e0bd586dc82027a.jpg",
+      "sha256": "a3f518ae5e0bd586dc82027ac986b6de045a69604a45b22c9d2cdb18654960ee",
+      "size_bytes": 16302,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-057-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "057",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32350/pikachu-diamond-and-pearl-promos-057-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/69/8a/c7/698ac78179adbf14c104edb5d48133f74e1ddab382150c486f760e423a588648.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-057-pikachu/d91848f456ea191e704e131c.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-057-pikachu/d91848f456ea191e704e131c.jpg",
+      "sha256": "d91848f456ea191e704e131cc263bc1f5fdfb33d557c8ffb9a5d43d52d13ff96",
+      "size_bytes": 16753,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-095-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "095",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32388/pikachu-diamond-and-pearl-promos-095-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/ef/1e/ee/ef1eeecc0c5a2ba543adf36583a23a2a46252e675ff99620628f9566456983a8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-095-pikachu/2cc9ca3cca83d8fdf4f89df6.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-095-pikachu/2cc9ca3cca83d8fdf4f89df6.jpg",
+      "sha256": "2cc9ca3cca83d8fdf4f89df6058b29d88de734b7e18b499bc2d2e8ca5fcced0a",
+      "size_bytes": 15578,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-098-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "098",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32391/pikachu-diamond-and-pearl-promos-098-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/3d/15/b0/3d15b03bfbf5e1295205947f68a333c4808cc17b3bfddeacd8cfda0421bb5b3c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-098-pikachu/f04de55f1cecb907c590273a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-098-pikachu/f04de55f1cecb907c590273a.jpg",
+      "sha256": "f04de55f1cecb907c590273af876365399864be440a00cc401d7e8ac3dbbeaee",
+      "size_bytes": 14104,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-099-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "099",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32392/pikachu-diamond-and-pearl-promos-099-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/58/92/1e/58921e312a9dc8124c4367d85164a86cf565dbf2eff205979c0db1ad6f61681e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-099-pikachu/33025b08cd100aff7c9020bd.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-099-pikachu/33025b08cd100aff7c9020bd.jpg",
+      "sha256": "33025b08cd100aff7c9020bd3921fd62a6c4aa83c378f8ae52bd06b7c6b808b9",
+      "size_bytes": 13780,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-100-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "100",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32393/pikachu-diamond-and-pearl-promos-100-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/dc/0b/b0/dc0bb07139986e15f061b787ea74d2bb0e55e1d3f7293979d98e9558a3161aaf.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-100-pikachu/3807b4aaac832e2e088446b1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-100-pikachu/3807b4aaac832e2e088446b1.jpg",
+      "sha256": "3807b4aaac832e2e088446b1023065e959613589f4e61613ba6ad3ee6d12d2a2",
+      "size_bytes": 13748,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-101-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "101",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32394/pikachu-diamond-and-pearl-promos-101-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/53/bf/ec/53bfec254f890a4057ef6218c7f4b575a8864d6436ea88cbfb031e9d2f24023a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-101-pikachu/1e3a5e0b2dcc8ba301064b7b.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-101-pikachu/1e3a5e0b2dcc8ba301064b7b.jpg",
+      "sha256": "1e3a5e0b2dcc8ba301064b7ba37d49fea21a7fb0e6555a0bde3a0c8034ecc936",
+      "size_bytes": 14048,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-102-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "102",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32395/pikachu-diamond-and-pearl-promos-102-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/bd/4d/62/bd4d624b1c9f208048c206cfca7eee2baf5c963773f4052186174631d0fee031.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-102-pikachu/1656fbe670463dcd4d061fdf.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-102-pikachu/1656fbe670463dcd4d061fdf.jpg",
+      "sha256": "1656fbe670463dcd4d061fdf1f1838acd562817303c21c972386c9792b957377",
+      "size_bytes": 14217,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-113-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number": "113",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32406/pikachu-diamond-and-pearl-promos-113-dp-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c5/66/65/c56665c637ece69ebab1bc134351198f4cbb8a0279b4d1d85db025ff11c2b40d.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-113-pikachu/63c17da25da4fd06179bf742.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-113-pikachu/63c17da25da4fd06179bf742.jpg",
+      "sha256": "63c17da25da4fd06179bf74251fbe18c33f712cd76d2d0e2bea7a206add7825c",
+      "size_bytes": 16381,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPTP-043-PIKACHU-LV-X",
+      "name": "Pikachu LV.X",
+      "set_code": "jpn-dptp",
+      "number": "043",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/32265/pikachu-lv-x-platinum-promos-043-dpt-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/7d/4c/97/7d4c971eb46f03707f0415a55a3e37e23c2096149536cb3c07472e9e2ef751ab.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dptp/gv-pk-jpn-dptp-043-pikachu-lv-x/c17dd1e1a49ed445768146b9.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dptp/gv-pk-jpn-dptp-043-pikachu-lv-x/c17dd1e1a49ed445768146b9.jpg",
+      "sha256": "c17dd1e1a49ed445768146b9e1f2c371e00eabf0382dc3988e52324c4cd147e7",
+      "size_bytes": 17878,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-005-SAPPOROS-PIKACHU",
+      "name": "Sapporo's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "005",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30561/sapporos-pikachu-sun-and-moon-promos-005-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c0/02/2f/c0022f91e48e16a284814b9c409bb20e181d6dc15a041881626904be9eb55748.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-005-sapporos-pikachu/c5d973ca0922f92f89e82b5b.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-005-sapporos-pikachu/c5d973ca0922f92f89e82b5b.jpg",
+      "sha256": "c5d973ca0922f92f89e82b5b28e2141ab343f32534189cddca731b6278979807",
+      "size_bytes": 160143,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-013-PRETEND-TEAM-SKULL-PIKACHU",
+      "name": "Pretend Team Skull Pikachu",
+      "set_code": "jpn-smp",
+      "number": "013",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30569/pretend-team-skull-pikachu-sun-and-moon-promos-013-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/1b/5f/fa/1b5ffaf0b593019300474452e049cbc80e57fd81f21bb7f10115be9056eda01b.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-013-pretend-team-skull-pikachu/fd6934ac9e60f03733e692e8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-013-pretend-team-skull-pikachu/fd6934ac9e60f03733e692e8.jpg",
+      "sha256": "fd6934ac9e60f03733e692e8fd74e04bdbcd3f8d5d0ed7a3760d750af6e59bc3",
+      "size_bytes": 171498,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-014-PRETEND-GRUNT-PIKACHU",
+      "name": "Pretend Grunt Pikachu",
+      "set_code": "jpn-smp",
+      "number": "014",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30570/pretend-grunt-pikachu-sun-and-moon-promos-014-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/a4/d3/50/a4d3506f5cf0d760c746466df6046de15bf025fd078ae4d486ce765fc27d9c2a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-014-pretend-grunt-pikachu/87aaea9b985f7012500f9eb8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-014-pretend-grunt-pikachu/87aaea9b985f7012500f9eb8.jpg",
+      "sha256": "87aaea9b985f7012500f9eb8abbad9484daed4023f7d63fd9e3c0a60027b8750",
+      "size_bytes": 176778,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-037-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-smp",
+      "number": "037",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30593/poncho-wearing-pikachu-sun-and-moon-promos-037-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/4c/94/04/4c9404ceaeed55075ce58bdffcc49bacd88895757f583dcb9b4020b6bbba33f4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-037-poncho-wearing-pikachu/dd81386fb2d4a66691bf187e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-037-poncho-wearing-pikachu/dd81386fb2d4a66691bf187e.jpg",
+      "sha256": "dd81386fb2d4a66691bf187e16c907f66883e147d85a888da687cea128320f44",
+      "size_bytes": 190343,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-038-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-smp",
+      "number": "038",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30594/poncho-wearing-pikachu-sun-and-moon-promos-038-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/0f/4a/ec/0f4aec5bf429babcdf1d048a995548ffb3da29ff215ee65359f99022efc47de0.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-038-poncho-wearing-pikachu/db5509f7b415b9e479c42e31.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-038-poncho-wearing-pikachu/db5509f7b415b9e479c42e31.jpg",
+      "sha256": "db5509f7b415b9e479c42e31405875e62e539e4e50a7c990adff69e89d2b1ed6",
+      "size_bytes": 174032,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-044-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "044",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30600/pikachu-sun-and-moon-promos-044-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/32/c0/a1/32c0a1fd11467d3e9a093ad17cdb3a9bbb7db8bc8b4334d711cae5759163e09a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-044-pikachu/cb1563c8e531bdf0fc7ba007.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-044-pikachu/cb1563c8e531bdf0fc7ba007.jpg",
+      "sha256": "cb1563c8e531bdf0fc7ba0079a3073ee923fa61db6430a96308a7341116c154f",
+      "size_bytes": 176444,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-055-EASTERS-PIKACHU",
+      "name": "Easters Pikachu",
+      "set_code": "jpn-smp",
+      "number": "055",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30611/easters-pikachu-sun-and-moon-promos-055-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/4a/a8/23/4aa82366553f2875093d8ab1b51d81e79d295c948ab767a1c7986e49143069a5.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-055-easters-pikachu/fd1ef15bced77e6b8d0c90ed.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-055-easters-pikachu/fd1ef15bced77e6b8d0c90ed.jpg",
+      "sha256": "fd1ef15bced77e6b8d0c90eda18e51e4f87b01e7ea872a8d3e9d56ba248fdc64",
+      "size_bytes": 180624,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-061-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "061",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30617/pikachu-sun-and-moon-promos-061-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/08/7a/3b/087a3b0220bbcef9d92de3b30deca168a841799885e9296f9584812809ba18d8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-061-pikachu/a4e5c6edd0633f6df57d7619.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-061-pikachu/a4e5c6edd0633f6df57d7619.jpg",
+      "sha256": "a4e5c6edd0633f6df57d761926b89bfc6ae7fe528019916e19f1486a4eb07477",
+      "size_bytes": 198478,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-068-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "068",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30624/pikachu-sun-and-moon-promos-068-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/4c/71/f2/4c71f2ef2d14dacb47a8d6e92f898aab3193f9872527d1059be254eb1bddfa2a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-068-pikachu/a6edd946800ad2d6a7ad25a3.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-068-pikachu/a6edd946800ad2d6a7ad25a3.jpg",
+      "sha256": "a6edd946800ad2d6a7ad25a30783bdbf351c52306fb2582402a3aaabc9e5a93e",
+      "size_bytes": 198552,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-071-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "071",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30627/ashs-pikachu-sun-and-moon-promos-071-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/87/22/a3/8722a3f127c2b7abf1372671fa8bdba77616b3e8dfa2f2e204d5fa619dd4eea9.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-071-ashs-pikachu/504c3dfff524c3bc7a071a9b.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-071-ashs-pikachu/504c3dfff524c3bc7a071a9b.jpg",
+      "sha256": "504c3dfff524c3bc7a071a9b1c86df16b798989d72c86a97856b1a313341c09c",
+      "size_bytes": 152354,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-072-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "072",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30628/ashs-pikachu-sun-and-moon-promos-072-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/3f/35/aa/3f35aacdf6365cf896a0dc81c853c5db4df91bab3352c6e74cbeb7414489a947.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-072-ashs-pikachu/9c170dfe4100f6a94472e66f.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-072-ashs-pikachu/9c170dfe4100f6a94472e66f.jpg",
+      "sha256": "9c170dfe4100f6a94472e66f919e516eff60fd90e222e81ac7f627389b3c20c1",
+      "size_bytes": 141928,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-073-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "073",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30629/ashs-pikachu-sun-and-moon-promos-073-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/52/d3/d4/52d3d4a8da65b3a45112b4ed764c6229cf413cd75e6aca9e47c3f054ef212eee.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-073-ashs-pikachu/6a30a1414f62318792d9c8c4.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-073-ashs-pikachu/6a30a1414f62318792d9c8c4.jpg",
+      "sha256": "6a30a1414f62318792d9c8c42f2d29610a6a535b926a5ec346e87c70667fda68",
+      "size_bytes": 137889,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-074-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "074",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30630/ashs-pikachu-sun-and-moon-promos-074-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/1a/23/ac/1a23ace12f70aaf7f7e6ee3488cbc3ef346a0d51920f2476087a4de20b339673.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-074-ashs-pikachu/5656ad21bbcd14c6e40a4949.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-074-ashs-pikachu/5656ad21bbcd14c6e40a4949.jpg",
+      "sha256": "5656ad21bbcd14c6e40a4949cd5c5bdec302aaee29b9986aaa6b7445fafd847e",
+      "size_bytes": 134821,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-075-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "075",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30631/ashs-pikachu-sun-and-moon-promos-075-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/21/2d/14/212d146f73095db73a7af9ddae98441c02e7d4edf1425c77e142584c21fce413.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-075-ashs-pikachu/ad79ded6f50f1ee6d326efd1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-075-ashs-pikachu/ad79ded6f50f1ee6d326efd1.jpg",
+      "sha256": "ad79ded6f50f1ee6d326efd1ff2aff6301ee068068f77f22ab18e2cb054fe6fc",
+      "size_bytes": 140226,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-076-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "076",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30632/ashs-pikachu-sun-and-moon-promos-076-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/9c/b2/22/9cb222b9b92da31848fead4c3df4dca01ca7b58e1dde43cd81801c5cba19197f.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-076-ashs-pikachu/d029fd91be5eaf7849b0f4af.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-076-ashs-pikachu/d029fd91be5eaf7849b0f4af.jpg",
+      "sha256": "d029fd91be5eaf7849b0f4af6112a821c31fe04e552eca5e157c11a8d53fe8df",
+      "size_bytes": 143983,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-086-ASHS-PIKACHU",
+      "name": "Ash's Pikachu",
+      "set_code": "jpn-smp",
+      "number": "086",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30642/ashs-pikachu-sun-and-moon-promos-086-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/50/9e/ed/509eeddd1f07934ba9e3761a20a09e04f015b857e014a9d72ba77eaac7b42b60.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-086-ashs-pikachu/efdff8585d6c07069346d0c1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-086-ashs-pikachu/efdff8585d6c07069346d0c1.jpg",
+      "sha256": "efdff8585d6c07069346d0c13de611a88174e12585837995dd62125d67dbdf58",
+      "size_bytes": 150924,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-088-TOHOKUS-PIKACHU",
+      "name": "Tohokus Pikachu",
+      "set_code": "jpn-smp",
+      "number": "088",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30644/tohokus-pikachu-sun-and-moon-promos-088-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/fa/5f/93/fa5f933e2d7a868c0798a56bdf85e1530d6f9743b5f10535c1c1d8558af4b27b.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-088-tohokus-pikachu/f8c8a8dbc23a3c62dffeb4d7.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-088-tohokus-pikachu/f8c8a8dbc23a3c62dffeb4d7.jpg",
+      "sha256": "f8c8a8dbc23a3c62dffeb4d74b2c1834947600d2f791a6e00c592acf11e6e2d3",
+      "size_bytes": 169490,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-114-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "114",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30670/pikachu-sun-and-moon-promos-114-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/80/ea/e3/80eae31620dca352469ba13ddaa9d8ffd193c8f0007396646ab4c9114bea7f10.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-114-pikachu/142a7f7f85457eceb0c61f9b.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-114-pikachu/142a7f7f85457eceb0c61f9b.jpg",
+      "sha256": "142a7f7f85457eceb0c61f9b46ccaa10d3ce72e86eff76e168c2770f8cd55e13",
+      "size_bytes": 171482,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-168-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "168",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30724/pikachu-sun-and-moon-promos-168-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/19/55/c5/1955c57068684a351399ef22b7723525608a323a0941f4666515cd8f1713c13c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-168-pikachu/ad84d2fe6cbc36c9035670e2.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-168-pikachu/ad84d2fe6cbc36c9035670e2.jpg",
+      "sha256": "ad84d2fe6cbc36c9035670e2dc4b4a759272d54e30bbe8909992c6075457ca5b",
+      "size_bytes": 152356,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-179-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "179",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30735/pikachu-sun-and-moon-promos-179-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/ae/54/07/ae540799abd1d9651d3ea1a24b83c3e07ac5300d7dae66d09ef5237e703df41a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-179-pikachu/1af571185ff8abc02602708c.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-179-pikachu/1af571185ff8abc02602708c.jpg",
+      "sha256": "1af571185ff8abc02602708c05f2bdaadd6ee5bf53e2a038d4556b90f26dd8f5",
+      "size_bytes": 179063,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-191-PRETEND-BOSS-PIKACHU-TEAM-ROCKET",
+      "name": "Pretend Boss Pikachu Team Rocket",
+      "set_code": "jpn-smp",
+      "number": "191",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30747/pretend-boss-pikachu-team-rocket-sun-and-moon-promos-191-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/49/7c/77/497c7794ab74128e0d2ffc7a36431007da6362eceb94e4fefcf02eced09df9e7.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-191-pretend-boss-pikachu-team-rocket/066732fa75e0ca15bec3dd48.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-191-pretend-boss-pikachu-team-rocket/066732fa75e0ca15bec3dd48.jpg",
+      "sha256": "066732fa75e0ca15bec3dd482bf4a287559acc758711e001e9b51bfb864be2c8",
+      "size_bytes": 185582,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-192-PRETEND-BOSS-PIKACHU-TEAM-AQUA",
+      "name": "Pretend Boss Pikachu Team Aqua",
+      "set_code": "jpn-smp",
+      "number": "192",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30748/pretend-boss-pikachu-team-aqua-sun-and-moon-promos-192-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f3/ef/29/f3ef2905cf693e7fcdb5dd72ec60ea329901be26901f37c5bdd517c66daf4985.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-192-pretend-boss-pikachu-team-aqua/b60ed7b1677452d363241279.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-192-pretend-boss-pikachu-team-aqua/b60ed7b1677452d363241279.jpg",
+      "sha256": "b60ed7b1677452d363241279c155852eaec68922f2616480efed2b1a8278cf19",
+      "size_bytes": 189605,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-193-PRETEND-BOSS-PIKACHU-TEAM-MAGMA",
+      "name": "Pretend Boss Pikachu Team Magma",
+      "set_code": "jpn-smp",
+      "number": "193",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30749/pretend-boss-pikachu-team-magma-sun-and-moon-promos-193-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/48/f3/56/48f3563d6da14d6f2dbffef0a9b9dac4ce24d2fd28afbb7fe4d247760344a6f7.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-193-pretend-boss-pikachu-team-magma/3bff2bb287bebeb1cc0727e0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-193-pretend-boss-pikachu-team-magma/3bff2bb287bebeb1cc0727e0.jpg",
+      "sha256": "3bff2bb287bebeb1cc0727e0ba82cfad0a4abff99bac1e86759cc53617d8d458",
+      "size_bytes": 187077,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-194-PRETEND-BOSS-PIKACHU-TEAM-GALACTIC",
+      "name": "Pretend Boss Pikachu Team Galactic",
+      "set_code": "jpn-smp",
+      "number": "194",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30750/pretend-boss-pikachu-team-galactic-sun-and-moon-promos-194-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/92/22/57/9222572488c0a8839cdbe1af4354fb360228f6774558f22040e53bf82be19ab8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-194-pretend-boss-pikachu-team-galactic/fb0b8895a1f62b61fbe0d96e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-194-pretend-boss-pikachu-team-galactic/fb0b8895a1f62b61fbe0d96e.jpg",
+      "sha256": "fb0b8895a1f62b61fbe0d96ec443569b022e6acc333af07439912d178c8e7af4",
+      "size_bytes": 188740,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-195-PRETEND-BOSS-PIKACHU-TEAM-PLASMA",
+      "name": "Pretend Boss Pikachu Team Plasma",
+      "set_code": "jpn-smp",
+      "number": "195",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30751/pretend-boss-pikachu-team-plasma-sun-and-moon-promos-195-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/7c/e7/76/7ce77673b01592fb7e2bb7259881e0fac7a4e715a03a0861c075c82eb3371a4e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-195-pretend-boss-pikachu-team-plasma/91c0e94e1b9c959ef5b57eff.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-195-pretend-boss-pikachu-team-plasma/91c0e94e1b9c959ef5b57eff.jpg",
+      "sha256": "91c0e94e1b9c959ef5b57eff5f3db4f33b370ffaa1ad1976dc8ae9a43e5fa450",
+      "size_bytes": 192659,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-196-PRETEND-BOSS-PIKACHU-TEAM-FLARE",
+      "name": "Pretend Boss Pikachu Team Flare",
+      "set_code": "jpn-smp",
+      "number": "196",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30752/pretend-boss-pikachu-team-flare-sun-and-moon-promos-196-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/df/1b/0b/df1b0b0187476ebf127d713a655322763c04ce4d81119c4290b01fae7eb65e4e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-196-pretend-boss-pikachu-team-flare/cfa0e2b99231cc2646adc13a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-196-pretend-boss-pikachu-team-flare/cfa0e2b99231cc2646adc13a.jpg",
+      "sha256": "cfa0e2b99231cc2646adc13ad738509bd6867865a41f1515530b2d4545ba363b",
+      "size_bytes": 187578,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-197-PRETEND-BOSS-PIKACHU-TEAM-SKULL",
+      "name": "Pretend Boss Pikachu Team Skull",
+      "set_code": "jpn-smp",
+      "number": "197",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30753/pretend-boss-pikachu-team-skull-sun-and-moon-promos-197-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/31/17/a0/3117a0dc16dce5637e47ae4db2b8429abce9d71d2ce1c1f5b95a419fabbe979a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-197-pretend-boss-pikachu-team-skull/7e45b35b14ea0c41d70296d9.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-197-pretend-boss-pikachu-team-skull/7e45b35b14ea0c41d70296d9.jpg",
+      "sha256": "7e45b35b14ea0c41d70296d96751d11c1d2498f39ca6492ce8959fd6a5ddb68f",
+      "size_bytes": 193732,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-199-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "199",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30755/pikachu-sun-and-moon-promos-199-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/99/c5/cf/99c5cf45262f3bba40ae098bfc1091c3c907ea86e04b08e2da10e71479bea2f6.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-199-pikachu/e6a27bbdfa9108160bfba907.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-199-pikachu/e6a27bbdfa9108160bfba907.jpg",
+      "sha256": "e6a27bbdfa9108160bfba907b6fdfa86a851c9d9d54f16382914c5f2c1ef354f",
+      "size_bytes": 148258,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-200-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "200",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30756/pikachu-sun-and-moon-promos-200-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c9/c7/d1/c9c7d158c8fd3bf050a826da28efeb2610da552a8bb14c998713f3e2e96e82b0.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-200-pikachu/31660ef6548dce3db3357eeb.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-200-pikachu/31660ef6548dce3db3357eeb.jpg",
+      "sha256": "31660ef6548dce3db3357eeb978bc6980a01365a1558a61fa0af6e234b458a75",
+      "size_bytes": 165687,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-207-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "207",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30763/pikachu-sun-and-moon-promos-207-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/13/28/a0/1328a0ed78d45337d6900096bc0a2f3def5850650ed498c5280c9ebd437444a9.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-207-pikachu/ed7777581e395b153899fa5e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-207-pikachu/ed7777581e395b153899fa5e.jpg",
+      "sha256": "ed7777581e395b153899fa5e24a8cb9cfe3da1a51fad82531be0ec515b738e91",
+      "size_bytes": 153267,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-208-HAKAMA-PIKACHU",
+      "name": "Hakama Pikachu",
+      "set_code": "jpn-smp",
+      "number": "208",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30764/hakama-pikachu-sun-and-moon-promos-208-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f1/1a/ec/f11aec0a842e3f9ba53011d30b87434d2cb105a4e9e6363454b5ddae3e1abd6a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-208-hakama-pikachu/c5b452953ca1ddbe57563950.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-208-hakama-pikachu/c5b452953ca1ddbe57563950.jpg",
+      "sha256": "c5b452953ca1ddbe57563950317154406c38cbb61ae906786afafc59973e27ad",
+      "size_bytes": 164428,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-209-FIREFIGHTER-PIKACHU",
+      "name": "Firefighter Pikachu",
+      "set_code": "jpn-smp",
+      "number": "209",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30765/firefighter-pikachu-sun-and-moon-promos-209-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/43/97/4b/43974b0fbb011df9dbb9b0885a454a52617c5ce3521214dcf77b416bc07bcf1b.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-209-firefighter-pikachu/9206e6c148e1cdf555fac926.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-209-firefighter-pikachu/9206e6c148e1cdf555fac926.jpg",
+      "sha256": "9206e6c148e1cdf555fac92672eec7d6d67eccbf0f21653f61c12c01c56b527f",
+      "size_bytes": 178751,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-210-GENTLEMANLY-PIKACHU",
+      "name": "Gentlemanly Pikachu",
+      "set_code": "jpn-smp",
+      "number": "210",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30766/gentlemanly-pikachu-sun-and-moon-promos-210-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/a3/9e/3d/a39e3d97ddc40f186dac72de71806d8df23e6894953418b9fd3d8cf50f30ffb6.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-210-gentlemanly-pikachu/ca1f06129b975223ff19ea2a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-210-gentlemanly-pikachu/ca1f06129b975223ff19ea2a.jpg",
+      "sha256": "ca1f06129b975223ff19ea2a6def771a5b1168ba6592788a04eb75b4cbc9152c",
+      "size_bytes": 217287,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-211-CHERRY-BLOSSOM-AFRO-PIKACHU",
+      "name": "Cherry Blossom Afro Pikachu",
+      "set_code": "jpn-smp",
+      "number": "211",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30767/cherry-blossom-afro-pikachu-sun-and-moon-promos-211-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/8e/b4/02/8eb402a547e85926e67c7fb9b795659f0f6b92c058ae8e219f2ce374c194c194.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-211-cherry-blossom-afro-pikachu/223dc352b84cc236afd015dd.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-211-cherry-blossom-afro-pikachu/223dc352b84cc236afd015dd.jpg",
+      "sha256": "223dc352b84cc236afd015ddf0b1cac3675cbe32084a6fce6e4d680979a17e59",
+      "size_bytes": 174634,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-214-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "214",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30770/pikachu-sun-and-moon-promos-214-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f9/60/7c/f9607c346c1dc237a7abf987d737616ef7842fd031176856cd1b3d3cd925f06a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-214-pikachu/92681f40e49dde721a3f3bfc.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-214-pikachu/92681f40e49dde721a3f3bfc.jpg",
+      "sha256": "92681f40e49dde721a3f3bfc22a1de512111129d18fd463de37368693ebf8ae3",
+      "size_bytes": 148400,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-242-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "242",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30798/pikachu-sun-and-moon-promos-242-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/a9/37/2c/a9372c7b867f5af0202f37680c486ec0573d6fc63534a5b3ae98bf3b2613bbbb.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-242-pikachu/68390841333207f06b7cbd5a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-242-pikachu/68390841333207f06b7cbd5a.jpg",
+      "sha256": "68390841333207f06b7cbd5add79a4e9089279e758c5e70bbe857429eede7f38",
+      "size_bytes": 150272,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-249-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "249",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30805/pikachu-sun-and-moon-promos-249-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/a8/9c/2e/a89c2e14e9c4431986a8af74a340c9b2b3a3c8d873bee9c4cd9e94f55dc8bb09.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-249-pikachu/22ad47aa16bc3ff77192989e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-249-pikachu/22ad47aa16bc3ff77192989e.jpg",
+      "sha256": "22ad47aa16bc3ff77192989e23b55f5108419a34c0e3f6a80279b3184ecb222b",
+      "size_bytes": 169688,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-262-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "262",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30818/pikachu-sun-and-moon-promos-262-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/57/62/2b/57622bf70f7afa3c6d79ad693ffc0618177ea2bedf87f8f5256bbb9744b46575.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-262-pikachu/b766cfa8b43f76dc3d5b0f70.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-262-pikachu/b766cfa8b43f76dc3d5b0f70.jpg",
+      "sha256": "b766cfa8b43f76dc3d5b0f70c7f06a9990ede285ba5db4156f0e733518cf1abf",
+      "size_bytes": 132026,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-270-REDS-PIKACHU",
+      "name": "Reds Pikachu",
+      "set_code": "jpn-smp",
+      "number": "270",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30826/reds-pikachu-sun-and-moon-promos-270-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/96/ff/2e/96ff2e992e63b6184380ee02560eac34b1e12b95945e2820a94336f73611e5eb.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-270-reds-pikachu/3c789d40211a4f05e062a155.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-270-reds-pikachu/3c789d40211a4f05e062a155.jpg",
+      "sha256": "3c789d40211a4f05e062a15505f3fbdbed13416f32fb7b8c0eee8bfa5d868c2b",
+      "size_bytes": 157056,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-276-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "276",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30832/pikachu-sun-and-moon-promos-276-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/be/a0/e0/bea0e059afebff0851dba76545954628ebfcc4b19c5dc9ad6f4567fc2f65ec82.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-276-pikachu/21a9c2e3ce3c8e6be740d78f.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-276-pikachu/21a9c2e3ce3c8e6be740d78f.jpg",
+      "sha256": "21a9c2e3ce3c8e6be740d78f4116278448916fe061328f241ee9b750369b3b20",
+      "size_bytes": 163844,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-280-YOKOHAMAS-PIKACHU",
+      "name": "Yokohamas Pikachu",
+      "set_code": "jpn-smp",
+      "number": "280",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30836/yokohamas-pikachu-sun-and-moon-promos-280-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/95/64/d8/9564d803187f19344de27b0a752411ed7de4c60a69322f81137a17680a35e394.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-280-yokohamas-pikachu/f471d9acd4367ec1c8858db1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-280-yokohamas-pikachu/f471d9acd4367ec1c8858db1.jpg",
+      "sha256": "f471d9acd4367ec1c8858db1be5995bbea1c09abf6208df4b3be32048cebad3b",
+      "size_bytes": 174435,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-281-YOKOHAMAS-PIKACHU",
+      "name": "Yokohamas Pikachu",
+      "set_code": "jpn-smp",
+      "number": "281",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30837/yokohamas-pikachu-sun-and-moon-promos-281-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/9c/d3/cd/9cd3cd363265612d0e2c2e9bc8ff80d6ab1fd12570c035740069a2f194948a7d.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-281-yokohamas-pikachu/7e48ea429ac7dc39769f02ed.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-281-yokohamas-pikachu/7e48ea429ac7dc39769f02ed.jpg",
+      "sha256": "7e48ea429ac7dc39769f02ed67beb36f2d07ffee319020052646bea721c874fb",
+      "size_bytes": 167846,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-282-YOKOHAMAS-PIKACHU",
+      "name": "Yokohamas Pikachu",
+      "set_code": "jpn-smp",
+      "number": "282",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30838/yokohamas-pikachu-sun-and-moon-promos-282-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/fc/a5/97/fca59757d3dd67adaae5cc881ebac5c61a996d0abce53ec58bd23d84466c67c4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-282-yokohamas-pikachu/ddde9d7dea70abdf84ff08fc.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-282-yokohamas-pikachu/ddde9d7dea70abdf84ff08fc.jpg",
+      "sha256": "ddde9d7dea70abdf84ff08fce034a5db0cf41d3285cc98f6bf423844f9483b66",
+      "size_bytes": 188320,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-283-YOKOHAMAS-PIKACHU",
+      "name": "Yokohamas Pikachu",
+      "set_code": "jpn-smp",
+      "number": "283",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30839/yokohamas-pikachu-sun-and-moon-promos-283-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c1/90/d2/c190d2bf513bdd9ee1494a76c9ff28d95e775daa2e70fc7a502d1e19415813b1.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-283-yokohamas-pikachu/ddb31fc153892ba152cf74b8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-283-yokohamas-pikachu/ddb31fc153892ba152cf74b8.jpg",
+      "sha256": "ddb31fc153892ba152cf74b808b135ff3dfc3f473d348e3945dc8aea40e8e555",
+      "size_bytes": 176370,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-288-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "288",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30844/pikachu-sun-and-moon-promos-288-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/b0/d4/bf/b0d4bf5c9146878599385923313dbf902fa6da741f33e7a62dede5c7e4ee516a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-288-pikachu/8a82cc32fb995bdfd7e57695.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-288-pikachu/8a82cc32fb995bdfd7e57695.jpg",
+      "sha256": "8a82cc32fb995bdfd7e57695efa92f1cd86cbb441201546b3eeed66b6d75cca4",
+      "size_bytes": 177035,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-291-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "291",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30847/pikachu-sun-and-moon-promos-291-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/62/fe/2d/62fe2db6c4f113fd8f5a5b04731bdb4078fd5ff8f340e717060635d4e594cb53.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-291-pikachu/a3a29a3c27cce48439cd32d5.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-291-pikachu/a3a29a3c27cce48439cd32d5.jpg",
+      "sha256": "a3a29a3c27cce48439cd32d556ff675b39b9c95d16b94490f827b8daa6fd3501",
+      "size_bytes": 167048,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-307-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "307",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30863/pikachu-sun-and-moon-promos-307-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/ee/f9/d1/eef9d19f4484d981afaa6f96ac8b9dfe0f4129fe2a4865354e0ba4ef4b2fb4f0.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-307-pikachu/45e01120cfad88fdad13bac6.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-307-pikachu/45e01120cfad88fdad13bac6.jpg",
+      "sha256": "45e01120cfad88fdad13bac607e4fefa06bd868c936a7278d4d74e65244305c9",
+      "size_bytes": 160118,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-325-PRETEND-TEA-CEREMONY-PIKACHU",
+      "name": "Pretend Tea Ceremony Pikachu",
+      "set_code": "jpn-smp",
+      "number": "325",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30881/pretend-tea-ceremony-pikachu-sun-and-moon-promos-325-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c4/7d/f6/c47df6c083d3875048ff616125c49a497b35d5c740085cb6d58abc8fbd4489e3.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-325-pretend-tea-ceremony-pikachu/0aebbfd5afc7809a18240bc7.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-325-pretend-tea-ceremony-pikachu/0aebbfd5afc7809a18240bc7.jpg",
+      "sha256": "0aebbfd5afc7809a18240bc7e6d4146ddc86db44c2918ccbcf83f12cd40be85d",
+      "size_bytes": 150853,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-337-DETECTIVE-PIKACHU",
+      "name": "Detective Pikachu",
+      "set_code": "jpn-smp",
+      "number": "337",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30893/detective-pikachu-sun-and-moon-promos-337-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/78/86/9d/78869d5302e4271283ea9e558bdb537b8ad7174321c0ef82f9d2ad5c3d120b8a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-337-detective-pikachu/62823b80145cc96842571cd0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-337-detective-pikachu/62823b80145cc96842571cd0.jpg",
+      "sha256": "62823b80145cc96842571cd06160f21d55db4d92d69018ea389d50c5c0281f19",
+      "size_bytes": 139820,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-338-DETECTIVE-PIKACHU",
+      "name": "Detective Pikachu",
+      "set_code": "jpn-smp",
+      "number": "338",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30894/detective-pikachu-sun-and-moon-promos-338-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/b1/08/ca/b108ca794f502ea10a6ac62060bdb86a35245c1887edab6b43d1ba5b54a25568.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-338-detective-pikachu/a2fd5b0a753b2fa8f12d5961.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-338-detective-pikachu/a2fd5b0a753b2fa8f12d5961.jpg",
+      "sha256": "a2fd5b0a753b2fa8f12d59612f85eb75766b9b7a77e9fe3721bac1489d363281",
+      "size_bytes": 121560,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-339-DETECTIVE-PIKACHU",
+      "name": "Detective Pikachu",
+      "set_code": "jpn-smp",
+      "number": "339",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30895/detective-pikachu-sun-and-moon-promos-339-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/39/47/0d/39470d6913eb6e71fe115522351053994d04cdf0abd3a8e29ee7545d83a6d582.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-339-detective-pikachu/e2816aaf2251c616055989fb.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-339-detective-pikachu/e2816aaf2251c616055989fb.jpg",
+      "sha256": "e2816aaf2251c616055989fbec372ba4c5ac48ac1207f05027e7fcabf5422bc6",
+      "size_bytes": 117222,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-367-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "367",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30923/pikachu-sun-and-moon-promos-367-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/78/67/df/7867df31de0deded3412d8993a454ff3be29f2f2ce6fb8bfcc063d6b8e356224.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-367-pikachu/1326c9c1342fe9e3679a4233.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-367-pikachu/1326c9c1342fe9e3679a4233.jpg",
+      "sha256": "1326c9c1342fe9e3679a42339d7ad2b113c1eea7914aaeebc8d8957068d226cb",
+      "size_bytes": 130694,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-369-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "369",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30925/pikachu-sun-and-moon-promos-369-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/de/ad/7b/dead7b17b6e204d35ff7b6b1d83d547412dc94419dcd3bee5867d260540c3987.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-369-pikachu/b05ba903e1180eb1283ca1b7.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-369-pikachu/b05ba903e1180eb1283ca1b7.jpg",
+      "sha256": "b05ba903e1180eb1283ca1b7286162d880fcc0e9dfa22096319d6ff210b85ec2",
+      "size_bytes": 170367,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-376-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "376",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30932/pikachu-sun-and-moon-promos-376-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/24/96/ba/2496ba3c1e7107e595e6dedba52cc8efcd44ab97a8fc40b5ab874d5a449c7346.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-376-pikachu/321a7f3a8d6983229689cacf.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-376-pikachu/321a7f3a8d6983229689cacf.jpg",
+      "sha256": "321a7f3a8d6983229689cacf66133952a28203f38a1d163afc96349ff2442f86",
+      "size_bytes": 125999,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-377-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-smp",
+      "number": "377",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30933/pikachu-sun-and-moon-promos-377-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c6/3b/a2/c63ba2c2d60b89deb6fab90c16dcfc87dcb710c18bc9e4238d2011918f71d385.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-377-pikachu/c99d91baaf85350f236d73d5.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-377-pikachu/c99d91baaf85350f236d73d5.jpg",
+      "sha256": "c99d91baaf85350f236d73d58b13c098c9d9a673323a5d2bcaca278d07db4f34",
+      "size_bytes": 115049,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-392-PLAYING-IN-THE-SEA-PIKACHU",
+      "name": "Playing In The Sea Pikachu",
+      "set_code": "jpn-smp",
+      "number": "392",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30948/playing-in-the-sea-pikachu-sun-and-moon-promos-392-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/46/95/f2/4695f215ab02d3c85da3c2b05a0d3b62c7ce56ce64744b61c97022dcdb2fbbe6.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-392-playing-in-the-sea-pikachu/1940769c03ee585710755426.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-392-playing-in-the-sea-pikachu/1940769c03ee585710755426.jpg",
+      "sha256": "1940769c03ee58571075542616a5f2ae3ff72c25f0a14571afe37c770beec0af",
+      "size_bytes": 147530,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-393-PIKACHU-GX",
+      "name": "Pikachu GX",
+      "set_code": "jpn-smp",
+      "number": "393",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30949/pikachu-gx-sun-and-moon-promos-393-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/42/ac/15/42ac1593b3a62a405d6e5c826665f2f11cab047b9edf775c68f04a8c1faec0f3.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-393-pikachu-gx/3c40e9be78cc2084c9842a78.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-393-pikachu-gx/3c40e9be78cc2084c9842a78.jpg",
+      "sha256": "3c40e9be78cc2084c9842a780974d5227ecbb4fb68a224aba4fe808cc2005744",
+      "size_bytes": 176863,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-407-PRETEND-COMEDIAN-PIKACHU",
+      "name": "Pretend Comedian Pikachu",
+      "set_code": "jpn-smp",
+      "number": "407",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/30963/pretend-comedian-pikachu-sun-and-moon-promos-407-sm-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e8/9d/28/e89d287a1ce8daedbbb525f18b00656ccfb7969b7e6214ff41afa048d9bbc1b4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-407-pretend-comedian-pikachu/1c45a3142c7672efc24443d3.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-407-pretend-comedian-pikachu/1c45a3142c7672efc24443d3.jpg",
+      "sha256": "1c45a3142c7672efc24443d39e577fdc1a188f75d6ce763ef754b7dd21829e1a",
+      "size_bytes": 188562,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-002-SHIBUYAS-PIKACHU",
+      "name": "Shibuyas Pikachu",
+      "set_code": "jpn-sp",
+      "number": "002",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31109/shibuyas-pikachu-sword-and-shield-promos-002-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/49/8d/ef/498def6cf3d2d1d1d6aaa887d48cf7d12d8fc48d264ba57566d6ee93b2061d29.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-002-shibuyas-pikachu/0527bed834dbed356376fcf8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-002-shibuyas-pikachu/0527bed834dbed356376fcf8.jpg",
+      "sha256": "0527bed834dbed356376fcf8bc9480e582cf88dc919a255652b77c26ea8b372f",
+      "size_bytes": 233940,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-024-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "024",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31131/pikachu-sword-and-shield-promos-024-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/63/8b/39/638b3997719ca4e9cd412ced7b22deda1061e633e2558a9af4dba60f7fceca5e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-024-pikachu/94297cebfebcf5e358e90bbe.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-024-pikachu/94297cebfebcf5e358e90bbe.jpg",
+      "sha256": "94297cebfebcf5e358e90bbe77617f7fdc7022a7a51195b4bb7e12acf303188f",
+      "size_bytes": 164832,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-036-RESCUE-TEAM-DXS-PIKACHU",
+      "name": "Rescue Team DX Pikachu",
+      "set_code": "jpn-sp",
+      "number": "036",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31143/rescue-team-dxs-pikachu-sword-and-shield-promos-036-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/75/ed/1a/75ed1ac555f64fb5cef5c3729b749c4c39ccdd1c76e9010e4c1207a156f28f58.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-036-rescue-team-dxs-pikachu/d873a5b825e0c43fec53afc1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-036-rescue-team-dxs-pikachu/d873a5b825e0c43fec53afc1.jpg",
+      "sha256": "d873a5b825e0c43fec53afc16e690aa36b8f731fabbd2a694220d408089662b1",
+      "size_bytes": 198979,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-099-DETECTIVE-PIKACHU",
+      "name": "Detective Pikachu",
+      "set_code": "jpn-sp",
+      "number": "099",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31206/detective-pikachu-sword-and-shield-promos-099-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/18/56/3d/18563dc2274e19a46d67090e805a602954cf580e19e1c1d9f2b0fd827bc119dc.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-099-detective-pikachu/c094f7f63acb403106577367.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-099-detective-pikachu/c094f7f63acb403106577367.jpg",
+      "sha256": "c094f7f63acb403106577367d52b9a881c979efb6ff917075aa4817b437f773b",
+      "size_bytes": 155910,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-105-SWALLOWED-UP-PIKACHU",
+      "name": "Swallowed Up Pikachu",
+      "set_code": "jpn-sp",
+      "number": "105",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31212/swallowed-up-pikachu-sword-and-shield-promos-105-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e8/96/fe/e896fe99a1c12a56ef32ad8f87d79a3581fb5178375181f54c984b839a9f4426.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-105-swallowed-up-pikachu/44bcf0ce3cfc1fb6f0681f8c.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-105-swallowed-up-pikachu/44bcf0ce3cfc1fb6f0681f8c.jpg",
+      "sha256": "44bcf0ce3cfc1fb6f0681f8cd999de757c59312c50c1fa44ee74d3813af7a71d",
+      "size_bytes": 270111,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-121-PIKACHU-V",
+      "name": "Pikachu V",
+      "set_code": "jpn-sp",
+      "number": "121",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31228/pikachu-v-sword-and-shield-promos-121-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/57/90/df/5790dfd336558f95b8aad9e6be24e1c54ec902a4eb2f56c70c38a47bfa4a4a88.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-121-pikachu-v/81d23eb458d5bb3af4b646f2.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-121-pikachu-v/81d23eb458d5bb3af4b646f2.jpg",
+      "sha256": "81d23eb458d5bb3af4b646f2d240dc1f03850e684e0b6abb818db19b18ca823b",
+      "size_bytes": 176111,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-122-PIKACHU-V",
+      "name": "Pikachu V",
+      "set_code": "jpn-sp",
+      "number": "122",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31229/pikachu-v-sword-and-shield-promos-122-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f8/55/71/f85571645f3581c5242f4df3e1de0643a6f6299cb3990eb221a8ab21e9c418d6.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-122-pikachu-v/3fd49c2ad62dfe428c0102d8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-122-pikachu-v/3fd49c2ad62dfe428c0102d8.jpg",
+      "sha256": "3fd49c2ad62dfe428c0102d846fe3bd51a20d0fb0ba3a408c03c5e88579eabd8",
+      "size_bytes": 200074,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-123-PIKACHU-VMAX",
+      "name": "Pikachu VMAX",
+      "set_code": "jpn-sp",
+      "number": "123",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31230/pikachu-vmax-sword-and-shield-promos-123-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/73/ec/7e/73ec7e157eb87a9587bd8acecec9be7bee141e7657284bbead87cd59616d798c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-123-pikachu-vmax/f7796848a0780a3aa314bf39.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-123-pikachu-vmax/f7796848a0780a3aa314bf39.jpg",
+      "sha256": "f7796848a0780a3aa314bf39c6bf0d09f741187ef5121726109511d31b12d16e",
+      "size_bytes": 250732,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-124-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "124",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31231/pikachu-sword-and-shield-promos-124-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/bd/d1/c7/bdd1c7609e4f7b3b09b008754fe23109d90393d555db71973990537073abc30b.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-124-pikachu/9e435d50f322b246c0578138.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-124-pikachu/9e435d50f322b246c0578138.jpg",
+      "sha256": "9e435d50f322b246c057813862dfcb3b37afbbb906e23647a145d7c270bdcac1",
+      "size_bytes": 192146,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-125-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "125",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31232/pikachu-sword-and-shield-promos-125-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/24/70/4c/24704cc688a220890c2ac9daf53a30af410ab04a63e75f297942433ce194844e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-125-pikachu/7d40d98a89eba92ee17635c8.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-125-pikachu/7d40d98a89eba92ee17635c8.jpg",
+      "sha256": "7d40d98a89eba92ee17635c823426ba1ed4192740383e83d2227b87486c416e2",
+      "size_bytes": 149993,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-126-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "126",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31233/pikachu-sword-and-shield-promos-126-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/86/ec/f9/86ecf9f38869143c7208da7303555d9d4a2d6ce1c101844318c3fdd764a65062.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-126-pikachu/3ad32dac41ed1bee9893d4e7.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-126-pikachu/3ad32dac41ed1bee9893d4e7.jpg",
+      "sha256": "3ad32dac41ed1bee9893d4e7fbfbd5175078b93b0ef6580aa5ae54c49e748ba7",
+      "size_bytes": 175725,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-132-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "132",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31239/pikachu-sword-and-shield-promos-132-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e3/b4/9c/e3b49c62d44eafc7c30e1c3631d4a4bf8e60004353048cd91133a3a7d3a0f118.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-132-pikachu/cfa5b16483406e86a820ad0e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-132-pikachu/cfa5b16483406e86a820ad0e.jpg",
+      "sha256": "cfa5b16483406e86a820ad0e5c3d4b025c415715fbf9cc883fead2a0d7b6024a",
+      "size_bytes": 163372,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-147-KANAZAWAS-PIKACHU",
+      "name": "Kanazawas Pikachu",
+      "set_code": "jpn-sp",
+      "number": "147",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31253/kanazawas-pikachu-sword-and-shield-promos-147-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/3f/d4/ba/3fd4ba6dd81d349bea1e5cbb43c85c1930dbe6d9f40997e0ee2fb59ae0c8d9e4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-147-kanazawas-pikachu/730b8e2ac316ec89a4b17d84.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-147-kanazawas-pikachu/730b8e2ac316ec89a4b17d84.jpg",
+      "sha256": "730b8e2ac316ec89a4b17d841a19bc0312e60de76138df5892e89540739e83cd",
+      "size_bytes": 222904,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-208-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "208",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/35382/pikachu-sword-and-shield-promos-208-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/78/32/9a/78329a2b02303b17ebdfdf6e4ce3dcf09db0398cad94b303a4d23ae51d1e1270.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-208-pikachu/4dabfecf24833320c3bc41ad.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-208-pikachu/4dabfecf24833320c3bc41ad.jpg",
+      "sha256": "4dabfecf24833320c3bc41adb9b9ba6c0a578cfee13e92e399edcb4114dc5d77",
+      "size_bytes": 134009,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-227-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "227",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/34852/pikachu-sword-and-shield-promos-227-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/00/61/3e/00613e2be6acb42dbf41939a875f40565810594a0aeaa5b489e1f05da34242d3.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-227-pikachu/4d76cb05c3b663a75ece9a2a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-227-pikachu/4d76cb05c3b663a75ece9a2a.jpg",
+      "sha256": "4d76cb05c3b663a75ece9a2ab2695271cd1097ca834213c3bd4005fa05bf914a",
+      "size_bytes": 187628,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-265-PIKACHU-VMAX",
+      "name": "Pikachu VMAX",
+      "set_code": "jpn-sp",
+      "number": "265",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/37052/pikachu-vmax-sword-and-shield-promos-265-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e8/0b/96/e80b962b692c4ff2683b403aa88a44e3ebc5d2c243d5a0317e066c2ec2dee353.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-265-pikachu-vmax/9dcfac3b73d257a88f381c24.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-265-pikachu-vmax/9dcfac3b73d257a88f381c24.jpg",
+      "sha256": "9dcfac3b73d257a88f381c24881f98305337d2379fbdea1c928c4e69cc57823d",
+      "size_bytes": 347760,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-272-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "272",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/38315/pikachu-sword-and-shield-promos-272-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/0d/9a/c9/0d9ac9d2c576069daa00a66d2309c472b23ef20c4ea096feb75d4d48ff21abe2.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-272-pikachu/2204a332c5a424bb3d9cbdc6.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-272-pikachu/2204a332c5a424bb3d9cbdc6.jpg",
+      "sha256": "2204a332c5a424bb3d9cbdc6855915669f8a0b5bed460d5985fc81eb7b8cfef7",
+      "size_bytes": 219337,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-323-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-sp",
+      "number": "323",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/39842/pikachu-sword-and-shield-promos-323-s-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/3b/66/80/3b6680346d20624947e51bd359f5529a4d8ca82ce56384921eeabad4dc4d6f04.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-323-pikachu/776abf9883e4a1e2885784de.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-323-pikachu/776abf9883e4a1e2885784de.jpg",
+      "sha256": "776abf9883e4a1e2885784dea2e2cee8b6deb804217668a2ef49d534336c2e3f",
+      "size_bytes": 240418,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-074-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "074",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/42717/pikachu-scarlet-and-violet-promos-074-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/06/95/54/069554e9a517e03a045ea76809f9fb7e35b04acd8a234cb1f8ef01a8da97600d.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-074-pikachu/9f8546c3895d1287cefd0bb0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-074-pikachu/9f8546c3895d1287cefd0bb0.jpg",
+      "sha256": "9f8546c3895d1287cefd0bb07f6f2ab397083e8bf13d460b11cf08e5825ebb4c",
+      "size_bytes": 184861,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-098-DETECTIVE-PIKACHU",
+      "name": "Detective Pikachu",
+      "set_code": "jpn-svp",
+      "number": "098",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/42738/detective-pikachu-scarlet-and-violet-promos-098-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/1c/00/72/1c007279021f54ba0c9589257bfe0fbb9cf288bbede196e0df035b4d7c36c5e9.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-098-detective-pikachu/37ee4fee74ebc5c85b2ad457.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-098-detective-pikachu/37ee4fee74ebc5c85b2ad457.jpg",
+      "sha256": "37ee4fee74ebc5c85b2ad457b51df773826eb065088ea589659b7e6bfaf4fde1",
+      "size_bytes": 245949,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-120-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "120",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/42751/pikachu-scarlet-and-violet-promos-120-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/70/8d/81/708d811404753c556b7b9f45c47cb783bc5edcee06e7a8c7c06bf23b1c90da6e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-120-pikachu/35bf10ede0fba5cce500f3dd.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-120-pikachu/35bf10ede0fba5cce500f3dd.jpg",
+      "sha256": "35bf10ede0fba5cce500f3dd646a7a6f2392feeb0914ecc295b75b6e173bbc70",
+      "size_bytes": 202574,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-197-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "197",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/45905/pikachu-scarlet-and-violet-promos-197-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f7/c1/9e/f7c19e9ab342037aaf015f528a7534649e81dd14780444677647d65384d4edc3.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-197-pikachu/c35c1bbba6ac582370f5a25d.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-197-pikachu/c35c1bbba6ac582370f5a25d.jpg",
+      "sha256": "c35c1bbba6ac582370f5a25dae80829f40eb742d803bd09692f0de85639f9d97",
+      "size_bytes": 160505,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-216-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "216",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/45909/pikachu-scarlet-and-violet-promos-216-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/39/ba/63/39ba6398c4182af578d7455adb3a7ef058b5c73c3bc4e8a54d311c095a1bab8e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-216-pikachu/742cb9e4ed19d00eb2a327d9.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-216-pikachu/742cb9e4ed19d00eb2a327d9.jpg",
+      "sha256": "742cb9e4ed19d00eb2a327d993d34879754e12957e830473587797f651a7561b",
+      "size_bytes": 132186,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-218-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "218",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/45911/pikachu-scarlet-and-violet-promos-218-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/7a/13/19/7a1319779fdb00151d24e0b982af69dc60d901f1a4aedf2ae2a76949c0557af8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-218-pikachu/a64f710480cacf10e9cdd2e0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-218-pikachu/a64f710480cacf10e9cdd2e0.jpg",
+      "sha256": "a64f710480cacf10e9cdd2e0c59041a429cd20177de90fb1a264d4f14d32e19d",
+      "size_bytes": 235053,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-242-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "242",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/47900/pikachu-scarlet-and-violet-promos-242-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/64/75/fc/6475fc54bc62e90b8de019dffe61fe99d31c044b2b44e3c561c9d16f78cb5eac.webp",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-242-pikachu/b0f7a781e70da77d136469d5.webp",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-242-pikachu/b0f7a781e70da77d136469d5.webp",
+      "sha256": "b0f7a781e70da77d136469d5c11e3b3b1dad4aeea9feee7bc27359ced4e5583c",
+      "size_bytes": 139790,
+      "content_type": "image/webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-260-TOHOKUS-PIKACHU",
+      "name": "Tohokus Pikachu",
+      "set_code": "jpn-svp",
+      "number": "260",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/50854/tohokus-pikachu-scarlet-and-violet-promos-260-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/0d/4b/f6/0d4bf6e6c13523359dd2133d42215a936aacbfe7e4d3e809c44422deef074105.webp",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-260-tohokus-pikachu/9470c6ec01202a21d0a2f7f6.webp",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-260-tohokus-pikachu/9470c6ec01202a21d0a2f7f6.webp",
+      "sha256": "9470c6ec01202a21d0a2f7f62c6262ba2b8f539797a5c663d4f74162bd477a43",
+      "size_bytes": 134962,
+      "content_type": "image/webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-261-HIROSHIMAS-PIKACHU",
+      "name": "Hiroshimas Pikachu",
+      "set_code": "jpn-svp",
+      "number": "261",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/50855/hiroshimas-pikachu-scarlet-and-violet-promos-261-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/13/5b/d7/135bd75cd1523ce22fbd035e79f027afdb50bda7d009dab8ca5d87bb3c90b92f.webp",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-261-hiroshimas-pikachu/fb7ae8f142395deb04058f4d.webp",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-261-hiroshimas-pikachu/fb7ae8f142395deb04058f4d.webp",
+      "sha256": "fb7ae8f142395deb04058f4d692b127332ef8635329db59f243a715390a1cf17",
+      "size_bytes": 131910,
+      "content_type": "image/webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-289-FUKUOKAS-PIKACHU",
+      "name": "Fukuokas Pikachu",
+      "set_code": "jpn-svp",
+      "number": "289",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/50856/fukuokas-pikachu-scarlet-and-violet-promos-289-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/2f/b1/06/2fb1068382722231a9837a655bdf3e37813d18a74a4af887da9058bacb19a531.webp",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-289-fukuokas-pikachu/14dae637996cb21d5a854460.webp",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-289-fukuokas-pikachu/14dae637996cb21d5a854460.webp",
+      "sha256": "14dae637996cb21d5a854460c13ed2b8db8a4ffbe2fedc27abce759936aaa288",
+      "size_bytes": 161936,
+      "content_type": "image/webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-291-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-svp",
+      "number": "291",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/54347/pikachu-scarlet-and-violet-promos-291-sv-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/cd/80/30/cd80305c6be4cb3705b9640fb2dee167983e3f6fe54b3ce42d7cf3f1ee7bc1a1.webp",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-291-pikachu/6dff0d160087c3925ca3e5c6.webp",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-291-pikachu/6dff0d160087c3925ca3e5c6.webp",
+      "sha256": "6dff0d160087c3925ca3e5c60a73aed4c7adb471d6f2d1dc2350c1f1e4f03527",
+      "size_bytes": 152630,
+      "content_type": "image/webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-001-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "001",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31524/pikachu-xy-promos-001-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/2a/52/60/2a526078ad2992cc21897e94e645769693d91d9691fe4e7c86ec455a4301ece4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-001-pikachu/ffdae7e44d140f17090882ac.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-001-pikachu/ffdae7e44d140f17090882ac.jpg",
+      "sha256": "ffdae7e44d140f17090882ac1cc1edefce6de484e11b52acb181acd8a3e69876",
+      "size_bytes": 190437,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-050-TEAM-JAPANS-PIKACHU",
+      "name": "Team Japans Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "050",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31573/team-japans-pikachu-xy-promos-050-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/e3/91/44/e391440ddc3437c8bbd622ba8e07fa5dc348ede4471700d6933b9a9c1d857e4c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-050-team-japans-pikachu/b7862c82ace65e7ee264fa7a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-050-team-japans-pikachu/b7862c82ace65e7ee264fa7a.jpg",
+      "sha256": "b7862c82ace65e7ee264fa7aacc4d39d0a79bfa6462246e84ac024c3e433735f",
+      "size_bytes": 147462,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-056-POKETVS-AD-PIKACHU",
+      "name": "Poketvs Ad Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "056",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31579/poketvs-ad-pikachu-xy-promos-056-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f8/8e/c8/f88ec801a149f9cec67bdc8a3d3acc1b04335b4acb8d688708e1af1cd86b62f1.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-056-poketvs-ad-pikachu/8adaab99b34a3fe22677958a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-056-poketvs-ad-pikachu/8adaab99b34a3fe22677958a.jpg",
+      "sha256": "8adaab99b34a3fe22677958a9c84d22c01b6ed110212451e5a3cc60b3d18e907",
+      "size_bytes": 195160,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-064-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "064",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31587/pikachu-xy-promos-064-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/d9/d8/b7/d9d8b7f1ddb80a377900465d522f4c44b822ebf069d8d721af9195143380bfc5.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-064-pikachu/906bc09eb95a43c4e6080a1e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-064-pikachu/906bc09eb95a43c4e6080a1e.jpg",
+      "sha256": "906bc09eb95a43c4e6080a1e06e61f7eb04889fcb379d143a25cf9a91e63d4dc",
+      "size_bytes": 182322,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-068-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "068",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31591/pikachu-xy-promos-068-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/4b/c4/b8/4bc4b8f0e39bd058633a9181149a544b8b7c1734d031146d5618dc28166a89c2.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-068-pikachu/9a997cc3b3dfe644fd4d67d1.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-068-pikachu/9a997cc3b3dfe644fd4d67d1.jpg",
+      "sha256": "9a997cc3b3dfe644fd4d67d1e7a05b6800f4905726f3db7f96c2085d3fe3804d",
+      "size_bytes": 200580,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-069-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "069",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31592/pikachu-xy-promos-069-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/55/e6/44/55e6445c63b67e43e4f88cb2a7705497b8af813f1d0ab04ef09d36339ccdefc1.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-069-pikachu/2f2c0efbb51aba72f1e7159c.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-069-pikachu/2f2c0efbb51aba72f1e7159c.jpg",
+      "sha256": "2f2c0efbb51aba72f1e7159c40f822224078078bba28051ecd637ad70554e368",
+      "size_bytes": 204209,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-070-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "070",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31593/pikachu-xy-promos-070-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/5d/79/f6/5d79f6f6d3cb962d22546613a3c91d0dc0c42b67d7ee396c76d9178d84bc531c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-070-pikachu/470d2d674fcae930ae0b2fa4.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-070-pikachu/470d2d674fcae930ae0b2fa4.jpg",
+      "sha256": "470d2d674fcae930ae0b2fa4418586afaf38a146096f93d774a4f39cb1f95c64",
+      "size_bytes": 203908,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-094-WARM-PIKACHU",
+      "name": "Warm Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "094",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31617/warm-pikachu-xy-promos-094-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/58/bd/79/58bd79a38e86491c52cbbf085193c77f2dfe89adecdcf1f6a0ca626f0239762e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-094-warm-pikachu/6b493f33a17fb03efa0925b5.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-094-warm-pikachu/6b493f33a17fb03efa0925b5.jpg",
+      "sha256": "6b493f33a17fb03efa0925b5de6946117c845190ea02c3163b7bd4a0b06b1313",
+      "size_bytes": 188196,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-096-WARM-PIKACHU",
+      "name": "Warm Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "096",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31619/warm-pikachu-xy-promos-096-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/11/2f/98/112f986826e7ac73c54abc46508013e875d8ccb36f779a572ccc2f841b75fd91.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-096-warm-pikachu/544d79217d49ed3d5f64f39a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-096-warm-pikachu/544d79217d49ed3d5f64f39a.jpg",
+      "sha256": "544d79217d49ed3d5f64f39ae8a7af63d9c57b7d98917019eafd08db6e9565f6",
+      "size_bytes": 190906,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-097-WARM-PIKACHU",
+      "name": "Warm Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "097",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31620/warm-pikachu-xy-promos-097-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/97/b7/65/97b765bcbc1e0bef916dbf0da1bf4a0acaa62828cb2511f1f783b6ae6075a9d8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-097-warm-pikachu/cfad9240250e2a971393b7d2.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-097-warm-pikachu/cfad9240250e2a971393b7d2.jpg",
+      "sha256": "cfad9240250e2a971393b7d2cf36b5c573e84bbac28c4bd8f077f87edee8a9af",
+      "size_bytes": 185183,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-098-MEGA-TOKYOS-PIKACHU",
+      "name": "Mega Tokyos Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "098",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31621/mega-tokyos-pikachu-xy-promos-098-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/80/91/4b/80914b141ae147cb83d8347b8e2ec667f983df4a909a71884f97b89d6f5b9ec7.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-098-mega-tokyos-pikachu/76b7d39570cb45462c38d0cd.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-098-mega-tokyos-pikachu/76b7d39570cb45462c38d0cd.jpg",
+      "sha256": "76b7d39570cb45462c38d0cd3e8f1d8c588f94911ab7a1f8b4a73ee79f1b543c",
+      "size_bytes": 192425,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-150-PRETEND-MAGIKARP-PIKACHU",
+      "name": "Pretend Magikarp Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "150",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31672/pretend-magikarp-pikachu-xy-promos-150-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/7d/6d/b8/7d6db8a70b05b03d077ac3869a8ee6d6d28c8dc8660e43dbf6f9e4d073c6e2ff.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-150-pretend-magikarp-pikachu/421aec1d76397d856ec895e0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-150-pretend-magikarp-pikachu/421aec1d76397d856ec895e0.jpg",
+      "sha256": "421aec1d76397d856ec895e03349a83be6f81de5f46173ae86d8282c4d813130",
+      "size_bytes": 187668,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-151-PRETEND-GYARADOS-PIKACHU",
+      "name": "Pretend Gyarados Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "151",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31673/pretend-gyarados-pikachu-xy-promos-151-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/78/b7/2e/78b72e4766f798288b873280b78d737335d4c45ea652b8ae572bdb5684cdf7a8.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-151-pretend-gyarados-pikachu/5e92715e24381f8d904f5365.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-151-pretend-gyarados-pikachu/5e92715e24381f8d904f5365.jpg",
+      "sha256": "5e92715e24381f8d904f5365061d4079383b87d6fe7229d0c639a9401d57ae78",
+      "size_bytes": 195638,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-154-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "154",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31676/pikachu-xy-promos-154-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/1c/9b/dd/1c9bddaa04bde5a4fe13ba33a4ae97e47e95355cac43f5ae8eafc5aa53f4ba1a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-154-pikachu/4a0925826c79229e449f444d.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-154-pikachu/4a0925826c79229e449f444d.jpg",
+      "sha256": "4a0925826c79229e449f444d1b8fe439e4939c92aad71bc065e406898e7fca31",
+      "size_bytes": 202172,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-156-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "156",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31678/pikachu-xy-promos-156-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/6a/c1/59/6ac1596427b2ad54a6ff201e032e65d7348d1b778ec95e01460a9ce016fa82dc.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-156-pikachu/9ffa9f2974f4ce8e555c1688.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-156-pikachu/9ffa9f2974f4ce8e555c1688.jpg",
+      "sha256": "9ffa9f2974f4ce8e555c16883cf7354677957c5e7cd7c4cf0026a4f259a9660a",
+      "size_bytes": 191224,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-175-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "175",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31697/pikachu-xy-promos-175-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/86/55/5a/86555a55ea0106d096a61def9c28810e3d962a68d0a34fb622fc0d3501c3408a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-175-pikachu/1ff80d73b29c6af102d45850.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-175-pikachu/1ff80d73b29c6af102d45850.jpg",
+      "sha256": "1ff80d73b29c6af102d45850a3bd733e717c18da3bdc2f9b4640fdb5b51e1e22",
+      "size_bytes": 191986,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-203-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "203",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31725/poncho-wearing-pikachu-xy-promos-203-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/43/33/f7/4333f7ac53acea61b2e0405d1d9ad8c6b70f15abf52df4b4cd607b738c52ce0f.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-203-poncho-wearing-pikachu/8be71e524dbced2d91b4b9db.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-203-poncho-wearing-pikachu/8be71e524dbced2d91b4b9db.jpg",
+      "sha256": "8be71e524dbced2d91b4b9dbf27f9b0d25af3c88dfda0a528c69457e96511c45",
+      "size_bytes": 219261,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-204-MEGA-TOKYOS-PIKACHU",
+      "name": "Mega Tokyos Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "204",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31726/mega-tokyos-pikachu-xy-promos-204-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/62/7d/0c/627d0c6703ebb086c4e61eff7b0fd6818c9e1bbae1ffd27c91ed82d983d106ba.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-204-mega-tokyos-pikachu/899ca9daa1aab83e5d1b0631.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-204-mega-tokyos-pikachu/899ca9daa1aab83e5d1b0631.jpg",
+      "sha256": "899ca9daa1aab83e5d1b063150d083b56347349812766c613451303cf8377cec",
+      "size_bytes": 195606,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-206-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "206",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31728/pikachu-xy-promos-206-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/ae/0b/71/ae0b71f2b6889fbb91a6bc2013a49fed502b326427f7749ba8654c0472c342b3.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-206-pikachu/74b2902a15f231270bc4e4c2.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-206-pikachu/74b2902a15f231270bc4e4c2.jpg",
+      "sha256": "74b2902a15f231270bc4e4c2957ffaabd7d18e8f3543dc5cf334db73064f62c8",
+      "size_bytes": 190834,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-207-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "207",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31729/poncho-wearing-pikachu-xy-promos-207-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/99/39/0b/99390b031174b0e5d51b7cd8b79c80de595deda754980939b70529d39a84f5ce.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-207-poncho-wearing-pikachu/fa97aeb867122f502ac679d9.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-207-poncho-wearing-pikachu/fa97aeb867122f502ac679d9.jpg",
+      "sha256": "fa97aeb867122f502ac679d95068cc70b77a4bffcc9a63e7f4a8ef65407cb2b4",
+      "size_bytes": 189608,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-208-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "208",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31730/poncho-wearing-pikachu-xy-promos-208-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/dd/2f/a2/dd2fa295574dee601fe04d731dcdf6c318cc404dd9698e40675607a7116e4598.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-208-poncho-wearing-pikachu/cbcba258d29b12ba9b675bf7.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-208-poncho-wearing-pikachu/cbcba258d29b12ba9b675bf7.jpg",
+      "sha256": "cbcba258d29b12ba9b675bf78108c32e780603b61aa217505eb7175bc732a40e",
+      "size_bytes": 184013,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-221-OKUGE-SAMA-AND-MAIKO-HAN-PIKACHU",
+      "name": "Okuge Sama And Maiko Han Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "221",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31743/okuge-sama-and-maiko-han-pikachu-xy-promos-221-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/66/0f/8d/660f8d7ce0918a439cbe4b92afbc4be7b27285a37f49e9641e19a06c0db5dc7e.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-221-okuge-sama-and-maiko-han-pikachu/5fcfed13729988ae8264a4c4.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-221-okuge-sama-and-maiko-han-pikachu/5fcfed13729988ae8264a4c4.jpg",
+      "sha256": "5fcfed13729988ae8264a4c4bcc494a1cc59372ea9b55c81cffa31da6ca32c56",
+      "size_bytes": 233580,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-230-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "230",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31752/poncho-wearing-pikachu-xy-promos-230-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c0/24/52/c02452732c1a9b1dd005730bcd12a9bc64ec1b886aba1d9186f81c538681912a.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-230-poncho-wearing-pikachu/01f5480b88699ede20263c7d.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-230-poncho-wearing-pikachu/01f5480b88699ede20263c7d.jpg",
+      "sha256": "01f5480b88699ede20263c7da08baaa49945c776110c78b9101143adbf07feaf",
+      "size_bytes": 208913,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-247-PIKACHU-LIBRE",
+      "name": "Pikachu Libre",
+      "set_code": "jpn-xyp",
+      "number": "247",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31769/pikachu-libre-xy-promos-247-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/c5/e8/72/c5e8723505f46ca575283f51f55a0592a2cf0143995cdd2c5fd37ffc15e24b23.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-247-pikachu-libre/aeb41f180b89a59016ad593a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-247-pikachu-libre/aeb41f180b89a59016ad593a.jpg",
+      "sha256": "aeb41f180b89a59016ad593adfe273c1685fa22db0735dc7a431317835fa636b",
+      "size_bytes": 185741,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-259-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "259",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31781/pikachu-xy-promos-259-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/5d/c1/1a/5dc11ae28ad73e595b3b59dabc2ee459cc69545b46e694ecf710bc3599079a17.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-259-pikachu/61c889f41270913ab290ee1e.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-259-pikachu/61c889f41270913ab290ee1e.jpg",
+      "sha256": "61c889f41270913ab290ee1e6df1a2f6103e4336d0e192e31b9e99b822fb1b60",
+      "size_bytes": 163402,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-264-SURFING-PIKACHU",
+      "name": "Surfing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "264",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31786/surfing-pikachu-xy-promos-264-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/f5/94/fc/f594fc553dae4b214ff8538d44977827e6ebddbbb1c5bcff55b0d0aee580876c.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-264-surfing-pikachu/a0878e55965141ebcd83e224.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-264-surfing-pikachu/a0878e55965141ebcd83e224.jpg",
+      "sha256": "a0878e55965141ebcd83e224b4a17c0c5c4e0faf2650d16ab244f33697dbc8db",
+      "size_bytes": 148602,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-274-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "274",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31796/poncho-wearing-pikachu-xy-promos-274-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/76/4d/b9/764db9428c6bd12b60440aa0c7f37f9cb1daf9e84253f1f1d6721c24bba7e340.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-274-poncho-wearing-pikachu/fc1f68ed5133bfc1da36125a.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-274-poncho-wearing-pikachu/fc1f68ed5133bfc1da36125a.jpg",
+      "sha256": "fc1f68ed5133bfc1da36125a374770ba8686ec228ecef6870b71fab1b9a36898",
+      "size_bytes": 219645,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-275-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "275",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31797/poncho-wearing-pikachu-xy-promos-275-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/49/47/15/494715eb65f81c8993b28875b51deee44304c106530b53c47791f6fb9e3e4884.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-275-poncho-wearing-pikachu/d6d026c78ab288e4aad29342.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-275-poncho-wearing-pikachu/d6d026c78ab288e4aad29342.jpg",
+      "sha256": "d6d026c78ab288e4aad29342d8c18939a48eb25ce24ec3f7e97f2d81d3122439",
+      "size_bytes": 211507,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-279-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "279",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31801/pikachu-xy-promos-279-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/5c/be/e3/5cbee3a291943c90d1751d4bffc2cc6cefb513c706db1d43a15cf30240877902.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-279-pikachu/ef9cd2d2b37772335c04632c.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-279-pikachu/ef9cd2d2b37772335c04632c.jpg",
+      "sha256": "ef9cd2d2b37772335c04632cf2abf184e7ecd2cb8e1d48c0ac26f6ba03639832",
+      "size_bytes": 175085,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-281-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "281",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31803/pikachu-xy-promos-281-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/5a/f2/58/5af258e7d654f703606a8602184bd50e3b29619b62cbda9170319e13b27bef1f.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-281-pikachu/9e7ebb8eb5b6bf8100b5e583.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-281-pikachu/9e7ebb8eb5b6bf8100b5e583.jpg",
+      "sha256": "9e7ebb8eb5b6bf8100b5e58322e42301d7eb6c9f31913fd3f57989d3d93a5564",
+      "size_bytes": 186710,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-292-FLYING-PIKACHU",
+      "name": "Flying Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "292",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31814/flying-pikachu-xy-promos-292-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/13/6b/50/136b50821e05389e681beedd21633161a745a0e35c409a2f05efa10ad7837caa.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-292-flying-pikachu/e6e613eb764f592d2dab54a0.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-292-flying-pikachu/e6e613eb764f592d2dab54a0.jpg",
+      "sha256": "e6e613eb764f592d2dab54a0e8a163b5a41ca1b44777c6a758f7182ad3cbd6ea",
+      "size_bytes": 145869,
+      "content_type": "image/jpeg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-293-MARIO-PIKACHU",
+      "name": "Mario Pikachu",
+      "set_code": "jpn-xyp",
+      "number": "293",
+      "tcgcollector_url": "https://www.tcgcollector.com/cards/31815/mario-pikachu-xy-promos-293-xy-p",
+      "source_image_url": "https://static.tcgcollector.com/content/images/6a/62/bc/6a62bcc48e6dd7758a3aff054caf9cf44f4ab1d16d199baa05e3c2c219ab73f4.jpg",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-293-mario-pikachu/22c815daf3f7e085fad37337.jpg",
+      "public_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-293-mario-pikachu/22c815daf3f7e085fad37337.jpg",
+      "sha256": "22c815daf3f7e085fad37337384677686db4b374f4727bacc4c511b65c10192c",
+      "size_bytes": 176233,
+      "content_type": "image/jpeg"
+    }
+  ],
+  "upload_results": [
+    {
+      "gv_id": "GV-PK-JPN-BWP-108-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-108-pikachu/6cf55b75a7a4dfc0c8c586c9.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-120-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-120-pikachu/6a42cc2b4cdcdb31f8225de0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-151-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-151-pikachu/c095327b93dd1a65785745d5.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-163-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-bwp/gv-pk-jpn-bwp-163-pikachu/616d9714347a5d264ca2b5a4.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-025-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-025-pikachu/0150b55088c05f1a82e474bd.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-048-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-048-pikachu/a3f518ae5e0bd586dc82027a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-057-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-057-pikachu/d91848f456ea191e704e131c.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-095-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-095-pikachu/2cc9ca3cca83d8fdf4f89df6.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-098-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-098-pikachu/f04de55f1cecb907c590273a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-099-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-099-pikachu/33025b08cd100aff7c9020bd.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-100-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-100-pikachu/3807b4aaac832e2e088446b1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-101-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-101-pikachu/1e3a5e0b2dcc8ba301064b7b.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-102-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-102-pikachu/1656fbe670463dcd4d061fdf.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-113-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dpp/gv-pk-jpn-dpp-113-pikachu/63c17da25da4fd06179bf742.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPTP-043-PIKACHU-LV-X",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dptp/gv-pk-jpn-dptp-043-pikachu-lv-x/c17dd1e1a49ed445768146b9.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-005-SAPPOROS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-005-sapporos-pikachu/c5d973ca0922f92f89e82b5b.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-013-PRETEND-TEAM-SKULL-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-013-pretend-team-skull-pikachu/fd6934ac9e60f03733e692e8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-014-PRETEND-GRUNT-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-014-pretend-grunt-pikachu/87aaea9b985f7012500f9eb8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-037-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-037-poncho-wearing-pikachu/dd81386fb2d4a66691bf187e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-038-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-038-poncho-wearing-pikachu/db5509f7b415b9e479c42e31.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-044-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-044-pikachu/cb1563c8e531bdf0fc7ba007.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-055-EASTERS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-055-easters-pikachu/fd1ef15bced77e6b8d0c90ed.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-061-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-061-pikachu/a4e5c6edd0633f6df57d7619.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-068-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-068-pikachu/a6edd946800ad2d6a7ad25a3.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-071-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-071-ashs-pikachu/504c3dfff524c3bc7a071a9b.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-072-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-072-ashs-pikachu/9c170dfe4100f6a94472e66f.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-073-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-073-ashs-pikachu/6a30a1414f62318792d9c8c4.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-074-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-074-ashs-pikachu/5656ad21bbcd14c6e40a4949.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-075-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-075-ashs-pikachu/ad79ded6f50f1ee6d326efd1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-076-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-076-ashs-pikachu/d029fd91be5eaf7849b0f4af.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-086-ASHS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-086-ashs-pikachu/efdff8585d6c07069346d0c1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-088-TOHOKUS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-088-tohokus-pikachu/f8c8a8dbc23a3c62dffeb4d7.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-114-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-114-pikachu/142a7f7f85457eceb0c61f9b.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-168-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-168-pikachu/ad84d2fe6cbc36c9035670e2.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-179-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-179-pikachu/1af571185ff8abc02602708c.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-191-PRETEND-BOSS-PIKACHU-TEAM-ROCKET",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-191-pretend-boss-pikachu-team-rocket/066732fa75e0ca15bec3dd48.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-192-PRETEND-BOSS-PIKACHU-TEAM-AQUA",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-192-pretend-boss-pikachu-team-aqua/b60ed7b1677452d363241279.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-193-PRETEND-BOSS-PIKACHU-TEAM-MAGMA",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-193-pretend-boss-pikachu-team-magma/3bff2bb287bebeb1cc0727e0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-194-PRETEND-BOSS-PIKACHU-TEAM-GALACTIC",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-194-pretend-boss-pikachu-team-galactic/fb0b8895a1f62b61fbe0d96e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-195-PRETEND-BOSS-PIKACHU-TEAM-PLASMA",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-195-pretend-boss-pikachu-team-plasma/91c0e94e1b9c959ef5b57eff.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-196-PRETEND-BOSS-PIKACHU-TEAM-FLARE",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-196-pretend-boss-pikachu-team-flare/cfa0e2b99231cc2646adc13a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-197-PRETEND-BOSS-PIKACHU-TEAM-SKULL",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-197-pretend-boss-pikachu-team-skull/7e45b35b14ea0c41d70296d9.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-199-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-199-pikachu/e6a27bbdfa9108160bfba907.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-200-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-200-pikachu/31660ef6548dce3db3357eeb.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-207-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-207-pikachu/ed7777581e395b153899fa5e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-208-HAKAMA-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-208-hakama-pikachu/c5b452953ca1ddbe57563950.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-209-FIREFIGHTER-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-209-firefighter-pikachu/9206e6c148e1cdf555fac926.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-210-GENTLEMANLY-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-210-gentlemanly-pikachu/ca1f06129b975223ff19ea2a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-211-CHERRY-BLOSSOM-AFRO-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-211-cherry-blossom-afro-pikachu/223dc352b84cc236afd015dd.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-214-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-214-pikachu/92681f40e49dde721a3f3bfc.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-242-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-242-pikachu/68390841333207f06b7cbd5a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-249-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-249-pikachu/22ad47aa16bc3ff77192989e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-262-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-262-pikachu/b766cfa8b43f76dc3d5b0f70.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-270-REDS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-270-reds-pikachu/3c789d40211a4f05e062a155.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-276-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-276-pikachu/21a9c2e3ce3c8e6be740d78f.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-280-YOKOHAMAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-280-yokohamas-pikachu/f471d9acd4367ec1c8858db1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-281-YOKOHAMAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-281-yokohamas-pikachu/7e48ea429ac7dc39769f02ed.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-282-YOKOHAMAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-282-yokohamas-pikachu/ddde9d7dea70abdf84ff08fc.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-283-YOKOHAMAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-283-yokohamas-pikachu/ddb31fc153892ba152cf74b8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-288-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-288-pikachu/8a82cc32fb995bdfd7e57695.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-291-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-291-pikachu/a3a29a3c27cce48439cd32d5.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-307-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-307-pikachu/45e01120cfad88fdad13bac6.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-325-PRETEND-TEA-CEREMONY-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-325-pretend-tea-ceremony-pikachu/0aebbfd5afc7809a18240bc7.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-337-DETECTIVE-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-337-detective-pikachu/62823b80145cc96842571cd0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-338-DETECTIVE-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-338-detective-pikachu/a2fd5b0a753b2fa8f12d5961.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-339-DETECTIVE-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-339-detective-pikachu/e2816aaf2251c616055989fb.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-367-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-367-pikachu/1326c9c1342fe9e3679a4233.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-369-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-369-pikachu/b05ba903e1180eb1283ca1b7.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-376-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-376-pikachu/321a7f3a8d6983229689cacf.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-377-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-377-pikachu/c99d91baaf85350f236d73d5.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-392-PLAYING-IN-THE-SEA-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-392-playing-in-the-sea-pikachu/1940769c03ee585710755426.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-393-PIKACHU-GX",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-393-pikachu-gx/3c40e9be78cc2084c9842a78.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-407-PRETEND-COMEDIAN-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smp/gv-pk-jpn-smp-407-pretend-comedian-pikachu/1c45a3142c7672efc24443d3.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-002-SHIBUYAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-002-shibuyas-pikachu/0527bed834dbed356376fcf8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-024-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-024-pikachu/94297cebfebcf5e358e90bbe.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-036-RESCUE-TEAM-DXS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-036-rescue-team-dxs-pikachu/d873a5b825e0c43fec53afc1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-099-DETECTIVE-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-099-detective-pikachu/c094f7f63acb403106577367.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-105-SWALLOWED-UP-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-105-swallowed-up-pikachu/44bcf0ce3cfc1fb6f0681f8c.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-121-PIKACHU-V",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-121-pikachu-v/81d23eb458d5bb3af4b646f2.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-122-PIKACHU-V",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-122-pikachu-v/3fd49c2ad62dfe428c0102d8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-123-PIKACHU-VMAX",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-123-pikachu-vmax/f7796848a0780a3aa314bf39.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-124-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-124-pikachu/9e435d50f322b246c0578138.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-125-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-125-pikachu/7d40d98a89eba92ee17635c8.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-126-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-126-pikachu/3ad32dac41ed1bee9893d4e7.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-132-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-132-pikachu/cfa5b16483406e86a820ad0e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-147-KANAZAWAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-147-kanazawas-pikachu/730b8e2ac316ec89a4b17d84.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-208-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-208-pikachu/4dabfecf24833320c3bc41ad.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-227-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-227-pikachu/4d76cb05c3b663a75ece9a2a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-265-PIKACHU-VMAX",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-265-pikachu-vmax/9dcfac3b73d257a88f381c24.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-272-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-272-pikachu/2204a332c5a424bb3d9cbdc6.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SP-323-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sp/gv-pk-jpn-sp-323-pikachu/776abf9883e4a1e2885784de.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-074-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-074-pikachu/9f8546c3895d1287cefd0bb0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-098-DETECTIVE-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-098-detective-pikachu/37ee4fee74ebc5c85b2ad457.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-120-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-120-pikachu/35bf10ede0fba5cce500f3dd.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-197-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-197-pikachu/c35c1bbba6ac582370f5a25d.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-216-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-216-pikachu/742cb9e4ed19d00eb2a327d9.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-218-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-218-pikachu/a64f710480cacf10e9cdd2e0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-242-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-242-pikachu/b0f7a781e70da77d136469d5.webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-260-TOHOKUS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-260-tohokus-pikachu/9470c6ec01202a21d0a2f7f6.webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-261-HIROSHIMAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-261-hiroshimas-pikachu/fb7ae8f142395deb04058f4d.webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-289-FUKUOKAS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-289-fukuokas-pikachu/14dae637996cb21d5a854460.webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SVP-291-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-svp/gv-pk-jpn-svp-291-pikachu/6dff0d160087c3925ca3e5c6.webp"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-001-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-001-pikachu/ffdae7e44d140f17090882ac.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-050-TEAM-JAPANS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-050-team-japans-pikachu/b7862c82ace65e7ee264fa7a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-056-POKETVS-AD-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-056-poketvs-ad-pikachu/8adaab99b34a3fe22677958a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-064-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-064-pikachu/906bc09eb95a43c4e6080a1e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-068-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-068-pikachu/9a997cc3b3dfe644fd4d67d1.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-069-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-069-pikachu/2f2c0efbb51aba72f1e7159c.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-070-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-070-pikachu/470d2d674fcae930ae0b2fa4.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-094-WARM-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-094-warm-pikachu/6b493f33a17fb03efa0925b5.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-096-WARM-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-096-warm-pikachu/544d79217d49ed3d5f64f39a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-097-WARM-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-097-warm-pikachu/cfad9240250e2a971393b7d2.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-098-MEGA-TOKYOS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-098-mega-tokyos-pikachu/76b7d39570cb45462c38d0cd.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-150-PRETEND-MAGIKARP-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-150-pretend-magikarp-pikachu/421aec1d76397d856ec895e0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-151-PRETEND-GYARADOS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-151-pretend-gyarados-pikachu/5e92715e24381f8d904f5365.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-154-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-154-pikachu/4a0925826c79229e449f444d.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-156-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-156-pikachu/9ffa9f2974f4ce8e555c1688.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-175-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-175-pikachu/1ff80d73b29c6af102d45850.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-203-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-203-poncho-wearing-pikachu/8be71e524dbced2d91b4b9db.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-204-MEGA-TOKYOS-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-204-mega-tokyos-pikachu/899ca9daa1aab83e5d1b0631.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-206-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-206-pikachu/74b2902a15f231270bc4e4c2.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-207-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-207-poncho-wearing-pikachu/fa97aeb867122f502ac679d9.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-208-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-208-poncho-wearing-pikachu/cbcba258d29b12ba9b675bf7.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-221-OKUGE-SAMA-AND-MAIKO-HAN-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-221-okuge-sama-and-maiko-han-pikachu/5fcfed13729988ae8264a4c4.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-230-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-230-poncho-wearing-pikachu/01f5480b88699ede20263c7d.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-247-PIKACHU-LIBRE",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-247-pikachu-libre/aeb41f180b89a59016ad593a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-259-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-259-pikachu/61c889f41270913ab290ee1e.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-264-SURFING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-264-surfing-pikachu/a0878e55965141ebcd83e224.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-274-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-274-poncho-wearing-pikachu/fc1f68ed5133bfc1da36125a.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-275-PONCHO-WEARING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-275-poncho-wearing-pikachu/d6d026c78ab288e4aad29342.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-279-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-279-pikachu/ef9cd2d2b37772335c04632c.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-281-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-281-pikachu/9e7ebb8eb5b6bf8100b5e583.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-292-FLYING-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-292-flying-pikachu/e6e613eb764f592d2dab54a0.jpg"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XYP-293-MARIO-PIKACHU",
+      "status": "skipped_existing_object",
+      "uploaded": false,
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xyp/gv-pk-jpn-xyp-293-mario-pikachu/22c815daf3f7e085fad37337.jpg"
+    }
+  ],
+  "pass": true
+}

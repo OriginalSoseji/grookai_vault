@@ -61,8 +61,11 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
             fallbackClassName="flex h-14 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
           />
           <div className="min-w-0">
-            <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline dark:text-slate-100">
+            <Link href={href} prefetch={false} className="block text-sm font-semibold text-slate-900 hover:underline dark:text-slate-100">
               <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
+              {displayIdentity.printed_name ? (
+                <span className="gv-hi-metadata block truncate text-xs font-medium">{displayIdentity.printed_name}</span>
+              ) : null}
               {identitySubtitle ? (
                 <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
               ) : null}

@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=Crushing Thorn
+|image=WCS2024 Crushing Thorn Deck.jpg
+|caption=Box Art
+|release=May 16, 2025
+|types={{e|Lightning}}
+|coin=[[File:WCS2024 Silver Pikachu Coin.png|50px]]
+}}
+
+'''Crushing Thorn''' is the name of the deck used by Fernando Cifuentes, who was the Masters Division champion at the [[2024 Pokémon World Championships]]. It is one of the 2024 World Championship Decks released on May 16, 2025. Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2024 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Cifuentes, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and Cifuentes's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments". The signature card displayed in the packaging (Iron Thorns ex) has a special gold version of Fernando's signature, while the rest of the deck has a silver signature.
+
+==Description==
+
+===Packaging===
+<i>In a field dominated by Pokémon ex and Pokémon V, one Future Pokémon turned off their Abilities to rampage undefeated through Day 1 and take its Trainer all the way to a World Champion title. Built on Iron Thorns ex and leaning heavily on coin flip cards like Crushing Hammer and Pokémon Catcher, this deck demands a stout heart and a sense of humor—fortunately, Fernando Cifuentes brought both! Disrupt your opponent's plans by discarding their Energy and sending their stuff to the Lost Zone, while your star Pokémon stands tall at 230 HP—a real challenge to take down.</i>
+
+===Booklet===
+<i>What a way to finish out your first season in the Masters Division—with a World Champion title! Fernando and his opponent were among the youngest Masters players, and they gave us a truly impressive finals match. Fernando has a great sense of humor about the ups and downs of this deck, which runs only four Pokémon and has been known to need so many mulligans that a judge has to step in: "There's a high chance that something could go wrong! Just calm down and hope for the best." When asked how it felt to be the first-ever World Champion from Chile, Fernando's response drew a huge cheer from the crowd even before it was translated: "Muy bien. ¡Viva Chile!"</i>
+
+==Deck list==
+{{halfdecklist/header|title=Crushing Thorn|type=Lightning|symbol=no}}
+{{halfdecklist/entry|077/167|H|[[Iron Thorns ex (Twilight Masquerade 77)|Iron Thorns]]{{ex}}|Lightning||4}}
+{{halfdecklist/entry|186/197|G|{{TCG ID|Obsidian Flames|Arven|186}}|Supporter||4}}
+{{halfdecklist/entry|172/193|G|{{TCG ID|Paldea Evolved|Boss's Orders|172}}|Supporter||3}}
+{{halfdecklist/entry|176/198|G|{{TCG ID|Scarlet & Violet|Judge|176}}|Supporter||3}}
+{{halfdecklist/entry|190/198|G|{{TCG ID|Scarlet & Violet|Professor's Research|190}}|Supporter||3}}
+{{halfdecklist/entry|054/064|H|{{TCG ID|Shrouded Fable|Colress's Tenacity|57}}|Supporter||2}}
+{{halfdecklist/entry|161/165|G|{{TCG ID|151|Giovanni's Charisma|161}}|Supporter||1}}
+{{halfdecklist/entry|185/193|G|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||1}}
+{{halfdecklist/entry|183/198|G|{{TCG ID|Scarlet & Violet|Penny|183}}|Supporter||1}}
+{{halfdecklist/entry|161/196|F|{{TCG ID|Lost Origin|Lost City|161}}|Stadium||3}}
+{{halfdecklist/entry|168/198|G|{{TCG ID|Scarlet & Violet|Crushing Hammer|168}}|Item||4}}
+{{halfdecklist/entry|186/198|G|{{TCG ID|Scarlet & Violet|Pokégear 3.0|186}}|Item||4}}
+{{halfdecklist/entry|187/198|G|{{TCG ID|Scarlet & Violet|Pokémon Catcher|187}}|Item||4}}
+{{halfdecklist/entry|136/189|F|{{TCG ID|Astral Radiance|Canceling Cologne|136}}|Item||2}}
+{{halfdecklist/entry|180/182|G|{{TCG ID|Paradox Rift|Techno Radar|180}}|Item||2}}
+{{halfdecklist/entry|163/182|G|{{TCG ID|Paradox Rift|Earthen Vessel|163}}|Item||1}}
+{{halfdecklist/entry|140/189|F|{{TCG ID|Astral Radiance|Energy Loto|140}}|Item||1}}
+{{halfdecklist/entry|162/196|F|{{TCG ID|Lost Origin|Lost Vacuum|162}}|Item||1}}
+{{halfdecklist/entry|157/162|H|{{TCG ID|Temporal Forces|Prime Catcher|157}}|Item||1}}
+{{halfdecklist/entry|164/182|G|{{TCG ID|Paradox Rift|Future Booster Energy Capsule|164}}|Pokémon Tool||3}}
+{{halfdecklist/entry|179/182|G|{{TCG ID|Paradox Rift|Technical Machine: Turbo Energize|179}}|Pokémon Tool||1}}
+{{halfdecklist/entry|SVE 012|—|{{TCG|Basic Lightning Energy}}|Energy|Lightning|7}}
+{{halfdecklist/entry|151/172|F|{{TCG ID|Brilliant Stars|Double Turbo Energy|151}}|Energy|Colorless|4}}
+{{halfdecklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category: World Championship Decks]]
+[[de: Crushing Thorn (TCG)]]

@@ -744,11 +744,20 @@ function selectRepresentativeBucket(
   return null;
 }
 
-export async function getCanonicalVaultCollectorRows(userId: string): Promise<CanonicalVaultCollectorRow[]> {
+type CanonicalVaultCollectorReadOptions = {
+  cardPrintIds?: string[];
+};
+
+export async function getCanonicalVaultCollectorRows(
+  userId: string,
+  options: CanonicalVaultCollectorReadOptions = {},
+): Promise<CanonicalVaultCollectorRow[]> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
     return [];
   }
+  const requestedCardPrintIds = normalizeIds(options.cardPrintIds ?? []);
+  const requestedCardPrintIdSet = new Set(requestedCardPrintIds);
 
   const activeInstances = await fetchActiveInstances(normalizedUserId);
   const cardPrintingIds = normalizeIds(
@@ -766,7 +775,8 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     fetchFinishLabelsByPrintingId(cardPrintingIds),
   ]);
   const aggregatesByCardId = aggregateInstances(activeInstances, slabCertMetadataById, finishLabelByPrintingId);
-  const cardPrintIds = normalizeIds(Array.from(aggregatesByCardId.keys()));
+  const cardPrintIds = normalizeIds(Array.from(aggregatesByCardId.keys()))
+    .filter((cardPrintId) => requestedCardPrintIdSet.size === 0 || requestedCardPrintIdSet.has(cardPrintId));
 
   if (cardPrintIds.length === 0) {
     return [];
@@ -803,7 +813,12 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
 
   const rows: CanonicalVaultCollectorRow[] = [];
 
-  for (const [cardPrintId, aggregate] of aggregatesByCardId.entries()) {
+  for (const cardPrintId of cardPrintIds) {
+    const aggregate = aggregatesByCardId.get(cardPrintId);
+    if (!aggregate) {
+      continue;
+    }
+
     const buckets = bucketMetadataByCardId.get(cardPrintId) ?? [];
     const representativeBucket = selectRepresentativeBucket(buckets, aggregate.anchorInstanceCounts);
 

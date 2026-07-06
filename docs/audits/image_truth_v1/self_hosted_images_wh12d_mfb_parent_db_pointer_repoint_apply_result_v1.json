@@ -1,0 +1,35 @@
+{
+  "package_id": "IMG-HOST-WH-12D-MFB-PARENT-DB-POINTER-REPOINT-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-24T02:09:28.279Z",
+  "ended_at": "2026-06-24T02:09:28.605Z",
+  "fingerprint": "549843d7cc0b4ac7eecdcc6bdb8c152eb807e71d3d7858ca2e8db5f08151cc50",
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "source_dry_run_fingerprint": "549843d7cc0b4ac7eecdcc6bdb8c152eb807e71d3d7858ca2e8db5f08151cc50",
+  "metadata_pointer_update_count": 34,
+  "metadata_results": [
+    {
+      "key": "card_prints",
+      "expected_count": 34,
+      "updated_count": 34
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_performed": false,
+  "parent_overwrites_performed": false,
+  "planned_columns": [
+    "image_source",
+    "image_path"
+  ],
+  "preserved_columns": [
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "86cd5e7b087479dda209178d0e3b1fa446fc4e1accea13782ab0740f9b5ae04f"
+}

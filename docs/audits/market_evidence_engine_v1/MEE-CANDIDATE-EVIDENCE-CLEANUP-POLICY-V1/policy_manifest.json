@@ -1,0 +1,66 @@
+{
+  "package_id": "MEE-CANDIDATE-EVIDENCE-CLEANUP-POLICY-V1",
+  "mode": "plan_only_candidate_evidence_cleanup_policy",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "cleanup_outcomes": {
+    "keep_review": "Hold candidate evidence in review when no stronger cleanup outcome applies.",
+    "quarantine_candidate": "Candidate evidence has exclusion flags and must not contribute to confirmation until reviewed or replaced.",
+    "require_special_lane_policy": "Candidate belongs to a special lane that needs lane-specific policy before confirmation.",
+    "require_high_value_review": "Candidate group crosses high-value policy and requires stricter review.",
+    "require_matcher_reclassify": "Candidate confidence is below direct-confirm threshold and needs deterministic reclassification or matcher improvement.",
+    "defer_until_more_evidence": "Evidence volume or seller diversity is not enough for confirmation."
+  },
+  "cleanup_priority_order": [
+    "quarantine_candidate",
+    "require_special_lane_policy",
+    "require_high_value_review",
+    "require_matcher_reclassify",
+    "keep_review",
+    "defer_until_more_evidence"
+  ],
+  "thresholds": {
+    "minimum_confirm_match_confidence": 0.9,
+    "raw_single_high_value_p95_usd": 250,
+    "slab_high_value_p95_usd": 500
+  },
+  "current_audit": {
+    "total_gate_rows": 470,
+    "total_card_prints_with_candidates": 470,
+    "total_candidate_rows": 52630,
+    "card_primary_resolution_lanes": {
+      "special_lane_manual_review": 338,
+      "exclusion_flag_review": 60,
+      "matcher_confidence_review": 42,
+      "high_value_manual_review": 30
+    },
+    "candidate_cleanup_outcomes": {
+      "require_special_lane_policy": 39180,
+      "quarantine_candidate": 1671,
+      "require_matcher_reclassify": 9610,
+      "require_high_value_review": 2169
+    },
+    "candidate_match_status_counts": {
+      "needs_review": 52630
+    },
+    "public_boundary_candidate_rows": 0,
+    "generated_at": "2026-06-27"
+  },
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "decision": {
+    "generate_apply_candidate": false,
+    "reason": "Candidate evidence cleanup requires a separate approved action model; this policy is plan-only."
+  }
+}

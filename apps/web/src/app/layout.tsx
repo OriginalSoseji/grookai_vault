@@ -120,7 +120,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 Early Access
               </Link>
               <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Legal
+                Terms
+              </Link>
+              <Link href="/account/delete" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                Account Deletion
               </Link>
             </div>
           </PageContainer>

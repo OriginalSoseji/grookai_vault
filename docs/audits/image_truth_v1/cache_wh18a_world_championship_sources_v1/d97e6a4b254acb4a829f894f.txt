@@ -1,0 +1,50 @@
+{{DeckInfobox
+|title=Ninja Blitz
+|image=WCS2016 Ninja Blitz.jpg
+|size=280px
+|caption=Box art
+|types={{e|Water}}
+|cards=
+}}
+
+'''Ninja Blitz''' is the name of the deck used by Cody Walinski, who was the runner-up of the Masters Division in the [[2016 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2016 World Championships Decks}}, released in November 2016, and is based on the {{TCG|Greninja BREAK}} archetype. Each Deck comes with a Worlds 2016 themed Deckbox, a booklet about the championships, a code card for the [[Pokémon Trading Card Game Online]], and the 2016 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Cody Walinski soared into the Masters Division finals with the help of Talonflame, who started game after game as his Active Pokémon thanks to its Gale Wings Ability and the luck of the draw. It's a great start for this deck, which can be slow to get going&mdash;Greninja BREAK requires multiple Evolutions before it can start doing its thing. But once it's in play, the Giant Water Shuriken Ability hands out the Knock Outs left and right!</i>
+
+===Booklet===
+<i>Cody's most memorable moment came during the semifinals, when he defeated one of the veterans of the Pokémon World Championships with three Knock Outs in a single turn to advance to the finals! He really enjoyed "seeing a lot of unique decks have success" this year, and he was particularly proud of "my own success with a deck that was deemed inconsistent and irrelevant." When he's not playing Pokémon, Cody enjoys pickup basketball. He seems to have a good sense of humour about his second place finish&mdash;after all, he says, "Ash doesn't win tournaments with Greninja either."</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|3|[[Greninja BREAK (BREAKpoint 41)|Greninja]]{{BREAK}}|Water||Rare BREAK}}
+{{decklist/entry|3|{{TCG ID|BREAKpoint|Greninja|40}}|Water||Rare}}
+{{decklist/entry|1|{{TCG ID|XY|Greninja|41}}|Water||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Frogadier|39}}|Water||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKpoint|Froakie|38}}|Water||Common}}
+{{decklist/entry|4|{{TCG ID|Steam Siege|Talonflame|96}}|Colorless||Rare}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Ace Trainer|69}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|Battle Compressor|92}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Bursting Balloon|97}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Primal Clash|Dive Ball|125}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Fisherman|136}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ancient Origins|Level Ball|76}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Steam Siege|Pokémon Ranger|104}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Primal Clash|Rough Seas|137}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Startling Megaphone|97}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Splash Energy|113}}|Energy|Water|Uncommon}}
+{{decklist/entry|8|{{TCG ID|Generations|Water Energy|77}}|Energy|Water|Common}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Ninja Blitz (TCG)]]

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
+import '../../utils/display_image_contract.dart';
 import 'founder_card_signal_detail_screen.dart';
 
 class FounderSetSignalDetailScreen extends StatefulWidget {
@@ -523,6 +524,7 @@ class _FounderSetTopCardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final preferredImageUrl = normalizeDisplayImageUrl(row.preferredImageUrl);
     final displayName = resolveDisplayIdentityFromFields(
       name: row.name,
       variantKey: row.variantKey,
@@ -554,13 +556,13 @@ class _FounderSetTopCardRow extends StatelessWidget {
                   color: colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: (row.preferredImageUrl ?? '').isEmpty
+                child: preferredImageUrl == null
                     ? Icon(
                         Icons.image_not_supported_outlined,
                         color: colorScheme.onSurface.withValues(alpha: 0.4),
                       )
                     : Image.network(
-                        row.preferredImageUrl!,
+                        preferredImageUrl,
                         fit: BoxFit.cover,
                         cacheWidth: 180,
                         errorBuilder: (context, error, stackTrace) => Icon(

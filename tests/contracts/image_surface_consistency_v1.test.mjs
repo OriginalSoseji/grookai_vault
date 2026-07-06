@@ -50,3 +50,15 @@ test("web image components pass fallback display URLs through product surfaces",
     );
   }
 });
+
+test("card detail suppresses external exact fallbacks when a primary image exists", () => {
+  const cardPage = source("apps/web/src/app/card/[gv_id]/page.tsx");
+
+  assert.match(cardPage, /function buildExactExternalImageFallback/);
+  assert.match(cardPage, /if \(primaryImageUrl\?\.trim\(\)\) return null;/);
+  assert.doesNotMatch(
+    cardPage,
+    /fallbackSrc=\{buildTcgDexImageUrl/,
+    "card detail must not pass direct TCGdex fallbacks behind already-resolved image URLs",
+  );
+});

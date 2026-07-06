@@ -1,0 +1,121 @@
+{
+  "id": "col1-13",
+  "name": "Leafeon",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "90",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Eevee",
+  "attacks": [
+    {
+      "name": "Miasma Wind",
+      "cost": [
+        "Colorless"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "50×",
+      "text": "Does 50 damage times the number of Special Conditions affecting the Defending Pokémon."
+    },
+    {
+      "name": "Sooting Scent",
+      "cost": [
+        "Grass"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "30",
+      "text": "The Defending Pokémon is now Asleep."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Water",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "13",
+  "artist": "match",
+  "rarity": "Rare Holo",
+  "flavorText": "When you see Leafeon asleep in a patch of sunshine, you'll know it is using photosynthesis to produce clean air.",
+  "nationalPokedexNumbers": [
+    470
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/13.png",
+    "large": "https://images.pokemontcg.io/col1/13_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/col1-13",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 36.75,
+        "mid": 84.99,
+        "high": 387,
+        "market": 34.06,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 28,
+        "mid": 39.99,
+        "high": 499.9,
+        "market": 26.65,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-13",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 16.23,
+      "lowPrice": 1.5,
+      "trendPrice": 23.25,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 4.67,
+      "reverseHoloLow": 3,
+      "reverseHoloTrend": 10.16,
+      "lowPriceExPlus": 4,
+      "avg1": 60,
+      "avg7": 21.37,
+      "avg30": 16.45,
+      "reverseHoloAvg1": 6.9,
+      "reverseHoloAvg7": 6.8,
+      "reverseHoloAvg30": 20.62
+    }
+  }
+}

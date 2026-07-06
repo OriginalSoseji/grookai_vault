@@ -1,0 +1,97 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1",
+  "mode": "targeted_remote_schema_apply",
+  "generated_at": "2026-06-27",
+  "linked_project": "ycdxbpibncqcchqiihfz",
+  "migration_version": "20260625120000",
+  "migration_file": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql",
+  "migration_hash_sha256": "f9bb21d9a6fcb9c7d9bc1b814fac809f070a0ab1e554db995fc878d76fc3723b",
+  "approved_migration_hash_sha256": "f9bb21d9a6fcb9c7d9bc1b814fac809f070a0ab1e554db995fc878d76fc3723b",
+  "package_fingerprint_sha256": "011428707606f4b6e40b4702b8a1fb0cca6249170213079c0062a6b771241d8a",
+  "evidence_backfill": false,
+  "cleanup_event_inserts": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "function_invocation": false,
+  "pricing_observations_writes": false,
+  "ebay_active_prices_latest_writes": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "public_price_rollups": false,
+  "identity_table_writes": false,
+  "card_print_writes": false,
+  "vault_writes": false,
+  "image_storage_writes": false,
+  "deletes": false,
+  "upserts": false,
+  "merges": false,
+  "db_push": false,
+  "global_apply": false,
+  "readback": {
+    "table_count": 1,
+    "view_count": 2,
+    "supporting_index_count": 4,
+    "total_index_count": 5,
+    "policy_count": 2,
+    "cleanup_event_rows": 0,
+    "migration_history_rows": 1
+  },
+  "final_grants": [
+    {
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "table_name": "market_listing_candidate_cleanup_events"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "market_listing_candidate_cleanup_events"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "v_market_listing_candidate_cleanup_card_summary_v1"
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "table_name": "v_market_listing_candidate_cleanup_current_v1"
+    }
+  ],
+  "final_policies": [
+    {
+      "policyname": "market_listing_candidate_cleanup_events_service_role_insert",
+      "cmd": "INSERT",
+      "roles": "{service_role}"
+    },
+    {
+      "policyname": "market_listing_candidate_cleanup_events_service_role_select",
+      "cmd": "SELECT",
+      "roles": "{service_role}"
+    }
+  ],
+  "migration_history": [
+    {
+      "version": "20260625120000",
+      "name": "market_listing_candidate_cleanup_action_model_v1",
+      "statement_count": 1
+    }
+  ],
+  "notes": [
+    "supabase migration repair could not run because SUPABASE_ACCESS_TOKEN was unavailable in this shell.",
+    "Migration history was marked directly through the approved linked DB connection.",
+    "Initial readback showed broader default service_role grants; grants were corrected to SELECT/INSERT on the event table and SELECT on views before final readback."
+  ],
+  "artifacts": {
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1/report.json",
+    "readback_json": "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1/readback.json",
+    "migration_file": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql"
+  },
+  "artifact_hashes_sha256": {
+    "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql": "f9bb21d9a6fcb9c7d9bc1b814fac809f070a0ab1e554db995fc878d76fc3723b",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1/readback.json": "7eeeda600104904f6acfa44291086a3d3e204f54a1bfce1f72980a233c38b034",
+    "docs/audits/market_evidence_engine_v1/MEE-CANDIDATE-CLEANUP-ACTION-MODEL-REMOTE-APPLY-V1.md": "fbf9530cbc86fa72d595138268396514be5528b79d5f588812a3134d1072c987"
+  },
+  "findings": []
+}

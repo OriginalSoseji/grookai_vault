@@ -18,6 +18,8 @@ const PROTECTED_ROUTE_PREFIXES = [
   "/wall",
 ] as const;
 
+const PUBLIC_ROUTE_EXCEPTIONS = ["/account/delete"] as const;
+
 export function normalizeNextPath(pathname: string, search = "") {
   const normalizedPath = pathname.trim().startsWith("/") ? pathname.trim() : `/${pathname.trim()}`;
   const normalizedSearch = search.trim();
@@ -35,6 +37,10 @@ export function buildLoginHref(nextPath: string) {
 
 export function isProtectedRoute(pathname: string) {
   const normalizedPath = pathname.trim().replace(/\/+$/, "") || "/";
+
+  if (PUBLIC_ROUTE_EXCEPTIONS.includes(normalizedPath as (typeof PUBLIC_ROUTE_EXCEPTIONS)[number])) {
+    return false;
+  }
 
   return PROTECTED_ROUTE_PREFIXES.some((prefix) => {
     if (normalizedPath === prefix) {

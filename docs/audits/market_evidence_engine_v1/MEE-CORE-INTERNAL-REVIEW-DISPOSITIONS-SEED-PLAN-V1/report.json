@@ -1,0 +1,336 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-DISPOSITIONS-SEED-PLAN-V1",
+  "generated_at": "2026-06-26T19:41:14.020Z",
+  "mode": "plan_only_internal_review_disposition_seed",
+  "package_fingerprint_sha256": "cd2a778a0aa248f6bb33840fc35c05af3a8ce920c1bd152d460c2cd5a6cfdd2f",
+  "audit": {
+    "source_view_rows": 2152,
+    "existing_active_disposition_rows": 0,
+    "planned_seed_rows": 2152,
+    "duplicate_package_keys": 0,
+    "existing_active_conflicts": 0,
+    "lane_counts": {
+      "candidate_review": 1536,
+      "classification_review": 19,
+      "high_signal_review": 213,
+      "low_signal_monitor": 380,
+      "reference_only_review": 4
+    },
+    "disposition_counts": {
+      "review_pending_candidate": 1536,
+      "review_pending_classification_fix": 19,
+      "review_pending_high_signal": 213,
+      "monitor_only": 380,
+      "review_pending_reference_only": 4
+    },
+    "evidence_lane_counts": {
+      "mixed_raw_slab": 574,
+      "raw_single": 378,
+      "reference_metric": 915,
+      "slab": 92,
+      "unknown": 18,
+      "classification_blocked": 19,
+      "low_signal": 156
+    },
+    "no_public_flags_in_manifest": true,
+    "sample_rows": [
+      {
+        "card_print_id": "00d9b073-9487-4e48-9995-1e78919ae7f4",
+        "gv_id": "GV-PK-LM-4",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "00d9b073-9487-4e48-9995-1e78919ae7f4|candidate_review|mixed_raw_slab",
+        "row_hash": "e24d300eb45b9da285d7eb20b5fda205c03792aed60ca19ad2f9dea1f29843f6"
+      },
+      {
+        "card_print_id": "00f10bd2-d1d7-4823-94e8-a810f83dc572",
+        "gv_id": "GV-PK-HL-13",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "00f10bd2-d1d7-4823-94e8-a810f83dc572|candidate_review|mixed_raw_slab",
+        "row_hash": "d8ab294ce064115fd71262be06889b313d4e988b94075e4e35488e8a07495013"
+      },
+      {
+        "card_print_id": "01878f9f-f4bf-4478-a130-6b989b397087",
+        "gv_id": "GV-PK-DS-13",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "01878f9f-f4bf-4478-a130-6b989b397087|candidate_review|mixed_raw_slab",
+        "row_hash": "7250fa5ae1a3ae11aca6009db3ffd2ebc6aaec2c6e65317e05459435ddf2e594"
+      },
+      {
+        "card_print_id": "01f09708-5e55-4c26-adca-7fb76daafd13",
+        "gv_id": "GV-PK-WCD-2013-ANGUILLE_SOUS_ROCHE-07-PLASMA_STORM-128-DOWSING_MACHINE",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "01f09708-5e55-4c26-adca-7fb76daafd13|candidate_review|mixed_raw_slab",
+        "row_hash": "ffdfe20c7cb98da39449e074331cc2a81312e5b10caaf11d1dcd3b47dcbfc71a"
+      },
+      {
+        "card_print_id": "029b4b7c-8d8c-4067-b30c-2852eda0f36a",
+        "gv_id": "GV-PK-MEP-044",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "029b4b7c-8d8c-4067-b30c-2852eda0f36a|candidate_review|mixed_raw_slab",
+        "row_hash": "d5c872c41ecdeededa90e7379a6aeba0e277ac296247507989476699c96cdd48"
+      },
+      {
+        "card_print_id": "02c1147c-3914-4b4a-a1d6-8d620e633e9b",
+        "gv_id": "GV-PK-BASE1-10-SHADOWLESS",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "02c1147c-3914-4b4a-a1d6-8d620e633e9b|candidate_review|mixed_raw_slab",
+        "row_hash": "3e8ddc26e2924cd501027d54d22c93576f47a9de2ff6d43ed75f34d7375571d8"
+      },
+      {
+        "card_print_id": "030ed8ca-a128-4b8a-b69e-fe4de513c99a",
+        "gv_id": "GV-PK-HP-3",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "030ed8ca-a128-4b8a-b69e-fe4de513c99a|candidate_review|mixed_raw_slab",
+        "row_hash": "eb784b8cf7d4f93693cd3708280446a0b576559975ebea2e4c3683051e875e56"
+      },
+      {
+        "card_print_id": "0361f2ec-2533-4f55-bcb5-5bd1bc4cdc34",
+        "gv_id": "GV-PK-CG-1",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0361f2ec-2533-4f55-bcb5-5bd1bc4cdc34|candidate_review|mixed_raw_slab",
+        "row_hash": "d5afdb38ec14f582154de947d50535611e59eebae33e5e42b4fb45bdd2e2eeab"
+      },
+      {
+        "card_print_id": "03724fbd-3171-421f-970e-2a4c630136a4",
+        "gv_id": "GV-PK-DX-100",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "03724fbd-3171-421f-970e-2a4c630136a4|candidate_review|mixed_raw_slab",
+        "row_hash": "9f93ea591ca10fc9db3dbf3d6e227424f3bc33ca96b408f855ab3a9ef7c92f61"
+      },
+      {
+        "card_print_id": "03e4f54b-c315-45cb-baa4-0b5ab559cdfb",
+        "gv_id": "GV-PK-CG-13",
+        "review_lane": "candidate_review",
+        "evidence_lane": "raw_single",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "03e4f54b-c315-45cb-baa4-0b5ab559cdfb|candidate_review|raw_single",
+        "row_hash": "f0c7aaf7fe561477645ae098912451075d0b69c0ab2c48f1fd322a16f2487dd6"
+      },
+      {
+        "card_print_id": "0445db40-90d6-4452-8def-df8a6563cb01",
+        "gv_id": "GV-PK-RS-7",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0445db40-90d6-4452-8def-df8a6563cb01|candidate_review|mixed_raw_slab",
+        "row_hash": "64e65788f96d10f913dd31dc3cac64ed731d854d840206c8053ff0441055fd33"
+      },
+      {
+        "card_print_id": "04462fe4-ce4b-4d73-a8b9-b032b8d6b392",
+        "gv_id": "GV-PK-WCD-2013-ANGUILLE_SOUS_ROCHE-03-NOBLE_VICTORIES-15-VICTINI",
+        "review_lane": "candidate_review",
+        "evidence_lane": "raw_single",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "04462fe4-ce4b-4d73-a8b9-b032b8d6b392|candidate_review|raw_single",
+        "row_hash": "612624335e0f01e3043f08cd0854560173f1ac9a4f28954469ff724a58b3e2da"
+      },
+      {
+        "card_print_id": "0486f032-8272-454e-8805-fce4bdffc855",
+        "gv_id": "GV-PK-EM-11",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0486f032-8272-454e-8805-fce4bdffc855|candidate_review|mixed_raw_slab",
+        "row_hash": "6e777208e876c0f2d8bcb58055181cb7e75d365aedf10952f91ffb23f2c8aa88"
+      },
+      {
+        "card_print_id": "0518b4f7-d7a2-4f45-a6e1-140240aafeed",
+        "gv_id": "GV-PK-MA-4",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0518b4f7-d7a2-4f45-a6e1-140240aafeed|candidate_review|mixed_raw_slab",
+        "row_hash": "2320293dd6a5e978728d0dfad417d21e66ac9bf15c2b7e7befd0d6827b577357"
+      },
+      {
+        "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "gv_id": "GV-PK-MCD-2021-22",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "05241ed0-d57f-4faf-9267-ade2436a01c6|candidate_review|mixed_raw_slab",
+        "row_hash": "a4cf88ec15f7b3a33cab223c69e7b6b1a8554b64e9e28abff0fbad3c78251b6c"
+      },
+      {
+        "card_print_id": "05876e44-866b-4a13-b1aa-1ebe0a6eb7f0",
+        "gv_id": "GV-PK-TK-tk-ex-m-10",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "05876e44-866b-4a13-b1aa-1ebe0a6eb7f0|candidate_review|mixed_raw_slab",
+        "row_hash": "5ad16475e423feb6ee15032577cbcd72488fa89340c8ea00852a00d4ea1217d1"
+      },
+      {
+        "card_print_id": "05c5a29e-5e37-4212-8a7a-6aa851d338f0",
+        "gv_id": "GV-PK-TK-tk-xy-p-14",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "05c5a29e-5e37-4212-8a7a-6aa851d338f0|candidate_review|mixed_raw_slab",
+        "row_hash": "5c87b801a059ce23e9b4e83829e231ea8f446f003fc91910de97ae25faae61eb"
+      },
+      {
+        "card_print_id": "0600c082-e03b-4a34-9784-8a5557b9610c",
+        "gv_id": "GV-PK-TK-tk-xy-su-14",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0600c082-e03b-4a34-9784-8a5557b9610c|candidate_review|mixed_raw_slab",
+        "row_hash": "648515bfdd57dd71234decb9e8e46e6db3c7496b56d96bf53d7a36dfe121b08f"
+      },
+      {
+        "card_print_id": "06085a83-446f-4685-8db2-388933589284",
+        "gv_id": "GV-PK-DR-4",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "06085a83-446f-4685-8db2-388933589284|candidate_review|mixed_raw_slab",
+        "row_hash": "9ffa9c0a563713646e62390aec85460b99bc00502868999069e16ed63b85797b"
+      },
+      {
+        "card_print_id": "06978f77-eb3e-4135-b22c-17ebac941141",
+        "gv_id": "GV-PK-DF-6",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "06978f77-eb3e-4135-b22c-17ebac941141|candidate_review|mixed_raw_slab",
+        "row_hash": "21d92dc50b7876fdb23aadcea464ed10cbcd774124735741555f4a25ab5fc8c4"
+      },
+      {
+        "card_print_id": "07123e3e-8bf4-4fb0-aa90-2327ded8171b",
+        "gv_id": "GV-PK-MCD-2016-9",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "07123e3e-8bf4-4fb0-aa90-2327ded8171b|candidate_review|mixed_raw_slab",
+        "row_hash": "a6f121610387ab51c1679426330fac1b91ba70f6cd46e0c022836721cdf6041d"
+      },
+      {
+        "card_print_id": "0714bbcc-263a-4a4f-9a3b-f915f5b92f53",
+        "gv_id": "GV-PK-SS-99",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "0714bbcc-263a-4a4f-9a3b-f915f5b92f53|candidate_review|mixed_raw_slab",
+        "row_hash": "f1d643c32b89620ba04bf1f49146a0110bfcc610a304c7418bb7b2edfa2f3003"
+      },
+      {
+        "card_print_id": "074718b1-05ea-4d58-b447-ad88e3101608",
+        "gv_id": "GV-PK-BASE1-9-FIRST-EDITION",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "074718b1-05ea-4d58-b447-ad88e3101608|candidate_review|mixed_raw_slab",
+        "row_hash": "2d5ece1e72e448fbbe8956d9ae9e94a8f387e38531ecac1b86783fcbfd51fd5a"
+      },
+      {
+        "card_print_id": "07539f47-84e1-4e2b-8268-53ef24ab258d",
+        "gv_id": "GV-PK-PK-8",
+        "review_lane": "candidate_review",
+        "evidence_lane": "mixed_raw_slab",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "07539f47-84e1-4e2b-8268-53ef24ab258d|candidate_review|mixed_raw_slab",
+        "row_hash": "72826b2162f9cb71d609b95831b724424d7f629d00dc57b169d3f2e9293148d1"
+      },
+      {
+        "card_print_id": "07b71d50-8151-4292-ac49-5305766f9afa",
+        "gv_id": "GV-PK-MCD-2011-4",
+        "review_lane": "candidate_review",
+        "evidence_lane": "raw_single",
+        "review_status": "pending",
+        "review_disposition": "review_pending_candidate",
+        "package_key": "07b71d50-8151-4292-ac49-5305766f9afa|candidate_review|raw_single",
+        "row_hash": "7ad06c638d4a685c20332cb9994d2f3bf58188354f261aa8d816f83dc8bb574b"
+      }
+    ]
+  },
+  "lane_disposition": {
+    "high_signal_review": "review_pending_high_signal",
+    "candidate_review": "review_pending_candidate",
+    "classification_review": "review_pending_classification_fix",
+    "reference_only_review": "review_pending_reference_only",
+    "low_signal_monitor": "monitor_only"
+  },
+  "lane_status": {
+    "high_signal_review": "pending",
+    "candidate_review": "pending",
+    "classification_review": "pending",
+    "reference_only_review": "pending",
+    "low_signal_monitor": "resolved"
+  },
+  "artifacts": {
+    "row_manifest_jsonl": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-DISPOSITIONS-SEED-PLAN-V1/row_manifest.jsonl",
+    "apply_candidate_sql": "docs/sql/mee_core_internal_review_dispositions_seed_v1_apply_candidate.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_dispositions_seed_v1_readback.sql",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-DISPOSITIONS-SEED-PLAN-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-DISPOSITIONS-SEED-PLAN-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_DISPOSITIONS_SEED_PLAN_V1.md"
+  },
+  "hashes": {
+    "row_manifest_sha256": "5bd62cf2b87ed82fdb7bb5c288a62bd5a17aabcb8eab87147b13cb4ff591f406",
+    "apply_candidate_sql_sha256": "d474eec66b6f39c8fbfe10160f4eec09af2576076af445a85016cc875a05d7c8",
+    "readback_sql_sha256": "63cecf0838b116d37a205fbdb8d41778ddd8750d69be87c80f7feed0a0e6ff48"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "evidence_backfill_apply": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

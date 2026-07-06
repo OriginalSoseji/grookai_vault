@@ -1,0 +1,42 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-TINY-BACKFILL-PLAN-V1",
+  "generated_at": "2026-06-26T15:19:59.877Z",
+  "mode": "local_backfill_plan_only_no_db_writes",
+  "source_projection_path": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_PROJECTION_DRY_RUN_V1.json",
+  "source_projection_fingerprint": "99d6f31b5aab277785f1631ba9167a4c6382db9fda717df76803ef4d8e3af34d",
+  "package_fingerprint_sha256": "aabb3f8d7556afed1ff8a85a75cc44007f7d468a225f60f813650251b0218e2f",
+  "row_counts": {
+    "market_evidence_observations": 6,
+    "market_evidence_lifecycle_events": 42
+  },
+  "manifest_hashes": {
+    "market_evidence_observations_jsonl_sha256": "55e20e1960555e9d4697f6d595de13c72bfa1c86dda1f3254f0c26b48aa1c5dd",
+    "market_evidence_lifecycle_events_jsonl_sha256": "cc2fdff27b69700f016bd41f7668c8779e04f6cb3d97c8f6ea545f13a09b1619"
+  },
+  "findings": [],
+  "artifacts": {
+    "observations_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_TINY_BACKFILL_PLAN_V1/market_evidence_observations.jsonl",
+    "lifecycle_events_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_TINY_BACKFILL_PLAN_V1/market_evidence_lifecycle_events.jsonl",
+    "manifest_json": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_TINY_BACKFILL_PLAN_V1/manifest.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_TINY_BACKFILL_PLAN_V1.md"
+  },
+  "boundary_proof": {
+    "db_writes": false,
+    "evidence_backfill_apply": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

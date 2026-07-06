@@ -1,0 +1,50 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-REPAIR-PLAN-V1",
+  "generated_at": "2026-06-26T02:38:29.237Z",
+  "mode": "repair_plan_only_no_writes",
+  "source_plan_artifact": "docs/audits/market_evidence_engine_v1/mee_11m_market_listing_acquisition_daily_batch_backfill_plan_2026-06-26T02-07-43-126Z.json",
+  "source_plan_fingerprint_sha256": "2ebd59a1c8b56e8f613ebd7c5a616a82c655bb0b2eed9899b71d309ba2226c44",
+  "source_row_manifest_hash_sha256": "92b002b5831f77b75c4ede1445a5dd2993bbee7df1a41ae78f83b539b185704a",
+  "package_fingerprint_sha256": "b0b65f427302042ba29889133a968551110cd277c7b5bfa2a68edd505b8ce79a",
+  "row_manifest_hash_sha256": "d49476930339252c71ab15dd71e4a83a1ef207b627a5e4b5767d8afb04d9cb04",
+  "row_file_hashes_sha256": {
+    "sellerSnapshotRows": "2ec573e3e053b1c062e8597d84ee09fcf8ef79b6d2fd8fd20c1a9717065709a2",
+    "priceEventRows": "8805ca95822068d9200b897537eab86927bb3ef236325b437216dcf32ec10836"
+  },
+  "proposed_table_row_counts": {
+    "market_listing_seller_snapshots": 22856,
+    "market_listing_price_events": 129665
+  },
+  "repair_stats": {
+    "existing_seller_rows_skipped": 1000,
+    "existing_price_event_rows_skipped": 0,
+    "negative_feedback_scores_sanitized": 20
+  },
+  "row_files": {
+    "sellerSnapshotRows": "docs/audits/market_evidence_engine_v1/mee_11p_market_listing_acquisition_daily_batch_backfill_repair_plan_2026-06-26T02-38-29-237Z/market_listing_seller_snapshots_repair.jsonl",
+    "priceEventRows": "docs/audits/market_evidence_engine_v1/mee_11p_market_listing_acquisition_daily_batch_backfill_repair_plan_2026-06-26T02-38-29-237Z/market_listing_price_events_repair.jsonl"
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "card_candidate_writes": false,
+    "rollup_writes": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "ready_for_apply_approval": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-BACKFILL-REPAIR-APPLY-V1 apply only. Package fingerprint: b0b65f427302042ba29889133a968551110cd277c7b5bfa2a68edd505b8ce79a. Row manifest hash: d49476930339252c71ab15dd71e4a83a1ef207b627a5e4b5767d8afb04d9cb04. Source plan fingerprint: 2ebd59a1c8b56e8f613ebd7c5a616a82c655bb0b2eed9899b71d309ba2226c44. Source row manifest hash: 92b002b5831f77b75c4ede1445a5dd2993bbee7df1a41ae78f83b539b185704a. Scope: insert 22856 missing sanitized market_listing_seller_snapshots rows and 129665 market_listing_price_events rows from local MEE-11P repair artifacts only, completing the partial MEE-11N apply while preserving slab/raw-single classification metadata in event_payload. Negative seller feedback_score values are normalized to null to satisfy the existing warehouse constraint. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No card candidate writes. No rollup writes. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

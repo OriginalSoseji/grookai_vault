@@ -1,0 +1,2167 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-REVIEW-GATE-V1",
+  "generated_at": "2026-06-25T18:47:46.723Z",
+  "mode": "internal_reference_signal_review_gate_no_writes",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "stored_rollup_created": false
+  },
+  "input_counts": {
+    "candidates": 11025,
+    "normalized_evidence": 11025,
+    "signal_candidates": 993
+  },
+  "signal_summary": {
+    "signal_count": 993,
+    "publishable_count": 0,
+    "multi_source_signal_count": 197,
+    "single_source_signal_count": 796,
+    "currency_filter": "USD",
+    "currency_excluded_evidence_count": 2163,
+    "signal_band_counts": {
+      "multi_source_reference_candidate": 197,
+      "single_source_reference_candidate": 796
+    },
+    "currency_counts": {
+      "USD": 993
+    }
+  },
+  "review_summary": {
+    "reviewed_signal_count": 993,
+    "publishable_count": 0,
+    "status_counts": {
+      "blocked_special_lane_review": 24,
+      "review_required_context": 158,
+      "review_required_high_variance": 241,
+      "review_required_single_source": 570
+    },
+    "variance_band_counts": {
+      "bounded_variance": 424,
+      "extreme_variance": 135,
+      "high_variance": 122,
+      "moderate_variance": 312
+    },
+    "flag_counts": {
+      "extreme_variance": 135,
+      "high_variance": 122,
+      "moderate_variance": 312,
+      "non_usd_evidence_excluded": 197,
+      "quarantined_context_present": 993,
+      "single_source_only": 796,
+      "special_lane_review_required": 24,
+      "thin_evidence": 6
+    },
+    "review_ready_count": 0,
+    "review_required_count": 969,
+    "blocked_count": 24
+  },
+  "samples": {
+    "review_ready_multi_source": [],
+    "review_required_context": [
+      {
+        "card_print_id": "624ae7f7-9fcb-4db5-b6d2-cdb22dcdbe2c",
+        "gv_id": "GV-PK-B2-1",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 33.38,
+        "reference_median": 54.14,
+        "reference_high": 199.98,
+        "price_ratio": 5.99,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "a55e666e-1203-4208-83e1-1071edebe098",
+        "gv_id": "GV-PK-B2-10",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 37.06,
+        "reference_median": 56.08,
+        "reference_high": 58.9,
+        "price_ratio": 1.59,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "608e5f8a-fc62-41a0-81c9-e48954d7d7d1",
+        "gv_id": "GV-PK-B2-103",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "reference_low": 4.68,
+        "reference_median": 8.6,
+        "reference_high": 11.94,
+        "price_ratio": 2.55,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "11f338c3-0c0d-4bdd-99dc-a62c45b6c45a",
+        "gv_id": "GV-PK-B2-104",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 1.2,
+        "reference_median": 2.68,
+        "reference_high": 2.75,
+        "price_ratio": 2.29,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+        "gv_id": "GV-PK-B2-105",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 2.41,
+        "reference_median": 4.12,
+        "reference_high": 4.49,
+        "price_ratio": 1.86,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+        "gv_id": "GV-PK-B2-106",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 0.95,
+        "reference_median": 3.42,
+        "reference_high": 3.45,
+        "price_ratio": 3.63,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "bbfdae91-e85b-4621-8f8a-b6f41e047571",
+        "gv_id": "GV-PK-B2-107",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "reference_low": 3.29,
+        "reference_median": 6.03,
+        "reference_high": 6.69,
+        "price_ratio": 2.03,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "b2363089-8ef1-41f7-a8cb-e2179f3cb286",
+        "gv_id": "GV-PK-B2-11",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 17.85,
+        "reference_median": 25.28,
+        "reference_high": 44.65,
+        "price_ratio": 2.5,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "e867da6e-4435-4319-9243-ed9bfcf07853",
+        "gv_id": "GV-PK-B2-12",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 17.69,
+        "reference_median": 30.96,
+        "reference_high": 32.83,
+        "price_ratio": 1.86,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "550d4644-5cca-4801-8520-cf16c6a4820c",
+        "gv_id": "GV-PK-B2-13",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 16.99,
+        "reference_median": 26.33,
+        "reference_high": 30.39,
+        "price_ratio": 1.79,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "2846df5c-cc18-4048-9950-8909696c91bb",
+        "gv_id": "GV-PK-B2-14",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 20,
+        "reference_median": 25.59,
+        "reference_high": 33.24,
+        "price_ratio": 1.66,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "e5b06693-a143-4abe-8843-ea1328e54fdf",
+        "gv_id": "GV-PK-B2-15",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 11,
+        "reference_median": 19.29,
+        "reference_high": 25,
+        "price_ratio": 2.27,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "ab49deb8-7355-4fba-82eb-e63efcbfaec1",
+        "gv_id": "GV-PK-B2-17",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 19,
+        "reference_median": 25.49,
+        "reference_high": 96.8,
+        "price_ratio": 5.09,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "411aeb7c-10cd-48c3-935b-d199c670ed5b",
+        "gv_id": "GV-PK-B2-18",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 72.4,
+        "reference_median": 94.85,
+        "reference_high": 96.05,
+        "price_ratio": 1.33,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "67833e22-37e3-4525-9b9c-cd403252d9e9",
+        "gv_id": "GV-PK-B2-19",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 11,
+        "reference_median": 15.98,
+        "reference_high": 78.4,
+        "price_ratio": 7.13,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "16196783-6617-431c-a246-773efd71b7fa",
+        "gv_id": "GV-PK-B2-2",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 87,
+        "reference_median": 128.35,
+        "reference_high": 163.6,
+        "price_ratio": 1.88,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "dae698a9-dcd1-451b-9dc5-4b6b2af7470a",
+        "gv_id": "GV-PK-B2-20",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 20.61,
+        "reference_median": 33.96,
+        "reference_high": 38.41,
+        "price_ratio": 1.86,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "ef6e308a-9f54-4b03-b420-053d2d0e8112",
+        "gv_id": "GV-PK-B2-21",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 0.59,
+        "reference_median": 1.69,
+        "reference_high": 2.81,
+        "price_ratio": 4.76,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "61925644-0c1d-4dd0-8728-0389d91fcd29",
+        "gv_id": "GV-PK-B2-22",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 4.99,
+        "reference_median": 6.93,
+        "reference_high": 9.93,
+        "price_ratio": 1.99,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "919a69ac-7d25-47f2-aa39-5a66908a26d0",
+        "gv_id": "GV-PK-B2-23",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_context",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 1.9,
+        "reference_median": 3.94,
+        "reference_high": 4.54,
+        "price_ratio": 2.39,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      }
+    ],
+    "review_required_single_source": [
+      {
+        "card_print_id": "96c339f9-3aa2-4f24-aadb-bd48fec281a1",
+        "gv_id": "GV-PK-BCR-101",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 2.6,
+        "reference_median": 3.72,
+        "reference_high": 4.1,
+        "price_ratio": 1.58,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "0d248fe1-c49e-4908-abba-25ac4014db60",
+        "gv_id": "GV-PK-BCR-103",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.99,
+        "reference_median": 4.25,
+        "reference_high": 4.44,
+        "price_ratio": 2.23,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "21e8b155-6e06-4176-a05c-698c037c9975",
+        "gv_id": "GV-PK-BCR-108",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 39.4,
+        "reference_median": 85,
+        "reference_high": 100,
+        "price_ratio": 2.54,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "a8c7d03b-1630-48d9-b98d-de56fd43043d",
+        "gv_id": "GV-PK-BCR-122",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 3.2,
+        "reference_median": 6.14,
+        "reference_high": 9.99,
+        "price_ratio": 3.12,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "1a3887ce-40d5-48ac-a5f0-269b24b32100",
+        "gv_id": "GV-PK-BCR-125",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.76,
+        "reference_high": 1.24,
+        "price_ratio": 4.96,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "4d180f6d-b198-410f-992f-27de53b4fc93",
+        "gv_id": "GV-PK-BCR-126",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.45,
+        "reference_median": 0.78,
+        "reference_high": 2.95,
+        "price_ratio": 6.56,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "f67aa693-e235-45c6-b50f-2b91d60767ea",
+        "gv_id": "GV-PK-BCR-137",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 13.38,
+        "reference_median": 15.38,
+        "reference_high": 17.54,
+        "price_ratio": 1.31,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "c905cf68-16f5-4337-b894-ac7e1f2f31fe",
+        "gv_id": "GV-PK-BCR-138",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.12,
+        "reference_median": 2.23,
+        "reference_high": 2.54,
+        "price_ratio": 2.27,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "769daade-6e67-4ae5-a760-685a0a814c0f",
+        "gv_id": "GV-PK-BCR-139",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.5,
+        "reference_median": 2.52,
+        "reference_high": 2.67,
+        "price_ratio": 1.78,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "e4b550f5-e9b2-4bfb-8c86-fe0d38f38bcc",
+        "gv_id": "GV-PK-BCR-140",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 4.31,
+        "reference_median": 6.66,
+        "reference_high": 7.35,
+        "price_ratio": 1.71,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "d40f4675-bdbb-46db-aec1-a036359332af",
+        "gv_id": "GV-PK-BCR-147",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 164.79,
+        "reference_median": 191.49,
+        "reference_high": 208.26,
+        "price_ratio": 1.26,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "6adb287a-5160-4e32-be87-f8d53916f684",
+        "gv_id": "GV-PK-BCR-148",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 39.47,
+        "reference_median": 61.16,
+        "reference_high": 63.18,
+        "price_ratio": 1.6,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "a9f4c5b6-0476-4e5c-803c-97c739435560",
+        "gv_id": "GV-PK-BCR-149",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 180.23,
+        "reference_median": 219.35,
+        "reference_high": 219.99,
+        "price_ratio": 1.22,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "2d0dba60-3d6a-47a4-b844-daded2b67590",
+        "gv_id": "GV-PK-BCR-15",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.62,
+        "reference_high": 1.82,
+        "price_ratio": 7.28,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "eeb71c4e-c908-46bc-8cfa-1167c1131502",
+        "gv_id": "GV-PK-BCR-151",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 3,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 125,
+        "reference_median": 151.37,
+        "reference_high": 155.45,
+        "price_ratio": 1.24,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "bc9dfb62-bf0b-460c-9d25-3e3a80ad3964",
+        "gv_id": "GV-PK-BCR-20",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 17.96,
+        "reference_median": 45.88,
+        "reference_high": 162.26,
+        "price_ratio": 9.03,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "532e7176-d452-4fb0-ac2b-5f3ab7f50c75",
+        "gv_id": "GV-PK-BCR-22",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.15,
+        "reference_median": 0.38,
+        "reference_high": 1.04,
+        "price_ratio": 6.93,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "de5dc4e7-450b-453a-8c30-8cb6a04c0e75",
+        "gv_id": "GV-PK-BCR-23",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.3,
+        "reference_median": 1.27,
+        "reference_high": 2.96,
+        "price_ratio": 9.87,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "52b4fc4f-d6da-43f0-a13b-71b52445adbb",
+        "gv_id": "GV-PK-BCR-26",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 2.5,
+        "reference_median": 4.22,
+        "reference_high": 4.49,
+        "price_ratio": 1.8,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "8f533fe1-6af9-4193-8c7f-d67e36254ea0",
+        "gv_id": "GV-PK-BCR-31",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_single_source",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 15.71,
+        "reference_median": 21.64,
+        "reference_high": 37.5,
+        "price_ratio": 2.39,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      }
+    ],
+    "review_required_high_variance": [
+      {
+        "card_print_id": "83ab7eeb-8a78-468c-82d2-200e16f0ce19",
+        "gv_id": "GV-PK-B2-101",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 1.17,
+        "reference_median": 2.56,
+        "reference_high": 32.92,
+        "price_ratio": 28.14,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "e2bfe08b-2be1-4c03-bdb8-87cedaa797c6",
+        "gv_id": "GV-PK-B2-31",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 1.98,
+        "reference_median": 4.86,
+        "reference_high": 42.2,
+        "price_ratio": 21.31,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "d9f6dc64-7247-46c9-95e4-7f3145abb520",
+        "gv_id": "GV-PK-BCR-10",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.96,
+        "reference_median": 7.02,
+        "reference_high": 58.81,
+        "price_ratio": 61.26,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "8d882995-1455-4abb-93ca-4c449a391d1c",
+        "gv_id": "GV-PK-BCR-102",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.4,
+        "reference_median": 0.77,
+        "reference_high": 19.4,
+        "price_ratio": 48.5,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "85c15e81-c19e-4904-a923-0a1782e901d9",
+        "gv_id": "GV-PK-BCR-13",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 3.25,
+        "reference_median": 6.19,
+        "reference_high": 55.4,
+        "price_ratio": 17.05,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "3bf88b47-3fd8-400a-8d3b-133cd067c5a5",
+        "gv_id": "GV-PK-BCR-17",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.35,
+        "reference_median": 1.27,
+        "reference_high": 4.52,
+        "price_ratio": 12.91,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "614783cc-5177-491b-a643-6be94d097802",
+        "gv_id": "GV-PK-BCR-3",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.7,
+        "reference_median": 4.68,
+        "reference_high": 35.3,
+        "price_ratio": 20.76,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "c9e3c52c-f6cf-4e52-9505-c8edb383048c",
+        "gv_id": "GV-PK-BCR-66",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.24,
+        "reference_median": 0.4,
+        "reference_high": 4.72,
+        "price_ratio": 19.67,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "265ae727-cda7-4245-9f18-15d832df28fd",
+        "gv_id": "GV-PK-BLW-12",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.87,
+        "reference_high": 6.31,
+        "price_ratio": 25.24,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "21550df4-17aa-4819-94bc-2188491af76b",
+        "gv_id": "GV-PK-BLW-26",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 3.5,
+        "reference_median": 6.49,
+        "reference_high": 39.45,
+        "price_ratio": 11.27,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "2d20428b-9ea8-418e-89f6-b902f8d0cf83",
+        "gv_id": "GV-PK-BLW-37",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.1,
+        "reference_median": 0.78,
+        "reference_high": 1.21,
+        "price_ratio": 12.1,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "85cf4f80-e9c7-41e1-a2b1-2e029fde3eae",
+        "gv_id": "GV-PK-BLW-43",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.2,
+        "reference_median": 1.04,
+        "reference_high": 2.75,
+        "price_ratio": 13.75,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "163190d0-63fd-4942-875d-5b7eaa9e3fc4",
+        "gv_id": "GV-PK-BLW-46",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.12,
+        "reference_median": 0.75,
+        "reference_high": 1.96,
+        "price_ratio": 16.33,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+        "gv_id": "GV-PK-BLW-54",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.35,
+        "reference_median": 0.86,
+        "reference_high": 96.91,
+        "price_ratio": 276.89,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "bd879413-47e2-487d-b03c-9a6a89b9e6dc",
+        "gv_id": "GV-PK-BLW-69",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.46,
+        "reference_median": 2.45,
+        "reference_high": 7.5,
+        "price_ratio": 16.3,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "cfc868a6-6066-4e72-850e-0fc07334fc70",
+        "gv_id": "GV-PK-BLW-83",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.12,
+        "reference_median": 0.99,
+        "reference_high": 1.36,
+        "price_ratio": 11.33,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "a1ee7bd3-40f8-4cef-b518-5e850322685c",
+        "gv_id": "GV-PK-BLW-89",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.26,
+        "reference_median": 1.05,
+        "reference_high": 4.92,
+        "price_ratio": 18.92,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "gv_id": "GV-PK-BS-17",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "reference_low": 1.91,
+        "reference_median": 4.56,
+        "reference_high": 46.1,
+        "price_ratio": 24.14,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "bb877a1f-7779-40c2-8dff-6f8c4b00f70e",
+        "gv_id": "GV-PK-BS-19",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "reference_low": 3.99,
+        "reference_median": 7,
+        "reference_high": 39.95,
+        "price_ratio": 10.01,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "fffd7563-fd40-4613-87d9-221a747751a0",
+        "gv_id": "GV-PK-BS-71",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "reference_low": 0.72,
+        "reference_median": 3.1,
+        "reference_high": 89.99,
+        "price_ratio": 124.99,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      }
+    ],
+    "blocked_special_lane_review": [
+      {
+        "card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+        "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.39,
+        "reference_median": 0.86,
+        "reference_high": 2.22,
+        "price_ratio": 5.69,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+        "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.39,
+        "reference_median": 0.86,
+        "reference_high": 2.22,
+        "price_ratio": 5.69,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "a9cd7cc2-f0d3-421d-807b-a0c39bf148ac",
+        "gv_id": "GV-PK-DP-52-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 1.32,
+        "reference_high": 4.72,
+        "price_ratio": 18.88,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "4e4e2604-5401-4cd7-98bd-e86a3812ead3",
+        "gv_id": "GV-PK-DP-52-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 1.32,
+        "reference_high": 4.72,
+        "price_ratio": 18.88,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "ff85e81b-039a-4b4d-b9be-8d5db925587b",
+        "gv_id": "GV-PK-MD-42-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 1.06,
+        "reference_high": 3.39,
+        "price_ratio": 13.56,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "3eb71b5a-62c5-4df5-8080-3cb86705d758",
+        "gv_id": "GV-PK-MT-48-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.22,
+        "reference_median": 1.05,
+        "reference_high": 3.1,
+        "price_ratio": 14.09,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "c2e05fd9-c41d-4523-a1ca-41e57e1860a2",
+        "gv_id": "GV-PK-MT-48-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.22,
+        "reference_median": 1.05,
+        "reference_high": 3.1,
+        "price_ratio": 14.09,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1",
+        "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 8.93,
+        "reference_median": 14.65,
+        "reference_high": 19.88,
+        "price_ratio": 2.23,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d",
+        "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 8.93,
+        "reference_median": 14.65,
+        "reference_high": 19.88,
+        "price_ratio": 2.23,
+        "variance_band": "bounded_variance",
+        "flags": [
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02",
+        "gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.9,
+        "reference_median": 5.25,
+        "reference_high": 9.77,
+        "price_ratio": 10.86,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104",
+        "gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.9,
+        "reference_median": 5.25,
+        "reference_high": 9.77,
+        "price_ratio": 10.86,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e",
+        "gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 16.69,
+        "reference_median": 121.48,
+        "reference_high": 385,
+        "price_ratio": 23.07,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c",
+        "gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 16.69,
+        "reference_median": 121.48,
+        "reference_high": 385,
+        "price_ratio": 23.07,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca",
+        "gv_id": "GV-PK-PR-BLW-48-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 33.5,
+        "reference_median": 244.66,
+        "reference_high": 350,
+        "price_ratio": 10.45,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b",
+        "gv_id": "GV-PK-PR-BLW-48-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 33.5,
+        "reference_median": 244.66,
+        "reference_high": 350,
+        "price_ratio": 10.45,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "fef78d29-f738-4acd-ab1d-55629893f933",
+        "gv_id": "GV-PK-PR-BLW-51-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 34.31,
+        "reference_median": 71.24,
+        "reference_high": 190,
+        "price_ratio": 5.54,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "b9cac5c8-9963-4366-ba0c-14c1f76a97ac",
+        "gv_id": "GV-PK-PR-BLW-51-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 34.31,
+        "reference_median": 71.24,
+        "reference_high": 190,
+        "price_ratio": 5.54,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "d8ace098-946b-4034-94ce-63a398d46f0d",
+        "gv_id": "GV-PK-PR-BLW-53-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 50,
+        "reference_median": 157.47,
+        "reference_high": 299.98,
+        "price_ratio": 6,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "0e5c0b8f-a67b-4f55-a0b9-e0ba3e412e3e",
+        "gv_id": "GV-PK-PR-BLW-53-STAFF-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 50,
+        "reference_median": 157.47,
+        "reference_high": 299.98,
+        "price_ratio": 6,
+        "variance_band": "moderate_variance",
+        "flags": [
+          "moderate_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      },
+      {
+        "card_print_id": "99b54c90-f9e0-4125-bcf1-3fb564c9aeb1",
+        "gv_id": "GV-PK-PR-BLW-75-PRERELEASE-STAMP",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "blocked_special_lane_review",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 49.75,
+        "reference_median": 236.5,
+        "reference_high": 600,
+        "price_ratio": 12.06,
+        "variance_band": "high_variance",
+        "flags": [
+          "high_variance",
+          "single_source_only",
+          "quarantined_context_present",
+          "special_lane_review_required"
+        ]
+      }
+    ],
+    "high_variance": [
+      {
+        "card_print_id": "f508366b-c319-42d8-b8e4-992578689dd8",
+        "gv_id": "GV-PK-LC-21",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 3.73,
+        "reference_median": 140.51,
+        "reference_high": 1999.99,
+        "price_ratio": 536.19,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "c56f6e9d-dd20-4a59-a9f8-92bb5f7d2ef4",
+        "gv_id": "GV-PK-COL-23",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 5,
+        "quarantined_evidence_count": 4,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.41,
+        "reference_median": 2.54,
+        "reference_high": 715.89,
+        "price_ratio": 507.72,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "13466e74-83bd-4dce-98de-39aaec58b54a",
+        "gv_id": "GV-PK-PLF-10",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.24,
+        "reference_median": 0.53,
+        "reference_high": 96.89,
+        "price_ratio": 403.71,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "a04d60de-499b-40eb-a19d-6de531260a70",
+        "gv_id": "GV-PK-LC-28",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.7,
+        "reference_median": 19.87,
+        "reference_high": 620.66,
+        "price_ratio": 365.09,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "c7fb4cfa-ca76-474e-859e-9dd33719504c",
+        "gv_id": "GV-PK-PLS-37",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.32,
+        "reference_median": 1.24,
+        "reference_high": 96.93,
+        "price_ratio": 302.91,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+        "gv_id": "GV-PK-BLW-54",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.35,
+        "reference_median": 0.86,
+        "reference_high": 96.91,
+        "price_ratio": 276.89,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "f40cdad0-2bfc-432a-9a95-f7a5262a9ccf",
+        "gv_id": "GV-PK-LC-103",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 1.3,
+        "reference_median": 4.51,
+        "reference_high": 337.8,
+        "price_ratio": 259.85,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "b25317ea-137a-4c49-a32d-c05a4cc2d0aa",
+        "gv_id": "GV-PK-LC-33",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 4.53,
+        "reference_median": 81.02,
+        "reference_high": 1150,
+        "price_ratio": 253.86,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "949cff08-3ad5-4e68-9d64-be5cd1e24a22",
+        "gv_id": "GV-PK-LTR-81",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.68,
+        "reference_high": 61,
+        "price_ratio": 244,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "f3b2cdcb-5047-42b0-bd42-11065a0e0198",
+        "gv_id": "GV-PK-PLB-50",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 3,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.44,
+        "reference_median": 19.86,
+        "reference_high": 106.65,
+        "price_ratio": 242.39,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "gv_id": "GV-PK-DRX-98",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.4,
+        "reference_median": 0.85,
+        "reference_high": 96.84,
+        "price_ratio": 242.1,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "c7c6ec08-eebb-499b-866d-cf1ff9654da1",
+        "gv_id": "GV-PK-PLB-10",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.76,
+        "reference_high": 59.71,
+        "price_ratio": 238.84,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "1cbc4395-3aa9-4c8d-989b-e4827acdc06f",
+        "gv_id": "GV-PK-PLF-29",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 1.98,
+        "reference_high": 59.61,
+        "price_ratio": 238.44,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+        "gv_id": "GV-PK-LC-25",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 3.39,
+        "reference_median": 63.19,
+        "reference_high": 699.99,
+        "price_ratio": 206.49,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "843cbd82-9792-4f38-80a8-2726ab8e462d",
+        "gv_id": "GV-PK-EPO-72",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.17,
+        "reference_median": 1.05,
+        "reference_high": 25.28,
+        "price_ratio": 148.71,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "cf7c0f1f-6a43-47ae-b54d-7a207d085c8d",
+        "gv_id": "GV-PK-DEX-88",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.13,
+        "reference_median": 1,
+        "reference_high": 18.51,
+        "price_ratio": 142.38,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "fffd7563-fd40-4613-87d9-221a747751a0",
+        "gv_id": "GV-PK-BS-71",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 2,
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "reference_low": 0.72,
+        "reference_median": 3.1,
+        "reference_high": 89.99,
+        "price_ratio": 124.99,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "non_usd_evidence_excluded",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "f8ab07c2-b404-4f40-beee-2ba6583178a4",
+        "gv_id": "GV-PK-LTR-76",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 0.82,
+        "reference_high": 29.99,
+        "price_ratio": 119.96,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "cb67b447-fc93-4008-b848-e06c28f11d26",
+        "gv_id": "GV-PK-LTR-31",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 0.25,
+        "reference_median": 9.29,
+        "reference_high": 29.82,
+        "price_ratio": 119.28,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      },
+      {
+        "card_print_id": "84dd4ec9-5359-4675-8cda-2f23cca90345",
+        "gv_id": "GV-PK-LC-35",
+        "review_gate_version": "MEE_09C_REFERENCE_SIGNAL_REVIEW_GATE_V1",
+        "review_status": "review_required_high_variance",
+        "publishable": false,
+        "source_count": 1,
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "reference_low": 2.69,
+        "reference_median": 74.03,
+        "reference_high": 316.49,
+        "price_ratio": 117.65,
+        "variance_band": "extreme_variance",
+        "flags": [
+          "extreme_variance",
+          "single_source_only",
+          "quarantined_context_present"
+        ]
+      }
+    ]
+  },
+  "findings": [],
+  "ready": true
+}

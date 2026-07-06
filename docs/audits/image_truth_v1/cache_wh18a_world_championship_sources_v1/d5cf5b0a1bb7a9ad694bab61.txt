@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=Infinite Force
+|image=WCS2017 Infinite Force Deck.jpg
+|caption=Box art
+|types={{e|Fairy}}{{e|Fighting}}
+}}
+
+'''Infinite Force''' is the name of the deck used by Diego Cassiraga, who was the Masters Division champion at the [[2017 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2017 World Championships Decks}} released November 17, 2017. Each deck comes with a Worlds 2017-themed deckbox, a booklet about the championships, a Worlds 2017 pin, and a code card for the {{TCGO}}. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+''Diego Cassiraga steered his deck built around the new Gardevoir-GX to victory in the Masters Division! This impressive Pokémon is a combo unto itself, with its Secret Spring Ability that lets you attach extra Fairy Energy and its Infinite Force attack that channels that Energy into massive damage. With Rare Candy and Diancie to speed Evolution, Octillery to keep your hand full, and Tapu Lele-GX to pull up just the Supporter card you need, this deck is a force to be reckoned with!''
+
+===Booklet===
+''Diego has been playing the Pokémon TCG for 15 years, which means he started before most of the Junior and Senior Division players were born&mdash;and he's passing his love of the game along to the next generation: "My son will soon be playing." He's a big fan of the Worlds experience, citing the special Pokémon GO release as a highlight of the weekend and adding: "I've had a ton of fun playing every tournament/game." His Gardevoir-GX deck turned out to be an excellent matchup against the popular Garbodor decks: the GX attack removes 10 Item cards from the discard pile, leaving no ammunition for Trashalanche!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Gardevoir-GX (Burning Shadows 93)|Gardevoir]]{{GX}}|Fairy||Rare}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Gallade|84}}|Fighting||Rare}}
+{{decklist/entry|3|{{TCG ID|Burning Shadows|Kirlia|92}}|Fairy||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Burning Shadows|Ralts|91}}|Fairy||Common}}
+{{decklist/entry|3|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Octillery|33}}|Water||Rare}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Remoraid|32}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|Burning Shadows|Diancie|94}}|Fairy||Rare}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Alolan Vulpix|21}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|Burning Shadows|Acerola|112}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Hex Maniac|75}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sun & Moon|Rare Candy|129}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Rescue Stretcher|130}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Ultra Ball|135}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Double Colorless Energy|136}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Wonder Energy|144}}|Energy|Fairy|Uncommon}}
+{{decklist/entry|7|{{TCG|Fairy Energy}}|Energy|Fairy|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Infinite Force (TCG)]]

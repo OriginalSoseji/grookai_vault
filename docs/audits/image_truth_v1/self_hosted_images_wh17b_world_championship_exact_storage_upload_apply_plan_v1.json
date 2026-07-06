@@ -1,0 +1,23 @@
+{
+  "package_id": "IMG-HOST-WH-17B-WORLD-CHAMPIONSHIP-EXACT-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T05:12:54.499Z",
+  "source_probe_fingerprint": "e99bbccb6109608287f5c948fa04a4d78ebc9e7383380e1485200bea78066c3f",
+  "source_summary_json": "docs\\audits\\image_truth_v1\\self_hosted_images_wh17a_world_championship_pricecharting_exact_probe_summary_v1.json",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh17a_world_championship_pricecharting_exact_upload_manifest_v1.jsonl",
+  "manifest_rows": 207,
+  "unique_upload_objects": 207,
+  "target_storage_bucket": "user-card-images",
+  "db_writes_performed": false,
+  "storage_uploads_planned": 207,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "parent_overwrites_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "e99bbccb6109608287f5c948fa04a4d78ebc9e7383380e1485200bea78066c3f"
+}

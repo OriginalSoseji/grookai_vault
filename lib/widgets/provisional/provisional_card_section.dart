@@ -37,7 +37,7 @@ class ProvisionalCardSection extends StatelessWidget {
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.1,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 3),

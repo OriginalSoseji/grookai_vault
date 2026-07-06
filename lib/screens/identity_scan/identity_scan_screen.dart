@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../utils/display_image_contract.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
 
@@ -452,7 +453,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     final name = (c['name'] ?? '').toString();
                     final setCode = (c['set_code'] ?? '').toString();
                     final number = (c['number'] ?? '').toString();
-                    final image = (c['image_url'] ?? '').toString();
+                    final image = normalizeDisplayImageUrl(c['image_url']) ?? '';
                     final selected = _selectedIndex == index;
                     return ListTile(
                       leading: image.isNotEmpty

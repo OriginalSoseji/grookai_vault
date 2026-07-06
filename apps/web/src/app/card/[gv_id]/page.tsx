@@ -1,26 +1,23 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import type { CSSProperties } from "react";
-import Image from "next/image";
+import { Suspense, type ComponentProps } from "react";
 import Link from "next/link";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
-import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
-import PrintingSelector from "@/components/cards/PrintingSelector";
+import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
-import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
+import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
-import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
-import ShareCardButton from "@/components/ShareCardButton";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
-import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
+import type { AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import CardPagePerformanceProbe from "@/components/performance/CardPagePerformanceProbe";
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import {
@@ -38,21 +35,27 @@ import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
 import { getVaultIntentLabel } from "@/lib/network/intent";
-import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
+import {
+  getPublicCameosByGvId,
+  getPublicCardByGvId,
+  getPublicRelatedPrintsByGvId,
+} from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
-import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
-import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
-import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
+import {
+  getOwnedPrintingCountsByCardPrintIds,
+  type OwnedPrintingCountsByCardPrintId,
+} from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
+import type { CardCameo, CardDetail, RelatedCardPrint } from "@/types/cards";
 
 type DetailItem = { label: string; value: string };
 
@@ -108,6 +111,10 @@ function getPrintedTotalFallback(card: { set_code?: string }) {
   return normalizedSetCode ? PRINTED_TOTAL_FALLBACK_BY_SET_CODE[normalizedSetCode] : undefined;
 }
 
+function getCardLanguageLabel(gvId: string) {
+  return /^GV-PK-JPN-/i.test(gvId) ? "Japanese" : "English";
+}
+
 function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string; number_plain?: string }) {
   const setCode = card.set_code?.trim().toLowerCase();
   const printedNumber = card.number?.trim();
@@ -121,6 +128,15 @@ function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string
   if (!normalizedNumber || normalizedNumber === "NaN") return null;
 
   return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;
+}
+
+function buildExactExternalImageFallback(primaryImageUrl: string | null | undefined, tcgdexExternalId?: string) {
+  if (primaryImageUrl?.trim()) return null;
+  return buildTcgDexImageUrl(tcgdexExternalId);
+}
+
+function isCanonImageProxyUrl(value: string | null | undefined) {
+  return value?.startsWith("/api/canon/image?") ?? false;
 }
 
 function formatReleaseDate(releaseDate?: string) {
@@ -144,12 +160,136 @@ function buildCardHref(gvId: string, compareCardsParam?: string, printingReferen
   return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
 
+function asAbsoluteUrl(value: string | null | undefined, origin?: string | null) {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) return undefined;
+
+  try {
+    return new URL(normalizedValue).toString();
+  } catch {
+    if (origin && normalizedValue.startsWith("/")) {
+      return `${origin}${normalizedValue}`;
+    }
+    return undefined;
+  }
+}
+
+function jsonLdMarkup(value: Record<string, unknown>) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+function buildCardProductJsonLd({
+  card,
+  canonicalUrl,
+  collectorNumber,
+  displayName,
+  finishLabels,
+  imageUrl,
+  illustratorName,
+  languageLabel,
+  printedName,
+  setName,
+}: {
+  card: CardDetail;
+  canonicalUrl?: string;
+  collectorNumber?: string;
+  displayName: string;
+  finishLabels: string[];
+  imageUrl?: string;
+  illustratorName?: string;
+  languageLabel: string;
+  printedName?: string;
+  setName?: string;
+}) {
+  const additionalProperty = [
+    { name: "Grookai Vault ID", value: card.gv_id },
+    collectorNumber ? { name: "Collector number", value: collectorNumber } : null,
+    setName ? { name: "Set", value: setName } : null,
+    card.set_code ? { name: "Set code", value: card.set_code.toUpperCase() } : null,
+    card.rarity ? { name: "Rarity", value: card.rarity } : null,
+    languageLabel ? { name: "Language", value: languageLabel } : null,
+    finishLabels.length > 0 ? { name: "Finishes", value: finishLabels.join(", ") } : null,
+    illustratorName ? { name: "Illustrator", value: illustratorName } : null,
+    printedName ? { name: "Printed name", value: printedName } : null,
+  ]
+    .filter((property): property is { name: string; value: string } => Boolean(property?.value))
+    .map((property) => ({
+      "@type": "PropertyValue",
+      name: property.name,
+      value: property.value,
+    }));
+
+  const description = [
+    `${displayName} trading card`,
+    setName ? `from ${setName}` : undefined,
+    collectorNumber ? `with collector number ${collectorNumber}` : undefined,
+    `and Grookai Vault ID ${card.gv_id}.`,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(" ");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: displayName,
+    alternateName: printedName && printedName !== displayName ? printedName : undefined,
+    description,
+    sku: card.gv_id,
+    mpn: card.gv_id,
+    brand: {
+      "@type": "Brand",
+      name: "Pokemon",
+    },
+    category: "Pokemon trading card",
+    image: imageUrl,
+    url: canonicalUrl,
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "Grookai Vault ID",
+      value: card.gv_id,
+    },
+    additionalProperty,
+  };
+}
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
 
+type CardPageSearchParams = {
+  cards?: string;
+  printing?: string;
+  perf?: string;
+  gv_perf?: string;
+};
+
+function roundPerfMs(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+function isCardPagePerfEnabled(searchParams?: CardPageSearchParams) {
+  return searchParams?.perf === "1" || searchParams?.gv_perf === "1";
+}
+
+function logCardPageServerPerf(
+  enabled: boolean,
+  stage: string,
+  payload: Record<string, unknown>,
+) {
+  if (!enabled) return;
+
+  console.info("[card-page:server-perf]", {
+    stage,
+    ...payload,
+  });
+}
+
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
-  const card = await getPublicCardByGvId(params.gv_id);
+  const card = await getPublicCardByGvId(params.gv_id, {
+    includePricing: false,
+    includeRelatedPrints: false,
+    includeCameos: false,
+  });
   const siteOrigin = getSiteOrigin();
   if (!card) return { title: "Card not found | Grookai Vault" };
   const displayIdentity = getDisplayPrintedIdentity(card);
@@ -157,12 +297,17 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const metadataImageUrl =
     normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
 
-  const titleParts = [displayName, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
+  const collectorNumberLabel = displayIdentity.displayPrintedNumber
+    ? `#${displayIdentity.displayPrintedNumber}`
+    : undefined;
+  const titleParts = [card.gv_id, displayName, card.set_name, collectorNumberLabel].filter(
+    (value): value is string => Boolean(value),
+  );
   const title = `${titleParts.join(" • ")} | Grookai Vault`;
   const description = [
-    `View card details for ${displayName}`,
+    `${card.gv_id} is the Grookai Vault canonical ID for ${displayName}`,
     card.set_name ? `from ${card.set_name}` : undefined,
-    displayIdentity.displayPrintedNumber ? `#${displayIdentity.displayPrintedNumber}` : undefined,
+    collectorNumberLabel,
     "including finishes and collection info on Grookai Vault.",
   ]
     .filter((value): value is string => Boolean(value))
@@ -188,17 +333,227 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   };
 }
 
+function CardLowerSectionFallback({ title = "Loading card context" }: { title?: string }) {
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
+          {title}
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className="h-28 animate-pulse rounded-[16px] border border-slate-200 bg-slate-100/70 dark:border-slate-800 dark:bg-white/[0.04]"
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ArtworkCameosSection({ cameoRows }: { cameoRows: CardCameo[] }) {
+  if (cameoRows.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</p>
+        <h2>Visible in the artwork</h2>
+        <p>
+          Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {cameoRows.map((cameo) => {
+          const qualifierLabel = cameo.cameo_qualifiers?.length
+            ? cameo.cameo_qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
+            : null;
+          const href =
+            cameo.cameo_subject_type === "pokemon" && cameo.pokemon_ndex
+              ? `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} cameo`)}`
+              : `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} trainer cameo`)}`;
+          return (
+            <Link
+              key={`${cameo.cameo_subject_type}:${cameo.cameo_subject_name}:${cameo.pokemon_ndex ?? ""}`}
+              href={href}
+              className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
+            >
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                {cameo.cameo_subject_type === "trainer" ? "Trainer cameo" : "Pokemon cameo"}
+              </span>
+              <span className="mt-1 block text-sm font-semibold text-slate-950 dark:text-slate-50">
+                {cameo.cameo_subject_name}
+                {cameo.pokemon_ndex ? (
+                  <span className="ml-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    #{cameo.pokemon_ndex.padStart(3, "0")}
+                  </span>
+                ) : null}
+              </span>
+              {qualifierLabel ? (
+                <span className="mt-1 block text-xs capitalize text-slate-500 dark:text-slate-400">
+                  {qualifierLabel}
+                </span>
+              ) : null}
+            </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+async function StreamedArtworkCameosSection({
+  gvId,
+  perfEnabled = false,
+}: {
+  gvId: string;
+  perfEnabled?: boolean;
+}) {
+  const startedAt = performance.now();
+  const cameoRows = await getPublicCameosByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_artwork_cameos", {
+    gvId,
+    rowCount: cameoRows?.length ?? 0,
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
+  return <ArtworkCameosSection cameoRows={cameoRows ?? []} />;
+}
+
+function RelatedPrintsSection({
+  relatedPrints,
+  compareCards,
+}: {
+  relatedPrints: RelatedCardPrint[];
+  compareCards: string[];
+}) {
+  if (relatedPrints.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
+        <h2>Other versions of this card</h2>
+        <p>Read-only links to other prints that share this card name.</p>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        {relatedPrints.map((relatedCard) => {
+          const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
+          const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
+          const relatedSetLabel = relatedCard.set_name?.trim() || relatedSetCodeLabel || null;
+          const relatedIdentitySubtitle = resolveDisplayIdentitySubtitleForContext({
+            identitySubtitle: relatedDisplayIdentity.suffix,
+            visibleSetLabel: relatedSetLabel,
+          });
+          const relatedVariantLabels = getVariantLabels(relatedCard, 2);
+          const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
+          const relatedCardImageSrc =
+            normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
+          const relatedCardImageFallback =
+            normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
+            (relatedCard.display_image_kind === "exact"
+              ? buildExactExternalImageFallback(relatedCardImageSrc, relatedCard.tcgdex_external_id)
+              : null);
+          return (
+            <Link
+              key={relatedCard.gv_id}
+              href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
+              className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+            >
+              <div className="flex gap-3 md:flex-col md:items-start">
+                <div className="space-y-2">
+                  <PublicCardImage
+                    src={relatedCardImageSrc}
+                    fallbackSrc={relatedCardImageFallback ?? undefined}
+                    alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
+                    imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
+                    fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
+                    sizes="74px"
+                  />
+                  {relatedImagePresentation.compactBadgeLabel ? (
+                    <CardImageTruthBadge
+                      label={relatedImagePresentation.compactBadgeLabel}
+                      emphasis={relatedImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                    />
+                  ) : null}
+                </div>
+                <div className="min-w-0 space-y-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {relatedSetCodeLabel ? (
+                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        {relatedSetCodeLabel}
+                      </span>
+                    ) : null}
+                    {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
+                      {relatedDisplayIdentity.base_name}
+                    </p>
+                    {relatedIdentitySubtitle ? (
+                      <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
+                        {relatedIdentitySubtitle}
+                      </p>
+                    ) : null}
+                  </div>
+                  {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
+                  {relatedVariantLabels.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {relatedVariantLabels.map((label) => (
+                        <VariantBadge key={`${relatedCard.gv_id}-${label}`} label={label} />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+async function StreamedRelatedPrintsSection({
+  gvId,
+  compareCards,
+  perfEnabled = false,
+}: {
+  gvId: string;
+  compareCards: string[];
+  perfEnabled?: boolean;
+}) {
+  const startedAt = performance.now();
+  const relatedPrints = await getPublicRelatedPrintsByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_related_prints", {
+    gvId,
+    rowCount: relatedPrints?.length ?? 0,
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
+  return <RelatedPrintsSection relatedPrints={relatedPrints ?? []} compareCards={compareCards} />;
+}
+
 export default async function CardPage({
   params,
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { cards?: string; printing?: string };
+  searchParams?: CardPageSearchParams;
 }) {
-  const [card, adjacentCards] = await Promise.all([
-    getPublicCardByGvId(params.gv_id),
-    getAdjacentPublicCardsByGvId(params.gv_id),
-  ]);
+  const perfEnabled = isCardPagePerfEnabled(searchParams);
+  const pageStartedAt = performance.now();
+  const cardLookupStartedAt = performance.now();
+  const card = await getPublicCardByGvId(params.gv_id, {
+    includePricing: false,
+    includeRelatedPrints: false,
+    includeCameos: false,
+  });
+  const cardLookupMs = roundPerfMs(performance.now() - cardLookupStartedAt);
   if (!card) notFound();
 
   const resolvedCard = card;
@@ -209,6 +564,8 @@ export default async function CardPage({
     permanentRedirect(buildCardHref(card.gv_id, compareCardsParam, searchParams?.printing));
   }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
+  const siteOrigin = getSiteOrigin();
+  const canonicalCardUrl = siteOrigin ? `${siteOrigin}/card/${resolvedCard.gv_id}` : undefined;
   const selectedRoutePrinting = searchParams?.printing
     ? findPrintingByReference(
         (resolvedCard.display_printings ?? []).filter((printing) => !printing.is_display_fallback),
@@ -254,7 +611,7 @@ export default async function CardPage({
         resolvedCardFallbackImageUrl,
     ) ??
     (resolvedCardImagePresentation.displayImageKind === "exact"
-      ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
+      ? buildExactExternalImageFallback(resolvedCardImageSrc, resolvedCard.tcgdex_external_id)
       : null);
 
   async function addToVaultAction(
@@ -388,9 +745,14 @@ export default async function CardPage({
   }
 
   const supabase = createServerComponentClient();
+  const authStartedAt = performance.now();
+  const shouldReadAuthenticatedState = hasSupabaseServerAuthCookie();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = shouldReadAuthenticatedState
+    ? await supabase.auth.getUser()
+    : { data: { user: null } };
+  const authMs = roundPerfMs(performance.now() - authStartedAt);
   let vaultCount = 0;
   let ownedObjectSummary: OwnedObjectSummary = {
     totalCount: 0,
@@ -403,16 +765,20 @@ export default async function CardPage({
   };
   let conditionSnapshots: ConditionSnapshotListItem[] = [];
   let assignmentCandidatesBySnapshotId: Record<string, AssignmentCandidate[]> = {};
+  let ownedPrintingCounts: OwnedPrintingCountsByCardPrintId = new Map();
 
+  const signedInDataStartedAt = performance.now();
   if (user && resolvedCard.id) {
     try {
-      const [ownershipSummary, snapshots] = await Promise.all([
+      const [ownershipSummary, snapshots, printingCounts] = await Promise.all([
         getOwnedObjectSummaryForCard(user.id, resolvedCard.id),
         getConditionSnapshotsForCard(user.id, resolvedCard.id),
+        getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id]),
       ]);
       ownedObjectSummary = ownershipSummary;
       vaultCount = ownershipSummary.totalCount;
       conditionSnapshots = snapshots;
+      ownedPrintingCounts = printingCounts;
 
       const unassignedSnapshots = snapshots.filter((snapshot) => snapshot.assignment_state === "unassigned");
       if (unassignedSnapshots.length > 0) {
@@ -443,42 +809,15 @@ export default async function CardPage({
       assignmentCandidatesBySnapshotId = {};
     }
   }
+  const signedInDataMs = roundPerfMs(performance.now() - signedInDataStartedAt);
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
-  const canViewPricing = Boolean(user);
-  const [pricingUi, setLogoPath, ownedPrintingCounts, networkOffers] = await Promise.all([
-    canViewPricing && resolvedCard.id ? getCardPricingUiByCardPrintId(resolvedCard.id) : Promise.resolve(null),
-    resolvedCard.set_code
-      ? getSetLogoAssetPathMap([resolvedCard.set_code]).then((logos) =>
-          logos.get(resolvedCard.set_code!.toLowerCase()),
-        )
-      : Promise.resolve(undefined),
-    user && resolvedCard.id
-      ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
-      : Promise.resolve(new Map()),
-    resolvedCard.id
-      ? getCardStreamRows({
-          cardPrintId: resolvedCard.id,
-          excludeUserId: user?.id ?? null,
-          limit: 6,
-        }).catch((error) => {
-          console.error("[network:stream] card page offers read failed", {
-            cardPrintId: resolvedCard.id,
-            gvId: resolvedCard.gv_id,
-            error,
-          });
-          return [];
-        })
-      : Promise.resolve([]),
-  ]);
-  const identityWatermarkStyle = {
-    "--wm-opacity-desktop": "0.05",
-    "--wm-blur-desktop": "8px",
-    "--wm-scale-desktop": "1.12",
-    "--wm-opacity-mobile": "0.06",
-    "--wm-blur-mobile": "6px",
-    "--wm-scale-mobile": "1.14",
-  } as CSSProperties;
+  const pricingStartedAt = performance.now();
+  // Pricing is intentionally client-loaded for signed-in collectors so exact
+  // card identity, hero image, and vault actions are not blocked by market RPCs.
+  const pricingRecords: ComponentProps<typeof CardPageMarketVaultPanels>["pricingRecords"] = [];
+  const pricingMs = roundPerfMs(performance.now() - pricingStartedAt);
+  const pricingUi = null;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const setCodeLabel = resolvedCard.set_code?.trim().toUpperCase();
@@ -520,7 +859,19 @@ export default async function CardPage({
     ...printing,
     owned_count: printing.is_display_fallback ? 0 : ownedPrintingCountsForCard?.get(printing.id) ?? 0,
   }));
+  const finishLabels = Array.from(
+    new Set(
+      displayPrintingsWithOwnedCounts
+        .filter((printing) => !printing.is_display_fallback)
+        .map((printing) => printing.finish_name?.trim())
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
   const detailItems: DetailItem[] = [
+    { label: "Language", value: getCardLanguageLabel(resolvedCard.gv_id) },
+    collectorNumberLine ? { label: "Collector No.", value: collectorNumberLine } : null,
+    resolvedCard.rarity ? { label: "Rarity", value: resolvedCard.rarity } : null,
+    finishLabels.length > 0 ? { label: "Finishes", value: finishLabels.slice(0, 4).join(" • ") } : null,
     resolvedCard.supertype ? { label: "Type", value: resolvedCard.supertype } : null,
     resolvedCard.card_category ? { label: "Category", value: resolvedCard.card_category } : null,
     resolvedCard.types?.length ? { label: "Types", value: resolvedCard.types.join(" • ") } : null,
@@ -537,58 +888,56 @@ export default async function CardPage({
     typeof resolvedCard.printed_total === "number" ? { label: "Printed Total", value: `${resolvedCard.printed_total} cards` } : null,
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
-  const relatedPrints = resolvedCard.related_prints ?? [];
-  const cameoRows = resolvedCard.cameos ?? [];
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
     : "This card can be added to your Vault";
-
-  const getOfferIntentSummary = (offer: (typeof networkOffers)[number]) =>
-    [
-      offer.sellCount > 0 ? `${getVaultIntentLabel("sell")} ${offer.sellCount}` : null,
-      offer.tradeCount > 0 ? `${getVaultIntentLabel("trade")} ${offer.tradeCount}` : null,
-      offer.showcaseCount > 0 ? `${getVaultIntentLabel("showcase")} ${offer.showcaseCount}` : null,
-    ].filter((value): value is string => Boolean(value));
-
-  const getGroupedOfferContactAnchor = (offer: (typeof networkOffers)[number]) => {
-    const copyVaultItemIds = Array.from(new Set(offer.inPlayCopies.map((copy) => copy.vaultItemId)));
-    if (copyVaultItemIds.length > 1) {
-      return null;
-    }
-
-    return {
-      vaultItemId: copyVaultItemIds[0] ?? offer.vaultItemId,
-      intent: offer.intent,
-    };
-  };
-  const getSingleOfferCopyHref = (offer: (typeof networkOffers)[number]) =>
-    offer.inPlayCopies.length === 1 && offer.inPlayCopies[0]?.gvviId
-      ? getVaultInstanceHref(offer.inPlayCopies[0].gvviId, user?.id ?? null, offer.ownerUserId)
-      : null;
+  const cardProductJsonLd = buildCardProductJsonLd({
+    card: resolvedCard,
+    canonicalUrl: canonicalCardUrl,
+    collectorNumber: collectorNumberLine,
+    displayName: resolvedDisplayIdentity.display_name,
+    finishLabels,
+    imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallback, siteOrigin),
+    illustratorName,
+    languageLabel: getCardLanguageLabel(resolvedCard.gv_id),
+    printedName: resolvedDisplayIdentity.printed_name ?? undefined,
+    setName,
+  });
+  const initialRenderMs = roundPerfMs(performance.now() - pageStartedAt);
+  logCardPageServerPerf(perfEnabled, "initial_render_ready", {
+    requestedGvId: params.gv_id,
+    gvId: resolvedCard.gv_id,
+    cardLookupMs,
+    authMs,
+    signedInDataMs,
+    pricingMs,
+    initialRenderMs,
+    hasAuthCookie: shouldReadAuthenticatedState,
+    isAuthenticated: Boolean(user),
+    displayPrintingCount: resolvedCard.display_printings?.length ?? 0,
+    pricingRecordCount: pricingRecords.length,
+  });
 
   return (
     <div className={`space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+      <CardPagePerformanceProbe
+        enabled={perfEnabled}
+        gvId={resolvedCard.gv_id}
+        serverInitialRenderMs={initialRenderMs}
+        serverCardLookupMs={cardLookupMs}
+        serverAuthMs={authMs}
+        serverSignedInDataMs={signedInDataMs}
+        serverPricingMs={pricingMs}
+        hasAuthCookie={shouldReadAuthenticatedState}
+        isAuthenticated={Boolean(user)}
+      />
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdMarkup(cardProductJsonLd) }}
+      />
       <section className="gv-product-hero isolate">
-        {setLogoPath ? (
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-            <Image
-              src={setLogoPath}
-              alt=""
-              width={520}
-              height={260}
-              className="gv-ghost-watermark h-auto w-[78%] object-contain"
-              style={identityWatermarkStyle}
-            />
-          </div>
-        ) : null}
-        {setLogoPath ? (
-          <div
-            aria-hidden="true"
-            className="gv-card-identity-wash pointer-events-none absolute inset-0"
-          />
-        ) : null}
         <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(300px,440px)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:p-12">
           <div className="mx-auto flex w-full max-w-[380px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[430px]">
             <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
@@ -601,6 +950,9 @@ export default async function CardPage({
                 )}
                 imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+                sizes="(max-width: 1024px) 86vw, 430px"
+                priority
+                unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
@@ -666,7 +1018,15 @@ export default async function CardPage({
                   <h1 className="gv-hi-card-identity max-w-3xl text-[3rem] leading-[0.96] tracking-normal sm:text-[4.2rem] lg:text-[5.35rem]">
                     {resolvedDisplayIdentity.base_name}
                   </h1>
+                  {resolvedDisplayIdentity.printed_name ? (
+                    <p className="gv-hi-metadata text-sm font-medium sm:text-base">
+                      {resolvedDisplayIdentity.printed_name}
+                    </p>
+                  ) : null}
                   <div className="flex flex-wrap items-center gap-2">
+                    <p className="inline-flex w-fit rounded-full border border-slate-200/80 bg-slate-50/90 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
+                      Grookai ID {resolvedCard.gv_id}
+                    </p>
                     {identitySubtitle ? (
                       <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
                     ) : null}
@@ -774,319 +1134,33 @@ export default async function CardPage({
               </div>
             </div>
 
-            <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
-              <div className="gv-action-panel p-5 sm:p-6">
-                <CardPagePricingRail
-                  isAuthenticated={canViewPricing}
-                  loginHref={loginHref}
-                  gvId={resolvedCard.gv_id}
-                  cardPrintId={resolvedCard.id}
-                  pricing={pricingUi}
-                />
-              </div>
-
-              <div className="gv-action-panel space-y-5 p-5 sm:p-6">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
-                  <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
-                  {vaultCount > 0 && (ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabCount > 0) ? (
-                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                      {[ownedObjectSummary.rawCount > 0 ? `${ownedObjectSummary.rawCount} raw` : null, ownedObjectSummary.slabCount > 0 ? `${ownedObjectSummary.slabCount} slab` : null]
-                        .filter((value): value is string => value !== null)
-                        .join(" • ")}
-                    </p>
-                  ) : null}
-                </div>
-
-                <AddToVaultCardAction
-                  action={addToVaultAction}
-                  isAuthenticated={Boolean(user)}
-                  loginHref={loginHref}
-                  currentPath={currentCardPath}
-                  gvId={resolvedCard.gv_id}
-                  printings={displayPrintingsWithOwnedCounts}
-                  initialPrintingId={searchParams?.printing ?? null}
-                />
-
-                <div className="flex flex-wrap items-center gap-3">
-                  {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedDisplayIdentity.display_name} /> : null}
-                  <CompareCardButton gvId={resolvedCard.gv_id} />
-                  <ShareCardButton gvId={resolvedCard.gv_id} />
-                </div>
-              </div>
-            </aside>
+            <CardPageMarketVaultPanels
+              addToVaultAction={addToVaultAction}
+              createSlabAction={createSlabAction}
+              isAuthenticated={Boolean(user)}
+              loginHref={loginHref}
+              currentPath={currentCardPath}
+              gvId={resolvedCard.gv_id}
+              cardPrintId={resolvedCard.id}
+              cardName={resolvedDisplayIdentity.display_name}
+              printings={displayPrintingsWithOwnedCounts}
+              initialPrintingId={searchParams?.printing ?? null}
+              pricing={pricingUi}
+              pricingRecords={pricingRecords}
+              ownershipLabel={ownershipLabel}
+              rawCount={ownedObjectSummary.rawCount}
+              slabCount={ownedObjectSummary.slabCount}
+            />
           </div>
         </div>
       </section>
-
-      {networkOffers.length > 0 ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Collector Network</p>
-            <h2>Available in the network</h2>
-            <p>Collectors with this card marked Trade, Sell, or Showcase.</p>
-          </div>
-          <div className="space-y-3">
-            {networkOffers.map((offer) => (
-              <article key={offer.vaultItemId} className="gv-quiet-panel px-4 py-4">
-                {(() => {
-                  const groupedContactAnchor = getGroupedOfferContactAnchor(offer);
-                  const singleCopyHref = getSingleOfferCopyHref(offer);
-                  return (
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      {getOfferIntentSummary(offer).map((label) => (
-                        <span
-                          key={`${offer.vaultItemId}-${label}`}
-                          className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700"
-                        >
-                          {label}
-                        </span>
-                      ))}
-                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-                        {offer.inPlayCount > 1
-                          ? `${offer.inPlayCount} copies visible`
-                          : offer.isGraded
-                          ? (offer.gradeLabel ?? [offer.gradeCompany, offer.gradeValue].filter(Boolean).join(" ")) || "Graded"
-                          : offer.conditionLabel ?? "Raw"}
-                      </span>
-                    </div>
-                    <p className="text-sm text-slate-600">
-                      Collector{" "}
-                      <Link
-                        href={`/u/${offer.ownerSlug}`}
-                        className="font-medium text-slate-900 underline-offset-4 hover:underline"
-                      >
-                        {offer.ownerDisplayName}
-                      </Link>
-                    </p>
-                    {singleCopyHref ? (
-                      <Link
-                        href={singleCopyHref}
-                        className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
-                      >
-                        Open copy
-                      </Link>
-                    ) : null}
-                  </div>
-                  {offer.ownerUserId !== user?.id && groupedContactAnchor ? (
-                    <ContactOwnerButton
-                      vaultItemId={groupedContactAnchor.vaultItemId}
-                      cardPrintId={offer.cardPrintId}
-                      ownerUserId={offer.ownerUserId}
-                      viewerUserId={user?.id ?? null}
-                      ownerDisplayName={offer.ownerDisplayName}
-                      cardName={resolvedDisplayIdentity.display_name}
-                      intent={groupedContactAnchor.intent}
-                      buttonLabel={groupedContactAnchor.intent ? undefined : "Message collector"}
-                      isAuthenticated={Boolean(user)}
-                      loginHref={loginHref}
-                      currentPath={currentCardPath}
-                    />
-                  ) : null}
-                </div>
-                  );
-                })()}
-                {offer.inPlayCopies.length > 1 ? (
-                  <details className="gv-quiet-panel mt-4 px-4 py-3">
-                    <summary className="cursor-pointer text-sm font-medium text-slate-800">
-                      View copies ({offer.inPlayCopies.length})
-                    </summary>
-                    <div className="mt-3 space-y-2">
-                      {offer.inPlayCopies.map((copy) => (
-                        <div key={copy.instanceId} className="gv-quiet-panel px-3 py-3">
-                          <div className="space-y-3">
-                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                              <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-700">
-                                {getVaultIntentLabel(copy.intent)}
-                              </span>
-                              {copy.isGraded ? (
-                                <span>
-                                  {copy.gradeLabel ?? ([copy.gradeCompany, copy.gradeValue].filter(Boolean).join(" ") || "Graded")}
-                                </span>
-                              ) : copy.conditionLabel ? (
-                                <span>{copy.conditionLabel}</span>
-                              ) : null}
-                              {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
-                            </div>
-                            {copy.gvviId ? (
-                              <Link
-                                href={getVaultInstanceHref(copy.gvviId, user?.id ?? null, offer.ownerUserId) ?? `/card/${resolvedCard.gv_id}`}
-                                className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
-                              >
-                                Open copy
-                              </Link>
-                            ) : null}
-                            {offer.ownerUserId !== user?.id ? (
-                              <ContactOwnerButton
-                                vaultItemId={copy.vaultItemId}
-                                cardPrintId={offer.cardPrintId}
-                                ownerUserId={offer.ownerUserId}
-                                viewerUserId={user?.id ?? null}
-                                ownerDisplayName={offer.ownerDisplayName}
-                                cardName={resolvedDisplayIdentity.display_name}
-                                intent={copy.intent}
-                                buttonLabel="Message about this copy"
-                                isAuthenticated={Boolean(user)}
-                                loginHref={loginHref}
-                                currentPath={currentCardPath}
-                                buttonClassName="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-                              />
-                            ) : null}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </details>
-                ) : null}
-                {offer.ownerUserId !== user?.id && !getGroupedOfferContactAnchor(offer) && offer.inPlayCopies.length > 1 ? (
-                  <p className="mt-3 text-xs text-slate-500">
-                    Choose a copy above to message this collector about that card.
-                  </p>
-                ) : null}
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {cameoRows.length > 0 ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</p>
-            <h2>Visible in the artwork</h2>
-            <p>
-              Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {cameoRows.map((cameo) => {
-              const qualifierLabel = cameo.cameo_qualifiers?.length
-                ? cameo.cameo_qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
-                : null;
-              const href =
-                cameo.cameo_subject_type === "pokemon" && cameo.pokemon_ndex
-                  ? `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} cameo`)}`
-                  : `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} trainer cameo`)}`;
-              return (
-                <Link
-                  key={`${cameo.cameo_subject_type}:${cameo.cameo_subject_name}:${cameo.pokemon_ndex ?? ""}`}
-                  href={href}
-                  className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
-                >
-                  <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    {cameo.cameo_subject_type === "trainer" ? "Trainer cameo" : "Pokemon cameo"}
-                  </span>
-                  <span className="mt-1 block text-sm font-semibold text-slate-950 dark:text-slate-50">
-                    {cameo.cameo_subject_name}
-                    {cameo.pokemon_ndex ? (
-                      <span className="ml-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-                        #{cameo.pokemon_ndex.padStart(3, "0")}
-                      </span>
-                    ) : null}
-                  </span>
-                  {qualifierLabel ? (
-                    <span className="mt-1 block text-xs capitalize text-slate-500 dark:text-slate-400">
-                      {qualifierLabel}
-                    </span>
-                  ) : null}
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {relatedPrints.length > 0 ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
-            <h2>Other versions of this card</h2>
-            <p>Read-only links to other prints that share this card name.</p>
-          </div>
-          <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-            {relatedPrints.map((relatedCard) => {
-              const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
-              const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
-              const relatedSetLabel = relatedCard.set_name?.trim() || relatedSetCodeLabel || null;
-              const relatedIdentitySubtitle = resolveDisplayIdentitySubtitleForContext({
-                identitySubtitle: relatedDisplayIdentity.suffix,
-                visibleSetLabel: relatedSetLabel,
-              });
-              const relatedVariantLabels = getVariantLabels(relatedCard, 2);
-              const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
-              const relatedCardImageSrc =
-                normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
-              const relatedCardImageFallback =
-                normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
-                (relatedCard.display_image_kind === "exact"
-                  ? buildTcgDexImageUrl(relatedCard.tcgdex_external_id)
-                  : null);
-              return (
-                <Link
-                  key={relatedCard.gv_id}
-                  href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-                  className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
-                >
-                  <div className="flex gap-3 md:flex-col md:items-start">
-                    <div className="space-y-2">
-                      <PublicCardImage
-                        src={relatedCardImageSrc}
-                        fallbackSrc={relatedCardImageFallback ?? undefined}
-                        alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
-                        imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
-                        fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
-                      />
-                      {relatedImagePresentation.compactBadgeLabel ? (
-                        <CardImageTruthBadge
-                          label={relatedImagePresentation.compactBadgeLabel}
-                          emphasis={relatedImagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                        />
-                      ) : null}
-                    </div>
-                    <div className="min-w-0 space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        {relatedSetCodeLabel ? (
-                          <span className="inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-                            {relatedSetCodeLabel}
-                          </span>
-                        ) : null}
-                        {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
-                      </div>
-                      <div className="space-y-0.5">
-                        <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
-                          {relatedDisplayIdentity.base_name}
-                        </p>
-                        {relatedIdentitySubtitle ? (
-                          <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
-                            {relatedIdentitySubtitle}
-                          </p>
-                        ) : null}
-                      </div>
-                      {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
-                      {relatedVariantLabels.length > 0 ? (
-                        <div className="flex flex-wrap gap-1">
-                          {relatedVariantLabels.map((label) => (
-                            <VariantBadge key={`${relatedCard.gv_id}-${label}`} label={label} />
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
 
       {detailItems.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="gv-card-section-header">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Card Details</p>
-            <h2>Catalog intelligence</h2>
-            <p>Identity and card traits surfaced from the current catalog data.</p>
+            <h2>Card information</h2>
+            <p>Identity, traits, and artwork facts for this exact card.</p>
           </div>
           <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {detailItems.map((item) => (
@@ -1105,7 +1179,7 @@ export default async function CardPage({
             <div className="gv-card-section-header">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">About This Set</p>
               {setName ? <h2>{setName}</h2> : null}
-              <p>Context for the set this print belongs to.</p>
+              <p>Set context for this exact print.</p>
             </div>
             {setHref ? (
               <Link
@@ -1118,14 +1192,26 @@ export default async function CardPage({
           </div>
           <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {setContextItems.map((item) => (
-              <div key={item.label} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
-                <dd className="mt-2 text-sm font-medium text-slate-900">{item.value}</dd>
+              <div key={item.label} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 dark:border-slate-800 dark:bg-white/[0.04]">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
+                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
               </div>
             ))}
           </dl>
         </section>
       ) : null}
+
+      <Suspense fallback={<CardLowerSectionFallback title="Artwork Cameos" />}>
+        <StreamedArtworkCameosSection gvId={resolvedCard.gv_id} perfEnabled={perfEnabled} />
+      </Suspense>
+
+      <Suspense fallback={<CardLowerSectionFallback title="Other Versions" />}>
+        <StreamedRelatedPrintsSection
+          gvId={resolvedCard.gv_id}
+          compareCards={compareCards}
+          perfEnabled={perfEnabled}
+        />
+      </Suspense>
 
       {user && hasOwnedItems ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
@@ -1192,106 +1278,322 @@ export default async function CardPage({
         />
       ) : null}
 
-      {(adjacentCards.previous || adjacentCards.next) ? (
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">In This Set</p>
-            <h2>Nearby cards</h2>
-            <p>Cards from the same set, ordered around this print.</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {adjacentCards.previous ? (
-              (() => {
-                const previousImagePresentation = resolveCardImagePresentation(adjacentCards.previous);
-                const previousCardImageSrc =
-                  normalizeCardImageUrl(adjacentCards.previous?.display_image_url ?? adjacentCards.previous?.image_url) ??
-                  undefined;
-                const previousCardImageFallback =
-                  adjacentCards.previous?.display_image_kind === "exact"
-                    ? buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id)
-                    : null;
-                const previousDisplayIdentity = resolveDisplayIdentity(adjacentCards.previous);
-                return (
-              <Link
-                href={buildPathWithCompareCards(`/card/${adjacentCards.previous.gv_id}`, "", compareCards)}
-                className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
-              >
-                <div className="space-y-2">
-                  <PublicCardImage
-                    src={previousCardImageSrc}
-                    fallbackSrc={previousCardImageFallback ?? undefined}
-                    alt={getCardImageAltText(previousDisplayIdentity.display_name, adjacentCards.previous)}
-                    imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
-                    fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-                  />
-                  {previousImagePresentation.compactBadgeLabel ? (
-                    <CardImageTruthBadge
-                      label={previousImagePresentation.compactBadgeLabel}
-                      emphasis={previousImagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                    />
-                  ) : null}
-                </div>
-                <div className="min-w-0 space-y-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">← Previous</p>
-                  <p className="truncate text-sm font-medium text-slate-900">{previousDisplayIdentity.display_name}</p>
-                  <p className="text-xs text-slate-600">#{adjacentCards.previous.number}</p>
-                </div>
-              </Link>
-                );
-              })()
-            ) : (
-              <div className="hidden sm:block" />
-            )}
-
-            {adjacentCards.next ? (
-              (() => {
-                const nextImagePresentation = resolveCardImagePresentation(adjacentCards.next);
-                const nextCardImageSrc =
-                  normalizeCardImageUrl(adjacentCards.next?.display_image_url ?? adjacentCards.next?.image_url) ??
-                  undefined;
-                const nextCardImageFallback =
-                  adjacentCards.next?.display_image_kind === "exact"
-                    ? buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id)
-                    : null;
-                const nextDisplayIdentity = resolveDisplayIdentity(adjacentCards.next);
-                return (
-              <Link
-                href={buildPathWithCompareCards(`/card/${adjacentCards.next.gv_id}`, "", compareCards)}
-                className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
-              >
-                <div className="space-y-2">
-                  <PublicCardImage
-                    src={nextCardImageSrc}
-                    fallbackSrc={nextCardImageFallback ?? undefined}
-                    alt={getCardImageAltText(nextDisplayIdentity.display_name, adjacentCards.next)}
-                    imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
-                    fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-                  />
-                  {nextImagePresentation.compactBadgeLabel ? (
-                    <CardImageTruthBadge
-                      label={nextImagePresentation.compactBadgeLabel}
-                      emphasis={nextImagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                    />
-                  ) : null}
-                </div>
-                <div className="min-w-0 space-y-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Next →</p>
-                  <p className="truncate text-sm font-medium text-slate-900">{nextDisplayIdentity.display_name}</p>
-                  <p className="text-xs text-slate-600">#{adjacentCards.next.number}</p>
-                </div>
-              </Link>
-                );
-              })()
-            ) : (
-              <div className="hidden sm:block" />
-            )}
-          </div>
-        </section>
+      {user && resolvedCard.id ? (
+        <Suspense fallback={null}>
+          <CardNetworkOffersSection
+            cardPrintId={resolvedCard.id}
+            gvId={resolvedCard.gv_id}
+            viewerUserId={user.id}
+            cardName={resolvedDisplayIdentity.display_name}
+            loginHref={loginHref}
+            currentPath={currentCardPath}
+            perfEnabled={perfEnabled}
+          />
+        </Suspense>
       ) : null}
+
+      <Suspense fallback={null}>
+        <NearbyCardsSection
+          gvId={resolvedCard.gv_id}
+          compareCards={compareCards}
+          perfEnabled={perfEnabled}
+        />
+      </Suspense>
 
       <PricingDisclosure />
 
       <CompareTray cards={compareCards} addHref={buildPathWithCompareCards("/explore", "", compareCards)} />
     </div>
+  );
+}
+
+type CardNetworkOffer = Awaited<ReturnType<typeof getCardStreamRows>>[number];
+type NearbyPublicCard = NonNullable<Awaited<ReturnType<typeof getAdjacentPublicCardsByGvId>>["previous"]>;
+
+function getOfferIntentSummary(offer: CardNetworkOffer) {
+  return [
+    offer.sellCount > 0 ? `${getVaultIntentLabel("sell")} ${offer.sellCount}` : null,
+    offer.tradeCount > 0 ? `${getVaultIntentLabel("trade")} ${offer.tradeCount}` : null,
+    offer.showcaseCount > 0 ? `${getVaultIntentLabel("showcase")} ${offer.showcaseCount}` : null,
+  ].filter((value): value is string => Boolean(value));
+}
+
+function getGroupedOfferContactAnchor(offer: CardNetworkOffer) {
+  const copyVaultItemIds = Array.from(new Set(offer.inPlayCopies.map((copy) => copy.vaultItemId)));
+  if (copyVaultItemIds.length > 1) {
+    return null;
+  }
+
+  return {
+    vaultItemId: copyVaultItemIds[0] ?? offer.vaultItemId,
+    intent: offer.intent,
+  };
+}
+
+function getSingleOfferCopyHref(offer: CardNetworkOffer, viewerUserId: string | null) {
+  return offer.inPlayCopies.length === 1 && offer.inPlayCopies[0]?.gvviId
+    ? getVaultInstanceHref(offer.inPlayCopies[0].gvviId, viewerUserId, offer.ownerUserId)
+    : null;
+}
+
+async function CardNetworkOffersSection({
+  cardPrintId,
+  gvId,
+  viewerUserId,
+  cardName,
+  loginHref,
+  currentPath,
+  perfEnabled = false,
+}: {
+  cardPrintId: string;
+  gvId: string;
+  viewerUserId: string;
+  cardName: string;
+  loginHref: string;
+  currentPath: string;
+  perfEnabled?: boolean;
+}) {
+  const startedAt = performance.now();
+  const networkOffers = await getCardStreamRows({
+    cardPrintId,
+    excludeUserId: viewerUserId,
+    limit: 6,
+  }).catch((error) => {
+    console.error("[network:stream] card page offers read failed", {
+      cardPrintId,
+      gvId,
+      error,
+    });
+    return [];
+  });
+  logCardPageServerPerf(perfEnabled, "streamed_network_offers", {
+    gvId,
+    rowCount: networkOffers.length,
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
+
+  if (networkOffers.length === 0) return null;
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Collector Network</p>
+        <h2>Available in the network</h2>
+        <p>Collectors with this card marked Trade, Sell, or Showcase.</p>
+      </div>
+      <div className="space-y-3">
+        {networkOffers.map((offer) => {
+          const groupedContactAnchor = getGroupedOfferContactAnchor(offer);
+          const singleCopyHref = getSingleOfferCopyHref(offer, viewerUserId);
+          return (
+            <article key={offer.vaultItemId} className="gv-quiet-panel px-4 py-4">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {getOfferIntentSummary(offer).map((label) => (
+                      <span
+                        key={`${offer.vaultItemId}-${label}`}
+                        className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                    <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                      {offer.inPlayCount > 1
+                        ? `${offer.inPlayCount} copies visible`
+                        : offer.isGraded
+                          ? (offer.gradeLabel ?? [offer.gradeCompany, offer.gradeValue].filter(Boolean).join(" ")) || "Graded"
+                          : offer.conditionLabel ?? "Raw"}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-600">
+                    Collector{" "}
+                    <Link
+                      href={`/u/${offer.ownerSlug}`}
+                      className="font-medium text-slate-900 underline-offset-4 hover:underline"
+                    >
+                      {offer.ownerDisplayName}
+                    </Link>
+                  </p>
+                  {singleCopyHref ? (
+                    <Link
+                      href={singleCopyHref}
+                      className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                    >
+                      Open copy
+                    </Link>
+                  ) : null}
+                </div>
+                {offer.ownerUserId !== viewerUserId && groupedContactAnchor ? (
+                  <ContactOwnerButton
+                    vaultItemId={groupedContactAnchor.vaultItemId}
+                    cardPrintId={offer.cardPrintId}
+                    ownerUserId={offer.ownerUserId}
+                    viewerUserId={viewerUserId}
+                    ownerDisplayName={offer.ownerDisplayName}
+                    cardName={cardName}
+                    intent={groupedContactAnchor.intent}
+                    buttonLabel={groupedContactAnchor.intent ? undefined : "Message collector"}
+                    isAuthenticated={Boolean(viewerUserId)}
+                    loginHref={loginHref}
+                    currentPath={currentPath}
+                  />
+                ) : null}
+              </div>
+              {offer.inPlayCopies.length > 1 ? (
+                <details className="gv-quiet-panel mt-4 px-4 py-3">
+                  <summary className="cursor-pointer text-sm font-medium text-slate-800">
+                    View copies ({offer.inPlayCopies.length})
+                  </summary>
+                  <div className="mt-3 space-y-2">
+                    {offer.inPlayCopies.map((copy) => (
+                      <div key={copy.instanceId} className="gv-quiet-panel px-3 py-3">
+                        <div className="space-y-3">
+                          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                            <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-700">
+                              {getVaultIntentLabel(copy.intent)}
+                            </span>
+                            {copy.isGraded ? (
+                              <span>
+                                {copy.gradeLabel ?? ([copy.gradeCompany, copy.gradeValue].filter(Boolean).join(" ") || "Graded")}
+                              </span>
+                            ) : copy.conditionLabel ? (
+                              <span>{copy.conditionLabel}</span>
+                            ) : null}
+                            {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
+                          </div>
+                          {copy.gvviId ? (
+                            <Link
+                              href={getVaultInstanceHref(copy.gvviId, viewerUserId, offer.ownerUserId) ?? `/card/${gvId}`}
+                              className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                            >
+                              Open copy
+                            </Link>
+                          ) : null}
+                          {offer.ownerUserId !== viewerUserId ? (
+                            <ContactOwnerButton
+                              vaultItemId={copy.vaultItemId}
+                              cardPrintId={offer.cardPrintId}
+                              ownerUserId={offer.ownerUserId}
+                              viewerUserId={viewerUserId}
+                              ownerDisplayName={offer.ownerDisplayName}
+                              cardName={cardName}
+                              intent={copy.intent}
+                              buttonLabel="Message about this copy"
+                              isAuthenticated={Boolean(viewerUserId)}
+                              loginHref={loginHref}
+                              currentPath={currentPath}
+                              buttonClassName="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              ) : null}
+              {offer.ownerUserId !== viewerUserId && !groupedContactAnchor && offer.inPlayCopies.length > 1 ? (
+                <p className="mt-3 text-xs text-slate-500">
+                  Choose a copy above to message this collector about that card.
+                </p>
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function NearbyCardLink({
+  card,
+  direction,
+  compareCards,
+}: {
+  card: NearbyPublicCard;
+  direction: "previous" | "next";
+  compareCards: string[];
+}) {
+  const imagePresentation = resolveCardImagePresentation(card);
+  const cardImageSrc = normalizeCardImageUrl(card.display_image_url ?? card.image_url) ?? undefined;
+  const cardImageFallback =
+    card.display_image_kind === "exact"
+      ? buildExactExternalImageFallback(cardImageSrc, card.tcgdex_external_id)
+      : null;
+  const displayIdentity = resolveDisplayIdentity(card);
+  const directionLabel = direction === "previous" ? "Previous" : "Next";
+  const directionArrow = direction === "previous" ? "←" : "→";
+
+  return (
+    <Link
+      href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+      className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+    >
+      <div className="space-y-2">
+        <PublicCardImage
+          src={cardImageSrc}
+          fallbackSrc={cardImageFallback ?? undefined}
+          alt={getCardImageAltText(displayIdentity.display_name, card)}
+          imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+          fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+          sizes="48px"
+        />
+        {imagePresentation.compactBadgeLabel ? (
+          <CardImageTruthBadge
+            label={imagePresentation.compactBadgeLabel}
+            emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+          />
+        ) : null}
+      </div>
+      <div className="min-w-0 space-y-1">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          {direction === "previous" ? `${directionArrow} ${directionLabel}` : `${directionLabel} ${directionArrow}`}
+        </p>
+        <p className="truncate text-sm font-medium text-slate-900">{displayIdentity.display_name}</p>
+        <p className="text-xs text-slate-600">#{card.number}</p>
+      </div>
+    </Link>
+  );
+}
+
+async function NearbyCardsSection({
+  gvId,
+  compareCards,
+  perfEnabled = false,
+}: {
+  gvId: string;
+  compareCards: string[];
+  perfEnabled?: boolean;
+}) {
+  const startedAt = performance.now();
+  const adjacentCards = await getAdjacentPublicCardsByGvId(gvId);
+  logCardPageServerPerf(perfEnabled, "streamed_nearby_cards", {
+    gvId,
+    hasPrevious: Boolean(adjacentCards.previous),
+    hasNext: Boolean(adjacentCards.next),
+    ms: roundPerfMs(performance.now() - startedAt),
+  });
+  if (!adjacentCards.previous && !adjacentCards.next) return null;
+
+  return (
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+      <div className="gv-card-section-header">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">In This Set</p>
+        <h2>Nearby cards</h2>
+        <p>Cards from the same set, ordered around this print.</p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {adjacentCards.previous ? (
+          <NearbyCardLink card={adjacentCards.previous} direction="previous" compareCards={compareCards} />
+        ) : (
+          <div className="hidden sm:block" />
+        )}
+        {adjacentCards.next ? (
+          <NearbyCardLink card={adjacentCards.next} direction="next" compareCards={compareCards} />
+        ) : (
+          <div className="hidden sm:block" />
+        )}
+      </div>
+    </section>
   );
 }

@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=Pikarom Judge
+|image=WCS2019 Pikarom Judge Deck.jpg
+|caption=Box art
+|release=November 22, 2019
+|types={{e|Lightning}}
+}}
+
+'''Pikarom Judge''' is the name of the deck used by Haruki Miyamoto, the Juniors Division champion at the [[2019 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2019 World Championships Decks}} released November 22, 2019. Each deck comes with a Worlds 2019 deckbox, a Worlds 2019 pin, a booklet about the championships, and a {{TCGO}} code card. The cards included in the deck are not the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''A tournament standout all season, the Pikachu & Zekrom-GX deck made up about a quarter of the World Championships field—and in the hands of Haruki Miyamoto of Japan, it came out on top of the Junior Division! This deck packs plenty of ways to search for (and power up) the Pokémon you need, and it can often do so very quickly—to the tune of 150 damage on the second turn of the game, charging up a giant GX attack for nearly 400 total damage the next turn!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Pikachu & Zekrom-GX (Team Up 33)|Pikachu & Zekrom]]{{TT GX}}|Lightning||Rare}}
+{{decklist/entry|2|[[Raichu & Alolan Raichu-GX (Unified Minds 54)|Raichu & Alolan Raichu]]{{TT GX}}|Lightning||Rare}}
+{{decklist/entry|4|[[Dedenne-GX (Unbroken Bonds 57)|Dedenne]]{{GX}}|Lightning||Rare}}
+{{decklist/entry|2|[[Zeraora-GX (Lost Thunder 86)|Zeraora]]{{GX}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Hoopa|140}}|Darkness||Rare}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Marshadow|81}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Mew|76}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Tapu Fini|53}}|Water||Rare}}
+{{decklist/entry|1|[[Tapu Koko ♢ (Team Up 51)|Tapu Koko]] {{Prism Star}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Cherish Ball|191}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Lost Thunder|Custom Catcher|171}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ultra Prism|Cynthia|119}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unbroken Bonds|Electromagnetic Radar|169}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Lost Thunder|Electropower|172}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Celestial Storm|Energy Switch|129}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Forbidden Light|Judge|108}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Forbidden Light|Lysandre Labs|111}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Team Up|Pokémon Communication|152}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unbroken Bonds|Power Plant|183}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Reset Stamp|206}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Stadium Nav|208}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Celestial Storm|Switch|147}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unified Minds|Tag Switch|209}}|Item||Uncommon}}
+{{decklist/entry|1|[[Thunder Mountain ♢ (Lost Thunder 191)|Thunder Mountain]] {{Prism Star}}|Stadium||Rare}}
+{{decklist/entry|4|{{TCG ID|Ultra Prism|Volkner|135}}|Supporter||Uncommon}}
+{{decklist/entry|11|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Pikarom Judge (TCG)]]
+[[it:Pikarom Judge (GCC)]]
+[[ja:Pikarom Judge]]
+[[zh:皮卡罗姆裁决（TCG）]]

@@ -8,7 +8,14 @@ void main() {
   final migration = File(
     'supabase/migrations/20260422133000_wall_sections_data_model_v1.sql',
   ).readAsStringSync();
+  final mediaSurfaceMigration = File(
+    'supabase/migrations/20260703170000_vault_instance_media_public_surfaces_v1.sql',
+  ).readAsStringSync();
+  final mediaStoragePolicyMigration = File(
+    'supabase/migrations/20260703173000_vault_instance_public_media_storage_select_policy_v1.sql',
+  ).readAsStringSync();
   final normalized = normalizeSql(migration);
+  final normalizedMediaSurfaceMigration = normalizeSql(mediaSurfaceMigration);
 
   test('wall sections create durable section and instance membership tables', () {
     expect(
@@ -105,4 +112,49 @@ void main() {
     expect(migration, contains('representative_image_url'));
     expect(migration, contains("'representative'"));
   });
+
+  test('uploaded instance media is gated by exact-copy image display mode', () {
+    expect(
+      mediaSurfaceMigration,
+      contains('vault_save_instance_media_path_v1'),
+    );
+    expect(
+      normalizedMediaSurfaceMigration,
+      contains("image_display_mode = 'uploaded'"),
+    );
+    expect(
+      normalizedMediaSurfaceMigration,
+      contains("then 'uploaded' when v_side = 'front' then 'canonical'"),
+    );
+    expect(mediaSurfaceMigration, contains('v_wall_cards_v1'));
+    expect(mediaSurfaceMigration, contains('v_section_cards_v1'));
+    expect(mediaSurfaceMigration, contains('v_card_stream_v1'));
+  });
+
+  test(
+    'uploaded instance media storage reads stay scoped to public copies',
+    () {
+      expect(mediaStoragePolicyMigration, contains('user-card-images'));
+      expect(
+        mediaStoragePolicyMigration,
+        contains('user_card_images_public_discoverable_instance_select_v1'),
+      );
+      expect(
+        mediaStoragePolicyMigration,
+        contains("vii.intent in ('trade', 'sell', 'showcase')"),
+      );
+      expect(
+        mediaStoragePolicyMigration,
+        contains("vii.image_display_mode = 'uploaded'"),
+      );
+      expect(
+        mediaStoragePolicyMigration,
+        contains('pp.public_profile_enabled = true'),
+      );
+      expect(
+        mediaStoragePolicyMigration,
+        contains('pp.vault_sharing_enabled = true'),
+      );
+    },
+  );
 }

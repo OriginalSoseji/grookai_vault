@@ -38,6 +38,8 @@ type AddToVaultCardActionProps = {
   gvId: string;
   printings?: CardPrinting[];
   initialPrintingId?: string | null;
+  selectedPrintingId?: string | null;
+  onSelectedPrintingChange?: (printing: CardPrinting) => void;
 };
 
 function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
@@ -144,6 +146,8 @@ export default function AddToVaultCardAction({
   gvId,
   printings = [],
   initialPrintingId,
+  selectedPrintingId,
+  onSelectedPrintingChange,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const viewer = useClientViewer(null);
@@ -153,7 +157,9 @@ export default function AddToVaultCardAction({
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(() =>
     getDefaultPrinting(printings, initialPrintingId),
   );
-  const selectedChildPrintingId = selectedPrinting?.is_display_fallback ? null : selectedPrinting?.id ?? null;
+  const externallySelectedPrinting = selectedPrintingId ? findPrintingByReference(printings, selectedPrintingId) : null;
+  const effectiveSelectedPrinting = externallySelectedPrinting ?? selectedPrinting;
+  const selectedChildPrintingId = effectiveSelectedPrinting?.is_display_fallback ? null : effectiveSelectedPrinting?.id ?? null;
   const onlyFallbackPrinting = printings.length === 1 && printings[0]?.is_display_fallback === true;
   const statusMessage = getStatusMessage(state);
   const toneClasses =
@@ -161,6 +167,11 @@ export default function AddToVaultCardAction({
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
       : "border-rose-200 bg-rose-50 text-rose-800";
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
+
+  function handleSelectedPrintingChange(printing: CardPrinting) {
+    setSelectedPrinting(printing);
+    onSelectedPrintingChange?.(printing);
+  }
 
   function getImageSuggestionHref(printing: CardPrinting) {
     const submitPath = buildImageSuggestionPath({
@@ -177,7 +188,7 @@ export default function AddToVaultCardAction({
   }
 
   function getSuggestionHrefForFinish(finishKey: string, finishName: string) {
-    const fallbackPrinting = selectedPrinting ?? printings[0];
+    const fallbackPrinting = effectiveSelectedPrinting ?? printings[0];
     if (!fallbackPrinting) {
       return null;
     }
@@ -224,8 +235,8 @@ export default function AddToVaultCardAction({
       {printings.length > 0 ? (
         <PrintingSelector
           printings={printings}
-          selectedPrintingId={selectedPrinting?.id}
-          onSelectedPrintingChange={setSelectedPrinting}
+          selectedPrintingId={effectiveSelectedPrinting?.id}
+          onSelectedPrintingChange={handleSelectedPrintingChange}
           title="Variant / Finish"
           description="Choose the exact version before adding it to your vault."
           compact

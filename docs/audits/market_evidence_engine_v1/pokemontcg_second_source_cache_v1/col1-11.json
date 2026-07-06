@@ -1,0 +1,112 @@
+{
+  "id": "col1-11",
+  "name": "Jirachi",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "60",
+  "types": [
+    "Psychic"
+  ],
+  "abilities": [
+    {
+      "name": "Stardust Song",
+      "text": "Once during your turn, when you put Jirachi from your hand onto your Bench, you may flip 3 coins. For each heads, search your discard pile for a Psychic Energy card and attach it to Jirachi.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Time Hollow",
+      "cost": [
+        "Psychic"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "",
+      "text": "Choose a number of your opponent's Stage 1 or Stage 2 Evolved Pokémon up to the amount of Energy attached to Jirachi. Remove the highest Stage Evolution card from each of those Pokémon and put those cards back into your opponent's hand."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "11",
+  "artist": "match",
+  "rarity": "Rare Holo",
+  "flavorText": "Generations have believed that any wish written on a note on its head will come true when it awakens.",
+  "nationalPokedexNumbers": [
+    385
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/11.png",
+    "large": "https://images.pokemontcg.io/col1/11_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/col1-11",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 23.22,
+        "mid": 43.67,
+        "high": 2064.36,
+        "market": 34.64,
+        "directLow": 34.99
+      },
+      "reverseHolofoil": {
+        "low": 25.49,
+        "mid": 30,
+        "high": 253.1,
+        "market": 30.88,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-11",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 15.56,
+      "lowPrice": 0.9,
+      "trendPrice": 18.52,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 25,
+      "reverseHoloLow": 1.99,
+      "reverseHoloTrend": 20.73,
+      "lowPriceExPlus": 3,
+      "avg1": 17,
+      "avg7": 18.92,
+      "avg30": 14.65,
+      "reverseHoloAvg1": 25,
+      "reverseHoloAvg7": 15.5,
+      "reverseHoloAvg30": 14.34
+    }
+  }
+}

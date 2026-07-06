@@ -1,0 +1,121 @@
+{
+  "id": "dp3-44",
+  "name": "Xatu",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "level": "44",
+  "hp": "80",
+  "types": [
+    "Psychic"
+  ],
+  "evolvesFrom": "Natu",
+  "abilities": [
+    {
+      "name": "Psychic Shift",
+      "text": "Once during your turn, if Xatu is on your Bench, you may choose 1 Special Condition from 1 of your Active Pokémon and remove that Special Condition. Then, 1 of the Defending Pokémon is now affected by that Special Condition that you chose.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Energy Singe",
+      "cost": [
+        "Psychic",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "",
+      "text": "Choose 1 of your opponent's Pokémon. This attack does 20 damage plus 10 more damage for each Energy attached to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "+10"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Fighting",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "dp3",
+    "name": "Secret Wonders",
+    "series": "Diamond & Pearl",
+    "printedTotal": 132,
+    "total": 132,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "SW",
+    "releaseDate": "2007/11/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp3/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp3/logo.png"
+    }
+  },
+  "number": "44",
+  "artist": "Sumiyoshi Kizuki",
+  "rarity": "Rare",
+  "flavorText": "This odd Pokémon can see both the past and the future. It eyes the sun's movement all day.",
+  "nationalPokedexNumbers": [
+    178
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp3/44.png",
+    "large": "https://images.pokemontcg.io/dp3/44_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp3-44",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.43,
+        "mid": 0.97,
+        "high": 19.98,
+        "market": 1.03,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1.5,
+        "mid": 3.84,
+        "high": 32.7,
+        "market": 1.94,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp3-44",
+    "updatedAt": "2026/03/07",
+    "prices": {
+      "averageSellPrice": 0.88,
+      "lowPrice": 0.14,
+      "trendPrice": 0.75,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0.55,
+      "reverseHoloLow": 0.2,
+      "reverseHoloTrend": 0.96,
+      "lowPriceExPlus": 0.16,
+      "avg1": 0.32,
+      "avg7": 0.69,
+      "avg30": 0.8,
+      "reverseHoloAvg1": 0.2,
+      "reverseHoloAvg7": 0.57,
+      "reverseHoloAvg30": 1.01
+    }
+  }
+}

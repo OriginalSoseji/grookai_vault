@@ -1,0 +1,60 @@
+{
+  "package_id": "MEE-CORE-LIFECYCLE-BACKFILL-BATCH-08-V1",
+  "generated_at": "2026-06-26T17:01:31.936Z",
+  "mode": "local_backfill_batch_plan_only_no_db_writes",
+  "event_version": "MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1",
+  "package_fingerprint_sha256": "76d067aa2d111d0ad0006860887243becf4e27a85c90b9456435f0d3c76580d5",
+  "limits": {
+    "total_limit": 10000,
+    "reference_limit": 10000,
+    "active_listing_limit": 10000
+  },
+  "existing_lifecycle_counts_before_plan": {
+    "existing_event_count": 385042,
+    "existing_observation_count": 55006
+  },
+  "row_counts": {
+    "reference_observations": 0,
+    "active_listing_observations": 10000,
+    "market_evidence_observations": 10000,
+    "market_evidence_lifecycle_events": 70000
+  },
+  "manifest_hashes": {
+    "market_evidence_observations_jsonl_sha256": "18495d0b3b9ca5b57f7ca18356da7d4524e925346dae9996d02f29b07cfd2d3e",
+    "market_evidence_lifecycle_events_jsonl_sha256": "de8a365a8deed64d01780c996ce4f366f641bc1ac11c459b04920b47fb2e48e6",
+    "readback_sql_sha256": "b57a244c9dc124cf4f1e03c3d74a6e1c2ba0da762b6d24ff9c06938f10c56fda"
+  },
+  "duplicate_risk": {
+    "observation_ids_unique": true,
+    "observation_keys_unique": true,
+    "event_hashes_unique": true,
+    "excludes_existing_market_evidence_observations": true
+  },
+  "findings": [],
+  "artifacts": {
+    "observations_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1/market_evidence_observations.jsonl",
+    "lifecycle_events_jsonl": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1/market_evidence_lifecycle_events.jsonl",
+    "readback_sql": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1/readback.sql",
+    "manifest_json": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1/manifest.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE_CORE_LIFECYCLE_BACKFILL_BATCH_08_PLAN_V1.md"
+  },
+  "boundary_proof": {
+    "db_writes": false,
+    "evidence_backfill_apply": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

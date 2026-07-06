@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
+import '../utils/display_image_contract.dart';
+import '../theme/gv_tokens.dart';
 import 'card_zoom_viewer.dart';
 
 const double _kCardSurfaceArtworkAspectRatio = 0.69;
+
+enum CardArtworkFrame { none, soft }
 
 class CardSurfaceArtwork extends StatelessWidget {
   const CardSurfaceArtwork({
@@ -13,11 +18,14 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.borderRadius = 16,
     this.padding = const EdgeInsets.all(1.5),
     this.backgroundColor,
+    this.frame = CardArtworkFrame.none,
     this.enableTapToZoom = true,
     this.showZoomAffordance = false,
     this.showShadow = true,
     this.filterQuality = FilterQuality.low,
     this.onTapToZoom,
+    this.onViewDetails,
+    this.detailsLabel = 'View details',
     this.imageTruthLabel,
     this.imageTruthStrong = false,
     super.key,
@@ -30,15 +38,19 @@ class CardSurfaceArtwork extends StatelessWidget {
   final double borderRadius;
   final EdgeInsetsGeometry padding;
   final Color? backgroundColor;
+  final CardArtworkFrame frame;
   final bool enableTapToZoom;
   final bool showZoomAffordance;
   final bool showShadow;
   final FilterQuality filterQuality;
   final VoidCallback? onTapToZoom;
+  final VoidCallback? onViewDetails;
+  final String detailsLabel;
   final String? imageTruthLabel;
   final bool imageTruthStrong;
 
-  bool get _hasImage => (imageUrl ?? '').trim().isNotEmpty;
+  String? get _zoomImageUrl => normalizeDisplayImageUrl(imageUrl);
+  bool get _hasImage => (_zoomImageUrl ?? '').isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +59,22 @@ class CardSurfaceArtwork extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color:
-            backgroundColor ??
-            colorScheme.surfaceContainerLow.withValues(alpha: 0.72),
+        color: frame == CardArtworkFrame.none
+            ? backgroundColor
+            : backgroundColor ??
+                  colorScheme.surfaceContainerLow.withValues(alpha: 0.58),
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
+        border: frame == CardArtworkFrame.none
+            ? null
+            : Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
         boxShadow: showShadow
             ? [
                 BoxShadow(
-                  color: colorScheme.shadow.withValues(alpha: 0.02),
-                  blurRadius: 12,
-                  offset: const Offset(0, 6),
+                  color: colorScheme.shadow.withValues(
+                    alpha: frame == CardArtworkFrame.none ? 0.10 : 0.025,
+                  ),
+                  blurRadius: frame == CardArtworkFrame.none ? 24 : 12,
+                  offset: Offset(0, frame == CardArtworkFrame.none ? 10 : 6),
                 ),
               ]
             : const [],
@@ -73,22 +90,31 @@ class CardSurfaceArtwork extends StatelessWidget {
                 // surfaces so thumbnails do not decode at source resolution.
                 final cacheWidth = _resolvedCacheWidth(context, constraints);
                 final cacheHeight = _resolvedCacheHeight(context, constraints);
+                final resolvedImageUrl = normalizeDisplayImageUrl(
+                  imageUrl,
+                  width: _optimizedImageWidth(cacheWidth),
+                );
                 final compact =
                     (height != null && height! <= 80) ||
                     (constraints.hasBoundedHeight &&
                         constraints.maxHeight <= 80);
-
                 return Padding(
                   padding: padding,
-                  child: _hasImage
-                      ? Image.network(
-                          imageUrl!,
+                  child: resolvedImageUrl != null
+                      ? CachedNetworkImage(
+                          imageUrl: resolvedImageUrl,
                           fit: BoxFit.contain,
                           alignment: Alignment.center,
-                          cacheWidth: cacheWidth,
-                          cacheHeight: cacheHeight,
+                          fadeInDuration: Duration.zero,
+                          fadeOutDuration: Duration.zero,
+                          memCacheWidth: cacheWidth,
+                          memCacheHeight: cacheHeight,
+                          maxWidthDiskCache: cacheWidth,
+                          maxHeightDiskCache: cacheHeight,
                           filterQuality: filterQuality,
-                          errorBuilder: (context, error, stackTrace) =>
+                          placeholder: (context, url) =>
+                              _ArtworkSkeleton(compact: compact),
+                          errorWidget: (context, url, error) =>
                               _ArtworkFallback(label: label, compact: compact),
                         )
                       : _ArtworkFallback(label: label, compact: compact),
@@ -122,9 +148,20 @@ class CardSurfaceArtwork extends StatelessWidget {
               right: 6,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: _ImageTruthChip(
-                  label: imageTruthLabel!.trim(),
-                  strong: imageTruthStrong,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final suppress =
+                        (constraints.hasBoundedWidth &&
+                            constraints.maxWidth < 100) ||
+                        (width != null && width! < 100);
+                    if (suppress) {
+                      return const SizedBox.shrink();
+                    }
+                    return _ImageTruthChip(
+                      label: imageTruthLabel!.trim(),
+                      strong: imageTruthStrong,
+                    );
+                  },
                 ),
               ),
             ),
@@ -141,7 +178,13 @@ class CardSurfaceArtwork extends StatelessWidget {
       child: InkWell(
         onTap:
             onTapToZoom ??
-            () => showCardImageZoom(context, label: label, imageUrl: imageUrl),
+            () => showCardImageZoom(
+              context,
+              label: label,
+              imageUrl: _zoomImageUrl,
+              onViewDetails: onViewDetails,
+              detailsLabel: detailsLabel,
+            ),
         borderRadius: BorderRadius.circular(borderRadius),
         child: child,
       ),
@@ -201,6 +244,17 @@ class CardSurfaceArtwork extends StatelessWidget {
     }
     return null;
   }
+
+  int? _optimizedImageWidth(int? cacheWidth) {
+    if (cacheWidth == null || cacheWidth <= 0) {
+      return null;
+    }
+
+    if (cacheWidth <= 160) return 256;
+    if (cacheWidth <= 320) return 384;
+    if (cacheWidth <= 480) return 640;
+    return 828;
+  }
 }
 
 class _ImageTruthChip extends StatelessWidget {
@@ -243,10 +297,35 @@ class _ImageTruthChip extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: foreground,
-            fontSize: 9.5,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 0.2,
+            fontSize: GvText.minReadable,
+            fontWeight: GvText.bold,
+            letterSpacing: 0,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ArtworkSkeleton extends StatelessWidget {
+  const _ArtworkSkeleton({required this.compact});
+
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.52),
+        borderRadius: BorderRadius.circular(compact ? 7 : 12),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.style_rounded,
+          size: compact ? 16 : 24,
+          color: colorScheme.onSurfaceVariant.withValues(alpha: 0.26),
         ),
       ),
     );

@@ -3,23 +3,36 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Flutter grouped intent control updates instance intent only', () {
-    final source = File(
+  test('Flutter grouped intent control is removed from active management', () {
+    final serviceSource = File(
       'lib/services/vault/vault_card_service.dart',
     ).readAsStringSync();
+    final screenSource = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
 
-    expect(source, contains(".from('vault_item_instances')"));
-    expect(source, contains(".eq('legacy_vault_item_id', normalizedItemId)"));
-    expect(source, contains('Do not write grouped intent'));
-    expect(source, isNot(contains('storedIntent')));
+    expect(screenSource, contains('Select private copies'));
+    expect(screenSource, contains('Open copy controls'));
     expect(
-      source,
-      isNot(contains(".select('intent')\n          .eq('id', vaultItemId)")),
+      screenSource,
+      contains('VaultCardService.saveVaultItemInstanceIntent'),
     );
     expect(
-      source,
-      isNot(contains(".from('vault_items')\n        .update({'intent':")),
+      screenSource,
+      contains('VaultCardService.saveVaultItemInstancesIntentBulk'),
     );
+    expect(screenSource, isNot(contains('Future<void> _saveIntent')));
+    expect(
+      screenSource,
+      isNot(contains('VaultCardService.saveVaultItemIntent')),
+    );
+    expect(serviceSource, contains(".from('vault_item_instances')"));
+    expect(
+      serviceSource,
+      isNot(contains('static Future<String> saveVaultItemIntent')),
+    );
+    expect(serviceSource, isNot(contains('Do not write grouped intent')));
+    expect(serviceSource, isNot(contains('storedIntent')));
   });
 
   test('web grouped intent action is fail-closed compatibility only', () {

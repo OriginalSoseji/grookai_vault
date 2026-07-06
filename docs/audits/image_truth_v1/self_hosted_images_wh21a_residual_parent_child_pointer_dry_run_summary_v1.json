@@ -1,0 +1,1349 @@
+{
+  "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+  "generated_at": "2026-06-24T18:02:35.157Z",
+  "mode": "dry_run_no_write",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh21a_residual_parent_child_pointer_plan_v1.jsonl",
+  "residual_parent_gap_rows_scanned": 68,
+  "target_parent_rows_with_existing_child_image": 41,
+  "effective_metadata_pointer_updates": 41,
+  "residual_parent_gap_rows_without_child_image_route": 27,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "global_apply_performed": false,
+  "target_table": "card_prints",
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path",
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "preserved_columns": [
+    "card_prints.id",
+    "card_prints.gv_id",
+    "card_prints.name",
+    "card_prints.set_code",
+    "card_prints.number",
+    "card_prints.image_url",
+    "card_prints.image_alt_url",
+    "card_prints.representative_image_url"
+  ],
+  "by_set_code": {
+    "col1": 3,
+    "mep": 23,
+    "misc": 1,
+    "svp": 7,
+    "swshp": 1,
+    "xya": 6
+  },
+  "by_source_finish_key": {
+    "cosmos": 3,
+    "holo": 24,
+    "normal": 14
+  },
+  "by_source_child_image_status": {
+    "exact": 20,
+    "representative_shared": 20,
+    "representative_shared_stamp": 1
+  },
+  "proposed_statuses": {
+    "representative_shared": 40,
+    "representative_shared_stamp": 1
+  },
+  "changed_columns": {
+    "image_note": 41,
+    "image_path": 41,
+    "image_source": 41,
+    "image_status": 40
+  },
+  "unsupported_residual_by_set_code": {
+    "unknown": 27
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "samples": {
+    "pointer_updates": [
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+        "gv_id": "GV-PK-COL-1",
+        "name": "Clefable",
+        "set_code": "col1",
+        "set_name": "Call of Legends",
+        "number": "1",
+        "parent_variant_key": null,
+        "source_child_id": "e9a968f8-ca23-4ec5-b20f-843cce666ad8",
+        "source_printing_gv_id": "GV-PK-COL-1-STD",
+        "source_finish_key": "normal",
+        "source_child_image_status": "representative_shared",
+        "source_child_image_note": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:pkmncards:https://pkmncards.com/card/clefable-call-of-legends-cl-1/",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/col1/e9a968f8-ca23-4ec5-b20f-843cce666ad8/c2b4b594e313cbf9fe3fad29.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-COL-1-STD; child_finish:normal; child_status:representative_shared. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+        "gv_id": "GV-PK-COL-10",
+        "name": "Houndoom",
+        "set_code": "col1",
+        "set_name": "Call of Legends",
+        "number": "10",
+        "parent_variant_key": null,
+        "source_child_id": "76bdceac-c5a0-448e-8af0-d1098868385c",
+        "source_printing_gv_id": "GV-PK-COL-10-STD",
+        "source_finish_key": "normal",
+        "source_child_image_status": "representative_shared",
+        "source_child_image_note": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:pkmncards:https://pkmncards.com/card/houndoom-call-of-legends-cl-10/",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/col1/76bdceac-c5a0-448e-8af0-d1098868385c/c6ff24d556c722b11d7e5ebf.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-COL-10-STD; child_finish:normal; child_status:representative_shared. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+        "gv_id": "GV-PK-COL-5",
+        "name": "Forretress",
+        "set_code": "col1",
+        "set_name": "Call of Legends",
+        "number": "5",
+        "parent_variant_key": null,
+        "source_child_id": "6522b25f-69fc-4676-a8ae-e8aa407e85d1",
+        "source_printing_gv_id": "GV-PK-COL-5-STD",
+        "source_finish_key": "normal",
+        "source_child_image_status": "representative_shared",
+        "source_child_image_note": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:pkmncards:https://pkmncards.com/card/forretress-call-of-legends-cl-5/",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/col1/6522b25f-69fc-4676-a8ae-e8aa407e85d1/8bfd3a046e3c6c06564fe6f4.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-COL-5-STD; child_finish:normal; child_status:representative_shared. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a3cb10d9-d6c4-4f3e-ac57-59a04f7addb9",
+        "gv_id": "GV-PK-MEP-032",
+        "name": "Mega Gardevoir ex",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "032",
+        "parent_variant_key": null,
+        "source_child_id": "182a4ff4-c69a-400b-83c8-a782cffb4945",
+        "source_printing_gv_id": "GV-PK-MEP-032-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "representative_shared",
+        "source_child_image_note": "IMG-09C-MEP-TCGCSV-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY:tcgcsv_tcgplayer_catalog_live:https://www.tcgplayer.com/product/685510/pokemon-me-mega-evolution-promo-mega-gardevoir-ex-032",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/182a4ff4-c69a-400b-83c8-a782cffb4945/a8e158cc6c4a7166d6d21833.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-032-HOLO; child_finish:holo; child_status:representative_shared. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "91e7feba-1022-4c64-b03c-5a1139baa447",
+        "gv_id": "GV-PK-MEP-046",
+        "name": "Chikorita",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "046",
+        "parent_variant_key": null,
+        "source_child_id": "86656169-01ef-438d-ba52-5efb490d752b",
+        "source_printing_gv_id": "GV-PK-MEP-046-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Chikorita_(MEP_Promo_46)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-046-holo/9c103405264c02306a63c3d0.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-046-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "585e9ae4-72ed-41ba-9655-3e8af3dfed48",
+        "gv_id": "GV-PK-MEP-047",
+        "name": "Cyndaquil",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "047",
+        "parent_variant_key": null,
+        "source_child_id": "0cd11eaa-0954-4cef-86be-e9e44776ceec",
+        "source_printing_gv_id": "GV-PK-MEP-047-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Cyndaquil_(MEP_Promo_47)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-047-holo/9a83b6da120cf849c1bbc081.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-047-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "71c6ffe0-f844-4779-b245-dba313266056",
+        "gv_id": "GV-PK-MEP-048",
+        "name": "Totodile",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "048",
+        "parent_variant_key": null,
+        "source_child_id": "b14fc497-2fc1-482b-837e-0fe5ad32ca86",
+        "source_printing_gv_id": "GV-PK-MEP-048-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Totodile_(MEP_Promo_48)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-048-holo/6521344627da63cdfe335159.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-048-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "0ffb2971-7581-4412-85f6-06d87b317b7c",
+        "gv_id": "GV-PK-MEP-049",
+        "name": "Snivy",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "049",
+        "parent_variant_key": null,
+        "source_child_id": "05524fe1-7184-4ea8-ab51-14519de56384",
+        "source_printing_gv_id": "GV-PK-MEP-049-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Snivy_(MEP_Promo_49)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-049-holo/50612de3638131710bf9fc40.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-049-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "81007ef0-68b3-4179-9144-f1c3da194515",
+        "gv_id": "GV-PK-MEP-050",
+        "name": "Tepig",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "050",
+        "parent_variant_key": null,
+        "source_child_id": "6343e1de-3a86-4ff3-a3da-e6d75ada2178",
+        "source_printing_gv_id": "GV-PK-MEP-050-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Tepig_(MEP_Promo_50)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-050-holo/b100f7897511c72f9bc35731.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-050-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "441ff695-8227-4b6d-99c5-b086402e6215",
+        "gv_id": "GV-PK-MEP-051",
+        "name": "Oshawott",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "051",
+        "parent_variant_key": null,
+        "source_child_id": "d02f8947-aa73-409b-8657-5746baef7c48",
+        "source_printing_gv_id": "GV-PK-MEP-051-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Oshawott_(MEP_Promo_51)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-051-holo/c49eb98e28dcd7e74163f5f6.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-051-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "012f3cc7-4435-496a-9317-4967c5db0717",
+        "gv_id": "GV-PK-MEP-052",
+        "name": "Grookey",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "052",
+        "parent_variant_key": null,
+        "source_child_id": "abcc7798-30d1-4e35-a89c-afd41360a7c3",
+        "source_printing_gv_id": "GV-PK-MEP-052-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Grookey_(MEP_Promo_52)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-052-holo/cbb57cbe4f94f20769708173.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-052-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "3bc8fa1b-6ee0-45c1-8878-69f67a16ece0",
+        "gv_id": "GV-PK-MEP-053",
+        "name": "Scorbunny",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "053",
+        "parent_variant_key": null,
+        "source_child_id": "0d1efcda-6719-49b6-8eb7-50e97f780fb9",
+        "source_printing_gv_id": "GV-PK-MEP-053-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Scorbunny_(MEP_Promo_53)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-053-holo/d9311cb78171931141c12e4b.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-053-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "bbb8ec10-752b-4365-ba6e-175c72cfafec",
+        "gv_id": "GV-PK-MEP-054",
+        "name": "Sobble",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "054",
+        "parent_variant_key": null,
+        "source_child_id": "7a47f22b-443a-4d50-99a7-6d7a55755f20",
+        "source_printing_gv_id": "GV-PK-MEP-054-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Sobble_(MEP_Promo_54)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 2 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-054-holo/e884682d80f4269234061827.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-054-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a2c2cf77-f690-4e11-aa78-a3a380dfcc49",
+        "gv_id": "GV-PK-MEP-055",
+        "name": "Treecko",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "055",
+        "parent_variant_key": null,
+        "source_child_id": "e9fe897b-339e-46ed-a106-fe479e9e1069",
+        "source_printing_gv_id": "GV-PK-MEP-055-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Treecko_(MEP_Promo_55)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-055-holo/7f40978c1fea6987f69ea453.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-055-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "b1091ad7-fe30-4542-b25a-11babdcff849",
+        "gv_id": "GV-PK-MEP-056",
+        "name": "Torchic",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "056",
+        "parent_variant_key": null,
+        "source_child_id": "a60208ed-3178-4142-8fc0-b1dab73889bb",
+        "source_printing_gv_id": "GV-PK-MEP-056-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Torchic_(MEP_Promo_56)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-056-holo/e157fb65556ee97ab117552a.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-056-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "703b2dbb-6c88-4813-b352-86e51f7b29bd",
+        "gv_id": "GV-PK-MEP-057",
+        "name": "Mudkip",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "057",
+        "parent_variant_key": null,
+        "source_child_id": "015eea37-c937-4d65-994c-f738357aa089",
+        "source_printing_gv_id": "GV-PK-MEP-057-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Mudkip_(MEP_Promo_57)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-057-holo/76593e5f0559fffd2483b6a7.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-057-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "56b0ae7e-01f0-40a1-ba67-545f5fda47c2",
+        "gv_id": "GV-PK-MEP-058",
+        "name": "Chespin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "058",
+        "parent_variant_key": null,
+        "source_child_id": "843dd9c7-6c96-4ab3-80ad-161354c9bfee",
+        "source_printing_gv_id": "GV-PK-MEP-058-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Chespin_(MEP_Promo_58)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-058-holo/290c1714c3e2b5bf1c958163.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-058-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "dda4a838-b557-4a55-a88e-a42bdb7ec91e",
+        "gv_id": "GV-PK-MEP-059",
+        "name": "Fennekin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "059",
+        "parent_variant_key": null,
+        "source_child_id": "c515cb02-3dd3-41d4-b4b5-52458f8f3ef0",
+        "source_printing_gv_id": "GV-PK-MEP-059-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Fennekin_(MEP_Promo_59)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-059-holo/00ac9ee9615c5c92b78a382f.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-059-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "8b4dc72a-4715-4449-a8f8-26566255741f",
+        "gv_id": "GV-PK-MEP-060",
+        "name": "Froakie",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "060",
+        "parent_variant_key": null,
+        "source_child_id": "9cde24e6-e69c-4269-9926-d46304054e11",
+        "source_printing_gv_id": "GV-PK-MEP-060-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Froakie_(MEP_Promo_60)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-060-holo/919c3c32e5d60b432e126cdf.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-060-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "ddceced6-4236-46e0-aa1e-b8b1eef6b659",
+        "gv_id": "GV-PK-MEP-061",
+        "name": "Sprigatito",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "061",
+        "parent_variant_key": null,
+        "source_child_id": "a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3",
+        "source_printing_gv_id": "GV-PK-MEP-061-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Sprigatito_(MEP_Promo_61)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-061-holo/180b450c645b9f5283ca3a5c.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-061-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "7beeb8aa-8c81-4811-a3cb-bc3677803b69",
+        "gv_id": "GV-PK-MEP-062",
+        "name": "Fuecoco",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "062",
+        "parent_variant_key": null,
+        "source_child_id": "6faccbb7-c455-4a84-87d1-962ae99be91f",
+        "source_printing_gv_id": "GV-PK-MEP-062-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Fuecoco_(MEP_Promo_62)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-062-holo/74e63eaf4f52f220e4e3a2dc.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-062-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "206efaa9-0a89-4fc9-a528-946fa2bdcbb3",
+        "gv_id": "GV-PK-MEP-063",
+        "name": "Quaxly",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "063",
+        "parent_variant_key": null,
+        "source_child_id": "be5ffa44-fb2b-4af8-ad76-9eb734b5d836",
+        "source_printing_gv_id": "GV-PK-MEP-063-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-19A-MEP-FIRST-PARTNER-BULBAPEDIA-EXACT-CHILD-IMAGE-UPLOAD-APPLY:bulbapedia_archives:https://bulbapedia.bulbagarden.net/wiki/Quaxly_(MEP_Promo_63)",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "missing",
+          "image_note": "First Partner Illustration Collection Series 3 source-backed parent identity. Exact image deferred."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_printings/mep/gv-pk-mep-063-holo/23fe2c9443d3e479e6757ff1.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-063-HOLO; child_finish:holo; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "5ba489b2-bc25-4368-9050-edaca6c82c28",
+        "gv_id": "GV-PK-MEP-078",
+        "name": "Toxel",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "078",
+        "parent_variant_key": null,
+        "source_child_id": "410e944b-cb07-425c-a9c5-3884a2c7b326",
+        "source_printing_gv_id": "GV-PK-MEP-078-COSMOS",
+        "source_finish_key": "cosmos",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-01D-MISSING-DISPLAY-EXACT-CHILD-IMAGE-UPLOAD-APPLY:pricecharting_live_page:https://www.pricecharting.com/game/pokemon-promo/toxel-cosmos-holo-78",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mep/410e944b-cb07-425c-a9c5-3884a2c7b326/50afb53e79b4a04388cbd00e.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-078-COSMOS; child_finish:cosmos; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "72344666-6ef8-4c58-b515-410c9cb45780",
+        "gv_id": "GV-PK-MEP-079",
+        "name": "Charmeleon",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "079",
+        "parent_variant_key": null,
+        "source_child_id": "1df829ab-6170-4149-914d-c0d24a7ac4f2",
+        "source_printing_gv_id": "GV-PK-MEP-079-COSMOS",
+        "source_finish_key": "cosmos",
+        "source_child_image_status": "exact",
+        "source_child_image_note": "IMG-01D-MISSING-DISPLAY-EXACT-CHILD-IMAGE-UPLOAD-APPLY:pricecharting_live_page:https://www.pricecharting.com/game/pokemon-promo/charmeleon-cosmos-holo-79",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mep/1df829ab-6170-4149-914d-c0d24a7ac4f2/02e94c106d49bebbfae7b7b3.jpg",
+          "image_status": "representative_shared",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-079-COSMOS; child_finish:cosmos; child_status:exact. Parent image remains representative only; no exact parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN",
+        "plan_type": "residual_parent_representative_child_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "a71a3419-80dc-4997-9997-1eb9d669c64a",
+        "gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP",
+        "name": "Fennekin",
+        "set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "number": "80",
+        "parent_variant_key": "pokemon_center_stamp",
+        "source_child_id": "1b33e4bf-d4a2-42de-9f14-f379e1b9fc86",
+        "source_printing_gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP-HOLO",
+        "source_finish_key": "holo",
+        "source_child_image_status": "representative_shared_stamp",
+        "source_child_image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive; base_printing_gv_id:GV-PK-MEP-80-HOLO; not_exact_stamped_image",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "Pokemon Center stamped canonical identity. Representative base image only until exact stamped image is available."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mep/85367f10-2d1e-4314-ba84-b23bd09cd423/bcf7dbd5402c102b302b255b.jpg",
+          "image_status": "representative_shared_stamp",
+          "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-MEP-080-POKEMON-CENTER-STAMP-HOLO; child_finish:holo; child_status:representative_shared_stamp. Stamped parent image remains representative only; no exact stamped parent image claim."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "runtime_public_url_field_write": false,
+        "exact_image_claim_change": false
+      }
+    ],
+    "unsupported_residual_rows": [
+      {
+        "id": "69cca118-2e65-48b1-b897-edfd68efe784",
+        "gv_id": "GV-TCGP-P-A-100",
+        "name": "Weavile",
+        "set_code": null,
+        "set_name": null,
+        "number": "100",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "34cad6d4-7338-400a-9bba-83425d2785dd",
+        "gv_id": "GV-TCGP-P-A-74",
+        "name": "Zeraora",
+        "set_code": null,
+        "set_name": null,
+        "number": "74",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "e9f4c3ce-4a0a-4c75-9ade-a2eb9085d00d",
+        "gv_id": "GV-TCGP-P-A-75",
+        "name": "Kartana",
+        "set_code": null,
+        "set_name": null,
+        "number": "75",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "58fffd7a-f8ad-45a6-bbbd-e96fcc19aba1",
+        "gv_id": "GV-TCGP-P-A-76",
+        "name": "Blacephalon",
+        "set_code": null,
+        "set_name": null,
+        "number": "76",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "a8dd3d45-4063-4efe-803f-61fd3941b330",
+        "gv_id": "GV-TCGP-P-A-77",
+        "name": "Xurkitree",
+        "set_code": null,
+        "set_name": null,
+        "number": "77",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "269f7fcd-1acf-4f43-a23b-b3741a83f340",
+        "gv_id": "GV-TCGP-P-A-78",
+        "name": "Dawn Wings Necrozma",
+        "set_code": null,
+        "set_name": null,
+        "number": "78",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "d0725665-1e75-4379-ab7d-ad1f2f4bbcad",
+        "gv_id": "GV-TCGP-P-A-79",
+        "name": "Dusk Mane Necrozma",
+        "set_code": null,
+        "set_name": null,
+        "number": "79",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "02917557-3b73-4283-9861-c2dbfc12c4a2",
+        "gv_id": "GV-TCGP-P-A-80",
+        "name": "Stakataka",
+        "set_code": null,
+        "set_name": null,
+        "number": "80",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "5a3233d7-fef2-4b8c-b7ca-8fb284201a3b",
+        "gv_id": "GV-TCGP-P-A-81",
+        "name": "Ultra Necrozma ex",
+        "set_code": null,
+        "set_name": null,
+        "number": "81",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "0dbdba6c-b283-4b80-ac1f-9610072d52ed",
+        "gv_id": "GV-TCGP-P-A-82",
+        "name": "Poipole",
+        "set_code": null,
+        "set_name": null,
+        "number": "82",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "3b7be800-fe7c-4eee-86a5-6b224ba73782",
+        "gv_id": "GV-TCGP-P-A-83",
+        "name": "Stufful",
+        "set_code": null,
+        "set_name": null,
+        "number": "83",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "119a10ef-d59d-46b3-81b2-7aee3deafeab",
+        "gv_id": "GV-TCGP-P-A-84",
+        "name": "Tapu Koko ex",
+        "set_code": null,
+        "set_name": null,
+        "number": "84",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "a1c54414-006a-44ac-b71a-6c19ea984d9d",
+        "gv_id": "GV-TCGP-P-A-85",
+        "name": "Vanillite",
+        "set_code": null,
+        "set_name": null,
+        "number": "85",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "bece9a1b-5a07-4e91-9439-813336833e24",
+        "gv_id": "GV-TCGP-P-A-86",
+        "name": "Jolteon",
+        "set_code": null,
+        "set_name": null,
+        "number": "86",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "a1ffef18-bd19-474c-b6ac-da5c3a834128",
+        "gv_id": "GV-TCGP-P-A-87",
+        "name": "Alcremie",
+        "set_code": null,
+        "set_name": null,
+        "number": "87",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "87b00420-0046-4561-9e0c-32682659eeeb",
+        "gv_id": "GV-TCGP-P-A-88",
+        "name": "Dragonair",
+        "set_code": null,
+        "set_name": null,
+        "number": "88",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "17c1745f-fcb0-4691-8ab3-91c0c620373a",
+        "gv_id": "GV-TCGP-P-A-89",
+        "name": "Audino",
+        "set_code": null,
+        "set_name": null,
+        "number": "89",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "36ab4359-d255-40ee-ba48-7a00fa33ecd1",
+        "gv_id": "GV-TCGP-P-A-90",
+        "name": "Togedemaru",
+        "set_code": null,
+        "set_name": null,
+        "number": "90",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "373213b3-7007-4121-af0d-99c6338c93e0",
+        "gv_id": "GV-TCGP-P-A-91",
+        "name": "Greedent",
+        "set_code": null,
+        "set_name": null,
+        "number": "91",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "fbedad1d-45c6-45d5-83b6-4134679596a7",
+        "gv_id": "GV-TCGP-P-A-92",
+        "name": "Eevee",
+        "set_code": null,
+        "set_name": null,
+        "number": "92",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "9dcb6e5d-05e7-4b37-816a-7969966e229e",
+        "gv_id": "GV-TCGP-P-A-93",
+        "name": "Cleffa",
+        "set_code": null,
+        "set_name": null,
+        "number": "93",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "976662a7-5c8c-467d-b8c3-90976ea48736",
+        "gv_id": "GV-TCGP-P-A-94",
+        "name": "Horsea",
+        "set_code": null,
+        "set_name": null,
+        "number": "94",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "d9bb8e69-fe17-4448-987f-76d71dcb67b5",
+        "gv_id": "GV-TCGP-P-A-95",
+        "name": "Chinchou",
+        "set_code": null,
+        "set_name": null,
+        "number": "95",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "15cf183f-9305-45ab-a7b6-f76ac198a6c5",
+        "gv_id": "GV-TCGP-P-A-96",
+        "name": "Houndoom",
+        "set_code": null,
+        "set_name": null,
+        "number": "96",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "f6dc1bc6-588f-493a-b00a-a221f01ce0d7",
+        "gv_id": "GV-TCGP-P-A-97",
+        "name": "Kangaskhan",
+        "set_code": null,
+        "set_name": null,
+        "number": "97",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "197a8aaa-b039-4c08-be0c-d8678d3e3af2",
+        "gv_id": "GV-TCGP-P-A-98",
+        "name": "Blissey ex",
+        "set_code": null,
+        "set_name": null,
+        "number": "98",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "id": "222a42b8-11f3-481a-b525-f8043096e17b",
+        "gv_id": "GV-TCGP-P-A-99",
+        "name": "Marill",
+        "set_code": null,
+        "set_name": null,
+        "number": "99",
+        "variant_key": "",
+        "image_status": "missing",
+        "image_note": null
+      }
+    ]
+  },
+  "plan_hash": "19d516ef32c08c7e46ec89e65a41d185fab1dacdb79e6145147588c1d4e5f038",
+  "fingerprint": "842aa08cd9dc514293088f58df5908aa754bc60f715a0dd12f74bf9ba6ad268c"
+}

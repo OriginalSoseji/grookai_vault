@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=Colorless Lugia
+|image=WCS2023 Colorless Lugia.jpg
+|caption=Box art
+|release=March 1, 2024
+|types={{e|Colorless}}
+}}
+
+'''Colorless Lugia''' is the name of the deck used by Gabriel Fernandez, the Seniors Division champion at the [[2023 Pokémon World Championships]]. It is one of the 2023 World Championship Decks released March 1, 2024. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2023 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Fernandez, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Fernandez's signature.
+
+==Description==
+
+=== Packaging ===
+<i>Gabriel Fernandez soared to great heights in Yokohama, all the way to an impressive World Championships victory. Fast, resilient, and hard-hitting, his Colorless Lugia deck delivered on synergy and Energy acceleration. The Lugia VSTAR and Archeops dream team at its center has become a major part of the metagame for a reason—Lugia VSTAR pulls Archeops directly onto the Bench, and Archeops returns the favor by immediately powering the Legendary Pokémon up for battle. Combine this with Double Turbo Energy to quickly swoop in with a devastating Tempest Dive attack, and get ready to summon the Prize cards!</i>
+
+=== Booklet ===
+''Gabriel went all the way in Yokohama, storming to a World Champion title behind a Lugia-led, Special Energy-powered monster of a deck. His origins in the TCG competition trace back to five years ago, when his brother introduced him to the game and taught him how to play. In true master-versus-student fashion, both brothers would eventually face off in high-level competition. Now, they maintain their family rivalry (and, clearly, camaraderie) five days a week by playing online in Pokémon TCG Live. In fact, to take things full circle, Gabriel's deck has an online competition to thank for its original creation. Mighty oaks from little acorns grow, as they say.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Lugia VSTAR (Silver Tempest 139)|Lugia]]{{VSTAR}}|Colorless||Rare VSTAR}}
+{{decklist/entry|4|[[Lugia V (Silver Tempest 138)|Lugia]]{{TCGV}}|Colorless||Ultra-Rare Rare}}
+{{decklist/entry|4|{{TCG ID|Silver Tempest|Archeops|147}}|Colorless||Rare Holo}}
+{{decklist/entry|2|[[Lumineon V (Brilliant Stars 40)|Lumineon]]{{TCGV}}|Water||Ultra-Rare Rare}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Snorlax|143}}|Colorless||Rare Holo}}
+{{decklist/entry|1|[[Drapion V (Lost Origin 118)|Drapion]]{{TCGV}}|Darkness||Ultra-Rare Rare}}
+{{decklist/entry|1|[[Slaking V (Pokémon GO 58)|Slaking]]{{TCGV}}|Colorless||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Silver Tempest|Radiant Tsareena|16}}|Grass||Rare Radiant}}
+{{decklist/entry|1|[[Wyrdeer V (Astral Radiance 134)|Wyrdeer]]{{TCGV}}|Colorless||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Pumpkaboo|76}}|Psychic||Common}}
+{{decklist/entry|3|{{TCG ID|Paldea Evolved|Boss's Orders|172}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Scarlet & Violet|Professor's Research|190}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|SWSH Promo|Professor Burnet|167}}|Supporter||None}}
+{{decklist/entry|2|{{TCG ID|Brilliant Stars|Collapsed Stadium|137}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Chilling Reign|Path to the Peak|148}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Silver Tempest|Capturing Aroma|153}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Choice Belt|176}}|Pokémon Tool||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Brilliant Stars|Double Turbo Energy|151}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Paldea Evolved|Jet Energy|190}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Lost Origin|Gift Energy|171}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Therapeutic Energy|193}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Silver Tempest|V Guard Energy|169}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Colorless Lugia (TCG)]]

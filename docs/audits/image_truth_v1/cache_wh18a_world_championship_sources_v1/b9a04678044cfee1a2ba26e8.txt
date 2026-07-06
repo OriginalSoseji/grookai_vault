@@ -1,0 +1,45 @@
+{{DeckInfobox
+|title=Terraki-Mewtwo
+|image=WCS2012 Terraki-Mewtwo Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}{{e|Fighting}}
+|cards=[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}, {{TCG ID|Noble Victories|Terrakion|73}}
+}}
+
+'''Terraki-Mewtwo''' is the name of the deck used by Shuto Itagaki, the Junior Division Champion in the [[2012 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2012 World Championships Decks}}, released in November 2012. Each deck comes packaged with a 2012 World Championships Booklet, Deck Box, and Special Pin. Each card features a silver border, Itagaki's signature, and limited edition 2012 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Shuto Itagaki's Terraki-Mewtwo deck shows all the cunning and strategy expected in a World Champion, focusing not only on speed and damage-dealing, but also on reducing the effectiveness of the opposition! A streamlined Pokémon line-up featuring only Mewtwo-EX and Terrakion ensures that there is plenty of space for cards to help source Energy from the deck for heavy hits, while Ruins of Alph will make sure that not only is Resistance non-existent…it's impossible!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|3|{{TCG ID|Noble Victories|Terrakion|73}}|Fighting||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Call of Legends|Professor Oak's New Theory|83}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|3|{{TCG ID|Call of Legends|Dual Ball|78}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Random Receiver|99}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|PlusPower|96}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Energy Switch|94}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Call of Legends|Lost Remover|80}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Black & White|Energy Retrieval|92}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Emerging Powers|Max Potion|94}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Noble Victories|Eviolite|91}}|Item|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Exp. Share|87}}|Item|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Undaunted|Ruins of Alph|76}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Double Colorless Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|8|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Terraki-Mewtwo (TCG)]]

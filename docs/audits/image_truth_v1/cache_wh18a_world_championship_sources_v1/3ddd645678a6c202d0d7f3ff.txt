@@ -1,0 +1,45 @@
+{{DeckInfobox
+|title=Darkrai Deck
+|image=WCS2013 Darkrai Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Darkness}}
+|cards=
+}}
+
+'''Darkrai Deck''' is the name of the deck used by [[Jason Klaczynski]], who won the Masters Division in the [[2013 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2013 World Championships Decks}}, released on November 4, 2013. Each Deck comes with a Worlds 2013 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2013 World Championships Pin.
+
+==Description==
+<i>Three-time Pokémon TCG World Champion Jason Klaczynski and his Darkrai deck rolled all the way to the 2013 Masters title with a ferocious combination of speed and versatility. Darkrai-EX confounded opponents with cheap attacks and extreme mobility, while Sableye's excellent card-finding talents ensured that the perfect strategic play was never far away. The result? A fluid, flexible aggressive deck: nightmarish to face in battle!</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Darkrai-EX (Dark Explorers 63)|Darkrai]]{{EX}}|Darkness||SuperRare}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Sableye|62}}|Darkness||Uncommon}}
+{{decklist/entry|2|[[Keldeo-EX (Boundaries Crossed 49)|Keldeo]]{{EX}}|Water||SuperRare}}
+{{decklist/entry|1|{{TCG ID|Plasma Freeze|Mr. Mime|47}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Computer Search|137}}|Item||SuperRare}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Virbank City Gym|126}}|Stadium||None}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Dark Patch|93}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Plasma Storm|Hypnotoxic Laser|123}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Random Receiver|99}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Energy Switch|94}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Plasma Storm|Bicycle|117}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Dark Claw|92}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dark Explorers|Enhanced Hammer|94}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Energy Search|128}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragons Exalted|Tool Scrapper|116}}|Item||Uncommon}}
+{{decklist/entry|10|{{TCG ID|Black & White|Darkness Energy|111}}|Energy|Darkness|Common}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Darkrai (Deck)]]

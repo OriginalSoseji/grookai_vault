@@ -1,0 +1,124 @@
+{
+  "id": "bw7-81",
+  "name": "Gliscor",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "100",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Gligar",
+  "attacks": [
+    {
+      "name": "Poison Ring",
+      "cost": [
+        "Fighting"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "20",
+      "text": "The Defending Pokémon is now Poisoned. The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+      "name": "Night Slash",
+      "cost": [
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "40",
+      "text": "Switch this Pokémon with 1 of your Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "81",
+  "artist": "Kouki Saitou",
+  "rarity": "Rare Holo",
+  "flavorText": "It dances silently through the sky. When it approaches prey, it can land a critical hit in an instant.",
+  "nationalPokedexNumbers": [
+    472
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/81.png",
+    "large": "https://images.pokemontcg.io/bw7/81_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-81",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 0.99,
+        "mid": 2.99,
+        "high": 32.1,
+        "market": 2.06,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2,
+        "mid": 4.45,
+        "high": 53.1,
+        "market": 3.46,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-81",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 2.57,
+      "lowPrice": 0.5,
+      "trendPrice": 3.02,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 1.29,
+      "reverseHoloTrend": 3.35,
+      "lowPriceExPlus": 1.25,
+      "avg1": 1.89,
+      "avg7": 2.92,
+      "avg30": 2.57,
+      "reverseHoloAvg1": 2,
+      "reverseHoloAvg7": 3.4,
+      "reverseHoloAvg30": 2.32
+    }
+  }
+}

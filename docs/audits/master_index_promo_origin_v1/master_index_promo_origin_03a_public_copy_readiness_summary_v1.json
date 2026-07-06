@@ -1,0 +1,568 @@
+{
+  "package_id": "MASTER-INDEX-PROMO-ORIGIN-03A-PUBLIC-COPY-READINESS",
+  "generated_at": "2026-06-24T18:56:33.593Z",
+  "mode": "read_only_acquisition_to_public_copy_readiness",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "image_writes_performed": false,
+  "input_jsonl": "docs\\audits\\master_index_promo_origin_v1\\master_index_promo_origin_02a_source_acquisition_v1.jsonl",
+  "current_public_copy_json": "apps\\web\\src\\lib\\cards\\variantOriginPublicCopy.generated.json",
+  "metrics": {
+    "promo_source_acquisition_rows": 1863,
+    "current_public_copy_rows_total": 1803,
+    "promo_rows_with_public_copy": 336,
+    "promo_rows_missing_public_copy": 1527,
+    "missing_rows_with_source_candidates": 1524,
+    "family_level_copy_ready_rows": 1523,
+    "exact_product_origin_needed_rows": 1,
+    "manual_review_rows": 3
+  },
+  "missing_by_family": {
+    "best_of_game": 9,
+    "bw_black_star_promos": 104,
+    "dp_black_star_promos": 56,
+    "hgss_black_star_promos": 25,
+    "mega_evolution_promos": 84,
+    "nintendo_black_star_promos": 39,
+    "pop_series": 142,
+    "promo_like_manual_review": 1,
+    "sm_black_star_promos": 248,
+    "sv_black_star_promos": 245,
+    "swsh_black_star_promos": 304,
+    "wizards_black_star_promos": 54,
+    "xy_black_star_promos": 216
+  },
+  "family_level_copy_ready_by_family": {
+    "best_of_game": 9,
+    "bw_black_star_promos": 102,
+    "dp_black_star_promos": 56,
+    "hgss_black_star_promos": 25,
+    "mega_evolution_promos": 84,
+    "nintendo_black_star_promos": 39,
+    "pop_series": 142,
+    "sm_black_star_promos": 248,
+    "sv_black_star_promos": 245,
+    "swsh_black_star_promos": 303,
+    "wizards_black_star_promos": 54,
+    "xy_black_star_promos": 216
+  },
+  "exact_product_origin_needed_by_family": {
+    "promo_like_manual_review": 1
+  },
+  "missing_by_set_code": {
+    "basep": 54,
+    "bp": 9,
+    "bwp": 104,
+    "dpp": 56,
+    "hsp": 25,
+    "mep": 84,
+    "misc": 1,
+    "np": 39,
+    "pop1": 17,
+    "pop2": 17,
+    "pop3": 17,
+    "pop4": 14,
+    "pop5": 9,
+    "pop6": 17,
+    "pop7": 17,
+    "pop8": 17,
+    "pop9": 17,
+    "smp": 248,
+    "svp": 245,
+    "swshp": 304,
+    "xyp": 216
+  },
+  "manual_review_rows": [
+    {
+      "gv_id": "GV-PK-PR-BLW-BW04",
+      "name": "Reshiram",
+      "set_code": "bwp",
+      "number": "BW04",
+      "family": "bw_black_star_promos",
+      "confidence": "manual_review_no_search_hits",
+      "source_candidate_count": 0
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-BW05",
+      "name": "Zekrom",
+      "set_code": "bwp",
+      "number": "BW05",
+      "family": "bw_black_star_promos",
+      "confidence": "manual_review_no_search_hits",
+      "source_candidate_count": 0
+    },
+    {
+      "gv_id": "GV-PK-PR-SW-SWSH144",
+      "name": "Greninja ★",
+      "set_code": "swshp",
+      "number": "SWSH144",
+      "family": "swsh_black_star_promos",
+      "confidence": "manual_review_no_search_hits",
+      "source_candidate_count": 0
+    }
+  ],
+  "sample_family_level_copy_ready": [
+    {
+      "gv_id": "GV-PK-PR-1",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "number": "1",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-10",
+      "name": "Meowth",
+      "set_code": "basep",
+      "number": "10",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-11",
+      "name": "Eevee",
+      "set_code": "basep",
+      "number": "11",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-12",
+      "name": "Mewtwo",
+      "set_code": "basep",
+      "number": "12",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-13",
+      "name": "Venusaur",
+      "set_code": "basep",
+      "number": "13",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-14",
+      "name": "Mewtwo",
+      "set_code": "basep",
+      "number": "14",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-15",
+      "name": "Cool Porygon",
+      "set_code": "basep",
+      "number": "15",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-16",
+      "name": "Computer Error",
+      "set_code": "basep",
+      "number": "16",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-17",
+      "name": "Dark Persian",
+      "set_code": "basep",
+      "number": "17",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-18",
+      "name": "Team Rocket's Meowth",
+      "set_code": "basep",
+      "number": "18",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-19",
+      "name": "Sabrina's Abra",
+      "set_code": "basep",
+      "number": "19",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-2",
+      "name": "Electabuzz",
+      "set_code": "basep",
+      "number": "2",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-20",
+      "name": "Psyduck",
+      "set_code": "basep",
+      "number": "20",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-21",
+      "name": "Moltres",
+      "set_code": "basep",
+      "number": "21",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-22",
+      "name": "Articuno",
+      "set_code": "basep",
+      "number": "22",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-23",
+      "name": "Zapdos",
+      "set_code": "basep",
+      "number": "23",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-24",
+      "name": "_____'s Pikachu",
+      "set_code": "basep",
+      "number": "24",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-25",
+      "name": "Flying Pikachu",
+      "set_code": "basep",
+      "number": "25",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-26",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "number": "26",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-27",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "number": "27",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-28",
+      "name": "Surfing Pikachu",
+      "set_code": "basep",
+      "number": "28",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-29",
+      "name": "Marill",
+      "set_code": "basep",
+      "number": "29",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-3",
+      "name": "Mewtwo",
+      "set_code": "basep",
+      "number": "3",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-30",
+      "name": "Togepi",
+      "set_code": "basep",
+      "number": "30",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-31",
+      "name": "Cleffa",
+      "set_code": "basep",
+      "number": "31",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-32",
+      "name": "Smeargle",
+      "set_code": "basep",
+      "number": "32",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-33",
+      "name": "Scizor",
+      "set_code": "basep",
+      "number": "33",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-34",
+      "name": "Entei",
+      "set_code": "basep",
+      "number": "34",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-35",
+      "name": "Pichu",
+      "set_code": "basep",
+      "number": "35",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-36",
+      "name": "Igglybuff",
+      "set_code": "basep",
+      "number": "36",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-37",
+      "name": "Hitmontop",
+      "set_code": "basep",
+      "number": "37",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-38",
+      "name": "Unown [J]",
+      "set_code": "basep",
+      "number": "38",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-39",
+      "name": "Misdreavus",
+      "set_code": "basep",
+      "number": "39",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-4",
+      "name": "Pikachu",
+      "set_code": "basep",
+      "number": "4",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-40",
+      "name": "Pokémon Center",
+      "set_code": "basep",
+      "number": "40",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-41",
+      "name": "Lucky Stadium",
+      "set_code": "basep",
+      "number": "41",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-42",
+      "name": "Pokémon Tower",
+      "set_code": "basep",
+      "number": "42",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-43",
+      "name": "Machamp",
+      "set_code": "basep",
+      "number": "43",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-44",
+      "name": "Magmar",
+      "set_code": "basep",
+      "number": "44",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-45",
+      "name": "Scyther",
+      "set_code": "basep",
+      "number": "45",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-46",
+      "name": "Electabuzz",
+      "set_code": "basep",
+      "number": "46",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-47",
+      "name": "Mew",
+      "set_code": "basep",
+      "number": "47",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-48",
+      "name": "Articuno",
+      "set_code": "basep",
+      "number": "48",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-49",
+      "name": "Snorlax",
+      "set_code": "basep",
+      "number": "49",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-5",
+      "name": "Dragonite",
+      "set_code": "basep",
+      "number": "5",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-BASEP-51-POKEMON-CENTER-NY-STAMP",
+      "name": "Rapidash",
+      "set_code": "basep",
+      "number": "51",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-50",
+      "name": "Celebi",
+      "set_code": "basep",
+      "number": "50",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-51",
+      "name": "Rapidash",
+      "set_code": "basep",
+      "number": "51",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-52",
+      "name": "Ho-oh",
+      "set_code": "basep",
+      "number": "52",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    },
+    {
+      "gv_id": "GV-PK-PR-53",
+      "name": "Suicune",
+      "set_code": "basep",
+      "number": "53",
+      "family": "wizards_black_star_promos",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 10
+    }
+  ],
+  "sample_exact_product_origin_needed": [
+    {
+      "gv_id": "GV-PK-MISC-001",
+      "name": "Ancient Mew",
+      "set_code": "misc",
+      "number": "1",
+      "family": "promo_like_manual_review",
+      "confidence": "source_candidates_found",
+      "source_candidate_count": 5
+    }
+  ],
+  "proof_hash": "6d0e5188fb07bcfdb5d0ae8375ea346107e2e09245f29ade65bcdbe6a0ee97ef"
+}

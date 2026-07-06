@@ -1,0 +1,112 @@
+{
+  "id": "dp6-144",
+  "name": "Mewtwo LV.X",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Level-Up"
+  ],
+  "level": "X",
+  "hp": "120",
+  "types": [
+    "Psychic"
+  ],
+  "evolvesFrom": "Mewtwo",
+  "rules": [
+    "Put this card onto your Active Mewtwo. Mewtwo LV.X can use any attack, Poké-Power, or Poké-Body from its previous level."
+  ],
+  "abilities": [
+    {
+      "name": "Psybarrier",
+      "text": "Prevent all effects of attacks, including damage, done to Mewtwo by your opponent's Pokémon that isn't an Evolved Pokémon.",
+      "type": "Poké-Body"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Giga Burn",
+      "cost": [
+        "Psychic",
+        "Psychic",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "120",
+      "text": "Discard all Energy attached to Mewtwo."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Psychic",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "dp6",
+    "name": "Legends Awakened",
+    "series": "Diamond & Pearl",
+    "printedTotal": 146,
+    "total": 146,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "LA",
+    "releaseDate": "2008/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp6/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp6/logo.png"
+    }
+  },
+  "number": "144",
+  "artist": "Shizurow",
+  "rarity": "Rare Holo LV.X",
+  "nationalPokedexNumbers": [
+    150
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp6/144.png",
+    "large": "https://images.pokemontcg.io/dp6/144_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp6-144",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 210,
+        "mid": 350,
+        "high": 500,
+        "market": 264.14,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp6-144",
+    "updatedAt": "2025/11/21",
+    "prices": {
+      "averageSellPrice": 52.17,
+      "lowPrice": 12,
+      "trendPrice": 51.67,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 21.38,
+      "lowPriceExPlus": 60,
+      "avg1": 15,
+      "avg7": 43,
+      "avg30": 56.19,
+      "reverseHoloAvg1": 34.9,
+      "reverseHoloAvg7": 14.69,
+      "reverseHoloAvg30": 16.53
+    }
+  }
+}

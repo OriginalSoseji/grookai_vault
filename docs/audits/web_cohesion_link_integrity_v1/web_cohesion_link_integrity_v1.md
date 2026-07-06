@@ -1,39 +1,31 @@
 # Web Cohesion Link Integrity V1
 
-Generated: 2026-06-18T05:40:48.176Z
+Generated: 2026-07-03T04:55:54.579Z
 Base URL: https://grookaivault.com
 
 This is a read-only web route, link, and cohesion audit. It performs no DB writes, migrations, cleanup, or apply actions.
 
 ## Summary
 
-- DB sets in scope: 217
-- DB cards in scope: 24668
+- DB sets in scope: 415
+- DB cards in scope: 52882
 - DB species in scope: 1025
-- Routes visited: 1157
-- Canonical set routes tested: 217
+- Routes visited: 1322
+- Canonical set routes tested: 415
 - Failed canonical set routes: 0
-- Sampled card routes tested: 647
+- Sampled card routes tested: 415
 - Failed sampled card routes: 0
 - Broken routes: 0
 - Dead internal links: 0
-- Warnings: 936
+- Warnings: 900
 - Max pages reached: false
 
 ## Route Classifications
 
-- ok: 935
-- redirect: 222
+- ok: 900
+- redirect: 422
 
 ## Findings
-
-### MEDIUM - speed
-
-1 route sample(s) exceeded 3000ms.
-
-Recommendation: Prioritize caching and query reduction on the slowest route templates.
-
-- /card/GV-TCGP-A4-171 (9716ms)
 
 ### POLISH - jakobs_law
 
@@ -47,7 +39,6 @@ No broken routes found in this run.
 
 ## Slowest Routes
 
-- /card/GV-TCGP-A4-171: 9716ms (card)
 
 ## Safety Confirmation
 

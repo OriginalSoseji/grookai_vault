@@ -19,7 +19,7 @@ const PACKAGE_ID = 'IMG-23A-DEX-CHILD-FALLBACK-RUNTIME-SCAN';
 const DEFAULT_PORT = Number.parseInt(process.env.IMAGE_TRUTH_DEX_FALLBACK_SCAN_PORT ?? '3088', 10);
 const CONCURRENCY = Number.parseInt(process.env.IMAGE_TRUTH_DEX_FALLBACK_SCAN_CONCURRENCY ?? '4', 10);
 const ROUTE_LIMIT = Number.parseInt(process.env.IMAGE_TRUTH_DEX_FALLBACK_SCAN_LIMIT ?? '0', 10);
-const KNOWN_RESOLVER_BLOCKED_GV_IDS = new Set(['GV-PK-LTR-RC5']);
+const HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS = new Set(['GV-PK-LTR-RC5']);
 
 function requireDbUrl() {
   return (
@@ -198,7 +198,7 @@ async function queryCandidates() {
         and nullif(trim(coalesce(v.image_alt_url, '')), '') is null
         and nullif(trim(coalesce(v.representative_image_url, '')), '') is null
       order by v.species_slug, v.set_code, v.number, v.gv_id
-    `, [Array.from(KNOWN_RESOLVER_BLOCKED_GV_IDS)]);
+    `, [Array.from(HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS)]);
     return result.rows.map((row) => ({
       ...row,
       image_signals: imageSignals(row.child_images),
@@ -343,7 +343,7 @@ ${failureRows}
 - No image uploads.
 - This scan verifies Dex runtime fallback rendering for parent rows that have no parent image but do have child printing image evidence.
 - Representative child fallback imagery remains explicitly non-exact.
-- Known resolver-blocked wrong-image rows are excluded: ${Array.from(KNOWN_RESOLVER_BLOCKED_GV_IDS).join(', ')}.
+- Historical wrong-image sentinel rows with dedicated surface-smoke coverage are excluded from this fallback-candidate scan: ${Array.from(HISTORICAL_WRONG_IMAGE_SENTINEL_GV_IDS).join(', ')}.
 `;
 }
 

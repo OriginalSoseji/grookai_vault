@@ -1,0 +1,125 @@
+{
+  "id": "bw7-26",
+  "name": "Emboar",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "150",
+  "types": [
+    "Fire"
+  ],
+  "evolvesFrom": "Pignite",
+  "attacks": [
+    {
+      "name": "Firebreathing",
+      "cost": [
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "40+",
+      "text": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+      "name": "Fire Blast",
+      "cost": [
+        "Fire",
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "120",
+      "text": "Discard an Energy attached to this Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw7",
+    "name": "Boundaries Crossed",
+    "series": "Black & White",
+    "printedTotal": 149,
+    "total": 153,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "BCR",
+    "releaseDate": "2012/11/07",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw7/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw7/logo.png"
+    }
+  },
+  "number": "26",
+  "artist": "Shin Nagasawa",
+  "rarity": "Rare Holo",
+  "flavorText": "It has mastered fast and powerful fighting moves. It grows a beard of fire.",
+  "nationalPokedexNumbers": [
+    500
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw7/26.png",
+    "large": "https://images.pokemontcg.io/bw7/26_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw7-26",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 3,
+        "mid": 4.49,
+        "high": 50.1,
+        "market": 3.99,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 2.5,
+        "mid": 4.46,
+        "high": 53.1,
+        "market": 4.47,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw7-26",
+    "updatedAt": "2026/06/18",
+    "prices": {
+      "averageSellPrice": 3.32,
+      "lowPrice": 0.09,
+      "trendPrice": 3.69,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0.09,
+      "reverseHoloTrend": 2.71,
+      "lowPriceExPlus": 0.45,
+      "avg1": 3.99,
+      "avg7": 3.18,
+      "avg30": 3.01,
+      "reverseHoloAvg1": 2.8,
+      "reverseHoloAvg7": 2.48,
+      "reverseHoloAvg30": 2.4
+    }
+  }
+}

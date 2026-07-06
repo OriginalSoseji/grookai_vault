@@ -13,7 +13,7 @@ import type { PublicWorldChampionshipDecklist } from "@/lib/publicSets.shared";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-const INITIAL_CARD_CHUNK = 36;
+const INITIAL_CARD_CHUNK = 24;
 
 function formatReleaseDate(value?: string) {
   if (!value) {

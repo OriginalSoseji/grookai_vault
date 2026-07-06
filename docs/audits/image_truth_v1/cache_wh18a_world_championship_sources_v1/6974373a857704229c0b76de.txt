@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=Eeltwo
+|image=WCS2012 Eeltwo Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Lightning}}{{e|Psychic}}
+|cards=[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}, {{TCG ID|Noble Victories|Eelektrik|40}}
+}}
+
+'''Eeltwo''' is the name of the deck used by Chase Moloney, the Senior Division Champion in the [[2012 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2012 World Championships Decks}}, released in November 2012. Each deck comes packaged with a 2012 World Championships Booklet, Deck Box, and Special Pin. Each card features a silver border, Moloney's signature, and limited edition 2012 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Senior division World Champion Chase Moloney built his deck for speed and survivability: two things no opponent likes to come up against! Mewtwo-EX and Raikou-EX provide the majority of the firepower, while Eelektrik's presence ensures not only that there's always Energy available to unleash big attacks, but also that Max Potion's cost is no concern. Support comes from Professor Juniper and others combining to provide quick card-drawing—electrifying the pace and shocking your foes!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Mewtwo-EX (Next Destinies 54)|Mewtwo]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|[[Raikou-EX (Dark Explorers 38)|Raikou]]{{EX}}|Lightning||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Next Destinies|Zekrom|50}}|Lightning||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Noble Victories|Eelektrik|40}}|Lightning||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Tynamo|45}}|Lightning||Common}}
+{{decklist/entry|2|{{TCG ID|Call of Legends|Smeargle|21}}|Colorless||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Next Destinies|Skyarrow Bridge|91}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Call of Legends|Professor Oak's New Theory|83}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Triumphant|Junk Arm|87}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Max Potion|94}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Black & White|Switch|104}}|Item||Common}}
+{{decklist/entry|3|{{TCG ID|Call of Legends|Dual Ball|78}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Level Ball|89}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Black & White|PlusPower|96}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Noble Victories|Super Rod|95}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dark Explorers|Random Receiver|99}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Double Colorless Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|8|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Eeltwo (TCG)]]

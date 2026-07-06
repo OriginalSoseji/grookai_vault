@@ -1,0 +1,52 @@
+{{DeckInfobox
+|title=Queengar
+|image=WCS2009 Queengar Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}
+|cards={{TCG ID|Stormfront|Gengar|18}}, {{TCG ID|Rising Rivals|Nidoqueen|30}}, {{TCG ID|Legends Awakened|Uxie|43}}, {{TCG ID|Great Encounters|Claydol|15}}
+}}
+
+'''Queengar''' is the name of the deck used by Jason Martinez, the Junior Division Finalist in the [[2009 World Championships]]. It is primarily a {{ct|Psychic}} deck, while still using a limited number of {{ct|Fighting}} Pokémon. The deck placed well at many large tournaments and was thought to be one of the only competitive Evolution-based decks in a format filled with [[Pokémon SP]]. The deck's name is derived from the combination of {{TCG ID|Rising Rivals|Nidoqueen|30}} and {{TCG ID|Stormfront|Gengar|18}}, on which the deck's strategy is based. However, the {{TCG|Deck archetype|archetype}} is more commonly known as {{TCG|Mother Gengar}}.
+
+Queengar is one of the four {{TCGMerch|Platinum|Series|2009 World Championships Decks}}, released on October 28, 2009. Each deck comes packaged with a 2009 World Championships Booklet. Each card features a silver border, Martinez's signature, and limited edition 2009 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''With lots of rapid-fire, selective attacks to his opponent's Benched Pokémon plus Gengar and its amazing ''Fainting Spell'' Poké-Power that might just Knock Out an opponent's Pokémon instantly, Jason Martinez's Queengar deck comes out swinging. And with Nidoqueen waiting in the wings with its ''Maternal Comfort'' Poké-Power, all your Pokémon just get better while your opponent's Pokémon get worse!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Platinum|Zangoose|66}}|Colorless||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Rising Rivals|Nidoran♀|71}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Nidorina|73}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|Rising Rivals|Nidoqueen|30}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Gastly|62}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|Stormfront|Haunter|40}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Gengar|18}}|Psychic||Rare}}
+{{decklist/entry|1|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Platinum|Pokédex HANDY910is|114}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Platinum|Looker's Investigation|109}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Rare Candy|102}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Queengar (TCG)]]
+[[zh:尼后耿鬼（TCG）]]

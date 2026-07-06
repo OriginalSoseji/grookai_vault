@@ -1,0 +1,68 @@
+{{Upcoming notice}}
+{{DeckInfobox
+|title=Flutter Devo Gardevoir
+|image=WCS2025 Flutter Devo Gardevoir Deck.png
+|caption=Box art
+|release=June 19, 2026
+|types={{e|Psychic}}{{e|Darkness}}
+}}
+
+'''Flutter Devo Gardevoir''' is the name of the deck used by Riley McKay, the Masters Division champion at the [[2025 Pokémon World Championships]]. It is one of the 2025 World Championship Decks released on June 19, 2026.
+
+Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2025 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by McKay, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and McKay's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments."
+
+==Description==
+
+===Packaging===
+<i>Even before the event started, folks who follow the metagame were speculating about whether this would be Gardevoir ex’s last chance to win Worlds before rotating out of the Standard format—and in the hands of Riley McKay, this deck prevailed. The strategy: Pile on Energy and damage counters with the Psychic Embrace Ability, fling those damage counters onto your opponent’s Pokémon with Munkidori, snipe their bench with Scream Tail...and, especially when you’re facing down a dominant Dragon-type deck in the final match of the World Championships, call in Lillie’s Clefairy ex to impose Weakness for the win.</i> Twice.
+<!--
+===Booklet===
+TBA-->
+
+==Deck list==
+{{halfdecklist/header|title=Flutter Devo Gardevoir|type=Psychic|type2=Darkness|symbol=no}}
+{{halfdecklist/entry|086/198|G|{{TCG ID|Scarlet & Violet|Gardevoir ex|86|Gardevoir}}{{ex}}|Psychic||2}}
+{{halfdecklist/entry|085/198|G|{{TCG ID|Scarlet & Violet|Kirlia|85}}|Psychic||2}}
+{{halfdecklist/entry|084/198|G|{{TCG ID|Scarlet & Violet|Ralts|84}}|Psychic||3}}
+{{halfdecklist/entry|095/167|H|{{TCG ID|Twilight Masquerade|Munkidori|95}}|Psychic||4}}
+{{halfdecklist/entry|038/064|H|{{TCG ID|Shrouded Fable|Fezandipiti ex|38|Fezandipiti}}{{ex}}|Darkness||1}}
+{{halfdecklist/entry|078/162|H|{{TCG ID|Temporal Forces|Flutter Mane|78}}|Psychic||1}}
+{{halfdecklist/entry|151/165|G|{{TCG ID|151|Mew ex|151|Mew}}{{ex}}|Psychic||1}}
+{{halfdecklist/entry|086/182|G|{{TCG ID|Paradox Rift|Scream Tail|86}}|Psychic||1}}
+{{halfdecklist/entry|056/159|I|{{TCG ID|Journey Together|Lillie's Clefairy ex|56|Lillie's Clefairy}}{{ex}}|Psychic||1}}
+{{halfdecklist/entry|185/193|G|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||4}}
+{{halfdecklist/entry|189/198|G|{{TCG ID|Scarlet & Violet|Professor's Research|189}}<!-- <small>'''[Professor Sada]'''</small>-->|Supporter||4}}
+{{halfdecklist/entry|166/198|G|{{TCG ID|Scarlet & Violet|Arven|166}}|Supporter||2}}
+{{halfdecklist/entry|171/185|G|{{TCG ID|Paldea Evolved|Artazon|171}}|Stadium||2}}
+{{halfdecklist/entry|196/198|G|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||4}}
+{{halfdecklist/entry|163/182|G|{{TCG ID|Paradox Rift|Earthen Vessel|163}}|Item||3}}
+{{halfdecklist/entry|160/182|G|{{TCG ID|Paradox Rift|Counter Catcher|160}}|Item||2}}
+{{halfdecklist/entry|181/198|G|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||2}}
+{{halfdecklist/entry|061/064|H|{{TCG ID|Shrouded Fable|Night Stretcher|61}}|Item||2}}
+{{halfdecklist/entry|191/198|G|{{TCG ID|Scarlet & Violet|Rare Candy|191}}|Item||2}}
+{{halfdecklist/entry|163/167|H|{{TCG ID|Twilight Masquerade|Secret Box|163}}|Item||1}}
+{{halfdecklist/entry|188/193|G|{{TCG ID|Paldea Evolved|Super Rod|188}}|Item||1}}
+{{halfdecklist/entry|178/182|G|{{TCG ID|Paradox Rift|Technical Machine: Evolution|178}}|Pokémon Tool||2}}
+{{halfdecklist/entry|173/193|G|{{TCG ID|Paldea Evolved|Bravery Charm|173}}|Pokémon Tool||1}}
+{{halfdecklist/entry|177/182|G|{{TCG ID|Paradox Rift|Technical Machine: Devolution|177}}|Pokémon Tool||1}}
+{{halfdecklist/entry|PSY|—|{{TCG|Basic Psychic Energy}}|Energy|Psychic|7}}
+{{halfdecklist/entry|DAR|—|{{TCG|Basic Darkness Energy}}|Energy|Darkness|4}}
+{{halfdecklist/footer}}
+
+==Trivia==
+[[File:WCS2025 KSI Gardevoir Deck.png|thumb|250px|"KSI's Gardevoir" deck box]]
+* The [[2025 Pokémon World Championships]] deck products were originally scheduled for release on April 3, 2026, before they were delayed to June 19, 2026.
+* The deck was previously marketed under the name '''KSI's Gardevoir''', which references British YouTuber and musician {{wp|KSI}}.<ref>(January 15, 2026). [https://archive.ph/veYrC Archive of tweet by Riley McKay (@RileyMcKay1212).] ''Twitter''.</ref> In an interview video released on December 18, 2025, Riley McKay mentioned that he would listen to KSI's song "{{wp|Thick of It (KSI song)|Thick of It}}" as a way to prepare himself before every tournament.<ref>(December 18, 2025). [https://youtu.be/VTMEuAFtOPc?t=311 Riley McKay and Isaiah Bradner Discuss Their Pokémon TCG Strategies & More! | Pokémon Champion Chat] — Play Pokémon. ''YouTube''.</ref> The deck name was changed sometime in April 2026.
+
+==Related articles==
+*[[Gardevoir ex (TCG)]]
+
+==References==
+<references/>
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category: World Championship Decks]]
+
+[[de:Flutter Devo Gardevoir (TCG)]]

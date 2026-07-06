@@ -1,8 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
+
 const bool kLocalCommunityFeedV1Enabled = bool.fromEnvironment(
   'LOCAL_COMMUNITY_FEED_V1_ENABLED',
-  defaultValue: false,
+  defaultValue: true,
 );
 
 class LocalCommunityFeedPage {
@@ -36,6 +38,8 @@ class LocalCommunityFeedRow {
     required this.localityLabel,
     required this.distanceBucket,
     required this.relationshipContext,
+    required this.viewerWishlistMatch,
+    required this.matchReason,
     required this.createdAt,
     required this.routeTarget,
   });
@@ -55,6 +59,8 @@ class LocalCommunityFeedRow {
   final String localityLabel;
   final String distanceBucket;
   final String relationshipContext;
+  final bool viewerWishlistMatch;
+  final String matchReason;
   final DateTime? createdAt;
   final String routeTarget;
 
@@ -108,11 +114,13 @@ class LocalCommunityFeedRow {
       setName: _text(json['set_name']),
       cardNumber: _text(json['card_number']),
       intent: _text(json['intent']),
-      imageUrl: _httpUrl(json['image_url']),
+      imageUrl: resolveDisplayImageUrlFromRow(json),
       displayImageKind: _text(json['display_image_kind']),
       localityLabel: _text(json['locality_label']),
       distanceBucket: _text(json['distance_bucket']),
       relationshipContext: _text(json['relationship_context']),
+      viewerWishlistMatch: json['viewer_wishlist_match'] == true,
+      matchReason: _text(json['match_reason']),
       createdAt: _date(json['created_at']),
       routeTarget: _text(json['route_target']),
     );
@@ -132,7 +140,7 @@ class LocalCommunityFeedService {
 
     final normalizedLimit = limit.clamp(1, 80).toInt();
     final response = await _client.rpc(
-      'local_community_feed_v1',
+      'local_community_feed_v2',
       params: <String, dynamic>{'p_limit': normalizedLimit},
     );
 
@@ -151,16 +159,6 @@ class LocalCommunityFeedService {
 }
 
 String _text(dynamic value) => (value ?? '').toString().trim();
-
-String? _httpUrl(dynamic value) {
-  final normalized = _text(value);
-  if (normalized.isEmpty) return null;
-  final uri = Uri.tryParse(normalized);
-  if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
-    return null;
-  }
-  return normalized;
-}
 
 DateTime? _date(dynamic value) {
   final normalized = _text(value);

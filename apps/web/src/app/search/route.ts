@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
@@ -10,6 +11,14 @@ function applyCompareCardsParam(request: NextRequest, nextUrl: URL) {
 
   if (compareCardsParam) {
     nextUrl.searchParams.set("cards", compareCardsParam);
+  }
+}
+
+function applyLanguageScopeParam(request: NextRequest, nextUrl: URL) {
+  const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
+
+  if (languageScope !== "all") {
+    nextUrl.searchParams.set("lang", languageScope);
   }
 }
 
@@ -34,6 +43,7 @@ function buildExploreUrl(request: NextRequest, query: string, defaultSort?: "rel
   }
 
   applyCompareCardsParam(request, nextUrl);
+  applyLanguageScopeParam(request, nextUrl);
   return nextUrl;
 }
 
@@ -45,6 +55,7 @@ function buildSetsUrl(request: NextRequest, query: string) {
   }
 
   applyCompareCardsParam(request, nextUrl);
+  applyLanguageScopeParam(request, nextUrl);
   return nextUrl;
 }
 
@@ -80,6 +91,7 @@ export async function GET(request: NextRequest) {
           nextUrl.searchParams.set("printing", result.printing_gv_id);
         }
         applyCompareCardsParam(request, nextUrl);
+        applyLanguageScopeParam(request, nextUrl);
         return NextResponse.redirect(nextUrl);
       }
 
@@ -90,6 +102,7 @@ export async function GET(request: NextRequest) {
       if (resolved.meta.resolverState === "DIRECT_MATCH") {
         const nextUrl = new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url);
         applyCompareCardsParam(request, nextUrl);
+        applyLanguageScopeParam(request, nextUrl);
         return NextResponse.redirect(nextUrl);
       }
 

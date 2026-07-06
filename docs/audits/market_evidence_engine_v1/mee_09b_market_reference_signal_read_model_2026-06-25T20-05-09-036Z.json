@@ -1,0 +1,1259 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-READ-MODEL-V1",
+  "generated_at": "2026-06-25T20:05:03.453Z",
+  "mode": "internal_reference_signal_read_model_no_writes",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "input_counts": {
+    "candidates": 21745,
+    "normalized_evidence": 21745
+  },
+  "summary": {
+    "signal_count": 993,
+    "publishable_count": 0,
+    "multi_source_signal_count": 749,
+    "single_source_signal_count": 244,
+    "currency_filter": "USD",
+    "currency_excluded_evidence_count": 8947,
+    "signal_band_counts": {
+      "multi_source_reference_candidate": 749,
+      "single_source_reference_candidate": 244
+    },
+    "currency_counts": {
+      "USD": 993
+    }
+  },
+  "samples": {
+    "multi_source": [
+      {
+        "card_print_id": "624ae7f7-9fcb-4db5-b6d2-cdb22dcdbe2c",
+        "gv_id": "GV-PK-B2-1",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 33.38,
+        "reference_median": 54.14,
+        "reference_high": 199.98,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "a55e666e-1203-4208-83e1-1071edebe098",
+        "gv_id": "GV-PK-B2-10",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 37.06,
+        "reference_median": 56.08,
+        "reference_high": 58.9,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "83ab7eeb-8a78-468c-82d2-200e16f0ce19",
+        "gv_id": "GV-PK-B2-101",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 1.17,
+        "reference_median": 2.56,
+        "reference_high": 32.92,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "608e5f8a-fc62-41a0-81c9-e48954d7d7d1",
+        "gv_id": "GV-PK-B2-103",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "currency": "USD",
+        "reference_low": 4.68,
+        "reference_median": 8.6,
+        "reference_high": 11.94,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "11f338c3-0c0d-4bdd-99dc-a62c45b6c45a",
+        "gv_id": "GV-PK-B2-104",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 1.2,
+        "reference_median": 2.68,
+        "reference_high": 2.75,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+        "gv_id": "GV-PK-B2-105",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 2.41,
+        "reference_median": 4.12,
+        "reference_high": 4.49,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+        "gv_id": "GV-PK-B2-106",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 0.95,
+        "reference_median": 3.42,
+        "reference_high": 3.45,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "bbfdae91-e85b-4621-8f8a-b6f41e047571",
+        "gv_id": "GV-PK-B2-107",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 7,
+        "currency": "USD",
+        "reference_low": 3.29,
+        "reference_median": 6.03,
+        "reference_high": 6.69,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "b2363089-8ef1-41f7-a8cb-e2179f3cb286",
+        "gv_id": "GV-PK-B2-11",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 17.85,
+        "reference_median": 25.28,
+        "reference_high": 44.65,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "e867da6e-4435-4319-9243-ed9bfcf07853",
+        "gv_id": "GV-PK-B2-12",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 17.69,
+        "reference_median": 30.96,
+        "reference_high": 32.83,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "550d4644-5cca-4801-8520-cf16c6a4820c",
+        "gv_id": "GV-PK-B2-13",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 16.99,
+        "reference_median": 26.33,
+        "reference_high": 30.39,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "2846df5c-cc18-4048-9950-8909696c91bb",
+        "gv_id": "GV-PK-B2-14",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 20,
+        "reference_median": 25.59,
+        "reference_high": 33.24,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "e5b06693-a143-4abe-8843-ea1328e54fdf",
+        "gv_id": "GV-PK-B2-15",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 11,
+        "reference_median": 19.29,
+        "reference_high": 25,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "ab49deb8-7355-4fba-82eb-e63efcbfaec1",
+        "gv_id": "GV-PK-B2-17",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 19,
+        "reference_median": 25.49,
+        "reference_high": 96.8,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "411aeb7c-10cd-48c3-935b-d199c670ed5b",
+        "gv_id": "GV-PK-B2-18",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 72.4,
+        "reference_median": 94.85,
+        "reference_high": 96.05,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "67833e22-37e3-4525-9b9c-cd403252d9e9",
+        "gv_id": "GV-PK-B2-19",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 11,
+        "reference_median": 15.98,
+        "reference_high": 78.4,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "16196783-6617-431c-a246-773efd71b7fa",
+        "gv_id": "GV-PK-B2-2",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 87,
+        "reference_median": 128.35,
+        "reference_high": 163.6,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "dae698a9-dcd1-451b-9dc5-4b6b2af7470a",
+        "gv_id": "GV-PK-B2-20",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 20.61,
+        "reference_median": 33.96,
+        "reference_high": 38.41,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "ef6e308a-9f54-4b03-b420-053d2d0e8112",
+        "gv_id": "GV-PK-B2-21",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 0.59,
+        "reference_median": 1.69,
+        "reference_high": 2.81,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 3,
+          "tcgcsv_reference": 3
+        }
+      },
+      {
+        "card_print_id": "61925644-0c1d-4dd0-8728-0389d91fcd29",
+        "gv_id": "GV-PK-B2-22",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_io_reference",
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 11,
+        "currency": "USD",
+        "reference_low": 4.99,
+        "reference_median": 6.93,
+        "reference_high": 9.93,
+        "signal_band": "multi_source_reference_candidate",
+        "source_metric_counts": {
+          "directlow": 1,
+          "directlowprice": 1,
+          "low": 1,
+          "lowprice": 1,
+          "market": 1,
+          "marketprice": 1,
+          "mid": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "pokemontcg_io_reference": 4,
+          "tcgcsv_reference": 4
+        }
+      }
+    ],
+    "single_source": [
+      {
+        "card_print_id": "d9f6dc64-7247-46c9-95e4-7f3145abb520",
+        "gv_id": "GV-PK-BCR-10",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.96,
+        "reference_median": 7.02,
+        "reference_high": 58.81,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "8d882995-1455-4abb-93ca-4c449a391d1c",
+        "gv_id": "GV-PK-BCR-102",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.4,
+        "reference_median": 0.77,
+        "reference_high": 19.4,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 8
+        }
+      },
+      {
+        "card_print_id": "85c15e81-c19e-4904-a923-0a1782e901d9",
+        "gv_id": "GV-PK-BCR-13",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 3.25,
+        "reference_median": 6.19,
+        "reference_high": 55.4,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 8
+        }
+      },
+      {
+        "card_print_id": "3bf88b47-3fd8-400a-8d3b-133cd067c5a5",
+        "gv_id": "GV-PK-BCR-17",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.35,
+        "reference_median": 1.27,
+        "reference_high": 4.52,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "614783cc-5177-491b-a643-6be94d097802",
+        "gv_id": "GV-PK-BCR-3",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 1.7,
+        "reference_median": 4.68,
+        "reference_high": 35.3,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "c9e3c52c-f6cf-4e52-9505-c8edb383048c",
+        "gv_id": "GV-PK-BCR-66",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 8,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.24,
+        "reference_median": 0.4,
+        "reference_high": 4.72,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 2,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 8
+        }
+      },
+      {
+        "card_print_id": "265ae727-cda7-4245-9f18-15d832df28fd",
+        "gv_id": "GV-PK-BLW-12",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.25,
+        "reference_median": 0.87,
+        "reference_high": 6.31,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+        "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.39,
+        "reference_median": 0.86,
+        "reference_high": 2.22,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+        "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.39,
+        "reference_median": 0.86,
+        "reference_high": 2.22,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "21550df4-17aa-4819-94bc-2188491af76b",
+        "gv_id": "GV-PK-BLW-26",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 3.5,
+        "reference_median": 6.49,
+        "reference_high": 39.45,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "2d20428b-9ea8-418e-89f6-b902f8d0cf83",
+        "gv_id": "GV-PK-BLW-37",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.1,
+        "reference_median": 0.78,
+        "reference_high": 1.21,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "85cf4f80-e9c7-41e1-a2b1-2e029fde3eae",
+        "gv_id": "GV-PK-BLW-43",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.2,
+        "reference_median": 1.04,
+        "reference_high": 2.75,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "163190d0-63fd-4942-875d-5b7eaa9e3fc4",
+        "gv_id": "GV-PK-BLW-46",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.12,
+        "reference_median": 0.75,
+        "reference_high": 1.96,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+        "gv_id": "GV-PK-BLW-54",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.35,
+        "reference_median": 0.86,
+        "reference_high": 96.91,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "bd879413-47e2-487d-b03c-9a6a89b9e6dc",
+        "gv_id": "GV-PK-BLW-69",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.46,
+        "reference_median": 2.45,
+        "reference_high": 7.5,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "cfc868a6-6066-4e72-850e-0fc07334fc70",
+        "gv_id": "GV-PK-BLW-83",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 7,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.12,
+        "reference_median": 0.99,
+        "reference_high": 1.36,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 7
+        }
+      },
+      {
+        "card_print_id": "a1ee7bd3-40f8-4cef-b518-5e850322685c",
+        "gv_id": "GV-PK-BLW-89",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 6,
+        "quarantined_evidence_count": 2,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.26,
+        "reference_median": 1.05,
+        "reference_high": 4.92,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "lowprice": 2,
+          "marketprice": 2,
+          "midprice": 2
+        },
+        "source_counts": {
+          "tcgcsv_reference": 6
+        }
+      },
+      {
+        "card_print_id": "f1e209cf-0570-4cc6-a096-dbccd9991f46",
+        "gv_id": "GV-PK-CEL-1",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.03,
+        "reference_median": 0.23,
+        "reference_high": 0.35,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 1,
+          "marketprice": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "959ca6b9-07c9-41f1-ae7c-938a1e0b140b",
+        "gv_id": "GV-PK-CEL-10",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.01,
+        "reference_median": 0.31,
+        "reference_high": 0.42,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 1,
+          "marketprice": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "tcgcsv_reference": 4
+        }
+      },
+      {
+        "card_print_id": "b21a6998-feb5-4535-afbb-effbde5ffb49",
+        "gv_id": "GV-PK-CEL-13",
+        "read_model_version": "MEE_09B_INTERNAL_REFERENCE_SIGNAL_READ_MODEL_V1",
+        "lane": "internal_reference_signal_candidate",
+        "publishable": false,
+        "source_count": 1,
+        "sources": [
+          "tcgcsv_reference"
+        ],
+        "eligible_evidence_count": 4,
+        "quarantined_evidence_count": 1,
+        "currency_excluded_evidence_count": 0,
+        "currency": "USD",
+        "reference_low": 0.01,
+        "reference_median": 0.21,
+        "reference_high": 0.32,
+        "signal_band": "single_source_reference_candidate",
+        "source_metric_counts": {
+          "directlowprice": 1,
+          "lowprice": 1,
+          "marketprice": 1,
+          "midprice": 1
+        },
+        "source_counts": {
+          "tcgcsv_reference": 4
+        }
+      }
+    ]
+  },
+  "findings": [],
+  "ready": true
+}

@@ -1,0 +1,165 @@
+{
+  "package_id": "MEE-REFERENCE-SOURCE-REFRESH-WORKER-V1",
+  "generated_at": "2026-06-28T23:00:45.584Z",
+  "mode": "dry_run",
+  "plan": {
+    "generated_at": "2026-06-28T23:00:45.584Z",
+    "package_id": "MEE-SOURCE-REFRESH-LAYER-V1",
+    "contract": "MARKET_EVIDENCE_ENGINE_CORE_V1",
+    "policy_version": "MEE_SOURCE_REFRESH_LAYER_V1",
+    "mode": "internal_source_refresh_plan",
+    "boundary": {
+      "provider_calls": false,
+      "source_fetches": false,
+      "db_writes": false,
+      "pricing_observations_writes": false,
+      "ebay_active_prices_latest_writes": false,
+      "public_pricing_views": false,
+      "app_visible_pricing": false,
+      "public_price_rollups": false,
+      "identity_table_writes": false,
+      "vault_writes": false,
+      "image_storage_writes": false,
+      "migrations": false,
+      "global_apply": false
+    },
+    "summary": {
+      "adapter_count": 4,
+      "provider_call_adapter_count": 2,
+      "db_write_adapter_count": 0,
+      "enabled_free_reference_adapter_count": 4
+    },
+    "adapters": [
+      {
+        "source": "tcgdex_tcgplayer_reference",
+        "lane": "free_reference",
+        "cadence": "daily",
+        "provider_calls": false,
+        "db_writes": false,
+        "default_enabled": true,
+        "command": "node scripts/audits/market_reference_tcgdex_pricing_audit_v1.mjs --write-row-manifests",
+        "downstream": [
+          "reference_normalization",
+          "assignment_queue",
+          "quality_gate"
+        ],
+        "status": "planned",
+        "effective_provider_calls": false,
+        "effective_db_writes": false,
+        "can_publish_price_directly": false,
+        "requires_review_before_truth": true
+      },
+      {
+        "source": "tcgdex_cardmarket_reference",
+        "lane": "free_reference",
+        "cadence": "daily",
+        "provider_calls": false,
+        "db_writes": false,
+        "default_enabled": true,
+        "command": "node scripts/audits/market_reference_tcgdex_pricing_audit_v1.mjs --write-row-manifests",
+        "downstream": [
+          "reference_normalization",
+          "assignment_queue",
+          "quality_gate"
+        ],
+        "status": "planned",
+        "effective_provider_calls": false,
+        "effective_db_writes": false,
+        "can_publish_price_directly": false,
+        "requires_review_before_truth": true
+      },
+      {
+        "source": "pokemontcg_io_reference",
+        "lane": "free_reference",
+        "cadence": "daily",
+        "provider_calls": true,
+        "db_writes": false,
+        "default_enabled": true,
+        "command": "node scripts/audits/market_evidence_engine_pokemontcg_io_reference_acquisition_v1.mjs",
+        "downstream": [
+          "reference_normalization",
+          "assignment_queue",
+          "quality_gate"
+        ],
+        "status": "planned",
+        "effective_provider_calls": false,
+        "effective_db_writes": false,
+        "can_publish_price_directly": false,
+        "requires_review_before_truth": true
+      },
+      {
+        "source": "tcgcsv_reference",
+        "lane": "free_reference",
+        "cadence": "daily",
+        "provider_calls": true,
+        "db_writes": false,
+        "default_enabled": true,
+        "command": "node scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs --refresh-cache",
+        "downstream": [
+          "reference_normalization",
+          "assignment_queue",
+          "quality_gate"
+        ],
+        "status": "planned",
+        "effective_provider_calls": false,
+        "effective_db_writes": false,
+        "can_publish_price_directly": false,
+        "requires_review_before_truth": true
+      }
+    ],
+    "required_downstream_readbacks": [
+      "v_market_evidence_normalization_assignment_queue_v1",
+      "v_market_evidence_candidate_quality_scores_v1",
+      "v_market_evidence_publication_gate_candidates_v1"
+    ],
+    "proofs": {
+      "all_sources_registered": true,
+      "all_sources_review_gated": true,
+      "no_source_can_publish_directly": true,
+      "public_boundary_closed": true
+    }
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "execution": [
+    {
+      "source": "tcgdex_tcgplayer_reference",
+      "command": "node scripts/audits/market_reference_tcgdex_pricing_audit_v1.mjs --write-row-manifests",
+      "skipped": true,
+      "reason": "dry_run"
+    },
+    {
+      "source": "tcgdex_cardmarket_reference",
+      "command": "node scripts/audits/market_reference_tcgdex_pricing_audit_v1.mjs --write-row-manifests",
+      "skipped": true,
+      "reason": "dry_run"
+    },
+    {
+      "source": "pokemontcg_io_reference",
+      "command": "node scripts/audits/market_evidence_engine_pokemontcg_io_reference_acquisition_v1.mjs",
+      "skipped": true,
+      "reason": "dry_run"
+    },
+    {
+      "source": "tcgcsv_reference",
+      "command": "node scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs --refresh-cache",
+      "skipped": true,
+      "reason": "dry_run"
+    }
+  ],
+  "findings": [],
+  "package_fingerprint_sha256": "55cae63a7976c7d8ce723a7748dcd18ae30786b21c780cbe02eb7419de788690"
+}

@@ -1,0 +1,177 @@
+{
+  "package_id": "APP_FLOW_PROD_READINESS_AUDIT_V1",
+  "generated_at": "2026-07-03T04:38:56.037Z",
+  "summary": {
+    "status": "NEEDS_PRODUCT_DECISION",
+    "blockers": 1,
+    "warnings": 2,
+    "recommended_next_step": "SCANNER_SCAN_ENTRY_PROD_READY_V1"
+  },
+  "flows": [
+    {
+      "id": "mobile_card_detail_add_to_vault",
+      "status": "prod_wired",
+      "public_surface": true,
+      "evidence": [
+        {
+          "needle": "Future<void> _addToVault() async",
+          "present": true
+        },
+        {
+          "needle": "VaultCardService.addOrIncrementVaultItem",
+          "present": true
+        },
+        {
+          "needle": "cardPrintingId: _selectedPrintingOption?.id",
+          "present": true
+        },
+        {
+          "needle": "eventType: 'add_to_vault'",
+          "present": true
+        },
+        {
+          "needle": "VaultGvviScreen(gvviId: gvviId)",
+          "present": true
+        },
+        {
+          "needle": "throw Exception('Exact copy could not be created.')",
+          "present": true
+        },
+        {
+          "needle": "Sign in to add cards to your vault.",
+          "present": true
+        },
+        {
+          "needle": "'vault-add-card-instance-v1'",
+          "present": true
+        },
+        {
+          "needle": "'card_print_id': cardId",
+          "present": true
+        },
+        {
+          "needle": "'card_printing_id': _trimmedOrNull(cardPrintingId)",
+          "present": true
+        },
+        {
+          "needle": "result['gv_vi_id']",
+          "present": true
+        }
+      ],
+      "finding": "Card detail Add to Vault is no longer a placeholder. It calls the governed vault edge function, includes selected child printing context, requires a returned GVVI id, records engagement, and navigates to the exact owned copy.",
+      "next_action": "Keep this covered by static contract tests and remove stale checkpoint language that still calls it a placeholder."
+    },
+    {
+      "id": "mobile_scan_entry",
+      "status": "intentionally_parked_visible_placeholder",
+      "public_surface": true,
+      "evidence": [
+        {
+          "needle": "Future<void> _startScanFlow() async",
+          "present": true
+        },
+        {
+          "needle": "kScannerConstructionPlaceholderEnabled",
+          "present": true
+        },
+        {
+          "needle": "ScannerBuildPlaceholderScreen",
+          "present": true
+        },
+        {
+          "needle": "FixedSlotCaptureScreen",
+          "present": true
+        },
+        {
+          "needle": "NativeScannerPhase0Screen",
+          "present": true
+        },
+        {
+          "needle": "IdentityScanScreen(initialFrontFile: file)",
+          "present": true
+        },
+        {
+          "needle": "const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment",
+          "present": true
+        },
+        {
+          "needle": "defaultValue: true",
+          "present": true
+        }
+      ],
+      "finding": "The visible Scan entry defaults to a construction-safe placeholder. That is identity-safe, but it is still a half-finished user-facing process.",
+      "next_action": "Choose a production stance: hide Scan until ready, relabel it as a beta tool, or route it to the real identity scan pipeline with a clear failure path."
+    },
+    {
+      "id": "mobile_identity_scan_pipeline",
+      "status": "partially_prod_wired",
+      "public_surface": false,
+      "evidence": [
+        {
+          "needle": "IdentityScanService",
+          "present": true
+        },
+        {
+          "needle": "VaultCardService.addOrIncrementVaultItem",
+          "present": true
+        },
+        {
+          "needle": "conditionLabel: 'NM'",
+          "present": true
+        },
+        {
+          "needle": "Selected card is missing card_print_id.",
+          "present": true
+        },
+        {
+          "needle": "Add to Vault failed:",
+          "present": true
+        },
+        {
+          "needle": "'identity-scans'",
+          "present": true
+        },
+        {
+          "needle": "'identity_scan_enqueue_v1'",
+          "present": true
+        },
+        {
+          "needle": "'identity_scan_get_v1?event_id=$eventId'",
+          "present": true
+        },
+        {
+          "needle": "'identity_scan_event_results'",
+          "present": true
+        }
+      ],
+      "finding": "The newer identity scan path has real storage, enqueue, polling, result reading, and Add to Vault wiring, but it does not yet navigate to the exact owned copy after add.",
+      "next_action": "Align post-add behavior with card detail/search by requiring the returned GVVI id and opening VaultGvviScreen."
+    },
+    {
+      "id": "legacy_scan_identify_screen",
+      "status": "stale_unrouted_placeholder_code",
+      "public_surface": false,
+      "evidence": [
+        {
+          "needle": "'card-identify'",
+          "present": true
+        },
+        {
+          "needle": "body: {'note': 'placeholder v1'}",
+          "present": true
+        },
+        {
+          "needle": "VaultCardService.addOrIncrementVaultItem",
+          "present": true
+        },
+        {
+          "needle": "routed outside own file",
+          "present": false
+        }
+      ],
+      "finding": "Legacy ScanIdentifyScreen still calls card-identify with a placeholder request body. Current static references do not route to it, but leaving it compiled creates confusion during hardening.",
+      "next_action": "Delete it if unused, or convert it to the same IdentityScanService pipeline before exposing it."
+    }
+  ],
+  "source_fingerprint_sha256": "fb4ebb925515303a03b0c72daab0b03f8dbe88ba616c46ba13e73e21e9d313ad"
+}

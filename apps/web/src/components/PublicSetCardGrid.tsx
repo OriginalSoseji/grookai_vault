@@ -151,6 +151,7 @@ export default function PublicSetCardGrid({
               imageSrc={selectedImageUrl ?? cardFallbackImageUrl ?? undefined}
               imageAlt={getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)}
               imageHref={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
+              imageSizes="(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
               imageLoading={index < 12 ? "eager" : "lazy"}
               imageOverlay={
                 imagePresentation.compactBadgeLabel ? (
@@ -172,9 +173,15 @@ export default function PublicSetCardGrid({
                   className="block transition hover:text-slate-700"
                 >
                   <span className="block truncate">{displayIdentity.base_name}</span>
+                  {displayIdentity.printed_name ? (
+                    <span className="gv-hi-metadata block truncate text-xs font-medium">{displayIdentity.printed_name}</span>
+                  ) : null}
                   {identitySubtitle ? (
                     <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}
+                  <span className="gv-hi-metadata block truncate font-mono text-[11px] font-semibold uppercase tracking-[0.12em]">
+                    Grookai ID {card.gv_id}
+                  </span>
                 </Link>
               }
               subtitle={<span className="block truncate">{setLabel}</span>}

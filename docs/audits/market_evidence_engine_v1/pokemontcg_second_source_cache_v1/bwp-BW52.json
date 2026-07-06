@@ -1,0 +1,104 @@
+{
+  "id": "bwp-BW52",
+  "name": "Lillipup",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "50",
+  "types": [
+    "Colorless"
+  ],
+  "evolvesTo": [
+    "Herdier"
+  ],
+  "attacks": [
+    {
+      "name": "Knock Away",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "10+",
+      "text": "Flip a coin. If heads, this attack does 10 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW52",
+  "artist": "Mizue",
+  "rarity": "Promo",
+  "flavorText": "It faces strong opponents with great courage. But, when at a disadvantage in a fight, this intelligent Pokémon flees.",
+  "nationalPokedexNumbers": [
+    506
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW52.png",
+    "large": "https://images.pokemontcg.io/bwp/BW52_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW52",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "reverseHolofoil": {
+        "low": 2.22,
+        "mid": 5.29,
+        "high": 57.5,
+        "market": 6.71,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW52",
+    "updatedAt": "2026/02/22",
+    "prices": {
+      "averageSellPrice": 0,
+      "lowPrice": 3.78,
+      "trendPrice": 9.13,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 5.97,
+      "reverseHoloLow": 3.78,
+      "reverseHoloTrend": 8.2,
+      "lowPriceExPlus": 3.78,
+      "avg1": 4,
+      "avg7": 7.74,
+      "avg30": 7.46,
+      "reverseHoloAvg1": 5.99,
+      "reverseHoloAvg7": 6.95,
+      "reverseHoloAvg30": 5.79
+    }
+  }
+}

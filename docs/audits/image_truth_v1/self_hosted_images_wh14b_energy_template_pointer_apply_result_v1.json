@@ -1,0 +1,33 @@
+{
+  "package_id": "IMG-HOST-WH-14B-ENERGY-TEMPLATE-POINTER-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-06-24T02:22:04.582Z",
+  "ended_at": "2026-06-24T02:22:04.953Z",
+  "fingerprint": "72c4c1367eb8d98c72e48377bba02a1ae13efd83e3e08234fb1365040b2f3c5d",
+  "sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "source_dry_run_fingerprint": "72c4c1367eb8d98c72e48377bba02a1ae13efd83e3e08234fb1365040b2f3c5d",
+  "metadata_pointer_update_count": 16,
+  "metadata_results": [
+    {
+      "key": "card_prints",
+      "expected_count": 16,
+      "updated_count": 16
+    }
+  ],
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_performed": false,
+  "parent_overwrites_performed": false,
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "proof_hash": "c78e4bdb22fe7e8051241fb3528a8563003ed57aa86fa236cea2ce426d8fdedf"
+}

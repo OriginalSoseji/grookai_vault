@@ -1,0 +1,334 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-ROLLUP-REFRESH-PLAN-V1",
+  "generated_at": "2026-06-25T20:08:24.111Z",
+  "mode": "versioned_rollup_refresh_plan_no_writes",
+  "rollup_version": "MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1",
+  "migration_path": "supabase/migrations/20260625010000_market_reference_signal_rollups_v1.sql",
+  "migration_hash_sha256": "eb2f1aa4a01977d455e131ec7f90b3d8250e2501f65cdc6199a9b2072dd82d41",
+  "row_manifest_hash_sha256": "1f29724993b556969857df8752d4598867f10fd10250e8d24ba8e1b5b1952d8d",
+  "package_fingerprint_sha256": "cd7b04fba4e2f7d672267a15b20be4846223051b03c0377cfa7ba0425408672f",
+  "existing_rows_for_rollup_version": 0,
+  "proposed_rollup_rows": 993,
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false
+  },
+  "input_counts": {
+    "candidates": 21745,
+    "normalized_evidence": 21745,
+    "signal_candidates": 993,
+    "reviewed_signals": 993,
+    "multi_source_signal_count": 749,
+    "single_source_signal_count": 244
+  },
+  "rollup_summary": {
+    "row_count": 993,
+    "publishable_count": 0,
+    "app_visible_count": 0,
+    "market_truth_count": 0,
+    "status_counts": {
+      "blocked_special_lane_review": 24,
+      "review_required_context": 702,
+      "review_required_high_variance": 249,
+      "review_required_single_source": 18
+    },
+    "variance_band_counts": {
+      "bounded_variance": 411,
+      "extreme_variance": 137,
+      "high_variance": 128,
+      "moderate_variance": 317
+    },
+    "flag_counts": {
+      "extreme_variance": 137,
+      "high_variance": 128,
+      "moderate_variance": 317,
+      "non_usd_evidence_excluded": 753,
+      "quarantined_context_present": 993,
+      "single_source_only": 244,
+      "special_lane_review_required": 24
+    },
+    "source_count_counts": {
+      "1": 244,
+      "2": 749
+    }
+  },
+  "samples": [
+    {
+      "gv_id": "GV-PK-B2-1",
+      "card_print_id": "624ae7f7-9fcb-4db5-b6d2-cdb22dcdbe2c",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 54.14,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-10",
+      "card_print_id": "a55e666e-1203-4208-83e1-1071edebe098",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 56.08,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-101",
+      "card_print_id": "83ab7eeb-8a78-468c-82d2-200e16f0ce19",
+      "review_status": "review_required_high_variance",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 2.56,
+      "variance_band": "extreme_variance",
+      "review_flags": [
+        "extreme_variance",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-103",
+      "card_print_id": "608e5f8a-fc62-41a0-81c9-e48954d7d7d1",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 8.6,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-104",
+      "card_print_id": "11f338c3-0c0d-4bdd-99dc-a62c45b6c45a",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 2.68,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-105",
+      "card_print_id": "940d75e0-2718-4ddd-b6b4-ffbd8617730a",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 4.12,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-106",
+      "card_print_id": "8ef99ab6-dc33-4cd2-8fd5-2b670ef4e4c6",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 3.42,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-107",
+      "card_print_id": "bbfdae91-e85b-4621-8f8a-b6f41e047571",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 6.03,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-11",
+      "card_print_id": "b2363089-8ef1-41f7-a8cb-e2179f3cb286",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 25.28,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-12",
+      "card_print_id": "e867da6e-4435-4319-9243-ed9bfcf07853",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 30.96,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-13",
+      "card_print_id": "550d4644-5cca-4801-8520-cf16c6a4820c",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 26.33,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-14",
+      "card_print_id": "2846df5c-cc18-4048-9950-8909696c91bb",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 25.59,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-15",
+      "card_print_id": "e5b06693-a143-4abe-8843-ea1328e54fdf",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 19.29,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-17",
+      "card_print_id": "ab49deb8-7355-4fba-82eb-e63efcbfaec1",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 25.49,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-18",
+      "card_print_id": "411aeb7c-10cd-48c3-935b-d199c670ed5b",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 94.85,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-19",
+      "card_print_id": "67833e22-37e3-4525-9b9c-cd403252d9e9",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 15.98,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-2",
+      "card_print_id": "16196783-6617-431c-a246-773efd71b7fa",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 128.35,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-20",
+      "card_print_id": "dae698a9-dcd1-451b-9dc5-4b6b2af7470a",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 33.96,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-21",
+      "card_print_id": "ef6e308a-9f54-4b03-b420-053d2d0e8112",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 6,
+      "reference_median": 1.69,
+      "variance_band": "moderate_variance",
+      "review_flags": [
+        "moderate_variance",
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-B2-22",
+      "card_print_id": "61925644-0c1d-4dd0-8728-0389d91fcd29",
+      "review_status": "review_required_context",
+      "source_count": 2,
+      "eligible_evidence_count": 8,
+      "reference_median": 6.93,
+      "variance_band": "bounded_variance",
+      "review_flags": [
+        "non_usd_evidence_excluded",
+        "quarantined_context_present"
+      ]
+    }
+  ],
+  "findings": [],
+  "ready_for_apply_approval": true,
+  "approval_prompt": "Approve real MARKET-REFERENCE-SIGNAL-ROLLUP-REFRESH-APPLY-V1 apply only. Package fingerprint: cd7b04fba4e2f7d672267a15b20be4846223051b03c0377cfa7ba0425408672f. Row manifest hash: 1f29724993b556969857df8752d4598867f10fd10250e8d24ba8e1b5b1952d8d. Migration hash: eb2f1aa4a01977d455e131ec7f90b3d8250e2501f65cdc6199a9b2072dd82d41. Scope: insert 993 internal-only market_reference_signal_rollups rows with rollup_version MEE_09M_INTERNAL_REFERENCE_SIGNAL_ROLLUPS_AFTER_POKEMONTCG_SECOND_SOURCE_V1 into linked Supabase project ycdxbpibncqcchqiihfz only. Preserve existing rollup versions. All rows must keep needs_review=true, publishable=false, app_visible=false, and market_truth=false. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

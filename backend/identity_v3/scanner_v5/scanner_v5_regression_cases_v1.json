@@ -1,0 +1,27 @@
+[
+  {
+    "id": "rufflet_generated_normal",
+    "image": "test/fixtures/scanner_cache/generated/rufflet_normal.jpg",
+    "expected_gv_id": "GV-PK-ASC-173",
+    "label": "Larry's Rufflet"
+  },
+  {
+    "id": "rufflet_rotated",
+    "image": "test/fixtures/scanner_cache/rufflet_rotated.jpg",
+    "expected_gv_id": "GV-PK-ASC-173",
+    "label": "Larry's Rufflet rotated"
+  },
+  {
+    "id": "amaura_fixed_slot",
+    "image": "backend/identity_v3/scanner_v5/fixtures/images/amaura_fixed_slot.png",
+    "expected_gv_id": "GV-PK-ME03-023",
+    "label": "Amaura"
+  },
+  {
+    "id": "tynamo_synthetic_smoke",
+    "image": "test/fixtures/scanner_cache/tynamo_1.jpg",
+    "label": "Synthetic Tynamo smoke fixture",
+    "smoke_only": true,
+    "skip_embedding": true
+  }
+]

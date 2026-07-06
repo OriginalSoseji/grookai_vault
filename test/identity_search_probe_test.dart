@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/display_identity.dart';
@@ -112,6 +114,35 @@ void main() {
     expect(formatVariantKey('play_pokemon_stamp'), 'Play Pokémon Stamp');
   });
 
+  test(
+    'Japanese printed names use English primary display with printed name secondary',
+    () {
+      final pikachu = CardPrint.fromJson(<String, dynamic>{
+        'id': 'jpn-pikachu',
+        'gv_id': 'GV-PK-JPN-SV8-033',
+        'name': 'ピカチュウex',
+        'set_code': 'jpn-sv8',
+        'number': '033',
+      });
+      final magnemite = CardPrint.fromJson(<String, dynamic>{
+        'id': 'jpn-magnemite',
+        'gv_id': 'GV-PK-JPN-BW7-023',
+        'name': 'コイル',
+        'set_code': 'jpn-bw7',
+        'number': '023',
+      });
+
+      final pikachuIdentity = resolveCardPrintDisplayIdentity(pikachu);
+      final magnemiteIdentity = resolveCardPrintDisplayIdentity(magnemite);
+
+      expect(pikachuIdentity.displayName, 'Pikachu ex');
+      expect(pikachuIdentity.printedName, 'ピカチュウex');
+      expect(resolveDisplayName(pikachu), 'Pikachu ex');
+      expect(magnemiteIdentity.displayName, 'Magnemite');
+      expect(magnemiteIdentity.printedName, 'コイル');
+    },
+  );
+
   test('child printing search contract displays selected finish context', () {
     final espurrReverse = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-print-me03-033',
@@ -165,6 +196,29 @@ void main() {
     expect(
       resolveDisplayName(cameoTrainer),
       'Arcade Game · Cameo: Pikachu · picture',
+    );
+  });
+
+  test('mobile resolver search falls back to deterministic local search', () {
+    final modelSource = File('lib/models/card_print.dart').readAsStringSync();
+    final mainSource = File('lib/main.dart').readAsStringSync();
+    final vaultSource = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(modelSource, contains('_searchCardPrintsViaWebResolver'));
+    expect(modelSource, contains('_searchCardPrintsResolvedFallback'));
+    expect(modelSource, contains("source: 'local_resolver_fallback'"));
+    expect(modelSource, contains('search:web_resolver_failed fallback=local'));
+    expect(
+      RegExp(
+        r'try\s*\{[\s\S]*_searchCardPrintsViaWebResolver[\s\S]*\}\s*catch',
+      ).hasMatch(modelSource),
+      isTrue,
+    );
+    expect(mainSource, contains('_formatSearchFailure(error)'));
+    expect(vaultSource, contains('_formatSearchFailure(error)'));
+    expect(
+      mainSource,
+      contains('Search is temporarily limited. Showing local results'),
     );
   });
 }

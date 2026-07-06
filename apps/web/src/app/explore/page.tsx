@@ -6,12 +6,16 @@ import { getFeaturedExploreCards } from "@/lib/cards/getFeaturedExploreCards";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
 import { getDiscoveryProvisionalCards } from "@/lib/provisional/getDiscoveryProvisionalCards";
+import {
+  matchesPublicLanguageScope,
+  normalizePublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 import { getRecentlyConfirmedCanonicalCards } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import { getPublicSets } from "@/lib/publicSets";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 
-export const dynamic = "force-static";
-export const revalidate = 120;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const NOTABLE_SET_CODES = [
   "sv3pt5",
@@ -71,9 +75,10 @@ function getNotableExploreSets(sets: PublicSetSummary[]) {
 export default async function ExplorePage({
   searchParams,
 }: {
-  searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string };
+  searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string };
 }) {
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
+  const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const isDiscoveryMode =
     !normalizeFreeTextQuery(searchParams?.q) &&
     !normalizeSetCode(searchParams?.set) &&
@@ -93,10 +98,14 @@ export default async function ExplorePage({
     discoveryContent = (
       <ExploreDiscoverySections
         compareCards={compareCards}
-        featuredCards={featuredCards}
+        featuredCards={featuredCards.filter((card) =>
+          matchesPublicLanguageScope(card, languageScope),
+        )}
         notableSets={getNotableExploreSets(allSets)}
-        recentlyConfirmedCards={recentlyConfirmedCards}
-        provisionalCards={provisionalCards}
+        recentlyConfirmedCards={recentlyConfirmedCards.filter((card) =>
+          matchesPublicLanguageScope(card, languageScope),
+        )}
+        provisionalCards={languageScope === "ja" ? [] : provisionalCards}
         currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
       />
     );

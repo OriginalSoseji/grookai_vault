@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import '../utils/display_image_contract.dart';
 
 class CardZoomGalleryItem {
-  const CardZoomGalleryItem({required this.label, this.imageUrl});
+  const CardZoomGalleryItem({
+    required this.label,
+    this.imageUrl,
+    this.onViewDetails,
+    this.detailsLabel = 'View details',
+  });
 
   final String label;
   final String? imageUrl;
+  final VoidCallback? onViewDetails;
+  final String detailsLabel;
 
-  String get resolvedImageUrl => (imageUrl ?? '').trim();
+  String get resolvedImageUrl => normalizeDisplayImageUrl(imageUrl) ?? '';
 }
 
 Future<void> showCardImageZoom(
   BuildContext context, {
   required String label,
   String? imageUrl,
+  VoidCallback? onViewDetails,
+  String detailsLabel = 'View details',
 }) async {
   final resolvedUrl = (imageUrl ?? '').trim();
   if (resolvedUrl.isEmpty) {
@@ -22,7 +34,12 @@ Future<void> showCardImageZoom(
   await showCardImageGallery(
     context,
     items: <CardZoomGalleryItem>[
-      CardZoomGalleryItem(label: label, imageUrl: resolvedUrl),
+      CardZoomGalleryItem(
+        label: label,
+        imageUrl: resolvedUrl,
+        onViewDetails: onViewDetails,
+        detailsLabel: detailsLabel,
+      ),
     ],
   );
 }
@@ -91,7 +108,7 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
       if (imageUrl.isEmpty) {
         continue;
       }
-      precacheImage(NetworkImage(imageUrl), context);
+      precacheImage(CachedNetworkImageProvider(imageUrl), context);
     }
   }
 
@@ -107,6 +124,16 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
       duration: const Duration(milliseconds: 220),
       curve: Curves.easeOutCubic,
     );
+  }
+
+  void _handleViewDetails(CardZoomGalleryItem item) {
+    final onViewDetails = item.onViewDetails;
+    if (onViewDetails == null) {
+      return;
+    }
+
+    Navigator.of(context, rootNavigator: true).pop();
+    Future<void>.delayed(Duration.zero, onViewDetails);
   }
 
   @override
@@ -215,6 +242,14 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                if (currentItem.onViewDetails != null) ...[
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    onPressed: () => _handleViewDetails(currentItem),
+                    icon: const Icon(Icons.info_outline_rounded, size: 18),
+                    label: Text(currentItem.detailsLabel),
+                  ),
+                ],
               ],
             ),
           ),
@@ -276,10 +311,19 @@ class _CardZoomPage extends StatelessWidget {
                               ),
                         ),
                       )
-                    : Image.network(
-                        imageUrl,
+                    : CachedNetworkImage(
+                        imageUrl: imageUrl,
                         fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) => Center(
+                        fadeInDuration: Duration.zero,
+                        fadeOutDuration: Duration.zero,
+                        filterQuality: FilterQuality.medium,
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: colorScheme.primary.withValues(alpha: 0.5),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Center(
                           child: Icon(
                             Icons.broken_image_outlined,
                             size: 44,

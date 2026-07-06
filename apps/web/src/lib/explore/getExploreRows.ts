@@ -20,6 +20,10 @@ import {
   tokenizeSetWords,
 } from "@/lib/publicSets.shared";
 import {
+  matchesPublicLanguageScope,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
+import {
   normalizeQuery,
   type NormalizedQueryPacket,
 } from "@/lib/resolver/normalizeQuery";
@@ -33,10 +37,12 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
-const SEARCH_LIMIT = 80;
-const TOKEN_SEARCH_LIMIT = 40;
+const SEARCH_LIMIT = 64;
+const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
-const SMART_FILTER_DISCOVERY_LIMIT = 500;
+const SMART_FILTER_DISCOVERY_LIMIT = 160;
+const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
+const SPECIES_FAMILY_SEARCH_LIMIT = 360;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set([
@@ -58,6 +64,16 @@ const VARIANT_QUERY_CUE_TOKENS = new Set([
   "full",
   "masterball",
   "pokeball",
+]);
+const DECORATOR_STOPWORDS_FOR_SEARCH = new Set([
+  "ex",
+  "gx",
+  "v",
+  "vmax",
+  "vstar",
+  "lv",
+  "x",
+  "break",
 ]);
 const PROMO_SET_CODE_PATTERN =
   /^(?:swshp|svp|smp|basep|bwp|xyp|dpp|pr-[a-z0-9]+)$/i;
@@ -89,9 +105,20 @@ const TRAIT_INTENT_PARTIAL_BONUS = 60;
 const TRAIT_INTENT_MISS_PENALTY = -80;
 const NAME_FAMILY_MATCH_BONUS = 140;
 const CLEAN_SINGLE_NAME_MATCH_BONUS = 360;
+const TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS = 1900;
+const TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS = 1250;
 const DECORATED_NAME_FALLBACK_PENALTY = -220;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
+const EXACT_IMAGE_RELEVANCE_QUALITY = 4;
+const REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY = 1;
+const MISSING_IMAGE_RELEVANCE_QUALITY = 0;
+const KNOWN_SET_RELEVANCE_QUALITY = 3;
+const COLLECTOR_NUMBER_RELEVANCE_QUALITY = 2;
+const RARITY_RELEVANCE_QUALITY = 1;
+const JAPANESE_SPECIES_ALIASES_BY_SLUG = new Map<string, string[]>([
+  ["pikachu", ["ピカチュウ"]],
+]);
 
 type VariantCue =
   | "alt_art"
@@ -112,6 +139,13 @@ type CollectorNumberExpectation = {
 
 type ExploreRow = ExploreResultCard & {
   printed_total?: number;
+  search_family_tokens?: string[];
+  search_family_slug?: string | null;
+  search_family_printed_name_match?: boolean;
+};
+
+type BuildExploreRowsOptions = {
+  skipChildDisplayImageFallbacks?: boolean;
 };
 
 type SearchRpcRow = {
@@ -191,6 +225,32 @@ type CardPrintLookupRow = {
   display_discriminator?: string | null;
   route_query?: string | null;
   search_rank_score?: number | null;
+  search_family_tokens?: string[];
+  search_family_slug?: string | null;
+  search_family_printed_name_match?: boolean;
+};
+
+type DexSpeciesSearchRow = {
+  species_id: string | null;
+  display_name: string | null;
+  slug: string | null;
+};
+
+type DexSpeciesCardPrintRow = {
+  card_print_id: string | null;
+  gv_id?: string | null;
+  name?: string | null;
+  species_slug: string | null;
+  species_display_name: string | null;
+  source?: string | null;
+  evidence?: {
+    resolution_method?: string | null;
+    printed_name_species_matches?: Array<{
+      species_slug?: string | null;
+      evidence_keys?: string[] | null;
+      evidence_names?: string[] | null;
+    }> | null;
+  } | null;
 };
 
 type TcgdexSetRow = {
@@ -233,6 +293,8 @@ type SmartFilterDiscoveryOptions = {
   finishKeys?: string[];
   stampLabels?: string[];
   imageState?: SmartFilterImageState;
+  languageScope?: PublicLanguageScope;
+  includePricing?: boolean;
 };
 
 type PublicSetMetadata = {
@@ -753,14 +815,17 @@ async function buildExploreRows(
   setNameById: Map<string, string>,
   setMetadataByCode: Map<string, PublicSetMetadata>,
   pricingByCardId: Map<string, PublicPricingRecord>,
+  options: BuildExploreRowsOptions = {},
 ) {
   const rows = lookupRows.filter(
     (row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id),
   );
-  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
-    createServerComponentClient(),
-    rows,
-  );
+  const childDisplayImageFallbacks = options.skipChildDisplayImageFallbacks
+    ? new Map()
+    : await getChildDisplayImageFallbacks(
+        createServerComponentClient(),
+        rows,
+      );
 
   return Promise.all(
     rows.map(async (row) => {
@@ -832,9 +897,94 @@ async function buildExploreRows(
         finish_label: row.finish_label ?? undefined,
         display_discriminator: row.display_discriminator ?? undefined,
         route_query: row.route_query ?? undefined,
+        search_family_tokens: row.search_family_tokens,
+        search_family_slug: row.search_family_slug,
+        search_family_printed_name_match: row.search_family_printed_name_match,
       };
     }),
   );
+}
+
+function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
+  const tcgdexCardId = extractTcgdexCardId(row.external_ids);
+  const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
+
+  return {
+    id: row.id,
+    gv_id: row.gv_id ?? "",
+    name: row.name ?? "Unknown",
+    number: row.number ?? "",
+    set_name: row.printed_set_abbrev ?? row.set_code ?? undefined,
+    rarity: row.rarity ?? undefined,
+    artist: row.artist ?? undefined,
+    image_url: row.image_url ?? undefined,
+    representative_image_url: row.representative_image_url ?? undefined,
+    image_status: row.image_status ?? undefined,
+    image_source: row.image_source ?? undefined,
+    set_code: row.set_code ?? undefined,
+    printed_set_abbrev: row.printed_set_abbrev ?? undefined,
+    tcgdex_set_id: tcgdexSetId,
+    variant_key: row.variant_key?.trim() || undefined,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+    variants: row.variants ?? undefined,
+    search_object_type: row.search_object_type,
+    search_card_printing_id: row.search_card_printing_id ?? undefined,
+    printing_gv_id: row.printing_gv_id ?? undefined,
+    selected_printing_gv_id: row.selected_printing_gv_id ?? undefined,
+    finish_key: row.finish_key ?? undefined,
+    finish_label: row.finish_label ?? undefined,
+    display_discriminator: row.display_discriminator ?? undefined,
+    route_query: row.route_query ?? undefined,
+    search_family_tokens: row.search_family_tokens,
+    search_family_slug: row.search_family_slug,
+    search_family_printed_name_match: row.search_family_printed_name_match,
+  };
+}
+
+function limitRowsBeforeEnrichment(
+  rows: CardPrintLookupRow[],
+  query: ResolverQuery,
+  sortMode: SortMode,
+) {
+  if (sortMode !== "relevance" || rows.length <= PRE_ENRICHMENT_RELEVANCE_LIMIT) {
+    return rows;
+  }
+
+  return rows
+    .map((row, index) => ({
+      row,
+      index,
+      sortableRow: lookupRowToPreRankExploreRow(row),
+    }))
+    .sort((left, right) => {
+      const leftScore = scoreRow(left.sortableRow, query);
+      const rightScore = scoreRow(right.sortableRow, query);
+      if (leftScore !== rightScore) return rightScore - leftScore;
+
+      const qualityCompare = compareRowsByDataQuality(
+        left.sortableRow,
+        right.sortableRow,
+      );
+      if (qualityCompare !== 0) return qualityCompare;
+
+      const nameCompare = left.sortableRow.name.localeCompare(right.sortableRow.name);
+      if (nameCompare !== 0) return nameCompare;
+
+      const setCompare = (left.sortableRow.set_code ?? "").localeCompare(right.sortableRow.set_code ?? "");
+      if (setCompare !== 0) return setCompare;
+
+      const numberCompare = left.sortableRow.number.localeCompare(right.sortableRow.number, undefined, {
+        numeric: true,
+      });
+      if (numberCompare !== 0) return numberCompare;
+
+      const gvCompare = left.sortableRow.gv_id.localeCompare(right.sortableRow.gv_id);
+      if (gvCompare !== 0) return gvCompare;
+
+      return left.index - right.index;
+    })
+    .slice(0, PRE_ENRICHMENT_RELEVANCE_LIMIT)
+    .map(({ row }) => row);
 }
 
 function getRowVariantCueSet(row: ExploreRow) {
@@ -1118,6 +1268,73 @@ function addScoreComponent(
   components[key] = (components[key] ?? 0) + value;
 }
 
+function hasKnownSetName(row: Pick<ExploreRow, "set_name" | "set_code" | "printed_set_abbrev">) {
+  const visibleSetName = row.set_name?.trim();
+  if (
+    visibleSetName &&
+    visibleSetName.toLowerCase() !== "unknown set"
+  ) {
+    return true;
+  }
+
+  return Boolean(row.set_code?.trim() || row.printed_set_abbrev?.trim());
+}
+
+function getImageRelevanceQuality(row: Pick<ExploreRow, "display_image_kind" | "image_status" | "display_image_url" | "image_url">) {
+  const displayKind = row.display_image_kind?.trim().toLowerCase();
+  const imageStatus = row.image_status?.trim().toLowerCase();
+
+  if (displayKind === "exact" || imageStatus === "exact") {
+    return EXACT_IMAGE_RELEVANCE_QUALITY;
+  }
+
+  if (
+    displayKind === "representative" ||
+    displayKind === "missing_variant_visual" ||
+    imageStatus?.startsWith("representative") ||
+    imageStatus === "missing_variant_visual"
+  ) {
+    return REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY;
+  }
+
+  return row.display_image_url || row.image_url
+    ? REPRESENTATIVE_IMAGE_RELEVANCE_QUALITY
+    : MISSING_IMAGE_RELEVANCE_QUALITY;
+}
+
+function getRowRelevanceQualityScore(row: ExploreRow) {
+  return (
+    getImageRelevanceQuality(row) +
+    (hasKnownSetName(row) ? KNOWN_SET_RELEVANCE_QUALITY : 0) +
+    (row.number?.trim() ? COLLECTOR_NUMBER_RELEVANCE_QUALITY : 0) +
+    (row.rarity?.trim() ? RARITY_RELEVANCE_QUALITY : 0)
+  );
+}
+
+function compareRowsByDataQuality(a: ExploreRow, b: ExploreRow) {
+  const qualityCompare =
+    getRowRelevanceQualityScore(b) - getRowRelevanceQualityScore(a);
+  if (qualityCompare !== 0) return qualityCompare;
+
+  const imageCompare =
+    getImageRelevanceQuality(b) - getImageRelevanceQuality(a);
+  if (imageCompare !== 0) return imageCompare;
+
+  if (hasKnownSetName(a) !== hasKnownSetName(b)) {
+    return hasKnownSetName(a) ? -1 : 1;
+  }
+
+  if (Boolean(a.number?.trim()) !== Boolean(b.number?.trim())) {
+    return a.number?.trim() ? -1 : 1;
+  }
+
+  if (Boolean(a.rarity?.trim()) !== Boolean(b.rarity?.trim())) {
+    return a.rarity?.trim() ? -1 : 1;
+  }
+
+  return 0;
+}
+
 // Resolver Quality Pass V1:
 // Ranking must strongly respect explicit disambiguators already present in the user query
 // (number tokens, set tokens, and variant cues) instead of over-dominating on name-only matches.
@@ -1129,12 +1346,19 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     .join(" ");
   const nameTokens = tokenizeNormalizedQuery(row.name);
   const identityTokens = tokenizeNormalizedQuery(buildIdentitySearchText(row));
+  const familyTokens = row.search_family_tokens ?? [];
   const finishTokens = tokenizeNormalizedQuery(
     [row.finish_key, row.finish_label, row.display_discriminator, row.printing_gv_id]
       .filter(Boolean)
       .join(" "),
   );
-  const matchesNameFamily = rowMatchesNameFamily(row.name, query.textTokens);
+  const primaryFamilyTokens = getPrimaryFamilyTokensFromTokens(query.textTokens);
+  const matchesSpeciesFamily =
+    familyTokens.length > 0 &&
+    primaryFamilyTokens.length > 0 &&
+    primaryFamilyTokens.every((token) => familyTokens.includes(token));
+  const matchesNameFamily =
+    rowMatchesNameFamily(row.name, query.textTokens) || matchesSpeciesFamily;
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_name),
     ...tokenizeNormalizedQuery(row.set_code),
@@ -1189,17 +1413,23 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
   for (const token of query.textTokens) {
     const nameSimilarity = bestTokenSimilarity(token, nameTokens);
     const identitySimilarity = bestTokenSimilarity(token, identityTokens);
+    const familySimilarity = bestTokenSimilarity(token, familyTokens);
     const setSimilarity = bestTokenSimilarity(token, setTokens);
     const gvSimilarity = bestTokenSimilarity(token, gvTokens);
     const bestSimilarity = Math.max(
       nameSimilarity,
       identitySimilarity,
+      familySimilarity,
       bestTokenSimilarity(token, finishTokens),
       setSimilarity,
       gvSimilarity,
     );
     const bestSource =
-      nameSimilarity >= identitySimilarity && nameSimilarity >= setSimilarity
+      familySimilarity > nameSimilarity &&
+      familySimilarity >= identitySimilarity &&
+      familySimilarity >= setSimilarity
+        ? "family"
+        : nameSimilarity >= identitySimilarity && nameSimilarity >= setSimilarity
         ? "name"
         : identitySimilarity >= setSimilarity
           ? "identity"
@@ -1210,6 +1440,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_exact_name"
+          : bestSource === "family"
+            ? "text_token_exact_species_family"
           : bestSource === "identity"
             ? "text_token_exact_identity"
             : "text_token_exact_set",
@@ -1217,12 +1449,16 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 240
             : 280
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 220
+              : 270
           : bestSource === "identity"
             ? 250
             : 260,
       );
       matchedTextTokens += 1;
-      if (nameSimilarity >= 1) exactNameMatches += 1;
+      if (nameSimilarity >= 1 || familySimilarity >= 1) exactNameMatches += 1;
       continue;
     }
 
@@ -1231,6 +1467,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_prefix_name"
+          : bestSource === "family"
+            ? "text_token_prefix_species_family"
           : bestSource === "identity"
             ? "text_token_prefix_identity"
             : "text_token_prefix_set",
@@ -1238,6 +1476,10 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 180
             : 220
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 170
+              : 210
           : bestSource === "identity"
             ? 190
             : 210,
@@ -1251,6 +1493,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         components,
         bestSource === "name"
           ? "text_token_partial_name"
+          : bestSource === "family"
+            ? "text_token_partial_species_family"
           : bestSource === "identity"
             ? "text_token_partial_identity"
             : "text_token_partial_set",
@@ -1258,6 +1502,10 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
           ? query.hasStrongDisambiguator
             ? 120
             : 150
+          : bestSource === "family"
+            ? query.hasStrongDisambiguator
+              ? 120
+              : 145
           : bestSource === "identity"
             ? 140
             : 150,
@@ -1294,6 +1542,31 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     );
   }
 
+  if (row.search_family_printed_name_match && query.textTokens.length > 0) {
+    addScoreComponent(
+      components,
+      "trusted_species_printed_name_match",
+      query.hasStrongDisambiguator
+        ? Math.round(TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS * 0.45)
+        : TRUSTED_SPECIES_PRINTED_NAME_MATCH_BONUS,
+    );
+
+    if (
+      !queryContainsNameDecoratorTokens(query.tokens) &&
+      tokenizeNormalizedQuery(row.name).some((token) =>
+        DECORATOR_STOPWORDS_FOR_SEARCH.has(token),
+      )
+    ) {
+      addScoreComponent(
+        components,
+        "trusted_species_decorated_printed_name_match",
+        query.hasStrongDisambiguator
+          ? Math.round(TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS * 0.35)
+          : TRUSTED_SPECIES_DECORATED_PRINTED_NAME_BONUS,
+      );
+    }
+  }
+
   if (
     query.textTokens.length > 0 &&
     matchesNameFamily &&
@@ -1304,7 +1577,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
 
   if (
     query.significantTextTokens.length === 1 &&
-    normalizedName === query.significantTextTokens[0]
+    (normalizedName === query.significantTextTokens[0] ||
+      familyTokens.includes(query.significantTextTokens[0]))
   ) {
     addScoreComponent(components, "clean_single_name_match", CLEAN_SINGLE_NAME_MATCH_BONUS);
   } else if (
@@ -1614,6 +1888,9 @@ function rankRows(rows: ExploreRow[], query: ResolverQuery) {
     const scoreB = scoreRow(b, query);
     if (scoreA !== scoreB) return scoreB - scoreA;
 
+    const qualityCompare = compareRowsByDataQuality(a, b);
+    if (qualityCompare !== 0) return qualityCompare;
+
     const nameCompare = a.name.localeCompare(b.name);
     if (nameCompare !== 0) return nameCompare;
 
@@ -1712,6 +1989,9 @@ function compareRowsByRelevance(
   const scoreA = scoreRow(a, query);
   const scoreB = scoreRow(b, query);
   if (scoreA !== scoreB) return scoreB - scoreA;
+
+  const qualityCompare = compareRowsByDataQuality(a, b);
+  if (qualityCompare !== 0) return qualityCompare;
 
   const nameCompare = a.name.localeCompare(b.name);
   if (nameCompare !== 0) return nameCompare;
@@ -1940,9 +2220,14 @@ function rowMatchesScopedTextTokens(
 
   const nameTokens = tokenizeNormalizedQuery(row.name);
   const identityTokens = tokenizeNormalizedQuery(buildIdentitySearchText(row));
+  const familyTokens = row.search_family_tokens ?? [];
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_code),
     ...tokenizeNormalizedQuery(row.printed_set_abbrev),
+  ]);
+  const identifierTokens = uniqueValues([
+    ...tokenizeNormalizedQuery(row.gv_id),
+    ...tokenizeNormalizedQuery(row.number),
   ]);
 
   if (rowMatchesNameFamily(row.name, scopedTokens)) {
@@ -1953,7 +2238,9 @@ function rowMatchesScopedTextTokens(
     const bestSimilarity = Math.max(
       bestTokenSimilarity(token, nameTokens),
       bestTokenSimilarity(token, identityTokens),
+      bestTokenSimilarity(token, familyTokens),
       bestTokenSimilarity(token, setTokens),
+      bestTokenSimilarity(token, identifierTokens),
     );
     return bestSimilarity >= 0.88;
   });
@@ -2614,7 +2901,7 @@ async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
       throw new Error(error.message);
     }
 
-    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
       rowsById.set(row.id, row);
     }
   }
@@ -2670,7 +2957,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
       throw new Error(error.message);
     }
 
-    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
       results.set(row.id, row);
     }
   }
@@ -2970,6 +3257,471 @@ function rowMatchesSmartDiscoveryText(
   return tokens.every((token) => haystack.includes(token));
 }
 
+function rowMatchesLanguageScope(
+  row: { gv_id?: string | null },
+  languageScope: PublicLanguageScope = "all",
+) {
+  return matchesPublicLanguageScope(row, languageScope);
+}
+
+function applyLanguageScopeRows<T extends { gv_id?: string | null }>(
+  rows: T[],
+  languageScope: PublicLanguageScope = "all",
+) {
+  if (languageScope === "all") {
+    return rows;
+  }
+
+  return rows.filter((row) => rowMatchesLanguageScope(row, languageScope));
+}
+
+function applyLanguageScopeQuery<
+  T extends {
+    ilike: (column: string, pattern: string) => T;
+    not: (column: string, operator: string, value: string) => T;
+  },
+>(request: T, languageScope: PublicLanguageScope = "all") {
+  if (languageScope === "ja") {
+    return request.ilike("gv_id", "GV-PK-JPN-%");
+  }
+
+  if (languageScope === "en") {
+    return request.not("gv_id", "ilike", "GV-PK-JPN-%");
+  }
+
+  return request;
+}
+
+function getSpeciesSearchTokens(query: ResolverQuery) {
+  return uniqueValues(
+    (query.significantTextTokens.length > 0
+      ? query.significantTextTokens
+      : query.textTokens
+    )
+      .filter((token) => token.length >= 3 && !GENERIC_TOKENS.has(token))
+      .slice(0, 2),
+  );
+}
+
+function sanitizeSpeciesSearchToken(token: string) {
+  return token.replace(/[^a-z0-9-]/gi, "").toLowerCase();
+}
+
+function buildSpeciesFamilyTokens(row: {
+  species_display_name?: string | null;
+  display_name?: string | null;
+  species_slug?: string | null;
+  slug?: string | null;
+}) {
+  return uniqueValues([
+    ...tokenizeNormalizedQuery(row.species_display_name),
+    ...tokenizeNormalizedQuery(row.display_name),
+    ...tokenizeNormalizedQuery(row.species_slug),
+    ...tokenizeNormalizedQuery(row.slug),
+  ]);
+}
+
+function normalizeNonLatinAlias(value: string | null | undefined) {
+  const normalized = (value ?? "").trim().toLowerCase();
+  return /[^\u0000-\u007f]/.test(normalized) ? normalized : "";
+}
+
+function getPrintedNameEvidenceValues(row: DexSpeciesCardPrintRow) {
+  return (row.evidence?.printed_name_species_matches ?? [])
+    .filter((match) => match.species_slug === row.species_slug)
+    .flatMap((match) => [
+      ...(match.evidence_keys ?? []),
+      ...(match.evidence_names ?? []),
+    ])
+    .map(normalizeNonLatinAlias)
+    .filter(Boolean);
+}
+
+function buildTrustedPrintedNameAliasesBySlug(rows: DexSpeciesCardPrintRow[]) {
+  const countsBySlug = new Map<string, Map<string, number>>();
+  for (const row of rows) {
+    const slug = row.species_slug?.trim().toLowerCase();
+    if (!slug) {
+      continue;
+    }
+
+    const aliasCounts = countsBySlug.get(slug) ?? new Map<string, number>();
+    for (const alias of uniqueValues(getPrintedNameEvidenceValues(row))) {
+      aliasCounts.set(alias, (aliasCounts.get(alias) ?? 0) + 1);
+    }
+    countsBySlug.set(slug, aliasCounts);
+  }
+
+  const trustedBySlug = new Map<string, Set<string>>();
+  for (const [slug, aliasCounts] of countsBySlug.entries()) {
+    const trustedAliases = [...aliasCounts.entries()]
+      .filter(([, count]) => count >= 3)
+      .map(([alias]) => alias);
+    if (trustedAliases.length > 0) {
+      trustedBySlug.set(slug, new Set(trustedAliases));
+    }
+  }
+
+  return trustedBySlug;
+}
+
+function rowMatchesTrustedPrintedNameAlias(
+  row: DexSpeciesCardPrintRow,
+  trustedAliasesBySlug: Map<string, Set<string>>,
+) {
+  const slug = row.species_slug?.trim().toLowerCase();
+  if (!slug) {
+    return false;
+  }
+
+  const trustedAliases = trustedAliasesBySlug.get(slug);
+  const explicitAliases = JAPANESE_SPECIES_ALIASES_BY_SLUG.get(slug);
+  const aliases = explicitAliases
+    ? new Set(explicitAliases.map(normalizeNonLatinAlias).filter(Boolean))
+    : trustedAliases;
+  if (!aliases || aliases.size === 0) {
+    return false;
+  }
+
+  const normalizedName = normalizeNonLatinAlias(row.name);
+  if (!normalizedName) {
+    return false;
+  }
+
+  return [...aliases].some((alias) => normalizedName.includes(alias));
+}
+
+function isReliableSpeciesSearchMapping(
+  row: DexSpeciesCardPrintRow,
+  query: ResolverQuery,
+  trustedAliasesBySlug: Map<string, Set<string>>,
+) {
+  const scopedTokens = getSpeciesSearchTokens(query);
+  const rowNameTokens = tokenizeNormalizedQuery(row.name);
+  if (
+    scopedTokens.some((token) =>
+      bestTokenSimilarity(token, rowNameTokens) >= 0.88,
+    )
+  ) {
+    return true;
+  }
+
+  return rowMatchesTrustedPrintedNameAlias(row, trustedAliasesBySlug);
+}
+
+async function fetchSpeciesFamilyRows(
+  query: ResolverQuery,
+  languageScope: PublicLanguageScope,
+  selectClause: string,
+) {
+  const tokens = getSpeciesSearchTokens(query);
+  if (tokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const speciesBySlug = new Map<string, DexSpeciesSearchRow>();
+
+  for (const token of tokens) {
+    const safeToken = sanitizeSpeciesSearchToken(token);
+    if (!safeToken) {
+      continue;
+    }
+
+    const { data, error } = await supabase
+      .from("v_grookai_dex_species_v1")
+      .select("species_id,display_name,slug")
+      .eq("active", true)
+      .or(`display_name.ilike.${safeToken}%,slug.ilike.${safeToken}%`)
+      .limit(8);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as DexSpeciesSearchRow[]) {
+      const slug = row.slug?.trim().toLowerCase();
+      if (slug) {
+        speciesBySlug.set(slug, row);
+      }
+    }
+  }
+
+  if (speciesBySlug.size === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  let mappingRequest = supabase
+    .from("v_grookai_dex_card_prints_v1")
+    .select("card_print_id,gv_id,name,species_slug,species_display_name,source,evidence")
+    .in("species_slug", [...speciesBySlug.keys()])
+    .eq("mapping_active", true)
+    .eq("counts_for_completion", true)
+    .in("role", [
+      "primary",
+      "tag_team",
+      "multi_subject",
+      "trainer_owned",
+      "form_subject",
+      "manual_override",
+    ])
+    .limit(SPECIES_FAMILY_SEARCH_LIMIT);
+
+  mappingRequest = applyLanguageScopeQuery(mappingRequest, languageScope);
+  const { data: mappingRows, error: mappingError } = await mappingRequest;
+  if (mappingError) {
+    throw new Error(mappingError.message);
+  }
+
+  const mappedRows = (mappingRows ?? []) as DexSpeciesCardPrintRow[];
+  const trustedAliasesBySlug = buildTrustedPrintedNameAliasesBySlug(mappedRows);
+  const familyTokensByCardPrintId = new Map<string, string[]>();
+  const printedNameMatchByCardPrintId = new Map<string, boolean>();
+  for (const row of mappedRows) {
+    const printedNameMatch = rowMatchesTrustedPrintedNameAlias(
+      row,
+      trustedAliasesBySlug,
+    );
+    if (!isReliableSpeciesSearchMapping(row, query, trustedAliasesBySlug)) {
+      continue;
+    }
+
+    const cardPrintId = row.card_print_id?.trim();
+    const slug = row.species_slug?.trim().toLowerCase();
+    if (!cardPrintId || !slug) {
+      continue;
+    }
+
+    const familyTokens = uniqueValues([
+      ...(familyTokensByCardPrintId.get(cardPrintId) ?? []),
+      ...buildSpeciesFamilyTokens(row),
+      ...buildSpeciesFamilyTokens(speciesBySlug.get(slug) ?? row),
+    ]);
+    familyTokensByCardPrintId.set(cardPrintId, familyTokens);
+    if (printedNameMatch) {
+      printedNameMatchByCardPrintId.set(cardPrintId, true);
+    }
+  }
+
+  const cardPrintIds = [...familyTokensByCardPrintId.keys()];
+  if (cardPrintIds.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const rowsById = new Map<string, CardPrintLookupRow>();
+  for (const idChunk of chunkArray(cardPrintIds, 200)) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .in("id", idChunk);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as unknown as CardPrintLookupRow[]) {
+      const familyTokens = familyTokensByCardPrintId.get(row.id) ?? [];
+      rowsById.set(row.id, {
+        ...row,
+        search_family_tokens: familyTokens,
+        search_family_slug: null,
+        search_family_printed_name_match:
+          printedNameMatchByCardPrintId.get(row.id) ?? false,
+      });
+    }
+  }
+
+  return applyLanguageScopeRows([...rowsById.values()], languageScope);
+}
+
+function buildStructuredFastSearchOrExpression(token: string) {
+  const safeToken = token.replace(/[^a-z0-9-]/gi, "");
+  if (!safeToken) {
+    return null;
+  }
+
+  const normalizedLower = safeToken.toLowerCase();
+  const normalizedUpper = safeToken.toUpperCase();
+  const expressions = new Set<string>();
+  expressions.add(`gv_id.ilike.${safeToken}%`);
+  expressions.add(`set_code.eq.${normalizedLower}`);
+  expressions.add(`printed_set_abbrev.ilike.${safeToken}%`);
+
+  if (/^[a-z]*\d+[a-z0-9-]*$/i.test(safeToken)) {
+    expressions.add(`number.eq.${normalizedUpper}`);
+    const digits = safeToken.replace(/\D/g, "");
+    if (digits) {
+      expressions.add(`number.eq.${digits}`);
+      expressions.add(`number.eq.${digits.padStart(3, "0")}`);
+    }
+  }
+
+  return Array.from(expressions).join(",");
+}
+
+function cleanFastSearchToken(token: string) {
+  return token.replace(/[^a-z0-9-]/gi, "");
+}
+
+async function fetchLanguageScopedTextRows(
+  query: ResolverQuery,
+  languageScope: PublicLanguageScope,
+) {
+  const tokens = (query.significantTextTokens.length > 0
+    ? query.significantTextTokens
+    : query.textTokens
+  )
+    .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
+    .slice(0, 4);
+
+  if (tokens.length === 0 && !query.directGvId) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  if (query.directGvId) {
+    const directRequest = applyLanguageScopeQuery(
+      supabase
+        .from("card_prints")
+        .select(selectClause)
+        .eq("gv_id", query.directGvId)
+        .limit(1),
+      languageScope,
+    );
+    const { data, error } = await directRequest;
+    if (error) {
+      throw new Error(error.message);
+    }
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+
+    if (rowsById.size > 0) {
+      return applyLanguageScopeRows([...rowsById.values()], languageScope);
+    }
+  }
+
+  if (query.expectedSetCodes.length > 0) {
+    const setRows = (
+      await Promise.all(
+        normalizeExpectedSetCodes(query.expectedSetCodes).map((setCode) =>
+          fetchCardRowsBySetCode(setCode),
+        ),
+      )
+    ).flat();
+
+    const languageScopedSetRows = applyLanguageScopeRows(setRows, languageScope);
+    if (tokens.length === 0) {
+      return languageScopedSetRows;
+    }
+
+    for (const row of languageScopedSetRows) {
+      if (rowMatchesScopedTextTokens(row, query)) {
+        rowsById.set(row.id, row);
+      }
+    }
+  }
+
+  const runTokenRequest = async (token: string, mode: "name" | "broad") => {
+    const safeToken = cleanFastSearchToken(token);
+    if (!safeToken) {
+      return [] as CardPrintLookupRow[];
+    }
+
+    const baseRequest = supabase
+      .from("card_prints")
+      .select(selectClause)
+      .limit(languageScope === "ja" ? 96 : 80);
+    const scopedRequest = applyLanguageScopeQuery(baseRequest, languageScope);
+    const request =
+      mode === "name"
+        ? scopedRequest.ilike("name", `%${safeToken}%`)
+        : scopedRequest.or(
+            buildStructuredFastSearchOrExpression(safeToken) ??
+              `gv_id.ilike.${safeToken}%`,
+          );
+    const { data, error } = await request;
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return (data ?? []) as CardPrintLookupRow[];
+  };
+
+  const tokenResults = await Promise.all(
+    tokens.map(async (token) => {
+      const safeToken = cleanFastSearchToken(token);
+      if (!safeToken) {
+        return [] as CardPrintLookupRow[];
+      }
+
+      const nameRows = await runTokenRequest(safeToken, "name");
+      return nameRows.length > 0 ? nameRows : runTokenRequest(safeToken, "broad");
+    }),
+  );
+
+  for (const candidateRows of tokenResults) {
+    for (const row of candidateRows) {
+      if (rowMatchesScopedTextTokens(row, query)) {
+        rowsById.set(row.id, row);
+      }
+    }
+  }
+
+  const speciesFamilyRows = await fetchSpeciesFamilyRows(
+    query,
+    languageScope,
+    selectClause,
+  );
+  for (const row of speciesFamilyRows) {
+    if (rowMatchesScopedTextTokens(row, query)) {
+      rowsById.set(row.id, row);
+    }
+  }
+
+  return applyLanguageScopeRows([...rowsById.values()], languageScope);
+}
+
+export async function getExploreRowsForLanguageScopedTextSearch(
+  rawQuery: string,
+  languageScope: PublicLanguageScope,
+  sortMode: SortMode,
+  includePricing = false,
+): Promise<ExploreRow[]> {
+  const query = await buildResolverQuery(normalizeQuery(rawQuery));
+  const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+  const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const supabase = createServerComponentClient();
+  const pricingByCardId =
+    includePricing || sortMode === "value_high" || sortMode === "value_low"
+      ? await getPublicPricingByCardIds(
+          supabase,
+          enrichmentRows.map((row) => row.id),
+        )
+      : new Map<string, PublicPricingRecord>();
+  const rows = await buildExploreRows(
+    enrichmentRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+    {
+      skipChildDisplayImageFallbacks:
+        enrichmentRows.length > 24 &&
+        sortMode !== "value_high" &&
+        sortMode !== "value_low",
+    },
+  );
+
+  return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+}
+
 async function fetchCardRowsBySmartText(textQuery?: string) {
   const tokens = getSmartDiscoveryTextTokens(textQuery);
   if (tokens.length === 0) {
@@ -3106,6 +3858,10 @@ async function filterSmartDiscoveryRowsByScope(
   }
 
   return rows.filter((row) => {
+    if (!rowMatchesLanguageScope(row, options.languageScope)) {
+      return false;
+    }
+
     if (!rowMatchesSmartDiscoveryText(row, options.textQuery)) {
       return false;
     }
@@ -3275,7 +4031,10 @@ async function fetchSmartDiscoveryChildRows(
 export async function getExploreRowsForSmartFilterDiscovery(
   options: SmartFilterDiscoveryOptions,
 ): Promise<ExploreRow[]> {
-  const parentRows = await fetchSmartDiscoverySeedParentRows(options);
+  const parentRows = applyLanguageScopeRows(
+    await fetchSmartDiscoverySeedParentRows(options),
+    options.languageScope,
+  );
   const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
   const shouldRequireChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
@@ -3288,17 +4047,20 @@ export async function getExploreRowsForSmartFilterDiscovery(
         : parentRows,
     options,
   );
+  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    exactRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
-    exactRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
@@ -3318,7 +4080,10 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return getExploreRowsForSmartFilterDiscovery(options);
   }
 
-  let parentRows = await fetchCardRowsByStructuredTextQuery(query);
+  let parentRows = applyLanguageScopeRows(
+    await fetchCardRowsByStructuredTextQuery(query),
+    options.languageScope,
+  );
 
   const exactSetCode = normalizeSetCode(options.exactSetCode);
   const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
@@ -3350,16 +4115,19 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return [];
   }
 
+  const enrichmentRows = childScopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(childScopedRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    childScopedRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
-    childScopedRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
@@ -3397,20 +4165,23 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   const exactRows = await filterSmartDiscoveryRowsByScope(
     shouldUseChildScope
       ? await fetchSmartDiscoveryChildRows(options, parentRows)
-      : parentRows,
+      : applyLanguageScopeRows(parentRows, options.languageScope),
     options,
   );
+  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(
-    supabase,
-    exactRows.map((row) => row.id),
-  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(
+        supabase,
+        enrichmentRows.map((row) => row.id),
+      )
+    : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
-    exactRows,
+    enrichmentRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
@@ -3464,6 +4235,8 @@ export async function getExploreRowsPacketWithTiming(
   identityFilter: IdentityFilterKey = "all",
   releaseYearMin?: number,
   releaseYearMax?: number,
+  languageScope: PublicLanguageScope = "all",
+  includePricing = false,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
@@ -3591,7 +4364,7 @@ export async function getExploreRowsPacketWithTiming(
   }
 
   const timedExactFilters = await measureStage(() => {
-    let filteredRows = exactRows;
+    let filteredRows = applyLanguageScopeRows(exactRows, languageScope);
 
     if (query.expectedSetCodes.length > 0) {
       const expectedSetCodeSet = new Set(
@@ -3649,6 +4422,15 @@ export async function getExploreRowsPacketWithTiming(
   Object.assign(exactFiltersStage, timedExactFilters.timing);
   exactRows = timedExactFilters.value;
 
+  const shouldLimitBeforeEnrichment =
+    sortMode === "relevance" &&
+    typeof exactReleaseYear !== "number" &&
+    typeof releaseYearMin !== "number" &&
+    typeof releaseYearMax !== "number";
+  if (shouldLimitBeforeEnrichment) {
+    exactRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
+  }
+
   const timedSetMetadata = await measureStage(() =>
     fetchPublicSetMetadata(
       uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
@@ -3659,10 +4441,12 @@ export async function getExploreRowsPacketWithTiming(
 
   const supabase = createServerComponentClient();
   const timedPricing = await measureStage(() =>
-    getPublicPricingByCardIds(
-      supabase,
-      exactRows.map((row) => row.id),
-    ),
+    includePricing
+      ? getPublicPricingByCardIds(
+          supabase,
+          exactRows.map((row) => row.id),
+        )
+      : Promise.resolve(new Map<string, PublicPricingRecord>()),
   );
   Object.assign(fetchPricingStage, timedPricing.timing);
   const pricingByCardId = timedPricing.value;
@@ -3755,6 +4539,7 @@ export async function getExploreRowsWithTiming(
   exactIllustrator?: string,
   releaseYearMin?: number,
   releaseYearMax?: number,
+  includePricing = false,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   return getExploreRowsPacketWithTiming(
     normalizeQuery(rawQuery),
@@ -3765,6 +4550,8 @@ export async function getExploreRowsWithTiming(
     "all",
     releaseYearMin,
     releaseYearMax,
+    "all",
+    includePricing,
   );
 }
 
@@ -3776,6 +4563,7 @@ export async function getExploreRows(
   exactIllustrator?: string,
   releaseYearMin?: number,
   releaseYearMax?: number,
+  includePricing = false,
 ): Promise<ExploreRow[]> {
   return (
     await getExploreRowsWithTiming(
@@ -3786,6 +4574,7 @@ export async function getExploreRows(
       exactIllustrator,
       releaseYearMin,
       releaseYearMax,
+      includePricing,
     )
   ).rows;
 }

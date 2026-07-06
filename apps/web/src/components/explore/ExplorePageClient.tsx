@@ -2,6 +2,7 @@
 
 import { Fragment, type ReactNode } from "react";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -13,15 +14,11 @@ import {
   normalizeIdentityFilterKey,
   type IdentityFilterKey,
 } from "@/lib/cards/identitySearch";
-import CompareTray from "@/components/compare/CompareTray";
 import {
   POKEMON_CARD_BROWSE_GRID_CLASSNAME,
   POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME,
 } from "@/components/cards/pokemonCardGridLayout";
-import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
 import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
-import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
-import PublicProvisionalSearchSection from "@/components/provisional/PublicProvisionalSearchSection";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
@@ -34,6 +31,13 @@ import {
   type ExploreViewMode,
 } from "@/lib/exploreViewModes";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
+import {
+  getPublicLanguageScopeLabel,
+  matchesPublicLanguageScope,
+  normalizePublicLanguageScope,
+  PUBLIC_LANGUAGE_SCOPE_OPTIONS,
+  type PublicLanguageScope,
+} from "@/lib/publicLanguageScope";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
@@ -57,6 +61,20 @@ type ImageConfidenceFilter =
   | "representative"
   | "missing_variant_visual";
 type SearchResultIntent = "exact_version" | "identity" | "cameo" | "related";
+type CompareTrayProps = {
+  cards: string[];
+  addHref?: string;
+};
+type ExploreCardResultProps = {
+  card: ExploreRow;
+  href: string;
+  canViewPricing: boolean;
+  signInHref?: string;
+  matchReason?: string;
+};
+type PublicProvisionalSearchSectionProps = {
+  cards: PublicProvisionalCard[];
+};
 type AssistantBoundaryPreview = {
   ok: boolean;
   assistant_available?: boolean;
@@ -75,7 +93,24 @@ type AssistantBoundaryPreview = {
   message?: string;
 };
 
-const INITIAL_VISIBLE_RESULT_COUNT = 48;
+const INITIAL_VISIBLE_RESULT_COUNT = 24;
+const SEARCH_API_RESULT_LIMIT = 48;
+const CompareTray = dynamic<CompareTrayProps>(
+  () => import("@/components/compare/CompareTray"),
+  { ssr: false },
+);
+const ExploreCardListItem = dynamic<ExploreCardResultProps>(
+  () => import("@/components/explore/ExploreCardListItem"),
+  { ssr: false },
+);
+const ExploreCardDetailsRow = dynamic<ExploreCardResultProps>(
+  () => import("@/components/explore/ExploreCardDetailsRow"),
+  { ssr: false },
+);
+const PublicProvisionalSearchSection = dynamic<PublicProvisionalSearchSectionProps>(
+  () => import("@/components/provisional/PublicProvisionalSearchSection"),
+  { ssr: false },
+);
 
 const SEARCH_RESULT_INTENT_COPY: Record<
   SearchResultIntent,
@@ -244,46 +279,6 @@ function getDiscoveryTitle(payload: {
   }
 
   return residual || collectorLabels[0] || payload.fallback;
-}
-
-function getCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
-  if (!familyCopy) {
-    return "collector results";
-  }
-
-  if (familyCopy.variant_category.includes("stamp")) {
-    return "stamped identities";
-  }
-
-  if (familyCopy.variant_category.includes("error")) {
-    return "recognized variants";
-  }
-
-  if (familyCopy.variant_category.includes("subset")) {
-    return "subset identities";
-  }
-
-  return "collector identities";
-}
-
-function getSingularCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
-  if (!familyCopy) {
-    return "collector result";
-  }
-
-  if (familyCopy.variant_category.includes("stamp")) {
-    return "stamped identity";
-  }
-
-  if (familyCopy.variant_category.includes("error")) {
-    return "recognized variant";
-  }
-
-  if (familyCopy.variant_category.includes("subset")) {
-    return "subset identity";
-  }
-
-  return "collector identity";
 }
 
 function isCameoLabel(value?: string | null) {
@@ -530,6 +525,7 @@ export default function ExplorePageClient({
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
   const imageConfidenceFilter = parseImageConfidenceFilter(searchParams.get("image"));
+  const languageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const smartYearMin = (searchParams.get("year_min") ?? "").trim();
   const smartYearMax = (searchParams.get("year_max") ?? "").trim();
   const smartFinish = (searchParams.get("finish") ?? "").trim();
@@ -610,6 +606,14 @@ export default function ExplorePageClient({
           params.set("sort", sortMode);
         }
 
+        if (
+          effectiveCanViewPricing ||
+          sortMode === "value_high" ||
+          sortMode === "value_low"
+        ) {
+          params.set("include_pricing", "1");
+        }
+
         if (exactSetCode) {
           params.set("set", exactSetCode);
         }
@@ -645,6 +649,12 @@ export default function ExplorePageClient({
         if (smartImageState) {
           params.set("image_state", smartImageState);
         }
+
+        if (languageScope !== "all") {
+          params.set("lang", languageScope);
+        }
+
+        params.set("limit", String(SEARCH_API_RESULT_LIMIT));
 
         if (shouldServerFilterByIdentity) {
           params.set("identity", identityFilter);
@@ -711,9 +721,11 @@ export default function ExplorePageClient({
     smartStamp,
     smartOwned,
     smartImageState,
+    languageScope,
     hasExplicitSmartFilters,
     identityFilter,
     shouldServerFilterByIdentity,
+    effectiveCanViewPricing,
   ]);
 
   useEffect(() => {
@@ -732,6 +744,7 @@ export default function ExplorePageClient({
     smartImageState,
     identityFilter,
     imageConfidenceFilter,
+    languageScope,
   ]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
@@ -788,6 +801,21 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitLanguageScope = (nextScope: PublicLanguageScope) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextScope === "all") {
+      params.delete("lang");
+    } else {
+      params.set("lang", nextScope);
+    }
+
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -809,10 +837,15 @@ export default function ExplorePageClient({
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
-      ? rows.filter((row) =>
-          matchesImageConfidenceFilter(row, imageConfidenceFilter),
-        )
+      ? rows
+          .filter((row) => Boolean(row.gv_id))
+          .filter((row) => matchesPublicLanguageScope(row, languageScope))
+          .filter((row) =>
+            matchesImageConfidenceFilter(row, imageConfidenceFilter),
+          )
       : rows
+          .filter((row) => Boolean(row.gv_id))
+          .filter((row) => matchesPublicLanguageScope(row, languageScope))
           .filter((row) => matchesIdentityFilter(row, identityFilter))
           .filter((row) =>
             matchesImageConfidenceFilter(row, imageConfidenceFilter),
@@ -1069,6 +1102,14 @@ export default function ExplorePageClient({
           href: buildRemoveFilterHref(["identity"]),
         }
       : null,
+    languageScope !== "all"
+      ? {
+          key: "language",
+          label: "Language",
+          value: getPublicLanguageScopeLabel(languageScope),
+          href: buildRemoveFilterHref(["lang"]),
+        }
+      : null,
   ].filter(
     (
       chip,
@@ -1125,24 +1166,6 @@ export default function ExplorePageClient({
     smartSearchIntent,
     fallback: "Collector discovery",
   });
-  const discoveryNoun = getCollectorObjectNoun(variantFamilyCopy);
-  const discoveryCountLabel =
-    displayRows.length === 1
-      ? `1 ${getSingularCollectorObjectNoun(variantFamilyCopy)}`
-      : `${displayRows.length} ${discoveryNoun}`;
-  const discoveryEyebrow = variantFamilyCopy
-    ? "Family identified"
-    : interpretedLabels.length > 0
-      ? "Search understood"
-      : "Collector discovery";
-  const discoveryDescription = variantFamilyCopy?.why_it_exists
-    ?? (normalizedQuery
-      ? "Grookai is using deterministic card identity, finish, set, ownership, image, and variant signals to narrow the catalog."
-      : "Search the catalog by collector language, variants, finishes, stamps, artists, ownership, and years.");
-  const discoverySupportingCopy = variantFamilyCopy?.why_collectors_care
-    ?? (interpretedLabels.length > 0
-      ? "The cards below are grouped as collector objects first, with database identifiers kept secondary."
-      : "Results are presented as collectible identities, not just rows.");
   const emptyStateTitle = ownershipRequiresSignIn
     ? "Sign in to search your vault"
     : ownershipState === "owned" && viewer.isAuthenticated
@@ -1266,103 +1289,322 @@ export default function ExplorePageClient({
       </button>
     </div>
   ) : null;
-  const presetSearchStrip = (
-    <section className="gv-collector-panel gv-search-showcase px-5 py-5 sm:px-6">
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-            Collector presets
-          </p>
-          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-            Natural-language entry points for identity, finish, ownership, image truth, and variant families.
-          </p>
-        </div>
-        <Link
-          href={buildPathWithCompareCards(
-            "/explore",
-            "q=Build-A-Bear stamped cards",
-            compareCards,
-          )}
-          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
-        >
-          Try sentence search
-        </Link>
+  const buildScopedExploreHref = (queryString: string) => {
+    const params = new URLSearchParams(queryString);
+    if (languageScope !== "all" && !params.has("lang")) {
+      params.set("lang", languageScope);
+    }
+    return buildPathWithCompareCards("/explore", params.toString(), compareCards);
+  };
+  const languageScopeControl = (
+    <div className="flex flex-wrap items-center gap-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Language
+      </p>
+      <div
+        className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+        role="radiogroup"
+        aria-label="Language scope"
+      >
+        {PUBLIC_LANGUAGE_SCOPE_OPTIONS.map((option) => {
+          const active = languageScope === option.value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => commitLanguageScope(option.value)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                active
+                  ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                  : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              }`}
+            >
+              {option.shortLabel}
+            </button>
+          );
+        })}
       </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-        {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+    </div>
+  );
+  const compactPresetStrip = (
+    <section className="gv-command-surface px-4 py-3 sm:px-5">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex shrink-0 items-center gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+            Presets
+          </p>
           <Link
-            key={preset.key}
-            href={buildPathWithCompareCards("/explore", preset.query, compareCards)}
-            className="gv-search-preset-card group p-4 text-left"
+            href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+            className="hidden rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50 sm:inline-flex"
           >
-            <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
-              {preset.title}
-            </p>
-            <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
-              {preset.description}
-            </p>
-            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 transition group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-200">
-              Open preset
-            </p>
+            Sentence search
           </Link>
-        ))}
+        </div>
+        <div className="flex gap-2 overflow-x-auto pb-1 lg:justify-end lg:pb-0">
+          {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+            <Link
+              key={preset.key}
+              href={buildScopedExploreHref(preset.query)}
+              className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+              title={preset.description}
+            >
+              {preset.title}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
+  const resultControls = (
+    <div className="flex flex-wrap items-center gap-2">
+      <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+        <span className="hidden sm:inline">Sort</span>
+        <select
+          value={sortMode}
+          onChange={(event) =>
+            commitSortMode(event.target.value as SortMode)
+          }
+          className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+        >
+          <option value="relevance">Relevance</option>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="set_order">Set order</option>
+          <option value="number">Collector number</option>
+          <option value="value_high">Value high to low</option>
+          <option value="value_low">Value low to high</option>
+        </select>
+      </label>
+      <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+        <span className="hidden sm:inline">Image</span>
+        <select
+          value={imageConfidenceFilter}
+          onChange={(event) =>
+            commitImageConfidenceFilter(
+              event.target.value as ImageConfidenceFilter,
+            )
+          }
+          className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+          aria-label="Image confidence filter"
+        >
+          <option value="all">All images</option>
+          <option value="exact">Exact images</option>
+          <option value="representative">Representative</option>
+          <option value="missing_variant_visual">Variant pending</option>
+        </select>
+      </label>
+      <ExploreViewModeToggle
+        value={viewMode}
+        onChange={commitViewMode}
+      />
+    </div>
+  );
+  const activeFilterStrip = activeFilterChips.length > 0 ? (
+    <div className="flex flex-wrap items-center gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Filters
+      </span>
+      {activeFilterChips.map((chip) => (
+        <Link
+          key={chip.key}
+          href={chip.href}
+          className="group inline-flex max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+          aria-label={`Remove ${chip.label} filter`}
+        >
+          <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">
+            {chip.label}
+          </span>
+          <span className="truncate font-semibold">{chip.value}</span>
+          <span
+            aria-hidden="true"
+            className="rounded-full bg-slate-100 px-1.5 text-[10px] font-bold text-slate-500 transition group-hover:bg-slate-950 group-hover:text-white dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-slate-100 dark:group-hover:text-slate-950"
+          >
+            x
+          </span>
+        </Link>
+      ))}
+      {activeFilterChips.length > 1 ? (
+        <Link
+          href={buildSmartSearchRefinementHref((params) => {
+            params.delete("q");
+            params.delete("set");
+            params.delete("year");
+            params.delete("year_min");
+            params.delete("year_max");
+            params.delete("finish");
+            params.delete("stamp");
+            params.delete("owned");
+            params.delete("image_state");
+            params.delete("image");
+            params.delete("illustrator");
+            params.delete("identity");
+          })}
+          className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+        >
+          Clear all
+        </Link>
+      ) : null}
+    </div>
+  ) : null;
+  const presetPillStrip = (
+    <div className="flex gap-2 overflow-x-auto border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      <span className="inline-flex shrink-0 items-center text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Presets
+      </span>
+      <Link
+        href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+        className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+      >
+        Sentence search
+      </Link>
+      {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+        <Link
+          key={preset.key}
+          href={buildScopedExploreHref(preset.query)}
+          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+          title={preset.description}
+        >
+          {preset.title}
+        </Link>
+      ))}
+    </div>
+  );
+  const identityFilterStrip = visibleIdentityFilters.length > 1 ? (
+    <div className="flex flex-wrap gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
+      {visibleIdentityFilters.map((option) => {
+        const selected = identityFilter === option.key;
+        const count = identityFilterCounts[option.key];
+
+        return (
+          <button
+            key={option.key}
+            type="button"
+            onClick={() => commitIdentityFilter(option.key)}
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition ${
+              selected
+                ? "border-slate-900 bg-slate-900 text-white dark:border-slate-100 dark:bg-slate-100 dark:text-slate-950"
+                : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600"
+            }`}
+          >
+            <span>{option.label}</span>
+            {count > 0 ? (
+              <span
+                className={`text-[10px] ${selected ? "text-white/80 dark:text-slate-950/70" : "text-slate-500"}`}
+              >
+                {count}
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </div>
+  ) : null;
 
   return (
     <div
-      className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
+      className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
-      <div className="gv-collector-panel px-5 py-6 md:px-8 md:py-8">
-        <div className="space-y-1 md:hidden">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-            Discover
-          </p>
-          <h1 className="text-[1.9rem] font-black tracking-tight text-slate-950 dark:text-slate-50">
-            Discover cards
-          </h1>
-          <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
-            Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
-          </p>
-          <div className="flex flex-wrap gap-2 pt-px">
-            <Link
-              href={buildPathWithCompareCards("/sets", "", compareCards)}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-            >
-              Browse Sets
-            </Link>
-            <Link
-              href={buildPathWithCompareCards(
-                "/explore",
-                "q=Pikachu",
-                compareCards,
-              )}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-            >
-              Browse Pokémon
-            </Link>
+      {isDiscoveryMode ? (
+        <div className="gv-command-surface px-4 py-4 sm:px-5">
+          <div className="space-y-1 md:hidden">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+              Discover
+            </p>
+            <h1 className="text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+              Search cards
+            </h1>
+            <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
+              Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <Link
+                href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Sets
+              </Link>
+              <Link
+                href={buildScopedExploreHref("q=Pikachu")}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Pokémon
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden items-center justify-between gap-5 md:flex">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Grookai Search
+              </p>
+              <h1 className="mt-1 text-[clamp(2.25rem,4vw,3.75rem)] font-semibold leading-[0.98] tracking-normal text-slate-950 dark:text-slate-50">
+                Search collector reality.
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
+              </p>
+            </div>
+            <div className="shrink-0">
+              {languageScopeControl}
+            </div>
+          </div>
+
+          <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
+            {languageScopeControl}
           </div>
         </div>
+      ) : (
+        <section className="gv-command-surface px-4 py-3 sm:px-5">
+          <div className="flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                  Grookai Search
+                </p>
+                {loading && displayRows.length > 0 ? (
+                  <span className="rounded-full bg-slate-950 px-2 py-0.5 text-[10px] font-semibold text-white dark:bg-white dark:text-slate-950">
+                    Refreshing
+                  </span>
+                ) : null}
+              </div>
+              <div className="mt-1 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+                <div className="min-w-0">
+                  <h1 className="truncate text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+                    {normalizedQuery || discoveryTitle}
+                  </h1>
+                  <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+                    {resultCountLabel}
+                    {variantFamilyCopy ? (
+                      <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
+                        Source-backed family copy
+                      </span>
+                    ) : null}
+                  </p>
+                </div>
+                {resultControls}
+              </div>
+            </div>
+            <div className="shrink-0">
+              {languageScopeControl}
+            </div>
+          </div>
+          {activeFilterStrip}
+          {presetPillStrip}
+          {identityFilterStrip}
+        </section>
+      )}
 
-        <div className="hidden space-y-3 md:block">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-            Grookai Search
-          </p>
-          <h1 className="max-w-4xl text-[clamp(3.5rem,7vw,6.75rem)] font-black leading-[0.92] tracking-tight text-slate-950 dark:text-slate-50">
-            Search collector reality.
-          </h1>
-          <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
-            Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
-          </p>
+      {error ? (
+        <div className="rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100">
+          Search is taking longer than expected. Narrow the query with a set code, number, language, or filter.
         </div>
-      </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      ) : null}
 
       {isDiscoveryMode ? (
         <>
-          {presetSearchStrip}
+          {compactPresetStrip}
           {discoveryContent}
           <CompareTray
             cards={compareCards}
@@ -1374,209 +1616,8 @@ export default function ExplorePageClient({
           />
         </>
       ) : (
-        <div className="gv-collector-search-results space-y-6">
-          <section className="gv-discovery-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
-            <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] lg:items-end">
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="gv-discovery-eyebrow">{discoveryEyebrow}</span>
-                  {variantFamilyCopy?.confidence ? (
-                    <span className="gv-discovery-pill">
-                      {formatFilterValue(variantFamilyCopy.confidence)} confidence
-                    </span>
-                  ) : null}
-                </div>
-                <div className="space-y-3">
-                  <h2 className="max-w-4xl text-[2.75rem] font-semibold leading-[0.96] tracking-normal text-slate-950 dark:text-white sm:text-[4rem] lg:text-[5.2rem]">
-                    {discoveryTitle}
-                  </h2>
-                  <p className="max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
-                    {discoveryDescription}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {interpretedLabels.slice(0, 5).map((label) => (
-                    <span key={label} className="gv-discovery-chip">
-                      {label}
-                    </span>
-                  ))}
-                  {residualQuery ? (
-                    <span className="gv-discovery-chip gv-discovery-chip-muted">
-                      Text: {residualQuery}
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-
-              <div className="gv-discovery-proof-card p-4 sm:p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                  Discovery result
-                </p>
-                <p className="mt-2 text-3xl font-semibold tracking-normal text-slate-950 dark:text-white">
-                  {discoveryCountLabel}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                  {discoverySupportingCopy}
-                </p>
-                {variantFamilyCopy?.how_to_identify ? (
-                  <div className="mt-4 rounded-2xl bg-white/70 p-3 text-sm leading-6 text-slate-600 dark:bg-white/[0.06] dark:text-slate-300">
-                    <span className="font-semibold text-slate-950 dark:text-white">How to identify: </span>
-                    {variantFamilyCopy.how_to_identify}
-                  </div>
-                ) : null}
-                {loading && displayRows.length > 0 ? (
-                  <span className="mt-4 inline-flex rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white dark:bg-white dark:text-slate-950">
-                    Refreshing
-                  </span>
-                ) : null}
-              </div>
-            </div>
-          </section>
-
-          <div className="gv-command-surface flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              {resultCountLabel}
-              {variantFamilyCopy ? (
-                <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
-                  Source-backed family copy
-                </span>
-              ) : null}
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-                <span>Sort</span>
-                <select
-                  value={sortMode}
-                  onChange={(event) =>
-                    commitSortMode(event.target.value as SortMode)
-                  }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
-                >
-                  <option value="relevance">Relevance</option>
-                  <option value="newest">Newest first</option>
-                  <option value="oldest">Oldest first</option>
-                  <option value="set_order">Set order</option>
-                  <option value="number">Collector number</option>
-                  <option value="value_high">Value high to low</option>
-                  <option value="value_low">Value low to high</option>
-                </select>
-              </label>
-              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-                <span>Image</span>
-                <select
-                  value={imageConfidenceFilter}
-                  onChange={(event) =>
-                    commitImageConfidenceFilter(
-                      event.target.value as ImageConfidenceFilter,
-                    )
-                  }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
-                  aria-label="Image confidence filter"
-                >
-                  <option value="all">All images</option>
-                  <option value="exact">Exact images</option>
-                  <option value="representative">Representative</option>
-                  <option value="missing_variant_visual">Variant pending</option>
-                </select>
-              </label>
-              <ExploreViewModeToggle
-                value={viewMode}
-                onChange={commitViewMode}
-              />
-            </div>
-          </div>
-
-          {activeFilterChips.length > 0 ? (
-            <div className="gv-command-surface px-4 py-3">
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    Active filters
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                    {activeFilterChips.length} active filter{activeFilterChips.length === 1 ? "" : "s"} narrowing {displayRows.length} result{displayRows.length === 1 ? "" : "s"}.
-                  </p>
-                </div>
-                {activeFilterChips.length > 1 ? (
-                  <Link
-                    href={buildSmartSearchRefinementHref((params) => {
-                      params.delete("q");
-                      params.delete("set");
-                      params.delete("year");
-                      params.delete("year_min");
-                      params.delete("year_max");
-                      params.delete("finish");
-                      params.delete("stamp");
-                      params.delete("owned");
-                      params.delete("image_state");
-                      params.delete("image");
-                      params.delete("illustrator");
-                      params.delete("identity");
-                    })}
-                    className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
-                  >
-                    Clear all
-                  </Link>
-                ) : null}
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {activeFilterChips.map((chip) => (
-                  <Link
-                    key={chip.key}
-                    href={chip.href}
-                    className="group inline-flex max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
-                    aria-label={`Remove ${chip.label} filter`}
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
-                      {chip.label}
-                    </span>
-                    <span className="truncate font-semibold">{chip.value}</span>
-                    <span
-                      aria-hidden="true"
-                      className="rounded-full bg-slate-100 px-1.5 text-xs font-bold text-slate-500 transition group-hover:bg-slate-950 group-hover:text-white dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-slate-100 dark:group-hover:text-slate-950"
-                    >
-                      x
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          {presetSearchStrip}
-
-          {visibleIdentityFilters.length > 1 ? (
-            <div className="gv-command-surface flex flex-wrap gap-2 px-4 py-3">
-              {visibleIdentityFilters.map((option) => {
-                const selected = identityFilter === option.key;
-                const count = identityFilterCounts[option.key];
-
-                return (
-                  <button
-                    key={option.key}
-                    type="button"
-                    onClick={() => commitIdentityFilter(option.key)}
-                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
-                      selected
-                        ? "border-slate-900 bg-slate-900 text-white"
-                        : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-                    }`}
-                  >
-                    <span>{option.label}</span>
-                    {count > 0 ? (
-                      <span
-                        className={`text-[11px] ${selected ? "text-white/80" : "text-slate-500"}`}
-                      >
-                        {count}
-                      </span>
-                    ) : null}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
-
-          {resolverSummary ? (
+        <div className="gv-collector-search-results space-y-3">
+          {resolverSummary && displayRows.length === 0 ? (
             <div
               className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}
             >
@@ -1735,8 +1776,9 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
+          {hasExplicitSmartFilters ? (
           <details
-            open={hasExplicitSmartFilters}
+            open
             className="gv-soft-surface group px-4 py-3"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
@@ -1754,6 +1796,7 @@ export default function ExplorePageClient({
             </summary>
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
+              {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
               {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}
               {viewMode !== "thumb" ? <input type="hidden" name="view" value={viewMode} /> : null}
               {compareCards.length > 0 ? (
@@ -1888,6 +1931,7 @@ export default function ExplorePageClient({
               </div>
             </form>
           </details>
+          ) : null}
 
           {loading && displayRows.length === 0 ? (
             loadingState
@@ -1994,10 +2038,9 @@ export default function ExplorePageClient({
           ) : viewMode === "thumb-lg" ? (
             <div className="space-y-5">
               {visibleResultGroups.map((group, groupIndex) => (
-                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
-                  {renderGroupHeader(group)}
+                <section key={`${group.intent}-${groupIndex}`}>
                   <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
-                    {group.rows.map((row) => (
+                    {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem
                         key={getResultKey(row)}
                         card={row}
@@ -2005,6 +2048,7 @@ export default function ExplorePageClient({
                         mode="thumb-lg"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
+                        imagePriority={groupIndex === 0 && rowIndex < 4}
                       />
                     ))}
                   </div>
@@ -2016,10 +2060,9 @@ export default function ExplorePageClient({
           ) : (
             <div className="space-y-5">
               {visibleResultGroups.map((group, groupIndex) => (
-                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
-                  {renderGroupHeader(group)}
+                <section key={`${group.intent}-${groupIndex}`}>
                   <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
-                    {group.rows.map((row) => (
+                    {group.rows.map((row, rowIndex) => (
                       <ExploreCardGridItem
                         key={getResultKey(row)}
                         card={row}
@@ -2027,6 +2070,7 @@ export default function ExplorePageClient({
                         mode="thumb"
                         canViewPricing={effectiveCanViewPricing}
                         matchReason={getSearchResultMatchReason(row)}
+                        imagePriority={groupIndex === 0 && rowIndex < 4}
                       />
                     ))}
                   </div>

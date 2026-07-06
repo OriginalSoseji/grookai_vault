@@ -1,0 +1,59 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-ACTION-PLAN-V1",
+  "generated_at": "2026-06-27T02:43:07.678Z",
+  "mode": "plan_only_classification_review_request_reclassification_action",
+  "package_fingerprint_sha256": "18c7e2a590956b473f0989b19b5c9ebc9a88806fd5b0efb2bf8a8f71e0326f00",
+  "action_plan": {
+    "action_name": "request_reclassification",
+    "reason_code": "classification_noise",
+    "review_actor": "system_classification_review_action_plan",
+    "target_count": 19,
+    "expected_transition": {
+      "from_status": "pending",
+      "from_disposition": "review_pending_classification_fix",
+      "to_status": "blocked",
+      "to_disposition": "review_reclassify"
+    },
+    "rationale": "The rows have active-listing evidence but no safe raw_single/slab classification and no rollup eligibility. They should be sent back to classifier/reprocessing before any high-signal or publication workflow."
+  },
+  "hashes": {
+    "source_row_manifest_sha256": "a0be470bf1461ec01926b410806c4ca2f75905a82d26d367d3a28d7ae00c8205",
+    "row_manifest_sha256": "87f6a9b6e8cd8f33e2362f6e4a3c4a6ac1e2619214d7f6a6513f9ac155c4e3fc",
+    "apply_sql_sha256": "cba22496f117b140a32d26b1eac7442a0892497c31eea750053ea6893009f7f7",
+    "rollback_sql_sha256": "6433d20793d9cffaeadb81d5cc4c2ccca3feeaf31ed391bc47fe6a02789a84d5",
+    "readback_sql_sha256": "bdd01d09326724c7579e31472c294e0b929907048d0d9567223b63a1c38cd33e",
+    "preflight_sql_sha256": "dc3e6bd37ac5e278c642e2c602d63b0d6dd590642abcca2802eee8fd008456db"
+  },
+  "artifacts": {
+    "row_manifest": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-ACTION-PLAN-V1/row_manifest.jsonl",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-ACTION-PLAN-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-CLASSIFICATION-REVIEW-ACTION-PLAN-V1.md",
+    "apply_sql": "docs/sql/mee_core_internal_classification_review_action_plan_v1_apply_candidate.sql",
+    "rollback_sql": "docs/sql/mee_core_internal_classification_review_action_plan_v1_rollback_candidate.sql",
+    "readback_sql": "docs/sql/mee_core_internal_classification_review_action_plan_v1_readback.sql",
+    "preflight_sql": "docs/sql/mee_core_internal_classification_review_action_plan_v1_preflight.sql",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_CLASSIFICATION_REVIEW_ACTION_PLAN_V1.md"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

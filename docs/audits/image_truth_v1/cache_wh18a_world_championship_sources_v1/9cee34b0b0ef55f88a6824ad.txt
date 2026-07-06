@@ -1,0 +1,56 @@
+{{DeckInfobox
+|title=Psychic Elegance
+|image=WCS2023 Psychic Elegance.jpg
+|caption=Box art
+|release=March 1, 2024
+|types={{e|Psychic}}
+}}
+
+'''Psychic Elegance''' is the name of the deck used by Tord Reklev, the Masters Division runner-up at the [[2023 Pokémon World Championships]]. It is one of the 2023 World Championship Decks released March 1, 2024. Each deck comes with a playmat, poster, booklet about the event, [[Pokémon Trading Card Game Live|TCGL]] code card, and a special Worlds 2023 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Reklev, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Reklev's signature.
+
+==Description==
+
+=== Packaging ===
+<i>Pokémon TCG legend Tord Reklev's masterful touch is apparent throughout his Psychic Elegance deck - its pieces build upon each other to form a powerhouse engine. From the early game to the late, support is provided by synergistic card combinations. In this skillful strategy, Kirlia is more than a means to an end - its Refinement Ability forms the deck's backbone, as it helps Gardevoir ex accelerate extra energy through discarding, and ultimately, take control of the game. With a little help from comeback kid Iono, opponents can watch their strategies suddenly dissolve in Gardevoir's embrace.</i>
+
+=== Booklet ===
+''Tord is one of the giants of the competitive TCG scene. Since his debut in the 2014 season, he has won just about everything there is to win, with only a world title eluding him. He is the only player so far to complete a grand slam by winning all four International Championships. He has won Regionals and Special Events all across Europe and the US. He has made top cut at a major event at least once every season since 2016. Our point is, Tord is a juggernaut. So, with all his experience, knowledge, and success, what was his strategy for 2023? Frighteningly simple, really: "Set up Gardevoir. Attack." True to his word, Tord rampaged through the bracket all the way to the finals table and a game that will go down as one of the most hard fought and intense in Worlds history.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Gardevoir ex (Scarlet & Violet 86)|Gardevoir]]{{ex}}|Psychic||Double Rare}}
+{{decklist/entry|2|{{TCG ID|Chilling Reign|Gardevoir|61}}|Psychic||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|Silver Tempest|Kirlia|68}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Kirlia|60}}|Psychic||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Astral Radiance|Ralts|60}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Silver Tempest|Ralts|67}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Lost Origin|Cresselia|74}}|Psychic||Rare Holo}}
+{{decklist/entry|1|[[Lumineon V (Brilliant Stars 40)|Lumineon]]{{TCGV}}|Water||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Radiant Greninja|46}}|Water||Rare Radiant}}
+{{decklist/entry|1|[[Zacian V (Celebrations 16)|Zacian]]{{TCGV}}|Psychic||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Celebrations|Mew|11}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Manaphy|41}}|Water||Rare}}
+{{decklist/entry|3|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Boss's Orders|172}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Scarlet & Violet|Professor's Research|189}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Paldea Evolved|Artazon|171}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Collapsed Stadium|137}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fusion Strike|Battle VIP Pass|225}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Battle Styles|Level Ball|129}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Scarlet & Violet|Rare Candy|191}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Chilling Reign|Fog Crystal|140}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Super Rod|188}}|Item||Common}}
+{{decklist/entry|1|{{TCG ID|Lost Origin|Lost Vacuum|162}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Scarlet & Violet|Pal Pad|182}}|Item||Common}}
+{{decklist/entry|1|{{TCG ID|Silver Tempest|Forest Seal Stone|156}}|Item||Rare Holo}}
+{{decklist/entry|10|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/entry|2|{{TCG ID|Paldea Evolved|Reversal Energy|192}}|Energy|Rainbow|Uncommon}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Psychic Elegance (TCG)]]

@@ -1,0 +1,49 @@
+{{DeckInfobox
+|title=Samurai Sniper
+|image=WCS2017 Samurai Sniper Deck.jpg
+|caption=
+|types={{e|Grass}}
+}}
+
+'''Samurai Sniper''' is the name of the deck used by Kabu Fukase, one of the semi-finalists of the Junior Division in the [[2017 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2017 World Championships Decks}}, released November 17, 2017. Each deck comes with a Worlds 2017 deckbox, a booklet about the championships, a 2017 World Championships pin, and a code card for the {{pkmn|Trading Card Game Online}}. The cards in this deck aren't the actual prints used in Fukase's deck, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+''The popular Decidueye-GX deck got last one hurrah at Worlds before the essential Forest of Giant Plants rotated out, and Kabu Fukase gave it the best showing, achieving a Top 4 in the Junior Division! The addition of Golisopod-GX gives this Ability-focused deck a powerful attacker for the Active spot, while Decidueye-GX can keep to the shadows of the Bench and pick off the opposing team with Feather Arrow!''
+
+===Booklet===
+''This year's Worlds marked Kabu's last season as a Junior Division player, and it was his last chance to play the card he finds most interesting, Forest of Giant Plants (which has now rotated out of the Standard format and is currently banned in Expanded). But he gave it an excellent send-off, finishing in the Top 4 of the Junior Division by pairing the popular sniper Decidueye-GX with the powerful new attacker Golisopod-GX. Kabu had one very specific concern going into the tournament: "I was worried that I might have to battle Tsubasa" Watanabe, another top player from Japan who was defeated in the Top 8.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Decidueye-GX (Sun & Moon 12)|Decidueye]]{{GX}}|Grass||Rare}}
+{{decklist/entry|3|{{TCG ID|Sun & Moon|Dartrix|10}}|Grass||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sun & Moon|Rowlet|9}}|Grass||Common}}
+{{decklist/entry|3|[[Golisopod-GX (Burning Shadows 17)|Golisopod]]{{GX}}|Grass||Rare}}
+{{decklist/entry|3|{{TCG ID|Burning Shadows|Wimpod|16}}|Grass||Common}}
+{{decklist/entry|2|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|SM Promo|Tapu Koko|30}}|Lightning||None}}
+{{decklist/entry|1|[[Espeon-EX (BREAKpoint 52)|Espeon]]{{EX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Sudowoodo|66}}|Fighting||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Acerola|112}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Ancient Origins|Forest of Giant Plants|74}}|Stadium||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Generations|Revitalizer|70}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Sun & Moon|Ultra Ball|135}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sun & Moon|Double Colorless Energy|136}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|5|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Samurai Sniper (TCG)]]

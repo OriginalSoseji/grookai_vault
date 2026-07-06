@@ -1,0 +1,113 @@
+{
+  "id": "bwp-BW71",
+  "name": "Terrakion",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "130",
+  "types": [
+    "Fighting"
+  ],
+  "abilities": [
+    {
+      "name": "Justified",
+      "text": "Each of this Pokémon's attacks does 50 more damage to Darkness Pokémon (before applying Weakness and Resistance).",
+      "type": "Ability"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Crushing Blow",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80",
+      "text": "Flip a coin. If heads, discard an Energy attached to the Defending Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Grass",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bwp",
+    "name": "BW Black Star Promos",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 101,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PR-BLW",
+    "releaseDate": "2011/03/01",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bwp/symbol.png",
+      "logo": "https://images.pokemontcg.io/bwp/logo.png"
+    }
+  },
+  "number": "BW71",
+  "artist": "5ban Graphics",
+  "rarity": "Promo",
+  "flavorText": "This Pokémon came to the defense of Pokémon that had lost their homes in a war among humans.",
+  "nationalPokedexNumbers": [
+    639
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bwp/BW71.png",
+    "large": "https://images.pokemontcg.io/bwp/BW71_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bwp-BW71",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 1,
+        "mid": 3.09,
+        "high": 38.1,
+        "market": 3.09,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bwp-BW71",
+    "updatedAt": "2026/02/04",
+    "prices": {
+      "averageSellPrice": 2.49,
+      "lowPrice": 0.99,
+      "trendPrice": 2.2,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 1.52,
+      "lowPriceExPlus": 1.75,
+      "avg1": 2.49,
+      "avg7": 2.23,
+      "avg30": 2.22,
+      "reverseHoloAvg1": 3,
+      "reverseHoloAvg7": 1.63,
+      "reverseHoloAvg30": 1.88
+    }
+  }
+}

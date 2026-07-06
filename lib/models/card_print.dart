@@ -20,6 +20,7 @@ class CardSearchOptions {
     this.setCode,
     this.number,
     this.identityFilter,
+    this.languageScope = 'all',
   });
 
   final String query;
@@ -29,6 +30,7 @@ class CardSearchOptions {
   final String? setCode;
   final String? number;
   final String? identityFilter;
+  final String languageScope;
 
   CardSearchOptions copyWith({
     String? query,
@@ -38,6 +40,7 @@ class CardSearchOptions {
     String? setCode,
     String? number,
     String? identityFilter,
+    String? languageScope,
   }) {
     return CardSearchOptions(
       query: query ?? this.query,
@@ -47,6 +50,7 @@ class CardSearchOptions {
       setCode: setCode ?? this.setCode,
       number: number ?? this.number,
       identityFilter: identityFilter ?? this.identityFilter,
+      languageScope: languageScope ?? this.languageScope,
     );
   }
 }
@@ -117,12 +121,14 @@ class CardPrint {
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
       (numberPlain ?? '').isNotEmpty ? numberPlain! : (number ?? '');
-  String? get displayImage => resolveDisplayImageUrl(
-    displayImageUrl: displayImageUrl,
-    imageUrl: imageUrl,
-    imageAltUrl: imageAltUrl,
-    representativeImageUrl: representativeImageUrl,
-  );
+  String? get displayImage =>
+      normalizeDisplayImageUrl(displayImageUrl) ??
+      normalizeWarehouseDisplayImagePath(imagePath) ??
+      resolveDisplayImageUrl(
+        imageUrl: imageUrl,
+        imageAltUrl: imageAltUrl,
+        representativeImageUrl: representativeImageUrl,
+      );
 
   CardPrint copyWith({
     String? imageUrl,
@@ -174,6 +180,23 @@ class CardPrint {
             (key, value) => MapEntry(key.toString(), value?.toString()),
           )
         : null;
+    final imagePath = _jsonText(json, 'image_path', 'imagePath');
+    final displayImageUrl =
+        normalizeDisplayImageUrl(
+          json['display_image_url'] ?? json['displayImageUrl'],
+        ) ??
+        normalizeWarehouseDisplayImagePath(imagePath) ??
+        resolveDisplayImageUrl(
+          imageUrl:
+              json['image_best'] ??
+              json['imageBest'] ??
+              json['image_url'] ??
+              json['imageUrl'],
+          imageAltUrl: json['image_alt_url'] ?? json['imageAltUrl'],
+          representativeImageUrl:
+              json['representative_image_url'] ??
+              json['representativeImageUrl'],
+        );
     return CardPrint(
       id: (json['id'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
@@ -190,18 +213,23 @@ class CardPrint {
           ? set['identity_model']?.toString()
           : json['set_identity_model']?.toString(),
       rarity: json['rarity']?.toString(),
-      imageUrl: json['image_url']?.toString(),
-      imageAltUrl: json['image_alt_url']?.toString(),
-      imagePath: json['image_path']?.toString(),
-      representativeImageUrl: json['representative_image_url']?.toString(),
-      imageStatus: json['image_status']?.toString(),
-      imageNote: json['image_note']?.toString(),
-      imageSource: json['image_source']?.toString(),
-      displayImageUrl: resolveDisplayImageUrl(
-        displayImageUrl: json['display_image_url'],
-        imageUrl: json['image_best'],
+      imageUrl: _jsonText(json, 'image_url', 'imageUrl'),
+      imageAltUrl: _jsonText(json, 'image_alt_url', 'imageAltUrl'),
+      imagePath: imagePath,
+      representativeImageUrl: _jsonText(
+        json,
+        'representative_image_url',
+        'representativeImageUrl',
       ),
-      displayImageKind: json['display_image_kind']?.toString(),
+      imageStatus: _jsonText(json, 'image_status', 'imageStatus'),
+      imageNote: _jsonText(json, 'image_note', 'imageNote'),
+      imageSource: _jsonText(json, 'image_source', 'imageSource'),
+      displayImageUrl: displayImageUrl,
+      displayImageKind: _jsonText(
+        json,
+        'display_image_kind',
+        'displayImageKind',
+      ),
       externalIds: externalIds,
       searchObjectType: json['search_object_type']?.toString(),
       searchCardPrintingId: json['search_card_printing_id']?.toString(),
@@ -213,6 +241,17 @@ class CardPrint {
       routeQuery: json['route_query']?.toString(),
     );
   }
+}
+
+String? _jsonText(Map<String, dynamic> json, String snakeKey, String camelKey) {
+  final value = json[snakeKey] ?? json[camelKey];
+  final normalized = (value ?? '').toString().trim();
+  return normalized.isEmpty ? null : normalized;
+}
+
+String _normalizeLanguageScope(String? value) {
+  final normalized = (value ?? '').trim().toLowerCase();
+  return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
 }
 
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
@@ -341,12 +380,41 @@ class CardPrintRepository {
       );
     }
 
+    try {
+      return await _searchCardPrintsViaWebResolver(
+        options: options,
+        trimmed: trimmed,
+        identityFilter: identityFilter,
+        searchLimit: searchLimit,
+      );
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('search:web_resolver_failed fallback=local error=$error');
+      }
+
+      return _searchCardPrintsResolvedFallback(
+        client: client,
+        options: options,
+        defaultLimit: defaultLimit,
+        searchLimit: searchLimit,
+      );
+    }
+  }
+
+  static Future<CardPrintSearchResult> _searchCardPrintsViaWebResolver({
+    required CardSearchOptions options,
+    required String trimmed,
+    required String? identityFilter,
+    required int searchLimit,
+  }) async {
     final resolverUri = Uri.parse(grookaiWebBaseUrl)
         .resolve('/api/resolver/search')
         .replace(
           queryParameters: {
             'limit': options.limit.clamp(1, searchLimit).toString(),
             if (trimmed.isNotEmpty) 'q': trimmed,
+            if (_normalizeLanguageScope(options.languageScope) != 'all')
+              'lang': _normalizeLanguageScope(options.languageScope),
             if (identityFilter != null && trimmed.isEmpty)
               'identity': identityFilter,
           },
@@ -411,6 +479,35 @@ class CardPrintRepository {
       provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
+    );
+  }
+
+  static Future<CardPrintSearchResult> _searchCardPrintsResolvedFallback({
+    required SupabaseClient client,
+    required CardSearchOptions options,
+    required int defaultLimit,
+    required int searchLimit,
+  }) async {
+    final normalizedIdentityFilter = _normalizeIdentityFilter(
+      options.identityFilter,
+    );
+    final fallbackOptions = options.query.trim().isNotEmpty
+        ? options
+        : normalizedIdentityFilter != null
+        ? options.copyWith(query: normalizedIdentityFilter.replaceAll('_', ' '))
+        : options;
+    final rows = await searchCardPrints(
+      client: client,
+      options: fallbackOptions,
+      defaultLimit: defaultLimit,
+      searchLimit: searchLimit,
+    );
+
+    return CardPrintSearchResult(
+      rows: rows,
+      provisionalRows: const <PublicProvisionalCard>[],
+      meta: null,
+      source: 'local_resolver_fallback',
     );
   }
 

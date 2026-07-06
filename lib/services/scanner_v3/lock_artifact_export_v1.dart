@@ -139,8 +139,8 @@ Future<ScannerV3LockArtifactExportResult> exportLockArtifacts({
 Future<Directory> _resolveWritableBaseDirectory() async {
   final candidates = <String>[
     '/storage/emulated/0/Download/grookai_scanner_v3',
-    '/storage/emulated/0/Android/data/com.example.grookai_vault/files/grookai_scanner_v3',
-    '/data/user/0/com.example.grookai_vault/files/grookai_scanner_v3',
+    '/storage/emulated/0/Android/data/com.grookai.vault/files/grookai_scanner_v3',
+    '/data/user/0/com.grookai.vault/files/grookai_scanner_v3',
     _joinPath(Directory.systemTemp.path, 'grookai_scanner_v3'),
   ];
 

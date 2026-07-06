@@ -6,6 +6,7 @@ import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
 ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
@@ -156,7 +157,7 @@ class _CompareScreenState extends State<CompareScreen> {
                             style: Theme.of(context).textTheme.headlineSmall
                                 ?.copyWith(
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.5,
+                                  letterSpacing: 0,
                                 ),
                           ),
                           const SizedBox(height: 8),
@@ -444,7 +445,7 @@ class _CompareUnderfilledState extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.4,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 8),
@@ -579,6 +580,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
         final isReference = card.gvId == referenceGvId;
         final ownershipState = ownershipStateForCard(card);
         final displayIdentity = _compareDisplayIdentity(card);
+        final imageUrl = normalizeDisplayImageUrl(card.imageUrl);
 
         return _CompareSurfaceCard(
           padding: const EdgeInsets.all(14),
@@ -599,7 +601,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           setCode: card.setCode,
                           number: card.number,
                           rarity: card.rarity,
-                          imageUrl: card.imageUrl,
+                          imageUrl: imageUrl,
                         ),
                       ),
                     );
@@ -613,7 +615,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           .withValues(alpha: 0.45),
                     ),
                     clipBehavior: Clip.antiAlias,
-                    child: card.imageUrl == null
+                    child: imageUrl == null
                         ? Center(
                             child: Icon(
                               Icons.style_outlined,
@@ -623,7 +625,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                             ),
                           )
                         : Image.network(
-                            card.imageUrl!,
+                            imageUrl,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) =>
                                 Center(
@@ -727,7 +729,7 @@ class _CompareSectionCard extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 14),

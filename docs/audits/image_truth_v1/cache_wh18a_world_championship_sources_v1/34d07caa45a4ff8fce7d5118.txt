@@ -1,0 +1,46 @@
+{{DeckInfobox
+|title=Bright Aura
+|image=WCS2005 Bright Aura Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}{{e|Psychic}}{{e|Metal}}
+|cards={{TCG ID|EX Emerald|Medicham ex|95}}, {{TCG ID|EX Deoxys|Jirachi|9}}
+}}
+
+'''Bright Aura''' is the name of the deck used by Curran Hill, the Ten and Under Champion in the {{TCG|2005 World Championships}}. It focuses on {{e|Fighting}}, {{e|Psychic}}, and {{e|Metal}} Pokémon. The deck's main attacker is {{TCG ID|EX Emerald|Medicham ex|95}}.
+
+Bright Aura is one of the four {{TCGMerch|EX|Series|2005 World Championships Decks}}, released on October 31, 2005. Each deck comes packaged with a 2005 World Championships Booklet. Each card features a silver border, Hill's signature, and limited edition 2005 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Curran Hill's Bright Aura deck demonstrates toughness in the face of adversity. Medicham ex beats up the opponent's Pokémon; Jirachi teams up to provide key card-drawing action. Use Medicham ex's Wise Aura and Sky Kick to outwit your opponent long enough for a Knock Out!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Meditite|55}}|Fighting||Common}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Medicham ex|95}}|Fighting||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|EX Deoxys|Jirachi|9}}|Metal||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|EX Sandstorm|Wobbuffet|26}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Energy Removal 2|89}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Island Cave|89}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pokémon Reversal|97}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Team Rocket Returns|Pow! Hand Extension|85}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Emerald|Scott|84}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Swoop! Teleporter|92}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Team Aqua Hideout|78}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Dragon|TV Reporter|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Emerald|Wally's Training|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Emerald|Metal Energy|88}}|Energy|Metal|Rare}}
+{{decklist/entry|8|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/entry|4|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Bright Aura (TCG)]]
+[[zh:灵光气场（TCG）]]

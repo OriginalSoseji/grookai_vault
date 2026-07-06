@@ -1,0 +1,127 @@
+{
+  "id": "bw2-57",
+  "name": "Excadrill",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "120",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Drilbur",
+  "attacks": [
+    {
+      "name": "Dig",
+      "cost": [
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "Flip a coin. If heads, prevent all effects of attacks, including damage, done to this Pokémon during your opponent's next turn."
+    },
+    {
+      "name": "Earthquake",
+      "cost": [
+        "Fighting",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": "Does 10 damage to each of your Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "bw2",
+    "name": "Emerging Powers",
+    "series": "Black & White",
+    "printedTotal": 98,
+    "total": 98,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "EPO",
+    "releaseDate": "2011/08/31",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw2/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw2/logo.png"
+    }
+  },
+  "number": "57",
+  "artist": "Shin Nagasawa",
+  "rarity": "Rare",
+  "flavorText": "More than 300 feet below the surface, they build mazelike nests. Their activity can be destructive to subway tunnels.",
+  "nationalPokedexNumbers": [
+    530
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw2/57.png",
+    "large": "https://images.pokemontcg.io/bw2/57_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw2-57",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.39,
+        "mid": 0.83,
+        "high": 19.98,
+        "market": 0.76,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1,
+        "mid": 1.94,
+        "high": 26.7,
+        "market": 1.94,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw2-57",
+    "updatedAt": "2026/02/19",
+    "prices": {
+      "averageSellPrice": 0.8,
+      "lowPrice": 0.05,
+      "trendPrice": 0.74,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.36,
+      "reverseHoloLow": 0.1,
+      "reverseHoloTrend": 1.28,
+      "lowPriceExPlus": 0.4,
+      "avg1": 0.55,
+      "avg7": 0.77,
+      "avg30": 0.68,
+      "reverseHoloAvg1": 1,
+      "reverseHoloAvg7": 1.22,
+      "reverseHoloAvg30": 1.19
+    }
+  }
+}

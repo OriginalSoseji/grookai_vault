@@ -1,0 +1,49 @@
+{
+  "package_id": "MEE-TCGDEX-REFERENCE-PRICING-BACKFILL-PLAN-V1",
+  "generated_at": "2026-06-28T15:34:25.491Z",
+  "input_audit": {
+    "package_id": "MEE-TCGDEX-REFERENCE-PRICING-AUDIT-V1",
+    "path": "docs/audits/market_evidence_engine_v1/mee_tcgdex_reference_pricing_audit_2026-06-28T15-26-50-764Z.json",
+    "package_fingerprint": "da6b070aef331e3b3e193e841038232b58031f2ef31fe38790119cd2bf8ba899"
+  },
+  "proposed_rows": {
+    "market_reference_candidates": 310744,
+    "market_reference_normalized_evidence": 310744,
+    "unique_card_prints": 19134,
+    "model_eligible_rows": 285396,
+    "quarantined_metric_rows": 25348
+  },
+  "chunking": {
+    "candidate_chunk_size": 5000,
+    "normalized_chunk_size": 5000,
+    "candidate_chunks": 63,
+    "normalized_chunks": 63
+  },
+  "remote_collision_check": {
+    "existing_candidate_rows": {
+      "tcgdex_tcgplayer_reference": 0,
+      "tcgdex_cardmarket_reference": 0
+    }
+  },
+  "hashes": {
+    "candidate_rows_hash": "f4864fffb268dba1bb4c1d784d7d12e84dca2d98e095f23dad8920cc7a10cea7",
+    "normalized_rows_hash": "543bb50256c54ed34831816ec08ea9de962b7d1629d2e2ba2ac443375ebe2a4e",
+    "package_fingerprint": "da6b070aef331e3b3e193e841038232b58031f2ef31fe38790119cd2bf8ba899"
+  },
+  "boundary": {
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "public_pricing": false,
+    "app_visible_pricing": false
+  },
+  "findings": [],
+  "ready_for_apply_package": true,
+  "backfill_plan_fingerprint": "60ed28faf7ed421344fe4637e421d0b1e7029a563fc8ee1d46caede95e0aa4c9",
+  "artifacts": {
+    "json": "docs/audits/market_evidence_engine_v1/mee_tcgdex_reference_pricing_backfill_plan_2026-06-28T15-34-25-491Z.json",
+    "markdown": "docs/audits/market_evidence_engine_v1/mee_tcgdex_reference_pricing_backfill_plan_2026-06-28T15-34-25-491Z.md",
+    "preflight_sql": "docs/sql/mee_tcgdex_reference_pricing_backfill_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_tcgdex_reference_pricing_backfill_v1_readback.sql"
+  }
+}

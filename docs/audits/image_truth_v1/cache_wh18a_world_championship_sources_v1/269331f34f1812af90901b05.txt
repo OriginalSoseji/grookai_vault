@@ -1,0 +1,44 @@
+{{DeckInfobox
+|title=Dragones y Sombras
+|image=WCS2018 Dragones y Sombras.jpg
+|caption=Box art
+|types={{e|Dragon}}
+}}
+
+'''Dragones y Sombras''' is the name of the deck of Pedro Eugenio Torres, a Top 4 finisher in the Masters Division of the [[2018 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2018 World Championship Decks}} released November 14, 2018. Each deck comes with a Worlds 2018-deckbox, a Worlds 2018 pin, a booklet about the championships, and a {{TCGO}} code card. The cards included in the deck are not the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''Rayquaza-GX, the star of the Sun & Moon—Celestial Storm expansion, got a lot of hype heading into Worlds, and Pedro had the best performance of any Rayquaza player, with a Top 4 in the Masters Division. Why all the hype? With its Dragon Break attack, Rayquaza-GX can do a whole lot of damage very quickly, especially paired with support cards like Max Elixir. And if you run out of Energy to attach, the Tempest-GX attack is pretty good at digging for more!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Rayquaza-GX (Celestial Storm 109)|Rayquaza]]{{GX}}|Dragon||Rare}}
+{{decklist/entry|2|{{TCG ID|Shining Legends|Marshadow|45}}|Psychic||Rare}}
+{{decklist/entry|1|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Sun & Moon|Oranguru|113}}|Colorless||Rare Holo}}
+{{decklist/entry|1|[[Xurkitree-GX (SM Promo 68)|Xurkitree]]{{Red GX}}|Lightning||Rare}}
+{{decklist/entry|3|{{TCG ID|Celestial Storm|Acro Bike|123}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Burning Shadows|Escape Rope|114}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Max Elixir|102}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Forbidden Light|Mysterious Treasure|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Puzzle of Time|109}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Rescue Stretcher|130}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Shining Legends|Ultra Ball|68}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ultra Prism|Lillie|125}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|7|{{TCG|Grass Energy}}|Energy|Grass|None}}
+{{decklist/entry|7|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+[[Category:World Championship Decks]]
+
+[[de:Dragones y Sombras (TCG)]]
+[[ja:Dragones y Sombras]]
+[[zh:天龙与阴影（TCG）]]

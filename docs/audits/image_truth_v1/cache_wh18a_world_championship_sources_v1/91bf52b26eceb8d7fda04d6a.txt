@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=Cheryl Again
+|image=WCS2022 Cheryl Again Deck.jpg
+|caption=Box art
+|release=March 3, 2023
+|types={{e|Fighting}}
+}}
+
+'''Cheryl Again''' is the name of the deck used by Sebastian Lashmet, the Seniors Division runner-up at the [[2022 World Championships]]. It is one of the 2022 World Championships Decks released March 3, 2023. Each deck comes with a playmat, poster, booklet about the event, TCGL code card, and a special Worlds 2022 deck box, pin, and coin. The cards included in the deck are not the exact prints used by Lashmet, but are the most recent, lowest-rarity print with any Holofoil removed. Each card has a unique card back (thus making them ineligible for tournaments) and Lashmet's signature.
+
+==Description==
+<i>Senior Finalist Sebastian Lashmet celebrated his first World Championships by taking his slick, single-minded Cheryl Again deck all the way to the finals. The deck’s aim is simple—find Rapid Strike Urshifu VMAX, get it into the Active Spot, and relentlessly bring the damage. Sobble starts the process, quickly flooding the Bench with Rapid Strike Pokémon and setting up a solid base. Drizzile, Inteleon, and Octillery bring further search capabilities to boost speed—and if they can’t be found, Irida can track them all down. One question: If Urshifu spends all its time in the Active Spot, how best to deal with the relentless damage thrown at it? Oh, look…it’s Cheryl again.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Rapid Strike Urshifu VMAX (Battle Styles 88)|Rapid Strike Urshifu]]{{VMAX}}|Fighting||Rare}}{{decklist/entry|3|[[Rapid Strike Urshifu V (Battle Styles 87)|Rapid Strike Urshifu]]{{TCGV}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Sword & Shield|Inteleon|58}}|Water||Rare}}
+{{decklist/entry|1|{{TCG ID|Chilling Reign|Inteleon|43}}|Water||Rare}}
+{{decklist/entry|3|{{TCG ID|Sword & Shield|Drizzile|56}}|Water||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Chilling Reign|Sobble|41}}|Water||Common}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Octillery|37}}|Water||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Remoraid|36}}|Water||Common}}
+{{decklist/entry|1|[[Medicham V (Evolving Skies 83)|Medicham]]{{TCGV}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Manaphy|41}}|Water||Rare}}
+{{decklist/entry|4|{{TCG ID|Astral Radiance|Irida|147}}|Supporter||Rare}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Cheryl|123}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Boss's Orders|132}} <small>'''[Cyrus]'''</small>|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Marnie|169}}|Supporter||Rare}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Roxanne|150}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Battle Styles|Tower of Waters|138}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Rebel Clash|Scoop Up Net|165}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Sword & Shield|Evolution Incense|163}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Battle Styles|Level Ball|129}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Sword & Shield|Energy Search|161}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Fusion Strike|Quick Ball|237}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Battle Styles|Escape Rope|125}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Astral Radiance|Hisuian Heavy Ball|146}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Ordinary Rod|171}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Sword & Shield|Pal Pad|172}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Evolving Skies|Rescue Carrier|154}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Brilliant Stars|Ultra Ball|150}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Battle Styles|Tool Jammer|136}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Battle Styles|Rapid Strike Energy|140}}|Energy|Fighting|Uncommon}}
+{{decklist/entry|3|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Cheryl Again (TCG)]]
+[[zh:又是芽米（TCG）]]

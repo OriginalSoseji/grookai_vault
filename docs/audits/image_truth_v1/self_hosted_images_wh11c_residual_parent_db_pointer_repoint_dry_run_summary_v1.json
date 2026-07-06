@@ -1,0 +1,455 @@
+{
+  "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-24T01:49:12.682Z",
+  "mode": "dry_run_no_write",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh11a_residual_parent_source_upload_manifest_v1.jsonl",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh11b_residual_parent_source_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh11c_residual_parent_db_pointer_repoint_plan_v1.jsonl",
+  "manifest_rows": 155,
+  "completed_manifest_rows": 155,
+  "incomplete_manifest_rows": 0,
+  "metadata_pointer_plan_rows": 155,
+  "effective_metadata_pointer_updates": 155,
+  "no_op_plan_rows": 0,
+  "missing_current_db_rows": 0,
+  "missing_proposed_storage_paths": 0,
+  "image_status_changes_planned": 0,
+  "image_note_changes_planned": 0,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path"
+  ],
+  "preserved_columns": [
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "target_tables": {
+    "card_prints": 155
+  },
+  "changed_columns": {
+    "image_path": 155,
+    "image_source": 155
+  },
+  "by_set_code": {
+    "ecard2": 35,
+    "ecard3": 37,
+    "mep": 78,
+    "sm115": 4,
+    "svp": 1
+  },
+  "by_source_route": {
+    "mep_official_asset": 78,
+    "pokemontcg": 77
+  },
+  "by_current_image_status": {
+    "exact": 73,
+    "null": 60,
+    "representative_shared_stamp": 22
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:1e9e47a7-eae7-5fc7-8f93-70344832b56b:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "1e9e47a7-eae7-5fc7-8f93-70344832b56b",
+        "gv_id": "GV-PK-AQ-H01",
+        "name": "Ampharos",
+        "set_code": "ecard2",
+        "number": "H01",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H1",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h01/e88ae6cda77ac87c04d31269.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h01/e88ae6cda77ac87c04d31269.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:624960d8-1005-54b8-993f-78d34746431f:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "624960d8-1005-54b8-993f-78d34746431f",
+        "gv_id": "GV-PK-AQ-H02",
+        "name": "Arcanine",
+        "set_code": "ecard2",
+        "number": "H02",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H2",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h02/02b3f6e4d0d0e0146976ad4c.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h02/02b3f6e4d0d0e0146976ad4c.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:95cbdaeb-ee10-5dfe-9709-9d67e3c5b29a:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "95cbdaeb-ee10-5dfe-9709-9d67e3c5b29a",
+        "gv_id": "GV-PK-AQ-H03",
+        "name": "Ariados",
+        "set_code": "ecard2",
+        "number": "H03",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H3",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h03/9d746823685ba4bd2c1f5a02.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h03/9d746823685ba4bd2c1f5a02.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:727eece3-1334-5f3f-8887-aeb3036eac97:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "727eece3-1334-5f3f-8887-aeb3036eac97",
+        "gv_id": "GV-PK-AQ-H04",
+        "name": "Azumarill",
+        "set_code": "ecard2",
+        "number": "H04",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H4",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h04/bb32a4ad9c360fe8c26430ca.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h04/bb32a4ad9c360fe8c26430ca.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:5bd53600-e109-5340-9310-58b8db67d005:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "5bd53600-e109-5340-9310-58b8db67d005",
+        "gv_id": "GV-PK-AQ-H05",
+        "name": "Bellossom",
+        "set_code": "ecard2",
+        "number": "H05",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H5",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h05/d4e2f580d60be97199418989.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h05/d4e2f580d60be97199418989.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:e053096d-d687-5731-aace-de737a884616:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "e053096d-d687-5731-aace-de737a884616",
+        "gv_id": "GV-PK-AQ-H06",
+        "name": "Blissey",
+        "set_code": "ecard2",
+        "number": "H06",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H6",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h06/e347925506f27610070461f6.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h06/e347925506f27610070461f6.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:22e52b82-4b85-47b0-ab01-8c5c6a2465bb:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "22e52b82-4b85-47b0-ab01-8c5c6a2465bb",
+        "gv_id": "GV-PK-AQ-H07",
+        "name": "Electrode",
+        "set_code": "ecard2",
+        "number": "H07",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H7",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h07/31817da12680d8d83402fa3c.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h07/31817da12680d8d83402fa3c.png",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:9cb16fed-c80e-57dd-b9ed-914ddaeee454:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "9cb16fed-c80e-57dd-b9ed-914ddaeee454",
+        "gv_id": "GV-PK-AQ-H08",
+        "name": "Entei",
+        "set_code": "ecard2",
+        "number": "H08",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H8",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h08/b2ba95436e19195c9de67834.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h08/b2ba95436e19195c9de67834.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:5ae8686f-c40c-4739-b864-ef0b04977832:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "5ae8686f-c40c-4739-b864-ef0b04977832",
+        "gv_id": "GV-PK-AQ-H09",
+        "name": "Espeon",
+        "set_code": "ecard2",
+        "number": "H09",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H9",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h09/9c1e0f6bafe69d8d31ae9075.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h09/9c1e0f6bafe69d8d31ae9075.png",
+          "image_status": "exact",
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-11C-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:54f7f954-bb10-42f1-adda-2278dd373962:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "54f7f954-bb10-42f1-adda-2278dd373962",
+        "gv_id": "GV-PK-AQ-H1",
+        "name": "Ampharos",
+        "set_code": "ecard2",
+        "number": "H1",
+        "source_route": "pokemontcg",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "ecard2-H1",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h1/e88ae6cda77ac87c04d31269.png",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": null,
+          "image_note": null
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ecard2/gv-pk-aq-h1/e88ae6cda77ac87c04d31269.png",
+          "image_status": null,
+          "image_note": null
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      }
+    ]
+  },
+  "fingerprint": "16bbf3e1c960a32766a87d6697dff2b0e7d0baa49afd58fab0f2ac158e3235c4"
+}

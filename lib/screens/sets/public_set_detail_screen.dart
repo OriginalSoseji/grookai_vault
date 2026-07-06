@@ -8,6 +8,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 import '../../widgets/card_surface_price.dart';
@@ -130,6 +131,21 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         _ownershipAdapter.peek(cardPrintId);
   }
 
+  void _openCardDetails(PublicSetCard card) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CardDetailScreen(
+          cardPrintId: card.cardPrintId,
+          gvId: card.gvId,
+          name: card.name,
+          number: card.number,
+          rarity: card.rarity,
+          imageUrl: card.displayImageUrl,
+        ),
+      ),
+    );
+  }
+
   Future<void> _openSetGallery(int initialIndex) async {
     final detail = _detail;
     if (detail == null || detail.cards.isEmpty) {
@@ -141,6 +157,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
           (card) => CardZoomGalleryItem(
             label: '#${card.number} • ${_setCardGalleryLabel(card)}',
             imageUrl: card.displayImageUrl,
+            onViewDetails: () => _openCardDetails(card),
           ),
         )
         .toList(growable: false);
@@ -196,7 +213,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
                               fontWeight: FontWeight.w800,
-                              letterSpacing: -0.55,
+                              letterSpacing: 0,
                             ),
                       ),
                       const SizedBox(height: 4),
@@ -222,6 +239,12 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                 const SizedBox(height: 10),
                 _SetDetailMasterSetPanel(stats: detail.masterSetStats),
                 const SizedBox(height: 10),
+                if (detail.worldChampionshipDecklist != null) ...[
+                  _WorldChampionshipDecklistPanel(
+                    decklist: detail.worldChampionshipDecklist!,
+                  ),
+                  const SizedBox(height: 10),
+                ],
                 Row(
                   children: [
                     Expanded(
@@ -321,6 +344,22 @@ String _setCardGalleryLabel(PublicSetCard card) {
   return _setCardDisplayIdentity(card).displayName;
 }
 
+String _worldChampionshipDecklistBlurb(
+  PublicWorldChampionshipDecklist decklist,
+) {
+  final yearLabel = decklist.deckYear == null
+      ? 'World Championship'
+      : '${decklist.deckYear} World Championship';
+  final deckLabel = (decklist.deckName ?? '').trim().isEmpty
+      ? 'deck'
+      : '${decklist.deckName} deck';
+  final playerLine = (decklist.playerName ?? '').trim().isEmpty
+      ? ''
+      : ' Player: ${decklist.playerName}.';
+
+  return '$yearLabel decks preserve tournament lists from that year\'s top players. This $deckLabel is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.$playerLine';
+}
+
 ResolvedImagePresentation _setCardImagePresentation(PublicSetCard card) {
   return resolveImagePresentationFromFields(
     imageUrl: card.imageUrl,
@@ -416,6 +455,193 @@ class _SetDetailMasterSetPanel extends StatelessWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+class _WorldChampionshipDecklistPanel extends StatelessWidget {
+  const _WorldChampionshipDecklistPanel({required this.decklist});
+
+  final PublicWorldChampionshipDecklist decklist;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return _SetDetailSurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.format_list_numbered_rounded,
+                size: 19,
+                color: colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  '60-card Decklist',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              _DecklistMetricPill(label: '${decklist.totalQuantity} cards'),
+              const SizedBox(width: 6),
+              _DecklistMetricPill(label: '${decklist.uniqueCardCount} unique'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            _worldChampionshipDecklistBlurb(decklist),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              height: 1.42,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
+          for (final entry in decklist.entries)
+            _WorldChampionshipDecklistEntryRow(entry: entry),
+        ],
+      ),
+    );
+  }
+}
+
+class _DecklistMetricPill extends StatelessWidget {
+  const _DecklistMetricPill({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.64),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.74),
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _WorldChampionshipDecklistEntryRow extends StatelessWidget {
+  const _WorldChampionshipDecklistEntryRow({required this.entry});
+
+  final PublicWorldChampionshipDecklistEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final originalPrint = [
+      if ((entry.sourceSetName ?? '').trim().isNotEmpty) entry.sourceSetName,
+      if ((entry.sourceCardNumber ?? '').trim().isNotEmpty)
+        '#${entry.sourceCardNumber}',
+    ].whereType<String>().join(' ');
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => CardDetailScreen(
+                  cardPrintId: entry.cardPrintId,
+                  gvId: entry.gvId,
+                  name: entry.name,
+                  number: entry.number,
+                  rarity: entry.rarity,
+                ),
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.34,
+              ),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: colorScheme.outline.withValues(alpha: 0.08),
+              ),
+            ),
+            padding: const EdgeInsets.fromLTRB(10, 9, 10, 9),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 34,
+                  child: Text(
+                    '${entry.quantity ?? '—'}x',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        entry.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          height: 1.12,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        [
+                          if (originalPrint.isNotEmpty) originalPrint,
+                          'Deck #${entry.number}',
+                        ].join(' • '),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.58),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 20,
+                  color: colorScheme.onSurface.withValues(alpha: 0.36),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -618,7 +844,7 @@ class _SetCardTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute<void>(
@@ -636,7 +862,7 @@ class _SetCardTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: colorScheme.surface.withValues(alpha: 0.72),
-            borderRadius: BorderRadius.circular(compact ? 18 : 20),
+            borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.08),
             ),
@@ -668,6 +894,18 @@ class _SetCardTile extends StatelessWidget {
                                 height: 1.08,
                               ),
                     ),
+                    if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+                      SizedBox(height: compact ? 3 : 4),
+                      Text(
+                        displayIdentity.printedName!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.62),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                     if (variantLabel != null) ...[
                       SizedBox(height: compact ? 3 : 4),
                       Text(
@@ -709,7 +947,7 @@ class _SetCardTile extends StatelessWidget {
                     SizedBox(height: compact ? 5 : 6),
                     SizedBox(
                       height: 22,
-                      child: CardSurfacePricePill(
+                      child: CardSurfacePriceText(
                         pricing: card.pricing,
                         size: compact
                             ? CardSurfacePriceSize.dense
@@ -792,7 +1030,7 @@ class _SetCardArtwork extends StatelessWidget {
       imageUrl: card.displayImageUrl,
       width: compact ? 68 : 86,
       height: compact ? 94 : 118,
-      borderRadius: 18,
+      borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.5),
       onTapToZoom: onOpenViewer,
     );
@@ -819,23 +1057,21 @@ class _SetCardGridTile extends StatelessWidget {
 
     return Material(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => CardDetailScreen(
-                cardPrintId: card.cardPrintId,
-                gvId: card.gvId,
-                name: card.name,
-                number: card.number,
-                rarity: card.rarity,
-                imageUrl: card.displayImageUrl,
-              ),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CardDetailScreen(
+              cardPrintId: card.cardPrintId,
+              gvId: card.gvId,
+              name: card.name,
+              number: card.number,
+              rarity: card.rarity,
+              imageUrl: card.displayImageUrl,
             ),
-          );
-        },
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -849,7 +1085,7 @@ class _SetCardGridTile extends StatelessWidget {
                       // ordering and supports previous/next swipe navigation.
                       label: _setCardArtworkLabel(card),
                       imageUrl: card.displayImageUrl,
-                      borderRadius: 18,
+                      borderRadius: GvGridConstants.imageRadius,
                       padding: const EdgeInsets.all(1.5),
                       backgroundColor: colorScheme.surfaceContainerLow
                           .withValues(alpha: 0.52),
@@ -933,6 +1169,51 @@ class _SetCardGridTile extends StatelessWidget {
                             ),
                           );
                         },
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 5,
+                    top: variantLabel == null ? 5 : 39,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: colorScheme.surface.withValues(alpha: 0.90),
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(
+                          color: colorScheme.outline.withValues(alpha: 0.08),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 7,
+                          vertical: 5,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.info_outline_rounded,
+                              size: 12,
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.70,
+                              ),
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              'Details',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: 0.72,
+                                    ),
+                                    fontSize: 9.8,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

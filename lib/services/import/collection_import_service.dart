@@ -546,6 +546,20 @@ class CollectionImportService {
       );
     }
 
+    await _emitVaultImportSummary(
+      client: client,
+      userId: userId,
+      importedCards: rowsToImport.fold<int>(
+        0,
+        (sum, row) => sum + row.importQuantity,
+      ),
+      importedEntries: rowsToImport.length,
+      needsManualMatch:
+          preview.summary.multipleRows + preview.summary.unmatchedRows,
+      skippedRows: preview.summary.multipleRows + preview.summary.unmatchedRows,
+      source: 'flutter_collection_import',
+    );
+
     return CollectionImportResult(
       importedCards: rowsToImport.fold<int>(
         0,
@@ -556,6 +570,38 @@ class CollectionImportService {
           preview.summary.multipleRows + preview.summary.unmatchedRows,
       skippedRows: preview.summary.multipleRows + preview.summary.unmatchedRows,
     );
+  }
+
+  static Future<void> _emitVaultImportSummary({
+    required SupabaseClient client,
+    required String userId,
+    required int importedCards,
+    required int importedEntries,
+    required int needsManualMatch,
+    required int skippedRows,
+    required String source,
+  }) async {
+    try {
+      final importRunId =
+          '${source}_${DateTime.now().toUtc().microsecondsSinceEpoch}';
+      await client.rpc(
+        'card_events_emit_vault_import_summary_v1',
+        params: {
+          'p_user_id': userId,
+          'p_import_run_id': importRunId,
+          'p_payload': {
+            'source': source,
+            'import_run_id': importRunId,
+            'imported_cards': importedCards,
+            'imported_entries': importedEntries,
+            'needs_manual_match': needsManualMatch,
+            'skipped_rows': skippedRows,
+          },
+        },
+      );
+    } catch (_) {
+      // Import completion should never be rolled back by interest telemetry.
+    }
   }
 
   static List<CollectionImportParsedRow> parseCollectrCsv(String csvText) {

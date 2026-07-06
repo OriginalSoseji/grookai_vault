@@ -1,7 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
-import '../identity/canon_image_url_service.dart';
 import '../vault/vault_card_service.dart';
 
 class GrookaiDexSpeciesSummary {
@@ -25,9 +24,6 @@ class GrookaiDexSpeciesSummary {
   final int ownedPrintCount;
   final int ownedCopyCount;
 
-  String? get spriteUrl =>
-      GrookaiDexService.spriteUrlForNationalDexNumber(nationalDexNumber);
-
   int get completionPercent => totalPrintCount <= 0
       ? 0
       : ((ownedPrintCount / totalPrintCount) * 100).round().clamp(0, 100);
@@ -36,12 +32,14 @@ class GrookaiDexSpeciesSummary {
 class GrookaiDexSpeciesPage {
   const GrookaiDexSpeciesPage({
     required this.species,
+    required this.allSpecies,
     required this.page,
     required this.pageSize,
     required this.hasNextPage,
   });
 
   final List<GrookaiDexSpeciesSummary> species;
+  final List<GrookaiDexSpeciesSummary> allSpecies;
   final int page;
   final int pageSize;
   final bool hasNextPage;
@@ -152,21 +150,12 @@ class GrookaiDexSpeciesDetail {
 
 class GrookaiDexService {
   static const int defaultPageSize = 100;
-  static const String _spriteBaseUrl =
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
   static const String _legendaryTreasuresRc5CardPrintId =
       'efa15a49-a1f9-46b0-bd69-85111388328e';
   static const List<String> _legendaryTreasuresRc5BlockedImagePatterns = [
     '00484a4e28a235d9f4a8edcc',
     'images.pokemontcg.io/bw11/5_hires.png',
   ];
-
-  static String? spriteUrlForNationalDexNumber(int nationalDexNumber) {
-    if (nationalDexNumber <= 0) {
-      return null;
-    }
-    return '$_spriteBaseUrl/$nationalDexNumber.png';
-  }
 
   static Future<GrookaiDexSpeciesPage> fetchSpeciesPage({
     required SupabaseClient client,
@@ -176,50 +165,39 @@ class GrookaiDexService {
     final safePage = page < 1 ? 1 : page;
     final safePageSize = pageSize.clamp(24, 120);
     final from = (safePage - 1) * safePageSize;
-    final to = from + safePageSize;
-    final rows = await client
-        .from('v_grookai_dex_species_v1')
-        .select(
-          'species_id,national_dex_number,display_name,slug,types,total_print_count,active',
-        )
-        .eq('active', true)
-        .order('national_dex_number', ascending: true)
-        .range(from, to);
-
-    final rawRows = (rows as List<dynamic>)
-        .map((row) => Map<String, dynamic>.from(row as Map))
-        .toList();
-    final visibleRows = rawRows.take(safePageSize).toList(growable: false);
-    final species = visibleRows
+    final rawRows = await _fetchAllSpeciesRows(client);
+    final baseSpecies = rawRows
         .map(_speciesFromRow)
         .where((row) => row.speciesId.isNotEmpty && row.slug.isNotEmpty)
         .toList(growable: false);
 
-    if (species.isEmpty || _clean(client.auth.currentUser?.id).isEmpty) {
+    if (baseSpecies.isEmpty || _clean(client.auth.currentUser?.id).isEmpty) {
+      final visibleSpecies = baseSpecies
+          .skip(from)
+          .take(safePageSize)
+          .toList(growable: false);
       return GrookaiDexSpeciesPage(
-        species: species,
+        species: visibleSpecies,
+        allSpecies: baseSpecies,
         page: safePage,
         pageSize: safePageSize,
-        hasNextPage: rawRows.length > safePageSize,
+        hasNextPage: from + safePageSize < baseSpecies.length,
       );
     }
 
-    final mappings = await _fetchSpeciesMappings(
-      client: client,
-      speciesIds: species.map((row) => row.speciesId),
-    );
-    final cardPrintIds = mappings
+    final completionRows = await _fetchDexCompletionRows(client);
+    final mappedCardPrintIds = completionRows
         .map((row) => _clean(row['card_print_id']))
-        .where((value) => value.isNotEmpty)
+        .where((id) => id.isNotEmpty)
         .toSet()
         .toList(growable: false);
-    final ownedCounts = await VaultCardService.getOwnedCountsByCardPrintIds(
+    final ownedCounts = await _fetchOwnedCountsByCardPrintIds(
       client: client,
-      cardPrintIds: cardPrintIds,
+      cardPrintIds: mappedCardPrintIds,
     );
     final ownedPrintsBySpecies = <String, Set<String>>{};
     final ownedCopiesBySpecies = <String, int>{};
-    for (final row in mappings) {
+    for (final row in completionRows) {
       final speciesId = _clean(row['species_id']);
       final cardPrintId = _clean(row['card_print_id']);
       final ownedCount = ownedCounts[cardPrintId] ?? 0;
@@ -231,25 +209,72 @@ class GrookaiDexService {
           (ownedCopiesBySpecies[speciesId] ?? 0) + ownedCount;
     }
 
+    final allSpecies = baseSpecies
+        .map(
+          (row) => GrookaiDexSpeciesSummary(
+            speciesId: row.speciesId,
+            nationalDexNumber: row.nationalDexNumber,
+            displayName: row.displayName,
+            slug: row.slug,
+            types: row.types,
+            totalPrintCount: row.totalPrintCount,
+            ownedPrintCount: ownedPrintsBySpecies[row.speciesId]?.length ?? 0,
+            ownedCopyCount: ownedCopiesBySpecies[row.speciesId] ?? 0,
+          ),
+        )
+        .toList(growable: false);
+    final visibleSpecies = allSpecies
+        .skip(from)
+        .take(safePageSize)
+        .toList(growable: false);
+
     return GrookaiDexSpeciesPage(
-      species: species
-          .map(
-            (row) => GrookaiDexSpeciesSummary(
-              speciesId: row.speciesId,
-              nationalDexNumber: row.nationalDexNumber,
-              displayName: row.displayName,
-              slug: row.slug,
-              types: row.types,
-              totalPrintCount: row.totalPrintCount,
-              ownedPrintCount: ownedPrintsBySpecies[row.speciesId]?.length ?? 0,
-              ownedCopyCount: ownedCopiesBySpecies[row.speciesId] ?? 0,
-            ),
-          )
-          .toList(growable: false),
+      species: visibleSpecies,
+      allSpecies: allSpecies,
       page: safePage,
       pageSize: safePageSize,
-      hasNextPage: rawRows.length > safePageSize,
+      hasNextPage: from + safePageSize < allSpecies.length,
     );
+  }
+
+  static Future<Map<String, int>> _fetchOwnedCountsByCardPrintIds({
+    required SupabaseClient client,
+    required List<String> cardPrintIds,
+  }) async {
+    final counts = <String, int>{};
+    for (final chunk in _chunks(cardPrintIds, 750)) {
+      final chunkCounts = await VaultCardService.getOwnedCountsByCardPrintIds(
+        client: client,
+        cardPrintIds: chunk,
+      );
+      counts.addAll(chunkCounts);
+    }
+    return counts;
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchAllSpeciesRows(
+    SupabaseClient client,
+  ) async {
+    const chunkSize = 1000;
+    final rows = <Map<String, dynamic>>[];
+    for (var offset = 0; ; offset += chunkSize) {
+      final data = await client
+          .from('v_grookai_dex_species_v1')
+          .select(
+            'species_id,national_dex_number,display_name,slug,types,total_print_count,active',
+          )
+          .eq('active', true)
+          .order('national_dex_number', ascending: true)
+          .range(offset, offset + chunkSize - 1);
+      final chunk = (data as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .toList(growable: false);
+      rows.addAll(chunk);
+      if (chunk.length < chunkSize) {
+        break;
+      }
+    }
+    return rows;
   }
 
   static Future<GrookaiDexSpeciesDetail?> fetchSpeciesDetail({
@@ -264,18 +289,17 @@ class GrookaiDexService {
     final rows = await client
         .from('v_grookai_dex_card_prints_v1')
         .select(
-          'species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,image_source,image_path,representative_image_url,role,counts_for_completion,mapping_active',
+          'species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,representative_image_url,role,counts_for_completion,mapping_active',
         )
         .eq('species_slug', slug)
         .eq('mapping_active', true)
         .order('set_name', ascending: true)
         .order('number', ascending: true);
 
-    final rawRows = (await CanonImageUrlService.enrichRows(
-      (rows as List<dynamic>).map(
-        (row) => Map<String, dynamic>.from(row as Map),
-      ),
-    )).where((row) => _clean(row['card_print_id']).isNotEmpty).toList();
+    final rawRows = (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .where((row) => _clean(row['card_print_id']).isNotEmpty)
+        .toList();
     if (rawRows.isEmpty) {
       return null;
     }
@@ -291,7 +315,7 @@ class GrookaiDexService {
     );
     final ownedCounts = _clean(client.auth.currentUser?.id).isEmpty
         ? const <String, int>{}
-        : await VaultCardService.getOwnedCountsByCardPrintIds(
+        : await _fetchOwnedCountsByCardPrintIds(
             client: client,
             cardPrintIds: cardPrintIds,
           );
@@ -402,12 +426,12 @@ class GrookaiDexService {
     );
   }
 
-  static Future<List<Map<String, dynamic>>> _fetchSpeciesMappings({
-    required SupabaseClient client,
-    required Iterable<String> speciesIds,
-  }) async {
+  static Future<List<Map<String, dynamic>>> _fetchDexCompletionRows(
+    SupabaseClient client,
+  ) async {
+    const chunkSize = 1000;
     final rows = <Map<String, dynamic>>[];
-    for (final chunk in _chunks(speciesIds, 250)) {
+    for (var offset = 0; ; offset += chunkSize) {
       final data = await client
           .from('v_grookai_dex_card_prints_v1')
           .select(
@@ -415,12 +439,14 @@ class GrookaiDexService {
           )
           .eq('mapping_active', true)
           .eq('counts_for_completion', true)
-          .inFilter('species_id', chunk);
-      rows.addAll(
-        (data as List<dynamic>).map(
-          (row) => Map<String, dynamic>.from(row as Map),
-        ),
-      );
+          .range(offset, offset + chunkSize - 1);
+      final chunk = (data as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .toList(growable: false);
+      rows.addAll(chunk);
+      if (chunk.length < chunkSize) {
+        break;
+      }
     }
     return rows;
   }
@@ -435,24 +461,18 @@ class GrookaiDexService {
       final data = await client
           .from('card_prints')
           .select(
-            'id,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note',
+            'id,printed_identity_modifier,image_url,representative_image_url,image_status,image_note',
           )
           .inFilter('id', chunk);
-      final rows = await CanonImageUrlService.enrichRows(
-        (data as List<dynamic>).map(
-          (row) => Map<String, dynamic>.from(row as Map),
-        ),
-      );
-      for (final row in rows) {
+      for (final raw in data) {
+        final row = Map<String, dynamic>.from(raw as Map);
         final id = _clean(row['id']);
         if (id.isNotEmpty) {
           values[id] = _CardPrintImageMetadata(
             printedIdentityModifier: _optional(
               row['printed_identity_modifier'],
             ),
-            imageUrl:
-                normalizeDisplayImageUrl(row['display_image_url']) ??
-                _optional(row['image_url']),
+            imageUrl: _optional(row['image_url']),
             representativeImageUrl: _optional(row['representative_image_url']),
             imageStatus: _optional(row['image_status']),
             imageNote: _optional(row['image_note']),
@@ -590,7 +610,7 @@ class GrookaiDexService {
             await client
                     .from('card_printings')
                     .select(
-                      'card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note',
+                      'card_print_id,printing_gv_id,finish_key,image_path,image_url,image_alt_url,image_status,image_note',
                     )
                     .inFilter('card_print_id', chunk)
                 as List<dynamic>;
@@ -598,12 +618,8 @@ class GrookaiDexService {
         continue;
       }
 
-      final rows = await CanonImageUrlService.enrichRows(
-        data.map(
-          (row) => Map<String, dynamic>.from(row as Map),
-        ),
-      );
-      for (final row in rows) {
+      for (final raw in data) {
+        final row = Map<String, dynamic>.from(raw as Map);
         final cardPrintId = _clean(row['card_print_id']);
         if (cardPrintId.isEmpty) {
           continue;
@@ -615,9 +631,9 @@ class GrookaiDexService {
         final metadata = _CardPrintChildImageMetadata(
           finishKey: _optional(row['finish_key']),
           imageUrl:
-              CanonImageUrlService.displayImageUrlFromRow(row) ??
-              _optional(row['image_url']) ??
-              _optional(row['image_alt_url']),
+              normalizeWarehouseDisplayImagePath(row['image_path']) ??
+              normalizeDisplayImageUrl(row['image_url']) ??
+              normalizeDisplayImageUrl(row['image_alt_url']),
           imageStatus: _optional(row['image_status']),
           imageNote: _optional(row['image_note']),
         );

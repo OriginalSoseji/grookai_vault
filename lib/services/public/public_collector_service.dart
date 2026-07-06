@@ -322,6 +322,7 @@ class PublicCollectorSurfaceResult {
 
 class PublicCollectorService {
   static const _profileMediaBucket = 'profile-media';
+  static const _vaultInstanceMediaBucket = 'user-card-images';
 
   static Future<List<PublicCollectorDiscoverRow>> discoverCollectors({
     required SupabaseClient client,
@@ -573,10 +574,15 @@ class PublicCollectorService {
         .eq('owner_slug', normalizedSlug)
         .order('created_at', ascending: false);
 
+    final normalizedRows = (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+
     return _mapWallRowsToCards(
-      rows: (rows as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .toList(),
+      rows: await _withSignedVaultInstanceMediaRows(
+        client: client,
+        rows: normalizedRows,
+      ),
       client: client,
     );
   }
@@ -602,10 +608,15 @@ class PublicCollectorService {
         .eq('section_id', normalizedSectionId)
         .order('section_added_at', ascending: false);
 
+    final normalizedRows = (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+
     return _mapSectionRowsToCards(
-      rows: (rows as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .toList(),
+      rows: await _withSignedVaultInstanceMediaRows(
+        client: client,
+        rows: normalizedRows,
+      ),
       client: client,
     );
   }
@@ -1682,6 +1693,73 @@ class PublicCollectorService {
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
     return resolveDisplayImageUrlFromRow(row);
+  }
+
+  static Future<List<Map<String, dynamic>>> _withSignedVaultInstanceMediaRows({
+    required SupabaseClient client,
+    required List<Map<String, dynamic>> rows,
+  }) {
+    return Future.wait(
+      rows.map((row) async {
+        return <String, dynamic>{
+          ...row,
+          'display_image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['display_image_url'],
+              ) ??
+              row['display_image_url'],
+          'image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['image_url'],
+              ) ??
+              row['image_url'],
+          'image_alt_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['image_alt_url'],
+              ) ??
+              row['image_alt_url'],
+          'representative_image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['representative_image_url'],
+              ) ??
+              row['representative_image_url'],
+        };
+      }),
+    );
+  }
+
+  static Future<String?> _resolveVaultInstanceMediaSignedUrl({
+    required SupabaseClient client,
+    required dynamic value,
+  }) async {
+    final normalized = _cleanText(value).replaceFirst(RegExp(r'^/+'), '');
+    if (normalized.isEmpty) {
+      return null;
+    }
+
+    final uri = Uri.tryParse(normalized);
+    if (uri != null && (uri.scheme == 'http' || uri.scheme == 'https')) {
+      return normalized;
+    }
+
+    if (!RegExp(
+      r'(^|/)vault-instances/[^/]+/(front|back)/current$',
+      caseSensitive: false,
+    ).hasMatch(normalized)) {
+      return null;
+    }
+
+    try {
+      return await client.storage
+          .from(_vaultInstanceMediaBucket)
+          .createSignedUrl(normalized, 60 * 60);
+    } catch (_) {
+      return null;
+    }
   }
 
   static String? _resolveProfileMediaUrl(dynamic rawPath) {

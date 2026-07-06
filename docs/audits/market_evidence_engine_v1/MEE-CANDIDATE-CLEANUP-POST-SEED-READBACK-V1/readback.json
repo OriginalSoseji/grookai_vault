@@ -1,0 +1,233 @@
+{
+  "package_id": "MEE-CANDIDATE-CLEANUP-POST-SEED-READBACK-V1",
+  "generated_at": "2026-06-27",
+  "source_package_id": "MEE-CANDIDATE-CLEANUP-EVENT-SEED-PLAN-V1",
+  "summary": {
+    "cleanup_event_rows": 52630,
+    "distinct_candidate_ids": 52630,
+    "distinct_card_prints": 470,
+    "public_boundary_leak_rows": 0
+  },
+  "by_action": [
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "raw_single",
+      "rows": 622,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "slab",
+      "rows": 1049,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 38919,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "slab",
+      "rows": 261,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "current_summary": [
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "raw_single",
+      "rows": 622,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "quarantine_candidate",
+      "cleanup_state": "quarantined",
+      "reason_code": "exclusion_flags_present",
+      "evidence_lane": "slab",
+      "rows": 1049,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_high_value_review",
+      "cleanup_state": "needs_high_value_review",
+      "reason_code": "high_value_manual_review",
+      "evidence_lane": "slab",
+      "rows": 1073,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "raw_single",
+      "rows": 6106,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_matcher_reclassify",
+      "cleanup_state": "needs_matcher_reclassify",
+      "reason_code": "match_confidence_below_policy",
+      "evidence_lane": "slab",
+      "rows": 3504,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "raw_single",
+      "rows": 38919,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "cleanup_action": "require_special_lane_policy",
+      "cleanup_state": "needs_special_lane_policy",
+      "reason_code": "special_lane_manual_review",
+      "evidence_lane": "slab",
+      "rows": 261,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "card_summary": {
+    "card_summary_rows": 470,
+    "card_summary_public_boundary_leak_rows": 0,
+    "cleanup_candidate_rows": 52630,
+    "quarantined_candidate_rows": 1671,
+    "matcher_reclassify_candidate_rows": 9610,
+    "special_lane_policy_candidate_rows": 39180,
+    "high_value_review_candidate_rows": 2169,
+    "keep_review_candidate_rows": 0,
+    "deferred_more_evidence_candidate_rows": 0
+  },
+  "card_by_lane": [
+    {
+      "evidence_lane": "raw_single",
+      "card_summary_rows": 378,
+      "cleanup_candidate_rows": 46743,
+      "quarantined_candidate_rows": 622,
+      "matcher_reclassify_candidate_rows": 6106,
+      "special_lane_policy_candidate_rows": 38919,
+      "high_value_review_candidate_rows": 1096,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "evidence_lane": "slab",
+      "card_summary_rows": 92,
+      "cleanup_candidate_rows": 5887,
+      "quarantined_candidate_rows": 1049,
+      "matcher_reclassify_candidate_rows": 3504,
+      "special_lane_policy_candidate_rows": 261,
+      "high_value_review_candidate_rows": 1073,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "publication_gate": [
+    {
+      "gate_decision": "blocked_classification",
+      "evidence_lane": "classification_blocked",
+      "rows": 19,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_lane_split_required",
+      "evidence_lane": "mixed_raw_slab",
+      "rows": 574,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "low_signal",
+      "rows": 156,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_low_signal",
+      "evidence_lane": "unknown",
+      "rows": 18,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "blocked_reference_only",
+      "evidence_lane": "reference_metric",
+      "rows": 915,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "raw_single",
+      "rows": 378,
+      "public_boundary_leak_rows": 0
+    },
+    {
+      "gate_decision": "defer_review_confirmation",
+      "evidence_lane": "slab",
+      "rows": 92,
+      "public_boundary_leak_rows": 0
+    }
+  ],
+  "held_review_confirmation": {
+    "held_rows": 470,
+    "raw_single_rows": 378,
+    "slab_rows": 92,
+    "public_boundary_leak_rows": 0
+  },
+  "cleanup_vs_held": {
+    "held_card_rows": 470,
+    "cleanup_card_rows": 470,
+    "matched_held_cleanup_rows": 470,
+    "held_without_cleanup_rows": 0
+  },
+  "publication_gate_error": null
+}

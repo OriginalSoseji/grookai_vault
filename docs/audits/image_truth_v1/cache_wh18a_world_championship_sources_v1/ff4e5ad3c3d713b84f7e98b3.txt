@@ -1,0 +1,51 @@
+{{DeckInfobox
+|title=Mewtrick
+|image=WCS2006 Mewtrick Deck.jpg
+|caption=Box art
+|types={{e|Lightning}}
+|cards={{TCG ID|EX Deoxys|Manectric ex|101}}, {{TCG ID|EX Legend Maker|Mew ex|88}}
+}}
+
+'''Mewtrick''' is the name of the deck used by [[Jason Klaczynski]], the Fifteen and Over Champion in the {{TCG|2006 World Championships}}. As its name suggests, the deck revolves around exploiting the abilities of both {{TCG ID|EX Legend Maker|Mew ex|88}} and {{TCG ID|EX Deoxys|Manectric ex|101}}.
+
+Mewtrick is one of the four {{TCGMerch|EX|Series|2006 World Championships Decks}}, released on October 31st, 2006. Each deck comes packaged with a 2006 World Championships Booklet. Each card features a silver border, Klaczynski's signature, and limited edition 2006 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Jason Klaczynski took top honors in the 15 and up age category with his Mewtrick deck. Between Manectric ex's Disconnect attack controlling how often the opponent could play Trainer cards and Mew ex's ability to copy any attack in play, this deck captured the title!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Legend Maker|Mew ex|88}}|Psychic||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|EX Deoxys|Electrike|60}}|Lightning||Common}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Manectric ex|101}}|Lightning||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Roselia|42}}|Grass||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Hidden Legends|Regirock ex|98}}|Fighting||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Emerald|Deoxys ex|93}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Girafarig|16}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Holon's Magneton|22}}|Metal||Rare}}
+{{decklist/entry|4|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Unseen Forces|Professor Elm's Training Method|89}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Mary's Request|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Emerald|Scott|84}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|POP Series 2|TV Reporter|11}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Dual Ball|89}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Pow! Hand Extension|85}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Cursed Stone|72}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Delta Species|Switch|102}}|Trainer||Common}}
+{{decklist/entry|3|{{TCG ID|EX Emerald|Battle Frontier|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|11|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Multi Energy|96}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+==External links==
+[http://www.pojo.com/CardofTheDay/2005/8-23-06.shtml Jason Klaczynski's 2006 Worlds winning deck and strategy] 
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Mewtrick (TCG)]]
+[[ja:Mewtrick]]
+[[zh:梦幻电兽（TCG）]]

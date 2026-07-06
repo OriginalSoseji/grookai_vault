@@ -1,0 +1,125 @@
+{
+  "id": "bw6-61",
+  "name": "Marowak",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "100",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Cubone",
+  "attacks": [
+    {
+      "name": "Bone Lock",
+      "cost": [
+        "Fighting"
+      ],
+      "convertedEnergyCost": 1,
+      "damage": "30",
+      "text": "The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+      "name": "Vortex Chop",
+      "cost": [
+        "Fighting",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "60+",
+      "text": "If the Defending Pokémon has any Resistance, this attack does 30 more damage."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw6",
+    "name": "Dragons Exalted",
+    "series": "Black & White",
+    "printedTotal": 124,
+    "total": 128,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "DRX",
+    "releaseDate": "2012/08/15",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw6/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw6/logo.png"
+    }
+  },
+  "number": "61",
+  "artist": "Kouki Saitou",
+  "rarity": "Rare",
+  "flavorText": "From its birth, this savage Pokémon constantly holds bones. It is skilled in using them as weapons.",
+  "nationalPokedexNumbers": [
+    105
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw6/61.png",
+    "large": "https://images.pokemontcg.io/bw6/61_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw6-61",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.38,
+        "mid": 0.64,
+        "high": 19.7,
+        "market": 0.6,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 1.13,
+        "mid": 3.88,
+        "high": 40,
+        "market": 2.01,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw6-61",
+    "updatedAt": "2026/02/04",
+    "prices": {
+      "averageSellPrice": 0.82,
+      "lowPrice": 0.02,
+      "trendPrice": 0.69,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 1.34,
+      "reverseHoloLow": 0.25,
+      "reverseHoloTrend": 1.02,
+      "lowPriceExPlus": 0.08,
+      "avg1": 0.55,
+      "avg7": 0.87,
+      "avg30": 0.7,
+      "reverseHoloAvg1": 1.1,
+      "reverseHoloAvg7": 1.21,
+      "reverseHoloAvg30": 1.31
+    }
+  }
+}

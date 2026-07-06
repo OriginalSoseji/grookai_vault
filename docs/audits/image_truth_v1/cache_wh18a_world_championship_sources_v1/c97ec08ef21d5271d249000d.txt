@@ -1,0 +1,48 @@
+{{DeckInfobox
+|title=Garbanette
+|image=WCS2018 Garbanette Deck.jpg
+|caption=Box art
+|types={{e|Psychic}}
+|release=November 14, 2018
+}}
+
+'''Garbanette''' is the name of the deck used by Magnus Pedersen, the Senior Division champion at the [[2018 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2018 World Championships Decks}} released November 14, 2018. Each deck comes with a Worlds 2018-deckbox, a Worlds 2018 pin, a booklet about the championships, and a {{TCGO}} code card. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''Magnus Pedersen of Denmark became World Champion in the Senior Division by putting a new spin on the ever-popular Garbodor (both the Trashalanche and Garbotoxin versions). His deck pairs Garbodor with Banette-GX, whose Ability to move damage counters around can cause a sudden Knock Out! Garbotoxin and Wobbuffet's Bide Barricade can turn off the opponent's Abilities—and of course, once the opponent has played enough Item cards, the other Garbodor can finish things off with a massive Trashalanche!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Banette-GX (Celestial Storm 66)|Banette]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|Celestial Storm|Shuppet|63}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Garbodor|51}}|Psychic||Rare}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Garbodor|57}}|Psychic||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Trubbish|56}}|Psychic||Common}}
+{{decklist/entry|2|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Ultra-Rare Rare}}
+{{decklist/entry|1|[[Drampa-GX (Guardians Rising 115)|Drampa]]{{GX}}|Colorless||Ultra-Rare Rare}}
+{{decklist/entry|1|{{TCG ID|Forbidden Light|Buzzwole|77}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Generations|Wobbuffet|RC11}}|Psychic||None}}
+{{decklist/entry|1|{{TCG ID|XY Promo|Jirachi|67}}|Metal||None}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Forbidden Light|Mysterious Treasure|113}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Rescue Stretcher|130}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Shining Legends|Ultra Ball|68}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Parallel City|145}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ultra Prism|Cynthia|119}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG|Double Colorless Energy}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|4|{{TCG|Rainbow Energy}}|Energy|Rainbow|Uncommon}}
+{{decklist/entry|4|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+[[Category:World Championship Decks]]
+
+[[de:Garbanette (TCG)]]
+[[ja:Garbanette]]

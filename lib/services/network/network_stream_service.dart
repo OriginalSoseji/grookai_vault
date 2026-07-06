@@ -583,7 +583,7 @@ class NetworkStreamService {
     dynamic query = client
         .from('v_card_stream_v1')
         .select(
-          'vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url',
+          'vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind',
         );
 
     if (intent != null) {
@@ -602,7 +602,14 @@ class NetworkStreamService {
         .order('created_at', ascending: false)
         .order('vault_item_id', ascending: false)
         .limit(collectorQueryLimit);
-    final baseRows = (response as List<dynamic>)
+    final normalizedRows = (response as List<dynamic>)
+        .map((raw) => Map<String, dynamic>.from(raw as Map))
+        .toList();
+    final signedRows = await _withSignedVaultInstanceMediaRows(
+      client: client,
+      rows: normalizedRows,
+    );
+    final baseRows = signedRows
         .map((raw) => _normalizeRow(Map<String, dynamic>.from(raw as Map)))
         .whereType<NetworkStreamRow>()
         .toList();
@@ -1208,7 +1215,7 @@ class NetworkStreamService {
         variantKey: identity?.variantKey,
         printedIdentityModifier: identity?.printedIdentityModifier,
         setIdentityModel: identity?.setIdentityModel,
-        imageUrl: row.imageUrl ?? identity?.displayImageUrl,
+        imageUrl: _preferredImageUrl(row.imageUrl, identity?.displayImageUrl),
         inPlayCopies:
             copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
             const <NetworkStreamCopy>[],
@@ -1328,7 +1335,7 @@ class NetworkStreamService {
         cardRow: cardRow,
         pricingRow: pricingRow,
         sourceType: NetworkStreamSourceType.dbHighEnd,
-        sourceLabel: 'High-end canonical DB',
+        sourceLabel: '',
       );
       if (discoveryRow != null) {
         rows.add(discoveryRow);
@@ -1505,6 +1512,78 @@ class NetworkStreamService {
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
     return resolveDisplayImageUrlFromRow(row);
+  }
+
+  static String? _preferredImageUrl(String? rowImageUrl, String? fallbackUrl) {
+    return normalizeDisplayImageUrl(rowImageUrl) ??
+        normalizeDisplayImageUrl(fallbackUrl);
+  }
+
+  static Future<List<Map<String, dynamic>>> _withSignedVaultInstanceMediaRows({
+    required SupabaseClient client,
+    required List<Map<String, dynamic>> rows,
+  }) {
+    return Future.wait(
+      rows.map((row) async {
+        return <String, dynamic>{
+          ...row,
+          'display_image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['display_image_url'],
+              ) ??
+              row['display_image_url'],
+          'image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['image_url'],
+              ) ??
+              row['image_url'],
+          'image_alt_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['image_alt_url'],
+              ) ??
+              row['image_alt_url'],
+          'representative_image_url':
+              await _resolveVaultInstanceMediaSignedUrl(
+                client: client,
+                value: row['representative_image_url'],
+              ) ??
+              row['representative_image_url'],
+        };
+      }),
+    );
+  }
+
+  static Future<String?> _resolveVaultInstanceMediaSignedUrl({
+    required SupabaseClient client,
+    required dynamic value,
+  }) async {
+    final normalized = _clean(value).replaceFirst(RegExp(r'^/+'), '');
+    if (normalized.isEmpty) {
+      return null;
+    }
+
+    final uri = Uri.tryParse(normalized);
+    if (uri != null && (uri.scheme == 'http' || uri.scheme == 'https')) {
+      return normalized;
+    }
+
+    if (!RegExp(
+      r'(^|/)vault-instances/[^/]+/(front|back)/current$',
+      caseSensitive: false,
+    ).hasMatch(normalized)) {
+      return null;
+    }
+
+    try {
+      return await client.storage
+          .from('user-card-images')
+          .createSignedUrl(normalized, 60 * 60);
+    } catch (_) {
+      return null;
+    }
   }
 
   static Map<String, dynamic>? _recordFrom(dynamic value) {

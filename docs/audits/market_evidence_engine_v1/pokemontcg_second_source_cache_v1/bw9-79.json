@@ -1,0 +1,133 @@
+{
+  "id": "bw9-79",
+  "name": "Steelix",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1",
+    "Team Plasma"
+  ],
+  "hp": "150",
+  "types": [
+    "Metal"
+  ],
+  "evolvesFrom": "Onix",
+  "attacks": [
+    {
+      "name": "Metal Defender",
+      "cost": [
+        "Metal",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "50",
+      "text": "During your opponent's next turn, this Pokémon has no Weakness."
+    },
+    {
+      "name": "Heavy Impact",
+      "cost": [
+        "Metal",
+        "Colorless",
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 5,
+      "damage": "100",
+      "text": ""
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Psychic",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "79",
+  "artist": "5ban Graphics",
+  "rarity": "Rare",
+  "flavorText": "The iron it ingested with the soil it swallowed transformed its body and made it harder than diamonds.",
+  "nationalPokedexNumbers": [
+    208
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/79.png",
+    "large": "https://images.pokemontcg.io/bw9/79_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-79",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 2.28,
+        "mid": 3.52,
+        "high": 38.1,
+        "market": 3.54,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 13.24,
+        "mid": 19.72,
+        "high": 170.8,
+        "market": 13.26,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-79",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 1.96,
+      "lowPrice": 0.05,
+      "trendPrice": 1.59,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 3.43,
+      "reverseHoloLow": 0.5,
+      "reverseHoloTrend": 3.69,
+      "lowPriceExPlus": 0.5,
+      "avg1": 1.49,
+      "avg7": 2.02,
+      "avg30": 1.61,
+      "reverseHoloAvg1": 3,
+      "reverseHoloAvg7": 3.37,
+      "reverseHoloAvg30": 3.47
+    }
+  }
+}

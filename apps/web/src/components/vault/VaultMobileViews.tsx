@@ -114,6 +114,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
+      imagePrefetch={false}
       imageFallbackLabel={displayIdentity.display_name}
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
@@ -125,7 +126,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       }
       imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
       title={
-        <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
+        <Link href={`/card/${item.gv_id}`} prefetch={false} className="line-clamp-2 block transition hover:text-slate-700">
           {displayIdentity.display_name}
         </Link>
       }
@@ -163,6 +164,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
   return (
     <Link
       href={`/card/${item.gv_id}`}
+      prefetch={false}
       className="flex items-center gap-3.5 rounded-[1.4rem] border border-slate-200/80 bg-white/95 px-3.5 py-3.5 shadow-[0_18px_36px_-30px_rgba(15,23,42,0.26)] transition hover:border-slate-300"
     >
       <div className="h-16 w-12 shrink-0 overflow-hidden rounded-[0.95rem] border border-slate-200 bg-slate-50">
@@ -236,6 +238,7 @@ function MobileDetailRow({
         <div className="flex gap-4">
           <Link
             href={`/card/${item.gv_id}`}
+            prefetch={false}
             className="flex w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-slate-200 bg-slate-50 p-3"
           >
             <PublicCardImage
@@ -251,7 +254,7 @@ function MobileDetailRow({
           <div className="min-w-0 flex-1 space-y-3">
             <div className="space-y-2">
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <Link href={`/card/${item.gv_id}`} className="min-w-0 flex-1">
+                <Link href={`/card/${item.gv_id}`} prefetch={false} className="min-w-0 flex-1">
                   <h3 className="line-clamp-2 text-lg font-semibold tracking-tight text-slate-950">
                     {displayIdentity.display_name}
                   </h3>
@@ -314,6 +317,7 @@ function MobileDetailRow({
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <Link
                   href={primaryActionHref}
+                  prefetch={false}
                   className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
                 >
                   {primaryActionLabel}
@@ -322,6 +326,7 @@ function MobileDetailRow({
                 {primaryActionHref !== manageCardHref ? (
                   <Link
                     href={manageCardHref}
+                    prefetch={false}
                     className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
                   >
                     Manage copies
@@ -371,6 +376,7 @@ function MobileDetailRow({
                             {copyHref ? (
                               <Link
                                 href={copyHref}
+                                prefetch={false}
                                 className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                               >
                                 Open copy
@@ -388,6 +394,7 @@ function MobileDetailRow({
                 <div className="border-t border-slate-200 pt-3">
                   <Link
                     href={manageCardHref}
+                    prefetch={false}
                     className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
                   >
                     {item.copy_items.length > previewCopies.length

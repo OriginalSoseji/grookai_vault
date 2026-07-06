@@ -1,0 +1,509 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-WORKFLOW-V1",
+  "generated_at": "2026-06-26T19:00:29.718Z",
+  "mode": "plan_only_internal_review_workflow",
+  "package_fingerprint_sha256": "081dbf7c0db4816ac6e232fd4b3380ee190f43ed6970094226132431ebc742c9",
+  "audit": {
+    "card_count": 2152,
+    "lane_counts": {
+      "candidate_review": 1536,
+      "low_signal_monitor": 380,
+      "high_signal_review": 213,
+      "classification_review": 19,
+      "reference_only_review": 4
+    },
+    "lane_summaries": [
+      {
+        "active_listing_evidence_count": 99314,
+        "app_visible_count": 0,
+        "card_count": 1536,
+        "evidence_count": 105167,
+        "internal_rollup_candidate_count": 1536,
+        "market_truth_count": 0,
+        "publishable_count": 0,
+        "raw_single_count": 4891,
+        "reference_evidence_count": 5853,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 11451,
+        "slab_count": 2164
+      },
+      {
+        "active_listing_evidence_count": 7177,
+        "app_visible_count": 0,
+        "card_count": 380,
+        "evidence_count": 7177,
+        "internal_rollup_candidate_count": 0,
+        "market_truth_count": 0,
+        "publishable_count": 0,
+        "raw_single_count": 223,
+        "reference_evidence_count": 0,
+        "review_lane": "low_signal_monitor",
+        "rollup_eligible_count": 318,
+        "slab_count": 95
+      },
+      {
+        "active_listing_evidence_count": 1480,
+        "app_visible_count": 0,
+        "card_count": 213,
+        "evidence_count": 6636,
+        "internal_rollup_candidate_count": 213,
+        "market_truth_count": 0,
+        "publishable_count": 0,
+        "raw_single_count": 119,
+        "reference_evidence_count": 5156,
+        "review_lane": "high_signal_review",
+        "rollup_eligible_count": 4556,
+        "slab_count": 11
+      },
+      {
+        "active_listing_evidence_count": 632,
+        "app_visible_count": 0,
+        "card_count": 19,
+        "evidence_count": 632,
+        "internal_rollup_candidate_count": 0,
+        "market_truth_count": 0,
+        "publishable_count": 0,
+        "raw_single_count": 0,
+        "reference_evidence_count": 0,
+        "review_lane": "classification_review",
+        "rollup_eligible_count": 0,
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 0,
+        "app_visible_count": 0,
+        "card_count": 4,
+        "evidence_count": 16,
+        "internal_rollup_candidate_count": 0,
+        "market_truth_count": 0,
+        "publishable_count": 0,
+        "raw_single_count": 0,
+        "reference_evidence_count": 16,
+        "review_lane": "reference_only_review",
+        "rollup_eligible_count": 8,
+        "slab_count": 0
+      }
+    ],
+    "source_mix": {
+      "active_only": 1159,
+      "both_reference_and_active": 78,
+      "neither": 0,
+      "reference_only": 915
+    },
+    "internal_rollup_candidate_rows": 1749,
+    "mixed_raw_slab_rows": 574,
+    "publishable_rows": 0,
+    "app_visible_rows": 0,
+    "market_truth_rows": 0,
+    "sample_rows": [
+      {
+        "active_listing_evidence_count": 415,
+        "card_print_id": "20737606-d498-4d9e-bef2-59d0ee55eb8d",
+        "evidence_count": 415,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 30,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 32,
+        "sample_gv_id": "GV-PK-TK-tk-xy-p-30",
+        "slab_count": 2
+      },
+      {
+        "active_listing_evidence_count": 414,
+        "card_print_id": "ab64d660-f399-4450-8812-a6ed10b05cf2",
+        "evidence_count": 414,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 26,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 26,
+        "sample_gv_id": "GV-PK-TK-tk-xy-latia-30",
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 401,
+        "card_print_id": "ec4a3acc-18e1-4785-bb6e-96273454d4cf",
+        "evidence_count": 401,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 28,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 30,
+        "sample_gv_id": "GV-PK-TK-tk-xy-sy-30",
+        "slab_count": 2
+      },
+      {
+        "active_listing_evidence_count": 399,
+        "card_print_id": "f358b973-8dbb-48b5-abaa-de5f737ab24f",
+        "evidence_count": 399,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 27,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 27,
+        "sample_gv_id": "GV-PK-TK-tk-bw-e-30",
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 395,
+        "card_print_id": "362ce988-4601-417d-abb5-f323c35c0d82",
+        "evidence_count": 395,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 17,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 17,
+        "sample_gv_id": "GV-PK-TK-tk-sm-l-30",
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 366,
+        "card_print_id": "c33bcef4-9291-4a3d-a0e1-b7a6aa827dfc",
+        "evidence_count": 366,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 27,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 27,
+        "sample_gv_id": "GV-PK-TK-tk-xy-latio-30",
+        "slab_count": 0
+      },
+      {
+        "active_listing_evidence_count": 322,
+        "card_print_id": "944c5732-03ed-4f0c-8d88-df6f96b829b2",
+        "evidence_count": 322,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 19,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 24,
+        "sample_gv_id": "GV-PK-DF-2",
+        "slab_count": 5
+      },
+      {
+        "active_listing_evidence_count": 320,
+        "card_print_id": "d919a551-b1e0-4a45-9d65-4fb885a1745a",
+        "evidence_count": 320,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 12,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 25,
+        "sample_gv_id": "GV-PK-LM-5",
+        "slab_count": 13
+      },
+      {
+        "active_listing_evidence_count": 316,
+        "card_print_id": "bc9786a4-0dcc-49f1-b833-8d22a99de1c2",
+        "evidence_count": 316,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 13,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 19,
+        "sample_gv_id": "GV-PK-DS-2",
+        "slab_count": 6
+      },
+      {
+        "active_listing_evidence_count": 308,
+        "card_print_id": "cad7f417-5d63-4813-832e-247ff54ee829",
+        "evidence_count": 308,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 6,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 27,
+        "sample_gv_id": "GV-PK-DF-10",
+        "slab_count": 21
+      },
+      {
+        "active_listing_evidence_count": 305,
+        "card_print_id": "406ac265-71d9-46dc-ae01-0db87758e5c1",
+        "evidence_count": 305,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 6,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 16,
+        "sample_gv_id": "GV-PK-RG-10",
+        "slab_count": 10
+      },
+      {
+        "active_listing_evidence_count": 303,
+        "card_print_id": "6757068f-76bd-439b-9433-711630cb1c6b",
+        "evidence_count": 303,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 10,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 19,
+        "sample_gv_id": "GV-PK-DS-18",
+        "slab_count": 9
+      },
+      {
+        "active_listing_evidence_count": 302,
+        "card_print_id": "bbe31487-e4fc-46e1-a27d-928ce5417bff",
+        "evidence_count": 302,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 18,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 22,
+        "sample_gv_id": "GV-PK-DF-12",
+        "slab_count": 4
+      },
+      {
+        "active_listing_evidence_count": 300,
+        "card_print_id": "579bbeee-78b9-46e8-b56f-aaf52c6cd3ac",
+        "evidence_count": 300,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 4,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 12,
+        "sample_gv_id": "GV-PK-CG-4",
+        "slab_count": 8
+      },
+      {
+        "active_listing_evidence_count": 300,
+        "card_print_id": "c21fa9f9-7157-4c80-8361-81f0ce88f4e1",
+        "evidence_count": 300,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 12,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 22,
+        "sample_gv_id": "GV-PK-DS-5",
+        "slab_count": 10
+      },
+      {
+        "active_listing_evidence_count": 295,
+        "card_print_id": "42902562-922c-4644-be06-8958ce9d9b0e",
+        "evidence_count": 295,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 7,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 18,
+        "sample_gv_id": "GV-PK-DS-8",
+        "slab_count": 11
+      },
+      {
+        "active_listing_evidence_count": 294,
+        "card_print_id": "634ae142-9357-4cb4-bf5a-246c976d3007",
+        "evidence_count": 294,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 15,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 19,
+        "sample_gv_id": "GV-PK-CG-2",
+        "slab_count": 4
+      },
+      {
+        "active_listing_evidence_count": 293,
+        "card_print_id": "bf28eb3d-54fe-44a8-8c9d-edfe5d67d3c8",
+        "evidence_count": 293,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 4,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 20,
+        "sample_gv_id": "GV-PK-DS-17",
+        "slab_count": 16
+      },
+      {
+        "active_listing_evidence_count": 292,
+        "card_print_id": "fdd5a3b6-487f-4613-bd09-40e5edb1d659",
+        "evidence_count": 292,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 6,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 22,
+        "sample_gv_id": "GV-PK-PK-6",
+        "slab_count": 16
+      },
+      {
+        "active_listing_evidence_count": 289,
+        "card_print_id": "68db629a-11cd-4dbc-af11-4514ee5f7f4e",
+        "evidence_count": 289,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 9,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 24,
+        "sample_gv_id": "GV-PK-UF-17",
+        "slab_count": 15
+      },
+      {
+        "active_listing_evidence_count": 284,
+        "card_print_id": "350dadd7-0a81-4761-aab6-8f9c7b23480f",
+        "evidence_count": 284,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 5,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 13,
+        "sample_gv_id": "GV-PK-HP-8",
+        "slab_count": 8
+      },
+      {
+        "active_listing_evidence_count": 283,
+        "card_print_id": "fbdcc0ea-3330-46b3-bd25-2305d21cf0e4",
+        "evidence_count": 283,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 5,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 19,
+        "sample_gv_id": "GV-PK-PK-9",
+        "slab_count": 14
+      },
+      {
+        "active_listing_evidence_count": 282,
+        "card_print_id": "07539f47-84e1-4e2b-8268-53ef24ab258d",
+        "evidence_count": 282,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 11,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 14,
+        "sample_gv_id": "GV-PK-PK-8",
+        "slab_count": 3
+      },
+      {
+        "active_listing_evidence_count": 282,
+        "card_print_id": "a523b314-7eea-43dc-a96a-3f0a78df268b",
+        "evidence_count": 282,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 15,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 23,
+        "sample_gv_id": "GV-PK-EX2-1-PRERELEASE-STAMP",
+        "slab_count": 8
+      },
+      {
+        "active_listing_evidence_count": 277,
+        "card_print_id": "95bfc36b-9510-4155-a882-0dca6300b1f8",
+        "evidence_count": 277,
+        "internal_rollup_candidate": true,
+        "raw_single_count": 1,
+        "reference_evidence_count": 0,
+        "review_lane": "candidate_review",
+        "rollup_eligible_count": 21,
+        "sample_gv_id": "GV-PK-LM-10",
+        "slab_count": 20
+      }
+    ]
+  },
+  "review_workflow": {
+    "review_lanes": {
+      "high_signal_review": {
+        "meaning": "Strongest internal review queue: enough rollup-eligible evidence and at least two source families in the current read model.",
+        "default_disposition": "review_pending_high_signal",
+        "allowed_dispositions": [
+          "review_confirmed_internal_candidate",
+          "review_split_required",
+          "review_blocked",
+          "review_defer_more_evidence"
+        ],
+        "future_publication_handoff": "May become a publication-gate candidate only under a separate publication contract after lane separation, source independence, recency, and blocker checks pass."
+      },
+      "candidate_review": {
+        "meaning": "Basic internal rollup candidate: at least three rollup-eligible rows, but not enough independent signal for high-signal treatment.",
+        "default_disposition": "review_pending_candidate",
+        "allowed_dispositions": [
+          "review_confirmed_internal_candidate",
+          "review_split_required",
+          "review_blocked",
+          "review_defer_more_evidence"
+        ],
+        "future_publication_handoff": "Cannot publish directly; may feed future publication-gate backlog after additional evidence or manual confirmation."
+      },
+      "classification_review": {
+        "meaning": "Large active-listing evidence pool with zero rollup-eligible rows. This means classification or quality gates are blocking, not that price is ready.",
+        "default_disposition": "review_pending_classification_fix",
+        "allowed_dispositions": [
+          "review_reclassify",
+          "review_blocked_classification",
+          "review_split_required",
+          "review_defer_more_evidence"
+        ],
+        "future_publication_handoff": "Blocked from publication until classifier/quality-gate issues are resolved in a separate apply package."
+      },
+      "reference_only_review": {
+        "meaning": "Reference evidence exists without active-listing corroboration.",
+        "default_disposition": "review_pending_reference_only",
+        "allowed_dispositions": [
+          "review_reference_crosscheck",
+          "review_defer_active_market_evidence",
+          "review_blocked"
+        ],
+        "future_publication_handoff": "Reference-only cards cannot become market truth or public pricing under this workflow."
+      },
+      "low_signal_monitor": {
+        "meaning": "Evidence is present but currently too thin for internal price review.",
+        "default_disposition": "monitor_only",
+        "allowed_dispositions": [
+          "monitor_only",
+          "review_defer_more_evidence",
+          "review_blocked"
+        ],
+        "future_publication_handoff": "No publication handoff."
+      }
+    },
+    "evidence_thresholds": {
+      "minimum_internal_candidate_rollup_eligible_count": 3,
+      "high_signal_rollup_eligible_count": 10,
+      "high_signal_source_family_count": 2,
+      "classification_review_active_listing_count": 25,
+      "publication_gate_minimums_are_out_of_scope": true
+    },
+    "separation_rules": [
+      "raw_single_count and slab_count must never be combined into one public-facing price.",
+      "reference_metric_count may support review but cannot publish without independent publication-gate approval.",
+      "active_listing evidence is asking-price evidence only and cannot be treated as sold value.",
+      "mixed raw/slab evidence requires review_split_required before any future publication gate can inspect it.",
+      "special card lanes, print-run lanes, signatures, stamps, and deck replicas require lane-specific review evidence."
+    ],
+    "hard_blockers": [
+      "publishable_count > 0 inside internal read models",
+      "app_visible_count > 0 inside internal read models",
+      "market_truth_count > 0 inside internal read models",
+      "wrong identity or unresolved match ambiguity",
+      "bulk/lot/sealed/proxy/custom evidence used as a raw-single card signal",
+      "slab evidence mixed into raw-single medians",
+      "reference-only evidence being treated as market truth",
+      "active asking price being labeled as sold value"
+    ]
+  },
+  "artifacts": {
+    "contract_md": "docs/contracts/MEE_CORE_INTERNAL_REVIEW_WORKFLOW_V1.md",
+    "audit_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-WORKFLOW-V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-WORKFLOW-V1/report.json",
+    "sql_readback": "docs/sql/mee_core_internal_review_workflow_v1_readback.sql",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_WORKFLOW_V1.md"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

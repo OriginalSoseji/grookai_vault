@@ -27,11 +27,11 @@ enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
   // BOTTOM_NAV_LUXURY_PASS_V1
-  // Primary app navigation is behavior-first: Search, Feed, Scan, Dex, Wall, Vault.
+  // Primary app navigation is behavior-first: Search, Feed, Scan, Wall, Vault.
   search(navIndex: 0, stackIndex: 0, title: 'Search'),
   feed(navIndex: 1, stackIndex: 1, title: 'Feed'),
-  wall(navIndex: 4, stackIndex: 2, title: 'My Wall'),
-  vault(navIndex: 5, stackIndex: 3, title: 'Vault');
+  wall(navIndex: 3, stackIndex: 2, title: 'Wall'),
+  vault(navIndex: 4, stackIndex: 3, title: 'Vault');
 
   const _ShellDestination({
     required this.navIndex,
@@ -42,21 +42,6 @@ enum _ShellDestination {
   final int navIndex;
   final int stackIndex;
   final String title;
-
-  static _ShellDestination fromNavIndex(int index) {
-    switch (index) {
-      case 0:
-        return _ShellDestination.search;
-      case 1:
-        return _ShellDestination.feed;
-      case 4:
-        return _ShellDestination.wall;
-      case 5:
-        return _ShellDestination.vault;
-      default:
-        return _ShellDestination.feed;
-    }
-  }
 }
 
 class _AppShellState extends State<AppShell> {
@@ -74,6 +59,8 @@ class _AppShellState extends State<AppShell> {
   bool _handlingCanonicalLink = false;
   bool _handlingDebugAction = false;
   bool _scannerPrewarmInFlight = false;
+  bool _bottomNavCollapsed = false;
+  bool _relationshipRouteLoading = false;
 
   @override
   void initState() {
@@ -399,6 +386,7 @@ class _AppShellState extends State<AppShell> {
     _ensureShellPageBuilt(destination);
     setState(() {
       _destination = destination;
+      _bottomNavCollapsed = false;
     });
     if (destination == _ShellDestination.wall) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -412,6 +400,30 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _openSets() async {
     await _pushPage<void>(const PublicSetsScreen());
+  }
+
+  bool _handleShellScroll(UserScrollNotification notification) {
+    if (ModalRoute.of(context)?.isCurrent == false) {
+      if (_bottomNavCollapsed) {
+        setState(() => _bottomNavCollapsed = false);
+      }
+      return false;
+    }
+    if (notification.metrics.axis != Axis.vertical) {
+      return false;
+    }
+    final atTop =
+        notification.metrics.pixels <= notification.metrics.minScrollExtent + 8;
+    final shouldCollapse = notification.direction == ScrollDirection.reverse;
+    final shouldExpand =
+        notification.direction == ScrollDirection.forward || atTop;
+
+    if (shouldCollapse && !_bottomNavCollapsed) {
+      setState(() => _bottomNavCollapsed = true);
+    } else if (shouldExpand && _bottomNavCollapsed) {
+      setState(() => _bottomNavCollapsed = false);
+    }
+    return false;
   }
 
   Future<void> _openDex() async {
@@ -428,6 +440,10 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _openNearby() async {
     await _pushPage<void>(const NetworkNearbyScreen());
+  }
+
+  Future<void> _openNearbyMap() async {
+    await _pushPage<void>(const NetworkNearbyMapScreen());
   }
 
   Future<void> _openAccountHub() async {
@@ -456,6 +472,83 @@ class _AppShellState extends State<AppShell> {
       case AccountHubAction.signOut:
         await _signOut();
         break;
+    }
+  }
+
+  Future<void> _openOwnRelationships(
+    PublicCollectorRelationshipMode mode,
+  ) async {
+    final userId = (_supabase.auth.currentUser?.id ?? '').trim();
+    if (userId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sign in to view collector relationships.'),
+        ),
+      );
+      return;
+    }
+    if (_relationshipRouteLoading) {
+      return;
+    }
+
+    setState(() => _relationshipRouteLoading = true);
+    try {
+      final entry = await PublicCollectorService.resolveOwnEntry(
+        client: _supabase,
+        userId: userId,
+      ).timeout(const Duration(seconds: 12));
+
+      if (!mounted) {
+        return;
+      }
+
+      final slug = (entry.slug ?? '').trim();
+      if (entry.state != PublicCollectorEntryState.ready || slug.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Turn on your public Wall before viewing relationships.',
+            ),
+          ),
+        );
+        return;
+      }
+
+      final profile = await PublicCollectorService.loadPublicProfileBySlug(
+        client: _supabase,
+        slug: slug,
+      ).timeout(const Duration(seconds: 12));
+
+      if (!mounted) {
+        return;
+      }
+
+      if (profile == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Unable to load your collector profile.'),
+          ),
+        );
+        return;
+      }
+
+      _scaffoldKey.currentState?.closeEndDrawer();
+      await _pushPage<void>(
+        PublicCollectorRelationshipScreen(profile: profile, mode: mode),
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Unable to load collector relationships.'),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _relationshipRouteLoading = false);
+      }
     }
   }
 
@@ -492,6 +585,11 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (kScannerV5Enabled) {
+      await _pushPage<void>(const ScanCaptureV5Screen());
+      return;
+    }
+
     if (kScannerConstructionPlaceholderEnabled) {
       final action = await _pushPage<ScannerBuildPlaceholderAction>(
         const ScannerBuildPlaceholderScreen(),
@@ -553,7 +651,7 @@ class _AppShellState extends State<AppShell> {
     );
   }
 
-  List<Widget> _buildAppBarActions() {
+  List<Widget> _buildAppBarActions({required bool isDesktopShell}) {
     return [
       if (_destination == _ShellDestination.search)
         ValueListenableBuilder<List<String>>(
@@ -638,7 +736,7 @@ class _AppShellState extends State<AppShell> {
         tooltip: 'Messages',
         onPressed: _openMessages,
       ),
-      if (_destination != _ShellDestination.search)
+      if (isDesktopShell && _destination != _ShellDestination.search)
         _appBarActionButton(
           icon: Icons.refresh,
           tooltip: 'Refresh',
@@ -661,36 +759,40 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isDark = theme.brightness == Brightness.dark;
     final isDesktopShell = MediaQuery.sizeOf(context).width >= 900;
+    final keyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
     final bottomSafeInset = MediaQuery.viewPaddingOf(context).bottom;
     final shellChildren = List<Widget>.generate(
       _ShellDestination.values.length,
       (index) => _shellPages[index] ?? const SizedBox.shrink(),
       growable: false,
     );
-    final navRadius = BorderRadius.circular(22);
     final shellBody = IndexedStack(
       index: _destination.stackIndex,
       children: shellChildren,
     );
+    final mobileShellBody = NotificationListener<UserScrollNotification>(
+      onNotification: _handleShellScroll,
+      child: shellBody,
+    );
 
     return Scaffold(
       key: _scaffoldKey,
-      extendBody: false,
+      extendBody: !isDesktopShell,
       resizeToAvoidBottomInset: false,
       endDrawer: _GrookaiAppDrawer(
-        currentDestination: _destination,
-        onOpenSearch: () => _selectDestination(_ShellDestination.search),
-        onOpenFeed: () => _selectDestination(_ShellDestination.feed),
-        onOpenWall: () => _selectDestination(_ShellDestination.wall),
-        onOpenVault: () => _selectDestination(_ShellDestination.vault),
+        signedIn: _supabase.auth.currentUser != null,
+        relationshipRouteLoading: _relationshipRouteLoading,
         onOpenDex: _openDex,
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
-        onOpenMessages: _openMessages,
         onOpenNearby: _openNearby,
+        onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
+        onOpenFollowers: () =>
+            _openOwnRelationships(PublicCollectorRelationshipMode.followers),
+        onOpenFollowing: () =>
+            _openOwnRelationships(PublicCollectorRelationshipMode.following),
         themeMode: widget.themeMode,
         onThemeModeChanged: widget.onThemeModeChanged,
       ),
@@ -703,7 +805,7 @@ class _AppShellState extends State<AppShell> {
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
-        actions: _buildAppBarActions(),
+        actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
       ),
       body: isDesktopShell
           ? Row(
@@ -732,147 +834,198 @@ class _AppShellState extends State<AppShell> {
                 Expanded(child: shellBody),
               ],
             )
-          : shellBody,
-      // BOTTOM_NAV_CORRECTION_V1
-      // Compact dock geometry and safe-area handling so the bottom nav feels
-      // anchored, not oversized.
+          : mobileShellBody,
       bottomNavigationBar: isDesktopShell
           ? null
-          : SafeArea(
-              top: false,
-              minimum: EdgeInsets.fromLTRB(
-                10,
-                4,
-                10,
-                bottomSafeInset > 0 ? 2 : 6,
+          : _buildMobileBottomDock(
+              context: context,
+              colorScheme: colorScheme,
+              keyboardVisible: keyboardVisible,
+              bottomSafeInset: bottomSafeInset,
+            ),
+    );
+  }
+
+  Widget _buildMobileBottomDock({
+    required BuildContext context,
+    required ColorScheme colorScheme,
+    required bool keyboardVisible,
+    required double bottomSafeInset,
+  }) {
+    final routeIsCurrent = ModalRoute.of(context)?.isCurrent ?? true;
+    final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible;
+    return AnimatedSlide(
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
+      offset: keyboardVisible ? const Offset(0, 1.2) : Offset.zero,
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 160),
+        opacity: keyboardVisible ? 0 : 1,
+        child: SafeArea(
+          top: false,
+          minimum: EdgeInsets.fromLTRB(18, 4, 18, bottomSafeInset > 0 ? 4 : 14),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 190),
+              curve: Curves.easeOutCubic,
+              constraints: BoxConstraints(
+                maxWidth: 390,
+                minHeight: collapsed
+                    ? kShellBottomNavCollapsedHeight
+                    : kShellBottomNavHeight,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colorScheme.surface.withValues(
-                      alpha: isDark ? 0.985 : 0.975,
-                    ),
-                    borderRadius: navRadius,
-                    border: Border.all(
-                      color: colorScheme.outline.withValues(
-                        alpha: isDark ? 0.12 : 0.07,
+              child: GvSurface(
+                variant: GvSurfaceVariant.glass,
+                borderRadius: 34,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: collapsed ? 6 : 8,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 0,
+                        label: 'Search',
+                        icon: Icons.search_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.search),
                       ),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: colorScheme.shadow.withValues(
-                          alpha: isDark ? 0.12 : 0.05,
-                        ),
-                        blurRadius: isDark ? 16 : 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: navRadius,
-                    child: NavigationBarTheme(
-                      data: NavigationBarTheme.of(context).copyWith(
-                        backgroundColor: Colors.transparent,
-                        indicatorColor: colorScheme.onSurface.withValues(
-                          alpha: isDark ? 0.09 : 0.045,
-                        ),
-                        height: kShellBottomNavHeight,
-                        labelBehavior:
-                            NavigationDestinationLabelBehavior.onlyShowSelected,
-                        iconTheme: WidgetStateProperty.resolveWith((states) {
-                          if (states.contains(WidgetState.selected)) {
-                            return IconThemeData(
-                              color: colorScheme.primary,
-                              size: 20,
-                            );
-                          }
-                          return IconThemeData(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.54,
-                            ),
-                            size: 19,
-                          );
-                        }),
-                        labelTextStyle: WidgetStateProperty.resolveWith((
-                          states,
-                        ) {
-                          final baseStyle = theme.textTheme.labelSmall;
-                          if (states.contains(WidgetState.selected)) {
-                            return baseStyle?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 10.4,
-                              letterSpacing: 0.08,
-                            );
-                          }
-                          return baseStyle?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.56,
-                            ),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 10.1,
-                            letterSpacing: 0.08,
-                          );
-                        }),
-                      ),
-                      child: NavigationBar(
-                        elevation: 0,
-                        labelPadding: const EdgeInsets.only(top: 1),
-                        selectedIndex: _destination.navIndex,
-                        onDestinationSelected: (index) {
-                          if (index == 2) {
-                            _startScanFlow();
-                            return;
-                          }
-                          if (index == 3) {
-                            unawaited(_openDex());
-                            return;
-                          }
-                          _selectDestination(
-                            _ShellDestination.fromNavIndex(index),
-                          );
-                        },
-                        destinations: const [
-                          NavigationDestination(
-                            icon: Icon(Icons.search_rounded),
-                            selectedIcon: Icon(Icons.search_rounded),
-                            label: 'Search',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.dynamic_feed_outlined),
-                            selectedIcon: Icon(Icons.dynamic_feed_rounded),
-                            label: 'Feed',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.center_focus_strong_outlined),
-                            selectedIcon: Icon(
-                              Icons.center_focus_strong_rounded,
-                            ),
-                            label: 'Scan',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.catching_pokemon_outlined),
-                            selectedIcon: Icon(Icons.catching_pokemon_rounded),
-                            label: 'Dex',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.person_outline_rounded),
-                            selectedIcon: Icon(Icons.person_rounded),
-                            label: 'Wall',
-                          ),
-                          NavigationDestination(
-                            icon: Icon(Icons.inventory_2_outlined),
-                            selectedIcon: Icon(Icons.inventory_2_rounded),
-                            label: 'Vault',
-                          ),
-                        ],
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 1,
+                        label: 'Feed',
+                        icon: Icons.dynamic_feed_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.feed),
                       ),
                     ),
-                  ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 2,
+                        label: 'Scan',
+                        icon: Icons.center_focus_strong_rounded,
+                        collapsed: collapsed,
+                        isPrimaryAction: true,
+                        onPressed: _startScanFlow,
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 3,
+                        label: 'Wall',
+                        icon: Icons.collections_bookmark_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.wall),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 4,
+                        label: 'Vault',
+                        icon: Icons.inventory_2_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.vault),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDockButton({
+    required ColorScheme colorScheme,
+    required int navIndex,
+    required String label,
+    required IconData icon,
+    required bool collapsed,
+    bool isPrimaryAction = false,
+    required VoidCallback onPressed,
+  }) {
+    final selected = _destination.navIndex == navIndex;
+    final foreground = selected
+        ? colorScheme.onPrimaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.68);
+    final background = selected
+        ? colorScheme.primaryContainer.withValues(alpha: 0.86)
+        : Colors.transparent;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: Tooltip(
+        message: label,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(999),
+          onTap: onPressed,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOutCubic,
+            height: collapsed ? 46 : 50,
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (isPrimaryAction)
+                  Container(
+                    width: collapsed ? 28 : 30,
+                    height: collapsed ? 28 : 30,
+                    decoration: BoxDecoration(
+                      color: selected
+                          ? colorScheme.primary
+                          : colorScheme.primary.withValues(alpha: 0.16),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: colorScheme.primary.withValues(alpha: 0.46),
+                      ),
+                    ),
+                    child: Icon(
+                      icon,
+                      size: 17,
+                      color: selected
+                          ? colorScheme.onPrimary
+                          : colorScheme.primary,
+                    ),
+                  )
+                else
+                  Icon(icon, size: selected ? 19 : 18, color: foreground),
+                const SizedBox(height: 2),
+                Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: foreground,
+                    fontSize: collapsed ? 10 : 11,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
+                    letterSpacing: 0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -961,7 +1114,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
               onTap: onOpenScan,
             ),
             _GrookaiRailTile(
-              icon: Icons.person_rounded,
+              icon: Icons.collections_bookmark_rounded,
               label: 'Wall',
               selected: currentDestination == _ShellDestination.wall,
               onTap: onOpenWall,
@@ -1073,32 +1226,30 @@ class _GrookaiRailTile extends StatelessWidget {
 
 class _GrookaiAppDrawer extends StatelessWidget {
   const _GrookaiAppDrawer({
-    required this.currentDestination,
-    required this.onOpenSearch,
-    required this.onOpenFeed,
-    required this.onOpenWall,
-    required this.onOpenVault,
+    required this.signedIn,
+    required this.relationshipRouteLoading,
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
-    required this.onOpenMessages,
     required this.onOpenNearby,
+    required this.onOpenNearbyMap,
     required this.onOpenAccount,
+    required this.onOpenFollowers,
+    required this.onOpenFollowing,
     required this.themeMode,
     required this.onThemeModeChanged,
   });
 
-  final _ShellDestination currentDestination;
-  final VoidCallback onOpenSearch;
-  final VoidCallback onOpenFeed;
-  final VoidCallback onOpenWall;
-  final VoidCallback onOpenVault;
+  final bool signedIn;
+  final bool relationshipRouteLoading;
   final Future<void> Function() onOpenDex;
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
-  final Future<void> Function() onOpenMessages;
   final Future<void> Function() onOpenNearby;
+  final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
+  final Future<void> Function() onOpenFollowers;
+  final Future<void> Function() onOpenFollowing;
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeModeChanged;
 
@@ -1119,7 +1270,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
                 'Grookai Vault',
                 style: Theme.of(
                   context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 4),
               Text(
@@ -1133,36 +1284,18 @@ class _GrookaiAppDrawer extends StatelessWidget {
           ),
         ),
         const Divider(indent: 20, endIndent: 20),
-        _GrookaiDrawerTile(
-          icon: Icons.search_rounded,
-          label: 'Search',
-          selected: currentDestination == _ShellDestination.search,
-          onTap: () => _closeThen(context, onOpenSearch),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.dynamic_feed_rounded,
-          label: 'Feed',
-          selected: currentDestination == _ShellDestination.feed,
-          onTap: () => _closeThen(context, onOpenFeed),
-        ),
         if (kLocalCommunityFeedV1Enabled)
           _GrookaiDrawerTile(
             icon: Icons.radar_rounded,
             label: 'Nearby',
             onTap: () => _closeThenAsync(context, onOpenNearby),
           ),
-        _GrookaiDrawerTile(
-          icon: Icons.person_rounded,
-          label: 'My Wall',
-          selected: currentDestination == _ShellDestination.wall,
-          onTap: () => _closeThen(context, onOpenWall),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.inventory_2_rounded,
-          label: 'Vault',
-          selected: currentDestination == _ShellDestination.vault,
-          onTap: () => _closeThen(context, onOpenVault),
-        ),
+        if (kLocalCommunityFeedV1Enabled)
+          _GrookaiDrawerTile(
+            icon: Icons.map_outlined,
+            label: 'Nearby Map',
+            onTap: () => _closeThenAsync(context, onOpenNearbyMap),
+          ),
         const Divider(indent: 20, endIndent: 20),
         _GrookaiDrawerTile(
           icon: Icons.catching_pokemon_rounded,
@@ -1179,11 +1312,26 @@ class _GrookaiAppDrawer extends StatelessWidget {
           label: 'Compare',
           onTap: () => _closeThenAsync(context, onOpenCompare),
         ),
-        _GrookaiDrawerTile(
-          icon: Icons.mail_rounded,
-          label: 'Messages',
-          onTap: () => _closeThenAsync(context, onOpenMessages),
-        ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.group_outlined,
+            label: 'Followers',
+            enabled: !relationshipRouteLoading,
+            trailing: relationshipRouteLoading
+                ? const _GrookaiDrawerLoadingIndicator()
+                : null,
+            onTap: () => unawaited(onOpenFollowers()),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.people_alt_outlined,
+            label: 'Following',
+            enabled: !relationshipRouteLoading,
+            trailing: relationshipRouteLoading
+                ? const _GrookaiDrawerLoadingIndicator()
+                : null,
+            onTap: () => unawaited(onOpenFollowing()),
+          ),
         _GrookaiDrawerTile(
           icon: Icons.account_circle_rounded,
           label: 'Account',
@@ -1198,11 +1346,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
     );
   }
 
-  void _closeThen(BuildContext context, VoidCallback action) {
-    Navigator.of(context).pop();
-    action();
-  }
-
   void _closeThenAsync(BuildContext context, Future<void> Function() action) {
     Navigator.of(context).pop();
     unawaited(action());
@@ -1214,20 +1357,22 @@ class _GrookaiDrawerTile extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
-    this.selected = false,
+    this.enabled = true,
+    this.trailing,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-  final bool selected;
+  final bool enabled;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final foreground = selected
-        ? colorScheme.primary
-        : colorScheme.onSurface.withValues(alpha: 0.82);
+    final foreground = colorScheme.onSurface.withValues(
+      alpha: enabled ? 0.82 : 0.46,
+    );
 
     return ListTile(
       leading: Icon(icon, color: foreground),
@@ -1235,14 +1380,26 @@ class _GrookaiDrawerTile extends StatelessWidget {
         label,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
           color: foreground,
-          fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+          fontWeight: FontWeight.w600,
         ),
       ),
-      selected: selected,
-      selectedTileColor: colorScheme.primary.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-      onTap: onTap,
+      trailing: trailing,
+      enabled: enabled,
+      onTap: enabled ? onTap : null,
+    );
+  }
+}
+
+class _GrookaiDrawerLoadingIndicator extends StatelessWidget {
+  const _GrookaiDrawerLoadingIndicator();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.square(
+      dimension: 18,
+      child: CircularProgressIndicator(strokeWidth: 2),
     );
   }
 }
@@ -1541,7 +1698,7 @@ class _LoginPageState extends State<LoginPage> {
             style: textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
               letterSpacing: 0.3,
-              color: scheme.onSurface.withValues(alpha: 0.88),
+              color: Colors.white.withValues(alpha: 0.82),
             ),
           ),
           const SizedBox(height: 20),
@@ -1550,9 +1707,10 @@ class _LoginPageState extends State<LoginPage> {
             textAlign: TextAlign.center,
             style: textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.9,
+              letterSpacing: 0,
               height: 0.98,
               fontSize: 38,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 12),
@@ -1560,7 +1718,7 @@ class _LoginPageState extends State<LoginPage> {
             'Show your collection, connect with collectors, and act when it matters.',
             textAlign: TextAlign.center,
             style: textTheme.bodyMedium?.copyWith(
-              color: scheme.onSurface.withValues(alpha: 0.70),
+              color: Colors.white.withValues(alpha: 0.68),
               height: 1.42,
             ),
           ),
@@ -1597,10 +1755,11 @@ class _LoginPageState extends State<LoginPage> {
     return OutlinedButton(
       onPressed: _showEmailForm || _loading ? null : _showEmailEntry,
       style: OutlinedButton.styleFrom(
-        foregroundColor: scheme.onSurface,
+        foregroundColor: Colors.white.withValues(alpha: 0.88),
+        disabledForegroundColor: Colors.white.withValues(alpha: 0.38),
         backgroundColor: Colors.white.withValues(alpha: 0.01),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        side: BorderSide(color: Colors.white.withValues(alpha: 0.12)),
+        side: BorderSide(color: Colors.white.withValues(alpha: 0.22)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: const Text(
@@ -1764,9 +1923,7 @@ class _LoginPageState extends State<LoginPage> {
                                 'Use one Grookai identity across your vault, wall, and collector feed.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
-                                  color: scheme.onSurface.withValues(
-                                    alpha: 0.54,
-                                  ),
+                                  color: Colors.white.withValues(alpha: 0.46),
                                   height: 1.35,
                                 ),
                               ),
@@ -1801,44 +1958,23 @@ class _LoginBackgroundAura extends StatelessWidget {
       ),
       child: Stack(
         fit: StackFit.expand,
-        children: const [
-          Positioned(
-            top: -90,
-            left: -40,
-            child: _LoginGlowOrb(diameter: 240, color: Color(0x334A90E2)),
-          ),
-          Positioned(
-            right: -90,
-            top: 180,
-            child: _LoginGlowOrb(diameter: 260, color: Color(0x22C7F284)),
-          ),
-          Positioned(
-            left: 50,
-            bottom: -110,
-            child: _LoginGlowOrb(diameter: 220, color: Color(0x22F2A55A)),
+        children: [
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withValues(alpha: 0.035),
+                    Colors.transparent,
+                    Colors.white.withValues(alpha: 0.018),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LoginGlowOrb extends StatelessWidget {
-  const _LoginGlowOrb({required this.diameter, required this.color});
-
-  final double diameter;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        width: diameter,
-        height: diameter,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
-        ),
       ),
     );
   }
@@ -1924,23 +2060,44 @@ class _MyWallTab extends StatefulWidget {
 
 class _MyWallTabState extends State<_MyWallTab> {
   final SupabaseClient _client = Supabase.instance.client;
+  StreamSubscription<AuthState>? _authSubscription;
   bool _loading = true;
   bool _loadFailed = false;
   PublicCollectorEntryState _entryState =
       PublicCollectorEntryState.missingProfile;
   String? _slug;
   int _contentVersion = 0;
+  int _loadVersion = 0;
+  String? _lastUserId;
 
   @override
   void initState() {
     super.initState();
+    _lastUserId = _client.auth.currentUser?.id;
+    _authSubscription = _client.auth.onAuthStateChange.listen((event) {
+      final nextUserId = event.session?.user.id;
+      if (nextUserId == _lastUserId) {
+        return;
+      }
+      _lastUserId = nextUserId;
+      if (mounted) {
+        unawaited(_load());
+      }
+    });
     _load();
+  }
+
+  @override
+  void dispose() {
+    _authSubscription?.cancel();
+    super.dispose();
   }
 
   Future<void> reload() => _load();
 
   Future<void> _load() async {
-    final userId = _client.auth.currentUser?.id ?? '';
+    final loadVersion = ++_loadVersion;
+    final userId = (_client.auth.currentUser?.id ?? '').trim();
     if (mounted) {
       setState(() {
         _loading = true;
@@ -1948,13 +2105,26 @@ class _MyWallTabState extends State<_MyWallTab> {
       });
     }
 
+    if (userId.isEmpty) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+      setState(() {
+        _entryState = PublicCollectorEntryState.missingProfile;
+        _slug = null;
+        _loading = false;
+        _loadFailed = false;
+      });
+      return;
+    }
+
     try {
       final entry = await PublicCollectorService.resolveOwnEntry(
         client: _client,
         userId: userId,
-      );
+      ).timeout(const Duration(seconds: 12));
 
-      if (!mounted) {
+      if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 
@@ -1966,7 +2136,7 @@ class _MyWallTabState extends State<_MyWallTab> {
         _contentVersion++;
       });
     } catch (_) {
-      if (!mounted) {
+      if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 
@@ -2007,6 +2177,8 @@ class _MyWallTabState extends State<_MyWallTab> {
         key: ValueKey('my-wall-${_slug!}-$_contentVersion'),
         slug: _slug!,
         showAppBar: false,
+        embeddedInShell: true,
+        onOpenSettings: () => unawaited(widget.onOpenAccount()),
       );
     }
 

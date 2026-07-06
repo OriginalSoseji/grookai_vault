@@ -1,0 +1,395 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-WORKFLOW-V1",
+  "generated_at": "2026-06-26T20:13:47.894Z",
+  "mode": "plan_only_internal_review_action_workflow",
+  "package_fingerprint_sha256": "7ac114dcbb32b8b28d4712671c4de268decbb24dcbbda7025d2a0a7ae6386835",
+  "audit": {
+    "disposition_status": [
+      {
+        "public_flag_rows": 0,
+        "review_disposition": "review_pending_candidate",
+        "review_status": "pending",
+        "row_count": 1536
+      },
+      {
+        "public_flag_rows": 0,
+        "review_disposition": "monitor_only",
+        "review_status": "resolved",
+        "row_count": 380
+      },
+      {
+        "public_flag_rows": 0,
+        "review_disposition": "review_pending_high_signal",
+        "review_status": "pending",
+        "row_count": 213
+      },
+      {
+        "public_flag_rows": 0,
+        "review_disposition": "review_pending_classification_fix",
+        "review_status": "pending",
+        "row_count": 19
+      },
+      {
+        "public_flag_rows": 0,
+        "review_disposition": "review_pending_reference_only",
+        "review_status": "pending",
+        "row_count": 4
+      }
+    ],
+    "dashboard_queues": [
+      {
+        "dashboard_queue": "reference_only_queue",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 915
+      },
+      {
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 574
+      },
+      {
+        "dashboard_queue": "standard_candidate_review",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 460
+      },
+      {
+        "dashboard_queue": "low_signal_monitor",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 156
+      },
+      {
+        "dashboard_queue": "classification_blocked_queue",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 19
+      },
+      {
+        "dashboard_queue": "unknown_evidence_review",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 18
+      },
+      {
+        "dashboard_queue": "high_signal_candidate_queue",
+        "handoff_candidate_rows": 0,
+        "public_flag_rows": 0,
+        "row_count": 10
+      }
+    ],
+    "blocker_summary": [
+      {
+        "dashboard_queue": "reference_only_queue",
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending",
+        "row_count": 714
+      },
+      {
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending",
+        "row_count": 544
+      },
+      {
+        "dashboard_queue": "reference_only_queue",
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending",
+        "row_count": 197
+      },
+      {
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved",
+        "row_count": 24
+      },
+      {
+        "dashboard_queue": "classification_blocked_queue",
+        "evidence_lane": "classification_blocked",
+        "review_disposition": "review_pending_classification_fix",
+        "review_lane": "classification_review",
+        "review_status": "pending",
+        "row_count": 19
+      },
+      {
+        "dashboard_queue": "unknown_evidence_review",
+        "evidence_lane": "unknown",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending",
+        "row_count": 18
+      },
+      {
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending",
+        "row_count": 6
+      },
+      {
+        "dashboard_queue": "reference_only_queue",
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_reference_only",
+        "review_lane": "reference_only_review",
+        "review_status": "pending",
+        "row_count": 4
+      }
+    ],
+    "handoff_inputs": {
+      "candidate_rows": 260,
+      "high_signal_rows": 10,
+      "potentially_confirmable_rows": 270,
+      "public_flag_rows": 0,
+      "raw_single_rows": 234,
+      "slab_rows": 36
+    },
+    "public_boundary": {
+      "dashboard_public_flag_rows": 0,
+      "disposition_public_flag_rows": 0,
+      "ebay_active_prices_latest_count": 1690,
+      "pricing_observations_count": 0,
+      "public_pricing_view_references": 0
+    }
+  },
+  "action_contract": {
+    "actions": [
+      {
+        "action": "start_review",
+        "from_statuses": [
+          "pending"
+        ],
+        "to_status": "in_review",
+        "to_disposition": "unchanged",
+        "allowed_review_lanes": [
+          "high_signal_review",
+          "candidate_review",
+          "classification_review",
+          "reference_only_review"
+        ],
+        "requires_reason_code": false,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "confirm_internal_candidate",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "resolved",
+        "to_disposition": "review_confirmed_internal_candidate",
+        "allowed_review_lanes": [
+          "high_signal_review",
+          "candidate_review"
+        ],
+        "allowed_evidence_lanes": [
+          "raw_single",
+          "slab"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": true
+      },
+      {
+        "action": "require_split",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "blocked",
+        "to_disposition": "review_split_required",
+        "allowed_evidence_lanes": [
+          "mixed_raw_slab"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "block_evidence",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "blocked",
+        "to_disposition": "review_blocked",
+        "allowed_review_lanes": [
+          "high_signal_review",
+          "candidate_review",
+          "reference_only_review",
+          "low_signal_monitor"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "block_classification",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "blocked",
+        "to_disposition": "review_blocked_classification",
+        "allowed_review_lanes": [
+          "classification_review"
+        ],
+        "allowed_evidence_lanes": [
+          "classification_blocked"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "request_reclassification",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "blocked",
+        "to_disposition": "review_reclassify",
+        "allowed_review_lanes": [
+          "classification_review"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "defer_more_evidence",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "resolved",
+        "to_disposition": "review_defer_more_evidence",
+        "allowed_review_lanes": [
+          "high_signal_review",
+          "candidate_review",
+          "classification_review",
+          "low_signal_monitor"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "reference_crosscheck",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "resolved",
+        "to_disposition": "review_reference_crosscheck",
+        "allowed_review_lanes": [
+          "reference_only_review"
+        ],
+        "allowed_evidence_lanes": [
+          "reference_metric"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "defer_active_market_evidence",
+        "from_statuses": [
+          "pending",
+          "in_review"
+        ],
+        "to_status": "resolved",
+        "to_disposition": "review_defer_active_market_evidence",
+        "allowed_review_lanes": [
+          "reference_only_review"
+        ],
+        "allowed_evidence_lanes": [
+          "reference_metric"
+        ],
+        "requires_reason_code": true,
+        "handoff_candidate_after_action": false
+      },
+      {
+        "action": "confirm_monitor_only",
+        "from_statuses": [
+          "pending",
+          "in_review",
+          "resolved"
+        ],
+        "to_status": "resolved",
+        "to_disposition": "monitor_only",
+        "allowed_review_lanes": [
+          "low_signal_monitor"
+        ],
+        "requires_reason_code": false,
+        "handoff_candidate_after_action": false
+      }
+    ],
+    "reason_codes": [
+      "approved_internal_raw_single_signal",
+      "approved_internal_slab_signal",
+      "mixed_raw_slab_requires_split",
+      "classification_noise",
+      "wrong_identity",
+      "unresolved_match_ambiguity",
+      "lot_bulk_sealed_proxy_noise",
+      "reference_only_no_market_support",
+      "low_signal_sample",
+      "insufficient_source_independence",
+      "stale_signal",
+      "special_lane_ambiguous",
+      "manual_hold"
+    ],
+    "handoff_rules": {
+      "allowed_actions": [
+        "confirm_internal_candidate"
+      ],
+      "allowed_review_lanes": [
+        "high_signal_review",
+        "candidate_review"
+      ],
+      "allowed_evidence_lanes": [
+        "raw_single",
+        "slab"
+      ],
+      "public_flags_must_remain_false": true,
+      "publication_gate_candidate_is_not_set_by_this_workflow": true
+    }
+  },
+  "hashes": {
+    "contract_md_sha256": "25808d09ec42fe5151a912bfff568354e468dd19ca2253b6b79994d3bb35d2bb",
+    "action_policy_sql_sha256": "837f48290b4a476f8437b363973b7f25b4f31e658db5749e94670c70c76200c8",
+    "readback_sql_sha256": "4a4c05b891b1fe6a123776910ee8a6907d87deb5f43f01c4983d172356f14c4a"
+  },
+  "artifacts": {
+    "contract_md": "docs/contracts/MEE_CORE_INTERNAL_REVIEW_ACTION_WORKFLOW_V1.md",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-WORKFLOW-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-WORKFLOW-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_ACTION_WORKFLOW_V1.md",
+    "action_policy_sql": "docs/sql/mee_core_internal_review_action_workflow_v1_action_policy_candidates.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_action_workflow_v1_readback.sql"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

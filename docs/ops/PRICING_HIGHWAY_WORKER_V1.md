@@ -6,6 +6,8 @@ Purpose: always-on runner for `pricing_jobs`, reclaiming stale locks and dispatc
 - Authoritative production runner: `backend/pricing/pricing_job_runner_v1.mjs`
 - Authoritative production command:
   `npm run pricing:worker --prefix backend`
+- Repo-root single-run alias:
+  `npm run worker:import-prices`
 - Authoritative queue semantics source of truth:
   `backend/pricing/pricing_job_runner_v1.mjs`
 - Claim model:
@@ -32,6 +34,7 @@ Purpose: always-on runner for `pricing_jobs`, reclaiming stale locks and dispatc
 - Claims pending pricing_jobs oldest-first; reclaims stale running jobs older than lock-ttl-ms (default 10m).
 - Increments attempts, sets running/started_at, clears locks on completion/failure.
 - Runs pricing via `pricing/ebay_browse_prices_worker.mjs --card-print-id <id>`.
+- Resolves the pricing child worker relative to `backend/`, so repo-root and backend-directory invocations use the same child path.
 - Backoff 1s after failures; idle sleep default 1500ms.
 - Enforces a shared daily Browse API budget before outbound eBay Browse calls are made.
 - Requeues quota-blocked jobs as retryable/pending and pauses daemon job starts until the next UTC budget window.

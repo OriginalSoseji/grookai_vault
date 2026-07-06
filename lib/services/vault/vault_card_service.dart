@@ -5,6 +5,18 @@ import '../../utils/display_image_contract.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
+class _InterestGraphCompletionSnapshot {
+  const _InterestGraphCompletionSnapshot({
+    required this.subjectType,
+    required this.subjectId,
+    required this.completionPercent,
+  });
+
+  final String subjectType;
+  final String subjectId;
+  final int completionPercent;
+}
+
 class VaultCardIdentity {
   const VaultCardIdentity({
     required this.cardId,
@@ -189,6 +201,21 @@ class VaultManageCardCopy {
   final String? certNumber;
   final bool isGraded;
 
+  VaultManageCardCopy copyWith({String? intent}) {
+    return VaultManageCardCopy(
+      instanceId: instanceId,
+      gvviId: gvviId,
+      conditionLabel: conditionLabel,
+      intent: intent ?? this.intent,
+      note: note,
+      createdAt: createdAt,
+      grader: grader,
+      grade: grade,
+      certNumber: certNumber,
+      isGraded: isGraded,
+    );
+  }
+
   factory VaultManageCardCopy.fromJson(Map<String, dynamic> json) {
     final grader = _trimmedOrNull(json['grade_company']);
     final gradeValue = _trimmedOrNull(json['grade_value']);
@@ -213,6 +240,29 @@ class VaultManageCardCopy {
       grade: gradeLabel ?? gradeValue,
       certNumber: certNumber,
       isGraded: isGraded,
+    );
+  }
+}
+
+class VaultManageCopySectionMembership {
+  const VaultManageCopySectionMembership({
+    required this.id,
+    required this.name,
+    required this.position,
+    required this.isMember,
+  });
+
+  final String id;
+  final String name;
+  final int position;
+  final bool isMember;
+
+  VaultManageCopySectionMembership copyWith({bool? isMember}) {
+    return VaultManageCopySectionMembership(
+      id: id,
+      name: name,
+      position: position,
+      isMember: isMember ?? this.isMember,
     );
   }
 }
@@ -488,6 +538,11 @@ class VaultCardService {
   }) async {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
     debugPrint('vault.mobile.add.begin: $cardId');
+    final completionBefore = await _fetchInterestGraphCompletionSnapshot(
+      client: client,
+      userId: userId,
+      cardPrintId: cardId,
+    );
 
     final response = await client.functions.invoke(
       'vault-add-card-instance-v1',
@@ -521,11 +576,97 @@ class VaultCardService {
     if (result is Map<String, dynamic>) {
       final gvviId = (result['gv_vi_id'] ?? '').toString();
       if (gvviId.isNotEmpty) {
+        await _emitInterestGraphCompletionCrossings(
+          client: client,
+          userId: userId,
+          cardPrintId: cardId,
+          previous: completionBefore,
+        );
         return gvviId;
       }
     }
 
+    await _emitInterestGraphCompletionCrossings(
+      client: client,
+      userId: userId,
+      cardPrintId: cardId,
+      previous: completionBefore,
+    );
     return '';
+  }
+
+  static Future<Map<String, _InterestGraphCompletionSnapshot>>
+  _fetchInterestGraphCompletionSnapshot({
+    required SupabaseClient client,
+    required String userId,
+    required String cardPrintId,
+  }) async {
+    try {
+      final raw = await client.rpc(
+        'interest_graph_completion_snapshot_for_card_v1',
+        params: {'p_user_id': userId, 'p_card_print_id': cardPrintId},
+      );
+      if (raw is! List) {
+        return const <String, _InterestGraphCompletionSnapshot>{};
+      }
+
+      final snapshots = <String, _InterestGraphCompletionSnapshot>{};
+      for (final item in raw) {
+        if (item is! Map) continue;
+        final row = Map<String, dynamic>.from(item);
+        final subjectType = _trimmedOrNull(row['subject_type']);
+        final subjectId = _trimmedOrNull(row['subject_id']);
+        final percentRaw = row['completion_percent'];
+        final percent = percentRaw is num
+            ? percentRaw.toInt()
+            : int.tryParse(percentRaw?.toString() ?? '');
+        if (subjectType == null || subjectId == null || percent == null) {
+          continue;
+        }
+        snapshots['$subjectType:$subjectId'] = _InterestGraphCompletionSnapshot(
+          subjectType: subjectType,
+          subjectId: subjectId,
+          completionPercent: percent.clamp(0, 100),
+        );
+      }
+      return snapshots;
+    } catch (error) {
+      debugPrint('interest_graph.completion_snapshot.failed: $error');
+      return const <String, _InterestGraphCompletionSnapshot>{};
+    }
+  }
+
+  static Future<void> _emitInterestGraphCompletionCrossings({
+    required SupabaseClient client,
+    required String userId,
+    required String cardPrintId,
+    required Map<String, _InterestGraphCompletionSnapshot> previous,
+  }) async {
+    try {
+      final next = await _fetchInterestGraphCompletionSnapshot(
+        client: client,
+        userId: userId,
+        cardPrintId: cardPrintId,
+      );
+      for (final entry in next.entries) {
+        final priorPercent = previous[entry.key]?.completionPercent ?? 0;
+        final nextSnapshot = entry.value;
+        if (nextSnapshot.completionPercent <= priorPercent) continue;
+        await client.rpc(
+          'card_events_emit_completion_crossings_v1',
+          params: {
+            'p_user_id': userId,
+            'p_subject_type': nextSnapshot.subjectType,
+            'p_subject_id': nextSnapshot.subjectId,
+            'p_previous_percent': priorPercent,
+            'p_next_percent': nextSnapshot.completionPercent,
+            'p_payload': {'card_print_id': cardPrintId, 'source': 'vault_add'},
+          },
+        );
+      }
+    } catch (error) {
+      debugPrint('interest_graph.completion_crossing.failed: $error');
+    }
   }
 
   static Future<VaultOwnedCopyTarget?> resolveLatestOwnedCopyTarget({
@@ -828,9 +969,9 @@ class VaultCardService {
     return true;
   }
 
-  static Future<String> saveVaultItemIntent({
+  static Future<String> saveVaultItemInstanceIntent({
     required SupabaseClient client,
-    required String vaultItemId,
+    required String instanceId,
     required String intent,
   }) async {
     final userId = client.auth.currentUser?.id;
@@ -838,184 +979,342 @@ class VaultCardService {
       throw Exception('Sign in required.');
     }
 
-    final normalizedItemId = _trimmedOrNull(vaultItemId);
-    if (normalizedItemId == null) {
-      throw Exception('Vault card is missing grouped identity.');
+    final normalizedInstanceId = _trimmedOrNull(instanceId);
+    if (normalizedInstanceId == null) {
+      throw Exception('Vault copy is missing exact identity.');
     }
 
     final nextIntent = normalizeVaultIntentValue(intent);
-    // LOCK: Intent authority is instance-level (vault_item_instances.intent).
-    // LOCK: Do not write grouped intent for public discoverability.
-    final data = await client
+    // LOCK: Copy intent authority is exact-copy level.
+    // LOCK: Do not write grouped vault_items or shared_cards from copy rows.
+    final row = await client
         .from('vault_item_instances')
         .update({'intent': nextIntent})
-        .eq('legacy_vault_item_id', normalizedItemId)
+        .eq('id', normalizedInstanceId)
         .eq('user_id', userId)
         .filter('archived_at', 'is', null)
+        .select('id,intent')
+        .maybeSingle();
+
+    if (row == null) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    final savedIntent = normalizeVaultIntentValue(row['intent']);
+    if (savedIntent != nextIntent) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    return savedIntent;
+  }
+
+  static Future<String> saveVaultItemInstancesIntentBulk({
+    required SupabaseClient client,
+    required Iterable<String> instanceIds,
+    required String intent,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    final normalizedInstanceIds = instanceIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedInstanceIds.isEmpty) {
+      throw Exception('Choose at least one copy.');
+    }
+
+    final nextIntent = normalizeVaultIntentValue(intent);
+    // LOCK: Bulk copy intent authority is exact-copy level.
+    // LOCK: Do not write grouped vault_items or shared_cards from bulk copy actions.
+    final ownedRows = await client
+        .from('vault_item_instances')
+        .select('id,user_id,archived_at')
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .inFilter('id', normalizedInstanceIds);
+
+    if ((ownedRows as List<dynamic>).length != normalizedInstanceIds.length) {
+      throw Exception('Selected copies could not be updated.');
+    }
+
+    final updatedRows = await client
+        .from('vault_item_instances')
+        .update({'intent': nextIntent})
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .inFilter('id', normalizedInstanceIds)
         .select('id,intent');
 
-    if (data.isEmpty) {
-      throw Exception('Vault intent could not be saved.');
+    if ((updatedRows as List<dynamic>).length != normalizedInstanceIds.length) {
+      throw Exception('Selected copies could not be updated.');
     }
 
     return nextIntent;
   }
 
-  static Future<String?> saveSharedCardWallCategory({
+  static Future<Map<String, List<VaultManageCopySectionMembership>>>
+  loadCopySectionMemberships({
     required SupabaseClient client,
-    required String cardPrintId,
-    String? wallCategory,
+    required Iterable<String> instanceIds,
   }) async {
     final userId = client.auth.currentUser?.id;
     if (userId == null || userId.isEmpty) {
-      throw Exception('Sign in required.');
+      return const <String, List<VaultManageCopySectionMembership>>{};
     }
 
-    final nextWallCategory = normalizeWallCategory(wallCategory);
-    final rawWallCategory = (wallCategory ?? '').trim();
-    if (rawWallCategory.isNotEmpty && nextWallCategory == null) {
-      throw Exception('Invalid wall category.');
+    final normalizedInstanceIds = instanceIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedInstanceIds.isEmpty) {
+      return const <String, List<VaultManageCopySectionMembership>>{};
     }
 
-    final sharedRow = await client
-        .from('shared_cards')
-        .select('id')
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId)
-        .maybeSingle();
-
-    if (sharedRow == null) {
-      throw Exception(
-        'Add this card to your wall before assigning a category.',
-      );
-    }
-
-    await client
-        .from('shared_cards')
-        .update({'wall_category': nextWallCategory})
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId);
-
-    return nextWallCategory;
-  }
-
-  static Future<String?> saveSharedCardPublicNote({
-    required SupabaseClient client,
-    required String cardPrintId,
-    required String note,
-  }) async {
-    final userId = client.auth.currentUser?.id;
-    if (userId == null || userId.isEmpty) {
-      throw Exception('Sign in required.');
-    }
-
-    final sharedRow = await client
-        .from('shared_cards')
-        .select('id')
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId)
-        .maybeSingle();
-
-    if (sharedRow == null) {
-      throw Exception(
-        'Add this card to your wall before adding a public note.',
-      );
-    }
-
-    final nextPublicNote = _trimmedOrNull(note);
-    await client
-        .from('shared_cards')
-        .update({'public_note': nextPublicNote})
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId);
-
-    return nextPublicNote;
-  }
-
-  static Future<
-    ({
-      String? priceDisplayMode,
-      double? askingPriceAmount,
-      String? askingPriceCurrency,
-    })
-  >
-  saveSharedCardPriceDisplay({
-    required SupabaseClient client,
-    required String cardPrintId,
-    required String priceDisplayMode,
-    String? primarySharedGvviId,
-    double? askingPriceAmount,
-    String? askingPriceCurrency,
-  }) async {
-    final userId = client.auth.currentUser?.id;
-    if (userId == null || userId.isEmpty) {
-      throw Exception('Sign in required.');
-    }
-
-    final nextMode = normalizeSharedCardPriceDisplayMode(priceDisplayMode);
-    if (nextMode == null) {
-      throw Exception('Invalid price display mode.');
-    }
-
-    final sharedRow = await client
-        .from('shared_cards')
-        .select('id')
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId)
-        .maybeSingle();
-
-    if (sharedRow == null) {
-      throw Exception(
-        'Add this card to your wall before choosing how price is shown.',
-      );
-    }
-
-    await client
-        .from('shared_cards')
-        .update({'price_display_mode': nextMode})
-        .eq('user_id', userId)
-        .eq('card_id', cardPrintId);
-
-    if (nextMode != 'my_price') {
-      return (
-        priceDisplayMode: nextMode,
-        askingPriceAmount: null,
-        askingPriceCurrency: null,
-      );
-    }
-
-    final normalizedGvviId = _trimmedOrNull(primarySharedGvviId);
-    final normalizedAmount = _toMoney(askingPriceAmount);
-    final normalizedCurrency = _normalizeCurrency(askingPriceCurrency) ?? 'USD';
-    if (normalizedGvviId == null || normalizedAmount == null) {
-      throw Exception('My Price requires a valid amount on an exact copy.');
-    }
-
-    final updated = await client
+    final ownershipRows = await client
         .from('vault_item_instances')
-        .update({
-          'pricing_mode': 'asking',
-          'asking_price_amount': normalizedAmount,
-          'asking_price_currency': normalizedCurrency,
-        })
+        .select('id,user_id,archived_at')
         .eq('user_id', userId)
-        .eq('gv_vi_id', normalizedGvviId)
         .filter('archived_at', 'is', null)
-        .select('asking_price_amount,asking_price_currency')
-        .maybeSingle();
-
-    if (updated == null) {
-      throw Exception('Pricing could not be saved.');
+        .inFilter('id', normalizedInstanceIds);
+    final ownedInstanceIds = (ownershipRows as List<dynamic>)
+        .map((row) => _trimmedOrNull((row as Map)['id']))
+        .whereType<String>()
+        .toSet();
+    if (ownedInstanceIds.isEmpty) {
+      return const <String, List<VaultManageCopySectionMembership>>{};
     }
 
-    return (
-      priceDisplayMode: nextMode,
-      askingPriceAmount:
-          _toMoney(updated['asking_price_amount']) ?? normalizedAmount,
-      askingPriceCurrency:
-          _normalizeCurrency(updated['asking_price_currency']) ??
-          normalizedCurrency,
+    final results = await Future.wait<dynamic>([
+      client
+          .from('wall_sections')
+          .select('id,name,position,is_active')
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .order('position', ascending: true)
+          .order('created_at', ascending: true),
+      client
+          .from('wall_section_memberships')
+          .select('section_id,vault_item_instance_id')
+          .inFilter('vault_item_instance_id', ownedInstanceIds.toList()),
+    ]);
+
+    final sectionRows = (results[0] as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .where((row) {
+          return _trimmedOrNull(row['id']) != null &&
+              _trimmedOrNull(row['name']) != null &&
+              row['is_active'] == true;
+        })
+        .toList(growable: false);
+    final membershipPairs = (results[1] as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .map(
+          (row) =>
+              '${_trimmedOrNull(row['vault_item_instance_id']) ?? ''}:${_trimmedOrNull(row['section_id']) ?? ''}',
+        )
+        .where((value) => !value.endsWith(':') && !value.startsWith(':'))
+        .toSet();
+
+    return <String, List<VaultManageCopySectionMembership>>{
+      for (final instanceId in ownedInstanceIds)
+        instanceId: sectionRows
+            .map((row) {
+              final sectionId = _trimmedOrNull(row['id'])!;
+              return VaultManageCopySectionMembership(
+                id: sectionId,
+                name: _trimmedOrNull(row['name'])!,
+                position: _toInt(row['position']) ?? 0,
+                isMember: membershipPairs.contains('$instanceId:$sectionId'),
+              );
+            })
+            .toList(growable: false),
+    };
+  }
+
+  static Future<void> assignCopySectionMembership({
+    required SupabaseClient client,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    final normalizedInstanceId = _trimmedOrNull(instanceId);
+    final normalizedSectionId = _trimmedOrNull(sectionId);
+    if (userId == null ||
+        userId.isEmpty ||
+        normalizedInstanceId == null ||
+        normalizedSectionId == null ||
+        normalizedSectionId.toLowerCase() == 'wall') {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    await _assertOwnedSectionTarget(
+      client: client,
+      userId: userId,
+      instanceId: normalizedInstanceId,
+      sectionId: normalizedSectionId,
     );
+
+    final existing = await client
+        .from('wall_section_memberships')
+        .select('section_id')
+        .eq('vault_item_instance_id', normalizedInstanceId)
+        .eq('section_id', normalizedSectionId)
+        .maybeSingle();
+    if (existing != null) {
+      return;
+    }
+
+    // LOCK: Grouped card row section assignment is exact-copy only.
+    // LOCK: Do not write shared_cards or grouped vault_items.
+    await client.from('wall_section_memberships').insert({
+      'section_id': normalizedSectionId,
+      'vault_item_instance_id': normalizedInstanceId,
+    });
+  }
+
+  static Future<void> removeCopySectionMembership({
+    required SupabaseClient client,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    final normalizedInstanceId = _trimmedOrNull(instanceId);
+    final normalizedSectionId = _trimmedOrNull(sectionId);
+    if (userId == null ||
+        userId.isEmpty ||
+        normalizedInstanceId == null ||
+        normalizedSectionId == null ||
+        normalizedSectionId.toLowerCase() == 'wall') {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    await _assertOwnedSectionTarget(
+      client: client,
+      userId: userId,
+      instanceId: normalizedInstanceId,
+      sectionId: normalizedSectionId,
+    );
+
+    // LOCK: Grouped card row section removal is exact-copy only.
+    // LOCK: Do not write shared_cards or grouped vault_items.
+    await client
+        .from('wall_section_memberships')
+        .delete()
+        .eq('vault_item_instance_id', normalizedInstanceId)
+        .eq('section_id', normalizedSectionId);
+  }
+
+  static Future<void> bulkCopySectionMembership({
+    required SupabaseClient client,
+    required Iterable<String> instanceIds,
+    required String sectionId,
+    required bool add,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    final normalizedSectionId = _trimmedOrNull(sectionId);
+    final normalizedInstanceIds = instanceIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (userId == null ||
+        userId.isEmpty ||
+        normalizedSectionId == null ||
+        normalizedSectionId.toLowerCase() == 'wall' ||
+        normalizedInstanceIds.isEmpty) {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    final results = await Future.wait<dynamic>([
+      client
+          .from('vault_item_instances')
+          .select('id,user_id,archived_at')
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .inFilter('id', normalizedInstanceIds),
+      client
+          .from('wall_sections')
+          .select('id,user_id,is_active')
+          .eq('id', normalizedSectionId)
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .maybeSingle(),
+    ]);
+
+    final ownedRows = results[0] as List<dynamic>;
+    if (ownedRows.length != normalizedInstanceIds.length ||
+        results[1] == null) {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    if (add) {
+      final existingRows = await client
+          .from('wall_section_memberships')
+          .select('section_id,vault_item_instance_id')
+          .eq('section_id', normalizedSectionId)
+          .inFilter('vault_item_instance_id', normalizedInstanceIds);
+      final existingInstanceIds = (existingRows as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .map((row) => _trimmedOrNull(row['vault_item_instance_id']))
+          .whereType<String>()
+          .toSet();
+      final rowsToInsert = normalizedInstanceIds
+          .where((id) => !existingInstanceIds.contains(id))
+          .map(
+            (id) => {
+              'section_id': normalizedSectionId,
+              'vault_item_instance_id': id,
+            },
+          )
+          .toList(growable: false);
+
+      if (rowsToInsert.isNotEmpty) {
+        // LOCK: Bulk grouped-card section assignment is exact-copy only.
+        // LOCK: Do not write shared_cards or grouped vault_items.
+        await client.from('wall_section_memberships').insert(rowsToInsert);
+      }
+    } else {
+      // LOCK: Bulk grouped-card section removal is exact-copy only.
+      // LOCK: Do not write shared_cards or grouped vault_items.
+      await client
+          .from('wall_section_memberships')
+          .delete()
+          .eq('section_id', normalizedSectionId)
+          .inFilter('vault_item_instance_id', normalizedInstanceIds);
+    }
+  }
+
+  static Future<void> _assertOwnedSectionTarget({
+    required SupabaseClient client,
+    required String userId,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final results = await Future.wait<dynamic>([
+      client
+          .from('vault_item_instances')
+          .select('id,user_id,archived_at')
+          .eq('id', instanceId)
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .maybeSingle(),
+      client
+          .from('wall_sections')
+          .select('id,user_id,is_active')
+          .eq('id', sectionId)
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .maybeSingle(),
+    ]);
+
+    if (results[0] == null || results[1] == null) {
+      throw Exception('Section assignment could not be saved.');
+    }
   }
 
   static Future<Map<String, dynamic>?> _loadSharedCardRow({
@@ -1288,6 +1587,16 @@ double? _toMoney(dynamic value) {
     return null;
   }
   return double.parse(parsed.toStringAsFixed(2));
+}
+
+int? _toInt(dynamic value) {
+  if (value is int) {
+    return value;
+  }
+  if (value is num) {
+    return value.toInt();
+  }
+  return int.tryParse((value ?? '').toString().trim());
 }
 
 String _deriveManageCardIntent({required List<VaultManageCardCopy> copies}) {

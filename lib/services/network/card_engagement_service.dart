@@ -142,16 +142,20 @@ class CardEngagementService {
       return;
     }
 
-    await client.from('card_feed_events').insert({
+    final payload = <String, dynamic>{
       'user_id': userId,
       'card_print_id': normalizedCardPrintId,
       'event_type': normalizedEventType,
       if (normalizedSurface.isNotEmpty) 'surface': normalizedSurface,
       if (normalizedSourceBucket.isNotEmpty)
         'source_bucket': normalizedSourceBucket,
-      if (normalizedPosition != null) 'position': normalizedPosition,
       'metadata': _normalizedMetadata(metadata),
-    });
+    };
+    if (normalizedPosition != null) {
+      payload['position'] = normalizedPosition;
+    }
+
+    await client.from('card_feed_events').insert(payload);
   }
 
   static Future<void> recordImpression({
@@ -226,14 +230,18 @@ class CardEngagementService {
       throw Exception('Comments must be 2000 characters or fewer.');
     }
 
+    final payload = <String, dynamic>{
+      'card_print_id': normalizedCardPrintId,
+      'user_id': userId,
+      'body': normalizedBody,
+    };
+    if (normalizedIntentType != null) {
+      payload['intent_type'] = normalizedIntentType;
+    }
+
     final response = await client
         .from('card_comments')
-        .insert({
-          'card_print_id': normalizedCardPrintId,
-          'user_id': userId,
-          'body': normalizedBody,
-          if (normalizedIntentType != null) 'intent_type': normalizedIntentType,
-        })
+        .insert(payload)
         .select('id,user_id,body,intent_type,created_at')
         .single();
 

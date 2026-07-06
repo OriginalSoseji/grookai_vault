@@ -1,0 +1,61 @@
+{
+  "package_id": "MARKET-REFERENCE-REMAINING-SINGLE-SOURCE-EXACT-SOURCE-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-25T21:11:40.482Z",
+  "mode": "dry_run_report_only",
+  "package_fingerprint_sha256": "e30ba7d70ec8227723909fce6676978a13de1cddc9034fb165509dafe56bac34",
+  "source_backfill_plan_fingerprint_sha256": "7c9daf3aa23a5c366a12cc60add9c079d1a3e106c083f854d4551df4be0c1be0",
+  "active_listing_schema_migration_hash_sha256": "9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807",
+  "active_listing_schema_package_fingerprint_sha256": "90dd41c35fe3bdeba555951963c57ad04b5970940d561adc3eedc3a23f22e7ab",
+  "candidate_evidence_manifest_hash_sha256": "18a642c2731441f83dfcd2908e375af0ad3fd62211eb6ca6e8088cc7c4e4e168",
+  "source_package_fingerprint_sha256": "aa015df3496947b1bc31c028c5c0fca848fccf85c129b94ddc80ef39c84aa077",
+  "proposed_table_row_counts": {
+    "market_reference_candidates": 15,
+    "market_reference_normalized_evidence": 0
+  },
+  "row_hashes": {
+    "candidate_rows_hash": "7fa39ce377dab994dcee64b25a0b30b18899679801e7cad5cfa4ea24d3e3817c"
+  },
+  "input_artifacts": {
+    "fetch_artifact": "docs/audits/market_evidence_engine_v1/mee_09q_remaining_single_source_exact_source_fetch_2026-06-25T20-28-26-034Z.json",
+    "migration": "supabase/migrations/20260625020000_market_reference_active_listing_warehouse_schema_v1.sql"
+  },
+  "remote_collision_summary": {
+    "checked": true,
+    "candidate_hashes_checked": 15,
+    "candidate_hash_collisions": 0,
+    "collision_samples": []
+  },
+  "remote_schema_summary": {
+    "checked": false,
+    "reason": "Could not find the function public.exec_sql(sql) in the schema cache"
+  },
+  "remote_row_count_summary": {
+    "checked": true,
+    "ebay_active_candidate_rows": 0
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false,
+    "price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "approval_required": true,
+  "approval_text_matched": false,
+  "findings": [],
+  "ready_for_apply": true,
+  "applied": false,
+  "apply_result": null,
+  "approval_prompt_for_apply": "Approve real MARKET-REFERENCE-REMAINING-SINGLE-SOURCE-EXACT-SOURCE-BACKFILL-APPLY-V1 apply only. Package fingerprint: e30ba7d70ec8227723909fce6676978a13de1cddc9034fb165509dafe56bac34. Candidate evidence manifest hash: 18a642c2731441f83dfcd2908e375af0ad3fd62211eb6ca6e8088cc7c4e4e168. Source package fingerprint: aa015df3496947b1bc31c028c5c0fca848fccf85c129b94ddc80ef39c84aa077. Active-listing schema migration hash: 9c3b473529416edf0798d510469e924b1b2da3229af960fd06de4954438ff807. Scope: insert 15 reviewed ebay_active active-listing candidate rows into market_reference_candidates only from MEE-09Q local fetched evidence. No raw snapshot writes. No normalized evidence writes. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply."
+}

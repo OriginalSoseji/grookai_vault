@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Grookai Market Evidence Engine Nightly Worker daily
+
+[Timer]
+OnCalendar=*-*-* 03:15:00
+Persistent=true
+RandomizedDelaySec=900
+Unit=grookai-mee-nightly.service
+
+[Install]
+WantedBy=timers.target

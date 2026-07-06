@@ -203,7 +203,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                       resultsTitle,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.45,
+                        letterSpacing: 0,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -382,7 +382,7 @@ class _CollectorRowTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                          letterSpacing: -0.2,
+                          letterSpacing: 0,
                         ),
                       ),
                       const SizedBox(height: 3),

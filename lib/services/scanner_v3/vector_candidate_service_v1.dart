@@ -141,6 +141,15 @@ class ScannerV3VectorCandidateServiceV1 {
       );
     }
 
+    final payload = <String, Object?>{
+      'embedding': embedding,
+      'top_k': requestedTopK,
+      'mode': 'scanner_v3_option_a_vector_v1',
+    };
+    if (queryCropType != null) {
+      payload['query_crop_type'] = queryCropType;
+    }
+
     final response = await _client
         .post(
           uri,
@@ -148,12 +157,7 @@ class ScannerV3VectorCandidateServiceV1 {
             'content-type': 'application/json',
             'accept': 'application/json',
           },
-          body: jsonEncode(<String, Object?>{
-            'embedding': embedding,
-            'top_k': requestedTopK,
-            'mode': 'scanner_v3_option_a_vector_v1',
-            if (queryCropType != null) 'query_crop_type': queryCropType,
-          }),
+          body: jsonEncode(payload),
         )
         .timeout(timeout);
 

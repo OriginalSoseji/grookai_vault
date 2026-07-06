@@ -1,0 +1,119 @@
+{
+  "id": "col1-18",
+  "name": "Pachirisu",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "60",
+  "types": [
+    "Lightning"
+  ],
+  "abilities": [
+    {
+      "name": "Self-Generation",
+      "text": "Once during your turn, when you put Pachirisu from your hand onto your Bench, you may attach up to 2 Lightning Energy cards from your hand to Pachirisu.",
+      "type": "Poké-Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Shocking Bolt",
+      "cost": [
+        "Lightning",
+        "Lightning"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "50",
+      "text": "Put all Energy cards attached to Pachirisu in the Lost Zone."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Metal",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "18",
+  "artist": "Noriko Hotta",
+  "rarity": "Rare Holo",
+  "flavorText": "It's one of the kinds of Pokémon with electric cheek pouches. It shoots charges from its tail.",
+  "nationalPokedexNumbers": [
+    417
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/18.png",
+    "large": "https://images.pokemontcg.io/col1/18_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/col1-18",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 4.46,
+        "mid": 5.5,
+        "high": 69.89,
+        "market": 7.88,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 7.75,
+        "mid": 11,
+        "high": 202,
+        "market": 14.75,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-18",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 8.11,
+      "lowPrice": 1.01,
+      "trendPrice": 7.91,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 3.44,
+      "reverseHoloLow": 1.01,
+      "reverseHoloTrend": 9.14,
+      "lowPriceExPlus": 2.5,
+      "avg1": 7.47,
+      "avg7": 7.96,
+      "avg30": 7.96,
+      "reverseHoloAvg1": 17.5,
+      "reverseHoloAvg7": 7.02,
+      "reverseHoloAvg30": 7.19
+    }
+  }
+}

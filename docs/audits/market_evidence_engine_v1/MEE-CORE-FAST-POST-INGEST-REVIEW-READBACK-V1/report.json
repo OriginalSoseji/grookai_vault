@@ -1,0 +1,189 @@
+{
+  "package_id": "MEE-CORE-FAST-POST-INGEST-REVIEW-READBACK-V1",
+  "current_status": [
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": false,
+      "review_disposition": "review_split_required",
+      "review_lane": "candidate_review",
+      "review_status": "blocked",
+      "rows": 544
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "review_blocked",
+      "review_lane": "candidate_review",
+      "review_status": "blocked",
+      "rows": 179
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "review_defer_more_evidence",
+      "review_lane": "candidate_review",
+      "review_status": "resolved",
+      "rows": 45
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": false,
+      "review_disposition": "review_defer_more_evidence",
+      "review_lane": "candidate_review",
+      "review_status": "resolved",
+      "rows": 714
+    },
+    {
+      "evidence_lane": "slab",
+      "needs_review": false,
+      "review_disposition": "review_blocked",
+      "review_lane": "candidate_review",
+      "review_status": "blocked",
+      "rows": 34
+    },
+    {
+      "evidence_lane": "slab",
+      "needs_review": false,
+      "review_disposition": "review_defer_more_evidence",
+      "review_lane": "candidate_review",
+      "review_status": "resolved",
+      "rows": 2
+    },
+    {
+      "evidence_lane": "unknown",
+      "needs_review": false,
+      "review_disposition": "review_blocked",
+      "review_lane": "candidate_review",
+      "review_status": "blocked",
+      "rows": 18
+    },
+    {
+      "evidence_lane": "classification_blocked",
+      "needs_review": false,
+      "review_disposition": "review_reclassify",
+      "review_lane": "classification_review",
+      "review_status": "blocked",
+      "rows": 19
+    },
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": false,
+      "review_disposition": "review_split_required",
+      "review_lane": "high_signal_review",
+      "review_status": "blocked",
+      "rows": 6
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "review_blocked",
+      "review_lane": "high_signal_review",
+      "review_status": "blocked",
+      "rows": 8
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "review_defer_more_evidence",
+      "review_lane": "high_signal_review",
+      "review_status": "resolved",
+      "rows": 2
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": false,
+      "review_disposition": "review_defer_more_evidence",
+      "review_lane": "high_signal_review",
+      "review_status": "resolved",
+      "rows": 197
+    },
+    {
+      "evidence_lane": "low_signal",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 156
+    },
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 24
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 144
+    },
+    {
+      "evidence_lane": "slab",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 56
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": false,
+      "review_disposition": "review_defer_active_market_evidence",
+      "review_lane": "reference_only_review",
+      "review_status": "resolved",
+      "rows": 4
+    }
+  ],
+  "public_boundary": {
+    "app_visible_rows": 0,
+    "can_publish_price_directly_rows": 0,
+    "market_truth_rows": 0,
+    "publication_gate_candidate_rows": 0,
+    "publishable_rows": 0
+  },
+  "object_counts": {
+    "lifecycle_event_rows": 1362641,
+    "lifecycle_observation_rows": 194663,
+    "pricing_observations_count": 0,
+    "public_pricing_view_market_evidence_references": 0,
+    "review_action_event_rows": 2152,
+    "review_disposition_rows": 2152
+  },
+  "summary": {
+    "remaining_safe_internal_action_rows": 0,
+    "reviewer_candidate_rows": 0,
+    "reference_policy_hold_rows": 0,
+    "unknown_evidence_rows": 0,
+    "split_required_rows": 550,
+    "classification_blocked_rows": 19,
+    "monitor_resolved_rows": 380,
+    "next_recommendation": "No safe internal review batch remains. Next work is policy/manual review handling for candidate, reference, and unknown evidence lanes."
+  },
+  "findings": [],
+  "sql_sha256": "6b61d9777ccd9016a56b7e5bedf1452eff87e31d0d8131b446c1fd634bfe24d8",
+  "generated_at": "2026-06-27T14:04:09.986Z",
+  "mode": "read_only_fast_post_ingest_review_readback",
+  "package_fingerprint_sha256": "745d9e4ef336e2968de6aa6ada651fdd6ce2a30e1b032af289f3702de1163f55",
+  "boundary_proof": {
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

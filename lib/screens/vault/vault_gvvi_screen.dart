@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
@@ -13,7 +14,9 @@ import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
+import '../../widgets/gv_chip.dart';
 import '../gvvi/public_gvvi_screen.dart';
+import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
 import 'vault_manage_card_screen.dart';
 
@@ -64,6 +67,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       const <VaultGvviSectionMembership>[];
   bool _loading = true;
   bool _savingNotes = false;
+  bool _savingIntent = false;
+  bool _creatingSection = false;
   String? _busySectionId;
   bool _busyFrontMedia = false;
   bool _busyBackMedia = false;
@@ -338,6 +343,72 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     });
   }
 
+  Future<void> _sharePublicLink() async {
+    final data = _data;
+    if (data == null || !data.canOpenPublicPage) {
+      return;
+    }
+
+    final uri = GrookaiWebRouteService.buildUri(_publicGvviPath(data.gvviId));
+    await SharePlus.instance.share(
+      ShareParams(uri: uri, subject: data.cardName),
+    );
+  }
+
+  Future<void> _openPublicWall() async {
+    final slug = (_data?.publicSlug ?? '').trim();
+    if (slug.isEmpty) {
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PublicCollectorScreen(slug: slug),
+      ),
+    );
+  }
+
+  Future<void> _openPublicSection(VaultGvviSectionMembership section) async {
+    final slug = (_data?.publicSlug ?? '').trim();
+    if (slug.isEmpty || !section.isMember) {
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            PublicCollectorScreen(slug: slug, initialSectionId: section.id),
+      ),
+    );
+  }
+
+  Future<void> _copyPublicPreviewLink(String path, String label) async {
+    final uri = GrookaiWebRouteService.buildUri(path);
+    await Clipboard.setData(ClipboardData(text: uri.toString()));
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _status = '$label link copied.';
+    });
+  }
+
+  static String _publicGvviPath(String gvviId) {
+    return '/gvvi/${Uri.encodeComponent(gvviId)}';
+  }
+
+  static String _publicWallPath(String slug) {
+    return '/u/${Uri.encodeComponent(slug.trim().toLowerCase())}';
+  }
+
+  static String _publicSectionPath({
+    required String slug,
+    required String sectionId,
+  }) {
+    return '${_publicWallPath(slug)}/section/${Uri.encodeComponent(sectionId)}';
+  }
+
   Future<void> _saveNotes() async {
     final data = _data;
     if (data == null || data.isArchived || _savingNotes) {
@@ -369,6 +440,50 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       }
       setState(() {
         _savingNotes = false;
+        _status = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<void> _saveIntent(String nextIntent) async {
+    final data = _data;
+    if (data == null ||
+        data.isArchived ||
+        _savingIntent ||
+        nextIntent == data.intent) {
+      return;
+    }
+
+    setState(() {
+      _savingIntent = true;
+      _status = null;
+    });
+
+    try {
+      final savedIntent = await VaultGvviService.saveIntent(
+        client: _client,
+        instanceId: data.instanceId,
+        intent: nextIntent,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _data = data.copyWith(
+          intent: savedIntent,
+          isSharedOnWall: savedIntent != 'hold',
+        );
+        _savingIntent = false;
+        _status = savedIntent == 'hold'
+            ? 'Copy is private.'
+            : 'Copy is public on your Wall.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _savingIntent = false;
         _status = error.toString().replaceFirst('Exception: ', '');
       });
     }
@@ -423,6 +538,92 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       }
       setState(() {
         _busySectionId = null;
+        _status = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<void> _createAndAssignSection() async {
+    final data = _data;
+    if (data == null ||
+        data.isArchived ||
+        _creatingSection ||
+        _busySectionId != null) {
+      return;
+    }
+
+    final controller = TextEditingController();
+    final name = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Create section'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textInputAction: TextInputAction.done,
+          decoration: const InputDecoration(hintText: 'Section name'),
+          onSubmitted: (value) => Navigator.of(dialogContext).pop(value),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () =>
+                Navigator.of(dialogContext).pop(controller.text.trim()),
+            child: const Text('Create section'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+
+    final normalizedName = (name ?? '').trim();
+    if (normalizedName.isEmpty || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _creatingSection = true;
+      _status = null;
+    });
+
+    try {
+      final section = await VaultGvviService.createSection(
+        client: _client,
+        name: normalizedName,
+      );
+      await VaultGvviService.assignSectionMembership(
+        client: _client,
+        instanceId: data.instanceId,
+        sectionId: section.id,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _sectionMemberships =
+            [
+              ..._sectionMemberships.where(
+                (current) => current.id != section.id,
+              ),
+              section.copyWith(isMember: true),
+            ]..sort((left, right) {
+              final byPosition = left.position.compareTo(right.position);
+              return byPosition != 0
+                  ? byPosition
+                  : left.name.compareTo(right.name);
+            });
+        _creatingSection = false;
+        _status = 'Section created and copy added.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _creatingSection = false;
         _status = error.toString().replaceFirst('Exception: ', '');
       });
     }
@@ -645,8 +846,10 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     data: _data!,
                     intentLabel: _intentLabel(_data!.intent),
                     status: _status,
+                    savingIntent: _savingIntent,
                     onManageCard: _openGroupedCard,
                     onViewCard: _openCard,
+                    onSaveIntent: _saveIntent,
                     onOpenPublicPage: _data!.canOpenPublicPage
                         ? _openPublicPage
                         : null,
@@ -666,7 +869,29 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     child: _VaultSectionMembershipSurface(
                       sections: _sectionMemberships,
                       busySectionId: _busySectionId,
+                      creatingSection: _creatingSection,
                       onToggleSection: _toggleSectionMembership,
+                      onCreateSection: _createAndAssignSection,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _VaultPublicPreviewSurface(
+                    data: _data!,
+                    sections: _sectionMemberships,
+                    onOpenWall: _openPublicWall,
+                    onOpenPublicCopy: _openPublicPage,
+                    onSharePublicCopy: _sharePublicLink,
+                    onCopyPublicCopyLink: () => _copyPublicPreviewLink(
+                      _publicGvviPath(_data!.gvviId),
+                      'Public copy',
+                    ),
+                    onOpenSection: _openPublicSection,
+                    onCopySectionLink: (section) => _copyPublicPreviewLink(
+                      _publicSectionPath(
+                        slug: _data!.publicSlug ?? '',
+                        sectionId: section.id,
+                      ),
+                      section.name,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -804,6 +1029,8 @@ class _VaultTopSurface extends StatelessWidget {
     required this.intentLabel,
     required this.onManageCard,
     required this.onViewCard,
+    required this.onSaveIntent,
+    required this.savingIntent,
     required this.status,
     this.onOpenPublicPage,
     this.onCopyPublicLink,
@@ -814,8 +1041,10 @@ class _VaultTopSurface extends StatelessWidget {
   final VaultGvviData data;
   final String intentLabel;
   final String? status;
+  final bool savingIntent;
   final VoidCallback onManageCard;
   final VoidCallback onViewCard;
+  final ValueChanged<String> onSaveIntent;
   final VoidCallback? onOpenPublicPage;
   final VoidCallback? onCopyPublicLink;
   final VoidCallback? onAddAnother;
@@ -846,6 +1075,13 @@ class _VaultTopSurface extends StatelessWidget {
             onAddAnother: onAddAnother,
             onUpgradeToSlab: onUpgradeToSlab,
             framed: false,
+          ),
+          const SizedBox(height: 10),
+          _VaultIntentQuickSurface(
+            intent: data.intent,
+            isArchived: data.isArchived,
+            saving: savingIntent,
+            onSaveIntent: onSaveIntent,
           ),
           if ((status ?? '').trim().isNotEmpty) ...[
             const SizedBox(height: 8),
@@ -941,7 +1177,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               displayIdentity.displayName,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.55,
+                letterSpacing: 0,
                 height: 1.02,
               ),
             ),
@@ -969,18 +1205,18 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               spacing: 6,
               runSpacing: 6,
               children: [
-                _VaultGvviChip(label: intentLabel, tone: colorScheme.primary),
-                _VaultGvviChip(
+                GvChip(label: intentLabel, tone: colorScheme.primary),
+                GvChip(
                   label: data.isGraded ? 'Graded slab' : 'Raw copy',
                   tone: Colors.deepPurple,
                 ),
-                _VaultGvviChip(
+                GvChip(
                   label: data.canOpenPublicPage ? 'Public' : 'Private',
                   tone: data.canOpenPublicPage
                       ? Colors.orange.shade800
                       : colorScheme.secondary,
                 ),
-                _VaultGvviChip(
+                GvChip(
                   label:
                       hasExactMedia &&
                           data.imageDisplayMode == GvviImageDisplayMode.uploaded
@@ -989,8 +1225,8 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
                   tone: Colors.blueGrey,
                 ),
                 if ((_dataLabel(data) ?? '').isNotEmpty)
-                  _VaultGvviChip(label: _dataLabel(data)!, tone: Colors.teal),
-                _VaultGvviChip(
+                  GvChip(label: _dataLabel(data)!, tone: Colors.teal),
+                GvChip(
                   label: data.isSharedOnWall ? 'On wall' : 'Off wall',
                   tone: data.isSharedOnWall
                       ? Colors.green.shade700
@@ -1234,17 +1470,309 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
   }
 }
 
+class _VaultIntentQuickSurface extends StatelessWidget {
+  const _VaultIntentQuickSurface({
+    required this.intent,
+    required this.isArchived,
+    required this.saving,
+    required this.onSaveIntent,
+  });
+
+  final String intent;
+  final bool isArchived;
+  final bool saving;
+  final ValueChanged<String> onSaveIntent;
+
+  static const _options = <({String value, String label})>[
+    (value: 'hold', label: 'Private'),
+    (value: 'showcase', label: 'Showcase'),
+    (value: 'trade', label: 'Trade'),
+    (value: 'sell', label: 'Sell'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isPublic = intent != 'hold';
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: isPublic
+            ? colorScheme.primaryContainer.withValues(alpha: 0.32)
+            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    isPublic ? 'Public on your Wall' : 'Make this copy public',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                if (saving)
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.primary,
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              isPublic
+                  ? 'Change how collectors see this exact copy.'
+                  : 'Choose Showcase, Trade, or Sell to add this exact copy to your public Wall.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.62),
+                height: 1.28,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final option in _options)
+                  GvChip(
+                    label: option.label,
+                    selected: intent == option.value,
+                    onSelected: isArchived || saving
+                        ? null
+                        : (_) => onSaveIntent(option.value),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _VaultPublicPreviewSurface extends StatelessWidget {
+  const _VaultPublicPreviewSurface({
+    required this.data,
+    required this.sections,
+    required this.onOpenWall,
+    required this.onOpenPublicCopy,
+    required this.onSharePublicCopy,
+    required this.onCopyPublicCopyLink,
+    required this.onOpenSection,
+    required this.onCopySectionLink,
+  });
+
+  final VaultGvviData data;
+  final List<VaultGvviSectionMembership> sections;
+  final VoidCallback onOpenWall;
+  final VoidCallback onOpenPublicCopy;
+  final VoidCallback onSharePublicCopy;
+  final VoidCallback onCopyPublicCopyLink;
+  final ValueChanged<VaultGvviSectionMembership> onOpenSection;
+  final ValueChanged<VaultGvviSectionMembership> onCopySectionLink;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final slug = (data.publicSlug ?? '').trim();
+    final visibleOnWall = !data.isArchived && data.intent != 'hold';
+    final canPreviewWall =
+        visibleOnWall &&
+        slug.isNotEmpty &&
+        data.publicProfileEnabled &&
+        data.vaultSharingEnabled;
+    final assignedSections = sections
+        .where((section) => section.isMember)
+        .toList(growable: false);
+
+    // LOCK: Mobile owner preview links are derived from exact-copy public read
+    // surfaces only.
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.visibility_outlined,
+                  size: 20,
+                  color: canPreviewWall
+                      ? colorScheme.primary
+                      : colorScheme.onSurface.withValues(alpha: 0.44),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Public Preview',
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        canPreviewWall
+                            ? 'Check where this exact copy appears publicly.'
+                            : visibleOnWall
+                            ? 'Enable your public profile and vault sharing to preview this copy.'
+                            : 'Set this copy to Showcase, Trade, or Sell to activate public preview links.',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.62),
+                          height: 1.28,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (canPreviewWall) ...[
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  _VaultPreviewActionChip(
+                    icon: Icons.public_outlined,
+                    label: 'View Wall',
+                    onPressed: onOpenWall,
+                  ),
+                  _VaultPreviewActionChip(
+                    icon: Icons.style_outlined,
+                    label: 'View public copy',
+                    onPressed: onOpenPublicCopy,
+                  ),
+                  _VaultPreviewActionChip(
+                    icon: Icons.ios_share_outlined,
+                    label: 'Share copy',
+                    onPressed: onSharePublicCopy,
+                  ),
+                  _VaultPreviewActionChip(
+                    icon: Icons.link_rounded,
+                    label: 'Copy link',
+                    onPressed: onCopyPublicCopyLink,
+                  ),
+                ],
+              ),
+              if (assignedSections.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Text(
+                  'Assigned sections',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.18,
+                    color: colorScheme.onSurface.withValues(alpha: 0.55),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final section in assignedSections)
+                      _VaultPreviewSectionChip(
+                        label: section.name,
+                        onOpen: () => onOpenSection(section),
+                        onCopy: () => onCopySectionLink(section),
+                      ),
+                  ],
+                ),
+              ],
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _VaultPreviewActionChip extends StatelessWidget {
+  const _VaultPreviewActionChip({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 16),
+      label: Text(label),
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(0, 36),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+    );
+  }
+}
+
+class _VaultPreviewSectionChip extends StatelessWidget {
+  const _VaultPreviewSectionChip({
+    required this.label,
+    required this.onOpen,
+    required this.onCopy,
+  });
+
+  final String label;
+  final VoidCallback onOpen;
+  final VoidCallback onCopy;
+
+  @override
+  Widget build(BuildContext context) {
+    return InputChip(
+      label: Text(label),
+      avatar: const Icon(Icons.folder_open_outlined, size: 16),
+      onPressed: onOpen,
+      deleteIcon: const Icon(Icons.link_rounded, size: 16),
+      onDeleted: onCopy,
+    );
+  }
+}
+
 class _VaultSectionMembershipSurface extends StatelessWidget {
   const _VaultSectionMembershipSurface({
     required this.sections,
     required this.busySectionId,
+    required this.creatingSection,
     required this.onToggleSection,
+    required this.onCreateSection,
   });
 
   final List<VaultGvviSectionMembership> sections;
   final String? busySectionId;
+  final bool creatingSection;
   final Future<void> Function(VaultGvviSectionMembership section)
   onToggleSection;
+  final VoidCallback onCreateSection;
 
   @override
   Widget build(BuildContext context) {
@@ -1252,37 +1780,79 @@ class _VaultSectionMembershipSurface extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     if (sections.isEmpty) {
-      return Text(
-        'Not in any sections yet.',
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: colorScheme.onSurface.withValues(alpha: 0.62),
-          height: 1.35,
-        ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Not in any sections yet.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 10),
+          FilledButton.icon(
+            onPressed: creatingSection ? null : onCreateSection,
+            icon: creatingSection
+                ? SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.onPrimary,
+                    ),
+                  )
+                : const Icon(Icons.add),
+            label: Text(creatingSection ? 'Creating...' : 'Create section'),
+          ),
+        ],
       );
     }
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (final section in sections)
-          FilterChip(
-            label: Text(section.name),
-            selected: section.isMember,
-            avatar: busySectionId == section.id
-                ? SizedBox(
-                    width: 14,
-                    height: 14,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: colorScheme.primary,
-                    ),
-                  )
-                : null,
-            onSelected: busySectionId == null
-                ? (_) => unawaited(onToggleSection(section))
-                : null,
-          ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final section in sections)
+              FilterChip(
+                label: Text(section.name),
+                selected: section.isMember,
+                avatar: busySectionId == section.id
+                    ? SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: colorScheme.primary,
+                        ),
+                      )
+                    : null,
+                onSelected: busySectionId == null && !creatingSection
+                    ? (_) => unawaited(onToggleSection(section))
+                    : null,
+              ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          onPressed: creatingSection || busySectionId != null
+              ? null
+              : onCreateSection,
+          icon: creatingSection
+              ? SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: colorScheme.primary,
+                  ),
+                )
+              : const Icon(Icons.add),
+          label: Text(creatingSection ? 'Creating...' : 'Create section'),
+        ),
       ],
     );
   }
@@ -1389,7 +1959,7 @@ class _VaultGvviPriceSurface extends StatelessWidget {
                   : 'No market reference available.'),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w800,
-            letterSpacing: -0.45,
+            letterSpacing: 0,
             height: 1.0,
           ),
         ),
@@ -1443,7 +2013,7 @@ class _VaultIdentityGrid extends StatelessWidget {
       spacing: 7,
       runSpacing: 7,
       children: [
-        _VaultMeta(label: 'GVVI', value: data.gvviId),
+        _VaultMeta(label: 'Copy ID', value: data.gvviId),
         _VaultMeta(label: 'Set', value: data.setCode),
         _VaultMeta(label: 'Number', value: data.number),
         _VaultMeta(
@@ -1904,32 +2474,6 @@ class _VaultMeta extends StatelessWidget {
             ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _VaultGvviChip extends StatelessWidget {
-  const _VaultGvviChip({required this.label, required this.tone});
-
-  final String label;
-  final Color tone;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: tone.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: tone.withValues(alpha: 0.10)),
-      ),
-      child: Text(
-        label,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-          color: tone,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

@@ -1,14 +1,14 @@
 {
   "package_id": "IMG-21A-RUNTIME-IMAGE-SURFACE-SMOKE",
   "mode": "read_only_runtime_http_smoke",
-  "generated_at": "2026-06-23T20:47:24.520Z",
-  "base_url": "http://127.0.0.1:3087",
+  "generated_at": "2026-06-24T18:14:22.018Z",
+  "base_url": "https://grookaivault.com",
   "results": [
     {
       "id": "card_mcd2021_oshawott",
       "path": "/card/GV-PK-MCD-21",
       "status": 200,
-      "body_length": 204174,
+      "body_length": 217522,
       "expected_signals": [
         "Oshawott",
         "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/2021swsh/gv-pk-mcd-21"
@@ -25,7 +25,7 @@
       "id": "set_mcd2021",
       "path": "/sets/2021swsh",
       "status": 200,
-      "body_length": 426262,
+      "body_length": 477928,
       "expected_signals": [
         "McDonald's Collection 2021",
         "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/mcd21/"
@@ -42,7 +42,7 @@
       "id": "dex_oshawott_child_fallback",
       "path": "/dex/oshawott",
       "status": 200,
-      "body_length": 151740,
+      "body_length": 153170,
       "expected_signals": [
         "Oshawott",
         "GV-PK-MEP-051"
@@ -59,7 +59,7 @@
       "id": "card_mep_oshawott_exact",
       "path": "/card/GV-PK-MEP-051",
       "status": 200,
-      "body_length": 193808,
+      "body_length": 211468,
       "expected_signals": [
         "Oshawott",
         "gv-card-hero-image-stage"
@@ -75,7 +75,7 @@
       "id": "set_trainer_kit_sm_lycanroc",
       "path": "/sets/tk-sm-l",
       "status": 200,
-      "body_length": 402961,
+      "body_length": 418174,
       "expected_signals": [
         "SM Trainer Kit (Lycanroc)",
         "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-sm-l/",
@@ -94,7 +94,7 @@
       "id": "set_trainer_kit_dp_lucario_residual",
       "path": "/sets/tk-dp-l",
       "status": 200,
-      "body_length": 291034,
+      "body_length": 302680,
       "expected_signals": [
         "DP Trainer Kit (Lucario)",
         "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/tk-dp-l/",
@@ -113,7 +113,7 @@
       "id": "card_trainer_kit_sm_lycanroc_representative",
       "path": "/card/GV-PK-TK-tk-sm-l-1",
       "status": 200,
-      "body_length": 175591,
+      "body_length": 212439,
       "expected_signals": [
         "Caterpie",
         "gv-card-hero-image-stage",
@@ -132,7 +132,7 @@
       "id": "card_trainer_kit_dp_lucario_representative",
       "path": "/card/GV-PK-TK-tk-dp-l-1",
       "status": 200,
-      "body_length": 195378,
+      "body_length": 204788,
       "expected_signals": [
         "Geodude",
         "gv-card-hero-image-stage",
@@ -152,7 +152,7 @@
       "id": "card_trainer_kit_ex_latios_alias",
       "path": "/card/GV-PK-TK-tk-ex-latio-1",
       "status": 200,
-      "body_length": 191513,
+      "body_length": 202348,
       "expected_signals": [
         "Electrike",
         "gv-card-hero-image-stage",
@@ -170,7 +170,7 @@
       "id": "card_trainer_kit_hs_gyarados_residual",
       "path": "/card/GV-PK-TK-tk-hs-g-20",
       "status": 200,
-      "body_length": 159047,
+      "body_length": 196753,
       "expected_signals": [
         "Gyarados",
         "gv-card-hero-image-stage",
@@ -184,13 +184,13 @@
       "passed": true
     },
     {
-      "id": "card_wrong_rc5_blocked",
+      "id": "card_ltr_rc5_self_hosted_torchic",
       "path": "/card/GV-PK-LTR-RC5",
       "status": 200,
-      "body_length": 202902,
+      "body_length": 221391,
       "expected_signals": [
         "Torchic",
-        "Image unavailable"
+        "user-card-images/warehouse-derived/self-hosted-images-v1/card_prints/bw11/gv-pk-ltr-rc5/"
       ],
       "missing_expected": [],
       "forbidden_signals": [
@@ -202,6 +202,6 @@
     }
   ],
   "failures": [],
-  "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3087\n\n ✓ Starting...\n ✓ Ready in 248ms\n",
-  "proof_hash": "1b1e43f8b6d742d92d45eed588dab6879e7a2325924941425612f890d0296094"
+  "server_output_tail": null,
+  "proof_hash": "d6957b7452d603e71e7fc5a45eeb4596d983ca9fcb723ea2883f9bbf8db47273"
 }

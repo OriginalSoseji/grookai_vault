@@ -1,0 +1,27 @@
+{
+  "package_id": "IMG-HOST-WH-10C-POKEMONTCG-RESIDUAL-PARENT-SOURCE-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T01:23:23.857Z",
+  "source_dry_run_fingerprint": "2b96b0556d89602710e6a77818865200224c8cb71c143db448924300b255d861",
+  "source_summary_json": "docs\\audits\\image_truth_v1\\self_hosted_images_wh10b_pokemontcg_residual_parent_source_upload_dry_run_summary_v1.json",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh10b_pokemontcg_residual_parent_source_upload_manifest_v1.jsonl",
+  "manifest_rows": 151,
+  "unique_upload_objects": 151,
+  "target_storage_buckets": [
+    "user-card-images"
+  ],
+  "conflict_count": 0,
+  "missing_required_metadata_count": 0,
+  "accepted_non_2xx_image_body_objects": 5,
+  "db_writes_performed": false,
+  "storage_uploads_planned": 151,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "stop_findings": [],
+  "fingerprint": "2b96b0556d89602710e6a77818865200224c8cb71c143db448924300b255d861",
+  "ready_for_apply": true
+}

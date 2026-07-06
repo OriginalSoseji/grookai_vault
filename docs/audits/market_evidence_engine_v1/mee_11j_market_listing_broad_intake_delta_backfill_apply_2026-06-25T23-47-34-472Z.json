@@ -1,0 +1,87 @@
+{
+  "package_id": "MARKET-LISTING-BROAD-INTAKE-DELTA-BACKFILL-APPLY-V1",
+  "generated_at": "2026-06-25T23:47:34.472Z",
+  "applied": true,
+  "remote_rows_verified": true,
+  "plan_artifact": "docs/audits/market_evidence_engine_v1/mee_11i_market_listing_broad_intake_delta_backfill_plan_2026-06-25T23-45-20-608Z.json",
+  "package_fingerprint_sha256": "18ab94acf87c0988f945871443edb3143e71295845e2f70631d29b2e915e55bd",
+  "row_manifest_hash_sha256": "ad6d8e67e2fd01d7f2d283bb28b81d17ccd85e38ea4ccffdade22496473618b2",
+  "source_plan_fingerprint_sha256": "d9b5463efbdfc41ad22c2b846911b937203a5273000c20dfc3bbc303c61a812c",
+  "source_row_manifest_hash_sha256": "6ab07f492e4e14091a8294eac94fb4c754cf4d13c825a1553c486ffaf07e6aeb",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "proposed_table_row_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 0,
+    "market_listing_raw_snapshots": 996,
+    "market_listing_observations": 996,
+    "market_listing_seller_snapshots": 409,
+    "market_listing_price_events": 996,
+    "market_listing_card_candidates": 0,
+    "market_listing_rollups": 0
+  },
+  "expected_readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 0,
+    "market_listing_raw_snapshots": 996,
+    "market_listing_observations": 996,
+    "market_listing_seller_snapshots": 409,
+    "market_listing_price_events": 996
+  },
+  "remote_collision_summary": {
+    "checked": true,
+    "id_collisions": {
+      "market_listing_acquisition_runs": [],
+      "market_listing_query_cache": [],
+      "market_listing_raw_snapshots": [],
+      "market_listing_observations": [],
+      "market_listing_seller_snapshots": [],
+      "market_listing_price_events": []
+    },
+    "id_collision_count": 0,
+    "run_key_collision_count": 0,
+    "run_key_collisions": [],
+    "raw_payload_collision_count": 0,
+    "raw_payload_collision_samples": [],
+    "seller_unique_collision_count": 0,
+    "seller_unique_collision_samples": []
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": true,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "card_candidate_writes": false,
+    "rollup_writes": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  },
+  "findings": [],
+  "apply_result": {
+    "inserted": {
+      "market_listing_acquisition_runs": 1,
+      "market_listing_query_cache": 0,
+      "market_listing_raw_snapshots": 996,
+      "market_listing_observations": 996,
+      "market_listing_seller_snapshots": 409,
+      "market_listing_price_events": 996
+    }
+  },
+  "readback_counts": {
+    "market_listing_acquisition_runs": 1,
+    "market_listing_query_cache": 0,
+    "market_listing_raw_snapshots": 996,
+    "market_listing_observations": 996,
+    "market_listing_seller_snapshots": 409,
+    "market_listing_price_events": 996
+  }
+}

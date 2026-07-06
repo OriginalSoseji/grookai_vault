@@ -5,6 +5,7 @@ import {
   isExternalCompatibleCardImageSource,
   isIdentityCardImageSource,
 } from "@/lib/publicCardImage";
+import { buildCanonImageProxyUrl } from "@/lib/canon/canonImageProxy";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
 export type CanonImageLike = {
@@ -37,6 +38,15 @@ export async function resolveCanonImageV1(
   const externalUrl = getBestPublicCardImageUrl(cardPrint?.image_url, cardPrint?.image_alt_url);
 
   if (isIdentityCardImageSource(imageSource) && imagePath) {
+    const proxyUrl = buildCanonImageProxyUrl(imagePath);
+    if (proxyUrl) {
+      return {
+        url: proxyUrl,
+        source: "identity",
+        image_path: imagePath,
+      };
+    }
+
     const signedUrl = await resolveVaultInstanceMediaUrl(imagePath);
 
     return {

@@ -1,0 +1,180 @@
+{
+  "package_id": "MEE-CORE-QUALITY-FLAG-TAXONOMY-V1",
+  "candidate_evidence_rows": 25989,
+  "review_required_rows": 25989,
+  "low_confidence_rows": 25989,
+  "lane_mismatch_rows": 2052,
+  "exclusion_flagged_rows": 909,
+  "lane_summary": [
+    {
+      "candidate_rows": 23677,
+      "evidence_lane": "raw_single",
+      "exclusion_flagged_rows": 298,
+      "lane_mismatch_rows": 1499,
+      "low_confidence_rows": 23677,
+      "max_confidence": 0.72,
+      "median_confidence": 0.58,
+      "min_confidence": 0.5499999999999999,
+      "no_exclusion_flag_rows": 23379,
+      "review_required_rows": 23677
+    },
+    {
+      "candidate_rows": 2312,
+      "evidence_lane": "slab",
+      "exclusion_flagged_rows": 611,
+      "lane_mismatch_rows": 553,
+      "low_confidence_rows": 2312,
+      "max_confidence": 0.72,
+      "median_confidence": 0.5499999999999999,
+      "min_confidence": 0.5499999999999999,
+      "no_exclusion_flag_rows": 1701,
+      "review_required_rows": 2312
+    }
+  ],
+  "class_summary": [
+    {
+      "evidence_lane": "raw_single",
+      "listing_evidence_class": "raw_single",
+      "rows": 22178
+    },
+    {
+      "evidence_lane": "raw_single",
+      "listing_evidence_class": "slab",
+      "rows": 1499
+    },
+    {
+      "evidence_lane": "slab",
+      "listing_evidence_class": "raw_single",
+      "rows": 553
+    },
+    {
+      "evidence_lane": "slab",
+      "listing_evidence_class": "slab",
+      "rows": 1759
+    }
+  ],
+  "exclusion_summary": [
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "__none__",
+      "rows": 23379
+    },
+    {
+      "evidence_lane": "slab",
+      "exclusion_flag": "__none__",
+      "rows": 1701
+    },
+    {
+      "evidence_lane": "slab",
+      "exclusion_flag": "foreign_language",
+      "rows": 546
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "foreign_language",
+      "rows": 172
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "lot",
+      "rows": 91
+    },
+    {
+      "evidence_lane": "slab",
+      "exclusion_flag": "lot",
+      "rows": 67
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "sealed",
+      "rows": 41
+    },
+    {
+      "evidence_lane": "slab",
+      "exclusion_flag": "sealed",
+      "rows": 23
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "choose_your_card",
+      "rows": 5
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "jumbo",
+      "rows": 2
+    },
+    {
+      "evidence_lane": "raw_single",
+      "exclusion_flag": "menu_listing",
+      "rows": 1
+    },
+    {
+      "evidence_lane": "slab",
+      "exclusion_flag": "sleeve_accessory",
+      "rows": 1
+    }
+  ],
+  "taxonomy": [
+    {
+      "quality_flag": "low_match_confidence",
+      "gate_type": "hard_until_identity_confidence_v2",
+      "current_rows": 25989,
+      "resolution": "raise deterministic match confidence or keep manual review"
+    },
+    {
+      "quality_flag": "lane_mismatch_raw_vs_slab",
+      "gate_type": "hard_until_lane_reclassification",
+      "current_rows": 2052,
+      "resolution": "move candidate evidence into raw/slab lane matching listing_evidence_class before scoring"
+    },
+    {
+      "quality_flag": "explicit_exclusion_flag",
+      "gate_type": "hard_or_manual_by_flag",
+      "current_rows": 909,
+      "resolution": "exclude hard flags such as lot/sealed/menu/accessory; manual-policy foreign-language handling"
+    },
+    {
+      "quality_flag": "review_required_without_exclusion",
+      "gate_type": "manual_or_threshold",
+      "current_rows": 25080,
+      "resolution": "requires identity confidence, source independence, freshness, and outlier gates"
+    }
+  ],
+  "hard_exclusion_flags": [
+    "lot",
+    "sealed",
+    "choose_your_card",
+    "jumbo",
+    "menu_listing",
+    "sleeve_accessory"
+  ],
+  "manual_policy_flags": [
+    "foreign_language"
+  ],
+  "findings": [],
+  "readback_sql_sha256": "d360a658e4dd607a6394e8845300464da927793d28e7baf5637ff84c56189452",
+  "generated_at": "2026-06-27T05:51:37.855Z",
+  "mode": "plan_only_quality_flag_taxonomy",
+  "package_fingerprint_sha256": "9df93c01b147687a1dce409a779da9d3883ba37a70840dc4fb3b30014d8c342c",
+  "taxonomy_status": "ready_for_quality_scoring_model",
+  "boundary_proof": {
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "confirm_internal_candidate_actions": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

@@ -296,6 +296,7 @@ class _NearbyCardRow extends StatelessWidget {
               height: 118,
               borderRadius: 16,
               showShadow: false,
+              onViewDetails: onOpenCard,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -310,6 +311,8 @@ class _NearbyCardRow extends StatelessWidget {
                       _NearbyChip(label: row.sourceLabel, accent: true),
                       if (row.isFollowing)
                         const _NearbyChip(label: 'Following', outline: true),
+                      if (row.viewerWishlistMatch)
+                        const _NearbyChip(label: 'Wishlist match', warm: true),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -335,15 +338,25 @@ class _NearbyCardRow extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 6),
-                  Text(
-                    'From ${row.ownerDisplayName}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.78),
-                      fontWeight: FontWeight.w700,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: _NearbyCollectorWallLink(
+                      ownerDisplayName: row.ownerDisplayName,
+                      onOpenWall: onOpenWall,
                     ),
                   ),
+                  if (row.matchReason == 'viewer_wishlist') ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      'This card matches your wishlist.',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.tertiary,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 10),
                   Divider(
                     height: 1,
@@ -393,27 +406,82 @@ class _NearbyCardRow extends StatelessWidget {
   }
 }
 
+class _NearbyCollectorWallLink extends StatelessWidget {
+  const _NearbyCollectorWallLink({
+    required this.ownerDisplayName,
+    required this.onOpenWall,
+  });
+
+  final String ownerDisplayName;
+  final VoidCallback onOpenWall;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final normalizedName = ownerDisplayName.trim().isEmpty
+        ? 'collector'
+        : ownerDisplayName.trim();
+
+    // NEARBY_COLLECTOR_NAME_WALL_LINK_V1
+    // The visible collector identity must be a direct path to the public Wall,
+    // not a plain text label that leaves the Wall hidden behind a separate CTA.
+    return TextButton.icon(
+      onPressed: onOpenWall,
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 2),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        alignment: Alignment.centerLeft,
+        visualDensity: VisualDensity.compact,
+      ),
+      icon: Icon(
+        Icons.person_pin_circle_outlined,
+        size: 15,
+        color: colorScheme.primary.withValues(alpha: 0.82),
+      ),
+      label: Text(
+        'From $normalizedName',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: colorScheme.primary.withValues(alpha: 0.90),
+          fontWeight: FontWeight.w800,
+        ),
+      ),
+    );
+  }
+}
+
 class _NearbyChip extends StatelessWidget {
   const _NearbyChip({
     required this.label,
     this.accent = false,
     this.outline = false,
+    this.warm = false,
   });
 
   final String label;
   final bool accent;
   final bool outline;
+  final bool warm;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final background = accent
+    final background = warm
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.74)
+        : accent
         ? colorScheme.tertiaryContainer.withValues(alpha: 0.58)
         : colorScheme.surfaceContainerHighest.withValues(alpha: 0.58);
-    final borderColor = outline
+    final borderColor = warm
+        ? colorScheme.tertiary.withValues(alpha: 0.34)
+        : outline
         ? colorScheme.primary.withValues(alpha: 0.32)
         : colorScheme.outline.withValues(alpha: 0.08);
-    final textColor = accent
+    final textColor = warm
+        ? colorScheme.onTertiaryContainer
+        : accent
         ? colorScheme.onTertiaryContainer
         : colorScheme.onSurface.withValues(alpha: 0.72);
 

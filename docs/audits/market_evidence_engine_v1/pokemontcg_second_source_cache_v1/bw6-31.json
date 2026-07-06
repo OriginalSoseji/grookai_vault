@@ -1,0 +1,125 @@
+{
+  "id": "bw6-31",
+  "name": "Walrein",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "hp": "140",
+  "types": [
+    "Water"
+  ],
+  "evolvesFrom": "Sealeo",
+  "attacks": [
+    {
+      "name": "Aurora Beam",
+      "cost": [
+        "Water",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "80",
+      "text": ""
+    },
+    {
+      "name": "Ice Entomb",
+      "cost": [
+        "Water",
+        "Water",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "60",
+      "text": "The Defending Pokémon is now Paralyzed. This Pokémon can't use Ice Entomb during your next turn."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Metal",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw6",
+    "name": "Dragons Exalted",
+    "series": "Black & White",
+    "printedTotal": 124,
+    "total": 128,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "DRX",
+    "releaseDate": "2012/08/15",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw6/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw6/logo.png"
+    }
+  },
+  "number": "31",
+  "artist": "Kouki Saitou",
+  "rarity": "Rare",
+  "flavorText": "It shatters ice with its big tusks. Its thick blubber repels not only the cold, but also enemy attacks.",
+  "nationalPokedexNumbers": [
+    365
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw6/31.png",
+    "large": "https://images.pokemontcg.io/bw6/31_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw6-31",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.24,
+        "mid": 0.51,
+        "high": 19.98,
+        "market": 0.47,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 0.61,
+        "mid": 0.99,
+        "high": 19.98,
+        "market": 1.01,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw6-31",
+    "updatedAt": "2026/05/07",
+    "prices": {
+      "averageSellPrice": 0.4,
+      "lowPrice": 0.02,
+      "trendPrice": 0.39,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 2.9,
+      "reverseHoloLow": 0.3,
+      "reverseHoloTrend": 1.44,
+      "lowPriceExPlus": 0.02,
+      "avg1": 0.2,
+      "avg7": 0.36,
+      "avg30": 0.39,
+      "reverseHoloAvg1": 0.8,
+      "reverseHoloAvg7": 1.68,
+      "reverseHoloAvg30": 1.32
+    }
+  }
+}

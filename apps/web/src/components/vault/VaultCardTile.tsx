@@ -221,6 +221,7 @@ export function VaultCardTile({
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={primaryActionHref}
+            prefetch={false}
             className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
           >
             {primaryActionLabel}
@@ -230,6 +231,7 @@ export function VaultCardTile({
         {primaryActionHref !== manageCardHref ? (
           <Link
             href={manageCardHref}
+            prefetch={false}
             className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
           >
             Manage copies
@@ -284,6 +286,7 @@ export function VaultCardTile({
                       {copyHref ? (
                         <Link
                           href={copyHref}
+                          prefetch={false}
                           className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                         >
                           Open copy
@@ -301,6 +304,7 @@ export function VaultCardTile({
           <div className="border-t border-slate-200 pt-3">
             <Link
               href={manageCardHref}
+              prefetch={false}
               className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
             >
               {item.copy_items.length > previewCopies.length
@@ -321,6 +325,7 @@ export function VaultCardTile({
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
+      imagePrefetch={false}
       imageFallbackLabel={displayIdentity.display_name}
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
@@ -338,7 +343,7 @@ export function VaultCardTile({
         .filter(Boolean)
         .join(" ")}
       title={
-        <Link href={`/card/${item.gv_id}`} className="block transition hover:text-slate-700">
+        <Link href={`/card/${item.gv_id}`} prefetch={false} className="block transition hover:text-slate-700">
           <span className="gv-hi-card-identity block line-clamp-2">{displayIdentity.base_name}</span>
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>

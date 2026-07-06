@@ -90,6 +90,11 @@ export default function LocalCommunityFeedCard({
                 Following
               </span>
             ) : null}
+            {row.viewerWishlistMatch ? (
+              <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
+                Wishlist match
+              </span>
+            ) : null}
           </div>
 
           <div className="space-y-2">
@@ -112,6 +117,11 @@ export default function LocalCommunityFeedCard({
             {hasMultipleSources ? (
               <p className="text-sm text-slate-500">
                 Appears in {labels.join(", ")} for this collector.
+              </p>
+            ) : null}
+            {row.matchReason === "viewer_wishlist" ? (
+              <p className="text-sm font-medium text-amber-700">
+                This card matches your wishlist.
               </p>
             ) : null}
           </div>

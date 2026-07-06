@@ -1,0 +1,852 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-SMOKE-FETCH-V1",
+  "version": "MEE_11E_MARKET_LISTING_ACQUISITION_SMOKE_FETCH_V1",
+  "generated_at": "2026-06-25T22:30:45.619Z",
+  "mode": "approved_provider_fetch_local_artifacts_only",
+  "source_package_fingerprint_sha256": "d559f29dccb92922cf9e945e3a00e4e6ac4221779f7d91b8fba789f0005362cb",
+  "request_manifest_hash_sha256": "4752a516ed812b95cf34c555b2520ae628b7babe7fddffbe96bc9cfc446ad277",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "package_fingerprint_sha256": "ba86928e143b45193f48ace1dc1464b6ae56253501e0cbc1c1292682eef9d736",
+  "raw_snapshot_manifest_hash_sha256": "cd2b774cc146aa636154a3bc3e3a7524ba5ca31910cddf4ce18ddc588569fead",
+  "projected_observation_manifest_hash_sha256": "5bebf0bda02b94083bec05d363a5ca4aee92602929f1191876e5e8f3f51e3bb8",
+  "summary": {
+    "approved_request_count": 5,
+    "attempted_request_count": 5,
+    "request_limit": 5,
+    "result_limit": 5,
+    "fetch_status_counts": {
+      "fetched_success": 5
+    },
+    "provider_total_sum": 502,
+    "fetched_item_count": 5,
+    "projected_observation_count": 5,
+    "unique_listing_count": 5,
+    "unique_target_count_with_results": 1
+  },
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "local_artifacts_only": true,
+    "db_writes": false,
+    "market_listing_writes": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_writes": false,
+    "deletes": false,
+    "merges": false,
+    "global_apply": false
+  },
+  "request_results": [
+    {
+      "query_key": "66a7848d451b50f044410a1be535eae4c0250d3b409699f509e6073865015fea",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "special_lane",
+      "query_text": "Pokemon \"Blaziken\" \"2004 World Championships Deck: Blaziken Tech\" \"3\" \"2004 World Championships Deck: Blaziken Tech\"",
+      "fetch_status": "fetched_success",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "payload_hash": "6ef186fd2228c4631930c69ab356bc7aac5fce1a94394448ee219f301336008d"
+    },
+    {
+      "query_key": "92d6a180ac598008494c8f87b47de38e628571047cf91239dd5004fb7b5e2158",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "strict_identity",
+      "query_text": "Pokemon \"Blaziken\" \"2004 World Championships Deck: Blaziken Tech\" \"3\"",
+      "fetch_status": "fetched_success",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "payload_hash": "ea3cf76a6f860cd44a80896d70467f99eb11c97109b8739e3dd00c04f51b850d"
+    },
+    {
+      "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+      "strategy": "name_number",
+      "query_text": "Pokemon \"Blaziken\" 3",
+      "fetch_status": "fetched_success",
+      "response_status": 200,
+      "provider_total": 502,
+      "fetched_item_count": 5,
+      "payload_hash": "70d30fba86ae4f069a33179eaf9dfeb1b6dd4ffad49a1e367563953e97c98d62"
+    },
+    {
+      "query_key": "4306782499e85ef23658c09703ab819d2f287447c7e00d749b351cd07395848a",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-02-EX_TEAM_MAGMA_VS-89-BLAZIKEN_EX",
+      "strategy": "special_lane",
+      "query_text": "Pokemon \"Blaziken ex\" \"2004 World Championships Deck: Blaziken Tech\" \"89\" \"2004 World Championships Deck: Blaziken Tech\"",
+      "fetch_status": "fetched_success",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "payload_hash": "5385e8b058ad07aa8599315ca26fe8379993844c4e99db110dc9b153474faf53"
+    },
+    {
+      "query_key": "095915da8b28f8516d1523dca62cb898a9ac0c06cf5281db3bbb85199d789658",
+      "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-02-EX_TEAM_MAGMA_VS-89-BLAZIKEN_EX",
+      "strategy": "strict_identity",
+      "query_text": "Pokemon \"Blaziken ex\" \"2004 World Championships Deck: Blaziken Tech\" \"89\"",
+      "fetch_status": "fetched_success",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "payload_hash": "1f560ee76991d4e1d6541a3e0ca9c586f2865d4aaf7c6574b024df3cd3cb33b1"
+    }
+  ],
+  "raw_snapshots": [
+    {
+      "query_key": "66a7848d451b50f044410a1be535eae4c0250d3b409699f509e6073865015fea",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_fetch_url": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon%20%22Blaziken%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22%20%223%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "raw_payload": {
+        "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22+%223%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=0",
+        "total": 0,
+        "limit": 5,
+        "offset": 0
+      },
+      "projected_observations": [],
+      "payload_hash": "6ef186fd2228c4631930c69ab356bc7aac5fce1a94394448ee219f301336008d"
+    },
+    {
+      "query_key": "92d6a180ac598008494c8f87b47de38e628571047cf91239dd5004fb7b5e2158",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_fetch_url": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon%20%22Blaziken%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22%20%223%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "raw_payload": {
+        "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22+%223%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=0",
+        "total": 0,
+        "limit": 5,
+        "offset": 0
+      },
+      "projected_observations": [],
+      "payload_hash": "ea3cf76a6f860cd44a80896d70467f99eb11c97109b8739e3dd00c04f51b850d"
+    },
+    {
+      "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_fetch_url": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon%20%22Blaziken%22%203&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS",
+      "response_status": 200,
+      "provider_total": 502,
+      "fetched_item_count": 5,
+      "raw_payload": {
+        "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken%22+3&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=0",
+        "total": 502,
+        "next": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken%22+3&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=5",
+        "limit": 5,
+        "offset": 0,
+        "itemSummaries": [
+          {
+            "itemId": "v1|168490029913|0",
+            "title": "Blaziken 3 Rare EX Battle Stadium Pokemon MP",
+            "leafCategoryIds": [
+              "183454"
+            ],
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "image": {
+              "imageUrl": "https://i.ebayimg.com/images/g/D6wAAeSw4iBqPKf-/s-l225.jpg"
+            },
+            "price": {
+              "value": "4.49",
+              "currency": "USD"
+            },
+            "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C168490029913%7C0",
+            "seller": {
+              "username": "gravepackstcg",
+              "feedbackPercentage": "100.0",
+              "feedbackScore": 349
+            },
+            "marketingPrice": {
+              "originalPrice": {
+                "value": "6.00",
+                "currency": "USD"
+              },
+              "discountPercentage": "25",
+              "discountAmount": {
+                "value": "1.51",
+                "currency": "USD"
+              }
+            },
+            "condition": "Ungraded",
+            "conditionId": "4000",
+            "thumbnailImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/D6wAAeSw4iBqPKf-/s-l1600.jpg"
+              }
+            ],
+            "shippingOptions": [
+              {
+                "shippingCostType": "FIXED",
+                "shippingCost": {
+                  "value": "0.00",
+                  "currency": "USD"
+                },
+                "minEstimatedDeliveryDate": "2026-06-27T07:00:00.000Z",
+                "maxEstimatedDeliveryDate": "2026-07-01T07:00:00.000Z"
+              }
+            ],
+            "buyingOptions": [
+              "FIXED_PRICE"
+            ],
+            "epid": "2314420365",
+            "itemWebUrl": "https://www.ebay.com/itm/168490029913?_skw=Pokemon+%22Blaziken%22+3&hash=item273ac9d359:g:D6wAAeSw4iBqPKf-",
+            "itemLocation": {
+              "postalCode": "440**",
+              "country": "US"
+            },
+            "additionalImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/A1kAAeSwuPNqPKf-/s-l225.jpg"
+              }
+            ],
+            "adultOnly": false,
+            "legacyItemId": "168490029913",
+            "availableCoupons": false,
+            "itemOriginDate": "2026-06-25T03:57:59.000Z",
+            "itemCreationDate": "2026-06-25T03:57:59.000Z",
+            "topRatedBuyingExperience": false,
+            "priorityListing": false,
+            "listingMarketplaceId": "EBAY_US"
+          },
+          {
+            "itemId": "v1|198402496345|0",
+            "title": "2003 Pokemon - EX Ruby & Sapphire - Blaziken Holo #3 - PSA 9 MINT - Ex Battle",
+            "leafCategoryIds": [
+              "183454"
+            ],
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "image": {
+              "imageUrl": "https://i.ebayimg.com/images/g/NFcAAeSwoDpqIeHd/s-l225.jpg"
+            },
+            "price": {
+              "value": "380.00",
+              "currency": "USD"
+            },
+            "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C198402496345%7C0",
+            "seller": {
+              "username": "theocards",
+              "feedbackPercentage": "100.0",
+              "feedbackScore": 250
+            },
+            "condition": "Graded",
+            "conditionId": "2750",
+            "thumbnailImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/NFcAAeSwoDpqIeHd/s-l1600.jpg"
+              }
+            ],
+            "shippingOptions": [
+              {
+                "shippingCostType": "CALCULATED"
+              }
+            ],
+            "buyingOptions": [
+              "FIXED_PRICE"
+            ],
+            "epid": "23043383628",
+            "itemWebUrl": "https://www.ebay.com/itm/198402496345?_skw=Pokemon+%22Blaziken%22+3&hash=item2e31b5d759:g:NFcAAeSwoDpqIeHd",
+            "itemLocation": {
+              "postalCode": "871**",
+              "country": "US"
+            },
+            "additionalImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/DtIAAeSwSihqIeHm/s-l225.jpg"
+              }
+            ],
+            "adultOnly": false,
+            "legacyItemId": "198402496345",
+            "availableCoupons": false,
+            "itemOriginDate": "2026-06-04T20:33:26.000Z",
+            "itemCreationDate": "2026-06-04T20:33:26.000Z",
+            "topRatedBuyingExperience": false,
+            "priorityListing": false,
+            "listingMarketplaceId": "EBAY_US"
+          },
+          {
+            "itemId": "v1|137444376008|0",
+            "title": "Pokemon Blaziken 170 HP Japanese 2023 SV3 Art Rare Holo 100/108",
+            "leafCategoryIds": [
+              "183454"
+            ],
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "image": {
+              "imageUrl": "https://i.ebayimg.com/images/g/L3UAAeSwIwJqOfEv/s-l225.jpg"
+            },
+            "price": {
+              "value": "6.00",
+              "currency": "USD"
+            },
+            "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C137444376008%7C0",
+            "seller": {
+              "username": "daynger.tcg",
+              "feedbackPercentage": "100.0",
+              "feedbackScore": 51
+            },
+            "condition": "Ungraded",
+            "conditionId": "4000",
+            "thumbnailImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/L3UAAeSwIwJqOfEv/s-l1600.jpg"
+              }
+            ],
+            "shippingOptions": [
+              {
+                "shippingCostType": "CALCULATED"
+              }
+            ],
+            "buyingOptions": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "itemWebUrl": "https://www.ebay.com/itm/137444376008?_skw=Pokemon+%22Blaziken%22+3&hash=item200052bdc8:g:L3UAAeSwIwJqOfEv",
+            "itemLocation": {
+              "postalCode": "959**",
+              "country": "US"
+            },
+            "additionalImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/3WcAAeSwielqOfEf/s-l225.jpg"
+              }
+            ],
+            "adultOnly": false,
+            "legacyItemId": "137444376008",
+            "availableCoupons": false,
+            "itemOriginDate": "2026-06-23T02:37:09.000Z",
+            "itemCreationDate": "2026-06-23T02:37:09.000Z",
+            "topRatedBuyingExperience": false,
+            "priorityListing": false,
+            "listingMarketplaceId": "EBAY_US"
+          },
+          {
+            "itemId": "v1|336617848395|0",
+            "title": "POKEMON BLAZIKEN 3/109 HOLO RARE RUBY & SAPPHIRE MP-LP",
+            "leafCategoryIds": [
+              "183454"
+            ],
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "image": {
+              "imageUrl": "https://i.ebayimg.com/images/g/5ScAAeSwYtFqICxJ/s-l225.jpg"
+            },
+            "price": {
+              "value": "49.99",
+              "currency": "USD"
+            },
+            "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C336617848395%7C0",
+            "seller": {
+              "username": "northcountrycards",
+              "feedbackPercentage": "100.0",
+              "feedbackScore": 10762
+            },
+            "condition": "Ungraded",
+            "conditionId": "4000",
+            "thumbnailImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/5ScAAeSwYtFqICxJ/s-l1600.jpg"
+              }
+            ],
+            "shippingOptions": [
+              {
+                "shippingCostType": "FIXED",
+                "shippingCost": {
+                  "value": "0.00",
+                  "currency": "USD"
+                },
+                "minEstimatedDeliveryDate": "2026-06-29T07:00:00.000Z",
+                "maxEstimatedDeliveryDate": "2026-07-06T07:00:00.000Z"
+              }
+            ],
+            "buyingOptions": [
+              "FIXED_PRICE"
+            ],
+            "epid": "27043367638",
+            "itemWebUrl": "https://www.ebay.com/itm/336617848395?_skw=Pokemon+%22Blaziken%22+3&hash=item4e5ffcbe4b:g:5ScAAeSwYtFqICxJ&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGY1ZAxht2Xj2GUqUMwfGfYmffZL5urmUG2MzccYh1iFfIyCMUOx6uv%2BE7KZfFK1EqkT9YIz823zHrf7rHvTEBmYfi4%2Bgjm9GzgXIt7d8MxZ2zbMeIZvdHbWQtO%2FAnULMMjaqARQERk%2BMvn60E8pcU1IavWUlYnoi5EoCgVKjKn8k5%2Fsg%2FkxGdp0xQ3c7TmFMVh361XTw6HB1M9oJF0oEEV%2FPqUGUAsIrwuaba1JQCOMWi0lxgE7S10TT3avJvCXHLU7FOPCy6S1c2x%2Bbnd9IPJ%2BVFu%2FBIRDoR8wnzPc2FsK7g%3D%3D",
+            "itemLocation": {
+              "postalCode": "554**",
+              "country": "US"
+            },
+            "additionalImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/SQoAAeSw1cRqGZHx/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/FEMAAeSwYctqGZGe/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/zvMAAeSwAnVqGZGm/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/1zgAAeSwj3lqGZGu/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/y3IAAeSwKo5qGZG6/s-l225.jpg"
+              }
+            ],
+            "adultOnly": false,
+            "legacyItemId": "336617848395",
+            "availableCoupons": false,
+            "itemOriginDate": "2026-06-03T13:31:13.000Z",
+            "itemCreationDate": "2026-06-03T13:31:13.000Z",
+            "topRatedBuyingExperience": false,
+            "priorityListing": true,
+            "listingMarketplaceId": "EBAY_US"
+          },
+          {
+            "itemId": "v1|366497686834|0",
+            "title": "Blaziken Cosmos Holo Rare Pokemon EX Ruby and Sapphire - 3/109",
+            "leafCategoryIds": [
+              "183454"
+            ],
+            "categories": [
+              {
+                "categoryId": "183454",
+                "categoryName": "CCG Individual Cards"
+              },
+              {
+                "categoryId": "220",
+                "categoryName": "Toys & Hobbies"
+              },
+              {
+                "categoryId": "2536",
+                "categoryName": "Collectible Card Games"
+              }
+            ],
+            "image": {
+              "imageUrl": "https://i.ebayimg.com/images/g/BjEAAeSwDDxqOb6O/s-l225.jpg"
+            },
+            "price": {
+              "value": "60.00",
+              "currency": "USD"
+            },
+            "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C366497686834%7C0",
+            "seller": {
+              "username": "yadiest",
+              "feedbackPercentage": "100.0",
+              "feedbackScore": 81
+            },
+            "condition": "Ungraded",
+            "conditionId": "4000",
+            "thumbnailImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/BjEAAeSwDDxqOb6O/s-l1600.jpg"
+              }
+            ],
+            "shippingOptions": [
+              {
+                "shippingCostType": "FIXED",
+                "shippingCost": {
+                  "value": "0.00",
+                  "currency": "USD"
+                },
+                "minEstimatedDeliveryDate": "2026-06-30T07:00:00.000Z",
+                "maxEstimatedDeliveryDate": "2026-07-08T07:00:00.000Z"
+              }
+            ],
+            "buyingOptions": [
+              "FIXED_PRICE",
+              "BEST_OFFER"
+            ],
+            "epid": "27043367638",
+            "itemWebUrl": "https://www.ebay.com/itm/366497686834?_skw=Pokemon+%22Blaziken%22+3&hash=item5554f6e532:g:BjEAAeSwDDxqOb6O&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGYSnmk9VwkSWqXpxmcoVXZFr6ET3tBw8qNzNj1lwCvyquc%2BfLiP0845EGoSjzG4qqBpvL6gyWOjPEUVWcU2C7uQMJXtua7VWT7O%2BJEW6bNbTLyd1494WZPCvY5SE5jg%2FyKRT9FEABv24ozrejYhgxuKQNlu%2FDrifHS4gs598pzwuY5N%2B0jwEst3A%2F%2Bl0A7Fv%2FtaSbcuIkRnlskgAVRgcFndbY7zrWini182rPDXs56OHO%2F7o1eNMyz3v1D2zsWKrdJfQmo862Cu%2FkZOyeWfumsx1svEKURSIoG06H3eKVHKRg%3D%3D",
+            "itemLocation": {
+              "postalCode": "379**",
+              "country": "US"
+            },
+            "additionalImages": [
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/DNoAAeSwTYtqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/-PcAAeSwY3xqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/3m0AAeSwrXtqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/EtcAAeSwkfRqOb6N/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/Y7MAAeSwf9FqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/UdEAAeSwbyJqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/~EUAAeSwS9pqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/F~UAAeSwlmBqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/Z5gAAeSwMtBqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/2o4AAeSwg5NqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/PzQAAeSwunVqOb6O/s-l225.jpg"
+              },
+              {
+                "imageUrl": "https://i.ebayimg.com/images/g/S8sAAeSwkDBqOb6O/s-l225.jpg"
+              }
+            ],
+            "adultOnly": false,
+            "legacyItemId": "366497686834",
+            "availableCoupons": false,
+            "itemOriginDate": "2026-06-22T23:04:47.000Z",
+            "itemCreationDate": "2026-06-22T23:04:47.000Z",
+            "topRatedBuyingExperience": false,
+            "priorityListing": true,
+            "listingMarketplaceId": "EBAY_US"
+          }
+        ]
+      },
+      "projected_observations": [
+        {
+          "source": "ebay_active",
+          "provider_route": "ebay_browse_api",
+          "source_listing_id": "v1|168490029913|0",
+          "source_url": "https://www.ebay.com/itm/168490029913?_skw=Pokemon+%22Blaziken%22+3&hash=item273ac9d359:g:D6wAAeSw4iBqPKf-",
+          "listing_title": "Blaziken 3 Rare EX Battle Stadium Pokemon MP",
+          "listing_status": "active",
+          "listing_format": "fixed_price",
+          "ask_price": 4.49,
+          "shipping_price": 0,
+          "total_ask_price": 4.49,
+          "currency": "USD",
+          "condition_text": "Ungraded",
+          "item_location": "US",
+          "seller_key": "gravepackstcg",
+          "observed_at": "2026-06-25T22:30:45.619Z",
+          "target": {
+            "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+            "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+            "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+            "strategy": "name_number",
+            "query_text": "Pokemon \"Blaziken\" 3"
+          }
+        },
+        {
+          "source": "ebay_active",
+          "provider_route": "ebay_browse_api",
+          "source_listing_id": "v1|198402496345|0",
+          "source_url": "https://www.ebay.com/itm/198402496345?_skw=Pokemon+%22Blaziken%22+3&hash=item2e31b5d759:g:NFcAAeSwoDpqIeHd",
+          "listing_title": "2003 Pokemon - EX Ruby & Sapphire - Blaziken Holo #3 - PSA 9 MINT - Ex Battle",
+          "listing_status": "active",
+          "listing_format": "fixed_price",
+          "ask_price": 380,
+          "shipping_price": null,
+          "total_ask_price": 380,
+          "currency": "USD",
+          "condition_text": "Graded",
+          "item_location": "US",
+          "seller_key": "theocards",
+          "observed_at": "2026-06-25T22:30:45.619Z",
+          "target": {
+            "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+            "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+            "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+            "strategy": "name_number",
+            "query_text": "Pokemon \"Blaziken\" 3"
+          }
+        },
+        {
+          "source": "ebay_active",
+          "provider_route": "ebay_browse_api",
+          "source_listing_id": "v1|137444376008|0",
+          "source_url": "https://www.ebay.com/itm/137444376008?_skw=Pokemon+%22Blaziken%22+3&hash=item200052bdc8:g:L3UAAeSwIwJqOfEv",
+          "listing_title": "Pokemon Blaziken 170 HP Japanese 2023 SV3 Art Rare Holo 100/108",
+          "listing_status": "active",
+          "listing_format": "fixed_price",
+          "ask_price": 6,
+          "shipping_price": null,
+          "total_ask_price": 6,
+          "currency": "USD",
+          "condition_text": "Ungraded",
+          "item_location": "US",
+          "seller_key": "daynger.tcg",
+          "observed_at": "2026-06-25T22:30:45.619Z",
+          "target": {
+            "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+            "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+            "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+            "strategy": "name_number",
+            "query_text": "Pokemon \"Blaziken\" 3"
+          }
+        },
+        {
+          "source": "ebay_active",
+          "provider_route": "ebay_browse_api",
+          "source_listing_id": "v1|336617848395|0",
+          "source_url": "https://www.ebay.com/itm/336617848395?_skw=Pokemon+%22Blaziken%22+3&hash=item4e5ffcbe4b:g:5ScAAeSwYtFqICxJ&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGY1ZAxht2Xj2GUqUMwfGfYmffZL5urmUG2MzccYh1iFfIyCMUOx6uv%2BE7KZfFK1EqkT9YIz823zHrf7rHvTEBmYfi4%2Bgjm9GzgXIt7d8MxZ2zbMeIZvdHbWQtO%2FAnULMMjaqARQERk%2BMvn60E8pcU1IavWUlYnoi5EoCgVKjKn8k5%2Fsg%2FkxGdp0xQ3c7TmFMVh361XTw6HB1M9oJF0oEEV%2FPqUGUAsIrwuaba1JQCOMWi0lxgE7S10TT3avJvCXHLU7FOPCy6S1c2x%2Bbnd9IPJ%2BVFu%2FBIRDoR8wnzPc2FsK7g%3D%3D",
+          "listing_title": "POKEMON BLAZIKEN 3/109 HOLO RARE RUBY & SAPPHIRE MP-LP",
+          "listing_status": "active",
+          "listing_format": "fixed_price",
+          "ask_price": 49.99,
+          "shipping_price": 0,
+          "total_ask_price": 49.99,
+          "currency": "USD",
+          "condition_text": "Ungraded",
+          "item_location": "US",
+          "seller_key": "northcountrycards",
+          "observed_at": "2026-06-25T22:30:45.619Z",
+          "target": {
+            "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+            "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+            "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+            "strategy": "name_number",
+            "query_text": "Pokemon \"Blaziken\" 3"
+          }
+        },
+        {
+          "source": "ebay_active",
+          "provider_route": "ebay_browse_api",
+          "source_listing_id": "v1|366497686834|0",
+          "source_url": "https://www.ebay.com/itm/366497686834?_skw=Pokemon+%22Blaziken%22+3&hash=item5554f6e532:g:BjEAAeSwDDxqOb6O&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGYSnmk9VwkSWqXpxmcoVXZFr6ET3tBw8qNzNj1lwCvyquc%2BfLiP0845EGoSjzG4qqBpvL6gyWOjPEUVWcU2C7uQMJXtua7VWT7O%2BJEW6bNbTLyd1494WZPCvY5SE5jg%2FyKRT9FEABv24ozrejYhgxuKQNlu%2FDrifHS4gs598pzwuY5N%2B0jwEst3A%2F%2Bl0A7Fv%2FtaSbcuIkRnlskgAVRgcFndbY7zrWini182rPDXs56OHO%2F7o1eNMyz3v1D2zsWKrdJfQmo862Cu%2FkZOyeWfumsx1svEKURSIoG06H3eKVHKRg%3D%3D",
+          "listing_title": "Blaziken Cosmos Holo Rare Pokemon EX Ruby and Sapphire - 3/109",
+          "listing_status": "active",
+          "listing_format": "fixed_price",
+          "ask_price": 60,
+          "shipping_price": 0,
+          "total_ask_price": 60,
+          "currency": "USD",
+          "condition_text": "Ungraded",
+          "item_location": "US",
+          "seller_key": "yadiest",
+          "observed_at": "2026-06-25T22:30:45.619Z",
+          "target": {
+            "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+            "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+            "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+            "strategy": "name_number",
+            "query_text": "Pokemon \"Blaziken\" 3"
+          }
+        }
+      ],
+      "payload_hash": "70d30fba86ae4f069a33179eaf9dfeb1b6dd4ffad49a1e367563953e97c98d62"
+    },
+    {
+      "query_key": "4306782499e85ef23658c09703ab819d2f287447c7e00d749b351cd07395848a",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_fetch_url": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon%20%22Blaziken%20ex%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22%20%2289%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "raw_payload": {
+        "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken+ex%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22+%2289%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=0",
+        "total": 0,
+        "limit": 5,
+        "offset": 0
+      },
+      "projected_observations": [],
+      "payload_hash": "5385e8b058ad07aa8599315ca26fe8379993844c4e99db110dc9b153474faf53"
+    },
+    {
+      "query_key": "095915da8b28f8516d1523dca62cb898a9ac0c06cf5281db3bbb85199d789658",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_fetch_url": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon%20%22Blaziken%20ex%22%20%222004%20World%20Championships%20Deck%3A%20Blaziken%20Tech%22%20%2289%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS",
+      "response_status": 200,
+      "provider_total": 0,
+      "fetched_item_count": 0,
+      "raw_payload": {
+        "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Pokemon+%22Blaziken+ex%22+%222004+World+Championships+Deck%3A+Blaziken+Tech%22+%2289%22&limit=5&category_ids=183454&fieldgroups=MATCHING_ITEMS&offset=0",
+        "total": 0,
+        "limit": 5,
+        "offset": 0
+      },
+      "projected_observations": [],
+      "payload_hash": "1f560ee76991d4e1d6541a3e0ca9c586f2865d4aaf7c6574b024df3cd3cb33b1"
+    }
+  ],
+  "projected_observations": [
+    {
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_listing_id": "v1|168490029913|0",
+      "source_url": "https://www.ebay.com/itm/168490029913?_skw=Pokemon+%22Blaziken%22+3&hash=item273ac9d359:g:D6wAAeSw4iBqPKf-",
+      "listing_title": "Blaziken 3 Rare EX Battle Stadium Pokemon MP",
+      "listing_status": "active",
+      "listing_format": "fixed_price",
+      "ask_price": 4.49,
+      "shipping_price": 0,
+      "total_ask_price": 4.49,
+      "currency": "USD",
+      "condition_text": "Ungraded",
+      "item_location": "US",
+      "seller_key": "gravepackstcg",
+      "observed_at": "2026-06-25T22:30:45.619Z",
+      "target": {
+        "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+        "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+        "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+        "strategy": "name_number",
+        "query_text": "Pokemon \"Blaziken\" 3"
+      }
+    },
+    {
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_listing_id": "v1|198402496345|0",
+      "source_url": "https://www.ebay.com/itm/198402496345?_skw=Pokemon+%22Blaziken%22+3&hash=item2e31b5d759:g:NFcAAeSwoDpqIeHd",
+      "listing_title": "2003 Pokemon - EX Ruby & Sapphire - Blaziken Holo #3 - PSA 9 MINT - Ex Battle",
+      "listing_status": "active",
+      "listing_format": "fixed_price",
+      "ask_price": 380,
+      "shipping_price": null,
+      "total_ask_price": 380,
+      "currency": "USD",
+      "condition_text": "Graded",
+      "item_location": "US",
+      "seller_key": "theocards",
+      "observed_at": "2026-06-25T22:30:45.619Z",
+      "target": {
+        "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+        "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+        "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+        "strategy": "name_number",
+        "query_text": "Pokemon \"Blaziken\" 3"
+      }
+    },
+    {
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_listing_id": "v1|137444376008|0",
+      "source_url": "https://www.ebay.com/itm/137444376008?_skw=Pokemon+%22Blaziken%22+3&hash=item200052bdc8:g:L3UAAeSwIwJqOfEv",
+      "listing_title": "Pokemon Blaziken 170 HP Japanese 2023 SV3 Art Rare Holo 100/108",
+      "listing_status": "active",
+      "listing_format": "fixed_price",
+      "ask_price": 6,
+      "shipping_price": null,
+      "total_ask_price": 6,
+      "currency": "USD",
+      "condition_text": "Ungraded",
+      "item_location": "US",
+      "seller_key": "daynger.tcg",
+      "observed_at": "2026-06-25T22:30:45.619Z",
+      "target": {
+        "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+        "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+        "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+        "strategy": "name_number",
+        "query_text": "Pokemon \"Blaziken\" 3"
+      }
+    },
+    {
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_listing_id": "v1|336617848395|0",
+      "source_url": "https://www.ebay.com/itm/336617848395?_skw=Pokemon+%22Blaziken%22+3&hash=item4e5ffcbe4b:g:5ScAAeSwYtFqICxJ&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGY1ZAxht2Xj2GUqUMwfGfYmffZL5urmUG2MzccYh1iFfIyCMUOx6uv%2BE7KZfFK1EqkT9YIz823zHrf7rHvTEBmYfi4%2Bgjm9GzgXIt7d8MxZ2zbMeIZvdHbWQtO%2FAnULMMjaqARQERk%2BMvn60E8pcU1IavWUlYnoi5EoCgVKjKn8k5%2Fsg%2FkxGdp0xQ3c7TmFMVh361XTw6HB1M9oJF0oEEV%2FPqUGUAsIrwuaba1JQCOMWi0lxgE7S10TT3avJvCXHLU7FOPCy6S1c2x%2Bbnd9IPJ%2BVFu%2FBIRDoR8wnzPc2FsK7g%3D%3D",
+      "listing_title": "POKEMON BLAZIKEN 3/109 HOLO RARE RUBY & SAPPHIRE MP-LP",
+      "listing_status": "active",
+      "listing_format": "fixed_price",
+      "ask_price": 49.99,
+      "shipping_price": 0,
+      "total_ask_price": 49.99,
+      "currency": "USD",
+      "condition_text": "Ungraded",
+      "item_location": "US",
+      "seller_key": "northcountrycards",
+      "observed_at": "2026-06-25T22:30:45.619Z",
+      "target": {
+        "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+        "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+        "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+        "strategy": "name_number",
+        "query_text": "Pokemon \"Blaziken\" 3"
+      }
+    },
+    {
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "source_listing_id": "v1|366497686834|0",
+      "source_url": "https://www.ebay.com/itm/366497686834?_skw=Pokemon+%22Blaziken%22+3&hash=item5554f6e532:g:BjEAAeSwDDxqOb6O&amdata=enc%3AAQALAAAA8ACCtXRWQnOEpyOqnQQ8KGYSnmk9VwkSWqXpxmcoVXZFr6ET3tBw8qNzNj1lwCvyquc%2BfLiP0845EGoSjzG4qqBpvL6gyWOjPEUVWcU2C7uQMJXtua7VWT7O%2BJEW6bNbTLyd1494WZPCvY5SE5jg%2FyKRT9FEABv24ozrejYhgxuKQNlu%2FDrifHS4gs598pzwuY5N%2B0jwEst3A%2F%2Bl0A7Fv%2FtaSbcuIkRnlskgAVRgcFndbY7zrWini182rPDXs56OHO%2F7o1eNMyz3v1D2zsWKrdJfQmo862Cu%2FkZOyeWfumsx1svEKURSIoG06H3eKVHKRg%3D%3D",
+      "listing_title": "Blaziken Cosmos Holo Rare Pokemon EX Ruby and Sapphire - 3/109",
+      "listing_status": "active",
+      "listing_format": "fixed_price",
+      "ask_price": 60,
+      "shipping_price": 0,
+      "total_ask_price": 60,
+      "currency": "USD",
+      "condition_text": "Ungraded",
+      "item_location": "US",
+      "seller_key": "yadiest",
+      "observed_at": "2026-06-25T22:30:45.619Z",
+      "target": {
+        "card_print_id": "90fe08da-c7fe-4eb8-8dbe-069a32049dde",
+        "gv_id": "GV-PK-WCD-2004-BLAZIKEN_TECH-01-EX_RUBY_AND_SAPP-3-BLAZIKEN",
+        "query_key": "0dd330780d693583b56747a986732a1eed0e6d2755e5d0d1d8090c48ef67ffeb",
+        "strategy": "name_number",
+        "query_text": "Pokemon \"Blaziken\" 3"
+      }
+    }
+  ],
+  "findings": [],
+  "ready_for_local_db_backfill_plan": true,
+  "approval_prompt_for_next_step": "Approve real MARKET-LISTING-SMOKE-FETCH-DB-BACKFILL-PLAN-V1 plan only. Package fingerprint: ba86928e143b45193f48ace1dc1464b6ae56253501e0cbc1c1292682eef9d736. Raw snapshot manifest hash: cd2b774cc146aa636154a3bc3e3a7524ba5ca31910cddf4ce18ddc588569fead. Projected observation manifest hash: 5bebf0bda02b94083bec05d363a5ca4aee92602929f1191876e5e8f3f51e3bb8. Scope: prepare DB backfill apply package from the local MEE-11E smoke fetch artifacts only, targeting market_listing_* warehouse tables only. No provider calls. No source fetches. No DB writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply."
+}

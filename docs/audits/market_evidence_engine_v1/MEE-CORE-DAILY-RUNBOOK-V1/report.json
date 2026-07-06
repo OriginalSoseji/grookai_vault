@@ -1,0 +1,38 @@
+{
+  "package_id": "MEE-CORE-DAILY-RUNBOOK-V1",
+  "generated_at": "2026-06-27T05:23:02.004Z",
+  "mode": "runbook_only_daily_operator_flow",
+  "package_fingerprint_sha256": "e54a7a414e92c55b9ff8a2eb4822a2e3d8d8d0a5c281b92f57a5ac72b5ac8569",
+  "runbook_status": "complete",
+  "steps": [
+    "Run ingestion only after foundation checks pass.",
+    "Run MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1.",
+    "Review orchestrator summary and safe-action count.",
+    "Run MEE-CORE-BATCH-REVIEW-ACTION-WORKFLOW-V1 preflight.",
+    "Apply one safe internal review-action batch only when explicitly approved.",
+    "Run batch readback and post-apply audit.",
+    "Stop before public pricing unless a separate publish-gate package is prepared and approved."
+  ],
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

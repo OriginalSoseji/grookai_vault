@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/image_presentation.dart';
+import 'package:grookai_vault/utils/display_image_contract.dart';
 
 void main() {
   test('display_image_url is preferred over legacy image fields', () {
@@ -58,6 +59,37 @@ void main() {
     expect(card.displayImage, 'https://example.com/alt.webp');
   });
 
+  test('relative Grookai canon image URLs are accepted by the app', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-7',
+      'name': 'Pikachu',
+      'set_code': 'jpn-sv8',
+      'display_image_url':
+          '/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fsv8%2F033.webp',
+    });
+
+    expect(
+      card.displayImage,
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fsv8%2F033.webp',
+    );
+  });
+
+  test('warehouse image_path is preferred over stale legacy storage URLs', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-8',
+      'name': 'Pikachu',
+      'set_code': 'jpn-sv8',
+      'image_path': 'warehouse-derived/self-hosted-images-v1/jpn/sv8/033.webp',
+      'image_url':
+          'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/sv8/033.webp',
+    });
+
+    expect(
+      card.displayImage,
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fsv8%2F033.webp',
+    );
+  });
+
   test('invalid and missing image fields resolve to null', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-4',
@@ -70,6 +102,40 @@ void main() {
     });
 
     expect(card.displayImage, isNull);
+  });
+
+  test('public Supabase storage images are routed through Grookai optimizer', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-6',
+      'name': 'Pikachu',
+      'set_code': 'sv',
+      'display_image_url':
+          'https://example.supabase.co/storage/v1/object/public/public-card-images/jpn/pikachu.webp',
+    });
+
+    expect(
+      card.displayImage,
+      startsWith('https://grookaivault.com/_next/image?'),
+    );
+    expect(card.displayImage, contains('w=828'));
+  });
+
+  test('optimized image URLs can be resized for thumbnail surfaces', () {
+    const original =
+        'https://example.supabase.co/storage/v1/object/public/public-card-images/jpn/pikachu.webp';
+    final large = normalizeDisplayImageUrl(original);
+    final thumbnail = normalizeDisplayImageUrl(large, width: 256);
+
+    expect(large, contains('w=828'));
+    expect(thumbnail, contains('w=256'));
+    expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
+  });
+
+  test('private user-card-images public URLs are rejected', () {
+    const original =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/pikachu.webp';
+
+    expect(normalizeDisplayImageUrl(original), isNull);
   });
 
   test('representative image presentation is explicit and honest', () {

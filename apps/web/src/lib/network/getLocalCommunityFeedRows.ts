@@ -27,6 +27,8 @@ type LocalCommunityFeedRpcRow = {
   locality_label: string | null;
   distance_bucket: string | null;
   relationship_context: string | null;
+  viewer_wishlist_match: boolean | null;
+  match_reason: string | null;
   created_at: string | null;
   route_target: string | null;
 };
@@ -48,6 +50,8 @@ export type LocalCommunityFeedRow = {
   localityLabel: string;
   distanceBucket: "nearby" | "same_region";
   relationshipContext: "following" | "not_following";
+  viewerWishlistMatch: boolean;
+  matchReason: "viewer_wishlist" | null;
   createdAt: string | null;
   routeTarget: string;
 };
@@ -111,6 +115,10 @@ function normalizeRelationshipContext(value: string | null | undefined): LocalCo
   return normalizeText(value) === "following" ? "following" : "not_following";
 }
 
+function normalizeMatchReason(value: string | null | undefined): LocalCommunityFeedRow["matchReason"] {
+  return normalizeText(value) === "viewer_wishlist" ? "viewer_wishlist" : null;
+}
+
 function normalizeRow(row: LocalCommunityFeedRpcRow): LocalCommunityFeedRow | null {
   const feedItemId = normalizeText(row.feed_item_id);
   const ownerSlug = normalizeText(row.owner_slug);
@@ -140,6 +148,8 @@ function normalizeRow(row: LocalCommunityFeedRpcRow): LocalCommunityFeedRow | nu
     localityLabel: normalizeText(row.locality_label) ?? (distanceBucket === "nearby" ? "Nearby" : "Same region"),
     distanceBucket,
     relationshipContext: normalizeRelationshipContext(row.relationship_context),
+    viewerWishlistMatch: row.viewer_wishlist_match === true,
+    matchReason: normalizeMatchReason(row.match_reason),
     createdAt: row.created_at ?? null,
     routeTarget,
   };
@@ -177,7 +187,7 @@ export async function getLocalCommunityFeedRows({
       return { status: "local_discovery_off", rows: [], setting };
     }
 
-    const { data, error } = await supabase.rpc("local_community_feed_v1", {
+    const { data, error } = await supabase.rpc("local_community_feed_v2", {
       p_limit: Math.max(1, Math.min(limit, 80)),
     });
 

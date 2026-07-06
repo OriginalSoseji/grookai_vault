@@ -2,32 +2,25 @@
  * STABILIZATION RULE:
  *
  * Current active pricing authority:
- * - Engine: v_grookai_value_v1_1
- * - App-facing read surface: v_best_prices_all_gv_v1
+ * - Engine: Market Evidence Engine evidence-anchored public bridge
+ * - App-facing read surface: v_market_evidence_public_pricing_bridge_reference_anchored_v1
  *
- * All product-facing reads must continue through v_best_prices_all_gv_v1.
- *
- * Do not bypass this surface to read lower-level pricing tables directly.
- * Do not treat v_grookai_value_v1 or v_grookai_value_v2 as active pricing
- * authority unless a later explicit cutover contract says so.
- *
- * See: STABILIZATION_CONTRACT_V1.md
+ * Product-facing reads must continue through the bridge. Do not bypass this
+ * surface to read lower-level pricing tables directly.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-type CompatibilityPriceRow = {
-  card_id: string | null;
-  base_market: number | null;
-  base_source: string | null;
-  base_ts: string | null;
-};
-
-type ActivePriceMetadataRow = {
+type PublicBridgePriceRow = {
   card_print_id: string | null;
-  confidence: number | null;
-  listing_count: number | null;
-  updated_at: string | null;
-  last_snapshot_at: string | null;
+  grookai_value_mid: number | null;
+  active_ask_signal_at: string | null;
+  confidence_label: string | null;
+  active_ask_listing_count: number | null;
+  grookai_value_block_reason: string | null;
+  market_truth: boolean | null;
+  sold_comp: boolean | null;
+  publishable: boolean | null;
+  app_visible: boolean | null;
 };
 
 export type CanonicalRawPricingRecord = {
@@ -57,61 +50,56 @@ export async function getPublicPricingByCardIds(
     return new Map();
   }
 
-  const [{ data: compatibilityData, error: compatibilityError }, { data: activePriceData, error: activePriceError }] =
-    await Promise.all([
-      supabase
-        .from("v_best_prices_all_gv_v1")
-        .select("card_id,base_market,base_source,base_ts")
-        .in("card_id", uniqueIds),
-      // Keep these metadata fields in one helper so public callers stay aligned to the compatibility lane.
-      supabase
-        .from("card_print_active_prices")
-        .select("card_print_id,confidence,listing_count,updated_at,last_snapshot_at")
-        .in("card_print_id", uniqueIds),
-    ]);
+  const { data, error } = await supabase
+    .from("v_market_evidence_public_pricing_bridge_reference_anchored_v1")
+    .select(
+      "card_print_id,grookai_value_mid,active_ask_signal_at,confidence_label,active_ask_listing_count,grookai_value_block_reason,market_truth,sold_comp,publishable,app_visible",
+    )
+    .in("card_print_id", uniqueIds);
 
-  if (compatibilityError) {
-    throw compatibilityError;
+  if (error) {
+    console.warn("[pricing] public bridge read failed; search will continue without pricing enrichment", {
+      message: error.message,
+      code: error.code,
+    });
+    return new Map();
   }
-
-  if (activePriceError) {
-    throw activePriceError;
-  }
-
-  const activePriceByCardId = new Map(
-    ((activePriceData ?? []) as ActivePriceMetadataRow[])
-      .filter((row): row is ActivePriceMetadataRow & { card_print_id: string } => Boolean(row.card_print_id))
-      .map((row) => [row.card_print_id, row]),
-  );
 
   return new Map(
-    ((compatibilityData ?? []) as CompatibilityPriceRow[])
-      .filter((row): row is CompatibilityPriceRow & { card_id: string } => Boolean(row.card_id))
+    ((data ?? []) as PublicBridgePriceRow[])
+      .filter((row): row is PublicBridgePriceRow & { card_print_id: string } => Boolean(row.card_print_id))
+      .filter(
+        (row) =>
+          row.grookai_value_block_reason === null &&
+          row.market_truth === false &&
+          row.sold_comp === false &&
+          row.publishable === false &&
+          row.app_visible === false,
+      )
       .map((row) => {
-        const metadata = activePriceByCardId.get(row.card_id);
-        const rawPrice = typeof row.base_market === "number" ? row.base_market : undefined;
-        const rawPriceSource = rawPrice !== undefined ? row.base_source ?? undefined : undefined;
-        const rawPriceTs = rawPrice !== undefined ? row.base_ts ?? undefined : undefined;
+        const rawPrice = typeof row.grookai_value_mid === "number" ? row.grookai_value_mid : undefined;
+        const rawPriceSource = rawPrice !== undefined ? "grookai_value" : undefined;
+        const rawPriceTs = rawPrice !== undefined ? row.active_ask_signal_at ?? undefined : undefined;
+        const confidence =
+          row.confidence_label === "high" ? 0.9 : row.confidence_label === "medium" ? 0.75 : row.confidence_label === "limited" ? 0.5 : undefined;
 
         return [
-          row.card_id,
+          row.card_print_id,
           {
-            card_print_id: row.card_id,
-            // Phase 1 canonical raw-price contract:
-            // - raw price value/source/timestamp come from v_best_prices_all_gv_v1
-            // - optional freshness metadata comes from card_print_active_prices
+            card_print_id: row.card_print_id,
             raw_price: rawPrice,
             raw_price_source: rawPriceSource,
             raw_price_ts: rawPriceTs,
-            // Compatibility aliases remain until downstream UI/internal callers finish
-            // converging on the raw_* contract.
             latest_price: rawPrice,
-            confidence: typeof metadata?.confidence === "number" ? metadata.confidence : undefined,
-            listing_count: typeof metadata?.listing_count === "number" ? metadata.listing_count : undefined,
+            confidence,
+            listing_count:
+              typeof row.active_ask_listing_count === "number" && Number.isFinite(row.active_ask_listing_count)
+                ? row.active_ask_listing_count
+                : undefined,
             price_source: rawPriceSource,
             updated_at: rawPriceTs,
-            active_price_updated_at: metadata?.updated_at ?? undefined,
-            last_snapshot_at: metadata?.last_snapshot_at ?? undefined,
+            active_price_updated_at: rawPriceTs,
+            last_snapshot_at: rawPriceTs,
           } satisfies PublicPricingRecord,
         ];
       }),

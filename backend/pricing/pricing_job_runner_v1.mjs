@@ -3,6 +3,8 @@
 
 import '../env.mjs';
 import { spawn } from 'node:child_process';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import {
   getEbayBrowseBudgetSnapshot,
@@ -30,6 +32,8 @@ function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
   console.log(JSON.stringify(entry));
 }
+
+const BACKEND_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 function parseArgs(argv) {
   const opts = {
@@ -145,7 +149,7 @@ function runPricingWorker(cardPrintId) {
         '--card-print-id',
         cardPrintId,
       ],
-      { stdio: ['ignore', 'inherit', 'inherit'], cwd: process.cwd() },
+      { stdio: ['ignore', 'inherit', 'inherit'], cwd: BACKEND_DIR },
     );
 
     child.on('error', reject);

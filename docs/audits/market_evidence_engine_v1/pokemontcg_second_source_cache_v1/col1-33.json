@@ -1,0 +1,122 @@
+{
+  "id": "col1-33",
+  "name": "Snorlax",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "100",
+  "types": [
+    "Colorless"
+  ],
+  "attacks": [
+    {
+      "name": "Layabout",
+      "cost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "",
+      "text": "Remove all damage counters from Snorlax. Snorlax can't use Layabout during your next turn."
+    },
+    {
+      "name": "Clomp Clomp Clobber",
+      "cost": [
+        "Colorless",
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "80",
+      "text": "Put 1 Energy card attached to Snorlax in the Lost Zone."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fighting",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "33",
+  "artist": "Kent Kanetsuna",
+  "rarity": "Rare",
+  "flavorText": "Its stomach's digestive juices can dissolve any kind of poison. It can even eat things off the ground.",
+  "nationalPokedexNumbers": [
+    143
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/33.png",
+    "large": "https://images.pokemontcg.io/col1/33_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/col1-33",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 23.03,
+        "mid": 30.43,
+        "high": 389.9,
+        "market": 23.16,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 40.6,
+        "mid": 143.99,
+        "high": 722.1,
+        "market": 68.21,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-33",
+    "updatedAt": "2026/05/14",
+    "prices": {
+      "averageSellPrice": 14.93,
+      "lowPrice": 1.79,
+      "trendPrice": 20.71,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 30,
+      "reverseHoloLow": 15,
+      "reverseHoloTrend": 79.18,
+      "lowPriceExPlus": 5.99,
+      "avg1": 12.5,
+      "avg7": 13.59,
+      "avg30": 83.4,
+      "reverseHoloAvg1": 20,
+      "reverseHoloAvg7": 18.68,
+      "reverseHoloAvg30": 47.26
+    }
+  }
+}

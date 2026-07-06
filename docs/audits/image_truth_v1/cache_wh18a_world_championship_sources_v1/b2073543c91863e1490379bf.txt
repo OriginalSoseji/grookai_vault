@@ -1,0 +1,47 @@
+{{DeckInfobox
+|title=Anguille Sous Roche
+|image=WCS2013 Anguille Sous Roche Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Lightning}}{{e|Fire}}
+|cards=
+}}
+
+'''Anguille Sous Roche''' is the name of the deck used by Clément Lamberton, who was second in the Senior Division in the [[2013 World Championships]]. It is one of the four {{TCGMerch|Black & White|Series|2013 World Championships Decks}}, released on November 4, 2013. Each Deck comes with a Worlds 2013 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2013 World Championships Pin.
+
+==Description==
+<i>Rayquaza-EX is this deck's main attacker and, fueled by Eelektrik’s Dynamotor Ability, can deal enough damage to knock out even the strongest opponent. Raikou-EX allows the player to take out Pokémon sitting on the Bench and Victini makes short work of Grass types, while the combination of Keldeo-EX and Float Stones enable easy switching between attackers.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|[[Rayquaza-EX (Dragons Exalted 85)|Rayquaza]]{{EX}}|Dragon||SuperRare}}
+{{decklist/entry|1|[[Raikou-EX (Dark Explorers 38)|Raikou]]{{EX}}|Lightning||SuperRare}}
+{{decklist/entry|1|{{TCG ID|Noble Victories|Victini|15}}|Fire||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|Noble Victories|Eelektrik|40}}|Lightning||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Noble Victories|Tynamo|38}}|Lightning||Common}}
+{{decklist/entry|2|[[Keldeo-EX (Boundaries Crossed 49)|Keldeo]]{{EX}}|Water||SuperRare}}
+{{decklist/entry|1|{{TCG ID|Plasma Storm|Dowsing Machine|128}}|Item||SuperRare}}
+{{decklist/entry|3|{{TCG ID|BW Promo|Tropical Beach|50}}|Stadium||None}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Professor Juniper|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|Ultra Ball|102}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Next Destinies|Level Ball|89}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Pokémon Catcher|95}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dragon Vault|Super Rod|20}}|Item||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Boundaries Crossed|Energy Search|128}}|Item||Common}}
+{{decklist/entry|4|{{TCG ID|Plasma Freeze|Float Stone|99}}|Item||Uncommon}}
+{{decklist/entry|8|{{TCG ID|Black & White|Lightning Energy|108}}|Energy|Lightning|Common}}
+{{decklist/entry|4|{{TCG ID|Black & White|Fire Energy|106}}|Energy|Fire|Common}}
+{{decklist/footer}}
+{{-}}
+
+==Trivia==
+*The name of this deck derives from the French-language idiom ''{{wp|wiktionary:y avoir anguille sous roche#French|y avoir anguille sous roche}}'', literally translating to "there is an eel hidden beneath a rock" (equivalent to the English ''{{wp|wiktionary:snake in the grass#English|snake in the grass}}''), reflecting [[Eelektrik (Noble Victories 40)|Eelektrik]]'s role in the deck.
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Anguille Sous Roche (TCG)]]

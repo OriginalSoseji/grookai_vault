@@ -1,0 +1,66 @@
+{{DeckInfobox
+|title=Crazy Punch
+|image=WCS2014 Crazy Punch Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fairy}}
+|cards=
+}}
+
+'''Crazy Punch''' is the name of the deck used by Michikazu Tsuda, who was third in the Masters Division in the [[2014 World Championships]]. It is one of the four {{TCGMerch|XY|Series|2014 World Championships Decks}}, released in November 2014, and is based on the {{TCG|Aromatisse/Techs|Fairy Box}} archetype. Each Deck comes with a Worlds 2014 themed Deckbox, a booklet about the championships, a non-tournament-legal print of the sixty card deck, and the 2014 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Michikazu Tsuda's Crazy Punch deck is clever and adaptable, able to react to almost any situation. Rather than hammering in with a strong attack strategy, it takes immediate advantage of any opponent's weakness. Crazy Punch relies on five different Pokémon, depending on the matchup: Mega Kangaskhan-EX, Mewtwo-EX, Xerneas-EX, Keldeo-EX, and Xerneas. The deck also uses Aromatisse's Ability to make Max Potion even better: moving all the Fairy Energy off a Pokémon before healing it with Max Potion, then putting all that Energy back. No more damage, plus no downside—yes please!</i>
+
+===Booklet===
+<i>Michikazu tried to think of a new way to excel in the competition. "First of all, my main idea was to think of a deck concept that other people don't use. I built many different decks, and the end result was that I settled on Kangaskhan." He put his Kangaskhan deck through its paces, too: "I tested it out with the strong players around me and at independent tournaments. As I battle more and more, I was able to brush up the deck. I had Mega Kangaskhan-EX, Aromatisse, and Max Potion to steamroll my opponents with a high-HP Pokémon. Also, I figured it would be a competition to play Stadium cards, so I included four."</i>
+
+===Pokémon.com===
+<i>Michikazu uses the burly Mega Kangaskhan-EX to deal the bulk of the damage for this team. With 230 HP, this Pokémon can withstand a lot of damage. The Aromatisse allows Michikazu to remove all the Energy from Mega Kangaskhan-EX and then use Max Potion to heal the Pokémon without penalty.</i>
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|XY|Aromatisse|93}}|Fairy||Rare}}
+{{decklist/entry|3|{{TCG ID|XY|Spritzee|92}}|Fairy||Common}}
+{{decklist/entry|2|{{Mega}}[[M Kangaskhan-EX (Flashfire 79)|Kangaskhan]]{{EX}}|Colorless||Rare}}
+{{decklist/entry|2|[[Kangaskhan-EX (Flashfire 78)|Kangaskhan]]{{EX}}|Colorless||Rare}}
+{{decklist/entry|1|[[Keldeo-EX (Legendary Treasures 45)|Keldeo]]{{EX}}|Water||Rare}}
+{{decklist/entry|2|[[Mewtwo-EX (Legendary Treasures 54)|Mewtwo]]{{EX}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Plasma Blast|Suicune|20}}|Water||Rare}}
+{{decklist/entry|1|[[Xerneas-EX (XY 97)|Xerneas]]{{EX}}|Fairy||Rare}}
+{{decklist/entry|1|{{TCG ID|XY|Xerneas|96}}|Fairy||Rare}}
+{{decklist/entry|1|{{TCG ID|Legendary Treasures|Bianca|109}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Plasma Storm|Colress|118}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Plasma Storm|Dowsing Machine|128}}|Item||SuperRare}}
+{{decklist/entry|4|{{TCG ID|XY|Fairy Garden|117}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Next Destinies|Heavy Ball|88}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Next Destinies|Level Ball|89}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Lysandre|90}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Emerging Powers|Max Potion|94}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|XY|Muscle Band|121}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Dark Explorers|N|96}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|XY|Professor Sycamore|122}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|XY|Shauna|127}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Startling Megaphone|97}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Dragon Vault|Super Rod|20}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Dragons Exalted|Tool Scrapper|116}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Flashfire|Ultra Ball|99}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|XY|Double Colorless Energy|130}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Fairy Energy}}|Energy|Fairy|None}}
+{{decklist/entry|1|{{TCG ID|XY|Rainbow Energy|131}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+
+==Trivia==
+* The deck includes the {{TCG|Emerging Powers}} print of {{TCG|Max Potion}}, while the decklist in the 2014 World Championships Booklet lists the deck as having the {{TCG|Plasma Freeze}} print instead, which is the print Michikazu Tsuda used in the tournament. Although it is typical that the decks include the lowest possible rarity of the specific cards, the decklist is in error as they usually reflect this modification.
+* One of the cards in this deck also introduced an error that was not present on the original card. {{TCG ID|XY|Aromatisse|93}} is from the {{TCG|XY}} expansion, however the World Championships Deck print erroneously has the {{TCG|Flashfire}} expansion symbol present instead, even though no error print of the regular version of the card exists. This error was not corrected.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Crazy Punch (TCG)]]
+[[ja:Crazy Punch]]

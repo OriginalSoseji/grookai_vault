@@ -339,6 +339,10 @@ class _InboxThreadTile extends StatelessWidget {
                 height: 80,
                 borderRadius: 12,
                 padding: const EdgeInsets.all(4),
+                onViewDetails: () {
+                  onOpenThread();
+                },
+                detailsLabel: 'View thread',
               ),
               const SizedBox(width: 10),
               Expanded(

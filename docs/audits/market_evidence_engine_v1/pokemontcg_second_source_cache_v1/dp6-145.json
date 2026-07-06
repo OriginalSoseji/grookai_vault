@@ -1,0 +1,120 @@
+{
+  "id": "dp6-145",
+  "name": "Rhyperior LV.X",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Level-Up"
+  ],
+  "level": "X",
+  "hp": "170",
+  "types": [
+    "Fighting"
+  ],
+  "evolvesFrom": "Rhyperior",
+  "rules": [
+    "Put this card onto your Active Rhyperior. Rhyperior LV.X can use any attack, Poké-Power, or Poké-Body from its previous level."
+  ],
+  "attacks": [
+    {
+      "name": "Hard Crush",
+      "cost": [],
+      "convertedEnergyCost": 0,
+      "damage": "50×",
+      "text": "Discard the top 5 cards from your deck. This attack does 50 damage for each Energy card you discarded."
+    },
+    {
+      "name": "Upthrow",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "60",
+      "text": "Search your discard pile for all Fighting Energy cards, show them to your opponent, and shuffle them into your deck."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "resistances": [
+    {
+      "type": "Lightning",
+      "value": "-20"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "dp6",
+    "name": "Legends Awakened",
+    "series": "Diamond & Pearl",
+    "printedTotal": 146,
+    "total": 146,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "LA",
+    "releaseDate": "2008/08/01",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/dp6/symbol.png",
+      "logo": "https://images.pokemontcg.io/dp6/logo.png"
+    }
+  },
+  "number": "145",
+  "artist": "Ryo Ueda",
+  "rarity": "Rare Holo LV.X",
+  "nationalPokedexNumbers": [
+    464
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/dp6/145.png",
+    "large": "https://images.pokemontcg.io/dp6/145_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/dp6-145",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 39.15,
+        "mid": 74.09,
+        "high": 959.8,
+        "market": 39.15,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/dp6-145",
+    "updatedAt": "2025/11/21",
+    "prices": {
+      "averageSellPrice": 26.61,
+      "lowPrice": 7,
+      "trendPrice": 26.07,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 7.96,
+      "lowPriceExPlus": 17.5,
+      "avg1": 19.98,
+      "avg7": 21.08,
+      "avg30": 19.53,
+      "reverseHoloAvg1": 4.99,
+      "reverseHoloAvg7": 10,
+      "reverseHoloAvg30": 6.88
+    }
+  }
+}

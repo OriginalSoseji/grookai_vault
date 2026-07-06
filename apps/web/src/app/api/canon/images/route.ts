@@ -1,29 +1,11 @@
 import { NextResponse } from "next/server";
+import { normalizeWarehouseCanonImagePath } from "@/lib/canon/canonImageProxy";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const MAX_PATHS_PER_REQUEST = 100;
-const WAREHOUSE_CANON_IMAGE_PREFIX = "warehouse-derived/self-hosted-images-v1/";
-
-function normalizeWarehouseCanonPath(value: unknown) {
-  if (typeof value !== "string") {
-    return null;
-  }
-
-  const normalized = value.trim().replace(/^\/+/, "");
-  if (
-    !normalized ||
-    normalized.length > 512 ||
-    normalized.includes("..") ||
-    !normalized.startsWith(WAREHOUSE_CANON_IMAGE_PREFIX)
-  ) {
-    return null;
-  }
-
-  return normalized;
-}
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -39,7 +21,7 @@ export async function POST(request: Request) {
       : [];
 
   const paths = Array.from(
-    new Set(rawPaths.map(normalizeWarehouseCanonPath).filter((path): path is string => Boolean(path))),
+    new Set(rawPaths.map(normalizeWarehouseCanonImagePath).filter((path): path is string => Boolean(path))),
   ).slice(0, MAX_PATHS_PER_REQUEST);
 
   if (paths.length === 0) {

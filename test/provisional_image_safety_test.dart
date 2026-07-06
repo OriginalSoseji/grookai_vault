@@ -1,16 +1,21 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/provisional_card.dart';
 
-Map<String, dynamic> _payload({String? imageUrl}) => <String, dynamic>{
-  'candidate_id': 'candidate-1',
-  'display_name': 'Pikachu',
-  'set_hint': 'sv01',
-  'number_hint': '025/198',
-  'provisional_state': 'RAW',
-  'provisional_label': 'UNCONFIRMED',
-  'public_explanation': 'Not part of the canonical catalog yet.',
-  if (imageUrl != null) 'image_url': imageUrl,
-};
+Map<String, dynamic> _payload({String? imageUrl}) {
+  final payload = <String, dynamic>{
+    'candidate_id': 'candidate-1',
+    'display_name': 'Pikachu',
+    'set_hint': 'sv01',
+    'number_hint': '025/198',
+    'provisional_state': 'RAW',
+    'provisional_label': 'UNCONFIRMED',
+    'public_explanation': 'Not part of the canonical catalog yet.',
+  };
+  if (imageUrl != null) {
+    payload['image_url'] = imageUrl;
+  }
+  return payload;
+}
 
 void main() {
   test('safe public provisional image remains allowed', () {

@@ -1,0 +1,115 @@
+{
+  "id": "bw3-99",
+  "name": "Terrakion",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "130",
+  "types": [
+    "Fighting"
+  ],
+  "attacks": [
+    {
+      "name": "Retaliate",
+      "cost": [
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30+",
+      "text": "If any of your Pokémon were Knocked Out by damage from an opponent's attack during his or her last turn, this attack does 60 more damage."
+    },
+    {
+      "name": "Land Crush",
+      "cost": [
+        "Fighting",
+        "Fighting",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "90",
+      "text": ""
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Grass",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 4,
+  "set": {
+    "id": "bw3",
+    "name": "Noble Victories",
+    "series": "Black & White",
+    "printedTotal": 101,
+    "total": 102,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "NVI",
+    "releaseDate": "2011/11/16",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw3/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw3/logo.png"
+    }
+  },
+  "number": "99",
+  "artist": "5ban Graphics",
+  "rarity": "Rare Ultra",
+  "flavorText": "Its charge is strong enough to break through a giant castle wall in one blow. This Pokémon is spoken of in legends.",
+  "nationalPokedexNumbers": [
+    639
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw3/99.png",
+    "large": "https://images.pokemontcg.io/bw3/99_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw3-99",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 30,
+        "mid": 45.98,
+        "high": 398.9,
+        "market": 37.97,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw3-99",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 14.34,
+      "lowPrice": 1.89,
+      "trendPrice": 13.76,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 4.21,
+      "lowPriceExPlus": 5,
+      "avg1": 5,
+      "avg7": 11.67,
+      "avg30": 20.07,
+      "reverseHoloAvg1": 4,
+      "reverseHoloAvg7": 4,
+      "reverseHoloAvg30": 5.71
+    }
+  }
+}

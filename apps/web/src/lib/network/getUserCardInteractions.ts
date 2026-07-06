@@ -5,6 +5,7 @@ import {
   applyChildDisplayImageFallback,
   getChildDisplayImageFallbacks,
 } from "@/lib/cards/childDisplayImageFallbacks";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -37,6 +38,26 @@ type CardPrintSourceRow = {
   image_status: string | null;
   image_note: string | null;
   display_image_url?: string | null;
+  sets:
+    | {
+        name: string | null;
+        identity_model: string | null;
+      }
+    | {
+        name: string | null;
+        identity_model: string | null;
+      }[]
+    | null;
+};
+
+type TradeSourceCardRow = {
+  id: string | null;
+  gv_id: string | null;
+  name: string | null;
+  set_code: string | null;
+  number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   sets:
     | {
         name: string | null;
@@ -244,6 +265,34 @@ function buildOwnedInstanceLabel(row: OwnedSourceInstanceRow) {
     : [conditionLabel, gvviId];
 
   return parts.map((value) => normalizeOptionalText(value)).filter(Boolean).join(" • ") || "Owned instance";
+}
+
+function buildTradeSourceInstanceLabel(
+  row: OwnedSourceInstanceRow,
+  card: TradeSourceCardRow | null,
+) {
+  if (!card) {
+    return buildOwnedInstanceLabel(row);
+  }
+
+  const setRecord = Array.isArray(card.sets) ? card.sets[0] : card.sets;
+  const cardName = resolveDisplayIdentity({
+    name: normalizeOptionalText(card.name) ?? "Unknown card",
+    variant_key: normalizeOptionalText(card.variant_key),
+    printed_identity_modifier: normalizeOptionalText(card.printed_identity_modifier),
+    set_identity_model: normalizeOptionalText(setRecord?.identity_model),
+    set_code: normalizeOptionalText(card.set_code) ?? "Unknown set",
+    number: normalizeOptionalText(card.number) ?? "—",
+  }).display_name;
+  const setLabel = [
+    normalizeOptionalText(setRecord?.name) ?? normalizeOptionalText(card.set_code),
+    normalizeOptionalText(card.number) ? `#${normalizeOptionalText(card.number)}` : null,
+  ]
+    .filter(Boolean)
+    .join(" • ");
+  const copyLabel = buildOwnedInstanceLabel(row);
+
+  return [cardName, setLabel, copyLabel].filter(Boolean).join(" • ");
 }
 
 export async function getUnreadCardInteractionGroupCount(userId: string): Promise<number> {
@@ -668,6 +717,79 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     const candidates = tradeEventCandidatesByCounterpart.get(group.counterpartUserId) ?? [];
     group.pendingTradeExecutionEventId = candidates.length === 1 ? candidates[0] : null;
     group.hasAmbiguousPendingTradeEvent = candidates.length > 1;
+  }
+
+  const pendingTradeGroups = groupList.filter(
+    (group) => group.pendingTradeExecutionEventId && !group.hasAmbiguousPendingTradeEvent,
+  );
+
+  if (pendingTradeGroups.length > 0) {
+    const { data: tradeInstanceRows, error: tradeInstancesError } = await adminClient
+      .from("vault_item_instances")
+      .select(
+        "id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at",
+      )
+      .eq("user_id", normalizedUserId)
+      .eq("intent", "trade")
+      .is("archived_at", null)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false });
+
+    if (tradeInstancesError) {
+      throw new Error(`[network:inbox] trade source instance lookup failed: ${tradeInstancesError.message}`);
+    }
+
+    const tradeRows = (tradeInstanceRows ?? []) as OwnedSourceInstanceRow[];
+    const tradeCardPrintIds = uniqueValues(
+      tradeRows
+        .map((row) => normalizeOptionalText(row.card_print_id))
+        .filter((value): value is string => Boolean(value)),
+    );
+    const tradeCardById = new Map<string, TradeSourceCardRow>();
+
+    if (tradeCardPrintIds.length > 0) {
+      const { data: tradeCardRows, error: tradeCardError } = await adminClient
+        .from("card_prints")
+        .select("id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,sets(name,identity_model)")
+        .in("id", tradeCardPrintIds);
+
+      if (tradeCardError) {
+        throw new Error(`[network:inbox] trade source card lookup failed: ${tradeCardError.message}`);
+      }
+
+      for (const row of (tradeCardRows ?? []) as TradeSourceCardRow[]) {
+        const cardPrintId = normalizeOptionalText(row.id);
+        if (cardPrintId) {
+          tradeCardById.set(cardPrintId, row);
+        }
+      }
+    }
+
+    const tradeSourceInstances = tradeRows
+      .map((row) => {
+        const cardPrintId = normalizeOptionalText(row.card_print_id);
+        return {
+          instanceId: row.id,
+          gvviId: normalizeOptionalText(row.gv_vi_id),
+          label: buildTradeSourceInstanceLabel(row, cardPrintId ? tradeCardById.get(cardPrintId) ?? null : null),
+          intent: normalizeVaultIntent(row.intent) ?? "hold",
+          conditionLabel: normalizeOptionalText(row.condition_label),
+          isGraded: Boolean(row.is_graded),
+          gradeCompany: normalizeOptionalText(row.grade_company),
+          gradeValue: normalizeOptionalText(row.grade_value),
+          gradeLabel: normalizeOptionalText(row.grade_label),
+          createdAt: row.created_at ?? null,
+        } satisfies UserCardInteractionOwnedSourceInstance;
+      })
+      .sort((left, right) => compareCreatedAtDescending(left.createdAt, right.createdAt));
+
+    for (const group of pendingTradeGroups) {
+      const existingInstanceIds = new Set(group.ownedSourceInstances.map((instance) => instance.instanceId));
+      const mergedTradeSources = tradeSourceInstances.filter((instance) => !existingInstanceIds.has(instance.instanceId));
+      group.ownedSourceInstances = [...group.ownedSourceInstances, ...mergedTradeSources].sort((left, right) =>
+        compareCreatedAtDescending(left.createdAt, right.createdAt),
+      );
+    }
   }
 
   return groupList;

@@ -3,29 +3,22 @@ import { notFound, redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
+import VaultManageCardCopiesBulkSection from "@/components/vault/VaultManageCardCopiesBulkSection";
 import VaultManageCardSettingsPanel from "@/components/vault/VaultManageCardSettingsPanel";
-import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCardValue,
-  formatVaultCopyDate,
-  formatVaultCopyIdentityLabel,
   formatVaultSecondaryContext,
-  getVaultCopyIntentBadgeClassName,
-  getVaultCopyVisibilityBadgeClassName,
-  getVaultCopyVisibilityLabel,
   getVaultMessageSignalLabel,
   getVaultPrimaryActionLabel,
-  VaultFieldLabel,
-  VaultInsetCard,
   VaultPrimaryStateBadge,
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
-import { getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
-import { getOwnerVaultItems } from "@/lib/vault/getOwnerVaultItems";
+import { getOwnerVaultItem } from "@/lib/vault/getOwnerVaultItems";
+import { getOwnerWallSectionMembershipsBatch } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -54,8 +47,7 @@ export default async function VaultManageCardPage({
   }
 
   const decodedCardId = decodeURIComponent(params.cardId);
-  const { items, itemsError, publicCollectionHref } = await getOwnerVaultItems(user.id);
-  const item = items.find((candidate) => candidate.card_id === decodedCardId);
+  const { item, itemsError, publicProfileHref, publicCollectionHref } = await getOwnerVaultItem(user.id, decodedCardId);
 
   if (!item) {
     notFound();
@@ -74,6 +66,13 @@ export default async function VaultManageCardPage({
     activeMessageCount: item.active_message_count,
   });
   const displayIdentity = resolveDisplayIdentity(item);
+  const sectionMembershipModels = await getOwnerWallSectionMembershipsBatch(
+    user.id,
+    item.copy_items.map((copy) => copy.instance_id),
+  );
+  const sectionMembershipByInstanceId = new Map(
+    sectionMembershipModels.map((model) => [model.instanceId, model] as const),
+  );
 
   return (
     <>
@@ -167,6 +166,7 @@ export default async function VaultManageCardPage({
                   {primaryActionHref ? (
                     <Link
                       href={primaryActionHref}
+                      prefetch={false}
                       className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-4 py-2 text-sm font-medium text-white shadow-[0_14px_30px_-24px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
                     >
                       {primaryActionLabel}
@@ -197,7 +197,7 @@ export default async function VaultManageCardPage({
           </PageSection>
         ) : null}
 
-        {/* LOCK: Grouped card pages must not expose Wall or Section write actions. */}
+        {/* LOCK: Grouped card pages may expose curation only inside exact-copy rows. */}
         <VaultManageCardSettingsPanel
           item={item}
           publicCollectionHref={item.in_play_count > 0 ? publicCollectionHref : null}
@@ -214,57 +214,18 @@ export default async function VaultManageCardPage({
               description="Choose the exact copy you want to inspect, edit, or remove."
             />
 
-            <div className="space-y-3">
-              {item.copy_items.map((copy) => {
-                const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
-                const createdAt = formatVaultCopyDate(copy.created_at);
-
-                return (
-                  <VaultInsetCard key={copy.instance_id} className="space-y-3">
-                    <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="min-w-0 space-y-2">
-                        <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
-                        <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
-                          <span
-                            className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
-                          >
-                            {getVaultIntentLabel(copy.intent)}
-                          </span>
-                          <span
-                            className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
-                          >
-                            {getVaultCopyVisibilityLabel(copy.intent)}
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap gap-2 text-xs text-slate-500">
-                          <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
-                          {createdAt ? <span>{createdAt}</span> : null}
-                        </div>
-                        {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-2">
-                        {copyHref ? (
-                          <Link
-                            href={copyHref}
-                            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-                          >
-                            Open copy
-                          </Link>
-                        ) : (
-                          <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
-                        )}
-                        <OwnedObjectRemoveAction
-                          instanceId={copy.instance_id}
-                          label={copy.is_graded ? "Remove slab" : "Remove copy"}
-                          buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
-                        />
-                      </div>
-                    </div>
-                  </VaultInsetCard>
-                );
-              })}
-            </div>
+            <VaultManageCardCopiesBulkSection
+              copies={item.copy_items}
+              membershipModels={item.copy_items.map(
+                (copy) =>
+                  sectionMembershipByInstanceId.get(copy.instance_id) ?? {
+                    instanceId: copy.instance_id,
+                    sections: [],
+                    loadError: "Section assignments could not be loaded.",
+                  },
+              )}
+              publicWallHref={publicProfileHref}
+            />
           </PageSection>
         </div>
       </div>

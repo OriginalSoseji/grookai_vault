@@ -1,0 +1,75 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-10-BATCH-PLAN-V1",
+  "generated_at": "2026-06-27T00:37:44.040Z",
+  "mode": "plan_only_low_signal_10_batch_review_action_function_invoke",
+  "package_fingerprint_sha256": "943a5382c847ae807de876c72ca6871a6dfac4792961a72659b9270217e836cb",
+  "batch": {
+    "size": 10,
+    "action_name": "confirm_monitor_only",
+    "review_actor": "system_low_signal_10_batch_plan",
+    "lane": "low_signal_monitor",
+    "target_disposition_ids": [
+      "00b58c53-3228-4bfd-a55b-2c16ec1be124",
+      "01296bdf-16f7-4e2d-839b-a110993ca257",
+      "022501fd-56d0-4873-8ed4-e66a9ee404bd",
+      "0251b0b3-1bf9-4020-90ec-bafd66c95ef4",
+      "03d769b0-1fa7-4b34-be98-5fa4db2e766a",
+      "0450f3e0-ffb3-47e2-959c-066ef72cd1f5",
+      "0489c268-59ae-472d-97a9-17fc3983deac",
+      "04f4b24b-c685-4451-9206-5aed2c6eafae",
+      "05b52775-4f83-45c8-a6bc-eacdaa03b3e2",
+      "06009615-630b-4ac4-947f-6be2e8db0e3f"
+    ],
+    "target_gv_ids": [
+      "GV-PK-TK-tk-bw-e-20",
+      "GV-PK-TK-tk-bw-z-2",
+      "GV-PK-MEP-002",
+      "GV-PK-BWP-40-STAFF-STAMP",
+      "GV-PK-WCD-2018-DRAGONES_Y_SOMBRAS-21-ENERGY-21-LIGHTNING_ENERGY",
+      "GV-PK-WCD-2007-FLYVEES-05-EX_DELTA_SPECIES-109-JOLTEON_EX",
+      "GV-PK-TK-tk-bw-z-13",
+      "GV-PK-WCD-2004-ROCKY_BEACH-05-EX_TEAM_MAGMA_VS-94-SUICUNE_EX",
+      "GV-PK-MCD-2014-3",
+      "GV-PK-MEP-004-STAFF-STAMP"
+    ]
+  },
+  "hashes": {
+    "row_manifest_sha256": "14d19b34bb6fa775fa2ebdda06be89ace28ec2b817955e9df2194b172664fab2",
+    "apply_sql_sha256": "1eefbfe74b8f9bfb50cb000ac0e042e6b139a140d4ecad217bbb53e3ac5dd610",
+    "rollback_sql_sha256": "19283c6b959bc698a2598e8385db035fd6a3cdc8b67e5ca536cd9b810805be5a",
+    "readback_sql_sha256": "41594bcaf2bde646d9662b2f5d08741d338e0b5231af3f56fdbb5ad75ee287c6",
+    "preflight_sql_sha256": "405da27a1e216c9b7dbc8b3615d7f90c52131c24f634e55e564dd77a10facb3e"
+  },
+  "artifacts": {
+    "row_manifest": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-10-BATCH-PLAN-V1/row_manifest.jsonl",
+    "apply_sql": "docs/sql/mee_core_internal_review_action_function_low_signal_10_batch_v1_apply_candidate.sql",
+    "rollback_sql": "docs/sql/mee_core_internal_review_action_function_low_signal_10_batch_v1_rollback_candidate.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_action_function_low_signal_10_batch_v1_readback.sql",
+    "preflight_sql": "docs/sql/mee_core_internal_review_action_function_low_signal_10_batch_v1_preflight.sql",
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-10-BATCH-PLAN-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-ACTION-FUNCTION-LOW-SIGNAL-10-BATCH-PLAN-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_ACTION_FUNCTION_LOW_SIGNAL_10_BATCH_PLAN_V1.md"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes_executed": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "package_id": "IMG-HOST-WH-18B-WORLD-CHAMPIONSHIP-REMAINING-EXACT-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T13:11:00.502Z",
+  "source_probe_fingerprint": "b01d885ce5b4648b5ce97f6d487e6a3353142175fff7d6eb42ca62c4ecab0e7f",
+  "source_summary_json": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18a_world_championship_remaining_source_acquisition_summary_v1.json",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh18a_world_championship_remaining_exact_upload_manifest_v1.jsonl",
+  "manifest_rows": 72,
+  "unique_upload_objects": 72,
+  "target_storage_bucket": "user-card-images",
+  "db_writes_performed": false,
+  "storage_uploads_planned": 72,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "parent_overwrites_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "b01d885ce5b4648b5ce97f6d487e6a3353142175fff7d6eb42ca62c4ecab0e7f"
+}

@@ -10,9 +10,13 @@ export default function robots(): MetadataRoute.Robots {
           "/sets",
           "/sets/",
           "/card/",
+          "/sitemaps/",
           "/u/",
+          "/account/delete",
         ],
         disallow: [
+          "/ids",
+          "/ids/cards",
           "/vault",
           "/profile",
           "/account",

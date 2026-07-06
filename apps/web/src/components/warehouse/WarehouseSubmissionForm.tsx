@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import {
   WAREHOUSE_SUBMISSION_IMAGE_ACCEPT,
@@ -112,9 +113,12 @@ function EvidencePicker({
       <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white">
         {previewUrl ? (
           <div className="bg-[linear-gradient(135deg,rgba(226,232,240,0.55),rgba(248,250,252,0.95))] p-3">
-            <img
+            <Image
               src={previewUrl}
               alt={`${label} preview`}
+              width={300}
+              height={400}
+              unoptimized
               className="mx-auto aspect-[3/4] max-h-72 w-auto rounded-[0.9rem] object-contain"
             />
           </div>

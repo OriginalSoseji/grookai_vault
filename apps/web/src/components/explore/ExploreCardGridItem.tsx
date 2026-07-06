@@ -4,7 +4,6 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
-import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
@@ -23,17 +22,14 @@ type ExploreCardGridItemProps = {
   mode: "thumb" | "thumb-lg";
   canViewPricing: boolean;
   matchReason?: string;
+  imagePriority?: boolean;
 };
 
 function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
 }
 
-function getDiagnosticId(card: ExploreResultCard) {
-  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
-}
-
-export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
+export default function ExploreCardGridItem({ card, href, mode, canViewPricing, imagePriority = false }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -44,7 +40,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
-  const density = isLarge ? "large" : "default";
+  const density = isLarge ? "large" : "compact";
   const primaryFinishLabel = getPrimaryFinishLabel(card);
   const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
     primaryFinishLabel,
@@ -55,11 +51,19 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   return (
     <PokemonCardGridTile
       density={density}
-      utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
+      utility={<CompareCardButton gvId={card.gv_id} variant="floating" />}
       imageSrc={card.display_image_url ?? card.image_url}
       imageFallbackSrc={card.display_image_fallback_url}
       imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
       imageHref={href}
+      imagePrefetch={false}
+      imageLoading={imagePriority ? "eager" : "lazy"}
+      imagePriority={imagePriority}
+      imageSizes={
+        isLarge
+          ? "(max-width: 640px) 58vw, (max-width: 1024px) 34vw, 280px"
+          : "(max-width: 640px) 42vw, (max-width: 1024px) 28vw, (max-width: 1536px) 20vw, 168px"
+      }
       imageOverlay={
         imagePresentation.compactBadgeLabel ? (
           <CardImageTruthBadge
@@ -70,8 +74,11 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         ) : null
       }
       title={
-        <Link href={href} className="block transition hover:text-slate-700">
+        <Link href={href} prefetch={false} className="block transition hover:text-slate-700">
           <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
+          {displayIdentity.printed_name ? (
+            <span className="gv-hi-metadata block truncate text-xs font-medium">{displayIdentity.printed_name}</span>
+          ) : null}
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}
@@ -101,20 +108,13 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         </>
       }
       meta={<span>{metaLine}</span>}
-      summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" /> : <LockedPrice size="grid" className="gv-hi-price" />}
-      footer={
-        <details className="group/details">
-          <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-            Identity proof
-          </summary>
-          <div className="mt-1.5 space-y-1 text-[11px] leading-4 text-slate-500 dark:text-slate-400">
-            <p className="truncate">{getDiagnosticId(card)}</p>
-            {matchReason ? <p className="truncate">{matchReason}</p> : null}
-            {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
-          </div>
-        </details>
+      summary={
+        canViewPricing && typeof card.raw_price === "number" ? (
+          <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" />
+        ) : null
       }
-      imageClassName={isLarge ? "max-w-[280px]" : undefined}
+      imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[160px]"}
+      className="gv-search-result-card"
     />
   );
 }

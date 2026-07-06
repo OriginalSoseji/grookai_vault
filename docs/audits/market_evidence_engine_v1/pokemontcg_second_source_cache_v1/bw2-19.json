@@ -1,0 +1,120 @@
+{
+  "id": "bw2-19",
+  "name": "Simisear",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 1"
+  ],
+  "hp": "90",
+  "types": [
+    "Fire"
+  ],
+  "evolvesFrom": "Pansear",
+  "attacks": [
+    {
+      "name": "Water's Power",
+      "cost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 2,
+      "damage": "30",
+      "text": "If this Pokémon has any Water Energy attached to it, the Defending Pokémon is now Asleep."
+    },
+    {
+      "name": "Flamethrower",
+      "cost": [
+        "Fire",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedEnergyCost": 3,
+      "damage": "70",
+      "text": "Discard an Energy attached to this Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Water",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless"
+  ],
+  "convertedRetreatCost": 1,
+  "set": {
+    "id": "bw2",
+    "name": "Emerging Powers",
+    "series": "Black & White",
+    "printedTotal": 98,
+    "total": 98,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "EPO",
+    "releaseDate": "2011/08/31",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw2/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw2/logo.png"
+    }
+  },
+  "number": "19",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare",
+  "flavorText": "A flame burns inside its body. It scatters embers from its head and tail to sear its opponents.",
+  "nationalPokedexNumbers": [
+    514
+  ],
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw2/19.png",
+    "large": "https://images.pokemontcg.io/bw2/19_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw2-19",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "normal": {
+        "low": 0.05,
+        "mid": 0.47,
+        "high": 19.98,
+        "market": 0.4,
+        "directLow": null
+      },
+      "reverseHolofoil": {
+        "low": 0.44,
+        "mid": 1.06,
+        "high": 19.98,
+        "market": 0.96,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw2-19",
+    "updatedAt": "2026/06/22",
+    "prices": {
+      "averageSellPrice": 0.33,
+      "lowPrice": 0.02,
+      "trendPrice": 0.31,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0.49,
+      "reverseHoloLow": 0.1,
+      "reverseHoloTrend": 0.72,
+      "lowPriceExPlus": 0.03,
+      "avg1": 0.15,
+      "avg7": 0.29,
+      "avg30": 0.27,
+      "reverseHoloAvg1": 1,
+      "reverseHoloAvg7": 0.61,
+      "reverseHoloAvg30": 0.91
+    }
+  }
+}

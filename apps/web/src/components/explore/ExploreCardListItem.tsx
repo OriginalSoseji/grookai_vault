@@ -52,13 +52,14 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   return (
     <li className="gv-visual-card px-4 py-4">
       <div className="flex items-start justify-between gap-4">
-        <Link href={href} className="flex min-w-0 flex-1 items-start gap-4">
+        <Link href={href} prefetch={false} className="flex min-w-0 flex-1 items-start gap-4">
           <PublicCardImage
             src={card.display_image_url ?? card.image_url}
             fallbackSrc={card.display_image_fallback_url}
             alt={getCardImageAltText(displayIdentity.display_name, card)}
             imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
+            sizes="80px"
           />
           <div className="flex min-w-0 flex-1 items-start justify-between gap-4 pt-1">
             <div className="min-w-0 space-y-2">
@@ -66,6 +67,9 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 <span className="gv-hi-card-identity block truncate text-lg hover:underline">
                   {displayIdentity.base_name}
                 </span>
+                {displayIdentity.printed_name ? (
+                  <span className="gv-hi-metadata block truncate text-sm font-medium">{displayIdentity.printed_name}</span>
+                ) : null}
                 {identitySubtitle ? (
                   <span className="gv-hi-metadata block truncate text-sm font-medium">{identitySubtitle}</span>
                 ) : null}

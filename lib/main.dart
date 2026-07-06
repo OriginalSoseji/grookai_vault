@@ -1,10 +1,10 @@
 // lib/main.dart
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
@@ -21,8 +21,10 @@ import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
+import 'screens/network/network_nearby_map_screen.dart';
 import 'screens/network/network_nearby_screen.dart';
 import 'screens/network/network_screen.dart';
+import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
@@ -32,6 +34,7 @@ import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'screens/scanner/scanner_build_placeholder_screen.dart';
+import 'screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
@@ -53,9 +56,13 @@ import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
+import 'theme/gv_grid_constants.dart';
+import 'utils/display_image_contract.dart';
+import 'widgets/gv_surface.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
+import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
 import 'widgets/provisional/provisional_card_section.dart';
 
@@ -71,9 +78,13 @@ const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
   'FIXED_SLOT_CAPTURE_SCANNER_V1',
   defaultValue: true,
 );
+const bool kScannerV5Enabled = bool.fromEnvironment(
+  'SCANNER_V5',
+  defaultValue: true,
+);
 const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment(
   'SCANNER_CONSTRUCTION_PLACEHOLDER',
-  defaultValue: true,
+  defaultValue: false,
 );
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
@@ -86,16 +97,26 @@ const Duration _kDrawerOpenDuration = Duration(milliseconds: 280);
 const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
+const int _kSearchResolverLimit = 32;
+const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
+    <MapEntry<String, String>>[
+      MapEntry<String, String>('all', 'All'),
+      MapEntry<String, String>('en', 'English'),
+      MapEntry<String, String>('ja', 'Japanese'),
+    ];
 const Duration _kFeedImpressionGateWindow = Duration(minutes: 3);
 const Duration _kFeedImpressionSkipLogWindow = Duration(seconds: 12);
 const double _kFeedImpressionVisibilityThreshold = 0.55;
-const double _kWallMatchGridSpacing = 6;
-const double _kWallMatchGridOuterPadding = 10;
-const double _kWallMatchArtworkAspectRatio = 0.69;
-const double _kWallMatchGridChildAspectRatio = 0.5;
-const double _kWallMatchTitleHeight = 40;
-const double _kWallMatchMetaHeight = 22;
-const double _kWallMatchBottomRhythmHeight = 27;
+
+String _formatSearchFailure(Object error) {
+  debugPrint('Search failed: $error');
+  return 'Search is temporarily limited. Showing local results when available.';
+}
+
+String _normalizeSearchLanguageScope(String value) {
+  final normalized = value.trim().toLowerCase();
+  return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
+}
 
 String _normalizePublicCollectorSlugInput(String value) {
   var normalized = value.trim().toLowerCase();
@@ -261,7 +282,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
     textTheme: base.textTheme.copyWith(
       headlineSmall: base.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: -0.2,
+        letterSpacing: 0,
       ),
       titleMedium: base.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.w600,
@@ -306,21 +327,9 @@ class _ProductSurfaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.05),
-            blurRadius: 14,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
+      borderRadius: 22,
       padding: padding,
       child: child,
     );
@@ -354,7 +363,7 @@ class _ProductSectionHeading extends StatelessWidget {
                 title,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -0.2,
+                  letterSpacing: 0,
                 ),
               ),
               if (description.isNotEmpty) ...[
@@ -523,6 +532,77 @@ class _CatalogSearchField extends StatelessWidget {
   }
 }
 
+class _SearchLanguageScopeSelector extends StatelessWidget {
+  const _SearchLanguageScopeSelector({
+    required this.value,
+    required this.onChanged,
+  });
+
+  final String value;
+  final ValueChanged<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final normalizedValue = _normalizeSearchLanguageScope(value);
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Text(
+            'Language',
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.2,
+            ),
+          ),
+          const SizedBox(width: 8),
+          for (
+            var index = 0;
+            index < _kSearchLanguageScopeOptions.length;
+            index++
+          ) ...[
+            if (index > 0) const SizedBox(width: 6),
+            _SearchLanguageScopeChip(
+              value: _kSearchLanguageScopeOptions[index].key,
+              label: _kSearchLanguageScopeOptions[index].value,
+              selected:
+                  normalizedValue == _kSearchLanguageScopeOptions[index].key,
+              onSelected: onChanged,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _SearchLanguageScopeChip extends StatelessWidget {
+  const _SearchLanguageScopeChip({
+    required this.value,
+    required this.label,
+    required this.selected,
+    required this.onSelected,
+  });
+
+  final String value;
+  final String label;
+  final bool selected;
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return GvChip(
+      label: label,
+      selected: selected,
+      onSelected: (_) => onSelected(value),
+    );
+  }
+}
+
 class _ResolverStatusBanner extends StatelessWidget {
   final CardSearchResolverMeta? meta;
   final String query;
@@ -553,8 +633,8 @@ class _ResolverStatusBanner extends StatelessWidget {
       case ResolverSearchState.strongMatch:
         return const SizedBox.shrink();
       case ResolverSearchState.ambiguousMatch:
-        background = Colors.amber.withValues(alpha: 0.12);
-        border = Colors.amber.withValues(alpha: 0.6);
+        background = colorScheme.tertiaryContainer.withValues(alpha: 0.28);
+        border = colorScheme.tertiary.withValues(alpha: 0.40);
         title = 'Multiple plausible matches';
         body =
             'This query is still ambiguous. Review the ranked cards instead of treating the top result as certain.';
@@ -724,10 +804,14 @@ class _CatalogCardTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final compact = viewMode == AppCardViewMode.compactList;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-    final subtitleParts = _catalogMetadataParts(card, compact: compact);
+    final subtitleParts = <String>[
+      if ((displayIdentity.printedName ?? '').isNotEmpty)
+        displayIdentity.printedName!,
+      ..._catalogMetadataParts(card, compact: compact),
+    ];
     final subtitle = subtitleParts.join(' • ');
-    final thumbWidth = compact ? 44.0 : 50.0;
-    final thumbHeight = compact ? 62.0 : 72.0;
+    final thumbWidth = compact ? 56.0 : 60.0;
+    final thumbHeight = compact ? 81.0 : 86.0;
 
     return _CatalogFeedImpressionObserver(
       cardId: card.id,
@@ -746,9 +830,7 @@ class _CatalogCardTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(compact ? 16 : 18),
             pressedScale: compact ? 0.982 : 0.978,
             child: Material(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.24,
-              ),
+              color: colorScheme.surface.withValues(alpha: 0.10),
               borderRadius: BorderRadius.circular(compact ? 16 : 18),
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -792,14 +874,11 @@ class _CatalogCardTile extends StatelessWidget {
                           ],
                           if (pricing?.hasVisibleValue == true) ...[
                             SizedBox(height: compact ? 4 : 5),
-                            Opacity(
-                              opacity: 0.86,
-                              child: CardSurfacePricePill(
-                                pricing: pricing,
-                                size: compact
-                                    ? CardSurfacePriceSize.dense
-                                    : CardSurfacePriceSize.list,
-                              ),
+                            CardSurfacePriceText(
+                              pricing: pricing,
+                              size: compact
+                                  ? CardSurfacePriceSize.dense
+                                  : CardSurfacePriceSize.list,
                             ),
                           ],
                           _CatalogOwnershipSummaryLine(
@@ -885,7 +964,9 @@ class _CatalogFeedDebugOverlay extends StatelessWidget {
       return child;
     }
 
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
     final overlayTextStyle =
         (compact ? textTheme.labelSmall : textTheme.bodySmall)?.copyWith(
           color: Colors.white,
@@ -918,7 +999,7 @@ class _CatalogFeedDebugOverlay extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 220),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.76),
+                    color: colorScheme.shadow.withValues(alpha: 0.76),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Padding(
@@ -978,11 +1059,11 @@ class _CatalogCardGridTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-    final subtitleParts = _catalogMetadataParts(
-      card,
-      compact: false,
-      includeRarity: false,
-    );
+    final subtitleParts = <String>[
+      if ((displayIdentity.printedName ?? '').isNotEmpty)
+        displayIdentity.printedName!,
+      ..._catalogMetadataParts(card, compact: false, includeRarity: false),
+    ];
     final subtitle = subtitleParts.join(' • ');
 
     return _CatalogFeedImpressionObserver(
@@ -995,61 +1076,62 @@ class _CatalogCardGridTile extends StatelessWidget {
           color: Colors.transparent,
           child: _PressScaleInkWell(
             onTap: onTap,
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
             pressedScale: 0.972,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AspectRatio(
-                  aspectRatio: _kWallMatchArtworkAspectRatio,
+                  aspectRatio: GvGridConstants.artworkAspectRatio,
                   child: _CatalogGridArtwork(card: card),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: GvGridConstants.imageToTitleGap),
                 SizedBox(
-                  height: _kWallMatchTitleHeight,
+                  height: GvGridConstants.titleSlotHeight,
                   child: Text(
                     displayIdentity.displayName,
-                    maxLines: 2,
+                    maxLines: GvGridConstants.titleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      height: 1.04,
-                      letterSpacing: -0.3,
-                    ),
+                    style: gvGridTitleStyle(theme),
                   ),
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: GvGridConstants.titleToSubtitleGap),
                 SizedBox(
-                  height: _kWallMatchMetaHeight,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          subtitle.isEmpty ? 'Card' : subtitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.60,
+                  height: GvGridConstants.subtitleSlotHeight,
+                  child: Text(
+                    subtitle.isEmpty ? 'Card' : subtitle,
+                    maxLines: GvGridConstants.subtitleMaxLines,
+                    overflow: TextOverflow.ellipsis,
+                    style: gvGridSubtitleStyle(theme, colorScheme),
+                  ),
+                ),
+                const SizedBox(height: GvGridConstants.subtitleToPriceGap),
+                SizedBox(
+                  height: GvGridConstants.priceSlotHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: pricing?.hasVisibleValue == true
+                        ? CardSurfacePriceText(
+                            pricing: pricing,
+                            size: CardSurfacePriceSize.grid,
+                            textAlign: TextAlign.left,
+                          )
+                        : Text(
+                            'Grookai Value',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.44,
+                              ),
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0,
                             ),
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.02,
                           ),
-                        ),
-                      ),
-                      if (pricing?.hasVisibleValue == true) ...[
-                        const SizedBox(width: 6),
-                        CardSurfacePricePill(
-                          pricing: pricing,
-                          size: CardSurfacePriceSize.grid,
-                        ),
-                      ],
-                    ],
                   ),
                 ),
                 SizedBox(
-                  height: _kWallMatchBottomRhythmHeight,
+                  height: GvGridConstants.ownershipSlotHeight,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: _CatalogOwnershipSummaryLine(
@@ -1085,16 +1167,14 @@ class _CatalogGridArtwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
     final imagePresentation = _cardPrintImagePresentation(card);
 
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
       imageUrl: card.displayImage,
-      borderRadius: 22,
-      padding: const EdgeInsets.all(1.5),
-      backgroundColor: colorScheme.surfaceContainerLow.withValues(alpha: 0.52),
+      borderRadius: GvGridConstants.imageRadius,
+      padding: EdgeInsets.zero,
       enableTapToZoom: false,
       showShadow: false,
       filterQuality: FilterQuality.none,
@@ -1483,6 +1563,8 @@ class _SearchResultActionSheet extends StatelessWidget {
                     imageTruthLabel: imagePresentation.compactBadgeLabel,
                     imageTruthStrong:
                         imagePresentation.isCollisionRepresentative,
+                    onViewDetails: interactionLocked ? null : onViewCard,
+                    detailsLabel: 'View card',
                   ),
                 ),
               ),
@@ -1495,6 +1577,19 @@ class _SearchResultActionSheet extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+            if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+              const SizedBox(height: 3),
+              Text(
+                displayIdentity.printedName!,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
             if (hasSubtitle) ...[
               const SizedBox(height: 4),
               Center(
@@ -1524,17 +1619,10 @@ class _SearchResultActionSheet extends StatelessWidget {
             if (pricing?.hasVisibleValue == true) ...[
               const SizedBox(height: 9),
               Center(
-                child: MediaQuery(
-                  data: MediaQuery.of(
-                    context,
-                  ).copyWith(textScaler: const TextScaler.linear(1.08)),
-                  child: Transform.scale(
-                    scale: 1.04,
-                    child: CardSurfacePricePill(
-                      pricing: pricing,
-                      size: CardSurfacePriceSize.list,
-                    ),
-                  ),
+                child: CardSurfacePriceText(
+                  pricing: pricing,
+                  size: CardSurfacePriceSize.list,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
@@ -1956,6 +2044,7 @@ class _ActionSheetMetadataText extends StatelessWidget {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  _configureAppImageCache();
   AppBootTiming.mark('main_start');
   PlatformDispatcher.instance.onError = (error, stackTrace) {
     if (_isInvalidRefreshTokenRecoveryError(error)) {
@@ -1982,12 +2071,18 @@ Future<void> main() async {
   AppBootTiming.mark('supabase_initialize_start');
   await Supabase.initialize(
     url: url,
-    anonKey: key,
+    publishableKey: key,
     authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
   );
   AppBootTiming.mark('supabase_initialize_complete');
   AppBootTiming.mark('runApp');
   runApp(const MyApp());
+}
+
+void _configureAppImageCache() {
+  final cache = PaintingBinding.instance.imageCache;
+  cache.maximumSize = 1600;
+  cache.maximumSizeBytes = 192 << 20;
 }
 
 bool _isInvalidRefreshTokenRecoveryError(Object error) {
@@ -2065,25 +2160,27 @@ class _GrookaiBootWarmupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppBootTiming.markOnce('boot_warmup_build');
-    return const ColoredBox(
-      color: Color(0xFF000000),
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return ColoredBox(
+      color: colorScheme.surface,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 104,
               height: 104,
               child: Image(image: AssetImage(_logoAsset)),
             ),
-            SizedBox(height: 22),
-            Text(
+            const SizedBox(height: 22),
+            const Text(
               'Grookai Vault',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 22,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 0,
                 decoration: TextDecoration.none,
               ),
@@ -2539,12 +2636,12 @@ class HomePageState extends State<HomePage> {
   bool _loading = false;
   bool _loadingCuratedLanding = false;
   bool _hasMoreVisibleResults = false;
-  bool _isHydratingMoreResults = false;
   String? _searchError;
   Timer? _debounce;
   int _searchRequestVersion = 0;
   _RarityFilter _rarityFilter = _RarityFilter.all;
   String _identityFilter = kIdentityFilterAll;
+  String _languageScope = 'all';
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
@@ -2556,67 +2653,12 @@ class HomePageState extends State<HomePage> {
     return cards.sublist(0, limit);
   }
 
-  void _scheduleVisibleSearchResultHydration({
-    required List<CardPrint> filteredResults,
-    required int requestVersion,
-  }) {
-    if (filteredResults.length <= _visibleResults.length) {
-      return;
-    }
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _appendVisibleSearchResults(
-        filteredResults: filteredResults,
-        requestVersion: requestVersion,
-      );
-    });
-  }
-
-  void _appendVisibleSearchResults({
-    required List<CardPrint> filteredResults,
-    required int requestVersion,
-  }) {
-    if (!mounted || requestVersion != _searchRequestVersion) {
-      return;
-    }
-
-    final currentVisibleCount = _visibleResults.length;
-    if (currentVisibleCount >= filteredResults.length) {
-      if (_hasMoreVisibleResults || _isHydratingMoreResults) {
-        setState(() {
-          _hasMoreVisibleResults = false;
-          _isHydratingMoreResults = false;
-        });
-      }
-      return;
-    }
-
-    final nextVisibleCount = math.min(
-      currentVisibleCount + _kSearchFollowupBatchSize,
-      filteredResults.length,
-    );
-
-    setState(() {
-      _visibleResults = filteredResults.sublist(0, nextVisibleCount);
-      _hasMoreVisibleResults = nextVisibleCount < filteredResults.length;
-      _isHydratingMoreResults = nextVisibleCount < filteredResults.length;
-    });
-
-    if (nextVisibleCount < filteredResults.length) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _appendVisibleSearchResults(
-          filteredResults: filteredResults,
-          requestVersion: requestVersion,
-        );
-      });
-    }
-  }
-
   bool _shouldShowCuratedLanding([String? query]) {
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
-        !isIdentityFilterActive(_identityFilter);
+        !isIdentityFilterActive(_identityFilter) &&
+        _languageScope == 'all';
   }
 
   void _resetCuratedLandingState() {
@@ -2629,7 +2671,6 @@ class HomePageState extends State<HomePage> {
       _resultPricing = const {};
       _resolverMeta = null;
       _hasMoreVisibleResults = false;
-      _isHydratingMoreResults = false;
       _searchError = null;
       _loading = false;
     });
@@ -2804,77 +2845,205 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  Widget _buildRarityChip(_RarityFilter filter, String label) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bool selected = _rarityFilter == filter;
-
-    Color bg;
-    Color border;
-    Color text;
-
-    if (selected) {
-      bg = colorScheme.primary.withValues(alpha: 0.10);
-      border = colorScheme.primary;
-      text = colorScheme.primary;
-    } else {
-      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
-      border = Colors.transparent;
-      text = colorScheme.onSurface.withValues(alpha: 0.68);
+  int get _activeSearchFilterCount {
+    var count = 0;
+    if (_normalizeSearchLanguageScope(_languageScope) != 'all') {
+      count += 1;
     }
+    if (isIdentityFilterActive(_identityFilter)) {
+      count += 1;
+    }
+    if (_rarityFilter != _RarityFilter.all) {
+      count += 1;
+    }
+    return count;
+  }
 
-    return ChoiceChip(
-      label: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: text,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+  List<IdentityFilterOption> _visibleIdentityFilterOptions(
+    Map<String, int> identityFilterCounts,
+  ) {
+    return kIdentityFilterOptions
+        .where((option) {
+          if (option.key == kIdentityFilterAll) {
+            return true;
+          }
+          return (identityFilterCounts[option.key] ?? 0) > 0 ||
+              option.key == _identityFilter;
+        })
+        .toList(growable: false);
+  }
+
+  Widget _buildSearchFilterButton({
+    required ThemeData theme,
+    required Map<String, int> identityFilterCounts,
+    required List<IdentityFilterOption> visibleIdentityFilters,
+  }) {
+    final colorScheme = theme.colorScheme;
+    final activeCount = _activeSearchFilterCount;
+    return OutlinedButton.icon(
+      onPressed: () => _openSearchFiltersSheet(
+        identityFilterCounts: identityFilterCounts,
+        visibleIdentityFilters: visibleIdentityFilters,
+      ),
+      icon: const Icon(Icons.tune_rounded, size: 18),
+      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
+      style: OutlinedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
+        side: BorderSide(
+          color: activeCount == 0
+              ? colorScheme.outline.withValues(alpha: 0.26)
+              : colorScheme.primary.withValues(alpha: 0.7),
+        ),
+        backgroundColor: activeCount == 0
+            ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.24)
+            : colorScheme.primary.withValues(alpha: 0.1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        textStyle: theme.textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
         ),
       ),
-      selected: selected,
-      onSelected: (_) => _handleRarityFilterChanged(filter),
-      selectedColor: bg,
-      backgroundColor: bg,
-      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
     );
   }
 
-  Widget _buildIdentityChip(IdentityFilterOption option, {required int count}) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bool selected = _identityFilter == option.key;
+  Future<void> _openSearchFiltersSheet({
+    required Map<String, int> identityFilterCounts,
+    required List<IdentityFilterOption> visibleIdentityFilters,
+  }) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final theme = Theme.of(context);
+            final colorScheme = theme.colorScheme;
+            final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
-    Color bg;
-    Color border;
-    Color text;
+            void refreshSheet(VoidCallback action) {
+              action();
+              setSheetState(() {});
+            }
 
-    if (selected) {
-      bg = colorScheme.primary.withValues(alpha: 0.10);
-      border = colorScheme.primary;
-      text = colorScheme.primary;
-    } else {
-      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
-      border = Colors.transparent;
-      text = colorScheme.onSurface.withValues(alpha: 0.68);
-    }
-
-    return ChoiceChip(
-      label: Text(
-        count > 0 ? '${option.label} ($count)' : option.label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: text,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-        ),
-      ),
-      selected: selected,
-      onSelected: (_) => _handleIdentityFilterChanged(option.key),
-      selectedColor: bg,
-      backgroundColor: bg,
-      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
+            return Padding(
+              padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + bottomInset),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Filters',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Refine by language, identity, and rarity.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.64),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    _SearchLanguageScopeSelector(
+                      value: _languageScope,
+                      onChanged: (value) => refreshSheet(
+                        () => _handleLanguageScopeChanged(value),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Identity',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final option in visibleIdentityFilters)
+                          GvChip(
+                            label: option.label,
+                            count: identityFilterCounts[option.key] ?? 0,
+                            selected: _identityFilter == option.key,
+                            onSelected: (_) => refreshSheet(
+                              () => _handleIdentityFilterChanged(option.key),
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Rarity',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        GvChip(
+                          label: 'All',
+                          selected: _rarityFilter == _RarityFilter.all,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(_RarityFilter.all),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Common',
+                          selected: _rarityFilter == _RarityFilter.common,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(
+                              _RarityFilter.common,
+                            ),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Uncommon',
+                          selected: _rarityFilter == _RarityFilter.uncommon,
+                          onSelected: (_) => refreshSheet(
+                            () => _handleRarityFilterChanged(
+                              _RarityFilter.uncommon,
+                            ),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Rare',
+                          selected: _rarityFilter == _RarityFilter.rare,
+                          onSelected: (_) => refreshSheet(
+                            () =>
+                                _handleRarityFilterChanged(_RarityFilter.rare),
+                          ),
+                        ),
+                        GvChip(
+                          label: 'Ultra / Secret',
+                          selected: _rarityFilter == _RarityFilter.ultra,
+                          onSelected: (_) => refreshSheet(
+                            () =>
+                                _handleRarityFilterChanged(_RarityFilter.ultra),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -2943,7 +3112,9 @@ class HomePageState extends State<HomePage> {
         client: supabase,
         options: CardSearchOptions(
           query: trimmed,
+          limit: _kSearchResolverLimit,
           identityFilter: _identityFilter,
+          languageScope: _languageScope,
         ),
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -2963,16 +3134,9 @@ class HomePageState extends State<HomePage> {
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
         _hasMoreVisibleResults = hasMoreVisibleResults;
-        _isHydratingMoreResults = hasMoreVisibleResults;
         _searchError = null;
         _loading = false;
       });
-      if (hasMoreVisibleResults) {
-        _scheduleVisibleSearchResultHydration(
-          filteredResults: filteredResults,
-          requestVersion: requestVersion,
-        );
-      }
       var pricing = const <String, CardSurfacePricingData>{};
       try {
         pricing = await CardSurfacePricingService.fetchByCardPrintIds(
@@ -2981,6 +3145,9 @@ class HomePageState extends State<HomePage> {
         );
       } catch (_) {
         pricing = const <String, CardSurfacePricingData>{};
+      }
+      if (!mounted || requestVersion != _searchRequestVersion) {
+        return;
       }
       final ownershipStates = await _primeCatalogOwnershipStates(resolved.rows);
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -3004,8 +3171,7 @@ class HomePageState extends State<HomePage> {
         _resultPricing = const {};
         _resolverMeta = null;
         _hasMoreVisibleResults = false;
-        _isHydratingMoreResults = false;
-        _searchError = error is Error ? error.toString() : 'Search failed.';
+        _searchError = _formatSearchFailure(error);
         _loading = false;
       });
     }
@@ -3041,12 +3207,12 @@ class HomePageState extends State<HomePage> {
       _visibleResults = nextVisibleResults;
       _hasMoreVisibleResults =
           filteredCurrentResults.length > nextVisibleResults.length;
-      _isHydratingMoreResults = false;
     });
 
     if (currentQuery.trim().isEmpty &&
         filter == _RarityFilter.all &&
-        _identityFilter == kIdentityFilterAll) {
+        _identityFilter == kIdentityFilterAll &&
+        _languageScope == 'all') {
       _resetCuratedLandingState();
       return;
     }
@@ -3075,12 +3241,12 @@ class HomePageState extends State<HomePage> {
       _visibleResults = nextVisibleResults;
       _hasMoreVisibleResults =
           filteredCurrentResults.length > nextVisibleResults.length;
-      _isHydratingMoreResults = false;
     });
 
     if (currentQuery.trim().isEmpty &&
         normalizedFilter == kIdentityFilterAll &&
-        _rarityFilter == _RarityFilter.all) {
+        _rarityFilter == _RarityFilter.all &&
+        _languageScope == 'all') {
       _resetCuratedLandingState();
       return;
     }
@@ -3088,28 +3254,37 @@ class HomePageState extends State<HomePage> {
     _runSearch(currentQuery);
   }
 
-  Future<void> _openSetsScreen() async {
-    await Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (_) => const PublicSetsScreen()));
+  void _handleLanguageScopeChanged(String scope) {
+    final normalizedScope = _normalizeSearchLanguageScope(scope);
+    if (_languageScope == normalizedScope) {
+      return;
+    }
+
+    setState(() {
+      _languageScope = normalizedScope;
+      _results = const [];
+      _visibleResults = const [];
+      _provisionalResults = const <PublicProvisionalCard>[];
+      _resultPricing = const {};
+      _resolverMeta = null;
+      _hasMoreVisibleResults = false;
+      _searchError = null;
+    });
+    _runSearch(_searchCtrl.text);
   }
 
-  Future<void> _openPublicCollectorBySlug() async {
-    final slug = await _showPublicCollectorSlugPrompt(context);
-    if (!mounted) {
-      return;
-    }
-
-    final normalizedSlug = _normalizePublicCollectorSlugInput(slug ?? '');
-    if (normalizedSlug.isEmpty) {
-      return;
-    }
-
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => PublicCollectorScreen(slug: normalizedSlug),
-      ),
+  void _loadMoreSearchResults() {
+    final filteredResults = _applyCatalogFilters(_results);
+    final nextVisibleResults = _takeSearchResultBatch(
+      filteredResults,
+      _visibleResults.length + _kSearchFollowupBatchSize,
     );
+
+    setState(() {
+      _visibleResults = nextVisibleResults;
+      _hasMoreVisibleResults =
+          filteredResults.length > nextVisibleResults.length;
+    });
   }
 
   Future<void> _openCompareScreen() async {
@@ -3775,9 +3950,9 @@ class HomePageState extends State<HomePage> {
 
     return SliverPadding(
       padding: const EdgeInsets.fromLTRB(
-        _kWallMatchGridOuterPadding,
+        GvGridConstants.gridOuterPadding,
         6,
-        _kWallMatchGridOuterPadding,
+        GvGridConstants.gridOuterPadding,
         0,
       ),
       sliver: SliverGrid(
@@ -3794,9 +3969,9 @@ class HomePageState extends State<HomePage> {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: columns,
-          mainAxisSpacing: _kWallMatchGridSpacing,
-          crossAxisSpacing: _kWallMatchGridSpacing,
-          childAspectRatio: _kWallMatchGridChildAspectRatio,
+          mainAxisSpacing: GvGridConstants.gridSpacing,
+          crossAxisSpacing: GvGridConstants.gridSpacing,
+          childAspectRatio: GvGridConstants.gridChildAspectRatio,
         ),
       ),
     );
@@ -3934,7 +4109,7 @@ class HomePageState extends State<HomePage> {
                 title,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -0.1,
+                  letterSpacing: 0,
                 ),
               ),
               if (subtitle != null) ...[
@@ -4045,15 +4220,9 @@ class HomePageState extends State<HomePage> {
     final identityFilterCounts = buildIdentityFilterCounts(
       showingCuratedLanding ? _trending : _results,
     );
-    final visibleIdentityFilters = kIdentityFilterOptions
-        .where((option) {
-          if (option.key == kIdentityFilterAll) {
-            return true;
-          }
-          return (identityFilterCounts[option.key] ?? 0) > 0 ||
-              option.key == _identityFilter;
-        })
-        .toList(growable: false);
+    final visibleIdentityFilters = _visibleIdentityFilterOptions(
+      identityFilterCounts,
+    );
     final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
         : _buildRows(cards);
@@ -4076,7 +4245,7 @@ class HomePageState extends State<HomePage> {
                   child: Text(
                     _searchError!,
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: Colors.red,
+                      color: theme.colorScheme.error,
                     ),
                   ),
                 ),
@@ -4087,86 +4256,43 @@ class HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(top: 6, bottom: 0),
               ),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: FilledButton.tonalIcon(
-                      onPressed: _openSetsScreen,
-                      style: FilledButton.styleFrom(
-                        minimumSize: const Size(0, 36),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final utilityControls = Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildSearchFilterButton(
+                        theme: theme,
+                        identityFilterCounts: identityFilterCounts,
+                        visibleIdentityFilters: visibleIdentityFilters,
                       ),
-                      icon: const Icon(Icons.grid_view_rounded, size: 17),
-                      label: const Text('Browse sets'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: _openPublicCollectorBySlug,
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(0, 36),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      icon: const Icon(Icons.alternate_email_rounded, size: 17),
-                      label: const Text('Open slug'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  SharedCardViewModeButton(
-                    value: _viewMode,
-                    onChanged: (mode) {
-                      setState(() {
-                        _viewMode = mode;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (
-                      var index = 0;
-                      index < visibleIdentityFilters.length;
-                      index++
-                    ) ...[
-                      if (index > 0) const SizedBox(width: 6),
-                      _buildIdentityChip(
-                        visibleIdentityFilters[index],
-                        count:
-                            identityFilterCounts[visibleIdentityFilters[index]
-                                .key] ??
-                            0,
+                      const SizedBox(width: 8),
+                      SharedCardViewModeButton(
+                        value: _viewMode,
+                        onChanged: (mode) {
+                          setState(() {
+                            _viewMode = mode;
+                          });
+                        },
                       ),
                     ],
-                  ],
-                ),
-              ),
-              const SizedBox(height: 6),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _buildRarityChip(_RarityFilter.all, 'All'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.common, 'Common'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.uncommon, 'Uncommon'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.rare, 'Rare'),
-                    const SizedBox(width: 6),
-                    _buildRarityChip(_RarityFilter.ultra, 'Ultra / Secret'),
-                  ],
-                ),
+                  );
+
+                  if (constraints.maxWidth < 430) {
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: utilityControls,
+                    );
+                  }
+
+                  return Row(
+                    children: [
+                      const Spacer(),
+                      const SizedBox(width: 8),
+                      utilityControls,
+                    ],
+                  );
+                },
               ),
             ],
           ),
@@ -4224,15 +4350,15 @@ class HomePageState extends State<HomePage> {
                     sliver: SliverToBoxAdapter(
                       child: _ProductEmptyState(
                         title: showingCuratedLanding
-                            ? 'No cards in the spotlight yet'
+                            ? 'Nothing trending yet'
                             : trimmed.isEmpty
-                            ? 'No cards surfaced yet'
+                            ? 'No cards yet'
                             : 'No results yet',
                         body: showingCuratedLanding
-                            ? 'Trending cards will surface here when the explore feed loads.'
+                            ? 'Check back soon.'
                             : trimmed.isEmpty
-                            ? 'Cards will appear here as the public explore catalog loads.'
-                            : 'Try another search term, set code, or collector number.',
+                            ? 'Cards will appear here when the catalog loads.'
+                            : 'Try a set code or card number.',
                       ),
                     ),
                   )
@@ -4246,6 +4372,19 @@ class HomePageState extends State<HomePage> {
                         kDebugMode &&
                         kFeedDebugOverlay &&
                         _showFeedDebugOverlay,
+                  ),
+                if (!showingCuratedLanding && _hasMoreVisibleResults)
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                    sliver: SliverToBoxAdapter(
+                      child: Center(
+                        child: OutlinedButton.icon(
+                          onPressed: _loadMoreSearchResults,
+                          icon: const Icon(Icons.expand_more_rounded, size: 18),
+                          label: const Text('Load more'),
+                        ),
+                      ),
+                    ),
                   ),
                 if (hasProvisionalResults)
                   SliverToBoxAdapter(

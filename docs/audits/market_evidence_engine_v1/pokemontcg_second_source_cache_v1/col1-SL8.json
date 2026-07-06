@@ -1,0 +1,90 @@
+{
+  "id": "col1-SL8",
+  "name": "Palkia",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Basic"
+  ],
+  "hp": "100",
+  "types": [
+    "Water"
+  ],
+  "attacks": [
+    {
+      "name": "Wormhole",
+      "cost": [
+        "Water",
+        "Water",
+        "Water",
+        "Water"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "60",
+      "text": "Switch Palkia with 1 of your Benched Pokémon. Then, your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Lightning",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 3,
+  "set": {
+    "id": "col1",
+    "name": "Call of Legends",
+    "series": "HeartGold & SoulSilver",
+    "printedTotal": 95,
+    "total": 106,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "CL",
+    "releaseDate": "2011/02/09",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/col1/symbol.png",
+      "logo": "https://images.pokemontcg.io/col1/logo.png"
+    }
+  },
+  "number": "SL8",
+  "artist": "Ayaka Yoshida",
+  "rarity": "Rare Holo",
+  "flavorText": "Its total control over the boundaries of space enable it to transport itself to faraway places or even other dimensions.",
+  "nationalPokedexNumbers": [
+    484
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/col1/SL8.png",
+    "large": "https://images.pokemontcg.io/col1/SL8_hires.png"
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/col1-SL8",
+    "updatedAt": "2026/01/16",
+    "prices": {
+      "averageSellPrice": 45.28,
+      "lowPrice": 8,
+      "trendPrice": 59.07,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 0,
+      "reverseHoloTrend": 35.89,
+      "lowPriceExPlus": 40,
+      "avg1": 49.99,
+      "avg7": 54.21,
+      "avg30": 69.44,
+      "reverseHoloAvg1": 19.99,
+      "reverseHoloAvg7": 43.7,
+      "reverseHoloAvg30": 26.78
+    }
+  }
+}

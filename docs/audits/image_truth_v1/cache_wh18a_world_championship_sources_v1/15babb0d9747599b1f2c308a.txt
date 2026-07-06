@@ -1,0 +1,64 @@
+{{Upcoming notice}}
+{{DeckInfobox
+|title=JP Raging Bolt
+|image=WCS2025 JP Raging Bolt Deck.png
+|caption=Box art
+|release=June 19, 2026
+|types={{e|Dragon}}
+}}
+
+'''JP Raging Bolt''' is the name of the deck used by Yuya Okita, the Junior Division champion at the [[2025 Pokémon World Championships]]. It is one of the 2025 World Championship Decks released on June 19, 2026.
+
+Each deck comes with a two-sided playmat/poster, an event booklet, a [[Pokémon Trading Card Game Live]] code card, and a special Worlds 2025 deck box, pin, and {{TCG|coin}}. The cards included in the deck are not the exact prints used by Okita, but are the most recent, lowest-rarity print with any Holofoil removed. The cards have a unique card back and Okita's signature, and in place of the set symbol and rarity, they have a note stating, "This card cannot be used in official tournaments."
+
+==Description==
+
+===Packaging===
+<i>Channel the ancient powers of Raging Bolt—with plenty of friends to help get Energy into play! Yuya Okita’s deck can deliver some very impressive first turns, with Fan Rotom setting up your Bench and Squawkabilly recycling your hand. Then, lean on Ogerpon for extra Energy and Noctowl to seek out Trainer cards for (you guessed it) even more Energy. The two versions of the star Pokémon work together—Raging Bolt’s Thunderburst Storm does damage for each Energy attached to it, and then you can discard all of that Energy to unleash massive damage with Raging Bolt ex’s Bellowing Thunder attack!</i>
+<!--
+===Booklet===
+TBA-->
+
+==Deck list==
+{{halfdecklist/header|title=JP Raging Bolt|type=Dragon|symbol=no}}
+{{halfdecklist/entry|123/162|H|{{TCG ID|Temporal Forces|Raging Bolt ex|123|Raging Bolt}}{{ex}}|Dragon||3}}
+{{halfdecklist/entry|025/167|H|{{TCG ID|Twilight Masquerade|Teal Mask Ogerpon ex|25|Teal Mask Ogerpon}}{{Tera ex}}|Grass||3}}
+{{halfdecklist/entry|115/142|H|{{TCG ID|Stellar Crown|Noctowl|115}}|Colorless||3}}
+{{halfdecklist/entry|114/142|H|{{TCG ID|Stellar Crown|Hoothoot|114}}|Colorless||3}}
+{{halfdecklist/entry|118/142|H|{{TCG ID|Stellar Crown|Fan Rotom|118}}|Colorless||2}}
+{{halfdecklist/entry|116/191|H|{{TCG ID|Surging Sparks|Koraidon|116}}|Fighting||1}}
+{{halfdecklist/entry|111/142|H|{{TCG ID|Stellar Crown|Raging Bolt|111}}|Dragon||1}}
+{{halfdecklist/entry|038/064|H|{{TCG ID|Shrouded Fable|Fezandipiti ex|38|Fezandipiti}}{{ex}}|Darkness||1}}
+{{halfdecklist/entry|076/191|H|{{TCG ID|Surging Sparks|Latias ex|76|Latias}}{{ex}}|Psychic||1}}
+{{halfdecklist/entry|132/165|G|{{TCG ID|151|Ditto|132}}|Colorless||1}}
+{{halfdecklist/entry|169/193|G|{{TCG ID|Paldea Evolved|Squawkabilly ex|169|Squawkabilly}}{{ex}}|Colorless||1}}
+{{halfdecklist/entry|170/182|G|{{TCG ID|Paradox Rift|Professor Sada's Vitality|170}}|Supporter||4}}
+{{halfdecklist/entry|172/193|G|{{TCG ID|Paldea Evolved|Boss's Orders|172}} <small>'''[Ghetsis]'''</small>|Supporter||2}}
+{{halfdecklist/entry|133/142|H|{{TCG ID|Stellar Crown|Crispin|133}}|Supporter||1}}
+{{halfdecklist/entry|185/193|G|{{TCG ID|Paldea Evolved|Iono|185}}|Supporter||1}}
+{{halfdecklist/entry|171/182|G|{{TCG ID|Paradox Rift|Professor Turo's Scenario|171}}|Supporter||1}}
+{{halfdecklist/entry|131/142|H|{{TCG ID|Stellar Crown|Area Zero Underdepths|131}}|Stadium||2}}
+{{halfdecklist/entry|153/167|H|{{TCG ID|Twilight Masquerade|Jamming Tower|153}}|Stadium||1}}
+{{halfdecklist/entry|181/198|G|{{TCG ID|Scarlet & Violet|Nest Ball|181}}|Item||4}}
+{{halfdecklist/entry|196/198|G|{{TCG ID|Scarlet & Violet|Ultra Ball|196}}|Item||4}}
+{{halfdecklist/entry|163/182|G|{{TCG ID|Paradox Rift|Earthen Vessel|163}}|Item||3}}
+{{halfdecklist/entry|061/064|H|{{TCG ID|Shrouded Fable|Night Stretcher|61}}|Item||3}}
+{{halfdecklist/entry|173/198|G|{{TCG ID|Scarlet & Violet|Energy Switch|173}}|Item||1}}
+{{halfdecklist/entry|157/162|H|{{TCG ID|Temporal Forces|Prime Catcher|157}}|Item||1}}
+{{halfdecklist/entry|GRA|—|{{TCG|Basic Grass Energy}}|Energy|Grass|6}}
+{{halfdecklist/entry|FIG|—|{{TCG|Basic Fighting Energy}}|Energy|Fighting|3}}
+{{halfdecklist/entry|LIG|—|{{TCG|Basic Lightning Energy}}|Energy|Lightning|3}}
+{{halfdecklist/footer}}
+
+==Trivia==
+The [[2025 Pokémon World Championships]] deck products were originally scheduled for release on April 3, 2026, before it was delayed to June 19, 2026.
+
+==Related articles==
+* [[Raging Bolt Ogerpon (TCG)]]
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category: World Championship Decks]]
+
+[[de: JP Raging Bolt (TCG)]]

@@ -106,21 +106,157 @@ class PublicSetMasterSetStats {
   }
 }
 
+class PublicWorldChampionshipDecklistEntry {
+  const PublicWorldChampionshipDecklistEntry({
+    required this.cardPrintId,
+    required this.gvId,
+    required this.name,
+    required this.number,
+    this.quantity,
+    this.sourceSetName,
+    this.sourceCardNumber,
+    this.rarity,
+  });
+
+  final String cardPrintId;
+  final String gvId;
+  final String name;
+  final String number;
+  final int? quantity;
+  final String? sourceSetName;
+  final String? sourceCardNumber;
+  final String? rarity;
+}
+
+class PublicWorldChampionshipDecklist {
+  const PublicWorldChampionshipDecklist({
+    required this.setCode,
+    required this.totalQuantity,
+    required this.uniqueCardCount,
+    required this.entries,
+    this.deckName,
+    this.deckYear,
+    this.playerName,
+  });
+
+  final String setCode;
+  final String? deckName;
+  final int? deckYear;
+  final String? playerName;
+  final int totalQuantity;
+  final int uniqueCardCount;
+  final List<PublicWorldChampionshipDecklistEntry> entries;
+}
+
 class PublicSetDetail {
   const PublicSetDetail({
     required this.summary,
     required this.cards,
     required this.masterSetStats,
+    this.worldChampionshipDecklist,
   });
 
   final PublicSetSummary summary;
   final List<PublicSetCard> cards;
   final PublicSetMasterSetStats masterSetStats;
+  final PublicWorldChampionshipDecklist? worldChampionshipDecklist;
 }
 
 enum PublicSetFilter { all, modern, special, alphabetical, newest, oldest }
 
+enum PublicSetEra {
+  all,
+  scarletViolet,
+  swordShield,
+  sunMoon,
+  xy,
+  blackWhite,
+  dpHgss,
+  exEcard,
+  classic,
+  datePending,
+}
+
+enum PublicSetLane { all, main, special, promo, deck, world }
+
+class PublicSetEraOption {
+  const PublicSetEraOption({
+    required this.value,
+    required this.label,
+    required this.shortLabel,
+  });
+
+  final PublicSetEra value;
+  final String label;
+  final String shortLabel;
+}
+
+class PublicSetLaneOption {
+  const PublicSetLaneOption({required this.value, required this.label});
+
+  final PublicSetLane value;
+  final String label;
+}
+
 class PublicSetsService {
+  static const eraOptions = <PublicSetEraOption>[
+    PublicSetEraOption(
+      value: PublicSetEra.all,
+      label: 'All eras',
+      shortLabel: 'All',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.scarletViolet,
+      label: 'Scarlet & Violet',
+      shortLabel: 'SV',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.swordShield,
+      label: 'Sword & Shield',
+      shortLabel: 'SWSH',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.sunMoon,
+      label: 'Sun & Moon',
+      shortLabel: 'SM',
+    ),
+    PublicSetEraOption(value: PublicSetEra.xy, label: 'XY', shortLabel: 'XY'),
+    PublicSetEraOption(
+      value: PublicSetEra.blackWhite,
+      label: 'Black & White',
+      shortLabel: 'BW',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.dpHgss,
+      label: 'DP / HGSS',
+      shortLabel: 'DP',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.exEcard,
+      label: 'EX / e-Card',
+      shortLabel: 'EX',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.classic,
+      label: 'Classic',
+      shortLabel: 'Classic',
+    ),
+    PublicSetEraOption(
+      value: PublicSetEra.datePending,
+      label: 'Date pending',
+      shortLabel: 'Pending',
+    ),
+  ];
+
+  static const laneOptions = <PublicSetLaneOption>[
+    PublicSetLaneOption(value: PublicSetLane.all, label: 'All set types'),
+    PublicSetLaneOption(value: PublicSetLane.main, label: 'Main sets'),
+    PublicSetLaneOption(value: PublicSetLane.special, label: 'Special sets'),
+    PublicSetLaneOption(value: PublicSetLane.promo, label: 'Promos'),
+    PublicSetLaneOption(value: PublicSetLane.deck, label: 'Decks & kits'),
+    PublicSetLaneOption(value: PublicSetLane.world, label: 'Worlds decks'),
+  ];
+
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
   }) async {
@@ -364,6 +500,11 @@ class PublicSetsService {
       setCode: summary.code,
       cardLimit: cardLimit,
     );
+    final worldChampionshipDecklist = await fetchWorldChampionshipDecklist(
+      client: client,
+      setCode: summary.code,
+    );
+
     return PublicSetDetail(
       summary: summary,
       cards: cards,
@@ -371,6 +512,86 @@ class PublicSetsService {
         cards: cards,
         signedIn: _cleanText(client.auth.currentUser?.id).isNotEmpty,
       ),
+      worldChampionshipDecklist: worldChampionshipDecklist,
+    );
+  }
+
+  static Future<PublicWorldChampionshipDecklist?>
+  fetchWorldChampionshipDecklist({
+    required SupabaseClient client,
+    required String setCode,
+  }) async {
+    final normalizedCode = _normalizeCode(setCode);
+    if (normalizedCode.isEmpty || !normalizedCode.startsWith('wcd')) {
+      return null;
+    }
+
+    final rows = await client
+        .from('card_prints')
+        .select('id,gv_id,name,number,number_plain,rarity,external_ids')
+        .eq('set_code', normalizedCode)
+        .eq('variant_key', 'world_championship_deck_replica')
+        .not('gv_id', 'is', null)
+        .order('number_plain', ascending: true, nullsFirst: false)
+        .order('number', ascending: true)
+        .order('name', ascending: true);
+
+    final entries = <PublicWorldChampionshipDecklistEntry>[];
+    String? deckName;
+    int? deckYear;
+    String? playerName;
+
+    for (final raw in rows as List<dynamic>) {
+      final row = Map<String, dynamic>.from(raw as Map);
+      final cardPrintId = _cleanText(row['id']);
+      final gvId = _cleanText(row['gv_id']);
+      if (cardPrintId.isEmpty || gvId.isEmpty) {
+        continue;
+      }
+
+      final grookai = _nestedRecord(
+        _nestedRecord(row['external_ids'])?['grookai'],
+      );
+      deckName ??= _normalizeOptionalText(grookai?['deck_name']);
+      deckYear ??= _nullableInt(grookai?['deck_year']);
+      playerName ??= _normalizeOptionalText(grookai?['player_name']);
+
+      final number = _cleanText(row['number_plain']).isNotEmpty
+          ? _cleanText(row['number_plain'])
+          : _cleanText(row['number']);
+      entries.add(
+        PublicWorldChampionshipDecklistEntry(
+          cardPrintId: cardPrintId,
+          gvId: gvId,
+          name: _cleanText(row['name']).isEmpty
+              ? 'Unknown card'
+              : _cleanText(row['name']),
+          number: number.isEmpty ? '—' : number,
+          quantity: _nullableInt(grookai?['deck_quantity']),
+          sourceSetName: _normalizeOptionalText(grookai?['source_set_name']),
+          sourceCardNumber: _normalizeOptionalText(
+            grookai?['source_card_number'],
+          ),
+          rarity: _normalizeOptionalText(row['rarity']),
+        ),
+      );
+    }
+
+    if (entries.isEmpty) {
+      return null;
+    }
+
+    return PublicWorldChampionshipDecklist(
+      setCode: normalizedCode,
+      deckName: deckName,
+      deckYear: deckYear,
+      playerName: playerName,
+      totalQuantity: entries.fold<int>(
+        0,
+        (sum, entry) => sum + (entry.quantity ?? 0),
+      ),
+      uniqueCardCount: entries.length,
+      entries: entries,
     );
   }
 
@@ -378,10 +599,18 @@ class PublicSetsService {
     required List<PublicSetSummary> sets,
     required String query,
     required PublicSetFilter filter,
+    PublicSetEra era = PublicSetEra.all,
+    PublicSetLane lane = PublicSetLane.all,
   }) {
     final queryTokens = _normalizeSearchTokens(query);
     var filtered = sets
         .where((setInfo) => _matchesSearchTokens(setInfo, queryTokens))
+        .where(
+          (setInfo) => era == PublicSetEra.all || getSetEra(setInfo) == era,
+        )
+        .where(
+          (setInfo) => lane == PublicSetLane.all || getSetLane(setInfo) == lane,
+        )
         .toList();
 
     switch (filter) {
@@ -393,14 +622,7 @@ class PublicSetsService {
             .toList();
         break;
       case PublicSetFilter.special:
-        filtered = filtered
-            .where(
-              (setInfo) =>
-                  setInfo.code.contains('pt') ||
-                  setInfo.name.toLowerCase().contains('trainer gallery') ||
-                  setInfo.name.toLowerCase().contains('promo'),
-            )
-            .toList();
+        filtered = filtered.where(isSpecialSet).toList();
         break;
       case PublicSetFilter.alphabetical:
         filtered.sort(
@@ -443,6 +665,117 @@ class PublicSetsService {
     }
 
     return filtered;
+  }
+
+  static PublicSetEra getSetEra(PublicSetSummary setInfo) {
+    final year = setInfo.releaseYear;
+    if (year == null) {
+      return PublicSetEra.datePending;
+    }
+
+    if (year >= 2023) return PublicSetEra.scarletViolet;
+    if (year >= 2020) return PublicSetEra.swordShield;
+    if (year >= 2017) return PublicSetEra.sunMoon;
+    if (year >= 2013) return PublicSetEra.xy;
+    if (year >= 2011) return PublicSetEra.blackWhite;
+    if (year >= 2007) return PublicSetEra.dpHgss;
+    if (year >= 2003) return PublicSetEra.exEcard;
+    return PublicSetEra.classic;
+  }
+
+  static PublicSetLane getSetLane(PublicSetSummary setInfo) {
+    final code = _normalizeName(setInfo.code);
+    final name = _normalizeName(setInfo.name);
+    final haystack = '$code $name';
+
+    if (code.startsWith('wcd') || haystack.contains('world championship')) {
+      return PublicSetLane.world;
+    }
+
+    if (haystack.contains('promo') ||
+        haystack.contains('promotional') ||
+        haystack.contains('black star') ||
+        haystack.contains('pokemon center')) {
+      return PublicSetLane.promo;
+    }
+
+    if (haystack.contains('deck') ||
+        haystack.contains('trainer kit') ||
+        haystack.contains('battle academy') ||
+        haystack.contains('league battle') ||
+        haystack.contains('starter set')) {
+      return PublicSetLane.deck;
+    }
+
+    if (isSpecialSet(setInfo)) {
+      return PublicSetLane.special;
+    }
+
+    return PublicSetLane.main;
+  }
+
+  static bool isSpecialSet(PublicSetSummary setInfo) {
+    final code = _normalizeName(setInfo.code);
+    final name = _normalizeName(setInfo.name);
+
+    if (code.contains('pt5') || code.contains('.5')) {
+      return true;
+    }
+
+    return const [
+      'trainer gallery',
+      'radiant collection',
+      'shiny',
+      'fates',
+      'crown zenith',
+      'prismatic',
+    ].any(name.contains);
+  }
+
+  static String eraLabel(PublicSetEra era) {
+    return eraOptions
+        .firstWhere(
+          (option) => option.value == era,
+          orElse: () => eraOptions.first,
+        )
+        .label;
+  }
+
+  static String laneLabel(PublicSetLane lane) {
+    return laneOptions
+        .firstWhere(
+          (option) => option.value == lane,
+          orElse: () => laneOptions.first,
+        )
+        .label;
+  }
+
+  static Map<PublicSetEra, int> countSetsByEra(List<PublicSetSummary> sets) {
+    final counts = <PublicSetEra, int>{};
+    for (final setInfo in sets) {
+      final era = getSetEra(setInfo);
+      counts[era] = (counts[era] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  static Map<PublicSetLane, int> countSetsByLane(List<PublicSetSummary> sets) {
+    final counts = <PublicSetLane, int>{};
+    for (final setInfo in sets) {
+      final lane = getSetLane(setInfo);
+      counts[lane] = (counts[lane] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  static Map<PublicSetEra, List<PublicSetSummary>> groupSetsByEra(
+    List<PublicSetSummary> sets,
+  ) {
+    final groups = <PublicSetEra, List<PublicSetSummary>>{};
+    for (final setInfo in sets) {
+      (groups[getSetEra(setInfo)] ??= <PublicSetSummary>[]).add(setInfo);
+    }
+    return groups;
   }
 
   static Future<List<PublicSetCard>> _fetchSetCardsForDetail({
@@ -667,6 +1000,13 @@ class PublicSetsService {
     return null;
   }
 
+  static Map<String, dynamic>? _nestedRecord(dynamic value) {
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
+    }
+    return null;
+  }
+
   static String? _finishLabel({String? finishKey, String? finishLabel}) {
     switch (_cleanText(finishKey).toLowerCase()) {
       case 'normal':
@@ -712,6 +1052,13 @@ class PublicSetsService {
       return value.toInt();
     }
     return int.tryParse(_cleanText(value)) ?? fallback;
+  }
+
+  static int? _nullableInt(dynamic value) {
+    if (value is num) {
+      return value.toInt();
+    }
+    return int.tryParse(_cleanText(value));
   }
 
   static PublicSetSummary _chooseCanonicalSet(

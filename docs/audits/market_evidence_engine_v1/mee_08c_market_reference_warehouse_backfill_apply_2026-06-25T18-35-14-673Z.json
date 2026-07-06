@@ -1,0 +1,35 @@
+{
+  "package_id": "MARKET-REFERENCE-WAREHOUSE-BACKFILL-APPLY-V1",
+  "mode": "dry_run_report_only",
+  "generated_at": "2026-06-25T18:35:14.136Z",
+  "approval_required": true,
+  "approval_text_matched": false,
+  "manifest_hash_sha256": "3a54b2744071601dc610d63767d54b3e7f90a5ddaa3ae8a6a3ce687cbae52878",
+  "migration_hash_sha256": "2044ee540f6351324d251426c241dcf2e11fbadc2dcbdad15681df50e6f5ca8f",
+  "package_fingerprint_sha256": "79943f75cbd89d06d53655c259557dbff8f1f39de177fc939ec6bba041afe7c7",
+  "proposed_table_row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 10788,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "expected_table_row_counts": {
+    "market_reference_acquisition_runs": 5,
+    "market_reference_raw_snapshots": 10788,
+    "market_reference_candidates": 11025,
+    "market_reference_normalized_evidence": 11025,
+    "market_reference_coverage_reports": 1
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups": false,
+    "public_price_publication": false
+  },
+  "findings": [],
+  "ready_for_apply": true,
+  "applied": false
+}

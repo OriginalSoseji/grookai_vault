@@ -1,0 +1,75 @@
+{
+  "id": "bw9-116",
+  "name": "Professor Juniper",
+  "supertype": "Trainer",
+  "subtypes": [
+    "Supporter"
+  ],
+  "rules": [
+    "Discard your hand and draw 7 cards.",
+    "You may play only 1 Supporter card during your turn (before your attack)."
+  ],
+  "set": {
+    "id": "bw9",
+    "name": "Plasma Freeze",
+    "series": "Black & White",
+    "printedTotal": 116,
+    "total": 122,
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "ptcgoCode": "PLF",
+    "releaseDate": "2013/05/08",
+    "updatedAt": "2018/03/04 10:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/bw9/symbol.png",
+      "logo": "https://images.pokemontcg.io/bw9/logo.png"
+    }
+  },
+  "number": "116",
+  "artist": "Kanako Eo",
+  "rarity": "Rare Ultra",
+  "legalities": {
+    "unlimited": "Legal",
+    "expanded": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/bw9/116.png",
+    "large": "https://images.pokemontcg.io/bw9/116_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/bw9-116",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 69.99,
+        "mid": 99.47,
+        "high": 1009.82,
+        "market": 110.59,
+        "directLow": 84.99
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/bw9-116",
+    "updatedAt": "2025/12/07",
+    "prices": {
+      "averageSellPrice": 31.59,
+      "lowPrice": 4,
+      "trendPrice": 41.08,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 0,
+      "reverseHoloLow": 15,
+      "reverseHoloTrend": 41.74,
+      "lowPriceExPlus": 15,
+      "avg1": 12.99,
+      "avg7": 30.66,
+      "avg30": 35.45,
+      "reverseHoloAvg1": 50,
+      "reverseHoloAvg7": 25.46,
+      "reverseHoloAvg30": 21.71
+    }
+  }
+}

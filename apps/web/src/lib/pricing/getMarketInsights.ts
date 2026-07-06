@@ -1,7 +1,5 @@
 import "server-only";
 
-import { createServerComponentClient } from "@/lib/supabase/server";
-
 const CONDITION_ORDER = [
   "Near Mint",
   "Lightly Played",
@@ -225,19 +223,5 @@ export async function getMarketInsights(cardPrintId: string): Promise<MarketInsi
     return null;
   }
 
-  const supabase = createServerComponentClient();
-  const { data, error } = await supabase
-    .from("justtcg_variant_prices_latest")
-    .select("condition,printing,price,avg_price,price_change_7d,updated_at")
-    .eq("card_print_id", normalizedCardPrintId);
-
-  if (error) {
-    console.error("[pricing:market-insights] getMarketInsights failed", {
-      cardPrintId: normalizedCardPrintId,
-      error,
-    });
-    return null;
-  }
-
-  return deriveMarketInsights((data ?? []) as MarketInsightsRow[]);
+  return null;
 }

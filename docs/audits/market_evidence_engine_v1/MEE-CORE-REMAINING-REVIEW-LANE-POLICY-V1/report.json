@@ -1,0 +1,104 @@
+{
+  "package_id": "MEE-CORE-REMAINING-REVIEW-LANE-POLICY-V1",
+  "source_fast_readback_fingerprint": "61130638ec16dc75a5fd6e05410349e7b5ddb26f7f3f1b9a5b6f9ee48e382c0a",
+  "lane_counts": {
+    "raw_single_candidate_rows": 224,
+    "raw_single_high_signal_rows": 10,
+    "slab_candidate_rows": 36,
+    "reference_candidate_rows": 714,
+    "reference_high_signal_rows": 197,
+    "reference_only_rows": 4,
+    "unknown_rows": 18
+  },
+  "policy_rows": [
+    {
+      "lane": "candidate_review",
+      "evidence_lane": "raw_single",
+      "current_rows": 224,
+      "action": "manual_review_or_future_threshold",
+      "automation_class": "manual_or_threshold_required",
+      "publication_gate_candidate": false,
+      "reason": "Raw active listing evidence can be useful, but confirmation can make it publish-gate-adjacent. It cannot auto-confirm without a separate threshold contract."
+    },
+    {
+      "lane": "high_signal_review",
+      "evidence_lane": "raw_single",
+      "current_rows": 10,
+      "action": "priority_manual_review",
+      "automation_class": "manual_or_threshold_required",
+      "publication_gate_candidate": false,
+      "reason": "High signal raw evidence should be reviewed first, but not auto-published and not auto-confirmed as market truth."
+    },
+    {
+      "lane": "candidate_review",
+      "evidence_lane": "slab",
+      "current_rows": 36,
+      "action": "manual_review_or_future_threshold",
+      "automation_class": "manual_or_threshold_required",
+      "publication_gate_candidate": false,
+      "reason": "Slab evidence belongs in a separate lane from raw singles. It can support slab-specific internal review only."
+    },
+    {
+      "lane": "candidate_review, high_signal_review",
+      "evidence_lane": "reference_metric",
+      "current_rows": 911,
+      "action": "defer_more_evidence",
+      "automation_class": "auto_safe_internal_after_policy",
+      "publication_gate_candidate": false,
+      "reason": "Reference metrics are evidence, not market truth. They should be resolved out of review pressure until active market evidence exists."
+    },
+    {
+      "lane": "reference_only_review",
+      "evidence_lane": "reference_metric",
+      "current_rows": 4,
+      "action": "defer_active_market_evidence",
+      "automation_class": "auto_safe_internal_after_policy",
+      "publication_gate_candidate": false,
+      "reason": "Pure reference-only rows require active market evidence before they can become pricing candidates."
+    },
+    {
+      "lane": "candidate_review",
+      "evidence_lane": "unknown",
+      "current_rows": 18,
+      "action": "block_evidence",
+      "automation_class": "auto_safe_internal_after_policy",
+      "publication_gate_candidate": false,
+      "reason": "Unknown evidence cannot be reviewed as a pricing candidate. It should be blocked until classification repair or source replay."
+    }
+  ],
+  "automation": {
+    "safe_now_after_this_policy": {
+      "reference_metric_defer_more_evidence_rows": 911,
+      "reference_only_defer_active_market_evidence_rows": 4,
+      "unknown_block_evidence_rows": 18,
+      "total_rows": 933
+    },
+    "not_auto_safe": {
+      "raw_single_candidate_rows": 224,
+      "raw_single_high_signal_rows": 10,
+      "slab_candidate_rows": 36,
+      "total_rows": 270
+    }
+  },
+  "public_boundary": {
+    "app_visible_rows": 0,
+    "can_publish_price_directly_rows": 0,
+    "market_truth_rows": 0,
+    "publication_gate_candidate_rows": 0,
+    "publishable_rows": 0
+  },
+  "findings": [],
+  "generated_at": "2026-06-27T05:35:43.778Z",
+  "mode": "plan_only_remaining_review_lane_policy",
+  "package_fingerprint_sha256": "36d1a319e964101534ca41899ee9df7860143e88a5db9c1aa14dcee28fdbf46f",
+  "policy_status": "ready_for_batch_plan_generation",
+  "hard_boundaries": {
+    "providers_create_market_truth": false,
+    "active_listings_are_market_truth": false,
+    "reference_metrics_are_market_truth": false,
+    "review_actions_can_publish_prices": false,
+    "review_actions_can_set_public_flags": false,
+    "public_pricing_requires_separate_publish_gate": true,
+    "nightly_automation_may_run_safe_internal_actions_only": true
+  }
+}

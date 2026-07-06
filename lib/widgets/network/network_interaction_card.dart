@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/gv_grid_constants.dart';
+import '../../utils/display_image_contract.dart';
+import '../card_surface_artwork.dart';
+
 enum NetworkInteractionCardLayout { feed, compactFeed, grid }
 
 class NetworkInteractionCard extends StatelessWidget {
@@ -11,7 +15,6 @@ class NetworkInteractionCard extends StatelessWidget {
     this.metadata,
     this.topContext,
     this.onTopContextPressed,
-    this.heroHook,
     this.supportingInfo,
     this.actionBar,
     this.layout = NetworkInteractionCardLayout.feed,
@@ -25,7 +28,6 @@ class NetworkInteractionCard extends StatelessWidget {
   final String? metadata;
   final Widget? topContext;
   final VoidCallback? onTopContextPressed;
-  final Widget? heroHook;
   final Widget? supportingInfo;
   final Widget? actionBar;
   final NetworkInteractionCardLayout layout;
@@ -37,9 +39,9 @@ class NetworkInteractionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final radius = BorderRadius.circular(_isGrid ? 22 : 26);
+    final radius = BorderRadius.circular(GvGridConstants.tileTapRadius);
     final sidePadding = _isGrid ? 0.0 : (_isCompactFeed ? 4.0 : 0.0);
-    final aspectRatio = _isGrid ? 0.71 : (_isCompactFeed ? 0.78 : 0.68);
+    const aspectRatio = GvGridConstants.cardAspectRatio;
     final contentHorizontalPadding = _isGrid ? 1.0 : 0.0;
 
     return Padding(
@@ -47,24 +49,6 @@ class NetworkInteractionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (topContext != null) ...[
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: contentHorizontalPadding,
-              ),
-              child: onTopContextPressed == null
-                  ? topContext!
-                  : Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(16),
-                        onTap: onTopContextPressed,
-                        child: topContext!,
-                      ),
-                    ),
-            ),
-            SizedBox(height: _isGrid ? 5 : 6),
-          ],
           Material(
             color: Colors.transparent,
             child: InkWell(
@@ -78,15 +62,9 @@ class NetworkInteractionCard extends StatelessWidget {
                       borderRadius: radius,
                       boxShadow: [
                         BoxShadow(
-                          color: colorScheme.shadow.withValues(alpha: 0.16),
-                          blurRadius: _isGrid ? 20 : 30,
-                          offset: const Offset(0, 14),
-                        ),
-                        BoxShadow(
-                          color: colorScheme.primary.withValues(alpha: 0.07),
-                          blurRadius: _isGrid ? 28 : 40,
-                          spreadRadius: -8,
-                          offset: const Offset(0, 16),
+                          color: colorScheme.shadow.withValues(alpha: 0.10),
+                          blurRadius: _isGrid ? 16 : 24,
+                          offset: const Offset(0, 10),
                         ),
                       ],
                     ),
@@ -94,20 +72,9 @@ class NetworkInteractionCard extends StatelessWidget {
                       borderRadius: radius,
                       child: AspectRatio(
                         aspectRatio: aspectRatio,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            _NetworkPosterArtwork(
-                              label: imageLabel,
-                              imageUrl: imageUrl,
-                            ),
-                            if (heroHook != null)
-                              Positioned(
-                                top: _isGrid ? 8 : 10,
-                                left: _isGrid ? 8 : 10,
-                                child: heroHook!,
-                              ),
-                          ],
+                        child: _NetworkPosterArtwork(
+                          label: imageLabel,
+                          imageUrl: imageUrl,
                         ),
                       ),
                     ),
@@ -126,9 +93,9 @@ class NetworkInteractionCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleLarge?.copyWith(
                             color: colorScheme.onSurface,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                             height: 1.03,
-                            letterSpacing: -0.42,
+                            letterSpacing: 0,
                             fontSize: _isGrid ? 17.8 : 21.5,
                           ),
                         ),
@@ -164,6 +131,19 @@ class NetworkInteractionCard extends StatelessWidget {
                             child: supportingInfo!,
                           ),
                         ],
+                        if (topContext != null) ...[
+                          SizedBox(height: _isGrid ? 5 : 7),
+                          onTopContextPressed == null
+                              ? topContext!
+                              : Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(16),
+                                    onTap: onTopContextPressed,
+                                    child: topContext!,
+                                  ),
+                                ),
+                        ],
                       ],
                     ),
                   ),
@@ -194,37 +174,20 @@ class _NetworkPosterArtwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasImage = (imageUrl ?? '').trim().isNotEmpty;
+    final resolvedImageUrl = normalizeDisplayImageUrl(imageUrl);
+    final hasImage = (resolvedImageUrl ?? '').isNotEmpty;
     if (!hasImage) {
       return _NetworkPosterFallback(label: label);
     }
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-        final cacheWidth =
-            ((constraints.maxWidth * devicePixelRatio).round().clamp(1, 4096)
-                    as num)
-                .toInt();
-        final cacheHeight =
-            ((constraints.maxHeight * devicePixelRatio).round().clamp(1, 4096)
-                    as num)
-                .toInt();
-
-        return DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.black),
-          child: Image.network(
-            imageUrl!,
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
-            cacheWidth: cacheWidth,
-            cacheHeight: cacheHeight,
-            filterQuality: FilterQuality.low,
-            errorBuilder: (context, error, stackTrace) =>
-                _NetworkPosterFallback(label: label),
-          ),
-        );
-      },
+    return CardSurfaceArtwork(
+      label: label,
+      imageUrl: resolvedImageUrl,
+      borderRadius: 0,
+      padding: EdgeInsets.zero,
+      frame: CardArtworkFrame.none,
+      enableTapToZoom: false,
+      filterQuality: FilterQuality.low,
     );
   }
 }
@@ -240,14 +203,9 @@ class _NetworkPosterFallback extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.primaryContainer.withValues(alpha: 0.85),
-            colorScheme.secondaryContainer.withValues(alpha: 0.72),
-            colorScheme.surfaceContainerHighest.withValues(alpha: 0.94),
-          ],
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.62),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.18),
         ),
       ),
       child: Center(
@@ -262,7 +220,7 @@ class _NetworkPosterFallback extends StatelessWidget {
               color: colorScheme.onPrimaryContainer.withValues(alpha: 0.88),
               fontWeight: FontWeight.w700,
               height: 1.15,
-              letterSpacing: -0.3,
+              letterSpacing: 0,
             ),
           ),
         ),

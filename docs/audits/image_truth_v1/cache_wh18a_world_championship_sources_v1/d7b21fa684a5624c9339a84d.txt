@@ -1,0 +1,56 @@
+{{DeckInfobox
+|title=Rocky Beach
+|image=WCS2004 Rocky Beach Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Water}}
+|cards={{TCG ID|EX Ruby & Sapphire|Swampert|13}}, {{TCG ID|EX Team Magma vs Team Aqua|Swampert ex|95}}
+}}
+
+'''Rocky Beach''' is the name of the deck used by Reed Weichler, the Junior Finalist in the {{TCG|2004 World Championships}}. The deck focuses on {{p|Swampert}}, and uses other Pokémon, such as {{p|Magneton}} and {{p|Delcatty}} to maximize Swampert ex's damage output. The strategy of the deck is to use {{TCG ID|EX Ruby & Sapphire|Swampert|13}}'s Water Call {{TCG|Poké-Power}} to add extra damage to {{TCG ID|EX Team Magma vs Team Aqua|Swampert ex|95}}'s Hyper Pump attack. {{TCG ID|EX Ruby & Sapphire|Delcatty|5}}'s Energy Draw allows the player to draw three more cards after discarding an {{TCG|Energy card}} from their hand, which can be retrieved by using {{TCG ID|EX Dragon|Magneton|17}}'s Magnetic Field {{TCG|Poké-Power}}. {{TCG ID|EX Sandstorm|Wobbuffet|26}} counters opposing {{TCG|Pokémon-ex}} using its {{m|Safeguard}} {{TCG|Poké-Body}}, while {{TCG ID|EX Team Magma vs Team Aqua|Suicune ex|94}} both provides a counter to {{ct|Fire}} and attacks by manipulating Energy, similar to Swampert ex.
+
+Rocky Beach is one of the four {{TCGMerch|EX|Series|2004 World Championships Decks}}, released in November 2004. Each deck comes packaged with a 2004 World Championships Booklet. Each card features a silver border, Weichler's signature, and limited edition 2004 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Reed Weichler's Rocky Beach deck is swimming with Water Energy. Between Swampert ex's Hyper Pump and Swampert's ability to provide extra Energy to the Active Pokémon, there's no way opponents can stay afloat for long.''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Ruby & Sapphire|Mudkip|59}}|Water||Common}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Marshtomp|40}}|Water||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Swampert|13}}|Water||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Swampert ex|95}}|Fighting||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Team Magma vs Team Aqua|Suicune ex|94}}|Water||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Dunsparce|60}}|Colorless||Common}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Skitty|44}}|Colorless||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Delcatty|5}}|Colorless||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Dragon|Magnemite|63}}|Lightning||Common}}
+{{decklist/entry|2|{{TCG ID|EX Dragon|Magneton|17}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Sandstorm|Wobbuffet|26}}|Psychic||Rare}}
+{{decklist/entry|1|[[Ancient Technical Machine Rock (EX Hidden Legends 85)|Ancient Technical Machine [Rock]]]|Trainer|Technical Machine|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Expedition|Copycat|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Skyridge|Oracle|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Aquapolis|Pokémon Fan Club|130}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Potion|91}}|Trainer||Common}}
+{{decklist/entry|2|{{TCG ID|Expedition|Professor Elm's Training Method|148}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Expedition|Professor Oak's Research|149}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Rare Candy|88}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Switch|92}}|Trainer||Common}}
+{{decklist/entry|2|{{TCG ID|Skyridge|Underground Expedition|140}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Sandstorm|Wally's Training|89}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Multi Energy|93}}|Energy|Colorless|Rare}}
+{{decklist/entry|13|{{TCG ID|EX Ruby & Sapphire|Water Energy|106}}|Energy|Water|Common}}
+{{decklist/footer}}
+
+==Trivia==
+All cards originating from expansions before {{TCG|EX Team Magma vs Team Aqua}} use the updated layout introduced in the expansion.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Rocky Beach (TCG)]]
+[[zh:岩滩（TCG）]]

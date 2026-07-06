@@ -1,0 +1,48 @@
+{{DeckInfobox
+|title=Intimidation 
+|image=WCS2008 Intimidation Deck.png
+|size=220px
+|caption=Box art
+|types={{e|Psychic}}{{e|Metal}}
+|cards={{TCG ID|Majestic Dawn|Scizor|29}}, {{TCG ID|Majestic Dawn|Toxicroak|31}}
+}}
+
+'''Intimidation''' is the name of the deck used by Tristan Robinson, the Junior Division Champion in the {{TCG|2008 World Championships}}. The deck was built with one objective: countering powerful cards. For example, {{TCG ID|Majestic Dawn|Scizor|29}} has an attack that does 80 damage to an opponent that has any {{TCG|Special Energy cards}} attached to it. {{TCG ID|EX Crystal Guardians|Sableye|10}} can disable any opponent attack for one turn. {{TCG ID|EX Crystal Guardians|Cessation Crystal|74}} disables all Poké-Powers and Poké-Bodies. {{TCG ID|EX Crystal Guardians|Crystal Beach|75}} makes Special, double-Energy cards count as a single Energy. When building his deck, Robinson took note of the heavily-played cards at the time, and chose his own Pokémon and Trainer cards that directly conflicted with these effects.
+
+Intimidation is one of the four {{TCGMerch|Diamond & Pearl|Series|2008 World Championships Decks}}, released on November 5, 2008. Each deck comes packaged with a 2008 World Championships Booklet. Each card features a silver border, Robinson's signature, and limited edition 2008 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Tristan Robinson's aptly named Intimidation deck relied on countering the most heavily played cards in the tournament. Between shutting off his opponent's Poké-Powers and Poké-Bodies, limiting the effectiveness of their Special Energy cards, and punishing them for playing Special Energy cards with Scizor, Tristan was able to set up roadblocks that slowed his opponents, and allowed him to claim win after win!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Croagunk|60}}|Psychic||Common}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Toxicroak|31}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Scyther|46}}|Grass||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Scizor|29}}|Metal||Rare}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Voltorb|117}}|Lightning||Common}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Electrode|26}}|Lightning||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Sableye|10}}|Darkness||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Castaway|72}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Celio's Network|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Power Keepers|Steven's Advice|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Emerald|Scott|84}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Copycat|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Crystal Beach|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Crystal Guardians|Cessation Crystal|74}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Metal Energy|130}}|Energy|Metal|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Mysterious Treasures|Multi Energy|118}}|Energy|Colorless|Rare}}
+{{decklist/entry|4|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/entry|1|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|3|{{TCG|Metal Energy}}|Energy|Metal|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Intimidation (TCG)]]
+[[zh:恫吓（TCG）]]

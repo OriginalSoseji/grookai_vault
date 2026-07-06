@@ -1,0 +1,240 @@
+{
+  "generated_at": "2026-07-03T22:05:32.605Z",
+  "package_id": "jpn_pikachu_promo_first_batch_v1",
+  "mode": "apply",
+  "apply_status": "applied_committed",
+  "committed": true,
+  "source_dry_run_path": "docs/audits/master_identity_graph_v1/jpn_pikachu_promo_first_batch_dry_run_v1/jpn_pikachu_promo_first_batch_dry_run_v1.json",
+  "source_dry_run_fingerprint_sha256": "b2e7b43973ef1f868aff84fc12b6eb49449dfafef2f8359ec348bf93be5b8c0e",
+  "payload_fingerprint_sha256": "38f8b7d486750bfd4d7d62b5a0578367d73e3c6613623271c1e1164ce577d5d3",
+  "counts": {
+    "card_prints": 134,
+    "card_print_identity": 134,
+    "source_evidence": 268,
+    "family_review": 134
+  },
+  "by_set": {
+    "jpn-bwp": {
+      "total": 4,
+      "reused_number_parent_inserts": 4,
+      "missing_number_parent_inserts": 0
+    },
+    "jpn-dpp": {
+      "total": 10,
+      "reused_number_parent_inserts": 10,
+      "missing_number_parent_inserts": 0
+    },
+    "jpn-dptp": {
+      "total": 1,
+      "reused_number_parent_inserts": 1,
+      "missing_number_parent_inserts": 0
+    },
+    "jpn-smp": {
+      "total": 58,
+      "reused_number_parent_inserts": 32,
+      "missing_number_parent_inserts": 26
+    },
+    "jpn-sp": {
+      "total": 18,
+      "reused_number_parent_inserts": 17,
+      "missing_number_parent_inserts": 1
+    },
+    "jpn-svp": {
+      "total": 11,
+      "reused_number_parent_inserts": 8,
+      "missing_number_parent_inserts": 3
+    },
+    "jpn-xyp": {
+      "total": 32,
+      "reused_number_parent_inserts": 31,
+      "missing_number_parent_inserts": 1
+    }
+  },
+  "preflight": {
+    "set_codes": [
+      "jpn-bwp",
+      "jpn-dpp",
+      "jpn-dptp",
+      "jpn-smp",
+      "jpn-sp",
+      "jpn-svp",
+      "jpn-xyp"
+    ],
+    "gv_id_collisions": [],
+    "deterministic_card_print_id_collisions": [],
+    "deterministic_identity_id_collisions": [],
+    "active_identity_hash_collisions": [],
+    "source_evidence_collisions": [],
+    "family_review_collisions": [],
+    "standard_identity_key_collisions": []
+  },
+  "identity_hash_check": {
+    "mismatches": []
+  },
+  "transaction_insert_counts": {
+    "card_prints": 134,
+    "card_print_identity": 134,
+    "source_evidence": 268,
+    "family_review": 134
+  },
+  "durable_post_transaction_counts": {
+    "card_prints": 134,
+    "card_print_identity": 134,
+    "source_evidence": 268,
+    "family_review": 134
+  },
+  "required_approval_message": "I approve applying the Japanese Pikachu promo first-batch master identity payload only: 134 parent card_print rows, 134 card_print_identity rows, 268 source evidence rows, and 134 family review rows, using payload fingerprint 38f8b7d486750bfd4d7d62b5a0578367d73e3c6613623271c1e1164ce577d5d3 and dry-run source fingerprint b2e7b43973ef1f868aff84fc12b6eb49449dfafef2f8359ec348bf93be5b8c0e. I do not approve English mutation, non-JPN mutation, public child card_printing writes, image writes, family promotion, cleanup, quarantine, deletion, truncation, migrations, public gv_id changes outside this package, price writes, or any rows outside this Japanese Pikachu promo first-batch payload.",
+  "explicit_non_authorizations": [
+    "No English mutation.",
+    "No non-JPN mutation.",
+    "No public child card_printing writes.",
+    "No image writes.",
+    "No family promotion.",
+    "No cleanup, quarantine, deletion, truncation, or migrations.",
+    "No price writes."
+  ],
+  "stop_findings": [],
+  "sample_targets": [
+    {
+      "gv_id": "GV-PK-JPN-BWP-108-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number_plain": "108",
+      "printed_identity_modifier": "jpn_promo_bwp_108_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-120-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number_plain": "120",
+      "printed_identity_modifier": "jpn_promo_bwp_120_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-151-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number_plain": "151",
+      "printed_identity_modifier": "jpn_promo_bwp_151_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-BWP-163-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-bwp",
+      "number_plain": "163",
+      "printed_identity_modifier": "jpn_promo_bwp_163_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-025-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "025",
+      "printed_identity_modifier": "jpn_promo_dpp_025_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-048-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "048",
+      "printed_identity_modifier": "jpn_promo_dpp_048_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-057-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "057",
+      "printed_identity_modifier": "jpn_promo_dpp_057_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-095-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "095",
+      "printed_identity_modifier": "jpn_promo_dpp_095_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-098-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "098",
+      "printed_identity_modifier": "jpn_promo_dpp_098_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-099-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "099",
+      "printed_identity_modifier": "jpn_promo_dpp_099_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-100-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "100",
+      "printed_identity_modifier": "jpn_promo_dpp_100_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-101-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "101",
+      "printed_identity_modifier": "jpn_promo_dpp_101_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-102-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "102",
+      "printed_identity_modifier": "jpn_promo_dpp_102_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPP-113-PIKACHU",
+      "name": "Pikachu",
+      "set_code": "jpn-dpp",
+      "number_plain": "113",
+      "printed_identity_modifier": "jpn_promo_dpp_113_pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DPTP-043-PIKACHU-LV-X",
+      "name": "Pikachu LV.X",
+      "set_code": "jpn-dptp",
+      "number_plain": "043",
+      "printed_identity_modifier": "jpn_promo_dptp_043_pikachu-lv-x"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-005-SAPPOROS-PIKACHU",
+      "name": "Sapporo's Pikachu",
+      "set_code": "jpn-smp",
+      "number_plain": "005",
+      "printed_identity_modifier": "jpn_promo_smp_005_sapporos-pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-013-PRETEND-TEAM-SKULL-PIKACHU",
+      "name": "Pretend Team Skull Pikachu",
+      "set_code": "jpn-smp",
+      "number_plain": "013",
+      "printed_identity_modifier": "jpn_promo_smp_013_pretend-team-skull-pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-014-PRETEND-GRUNT-PIKACHU",
+      "name": "Pretend Grunt Pikachu",
+      "set_code": "jpn-smp",
+      "number_plain": "014",
+      "printed_identity_modifier": "jpn_promo_smp_014_pretend-grunt-pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-037-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-smp",
+      "number_plain": "037",
+      "printed_identity_modifier": "jpn_promo_smp_037_poncho-wearing-pikachu"
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMP-038-PONCHO-WEARING-PIKACHU",
+      "name": "Poncho Wearing Pikachu",
+      "set_code": "jpn-smp",
+      "number_plain": "038",
+      "printed_identity_modifier": "jpn_promo_smp_038_poncho-wearing-pikachu"
+    }
+  ],
+  "pass": true
+}

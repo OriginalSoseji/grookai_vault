@@ -1,0 +1,447 @@
+{
+  "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+  "generated_at": "2026-06-24T01:24:58.289Z",
+  "mode": "dry_run_no_write",
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh10b_pokemontcg_residual_parent_source_upload_manifest_v1.jsonl",
+  "upload_result_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh10c_pokemontcg_residual_parent_source_storage_upload_apply_result_v1.jsonl",
+  "plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh10d_pokemontcg_residual_parent_db_pointer_repoint_plan_v1.jsonl",
+  "manifest_rows": 151,
+  "completed_manifest_rows": 151,
+  "incomplete_manifest_rows": 0,
+  "metadata_pointer_plan_rows": 151,
+  "effective_metadata_pointer_updates": 151,
+  "no_op_plan_rows": 0,
+  "missing_current_db_rows": 0,
+  "missing_proposed_storage_paths": 0,
+  "image_status_changes_planned": 0,
+  "image_note_changes_planned": 0,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "runtime_public_url_field_writes_planned": false,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path"
+  ],
+  "preserved_columns": [
+    "card_prints.image_status",
+    "card_prints.image_note"
+  ],
+  "target_tables": {
+    "card_prints": 151
+  },
+  "changed_columns": {
+    "image_path": 151,
+    "image_source": 151
+  },
+  "by_set_code": {
+    "bog": 13,
+    "bw11": 20,
+    "bwp": 3,
+    "cel25c": 1,
+    "hsp": 9,
+    "pl2": 1,
+    "sm115": 90,
+    "svp": 1,
+    "tk1b": 10,
+    "xyp": 3
+  },
+  "by_current_image_status": {
+    "exact": 31,
+    "missing": 1,
+    "null": 112,
+    "representative_shared_stamp": 7
+  },
+  "stop_findings": [],
+  "ready_for_apply_package": true,
+  "sql_hash": "981c32875b74d4d8442426f7b91d06e59602c05dc5dd305d7b7cccb1bf1fa169",
+  "samples": {
+    "metadata_pointer_repoint": [
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:6b07130e-6ce9-468e-828b-3df34f7be2d4:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "6b07130e-6ce9-468e-828b-3df34f7be2d4",
+        "gv_id": "GV-PK-BOG-1",
+        "name": "Electabuzz",
+        "set_code": "bog",
+        "number": "1",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-1",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-1/e38b461c57dc14486ba55260.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-1/e38b461c57dc14486ba55260.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:614efd10-0ce3-438b-8466-6584bebb88cb:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "614efd10-0ce3-438b-8466-6584bebb88cb",
+        "gv_id": "GV-PK-BOG-1-WINNER-STAMP",
+        "name": "Electabuzz",
+        "set_code": "bog",
+        "number": "1",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-1",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-1-winner-stamp/e38b461c57dc14486ba55260.png",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-1-winner-stamp/e38b461c57dc14486ba55260.png",
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:2ff0f40b-493e-4a81-ae00-668e621c8b57:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "2ff0f40b-493e-4a81-ae00-668e621c8b57",
+        "gv_id": "GV-PK-BOG-2",
+        "name": "Hitmonchan",
+        "set_code": "bog",
+        "number": "2",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-2",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-2/f67b5e4dde57f2da0f85d57b.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-2/f67b5e4dde57f2da0f85d57b.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:c0204042-56f4-42a8-878c-7908a2925863:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "c0204042-56f4-42a8-878c-7908a2925863",
+        "gv_id": "GV-PK-BOG-2-WINNER-STAMP",
+        "name": "Hitmonchan",
+        "set_code": "bog",
+        "number": "2",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-2",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-2-winner-stamp/f67b5e4dde57f2da0f85d57b.png",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-2-winner-stamp/f67b5e4dde57f2da0f85d57b.png",
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:bdfa57ee-93dd-4ff2-88d0-4f90e217d0ec:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "bdfa57ee-93dd-4ff2-88d0-4f90e217d0ec",
+        "gv_id": "GV-PK-BOG-3",
+        "name": "Professor Elm",
+        "set_code": "bog",
+        "number": "3",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-3",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-3/897eeec4572741b93d217de7.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-3/897eeec4572741b93d217de7.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:4e0665d4-2a6a-4602-8799-db55cbb5f588:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "4e0665d4-2a6a-4602-8799-db55cbb5f588",
+        "gv_id": "GV-PK-BOG-4",
+        "name": "Rocket’s Scizor",
+        "set_code": "bog",
+        "number": "4",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-4",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-4/b6c1bee6734ad59b59f52565.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-4/b6c1bee6734ad59b59f52565.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:da7a223c-b039-4fa0-99c1-c8e396f90f5f:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "da7a223c-b039-4fa0-99c1-c8e396f90f5f",
+        "gv_id": "GV-PK-BOG-5",
+        "name": "Rocket’s Sneasel",
+        "set_code": "bog",
+        "number": "5",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-5",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-5/4093a49252e357fde5fb3f5d.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-5/4093a49252e357fde5fb3f5d.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:700be8a4-8283-411f-af66-371b61e443f9:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "700be8a4-8283-411f-af66-371b61e443f9",
+        "gv_id": "GV-PK-BOG-6",
+        "name": "Dark Ivysaur",
+        "set_code": "bog",
+        "number": "6",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-6",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-6/aaf3ec2d951479b59064b92d.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-6/aaf3ec2d951479b59064b92d.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:33126ebf-99f6-4d76-a9bc-179c89e2eb34:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+        "gv_id": "GV-PK-BOG-6-WINNER-STAMP",
+        "name": "Dark Ivysaur",
+        "set_code": "bog",
+        "number": "6",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-6",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-6-winner-stamp/aaf3ec2d951479b59064b92d.png",
+        "current_values": {
+          "image_source": null,
+          "image_path": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-6-winner-stamp/aaf3ec2d951479b59064b92d.png",
+          "image_status": "representative_shared_stamp",
+          "image_note": "Stamped canonical identity: Winner Stamp. Representative base image only until exact stamped image is available."
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      },
+      {
+        "package_id": "IMG-HOST-WH-10D-POKEMONTCG-RESIDUAL-PARENT-DB-POINTER-REPOINT-DRY-RUN",
+        "plan_type": "metadata_pointer_repoint",
+        "audit_key": "card_prints:1c88e69a-1b86-4677-bf93-b977e24e42a2:metadata_pointer",
+        "target_table": "card_prints",
+        "target_row_id": "1c88e69a-1b86-4677-bf93-b977e24e42a2",
+        "gv_id": "GV-PK-BOG-7",
+        "name": "Dark Venusaur",
+        "set_code": "bog",
+        "number": "7",
+        "upstream_source": "pokemontcg",
+        "upstream_card_id": "bp-7",
+        "target_storage_bucket": "user-card-images",
+        "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-7/e5eaa5a411eef5d3323a7268.png",
+        "current_values": {
+          "image_source": "tcgdex",
+          "image_path": null,
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "proposed_values": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bog/gv-pk-bog-7/e5eaa5a411eef5d3323a7268.png",
+          "image_status": "exact",
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping"
+        },
+        "changed_columns": [
+          "image_source",
+          "image_path"
+        ],
+        "preserved_columns": [
+          "image_status",
+          "image_note"
+        ],
+        "db_write_performed": false,
+        "storage_write_performed": false,
+        "exact_image_claim_change": false
+      }
+    ]
+  },
+  "fingerprint": "b0b7b06db40e1d36afa2e5c5adafa7f28d94db398dae91394a9fd4396cf77603"
+}

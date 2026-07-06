@@ -1,0 +1,109 @@
+{
+  "package_id": "MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1",
+  "mode": "plan_only_internal_publication_gate_review_action_plan",
+  "generated_at": "2026-06-27",
+  "remote_apply": false,
+  "db_writes": false,
+  "function_invocation": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "apply_candidate_generated": false,
+  "apply_candidate_reason": "No apply candidate generated because review_confirmation_required rows require explicit human or deterministic policy review before confirm_internal_candidate.",
+  "gate_readback": {
+    "total_rows": 2152,
+    "public_boundary_leak_rows": 0,
+    "would_be_publication_candidate_rows": 0
+  },
+  "action_buckets": [
+    {
+      "action_bucket": "require_reclassification_or_keep_blocked",
+      "rows": 19,
+      "safe_automatic_apply": false
+    },
+    {
+      "action_bucket": "require_split_or_keep_split_block",
+      "rows": 574,
+      "safe_automatic_apply": false
+    },
+    {
+      "action_bucket": "monitor_or_keep_blocked",
+      "rows": 174,
+      "safe_automatic_apply": false
+    },
+    {
+      "action_bucket": "reference_only_hold_until_active_market_evidence",
+      "rows": 915,
+      "safe_automatic_apply": false
+    },
+    {
+      "action_bucket": "review_confirmation_required",
+      "rows": 470,
+      "safe_automatic_apply": false,
+      "future_action": "confirm_internal_candidate_after_explicit_policy_or_human_review"
+    }
+  ],
+  "evidence_lanes": [
+    {
+      "evidence_lane": "classification_blocked",
+      "rows": 19
+    },
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "rows": 574
+    },
+    {
+      "evidence_lane": "low_signal",
+      "rows": 156
+    },
+    {
+      "evidence_lane": "unknown",
+      "rows": 18
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "rows": 915
+    },
+    {
+      "evidence_lane": "raw_single",
+      "rows": 378
+    },
+    {
+      "evidence_lane": "slab",
+      "rows": 92
+    }
+  ],
+  "review_confirmation_candidates": {
+    "total": 470,
+    "raw_single": 378,
+    "slab": 92,
+    "automatic_confirmation_allowed": false
+  },
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "artifacts": {
+    "markdown_report": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1.md",
+    "live_audit_raw": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/live_audit_raw.json",
+    "defer_review_confirmation_manifest": "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/defer_review_confirmation_manifest.json",
+    "preflight_sql": "docs/sql/mee_publication_gate_review_action_plan_v1_preflight.sql",
+    "readback_sql": "docs/sql/mee_publication_gate_review_action_plan_v1_readback.sql",
+    "contract_test": "tests/contracts/mee_publication_gate_review_action_plan_v1.test.mjs"
+  },
+  "next_step": "MEE-PUBLICATION-GATE-REVIEW-CONFIRMATION-POLICY-V1",
+  "findings": [],
+  "artifact_hashes_sha256": {
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1.md": "b05aef35a6076fe19074e0344c7fe6d5f2bbc1262d41fb74715dc9ae878a7c1e",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/report.json": "313109b1a01bc06cc851f10bcbc64b2b94e46f1604bd00952f94b9ba234d8328",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/live_audit_raw.json": "ef51b5fd493d8ca2bb56bd79673daf78cda22d4e8a1aa580181d1889a13b7fc1",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-REVIEW-ACTION-PLAN-V1/defer_review_confirmation_manifest.json": "8ea9ace6d1a49ebaf23351dba6d55c35beb10f770ebf3a10279a7b5cbdc13377",
+    "docs/sql/mee_publication_gate_review_action_plan_v1_preflight.sql": "ae09ad1487eb85772c97747e266b1e5ae4150f383717f622d43ee0c517160eb3",
+    "docs/sql/mee_publication_gate_review_action_plan_v1_readback.sql": "4d9e5771008b8260ebb1756216ae7f958b502514556181c75bd32750654b304a",
+    "tests/contracts/mee_publication_gate_review_action_plan_v1.test.mjs": "5cc77963c00b39cdc84ceba8126f420ce2a131d9d06567c06a0f8d4d703bbb0f"
+  },
+  "package_fingerprint_sha256": "d68f69876ff750196fa607d9753b3f1cd925e0b1bfbf0d8ce39dce218f675be0"
+}

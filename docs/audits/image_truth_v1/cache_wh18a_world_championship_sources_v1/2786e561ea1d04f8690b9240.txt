@@ -1,0 +1,48 @@
+{{DeckInfobox
+|title=Victory Map
+|image=WCS2018 Victory Map Deck.jpg
+|caption=Box art
+|types={{e|Psychic}}{{e|Darkness}}
+}}
+
+'''Victory Map''' is the name of the deck used by [[Limitless TCG|Robin Schulz]], the Masters Division champion at the [[2018 World Championships]]. It is one of the {{TCGMerch|Sun & Moon|Series|2018 World Championships Decks}} released November 14, 2018. Each deck comes with a Worlds 2018-deckbox, a Worlds 2018 pin, a booklet about the championships, and a {{TCGO}} code card. The cards included in the deck are not the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+''The powerful combination of Zoroark-GX and Garbodor has been a dominant force in the tournament scene, and Robin Schulz of Germany guided it to victory in the Masters Division to become the World Champion! Using Zoroark-GX to dig through the deck and Puzzle of Time to retrieve cards from the discard pile makes it possible for this deck to run single copies of several utility cards, including its signature Town Map. And once the opponent has played enough Item cards, Garbodor can finish things off with a huge Trashalanche attack!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|[[Zoroark-GX (Shining Legends 53)|Zoroark]]{{GX}}|Darkness||Rare}}
+{{decklist/entry|4|{{TCG ID|Shining Legends|Zorua|52}}|Darkness||Common}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Garbodor|51}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|BREAKpoint|Garbodor|57}}|Psychic||Rare Holo}}
+{{decklist/entry|3|{{TCG ID|BREAKpoint|Trubbish|56}}|Psychic||Common}}
+{{decklist/entry|3|[[Tapu Lele-GX (Guardians Rising 60)|Tapu Lele]]{{GX}}|Psychic||Rare}}
+{{decklist/entry|1|[[Kartana-GX (Crimson Invasion 70)|Kartana]]{{Red GX}}|Metal||Rare}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Enhanced Hammer|124}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Generations|Evosoda|62}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Guardians Rising|Field Blower|125}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Forbidden Light|Mysterious Treasure|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Puzzle of Time|109}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Guardians Rising|Rescue Stretcher|130}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Town Map|150}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Guardians Rising|Choice Band|121}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Parallel City|145}}|Stadium||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKthrough|Brigette|134}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ultra Prism|Cynthia|119}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Burning Shadows|Guzma|115}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG|Double Colorless Energy}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Ultra Prism|Unit Energy LPM|138}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+
+{{World Championships}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Victory Map (TCG)]]
+[[ja:Victory Map]]
+[[zh:胜利地图（TCG）]]

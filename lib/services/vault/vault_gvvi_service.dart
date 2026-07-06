@@ -266,6 +266,7 @@ class VaultGvviData {
   }
 
   VaultGvviData copyWith({
+    String? intent,
     String? notes,
     bool clearNotes = false,
     String? frontImagePath,
@@ -290,7 +291,7 @@ class VaultGvviData {
       setCode: setCode,
       setName: setName,
       number: number,
-      intent: intent,
+      intent: intent ?? this.intent,
       isGraded: isGraded,
       isArchived: isArchived,
       variantKey: variantKey,
@@ -598,6 +599,67 @@ class VaultGvviService {
     );
   }
 
+  static Future<VaultGvviSectionMembership> createSection({
+    required SupabaseClient client,
+    required String name,
+  }) async {
+    final userId = _clean(client.auth.currentUser?.id);
+    final normalizedName = _clean(name).replaceAll(RegExp(r'\s+'), ' ');
+    if (userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+    if (normalizedName.isEmpty) {
+      throw Exception('Section name is required.');
+    }
+    if (normalizedName.toLowerCase() == 'wall') {
+      throw Exception('Wall is managed automatically.');
+    }
+
+    final existingRows = await client
+        .from('wall_sections')
+        .select('id,name,position')
+        .eq('user_id', userId)
+        .order('position', ascending: true);
+    final existing = (existingRows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+    if (existing.any(
+      (row) =>
+          _clean(row['name']).toLowerCase() == normalizedName.toLowerCase(),
+    )) {
+      throw Exception('You already have a section with that name.');
+    }
+
+    final nextPosition =
+        existing.fold<int>(-1, (max, row) {
+          final position = _toInt(row['position']) ?? 0;
+          return position > max ? position : max;
+        }) +
+        1;
+
+    final inserted = await client
+        .from('wall_sections')
+        .insert({
+          'user_id': userId,
+          'name': normalizedName.length > 80
+              ? normalizedName.substring(0, 80)
+              : normalizedName,
+          'position': nextPosition,
+          'is_active': true,
+          'is_public': true,
+        })
+        .select('id,name,position')
+        .single();
+    final row = Map<String, dynamic>.from(inserted as Map);
+
+    return VaultGvviSectionMembership(
+      id: _clean(row['id']),
+      name: _clean(row['name']),
+      position: _toInt(row['position']) ?? nextPosition,
+      isMember: false,
+    );
+  }
+
   static Future<List<VaultGvviSectionMembership>> loadSectionMemberships({
     required SupabaseClient client,
     required String instanceId,
@@ -727,6 +789,41 @@ class VaultGvviService {
         .delete()
         .eq('vault_item_instance_id', normalizedInstanceId)
         .eq('section_id', normalizedSectionId);
+  }
+
+  static Future<String> saveIntent({
+    required SupabaseClient client,
+    required String instanceId,
+    required String intent,
+  }) async {
+    final userId = _clean(client.auth.currentUser?.id);
+    final normalizedInstanceId = _clean(instanceId);
+    final nextIntent = _normalizeIntent(intent);
+    if (userId.isEmpty || normalizedInstanceId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    // LOCK: Intent authority is exact-copy level (vault_item_instances.intent).
+    // LOCK: Do not write grouped vault_items intent from the GVVI screen.
+    final row = await client
+        .from('vault_item_instances')
+        .update({'intent': nextIntent})
+        .eq('id', normalizedInstanceId)
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .select('id,intent')
+        .maybeSingle();
+
+    if (row == null) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    final savedIntent = _normalizeIntent(row['intent']);
+    if (savedIntent != nextIntent) {
+      throw Exception('Copy intent could not be saved.');
+    }
+
+    return savedIntent;
   }
 
   static Future<void> _assertOwnedSectionTarget({

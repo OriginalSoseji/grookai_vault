@@ -22,6 +22,9 @@ void main() {
   final manageCardScreen = File(
     'lib/screens/vault/vault_manage_card_screen.dart',
   ).readAsStringSync();
+  final networkStreamService = File(
+    'lib/services/network/network_stream_service.dart',
+  ).readAsStringSync();
 
   test(
     'app public collector service loads Wall and sections from parity views',
@@ -32,8 +35,22 @@ void main() {
       expect(collectorService, contains("from('v_section_cards_v1')"));
       expect(collectorService, contains('loadSectionCardsBySlug'));
       expect(collectorService, contains('display_image_url'));
+      expect(collectorService, contains('_resolveVaultInstanceMediaSignedUrl'));
+      expect(collectorService, contains('createSignedUrl'));
+      expect(collectorService, contains('vault-instances'));
     },
   );
+
+  test('app network feed preserves uploaded copy display images', () {
+    expect(networkStreamService, contains('display_image_url'));
+    expect(networkStreamService, contains('display_image_kind'));
+    expect(
+      networkStreamService,
+      contains('_resolveVaultInstanceMediaSignedUrl'),
+    );
+    expect(networkStreamService, contains('createSignedUrl'));
+    expect(networkStreamService, contains('user-card-images'));
+  });
 
   test(
     'app public collector rail renders Wall first and lazy-loads sections',
@@ -49,6 +66,11 @@ void main() {
     },
   );
 
+  test('public collector relationship refresh preserves loaded Wall view', () {
+    expect(collectorScreen, contains('_resultWithRefreshedProfile'));
+    expect(collectorScreen, contains('wallView: current.wallView'));
+  });
+
   test('app owner can add section from the collector rail', () {
     expect(collectorScreen, contains('+ Add Section'));
     expect(collectorScreen, contains('New section name'));
@@ -56,6 +78,20 @@ void main() {
     expect(collectorService, contains("from('wall_sections')"));
     expect(collectorService, contains("'is_active': true"));
     expect(collectorService, contains("'is_public': true"));
+  });
+
+  test('Wall card tiles keep showcase quiet and title weight restrained', () {
+    expect(
+      collectorScreen,
+      contains("if (card.intent == 'trade' || card.intent == 'sell')"),
+    );
+    expect(collectorScreen, contains('fontWeight: FontWeight.w700'));
+
+    final tileBlock = RegExp(
+      r'class _PublicCardTile extends StatelessWidget[\s\S]*?class _PublicViewerOwnershipHint',
+    ).firstMatch(collectorScreen)!.group(0)!;
+    expect(tileBlock, isNot(contains("card.intent != null")));
+    expect(tileBlock, isNot(contains('fontWeight: FontWeight.w800')));
   });
 
   test('collector section deep links select the requested section', () {
@@ -66,6 +102,15 @@ void main() {
     expect(routeService, contains("segments[2].toLowerCase() == 'section'"));
     expect(mainShell, contains('initialSectionId: route.sectionId'));
     expect(collectorScreen, contains('widget.initialSectionId'));
+  });
+
+  test('My Wall shell embeds collector surface without standalone chrome', () {
+    expect(mainShell, contains('showAppBar: false'));
+    expect(mainShell, contains('embeddedInShell: true'));
+    expect(collectorScreen, contains('final bool embeddedInShell'));
+    expect(collectorScreen, contains('RefreshIndicator'));
+    expect(collectorScreen, contains('_OwnerWallEmptyState'));
+    expect(collectorScreen, contains('_OwnerWallLoadFailureState'));
   });
 
   test('GVVI section membership is exact-copy based', () {

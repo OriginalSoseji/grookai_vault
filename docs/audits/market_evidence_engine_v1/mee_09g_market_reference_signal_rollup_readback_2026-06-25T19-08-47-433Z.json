@@ -1,0 +1,1445 @@
+{
+  "package_id": "MARKET-REFERENCE-SIGNAL-ROLLUP-READBACK-V1",
+  "generated_at": "2026-06-25T19:08:47.049Z",
+  "mode": "read_only_remote_rollup_review",
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "pricing_observations_writes": false,
+    "pricing_rollups_publication": false,
+    "public_price_publication": false,
+    "app_visible_pricing": false
+  },
+  "expected_row_count": 993,
+  "readback_version": "MEE_09G_REFERENCE_SIGNAL_ROLLUP_READBACK_V1",
+  "total_rows": 993,
+  "internal_lock_counts": {
+    "needs_review_true": 993,
+    "publishable_true": 0,
+    "app_visible_true": 0,
+    "market_truth_true": 0,
+    "non_usd_rows": 0,
+    "unexpected_rollup_version_rows": 0
+  },
+  "status_counts": {
+    "blocked_special_lane_review": 24,
+    "review_required_context": 158,
+    "review_required_high_variance": 241,
+    "review_required_single_source": 570
+  },
+  "variance_band_counts": {
+    "bounded_variance": 424,
+    "extreme_variance": 135,
+    "high_variance": 122,
+    "moderate_variance": 312
+  },
+  "flag_counts": {
+    "extreme_variance": 135,
+    "high_variance": 122,
+    "moderate_variance": 312,
+    "non_usd_evidence_excluded": 197,
+    "quarantined_context_present": 993,
+    "single_source_only": 796,
+    "special_lane_review_required": 24,
+    "thin_evidence": 6
+  },
+  "currency_counts": {
+    "USD": 993
+  },
+  "source_count_counts": {
+    "1": 796,
+    "2": 197
+  },
+  "review_queue": {
+    "high_variance": {
+      "count": 241,
+      "priority": "review price spread and source metric compatibility before trusting",
+      "samples": [
+        {
+          "gv_id": "GV-PK-LC-21",
+          "card_print_id": "f508366b-c319-42d8-b8e4-992578689dd8",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 3.73,
+          "reference_median": 140.51,
+          "reference_high": 1999.99,
+          "price_ratio": 536.19,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-COL-23",
+          "card_print_id": "c56f6e9d-dd20-4a59-a9f8-92bb5f7d2ef4",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 5,
+          "reference_low": 1.41,
+          "reference_median": 2.54,
+          "reference_high": 715.89,
+          "price_ratio": 507.72,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLF-10",
+          "card_print_id": "13466e74-83bd-4dce-98de-39aaec58b54a",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 8,
+          "reference_low": 0.24,
+          "reference_median": 0.53,
+          "reference_high": 96.89,
+          "price_ratio": 403.71,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-28",
+          "card_print_id": "a04d60de-499b-40eb-a19d-6de531260a70",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 1.7,
+          "reference_median": 19.87,
+          "reference_high": 620.66,
+          "price_ratio": 365.09,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLS-37",
+          "card_print_id": "c7fb4cfa-ca76-474e-859e-9dd33719504c",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.32,
+          "reference_median": 1.24,
+          "reference_high": 96.93,
+          "price_ratio": 302.91,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BLW-54",
+          "card_print_id": "64ec0b03-15c9-430e-922d-abe77c5a769a",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.35,
+          "reference_median": 0.86,
+          "reference_high": 96.91,
+          "price_ratio": 276.89,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-103",
+          "card_print_id": "f40cdad0-2bfc-432a-9a95-f7a5262a9ccf",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 1.3,
+          "reference_median": 4.51,
+          "reference_high": 337.8,
+          "price_ratio": 259.85,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-33",
+          "card_print_id": "b25317ea-137a-4c49-a32d-c05a4cc2d0aa",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 4.53,
+          "reference_median": 81.02,
+          "reference_high": 1150,
+          "price_ratio": 253.86,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LTR-81",
+          "card_print_id": "949cff08-3ad5-4e68-9d64-be5cd1e24a22",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 0.68,
+          "reference_high": 61,
+          "price_ratio": 244,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLB-50",
+          "card_print_id": "f3b2cdcb-5047-42b0-bd42-11065a0e0198",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.44,
+          "reference_median": 19.86,
+          "reference_high": 106.65,
+          "price_ratio": 242.39,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRX-98",
+          "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.4,
+          "reference_median": 0.85,
+          "reference_high": 96.84,
+          "price_ratio": 242.1,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLB-10",
+          "card_print_id": "c7c6ec08-eebb-499b-866d-cf1ff9654da1",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 8,
+          "reference_low": 0.25,
+          "reference_median": 0.76,
+          "reference_high": 59.71,
+          "price_ratio": 238.84,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLF-29",
+          "card_print_id": "1cbc4395-3aa9-4c8d-989b-e4827acdc06f",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.25,
+          "reference_median": 1.98,
+          "reference_high": 59.61,
+          "price_ratio": 238.44,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-25",
+          "card_print_id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 3.39,
+          "reference_median": 63.19,
+          "reference_high": 699.99,
+          "price_ratio": 206.49,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EPO-72",
+          "card_print_id": "843cbd82-9792-4f38-80a8-2726ab8e462d",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 8,
+          "reference_low": 0.17,
+          "reference_median": 1.05,
+          "reference_high": 25.28,
+          "price_ratio": 148.71,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DEX-88",
+          "card_print_id": "cf7c0f1f-6a43-47ae-b54d-7a207d085c8d",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.13,
+          "reference_median": 1,
+          "reference_high": 18.51,
+          "price_ratio": 142.38,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BS-71",
+          "card_print_id": "fffd7563-fd40-4613-87d9-221a747751a0",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 8,
+          "reference_low": 0.72,
+          "reference_median": 3.1,
+          "reference_high": 89.99,
+          "price_ratio": 124.99,
+          "review_flags": [
+            "extreme_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LTR-76",
+          "card_print_id": "f8ab07c2-b404-4f40-beee-2ba6583178a4",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 0.82,
+          "reference_high": 29.99,
+          "price_ratio": 119.96,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LTR-31",
+          "card_print_id": "cb67b447-fc93-4008-b848-e06c28f11d26",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 9.29,
+          "reference_high": 29.82,
+          "price_ratio": 119.28,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-35",
+          "card_print_id": "84dd4ec9-5359-4675-8cda-2f23cca90345",
+          "review_status": "review_required_high_variance",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 2.69,
+          "reference_median": 74.03,
+          "reference_high": 316.49,
+          "price_ratio": 117.65,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        }
+      ]
+    },
+    "single_source": {
+      "count": 570,
+      "priority": "acquire a second independent source or keep internal-only",
+      "samples": [
+        {
+          "gv_id": "GV-PK-COL-SL10",
+          "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 27494.89,
+          "reference_median": 27494.89,
+          "reference_high": 27494.89,
+          "price_ratio": 1,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-3",
+          "card_print_id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+          "review_status": "review_required_single_source",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 499,
+          "reference_median": 1378.75,
+          "reference_high": 4500,
+          "price_ratio": 9.02,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRX-125",
+          "card_print_id": "bb76be06-48cf-4daa-b4c0-ad390e3795a2",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 2,
+          "reference_low": 1219.99,
+          "reference_median": 1292.45,
+          "reference_high": 1364.9,
+          "price_ratio": 1.12,
+          "review_flags": [
+            "single_source_only",
+            "thin_evidence",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLS-136",
+          "card_print_id": "a622f43f-6ee4-4f5d-8e38-c18dfe28afed",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 2,
+          "reference_low": 749.99,
+          "reference_median": 950,
+          "reference_high": 1150,
+          "price_ratio": 1.53,
+          "review_flags": [
+            "single_source_only",
+            "thin_evidence",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLF-122",
+          "card_print_id": "c2dd04dc-ecd5-4e5e-91c9-7a014dacda45",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 710.72,
+          "reference_median": 799.99,
+          "reference_high": 1122.1,
+          "price_ratio": 1.58,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DCR-6",
+          "card_print_id": "51d1fc8b-c457-4e79-9f90-e63a8802d3c0",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 4,
+          "reference_low": 395,
+          "reference_median": 526.79,
+          "reference_high": 559.99,
+          "price_ratio": 1.42,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PLS-137",
+          "card_print_id": "c432b879-4b0b-4168-bf72-0c7ce7c8ccde",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 4,
+          "reference_low": 464.98,
+          "reference_median": 499.99,
+          "reference_high": 529.38,
+          "price_ratio": 1.14,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LTR-115",
+          "card_print_id": "c6f4fea9-5256-407e-a606-c50acf0ee7c7",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 4,
+          "reference_low": 244.29,
+          "reference_median": 403.17,
+          "reference_high": 478.65,
+          "price_ratio": 1.96,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+          "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 150,
+          "reference_median": 399.95,
+          "reference_high": 499.99,
+          "price_ratio": 3.33,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+          "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 150,
+          "reference_median": 399.95,
+          "reference_high": 499.99,
+          "price_ratio": 3.33,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+          "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 150,
+          "reference_median": 399.95,
+          "reference_high": 499.99,
+          "price_ratio": 3.33,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+          "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 150,
+          "reference_median": 399.95,
+          "reference_high": 499.99,
+          "price_ratio": 3.33,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DCR-15",
+          "card_print_id": "50385ac4-9060-4375-b898-7ea6574d5c82",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 4,
+          "reference_low": 300,
+          "reference_median": 385.98,
+          "reference_high": 462.88,
+          "price_ratio": 1.54,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SW-3",
+          "card_print_id": "cbd44d1b-a396-4aed-815d-a98b2d4bd8d2",
+          "review_status": "review_required_single_source",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 8,
+          "reference_low": 100.83,
+          "reference_median": 365,
+          "reference_high": 999.99,
+          "price_ratio": 9.92,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-BW98",
+          "card_print_id": "1b90d17f-313d-47ac-8d4a-842a3f353871",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 300,
+          "reference_median": 349.99,
+          "reference_high": 474.99,
+          "price_ratio": 1.58,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-18",
+          "card_print_id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+          "review_status": "review_required_single_source",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 99.99,
+          "reference_median": 330,
+          "reference_high": 799.99,
+          "price_ratio": 8,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-COL-SL6",
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 299.75,
+          "reference_median": 309.98,
+          "reference_high": 449.87,
+          "price_ratio": 1.5,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-COL-SL5",
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 222.96,
+          "reference_median": 300,
+          "reference_high": 577.64,
+          "price_ratio": 2.59,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MD-98",
+          "card_print_id": "b7400f51-7878-4e98-8fee-052bab45fd47",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 149.99,
+          "reference_median": 299.99,
+          "reference_high": 500,
+          "price_ratio": 3.33,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LA-144",
+          "card_print_id": "3363d5bf-c924-4915-ba42-6797d1f206f8",
+          "review_status": "review_required_single_source",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 3,
+          "reference_low": 210,
+          "reference_median": 264.14,
+          "reference_high": 350,
+          "price_ratio": 1.67,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present"
+          ]
+        }
+      ]
+    },
+    "context_required": {
+      "count": 158,
+      "priority": "inspect non-USD exclusions, quarantined context, and moderate variance",
+      "samples": [
+        {
+          "gv_id": "GV-PK-NXD-48",
+          "card_print_id": "62736541-5bc5-4952-b50b-8aa77990de15",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 12,
+          "reference_low": 0.12,
+          "reference_median": 0.62,
+          "reference_high": 1.19,
+          "price_ratio": 9.92,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NXD-60",
+          "card_print_id": "416173d9-7328-45d6-b719-17f23da006cd",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 12,
+          "reference_low": 5,
+          "reference_median": 8,
+          "reference_high": 49.49,
+          "price_ratio": 9.9,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-7",
+          "card_print_id": "fbad3046-b90f-4edb-8cec-36cc320ff813",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 23.5,
+          "reference_median": 42.11,
+          "reference_high": 225,
+          "price_ratio": 9.57,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-TR-7",
+          "card_print_id": "a6ec6786-8beb-4bad-a084-9f5cb987fd5a",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 16,
+          "reference_low": 25,
+          "reference_median": 41.84,
+          "reference_high": 237.81,
+          "price_ratio": 9.51,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-4",
+          "card_print_id": "5a9fa0b4-f043-482e-9e27-491b17386075",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 13,
+          "reference_low": 107.23,
+          "reference_median": 193.93,
+          "reference_high": 969.08,
+          "price_ratio": 9.04,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-TR-2",
+          "card_print_id": "5aea44a0-5b71-4afc-920f-87b5c5ade3ac",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 12,
+          "reference_low": 9,
+          "reference_median": 32.21,
+          "reference_high": 81.4,
+          "price_ratio": 9.04,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-13",
+          "card_print_id": "b8e30e49-c141-40bd-b1b3-cb104f1b50ba",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 13,
+          "reference_low": 6.2,
+          "reference_median": 11.27,
+          "reference_high": 55.56,
+          "price_ratio": 8.96,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-15",
+          "card_print_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 20.25,
+          "reference_median": 100,
+          "reference_high": 179.99,
+          "price_ratio": 8.89,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-11",
+          "card_print_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 70,
+          "reference_median": 142.04,
+          "reference_high": 600,
+          "price_ratio": 8.57,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-23",
+          "card_print_id": "4bffb982-60d9-477a-9ff7-9ae335dda4e2",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 16,
+          "reference_low": 4.13,
+          "reference_median": 10.8,
+          "reference_high": 34.99,
+          "price_ratio": 8.47,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NXD-57",
+          "card_print_id": "9a6b27fa-2d2d-4189-aa87-b570390fba04",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 11,
+          "reference_low": 11.87,
+          "reference_median": 14.34,
+          "reference_high": 99.99,
+          "price_ratio": 8.42,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-21",
+          "card_print_id": "85ac1d4f-4212-4b86-9687-c0255b6ed00a",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 16,
+          "reference_low": 4,
+          "reference_median": 13.74,
+          "reference_high": 32.5,
+          "price_ratio": 8.13,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-25",
+          "card_print_id": "a6bffe64-1c11-4247-b772-21c5ad0dc2a5",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 2.5,
+          "reference_median": 5.15,
+          "reference_high": 20,
+          "price_ratio": 8,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-1",
+          "card_print_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 17,
+          "reference_median": 42.49,
+          "reference_high": 134.97,
+          "price_ratio": 7.94,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-26",
+          "card_print_id": "845e9b26-467a-4672-b1d7-0e16cc621576",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 2,
+          "reference_median": 7.92,
+          "reference_high": 15,
+          "price_ratio": 7.5,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-8",
+          "card_print_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 24.8,
+          "reference_median": 49.58,
+          "reference_high": 184.2,
+          "price_ratio": 7.43,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FO-24",
+          "card_print_id": "ccf7cf4a-a529-4d4d-bb54-c7a35a01dd89",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 14,
+          "reference_low": 3,
+          "reference_median": 7.15,
+          "reference_high": 22.07,
+          "price_ratio": 7.36,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DET-18",
+          "card_print_id": "6d06ed4a-5119-41ca-8ae6-619dfd6298b7",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 8,
+          "reference_low": 0.2,
+          "reference_median": 0.99,
+          "reference_high": 1.47,
+          "price_ratio": 7.35,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-20",
+          "card_print_id": "c6071c50-bd9a-418c-b2c6-116ff72faf49",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 12,
+          "reference_low": 9.4,
+          "reference_median": 30.63,
+          "reference_high": 69,
+          "price_ratio": 7.34,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JU-15",
+          "card_print_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+          "review_status": "review_required_context",
+          "variance_band": "moderate_variance",
+          "source_count": 2,
+          "eligible_evidence_count": 12,
+          "reference_low": 12.81,
+          "reference_median": 61.52,
+          "reference_high": 91.42,
+          "price_ratio": 7.14,
+          "review_flags": [
+            "moderate_variance",
+            "non_usd_evidence_excluded",
+            "quarantined_context_present"
+          ]
+        }
+      ]
+    },
+    "special_lane_blocked": {
+      "count": 24,
+      "priority": "never auto-publish without lane-aware exact variant evidence",
+      "samples": [
+        {
+          "gv_id": "GV-PK-PR-BLW-48-PRERELEASE-STAMP",
+          "card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 33.5,
+          "reference_median": 244.66,
+          "reference_high": 350,
+          "price_ratio": 10.45,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-48-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 33.5,
+          "reference_median": 244.66,
+          "reference_high": 350,
+          "price_ratio": 10.45,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-75-PRERELEASE-STAMP",
+          "card_print_id": "99b54c90-f9e0-4125-bcf1-3fb564c9aeb1",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 49.75,
+          "reference_median": 236.5,
+          "reference_high": 600,
+          "price_ratio": 12.06,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-75-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "da426096-26a3-4947-9c5a-45ed3db73fdf",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 49.75,
+          "reference_median": 236.5,
+          "reference_high": 600,
+          "price_ratio": 12.06,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-53-PRERELEASE-STAMP",
+          "card_print_id": "d8ace098-946b-4034-94ce-63a398d46f0d",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 50,
+          "reference_median": 157.47,
+          "reference_high": 299.98,
+          "price_ratio": 6,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-53-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "0e5c0b8f-a67b-4f55-a0b9-e0ba3e412e3e",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 50,
+          "reference_median": 157.47,
+          "reference_high": 299.98,
+          "price_ratio": 6,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-84-PRERELEASE-STAMP",
+          "card_print_id": "b7967dc8-70f6-4b88-9d4f-e44fe508a102",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 18.36,
+          "reference_median": 127.47,
+          "reference_high": 399.99,
+          "price_ratio": 21.79,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-84-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "fba4b7b8-f900-4d35-bdd7-8f82246a7fcb",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 18.36,
+          "reference_median": 127.47,
+          "reference_high": 399.99,
+          "price_ratio": 21.79,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP",
+          "card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 16.69,
+          "reference_median": 121.48,
+          "reference_high": 385,
+          "price_ratio": 23.07,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "extreme_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 16.69,
+          "reference_median": 121.48,
+          "reference_high": 385,
+          "price_ratio": 23.07,
+          "review_flags": [
+            "extreme_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-51-PRERELEASE-STAMP",
+          "card_print_id": "fef78d29-f738-4acd-ab1d-55629893f933",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 34.31,
+          "reference_median": 71.24,
+          "reference_high": 190,
+          "price_ratio": 5.54,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-51-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "b9cac5c8-9963-4366-ba0c-14c1f76a97ac",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "moderate_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 34.31,
+          "reference_median": 71.24,
+          "reference_high": 190,
+          "price_ratio": 5.54,
+          "review_flags": [
+            "moderate_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+          "card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 8.93,
+          "reference_median": 14.65,
+          "reference_high": 19.88,
+          "price_ratio": 2.23,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "bounded_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 8.93,
+          "reference_median": 14.65,
+          "reference_high": 19.88,
+          "price_ratio": 2.23,
+          "review_flags": [
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP",
+          "card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.9,
+          "reference_median": 5.25,
+          "reference_high": 9.77,
+          "price_ratio": 10.86,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 7,
+          "reference_low": 0.9,
+          "reference_median": 5.25,
+          "reference_high": 9.77,
+          "price_ratio": 10.86,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DP-52-PRERELEASE-STAMP",
+          "card_print_id": "a9cd7cc2-f0d3-421d-807b-a0c39bf148ac",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 1.32,
+          "reference_high": 4.72,
+          "price_ratio": 18.88,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DP-52-STAFF-PRERELEASE-STAMP",
+          "card_print_id": "4e4e2604-5401-4cd7-98bd-e86a3812ead3",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 1.32,
+          "reference_high": 4.72,
+          "price_ratio": 18.88,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SW-106-ORIGINS-GAME-FAIR-2008-STAFF-STAMP",
+          "card_print_id": "ba0f4bec-31af-4c09-830c-0faeb9df0c26",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 1.12,
+          "reference_high": 3.4,
+          "price_ratio": 13.6,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MD-42-PRERELEASE-STAMP",
+          "card_print_id": "ff85e81b-039a-4b4d-b9be-8d5db925587b",
+          "review_status": "blocked_special_lane_review",
+          "variance_band": "high_variance",
+          "source_count": 1,
+          "eligible_evidence_count": 6,
+          "reference_low": 0.25,
+          "reference_median": 1.06,
+          "reference_high": 3.39,
+          "price_ratio": 13.56,
+          "review_flags": [
+            "high_variance",
+            "single_source_only",
+            "quarantined_context_present",
+            "special_lane_review_required"
+          ]
+        }
+      ]
+    }
+  },
+  "findings": [],
+  "ready": true
+}

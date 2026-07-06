@@ -1,0 +1,57 @@
+{{DeckInfobox
+|title=Empotech
+|image=WCS2008 Empotech Deck.png
+|caption=Box art
+|size=220px
+|types={{e|Water}}
+|cards={{TCG ID|Majestic Dawn|Empoleon|17}}, {{TCG ID|Great Encounters|Claydol|15}}, {{TCG ID|Diamond & Pearl|Dusknoir|2}}
+}}
+
+'''Empotech''' is the name of the deck used by Dylan Lefavour, the Senior Division Champion in the {{TCG|2008 World Championships}}. The deck focuses predominantly on {{e|Water}} {{TCG|Pokémon}}, specifically {{TCG ID|Majestic Dawn|Empoleon|17}}. Lefavour's strategy involved spreading damage around, so that he could Knock Out his opponents Pokémon easily. {{TCG ID|Great Encounters|Claydol|15}} was also relied upon to keep his hand full of cards.
+
+Empotech is one of the four {{TCGMerch|Diamond & Pearl|Series|2008 World Championships Decks}}, released on November 5, 2008. Each deck comes packaged with a 2008 World Championships Booklet. Each card features a silver border, Lefavour's signature, and limited edition 2008 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Dylan Lefavour's Empotech deck was designed with one goal in mind: spread as much damage around his opponent's Pokémon as possible, making it easy to Knock Out one or more Pokémon at will. With Empoleon passing out damage like candy and cards like Claydol helping to keep his hand full, it's easy to see how Dylan was able to capture the title of Senior Division World Champion!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|Majestic Dawn|Empoleon|17}}|Water||Rare}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Prinplup|44}}|Water||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Prinplup|58}}|Water||Uncommon}}
+{{decklist/entry|2|{{TCG ID|POP Series 6|Piplup|15}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Piplup|72}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|DP Promo|Piplup|3}}|Water||None}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Dusknoir|2}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Duskull|80}}|Psychic||Common}}
+{{decklist/entry|2|{{TCG ID|Majestic Dawn|Chatot|55}}|Colorless||Common}}
+{{decklist/entry|3|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|1|{{TCG ID|EX Holon Phantoms|Holon's Castform|44}}|Colorless||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Tauros|12}}|Colorless||Rare Holo}}
+{{decklist/entry|1|[[Mew ☆ δ (EX Dragon Frontiers 101)|Mew]] {{Star}} [[Mew ☆ δ (EX Dragon Frontiers 101)|δ]]|Water||Rare Holo ☆}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Bebe's Search|119}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Castaway|72}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Crystal Guardians|Celio's Network|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Crystal Guardians|Cessation Crystal|74}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Dragon Frontiers|Copycat|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Rare Candy|102}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Power Keepers|Steven's Advice|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Windstorm|85}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Double Rainbow Energy|88}}|Energy|Rainbow|Rare}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Scramble Energy|89}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|6|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Empotech (TCG)]]
+[[zh:帝王高科技（TCG）]]

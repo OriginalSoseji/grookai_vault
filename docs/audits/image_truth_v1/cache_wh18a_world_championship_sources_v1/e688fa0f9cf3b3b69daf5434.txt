@@ -1,0 +1,57 @@
+{{DeckInfobox
+|title=Suns & Moons
+|image=WCS2006 Suns and Moons Deck.jpg
+|caption=Box art
+|types={{e|Fighting}}
+|cards={{TCG ID|EX Deoxys|Solrock|47}}, {{TCG ID|EX Deoxys|Lunatone|36}}
+}}
+
+'''Suns & Moons''' is the name of the deck used by [[Miska Saari]], the Eleven to Fourteen Champion in the {{TCG|2006 World Championships}}. It predominantly focuses on {{e|Psychic}} and {{e|Fighting}} Pokémon.
+
+Suns & Moons is one of the four {{TCGMerch|EX|Series|2006 World Championships Decks}}, released on October 31, 2006. Each deck comes packaged with a 2006 World Championships Booklet. Each card features a silver border, Saari's signature, and limited edition 2006 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Miska Saari fought his way to the top with his deck based on Solrock and Lunatone. He combined those Pokémon with a large selection of Trainer cards, giving him complete control over his deck, as well as control over what Stadium cards are in play. A Champion's strategy!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Lunatone|36}}|Fighting||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Lunatone|20}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Solrock|47}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Solrock|25}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Girafarig|16}}|Psychic||Rare}}
+{{decklist/entry|3|{{TCG ID|EX Legend Maker|Cursed Stone|72}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Hidden Legends|Desert Ruins|88}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Unseen Forces|Energy Removal 2|82}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Energy Root|83}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Great Ball|90}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Farmer|91}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Holon Mentor|93}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Scientist|97}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Holon Transceiver|98}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Unseen Forces|Mary's Request|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Team Rocket Returns|Pokémon Retriever|84}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Unseen Forces|Pokémon Reversal|88}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Warp Point|93}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Holon Energy FF|104}}|Energy|Colorless|Rare}}
+{{decklist/entry|4|{{TCG ID|EX Holon Phantoms|Multi Energy|96}}|Energy|Colorless|Rare}}
+{{decklist/entry|6|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/entry|1|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+==Trivia==
+* The cards in World Championships Decks are just reprints of (at the time) recent cards with the only changes being the addition of the players' signature, a silver border and the special card reverse; however an error was introduced to one of the cards in this deck.
+**{{TCG ID|EX Holon Phantoms|Multi Energy|96}} from {{TCG|EX Holon Phantoms}} was printed here with the incorrect set total (96/106) despite the original print (and other World Championships Decks {{TCG|Mewtrick}} and {{TCG|Legendary Ascent}}) having no such error (96/110).
+
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Suns & Moons (TCG)]]
+[[zh:群日众月（TCG）]]

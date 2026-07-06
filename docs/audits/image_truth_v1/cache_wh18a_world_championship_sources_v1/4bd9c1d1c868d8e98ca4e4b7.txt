@@ -1,0 +1,54 @@
+{{DeckInfobox
+|title=Black Dragon
+|image=WCS2016 Black Dragon.jpg
+|size=280px
+|caption=Box art
+|types={{e|Darkness}}{{e|Dragon}}
+|cards=
+}}
+
+'''Black Dragon''' is the name of the deck used by Shuntu Sadahiro, who was the champion of the Junior Division in the [[2016 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2016 World Championships Decks}}, released in November 2016, and is based around [[Darkrai-EX (BREAKpoint 74)|Darkrai]]{{EX}} and [[Giratina-EX (Ancient Origins 57)|Giratina]]{{EX}}. Each Deck comes with a Worlds 2016 themed Deckbox, a booklet about the championships, a code card for the [[Pokémon Trading Card Game Online]], and the 2016 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+==Description==
+===Packaging===
+<i>Shuntu Sadahiro's deck channeled the powers of darkness to claim victory in the Junior Division! Giratina-EX and Garbodor work together to keep the opponent from doing...pretty much anything, especially for opponents whose decks rely on Special Energy! Max Elixir speeds things up, and when Double Dragon Energy is in play&mdash;with some help from Yveltal's Oblivion Wing attack&mdash;Darkrai-EX gets an extra boost to unleash an enormous Dark Pulse attack!</i>
+
+===Booklet===
+<i>Shuntu was a little worried going in: "It was my first time battling at the World Championships, so I was really nervous," he says. But he had plenty of support on the road to Worlds&mdash;his dad and his younger brother both play the Pokémon TCG, and he has a strong team who helped him build and test his deck, focused on Darkrai-EX and Giratina-EX. A bit of luck helped him out in the finals, too&mdash;his opponent tried several times to discard Energy from his Pokémon with Crushing Hammer, and the coin flip came up tails every time, as Shunto visibly celebrated on camera!</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|2|[[Darkrai-EX (BREAKpoint 74)|Darkrai]]{{EX}}|Darkness||Rare Holo ex}}
+{{decklist/entry|2|[[Giratina-EX (Ancient Origins 57)|Giratina]]{{EX}}|Dragon||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|Steam Siege|Yveltal|65}}|Darkness||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Garbodor|57}}|Psychic||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|BREAKpoint|Trubbish|56}}|Psychic||Common}}
+{{decklist/entry|2|[[Shaymin-EX (Roaring Skies 77)|Shaymin]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|1|[[Hoopa-EX (Ancient Origins 36)|Hoopa]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|AZ|91}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKpoint|Fighting Fury Belt|99}}|Item||Uncommon}}
+{{decklist/entry|3|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ancient Origins|Lysandre|78}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Max Elixir|102}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Parallel City|145}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Steam Siege|Pokémon Ranger|104}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKpoint|Reverse Valley|110}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Roaring Skies|Trainers' Mail|92}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Ultra Ball|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|Xerosic|110}}|Supporter||Uncommon}}
+{{decklist/entry|10|{{TCG ID|Generations|Darkness Energy|81}}|Energy|Darkness|Common}}
+{{decklist/entry|3|{{TCG ID|Roaring Skies|Double Dragon Energy|97}}|Energy|Dragon|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Black Dragon (TCG)]]
+[[it:Black Dragon (GCC)]]

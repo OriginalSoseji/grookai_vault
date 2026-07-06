@@ -1,0 +1,118 @@
+{
+  "id": "base6-18",
+  "name": "Venusaur",
+  "supertype": "Pokémon",
+  "subtypes": [
+    "Stage 2"
+  ],
+  "level": "67",
+  "hp": "100",
+  "types": [
+    "Grass"
+  ],
+  "evolvesFrom": "Ivysaur",
+  "abilities": [
+    {
+      "name": "Energy Trans",
+      "text": "As often as you like during your turn (before your attack), you may take 1 Grass Energy card attached to 1 of your Pokémon and attach it to a different one. This power can't be used if Venusaur is affected by a Special Condition.",
+      "type": "Pokémon Power"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "Solarbeam",
+      "cost": [
+        "Grass",
+        "Grass",
+        "Grass",
+        "Grass"
+      ],
+      "convertedEnergyCost": 4,
+      "damage": "60",
+      "text": ""
+    }
+  ],
+  "weaknesses": [
+    {
+      "type": "Fire",
+      "value": "×2"
+    }
+  ],
+  "retreatCost": [
+    "Colorless",
+    "Colorless"
+  ],
+  "convertedRetreatCost": 2,
+  "set": {
+    "id": "base6",
+    "name": "Legendary Collection",
+    "series": "Other",
+    "printedTotal": 110,
+    "total": 110,
+    "legalities": {
+      "unlimited": "Legal"
+    },
+    "ptcgoCode": "LC",
+    "releaseDate": "2002/05/24",
+    "updatedAt": "2020/08/14 09:35:00",
+    "images": {
+      "symbol": "https://images.pokemontcg.io/base6/symbol.png",
+      "logo": "https://images.pokemontcg.io/base6/logo.png"
+    }
+  },
+  "number": "18",
+  "artist": "Mitsuhiro Arita",
+  "rarity": "Rare Holo",
+  "flavorText": "This plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
+  "nationalPokedexNumbers": [
+    3
+  ],
+  "legalities": {
+    "unlimited": "Legal"
+  },
+  "images": {
+    "small": "https://images.pokemontcg.io/base6/18.png",
+    "large": "https://images.pokemontcg.io/base6/18_hires.png"
+  },
+  "tcgplayer": {
+    "url": "https://prices.pokemontcg.io/tcgplayer/base6-18",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "holofoil": {
+        "low": 99.99,
+        "mid": 179.99,
+        "high": 2008.99,
+        "market": 144.2,
+        "directLow": 2008.99
+      },
+      "reverseHolofoil": {
+        "low": 480,
+        "mid": 599.99,
+        "high": 1000,
+        "market": 799.99,
+        "directLow": null
+      }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/base6-18",
+    "updatedAt": "2026/06/25",
+    "prices": {
+      "averageSellPrice": 63.73,
+      "lowPrice": 15.99,
+      "trendPrice": 55.22,
+      "germanProLow": 0,
+      "suggestedPrice": 0,
+      "reverseHoloSell": 282.8,
+      "reverseHoloLow": 80,
+      "reverseHoloTrend": 287.46,
+      "lowPriceExPlus": 50,
+      "avg1": 70,
+      "avg7": 51.09,
+      "avg30": 63.87,
+      "reverseHoloAvg1": 339.99,
+      "reverseHoloAvg7": 228.14,
+      "reverseHoloAvg30": 328.18
+    }
+  }
+}

@@ -1,3 +1,6 @@
+const NEXT_IMAGE_PATHNAME = "/_next/image";
+const NEXT_IMAGE_UNWRAP_LIMIT = 3;
+
 export function isUsablePublicImageUrl(value: string | null | undefined) {
   if (!value) return false;
 
@@ -9,18 +12,68 @@ export function isUsablePublicImageUrl(value: string | null | undefined) {
   }
 }
 
-function normalizePublicCardImageUrl(value: string) {
+function unwrapNextImageUrl(value: string) {
+  let current = value;
+
+  for (let depth = 0; depth < NEXT_IMAGE_UNWRAP_LIMIT; depth += 1) {
+    try {
+      const url = new URL(current);
+      if (url.pathname !== NEXT_IMAGE_PATHNAME) {
+        return current;
+      }
+
+      const innerUrl = url.searchParams.get("url")?.trim();
+      if (!innerUrl || innerUrl === current || !isUsablePublicImageUrl(innerUrl)) {
+        return current;
+      }
+
+      current = innerUrl;
+    } catch {
+      return current;
+    }
+  }
+
+  return current;
+}
+
+export function normalizePublicCardImageUrl(value: string) {
   const normalized = value.trim();
+  const unwrapped = unwrapNextImageUrl(normalized);
 
   if (
-    normalized.startsWith("https://assets.tcgdex.net/en/") &&
-    !normalized.endsWith("/high.webp")
+    unwrapped.startsWith("https://assets.tcgdex.net/en/") &&
+    !unwrapped.endsWith("/high.webp")
   ) {
-    const withoutKnownFile = normalized.replace(/\/(?:low|high)\.(?:webp|png|jpg|jpeg)$/i, "");
+    const withoutKnownFile = unwrapped.replace(/\/(?:low|high)\.(?:webp|png|jpg|jpeg)$/i, "");
     return `${withoutKnownFile.replace(/\/+$/, "")}/high.webp`;
   }
 
-  return normalized;
+  return unwrapped;
+}
+
+export function normalizePublicCardImageSrc(value: string | null | undefined) {
+  if (!isUsablePublicImageUrl(value)) {
+    return undefined;
+  }
+
+  return normalizePublicCardImageUrl(value!.trim());
+}
+
+export function shouldBypassNextImageOptimization(value: string | null | undefined) {
+  if (!value) {
+    return false;
+  }
+
+  try {
+    const url = new URL(normalizePublicCardImageUrl(value));
+    return (
+      url.hostname === "assets.tcgdex.net" ||
+      (url.hostname === "raw.githubusercontent.com" &&
+        url.pathname.startsWith("/PokeAPI/sprites/master/sprites/pokemon/"))
+    );
+  } catch {
+    return false;
+  }
 }
 
 function normalizeLowerOrNull(value: string | null | undefined) {

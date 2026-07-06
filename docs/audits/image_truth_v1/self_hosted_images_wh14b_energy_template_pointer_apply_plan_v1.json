@@ -1,0 +1,48 @@
+{
+  "package_id": "IMG-HOST-WH-14B-ENERGY-TEMPLATE-POINTER-APPLY",
+  "mode": "guarded_apply",
+  "generated_at": "2026-06-24T02:22:03.978Z",
+  "source_dry_run_package_id": "IMG-HOST-WH-14A-ENERGY-TEMPLATE-POINTER-DRY-RUN",
+  "source_dry_run_fingerprint": "72c4c1367eb8d98c72e48377bba02a1ae13efd83e3e08234fb1365040b2f3c5d",
+  "source_sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "approved_sql_hash": "4423d05aa86aec549e82542d41afcb4c35211432378754a4d4d7e18004fea677",
+  "source_plan_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh14a_energy_template_pointer_plan_v1.jsonl",
+  "metadata_pointer_update_count": 16,
+  "total_update_count": 16,
+  "target_tables": {
+    "card_prints": 16
+  },
+  "by_set_code": {
+    "mee": 8,
+    "sve": 8
+  },
+  "by_source_gv_id": {
+    "GV-PK-SVE-1": 2,
+    "GV-PK-SVE-10": 2,
+    "GV-PK-SVE-11": 2,
+    "GV-PK-SVE-12": 2,
+    "GV-PK-SVE-13": 2,
+    "GV-PK-SVE-14": 2,
+    "GV-PK-SVE-15": 2,
+    "GV-PK-SVE-16": 2
+  },
+  "planned_columns": [
+    "image_source",
+    "image_path",
+    "image_status",
+    "image_note"
+  ],
+  "runtime_public_url_field_writes_planned": false,
+  "db_writes_planned": true,
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "identity_table_writes_performed": false,
+  "price_writes_performed": false,
+  "deletes_or_merges_performed": false,
+  "exact_image_claim_changes_performed": false,
+  "parent_overwrites_performed": false,
+  "stop_findings": [],
+  "ready_for_apply": true,
+  "fingerprint": "72c4c1367eb8d98c72e48377bba02a1ae13efd83e3e08234fb1365040b2f3c5d"
+}

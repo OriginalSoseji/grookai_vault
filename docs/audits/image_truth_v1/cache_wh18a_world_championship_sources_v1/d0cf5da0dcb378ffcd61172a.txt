@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=King of the West
+|image=WCS2005 King of the West Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Water}}
+|cards={{TCG ID|EX Deoxys|Ludicolo|10}}, {{TCG ID|EX Deoxys|Magcargo|20}}
+}}
+
+'''King of the West''', a variation of the {{TCG|Ludicargo}} {{TCG|deck archetype|archetype}}, is the name of the deck used by Michael Gonzalez in the {{TCG|2005 World Championships}}. He was a Semi-Finalist in the Ten and Under Division. The deck takes advantage of the synergy formed from {{TCG ID|EX Deoxys|Magcargo|20}}'s Smooth Over {{TCG|Poké-Power}} and {{TCG ID|EX Deoxys|Ludicolo|10}}'s Swing Dance Poké-Power.
+
+King of the West is one of the four {{TCGMerch|EX|Series|2005 World Championships Decks}}, released on October 31, 2005. Each deck comes packaged with a 2005 World Championships Booklet. Each card features a silver border, Gonzalez's signature, and limited edition 2005 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Michael Gonzalez chose a powerful Ludicolo deck and added popular Magcargo and tricky Rhydon Pokémon to make a world-class competition deck. Between Magcargo's Smooth Over deck rearrangement and Ludicolo's Swing Dance drawing power, you get whatever you need to win every turn!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|3|{{TCG ID|EX Sandstorm|Lotad|66}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|EX Deoxys|Lotad|63}}|Water||Common}}
+{{decklist/entry|2|{{TCG ID|EX Sandstorm|Lombre|45}}|Water||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Ludicolo|10}}|Water||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Deoxys|Slugma|74}}|Fire||Common}}
+{{decklist/entry|2|{{TCG ID|EX Deoxys|Magcargo|20}}|Fire||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Rhyhorn|70}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Rhydon|46}}|Fighting||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Deoxys|Jirachi|9}}|Metal||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|EX Sandstorm|Dunsparce|60}}|Colorless||Common}}
+{{decklist/entry|1|[[Ancient Technical Machine Rock (EX Hidden Legends 85)|Ancient Technical Machine [Rock]]]|Trainer|Technical Machine|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX FireRed & LeafGreen|Celio's Network|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Copycat|83}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Deoxys|Crystal Shard|85}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Hidden Legends|Desert Ruins|88}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX FireRed & LeafGreen|Pokémon Reversal|97}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Emerald|Rare Candy|83}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Rocket's Admin.|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Deoxys|Strength Charm|92}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Rocket Returns|Swoop! Teleporter|92}}|Trainer|Rocket's Secret Machine|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Deoxys|Heal Energy|94}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Emerald|Double Rainbow Energy|87}}|Energy|Rainbow|Rare}}
+{{decklist/entry|2|{{TCG ID|EX Deoxys|Scramble Energy|95}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Water Energy}}|Energy|Water|None}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:King of the West (TCG)]]
+[[zh:西方之王（TCG）]]

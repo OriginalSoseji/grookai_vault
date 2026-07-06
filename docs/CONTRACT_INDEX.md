@@ -130,6 +130,7 @@ If a contract is missing from this index, it is not authoritative.
 | PRICING_ENGINE_V1 | Active | Active listings-based pricing engine |
 | PRICING_ENGINE_V1_5 | Active | Condition curve pricing (NM → DMG) |
 | PRICING_MONITOR_V1 | Planned | Scheduler-driven pricing refresh system |
+| PRICING_EVIDENCE_ENGINE_V1 | Active | docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md — Governs future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence work while preserving Market Truth / Reference / Projection separation, explicit provider mappings, confidence labels, and compliance boundaries |
 | MARKETPLACE_GUARDRAILS_V1 | Planned | Trust, fraud, and listing safety rules |
 
 ---

@@ -1,0 +1,422 @@
+{
+  "package_id": "MEE-CORE-INTERNAL-REVIEW-DASHBOARD-READ-MODEL-V1",
+  "generated_at": "2026-06-26T20:00:47.902Z",
+  "mode": "plan_only_internal_review_dashboard_read_model",
+  "package_fingerprint_sha256": "266d97ebb0b076486b538c264f967def3fc61e668e7bf177d014231feb9fb3b3",
+  "audit": {
+    "disposition_summary": {
+      "app_visible_rows": 0,
+      "direct_publish_rows": 0,
+      "disposition_rows": 2152,
+      "market_truth_rows": 0,
+      "publication_gate_candidate_rows": 0,
+      "publishable_rows": 0
+    },
+    "join_summary": {
+      "disposition_rows": 2152,
+      "joined_review_queue_rows": 2152,
+      "joined_signal_summary_rows": 2152,
+      "missing_review_queue_rows": 0,
+      "missing_signal_summary_rows": 0
+    },
+    "dashboard_queues": [
+      {
+        "card_count": 915,
+        "dashboard_queue": "reference_only_queue",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 574,
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 460,
+        "dashboard_queue": "standard_candidate_review",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 156,
+        "dashboard_queue": "low_signal_monitor",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 19,
+        "dashboard_queue": "classification_blocked_queue",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 18,
+        "dashboard_queue": "unknown_evidence_review",
+        "handoff_candidate_count": 0
+      },
+      {
+        "card_count": 10,
+        "dashboard_queue": "high_signal_candidate_queue",
+        "handoff_candidate_count": 0
+      }
+    ],
+    "status_summary": [
+      {
+        "card_count": 714,
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 544,
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 224,
+        "evidence_lane": "raw_single",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 197,
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 156,
+        "evidence_lane": "low_signal",
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved"
+      },
+      {
+        "card_count": 144,
+        "evidence_lane": "raw_single",
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved"
+      },
+      {
+        "card_count": 56,
+        "evidence_lane": "slab",
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved"
+      },
+      {
+        "card_count": 36,
+        "evidence_lane": "slab",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 24,
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "monitor_only",
+        "review_lane": "low_signal_monitor",
+        "review_status": "resolved"
+      },
+      {
+        "card_count": 19,
+        "evidence_lane": "classification_blocked",
+        "review_disposition": "review_pending_classification_fix",
+        "review_lane": "classification_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 18,
+        "evidence_lane": "unknown",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 10,
+        "evidence_lane": "raw_single",
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 6,
+        "evidence_lane": "mixed_raw_slab",
+        "review_disposition": "review_pending_high_signal",
+        "review_lane": "high_signal_review",
+        "review_status": "pending"
+      },
+      {
+        "card_count": 4,
+        "evidence_lane": "reference_metric",
+        "review_disposition": "review_pending_reference_only",
+        "review_lane": "reference_only_review",
+        "review_status": "pending"
+      }
+    ],
+    "sample_rows": [
+      {
+        "card_print_id": "00d9b073-9487-4e48-9995-1e78919ae7f4",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-LM-4",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "00f10bd2-d1d7-4823-94e8-a810f83dc572",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-HL-13",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "01878f9f-f4bf-4478-a130-6b989b397087",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-DS-13",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "01f09708-5e55-4c26-adca-7fb76daafd13",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-WCD-2013-ANGUILLE_SOUS_ROCHE-07-PLASMA_STORM-128-DOWSING_MACHINE",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "029b4b7c-8d8c-4067-b30c-2852eda0f36a",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-MEP-044",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "02c1147c-3914-4b4a-a1d6-8d620e633e9b",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-BASE1-10-SHADOWLESS",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "030ed8ca-a128-4b8a-b69e-fe4de513c99a",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-HP-3",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0361f2ec-2533-4f55-bcb5-5bd1bc4cdc34",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-CG-1",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "03724fbd-3171-421f-970e-2a4c630136a4",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-DX-100",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0445db40-90d6-4452-8def-df8a6563cb01",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-RS-7",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0486f032-8272-454e-8805-fce4bdffc855",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-EM-11",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0518b4f7-d7a2-4f45-a6e1-140240aafeed",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-MA-4",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-MCD-2021-22",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "05876e44-866b-4a13-b1aa-1ebe0a6eb7f0",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-TK-tk-ex-m-10",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "05c5a29e-5e37-4212-8a7a-6aa851d338f0",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-TK-tk-xy-p-14",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0600c082-e03b-4a34-9784-8a5557b9610c",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-TK-tk-xy-su-14",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "06085a83-446f-4685-8db2-388933589284",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-DR-4",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "06978f77-eb3e-4135-b22c-17ebac941141",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-DF-6",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "07123e3e-8bf4-4fb0-aa90-2327ded8171b",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-MCD-2016-9",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "0714bbcc-263a-4a4f-9a3b-f915f5b92f53",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-SS-99",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "074718b1-05ea-4d58-b447-ad88e3101608",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-BASE1-9-FIRST-EDITION",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "07539f47-84e1-4e2b-8268-53ef24ab258d",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-PK-8",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "084217eb-cb6a-4d5d-bbe9-5e5bf2abaf94",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-BASE1-5-1999-2000",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "08e2a732-fd02-4e5b-bab3-558a89b710ae",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-DF-5",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      },
+      {
+        "card_print_id": "08e7b748-f78e-44ba-bd55-8da18b980a8b",
+        "dashboard_queue": "mixed_raw_slab_split_queue",
+        "evidence_lane": "mixed_raw_slab",
+        "gv_id": "GV-PK-EM-9",
+        "review_disposition": "review_pending_candidate",
+        "review_lane": "candidate_review",
+        "review_status": "pending"
+      }
+    ],
+    "public_boundary": {
+      "pricing_observations_count": 0,
+      "public_pricing_view_references": 0
+    }
+  },
+  "hashes": {
+    "sql_candidate_sha256": "65f203935d8ed436e8fbf88c5c8548438940b16761e88c52c06b8a6c6e131c0e",
+    "readback_sql_sha256": "f455ed5f6b8eb74ba1b8feafe44d2a37e30976e350cb157ee6f1af5fd502e337"
+  },
+  "artifacts": {
+    "report_json": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-DASHBOARD-READ-MODEL-V1/report.json",
+    "report_md": "docs/audits/market_evidence_engine_v1/MEE-CORE-INTERNAL-REVIEW-DASHBOARD-READ-MODEL-V1.md",
+    "plan_md": "docs/plans/market_evidence_engine_v1/MEE_CORE_INTERNAL_REVIEW_DASHBOARD_READ_MODEL_V1.md",
+    "sql_candidate": "docs/sql/mee_core_internal_review_dashboard_read_model_v1_view_candidates.sql",
+    "readback_sql": "docs/sql/mee_core_internal_review_dashboard_read_model_v1_readback.sql"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "remote_migration_apply": false,
+    "db_writes": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

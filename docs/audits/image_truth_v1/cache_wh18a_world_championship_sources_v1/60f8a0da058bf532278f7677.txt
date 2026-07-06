@@ -1,0 +1,58 @@
+{{DeckInfobox
+|title=Legendary Ascent
+|image=WCS2007 Legendary Ascent Deck.jpg
+|caption=Box art
+|size=280px
+|types={{e|Lightning}}
+|cards={{TCG ID|EX Dragon Frontiers|Rayquaza ex δ|97}}, {{TCG ID|EX Power Keepers|Absol ex|92}}, {{TCG ID|EX Legend Maker|Mew ex|88}}
+}}
+
+'''Legendary Ascent''' is the name of the deck used by Tom Roos, the Masters Division Champion in the {{TCG|2007 World Championships}}. It is based on the {{TCG|Absolutions}} {{TCG|Deck archetype|archetype}} that was popular during the 2006-2007 season.
+
+Legendary Ascent is one of the four {{TCGMerch|Diamond & Pearl|Series|2007 World Championships Decks}}, released on November 19, 2007. Each deck comes packaged with a 2007 World Championships Booklet. Each card features a silver border, Roos' signature, and limited edition 2007 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Tom Roos scored the win in the finals of the Masters Division to become Champion with his strategy-filled deck! Rayquaza ex was feared the entire tournament due to its powerful attacks and high HP. Special Circuit and Sky-high Claws were dangerous right from the start, becoming even more efficient if Rayquaza ex ever fell behind!
+''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Rayquaza ex δ|97}}|Lightning||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|EX Power Keepers|Absol ex|92}}|Darkness||Rare Holo ex}}
+{{decklist/entry|2|{{TCG ID|EX Legend Maker|Mew ex|88}}|Psychic||Rare Holo ex}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Eevee|69}}|Colorless||Common}}
+{{decklist/entry|1|{{TCG ID|EX Unseen Forces|Espeon ex|102}}|Psychic||Rare Holo ex}}
+{{decklist/entry|3|{{TCG ID|EX Delta Species|Jolteon ex|109}}|Lightning||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Vaporeon ex|110}}|Water||Rare Holo ex}}
+{{decklist/entry|1|[[Jolteon ☆ (EX Power Keepers 101)|Jolteon]] {{star}}|Lightning||Rare Holo ☆}}
+{{decklist/entry|1|{{TCG ID|EX Crystal Guardians|Jirachi ex|94}} |Psychic||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|EX Dragon Frontiers|Lickitung δ|19}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Holon Phantoms|Holon's Castform|44}}|Colorless||Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon's Voltorb|71}}|Lightning||Common}}
+{{decklist/entry|1|{{TCG ID|EX Legend Maker|Giant Stump|75}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Holon Phantoms|Holon Adventurer|85}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon Frontiers|Holon Mentor|75}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Delta Species|Holon Scientist|97}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Delta Species|Holon Transceiver|98}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Unseen Forces|Mary's Request|86}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Dragon Frontiers|Professor Elm's Training Method|79}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|1|{{TCG ID|EX Power Keepers|Scott|81}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|4|{{TCG ID|Diamond & Pearl|Super Scoop Up|115}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Crystal Guardians|Windstorm|85}}|Trainer||Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Power Keepers|Darkness Energy|87}}|Energy|Darkness|Rare}}
+{{decklist/entry|2|{{TCG ID|EX Holon Phantoms|Multi Energy|96}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|7|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|4|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/footer}}
+
+==External==
+[http://www.pojo.com/TCGStrategies/2007/7-11.shtml pojo.com's take on Absolutions]
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Legendary Ascent (TCG)]]
+[[zh:传说升华（TCG）]]

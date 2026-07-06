@@ -1,0 +1,83 @@
+{
+  "package_id": "MEE-PUBLICATION-GATE-DESIGN-V1",
+  "mode": "plan_only_internal_publication_gate_design",
+  "generated_at": "2026-06-27",
+  "package_fingerprint_sha256": "d1b3ca6a2b81ee079b266f472ab5a187552b00e1f51feec78f8b25f5d897387c",
+  "artifact_hashes_sha256": {
+    "docs/contracts/MEE_PUBLICATION_GATE_DESIGN_V1.md": "05899aae84ba6f2ec192134a2308d0557a99639dbbf9ca5287f97340a4ac9c4f",
+    "docs/plans/market_evidence_engine_v1/MEE_PUBLICATION_GATE_DESIGN_V1.md": "3e26f2beebd8c629fa032665f1a9fa91e775431a238d6bf5bcfce519c48fb05f",
+    "docs/checkpoints/market_evidence_engine/MEE_PUBLICATION_GATE_DESIGN_V1.md": "1e54d28df673308d063e8186e0631d5a8074e748dadaabc4a2f3f57fbdfdce9c",
+    "docs/sql/mee_publication_gate_design_v1_view_candidates.sql": "a4371bbf5023683eb2b38770018fac24cdb87d72a7939027ee061471600e09d7",
+    "docs/sql/mee_publication_gate_design_v1_readback.sql": "aa8393528a769953b6256e9c24bef1d40b31ff6676129ced6a38dac366254a81",
+    "docs/audits/market_evidence_engine_v1/MEE-PUBLICATION-GATE-DESIGN-V1.md": "16b08acbc29fc18890df6c7797c9781fabfcc87fb700d99165e2d26438e37c7c",
+    "tests/contracts/mee_publication_gate_design_v1.test.mjs": "5f14abc01cf1dc3ca92932ca7d5cf4ad88363ccd1dc4f6c366fedf0e9d25c6fa"
+  },
+  "remote_migration_apply": false,
+  "db_writes": false,
+  "provider_calls": false,
+  "source_fetches": false,
+  "public_pricing_views": false,
+  "app_visible_pricing": false,
+  "audit": {
+    "observations": 194663,
+    "lifecycle_events": 1362641,
+    "observations_missing_card_print_id": 0,
+    "observations_missing_gv_id": 0,
+    "lifecycle_public_boundary_leaks": 0,
+    "review_public_boundary_leaks": 0,
+    "current_publication_handoff_candidates": 0,
+    "quality_rows": 0,
+    "quality_public_boundary_leaks": 0,
+    "assignment_identity_or_boundary_blockers": 0
+  },
+  "source_mix": [
+    {
+      "source_type": "active_listing",
+      "source": "ebay_active",
+      "rows": 183638
+    },
+    {
+      "source_type": "reference",
+      "source": "tcgcsv_reference",
+      "rows": 7407
+    },
+    {
+      "source_type": "reference",
+      "source": "pokemontcg_io_reference",
+      "rows": 3618
+    }
+  ],
+  "rollup_eligible_evidence": {
+    "active_listing_raw_single_events": 5233,
+    "active_listing_slab_events": 2270,
+    "reference_metric_events": 8830
+  },
+  "proposed_objects": [
+    "public.v_market_evidence_publication_gate_candidates_v1"
+  ],
+  "future_objects_not_created": [
+    "public.market_evidence_publication_gate_decisions"
+  ],
+  "gate_decisions": [
+    "blocked_identity",
+    "blocked_public_boundary",
+    "blocked_classification",
+    "blocked_lane_split_required",
+    "blocked_reference_only",
+    "blocked_low_signal",
+    "blocked_quality",
+    "blocked_stale",
+    "defer_review_confirmation",
+    "defer_more_evidence",
+    "internal_publication_candidate"
+  ],
+  "boundary": {
+    "can_publish_price_directly": false,
+    "publishable": false,
+    "app_visible": false,
+    "market_truth": false
+  },
+  "next_step": "targeted_internal_schema_candidate_apply_if_desired",
+  "findings": [],
+  "correction_note": "Corrected publication gate SQL candidate to derive card_print_id from market_evidence_observations and qualify lifecycle-event columns in joined lifecycle summary."
+}

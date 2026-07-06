@@ -1,0 +1,55 @@
+{{incomplete|2=Needs more info on the strategy}}
+{{DeckInfobox
+|title=Magma Spirit
+|image=WCS2004 Magma Spirit Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Fighting}}{{e|Psychic}}
+|cards={{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Groudon|9}}
+}}
+
+'''Magma Spirit''' is the name of the deck used by Tsuguyoshi Yamato in the 2004 World Championships. It focuses on {{e|Fighting}} and {{e|Psychic}} Pokémon. The main attacker of the deck is {{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Groudon|9}}.
+
+Magma Spirit is one of the four {{TCGMerch|EX|Series|2004 World Championships Decks}}, released in November 2004. Each deck comes packaged with a 2004 World Championships Booklet. Each card features a silver border, Yamato's signature, and limited edition 2004 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Tsuguyoshi Yamato's Magma Spirit deck is heavily populated by powerful Team Magma Pokémon. Plenty of search cards make it easy to get Team Magma's Groudon in play, then it's time to Pulverize your opponents!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|4|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Groudon|9}}|Fighting|Darkness|Rare Holo}}
+{{decklist/entry|4|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Zangoose|23}}|Colorless||Rare}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Claydol|8}}|Psychic|Darkness|Rare Holo}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Baltoy|60}}|Fighting||Common}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Camerupt|19}}|Fire||Rare}}
+{{decklist/entry|1|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma's Numel|64}}|Fire||Common}}
+{{decklist/entry|4|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma Conspirator|82}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Hidden Legends|Steven's Advice|92}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Dragon|TV Reporter|88}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Skyridge|Underground Expedition|140}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Expedition|Copycat|138}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Maxie|73}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Dragon|Mr. Briney's Compassion|87}}|Trainer|Supporter|Uncommon}}
+{{decklist/entry|3|{{TCG ID|EX Ruby & Sapphire|Pokémon Reversal|87}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|EX Team Magma vs Team Aqua|Team Magma Ball|80}}|Trainer||Common}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Switch|92}}|Trainer||Common}}
+{{decklist/entry|3|{{TCG ID|EX Hidden Legends|Desert Ruins|88}}|Trainer|Stadium|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Team Magma vs Team Aqua|Magma Energy|87}}|Energy|Magma|Uncommon}}
+{{decklist/entry|4|{{TCG ID|EX Ruby & Sapphire|Darkness Energy|93}}|Energy|Darkness|Rare}}
+{{decklist/entry|2|{{TCG ID|EX Ruby & Sapphire|Rainbow Energy|95}}|Energy|Rainbow|Rare}}
+{{decklist/entry|6|{{TCG ID|EX Ruby & Sapphire|Fighting Energy|105}}|Energy|Fighting|Common}}
+{{decklist/entry|1|{{TCG ID|EX Ruby & Sapphire|Psychic Energy|107}}|Energy|Psychic|Common}}
+{{decklist/footer}}
+
+==Trivia==
+All cards originating from expansions before {{TCG|EX Team Magma vs Team Aqua}} use the updated layout introduced in the expansion.
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Magma Spirit (TCG)]]
+[[ja:Magma Spirit]]
+[[zh:熔岩之灵（TCG）]]

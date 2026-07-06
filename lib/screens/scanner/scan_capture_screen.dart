@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/scanner/condition_scan_service.dart';
+import '../../utils/display_image_contract.dart';
 import 'condition_camera_screen.dart';
 import 'quad_adjust_screen.dart';
 
@@ -757,7 +758,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     final setCode = _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
     final number = _matchCardRow?['best_candidate_number']?.toString() ?? '';
     final imageUrl =
-        _matchCardRow?['best_candidate_image_best']?.toString() ?? '';
+        normalizeDisplayImageUrl(_matchCardRow?['best_candidate_image_best']) ??
+        '';
 
     if (_matchCardLoading) {
       return const Card(

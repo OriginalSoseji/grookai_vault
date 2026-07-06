@@ -1,0 +1,195 @@
+{
+  "package_id": "MEE-CORE-POST-INGEST-REVIEW-ORCHESTRATOR-V1",
+  "generated_at": "2026-06-27T05:05:04.885Z",
+  "mode": "plan_only_post_ingest_review_orchestrator",
+  "package_fingerprint_sha256": "876e629b79ac08463dff8506b5b9a08921179c9f93d7b5afbacfeaa4388e6a8f",
+  "orchestrator_status": "plan_only_ready",
+  "current_status": [
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": true,
+      "review_disposition": "review_pending_candidate",
+      "review_lane": "candidate_review",
+      "review_status": "pending",
+      "rows": 544
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": true,
+      "review_disposition": "review_pending_candidate",
+      "review_lane": "candidate_review",
+      "review_status": "pending",
+      "rows": 224
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": true,
+      "review_disposition": "review_pending_candidate",
+      "review_lane": "candidate_review",
+      "review_status": "pending",
+      "rows": 714
+    },
+    {
+      "evidence_lane": "slab",
+      "needs_review": true,
+      "review_disposition": "review_pending_candidate",
+      "review_lane": "candidate_review",
+      "review_status": "pending",
+      "rows": 36
+    },
+    {
+      "evidence_lane": "unknown",
+      "needs_review": true,
+      "review_disposition": "review_pending_candidate",
+      "review_lane": "candidate_review",
+      "review_status": "pending",
+      "rows": 18
+    },
+    {
+      "evidence_lane": "classification_blocked",
+      "needs_review": false,
+      "review_disposition": "review_reclassify",
+      "review_lane": "classification_review",
+      "review_status": "blocked",
+      "rows": 19
+    },
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": true,
+      "review_disposition": "review_pending_high_signal",
+      "review_lane": "high_signal_review",
+      "review_status": "pending",
+      "rows": 6
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": true,
+      "review_disposition": "review_pending_high_signal",
+      "review_lane": "high_signal_review",
+      "review_status": "pending",
+      "rows": 10
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": true,
+      "review_disposition": "review_pending_high_signal",
+      "review_lane": "high_signal_review",
+      "review_status": "pending",
+      "rows": 197
+    },
+    {
+      "evidence_lane": "low_signal",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 156
+    },
+    {
+      "evidence_lane": "mixed_raw_slab",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 24
+    },
+    {
+      "evidence_lane": "raw_single",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 144
+    },
+    {
+      "evidence_lane": "slab",
+      "needs_review": false,
+      "review_disposition": "monitor_only",
+      "review_lane": "low_signal_monitor",
+      "review_status": "resolved",
+      "rows": 56
+    },
+    {
+      "evidence_lane": "reference_metric",
+      "needs_review": true,
+      "review_disposition": "review_pending_reference_only",
+      "review_lane": "reference_only_review",
+      "review_status": "pending",
+      "rows": 4
+    }
+  ],
+  "object_counts": {
+    "lifecycle_event_rows": 837396,
+    "lifecycle_observation_rows": 119628,
+    "pricing_observations_count": 0,
+    "public_pricing_view_market_evidence_references": 0,
+    "review_action_event_rows": 399,
+    "review_disposition_rows": 2152
+  },
+  "public_boundary": {
+    "app_visible_rows": 0,
+    "can_publish_price_directly_rows": 0,
+    "market_truth_rows": 0,
+    "publication_gate_candidate_rows": 0,
+    "publishable_rows": 0
+  },
+  "action_plan": {
+    "row_count": 1753,
+    "safe_internal_action_count": 550,
+    "held_action_count": 1203,
+    "bucket_counts": {
+      "auto_safe_require_raw_slab_split": 550,
+      "human_review_internal_candidate": 270,
+      "policy_hold_unclassified_candidate_review": 732,
+      "no_action_terminal_or_already_routed": 399,
+      "policy_hold_reference_metric_high_signal": 197,
+      "policy_hold_reference_only": 4
+    },
+    "plan_status_counts": {
+      "safe_internal_action": 550,
+      "hold_for_reviewer_or_lane_policy": 270,
+      "hold_until_lane_policy_contract": 933,
+      "no_action": 399
+    },
+    "action_counts": {
+      "require_split": 550,
+      "confirm_internal_candidate": 270,
+      "defer_more_evidence": 929,
+      "defer_active_market_evidence": 4
+    },
+    "safe_internal_action_scope": "Only monitor low-signal, request reclassification, and require raw/slab split are auto-safe internal review actions.",
+    "held_scope": "Reference metric, raw_single/slab confirmation, and candidate-review actions require lane policy or reviewer approval."
+  },
+  "next_recommendation": {
+    "package_id": "MEE-CORE-REVIEW-LANE-POLICY-CONTRACT-V1",
+    "reason": "The orchestrator can now classify post-ingest review rows, but lane policy must be explicit before it can generate one approved apply package for recurring use.",
+    "allowed_scope": "Plan only. No acquisition, no provider calls, no DB writes, no public pricing, no pricing_observations, no identity/vault/image writes."
+  },
+  "hashes": {
+    "row_manifest_sha256": "2eff6727cd0b83c1d733c1710d46a00af995a9443fd2d2a94a1e76743b83a7cc",
+    "action_plan_manifest_sha256": "66b4df441a29821c5008b70610c488f00a3c562e76cea029cbdab10563ac9850",
+    "readback_sql_sha256": "3c00927384fa6559d88ed0a2093f1558634c0bdf1b3e5c9808d747caf39ee856"
+  },
+  "findings": [],
+  "boundary_proof": {
+    "db_writes": false,
+    "function_invocation": false,
+    "action_event_inserts": false,
+    "disposition_updates": false,
+    "provider_calls": false,
+    "source_fetches": false,
+    "pricing_observations_writes": false,
+    "ebay_active_prices_latest_writes": false,
+    "public_pricing_views": false,
+    "app_visible_pricing": false,
+    "public_price_rollups": false,
+    "identity_table_writes": false,
+    "vault_writes": false,
+    "image_storage_writes": false,
+    "deletes": false,
+    "upserts": false,
+    "merges": false,
+    "migrations": false,
+    "global_apply": false
+  }
+}

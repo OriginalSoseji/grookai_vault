@@ -1,0 +1,59 @@
+{{DeckInfobox
+|title=Magical Symphony
+|image=WCS2016 Magical Symphony.jpg
+|size=280px
+|caption=Box art
+|types={{e|Metal}}{{e|Colorless}}
+|cards=
+}}
+
+'''Magical Symphony''' is the name of the deck used by Shintaro Ito, who was the champion of the Masters Division in the [[2016 World Championships]]. It is one of the four {{TCGMerch|XY BREAK|Series|2016 World Championships Decks}}, released in November 2016, and is based around {{Mega}}[[M Audino-EX (Fates Collide 85)|Audino]]{{EX}}. Each Deck comes with a Worlds 2016 themed Deckbox, a booklet about the championships, a code card for the [[Pokémon Trading Card Game Online]], and the 2016 World Championships Pin. The cards included in the deck aren't the prints actually used in the decks, but are the most recent printing of the lowest rarity of the cards.
+
+[[Atsushi Nagashima]], the game director of the {{Trading Card Game}}, stated in an interview that the game's designers were surprised at the deck's efficacy, as its signature Mega Audino-EX was not expected to be potent enough to be played in the championships.<ref>[https://www.ign.com/articles/2018/08/24/how-pokemon-cards-are-made-in-8-steps/ How Pokemon Cards Are Made in 8 Steps, IGN]</ref>
+
+==Description==
+===Packaging===
+<i>Shintaro Ito's unexpected Mega Audino-EX deck was definitely the talk of Worlds, and sure enough, this fluffy pink Pokémon proved itself worthy of a Masters Division World Champion! The Magical Symphony attack is an excellent weapon against the most popular decks, since it can Knock Out an Active Shaymin-EX plus a smaller Pokémon (like Joltik or Combee) on the Bench in a single hit. Plenty of Trainer cards for drawing and searching round out this very consistent deck!</i>
+
+===Booklet===
+<i>Shintaro is very serious about tournament prep: "Before the World Championships," he says, "I would play Pokémon TCG for about 12 hours a day." Shintaro took the overseas metagame into account&mdash;he was a little nervous that his opponents would bring unfamiliar decks in an attempt to counter Night March, but he was pretty confident that his own deck, built around Mega Audino-EX, wasn't well known outside Japan. "I thought that could give me a good chance to win." Sure enough, many were surprised to see this deck when it was first played on stream&mdash;and the fluffy pink menace quickly won lots of fans!</i>
+
+==Deck List==
+{{decklist/header}}
+{{decklist/entry|3|{{Mega}}[[M Audino-EX (Fates Collide 85)|Audino]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|4|[[Audino-EX (Fates Collide 84)|Audino]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|2|[[Shaymin-EX (Roaring Skies 77)|Shaymin]]{{EX}}|Colorless||Rare Holo ex}}
+{{decklist/entry|1|[[Hoopa-EX (Ancient Origins 36)|Hoopa]]{{EX}}|Psychic||Rare Holo ex}}
+{{decklist/entry|1|[[Magearna-EX (Steam Siege 75)|Magearna]]{{EX}}|Metal||Rare Holo ex}}
+{{decklist/entry|1|{{TCG ID|Steam Siege|Cobalion|74}}|Metal||Rare}}
+{{decklist/entry|1|{{TCG ID|Roaring Skies|Absol|40}}|Darkness||Rare Holo}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Audino Spirit Link|92}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Phantom Forces|AZ|91}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Primal Clash|Escape Rope|127}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Float Stone|137}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Ancient Origins|Hex Maniac|75}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Ancient Origins|Lysandre|78}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Roaring Skies|Mega Turbo|86}}|Item||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Fates Collide|N|105}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|BREAKthrough|Parallel City|145}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Generations|Pokémon Center Lady|68}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|BREAKpoint|Professor Sycamore|107}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Flashfire|Startling Megaphone|97}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|BREAKthrough|Super Rod|149}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Roaring Skies|Trainers' Mail|92}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Ultra Ball|113}}|Item||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Phantom Forces|VS Seeker|109}}|Item||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Phantom Forces|Xerosic|110}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Fates Collide|Double Colorless Energy|114}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|6|{{TCG ID|Generations|Metal Energy|82}}|Energy|Metal|Common}}
+{{decklist/footer}}
+==References==
+{{reflist}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Magical Symphony (TCG)]]
+[[zh:Magical Symphony]]
