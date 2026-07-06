@@ -34,6 +34,7 @@ import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'screens/scanner/scanner_build_placeholder_screen.dart';
+import 'screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
@@ -76,6 +77,10 @@ bool get kNativeScannerPhase0Enabled =>
 const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
   'FIXED_SLOT_CAPTURE_SCANNER_V1',
   defaultValue: true,
+);
+const bool kScannerV5Enabled = bool.fromEnvironment(
+  'SCANNER_V5',
+  defaultValue: false,
 );
 const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment(
   'SCANNER_CONSTRUCTION_PLACEHOLDER',

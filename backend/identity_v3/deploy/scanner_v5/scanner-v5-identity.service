@@ -1,0 +1,18 @@
+[Unit]
+Description=Grookai Scanner V5 Identity Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/grookai-scanner-identity
+EnvironmentFile=/opt/grookai-scanner-identity/deploy/scanner_v5/scanner-v5-identity.env
+ExecStart=/usr/bin/node identity_v3/scanner_v5/run_scanner_v5_identity_service_v1.mjs
+Restart=always
+RestartSec=3
+User=grookai
+Group=grookai
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

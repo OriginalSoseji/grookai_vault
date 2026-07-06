@@ -585,6 +585,11 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (kScannerV5Enabled) {
+      await _pushPage<void>(const ScanCaptureV5Screen());
+      return;
+    }
+
     if (kScannerConstructionPlaceholderEnabled) {
       final action = await _pushPage<ScannerBuildPlaceholderAction>(
         const ScannerBuildPlaceholderScreen(),

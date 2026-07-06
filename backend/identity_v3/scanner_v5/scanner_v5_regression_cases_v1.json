@@ -1,0 +1,22 @@
+[
+  {
+    "id": "amaura_latest_fixed_slot",
+    "image": ".tmp/scanner_fixed_slot_device/latest/latest_fixed_slot_normalized.png",
+    "expected_gv_id": "GV-PK-ME03-023",
+    "label": "Amaura"
+  },
+  {
+    "id": "talonflame_latest_strict_gate",
+    "image": ".tmp/scanner_fixed_slot_device/latest_device_artifacts_after_strict_gate/latest_fixed_slot_normalized.png",
+    "expected_gv_id": "GV-PK-ME03-014",
+    "label": "Talonflame",
+    "optional": true
+  },
+  {
+    "id": "vivillon_five_card_test",
+    "image": ".tmp/scanner_fixed_slot_device/five_card_test_1_after_topk200_artifacts/latest_fixed_slot_normalized.png",
+    "expected_gv_id": "GV-PK-ME03-009",
+    "label": "Vivillon",
+    "optional": true
+  }
+]
