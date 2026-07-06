@@ -6,6 +6,9 @@ import 'dart:typed_data';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
+const scannerV5DefaultIdentifyEndpoint =
+    'https://scanner-identity.grookaivault.com/scanner-v5/identify';
+
 class ScannerV5IdentityService {
   ScannerV5IdentityService({http.Client? client, String? endpoint})
     : _client = client ?? http.Client(),
@@ -72,10 +75,7 @@ class ScannerV5IdentityService {
     if (value.isNotEmpty) {
       return _normalizeEndpoint(value);
     }
-    if (Platform.isAndroid) {
-      return 'http://10.0.2.2:8795/scanner-v5/identify';
-    }
-    return 'http://127.0.0.1:8795/scanner-v5/identify';
+    return scannerV5DefaultIdentifyEndpoint;
   }
 
   static String _normalizeEndpoint(String value) {

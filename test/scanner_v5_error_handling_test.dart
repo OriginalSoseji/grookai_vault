@@ -9,6 +9,16 @@ import 'package:http/testing.dart';
 
 void main() {
   group('Scanner V5 identity service failures', () {
+    test('defaults to the public scanner endpoint when unconfigured', () {
+      final service = ScannerV5IdentityService(
+        client: MockClient((_) async {
+          fail('default endpoint check should not send a request');
+        }),
+      );
+
+      expect(service.endpoint, scannerV5DefaultIdentifyEndpoint);
+    });
+
     test('maps transport failures to ScannerV5UnreachableException', () async {
       final service = ScannerV5IdentityService(
         endpoint: 'https://scanner.example.com/scanner-v5/identify',
