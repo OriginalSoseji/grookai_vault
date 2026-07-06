@@ -26,6 +26,7 @@ function parseArgs(argv = process.argv.slice(2)) {
     dryRun: true,
     userId: null,
     limitUsers: null,
+    afterUserId: null,
     report: true,
   };
 
@@ -47,6 +48,11 @@ function parseArgs(argv = process.argv.slice(2)) {
       index += 1;
     } else if (arg.startsWith('--limit-users=')) {
       opts.limitUsers = Number.parseInt(arg.slice('--limit-users='.length), 10);
+    } else if (arg === '--after-user-id') {
+      opts.afterUserId = argv[index + 1] ?? null;
+      index += 1;
+    } else if (arg.startsWith('--after-user-id=')) {
+      opts.afterUserId = arg.slice('--after-user-id='.length) || null;
     } else if (arg === '--no-report') {
       opts.report = false;
     } else if (arg === '--help' || arg === '-h') {
@@ -59,6 +65,9 @@ function parseArgs(argv = process.argv.slice(2)) {
   if (opts.userId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(opts.userId)) {
     throw new Error(`[${PACKAGE_ID}] --user-id must be a UUID`);
   }
+  if (opts.afterUserId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(opts.afterUserId)) {
+    throw new Error(`[${PACKAGE_ID}] --after-user-id must be a UUID`);
+  }
   if (opts.limitUsers !== null && (!Number.isInteger(opts.limitUsers) || opts.limitUsers < 1)) {
     throw new Error(`[${PACKAGE_ID}] --limit-users must be a positive integer`);
   }
@@ -68,8 +77,9 @@ function parseArgs(argv = process.argv.slice(2)) {
 
 function printUsageAndExit() {
   console.log(`Usage:
-  node backend/engagement/backfill_interest_graph_watches_v1.mjs --dry-run [--user-id <uuid>] [--limit-users <n>]
+  node backend/engagement/backfill_interest_graph_watches_v1.mjs --dry-run [--user-id <uuid>] [--limit-users <n>] [--after-user-id <uuid>]
   node backend/engagement/backfill_interest_graph_watches_v1.mjs --apply --user-id <uuid>
+  node backend/engagement/backfill_interest_graph_watches_v1.mjs --apply --limit-users <n> [--after-user-id <uuid>]
 
 Notes:
   Defaults to --dry-run.
@@ -149,6 +159,7 @@ candidate_users as (
   select distinct user_id
   from raw_candidates
   where ($1::uuid is null or user_id = $1::uuid)
+    and ($3::uuid is null or user_id > $3::uuid)
   order by user_id
   limit coalesce($2::integer, 2147483647)
 ),
@@ -220,7 +231,7 @@ async function fetchSummary(client, opts) {
     group by candidates.source, candidates.subject_type, candidates.reason
     order by candidates.source, candidates.subject_type, candidates.reason
   `;
-  const result = await client.query(query, [opts.userId, opts.limitUsers]);
+  const result = await client.query(query, [opts.userId, opts.limitUsers, opts.afterUserId]);
   return result.rows;
 }
 
@@ -238,8 +249,100 @@ async function fetchTotals(client, opts) {
      and existing.subject_type = candidates.subject_type
      and existing.subject_id = candidates.subject_id
   `;
-  const result = await client.query(query, [opts.userId, opts.limitUsers]);
+  const result = await client.query(query, [opts.userId, opts.limitUsers, opts.afterUserId]);
   return result.rows[0] ?? {};
+}
+
+async function fetchGuardrailSummary(client, opts) {
+  const userScopeQuery = `
+    ${CANDIDATE_CTE}
+    , per_user as (
+      select
+        user_id,
+        count(*)::integer as candidate_count
+      from candidates
+      group by user_id
+    ),
+    ranked_users as (
+      select
+        user_id,
+        candidate_count,
+        row_number() over (order by candidate_count desc, user_id) as rank
+      from per_user
+    )
+    select
+      coalesce((select count(*)::integer from per_user), 0) as scoped_user_count,
+      coalesce((select max(candidate_count)::integer from per_user), 0) as max_candidate_count_per_user,
+      (select max(user_id::text) from candidate_users) as next_after_user_id,
+      coalesce(
+        jsonb_agg(
+          jsonb_build_object(
+            'user_id', user_id,
+            'candidate_count', candidate_count
+          )
+          order by candidate_count desc, user_id
+        ) filter (where rank <= 20),
+        '[]'::jsonb
+      ) as top_users_by_candidate_count
+    from ranked_users
+  `;
+
+  const invalidQuery = `
+    select *
+    from (
+      select
+        'owned_cards'::text as source,
+        count(*) filter (
+          where vii.user_id is null or vii.card_print_id is null
+        )::integer as skipped_invalid_subjects
+      from public.vault_item_instances vii
+      where vii.archived_at is null
+        and ($1::uuid is null or vii.user_id = $1::uuid)
+
+      union all
+
+      select
+        'wishlist_items'::text as source,
+        count(*) filter (
+          where wi.user_id is null or wi.card_id is null
+        )::integer as skipped_invalid_subjects
+      from public.wishlist_items wi
+      where ($1::uuid is null or wi.user_id = $1::uuid)
+
+      union all
+
+      select
+        'owned_sets_3plus'::text as source,
+        count(*) filter (
+          where vii.user_id is null or vii.card_print_id is null or cp.set_id is null
+        )::integer as skipped_invalid_subjects
+      from public.vault_item_instances vii
+      left join public.card_prints cp on cp.id = vii.card_print_id
+      where vii.archived_at is null
+        and ($1::uuid is null or vii.user_id = $1::uuid)
+
+      union all
+
+      select
+        'collector_follows'::text as source,
+        count(*) filter (
+          where cf.follower_user_id is null or cf.followed_user_id is null
+        )::integer as skipped_invalid_subjects
+      from public.collector_follows cf
+      where ($1::uuid is null or cf.follower_user_id = $1::uuid)
+    ) invalid_counts
+    order by source
+  `;
+
+  const [userScope, skippedInvalidSubjects] = await Promise.all([
+    client.query(userScopeQuery, [opts.userId, opts.limitUsers, opts.afterUserId]),
+    client.query(invalidQuery, [opts.userId]),
+  ]);
+
+  return {
+    ...(userScope.rows[0] ?? {}),
+    skipped_invalid_subjects: skippedInvalidSubjects.rows,
+  };
 }
 
 async function applyBackfill(client, opts) {
@@ -289,7 +392,7 @@ async function applyBackfill(client, opts) {
       updated_at = now()
     returning (xmax = 0) as inserted
   `;
-  const result = await client.query(query, [opts.userId, opts.limitUsers]);
+  const result = await client.query(query, [opts.userId, opts.limitUsers, opts.afterUserId]);
   return {
     affected_count: result.rowCount,
     inserted_count: result.rows.filter((row) => row.inserted === true).length,
@@ -324,6 +427,7 @@ function renderMarkdown(report) {
     `Mode: ${report.mode}`,
     `User scope: ${report.options.user_id ?? 'all'}`,
     `Limit users: ${report.options.limit_users ?? 'none'}`,
+    `After user id: ${report.options.after_user_id ?? 'none'}`,
     '',
     '## Totals',
     '',
@@ -331,6 +435,8 @@ function renderMarkdown(report) {
     `- Users: ${report.totals.user_count ?? 0}`,
     `- Would insert: ${report.totals.would_insert_count ?? 0}`,
     `- Conflicts: ${report.totals.conflict_count ?? 0}`,
+    `- Max candidate count per user: ${report.guardrails.max_candidate_count_per_user ?? 0}`,
+    `- Next after user id: ${report.guardrails.next_after_user_id ?? 'none'}`,
   ];
 
   if (report.apply_result) {
@@ -346,6 +452,22 @@ function renderMarkdown(report) {
   lines.push('| --- | --- | --- | ---: | ---: | ---: | ---: |');
   for (const row of report.source_summary) {
     lines.push(`| ${row.source} | ${row.subject_type} | ${row.reason} | ${row.candidate_count} | ${row.user_count} | ${row.would_insert_count} | ${row.conflict_count} |`);
+  }
+
+  lines.push('', '## Guardrails', '');
+  lines.push('Top scoped users by candidate count:');
+  lines.push('');
+  lines.push('| User | Candidate watches |');
+  lines.push('| --- | ---: |');
+  for (const row of report.guardrails.top_users_by_candidate_count ?? []) {
+    lines.push(`| ${row.user_id} | ${row.candidate_count} |`);
+  }
+  lines.push('', 'Skipped invalid subjects:');
+  lines.push('');
+  lines.push('| Source | Skipped invalid subjects |');
+  lines.push('| --- | ---: |');
+  for (const row of report.guardrails.skipped_invalid_subjects ?? []) {
+    lines.push(`| ${row.source} | ${row.skipped_invalid_subjects} |`);
   }
 
   if (report.post_apply_counts?.length) {
@@ -390,6 +512,7 @@ export async function runBackfillInterestGraphWatchesV1(rawOpts = {}) {
     dryRun: rawOpts.apply !== true,
     userId: rawOpts.userId ?? null,
     limitUsers: rawOpts.limitUsers ?? null,
+    afterUserId: rawOpts.afterUserId ?? null,
     report: rawOpts.report !== false,
   };
   const connectionString = dbUrl();
@@ -406,6 +529,7 @@ export async function runBackfillInterestGraphWatchesV1(rawOpts = {}) {
   try {
     const totals = await fetchTotals(client, opts);
     const sourceSummary = await fetchSummary(client, opts);
+    const guardrails = await fetchGuardrailSummary(client, opts);
     let applyResult = null;
     let postApplyCounts = [];
 
@@ -421,6 +545,7 @@ export async function runBackfillInterestGraphWatchesV1(rawOpts = {}) {
       options: {
         user_id: opts.userId,
         limit_users: opts.limitUsers,
+        after_user_id: opts.afterUserId,
       },
       rules: {
         origin: 'backfill_v1',
@@ -429,6 +554,7 @@ export async function runBackfillInterestGraphWatchesV1(rawOpts = {}) {
         reason_strength: REASON_STRENGTH,
         full_apply_requires_separate_approval: true,
       },
+      guardrails,
       totals,
       source_summary: sourceSummary,
       apply_result: applyResult,
@@ -452,6 +578,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
         mode: report.mode,
         options: report.options,
         totals: report.totals,
+        guardrails: report.guardrails,
         apply_result: report.apply_result,
         report_paths: report.report_paths ?? null,
       }, null, 2));

@@ -1,0 +1,183 @@
+{
+  "apply_result": null,
+  "generated_at": "2026-07-06T22:21:39.967Z",
+  "guardrails": {
+    "max_candidate_count_per_user": 222,
+    "next_after_user_id": "d97b5ccf-266d-4be6-9014-6557dc5b830c",
+    "scoped_user_count": 19,
+    "skipped_invalid_subjects": [
+      {
+        "skipped_invalid_subjects": 0,
+        "source": "collector_follows"
+      },
+      {
+        "skipped_invalid_subjects": 15,
+        "source": "owned_cards"
+      },
+      {
+        "skipped_invalid_subjects": 15,
+        "source": "owned_sets_3plus"
+      },
+      {
+        "skipped_invalid_subjects": 0,
+        "source": "wishlist_items"
+      }
+    ],
+    "top_users_by_candidate_count": [
+      {
+        "candidate_count": 222,
+        "user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b"
+      },
+      {
+        "candidate_count": 80,
+        "user_id": "c177a180-e36b-44cc-93f8-ee104717a389"
+      },
+      {
+        "candidate_count": 60,
+        "user_id": "3e81212e-ee4d-4086-ae4a-595936d29329"
+      },
+      {
+        "candidate_count": 6,
+        "user_id": "47544b87-8c55-40df-b665-db9253e92c3c"
+      },
+      {
+        "candidate_count": 2,
+        "user_id": "4e218200-66d2-4a2d-a2b9-2c4162247b16"
+      },
+      {
+        "candidate_count": 2,
+        "user_id": "6b810fe6-a49b-4db5-8c00-653e3aee5a68"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "00eb142c-66b0-4d93-a2fc-1cec8b8fb922"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "08cc7f27-28c8-4443-a16a-cec0dc68f3f7"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "0f20fa17-cbf1-4a3c-b939-b01bc0631c14"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "2d695642-64ea-459c-ab5b-116c27b62367"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "2f112c89-3020-46ef-ad76-70f6b41bd554"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "300a2088-b844-4bf0-b0a9-86efdf518d11"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "33abf165-7580-42e0-8c43-ef9619411cc6"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "912a8c4c-7ad1-4d53-a32e-a46f1d1efc6c"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "97973e17-7772-451d-a012-e552dba04c48"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "bfffa809-7748-437c-99b0-7d10a804338a"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "d4a5e044-6030-4a84-8506-029287a26b6d"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "d50b21c9-dc14-42b2-9383-186a7ec5d199"
+      },
+      {
+        "candidate_count": 1,
+        "user_id": "d97b5ccf-266d-4be6-9014-6557dc5b830c"
+      }
+    ]
+  },
+  "mode": "dry-run",
+  "options": {
+    "after_user_id": null,
+    "limit_users": null,
+    "user_id": null
+  },
+  "package_id": "E1-WATCH-BACKFILL-V1",
+  "post_apply_counts": [],
+  "rules": {
+    "full_apply_requires_separate_approval": true,
+    "origin": "backfill_v1",
+    "reason_rank": {
+      "inferred": 1,
+      "manual": 4,
+      "owned": 2,
+      "want": 3
+    },
+    "reason_strength": {
+      "inferred": 0.35,
+      "manual": 1,
+      "owned": 0.8,
+      "want": 0.95
+    },
+    "sources": [
+      "owned_cards",
+      "wishlist_items",
+      "owned_sets_3plus",
+      "collector_follows"
+    ]
+  },
+  "source_summary": [
+    {
+      "candidate_count": 5,
+      "conflict_count": 5,
+      "reason": "manual",
+      "source": "collector_follows",
+      "subject_type": "collector",
+      "user_count": 2,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 5
+    },
+    {
+      "candidate_count": 354,
+      "conflict_count": 354,
+      "reason": "owned",
+      "source": "owned_cards",
+      "subject_type": "card",
+      "user_count": 19,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 354
+    },
+    {
+      "candidate_count": 25,
+      "conflict_count": 25,
+      "reason": "inferred",
+      "source": "owned_sets_3plus",
+      "subject_type": "set",
+      "user_count": 3,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 25
+    },
+    {
+      "candidate_count": 1,
+      "conflict_count": 1,
+      "reason": "want",
+      "source": "wishlist_items",
+      "subject_type": "card",
+      "user_count": 1,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 1
+    }
+  ],
+  "totals": {
+    "candidate_count": 385,
+    "conflict_count": 385,
+    "user_count": 19,
+    "would_insert_count": 0
+  }
+}
