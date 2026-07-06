@@ -16,25 +16,44 @@ class ScannerV5IdentityService {
 
   Future<ScannerV5IdentifyResult> identify(Uint8List imageBytes) async {
     final uri = Uri.parse(endpoint);
-    final response = await _client
-        .post(
-          uri,
-          headers: const <String, String>{'content-type': 'image/jpeg'},
-          body: imageBytes,
-        )
-        .timeout(const Duration(seconds: 18));
+    late final http.Response response;
+    try {
+      response = await _client
+          .post(
+            uri,
+            headers: const <String, String>{'content-type': 'image/jpeg'},
+            body: imageBytes,
+          )
+          .timeout(const Duration(seconds: 18));
+    } on TimeoutException {
+      rethrow;
+    } on SocketException catch (error) {
+      throw ScannerV5UnreachableException(endpoint, cause: error);
+    } on http.ClientException catch (error) {
+      throw ScannerV5UnreachableException(endpoint, cause: error);
+    }
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw ScannerV5IdentityException(
-        'scanner_v5_http_${response.statusCode}',
+      throw ScannerV5HttpException(
+        endpoint: endpoint,
+        statusCode: response.statusCode,
+        responseBody: response.body,
       );
     }
 
-    final decoded = jsonDecode(response.body);
-    if (decoded is! Map) {
-      throw const ScannerV5IdentityException('scanner_v5_invalid_response');
+    try {
+      final decoded = jsonDecode(response.body);
+      if (decoded is! Map) {
+        throw const FormatException('scanner_v5_response_not_object');
+      }
+      return ScannerV5IdentifyResult.fromJson(
+        Map<String, dynamic>.from(decoded),
+      );
+    } on FormatException catch (error) {
+      throw ScannerV5ProtocolException(endpoint, cause: error);
+    } on TypeError catch (error) {
+      throw ScannerV5ProtocolException(endpoint, cause: error);
     }
-    return ScannerV5IdentifyResult.fromJson(Map<String, dynamic>.from(decoded));
   }
 
   static String _resolveEndpoint() {
@@ -229,6 +248,43 @@ class ScannerV5IdentityException implements Exception {
 
   @override
   String toString() => 'ScannerV5IdentityException($message)';
+}
+
+class ScannerV5UnreachableException extends ScannerV5IdentityException {
+  const ScannerV5UnreachableException(this.endpoint, {this.cause})
+    : super('scanner_v5_unreachable');
+
+  final String endpoint;
+  final Object? cause;
+
+  @override
+  String toString() => 'ScannerV5UnreachableException($endpoint, $cause)';
+}
+
+class ScannerV5HttpException extends ScannerV5IdentityException {
+  const ScannerV5HttpException({
+    required this.endpoint,
+    required this.statusCode,
+    this.responseBody,
+  }) : super('scanner_v5_http');
+
+  final String endpoint;
+  final int statusCode;
+  final String? responseBody;
+
+  @override
+  String toString() => 'ScannerV5HttpException($statusCode, $endpoint)';
+}
+
+class ScannerV5ProtocolException extends ScannerV5IdentityException {
+  const ScannerV5ProtocolException(this.endpoint, {this.cause})
+    : super('scanner_v5_protocol');
+
+  final String endpoint;
+  final Object? cause;
+
+  @override
+  String toString() => 'ScannerV5ProtocolException($endpoint, $cause)';
 }
 
 String? _trimmedOrNull(dynamic value) {

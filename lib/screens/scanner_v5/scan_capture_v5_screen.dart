@@ -176,13 +176,15 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       });
       await HapticFeedback.selectionClick();
     } catch (error) {
+      await _appendIdentifyErrorLog(error);
       if (!mounted) return;
+      final copy = scannerV5UserFacingError(error);
       setState(() {
         _capturing = false;
         _result = null;
         _frozenUploadBytes = null;
-        _toastTitle = "Couldn't read this card";
-        _toastMessage = _userFacingError(error);
+        _toastTitle = copy.title;
+        _toastMessage = copy.message;
       });
     }
   }
@@ -332,6 +334,28 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     await prefs.setStringList(_sessionLogKey, nextRows);
   }
 
+  Future<void> _appendIdentifyErrorLog(Object error) async {
+    final prefs = await SharedPreferences.getInstance();
+    final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
+    final retainedRows = rows.length > 49
+        ? rows.sublist(rows.length - 49)
+        : rows;
+    final nextRows = <String>[
+      ...retainedRows,
+      jsonEncode(<String, dynamic>{
+        'event_type': 'scanner_v5_identify_error',
+        'ts': DateTime.now().toUtc().toIso8601String(),
+        'session_id': _sessionId,
+        'endpoint': _identityService.endpoint,
+        'error_type': scannerV5ErrorType(error),
+        'http_status': error is ScannerV5HttpException
+            ? error.statusCode
+            : null,
+      }),
+    ];
+    await prefs.setStringList(_sessionLogKey, nextRows);
+  }
+
   Future<void> _addCandidateToVault(ScannerV5Candidate candidate) async {
     if (_addingToVault) return;
     final userId = Supabase.instance.client.auth.currentUser?.id;
@@ -461,15 +485,12 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     Navigator.of(context).maybePop();
   }
 
-  String _userFacingError(Object error) {
-    if (error is TimeoutException) {
-      return 'Scanner timed out. Try again with the card centered.';
-    }
-    return 'Scanner could not identify this card. Try again with less glare.';
-  }
-
   @override
   Widget build(BuildContext context) {
+    final endpointNotConfigured = scannerV5EndpointNotConfiguredForDevice(
+      endpoint: _identityService.endpoint,
+      isPhysicalDevice: Platform.isAndroid || Platform.isIOS,
+    );
     return Scaffold(
       backgroundColor: ScannerV5Palette.bg,
       extendBodyBehindAppBar: true,
@@ -554,7 +575,10 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
                   ),
                   ScannerViewfinderChrome(
                     flashEnabled: _flashEnabled,
-                    captureEnabled: !_capturing && !_addingToVault,
+                    captureEnabled:
+                        !endpointNotConfigured &&
+                        !_capturing &&
+                        !_addingToVault,
                     identifying: _capturing,
                     toastTitle: showResultSheet ? null : _toastTitle,
                     toastMessage: showResultSheet ? null : _toastMessage,
@@ -565,6 +589,15 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
                     onPhotos: _showPhotoImportStub,
                     onVault: _popToVault,
                   ),
+                  if (endpointNotConfigured)
+                    Positioned(
+                      left: 18,
+                      right: 18,
+                      top: MediaQuery.paddingOf(context).top + 58,
+                      child: _ScannerEndpointBanner(
+                        endpoint: _identityService.endpoint,
+                      ),
+                    ),
                   if (showResultSheet)
                     ScannerResultSheet(
                       result: _result!,
@@ -582,6 +615,129 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class ScannerV5ErrorCopy {
+  const ScannerV5ErrorCopy({required this.title, required this.message});
+
+  final String title;
+  final String message;
+}
+
+ScannerV5ErrorCopy scannerV5UserFacingError(Object error) {
+  if (error is TimeoutException) {
+    return const ScannerV5ErrorCopy(
+      title: 'Scanner timed out',
+      message: 'Scanner timed out. Try again with the card centered.',
+    );
+  }
+  if (error is ScannerV5UnreachableException) {
+    return const ScannerV5ErrorCopy(
+      title: 'Scanner offline',
+      message:
+          "Can't reach the scanner service. Check your connection and try again.",
+    );
+  }
+  if (error is ScannerV5HttpException) {
+    if (error.statusCode >= 500) {
+      return const ScannerV5ErrorCopy(
+        title: 'Scanner service error',
+        message: 'Scanner service error — try again in a moment.',
+      );
+    }
+    return ScannerV5ErrorCopy(
+      title: 'Scanner request failed',
+      message: 'Scanner request failed with status ${error.statusCode}.',
+    );
+  }
+  if (error is ScannerV5ProtocolException) {
+    return const ScannerV5ErrorCopy(
+      title: 'Scanner response error',
+      message: 'Scanner returned an unexpected response.',
+    );
+  }
+  return const ScannerV5ErrorCopy(
+    title: 'Scanner error',
+    message: 'Scanner could not complete this scan. Try again in a moment.',
+  );
+}
+
+String scannerV5ErrorType(Object error) {
+  if (error is TimeoutException) return 'timeout';
+  if (error is ScannerV5UnreachableException) return 'unreachable';
+  if (error is ScannerV5HttpException) return 'http';
+  if (error is ScannerV5ProtocolException) return 'protocol';
+  return error.runtimeType.toString();
+}
+
+bool scannerV5EndpointNotConfiguredForDevice({
+  required String endpoint,
+  required bool isPhysicalDevice,
+}) {
+  if (!isPhysicalDevice) return false;
+  final uri = Uri.tryParse(endpoint);
+  final host = uri?.host.trim().toLowerCase();
+  return host == '127.0.0.1' || host == 'localhost' || host == '10.0.2.2';
+}
+
+class _ScannerEndpointBanner extends StatelessWidget {
+  const _ScannerEndpointBanner({required this.endpoint});
+
+  final String endpoint;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: ScannerV5Palette.sheet.withValues(alpha: 0.92),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: ScannerV5Palette.amber.withValues(alpha: 0.34),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Icon(
+              Icons.warning_amber_rounded,
+              color: ScannerV5Palette.amber,
+              size: 20,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Scanner endpoint not configured',
+                    style: TextStyle(
+                      color: ScannerV5Palette.text,
+                      fontSize: 13.5,
+                      fontWeight: FontWeight.w700,
+                      height: 1.1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Build with the public Scanner V5 endpoint before testing on this device.',
+                    style: TextStyle(
+                      color: ScannerV5Palette.dim(0.66),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      height: 1.25,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
