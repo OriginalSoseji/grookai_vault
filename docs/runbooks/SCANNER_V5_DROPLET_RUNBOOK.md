@@ -37,9 +37,10 @@ npm --prefix backend install --omit=dev
 sudo mkdir -p /var/log/grookai-scanner-v5/debug
 sudo chown -R grookai:grookai /var/log/grookai-scanner-v5
 
+sudo mkdir -p /etc/grookai
 sudo cp backend/identity_v3/deploy/scanner_v5/scanner-v5-identity.service /etc/systemd/system/scanner-v5-identity.service
-sudo cp backend/identity_v3/deploy/scanner_v5/scanner-v5-identity.env.example /opt/grookai-scanner-identity/deploy/scanner_v5/scanner-v5-identity.env
-sudo editor /opt/grookai-scanner-identity/deploy/scanner_v5/scanner-v5-identity.env
+sudo cp backend/identity_v3/deploy/scanner_v5/scanner-v5-identity.env.example /etc/grookai/scanner-v5-identity.env
+sudo editor /etc/grookai/scanner-v5-identity.env
 
 sudo systemctl daemon-reload
 sudo systemctl enable scanner-v5-identity

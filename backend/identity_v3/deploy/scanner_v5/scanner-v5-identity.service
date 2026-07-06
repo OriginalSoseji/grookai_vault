@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/grookai-scanner-identity
-EnvironmentFile=/opt/grookai-scanner-identity/deploy/scanner_v5/scanner-v5-identity.env
-ExecStart=/usr/bin/node identity_v3/scanner_v5/run_scanner_v5_identity_service_v1.mjs
+EnvironmentFile=/etc/grookai/scanner-v5-identity.env
+ExecStart=/usr/bin/node backend/identity_v3/scanner_v5/run_scanner_v5_identity_service_v1.mjs
 Restart=always
 RestartSec=3
 User=grookai
