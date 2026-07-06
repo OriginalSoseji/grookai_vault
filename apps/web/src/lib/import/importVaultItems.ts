@@ -381,6 +381,26 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
     rows,
   });
 
+  const importRunId = `web_import_${Date.now()}`;
+  const { error: importEventError } = await client.rpc("card_events_emit_vault_import_summary_v1", {
+    p_user_id: user.id,
+    p_import_run_id: importRunId,
+    p_payload: {
+      source: "web_collection_import",
+      import_run_id: importRunId,
+      imported_cards: result.importedCards,
+      imported_entries: result.importedEntries,
+      needs_manual_match: result.needsManualMatch,
+      skipped_rows: result.skippedRows,
+    },
+  });
+  if (importEventError) {
+    console.error("[import:e1_event_summary_failed]", {
+      userId: user.id,
+      error: importEventError.message,
+    });
+  }
+
   revalidatePath("/vault");
   revalidatePath("/wall");
   revalidatePath("/founder");

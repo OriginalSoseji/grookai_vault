@@ -1,0 +1,114 @@
+{
+  "apply_result": {
+    "affected_count": 6,
+    "inserted_count": 1,
+    "updated_count": 5
+  },
+  "generated_at": "2026-07-06T22:05:06.942Z",
+  "mode": "apply",
+  "options": {
+    "limit_users": null,
+    "user_id": "33333333-3333-4333-8333-333333333333"
+  },
+  "package_id": "E1-WATCH-BACKFILL-V1",
+  "post_apply_counts": [
+    {
+      "origin": "live",
+      "reason": "owned",
+      "row_count": 3,
+      "subject_type": "card",
+      "user_count": 1
+    },
+    {
+      "origin": "live",
+      "reason": "want",
+      "row_count": 1,
+      "subject_type": "card",
+      "user_count": 1
+    },
+    {
+      "origin": "live",
+      "reason": "manual",
+      "row_count": 1,
+      "subject_type": "collector",
+      "user_count": 1
+    },
+    {
+      "origin": "backfill_v1",
+      "reason": "inferred",
+      "row_count": 1,
+      "subject_type": "set",
+      "user_count": 1
+    }
+  ],
+  "rules": {
+    "full_apply_requires_separate_approval": true,
+    "origin": "backfill_v1",
+    "reason_rank": {
+      "inferred": 1,
+      "manual": 4,
+      "owned": 2,
+      "want": 3
+    },
+    "reason_strength": {
+      "inferred": 0.35,
+      "manual": 1,
+      "owned": 0.8,
+      "want": 0.95
+    },
+    "sources": [
+      "owned_cards",
+      "wishlist_items",
+      "owned_sets_3plus",
+      "collector_follows"
+    ]
+  },
+  "source_summary": [
+    {
+      "candidate_count": 1,
+      "conflict_count": 1,
+      "reason": "manual",
+      "source": "collector_follows",
+      "subject_type": "collector",
+      "user_count": 1,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 1
+    },
+    {
+      "candidate_count": 3,
+      "conflict_count": 3,
+      "reason": "owned",
+      "source": "owned_cards",
+      "subject_type": "card",
+      "user_count": 1,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 3
+    },
+    {
+      "candidate_count": 1,
+      "conflict_count": 0,
+      "reason": "inferred",
+      "source": "owned_sets_3plus",
+      "subject_type": "set",
+      "user_count": 1,
+      "would_insert_count": 1,
+      "would_promote_or_keep_count": 0
+    },
+    {
+      "candidate_count": 1,
+      "conflict_count": 1,
+      "reason": "want",
+      "source": "wishlist_items",
+      "subject_type": "card",
+      "user_count": 1,
+      "would_insert_count": 0,
+      "would_promote_or_keep_count": 1
+    }
+  ],
+  "totals": {
+    "candidate_count": 6,
+    "conflict_count": 5,
+    "user_count": 1,
+    "would_insert_count": 1
+  }
+}

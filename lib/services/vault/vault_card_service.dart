@@ -5,6 +5,18 @@ import '../../utils/display_image_contract.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
+class _InterestGraphCompletionSnapshot {
+  const _InterestGraphCompletionSnapshot({
+    required this.subjectType,
+    required this.subjectId,
+    required this.completionPercent,
+  });
+
+  final String subjectType;
+  final String subjectId;
+  final int completionPercent;
+}
+
 class VaultCardIdentity {
   const VaultCardIdentity({
     required this.cardId,
@@ -526,6 +538,11 @@ class VaultCardService {
   }) async {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
     debugPrint('vault.mobile.add.begin: $cardId');
+    final completionBefore = await _fetchInterestGraphCompletionSnapshot(
+      client: client,
+      userId: userId,
+      cardPrintId: cardId,
+    );
 
     final response = await client.functions.invoke(
       'vault-add-card-instance-v1',
@@ -559,11 +576,97 @@ class VaultCardService {
     if (result is Map<String, dynamic>) {
       final gvviId = (result['gv_vi_id'] ?? '').toString();
       if (gvviId.isNotEmpty) {
+        await _emitInterestGraphCompletionCrossings(
+          client: client,
+          userId: userId,
+          cardPrintId: cardId,
+          previous: completionBefore,
+        );
         return gvviId;
       }
     }
 
+    await _emitInterestGraphCompletionCrossings(
+      client: client,
+      userId: userId,
+      cardPrintId: cardId,
+      previous: completionBefore,
+    );
     return '';
+  }
+
+  static Future<Map<String, _InterestGraphCompletionSnapshot>>
+  _fetchInterestGraphCompletionSnapshot({
+    required SupabaseClient client,
+    required String userId,
+    required String cardPrintId,
+  }) async {
+    try {
+      final raw = await client.rpc(
+        'interest_graph_completion_snapshot_for_card_v1',
+        params: {'p_user_id': userId, 'p_card_print_id': cardPrintId},
+      );
+      if (raw is! List) {
+        return const <String, _InterestGraphCompletionSnapshot>{};
+      }
+
+      final snapshots = <String, _InterestGraphCompletionSnapshot>{};
+      for (final item in raw) {
+        if (item is! Map) continue;
+        final row = Map<String, dynamic>.from(item);
+        final subjectType = _trimmedOrNull(row['subject_type']);
+        final subjectId = _trimmedOrNull(row['subject_id']);
+        final percentRaw = row['completion_percent'];
+        final percent = percentRaw is num
+            ? percentRaw.toInt()
+            : int.tryParse(percentRaw?.toString() ?? '');
+        if (subjectType == null || subjectId == null || percent == null) {
+          continue;
+        }
+        snapshots['$subjectType:$subjectId'] = _InterestGraphCompletionSnapshot(
+          subjectType: subjectType,
+          subjectId: subjectId,
+          completionPercent: percent.clamp(0, 100),
+        );
+      }
+      return snapshots;
+    } catch (error) {
+      debugPrint('interest_graph.completion_snapshot.failed: $error');
+      return const <String, _InterestGraphCompletionSnapshot>{};
+    }
+  }
+
+  static Future<void> _emitInterestGraphCompletionCrossings({
+    required SupabaseClient client,
+    required String userId,
+    required String cardPrintId,
+    required Map<String, _InterestGraphCompletionSnapshot> previous,
+  }) async {
+    try {
+      final next = await _fetchInterestGraphCompletionSnapshot(
+        client: client,
+        userId: userId,
+        cardPrintId: cardPrintId,
+      );
+      for (final entry in next.entries) {
+        final priorPercent = previous[entry.key]?.completionPercent ?? 0;
+        final nextSnapshot = entry.value;
+        if (nextSnapshot.completionPercent <= priorPercent) continue;
+        await client.rpc(
+          'card_events_emit_completion_crossings_v1',
+          params: {
+            'p_user_id': userId,
+            'p_subject_type': nextSnapshot.subjectType,
+            'p_subject_id': nextSnapshot.subjectId,
+            'p_previous_percent': priorPercent,
+            'p_next_percent': nextSnapshot.completionPercent,
+            'p_payload': {'card_print_id': cardPrintId, 'source': 'vault_add'},
+          },
+        );
+      }
+    } catch (error) {
+      debugPrint('interest_graph.completion_crossing.failed: $error');
+    }
   }
 
   static Future<VaultOwnedCopyTarget?> resolveLatestOwnedCopyTarget({

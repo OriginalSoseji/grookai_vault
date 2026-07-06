@@ -386,6 +386,11 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         fallbackImageUrl: candidate.imageUrl,
       );
       await _appendConfirmationLog(candidate: candidate, gvviId: gvviId);
+      await _emitScannerV5VaultAddEnriched(
+        userId: userId,
+        candidate: candidate,
+        gvviId: gvviId,
+      );
       if (!mounted) return;
       await HapticFeedback.heavyImpact();
       _resetToLiveScanner();
@@ -435,6 +440,43 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       jsonEncode(payload),
     ]);
     debugPrint('[scanner_v5] ${jsonEncode(payload)}');
+  }
+
+  Future<void> _emitScannerV5VaultAddEnriched({
+    required String userId,
+    required ScannerV5Candidate candidate,
+    required String gvviId,
+  }) async {
+    final result = _result;
+    final candidates = result?.candidates ?? const <ScannerV5Candidate>[];
+    final confirmedRank =
+        candidate.rank ??
+        candidates.indexWhere(
+              (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
+            ) +
+            1;
+    try {
+      await Supabase.instance.client.rpc(
+        'scanner_v5_emit_vault_add_enriched_v1',
+        params: {
+          'p_user_id': userId,
+          'p_gvvi_id': gvviId,
+          'p_card_print_id': candidate.vaultCardPrintId,
+          'p_payload': {
+            'session_id': _sessionId,
+            'confirmed_rank': confirmedRank <= 0 ? null : confirmedRank,
+            'gv_id': candidate.gvId,
+            'card_id': candidate.cardId,
+            'response_mode': result?.mode,
+            'response_candidates': candidates
+                .map((row) => row.toSessionJson())
+                .toList(growable: false),
+          },
+        },
+      );
+    } catch (error) {
+      debugPrint('[scanner_v5] enrichment_emit_failed: $error');
+    }
   }
 
   void _showScanNotice(String title, String message) {

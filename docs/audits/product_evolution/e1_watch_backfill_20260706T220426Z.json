@@ -1,0 +1,40 @@
+{
+  "apply_result": null,
+  "generated_at": "2026-07-06T22:04:26.066Z",
+  "mode": "dry-run",
+  "options": {
+    "limit_users": 1,
+    "user_id": null
+  },
+  "package_id": "E1-WATCH-BACKFILL-V1",
+  "post_apply_counts": [],
+  "rules": {
+    "full_apply_requires_separate_approval": true,
+    "origin": "backfill_v1",
+    "reason_rank": {
+      "inferred": 1,
+      "manual": 4,
+      "owned": 2,
+      "want": 3
+    },
+    "reason_strength": {
+      "inferred": 0.35,
+      "manual": 1,
+      "owned": 0.8,
+      "want": 0.95
+    },
+    "sources": [
+      "owned_cards",
+      "wishlist_items",
+      "owned_sets_3plus",
+      "collector_follows"
+    ]
+  },
+  "source_summary": [],
+  "totals": {
+    "candidate_count": 0,
+    "conflict_count": 0,
+    "user_count": 0,
+    "would_insert_count": 0
+  }
+}
