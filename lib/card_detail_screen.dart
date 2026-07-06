@@ -9,7 +9,6 @@ import 'models/ownership_state.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
-import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
@@ -25,6 +24,7 @@ import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/contact_owner_button.dart';
+import 'widgets/gv_surface.dart';
 import 'widgets/ownership/ownership_signal.dart';
 
 class CardDetailScreen extends StatefulWidget {
@@ -107,7 +107,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   String? _priceError;
   OwnershipState? _ownershipState;
   bool _ownershipLoading = false;
-  String? _collectorSlug;
   String? _managedVaultItemId;
   int? _managedOwnedCount;
   bool _canOpenPublicPage = false;
@@ -468,10 +467,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Future<void> _loadActionContext() async {
     final exactCopyGvviId = _cleanText(widget.exactCopyGvviId);
-    final contactOwnerUserId = _cleanText(widget.contactOwnerUserId);
     final currentUserId = supabase.auth.currentUser?.id;
 
-    String? collectorSlug;
     String? managedVaultItemId;
     int? managedOwnedCount;
     var canOpenPublicPage = false;
@@ -489,31 +486,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           );
           managedVaultItemId = _cleanText(data?.vaultItemId);
           managedOwnedCount = data?.activeCopyCount;
-          collectorSlug = _cleanText(data?.publicSlug);
           canOpenPublicPage = data?.canOpenPublicPage == true;
-        } else {
-          final data = await VaultGvviService.loadPublic(
-            client: supabase,
-            gvviId: exactCopyGvviId,
-          );
-          collectorSlug = _cleanText(data?.ownerSlug);
-        }
-      }
-
-      if (collectorSlug == null || collectorSlug.isEmpty) {
-        if (contactOwnerUserId.isNotEmpty) {
-          final rawProfile = await supabase
-              .from('public_profiles')
-              .select('slug,public_profile_enabled')
-              .eq('user_id', contactOwnerUserId)
-              .maybeSingle();
-          final profile = rawProfile == null
-              ? null
-              : Map<String, dynamic>.from(rawProfile);
-          final slug = _cleanText(profile?['slug']);
-          if (profile?['public_profile_enabled'] == true && slug.isNotEmpty) {
-            collectorSlug = slug;
-          }
         }
       }
     } catch (_) {
@@ -525,9 +498,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     setState(() {
-      _collectorSlug = collectorSlug != null && collectorSlug.isNotEmpty
-          ? collectorSlug
-          : null;
       _managedVaultItemId =
           managedVaultItemId != null && managedVaultItemId.isNotEmpty
           ? managedVaultItemId
@@ -636,8 +606,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       _cleanText(widget.exactCopyGvviId).isNotEmpty;
 
   bool get _canCompare => normalizeCompareCardId(widget.gvId ?? '').isNotEmpty;
-
-  bool get _canViewCollector => _cleanText(_collectorSlug).isNotEmpty;
 
   bool get _canOpenPublicExactCopy =>
       _canOpenPublicPage && _hasExactCopyContext;
@@ -793,19 +761,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     await _openManageCard();
-  }
-
-  Future<void> _openCollector() async {
-    final slug = _cleanText(_collectorSlug);
-    if (slug.isEmpty) {
-      return;
-    }
-
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => PublicCollectorScreen(slug: slug),
-      ),
-    );
   }
 
   Future<void> _openPublicExactCopy() async {
@@ -1141,32 +1096,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return fromLoaded > fromPricing ? fromLoaded : fromPricing;
   }
 
-  int? get _printedTotalInSet {
-    final setRecord = _extractRecord(_cardContextData?['sets']);
-    final printedTotal = setRecord?['printed_total'];
-    if (printedTotal is num) {
-      return printedTotal.toInt();
-    }
-    return null;
-  }
-
-  int? get _listingCount {
-    final rawValue = _priceData?['ebay_listing_count'];
-    if (rawValue is num) {
-      final value = rawValue.toInt();
-      return value > 0 ? value : null;
-    }
-    return null;
-  }
-
-  String? get _topMarketSignalLabel {
-    final listingCount = _listingCount;
-    if (listingCount == null) {
-      return null;
-    }
-    return '$listingCount listing${listingCount == 1 ? '' : 's'}';
-  }
-
   String? _formatReleaseDateLabel(dynamic rawValue) {
     final rawText = _cleanText(rawValue?.toString());
     if (rawText.isEmpty) {
@@ -1261,7 +1190,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   'Other Versions',
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -0.3,
+                    letterSpacing: 0,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1364,6 +1293,21 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
+                                      if ((displayIdentity.printedName ?? '')
+                                          .isNotEmpty) ...[
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          displayIdentity.printedName!,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: theme.textTheme.labelSmall
+                                              ?.copyWith(
+                                                color: colorScheme.onSurface
+                                                    .withValues(alpha: 0.62),
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ],
                                       const SizedBox(height: 3),
                                       Text(
                                         [
@@ -1447,32 +1391,28 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final sections = <Widget>[
       _buildHeroPanel(theme, colorScheme),
+      _buildPricingSection(theme, colorScheme),
+      _buildTrustRows(theme, colorScheme),
       if (_printingOptions.isNotEmpty)
         _buildPrintingOptionsSection(theme, colorScheme),
       if (_variantOriginCopy != null)
         _buildVariantOriginSection(theme, colorScheme),
-      _buildActions(context, theme, colorScheme),
-      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
-      _buildPricingSection(theme, colorScheme),
       if (_buildDetailEntries().isNotEmpty)
         _buildCardDetailsSection(theme, colorScheme),
+      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _displayTitle,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
+      extendBody: true,
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(16, 8, 16, 18 + bottomInset),
+          padding: EdgeInsets.fromLTRB(24, 10, 24, 124 + bottomInset),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              _buildPageChrome(theme, colorScheme),
+              const SizedBox(height: 14),
               for (var index = 0; index < sections.length; index++) ...[
                 if (index > 0) const SizedBox(height: _sectionSpacing),
                 sections[index],
@@ -1481,105 +1421,109 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: _buildActions(context, theme, colorScheme),
+    );
+  }
+
+  Widget _buildPageChrome(ThemeData theme, ColorScheme colorScheme) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        IconButton(
+          tooltip: 'Back',
+          onPressed: () => Navigator.of(context).maybePop(),
+          icon: const Icon(Icons.chevron_left_rounded, size: 30),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              tooltip: 'Comments',
+              onPressed: _openCommentsSheet,
+              icon: const Icon(Icons.mode_comment_outlined, size: 21),
+            ),
+            if (_canCompare)
+              IconButton(
+                tooltip: 'Compare',
+                onPressed: _openCompareWorkspace,
+                icon: const Icon(Icons.compare_arrows_rounded, size: 22),
+              ),
+            IconButton(
+              tooltip: 'Share',
+              onPressed: _shareCard,
+              icon: const Icon(Icons.ios_share_rounded, size: 22),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
   Widget _buildHeroPanel(ThemeData theme, ColorScheme colorScheme) {
-    final ownershipSection = _buildOwnershipSection(theme);
     final imagePresentation = _cardImagePresentation;
 
-    return _buildSurface(
-      colorScheme: colorScheme,
-      emphasize: true,
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _buildHeroImage(colorScheme),
-          if (imagePresentation.compactBadgeLabel != null) ...[
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.center,
-              child: _buildImageStatusBadge(
-                theme: theme,
-                colorScheme: colorScheme,
-                label:
-                    imagePresentation.detailBadgeLabel ??
-                    imagePresentation.compactBadgeLabel!,
-                strong: imagePresentation.isCollisionRepresentative,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeroImage(),
+        if (imagePresentation.compactBadgeLabel != null) ...[
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.center,
+            child: _buildImageStatusBadge(
+              theme: theme,
+              colorScheme: colorScheme,
+              label:
+                  imagePresentation.detailBadgeLabel ??
+                  imagePresentation.compactBadgeLabel!,
+              strong: imagePresentation.isCollisionRepresentative,
             ),
-          ],
-          if (imagePresentation.detailNote != null) ...[
-            const SizedBox(height: 10),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: colorScheme.tertiaryContainer.withValues(alpha: 0.58),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: colorScheme.tertiary.withValues(alpha: 0.20),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-                child: Text(
-                  imagePresentation.detailNote!,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onTertiaryContainer,
-                    height: 1.35,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-          ],
-          const SizedBox(height: 16),
-          _buildIdentitySection(theme, colorScheme),
-          if (ownershipSection != null) ...[
-            const SizedBox(height: 12),
-            ownershipSection,
-          ],
+          ),
         ],
-      ),
+        if (imagePresentation.detailNote != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            imagePresentation.detailNote!,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              height: 1.35,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+        const SizedBox(height: 22),
+        _buildIdentitySection(theme, colorScheme),
+      ],
     );
   }
 
-  Widget _buildHeroImage(ColorScheme colorScheme) {
+  Widget _buildHeroImage() {
     final url = _cardImagePresentation.displayImageUrl ?? '';
 
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 286),
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(
-              color: colorScheme.outlineVariant.withValues(alpha: 0.42),
-            ),
-          ),
-          padding: const EdgeInsets.all(9),
-          child: Container(
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.62,
-              ),
-              borderRadius: BorderRadius.circular(18),
-            ),
-            padding: const EdgeInsets.all(6),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth < 420
+            ? constraints.maxWidth * 0.72
+            : 286.0;
+        return Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: maxWidth),
             child: AspectRatio(
               aspectRatio: 3 / 4,
               child: CardSurfaceArtwork(
                 label: _displayTitle,
                 imageUrl: url,
-                borderRadius: 16,
-                padding: const EdgeInsets.all(4),
+                borderRadius: 20,
+                padding: EdgeInsets.zero,
+                frame: CardArtworkFrame.none,
+                showShadow: true,
                 showZoomAffordance: url.isNotEmpty,
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -1631,38 +1575,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       resolvedRarity.isNotEmpty ? resolvedRarity : widget.rarity,
     );
     final relatedVersionCount = _relatedVersionDisplayCount;
-    final listingSignal = _topMarketSignalLabel;
-    final inSetLabel = _printedTotalInSet != null
-        ? 'In this set · ${_printedTotalInSet!} cards'
-        : 'In this set';
-    final metadataBadges = <Widget>[
-      if (_hasVaultContext)
-        _buildInfoChip(
-          label: 'In your vault',
-          icon: Icons.inventory_2_outlined,
-          tint: Colors.orange.shade800,
-          theme: theme,
-        ),
-      if (_wantState.want)
-        _buildInfoChip(
-          label: 'Wanted',
-          icon: Icons.favorite_rounded,
-          tint: Colors.red.shade500,
-          theme: theme,
-        ),
-      if (rarity.isNotEmpty)
-        _buildInfoChip(
-          label: rarity,
-          tint: _rarityAccentColor(colorScheme, rarity),
-          theme: theme,
-        ),
-      if (listingSignal != null)
-        _buildInfoChip(
-          label: listingSignal,
-          icon: Icons.storefront_outlined,
-          tint: colorScheme.primary,
-          theme: theme,
-        ),
+    final metaParts = <String>[
+      if (setName.isNotEmpty) setName,
+      if (_resolvedCollectorNumber.isNotEmpty) '#$_resolvedCollectorNumber',
+      if (rarity.isNotEmpty) rarity,
     ];
 
     return Column(
@@ -1670,138 +1586,139 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       children: [
         Text(
           _displayTitle,
-          style: theme.textTheme.headlineSmall?.copyWith(
+          style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w800,
-            letterSpacing: -0.6,
             height: 1.04,
           ),
         ),
-        if (setName.isNotEmpty || _relatedVersions.isNotEmpty) ...[
-          const SizedBox(height: 9),
-          Wrap(
-            spacing: 10,
-            runSpacing: 8,
-            children: [
-              if (setName.isNotEmpty)
-                _buildPrimaryNavCue(
-                  eyebrow: 'Set',
-                  label: setName,
-                  supporting: inSetLabel,
-                  theme: theme,
-                  colorScheme: colorScheme,
-                  onTap: setCode.isNotEmpty ? _openSetDetail : null,
-                ),
-              if (_hasExactCopyContext)
-                _buildPrimaryNavCue(
-                  eyebrow: 'Exact copy',
-                  label: 'Open copy',
-                  supporting: _hasVaultContext
-                      ? 'Continue to this owned copy'
-                      : 'Continue to this specific copy',
-                  theme: theme,
-                  colorScheme: colorScheme,
-                  onTap: _openExactCopy,
-                ),
-              if (_relatedVersions.isNotEmpty)
-                _buildPrimaryNavCue(
-                  eyebrow: 'Card family',
-                  label: '$relatedVersionCount versions',
-                  supporting: 'Explore other prints',
-                  theme: theme,
-                  colorScheme: colorScheme,
-                  onTap: _openOtherVersions,
-                ),
-            ],
-          ),
-        ],
-        if (collectorIdentity != null) ...[
-          const SizedBox(height: 7),
+        if ((_displayIdentity.printedName ?? '').isNotEmpty) ...[
+          const SizedBox(height: 4),
           Text(
-            collectorIdentity,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: colorScheme.onSurface.withValues(alpha: 0.72),
-              height: 1.15,
+            _displayIdentity.printedName!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: colorScheme.primary.withValues(alpha: 0.82),
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],
-        if (metadataBadges.isNotEmpty) ...[
-          const SizedBox(height: 6),
-          Wrap(spacing: 8, runSpacing: 8, children: metadataBadges),
+        if (metaParts.isNotEmpty || collectorIdentity != null) ...[
+          const SizedBox(height: 5),
+          Text(
+            metaParts.isNotEmpty
+                ? metaParts.join(' · ')
+                : collectorIdentity ?? '',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: colorScheme.onSurface.withValues(alpha: 0.74),
+              height: 1.25,
+            ),
+          ),
+        ],
+        if (collectorIdentity != null && metaParts.isNotEmpty) ...[
+          const SizedBox(height: 3),
+          Text(
+            collectorIdentity,
+            style: theme.textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              height: 1.2,
+            ),
+          ),
+        ],
+        if (setName.isNotEmpty ||
+            _hasExactCopyContext ||
+            _relatedVersions.isNotEmpty) ...[
+          const SizedBox(height: 13),
+          Wrap(
+            spacing: 18,
+            runSpacing: 8,
+            children: [
+              if (setName.isNotEmpty)
+                _buildTextNavCue(
+                  label: 'Set',
+                  onTap: setCode.isNotEmpty ? _openSetDetail : null,
+                  theme: theme,
+                  colorScheme: colorScheme,
+                ),
+              if (_hasExactCopyContext)
+                _buildTextNavCue(
+                  label: 'Exact copy',
+                  onTap: _openExactCopy,
+                  theme: theme,
+                  colorScheme: colorScheme,
+                ),
+              if (_relatedVersions.isNotEmpty)
+                _buildTextNavCue(
+                  label: 'Card family · $relatedVersionCount versions',
+                  onTap: _openOtherVersions,
+                  theme: theme,
+                  colorScheme: colorScheme,
+                ),
+            ],
+          ),
         ],
       ],
     );
   }
 
-  Widget? _buildOwnershipSection(ThemeData theme) {
-    final ownershipChips = _buildOwnershipChips(theme);
-    if (ownershipChips.isEmpty) {
-      return null;
+  Widget _buildTextNavCue({
+    required String label,
+    required VoidCallback? onTap,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    final child = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: theme.textTheme.labelLarge?.copyWith(
+            color: onTap == null
+                ? colorScheme.onSurface.withValues(alpha: 0.46)
+                : colorScheme.onSurface,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(width: 3),
+        Icon(
+          Icons.chevron_right_rounded,
+          size: 17,
+          color: colorScheme.onSurface.withValues(alpha: 0.54),
+        ),
+      ],
+    );
+
+    if (onTap == null) {
+      return child;
     }
 
-    return Wrap(spacing: 8, runSpacing: 8, children: ownershipChips);
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: child,
+      ),
+    );
   }
 
   Widget _buildSurface({
     required ColorScheme colorScheme,
     required Widget child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(14),
-    bool emphasize = false,
     bool soft = false,
   }) {
-    return Container(
-      decoration: _surfaceDecoration(
-        colorScheme,
-        emphasize: emphasize,
-        soft: soft,
-      ),
-      padding: padding,
-      child: child,
-    );
-  }
-
-  BoxDecoration _surfaceDecoration(
-    ColorScheme colorScheme, {
-    bool emphasize = false,
-    bool soft = false,
-  }) {
-    return BoxDecoration(
-      color: soft
-          ? colorScheme.surfaceContainerLowest.withValues(alpha: 0.7)
-          : colorScheme.surface,
-      borderRadius: BorderRadius.circular(16),
-      border: Border.all(
-        color: colorScheme.outlineVariant.withValues(
-          alpha: emphasize
-              ? 0.6
-              : soft
-              ? 0.28
-              : 0.45,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Divider(
+          height: 1,
+          thickness: 1,
+          color: colorScheme.outlineVariant.withValues(alpha: 0.24),
         ),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: colorScheme.shadow.withValues(
-            alpha: emphasize
-                ? 0.1
-                : soft
-                ? 0.025
-                : 0.06,
-          ),
-          blurRadius: emphasize
-              ? 16
-              : soft
-              ? 4
-              : 8,
-          offset: Offset(
-            0,
-            emphasize
-                ? 7
-                : soft
-                ? 1
-                : 3,
-          ),
-        ),
+        Padding(padding: padding, child: child),
       ],
     );
   }
@@ -1851,186 +1768,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Color _rarityAccentColor(ColorScheme colorScheme, String rarity) {
-    final lower = rarity.toLowerCase();
-    if (lower.contains('secret')) {
-      return Colors.amber.shade800;
-    }
-    if (lower.contains('ultra')) {
-      return Colors.deepPurple;
-    }
-    if (lower.contains('rare')) {
-      return Colors.blue;
-    }
-    if (lower.contains('uncommon')) {
-      return Colors.green;
-    }
-    if (lower.contains('common')) {
-      return Colors.grey.shade700;
-    }
-    return colorScheme.tertiary;
-  }
-
-  List<Widget> _buildOwnershipChips(ThemeData theme) {
-    final chips = <Widget>[];
-    final ownershipState = _ownershipState;
-    final condition = _cleanText(widget.condition);
-    final quantity = widget.quantity;
-
-    if (_ownershipLoading && ownershipState == null) {
-      chips.add(
-        _buildInfoChip(
-          label: 'Checking vault',
-          icon: Icons.sync_outlined,
-          tint: Colors.blueGrey.shade600,
-          theme: theme,
-        ),
-      );
-    }
-
-    if (ownershipState?.owned == true) {
-      final ownedCount = ownershipState!.ownedCount;
-      chips.add(
-        _buildInfoChip(
-          label: ownedCount > 1 ? '$ownedCount copies' : 'In your vault',
-          icon: Icons.inventory_2_outlined,
-          tint: Colors.indigo.shade700,
-          theme: theme,
-        ),
-      );
-      if (ownershipState.onWall) {
-        chips.add(
-          _buildInfoChip(
-            label: 'On wall',
-            icon: Icons.wallpaper_outlined,
-            tint: Colors.deepPurple.shade400,
-            theme: theme,
-          ),
-        );
-      }
-      if (ownershipState.inPlay) {
-        chips.add(
-          _buildInfoChip(
-            label: 'In play',
-            icon: Icons.local_fire_department_outlined,
-            tint: Colors.deepOrange.shade500,
-            theme: theme,
-          ),
-        );
-      }
-    }
-
-    if (condition.isNotEmpty) {
-      chips.add(
-        _buildInfoChip(
-          label: 'Condition $condition',
-          icon: Icons.grade_outlined,
-          tint: Colors.teal.shade700,
-          theme: theme,
-        ),
-      );
-    }
-
-    if (quantity != null) {
-      chips.add(
-        _buildInfoChip(
-          label: 'Qty $quantity',
-          icon: Icons.inventory_2_outlined,
-          tint: Colors.orange.shade800,
-          theme: theme,
-        ),
-      );
-    }
-
-    return chips;
-  }
-
-  Widget _buildPrimaryNavCue({
-    required String eyebrow,
-    required String label,
-    required String? supporting,
-    required ThemeData theme,
-    required ColorScheme colorScheme,
-    required VoidCallback? onTap,
-  }) {
-    final cueChild = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          eyebrow.toUpperCase(),
-          style: theme.textTheme.labelSmall?.copyWith(
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.75,
-            color: colorScheme.onSurface.withValues(alpha: 0.5),
-          ),
-        ),
-        const SizedBox(height: 3),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 220),
-              child: Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: onTap == null
-                      ? colorScheme.onSurface
-                      : colorScheme.primary,
-                  height: 1.05,
-                ),
-              ),
-            ),
-            if (onTap != null) ...[
-              const SizedBox(width: 4),
-              Icon(
-                Icons.arrow_outward_rounded,
-                size: 15,
-                color: colorScheme.primary,
-              ),
-            ],
-          ],
-        ),
-        if (_cleanText(supporting).isNotEmpty) ...[
-          const SizedBox(height: 2),
-          Text(
-            supporting!,
-            style: theme.textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: colorScheme.onSurface.withValues(alpha: 0.62),
-            ),
-          ),
-        ],
-      ],
-    );
-
-    if (onTap == null) {
-      return cueChild;
-    }
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(14),
-        onTap: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: colorScheme.primary.withValues(alpha: 0.045),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: colorScheme.primary.withValues(alpha: 0.12),
-            ),
-          ),
-          padding: const EdgeInsets.fromLTRB(10, 8, 12, 8),
-          child: cueChild,
-        ),
       ),
     );
   }
@@ -2156,42 +1893,57 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           _buildSectionLabel('Printings', theme, colorScheme),
           const SizedBox(height: 10),
           Wrap(
-            spacing: 8,
+            spacing: 10,
             runSpacing: 8,
             children: [
               for (final option in _printingOptions)
-                ChoiceChip(
-                  label: Text(option.finishName),
+                _buildPrintingOptionButton(
+                  label: option.finishName,
                   selected: option.id == selectedId,
-                  onSelected: (_) {
+                  onTap: () {
                     setState(() {
                       _selectedCardPrintingId = option.id;
                       _printingSelectionTouched = true;
                     });
                   },
-                  labelStyle: theme.textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: option.id == selectedId
-                        ? colorScheme.onPrimaryContainer
-                        : colorScheme.onSurface,
-                  ),
-                  selectedColor: colorScheme.primaryContainer,
-                  backgroundColor: colorScheme.surfaceContainerHighest
-                      .withValues(alpha: 0.55),
-                  side: BorderSide(
-                    color: option.id == selectedId
-                        ? colorScheme.primary.withValues(alpha: 0.45)
-                        : colorScheme.outlineVariant.withValues(alpha: 0.65),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: VisualDensity.compact,
+                  theme: theme,
+                  colorScheme: colorScheme,
                 ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPrintingOptionButton({
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: theme.textTheme.labelLarge?.copyWith(
+                color: selected ? colorScheme.primary : colorScheme.onSurface,
+                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+              ),
+            ),
+            if (selected) ...[
+              const SizedBox(width: 5),
+              Icon(Icons.check_rounded, size: 15, color: colorScheme.primary),
+            ],
+          ],
+        ),
       ),
     );
   }
@@ -2224,7 +1976,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       copy.familyLabel,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.15,
+                        letterSpacing: 0,
                       ),
                     ),
                   ],
@@ -2372,123 +2124,206 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Widget _buildTrustRows(ThemeData theme, ColorScheme colorScheme) {
+    final rows = <Widget>[];
+    final ownershipState = _ownershipState;
+
+    if (_ownershipLoading && ownershipState == null) {
+      rows.add(
+        _buildTrustRow(
+          icon: Icons.inventory_2_outlined,
+          label: 'Checking your vault',
+          actionLabel: null,
+          onAction: null,
+          theme: theme,
+          colorScheme: colorScheme,
+        ),
+      );
+    } else if (ownershipState?.owned == true || _hasVaultContext) {
+      final ownedCount = ownershipState?.ownedCount ?? widget.quantity ?? 1;
+      rows.add(
+        _buildTrustRow(
+          icon: Icons.inventory_2_outlined,
+          label: ownedCount > 1
+              ? 'In your vault · $ownedCount copies'
+              : 'In your vault',
+          actionLabel: 'View your copy',
+          onAction: _openResolvedOwnedCopy,
+          theme: theme,
+          colorScheme: colorScheme,
+        ),
+      );
+    }
+
+    if (_canOpenPublicExactCopy || _hasExactCopyContext) {
+      rows.add(
+        _buildTrustRow(
+          icon: Icons.verified_outlined,
+          label: 'Exact copy on file',
+          actionLabel: 'Open copy',
+          onAction: _canOpenPublicExactCopy
+              ? _openPublicExactCopy
+              : _openExactCopy,
+          theme: theme,
+          colorScheme: colorScheme,
+        ),
+      );
+    }
+
+    if (rows.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      children: [
+        for (var index = 0; index < rows.length; index++) ...[
+          if (index > 0) _buildFlowDivider(colorScheme),
+          rows[index],
+        ],
+      ],
+    );
+  }
+
+  Widget _buildTrustRow({
+    required IconData icon,
+    required String label,
+    required String? actionLabel,
+    required VoidCallback? onAction,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 9),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 19,
+            color: colorScheme.onSurface.withValues(alpha: 0.74),
+          ),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Text(
+              label,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: colorScheme.onSurface.withValues(alpha: 0.9),
+              ),
+            ),
+          ),
+          if (actionLabel != null && onAction != null)
+            TextButton(
+              onPressed: onAction,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                minimumSize: const Size(0, 32),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text('$actionLabel  >'),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildCardDetailsSection(ThemeData theme, ColorScheme colorScheme) {
     final detailEntries = _buildDetailEntries();
     if (detailEntries.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    return _buildSurface(
-      colorScheme: colorScheme,
-      soft: true,
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionLabel('Card Details', theme, colorScheme),
-          const SizedBox(height: 7),
-          for (var index = 0; index < detailEntries.length; index++) ...[
-            if (index > 0) _buildFlowDivider(colorScheme),
-            _buildMetadataRow(
-              label: detailEntries[index].key,
-              value: detailEntries[index].value,
-              theme: theme,
-              colorScheme: colorScheme,
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionLabel('Details', theme, colorScheme),
+        const SizedBox(height: 7),
+        for (var index = 0; index < detailEntries.length; index++) ...[
+          if (index > 0) _buildFlowDivider(colorScheme),
+          _buildMetadataRow(
+            label: detailEntries[index].key,
+            value: detailEntries[index].value,
+            theme: theme,
+            colorScheme: colorScheme,
+          ),
         ],
-      ),
+      ],
     );
   }
 
   Widget _buildPricingSection(ThemeData theme, ColorScheme colorScheme) {
     if (_priceLoading && _priceData == null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        soft: true,
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionLabel('Pricing', theme, colorScheme),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(strokeWidth: 2),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          const SizedBox(height: 7),
+          Row(
+            children: [
+              const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Loading pricing...',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.66),
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  'Loading pricing…',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.78),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       );
     }
 
     if (_priceError != null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        soft: true,
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionLabel('Pricing', theme, colorScheme),
-            const SizedBox(height: 4),
-            Text(
-              _priceError!,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.error,
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          const SizedBox(height: 5),
+          Text(
+            _priceError!,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.error,
             ),
-            const SizedBox(height: 6),
-            TextButton.icon(
-              onPressed: _priceLoading ? null : _loadPricing,
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-                minimumSize: const Size(0, 30),
-              ),
-              icon: const Icon(Icons.refresh, size: 16),
-              label: const Text('Retry'),
+          ),
+          const SizedBox(height: 4),
+          TextButton.icon(
+            onPressed: _priceLoading ? null : _loadPricing,
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              minimumSize: const Size(0, 30),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-          ],
-        ),
+            icon: const Icon(Icons.refresh, size: 16),
+            label: const Text('Retry'),
+          ),
+        ],
       );
     }
 
     if (_priceData == null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        soft: true,
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionLabel('Pricing', theme, colorScheme),
-            const SizedBox(height: 4),
-            Text(
-              'No pricing data available',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          const SizedBox(height: 5),
+          Text(
+            'No pricing data available',
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w800,
             ),
-            const SizedBox(height: 1),
-            Text(
-              'Pricing for this card is not available yet.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.68),
-              ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            'Pricing for this card is not available yet.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     }
 
@@ -2499,7 +2334,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final maxPrice = (data['max_price'] as num?)?.toDouble();
     final ebayMedianPrice = (data['ebay_median_price'] as num?)?.toDouble();
     final primaryValue = primaryPrice ?? grookaiValue;
-    final primaryLabel = primaryPrice != null ? 'Market' : 'Value';
     final primarySource = _pricingSourceName(data['primary_source'] as String?);
     final pricingFooterParts = <String>[];
     if (primarySource != null) {
@@ -2508,175 +2342,94 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (_hasVaultContext) {
       pricingFooterParts.add('In your vault');
     }
-    final pricingContext = <Widget>[
-      if (minPrice != null)
-        _buildPricingMetricChip(
-          label: 'Low',
-          value: _formatMoney(minPrice),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (primaryPrice != null)
-        _buildPricingMetricChip(
-          label: 'Mid',
-          value: _formatMoney(primaryPrice),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (maxPrice != null)
-        _buildPricingMetricChip(
-          label: 'High',
-          value: _formatMoney(maxPrice),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
+    final pricingContext = <String>[
+      if (minPrice != null) 'Low ${_formatMoney(minPrice)}',
+      if (primaryPrice != null) 'Market ${_formatMoney(primaryPrice)}',
+      if (maxPrice != null) 'High ${_formatMoney(maxPrice)}',
       if (grookaiValue != null && primaryPrice != null)
-        _buildPricingMetricChip(
-          label: 'Value',
-          value: _formatMoney(grookaiValue),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (ebayMedianPrice != null)
-        _buildPricingMetricChip(
-          label: 'eBay',
-          value: _formatMoney(ebayMedianPrice),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
+        'Value ${_formatMoney(grookaiValue)}',
+      if (ebayMedianPrice != null) 'eBay ${_formatMoney(ebayMedianPrice)}',
     ];
 
-    return _buildSurface(
-      colorScheme: colorScheme,
-      soft: true,
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (primaryValue == null) ...[
-            _buildSectionLabel('Pricing', theme, colorScheme),
-            const SizedBox(height: 4),
-            Text(
-              'No pricing data available',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (primaryValue == null) ...[
+          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          const SizedBox(height: 5),
+          Text(
+            'No pricing data available',
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w800,
             ),
-            const SizedBox(height: 1),
-            Text(
-              'Pricing for this card is not available yet.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.68),
-              ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            'Pricing for this card is not available yet.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
-          ] else ...[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildSectionLabel('Pricing', theme, colorScheme),
-                      const SizedBox(height: 3),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            _formatMoney(primaryValue),
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.55,
-                              height: 1.0,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: Text(
-                              primaryLabel,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.68,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      if (pricingFooterParts.isNotEmpty) ...[
-                        const SizedBox(height: 3),
-                        Text(
-                          pricingFooterParts.join(' • '),
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.58,
-                            ),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                if (_priceLoading)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: colorScheme.primary,
+          ),
+        ] else ...[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionLabel(
+                      'Grookai Value · Raw',
+                      theme,
+                      colorScheme,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _formatMoney(primaryValue),
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        height: 1.0,
                       ),
                     ),
+                    if (pricingFooterParts.isNotEmpty) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        pricingFooterParts.join(' · '),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.58),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              if (_priceLoading)
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, bottom: 4),
+                  child: SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.primary,
+                    ),
                   ),
-              ],
-            ),
-            if (pricingContext.isNotEmpty) ...[
-              const SizedBox(height: 5),
-              Wrap(spacing: 6, runSpacing: 6, children: pricingContext),
+                ),
             ],
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPricingMetricChip({
-    required String label,
-    required String value,
-    required ThemeData theme,
-    required ColorScheme colorScheme,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.32),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: RichText(
-        text: TextSpan(
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.7),
-            height: 1.0,
           ),
-          children: [
-            TextSpan(
-              text: '$label ',
-              style: const TextStyle(fontWeight: FontWeight.w600),
-            ),
-            TextSpan(
-              text: value,
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                color: colorScheme.onSurface,
+          if (pricingContext.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              pricingContext.join(' · '),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.54),
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
-        ),
-      ),
+        ],
+      ],
     );
   }
 
@@ -2698,45 +2451,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {
     return FilledButton.styleFrom(
       minimumSize: const Size.fromHeight(44),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      textStyle: theme.textTheme.labelLarge?.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
-  ButtonStyle _secondaryActionButtonStyle(
-    ThemeData theme,
-    ColorScheme colorScheme,
-  ) {
-    return OutlinedButton.styleFrom(
-      minimumSize: const Size.fromHeight(44),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      side: BorderSide(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.9),
-      ),
-      textStyle: theme.textTheme.labelLarge?.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
-  ButtonStyle _accentActionButtonStyle(
-    ThemeData theme,
-    ColorScheme colorScheme, {
-    required bool active,
-  }) {
-    final tint = active ? Colors.red.shade500 : colorScheme.primary;
-    return OutlinedButton.styleFrom(
-      minimumSize: const Size.fromHeight(44),
-      backgroundColor: active ? tint.withValues(alpha: 0.1) : null,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      side: BorderSide(
-        color: active
-            ? tint.withValues(alpha: 0.4)
-            : colorScheme.outlineVariant.withValues(alpha: 0.9),
-      ),
-      foregroundColor: active ? tint : colorScheme.onSurface,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w700,
       ),
@@ -2753,13 +2468,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       OwnershipAction.addToVault || OwnershipAction.none => FilledButton.icon(
         onPressed: _addingToVault ? null : _addToVault,
         style: _primaryActionButtonStyle(theme),
-        icon: _addingToVault
-            ? const SizedBox(
-                width: 16,
-                height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              )
-            : const Icon(Icons.add_circle_outline_rounded),
+        icon: _buildPrimaryActionIcon(Icons.add_rounded),
         label: Text(_addingToVault ? 'Adding...' : 'Add to Vault'),
       ),
       OwnershipAction.viewYourCopy => FilledButton.icon(
@@ -2771,14 +2480,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       OwnershipAction.addAnotherCopy => FilledButton.icon(
         onPressed: _addingToVault ? null : _addToVault,
         style: _primaryActionButtonStyle(theme),
-        icon: _addingToVault
-            ? const SizedBox(
-                width: 16,
-                height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              )
-            : const Icon(Icons.add_circle_outline_rounded),
-        label: Text(_addingToVault ? 'Adding...' : 'Add another copy'),
+        icon: _buildPrimaryActionIcon(Icons.add_rounded),
+        label: Text(_addingToVault ? 'Adding...' : 'Add copy'),
       ),
       OwnershipAction.openManageCard => FilledButton.icon(
         onPressed: _openManageCard,
@@ -2788,115 +2491,64 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       ),
     };
 
-    final actions = <Widget>[
-      primaryOwnershipAction,
-      OutlinedButton.icon(
-        onPressed: _wantLoading ? null : _toggleWant,
-        style: _accentActionButtonStyle(
-          theme,
-          colorScheme,
-          active: _wantState.want,
-        ),
-        icon: _wantLoading
-            ? const SizedBox(
-                width: 16,
-                height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              )
-            : Icon(
-                _wantState.want
+    return SafeArea(
+      top: false,
+      minimum: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: GvSurface(
+          variant: GvSurfaceVariant.glass,
+          borderRadius: 34,
+          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              primaryOwnershipAction,
+              const SizedBox(width: 6),
+              _buildGlassIconButton(
+                tooltip: _wantState.want ? 'Wanted' : 'Want this card',
+                icon: _wantState.want
                     ? Icons.favorite_rounded
                     : Icons.favorite_border_rounded,
+                active: _wantState.want,
+                onPressed: _wantLoading ? null : _toggleWant,
+                colorScheme: colorScheme,
               ),
-        label: Text(_wantState.want ? 'Wanted' : 'Want this card'),
+            ],
+          ),
+        ),
       ),
-      OutlinedButton.icon(
-        onPressed: _openCommentsSheet,
-        style: _secondaryActionButtonStyle(theme, colorScheme),
-        icon: const Icon(Icons.mode_comment_outlined),
-        label: const Text('Comments'),
-      ),
-      OutlinedButton.icon(
-        onPressed: _shareCard,
-        style: _secondaryActionButtonStyle(theme, colorScheme),
-        icon: const Icon(Icons.share_outlined),
-        label: const Text('Share'),
-      ),
-      if ((_ownershipState?.owned ?? false) &&
-          ownershipAction != OwnershipAction.addAnotherCopy)
-        OutlinedButton.icon(
-          onPressed: _addingToVault ? null : _addToVault,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.add_circle_outline_rounded),
-          label: const Text('Add another copy'),
-        ),
-      if ((_ownershipState?.hasExactCopy ?? false) &&
-          ownershipAction != OwnershipAction.viewYourCopy)
-        OutlinedButton.icon(
-          onPressed: _openResolvedOwnedCopy,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.collections_bookmark_outlined),
-          label: const Text('View your copy'),
-        ),
-      if (_canOpenPublicExactCopy)
-        OutlinedButton.icon(
-          onPressed: _openPublicExactCopy,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.public_outlined),
-          label: const Text('Open public page'),
-        ),
-      if (_canViewCollector)
-        OutlinedButton.icon(
-          onPressed: _openCollector,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.person_outline_rounded),
-          label: const Text('View collector'),
-        ),
-      if (_canCompare)
-        OutlinedButton.icon(
-          onPressed: _openCompareWorkspace,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.compare_arrows_rounded),
-          label: const Text('Compare'),
-        ),
-      if (_hasExactCopyContext)
-        OutlinedButton.icon(
-          onPressed: _openExactCopy,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.open_in_new_rounded),
-          label: const Text('Exact copy'),
-        ),
-      if (_resolvedSetCode.isNotEmpty)
-        OutlinedButton.icon(
-          onPressed: _openSetDetail,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.view_carousel_outlined),
-          label: const Text('Open set'),
-        ),
-      if (_relatedVersions.isNotEmpty)
-        OutlinedButton.icon(
-          onPressed: _openOtherVersions,
-          style: _secondaryActionButtonStyle(theme, colorScheme),
-          icon: const Icon(Icons.layers_outlined),
-          label: const Text('Versions'),
-        ),
-    ];
+    );
+  }
 
-    if (actions.isEmpty) {
-      return const SizedBox.shrink();
+  Widget _buildPrimaryActionIcon(IconData icon) {
+    if (!_addingToVault) {
+      return Icon(icon);
     }
 
-    return _buildSurface(
-      colorScheme: colorScheme,
-      soft: true,
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionLabel('Actions', theme, colorScheme),
-          const SizedBox(height: 8),
-          Wrap(spacing: 8, runSpacing: 8, children: actions),
-        ],
+    return const SizedBox(
+      width: 16,
+      height: 16,
+      child: CircularProgressIndicator(strokeWidth: 2),
+    );
+  }
+
+  Widget _buildGlassIconButton({
+    required String tooltip,
+    required IconData icon,
+    required bool active,
+    required VoidCallback? onPressed,
+    required ColorScheme colorScheme,
+  }) {
+    final tint = active ? colorScheme.error : colorScheme.onSurface;
+    return IconButton(
+      tooltip: tooltip,
+      onPressed: onPressed,
+      icon: Icon(icon),
+      color: tint.withValues(alpha: onPressed == null ? 0.34 : 0.78),
+      style: IconButton.styleFrom(
+        minimumSize: const Size.square(42),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
     );
   }
@@ -3022,7 +2674,7 @@ class _CardCommentsSheetState extends State<_CardCommentsSheet> {
                     'Comments',
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.4,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 4),

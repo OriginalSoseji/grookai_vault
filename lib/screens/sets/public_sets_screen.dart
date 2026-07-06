@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
+import '../../theme/gv_grid_constants.dart';
+import '../../widgets/gv_chip.dart';
 import 'public_set_detail_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
@@ -100,7 +102,13 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sets'),
+        title: Text(
+          'Sets',
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0,
+          ),
+        ),
         actions: [
           IconButton(
             tooltip: 'Reload',
@@ -113,125 +121,62 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         child: RefreshIndicator(
           onRefresh: _load,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 18, 16, 28),
+            padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
             children: [
-              _SetsSurfaceCard(
-                emphasize: true,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Public Sets'.toUpperCase(),
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1.1,
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.58,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Browse Pokemon sets',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Search, filter by era, or jump into collector lanes without scrolling through every set.',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Browse ${_sets.length} sets by era, language, and release lane.',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.72,
+                          alpha: 0.66,
                         ),
-                        height: 1.45,
+                        fontWeight: FontWeight.w600,
+                        height: 1.3,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 14),
+              TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: 'Search sets',
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 14),
               _SetsSurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        hintText: 'Search sets',
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                      onChanged: (_) => setState(() {}),
-                    ),
-                    const SizedBox(height: 14),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          _SetFilterChip(
-                            label: 'All Sets',
-                            selected: _activeFilter == PublicSetFilter.all,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.all;
-                              });
-                            },
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Filters'.toUpperCase(),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 1.0,
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.54,
+                              ),
+                            ),
                           ),
-                          const SizedBox(width: 8),
-                          _SetFilterChip(
-                            label: 'Modern',
-                            selected: _activeFilter == PublicSetFilter.modern,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.modern;
-                              });
-                            },
-                          ),
-                          const SizedBox(width: 8),
-                          _SetFilterChip(
-                            label: 'Special',
-                            selected: _activeFilter == PublicSetFilter.special,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.special;
-                              });
-                            },
-                          ),
-                          const SizedBox(width: 8),
-                          _SetFilterChip(
-                            label: 'A-Z',
-                            selected:
-                                _activeFilter == PublicSetFilter.alphabetical,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.alphabetical;
-                              });
-                            },
-                          ),
-                          const SizedBox(width: 8),
-                          _SetFilterChip(
-                            label: 'Newest',
-                            selected: _activeFilter == PublicSetFilter.newest,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.newest;
-                              });
-                            },
-                          ),
-                          const SizedBox(width: 8),
-                          _SetFilterChip(
-                            label: 'Oldest',
-                            selected: _activeFilter == PublicSetFilter.oldest,
-                            onSelected: () {
-                              setState(() {
-                                _activeFilter = PublicSetFilter.oldest;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                        ),
+                        _SetSortMenu(
+                          value: _activeFilter,
+                          onSelected: (value) {
+                            setState(() {
+                              _activeFilter = value;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 12),
                     _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
@@ -251,7 +196,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                     ),
                     const SizedBox(height: 12),
                     _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
-                      label: 'Type',
+                      label: 'Lane',
                       values: PublicSetsService.laneOptions,
                       selectedValue: _activeLane,
                       countFor: (value) => value == PublicSetLane.all
@@ -268,7 +213,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,11 +230,11 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                       children: PublicSetsService.eraOptions
                           .where((option) => option.value != PublicSetEra.all)
                           .map((option) {
-                            return _SetFacetChip(
+                            return GvChip(
                               label: option.label,
                               count: eraCounts[option.value] ?? 0,
                               selected: _activeEra == option.value,
-                              onTap: () {
+                              onSelected: (_) {
                                 setState(() {
                                   _activeEra = option.value;
                                 });
@@ -301,7 +246,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: _SetsSectionHeader(
                   title: trimmedQuery.isEmpty
@@ -356,36 +301,27 @@ class _SetsSurfaceCard extends StatelessWidget {
   const _SetsSurfaceCard({
     required this.child,
     this.padding = const EdgeInsets.all(18),
-    this.emphasize = false,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
-  final bool emphasize;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: emphasize ? 0.22 : 0.14),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(
-              alpha: emphasize ? 0.08 : 0.05,
-            ),
-            blurRadius: emphasize ? 28 : 22,
-            offset: Offset(0, emphasize ? 14 : 10),
-          ),
-        ],
-      ),
+    return Padding(
       padding: padding,
-      child: child,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Theme.of(
+                context,
+              ).colorScheme.outlineVariant.withValues(alpha: 0.18),
+            ),
+          ),
+        ),
+        child: Padding(padding: const EdgeInsets.only(top: 14), child: child),
+      ),
     );
   }
 }
@@ -408,7 +344,7 @@ class _SetsSectionHeader extends StatelessWidget {
           title,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
-            letterSpacing: -0.2,
+            letterSpacing: 0,
           ),
         ),
         const SizedBox(height: 6),
@@ -424,37 +360,89 @@ class _SetsSectionHeader extends StatelessWidget {
   }
 }
 
-class _SetFilterChip extends StatelessWidget {
-  const _SetFilterChip({
-    required this.label,
-    required this.selected,
-    required this.onSelected,
-  });
+class _SetSortMenu extends StatelessWidget {
+  const _SetSortMenu({required this.value, required this.onSelected});
 
-  final String label;
-  final bool selected;
-  final VoidCallback onSelected;
+  static const List<PublicSetFilter> _sortOptions = <PublicSetFilter>[
+    PublicSetFilter.all,
+    PublicSetFilter.newest,
+    PublicSetFilter.alphabetical,
+    PublicSetFilter.oldest,
+  ];
+
+  final PublicSetFilter value;
+  final ValueChanged<PublicSetFilter> onSelected;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
-    return ChoiceChip(
-      label: Text(label),
-      selected: selected,
-      onSelected: (_) => onSelected(),
-      selectedColor: colorScheme.primary.withValues(alpha: 0.14),
-      backgroundColor: colorScheme.surfaceContainerHighest.withValues(
-        alpha: 0.45,
+    return PopupMenuButton<PublicSetFilter>(
+      tooltip: 'Sort sets',
+      onSelected: onSelected,
+      itemBuilder: (context) {
+        return _sortOptions.map((option) {
+          final selected = option == value;
+          return PopupMenuItem<PublicSetFilter>(
+            value: option,
+            child: Row(
+              children: [
+                Expanded(child: Text(_setSortLabel(option))),
+                if (selected)
+                  Icon(Icons.check, size: 16, color: colorScheme.primary),
+              ],
+            ),
+          );
+        }).toList();
+      },
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.28),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.12),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Sort: ${_setSortLabel(value)}',
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.72),
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0,
+                ),
+              ),
+              const SizedBox(width: 6),
+              Icon(
+                Icons.expand_more,
+                size: 16,
+                color: colorScheme.onSurface.withValues(alpha: 0.62),
+              ),
+            ],
+          ),
+        ),
       ),
-      side: BorderSide(
-        color: selected
-            ? colorScheme.primary.withValues(alpha: 0.42)
-            : colorScheme.outline.withValues(alpha: 0.14),
-      ),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
     );
+  }
+}
+
+String _setSortLabel(PublicSetFilter value) {
+  switch (value) {
+    case PublicSetFilter.newest:
+      return 'Newest';
+    case PublicSetFilter.alphabetical:
+      return 'A-Z';
+    case PublicSetFilter.oldest:
+      return 'Oldest';
+    case PublicSetFilter.modern:
+    case PublicSetFilter.special:
+    case PublicSetFilter.all:
+      return 'Default';
   }
 }
 
@@ -502,102 +490,17 @@ class _SetChoiceRow<TValue, TOption> extends StatelessWidget {
               final selected = value == selectedValue;
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: _SetFacetChip(
+                child: GvChip(
                   label: labelFor(option),
                   count: countFor(value),
                   selected: selected,
-                  compact: true,
-                  onTap: () => onSelected(value),
+                  onSelected: (_) => onSelected(value),
                 ),
               );
             }).toList(),
           ),
         ),
       ],
-    );
-  }
-}
-
-class _SetFacetChip extends StatelessWidget {
-  const _SetFacetChip({
-    required this.label,
-    required this.count,
-    required this.selected,
-    required this.onTap,
-    this.compact = false,
-  });
-
-  final String label;
-  final int count;
-  final bool selected;
-  final VoidCallback onTap;
-  final bool compact;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final foreground = selected
-        ? colorScheme.onPrimary
-        : colorScheme.onSurface.withValues(alpha: 0.78);
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: selected
-                ? colorScheme.primary
-                : colorScheme.surfaceContainerHighest.withValues(alpha: 0.46),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: selected
-                  ? colorScheme.primary.withValues(alpha: 0.72)
-                  : colorScheme.outline.withValues(alpha: 0.14),
-            ),
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: compact ? 10 : 12,
-            vertical: compact ? 7 : 9,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                label,
-                style: theme.textTheme.labelLarge?.copyWith(
-                  color: foreground,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(width: 7),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: selected
-                      ? colorScheme.onPrimary.withValues(alpha: 0.16)
-                      : colorScheme.surface.withValues(alpha: 0.7),
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 2,
-                  ),
-                  child: Text(
-                    '$count',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: foreground.withValues(alpha: 0.78),
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
@@ -662,9 +565,9 @@ class _SetGrid extends StatelessWidget {
       itemCount: sets.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 14,
-        crossAxisSpacing: 14,
-        childAspectRatio: 0.94,
+        mainAxisSpacing: GvGridConstants.gridSpacing,
+        crossAxisSpacing: GvGridConstants.gridSpacing,
+        childAspectRatio: GvGridConstants.gridChildAspectRatio,
       ),
       itemBuilder: (context, index) {
         final setInfo = sets[index];
@@ -684,70 +587,96 @@ class _SetTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final infoParts = <String>[
+    final metaParts = <String>[
       if (setInfo.releaseYear != null) '${setInfo.releaseYear}',
-      if (setInfo.printedTotal != null) '${setInfo.printedTotal} cards',
+      '${setInfo.cardCount} cards',
     ];
+    final heroImageUrl = setInfo.heroImageUrl?.trim();
+    final hasHeroImage = heroImageUrl != null && heroImageUrl.isNotEmpty;
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.14),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: colorScheme.shadow.withValues(alpha: 0.05),
-                blurRadius: 22,
-                offset: const Offset(0, 10),
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(18),
+        child: Padding(
+          padding: const EdgeInsets.all(GvGridConstants.gridOuterPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                setInfo.code.toUpperCase(),
-                style: theme.textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.0,
-                  color: colorScheme.onSurface.withValues(alpha: 0.58),
+              AspectRatio(
+                aspectRatio: GvGridConstants.artworkAspectRatio,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    GvGridConstants.imageRadius,
+                  ),
+                  child: hasHeroImage
+                      ? Image.network(
+                          heroImageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return _SetHeroPlaceholder(setInfo: setInfo);
+                          },
+                        )
+                      : _SetHeroPlaceholder(setInfo: setInfo),
                 ),
               ),
-              const SizedBox(height: 10),
-              Expanded(
+              const SizedBox(height: GvGridConstants.imageToTitleGap),
+              SizedBox(
+                height: GvGridConstants.titleSlotHeight,
                 child: Text(
                   setInfo.name,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    height: 1.18,
-                  ),
+                  maxLines: GvGridConstants.titleMaxLines,
+                  overflow: TextOverflow.ellipsis,
+                  style: gvGridTitleStyle(theme),
                 ),
               ),
-              const SizedBox(height: 12),
-              Text(
-                infoParts.join(' • '),
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.72),
-                  height: 1.35,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                '${setInfo.cardCount} cards',
-                style: theme.textTheme.labelLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: colorScheme.primary,
+              const SizedBox(height: GvGridConstants.titleToSubtitleGap),
+              SizedBox(
+                height: GvGridConstants.subtitleSlotHeight,
+                child: Text(
+                  metaParts.join(' · '),
+                  maxLines: GvGridConstants.subtitleMaxLines,
+                  overflow: TextOverflow.ellipsis,
+                  style: gvGridSubtitleStyle(theme, colorScheme),
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SetHeroPlaceholder extends StatelessWidget {
+  const _SetHeroPlaceholder({required this.setInfo});
+
+  final PublicSetSummary setInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.28),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Text(
+            setInfo.code.toUpperCase(),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: colorScheme.primary,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.4,
+            ),
           ),
         ),
       ),

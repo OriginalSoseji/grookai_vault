@@ -7,13 +7,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
-import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
+import '../../widgets/app_shell_metrics.dart';
+import '../../widgets/gv_chip.dart';
+import '../../widgets/gv_surface.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
 import 'public_collector_relationship_screen.dart';
@@ -28,18 +31,6 @@ ResolvedDisplayIdentity _publicCollectorDisplayIdentity(
     setIdentityModel: card.setIdentityModel,
     setCode: card.setCode,
     number: card.number == '—' ? null : card.number,
-  );
-}
-
-ResolvedImagePresentation _publicCollectorImagePresentation(
-  PublicCollectorCard card,
-) {
-  return resolveImagePresentationFromFields(
-    imageUrl: card.imageUrl,
-    displayImageUrl: card.imageUrl,
-    displayImageKind: card.displayImageKind,
-    imageStatus: card.imageStatus,
-    imageNote: card.imageNote,
   );
 }
 
@@ -59,12 +50,16 @@ class PublicCollectorScreen extends StatefulWidget {
     required this.slug,
     this.initialSectionId,
     this.showAppBar = true,
+    this.embeddedInShell = false,
+    this.onOpenSettings,
     super.key,
   });
 
   final String slug;
   final String? initialSectionId;
   final bool showAppBar;
+  final bool embeddedInShell;
+  final VoidCallback? onOpenSettings;
 
   @override
   State<PublicCollectorScreen> createState() => _PublicCollectorScreenState();
@@ -130,7 +125,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       final result = await PublicCollectorService.loadBySlug(
         client: _client,
         slug: _normalizedSlug,
-      );
+      ).timeout(const Duration(seconds: 12));
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -154,7 +149,9 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       if (_selectedSectionId != _wallSectionId) {
         unawaited(_loadSectionCards(_selectedSectionId));
       }
-    } catch (_) {
+    } catch (error, stackTrace) {
+      debugPrint('PublicCollectorScreen load failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
       if (!mounted || loadVersion != _loadVersion) {
         return;
       }
@@ -186,7 +183,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         client: _client,
         slug: _normalizedSlug,
         sectionId: normalizedSectionId,
-      );
+      ).timeout(const Duration(seconds: 12));
       if (!mounted) {
         return;
       }
@@ -521,7 +518,11 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final body = _CollectorScaffoldBody(child: _buildBody());
+    final body = _CollectorScaffoldBody(
+      embeddedInShell: widget.embeddedInShell,
+      onRefresh: _load,
+      child: _buildBody(),
+    );
 
     if (!widget.showAppBar) {
       return body;
@@ -588,7 +589,8 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         );
       case PublicCollectorViewState.empty:
         final result = _result;
-        if (result?.profile == null) {
+        final profile = result?.profile;
+        if (profile == null) {
           return const _StateCard(
             icon: Icons.inbox_rounded,
             title: 'No public Wall content yet',
@@ -597,23 +599,32 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           );
         }
 
+        final isOwner = _isSelfProfile(profile);
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _PublicCollectorHeader(
-              profile: result!.profile!,
-              showFollowAction: _shouldShowFollowAction(result.profile),
+              profile: profile,
+              showFollowAction: _shouldShowFollowAction(profile),
               isFollowing: _isFollowing,
               followStateLoading: _followStateLoading,
               followActionBusy: _followActionBusy,
               onFollowPressed: _handleFollowAction,
             ),
             const SizedBox(height: 12),
-            const _StateCard(
-              icon: Icons.inbox_rounded,
-              title: 'No cards yet',
-              body: 'This collector does not have any public Wall content yet.',
-            ),
+            if (widget.embeddedInShell && isOwner)
+              _OwnerWallEmptyState(
+                onReload: _load,
+                onOpenSettings: widget.onOpenSettings,
+              )
+            else
+              const _StateCard(
+                icon: Icons.inbox_rounded,
+                title: 'No cards yet',
+                body:
+                    'This collector does not have any public Wall content yet.',
+              ),
           ],
         );
       case PublicCollectorViewState.success:
@@ -639,7 +650,9 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           onFollowPressed: _handleFollowAction,
         );
       case PublicCollectorViewState.failure:
-        return _failureCard();
+        return widget.embeddedInShell
+            ? _OwnerWallLoadFailureState(onReload: _load)
+            : _failureCard();
     }
   }
 
@@ -897,21 +910,95 @@ class _PublicCollectorSegmentedContentState
 }
 
 class _CollectorScaffoldBody extends StatelessWidget {
-  const _CollectorScaffoldBody({required this.child});
+  const _CollectorScaffoldBody({
+    required this.child,
+    required this.embeddedInShell,
+    required this.onRefresh,
+  });
 
   final Widget child;
+  final bool embeddedInShell;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final bottomPadding = embeddedInShell
+        ? shellContentBottomPadding(context, extra: 8)
+        : shellContentBottomPadding(context, extra: 8);
 
-    return SafeArea(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: colorScheme.surface),
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(10, 8, 10, 18),
-          children: [child],
-        ),
+    final scrollBody = RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: EdgeInsets.fromLTRB(10, 8, 10, bottomPadding),
+        children: [child],
+      ),
+    );
+
+    final decorated = DecoratedBox(
+      decoration: BoxDecoration(color: colorScheme.surface),
+      child: scrollBody,
+    );
+
+    if (embeddedInShell) {
+      return decorated;
+    }
+
+    return SafeArea(child: decorated);
+  }
+}
+
+class _OwnerWallEmptyState extends StatelessWidget {
+  const _OwnerWallEmptyState({required this.onReload, this.onOpenSettings});
+
+  final Future<void> Function() onReload;
+  final VoidCallback? onOpenSettings;
+
+  @override
+  Widget build(BuildContext context) {
+    return _StateCard(
+      icon: Icons.dashboard_customize_outlined,
+      title: 'Your Wall has no visible cards yet',
+      body:
+          'Cards appear here after an exact copy is set to Showcase, Trade, or Sell. If you already added cards, refresh the Wall or check your public profile settings.',
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          FilledButton.icon(
+            onPressed: () => unawaited(onReload()),
+            icon: const Icon(Icons.refresh_rounded),
+            label: const Text('Refresh Wall'),
+          ),
+          if (onOpenSettings != null)
+            OutlinedButton.icon(
+              onPressed: onOpenSettings,
+              icon: const Icon(Icons.settings_outlined),
+              label: const Text('Account settings'),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OwnerWallLoadFailureState extends StatelessWidget {
+  const _OwnerWallLoadFailureState({required this.onReload});
+
+  final Future<void> Function() onReload;
+
+  @override
+  Widget build(BuildContext context) {
+    return _StateCard(
+      icon: Icons.wifi_tethering_error_rounded,
+      title: 'Unable to load My Wall',
+      body:
+          'The Wall data could not be loaded right now. Refresh to try again.',
+      action: FilledButton.icon(
+        onPressed: () => unawaited(onReload()),
+        icon: const Icon(Icons.refresh_rounded),
+        label: const Text('Retry'),
       ),
     );
   }
@@ -1006,49 +1093,12 @@ class _SectionRailChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return ChoiceChip(
+    return GvChip(
+      label: label,
+      count: count,
       selected: selected,
       onSelected: (_) => onTap(),
-      label: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 132),
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-          const SizedBox(width: 5),
-          if (loading)
-            SizedBox(
-              width: 12,
-              height: 12,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: selected
-                    ? colorScheme.onPrimary
-                    : colorScheme.onSurface.withValues(alpha: 0.72),
-              ),
-            )
-          else
-            Text(
-              '$count',
-              style: theme.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: selected
-                    ? colorScheme.onPrimary.withValues(alpha: 0.78)
-                    : colorScheme.onSurface.withValues(alpha: 0.58),
-              ),
-            ),
-        ],
-      ),
+      enabled: !loading,
     );
   }
 }
@@ -1084,19 +1134,8 @@ class _PublicCollectorHeader extends StatelessWidget {
         ? null
         : GrookaiWebRouteService.buildUri('/u/${profile.slug}');
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.06),
-            colorScheme.primaryContainer.withValues(alpha: 0.26),
-          ],
-        ),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
       padding: const EdgeInsets.fromLTRB(12, 11, 12, 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1110,8 +1149,8 @@ class _PublicCollectorHeader extends StatelessWidget {
                 Text(
                   displayName,
                   style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: -0.45,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0,
                     height: 1.0,
                   ),
                   maxLines: 1,
@@ -1319,12 +1358,8 @@ class _WallSectionCard extends StatelessWidget {
       return child!;
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
+    return GvSurface(
+      variant: GvSurfaceVariant.grouped,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1420,11 +1455,11 @@ class _PublicCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = _publicCollectorDisplayIdentity(card);
-    final imagePresentation = _publicCollectorImagePresentation(card);
     final metaParts = [
       card.setName ?? card.setCode,
       card.number != '—' ? '#${card.number}' : null,
       card.rarity,
+      card.conditionLabel,
     ].whereType<String>().toList();
     void openCardDetails() {
       final gvviId = (card.gvviId ?? '').trim();
@@ -1449,102 +1484,66 @@ class _PublicCardTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: openCardDetails,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             AspectRatio(
-              aspectRatio: 0.69,
+              aspectRatio: GvGridConstants.artworkAspectRatio,
               child: Stack(
                 children: [
                   Positioned.fill(
                     child: CardSurfaceArtwork(
                       label: displayIdentity.displayName,
                       imageUrl: card.imageUrl,
-                      borderRadius: 22,
-                      padding: const EdgeInsets.all(1.5),
-                      backgroundColor: colorScheme.surfaceContainerLow
-                          .withValues(alpha: 0.52),
+                      borderRadius: GvGridConstants.imageRadius,
+                      padding: EdgeInsets.zero,
                       onViewDetails: openCardDetails,
                     ),
                   ),
-                  if (imagePresentation.compactBadgeLabel != null)
+                  if (card.intent == 'trade' || card.intent == 'sell')
                     Positioned(
                       left: 6,
                       bottom: 6,
                       right: 6,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: _ImageStatusBadge(
-                          label: imagePresentation.compactBadgeLabel!,
-                          strong: imagePresentation.isCollisionRepresentative,
+                        child: _TileBadge(
+                          label: _intentLabel(card.intent!),
+                          tone: _intentTone(card.intent!),
                         ),
                       ),
                     ),
                 ],
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: GvGridConstants.imageToTitleGap),
             SizedBox(
-              height: 40,
+              height: GvGridConstants.titleSlotHeight,
               child: Text(
                 displayIdentity.displayName,
-                maxLines: 2,
+                maxLines: GvGridConstants.titleMaxLines,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  height: 1.04,
-                  letterSpacing: -0.3,
-                ),
+                style: gvGridTitleStyle(theme),
               ),
             ),
-            const SizedBox(height: 3),
+            const SizedBox(height: GvGridConstants.titleToSubtitleGap),
             SizedBox(
-              height: 22,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Text(
-                      metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.60),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.02,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  _buildPricePill(card),
-                ],
+              height: GvGridConstants.subtitleSlotHeight,
+              child: Text(
+                metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
+                maxLines: GvGridConstants.subtitleMaxLines,
+                overflow: TextOverflow.ellipsis,
+                style: gvGridSubtitleStyle(theme, colorScheme),
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: GvGridConstants.subtitleToPriceGap),
             SizedBox(
-              height: 22,
+              height: GvGridConstants.priceSlotHeight,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Wrap(
-                  spacing: 5,
-                  runSpacing: 5,
-                  children: [
-                    if (card.intent != null)
-                      _TileBadge(
-                        label: _intentLabel(card.intent!),
-                        tone: _intentTone(card.intent!),
-                      )
-                    else
-                      const _TileBadge(label: 'Wall', tone: _BadgeTone.neutral),
-                    if (card.conditionLabel != null)
-                      _TileBadge(
-                        label: card.conditionLabel!,
-                        tone: _BadgeTone.neutral,
-                      ),
-                  ],
-                ),
+                child: _buildPricePill(card),
               ),
             ),
             if (ownershipState != null) ...[
@@ -1599,7 +1598,7 @@ class _PublicCardTile extends StatelessWidget {
       return const _PricePlaceholderPill(label: 'Private');
     }
 
-    return CardSurfacePricePill(
+    return CardSurfacePriceText(
       pricing: card.pricing,
       size: CardSurfacePriceSize.grid,
       mode: displayMode == 'my_price'
@@ -1658,19 +1657,19 @@ class _TileBadge extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final colors = switch (tone) {
       _BadgeTone.trade => (
-        background: const Color(0xFFF2FAF5),
-        border: const Color(0xFFD8ECDC),
-        foreground: const Color(0xFF2F6B48),
+        background: colorScheme.primaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.primary.withValues(alpha: 0.20),
+        foreground: colorScheme.onPrimaryContainer,
       ),
       _BadgeTone.sell => (
-        background: const Color(0xFFF3F7FD),
-        border: const Color(0xFFD7E4F4),
-        foreground: const Color(0xFF45658A),
+        background: colorScheme.secondaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.secondary.withValues(alpha: 0.20),
+        foreground: colorScheme.onSecondaryContainer,
       ),
       _BadgeTone.showcase => (
-        background: const Color(0xFFFFF6EA),
-        border: const Color(0xFFF0DFC1),
-        foreground: const Color(0xFF8A6535),
+        background: colorScheme.tertiaryContainer.withValues(alpha: 0.92),
+        border: colorScheme.tertiary.withValues(alpha: 0.20),
+        foreground: colorScheme.onTertiaryContainer,
       ),
       _BadgeTone.neutral => (
         background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
@@ -1692,49 +1691,6 @@ class _TileBadge extends StatelessWidget {
           color: colors.foreground,
           fontWeight: FontWeight.w600,
           height: 1.0,
-        ),
-      ),
-    );
-  }
-}
-
-class _ImageStatusBadge extends StatelessWidget {
-  const _ImageStatusBadge({required this.label, this.strong = false});
-
-  final String label;
-  final bool strong;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final backgroundColor = strong
-        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
-        : colorScheme.surface.withValues(alpha: 0.94);
-    final borderColor = strong
-        ? colorScheme.tertiary.withValues(alpha: 0.22)
-        : colorScheme.outline.withValues(alpha: 0.12);
-    final textColor = strong
-        ? colorScheme.onTertiaryContainer
-        : colorScheme.onSurface.withValues(alpha: 0.78);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: borderColor),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-        child: Text(
-          label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: textColor,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 0.2,
-          ),
         ),
       ),
     );
@@ -1782,38 +1738,28 @@ class _ProfileStatChip extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onTap,
-        child: Ink(
-          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
-          decoration: BoxDecoration(
-            color: colorScheme.surface.withValues(alpha: 0.72),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: colorScheme.onSurface.withValues(alpha: 0.06),
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 14,
+              color: colorScheme.onSurface.withValues(alpha: 0.44),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                size: 14,
-                color: colorScheme.primary.withValues(alpha: 0.82),
+            const SizedBox(width: 5),
+            Text(
+              label,
+              style: theme.textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: colorScheme.onSurface.withValues(alpha: 0.64),
               ),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: colorScheme.onSurface.withValues(alpha: 0.72),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -1860,7 +1806,7 @@ class _AvatarBadge extends StatelessWidget {
                     child: Text(
                       initials,
                       style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         color: colorScheme.onPrimaryContainer,
                       ),
                     ),
@@ -1872,7 +1818,7 @@ class _AvatarBadge extends StatelessWidget {
                       child: Text(
                         initials,
                         style: theme.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w700,
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),
@@ -1955,7 +1901,7 @@ class _StateCard extends StatelessWidget {
                   'Public Wall',
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: colorScheme.primary,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w700,
                     letterSpacing: 0.2,
                   ),
                 ),
@@ -1967,7 +1913,7 @@ class _StateCard extends StatelessWidget {
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 6),

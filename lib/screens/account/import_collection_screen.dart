@@ -163,7 +163,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                     'Import your collection',
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.4,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -228,7 +228,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                                 'Import Preview',
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.3,
+                                  letterSpacing: 0,
                                 ),
                               ),
                               const SizedBox(height: 4),

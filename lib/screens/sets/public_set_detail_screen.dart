@@ -8,6 +8,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 import '../../widgets/card_surface_price.dart';
@@ -212,7 +213,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
                               fontWeight: FontWeight.w800,
-                              letterSpacing: -0.55,
+                              letterSpacing: 0,
                             ),
                       ),
                       const SizedBox(height: 4),
@@ -843,7 +844,7 @@ class _SetCardTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute<void>(
@@ -861,7 +862,7 @@ class _SetCardTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: colorScheme.surface.withValues(alpha: 0.72),
-            borderRadius: BorderRadius.circular(compact ? 18 : 20),
+            borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.08),
             ),
@@ -893,6 +894,18 @@ class _SetCardTile extends StatelessWidget {
                                 height: 1.08,
                               ),
                     ),
+                    if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+                      SizedBox(height: compact ? 3 : 4),
+                      Text(
+                        displayIdentity.printedName!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.62),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                     if (variantLabel != null) ...[
                       SizedBox(height: compact ? 3 : 4),
                       Text(
@@ -934,7 +947,7 @@ class _SetCardTile extends StatelessWidget {
                     SizedBox(height: compact ? 5 : 6),
                     SizedBox(
                       height: 22,
-                      child: CardSurfacePricePill(
+                      child: CardSurfacePriceText(
                         pricing: card.pricing,
                         size: compact
                             ? CardSurfacePriceSize.dense
@@ -1017,7 +1030,7 @@ class _SetCardArtwork extends StatelessWidget {
       imageUrl: card.displayImageUrl,
       width: compact ? 68 : 86,
       height: compact ? 94 : 118,
-      borderRadius: 18,
+      borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.5),
       onTapToZoom: onOpenViewer,
     );
@@ -1044,9 +1057,9 @@ class _SetCardGridTile extends StatelessWidget {
 
     return Material(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => CardDetailScreen(
@@ -1072,7 +1085,7 @@ class _SetCardGridTile extends StatelessWidget {
                       // ordering and supports previous/next swipe navigation.
                       label: _setCardArtworkLabel(card),
                       imageUrl: card.displayImageUrl,
-                      borderRadius: 18,
+                      borderRadius: GvGridConstants.imageRadius,
                       padding: const EdgeInsets.all(1.5),
                       backgroundColor: colorScheme.surfaceContainerLow
                           .withValues(alpha: 0.52),

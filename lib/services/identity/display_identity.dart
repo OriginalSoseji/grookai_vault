@@ -1,14 +1,17 @@
 import '../../models/card_print.dart';
+import 'pokemon_japanese_name_map.dart';
 
 class ResolvedDisplayIdentity {
   const ResolvedDisplayIdentity({
     required this.displayName,
     required this.baseName,
+    required this.printedName,
     required this.suffix,
   });
 
   final String displayName;
   final String baseName;
+  final String? printedName;
   final String? suffix;
 }
 
@@ -89,6 +92,10 @@ const Set<String> _nonMeaningfulVariantKeys = <String>{
   'standard',
   'none',
 };
+
+final List<MapEntry<String, String>> _japanesePokemonNameRules =
+    japanesePokemonNameToEnglish.entries.toList(growable: false)
+      ..sort((left, right) => right.key.length.compareTo(left.key.length));
 
 String _normalizeToken(String? value) {
   return (value ?? '').trim().toLowerCase().replaceAll(RegExp(r'[\s-]+'), '_');
@@ -173,6 +180,61 @@ String? formatSearchContextLabel(String? value) {
   return null;
 }
 
+bool _containsJapaneseText(String value) {
+  return RegExp(r'[\u3040-\u30ff\u3400-\u9fff]').hasMatch(value);
+}
+
+String _normalizeTrailingPrintedSuffix(String value) {
+  final suffix = value.trim().replaceAll(RegExp(r'\s+'), '');
+  if (suffix.isEmpty) {
+    return '';
+  }
+  if (suffix == '（デルタ種）') {
+    return 'Delta Species';
+  }
+  return RegExp(
+        r'^[a-z0-9][a-z0-9.+-]*$',
+        caseSensitive: false,
+      ).hasMatch(suffix)
+      ? suffix
+      : '';
+}
+
+String? _resolveEnglishPrimaryNameForJapanesePrintedName(String value) {
+  final normalized = value.trim();
+  final specialPikachuRules = <MapEntry<String, String>>[
+    const MapEntry('そらをとぶピカチュウ', 'Flying Pikachu'),
+    const MapEntry('なみのりピカチュウ', 'Surfing Pikachu'),
+    const MapEntry('ピカチュウ', 'Pikachu'),
+  ];
+
+  for (final rule in specialPikachuRules) {
+    if (!normalized.startsWith(rule.key)) {
+      continue;
+    }
+    final suffix = _normalizeTrailingPrintedSuffix(
+      normalized.substring(rule.key.length),
+    );
+    return suffix.isEmpty ? rule.value : '${rule.value} $suffix';
+  }
+
+  if (!_containsJapaneseText(normalized)) {
+    return null;
+  }
+
+  for (final rule in _japanesePokemonNameRules) {
+    if (!normalized.startsWith(rule.key)) {
+      continue;
+    }
+    final suffix = _normalizeTrailingPrintedSuffix(
+      normalized.substring(rule.key.length),
+    );
+    return suffix.isEmpty ? rule.value : '${rule.value} $suffix';
+  }
+
+  return null;
+}
+
 ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   required String? name,
   String? variantKey,
@@ -186,7 +248,17 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   String? number,
   Map<String, String?>? externalIds,
 }) {
-  final baseName = (name ?? '').trim().isEmpty ? 'Unknown card' : name!.trim();
+  final rawBaseName = (name ?? '').trim().isEmpty
+      ? 'Unknown card'
+      : name!.trim();
+  final englishPrimaryName = _resolveEnglishPrimaryNameForJapanesePrintedName(
+    rawBaseName,
+  );
+  final baseName = englishPrimaryName ?? rawBaseName;
+  final printedName =
+      englishPrimaryName != null && englishPrimaryName != rawBaseName
+      ? rawBaseName
+      : null;
 
   var suffix = formatSearchContextLabel(displayDiscriminator);
   if (suffix == null && searchObjectType == 'child_printing') {
@@ -209,6 +281,7 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   return ResolvedDisplayIdentity(
     displayName: suffix == null ? baseName : '$baseName · $suffix',
     baseName: baseName,
+    printedName: printedName,
     suffix: suffix,
   );
 }

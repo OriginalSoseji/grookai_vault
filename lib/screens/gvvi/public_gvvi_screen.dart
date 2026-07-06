@@ -298,7 +298,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           ? _PublicGvviStateCard(
               icon: Icons.style_outlined,
               title: 'Exact copy unavailable',
-              body: _error ?? 'This GVVI could not be loaded.',
+              body: _error ?? 'This copy could not be loaded.',
             )
           : SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(16, 10, 16, 22),
@@ -311,7 +311,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     _data!.cardName,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.5,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -805,7 +805,7 @@ class _PublicGvviPriceRow extends StatelessWidget {
                     : 'No market reference available.'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.45,
+              letterSpacing: 0,
             ),
           ),
           if ((supporting ?? '').trim().isNotEmpty) ...[
@@ -845,7 +845,7 @@ class _CompactIdentityGrid extends StatelessWidget {
       spacing: 8,
       runSpacing: 8,
       children: [
-        _ExactCopyMeta(label: 'GVVI', value: data.gvviId),
+        _ExactCopyMeta(label: 'Copy ID', value: data.gvviId),
         _ExactCopyMeta(label: 'Set', value: data.setCode),
         _ExactCopyMeta(label: 'Number', value: data.number),
         _ExactCopyMeta(

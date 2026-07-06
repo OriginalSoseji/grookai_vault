@@ -60,27 +60,6 @@ class _VaultItemTile extends StatelessWidget {
     }
     final subtitle = subtitleParts.join(' - ');
 
-    Color condColor;
-    switch (cond) {
-      case 'NM':
-        condColor = Colors.green;
-        break;
-      case 'LP':
-        condColor = Colors.lightGreen;
-        break;
-      case 'MP':
-        condColor = Colors.orange;
-        break;
-      case 'HP':
-        condColor = Colors.deepOrange;
-        break;
-      case 'DMG':
-        condColor = Colors.red;
-        break;
-      default:
-        condColor = Colors.grey;
-    }
-
     Widget thumb() {
       return CardSurfaceArtwork(
         label: displayIdentity.displayName,
@@ -94,42 +73,21 @@ class _VaultItemTile extends StatelessWidget {
       );
     }
 
-    Widget condChip() {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: condColor.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: condColor.withValues(alpha: 0.8),
-            width: 0.7,
-          ),
-        ),
-        child: Text(
-          cond,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: condColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      );
-    }
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: compact ? 4 : 8, vertical: 3),
       child: Dismissible(
         key: ValueKey(id),
         background: Container(
-          color: Colors.red,
+          color: colorScheme.error,
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(left: 16),
-          child: const Icon(Icons.delete, color: Colors.white),
+          child: Icon(Icons.delete, color: colorScheme.onError),
         ),
         secondaryBackground: Container(
-          color: Colors.red,
+          color: colorScheme.error,
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: 16),
-          child: const Icon(Icons.delete, color: Colors.white),
+          child: Icon(Icons.delete, color: colorScheme.onError),
         ),
         confirmDismiss: (_) async {
           if (onDelete == null) {
@@ -139,7 +97,7 @@ class _VaultItemTile extends StatelessWidget {
           return false;
         },
         child: Material(
-          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+          color: colorScheme.surface.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(compact ? 10 : 12),
           child: InkWell(
             borderRadius: BorderRadius.circular(compact ? 10 : 12),
@@ -183,7 +141,7 @@ class _VaultItemTile extends StatelessWidget {
                         ],
                         if (pricing?.hasVisibleValue == true) ...[
                           SizedBox(height: compact ? 4 : 5),
-                          CardSurfacePricePill(
+                          CardSurfacePriceText(
                             pricing: pricing,
                             size: compact
                                 ? CardSurfacePriceSize.dense
@@ -201,44 +159,57 @@ class _VaultItemTile extends StatelessWidget {
                           ),
                         ],
                         SizedBox(height: compact ? 4 : 5),
-                        Wrap(
-                          spacing: 6,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            condChip(),
-                            Text(
-                              'Qty: $ownedCount',
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                fontSize: compact ? 11.5 : null,
-                              ),
+                        Text(
+                          '$cond · $ownedCount ${ownedCount == 1 ? 'copy' : 'copies'}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.62,
                             ),
-                          ],
+                            fontWeight: FontWeight.w600,
+                            fontSize: compact ? 11.5 : null,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(width: compact ? 0 : 4),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.camera_alt, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onScan,
-                        tooltip: 'Scan (Condition + Fingerprint)',
+                  PopupMenuButton<_VaultGridAction>(
+                    tooltip: 'Card actions',
+                    icon: const Icon(Icons.more_horiz_rounded),
+                    onSelected: (action) {
+                      switch (action) {
+                        case _VaultGridAction.scan:
+                          onScan?.call();
+                          break;
+                        case _VaultGridAction.add:
+                          onIncrement?.call();
+                          break;
+                        case _VaultGridAction.remove:
+                          onDecrement?.call();
+                          break;
+                        case _VaultGridAction.delete:
+                          onDelete?.call();
+                          break;
+                      }
+                    },
+                    itemBuilder: (context) => const [
+                      PopupMenuItem(
+                        value: _VaultGridAction.scan,
+                        child: Text('Scan card'),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.add, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onIncrement,
-                        tooltip: 'Increase quantity',
+                      PopupMenuItem(
+                        value: _VaultGridAction.add,
+                        child: Text('Add quantity'),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.remove, size: compact ? 16 : 18),
-                        visualDensity: VisualDensity.compact,
-                        onPressed: onDecrement,
-                        tooltip: 'Decrease quantity',
+                      PopupMenuItem(
+                        value: _VaultGridAction.remove,
+                        child: Text('Remove quantity'),
+                      ),
+                      PopupMenuItem(
+                        value: _VaultGridAction.delete,
+                        child: Text('Delete item'),
                       ),
                     ],
                   ),
@@ -300,26 +271,21 @@ class _VaultGridTile extends StatelessWidget {
       'Qty $quantity',
     ];
     final metaLine = metaParts.join(' • ');
-    const imageBottomSpacing = 4.0;
-    const titleSlotHeight = 29.0;
-    const metaSlotHeight = 14.0;
-    const priceSlotHeight = 20.0;
-
     return Material(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.30),
-      borderRadius: BorderRadius.circular(15),
+      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
+      borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
       child: InkWell(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
                   AspectRatio(
-                    aspectRatio: 0.69,
+                    aspectRatio: GvGridConstants.artworkAspectRatio,
                     child: _VaultGridArtwork(
                       imageUrl: imageUrl,
                       name: displayIdentity.displayName,
@@ -335,7 +301,7 @@ class _VaultGridTile extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       icon: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: colorScheme.surface.withValues(alpha: 0.84),
+                          color: colorScheme.surface.withValues(alpha: 0.72),
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: const Padding(
@@ -381,43 +347,35 @@ class _VaultGridTile extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: imageBottomSpacing),
+              const SizedBox(height: GvGridConstants.imageToTitleGap),
               SizedBox(
-                height: titleSlotHeight,
+                height: GvGridConstants.titleSlotHeight,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     displayIdentity.displayName,
-                    maxLines: 2,
+                    maxLines: GvGridConstants.titleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      height: 1.05,
-                    ),
+                    style: gvGridTitleStyle(theme),
                   ),
                 ),
               ),
-              const SizedBox(height: 1),
+              const SizedBox(height: GvGridConstants.titleToSubtitleGap),
               SizedBox(
-                height: metaSlotHeight,
+                height: GvGridConstants.subtitleSlotHeight,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     metaLine,
-                    maxLines: 1,
+                    maxLines: GvGridConstants.subtitleMaxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.68),
-                      fontSize: 10.2,
-                      fontWeight: FontWeight.w600,
-                      height: 1.0,
-                    ),
+                    style: gvGridSubtitleStyle(theme, colorScheme),
                   ),
                 ),
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: GvGridConstants.subtitleToPriceGap),
               SizedBox(
-                height: priceSlotHeight,
+                height: GvGridConstants.priceSlotHeight,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Visibility(
@@ -425,7 +383,7 @@ class _VaultGridTile extends StatelessWidget {
                     maintainAnimation: true,
                     maintainState: true,
                     maintainSize: true,
-                    child: CardSurfacePricePill(
+                    child: CardSurfacePriceText(
                       pricing: pricing,
                       size: CardSurfacePriceSize.grid,
                     ),
@@ -456,7 +414,7 @@ class _VaultGridArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: name,
       imageUrl: imageUrl,
-      borderRadius: 13,
+      borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.0),
       onViewDetails: onViewDetails,
       detailsLabel: 'Manage card',
@@ -577,6 +535,20 @@ class VaultPageState extends State<VaultPage> {
         .where((value) => value.isNotEmpty)
         .toSet()
         .length;
+    var estimatedValue = 0.0;
+    var pricedUniqueCount = 0;
+    var pricedCopyCount = 0;
+    for (final row in _items) {
+      final cardPrintId = (row['card_id'] ?? '').toString().trim();
+      final visiblePrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
+      final ownedCount = _ownedCountForRow(row);
+      if (visiblePrice == null || ownedCount <= 0) {
+        continue;
+      }
+      estimatedValue += visiblePrice * ownedCount;
+      pricedUniqueCount += 1;
+      pricedCopyCount += ownedCount;
+    }
 
     _derivedData = _VaultDerivedData(
       sortedRows: sortedRows,
@@ -590,6 +562,8 @@ class VaultPageState extends State<VaultPage> {
       totalCards: totalCards,
       setCount: setCount,
       lastAddedLabel: _lastAddedLabel(_items),
+      estimatedValue: pricedUniqueCount == 0 ? null : estimatedValue,
+      pricedCopyCount: pricedCopyCount,
     );
   }
 
@@ -779,22 +753,12 @@ class VaultPageState extends State<VaultPage> {
 
   void _handleSearchChanged() {
     final nextValue = _searchController.text;
-    if (_view == _VaultStructuralView.pokemon) {
-      if (nextValue == _pokemonSearch) {
-        return;
-      }
-      setState(() {
-        _pokemonSearch = nextValue;
-        _recomputeDerivedData();
-      });
-      return;
-    }
-
-    if (nextValue == _search) {
+    if (nextValue == _search && nextValue == _pokemonSearch) {
       return;
     }
     setState(() {
       _search = nextValue;
+      _pokemonSearch = nextValue;
       _recomputeDerivedData();
     });
   }
@@ -807,11 +771,6 @@ class VaultPageState extends State<VaultPage> {
     setState(() {
       _view = view;
     });
-    _replaceSearchControllerText(_activeSearchValueForView(view));
-  }
-
-  String _activeSearchValueForView(_VaultStructuralView view) {
-    return view == _VaultStructuralView.pokemon ? _pokemonSearch : _search;
   }
 
   void _replaceSearchControllerText(String value) {
@@ -1042,10 +1001,14 @@ class VaultPageState extends State<VaultPage> {
             child: Material(
               color: Theme.of(
                 context,
-              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.45),
-              borderRadius: BorderRadius.circular(20),
+              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(
+                GvGridConstants.tileTapRadius,
+              ),
               child: InkWell(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(
+                  GvGridConstants.tileTapRadius,
+                ),
                 onTap: cardPrintId.isEmpty
                     ? null
                     : () => _openManageCardRow(row),
@@ -1061,7 +1024,7 @@ class VaultPageState extends State<VaultPage> {
                             imageUrl: imageUrl,
                             width: 88,
                             height: 118,
-                            borderRadius: 14,
+                            borderRadius: GvGridConstants.imageRadius,
                             padding: const EdgeInsets.all(5),
                             onViewDetails: cardPrintId.isEmpty
                                 ? null
@@ -1092,7 +1055,7 @@ class VaultPageState extends State<VaultPage> {
                       ),
                       if (pricing?.hasVisibleValue == true) ...[
                         const SizedBox(height: 6),
-                        CardSurfacePricePill(
+                        CardSurfacePriceText(
                           pricing: pricing,
                           size: CardSurfacePriceSize.dense,
                         ),
@@ -1108,18 +1071,129 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
-  Widget _buildVaultViewChip(_VaultStructuralView view, String label) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: _view == view,
-      onSelected: (_) => _setView(view),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-      labelStyle: Theme.of(
-        context,
-      ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w600),
-      labelPadding: const EdgeInsets.symmetric(horizontal: 2),
+  String _vaultViewLabel(_VaultStructuralView view) {
+    return switch (view) {
+      _VaultStructuralView.all => 'All',
+      _VaultStructuralView.onWall => 'Wall',
+      _VaultStructuralView.duplicates => 'Duplicates',
+      _VaultStructuralView.recent => 'Recent',
+      _VaultStructuralView.bySet => 'Sets',
+      _VaultStructuralView.pokemon => 'Pokemon',
+    };
+  }
+
+  int get _activeVaultFilterCount {
+    return _view == _VaultStructuralView.all ? 0 : 1;
+  }
+
+  Widget _buildVaultFilterButton(ThemeData theme) {
+    final colorScheme = theme.colorScheme;
+    final activeCount = _activeVaultFilterCount;
+    return OutlinedButton.icon(
+      onPressed: _openVaultFiltersSheet,
+      icon: const Icon(Icons.tune_rounded, size: 18),
+      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
+      style: OutlinedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
+        side: BorderSide(
+          color: activeCount == 0
+              ? colorScheme.outline.withValues(alpha: 0.26)
+              : colorScheme.primary.withValues(alpha: 0.7),
+        ),
+        backgroundColor: activeCount == 0
+            ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.24)
+            : colorScheme.primary.withValues(alpha: 0.1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        textStyle: theme.textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
+  }
+
+  Future<void> _openVaultFiltersSheet() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final theme = Theme.of(context);
+            final colorScheme = theme.colorScheme;
+            final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
+            void selectView(_VaultStructuralView view) {
+              _setView(view);
+              setSheetState(() {});
+            }
+
+            return Padding(
+              padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + bottomInset),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Filters',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Choose how your vault is grouped.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.64),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'View',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final view in _VaultStructuralView.values)
+                          GvChip(
+                            label: _vaultViewLabel(view),
+                            selected: _view == view,
+                            onSelected: (_) => selectView(view),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  String _formatVaultValue(double value) {
+    if (value >= 1000000) {
+      return '\$${(value / 1000000).toStringAsFixed(2)}M';
+    }
+    if (value >= 10000) {
+      return '\$${(value / 1000).toStringAsFixed(1)}K';
+    }
+    if (value >= 1000) {
+      return '\$${value.toStringAsFixed(0)}';
+    }
+    return '\$${value.toStringAsFixed(2)}';
   }
 
   Future<void> _openManageCardRow(Map<String, dynamic> row) async {
@@ -1283,9 +1357,11 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Your vault is empty'
+                    : 'No matching cards',
+                _search.trim().isEmpty
+                    ? 'Scan or search to add your first card.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1311,9 +1387,9 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
+                _search.trim().isEmpty ? 'No duplicates' : 'No matching cards',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Every card in your vault is one of a kind.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1339,9 +1415,9 @@ class VaultPageState extends State<VaultPage> {
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                'No cards found in your vault',
+                _search.trim().isEmpty ? 'Nothing recent' : 'No matching cards',
                 _search.trim().isEmpty
-                    ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+                    ? 'Nothing added in the last 30 days.'
                     : 'Try a different search term or clear the current query.',
               ),
             ),
@@ -1420,6 +1496,7 @@ class VaultPageState extends State<VaultPage> {
                           onPressed: () {
                             _replaceSearchControllerText(suggestion);
                             setState(() {
+                              _search = suggestion;
                               _pokemonSearch = suggestion;
                               _recomputeDerivedData();
                             });
@@ -1448,7 +1525,7 @@ class VaultPageState extends State<VaultPage> {
                 child: _buildVaultMessage(
                   _pokemonSearch.trim().isNotEmpty
                       ? 'No matching cards'
-                      : 'No cards found in your vault',
+                      : 'Your vault is empty',
                   _pokemonSearch.trim().isNotEmpty
                       ? 'Try a different Pokemon name.'
                       : 'Add cards to start browsing by Pokemon name.',
@@ -1479,7 +1556,21 @@ class VaultPageState extends State<VaultPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '$totalCards cards • ${_items.length} unique • $setCount sets • ${derivedData.lastAddedLabel}',
+                    derivedData.estimatedValue == null
+                        ? 'Grookai Value'
+                        : _formatVaultValue(derivedData.estimatedValue!),
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.w700,
+                      height: 1.0,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    derivedData.estimatedValue == null
+                        ? '$totalCards cards • ${_items.length} unique • $setCount sets • Value pending'
+                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies • 30d trend pending',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(
                         alpha: 0.66,
@@ -1494,9 +1585,7 @@ class VaultPageState extends State<VaultPage> {
                         child: TextField(
                           controller: _searchController,
                           decoration: InputDecoration(
-                            hintText: _view == _VaultStructuralView.pokemon
-                                ? 'Search Pokemon'
-                                : 'Search vault',
+                            hintText: 'Search vault · by card, set, or Pokemon',
                             prefixIcon: const Icon(Icons.search),
                             isDense: true,
                             contentPadding: const EdgeInsets.symmetric(
@@ -1535,52 +1624,20 @@ class VaultPageState extends State<VaultPage> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
+                      _buildVaultFilterButton(theme),
+                      const SizedBox(width: 8),
                       Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              _buildVaultViewChip(
-                                _VaultStructuralView.all,
-                                'All',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.onWall,
-                                'Wall',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.duplicates,
-                                'Dupes',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.recent,
-                                'Recent',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.bySet,
-                                'Sets',
-                              ),
-                              const SizedBox(width: 6),
-                              _buildVaultViewChip(
-                                _VaultStructuralView.pokemon,
-                                'Pokemon',
-                              ),
-                            ],
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: SharedCardViewModeButton(
+                            value: _cardViewMode,
+                            onChanged: (mode) {
+                              setState(() {
+                                _cardViewMode = mode;
+                              });
+                            },
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      SharedCardViewModeButton(
-                        value: _cardViewMode,
-                        onChanged: (mode) {
-                          setState(() {
-                            _cardViewMode = mode;
-                          });
-                        },
                       ),
                     ],
                   ),
@@ -1590,25 +1647,27 @@ class VaultPageState extends State<VaultPage> {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           ...vaultContentSlivers,
-          const SliverToBoxAdapter(child: SizedBox(height: 18)),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Recently Added',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
+          if (_view == _VaultStructuralView.all) ...[
+            const SliverToBoxAdapter(child: SizedBox(height: 18)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Recently Added',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  _buildRecentVaultStrip(_items),
-                ],
+                    const SizedBox(height: 10),
+                    _buildRecentVaultStrip(_items),
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
           SliverToBoxAdapter(
             child: SizedBox(
               height: shellContentBottomPadding(context, extra: 8),
@@ -1680,6 +1739,8 @@ class _VaultDerivedData {
     required this.totalCards,
     required this.setCount,
     required this.lastAddedLabel,
+    required this.estimatedValue,
+    required this.pricedCopyCount,
   });
 
   const _VaultDerivedData.empty()
@@ -1693,7 +1754,9 @@ class _VaultDerivedData {
       bySetGroups = const <_VaultSetGroup>[],
       totalCards = 0,
       setCount = 0,
-      lastAddedLabel = 'No cards yet';
+      lastAddedLabel = 'No cards yet',
+      estimatedValue = null,
+      pricedCopyCount = 0;
 
   final List<Map<String, dynamic>> sortedRows;
   final List<Map<String, dynamic>> searchedRows;
@@ -1706,6 +1769,8 @@ class _VaultDerivedData {
   final int totalCards;
   final int setCount;
   final String lastAddedLabel;
+  final double? estimatedValue;
+  final int pricedCopyCount;
 }
 
 int _ownedCountForRow(Map<String, dynamic> row) {
@@ -1874,7 +1939,9 @@ class _CatalogPickerState extends State<_CatalogPicker> {
               height: 4,
               width: 36,
               decoration: BoxDecoration(
-                color: Colors.black26,
+                color: Theme.of(
+                  context,
+                ).colorScheme.shadow.withValues(alpha: 0.26),
                 borderRadius: BorderRadius.circular(3),
               ),
             ),
@@ -1901,9 +1968,9 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     _searchError!,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: Colors.red),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
                 ),
               ),

@@ -116,7 +116,7 @@ class _PublicCollectorRelationshipScreenState
                       _screenTitle,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.3,
+                        letterSpacing: 0,
                       ),
                     ),
                     const SizedBox(height: 6),

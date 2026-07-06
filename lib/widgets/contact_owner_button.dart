@@ -2,10 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../screens/network/network_inbox_screen.dart';
+import '../screens/network/network_thread_screen.dart';
 import '../services/network/card_interaction_service.dart';
 import '../services/network/intent_presentation.dart' as intent_presentation;
 
 enum ContactOwnerButtonVariant { filled, outlined, compact }
+
+typedef ContactOwnerSendMessage =
+    Future<CardInteractionSendResult> Function({
+      required String vaultItemId,
+      required String cardPrintId,
+      required String message,
+    });
+
+typedef ContactOwnerResolveThread =
+    Future<CardInteractionThreadSummary?> Function(
+      CardInteractionSendResult result,
+    );
+
+typedef ContactOwnerOpenConversation =
+    Future<void> Function(
+      NavigatorState navigator,
+      CardInteractionThreadSummary thread,
+    );
 
 class ContactOwnerButton extends StatelessWidget {
   const ContactOwnerButton({
@@ -17,6 +36,11 @@ class ContactOwnerButton extends StatelessWidget {
     this.ownerUserId,
     this.buttonLabel,
     this.variant = ContactOwnerButtonVariant.filled,
+    this.closeParentOnSuccess = false,
+    this.currentUserIdOverride,
+    this.sendMessageOverride,
+    this.resolveThreadOverride,
+    this.openConversationOverride,
     super.key,
   });
 
@@ -28,10 +52,15 @@ class ContactOwnerButton extends StatelessWidget {
   final String? ownerUserId;
   final String? buttonLabel;
   final ContactOwnerButtonVariant variant;
+  final bool closeParentOnSuccess;
+  final String? currentUserIdOverride;
+  final ContactOwnerSendMessage? sendMessageOverride;
+  final ContactOwnerResolveThread? resolveThreadOverride;
+  final ContactOwnerOpenConversation? openConversationOverride;
 
   @override
   Widget build(BuildContext context) {
-    final currentUserId = Supabase.instance.client.auth.currentUser?.id;
+    final currentUserId = currentUserIdOverride ?? _currentUserIdOrNull();
     if (currentUserId != null &&
         ownerUserId != null &&
         ownerUserId == currentUserId) {
@@ -58,6 +87,11 @@ class ContactOwnerButton extends StatelessWidget {
           ownerDisplayName: ownerDisplayName,
           cardName: cardName,
           intent: intent,
+          launchContext: context,
+          closeParentOnSuccess: closeParentOnSuccess,
+          sendMessageOverride: sendMessageOverride,
+          resolveThreadOverride: resolveThreadOverride,
+          openConversationOverride: openConversationOverride,
         ),
       );
     }
@@ -81,6 +115,14 @@ class ContactOwnerButton extends StatelessWidget {
       ),
     };
   }
+
+  String? _currentUserIdOrNull() {
+    try {
+      return Supabase.instance.client.auth.currentUser?.id;
+    } catch (_) {
+      return null;
+    }
+  }
 }
 
 class _ContactComposerSheet extends StatefulWidget {
@@ -89,14 +131,24 @@ class _ContactComposerSheet extends StatefulWidget {
     required this.cardPrintId,
     required this.ownerDisplayName,
     required this.cardName,
+    required this.launchContext,
+    required this.closeParentOnSuccess,
     this.intent,
+    this.sendMessageOverride,
+    this.resolveThreadOverride,
+    this.openConversationOverride,
   });
 
   final String vaultItemId;
   final String cardPrintId;
   final String ownerDisplayName;
   final String cardName;
+  final BuildContext launchContext;
+  final bool closeParentOnSuccess;
   final String? intent;
+  final ContactOwnerSendMessage? sendMessageOverride;
+  final ContactOwnerResolveThread? resolveThreadOverride;
+  final ContactOwnerOpenConversation? openConversationOverride;
 
   @override
   State<_ContactComposerSheet> createState() => _ContactComposerSheetState();
@@ -127,20 +179,46 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
 
   Future<void> _send() async {
     FocusScope.of(context).unfocus();
+    final rootNavigator = Navigator.of(
+      widget.launchContext,
+      rootNavigator: true,
+    );
+    final parentNavigator = Navigator.of(widget.launchContext);
+    final messenger = ScaffoldMessenger.maybeOf(widget.launchContext);
+
     setState(() {
       _sending = true;
       _error = null;
     });
 
-    final result = await CardInteractionService.sendMessage(
-      client: Supabase.instance.client,
-      vaultItemId: widget.vaultItemId,
-      cardPrintId: widget.cardPrintId,
-      message: _controller.text,
-    );
+    late final CardInteractionSendResult result;
+    try {
+      result = await _sendMessage(_controller.text);
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _sending = false;
+        _error = 'Unable to send this message right now.';
+      });
+      return;
+    }
 
     if (!mounted) {
       return;
+    }
+
+    CardInteractionThreadSummary? thread;
+    if (result.ok) {
+      try {
+        thread = await _resolveThread(result);
+      } catch (_) {
+        thread = null;
+      }
+      if (!mounted) {
+        return;
+      }
     }
 
     setState(() {
@@ -153,23 +231,81 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
     }
 
     Navigator.of(context).pop();
-    if (!context.mounted) {
+    if (widget.closeParentOnSuccess && parentNavigator.canPop()) {
+      parentNavigator.pop();
+    }
+
+    if (thread != null) {
+      await (widget.openConversationOverride ?? _openConversation)(
+        rootNavigator,
+        thread,
+      );
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
+    messenger?.showSnackBar(
       SnackBar(
-        content: Text(result.message),
+        content: const Text(
+          'Message sent, but the conversation could not be opened.',
+        ),
         action: SnackBarAction(
           label: 'Messages',
           onPressed: () {
-            Navigator.of(context).push(
+            rootNavigator.push(
               MaterialPageRoute<void>(
                 builder: (_) => const NetworkInboxScreen(),
               ),
             );
           },
         ),
+      ),
+    );
+  }
+
+  Future<CardInteractionSendResult> _sendMessage(String message) async {
+    final override = widget.sendMessageOverride;
+    if (override != null) {
+      return override(
+        vaultItemId: widget.vaultItemId,
+        cardPrintId: widget.cardPrintId,
+        message: message,
+      );
+    }
+
+    final client = Supabase.instance.client;
+    return CardInteractionService.sendMessage(
+      client: client,
+      vaultItemId: widget.vaultItemId,
+      cardPrintId: widget.cardPrintId,
+      message: message,
+    );
+  }
+
+  Future<CardInteractionThreadSummary?> _resolveThread(
+    CardInteractionSendResult result,
+  ) async {
+    final override = widget.resolveThreadOverride;
+    if (override != null) {
+      return override(result);
+    }
+
+    final client = Supabase.instance.client;
+    final userId = client.auth.currentUser?.id ?? '';
+    return CardInteractionService.fetchThreadSummaryForContact(
+      client: client,
+      userId: userId,
+      cardPrintId: result.cardPrintId ?? widget.cardPrintId,
+      counterpartUserId: result.counterpartUserId ?? '',
+    );
+  }
+
+  Future<void> _openConversation(
+    NavigatorState navigator,
+    CardInteractionThreadSummary thread,
+  ) async {
+    await navigator.push(
+      MaterialPageRoute<void>(
+        builder: (_) => NetworkThreadScreen(thread: thread),
       ),
     );
   }
@@ -201,7 +337,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
               'Message ${widget.ownerDisplayName}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.3,
+                letterSpacing: 0,
               ),
             ),
             const SizedBox(height: 6),

@@ -14,6 +14,7 @@ import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
+import '../../widgets/gv_chip.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
@@ -1176,7 +1177,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               displayIdentity.displayName,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
-                letterSpacing: -0.55,
+                letterSpacing: 0,
                 height: 1.02,
               ),
             ),
@@ -1204,18 +1205,18 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               spacing: 6,
               runSpacing: 6,
               children: [
-                _VaultGvviChip(label: intentLabel, tone: colorScheme.primary),
-                _VaultGvviChip(
+                GvChip(label: intentLabel, tone: colorScheme.primary),
+                GvChip(
                   label: data.isGraded ? 'Graded slab' : 'Raw copy',
                   tone: Colors.deepPurple,
                 ),
-                _VaultGvviChip(
+                GvChip(
                   label: data.canOpenPublicPage ? 'Public' : 'Private',
                   tone: data.canOpenPublicPage
                       ? Colors.orange.shade800
                       : colorScheme.secondary,
                 ),
-                _VaultGvviChip(
+                GvChip(
                   label:
                       hasExactMedia &&
                           data.imageDisplayMode == GvviImageDisplayMode.uploaded
@@ -1224,8 +1225,8 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
                   tone: Colors.blueGrey,
                 ),
                 if ((_dataLabel(data) ?? '').isNotEmpty)
-                  _VaultGvviChip(label: _dataLabel(data)!, tone: Colors.teal),
-                _VaultGvviChip(
+                  GvChip(label: _dataLabel(data)!, tone: Colors.teal),
+                GvChip(
                   label: data.isSharedOnWall ? 'On wall' : 'Off wall',
                   tone: data.isSharedOnWall
                       ? Colors.green.shade700
@@ -1545,8 +1546,8 @@ class _VaultIntentQuickSurface extends StatelessWidget {
               runSpacing: 8,
               children: [
                 for (final option in _options)
-                  ChoiceChip(
-                    label: Text(option.label),
+                  GvChip(
+                    label: option.label,
                     selected: intent == option.value,
                     onSelected: isArchived || saving
                         ? null
@@ -1958,7 +1959,7 @@ class _VaultGvviPriceSurface extends StatelessWidget {
                   : 'No market reference available.'),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w800,
-            letterSpacing: -0.45,
+            letterSpacing: 0,
             height: 1.0,
           ),
         ),
@@ -2012,7 +2013,7 @@ class _VaultIdentityGrid extends StatelessWidget {
       spacing: 7,
       runSpacing: 7,
       children: [
-        _VaultMeta(label: 'GVVI', value: data.gvviId),
+        _VaultMeta(label: 'Copy ID', value: data.gvviId),
         _VaultMeta(label: 'Set', value: data.setCode),
         _VaultMeta(label: 'Number', value: data.number),
         _VaultMeta(
@@ -2473,32 +2474,6 @@ class _VaultMeta extends StatelessWidget {
             ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _VaultGvviChip extends StatelessWidget {
-  const _VaultGvviChip({required this.label, required this.tone});
-
-  final String label;
-  final Color tone;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: tone.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: tone.withValues(alpha: 0.10)),
-      ),
-      child: Text(
-        label,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-          color: tone,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

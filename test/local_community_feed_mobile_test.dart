@@ -58,8 +58,12 @@ void main() {
   test('Nearby is drawer-only and feature flagged', () {
     final shell = File('lib/main_shell.dart').readAsStringSync();
     final main = File('lib/main.dart').readAsStringSync();
+    final service = File(
+      'lib/services/network/local_community_feed_service.dart',
+    ).readAsStringSync();
 
     expect(shell, contains('kLocalCommunityFeedV1Enabled'));
+    expect(service, contains('defaultValue: true'));
     expect(shell, contains('NetworkNearbyScreen'));
     expect(main, contains("screens/network/network_nearby_map_screen.dart"));
     expect(shell, contains('NetworkNearbyMapScreen'));

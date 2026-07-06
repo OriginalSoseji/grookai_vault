@@ -29,6 +29,19 @@ void main() {
     expect(service, contains("result['gv_vi_id']"));
   });
 
+  test('card detail bottom actions stay fixed and scheme-colored', () {
+    final screen = File('lib/card_detail_screen.dart').readAsStringSync();
+
+    expect(screen, contains("tooltip: 'Compare'"));
+    expect(screen, contains('if (_canCompare)'));
+    expect(
+      screen,
+      isNot(contains("tooltip: _canCompare ? 'Compare' : 'Share'")),
+    );
+    expect(screen, isNot(contains('Colors.red.shade400')));
+    expect(screen, contains('final tint = active ? colorScheme.error'));
+  });
+
   test('visible Scan entry is deliberately parked behind construction gate', () {
     final main = File('lib/main.dart').readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();
@@ -87,7 +100,7 @@ void main() {
   test('Dex is drawer-only and not a bottom navigation destination', () {
     final shell = File('lib/main_shell.dart').readAsStringSync();
     final bottomNavBlock = RegExp(
-      r'child: NavigationBar\([\s\S]*?destinations: const \[[\s\S]*?\n\s*\],\n\s*\),',
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
     ).firstMatch(shell)!.group(0)!;
 
     expect(bottomNavBlock, contains("label: 'Search'"));
@@ -99,6 +112,45 @@ void main() {
     expect(bottomNavBlock, isNot(contains('_openDex()')));
     expect(shell, contains("label: 'Grookai Dex'"));
     expect(shell, contains('onTap: () => _closeThenAsync(context, onOpenDex)'));
+  });
+
+  test('primary shell destinations are dock-only and drawer stays secondary', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final bottomNavBlock = RegExp(
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
+    ).firstMatch(shell)!.group(0)!;
+    final drawerBlock = RegExp(
+      r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
+    ).firstMatch(shell)!.group(0)!;
+
+    for (final label in ['Search', 'Feed', 'Wall', 'Vault']) {
+      expect(bottomNavBlock, contains("label: '$label'"));
+      expect(drawerBlock, isNot(contains("label: '$label'")));
+    }
+
+    expect(drawerBlock, isNot(contains("label: 'My Wall'")));
+    expect(drawerBlock, isNot(contains("label: 'Messages'")));
+    expect(drawerBlock, contains("label: 'Grookai Dex'"));
+    expect(drawerBlock, contains("label: 'Sets'"));
+    expect(drawerBlock, contains("label: 'Compare'"));
+    expect(drawerBlock, contains('if (signedIn)'));
+    expect(drawerBlock, contains("label: 'Followers'"));
+    expect(drawerBlock, contains("label: 'Following'"));
+    expect(drawerBlock, contains('Icons.group_outlined'));
+    expect(drawerBlock, contains('Icons.people_alt_outlined'));
+    expect(drawerBlock, contains("label: 'Account'"));
+    expect(shell, contains('PublicCollectorRelationshipScreen('));
+    expect(shell, contains('PublicCollectorRelationshipMode.followers'));
+    expect(shell, contains('PublicCollectorRelationshipMode.following'));
+    expect(shell, contains('PublicCollectorService.resolveOwnEntry'));
+    expect(shell, contains('PublicCollectorService.loadPublicProfileBySlug'));
+    expect(shell, contains('Icons.collections_bookmark_rounded'));
+    expect(
+      shell,
+      contains(
+        "if (isDesktopShell && _destination != _ShellDestination.search)",
+      ),
+    );
   });
 
   test('card artwork uses disk-backed cached image rendering', () {
@@ -115,6 +167,32 @@ void main() {
     expect(artwork, contains('maxWidthDiskCache'));
     expect(zoomViewer, contains('CachedNetworkImageProvider'));
     expect(main, contains('_configureAppImageCache'));
+  });
+
+  test('mobile Japanese display mirrors web English primary contract', () {
+    final identity = File(
+      'lib/services/identity/display_identity.dart',
+    ).readAsStringSync();
+    final japaneseNameMap = File(
+      'lib/services/identity/pokemon_japanese_name_map.dart',
+    ).readAsStringSync();
+    final search = File('lib/main.dart').readAsStringSync();
+    final cardDetail = File('lib/card_detail_screen.dart').readAsStringSync();
+    final setDetail = File(
+      'lib/screens/sets/public_set_detail_screen.dart',
+    ).readAsStringSync();
+
+    expect(identity, contains('japanesePokemonNameToEnglish'));
+    expect(
+      identity,
+      contains('_resolveEnglishPrimaryNameForJapanesePrintedName'),
+    );
+    expect(identity, contains('printedName'));
+    expect(japaneseNameMap, contains("'ピカチュウ': 'Pikachu'"));
+    expect(japaneseNameMap, contains("'コイル': 'Magnemite'"));
+    expect(search, contains('displayIdentity.printedName'));
+    expect(cardDetail, contains('_displayIdentity.printedName'));
+    expect(setDetail, contains('displayIdentity.printedName'));
   });
 
   test('set card image zoom is not a details dead end', () {
@@ -172,5 +250,181 @@ void main() {
       contains('onViewDetails: interactionLocked ? null : onViewCard'),
     );
     expect(vault, contains("detailsLabel: 'Manage card'"));
+  });
+
+  test('Feed inventory cards stay card-first and avoid FOMO hook copy', () {
+    final networkCard = File(
+      'lib/widgets/network/network_interaction_card.dart',
+    ).readAsStringSync();
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+
+    expect(networkScreen, contains('_buildInventoryContext'));
+    expect(networkScreen, contains("'Listed \$listedAge'"));
+    expect(networkScreen, contains("'Graded \$summary'"));
+    expect(networkScreen, contains("'Listed for sale'"));
+    expect(networkScreen, isNot(contains('Just listed')));
+    expect(networkScreen, isNot(contains('Available now')));
+    expect(networkScreen, isNot(contains('High-end pick')));
+    expect(networkScreen, isNot(contains('local_fire_department')));
+    expect(networkScreen, isNot(contains('heroHook:')));
+
+    final artworkIndex = networkCard.indexOf('_NetworkPosterArtwork');
+    final topContextIndex = networkCard.indexOf('if (topContext != null)');
+    expect(artworkIndex, greaterThanOrEqualTo(0));
+    expect(topContextIndex, greaterThan(artworkIndex));
+  });
+
+  test('Vault header promotes estimated value without fake trend math', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(vault, contains('estimatedValue'));
+    expect(vault, contains('_formatVaultValue'));
+    expect(vault, contains('visiblePrice * ownedCount'));
+    expect(vault, contains('valued copies'));
+    expect(vault, contains('30d trend pending'));
+  });
+
+  test('bottom dock collapse pauses while modal routes are active', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+
+    expect(shell, contains("ModalRoute.of(context)?.isCurrent == false"));
+    expect(
+      shell,
+      contains(
+        'final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible',
+      ),
+    );
+  });
+
+  test('bottom dock uses stable slots with persistent labels', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final bottomNavBlock = RegExp(
+      r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
+    ).firstMatch(shell)!.group(0)!;
+    final dockButtonBlock = RegExp(
+      r'Widget _buildDockButton\([\s\S]*?\n\}',
+    ).firstMatch(shell)!.group(0)!;
+
+    expect(bottomNavBlock, contains('maxWidth: 390'));
+    expect(bottomNavBlock, contains('mainAxisSize: MainAxisSize.max'));
+    expect(bottomNavBlock, contains('Expanded('));
+    expect(bottomNavBlock, contains('isPrimaryAction: true'));
+    expect(dockButtonBlock, isNot(contains('selected ? 86 : 52')));
+    expect(dockButtonBlock, isNot(contains('if (!collapsed && selected)')));
+    expect(dockButtonBlock, contains('BoxShape.circle'));
+    expect(dockButtonBlock, contains('Text('));
+  });
+
+  test('search controls do not hide secondary navigation shortcuts', () {
+    final search = File('lib/main.dart').readAsStringSync();
+
+    expect(search, isNot(contains('Browse sets')));
+    expect(search, isNot(contains('Open collector wall')));
+    expect(search, isNot(contains('Future<void> _openSetsScreen()')));
+    expect(
+      search,
+      isNot(contains('Future<void> _openPublicCollectorBySlug()')),
+    );
+    expect(search, isNot(contains('class _SearchHeaderIconButton')));
+  });
+
+  test('search secondary filters are collapsed behind a sheet', () {
+    final search = File('lib/main.dart').readAsStringSync();
+
+    expect(search, contains('int get _activeSearchFilterCount'));
+    expect(search, contains("'Filters · \$activeCount'"));
+    expect(search, contains('Future<void> _openSearchFiltersSheet'));
+    expect(search, contains('showModalBottomSheet<void>'));
+    expect(search, contains('_buildSearchFilterButton('));
+    expect(search, isNot(contains('Widget _buildRarityChip(')));
+    expect(search, isNot(contains('Widget _buildIdentityChip(')));
+  });
+
+  test('app copy avoids internal vault jargon in visible labels', () {
+    final files = [
+      'lib/main.dart',
+      'lib/main_vault.dart',
+      'lib/screens/vault/vault_manage_card_screen.dart',
+      'lib/screens/vault/vault_gvvi_screen.dart',
+      'lib/screens/gvvi/public_gvvi_screen.dart',
+    ].map((path) => File(path).readAsStringSync()).join('\n');
+
+    for (final copy in [
+      'Dupes',
+      'structural vault shell',
+      'No cards found in your vault',
+      'No cards surfaced yet',
+      'No copies surfaced yet',
+      'Trending cards will surface here',
+      'This GVVI could not be loaded.',
+      "label: 'GVVI'",
+    ]) {
+      expect(files, isNot(contains(copy)));
+    }
+
+    expect(files, contains('Duplicates'));
+    expect(files, contains('Copy ID'));
+  });
+
+  test('vault filters are collapsed and search field stays stable', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(vault, contains('Future<void> _openVaultFiltersSheet()'));
+    expect(vault, contains('int get _activeVaultFilterCount'));
+    expect(vault, contains('Search vault · by card, set, or Pokemon'));
+    expect(vault, isNot(contains('Search Pokemon')));
+    expect(vault, isNot(contains('Widget _buildVaultViewChip(')));
+    expect(vault, isNot(contains('_activeSearchValueForView')));
+    expect(vault, contains('if (_view == _VaultStructuralView.all) ...['));
+    expect(vault, contains("'Recently Added'"));
+  });
+
+  test('card tile surfaces use shared grid geometry constants', () {
+    final constants = File(
+      'lib/theme/gv_grid_constants.dart',
+    ).readAsStringSync();
+    final networkCard = File(
+      'lib/widgets/network/network_interaction_card.dart',
+    ).readAsStringSync();
+    final setDetail = File(
+      'lib/screens/sets/public_set_detail_screen.dart',
+    ).readAsStringSync();
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(constants, contains('static const double cardAspectRatio'));
+    for (final rawRatio in ['0.68', '0.71', '0.78']) {
+      expect(networkCard, isNot(contains(rawRatio)));
+    }
+    expect(networkCard, contains('GvGridConstants.cardAspectRatio'));
+    expect(setDetail, contains('GvGridConstants.tileTapRadius'));
+    expect(setDetail, contains('GvGridConstants.imageRadius'));
+    expect(vault, contains('GvGridConstants.tileTapRadius'));
+    expect(vault, contains('GvGridConstants.imageRadius'));
+  });
+
+  test('vault copy surfaces use shared GvChip component', () {
+    final chip = File('lib/widgets/gv_chip.dart').readAsStringSync();
+    final manage = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+    final gvvi = File(
+      'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+    final scoped = '$manage\n$gvvi';
+
+    expect(chip, contains('final Color? tone;'));
+    expect(scoped, contains('GvChip('));
+    for (final privateChip in [
+      '_PillLabel',
+      '_MetaChip',
+      '_CountChip',
+      '_InlineTag',
+      '_VaultGvviChip',
+      'ChoiceChip(',
+    ]) {
+      expect(scoped, isNot(contains(privateChip)));
+    }
   });
 }

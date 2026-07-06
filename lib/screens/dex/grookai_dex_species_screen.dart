@@ -216,7 +216,7 @@ class _DexSpeciesHeader extends StatelessWidget {
                       detail.displayName,
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w900,
-                        letterSpacing: -0.9,
+                        letterSpacing: 0,
                         height: 0.98,
                       ),
                     ),

@@ -157,7 +157,7 @@ class _CompareScreenState extends State<CompareScreen> {
                             style: Theme.of(context).textTheme.headlineSmall
                                 ?.copyWith(
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.5,
+                                  letterSpacing: 0,
                                 ),
                           ),
                           const SizedBox(height: 8),
@@ -445,7 +445,7 @@ class _CompareUnderfilledState extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
-              letterSpacing: -0.4,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 8),
@@ -729,7 +729,7 @@ class _CompareSectionCard extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
+              letterSpacing: 0,
             ),
           ),
           const SizedBox(height: 14),

@@ -80,6 +80,20 @@ void main() {
     expect(collectorService, contains("'is_public': true"));
   });
 
+  test('Wall card tiles keep showcase quiet and title weight restrained', () {
+    expect(
+      collectorScreen,
+      contains("if (card.intent == 'trade' || card.intent == 'sell')"),
+    );
+    expect(collectorScreen, contains('fontWeight: FontWeight.w700'));
+
+    final tileBlock = RegExp(
+      r'class _PublicCardTile extends StatelessWidget[\s\S]*?class _PublicViewerOwnershipHint',
+    ).firstMatch(collectorScreen)!.group(0)!;
+    expect(tileBlock, isNot(contains("card.intent != null")));
+    expect(tileBlock, isNot(contains('fontWeight: FontWeight.w800')));
+  });
+
   test('collector section deep links select the requested section', () {
     expect(
       routeService,
@@ -88,6 +102,15 @@ void main() {
     expect(routeService, contains("segments[2].toLowerCase() == 'section'"));
     expect(mainShell, contains('initialSectionId: route.sectionId'));
     expect(collectorScreen, contains('widget.initialSectionId'));
+  });
+
+  test('My Wall shell embeds collector surface without standalone chrome', () {
+    expect(mainShell, contains('showAppBar: false'));
+    expect(mainShell, contains('embeddedInShell: true'));
+    expect(collectorScreen, contains('final bool embeddedInShell'));
+    expect(collectorScreen, contains('RefreshIndicator'));
+    expect(collectorScreen, contains('_OwnerWallEmptyState'));
+    expect(collectorScreen, contains('_OwnerWallLoadFailureState'));
   });
 
   test('GVVI section membership is exact-copy based', () {

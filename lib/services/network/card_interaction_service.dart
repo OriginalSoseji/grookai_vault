@@ -18,11 +18,17 @@ class CardInteractionSendResult {
     required this.ok,
     required this.status,
     required this.message,
+    this.cardPrintId,
+    this.vaultItemId,
+    this.counterpartUserId,
   });
 
   final bool ok;
   final CardInteractionSendStatus status;
   final String message;
+  final String? cardPrintId;
+  final String? vaultItemId;
+  final String? counterpartUserId;
 }
 
 class CardInteractionMessageEntry {
@@ -209,6 +215,9 @@ class CardInteractionService {
         status: CardInteractionSendStatus.created,
         message:
             'Message sent to ${ownerDisplayName.isEmpty ? 'collector' : ownerDisplayName}.',
+        cardPrintId: normalizedCardPrintId,
+        vaultItemId: normalizedVaultItemId,
+        counterpartUserId: receiverUserId,
       );
     }
 
@@ -233,7 +242,38 @@ class CardInteractionService {
       status: CardInteractionSendStatus.created,
       message:
           'Message sent to ${ownerDisplayName.isEmpty ? 'collector' : ownerDisplayName}.',
+      cardPrintId: normalizedCardPrintId,
+      vaultItemId: normalizedVaultItemId,
+      counterpartUserId: receiverUserId,
     );
+  }
+
+  static Future<CardInteractionThreadSummary?> fetchThreadSummaryForContact({
+    required SupabaseClient client,
+    required String userId,
+    required String cardPrintId,
+    required String counterpartUserId,
+  }) async {
+    final normalizedUserId = _clean(userId);
+    final normalizedCardPrintId = _clean(cardPrintId);
+    final normalizedCounterpartUserId = _clean(counterpartUserId);
+    if (normalizedUserId.isEmpty ||
+        normalizedCardPrintId.isEmpty ||
+        normalizedCounterpartUserId.isEmpty) {
+      return null;
+    }
+
+    final summaries = await fetchThreadSummaries(
+      client: client,
+      userId: normalizedUserId,
+    );
+    for (final summary in summaries) {
+      if (summary.cardPrintId == normalizedCardPrintId &&
+          summary.counterpartUserId == normalizedCounterpartUserId) {
+        return summary;
+      }
+    }
+    return null;
   }
 
   static Future<List<CardInteractionThreadSummary>> fetchThreadSummaries({
@@ -567,6 +607,9 @@ class CardInteractionService {
         status: CardInteractionSendStatus.created,
         message:
             'Reply sent to ${counterpartDisplayName.trim().isEmpty ? 'collector' : counterpartDisplayName.trim()}.',
+        cardPrintId: normalizedCardPrintId,
+        vaultItemId: normalizedVaultItemId,
+        counterpartUserId: normalizedCounterpartUserId,
       );
     }
 
@@ -591,6 +634,9 @@ class CardInteractionService {
       status: CardInteractionSendStatus.created,
       message:
           'Reply sent to ${counterpartDisplayName.trim().isEmpty ? 'collector' : counterpartDisplayName.trim()}.',
+      cardPrintId: normalizedCardPrintId,
+      vaultItemId: normalizedVaultItemId,
+      counterpartUserId: normalizedCounterpartUserId,
     );
   }
 

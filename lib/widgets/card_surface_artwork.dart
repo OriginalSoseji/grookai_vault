@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../utils/display_image_contract.dart';
+import '../theme/gv_tokens.dart';
 import 'card_zoom_viewer.dart';
 
 const double _kCardSurfaceArtworkAspectRatio = 0.69;
+
+enum CardArtworkFrame { none, soft }
 
 class CardSurfaceArtwork extends StatelessWidget {
   const CardSurfaceArtwork({
@@ -15,6 +18,7 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.borderRadius = 16,
     this.padding = const EdgeInsets.all(1.5),
     this.backgroundColor,
+    this.frame = CardArtworkFrame.none,
     this.enableTapToZoom = true,
     this.showZoomAffordance = false,
     this.showShadow = true,
@@ -34,6 +38,7 @@ class CardSurfaceArtwork extends StatelessWidget {
   final double borderRadius;
   final EdgeInsetsGeometry padding;
   final Color? backgroundColor;
+  final CardArtworkFrame frame;
   final bool enableTapToZoom;
   final bool showZoomAffordance;
   final bool showShadow;
@@ -54,17 +59,22 @@ class CardSurfaceArtwork extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color:
-            backgroundColor ??
-            colorScheme.surfaceContainerLow.withValues(alpha: 0.72),
+        color: frame == CardArtworkFrame.none
+            ? backgroundColor
+            : backgroundColor ??
+                  colorScheme.surfaceContainerLow.withValues(alpha: 0.58),
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
+        border: frame == CardArtworkFrame.none
+            ? null
+            : Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
         boxShadow: showShadow
             ? [
                 BoxShadow(
-                  color: colorScheme.shadow.withValues(alpha: 0.02),
-                  blurRadius: 12,
-                  offset: const Offset(0, 6),
+                  color: colorScheme.shadow.withValues(
+                    alpha: frame == CardArtworkFrame.none ? 0.10 : 0.025,
+                  ),
+                  blurRadius: frame == CardArtworkFrame.none ? 24 : 12,
+                  offset: Offset(0, frame == CardArtworkFrame.none ? 10 : 6),
                 ),
               ]
             : const [],
@@ -88,7 +98,6 @@ class CardSurfaceArtwork extends StatelessWidget {
                     (height != null && height! <= 80) ||
                     (constraints.hasBoundedHeight &&
                         constraints.maxHeight <= 80);
-
                 return Padding(
                   padding: padding,
                   child: resolvedImageUrl != null
@@ -139,9 +148,20 @@ class CardSurfaceArtwork extends StatelessWidget {
               right: 6,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: _ImageTruthChip(
-                  label: imageTruthLabel!.trim(),
-                  strong: imageTruthStrong,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final suppress =
+                        (constraints.hasBoundedWidth &&
+                            constraints.maxWidth < 100) ||
+                        (width != null && width! < 100);
+                    if (suppress) {
+                      return const SizedBox.shrink();
+                    }
+                    return _ImageTruthChip(
+                      label: imageTruthLabel!.trim(),
+                      strong: imageTruthStrong,
+                    );
+                  },
                 ),
               ),
             ),
@@ -277,9 +297,9 @@ class _ImageTruthChip extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: foreground,
-            fontSize: 9.5,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 0.2,
+            fontSize: GvText.minReadable,
+            fontWeight: GvText.bold,
+            letterSpacing: 0,
           ),
         ),
       ),

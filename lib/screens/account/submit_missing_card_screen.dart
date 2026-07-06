@@ -195,7 +195,7 @@ class _SubmitMissingCardScreenState extends State<SubmitMissingCardScreen> {
                     'Submit a missing card or image',
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.4,
+                      letterSpacing: 0,
                     ),
                   ),
                   const SizedBox(height: 6),

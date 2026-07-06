@@ -91,7 +91,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
                       'Collectors you want to revisit',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.3,
+                        letterSpacing: 0,
                       ),
                     ),
                     const SizedBox(height: 6),
