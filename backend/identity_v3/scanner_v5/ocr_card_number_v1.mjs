@@ -13,6 +13,7 @@ import {
 
 const DEFAULT_ARTIFACT_DIR = '.tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1';
 const OCR_CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.:- ';
+const OCR_NUMBER_CHARSET = '0123456789/';
 const require = createRequire(import.meta.url);
 
 export async function ocrCardNumberFile(inputPath, options = {}) {
@@ -27,6 +28,12 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
   const artifactDir = options.artifactDir ?? process.env.SCANNER_V5_ARTIFACT_DIR ?? DEFAULT_ARTIFACT_DIR;
   const artifact = options.artifact ?? await loadScannerV5Artifact(artifactDir);
   const crops = await bottomStripOcrCrops(imageBuffer);
+  if (options.debugDir) {
+    await mkdir(options.debugDir, { recursive: true });
+    for (const crop of crops) {
+      await writeFile(path.join(options.debugDir, `${crop.name}.png`), crop.buffer);
+    }
+  }
   const ocr = await runTesseractOnCrops(crops).catch((error) => ({
     available: false,
     text: '',
@@ -44,7 +51,7 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
     ? [lookupByGvId(artifact, fixtureHint.gv_id)].filter(Boolean)
     : lookupByNumber(artifact, { number, setTotal, setCodeGuess });
 
-  return {
+  const result = {
     number,
     set_total: setTotal,
     set_code_guess: setCodeGuess,
@@ -54,7 +61,12 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
     ocr_text: ocr.text,
     ocr_error: ocr.error ?? null,
     parser_source: parsed.number ? 'tesseract' : fixtureHint?.source ?? 'none',
+    raw_crops: ocr.raw_crops ?? [],
   };
+  if (options.debugDir) {
+    await writeFile(path.join(options.debugDir, 'ocr_card_number.json'), JSON.stringify(result, null, 2));
+  }
+  return result;
 }
 
 export function parseCardNumberText(text) {
@@ -63,9 +75,13 @@ export function parseCardNumberText(text) {
     .replace(/[^\w/.\-: ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-  const numberMatch = cleaned.match(/(?:^|[^0-9])(\d{1,4})\s*\/\s*(\d{1,4})(?:[^0-9]|$)/);
+  const numberMatches = [...cleaned.matchAll(/(?:^|[^0-9])(\d{1,4})\s*\/\s*(\d{1,4})(?:[^0-9]|$)/g)];
+  const numberMatch = numberMatches.find((match) => {
+    const total = Number.parseInt(match[2], 10);
+    return Number.isInteger(total) && total > 0 && total <= 500;
+  }) ?? numberMatches[0];
   const standaloneNumber = cleaned.match(/(?:^|[^0-9])(\d{1,4})(?:[^0-9]|$)/);
-  const setCodeMatch = cleaned.match(/\b([A-Z]{1,4}\d{0,3}(?:\.\d+[A-Z]?)?|SV\d{1,2}(?:\.\d+[A-Z]?)?)\b/i);
+  const setCodeMatch = cleaned.match(/\b(ASC|POR|[A-Z]{1,4}\d{1,3}(?:\.\d+[A-Z]?)?|SV\d{1,2}(?:\.\d+[A-Z]?)?)\b/i);
   return {
     number: normalizeNumber(numberMatch?.[1] ?? standaloneNumber?.[1]),
     set_total: normalizeNumber(numberMatch?.[2]),
@@ -78,27 +94,28 @@ async function bottomStripOcrCrops(imageBuffer) {
   const metadata = await sharp(imageBuffer, { failOn: 'none' }).metadata();
   const width = metadata.width ?? 716;
   const height = metadata.height ?? 1000;
-  const stripTop = Math.round(height * 0.86);
-  const stripHeight = Math.max(40, height - stripTop);
   const specs = [
-    { name: 'bottom_full', left: 0, top: stripTop, width, height: stripHeight },
-    { name: 'bottom_left', left: 0, top: stripTop, width: Math.round(width * 0.55), height: stripHeight },
-    { name: 'bottom_right', left: Math.round(width * 0.45), top: stripTop, width: Math.round(width * 0.55), height: stripHeight },
+    { name: 'number_only_left', left: Math.round(width * 0.12), top: Math.round(height * 0.915), width: Math.round(width * 0.25), height: Math.round(height * 0.055), mode: 'soft' },
+    { name: 'number_zone_left', left: Math.round(width * 0.09), top: Math.round(height * 0.905), width: Math.round(width * 0.36), height: Math.round(height * 0.075), mode: 'soft' },
+    { name: 'number_zone_left_wide', left: Math.round(width * 0.075), top: Math.round(height * 0.885), width: Math.round(width * 0.50), height: Math.round(height * 0.11), mode: 'soft' },
   ];
   return Promise.all(specs.map(async (spec) => {
-    const buffer = await sharp(imageBuffer, { failOn: 'none' })
+    let pipeline = sharp(imageBuffer, { failOn: 'none' })
       .extract({
         left: Math.max(0, spec.left),
         top: Math.max(0, spec.top),
         width: Math.min(width - spec.left, spec.width),
         height: Math.min(height - spec.top, spec.height),
       })
-      .resize({ width: Math.max(800, spec.width * 2), withoutEnlargement: false })
+      .resize({ width: Math.max(900, spec.width * 3), withoutEnlargement: false })
       .grayscale()
-      .normalize()
-      .threshold(150)
-      .png()
-      .toBuffer();
+      .normalize();
+    if (spec.mode === 'threshold') {
+      pipeline = pipeline.threshold(125);
+    } else if (spec.mode !== 'soft') {
+      pipeline = pipeline.threshold(150);
+    }
+    const buffer = await pipeline.png().toBuffer();
     return { ...spec, buffer };
   }));
 }
@@ -124,8 +141,13 @@ async function runTesseractOnCrops(crops) {
     });
     const results = [];
     for (const crop of crops) {
+      await worker.setParameters({
+        tessedit_char_whitelist: crop.name.startsWith('number_') ? OCR_NUMBER_CHARSET : OCR_CHARSET,
+        tessedit_pageseg_mode: crop.name.startsWith('number_') ? '6' : '7',
+      });
       const result = await worker.recognize(crop.buffer);
       results.push({
+        crop: crop.name,
         text: result.data?.text ?? '',
         confidence: Number(result.data?.confidence),
       });
@@ -134,6 +156,7 @@ async function runTesseractOnCrops(crops) {
       available: true,
       text: results.map((row) => row.text).join('\n'),
       confidence: average(results.map((row) => row.confidence).filter(Number.isFinite)),
+      raw_crops: results,
     };
   } finally {
     await worker.terminate().catch(() => {});

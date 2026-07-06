@@ -7,6 +7,14 @@ import { EMBEDDING_INDEX_V1, embedImageBuffer } from '../lib/embedding_index_v1.
 
 const VECTOR_DTYPE = 'float32le';
 const DEFAULT_VIEW_TYPE = 'full_card';
+const PRINTED_TOTAL_SET_ALIASES = new Map([
+  ['088', ['me03', 'por']],
+  ['217', ['me02.5', 'asc']],
+]);
+const SET_CODE_ALIASES = new Map([
+  ['asc', ['asc', 'me02.5']],
+  ['por', ['por', 'me03']],
+]);
 
 export async function loadScannerV5Artifact(artifactDir) {
   const resolvedDir = path.resolve(artifactDir);
@@ -62,11 +70,20 @@ export function lookupByNumber(artifact, { number, setTotal, setCodeGuess } = {}
       if (normalizedTotal) {
         const rowTotal = normalizeTotalFromRow(row);
         if (rowTotal && rowTotal !== normalizedTotal) return false;
+        if (!rowTotal) {
+          const aliases = PRINTED_TOTAL_SET_ALIASES.get(normalizedTotal);
+          if (aliases?.length) {
+            const rowSet = normalizeSetCode(row.set_code);
+            const gvSet = normalizeSetCode(gvSetToken(row.gv_id));
+            if (!aliases.includes(rowSet) && !aliases.includes(gvSet)) return false;
+          }
+        }
       }
       if (normalizedSet) {
         const rowSet = normalizeSetCode(row.set_code);
         const gvSet = normalizeSetCode(gvSetToken(row.gv_id));
-        if (rowSet !== normalizedSet && gvSet !== normalizedSet) return false;
+        const setAliases = SET_CODE_ALIASES.get(normalizedSet) ?? [normalizedSet];
+        if (!setAliases.includes(rowSet) && !setAliases.includes(gvSet)) return false;
       }
       return true;
     }),
@@ -93,7 +110,7 @@ export async function embedAndSearchFullCard({ imageBuffer, artifact, topK = 10,
 }
 
 export function searchFullCardEmbedding({ artifact, queryEmbedding, topK = 10 }) {
-  const shard = artifact.shards.get(DEFAULT_VIEW_TYPE) ?? [...artifact.shards.values()][0];
+  const shard = artifact.shards.get(DEFAULT_VIEW_TYPE);
   if (!shard) return [];
   const queryNorm = vectorNorm(queryEmbedding);
   const ranked = [];
