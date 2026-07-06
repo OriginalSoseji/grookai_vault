@@ -108,78 +108,112 @@ async function handleRequest(request, response, service) {
   if (request.method === 'POST' && url.pathname === '/scanner-v5/identify') {
     const requestId = `${Date.now()}_${String(++service.sequence).padStart(5, '0')}`;
     const startedAt = performance.now();
-    const body = await readRequestBody(request, MAX_BODY_BYTES);
-    const imageBuffer = imageBufferFromRequest(body, request.headers['content-type']);
-    const readMs = roundMs(performance.now() - startedAt);
+    try {
+      const body = await readRequestBody(request, MAX_BODY_BYTES);
+      const imageBuffer = imageBufferFromRequest(body, request.headers['content-type']);
+      const readMs = roundMs(performance.now() - startedAt);
 
-    const rectifyStartedAt = performance.now();
-    const rectified = await rectifyCardStillBuffer(imageBuffer);
-    const rectifyMs = roundMs(performance.now() - rectifyStartedAt);
-    const debugPath = path.join(service.args.debugDir, `${requestId}_rectified.png`);
-    await writeFile(debugPath, rectified.png);
+      const rectifyStartedAt = performance.now();
+      const rectified = await rectifyCardStillBuffer(imageBuffer);
+      const rectifyMs = roundMs(performance.now() - rectifyStartedAt);
+      const debugPath = path.join(service.args.debugDir, `${requestId}_rectified.png`);
+      await writeFile(debugPath, rectified.png);
 
-    const ocrStartedAt = performance.now();
-    const ocr = await ocrCardNumberBuffer(rectified.png, {
-      artifact: service.artifact,
-      artifactDir: service.args.artifactDir,
-      sourcePath: debugPath,
-    });
-    const ocrMs = roundMs(performance.now() - ocrStartedAt);
+      const ocrStartedAt = performance.now();
+      const ocr = await ocrCardNumberBuffer(rectified.png, {
+        artifact: service.artifact,
+        artifactDir: service.args.artifactDir,
+        sourcePath: debugPath,
+      });
+      const ocrMs = roundMs(performance.now() - ocrStartedAt);
 
-    const exactCandidates = normalizeCandidates(ocr.matches);
-    let embedding = null;
-    let mode = 'ocr_miss';
-    let candidates = [];
+      const exactCandidates = normalizeCandidates(ocr.matches);
+      let embedding = null;
+      let mode = 'ocr_miss';
+      let candidates = [];
 
-    if (exactCandidates.length === 1) {
-      mode = 'ocr_exact';
-      candidates = exactCandidates.slice(0, 1);
-    } else if (exactCandidates.length > 1) {
-      embedding = await runEmbeddingLane(rectified.png, service);
-      mode = 'fused';
-      candidates = rankOcrSiblingsByEmbedding(exactCandidates, embedding.candidates).slice(0, 3);
-    } else {
-      embedding = await runEmbeddingLane(rectified.png, service);
-      candidates = normalizeCandidates(embedding.candidates).slice(0, 3);
-      mode = candidates.length > 0 ? 'embedding_only' : 'unreadable';
+      if (exactCandidates.length === 1) {
+        mode = 'ocr_exact';
+        candidates = exactCandidates.slice(0, 1);
+      } else if (exactCandidates.length > 1) {
+        embedding = await runEmbeddingLane(rectified.png, service);
+        mode = 'fused';
+        candidates = rankOcrSiblingsByEmbedding(exactCandidates, embedding.candidates).slice(0, 3);
+      } else {
+        embedding = await runEmbeddingLane(rectified.png, service);
+        candidates = normalizeCandidates(embedding.candidates).slice(0, 3);
+        mode = candidates.length > 0 ? 'embedding_only' : 'unreadable';
+      }
+
+      if (mode === 'unreadable') {
+        candidates = [];
+      }
+
+      const latency = {
+        read_ms: readMs,
+        rectify_ms: rectifyMs,
+        ocr_ms: ocrMs,
+        embedding_ms: embedding?.embedding_ms ?? null,
+        total_ms: roundMs(performance.now() - startedAt),
+      };
+      const payload = {
+        ok: true,
+        mode,
+        candidates,
+        latency_ms: latency,
+        ocr: {
+          number: ocr.number,
+          set_total: ocr.set_total,
+          set_code_guess: ocr.set_code_guess,
+          confidence: ocr.ocr_confidence,
+          available: ocr.ocr_available,
+          parser_source: ocr.parser_source,
+        },
+        rectification: rectified.sidecar,
+        rectified_debug_path: debugPath,
+        retake_hint: mode === 'unreadable' ? retakeHint(rectified.sidecar) : null,
+      };
+      console.log(JSON.stringify({
+        event: 'scanner_v5_identify_request',
+        request_id: requestId,
+        mode,
+        candidate_count: candidates.length,
+        latency_ms: latency,
+      }));
+      writeJson(response, 200, payload);
+    } catch (error) {
+      const latency = {
+        read_ms: null,
+        rectify_ms: null,
+        ocr_ms: null,
+        embedding_ms: null,
+        total_ms: roundMs(performance.now() - startedAt),
+      };
+      console.warn(JSON.stringify({
+        event: 'scanner_v5_identify_unreadable',
+        request_id: requestId,
+        error: error?.message || String(error),
+        latency_ms: latency,
+      }));
+      writeJson(response, 200, {
+        ok: false,
+        mode: 'unreadable',
+        candidates: [],
+        latency_ms: latency,
+        ocr: {
+          number: null,
+          set_total: null,
+          set_code_guess: null,
+          confidence: null,
+          available: null,
+          parser_source: 'unreadable',
+        },
+        rectification: null,
+        rectified_debug_path: null,
+        retake_hint: 'Retake with the full card centered, in focus, and evenly lit.',
+        error: error?.message || String(error),
+      });
     }
-
-    if (mode === 'unreadable') {
-      candidates = [];
-    }
-
-    const latency = {
-      read_ms: readMs,
-      rectify_ms: rectifyMs,
-      ocr_ms: ocrMs,
-      embedding_ms: embedding?.embedding_ms ?? null,
-      total_ms: roundMs(performance.now() - startedAt),
-    };
-    const payload = {
-      ok: true,
-      mode,
-      candidates,
-      latency_ms: latency,
-      ocr: {
-        number: ocr.number,
-        set_total: ocr.set_total,
-        set_code_guess: ocr.set_code_guess,
-        confidence: ocr.ocr_confidence,
-        available: ocr.ocr_available,
-        parser_source: ocr.parser_source,
-      },
-      rectification: rectified.sidecar,
-      rectified_debug_path: debugPath,
-      retake_hint: mode === 'unreadable' ? retakeHint(rectified.sidecar) : null,
-    };
-    console.log(JSON.stringify({
-      event: 'scanner_v5_identify_request',
-      request_id: requestId,
-      mode,
-      candidate_count: candidates.length,
-      latency_ms: latency,
-    }));
-    writeJson(response, 200, payload);
     return;
   }
 
