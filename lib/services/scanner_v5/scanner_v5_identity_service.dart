@@ -72,6 +72,9 @@ class ScannerV5IdentifyResult {
 
   factory ScannerV5IdentifyResult.fromJson(Map<String, dynamic> json) {
     final rawCandidates = json['candidates'];
+    final latency = json['latency_ms'] is Map
+        ? Map<String, dynamic>.from(json['latency_ms'] as Map)
+        : null;
     return ScannerV5IdentifyResult(
       ok: json['ok'] == true,
       mode: (json['mode'] ?? 'unknown').toString(),
@@ -85,7 +88,10 @@ class ScannerV5IdentifyResult {
                 )
                 .toList(growable: false)
           : const <ScannerV5Candidate>[],
-      latencyMs: _numToDouble(json['latency_ms']) ?? 0,
+      latencyMs:
+          _numToDouble(latency?['total_ms']) ??
+          _numToDouble(json['latency_ms']) ??
+          0,
       retakeHint: _trimmedOrNull(json['retake_hint']),
       ocr: json['ocr'] is Map
           ? Map<String, dynamic>.from(json['ocr'] as Map)
@@ -121,9 +127,12 @@ class ScannerV5Candidate {
     required this.name,
     this.cardId,
     this.gvId,
+    this.displayName,
     this.setCode,
     this.number,
     this.imageUrl,
+    this.confidence,
+    this.rank,
     this.distance,
     this.score,
     this.reason,
@@ -139,10 +148,16 @@ class ScannerV5Candidate {
       id: id,
       cardId: _trimmedOrNull(json['card_id']),
       gvId: _trimmedOrNull(json['gv_id']) ?? (id.startsWith('GV-') ? id : null),
-      name: _trimmedOrNull(json['name']) ?? 'Unknown card',
+      displayName: _trimmedOrNull(json['display_name']),
+      name:
+          _trimmedOrNull(json['display_name']) ??
+          _trimmedOrNull(json['name']) ??
+          'Unknown card',
       setCode: _trimmedOrNull(json['set_code']) ?? _trimmedOrNull(json['set']),
       number: _trimmedOrNull(json['number']),
       imageUrl: _trimmedOrNull(json['image_url']),
+      confidence: _numToDouble(json['confidence']),
+      rank: _numToInt(json['rank']),
       distance: _numToDouble(json['distance']),
       score: _numToDouble(json['score']),
       reason: _trimmedOrNull(json['reason']),
@@ -152,10 +167,13 @@ class ScannerV5Candidate {
   final String id;
   final String? cardId;
   final String? gvId;
+  final String? displayName;
   final String name;
   final String? setCode;
   final String? number;
   final String? imageUrl;
+  final double? confidence;
+  final int? rank;
   final double? distance;
   final double? score;
   final String? reason;
@@ -166,9 +184,12 @@ class ScannerV5Candidate {
     'id': id,
     'card_id': cardId,
     'gv_id': gvId,
+    'display_name': displayName,
     'name': name,
     'set_code': setCode,
     'number': number,
+    'confidence': confidence,
+    'rank': rank,
     'distance': distance,
     'score': score,
     'reason': reason,
@@ -192,4 +213,10 @@ String? _trimmedOrNull(dynamic value) {
 double? _numToDouble(dynamic value) {
   if (value is num) return value.toDouble();
   return double.tryParse((value ?? '').toString());
+}
+
+int? _numToInt(dynamic value) {
+  if (value is int) return value;
+  if (value is num) return value.toInt();
+  return int.tryParse((value ?? '').toString());
 }

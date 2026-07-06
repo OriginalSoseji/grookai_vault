@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,8 +23,13 @@ class ScanCaptureV5Screen extends StatefulWidget {
 class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     with WidgetsBindingObserver {
   static const _sessionLogKey = 'scanner_v5_session_log_jsonl_v1';
+  static const _uploadJpegQuality = 85;
+  static const _uploadMaxLongEdge = 1200;
+  static const _cardAspectRatio = 2.5 / 3.5;
 
   final _identityService = ScannerV5IdentityService();
+  final String _sessionId =
+      'scanner_v5_${DateTime.now().toUtc().microsecondsSinceEpoch}';
   CameraController? _controller;
   Future<void>? _cameraFuture;
   bool _capturing = false;
@@ -127,7 +134,9 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     try {
       await _prepareStill(controller);
       final picture = await controller.takePicture();
-      final imageBytes = await File(picture.path).readAsBytes();
+      final imageBytes = await _prepareUploadBytes(
+        await File(picture.path).readAsBytes(),
+      );
       unawaited(_deleteTemporaryCapture(picture.path));
       if (!mounted) return;
       setState(() {
@@ -178,13 +187,75 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     } catch (_) {}
   }
 
+  Future<Uint8List> _prepareUploadBytes(Uint8List rawBytes) async {
+    final decoded = img.decodeImage(rawBytes);
+    if (decoded == null) {
+      return rawBytes;
+    }
+    final oriented = img.bakeOrientation(decoded);
+    final slotCrop = _cropToVisualSlot(oriented);
+    final resized = _resizeForUpload(slotCrop);
+    return Uint8List.fromList(
+      img.encodeJpg(resized, quality: _uploadJpegQuality),
+    );
+  }
+
+  img.Image _cropToVisualSlot(img.Image source) {
+    final width = source.width;
+    final height = source.height;
+    if (width <= 0 || height <= 0) {
+      return source;
+    }
+
+    var cropWidth = math.min(width * 0.72, height * 0.68 * _cardAspectRatio);
+    var cropHeight = cropWidth / _cardAspectRatio;
+    if (cropHeight > height * 0.84) {
+      cropHeight = height * 0.84;
+      cropWidth = cropHeight * _cardAspectRatio;
+    }
+
+    final centerX = width / 2;
+    final centerY = height * 0.44;
+    final x = (centerX - cropWidth / 2)
+        .round()
+        .clamp(0, math.max(0, width - cropWidth.round()))
+        .toInt();
+    final y = (centerY - cropHeight / 2)
+        .round()
+        .clamp(0, math.max(0, height - cropHeight.round()))
+        .toInt();
+    final w = cropWidth.round().clamp(1, width - x).toInt();
+    final h = cropHeight.round().clamp(1, height - y).toInt();
+
+    return img.copyCrop(source, x: x, y: y, width: w, height: h);
+  }
+
+  img.Image _resizeForUpload(img.Image source) {
+    final longEdge = math.max(source.width, source.height);
+    if (longEdge <= _uploadMaxLongEdge) {
+      return source;
+    }
+    final scale = _uploadMaxLongEdge / longEdge;
+    return img.copyResize(
+      source,
+      width: math.max(1, (source.width * scale).round()),
+      height: math.max(1, (source.height * scale).round()),
+      interpolation: img.Interpolation.average,
+    );
+  }
+
   Future<void> _appendSessionLog(ScannerV5IdentifyResult result) async {
     final prefs = await SharedPreferences.getInstance();
     final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
+    final retainedRows = rows.length > 49
+        ? rows.sublist(rows.length - 49)
+        : rows;
     final nextRows = <String>[
-      ...rows.take(49),
+      ...retainedRows,
       jsonEncode(<String, dynamic>{
+        'event_type': 'scanner_v5_identify_result',
         'ts': DateTime.now().toUtc().toIso8601String(),
+        'session_id': _sessionId,
         'endpoint': _identityService.endpoint,
         'result': result.toSessionJson(),
       }),
@@ -207,7 +278,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
 
     setState(() => _addingToVault = true);
     try {
-      await VaultCardService.addOrIncrementVaultItem(
+      final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: Supabase.instance.client,
         userId: userId,
         cardId: cardPrintId,
@@ -215,6 +286,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         fallbackSetName: candidate.setCode,
         fallbackImageUrl: candidate.imageUrl,
       );
+      await _appendConfirmationLog(candidate: candidate, gvviId: gvviId);
       if (!mounted) return;
       _showSnack('Added ${candidate.name} to your Vault.');
     } catch (_) {
@@ -223,6 +295,43 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     } finally {
       if (mounted) setState(() => _addingToVault = false);
     }
+  }
+
+  Future<void> _appendConfirmationLog({
+    required ScannerV5Candidate candidate,
+    required String gvviId,
+  }) async {
+    final result = _result;
+    final candidates = result?.candidates ?? const <ScannerV5Candidate>[];
+    final confirmedRank =
+        candidate.rank ??
+        candidates.indexWhere(
+              (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
+            ) +
+            1;
+    final payload = <String, dynamic>{
+      'event_type': 'scanner_v5_scan/card',
+      'ts': DateTime.now().toUtc().toIso8601String(),
+      'session_id': _sessionId,
+      'confirmed_rank': confirmedRank <= 0 ? null : confirmedRank,
+      'gv_id': candidate.gvId,
+      'card_id': candidate.cardId,
+      'gvvi_id': gvviId,
+      'response_mode': result?.mode,
+      'response_candidates': candidates
+          .map((row) => row.toSessionJson())
+          .toList(growable: false),
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
+    final retainedRows = rows.length > 49
+        ? rows.sublist(rows.length - 49)
+        : rows;
+    await prefs.setStringList(_sessionLogKey, <String>[
+      ...retainedRows,
+      jsonEncode(payload),
+    ]);
+    debugPrint('[scanner_v5] ${jsonEncode(payload)}');
   }
 
   void _showSnack(String message) {
