@@ -80,11 +80,11 @@ const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
 );
 const bool kScannerV5Enabled = bool.fromEnvironment(
   'SCANNER_V5',
-  defaultValue: false,
+  defaultValue: true,
 );
 const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment(
   'SCANNER_CONSTRUCTION_PLACEHOLDER',
-  defaultValue: true,
+  defaultValue: false,
 );
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
