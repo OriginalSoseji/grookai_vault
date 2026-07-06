@@ -105,7 +105,10 @@ function normalizeEvent(event) {
     ? event.candidates
     : Array.isArray(event?.response?.candidates)
       ? event.response.candidates
+      : Array.isArray(event?.result?.candidates)
+        ? event.result.candidates
       : [];
+  const response = event?.response ?? event?.result ?? {};
   const confirmedRank = numberOrNull(
     event?.confirmed_rank ??
     event?.confirmedRank ??
@@ -116,8 +119,20 @@ function normalizeEvent(event) {
   const confirmMs = timestampOrMs(event?.confirm_ms ?? event?.confirmedAtMs ?? event?.confirmed_at ?? event?.confirmedAt);
   return {
     session_id: stringOrNull(event?.session_id ?? event?.sessionId),
-    scan_id: stringOrNull(event?.scan_id ?? event?.scanId ?? event?.request_id ?? event?.requestId),
-    mode: stringOrNull(event?.mode ?? event?.response?.mode),
+    scan_id: stringOrNull(
+      event?.scan_id ??
+      event?.scanId ??
+      event?.request_id ??
+      event?.requestId ??
+      response?.request_id ??
+      response?.requestId,
+    ),
+    mode: stringOrNull(event?.mode ?? response?.mode),
+    ocr: response?.ocr ?? event?.ocr ?? null,
+    rectification: response?.rectification ?? event?.rectification ?? null,
+    upload_debug_path: stringOrNull(response?.upload_debug_path ?? event?.upload_debug_path),
+    rectified_debug_path: stringOrNull(response?.rectified_debug_path ?? event?.rectified_debug_path),
+    ocr_debug_dir: stringOrNull(response?.ocr_debug_dir ?? event?.ocr_debug_dir),
     confirmed_rank: confirmedRank,
     retakes: numberOrNull(event?.retakes ?? event?.retake_count ?? event?.retakeCount) ?? 0,
     shutter_to_confirm_ms: Number.isFinite(shutterMs) && Number.isFinite(confirmMs)

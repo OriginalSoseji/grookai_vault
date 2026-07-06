@@ -24,6 +24,7 @@ function parseArgs(argv) {
     port: positiveInt(process.env.SCANNER_V5_PORT, DEFAULT_PORT),
     artifactDir: process.env.SCANNER_V5_ARTIFACT_DIR || DEFAULT_ARTIFACT_DIR,
     debugDir: process.env.SCANNER_V5_DEBUG_DIR || '.tmp/scanner_v5_identity_service',
+    saveDebugArtifacts: truthy(process.env.SCANNER_V5_SAVE_DEBUG_ARTIFACTS),
     model: process.env.SCANNER_V5_IDENTITY_MODEL || null,
     help: false,
   };
@@ -39,6 +40,7 @@ function parseArgs(argv) {
     else if (name === '--port') args.port = positiveInt(next(), DEFAULT_PORT);
     else if (name === '--artifact-dir') args.artifactDir = next() || DEFAULT_ARTIFACT_DIR;
     else if (name === '--debug-dir') args.debugDir = next() || args.debugDir;
+    else if (name === '--save-debug-artifacts') args.saveDebugArtifacts = true;
     else if (name === '--model') args.model = next() || null;
     else if (name === '--help' || name === '-h') args.help = true;
   }
@@ -64,7 +66,9 @@ async function main() {
     return;
   }
   const artifact = await loadScannerV5Artifact(args.artifactDir);
-  await mkdir(args.debugDir, { recursive: true });
+  if (args.saveDebugArtifacts) {
+    await mkdir(args.debugDir, { recursive: true });
+  }
   const service = {
     startedAt: new Date().toISOString(),
     args,
@@ -87,6 +91,7 @@ async function main() {
       health: `http://${args.host}:${args.port}/scanner-v5/health`,
       artifact_dir: path.resolve(args.artifactDir),
       reference_count: artifact.referenceCount,
+      save_debug_artifacts: args.saveDebugArtifacts,
     }, null, 2));
   });
 }
@@ -100,6 +105,7 @@ async function handleRequest(request, response, service) {
       started_at: service.startedAt,
       artifact_dir: path.resolve(service.args.artifactDir),
       reference_count: service.artifact.referenceCount,
+      save_debug_artifacts: service.args.saveDebugArtifacts,
       contract: 'SCANNER_V5_IDENTIFY_CONTRACT_V1',
     });
     return;
@@ -112,17 +118,25 @@ async function handleRequest(request, response, service) {
       const body = await readRequestBody(request, MAX_BODY_BYTES);
       const imageBuffer = imageBufferFromRequest(body, request.headers['content-type']);
       const readMs = roundMs(performance.now() - startedAt);
+      const requestDebugDir = service.args.saveDebugArtifacts
+        ? path.join(service.args.debugDir, requestId)
+        : null;
+      if (requestDebugDir) await mkdir(requestDebugDir, { recursive: true });
+      const uploadDebugPath = requestDebugDir ? path.join(requestDebugDir, 'upload.jpg') : null;
+      if (uploadDebugPath) await writeFile(uploadDebugPath, imageBuffer);
 
       const rectifyStartedAt = performance.now();
       const rectified = await rectifyCardStillBuffer(imageBuffer);
       const rectifyMs = roundMs(performance.now() - rectifyStartedAt);
-      const debugPath = path.join(service.args.debugDir, `${requestId}_rectified.png`);
-      await writeFile(debugPath, rectified.png);
+      const debugPath = requestDebugDir ? path.join(requestDebugDir, 'rectified.png') : null;
+      if (debugPath) await writeFile(debugPath, rectified.png);
+      const ocrDebugDir = requestDebugDir ? path.join(requestDebugDir, 'ocr') : null;
 
       const ocrStartedAt = performance.now();
       const ocr = await ocrCardNumberBuffer(rectified.png, {
         artifact: service.artifact,
         artifactDir: service.args.artifactDir,
+        debugDir: ocrDebugDir,
         sourcePath: debugPath,
       });
       const ocrMs = roundMs(performance.now() - ocrStartedAt);
@@ -158,6 +172,7 @@ async function handleRequest(request, response, service) {
       };
       const payload = {
         ok: true,
+        request_id: requestId,
         mode,
         candidates,
         latency_ms: latency,
@@ -170,7 +185,9 @@ async function handleRequest(request, response, service) {
           parser_source: ocr.parser_source,
         },
         rectification: rectified.sidecar,
+        upload_debug_path: uploadDebugPath,
         rectified_debug_path: debugPath,
+        ocr_debug_dir: ocrDebugDir,
         retake_hint: mode === 'unreadable' ? retakeHint(rectified.sidecar) : null,
       };
       console.log(JSON.stringify({
@@ -178,6 +195,13 @@ async function handleRequest(request, response, service) {
         request_id: requestId,
         mode,
         candidate_count: candidates.length,
+        ocr: payload.ocr,
+        rectification: {
+          quad_source: rectified.sidecar?.quad_source ?? null,
+          confidence: rectified.sidecar?.confidence ?? null,
+          skew_deg: rectified.sidecar?.skew_deg ?? null,
+        },
+        debug_dir: requestDebugDir,
         latency_ms: latency,
       }));
       writeJson(response, 200, payload);
@@ -345,6 +369,10 @@ function writeJson(response, statusCode, payload) {
 function positiveInt(value, fallback) {
   const parsed = Number.parseInt(String(value ?? ''), 10);
   return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function truthy(value) {
+  return /^(1|true|yes|on)$/i.test(String(value ?? '').trim());
 }
 
 function roundMs(value) {

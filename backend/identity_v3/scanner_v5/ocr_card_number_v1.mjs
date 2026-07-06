@@ -70,18 +70,75 @@ export function parseCardNumberText(text, options = {}) {
     .replace(/[^\w/.\-: ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+  const setCodeGuess = matchSetCodeFromVocabulary(cleaned, options.setCodeVocabulary);
   const numberMatches = [...cleaned.matchAll(/(?:^|[^0-9])(\d{1,4})\s*\/\s*(\d{1,4})(?:[^0-9]|$)/g)];
-  const numberMatch = numberMatches.find((match) => {
-    const total = Number.parseInt(match[2], 10);
-    return Number.isInteger(total) && total > 0 && total <= 500;
-  }) ?? numberMatches[0];
+  const numberMatch = numberMatches
+    .map(normalizeSlashMatch)
+    .find(Boolean);
+  const compactNumberMatch = numberMatch ? null : compactNumberTotalMatch(cleaned);
   const standaloneNumber = cleaned.match(/(?:^|[^0-9])(\d{1,4})(?:[^0-9]|$)/);
+  const useStandaloneNumber = !numberMatch && !compactNumberMatch && setCodeGuess;
   return {
-    number: normalizeNumber(numberMatch?.[1] ?? standaloneNumber?.[1]),
-    set_total: normalizeNumber(numberMatch?.[2]),
-    set_code_guess: matchSetCodeFromVocabulary(cleaned, options.setCodeVocabulary),
+    number: normalizeNumber(numberMatch?.[1] ?? compactNumberMatch?.number ?? (useStandaloneNumber ? standaloneNumber?.[1] : null)),
+    set_total: normalizeNumber(numberMatch?.[2] ?? compactNumberMatch?.set_total),
+    set_code_guess: setCodeGuess,
     cleaned_text: cleaned,
   };
+}
+
+function normalizeSlashMatch(match) {
+  const numberText = match?.[1];
+  const totalText = match?.[2];
+  const number = Number.parseInt(numberText, 10);
+  let total = Number.parseInt(totalText, 10);
+  let normalizedTotalText = totalText;
+  if (Number.isInteger(total) && total > 500 && String(totalText).length === 4) {
+    const trimmedTotalText = String(totalText).slice(0, 3);
+    const trimmedTotal = Number.parseInt(trimmedTotalText, 10);
+    if (Number.isInteger(trimmedTotal) && trimmedTotal >= 50 && trimmedTotal <= 500) {
+      total = trimmedTotal;
+      normalizedTotalText = trimmedTotalText;
+    }
+  }
+  if (
+    Number.isInteger(number) &&
+    Number.isInteger(total) &&
+    number > 0 &&
+    number <= 999 &&
+    total >= 50 &&
+    total <= 500
+  ) {
+    return { 1: numberText, 2: normalizedTotalText };
+  }
+  return null;
+}
+
+function compactNumberTotalMatch(cleaned) {
+  const digitRuns = [...String(cleaned ?? '').matchAll(/\d{6,8}/g)].map((match) => match[0]);
+  for (const run of digitRuns) {
+    for (let start = 0; start <= run.length - 6; start += 1) {
+      const window = run.slice(start);
+      for (const totalLength of [3, 2]) {
+        if (window.length < totalLength + 1) continue;
+        const totalText = window.slice(-totalLength);
+        const numberText = window.slice(0, -totalLength).replace(/^0+/, '');
+        if (numberText.length < 1 || numberText.length > 3) continue;
+        const number = Number.parseInt(numberText, 10);
+        const total = Number.parseInt(totalText, 10);
+        if (
+          Number.isInteger(number) &&
+          Number.isInteger(total) &&
+          number > 0 &&
+          number <= 999 &&
+          total >= 50 &&
+          total <= 500
+        ) {
+          return { number: numberText, set_total: totalText };
+        }
+      }
+    }
+  }
+  return null;
 }
 
 function matchSetCodeFromVocabulary(cleaned, vocabulary) {
@@ -114,6 +171,7 @@ async function bottomStripOcrCrops(imageBuffer) {
   const width = metadata.width ?? 716;
   const height = metadata.height ?? 1000;
   const specs = [
+    { name: 'number_plaque_left_sharp', left: Math.round(width * 0.19), top: Math.round(height * 0.812), width: Math.round(width * 0.245), height: Math.round(height * 0.052), mode: 'number_sharp' },
     { name: 'number_only_left', left: Math.round(width * 0.12), top: Math.round(height * 0.915), width: Math.round(width * 0.25), height: Math.round(height * 0.055), mode: 'soft' },
     { name: 'number_zone_left', left: Math.round(width * 0.09), top: Math.round(height * 0.905), width: Math.round(width * 0.36), height: Math.round(height * 0.075), mode: 'soft' },
     { name: 'number_zone_left_wide', left: Math.round(width * 0.075), top: Math.round(height * 0.885), width: Math.round(width * 0.50), height: Math.round(height * 0.11), mode: 'soft' },
@@ -133,6 +191,8 @@ async function bottomStripOcrCrops(imageBuffer) {
       .normalize();
     if (spec.mode === 'threshold') {
       pipeline = pipeline.threshold(125);
+    } else if (spec.mode === 'number_sharp') {
+      pipeline = pipeline.sharpen();
     } else if (spec.mode === 'set_code') {
       pipeline = pipeline.sharpen();
     } else if (spec.mode !== 'soft') {

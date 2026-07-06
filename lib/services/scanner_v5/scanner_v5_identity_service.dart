@@ -41,21 +41,29 @@ class ScannerV5IdentityService {
     const compileTimeEndpoint = String.fromEnvironment(
       'SCANNER_V5_IDENTIFY_ENDPOINT',
     );
-    final envEndpoint =
-        dotenv.maybeGet('SCANNER_V5_IDENTIFY_ENDPOINT') ??
-        dotenv.maybeGet('SCANNER_V5_ENDPOINT');
-    final value = compileTimeEndpoint.trim().isNotEmpty
-        ? compileTimeEndpoint
-        : (envEndpoint ?? '').trim();
+    if (compileTimeEndpoint.trim().isNotEmpty) {
+      return _normalizeEndpoint(compileTimeEndpoint);
+    }
+
+    final envEndpoint = dotenv.isInitialized
+        ? dotenv.maybeGet('SCANNER_V5_IDENTIFY_ENDPOINT') ??
+              dotenv.maybeGet('SCANNER_V5_ENDPOINT')
+        : null;
+    final value = (envEndpoint ?? '').trim();
     if (value.isNotEmpty) {
-      return value.endsWith('/identify')
-          ? value
-          : '${value.replaceFirst(RegExp(r'/$'), '')}/scanner-v5/identify';
+      return _normalizeEndpoint(value);
     }
     if (Platform.isAndroid) {
       return 'http://10.0.2.2:8795/scanner-v5/identify';
     }
     return 'http://127.0.0.1:8795/scanner-v5/identify';
+  }
+
+  static String _normalizeEndpoint(String value) {
+    final normalized = value.trim();
+    return normalized.endsWith('/identify')
+        ? normalized
+        : '${normalized.replaceFirst(RegExp(r'/$'), '')}/scanner-v5/identify';
   }
 }
 
@@ -65,9 +73,13 @@ class ScannerV5IdentifyResult {
     required this.mode,
     required this.candidates,
     required this.latencyMs,
+    this.requestId,
     this.retakeHint,
     this.ocr,
     this.rectification,
+    this.uploadDebugPath,
+    this.rectifiedDebugPath,
+    this.ocrDebugDir,
   });
 
   factory ScannerV5IdentifyResult.fromJson(Map<String, dynamic> json) {
@@ -92,6 +104,7 @@ class ScannerV5IdentifyResult {
           _numToDouble(latency?['total_ms']) ??
           _numToDouble(json['latency_ms']) ??
           0,
+      requestId: _trimmedOrNull(json['request_id']),
       retakeHint: _trimmedOrNull(json['retake_hint']),
       ocr: json['ocr'] is Map
           ? Map<String, dynamic>.from(json['ocr'] as Map)
@@ -99,6 +112,9 @@ class ScannerV5IdentifyResult {
       rectification: json['rectification'] is Map
           ? Map<String, dynamic>.from(json['rectification'] as Map)
           : null,
+      uploadDebugPath: _trimmedOrNull(json['upload_debug_path']),
+      rectifiedDebugPath: _trimmedOrNull(json['rectified_debug_path']),
+      ocrDebugDir: _trimmedOrNull(json['ocr_debug_dir']),
     );
   }
 
@@ -106,15 +122,25 @@ class ScannerV5IdentifyResult {
   final String mode;
   final List<ScannerV5Candidate> candidates;
   final double latencyMs;
+  final String? requestId;
   final String? retakeHint;
   final Map<String, dynamic>? ocr;
   final Map<String, dynamic>? rectification;
+  final String? uploadDebugPath;
+  final String? rectifiedDebugPath;
+  final String? ocrDebugDir;
 
   Map<String, dynamic> toSessionJson() => <String, dynamic>{
     'ok': ok,
+    'request_id': requestId,
     'mode': mode,
     'latency_ms': latencyMs,
     'retake_hint': retakeHint,
+    'ocr': ocr,
+    'rectification': rectification,
+    'upload_debug_path': uploadDebugPath,
+    'rectified_debug_path': rectifiedDebugPath,
+    'ocr_debug_dir': ocrDebugDir,
     'candidates': candidates
         .map((candidate) => candidate.toSessionJson())
         .toList(growable: false),
