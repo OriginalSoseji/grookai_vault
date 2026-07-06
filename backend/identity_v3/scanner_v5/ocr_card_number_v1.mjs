@@ -2,12 +2,10 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import crypto from 'node:crypto';
 import sharp from 'sharp';
 
 import {
   loadScannerV5Artifact,
-  lookupByGvId,
   lookupByNumber,
 } from './scanner_v5_artifact_v1.mjs';
 
@@ -41,15 +39,10 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
     error: error?.message || String(error),
   }));
   const parsed = parseCardNumberText(ocr.text);
-  const fixtureHint = parsed.number
-    ? null
-    : await knownFixtureHint(options.sourcePath, imageBuffer, artifact);
-  const number = parsed.number ?? fixtureHint?.number ?? null;
-  const setTotal = parsed.set_total ?? fixtureHint?.set_total ?? null;
-  const setCodeGuess = parsed.set_code_guess ?? fixtureHint?.set_code_guess ?? null;
-  const matches = fixtureHint?.gv_id
-    ? [lookupByGvId(artifact, fixtureHint.gv_id)].filter(Boolean)
-    : lookupByNumber(artifact, { number, setTotal, setCodeGuess });
+  const number = parsed.number ?? null;
+  const setTotal = parsed.set_total ?? null;
+  const setCodeGuess = parsed.set_code_guess ?? null;
+  const matches = lookupByNumber(artifact, { number, setTotal, setCodeGuess });
 
   const result = {
     number,
@@ -60,7 +53,7 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
     ocr_available: ocr.available,
     ocr_text: ocr.text,
     ocr_error: ocr.error ?? null,
-    parser_source: parsed.number ? 'tesseract' : fixtureHint?.source ?? 'none',
+    parser_source: parsed.number ? 'tesseract' : 'none',
     raw_crops: ocr.raw_crops ?? [],
   };
   if (options.debugDir) {
@@ -81,11 +74,12 @@ export function parseCardNumberText(text) {
     return Number.isInteger(total) && total > 0 && total <= 500;
   }) ?? numberMatches[0];
   const standaloneNumber = cleaned.match(/(?:^|[^0-9])(\d{1,4})(?:[^0-9]|$)/);
-  const setCodeMatch = cleaned.match(/\b(ASC|POR|[A-Z]{1,4}\d{1,3}(?:\.\d+[A-Z]?)?|SV\d{1,2}(?:\.\d+[A-Z]?)?)\b/i);
+  const setCodeWithNumber = cleaned.match(/\b([A-Z](?:\s*[A-Z]){1,4})\s*[- ]\s*\d{1,4}\b/);
+  const setCodeMatch = cleaned.match(/\b(ASC|POR|SV\d{1,2}(?:\.\d+[A-Z]?)?)\b/);
   return {
     number: normalizeNumber(numberMatch?.[1] ?? standaloneNumber?.[1]),
     set_total: normalizeNumber(numberMatch?.[2]),
-    set_code_guess: normalizeSetCode(setCodeMatch?.[1]),
+    set_code_guess: normalizeSetCode(setCodeWithNumber?.[1] ?? setCodeMatch?.[1]),
     cleaned_text: cleaned,
   };
 }
@@ -98,6 +92,8 @@ async function bottomStripOcrCrops(imageBuffer) {
     { name: 'number_only_left', left: Math.round(width * 0.12), top: Math.round(height * 0.915), width: Math.round(width * 0.25), height: Math.round(height * 0.055), mode: 'soft' },
     { name: 'number_zone_left', left: Math.round(width * 0.09), top: Math.round(height * 0.905), width: Math.round(width * 0.36), height: Math.round(height * 0.075), mode: 'soft' },
     { name: 'number_zone_left_wide', left: Math.round(width * 0.075), top: Math.round(height * 0.885), width: Math.round(width * 0.50), height: Math.round(height * 0.11), mode: 'soft' },
+    { name: 'set_code_footer_left', left: Math.round(width * 0.045), top: Math.round(height * 0.78), width: Math.round(width * 0.62), height: Math.round(height * 0.20), mode: 'soft' },
+    { name: 'set_code_footer_tight', left: Math.round(width * 0.06), top: Math.round(height * 0.90), width: Math.round(width * 0.38), height: Math.round(height * 0.08), mode: 'set_code' },
   ];
   return Promise.all(specs.map(async (spec) => {
     let pipeline = sharp(imageBuffer, { failOn: 'none' })
@@ -112,6 +108,8 @@ async function bottomStripOcrCrops(imageBuffer) {
       .normalize();
     if (spec.mode === 'threshold') {
       pipeline = pipeline.threshold(125);
+    } else if (spec.mode === 'set_code') {
+      pipeline = pipeline.sharpen();
     } else if (spec.mode !== 'soft') {
       pipeline = pipeline.threshold(150);
     }
@@ -175,60 +173,6 @@ function localTesseractOptions() {
   } catch {
     return {};
   }
-}
-
-async function knownFixtureHint(sourcePath, imageBuffer, artifact) {
-  const normalized = String(sourcePath ?? '').replace(/\\/g, '/').toLowerCase();
-  const sidecarSourcePath = await sidecarSourceForImage(sourcePath);
-  const normalizedSidecarSource = String(sidecarSourcePath ?? '')
-    .replace(/\\/g, '/')
-    .toLowerCase();
-  if (
-    normalized.includes('/scanner_fixed_slot_device/latest/') ||
-    normalizedSidecarSource.includes('/scanner_fixed_slot_device/latest/')
-  ) {
-    const amaura = lookupByGvId(artifact, 'GV-PK-ME03-023');
-    if (amaura) {
-      return {
-        source: 'archived_fixture_hint',
-        gv_id: 'GV-PK-ME03-023',
-        number: '023',
-        set_total: null,
-        set_code_guess: 'me03',
-      };
-    }
-  }
-
-  const digest = crypto.createHash('sha256').update(imageBuffer).digest('hex');
-  if (
-    digest === '937c626f5b791e221c69111666f3f0e6d3fa5cbc6c55f650474671d91d316035' ||
-    digest === '0164dd776a61bf8a3eb28b396c6a7e6750e27995b3df5a764f9f24d3d995cb07'
-  ) {
-    return {
-      source: 'archived_fixture_hash_hint',
-      gv_id: 'GV-PK-ME03-023',
-      number: '023',
-      set_total: null,
-      set_code_guess: 'me03',
-    };
-  }
-  return null;
-}
-
-async function sidecarSourceForImage(sourcePath) {
-  if (!sourcePath) return null;
-  const parsed = path.parse(path.resolve(sourcePath));
-  const candidates = [
-    path.join(parsed.dir, `${parsed.name}.json`),
-    path.join(parsed.dir, 'rectified_card.json'),
-  ];
-  for (const candidate of candidates) {
-    try {
-      const json = JSON.parse(await readFile(candidate, 'utf8'));
-      if (json?.source_path) return json.source_path;
-    } catch {}
-  }
-  return null;
 }
 
 function normalizeNumber(value) {

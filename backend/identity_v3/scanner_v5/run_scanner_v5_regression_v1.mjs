@@ -72,6 +72,7 @@ async function main() {
   const top3 = ratio(scoredRows.filter((row) => row.true_rank != null && row.true_rank <= 3).length, scoredRows.length);
   const ocrP50 = percentile(scoredRows.map((row) => row.latency_ms?.ocr_ms).filter(Number.isFinite), 0.5);
   const embeddingP50 = percentile(scoredRows.map((row) => row.latency_ms?.embedding_ms).filter(Number.isFinite), 0.5);
+  const requiredParserSourcePass = scoredRows.every((row) => row.parser_source === 'tesseract');
   const summary = {
     generated_at: new Date().toISOString(),
     gates: GATES,
@@ -82,10 +83,12 @@ async function main() {
     top3,
     ocr_p50_ms: ocrP50,
     embedding_p50_ms: embeddingP50,
+    required_parser_source_pass: requiredParserSourcePass,
     pass:
       scoredRows.length > 0 &&
       top1 >= GATES.top1 &&
       top3 >= GATES.top3 &&
+      requiredParserSourcePass &&
       (ocrP50 == null || ocrP50 <= GATES.ocrP50Ms) &&
       (embeddingP50 == null || embeddingP50 <= GATES.embeddingP50Ms),
   };
@@ -127,6 +130,15 @@ async function runCase({ testCase, artifact, artifactDir }) {
     smoke_only: testCase.smoke_only === true,
     image: testCase.image,
     expected_gv_id: testCase.expected_gv_id ?? null,
+    parser_source: ocr.parser_source,
+    ocr: {
+      number: ocr.number,
+      set_total: ocr.set_total,
+      set_code_guess: ocr.set_code_guess,
+      parser_source: ocr.parser_source,
+      raw_crops: ocr.raw_crops ?? [],
+    },
+    rectification: rectified.sidecar,
     mode: modeFor(ocr.matches, embedding.candidates),
     true_rank: trueRank,
     latency_ms: {

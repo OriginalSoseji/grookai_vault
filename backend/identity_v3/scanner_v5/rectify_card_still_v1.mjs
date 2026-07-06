@@ -61,7 +61,7 @@ export async function rectifyCardStillBuffer(imageBuffer, options = {}) {
         { x: crop.left, y: crop.top + crop.height },
       ],
       crop_rect: crop,
-      skew_deg: detectedBox?.skew_deg ?? 0,
+      skew_deg: detectedBox?.skew_deg ?? null,
       confidence: detectedBox?.confidence ?? 0.48,
       output_width: CANONICAL_WIDTH,
       output_height: CANONICAL_HEIGHT,
@@ -127,7 +127,7 @@ async function detectCardBoxWholeImage(imageBuffer, { width, height }) {
     top,
     width: Math.max(1, right - left),
     height: Math.max(1, bottom - top),
-    skew_deg: 0,
+    skew_deg: null,
     confidence: Math.max(0.55, Math.min(0.9, 0.86 - aspectDelta * 0.5)),
   };
 }
