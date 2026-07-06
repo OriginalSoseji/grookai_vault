@@ -38,7 +38,9 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
     confidence: null,
     error: error?.message || String(error),
   }));
-  const parsed = parseCardNumberText(ocr.text);
+  const parsed = parseCardNumberText(ocr.text, {
+    setCodeVocabulary: artifact.setCodeVocabulary,
+  });
   const number = parsed.number ?? null;
   const setTotal = parsed.set_total ?? null;
   const setCodeGuess = parsed.set_code_guess ?? null;
@@ -62,7 +64,7 @@ export async function ocrCardNumberBuffer(imageBuffer, options = {}) {
   return result;
 }
 
-export function parseCardNumberText(text) {
+export function parseCardNumberText(text, options = {}) {
   const cleaned = String(text ?? '')
     .replace(/[|\\]/g, '/')
     .replace(/[^\w/.\-: ]+/g, ' ')
@@ -74,14 +76,37 @@ export function parseCardNumberText(text) {
     return Number.isInteger(total) && total > 0 && total <= 500;
   }) ?? numberMatches[0];
   const standaloneNumber = cleaned.match(/(?:^|[^0-9])(\d{1,4})(?:[^0-9]|$)/);
-  const setCodeWithNumber = cleaned.match(/\b([A-Z](?:\s*[A-Z]){1,4})\s*[- ]\s*\d{1,4}\b/);
-  const setCodeMatch = cleaned.match(/\b(ASC|POR|SV\d{1,2}(?:\.\d+[A-Z]?)?)\b/);
   return {
     number: normalizeNumber(numberMatch?.[1] ?? standaloneNumber?.[1]),
     set_total: normalizeNumber(numberMatch?.[2]),
-    set_code_guess: normalizeSetCode(setCodeWithNumber?.[1] ?? setCodeMatch?.[1]),
+    set_code_guess: matchSetCodeFromVocabulary(cleaned, options.setCodeVocabulary),
     cleaned_text: cleaned,
   };
+}
+
+function matchSetCodeFromVocabulary(cleaned, vocabulary) {
+  const normalizedVocabulary = Array.isArray(vocabulary)
+    ? vocabulary.map(normalizeSetCode).filter(Boolean)
+    : [];
+  if (normalizedVocabulary.length === 0) return null;
+
+  const compactText = normalizeSetCode(cleaned);
+  if (!compactText) return null;
+
+  const codeBeforeNumberMatches = [
+    ...cleaned.matchAll(/\b([A-Z](?:[\s.-]*[A-Z0-9]){1,12})[\s.-]*\d{1,4}\b/gi),
+  ];
+  for (const match of codeBeforeNumberMatches) {
+    const candidate = normalizeSetCode(match[1]);
+    const exact = normalizedVocabulary.find((code) => code === candidate);
+    if (exact) return exact;
+  }
+
+  const ordered = [...normalizedVocabulary].sort((a, b) => b.length - a.length || a.localeCompare(b));
+  return ordered.find((code) => {
+    if (code.length < 3 && !/\d/.test(code)) return false;
+    return compactText.includes(code);
+  }) ?? null;
 }
 
 async function bottomStripOcrCrops(imageBuffer) {

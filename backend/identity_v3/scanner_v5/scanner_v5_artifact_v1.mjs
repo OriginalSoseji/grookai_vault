@@ -28,6 +28,7 @@ export async function loadScannerV5Artifact(artifactDir) {
   const rowsByNumber = new Map();
   const rowsByGvId = new Map();
   const rowsByCardId = new Map();
+  const setCodeVocabulary = new Set();
 
   for (const shardInfo of manifest.index?.shards ?? []) {
     if (shardInfo.vector_file && shardInfo.metadata_file) {
@@ -42,6 +43,7 @@ export async function loadScannerV5Artifact(artifactDir) {
           row.image_is_representative ??= extra.image_is_representative;
         }
         indexReferenceRow({ rowsByNumber, rowsByGvId, rowsByCardId, row });
+        indexSetCodeVocabulary({ setCodeVocabulary, row });
       }
       shards.set(shard.viewType, shard);
     }
@@ -55,6 +57,7 @@ export async function loadScannerV5Artifact(artifactDir) {
     rowsByNumber,
     rowsByGvId,
     rowsByCardId,
+    setCodeVocabulary: [...setCodeVocabulary].sort((a, b) => b.length - a.length || a.localeCompare(b)),
     referenceCount: rowsByCardId.size,
   };
 }
@@ -159,6 +162,13 @@ function indexReferenceRow({ rowsByNumber, rowsByGvId, rowsByCardId, row }) {
   if (!number) return;
   if (!rowsByNumber.has(number)) rowsByNumber.set(number, []);
   rowsByNumber.get(number).push(row);
+}
+
+function indexSetCodeVocabulary({ setCodeVocabulary, row }) {
+  for (const value of [row?.set_code, gvSetToken(row?.gv_id)]) {
+    const normalized = normalizeSetCode(value);
+    if (normalized) setCodeVocabulary.add(normalized);
+  }
 }
 
 async function loadReferenceMetadataByCard(artifactDir) {
