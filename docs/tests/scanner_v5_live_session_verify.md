@@ -12,7 +12,7 @@ Use either the droplet V5 service or a LAN-hosted local service.
 2. Verify health:
 
 ```bash
-curl https://ai.grookaivault.com/scanner-v5/health
+curl https://scanner-identity.grookaivault.com/scanner-v5/health
 ```
 
 Expected:
