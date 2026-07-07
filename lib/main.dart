@@ -39,6 +39,7 @@ import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
+import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
@@ -2241,6 +2242,13 @@ class _MyAppState extends State<MyApp> {
               event.event == AuthChangeEvent.initialSession &&
               (nextSession?.isExpired ?? false);
         });
+        if (nextSession != null && !nextSession.isExpired) {
+          unawaited(
+            GrookaiPushNotificationService.instance.registerForCurrentUser(
+              reason: 'auth_${event.event.name}',
+            ),
+          );
+        }
       },
       onError: (error, stackTrace) {
         _debugGoogleOAuth('auth state error=$error');
@@ -2257,6 +2265,7 @@ class _MyAppState extends State<MyApp> {
       AppBootTiming.markOnce('root_first_post_frame');
       unawaited(_completeBootWarmup());
       unawaited(_attachCanonicalLinkListeners());
+      unawaited(_startPushNotifications());
       if (kDebugMode) {
         unawaited(_attachDebugIntentBridge());
       }
@@ -2268,7 +2277,14 @@ class _MyAppState extends State<MyApp> {
   void dispose() {
     _linkSubscription?.cancel();
     _authSubscription?.cancel();
+    unawaited(GrookaiPushNotificationService.instance.dispose());
     super.dispose();
+  }
+
+  Future<void> _startPushNotifications() async {
+    await GrookaiPushNotificationService.instance.start(
+      onRoute: _queueCanonicalRoute,
+    );
   }
 
   Future<void> _loadThemeModePreference() async {
@@ -2483,6 +2499,10 @@ class _MyAppState extends State<MyApp> {
 
   void _queueCanonicalLink(Uri? uri) {
     final route = GrookaiWebRouteService.parseCanonicalUri(uri);
+    _queueCanonicalRoute(route);
+  }
+
+  void _queueCanonicalRoute(GrookaiCanonicalRoute? route) {
     if (!mounted || route == null) {
       return;
     }

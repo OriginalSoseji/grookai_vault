@@ -90,7 +90,15 @@ class GrookaiWebRouteService {
   }
 
   static GrookaiCanonicalRoute? parseCanonicalUri(Uri? uri) {
-    if (uri == null || !_isSupportedCanonicalHost(uri)) {
+    if (uri == null) {
+      return null;
+    }
+
+    if (_isSupportedAppDeepLink(uri)) {
+      return _parseAppDeepLinkUri(uri);
+    }
+
+    if (!_isSupportedCanonicalHost(uri)) {
       return null;
     }
 
@@ -134,6 +142,38 @@ class GrookaiWebRouteService {
     }
   }
 
+  static GrookaiCanonicalRoute? _parseAppDeepLinkUri(Uri uri) {
+    final host = uri.host.trim().toLowerCase();
+    final segments = uri.pathSegments
+        .map((segment) => segment.trim())
+        .where((segment) => segment.isNotEmpty)
+        .toList(growable: false);
+
+    if (host == 'card' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.card(segments.first);
+    }
+    if ((host == 'set' || host == 'sets') && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.set(segments.first);
+    }
+    if (host == 'u' && segments.isNotEmpty) {
+      if (segments.length >= 3 && segments[1].toLowerCase() == 'section') {
+        return GrookaiCanonicalRoute.collectorSection(
+          slug: segments.first.toLowerCase(),
+          sectionId: segments[2],
+        );
+      }
+      return GrookaiCanonicalRoute.collector(segments.first.toLowerCase());
+    }
+
+    // Also accept slash-style app links such as grookai:///card/GV-PK-...
+    // to keep routing compatible with test tools and notification providers.
+    if (host.isEmpty) {
+      return parseCanonicalUri(Uri(pathSegments: segments));
+    }
+
+    return null;
+  }
+
   static bool _isSupportedCanonicalHost(Uri uri) {
     if (uri.host.trim().isEmpty) {
       return true;
@@ -141,5 +181,10 @@ class GrookaiWebRouteService {
 
     final canonicalHost = buildUri('/').host.toLowerCase();
     return uri.host.toLowerCase() == canonicalHost;
+  }
+
+  static bool _isSupportedAppDeepLink(Uri uri) {
+    final scheme = uri.scheme.toLowerCase();
+    return scheme == 'grookai' || scheme == 'grookaivault';
   }
 }

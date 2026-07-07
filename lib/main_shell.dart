@@ -134,7 +134,11 @@ class _AppShellState extends State<AppShell> {
     }
   }
 
-  Future<void> _signOut() async => _supabase.auth.signOut();
+  Future<void> _signOut() async {
+    await GrookaiPushNotificationService.instance
+        .disableCurrentTokenBeforeSignOut();
+    await _supabase.auth.signOut();
+  }
 
   Future<T?> _pushPage<T>(Widget page) {
     return Navigator.of(
