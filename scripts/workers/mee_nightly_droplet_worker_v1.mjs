@@ -189,6 +189,7 @@ function parseArgs(argv) {
     runKey,
     skipProvider: argv.includes("--skip-provider"),
     skipApply: argv.includes("--skip-apply"),
+    lockProbe: argv.includes("--lock-probe"),
     normalizationOnly: argv.includes("--normalization-only") || process.env.MEE_NIGHTLY_NORMALIZATION_ONLY === "1",
     providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
     maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
@@ -320,11 +321,15 @@ function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
 function runSupabaseSql(sql) {
   const tempDir = mkdtempSync(path.join(os.tmpdir(), "mee-nightly-lock-"));
   const tempSql = path.join(tempDir, "query.sql");
-  const targetArgs = process.env.SUPABASE_DB_URL
-    ? ["--db-url", process.env.SUPABASE_DB_URL]
-    : ["--linked"];
   try {
     writeFileSync(tempSql, sql);
+    if (process.env.SUPABASE_DB_URL) {
+      return runCommand(
+        ["bash", "-lc", 'psql "$SUPABASE_DB_URL" -tA -f "$1"', "mee-nightly-psql", tempSql],
+        1000 * 60 * 3,
+      );
+    }
+    const targetArgs = ["--linked"];
     return runCommand(["supabase", "db", "query", "--output", "json", ...targetArgs, "-f", tempSql], 1000 * 60 * 3);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
@@ -332,14 +337,14 @@ function runSupabaseSql(sql) {
 }
 
 function acquireLock(args) {
-  const sql = `select pg_try_advisory_lock(hashtext('${LOCK_KEY}')) as acquired, '${args.runKey}'::text as run_key;`;
+  const sql = `select json_build_object('acquired', pg_try_advisory_lock(hashtext('${LOCK_KEY}')), 'run_key', '${args.runKey}'::text)::text as result;`;
   const result = runSupabaseSql(sql);
   const acquired = /"acquired"\s*:\s*true/.test(result.stdout_tail);
   return { ...result, acquired };
 }
 
 function releaseLock(args) {
-  const sql = `select pg_advisory_unlock(hashtext('${LOCK_KEY}')) as released, '${args.runKey}'::text as run_key;`;
+  const sql = `select json_build_object('released', pg_advisory_unlock(hashtext('${LOCK_KEY}')), 'run_key', '${args.runKey}'::text)::text as result;`;
   const result = runSupabaseSql(sql);
   const released = /"released"\s*:\s*true/.test(result.stdout_tail);
   return { ...result, released };
@@ -450,7 +455,9 @@ try {
     if (!lock.acquired) findings.push("nightly_worker_lock_not_acquired");
   }
 
-  if (findings.length === 0) {
+  if (findings.length === 0 && args.lockProbe) {
+    execution.push({ phase: "lock_probe", skipped: true, reason: "lock_probe_only" });
+  } else if (findings.length === 0) {
     for (const phase of PHASES) {
       if (phase.normalizationOnly && !args.normalizationOnly) {
         execution.push({ phase: phase.key, skipped: true, reason: "normalization_only_phase_not_requested" });
