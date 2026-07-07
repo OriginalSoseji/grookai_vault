@@ -980,7 +980,7 @@ class _AppShellState extends State<AppShell> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
             curve: Curves.easeOutCubic,
-            height: collapsed ? 46 : 50,
+            height: collapsed ? 50 : 54,
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: background,

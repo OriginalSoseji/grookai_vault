@@ -35,9 +35,9 @@ class GrookaiPushNotificationService {
 
   static const String _logPrefix = '[NOTIFICATIONS_E2]';
 
-  final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   final SupabaseClient _client = Supabase.instance.client;
 
+  FirebaseMessaging? _messaging;
   StreamSubscription<String>? _tokenRefreshSubscription;
   StreamSubscription<RemoteMessage>? _foregroundSubscription;
   StreamSubscription<RemoteMessage>? _openedSubscription;
@@ -75,7 +75,7 @@ class GrookaiPushNotificationService {
     );
 
     try {
-      final initialMessage = await _messaging.getInitialMessage();
+      final initialMessage = await _firebaseMessaging.getInitialMessage();
       if (initialMessage != null) {
         unawaited(
           _handleOpenedMessage(initialMessage, source: 'initial_message'),
@@ -85,8 +85,10 @@ class GrookaiPushNotificationService {
       _debug('initial_message_error=$error');
     }
 
-    _tokenRefreshSubscription = _messaging.onTokenRefresh.listen((token) {
-      unawaited(_registerToken(token, reason: 'token_refresh'));
+    _tokenRefreshSubscription = _firebaseMessaging.onTokenRefresh.listen((
+      token,
+    ) {
+      unawaited(_registerTokenSafely(token, reason: 'token_refresh'));
     });
 
     await registerForCurrentUser(reason: 'start');
@@ -112,7 +114,7 @@ class GrookaiPushNotificationService {
     }
 
     try {
-      final settings = await _messaging.requestPermission(
+      final settings = await _firebaseMessaging.requestPermission(
         alert: true,
         announcement: false,
         badge: true,
@@ -126,7 +128,7 @@ class GrookaiPushNotificationService {
         return;
       }
 
-      final token = await _messaging.getToken();
+      final token = await _firebaseMessaging.getToken();
       if (token == null || token.trim().isEmpty) {
         _debug('empty_token reason=$reason');
         return;
@@ -172,12 +174,16 @@ class GrookaiPushNotificationService {
     }
   }
 
+  FirebaseMessaging get _firebaseMessaging {
+    return _messaging ??= FirebaseMessaging.instance;
+  }
+
   Future<String?> _safeCurrentToken() async {
     if (!_firebaseReady || kIsWeb) {
       return null;
     }
     try {
-      return await _messaging.getToken();
+      return await _firebaseMessaging.getToken();
     } catch (_) {
       return null;
     }
@@ -202,6 +208,17 @@ class GrookaiPushNotificationService {
     );
     _lastRegisteredToken = token;
     _debug('token_registered platform=$platform reason=$reason');
+  }
+
+  Future<void> _registerTokenSafely(
+    String token, {
+    required String reason,
+  }) async {
+    try {
+      await _registerToken(token, reason: reason);
+    } catch (error) {
+      _debug('token_register_failed reason=$reason error=$error');
+    }
   }
 
   Future<void> _handleOpenedMessage(
