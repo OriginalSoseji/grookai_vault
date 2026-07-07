@@ -165,6 +165,7 @@ docs/audits/market_evidence_engine_v1/mee_*.json
 # local dev
 apps/web/.tmp-*
 build_web.log
+.codex/apple_signing/
 
 # archives
 *.zip
