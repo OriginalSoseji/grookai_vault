@@ -61,7 +61,7 @@ Columns:
 
 Constraints and indexes:
 
-- unique token, or unique `(user_id, token)` if Firebase can recycle tokens across installs in testing.
+- unique `(token)` globally. A token must belong to only one user at a time.
 - index `(user_id, disabled_at, last_seen_at desc)`.
 
 RLS:
@@ -70,6 +70,13 @@ RLS:
 - No anon access.
 - Service role can read/write for dispatcher and token cleanup.
 - Users may mark their own token disabled, but cannot read or mutate another user's token.
+
+Registration rule:
+
+- Token registration uses `insert ... on conflict (token) do update set user_id = auth.uid(), platform = excluded.platform, disabled_at = null, last_seen_at = now(), updated_at = now()`.
+- This intentionally moves a shared/reused device token from the previous signed-in user to the current signed-in user. Sign-out cleanup remains best-effort, but sign-in registration is the authoritative eviction mechanism.
+- Dispatcher disables tokens inline when FCM returns `UNREGISTERED`, `NOT_FOUND`, or equivalent 404/unregistered responses.
+- A cleanup job disables active tokens whose `last_seen_at` is older than 270 days.
 
 ### `public.notification_prefs`
 
@@ -115,8 +122,12 @@ Columns:
 - `card_interaction_id uuid null references public.card_interactions(id)`
 - `payload jsonb not null default '{}'::jsonb`
 - `dedupe_key text not null`
+- `attempts integer not null default 0`
 - `available_at timestamptz not null default now()`
+- `next_attempt_at timestamptz not null default now()`
 - `claimed_at timestamptz null`
+- `claim_expires_at timestamptz null`
+- `send_started_at timestamptz null`
 - `sent_at timestamptz null`
 - `folded_into_digest_at timestamptz null`
 - `failed_at timestamptz null`
@@ -126,9 +137,9 @@ Columns:
 Constraints and indexes:
 
 - unique `(recipient_user_id, dedupe_key)`.
-- index `(available_at, claimed_at, sent_at, failed_at)`.
+- partial drain index: `(available_at, next_attempt_at) where sent_at is null and failed_at is null and folded_into_digest_at is null`.
 - index `(recipient_user_id, created_at desc)`.
-- check that pushable rows contain either `card_print_id` or both `actor_user_id` and `card_print_id`; the dispatcher will also reject invalid payloads defensively.
+- check that pushable rows contain `card_print_id is not null`. The dispatcher also validates and rejects invalid rows defensively.
 
 RLS:
 
@@ -137,6 +148,16 @@ RLS:
 - Authenticated users may not select the outbox directly.
 - Service-role-only insert/select/update for triggers and dispatcher.
 - Trigger functions use `security definer` and handle exceptions without failing the originating user action.
+
+State rules:
+
+- Pending rows have `sent_at is null`, `failed_at is null`, and `folded_into_digest_at is null`.
+- Folded rows are terminal in E2. They are logged as `send_status='folded'`, set `folded_into_digest_at`, and are not delivered until a future digest epic explicitly reopens that scope.
+- Instant-drain queries must exclude folded rows.
+- Future digest work may reclaim rows by a digest-specific scope, but E2 does not ship a digest sender.
+- Max attempts: 3. Failed attempts set `attempts = attempts + 1`, `next_attempt_at` using backoff, and clear claim fields. After the third failure, set `failed_at` and `failure_reason`.
+- Claim lease: dispatcher claims rows with `for update skip locked`, setting `claimed_at = now()` and `claim_expires_at = now() + interval '5 minutes'`. Rows with an expired lease and no `send_started_at`, `sent_at`, `failed_at`, or `folded_into_digest_at` are reclaimable.
+- Idempotency: `dedupe_key` prevents duplicate queue rows, and `notifications_log.outbox_id` is unique for non-failed terminal sends. Once `send_started_at` is set, the row is not automatically redelivered after a crash; ambiguous rows go to dead-letter/manual review rather than risking a double push.
 
 ### `public.notifications_log`
 
@@ -168,6 +189,12 @@ RLS:
 - Service-role dispatcher writes send rows and updates `tapped_at`.
 - No anon access.
 
+Constraints and indexes:
+
+- unique `(outbox_id)` where `send_status in ('sent', 'folded', 'skipped')`.
+- index `(recipient_user_id, sent_at desc)`.
+- index `(recipient_user_id, created_at desc)`.
+
 ### `public.notification_delivery_budgets`
 
 Purpose: enforce the hard push cap.
@@ -183,14 +210,62 @@ Columns:
 
 Rule:
 
-- Hard cap: max 3 pushes per user per day, including instant pushes.
-- When cap is reached, eligible instant rows are folded into the daily digest instead of sent immediately.
+- Budget semantics are calendar-day, not rolling 24h.
+- `budget_date` is computed in `notification_prefs.timezone`; if no prefs row or timezone exists, use UTC.
+- This accepts boundary bursts at local midnight in exchange for clear user-facing "per day" behavior.
+- Hard cap: max 3 push notifications per user per budget day, including instant pushes.
+- One outbox row consumes one budget unit regardless of device fan-out. A user with multiple device tokens still spends one unit when one logical notification is sent.
+- Atomic guard: the dispatcher must reserve budget with a single statement, not check-then-send:
+
+```sql
+insert into public.notification_delivery_budgets as budgets (
+  user_id,
+  budget_date,
+  push_count
+)
+values (
+  <recipient_user_id>,
+  <computed_budget_date>,
+  1
+)
+on conflict (user_id, budget_date)
+do update set
+  push_count = budgets.push_count + 1,
+  updated_at = now()
+where budgets.push_count < 3
+returning push_count;
+```
+
+- If the statement returns no row, the outbox row is folded terminally for E2.
+- If FCM fails before provider acceptance, the budget reservation can be reversed in the same failure-handling transaction. If provider acceptance is ambiguous, keep the budget consumed to avoid over-sending.
 
 RLS:
 
 - No anon access.
 - Owner may select own budget for transparency if needed.
 - Service role owns insert/update.
+
+### `public.notification_emit_failures`
+
+Purpose: durable failure log for trigger enqueue failures and dispatcher validation failures that do not belong in `notifications_log`.
+
+Columns:
+
+- `id uuid primary key default gen_random_uuid()`
+- `source text not null`
+- `source_id uuid null`
+- `recipient_user_id uuid null`
+- `event_type text null`
+- `error_message text not null`
+- `payload jsonb not null default '{}'::jsonb`
+- `created_at timestamptz not null default now()`
+
+RLS:
+
+- No anon access.
+- No authenticated direct access in E2.
+- Service role can select/insert for audit.
+- Security-definer trigger functions insert here on enqueue failure and never fail the originating user write.
 
 ## Message Push Outbox Trigger
 
@@ -200,6 +275,7 @@ Add one E2 migration near the existing group-state trigger:
 - Trigger: `trg_enqueue_card_interaction_notification_v1`
 - Table: `public.card_interactions`
 - Timing: `after insert`
+- Function must set `search_path = public`.
 
 Behavior:
 
@@ -217,7 +293,8 @@ Behavior:
    - a short message preview, trimmed server-side
 7. Dedupe key: `message_received:<card_interaction_id>`.
 8. Trigger writes to `notification_outbox`.
-9. Trigger catches exceptions, writes a failure record, and never fails the original `card_interactions` insert.
+9. Insert uses `on conflict (recipient_user_id, dedupe_key) do nothing`.
+10. Trigger catches exceptions, writes to `notification_emit_failures`, and never fails the original `card_interactions` insert.
 
 This replaces any client-side send idea. App and web keep inserting messages as they do today.
 
@@ -229,11 +306,12 @@ Implement as a Supabase Edge Function:
 
 - `supabase/functions/notification-dispatcher/index.ts`
 - Service-role environment only.
-- Invoked manually for dev tests and later by scheduled job/cron.
+- Invoked manually for dev tests.
+- Production drain uses a scheduled trigger: pg_cron -> pg_net HTTP call to the Supabase Edge Function every 1-2 minutes. If Supabase Scheduled Functions are already available in the deployed project, that can replace pg_cron, but PR 2 must ship one concrete scheduled drain path.
 
 The dispatcher:
 
-1. Claims eligible `notification_outbox` rows with `available_at <= now()`.
+1. Claims eligible `notification_outbox` rows with `available_at <= now()`, `next_attempt_at <= now()`, and no terminal timestamp.
 2. Loads recipient prefs, unmuted watch state, delivery budget, and active device tokens.
 3. Rejects payloads without a card anchor.
 4. Formats copy in one shared formatter.
@@ -241,6 +319,31 @@ The dispatcher:
 6. Sends via FCM HTTP v1.
 7. Writes `notifications_log`.
 8. Marks outbox row `sent_at`, `folded_into_digest_at`, or `failed_at`.
+
+Claim query:
+
+- Use `for update skip locked`.
+- Eligible rows:
+  - `sent_at is null`
+  - `failed_at is null`
+  - `folded_into_digest_at is null`
+  - `available_at <= now()`
+  - `next_attempt_at <= now()`
+  - and either `claimed_at is null` or the lease expired with no `send_started_at`.
+- On claim, set `claimed_at`, `claim_expires_at`, and increment `attempts`.
+
+Retry/dead-letter:
+
+- Transient FCM/network failures retry up to 3 attempts with backoff.
+- Permanent validation failures are terminal immediately and logged.
+- FCM `UNREGISTERED` / 404 disables that token inline and does not fail the whole logical outbox row if another active token succeeds.
+- If all tokens fail permanently, mark the outbox failed and log the reason.
+- If the edge function crashes after `send_started_at`, do not auto-retry that row. Mark it for dead-letter/manual review on the next maintenance pass to avoid double-push.
+
+Fan-out:
+
+- A logical outbox row may send to multiple active device tokens for the same user.
+- It creates one logical `notifications_log` row and consumes one budget unit, regardless of token count.
 
 ### Copy Formatter
 
@@ -270,8 +373,15 @@ The formatter rejects:
 - rows with no recipient
 - rows where card lookup fails
 - rows where actor lookup is required but missing
+- rows where `gv_id` cannot be resolved from `card_print_id`
 
 No notification can be generic or engagement-bait copy.
+
+Deep-link construction:
+
+- Dispatcher resolves `card_print_id -> gv_id` during formatting.
+- Deep links are generated only after successful card lookup.
+- Lookup failure rejects the row and logs a failed/skipped result instead of sending malformed payloads.
 
 ## FCM Credential Strategy
 
@@ -345,22 +455,40 @@ https://grookaivault.com/card/<gv_id>
 
 App route must land on Card Detail with owner context when present.
 
+Flutter handling must cover:
+
+- Foreground: `onMessage` shows an in-app affordance only; it must not auto-navigate while the user is active.
+- Background tap: `onMessageOpenedApp` routes to card detail.
+- Killed/cold start: `getInitialMessage` is read during app launch, stored, and navigation is deferred until the navigator/root shell is mounted.
+- Tap tracking is fire-and-forget and must never block navigation.
+- iOS FCM v1 payload must include an `apns` block so killed-state delivery works through APNs-via-FCM.
+
 ### Tap Tracking
 
 On notification tap:
 
 - Parse `notification_id`.
-- Call a small RPC or direct owner-authorized endpoint to set `notifications_log.tapped_at = now()`.
+- Call `public.mark_notification_tapped_v1(notification_id uuid)`.
 - Then route to card detail.
+
+RPC spec:
+
+- `security definer`
+- `set search_path = public`
+- guard `auth.uid() = notifications_log.recipient_user_id`
+- set-once: update only where `tapped_at is null`
+- return a boolean or void
 
 The log update is service-controlled or recipient-controlled only; users cannot mutate other users' notification logs.
 
 ## Preference Rules
 
-- `instant_enabled = false`: message-received rows fold into daily digest or remain logged as skipped, depending on tier plan approved in implementation.
+- Missing prefs row: treat as default enabled prefs.
+- `instant_enabled = false`: message-received rows are folded terminally in E2 and logged as `send_status='folded'`.
 - `daily_pulse_enabled = false`: no daily digest push.
 - `weekly_enabled = false`: no weekly push.
 - `watches.muted_at is not null`: suppress events for that watch across all tiers.
+- Quiet hours: if an instant row is otherwise sendable but falls inside quiet hours, update `available_at` to the next quiet-hours end in the user's timezone, clear claim fields, and do not consume budget until actual send.
 - No preference failure should fail the originating app action.
 
 ## PR Breakdown
@@ -374,7 +502,7 @@ Migration only:
 - `notification_outbox`
 - `notifications_log`
 - `notification_delivery_budgets`
-- optional `notification_emit_failures`
+- `notification_emit_failures`
 - RLS policies
 - append-only / dispatcher-only guards
 - `enqueue_card_interaction_notification_v1`
@@ -388,6 +516,7 @@ Gate:
   - user A cannot insert outbox rows directly.
   - service role can claim/update outbox.
 - Insert one `card_interactions` row on dev and show exactly one outbox row.
+- Reinsert/replay the same interaction id path and show `on conflict ... do nothing` prevents duplicate outbox rows.
 - Trigger failure path logs and does not fail message insert.
 
 ### PR 2 - Dispatcher Edge Function and Dev Test Push
@@ -395,8 +524,10 @@ Gate:
 Server-only:
 
 - Supabase Edge Function dispatcher.
+- Concrete scheduled drain path: pg_cron -> pg_net HTTP call, or Supabase Scheduled Function if available in the deployed project.
 - FCM HTTP v1 sender.
 - budget enforcement.
+- claim lease, retry, dead-letter handling.
 - copy formatter.
 - log writes.
 - dev-only test push RPC/function or command.
@@ -406,6 +537,9 @@ Gate:
 - Real device receives a dev test push.
 - Payload with no card anchor is rejected and logged.
 - Attempt 5 eligible sends for one user in one day: 3 sent, 2 folded.
+- Concurrent dispatcher invocation cannot exceed 3 sends for one user/day.
+- Reclaimable lease rows retry; rows with `send_started_at` are not double-sent.
+- FCM unregistered/404 disables the token.
 - Disabled prefs suppress sends.
 - Muted watch suppresses send.
 
@@ -417,6 +551,7 @@ Flutter only plus minimal RPC if needed:
 - FCM token registration/upsert.
 - Token refresh handling.
 - Deep link route to card detail with owner context.
+- foreground/background/killed notification handling.
 - Notification tap tracking.
 
 Gate:
@@ -424,7 +559,9 @@ Gate:
 - Android real device token appears in `device_tokens`.
 - iPhone real device token appears in `device_tokens`.
 - Message-received push opens the correct card detail.
+- Cold-start notification tap opens the correct card detail after the app shell mounts.
 - Tap sets `notifications_log.tapped_at`.
+- Tap tracking failure does not block navigation.
 - Sign-out does not leak another user's token.
 
 ## Verification Matrix
@@ -440,6 +577,10 @@ Required before E2 complete:
 - Real iPhone push via APNs-via-FCM.
 - Deep link card route confirmed on device.
 - Budget proof: 5 attempted sends -> 3 sent, 2 folded.
+- Budget proof under concurrent drain: still max 3 sent.
+- Retry proof: transient failure retries up to 3 attempts, then terminal failure.
+- Token hygiene proof: same token re-registers to the latest user; FCM unregistered disables the token.
+- Cold-start proof: killed app -> tap push -> card detail after shell mount.
 - Message push proof: app and web both insert `card_interactions`; trigger creates outbox without client send logic.
 
 ## Rollback Plan
@@ -470,4 +611,3 @@ drop trigger if exists trg_enqueue_card_interaction_notification_v1 on public.ca
 ```
 
 and disable the dispatcher schedule.
-
