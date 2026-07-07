@@ -7,6 +7,8 @@ void main() {
       'grookai://card/GV-PK-SV08-5-167',
       'grookaivault://card/GV-PK-SV08-5-167',
       'grookai:///card/GV-PK-SV08-5-167',
+      'grookai://card/GV-PK-SV08-5-167?source=notification&notification_id=abc&owner=user-1',
+      'https://grookaivault.com/card/GV-PK-SV08-5-167?source=notification&notification_id=abc&owner=user-1',
     ]) {
       final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
 
