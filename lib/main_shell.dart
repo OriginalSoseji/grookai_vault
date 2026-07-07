@@ -134,7 +134,11 @@ class _AppShellState extends State<AppShell> {
     }
   }
 
-  Future<void> _signOut() async => _supabase.auth.signOut();
+  Future<void> _signOut() async {
+    await GrookaiPushNotificationService.instance
+        .disableCurrentTokenBeforeSignOut();
+    await _supabase.auth.signOut();
+  }
 
   Future<T?> _pushPage<T>(Widget page) {
     return Navigator.of(
@@ -976,7 +980,7 @@ class _AppShellState extends State<AppShell> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
             curve: Curves.easeOutCubic,
-            height: collapsed ? 46 : 50,
+            height: collapsed ? 50 : 54,
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: background,

@@ -1,0 +1,18 @@
+{
+  "version": "5",
+  "remote": {
+    "https://deno.land/std@0.224.0/async/delay.ts": "f90dd685b97c2f142b8069082993e437b1602b8e2561134827eeb7c12b95c499",
+    "https://deno.land/std@0.224.0/http/server.ts": "f9313804bf6467a1704f45f76cb6cd0a3396a3b31c316035e6a4c2035d1ea514",
+    "https://esm.sh/@supabase/supabase-js@2.81.1": "bae1ab984623f88e3a3d7552b04f7c9c56978057d8db8cd90726f77c79161713"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@supabase/supabase-js@^2.81.1",
+        "npm:dotenv@^17.2.3",
+        "npm:pg@^8.20.0",
+        "npm:typescript@^5.9.3"
+      ]
+    }
+  }
+}
