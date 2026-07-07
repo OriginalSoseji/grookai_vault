@@ -62,7 +62,7 @@ void main() {
       'supabase/migrations/20260324173000_fix_card_stream_slab_identity_resolution_v1.sql',
     ).readAsStringSync();
     final contactView = File(
-      'supabase/migrations/20260324174000_add_card_contact_targets_view_v1.sql',
+      'supabase/migrations/20260707173500_card_contact_targets_all_public_vault_items_v1.sql',
     ).readAsStringSync();
 
     expect(streamView, contains('vii.intent'));
@@ -70,7 +70,9 @@ void main() {
     expect(contactView, contains('vii.intent'));
     expect(
       contactView,
-      contains("vii.intent in ('trade', 'sell', 'showcase')"),
+      isNot(contains("vii.intent in ('trade', 'sell', 'showcase')")),
     );
+    expect(contactView, contains('pp.public_profile_enabled = true'));
+    expect(contactView, contains('pp.vault_sharing_enabled = true'));
   });
 }
