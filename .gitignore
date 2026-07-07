@@ -26,6 +26,7 @@ android/app/google-services.json
 android/app/src/debug/google-services.json
 android/app/src/profile/google-services.json
 # iOS
+ios/Runner/GoogleService-Info.plist
 ios/Pods/
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec

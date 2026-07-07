@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../firebase_options.dart';
 import '../navigation/grookai_web_route_service.dart';
 
 typedef GrookaiNotificationRouteHandler =
@@ -16,7 +17,9 @@ Future<void> grookaiFirebaseMessagingBackgroundHandler(
 ) async {
   try {
     if (Firebase.apps.isEmpty) {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
     }
   } catch (_) {
     // Background delivery must never crash the app isolate if native Firebase
@@ -158,7 +161,9 @@ class GrookaiPushNotificationService {
     }
     try {
       if (Firebase.apps.isEmpty) {
-        await Firebase.initializeApp();
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
       }
       return true;
     } catch (error) {
