@@ -24,6 +24,7 @@ class _NetworkInboxScreenState extends State<NetworkInboxScreen> {
   CardInteractionInboxView _view = CardInteractionInboxView.inbox;
   bool _loading = true;
   String? _error;
+  String? _selectedCounterpartUserId;
   List<CardInteractionThreadSummary> _groups = const [];
 
   @override
@@ -126,6 +127,22 @@ class _NetworkInboxScreenState extends State<NetworkInboxScreen> {
   @override
   Widget build(BuildContext context) {
     final filtered = CardInteractionService.filterByView(_groups, _view);
+    final collectors = _collectorGroupsFor(filtered);
+    final effectiveSelectedCounterpartUserId =
+        collectors.any(
+          (group) => group.counterpartUserId == _selectedCounterpartUserId,
+        )
+        ? _selectedCounterpartUserId
+        : null;
+    final visibleCollectors = effectiveSelectedCounterpartUserId == null
+        ? collectors
+        : collectors
+              .where(
+                (group) =>
+                    group.counterpartUserId ==
+                    effectiveSelectedCounterpartUserId,
+              )
+              .toList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Messages'),
@@ -153,6 +170,18 @@ class _NetworkInboxScreenState extends State<NetworkInboxScreen> {
                 },
               ),
               const SizedBox(height: 10),
+              if (!_loading && _error == null && filtered.isNotEmpty) ...[
+                _InboxCollectorFilterBar(
+                  collectors: collectors,
+                  selectedCounterpartUserId: effectiveSelectedCounterpartUserId,
+                  onChanged: (counterpartUserId) {
+                    setState(() {
+                      _selectedCounterpartUserId = counterpartUserId;
+                    });
+                  },
+                ),
+                const SizedBox(height: 10),
+              ],
               if (_loading)
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 48),
@@ -168,15 +197,17 @@ class _NetworkInboxScreenState extends State<NetworkInboxScreen> {
               else
                 Column(
                   children: [
-                    for (var index = 0; index < filtered.length; index++) ...[
-                      _InboxThreadTile(
-                        group: filtered[index],
-                        ownershipState: _ownershipStateForGroup(
-                          filtered[index],
-                        ),
-                        onOpenThread: () => _openThread(filtered[index]),
+                    for (
+                      var sectionIndex = 0;
+                      sectionIndex < visibleCollectors.length;
+                      sectionIndex++
+                    ) ...[
+                      _InboxCollectorSection(
+                        group: visibleCollectors[sectionIndex],
+                        ownershipStateForThread: _ownershipStateForGroup,
+                        onOpenThread: _openThread,
                       ),
-                      if (index < filtered.length - 1)
+                      if (sectionIndex < visibleCollectors.length - 1)
                         const SizedBox(height: 8),
                     ],
                   ],
@@ -213,6 +244,76 @@ class _NetworkInboxScreenState extends State<NetworkInboxScreen> {
         return 'Use contact buttons on public cards to start card-specific message threads.';
     }
   }
+
+  List<_InboxCollectorGroup> _collectorGroupsFor(
+    List<CardInteractionThreadSummary> groups,
+  ) {
+    final byCollector = <String, List<CardInteractionThreadSummary>>{};
+    for (final group in groups) {
+      final key = group.counterpartUserId.trim().isEmpty
+          ? 'unknown:${group.counterpartDisplayName}'
+          : group.counterpartUserId.trim();
+      byCollector.putIfAbsent(key, () => <CardInteractionThreadSummary>[]);
+      byCollector[key]!.add(group);
+    }
+
+    final collectorGroups = <_InboxCollectorGroup>[];
+    for (final entry in byCollector.entries) {
+      final threads = [...entry.value]
+        ..sort((left, right) {
+          final leftTime =
+              left.latestCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+          final rightTime =
+              right.latestCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+          return rightTime.compareTo(leftTime);
+        });
+      final first = threads.first;
+      collectorGroups.add(
+        _InboxCollectorGroup(
+          counterpartUserId: first.counterpartUserId,
+          displayName: first.counterpartDisplayName,
+          slug: first.counterpartSlug,
+          threads: threads,
+        ),
+      );
+    }
+
+    collectorGroups.sort((left, right) {
+      final leftTime =
+          left.latestCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      final rightTime =
+          right.latestCreatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      return rightTime.compareTo(leftTime);
+    });
+    return collectorGroups;
+  }
+}
+
+class _InboxCollectorGroup {
+  const _InboxCollectorGroup({
+    required this.counterpartUserId,
+    required this.displayName,
+    required this.slug,
+    required this.threads,
+  });
+
+  final String counterpartUserId;
+  final String displayName;
+  final String? slug;
+  final List<CardInteractionThreadSummary> threads;
+
+  int get unreadCount => threads.where((thread) => thread.hasUnread).length;
+
+  int get cardCount => threads.length;
+
+  DateTime? get latestCreatedAt => threads
+      .map((thread) => thread.latestCreatedAt)
+      .whereType<DateTime>()
+      .fold<DateTime?>(
+        null,
+        (latest, value) =>
+            latest == null || value.isAfter(latest) ? value : latest,
+      );
 }
 
 class _InboxViewBar extends StatelessWidget {
@@ -291,6 +392,183 @@ class _InboxViewBar extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _InboxCollectorFilterBar extends StatelessWidget {
+  const _InboxCollectorFilterBar({
+    required this.collectors,
+    required this.selectedCounterpartUserId,
+    required this.onChanged,
+  });
+
+  final List<_InboxCollectorGroup> collectors;
+  final String? selectedCounterpartUserId;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ChoiceChip(
+              label: Text('All collectors ${collectors.length}'),
+              selected: selectedCounterpartUserId == null,
+              onSelected: (_) => onChanged(null),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+            ),
+            for (final collector in collectors) ...[
+              const SizedBox(width: 6),
+              ChoiceChip(
+                label: Text('${collector.displayName} ${collector.cardCount}'),
+                selected:
+                    selectedCounterpartUserId == collector.counterpartUserId,
+                onSelected: (_) => onChanged(collector.counterpartUserId),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                visualDensity: VisualDensity.compact,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _InboxCollectorSection extends StatelessWidget {
+  const _InboxCollectorSection({
+    required this.group,
+    required this.ownershipStateForThread,
+    required this.onOpenThread,
+  });
+
+  final _InboxCollectorGroup group;
+  final OwnershipState? Function(CardInteractionThreadSummary thread)
+  ownershipStateForThread;
+  final Future<void> Function(CardInteractionThreadSummary thread) onOpenThread;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final subtitle = group.slug == null
+        ? '${group.cardCount} ${group.cardCount == 1 ? 'card thread' : 'card threads'}'
+        : '/u/${group.slug} • ${group.cardCount} ${group.cardCount == 1 ? 'card thread' : 'card threads'}';
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: 0.64),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.12)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 17,
+                  backgroundColor: colorScheme.surfaceContainerHighest
+                      .withValues(alpha: 0.72),
+                  child: Text(
+                    _collectorInitials(group.displayName),
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.78),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 9),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        group.displayName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          height: 1.05,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.58),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                if (group.unreadCount > 0)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colorScheme.primaryContainer.withValues(
+                        alpha: 0.44,
+                      ),
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: Text(
+                      '${group.unreadCount} new',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onPrimaryContainer,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          for (var index = 0; index < group.threads.length; index++) ...[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+              child: _InboxThreadTile(
+                group: group.threads[index],
+                ownershipState: ownershipStateForThread(group.threads[index]),
+                onOpenThread: () => onOpenThread(group.threads[index]),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  String _collectorInitials(String displayName) {
+    final normalized = displayName.trim();
+    if (normalized.isEmpty) {
+      return '?';
+    }
+    final parts = normalized
+        .split(RegExp(r'\s+'))
+        .where((part) => part.isNotEmpty)
+        .toList();
+    if (parts.length == 1) {
+      return parts.first.characters.take(2).toString().toUpperCase();
+    }
+    return '${parts.first.characters.first}${parts.last.characters.first}'
+        .toUpperCase();
   }
 }
 

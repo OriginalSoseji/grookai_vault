@@ -15,6 +15,7 @@ import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/app_shell_metrics.dart';
+import '../../widgets/contact_owner_button.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/gv_surface.dart';
 import '../gvvi/public_gvvi_screen.dart';
@@ -901,6 +902,7 @@ class _PublicCollectorSegmentedContentState
           const _WallLoadingCard()
         else
           _PublicWallCardsSection(
+            profile: widget.profile,
             cards: _activeCards,
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
@@ -1321,10 +1323,12 @@ class _ProfileFollowButton extends StatelessWidget {
 
 class _PublicWallCardsSection extends StatelessWidget {
   const _PublicWallCardsSection({
+    required this.profile,
     required this.cards,
     required this.viewerOwnershipStateForCard,
   });
 
+  final PublicCollectorProfile profile;
   final List<PublicCollectorCard> cards;
   final OwnershipState? Function(PublicCollectorCard card)
   viewerOwnershipStateForCard;
@@ -1336,6 +1340,7 @@ class _PublicWallCardsSection extends StatelessWidget {
       child: cards.isEmpty
           ? null
           : _PublicCardTileList(
+              profile: profile,
               cards: cards,
               viewerOwnershipStateForCard: viewerOwnershipStateForCard,
             ),
@@ -1400,10 +1405,12 @@ class _WallLoadingCard extends StatelessWidget {
 
 class _PublicCardTileList extends StatelessWidget {
   const _PublicCardTileList({
+    required this.profile,
     required this.cards,
     required this.viewerOwnershipStateForCard,
   });
 
+  final PublicCollectorProfile profile;
   final List<PublicCollectorCard> cards;
   final OwnershipState? Function(PublicCollectorCard card)
   viewerOwnershipStateForCard;
@@ -1429,11 +1436,12 @@ class _PublicCardTileList extends StatelessWidget {
             crossAxisCount: columns,
             crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
-            childAspectRatio: 0.46,
+            childAspectRatio: 0.40,
           ),
           itemBuilder: (context, index) {
             final card = cards[index];
             return _PublicCardTile(
+              profile: profile,
               card: card,
               ownershipState: viewerOwnershipStateForCard(card),
             );
@@ -1445,8 +1453,13 @@ class _PublicCardTileList extends StatelessWidget {
 }
 
 class _PublicCardTile extends StatelessWidget {
-  const _PublicCardTile({required this.card, this.ownershipState});
+  const _PublicCardTile({
+    required this.profile,
+    required this.card,
+    this.ownershipState,
+  });
 
+  final PublicCollectorProfile profile;
   final PublicCollectorCard card;
   final OwnershipState? ownershipState;
 
@@ -1461,6 +1474,7 @@ class _PublicCardTile extends StatelessWidget {
       card.rarity,
       card.conditionLabel,
     ].whereType<String>().toList();
+    final vaultItemId = (card.vaultItemId ?? '').trim();
     void openCardDetails() {
       final gvviId = (card.gvviId ?? '').trim();
       Navigator.of(context).push(
@@ -1557,6 +1571,22 @@ class _PublicCardTile extends StatelessWidget {
                 height: 18,
                 child: _PublicViewerOwnershipHint(
                   ownershipState: ownershipState!,
+                ),
+              ),
+            ],
+            if (vaultItemId.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: ContactOwnerButton(
+                  vaultItemId: vaultItemId,
+                  cardPrintId: card.cardPrintId,
+                  ownerUserId: profile.userId,
+                  ownerDisplayName: profile.displayName,
+                  cardName: displayIdentity.displayName,
+                  intent: card.intent,
+                  buttonLabel: 'Message',
+                  variant: ContactOwnerButtonVariant.compact,
                 ),
               ),
             ],
