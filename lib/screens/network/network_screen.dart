@@ -991,7 +991,7 @@ class _PulseItemRow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _PulseArtworkTile(item: item),
             const SizedBox(width: 12),
@@ -1224,32 +1224,38 @@ class _PulseArtworkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 58,
+      width: 76,
       height: 81,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(
-                context,
-              ).colorScheme.shadow.withValues(alpha: 0.14),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
+      child: Center(
+        child: SizedBox(
+          width: 76,
+          height: 106,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.shadow.withValues(alpha: 0.14),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: CardSurfaceArtwork(
-            label: item.displayCardName,
-            imageUrl: item.displayImageUrl,
-            borderRadius: 8,
-            padding: EdgeInsets.zero,
-            frame: CardArtworkFrame.none,
-            enableTapToZoom: false,
-            showShadow: false,
-            filterQuality: FilterQuality.low,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CardSurfaceArtwork(
+                label: item.displayCardName,
+                imageUrl: item.displayImageUrl,
+                borderRadius: 8,
+                padding: EdgeInsets.zero,
+                frame: CardArtworkFrame.none,
+                enableTapToZoom: false,
+                showShadow: false,
+                filterQuality: FilterQuality.low,
+              ),
+            ),
           ),
         ),
       ),
