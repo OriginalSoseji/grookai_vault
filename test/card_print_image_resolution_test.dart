@@ -120,14 +120,14 @@ void main() {
     expect(card.displayImage, contains('w=828'));
   });
 
-  test('optimized image URLs can be resized for thumbnail surfaces', () {
+  test('optimized image URLs snap thumbnail widths to supported web sizes', () {
     const original =
         'https://example.supabase.co/storage/v1/object/public/public-card-images/jpn/pikachu.webp';
     final large = normalizeDisplayImageUrl(original);
     final thumbnail = normalizeDisplayImageUrl(large, width: 256);
 
     expect(large, contains('w=828'));
-    expect(thumbnail, contains('w=256'));
+    expect(thumbnail, contains('w=320'));
     expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
   });
 

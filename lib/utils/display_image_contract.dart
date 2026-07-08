@@ -76,7 +76,7 @@ String _grookaiOptimizedImageUrl(
   int? width,
   int quality = 85,
 }) {
-  final optimizedWidth = (width ?? 828).clamp(64, 1200).toString();
+  final optimizedWidth = _nearestGrookaiImageWidth(width ?? 828).toString();
   final optimizedQuality = quality.clamp(40, 95).toString();
 
   return Uri.https('grookaivault.com', '/_next/image', {
@@ -84,6 +84,31 @@ String _grookaiOptimizedImageUrl(
     'w': optimizedWidth,
     'q': optimizedQuality,
   }).toString();
+}
+
+int _nearestGrookaiImageWidth(int requestedWidth) {
+  const allowedWidths = <int>[
+    48,
+    64,
+    74,
+    96,
+    128,
+    160,
+    220,
+    320,
+    640,
+    750,
+    828,
+    1080,
+    1200,
+  ];
+  final normalized = requestedWidth.clamp(48, 1200);
+  for (final allowedWidth in allowedWidths) {
+    if (normalized <= allowedWidth) {
+      return allowedWidth;
+    }
+  }
+  return allowedWidths.last;
 }
 
 bool _isGrookaiOptimizedImage(Uri parsed) {

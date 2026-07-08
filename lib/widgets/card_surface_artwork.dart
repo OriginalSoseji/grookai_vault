@@ -250,8 +250,8 @@ class CardSurfaceArtwork extends StatelessWidget {
       return null;
     }
 
-    if (cacheWidth <= 160) return 256;
-    if (cacheWidth <= 320) return 384;
+    if (cacheWidth <= 160) return 220;
+    if (cacheWidth <= 320) return 320;
     if (cacheWidth <= 480) return 640;
     return 828;
   }
