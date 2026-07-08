@@ -24,6 +24,19 @@ test("E3 want-match delivery migration wires instant and digest jobs", () => {
   assert.match(sql, /cron\.schedule\(\s*'want-match-digest-daily-v1'/i);
 });
 
+test("E3 scheduled job auth fix preserves user guard while allowing cron execution", () => {
+  const sql = readSource("supabase/migrations/20260708130000_product_evolution_e3_want_match_job_auth_fix_v1.sql");
+
+  assert.match(sql, /create or replace function public\.local_community_want_match_candidates_v1/i);
+  assert.match(sql, /v_auth_role text := coalesce\(auth\.role\(\), ''\)/i);
+  assert.match(sql, /v_auth_uid uuid := auth\.uid\(\)/i);
+  assert.match(sql, /if v_auth_uid is null then/i);
+  assert.match(sql, /v_auth_role in \('authenticated', 'anon'\)/i);
+  assert.match(sql, /v_auth_role <> 'service_role'/i);
+  assert.match(sql, /v_auth_uid is distinct from p_viewer_user_id/i);
+  assert.match(sql, /scheduled database jobs may run without a JWT/i);
+});
+
 test("E3 instant delivery is want-user only, trade nearby, and deduped by match id", () => {
   const sql = readSource("supabase/migrations/20260708120000_product_evolution_e3_want_match_delivery_v1.sql");
 

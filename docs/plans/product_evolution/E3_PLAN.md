@@ -1,10 +1,33 @@
 # E3 Plan - Want-Match Engine
 
-Status: approved with amendments. PR 1 may proceed; stop for review before PR 2.
+Status: implemented and live-verified July 8, 2026.
 
 Date: 2026-07-08
 
 Branch: `engage/want-match`
+
+## Closeout Verification - July 8, 2026
+
+E3 PR 1, PR 2, and PR 3 are implemented and verified against the live environment.
+
+Live verification notes:
+
+- Applied E3 migrations `20260708100000`, `20260708110000`, and `20260708120000` to the linked live Supabase project.
+- Added and applied `20260708130000_product_evolution_e3_want_match_job_auth_fix_v1.sql` after live verification found scheduled database jobs could not call the candidate RPC without a user JWT. The fix keeps authenticated users scoped to their own viewer id while allowing service-role/scheduled jobs to run.
+- Deployed `notification-dispatcher` with `--no-verify-jwt` so `pg_cron` -> `pg_net` reaches the Edge Function and the function's own shared-secret authorization layer handles scheduler auth.
+- Checked `notification_delivery_budgets` before testing. Existing E2 testing had already consumed caps on the live test users, so the wanter's budget was reset only for the instant proof and then deliberately exhausted again for the digest-reschedule proof.
+- Seeded a live nearby + trade match between the live test accounts: imnotcesar wanted Poke Javi's `GV-PK-CEC-214` Blastoise & Piplup-GX trade copy.
+- The want-match job created one `want_matches` row, one private `want_match_available` card event for the wanter, one private `want_match_owner_count` event for the owner, and one instant `notification_outbox` row.
+- The dispatcher sent the instant notification through the live FCM/APNs path. The notification log recorded `send_status='sent'` and a tap callback 15 seconds later. The deep link was `grookai://card/GV-PK-CEC-214?...&owner=c177a180-e36b-44cc-93f8-ee104717a389`, proving card detail routing with owner context.
+- Rerunning the instant job saw the same match but created no duplicate outbox row and no second sent log.
+- Seeded a same-region non-instant match using Poke Javi's `GV-PK-LTR-33` Piplup showcase copy. It produced exactly one `want_match_digest` `daily_pulse` outbox row for the user's `2026-07-08` digest window and zero instant outbox rows.
+- With the wanter's budget set to 3/3, forcing the digest through the live dispatcher rescheduled the digest row to the next window (`2026-07-09 09:00:00+00`) with `failure_reason='daily_budget_exhausted_rescheduled'`. It was not sent, not failed, and not terminal-folded.
+- Owner side remained event-only: `want_match_owner_count` exists and Poke Javi has zero `want_match%` notification outbox rows.
+- After the gate, temporary seed state was cleaned up: the artificial Piplup wishlist row was removed, Poke Javi's coarse geohash was restored to `9xj`, and the wanter's current UTC budget count was restored to `1` to reflect the one real sent E3 push instead of leaving the account artificially capped.
+
+Remaining manual verification:
+
+- None for the E3 live gate. The instant push sent and the app reported the tap callback with the expected card/owner deep link.
 
 ## Baseline
 
