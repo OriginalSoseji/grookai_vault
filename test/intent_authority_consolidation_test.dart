@@ -64,6 +64,9 @@ void main() {
     final contactView = File(
       'supabase/migrations/20260707173500_card_contact_targets_all_public_vault_items_v1.sql',
     ).readAsStringSync();
+    final contactSecurityView = File(
+      'supabase/migrations/20260707175500_card_contact_targets_security_definer_v1.sql',
+    ).readAsStringSync();
 
     expect(streamView, contains('vii.intent'));
     expect(streamView, contains("vii.intent in ('trade', 'sell', 'showcase')"));
@@ -74,5 +77,6 @@ void main() {
     );
     expect(contactView, contains('pp.public_profile_enabled = true'));
     expect(contactView, contains('pp.vault_sharing_enabled = true'));
+    expect(contactSecurityView, contains('security_invoker = false'));
   });
 }
