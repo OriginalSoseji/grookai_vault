@@ -46,10 +46,16 @@ class CardJourneySnapshot {
 
   String get ownershipSummary {
     final ownerVerb = ownerCollectorCount == 1 ? 'owns' : 'own';
-    return '${_plural(ownerCollectorCount, 'collector')} $ownerVerb this'
-        ' · $tradeCollectorCount for trade'
-        ' · $saleCollectorCount for sale'
-        ' · ${_plural(wantCollectorCount, 'want', plural: 'want')} a copy';
+    final segments = <String>[
+      '${_plural(ownerCollectorCount, 'collector')} $ownerVerb this',
+      if (tradeCollectorCount > 0) '$tradeCollectorCount for trade',
+      if (saleCollectorCount > 0) '$saleCollectorCount for sale',
+      if (wantCollectorCount == 1)
+        '1 collector wants a copy'
+      else if (wantCollectorCount > 1)
+        '$wantCollectorCount want a copy',
+    ];
+    return segments.join(' · ');
   }
 
   static CardJourneySnapshot empty(String cardPrintId) {

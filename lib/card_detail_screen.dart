@@ -1437,11 +1437,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       _buildHeroPanel(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
       _buildTrustRows(theme, colorScheme),
-      if (kCardJourneysEnabled) _buildCardJourneySection(theme, colorScheme),
       if (_printingOptions.isNotEmpty)
         _buildPrintingOptionsSection(theme, colorScheme),
       if (_variantOriginCopy != null)
         _buildVariantOriginSection(theme, colorScheme),
+      if (kCardJourneysEnabled) _buildCardJourneySection(theme, colorScheme),
       if (_buildDetailEntries().isNotEmpty)
         _buildCardDetailsSection(theme, colorScheme),
       if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
@@ -2039,6 +2039,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ColorScheme colorScheme,
   ) {
     final snapshot = overview.snapshot;
+    final snapshotLine = _buildJourneySnapshotLine(snapshot);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => _openJourneyCollectorsSheet(snapshot),
@@ -2057,14 +2058,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text:
-                          '${snapshot.ownerCollectorCount} ${snapshot.ownerCollectorCount == 1 ? 'collector' : 'collectors'}',
+                      text: snapshotLine.ownerSegment,
                       style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
-                    TextSpan(
-                      text:
-                          ' ${snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'} this · ${snapshot.tradeCollectorCount} for trade · ${snapshot.saleCollectorCount} for sale · ${snapshot.wantCollectorCount} want a copy',
-                    ),
+                    for (final segment in snapshotLine.trailingSegments)
+                      TextSpan(text: ' · $segment'),
                   ],
                 ),
                 maxLines: 2,
@@ -2086,6 +2084,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  _JourneySnapshotLine _buildJourneySnapshotLine(CardJourneySnapshot snapshot) {
+    final ownerSegment =
+        '${snapshot.ownerCollectorCount} '
+        '${snapshot.ownerCollectorCount == 1 ? 'collector' : 'collectors'} '
+        '${snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'} this';
+    final trailingSegments = <String>[
+      if (snapshot.tradeCollectorCount > 0)
+        '${snapshot.tradeCollectorCount} for trade',
+      if (snapshot.saleCollectorCount > 0)
+        '${snapshot.saleCollectorCount} for sale',
+      if (snapshot.wantCollectorCount == 1)
+        '1 collector wants a copy'
+      else if (snapshot.wantCollectorCount > 1)
+        '${snapshot.wantCollectorCount} want a copy',
+    ];
+    return _JourneySnapshotLine(
+      ownerSegment: ownerSegment,
+      trailingSegments: trailingSegments,
     );
   }
 
@@ -2949,6 +2968,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       ),
     );
   }
+}
+
+class _JourneySnapshotLine {
+  const _JourneySnapshotLine({
+    required this.ownerSegment,
+    required this.trailingSegments,
+  });
+
+  final String ownerSegment;
+  final List<String> trailingSegments;
 }
 
 class _CardJourneyCollectorsSheet extends StatefulWidget {

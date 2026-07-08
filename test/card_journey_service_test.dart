@@ -29,10 +29,7 @@ void main() {
     expect(snapshot.isEmpty, isTrue);
     expect(snapshot.hasPublicActivity, isFalse);
     expect(snapshot.ownerCollectorCount, 0);
-    expect(
-      snapshot.ownershipSummary,
-      '0 collectors own this · 0 for trade · 0 for sale · 0 want a copy',
-    );
+    expect(snapshot.ownershipSummary, '0 collectors own this');
   });
 
   test(
@@ -66,6 +63,38 @@ void main() {
       expect(
         snapshot.ownershipSummary,
         '15 collectors own this · 4 for trade · 2 for sale · 8 want a copy',
+      );
+    },
+  );
+
+  test(
+    'ownership summary suppresses zero segments and pluralizes one want',
+    () {
+      final oneOwner = CardJourneySnapshot.fromJson(<String, dynamic>{
+        'card_print_id': cardPrintId,
+        'owner_collector_count': 1,
+        'trade_collector_count': 0,
+        'sale_collector_count': 0,
+        'want_collector_count': 0,
+        'moment_count': 0,
+        'geography_area_count': 0,
+        'has_public_activity': true,
+      });
+      final oneWant = CardJourneySnapshot.fromJson(<String, dynamic>{
+        'card_print_id': cardPrintId,
+        'owner_collector_count': 2,
+        'trade_collector_count': 0,
+        'sale_collector_count': 1,
+        'want_collector_count': 1,
+        'moment_count': 0,
+        'geography_area_count': 0,
+        'has_public_activity': true,
+      });
+
+      expect(oneOwner.ownershipSummary, '1 collector owns this');
+      expect(
+        oneWant.ownershipSummary,
+        '2 collectors own this · 1 for sale · 1 collector wants a copy',
       );
     },
   );

@@ -3,22 +3,25 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Card Journey section is feature flagged and placed before details', () {
-    final source = File('lib/card_detail_screen.dart').readAsStringSync();
+  test(
+    'Card Journey section is feature flagged and placed after printings before details',
+    () {
+      final source = File('lib/card_detail_screen.dart').readAsStringSync();
 
-    expect(source, contains('kCardJourneysEnabled'));
-    expect(source, contains('_loadJourneyOverview()'));
-    expect(source, contains('_buildCardJourneySection(theme, colorScheme)'));
+      expect(source, contains('kCardJourneysEnabled'));
+      expect(source, contains('_loadJourneyOverview()'));
+      expect(source, contains('_buildCardJourneySection(theme, colorScheme)'));
 
-    final trustIndex = source.indexOf('_buildTrustRows(theme, colorScheme)');
-    final journeyIndex = source.indexOf(
-      '_buildCardJourneySection(theme, colorScheme)',
-    );
-    final detailsIndex = source.indexOf('_buildCardDetailsSection');
-    expect(trustIndex, greaterThan(-1));
-    expect(journeyIndex, greaterThan(trustIndex));
-    expect(detailsIndex, greaterThan(journeyIndex));
-  });
+      final printingsIndex = source.indexOf('_buildPrintingOptionsSection');
+      final journeyIndex = source.indexOf(
+        '_buildCardJourneySection(theme, colorScheme)',
+      );
+      final detailsIndex = source.indexOf('_buildCardDetailsSection');
+      expect(printingsIndex, greaterThan(-1));
+      expect(journeyIndex, greaterThan(printingsIndex));
+      expect(detailsIndex, greaterThan(journeyIndex));
+    },
+  );
 
   test(
     'Card Journey renders approved empty, snapshot, moments, and geography copy',
@@ -27,13 +30,11 @@ void main() {
 
       expect(source, contains("'Around this card'"));
       expect(source, contains('You could be the first to vault this card.'));
-      expect(
-        source,
-        contains("snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'"),
-      );
-      expect(source, contains('this ·'));
-      expect(source, contains('for trade ·'));
-      expect(source, contains('for sale ·'));
+      expect(source, contains("_buildJourneySnapshotLine"));
+      expect(source, contains("'1 collector wants a copy'"));
+      expect(source, contains("snapshot.tradeCollectorCount > 0"));
+      expect(source, contains("snapshot.saleCollectorCount > 0"));
+      expect(source, contains("snapshot.wantCollectorCount > 1"));
       expect(source, contains('want a copy'));
       expect(source, contains('See all'));
       expect(source, contains('RECENT PUBLIC ACTIVITY'));
