@@ -158,7 +158,7 @@ class PulseItem {
       setCode: _text(json['set_code']),
       setName: _text(json['set_name']),
       cardNumber: _text(json['card_number']),
-      displayImageUrl: normalizeDisplayImageUrl(json['display_image_url']),
+      displayImageUrl: _pulseDisplayImageUrl(json, payload),
       ownershipContext: _text(json['ownership_context']),
       distanceBucket: _text(json['distance_bucket']),
       localityLabel: _text(json['locality_label']),
@@ -255,6 +255,28 @@ String _text(dynamic value) => (value ?? '').toString().trim();
 String? _nullableText(dynamic value) {
   final normalized = _text(value);
   return normalized.isEmpty ? null : normalized;
+}
+
+String? _pulseDisplayImageUrl(
+  Map<String, dynamic> json,
+  Map<String, dynamic> payload,
+) {
+  return normalizeDisplayImageUrl(json['display_image_url']) ??
+      normalizeDisplayImageUrl(payload['display_image_url']) ??
+      normalizeWarehouseDisplayImagePath(json['image_path']) ??
+      normalizeWarehouseDisplayImagePath(payload['image_path']) ??
+      resolveDisplayImageUrl(
+        displayImageUrl: json['display_image_url'],
+        imageUrl: json['image_url'],
+        imageAltUrl: json['image_alt_url'],
+        representativeImageUrl: json['representative_image_url'],
+      ) ??
+      resolveDisplayImageUrl(
+        displayImageUrl: payload['display_image_url'],
+        imageUrl: payload['image_url'],
+        imageAltUrl: payload['image_alt_url'],
+        representativeImageUrl: payload['representative_image_url'],
+      );
 }
 
 int _int(dynamic value) {

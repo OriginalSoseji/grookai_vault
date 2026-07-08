@@ -18,6 +18,12 @@ void main() {
     expect(networkScreen, contains('Show older Pulse'));
     expect(networkScreen, contains("You're caught up"));
     expect(networkScreen, contains('openPulse()'));
+    expect(networkScreen, contains('_PulseArtworkTile(item: item)'));
+    expect(networkScreen, isNot(contains('_PulseProgressTile')));
+    expect(networkScreen, contains('Icons.swap_horiz_rounded'));
+    expect(networkScreen, contains("parts.join(' · ')"));
+    expect(networkScreen, contains("const Color(0xFFE9EBED)"));
+    expect(networkScreen, contains("const Color(0xFF182838)"));
     expect(
       networkScreen,
       contains('if (_segment == _NetworkHomeSegment.pulse)'),
@@ -27,6 +33,8 @@ void main() {
     expect(pulseService, contains('pulse_items_v1'));
     expect(pulseService, contains('pulse_unread_count_v1'));
     expect(pulseService, contains('pulse_mark_seen_v1'));
+    expect(pulseService, contains('_pulseDisplayImageUrl'));
+    expect(pulseService, contains("payload['display_image_url']"));
 
     expect(mainShell, contains('onPulseUnreadChanged'));
     expect(mainShell, contains('_DockUnreadBadge'));

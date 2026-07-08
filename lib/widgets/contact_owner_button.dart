@@ -6,7 +6,7 @@ import '../screens/network/network_thread_screen.dart';
 import '../services/network/card_interaction_service.dart';
 import '../services/network/intent_presentation.dart' as intent_presentation;
 
-enum ContactOwnerButtonVariant { filled, outlined, compact }
+enum ContactOwnerButtonVariant { filled, outlined, compact, pulseSecondary }
 
 typedef ContactOwnerSendMessage =
     Future<CardInteractionSendResult> Function({
@@ -72,6 +72,7 @@ class ContactOwnerButton extends StatelessWidget {
 
     final buttonChild = switch (variant) {
       ContactOwnerButtonVariant.compact => Text(label),
+      ContactOwnerButtonVariant.pulseSecondary => Text(label),
       ContactOwnerButtonVariant.outlined => Text(label),
       ContactOwnerButtonVariant.filled => Text(label),
     };
@@ -112,6 +113,27 @@ class ContactOwnerButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         ),
         child: buttonChild,
+      ),
+      ContactOwnerButtonVariant.pulseSecondary => ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 44),
+        child: TextButton(
+          onPressed: onPressed,
+          style: TextButton.styleFrom(
+            visualDensity: VisualDensity.compact,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            foregroundColor: const Color(0xFF82B4EE),
+            backgroundColor: const Color(0xFF182838),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(999),
+            ),
+            textStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0,
+            ),
+          ),
+          child: buttonChild,
+        ),
       ),
     };
   }

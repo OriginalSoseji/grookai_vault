@@ -59,6 +59,16 @@ String _distanceLabel(String value) {
   }
 }
 
+String _pulseIntentMetaLabel(String value) {
+  final normalized = value.trim().toLowerCase();
+  return switch (normalized) {
+    'trade' => 'For trade',
+    'sell' => 'For sale',
+    'showcase' => 'Showcase',
+    _ => NetworkStreamService.getVaultIntentLabel(value),
+  };
+}
+
 String _relativeTime(DateTime? value) {
   if (value == null) return '';
   final now = DateTime.now();
@@ -983,9 +993,7 @@ class _PulseItemRow extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            item.isCompletion
-                ? _PulseProgressTile(item: item, tone: tone)
-                : _PulseArtworkTile(item: item),
+            _PulseArtworkTile(item: item),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -1040,7 +1048,7 @@ class _PulseItemRow extends StatelessWidget {
                           cardName: item.displayCardName,
                           intent: item.intent,
                           buttonLabel: 'Message collector',
-                          variant: ContactOwnerButtonVariant.compact,
+                          variant: ContactOwnerButtonVariant.pulseSecondary,
                         ),
                     ],
                   ),
@@ -1083,15 +1091,19 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   String get _secondaryLine {
-    final parts = <String>[
-      if (item.localityLabel.isNotEmpty) item.localityLabel,
-      if (item.distanceBucket.isNotEmpty) _distanceLabel(item.distanceBucket),
-      if (item.setName.isNotEmpty) item.setName,
+    final setLabel = item.setName.isNotEmpty ? item.setName : item.setCode;
+    final setAndNumber = [
+      if (setLabel.isNotEmpty) setLabel,
       if (item.cardNumber.isNotEmpty) '#${item.cardNumber}',
-      if (item.intent.isNotEmpty)
-        NetworkStreamService.getVaultIntentLabel(item.intent),
+    ].join(' ');
+    final parts = <String>[
+      if (item.distanceBucket.isNotEmpty) _distanceLabel(item.distanceBucket),
+      if (item.distanceBucket.isEmpty && item.localityLabel.isNotEmpty)
+        item.localityLabel,
+      if (item.intent.isNotEmpty) _pulseIntentMetaLabel(item.intent),
+      if (setAndNumber.isNotEmpty) setAndNumber,
     ];
-    return parts.isEmpty ? 'Collection activity' : parts.join(' • ');
+    return parts.isEmpty ? 'Collection activity' : parts.join(' · ');
   }
 
   void _openPrimary(BuildContext context) {
@@ -1145,7 +1157,7 @@ class _PulseTone {
     if (item.isWantMatch) {
       return const _PulseTone(
         label: 'Want match',
-        icon: Icons.bolt_rounded,
+        icon: Icons.swap_horiz_rounded,
         foreground: Color(0xFFF0AF6E),
       );
     }
@@ -1225,42 +1237,6 @@ class _PulseArtworkTile extends StatelessWidget {
   }
 }
 
-class _PulseProgressTile extends StatelessWidget {
-  const _PulseProgressTile({required this.item, required this.tone});
-
-  final PulseItem item;
-  final _PulseTone tone;
-
-  @override
-  Widget build(BuildContext context) {
-    final percent = item.completionThreshold?.clamp(0, 100).toDouble();
-    return Container(
-      width: 58,
-      height: 81,
-      decoration: BoxDecoration(
-        color: tone.foreground.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: tone.foreground.withValues(alpha: 0.24)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.trending_up_rounded, color: tone.foreground, size: 20),
-          const SizedBox(height: 6),
-          Text(
-            percent == null ? 'Progress' : '${percent.toStringAsFixed(0)}%',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: tone.foreground,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _PulseActionPill extends StatelessWidget {
   const _PulseActionPill({
     required this.label,
@@ -1277,21 +1253,30 @@ class _PulseActionPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return TextButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 15),
-      label: Text(label),
-      style: TextButton.styleFrom(
-        visualDensity: VisualDensity.compact,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        foregroundColor: primary
-            ? colorScheme.onPrimaryContainer
-            : colorScheme.onSurface.withValues(alpha: 0.72),
-        backgroundColor: primary
-            ? colorScheme.primaryContainer.withValues(alpha: 0.64)
-            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.28),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+    final foreground = primary ? const Color(0xFF101114) : colorScheme.primary;
+    final background = primary
+        ? const Color(0xFFE9EBED)
+        : const Color(0xFF182838);
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 44),
+      child: TextButton.icon(
+        onPressed: onPressed,
+        icon: Icon(icon, size: 15),
+        label: Text(label),
+        style: TextButton.styleFrom(
+          visualDensity: VisualDensity.compact,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          foregroundColor: foreground,
+          backgroundColor: background,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(999),
+          ),
+          textStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0,
+          ),
+        ),
       ),
     );
   }
