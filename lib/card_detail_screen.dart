@@ -2039,54 +2039,51 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ColorScheme colorScheme,
   ) {
     final snapshot = overview.snapshot;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () => _openJourneyCollectorsSheet(snapshot),
-        borderRadius: BorderRadius.circular(10),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Row(
-            children: [
-              _buildJourneyAvatarStack(
-                overview.collectorPreview,
-                theme,
-                colorScheme,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text:
-                            '${snapshot.ownerCollectorCount} ${snapshot.ownerCollectorCount == 1 ? 'collector' : 'collectors'}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      TextSpan(
-                        text:
-                            ' ${snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'} this · ${snapshot.tradeCollectorCount} for trade · ${snapshot.saleCollectorCount} for sale · ${snapshot.wantCollectorCount} want a copy',
-                      ),
-                    ],
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.84),
-                    fontSize: 13.5,
-                    fontWeight: FontWeight.w500,
-                    height: 1.24,
-                  ),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => _openJourneyCollectorsSheet(snapshot),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            _buildJourneyAvatarStack(
+              overview.collectorPreview,
+              theme,
+              colorScheme,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          '${snapshot.ownerCollectorCount} ${snapshot.ownerCollectorCount == 1 ? 'collector' : 'collectors'}',
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    TextSpan(
+                      text:
+                          ' ${snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'} this · ${snapshot.tradeCollectorCount} for trade · ${snapshot.saleCollectorCount} for sale · ${snapshot.wantCollectorCount} want a copy',
+                    ),
+                  ],
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.84),
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w500,
+                  height: 1.24,
                 ),
               ),
-              const SizedBox(width: 7),
-              Icon(
-                Icons.chevron_right_rounded,
-                size: 20,
-                color: colorScheme.onSurface.withValues(alpha: 0.42),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(width: 7),
+            Icon(
+              Icons.chevron_right_rounded,
+              size: 20,
+              color: colorScheme.onSurface.withValues(alpha: 0.42),
+            ),
+          ],
         ),
       ),
     );
