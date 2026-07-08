@@ -2,7 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const bool kCardJourneysEnabled = bool.fromEnvironment(
   'CARD_JOURNEYS_ENABLED',
-  defaultValue: false,
+  defaultValue: true,
 );
 
 typedef CardJourneyRpc =
@@ -45,7 +45,8 @@ class CardJourneySnapshot {
   bool get isEmpty => !hasPublicActivity;
 
   String get ownershipSummary {
-    return '${_plural(ownerCollectorCount, 'collector')} own this'
+    final ownerVerb = ownerCollectorCount == 1 ? 'owns' : 'own';
+    return '${_plural(ownerCollectorCount, 'collector')} $ownerVerb this'
         ' · $tradeCollectorCount for trade'
         ' · $saleCollectorCount for sale'
         ' · ${_plural(wantCollectorCount, 'want', plural: 'want')} a copy';
@@ -250,11 +251,13 @@ class CardJourneyGeographyArea {
 class CardJourneyOverview {
   const CardJourneyOverview({
     required this.snapshot,
+    required this.collectorPreview,
     required this.moments,
     required this.geography,
   });
 
   final CardJourneySnapshot snapshot;
+  final List<CardJourneyCollector> collectorPreview;
   final List<CardJourneyMoment> moments;
   final List<CardJourneyGeographyArea> geography;
 }
@@ -274,15 +277,21 @@ class CardJourneyService {
     if (snapshot.isEmpty) {
       return CardJourneyOverview(
         snapshot: snapshot,
+        collectorPreview: const <CardJourneyCollector>[],
         moments: const <CardJourneyMoment>[],
         geography: const <CardJourneyGeographyArea>[],
       );
     }
 
+    final collectorPreview = await fetchCollectors(
+      cardPrintId: cardPrintId,
+      limit: 3,
+    );
     final moments = await fetchMoments(cardPrintId: cardPrintId, limit: 5);
     final geography = await fetchGeography(cardPrintId);
     return CardJourneyOverview(
       snapshot: snapshot,
+      collectorPreview: collectorPreview.collectors,
       moments: moments.moments,
       geography: geography,
     );
@@ -369,6 +378,51 @@ class CardJourneyService {
         .map(CardJourneyGeographyArea.fromJson)
         .whereType<CardJourneyGeographyArea>()
         .toList(growable: false);
+  }
+
+  Future<String?> fetchContactVaultItemId({
+    required String cardPrintId,
+    required String ownerUserId,
+  }) async {
+    final normalizedCardPrintId = _text(cardPrintId);
+    final normalizedOwnerUserId = _text(ownerUserId);
+    if (normalizedCardPrintId.isEmpty || normalizedOwnerUserId.isEmpty) {
+      return null;
+    }
+
+    try {
+      final injected = _rpc;
+      if (injected != null) {
+        final response = await injected(
+          'v_card_contact_targets_v1',
+          params: <String, dynamic>{
+            'card_print_id': normalizedCardPrintId,
+            'owner_user_id': normalizedOwnerUserId,
+          },
+        );
+        return _nullableText(_firstMap(response)?['vault_item_id']);
+      }
+
+      final client = _client;
+      if (client == null) {
+        throw StateError('CardJourneyService requires a Supabase client.');
+      }
+
+      final response = await client
+          .from('v_card_contact_targets_v1')
+          .select('vault_item_id,created_at')
+          .eq('card_print_id', normalizedCardPrintId)
+          .eq('owner_user_id', normalizedOwnerUserId)
+          .order('created_at', ascending: false)
+          .limit(1)
+          .maybeSingle();
+      return _nullableText(response?['vault_item_id']);
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(
+        CardJourneyServiceException('v_card_contact_targets_v1', error),
+        stackTrace,
+      );
+    }
   }
 
   Future<dynamic> _callRpc(

@@ -18,6 +18,7 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/network/card_engagement_service.dart';
+import 'services/network/card_journey_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -116,6 +117,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Map<String, OwnershipState> _relatedVersionOwnershipByCardPrintId =
       <String, OwnershipState>{};
   CardWantState _wantState = const CardWantState();
+  late final CardJourneyService _journeyService = CardJourneyService(
+    client: supabase,
+  );
+  CardJourneyOverview? _journeyOverview;
+  bool _journeyLoading = false;
+  String? _journeyError;
 
   @override
   void initState() {
@@ -125,7 +132,44 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     _loadActionContext();
     _loadOwnershipState();
     _loadWantState();
+    if (kCardJourneysEnabled) {
+      unawaited(_loadJourneyOverview());
+    }
     unawaited(_recordOpenDetailEvent());
+  }
+
+  Future<void> _loadJourneyOverview() async {
+    if (supabase.auth.currentUser == null) {
+      return;
+    }
+
+    setState(() {
+      _journeyLoading = true;
+      _journeyError = null;
+    });
+
+    try {
+      final overview = await _journeyService.fetchOverview(widget.cardPrintId);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _journeyOverview = overview;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _journeyError = 'Card journey unavailable.';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _journeyLoading = false;
+        });
+      }
+    }
   }
 
   Future<void> _loadOwnershipState({bool refresh = false}) async {
@@ -1393,6 +1437,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       _buildHeroPanel(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
       _buildTrustRows(theme, colorScheme),
+      if (kCardJourneysEnabled) _buildCardJourneySection(theme, colorScheme),
       if (_printingOptions.isNotEmpty)
         _buildPrintingOptionsSection(theme, colorScheme),
       if (_variantOriginCopy != null)
@@ -1873,6 +1918,361 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCardJourneySection(ThemeData theme, ColorScheme colorScheme) {
+    final overview = _journeyOverview;
+
+    if (_journeyLoading && overview == null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Around this card', theme, colorScheme),
+          const SizedBox(height: 9),
+          Row(
+            children: [
+              SizedBox(
+                width: 15,
+                height: 15,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: colorScheme.onSurface.withValues(alpha: 0.5),
+                ),
+              ),
+              const SizedBox(width: 9),
+              Text(
+                'Loading public activity...',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.55),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+
+    if (_journeyError != null && overview == null) {
+      return const SizedBox.shrink();
+    }
+
+    if (overview == null || overview.snapshot.isEmpty) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Around this card', theme, colorScheme),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Icon(
+                Icons.explore_outlined,
+                size: 18,
+                color: colorScheme.onSurface.withValues(alpha: 0.40),
+              ),
+              const SizedBox(width: 9),
+              Expanded(
+                child: Text(
+                  'You could be the first to vault this card.',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.55),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    height: 1.25,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+
+    final moments = overview.moments.take(5).toList(growable: false);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionLabel('Around this card', theme, colorScheme),
+        const SizedBox(height: 11),
+        _buildJourneySnapshotRow(overview, theme, colorScheme),
+        if (moments.isNotEmpty) ...[
+          const SizedBox(height: 13),
+          for (var index = 0; index < moments.length; index++) ...[
+            if (index > 0) _buildJourneyHairline(colorScheme),
+            _buildJourneyMomentRow(moments[index], theme, colorScheme),
+          ],
+          if (overview.snapshot.momentCount > moments.length) ...[
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: () => _openJourneyMomentsSheet(overview),
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: const Size(0, 32),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                alignment: Alignment.centerLeft,
+              ),
+              child: Text(
+                'See all ${overview.snapshot.momentCount} moments >',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: const Color(0xFF82B4EE),
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ],
+        ],
+        if (overview.geography.length >= 2) ...[
+          const SizedBox(height: 14),
+          _buildJourneyGeography(overview.geography, theme, colorScheme),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildJourneySnapshotRow(
+    CardJourneyOverview overview,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    final snapshot = overview.snapshot;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openJourneyCollectorsSheet(snapshot),
+        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            children: [
+              _buildJourneyAvatarStack(
+                overview.collectorPreview,
+                theme,
+                colorScheme,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text:
+                            '${snapshot.ownerCollectorCount} ${snapshot.ownerCollectorCount == 1 ? 'collector' : 'collectors'}',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      TextSpan(
+                        text:
+                            ' ${snapshot.ownerCollectorCount == 1 ? 'owns' : 'own'} this · ${snapshot.tradeCollectorCount} for trade · ${snapshot.saleCollectorCount} for sale · ${snapshot.wantCollectorCount} want a copy',
+                      ),
+                    ],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.84),
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w500,
+                    height: 1.24,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 7),
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 20,
+                color: colorScheme.onSurface.withValues(alpha: 0.42),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildJourneyAvatarStack(
+    List<CardJourneyCollector> collectors,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    const avatarSize = 26.0;
+    const overlap = 8.0;
+    final visible = collectors.take(3).toList(growable: false);
+    final width = visible.isEmpty
+        ? avatarSize
+        : avatarSize + ((visible.length - 1) * (avatarSize - overlap));
+
+    if (visible.isEmpty) {
+      return _JourneyAvatar(
+        size: avatarSize,
+        initials: '?',
+        imageUrl: '',
+        ringColor: colorScheme.surface,
+      );
+    }
+
+    return SizedBox(
+      width: width,
+      height: avatarSize,
+      child: Stack(
+        children: [
+          for (var index = 0; index < visible.length; index++)
+            Positioned(
+              left: index * (avatarSize - overlap),
+              child: _JourneyAvatar(
+                size: avatarSize,
+                initials: _initialsFor(visible[index].ownerDisplayName),
+                imageUrl: visible[index].ownerAvatarPath,
+                ringColor: colorScheme.surface,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildJourneyMomentRow(
+    CardJourneyMoment moment,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    final isCompletion = moment.isCompletion;
+    final iconColor = isCompletion
+        ? const Color(0xFF8FCBA0)
+        : colorScheme.onSurface.withValues(alpha: 0.50);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: Icon(
+              isCompletion
+                  ? Icons.flag_rounded
+                  : Icons.add_circle_outline_rounded,
+              size: 15,
+              color: iconColor,
+            ),
+          ),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Text(
+              moment.momentLine,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.78),
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                height: 1.28,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            CardEngagementService.formatRelativeTime(moment.createdAt),
+            textAlign: TextAlign.right,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.40),
+              fontSize: 11.5,
+              fontWeight: FontWeight.w600,
+              height: 1.1,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildJourneyGeography(
+    List<CardJourneyGeographyArea> areas,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'RECENT PUBLIC ACTIVITY',
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.50),
+            fontSize: 10.5,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.8,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 7,
+          runSpacing: 7,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Icon(
+              Icons.location_on_outlined,
+              size: 16,
+              color: colorScheme.onSurface.withValues(alpha: 0.50),
+            ),
+            for (final area in areas)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.055),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(
+                  '${area.areaLabel} · ${area.collectorCount}',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.72),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    height: 1.0,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildJourneyHairline(ColorScheme colorScheme) {
+    return Divider(
+      height: 1,
+      thickness: 0.5,
+      color: Colors.white.withValues(alpha: 0.10),
+    );
+  }
+
+  Future<void> _openJourneyCollectorsSheet(CardJourneySnapshot snapshot) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => _CardJourneyCollectorsSheet(
+        service: _journeyService,
+        cardPrintId: widget.cardPrintId,
+        cardName: _displayTitle,
+        snapshot: snapshot,
+      ),
+    );
+  }
+
+  Future<void> _openJourneyMomentsSheet(CardJourneyOverview overview) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => _CardJourneyMomentsSheet(
+        service: _journeyService,
+        cardPrintId: widget.cardPrintId,
+        cardName: _displayTitle,
+        initialMoments: overview.moments,
       ),
     );
   }
@@ -2552,6 +2952,721 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       ),
     );
   }
+}
+
+class _CardJourneyCollectorsSheet extends StatefulWidget {
+  const _CardJourneyCollectorsSheet({
+    required this.service,
+    required this.cardPrintId,
+    required this.cardName,
+    required this.snapshot,
+  });
+
+  final CardJourneyService service;
+  final String cardPrintId;
+  final String cardName;
+  final CardJourneySnapshot snapshot;
+
+  @override
+  State<_CardJourneyCollectorsSheet> createState() =>
+      _CardJourneyCollectorsSheetState();
+}
+
+class _CardJourneyCollectorsSheetState
+    extends State<_CardJourneyCollectorsSheet> {
+  CardJourneyCollectorFilter _filter = CardJourneyCollectorFilter.owners;
+  List<CardJourneyCollector> _collectors = const <CardJourneyCollector>[];
+  DateTime? _nextCursorCreatedAt;
+  String? _nextCursorUserId;
+  bool _loading = true;
+  bool _loadingMore = false;
+  String? _error;
+  final Set<String> _contactLoadingUserIds = <String>{};
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_load(reset: true));
+  }
+
+  Future<void> _load({required bool reset}) async {
+    if (reset) {
+      setState(() {
+        _loading = true;
+        _error = null;
+        _collectors = const <CardJourneyCollector>[];
+        _nextCursorCreatedAt = null;
+        _nextCursorUserId = null;
+      });
+    } else {
+      setState(() {
+        _loadingMore = true;
+        _error = null;
+      });
+    }
+
+    try {
+      final page = await widget.service.fetchCollectors(
+        cardPrintId: widget.cardPrintId,
+        filter: _filter,
+        afterCreatedAt: reset ? null : _nextCursorCreatedAt,
+        afterUserId: reset ? null : _nextCursorUserId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _collectors = reset
+            ? page.collectors
+            : <CardJourneyCollector>[..._collectors, ...page.collectors];
+        _nextCursorCreatedAt = page.nextCursorCreatedAt;
+        _nextCursorUserId = page.nextCursorUserId;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _error = 'Unable to load public collectors.';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _loading = false;
+          _loadingMore = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _setFilter(CardJourneyCollectorFilter filter) async {
+    if (_filter == filter) {
+      return;
+    }
+    setState(() {
+      _filter = filter;
+    });
+    await _load(reset: true);
+  }
+
+  Future<void> _messageCollector(CardJourneyCollector collector) async {
+    if (!collector.canMessage) {
+      return;
+    }
+
+    setState(() {
+      _contactLoadingUserIds.add(collector.ownerUserId);
+    });
+
+    try {
+      final vaultItemId = await widget.service.fetchContactVaultItemId(
+        cardPrintId: widget.cardPrintId,
+        ownerUserId: collector.ownerUserId,
+      );
+      if (!mounted) {
+        return;
+      }
+
+      if ((vaultItemId ?? '').trim().isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('That card is no longer available for contact.'),
+          ),
+        );
+        return;
+      }
+
+      await showContactOwnerComposerSheet(
+        context: context,
+        vaultItemId: vaultItemId!,
+        cardPrintId: widget.cardPrintId,
+        ownerDisplayName: collector.ownerDisplayName,
+        cardName: widget.cardName,
+        intent: collector.intent,
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Unable to open messaging right now.')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _contactLoadingUserIds.remove(collector.ownerUserId);
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final height = MediaQuery.sizeOf(context).height * 0.68;
+
+    return SafeArea(
+      top: false,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
+          child: Container(
+            height: height,
+            color: const Color(0xFF16181C),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 9),
+                Center(
+                  child: Container(
+                    width: 38,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 18, 20, 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Collectors · ${widget.cardName}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: const Color(0xFFE9EBED),
+                          fontWeight: FontWeight.w700,
+                          height: 1.1,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Public collections only',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: const Color(
+                            0xFFE9EBED,
+                          ).withValues(alpha: 0.50),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(height: 13),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            _buildFilterChip(
+                              label:
+                                  'All · ${widget.snapshot.ownerCollectorCount}',
+                              filter: CardJourneyCollectorFilter.owners,
+                              theme: theme,
+                            ),
+                            const SizedBox(width: 8),
+                            _buildFilterChip(
+                              label:
+                                  'For trade · ${widget.snapshot.tradeCollectorCount}',
+                              filter: CardJourneyCollectorFilter.trade,
+                              theme: theme,
+                            ),
+                            const SizedBox(width: 8),
+                            _buildFilterChip(
+                              label:
+                                  'For sale · ${widget.snapshot.saleCollectorCount}',
+                              filter: CardJourneyCollectorFilter.sale,
+                              theme: theme,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: _loading
+                      ? const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : _error != null
+                      ? Center(
+                          child: Text(
+                            _error!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: colorScheme.error,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        )
+                      : _collectors.isEmpty
+                      ? Center(
+                          child: Text(
+                            'No public collectors in this filter.',
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: const Color(
+                                0xFFE9EBED,
+                              ).withValues(alpha: 0.55),
+                            ),
+                          ),
+                        )
+                      : ListView.separated(
+                          padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+                          itemCount:
+                              _collectors.length +
+                              (_hasNextCursor || _loadingMore ? 1 : 0),
+                          separatorBuilder: (_, _) => Divider(
+                            color: Colors.white.withValues(alpha: 0.06),
+                          ),
+                          itemBuilder: (context, index) {
+                            if (index >= _collectors.length) {
+                              return Center(
+                                child: TextButton(
+                                  onPressed: _loadingMore
+                                      ? null
+                                      : () => _load(reset: false),
+                                  child: Text(
+                                    _loadingMore ? 'Loading...' : 'Load more',
+                                  ),
+                                ),
+                              );
+                            }
+                            return _buildCollectorRow(
+                              _collectors[index],
+                              theme,
+                              colorScheme,
+                            );
+                          },
+                        ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 18),
+                  child: Text(
+                    '${widget.snapshot.wantCollectorCount} collectors want a copy - wants stay private',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: const Color(0xFFE9EBED).withValues(alpha: 0.40),
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  bool get _hasNextCursor =>
+      _nextCursorCreatedAt != null && (_nextCursorUserId ?? '').isNotEmpty;
+
+  Widget _buildFilterChip({
+    required String label,
+    required CardJourneyCollectorFilter filter,
+    required ThemeData theme,
+  }) {
+    final selected = _filter == filter;
+    return InkWell(
+      onTap: () => _setFilter(filter),
+      borderRadius: BorderRadius.circular(999),
+      child: Container(
+        constraints: const BoxConstraints(minHeight: 34),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+        decoration: BoxDecoration(
+          color: selected
+              ? const Color(0xFF82B4EE)
+              : Colors.white.withValues(alpha: 0.055),
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(
+            color: selected
+                ? const Color(0xFF82B4EE)
+                : Colors.white.withValues(alpha: 0.10),
+          ),
+        ),
+        child: Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: selected ? const Color(0xFF0A0B0C) : const Color(0xFFE9EBED),
+            fontWeight: FontWeight.w700,
+            height: 1.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCollectorRow(
+    CardJourneyCollector collector,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    final loadingContact = _contactLoadingUserIds.contains(
+      collector.ownerUserId,
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 9),
+      child: Row(
+        children: [
+          _JourneyAvatar(
+            size: 34,
+            initials: _initialsFor(collector.ownerDisplayName),
+            imageUrl: collector.ownerAvatarPath,
+            ringColor: const Color(0xFF16181C),
+          ),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  collector.ownerDisplayName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFFE9EBED),
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w700,
+                    height: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  '${collector.copyCount} ${collector.copyCount == 1 ? 'copy' : 'copies'}',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: const Color(0xFFE9EBED).withValues(alpha: 0.50),
+                    fontSize: 11.5,
+                    fontWeight: FontWeight.w500,
+                    height: 1.1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          _JourneyIntentChip(intent: collector.intent),
+          if (collector.canMessage) ...[
+            const SizedBox(width: 8),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 44),
+              child: TextButton(
+                onPressed: loadingContact
+                    ? null
+                    : () => _messageCollector(collector),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  minimumSize: const Size(0, 44),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Text(loadingContact ? '...' : 'Message'),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _CardJourneyMomentsSheet extends StatefulWidget {
+  const _CardJourneyMomentsSheet({
+    required this.service,
+    required this.cardPrintId,
+    required this.cardName,
+    required this.initialMoments,
+  });
+
+  final CardJourneyService service;
+  final String cardPrintId;
+  final String cardName;
+  final List<CardJourneyMoment> initialMoments;
+
+  @override
+  State<_CardJourneyMomentsSheet> createState() =>
+      _CardJourneyMomentsSheetState();
+}
+
+class _CardJourneyMomentsSheetState extends State<_CardJourneyMomentsSheet> {
+  late List<CardJourneyMoment> _moments;
+  DateTime? _nextCursorCreatedAt;
+  String? _nextCursorEventId;
+  bool _loadingMore = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _moments = widget.initialMoments;
+    if (_moments.isNotEmpty) {
+      final tail = _moments.last;
+      _nextCursorCreatedAt = tail.nextCursorCreatedAt;
+      _nextCursorEventId = tail.nextCursorEventId;
+    }
+  }
+
+  Future<void> _loadMore() async {
+    setState(() {
+      _loadingMore = true;
+    });
+
+    try {
+      final page = await widget.service.fetchMoments(
+        cardPrintId: widget.cardPrintId,
+        limit: 20,
+        afterCreatedAt: _nextCursorCreatedAt,
+        afterEventId: _nextCursorEventId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _moments = <CardJourneyMoment>[..._moments, ...page.moments];
+        _nextCursorCreatedAt = page.nextCursorCreatedAt;
+        _nextCursorEventId = page.nextCursorEventId;
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _loadingMore = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final height = MediaQuery.sizeOf(context).height * 0.68;
+    return SafeArea(
+      top: false,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
+          child: Container(
+            height: height,
+            color: const Color(0xFF16181C),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 9),
+                Center(
+                  child: Container(
+                    width: 38,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 18, 20, 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Moments · ${widget.cardName}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: const Color(0xFFE9EBED),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Public activity only',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: const Color(
+                            0xFFE9EBED,
+                          ).withValues(alpha: 0.50),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
+                    itemCount: _moments.length + (_hasNextCursor ? 1 : 0),
+                    separatorBuilder: (_, _) =>
+                        Divider(color: Colors.white.withValues(alpha: 0.10)),
+                    itemBuilder: (context, index) {
+                      if (index >= _moments.length) {
+                        return Center(
+                          child: TextButton(
+                            onPressed: _loadingMore ? null : _loadMore,
+                            child: Text(
+                              _loadingMore ? 'Loading...' : 'Load more',
+                            ),
+                          ),
+                        );
+                      }
+                      final moment = _moments[index];
+                      final isCompletion = moment.isCompletion;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              isCompletion
+                                  ? Icons.flag_rounded
+                                  : Icons.add_circle_outline_rounded,
+                              size: 16,
+                              color: isCompletion
+                                  ? const Color(0xFF8FCBA0)
+                                  : colorScheme.onSurface.withValues(
+                                      alpha: 0.50,
+                                    ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                moment.momentLine,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: const Color(
+                                    0xFFE9EBED,
+                                  ).withValues(alpha: 0.78),
+                                  fontSize: 13,
+                                  height: 1.28,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              CardEngagementService.formatRelativeTime(
+                                moment.createdAt,
+                              ),
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: const Color(
+                                  0xFFE9EBED,
+                                ).withValues(alpha: 0.40),
+                                fontSize: 11.5,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  bool get _hasNextCursor =>
+      _nextCursorCreatedAt != null && (_nextCursorEventId ?? '').isNotEmpty;
+}
+
+class _JourneyAvatar extends StatelessWidget {
+  const _JourneyAvatar({
+    required this.size,
+    required this.initials,
+    required this.imageUrl,
+    required this.ringColor,
+  });
+
+  final double size;
+  final String initials;
+  final String imageUrl;
+  final Color ringColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final image = imageUrl.trim().startsWith('http')
+        ? Image.network(
+            imageUrl.trim(),
+            fit: BoxFit.cover,
+            errorBuilder: (_, _, _) => _fallback(theme),
+          )
+        : _fallback(theme);
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: ringColor, width: 1.5),
+      ),
+      child: ClipOval(child: image),
+    );
+  }
+
+  Widget _fallback(ThemeData theme) {
+    return Container(
+      color: const Color(0xFF1D2024),
+      alignment: Alignment.center,
+      child: Text(
+        initials,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: const Color(0xFFE9EBED).withValues(alpha: 0.78),
+          fontSize: size <= 28 ? 10 : 12,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
+class _JourneyIntentChip extends StatelessWidget {
+  const _JourneyIntentChip({required this.intent});
+
+  final String intent;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final normalized = intent.trim().toLowerCase();
+    final (label, color) = switch (normalized) {
+      'trade' => ('For trade', const Color(0xFF8FCBA0)),
+      'sell' => ('For sale', const Color(0xFFE3C578)),
+      _ => ('Showcase', const Color(0xFFE9EBED)),
+    };
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.35)),
+      ),
+      child: Text(
+        label,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: color.withValues(alpha: normalized == 'showcase' ? 0.62 : 1),
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          height: 1.0,
+        ),
+      ),
+    );
+  }
+}
+
+String _initialsFor(String value) {
+  final words = value
+      .trim()
+      .split(RegExp(r'\s+'))
+      .where((word) => word.isNotEmpty)
+      .toList(growable: false);
+  if (words.isEmpty) {
+    return '?';
+  }
+  if (words.length == 1) {
+    return words.first.characters.take(2).toString().toUpperCase();
+  }
+  return '${words.first.characters.first}${words.last.characters.first}'
+      .toUpperCase();
 }
 
 class _CardCommentsSheet extends StatefulWidget {

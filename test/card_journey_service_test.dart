@@ -206,4 +206,25 @@ void main() {
       ),
     );
   });
+
+  test('contact target lookup resolves a messageable vault item', () async {
+    final service = CardJourneyService(
+      rpc: (functionName, {params}) async {
+        expect(functionName, 'v_card_contact_targets_v1');
+        expect(params?['card_print_id'], cardPrintId);
+        expect(
+          params?['owner_user_id'],
+          '55555555-5555-5555-5555-555555555555',
+        );
+        return <String, dynamic>{'vault_item_id': 'vault-item-1'};
+      },
+    );
+
+    final vaultItemId = await service.fetchContactVaultItemId(
+      cardPrintId: cardPrintId,
+      ownerUserId: '55555555-5555-5555-5555-555555555555',
+    );
+
+    expect(vaultItemId, 'vault-item-1');
+  });
 }

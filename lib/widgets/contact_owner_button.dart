@@ -26,6 +26,37 @@ typedef ContactOwnerOpenConversation =
       CardInteractionThreadSummary thread,
     );
 
+Future<void> showContactOwnerComposerSheet({
+  required BuildContext context,
+  required String vaultItemId,
+  required String cardPrintId,
+  required String ownerDisplayName,
+  required String cardName,
+  String? intent,
+  bool closeParentOnSuccess = false,
+  ContactOwnerSendMessage? sendMessageOverride,
+  ContactOwnerResolveThread? resolveThreadOverride,
+  ContactOwnerOpenConversation? openConversationOverride,
+}) async {
+  await showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    showDragHandle: true,
+    builder: (sheetContext) => _ContactComposerSheet(
+      vaultItemId: vaultItemId,
+      cardPrintId: cardPrintId,
+      ownerDisplayName: ownerDisplayName,
+      cardName: cardName,
+      intent: intent,
+      launchContext: context,
+      closeParentOnSuccess: closeParentOnSuccess,
+      sendMessageOverride: sendMessageOverride,
+      resolveThreadOverride: resolveThreadOverride,
+      openConversationOverride: openConversationOverride,
+    ),
+  );
+}
+
 class ContactOwnerButton extends StatelessWidget {
   const ContactOwnerButton({
     required this.vaultItemId,
@@ -78,22 +109,17 @@ class ContactOwnerButton extends StatelessWidget {
     };
 
     Future<void> onPressed() async {
-      await showModalBottomSheet<void>(
+      await showContactOwnerComposerSheet(
         context: context,
-        isScrollControlled: true,
-        showDragHandle: true,
-        builder: (sheetContext) => _ContactComposerSheet(
-          vaultItemId: vaultItemId,
-          cardPrintId: cardPrintId,
-          ownerDisplayName: ownerDisplayName,
-          cardName: cardName,
-          intent: intent,
-          launchContext: context,
-          closeParentOnSuccess: closeParentOnSuccess,
-          sendMessageOverride: sendMessageOverride,
-          resolveThreadOverride: resolveThreadOverride,
-          openConversationOverride: openConversationOverride,
-        ),
+        vaultItemId: vaultItemId,
+        cardPrintId: cardPrintId,
+        ownerDisplayName: ownerDisplayName,
+        cardName: cardName,
+        intent: intent,
+        closeParentOnSuccess: closeParentOnSuccess,
+        sendMessageOverride: sendMessageOverride,
+        resolveThreadOverride: resolveThreadOverride,
+        openConversationOverride: openConversationOverride,
       );
     }
 
