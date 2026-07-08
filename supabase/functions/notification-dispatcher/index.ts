@@ -378,6 +378,18 @@ function messagePreview(payload: Json): string {
   return preview.length > 140 ? `${preview.slice(0, 137)}...` : preview;
 }
 
+function formatBucket(value: unknown): string {
+  const bucket = cleanString(value);
+  if (bucket === "same_region") return "same region";
+  if (bucket === "nearby") return "nearby";
+  return "nearby";
+}
+
+function formatMatchCount(value: unknown): number {
+  const count = Number(value);
+  return Number.isFinite(count) && count > 0 ? Math.trunc(count) : 1;
+}
+
 function formatNotification(
   outbox: OutboxRow,
   card: CardPrint,
@@ -388,13 +400,24 @@ function formatNotification(
 
   const notificationId = crypto.randomUUID();
   const actor = actorName || "A collector";
-  const action = outbox.event_type === "message_received"
-    ? "sent you a message"
-    : "shared card activity";
-  const title = `${card.name} · ${actor} ${action}`;
-  const body = outbox.event_type === "message_received"
-    ? messagePreview(outbox.payload)
-    : "Open Grookai Vault to view the card.";
+  let title: string;
+  let body: string;
+  if (outbox.event_type === "message_received") {
+    title = `${card.name} · ${actor} sent you a message`;
+    body = messagePreview(outbox.payload);
+  } else if (outbox.event_type === "want_match_available") {
+    const bucket = formatBucket(outbox.payload.distance_bucket);
+    title = `${card.name} · ${actor} (${bucket}) has this available for trade`;
+    body = "Open Grookai Vault to view the match.";
+  } else if (outbox.event_type === "want_match_digest") {
+    const count = formatMatchCount(outbox.payload.match_count);
+    const label = count === 1 ? "want-list match" : "want-list matches";
+    title = `${card.name} · ${count} ${label}`;
+    body = "Open Grookai Vault to review today's matches.";
+  } else {
+    title = `${card.name} · ${actor} shared card activity`;
+    body = "Open Grookai Vault to view the card.";
+  }
   const owner = outbox.actor_user_id
     ? `&owner=${encodeURIComponent(outbox.actor_user_id)}`
     : "";
@@ -419,6 +442,14 @@ async function markFolded(
   formatted: FormattedNotification | null,
   reason: string,
 ) {
+  if (row.event_type === "want_match_digest" && reason === "daily_budget_exhausted") {
+    await rpc(sb, "notification_dispatcher_reschedule_digest_fold_v1", {
+      p_outbox_id: row.id,
+      p_reason: reason,
+    });
+    return;
+  }
+
   await rpc(sb, "notification_dispatcher_mark_folded_v1", {
     p_outbox_id: row.id,
     p_title: formatted?.title ?? "Grookai Vault",
