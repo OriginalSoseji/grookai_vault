@@ -17,7 +17,7 @@ Baseline:
 
 Build Pulse as a finite, card-first surface for things that happened around a collector's actual interests.
 
-E4 is not a discovery feed rewrite. It adds a ranked Pulse section above existing Discover content and keeps Discover backed by the current `local_community_feed_v2` behavior.
+E4 is not a discovery feed rewrite. It adds Pulse as a finite ranked segment inside the Feed surface and keeps the existing feed content backed by the current `local_community_feed_v2` behavior.
 
 Implementation boundary:
 
@@ -252,7 +252,7 @@ Rules:
 
 Tab behavior:
 
-- Pulse tab icon shows unread count from `pulse_unread_count_v1`.
+- The Pulse segment shows unread count from `pulse_unread_count_v1`.
 - Count clears after Pulse renders and the client calls `pulse_mark_seen_v1` with the latest eligible event cursor captured from `pulse_unread_count_v1` at open time.
 - If the user opens Pulse and no items exist, call mark-seen with null cursor to record the open.
 
@@ -362,7 +362,7 @@ When the RPC returns no unseen rows:
 - Show a quiet caught-up state.
 - No discovery cards.
 - No fake prompts.
-- The Discover section may sit below Pulse as a separate section, but it must be visually and semantically separated.
+- Switching to Discover is a segment change, not content appended below the caught-up Pulse state.
 
 Suggested low-fi copy:
 
@@ -373,17 +373,22 @@ Nothing new around your collection right now.
 
 ## Feed Split
 
-Current `local_community_feed_v2` content becomes the Discover section below Pulse.
+The Feed screen becomes the app home surface and keeps the existing top-level segment control. E4 changes the segment model to three segments:
+
+1. `Pulse` - new, leftmost segment. This is the finite ranked surface backed by `pulse_items_v1`.
+2. `Discover` - label-only rename of the current `Collectors` segment. It remains backed by existing `local_community_feed_v2` behavior.
+3. `Following` - unchanged.
 
 Rules:
 
+- Pulse is not stacked above Discover.
 - No ranking changes to `local_community_feed_v2` in E4.
 - No rewrite of existing Discover cards.
 - No new discovery source.
-- No coupling between Pulse unread state and Discover.
-- Existing Feed tab may become:
-  - Pulse section at top.
-  - Discover section below.
+- No coupling between Pulse unread state and Discover or Following.
+- The unread badge belongs to the Pulse segment only.
+- `Collectors` -> `Discover` is a label change only in E4.
+- Future Discover roadmap ideas, including rotating high-end catalog cards or additional algorithmic slots, are explicitly out of scope for E4.
 
 Implementation waits for high-fi mockups. This plan only defines the split contract.
 
@@ -505,10 +510,11 @@ Rollback:
 Scope:
 
 - Implement only after high-fi mockups are approved.
-- Add Pulse section to the existing Feed tab or approved target route.
-- Add unread count to tab icon.
+- Add Pulse as the leftmost segment in the existing Feed screen.
+- Add unread count to the Pulse segment.
 - Add caught-up state.
-- Add Discover section below Pulse using unchanged `local_community_feed_v2`.
+- Rename the current Collectors segment to Discover using unchanged `local_community_feed_v2`.
+- Keep Following unchanged.
 - Add tap routes for item actions.
 
 Gate:
@@ -517,7 +523,7 @@ Gate:
 - No infinite scroll.
 - No discovery padding inside Pulse.
 - Pulse catches up.
-- Discover remains below Pulse and unchanged in ranking.
+- Discover remains a separate segment and unchanged in ranking.
 - Unread count clears only after rendered items are marked seen.
 - Device push tap gates pass for killed/background app states on iOS and Android.
 

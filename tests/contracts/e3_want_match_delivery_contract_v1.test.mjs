@@ -74,7 +74,9 @@ test("E3 dispatcher formats want-match notifications and reschedules digest budg
   assert.match(dispatcher, /outbox\.event_type === "want_match_digest"/);
   assert.match(dispatcher, /want-list match/);
   assert.match(dispatcher, /notification_dispatcher_reschedule_digest_fold_v1/);
-  assert.match(dispatcher, /row\.event_type === "want_match_digest" && reason === "daily_budget_exhausted"/);
+  assert.match(dispatcher, /row\.event_type === "want_match_digest"/);
+  assert.match(dispatcher, /row\.event_type === "pulse_daily"/);
+  assert.match(dispatcher, /reason === "daily_budget_exhausted"/);
 });
 
 test("E3 local smoke has delivery gates for instant, digest, owner-zero, and reschedule", () => {

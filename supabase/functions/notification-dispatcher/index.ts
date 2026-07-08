@@ -414,10 +414,23 @@ function formatNotification(
     const label = count === 1 ? "want-list match" : "want-list matches";
     title = `${card.name} · ${count} ${label}`;
     body = "Open Grookai Vault to review today's matches.";
+  } else if (outbox.event_type === "pulse_daily") {
+    const count = formatMatchCount(outbox.payload.item_count);
+    const label = count === 1 ? "thing" : "things";
+    title = `${count} ${label} happened around your collection`;
+    body = cleanString(outbox.payload.top_card_name) ??
+      `${card.name} and more are waiting in Pulse.`;
   } else {
     title = `${card.name} · ${actor} shared card activity`;
     body = "Open Grookai Vault to view the card.";
   }
+  if (outbox.event_type === "pulse_daily") {
+    const deepLink =
+      `grookai://feed?segment=pulse&source=notification&notification_id=${notificationId}`;
+    const webUrl = "https://grookaivault.com/feed?segment=pulse";
+    return { notificationId, title, body, deepLink, webUrl };
+  }
+
   const owner = outbox.actor_user_id
     ? `&owner=${encodeURIComponent(outbox.actor_user_id)}`
     : "";
@@ -442,7 +455,10 @@ async function markFolded(
   formatted: FormattedNotification | null,
   reason: string,
 ) {
-  if (row.event_type === "want_match_digest" && reason === "daily_budget_exhausted") {
+  if (
+    (row.event_type === "want_match_digest" || row.event_type === "pulse_daily") &&
+    reason === "daily_budget_exhausted"
+  ) {
     await rpc(sb, "notification_dispatcher_reschedule_digest_fold_v1", {
       p_outbox_id: row.id,
       p_reason: reason,
