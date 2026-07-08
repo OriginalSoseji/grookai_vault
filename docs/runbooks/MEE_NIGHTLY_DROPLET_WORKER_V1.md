@@ -25,6 +25,12 @@ Fill either:
 Leave `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=0` when you are out of provider calls.
 Use `MEE_NIGHTLY_NORMALIZATION_ONLY=1` or `--normalization-only` to reprocess existing warehouse rows without acquisition.
 
+Optional:
+
+- `MEE_NIGHTLY_REFERENCE_LIMIT`, default `5000`, caps the nightly TCGCSV reference target batch.
+
+The nightly worker refreshes TCGCSV alongside the eBay listing ingest when provider calls are enabled. TCGCSV rows are written only through the guarded reference evidence path; they do not publish prices, update app-visible pricing, or write `pricing_observations`.
+
 Preferred installer:
 
 ```bash
@@ -52,6 +58,12 @@ Provider acquisition run:
 
 ```bash
 MEE_NIGHTLY_ALLOW_RUN=1 MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=4000
+```
+
+Provider acquisition with an explicit TCGCSV reference cap:
+
+```bash
+MEE_NIGHTLY_ALLOW_RUN=1 MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=4000 --reference-limit=5000
 ```
 
 No-call normalization-only run:
@@ -95,6 +107,7 @@ The final report must show:
 - no app-visible pricing
 - no `pricing_observations` writes
 - no `ebay_active_prices_latest` writes
+- TCGCSV evidence, if refreshed, stayed in the reference warehouse path
 - no failed phase
 
 ## Stop

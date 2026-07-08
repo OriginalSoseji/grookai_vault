@@ -17,6 +17,11 @@ const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
 const REQUIRED_FILES = [
+  "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+  "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+  "scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
+  "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
+  "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
   "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
   "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
@@ -56,6 +61,78 @@ const PHASES = [
       "--run-key={runKey}",
     ],
     providerCalls: true,
+    dbWrites: true,
+  },
+  {
+    key: "tcgcsv_reference_query_plan",
+    command: [
+      "node",
+      "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+      "--limit={referenceLimit}",
+    ],
+    dryRunCommand: [
+      "node",
+      "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+      "--limit={referenceLimit}",
+    ],
+    providerCalls: false,
+    dbWrites: false,
+  },
+  {
+    key: "tcgcsv_reference_acquisition_batch",
+    command: [
+      "node",
+      "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+      "--sources=tcgcsv_reference",
+      "--limit={referenceLimit}",
+    ],
+    dryRunCommand: [
+      "node",
+      "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+      "--sources=tcgcsv_reference",
+      "--limit={referenceLimit}",
+    ],
+    providerCalls: false,
+    dbWrites: false,
+  },
+  {
+    key: "tcgcsv_reference_refresh",
+    command: [
+      "node",
+      "scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
+      "--limit={referenceLimit}",
+      "--refresh-cache",
+    ],
+    dryRunCommand: null,
+    providerCalls: true,
+    dbWrites: false,
+  },
+  {
+    key: "tcgcsv_reference_normalization",
+    command: [
+      "node",
+      "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
+    ],
+    dryRunCommand: [
+      "node",
+      "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
+    ],
+    providerCalls: false,
+    dbWrites: false,
+  },
+  {
+    key: "reference_warehouse_delta_writer",
+    command: [
+      "node",
+      "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
+      "--run",
+    ],
+    dryRunCommand: [
+      "node",
+      "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
+      "--dry-run",
+    ],
+    providerCalls: false,
     dbWrites: true,
   },
   {
@@ -179,6 +256,13 @@ function parseArgs(argv) {
   if (!Number.isFinite(callCeiling) || callCeiling <= 0) {
     throw new Error("--call-ceiling must be a positive integer");
   }
+  const referenceLimitRaw = argv.find((arg) => arg.startsWith("--reference-limit="))?.slice("--reference-limit=".length);
+  const referenceLimit = referenceLimitRaw
+    ? Number.parseInt(referenceLimitRaw, 10)
+    : Number.parseInt(process.env.MEE_NIGHTLY_REFERENCE_LIMIT ?? "5000", 10);
+  if (!Number.isFinite(referenceLimit) || referenceLimit <= 0) {
+    throw new Error("--reference-limit must be a positive integer");
+  }
   const runKey =
     argv.find((arg) => arg.startsWith("--run-key="))?.slice("--run-key=".length) ??
     `MEE-DROPLET-${new Date().toISOString().slice(0, 10)}`;
@@ -186,6 +270,7 @@ function parseArgs(argv) {
     run,
     dryRun,
     callCeiling,
+    referenceLimit,
     runKey,
     skipProvider: argv.includes("--skip-provider"),
     skipApply: argv.includes("--skip-apply"),
@@ -200,6 +285,7 @@ function fillCommand(command, args) {
   return command.map((part) =>
     part
       .replace("{callCeiling}", String(args.callCeiling))
+      .replace("{referenceLimit}", String(args.referenceLimit))
       .replace("{runKey}", args.runKey),
   );
 }
@@ -385,6 +471,7 @@ function preflight(args) {
       MEE_NIGHTLY_PROVIDER_CALLS_ENABLED: args.providerCallsEnabled,
       MEE_NIGHTLY_NORMALIZATION_ONLY: args.normalizationOnly,
       MEE_NIGHTLY_MAX_CALL_CEILING: args.maxCallCeiling,
+      MEE_NIGHTLY_REFERENCE_LIMIT: args.referenceLimit,
       EBAY_AUTH_PRESENT: Boolean(
         process.env.EBAY_BROWSE_ACCESS_TOKEN || (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET),
       ),
@@ -516,6 +603,7 @@ const payload = {
   mode: args.run ? "run" : "dry_run",
   run_key: args.runKey,
   call_ceiling: args.callCeiling,
+  reference_limit: args.referenceLimit,
   phase_plan: phasePlan(args),
   preflight: preflightResult,
   execution: execution.map((phase) => ({
