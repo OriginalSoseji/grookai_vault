@@ -1,8 +1,27 @@
 # E2 Plan - Notification Infra
 
-Status: pending approval. Do not implement until approved.
+Status: PR 1, PR 2, and PR 3 implemented and live-verified on July 7, 2026. E2 is merge-ready with two remaining manual tap-state checks tracked below; those checks are required before E2 is declared fully closed, but they are not merge-blocking.
 
 Date: 2026-07-06
+
+## Live Verification - July 7, 2026
+
+- Push delivery was received on two real iPhones: the owner device and an external tester device.
+- Card messaging was proven end to end: card message insert -> `public.card_interactions` -> `public.notification_outbox` -> notification dispatcher -> FCM HTTP v1 -> APNs-via-FCM -> iPhone notification.
+- The `pg_cron` -> `pg_net` dispatcher schedule was initially misconfigured/disabled, then fixed and proven live. The active schedule now runs every minute.
+- The E2 budget cap was observed live: after the 3/day notification budget was consumed, additional eligible notifications folded terminally. This is expected E2 behavior because digest delivery is not built yet; folded rows are terminal by design until a future digest epic.
+- Messaging side-fixes were applied so public vault/wall cards are contactable:
+  - `20260707173500_card_contact_targets_all_public_vault_items_v1.sql` widens `v_card_contact_targets_v1` to all active public vault items gated by public profile and vault sharing.
+  - `20260707175500_card_contact_targets_security_definer_v1.sql` makes the contact target view resolve across RLS for public contact eligibility.
+
+## Remaining Manual Verification
+
+These checks are required before E2 is declared fully closed. They are not merge-blocking for the July 7 integration baseline.
+
+- Cold-start tap: killed app -> tap push -> correct card detail on iOS.
+- Cold-start tap: killed app -> tap push -> correct card detail on Android.
+- Background tap: backgrounded app -> tap push -> correct card detail on iOS.
+- Background tap: backgrounded app -> tap push -> correct card detail on Android.
 
 ## Objective
 
@@ -421,6 +440,44 @@ Rotation:
 4. Disable old Firebase key.
 
 No service account JSON, private key, APNs key, or Firebase admin credential is committed.
+
+## Dispatcher Runtime Configuration
+
+The scheduled dispatcher does not store its URL or shared secret in git. Runtime values live in two places:
+
+- Supabase Edge Function secrets hold the dispatcher authorization secret and FCM credentials.
+- `public.notification_dispatcher_runtime_config` stores the active schedule configuration for `public.notification_dispatcher_scheduled_http_v1()`.
+
+Fresh environment setup:
+
+1. Deploy `supabase/functions/notification-dispatcher`.
+2. Set Edge Function secrets:
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `NOTIFICATION_DISPATCHER_SHARED_SECRET`
+   - `FCM_SERVICE_ACCOUNT_JSON`, or the split `FCM_PROJECT_ID`, `FCM_CLIENT_EMAIL`, and `FCM_PRIVATE_KEY` values.
+3. Insert or update runtime config rows as service role:
+
+```sql
+insert into public.notification_dispatcher_runtime_config (key, value)
+values
+  ('enabled', 'true'),
+  ('url', 'https://<project-ref>.supabase.co/functions/v1/notification-dispatcher'),
+  ('shared_secret', '<same value as NOTIFICATION_DISPATCHER_SHARED_SECRET>')
+on conflict (key) do update
+set value = excluded.value,
+    updated_at = now();
+```
+
+4. Verify the cron job exists and is active:
+
+```sql
+select jobname, schedule, active
+from cron.job
+where jobname = 'notification-dispatcher-every-minute-v1';
+```
+
+5. Verify dispatch with a controlled outbox row or a real card message. The expected path is `card_interactions` -> `notification_outbox` -> `notification-dispatcher` -> `notifications_log`.
 
 ## App Integration Plan
 
