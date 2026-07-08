@@ -116,23 +116,34 @@ class ContactOwnerButton extends StatelessWidget {
       ),
       ContactOwnerButtonVariant.pulseSecondary => ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 44),
-        child: TextButton(
-          onPressed: onPressed,
-          style: TextButton.styleFrom(
-            visualDensity: VisualDensity.compact,
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            foregroundColor: const Color(0xFF82B4EE),
-            backgroundColor: const Color(0xFF182838),
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(999),
-            ),
-            textStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 7.5),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xFF182838),
+                borderRadius: BorderRadius.circular(999),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 6,
+                ),
+                child: Text(
+                  label,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: const Color(0xFF82B4EE),
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    height: 1.0,
+                    letterSpacing: 0,
+                  ),
+                ),
+              ),
             ),
           ),
-          child: buttonChild,
         ),
       ),
     };

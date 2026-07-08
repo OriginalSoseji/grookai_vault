@@ -945,7 +945,7 @@ class _PulseContentSliver extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-              if (index.isOdd) return const SizedBox(height: 8);
+              if (index.isOdd) return const SizedBox(height: 9);
               return _PulseItemRow(item: items[index ~/ 2]);
             }, childCount: childCount),
           ),
@@ -985,7 +985,7 @@ class _PulseItemRow extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: background,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(color: borderColor),
       ),
       child: Padding(
@@ -1000,33 +1000,35 @@ class _PulseItemRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _PulseKicker(item: item, tone: tone),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 3),
                   Text(
                     _primaryLine,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleSmall?.copyWith(
                       color: colorScheme.onSurface,
-                      fontWeight: FontWeight.w700,
-                      height: 1.13,
+                      fontSize: 14.5,
+                      fontWeight: FontWeight.w600,
+                      height: 1.25,
                       letterSpacing: 0,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 3),
                   Text(
                     _secondaryLine,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.62),
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
-                      height: 1.25,
+                      height: 1.20,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 6),
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: 7,
+                    runSpacing: 4,
                     children: [
                       _PulseActionPill(
                         label: item.isCompletion
@@ -1193,9 +1195,10 @@ class _PulseKicker extends StatelessWidget {
           tone.label.toUpperCase(),
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: tone.foreground,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.7,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.26,
             fontSize: 10.5,
+            height: 1.0,
           ),
         ),
         const Spacer(),
@@ -1203,7 +1206,9 @@ class _PulseKicker extends StatelessWidget {
           _relativeTime(item.createdAt),
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: colorScheme.onSurface.withValues(alpha: 0.48),
+            fontSize: 10.5,
             fontWeight: FontWeight.w600,
+            height: 1.0,
           ),
         ),
       ],
@@ -1221,16 +1226,31 @@ class _PulseArtworkTile extends StatelessWidget {
     return SizedBox(
       width: 58,
       height: 81,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: CardSurfaceArtwork(
-          label: item.displayCardName,
-          imageUrl: item.displayImageUrl,
-          borderRadius: 0,
-          padding: EdgeInsets.zero,
-          frame: CardArtworkFrame.none,
-          enableTapToZoom: false,
-          filterQuality: FilterQuality.low,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(
+                context,
+              ).colorScheme.shadow.withValues(alpha: 0.14),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CardSurfaceArtwork(
+            label: item.displayCardName,
+            imageUrl: item.displayImageUrl,
+            borderRadius: 8,
+            padding: EdgeInsets.zero,
+            frame: CardArtworkFrame.none,
+            enableTapToZoom: false,
+            showShadow: false,
+            filterQuality: FilterQuality.low,
+          ),
         ),
       ),
     );
@@ -1257,24 +1277,39 @@ class _PulseActionPill extends StatelessWidget {
     final background = primary
         ? const Color(0xFFE9EBED)
         : const Color(0xFF182838);
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 44),
-      child: TextButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon, size: 15),
-        label: Text(label),
-        style: TextButton.styleFrom(
-          visualDensity: VisualDensity.compact,
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          foregroundColor: foreground,
-          backgroundColor: background,
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(999),
-          ),
-          textStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0,
+    return Semantics(
+      button: true,
+      label: label,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 7.5),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(icon, size: 14, color: foreground),
+                  const SizedBox(width: 7),
+                  Text(
+                    label,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: foreground,
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w700,
+                      height: 1.0,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
