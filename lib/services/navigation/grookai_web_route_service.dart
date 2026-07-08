@@ -2,7 +2,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../secrets.dart';
 
-enum GrookaiCanonicalRouteKind { card, collector, collectorSection, set }
+enum GrookaiCanonicalRouteKind { card, collector, collectorSection, set, feed }
 
 class GrookaiCanonicalRoute {
   const GrookaiCanonicalRoute._({
@@ -50,6 +50,16 @@ class GrookaiCanonicalRoute {
       kind: GrookaiCanonicalRouteKind.set,
       path: '/set/$normalized',
       value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.feed({String segment = 'pulse'}) {
+    final normalized = segment.trim().toLowerCase();
+    final resolvedSegment = normalized.isEmpty ? 'pulse' : normalized;
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.feed,
+      path: '/feed?segment=$resolvedSegment',
+      value: resolvedSegment,
     );
   }
 
@@ -106,11 +116,19 @@ class GrookaiWebRouteService {
         .map((segment) => segment.trim())
         .where((segment) => segment.isNotEmpty)
         .toList(growable: false);
+    if (segments.isEmpty) {
+      return null;
+    }
+    final head = segments.first.toLowerCase();
+    if (head == 'feed') {
+      return GrookaiCanonicalRoute.feed(
+        segment: uri.queryParameters['segment'] ?? 'pulse',
+      );
+    }
     if (segments.length < 2) {
       return null;
     }
 
-    final head = segments.first.toLowerCase();
     final value = segments[1].trim();
     if (value.isEmpty) {
       return null;
@@ -154,6 +172,11 @@ class GrookaiWebRouteService {
     }
     if ((host == 'set' || host == 'sets') && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.set(segments.first);
+    }
+    if (host == 'feed') {
+      return GrookaiCanonicalRoute.feed(
+        segment: uri.queryParameters['segment'] ?? 'pulse',
+      );
     }
     if (host == 'u' && segments.isNotEmpty) {
       if (segments.length >= 3 && segments[1].toLowerCase() == 'section') {

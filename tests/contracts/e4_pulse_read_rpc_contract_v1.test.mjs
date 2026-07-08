@@ -64,3 +64,16 @@ test("E4 Pulse local smoke covers ranking, muted/private exclusions, pagination,
   assert.match(script, /backwards_rejected/);
   assert.match(script, /rollback_only/);
 });
+
+test("E4 Pulse want-match rows carry contact anchors in payload", () => {
+  const sql = readSource("supabase/migrations/20260708160000_product_evolution_e4_pulse_contact_payload_v1.sql");
+
+  assert.match(sql, /create or replace function public\.pulse_items_v1/i);
+  assert.match(sql, /left join public\.want_matches wm/i);
+  assert.match(sql, /wm\.want_user_id = v_uid/i);
+  assert.match(sql, /wm\.id = public\.pulse_jsonb_uuid_v1\(e\.payload ->> 'want_match_id'\)/i);
+  assert.match(sql, /'vault_item_id', ranked\.contact_vault_item_id/i);
+  assert.match(sql, /'instance_id', ranked\.contact_instance_id/i);
+  assert.doesNotMatch(sql, /insert into public\.card_events/i);
+  assert.doesNotMatch(sql, /insert into public\.notification_outbox/i);
+});

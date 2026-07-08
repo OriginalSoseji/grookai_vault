@@ -46,6 +46,21 @@ void main() {
     },
   );
 
+  test('notification pulse app links parse to canonical feed routes', () {
+    for (final link in <String>[
+      'grookai://feed?segment=pulse',
+      'grookaivault://feed?segment=pulse',
+      'https://grookaivault.com/feed?segment=pulse',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.feed);
+      expect(route.value, 'pulse');
+      expect(route.path, '/feed?segment=pulse');
+    }
+  });
+
   test('unsupported notification app links are ignored', () {
     expect(
       GrookaiWebRouteService.parseCanonicalUri(Uri.parse('other://card/GV-1')),

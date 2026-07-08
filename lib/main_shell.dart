@@ -61,6 +61,7 @@ class _AppShellState extends State<AppShell> {
   bool _scannerPrewarmInFlight = false;
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
+  int _pulseUnreadCount = 0;
 
   @override
   void initState() {
@@ -122,7 +123,10 @@ class _AppShellState extends State<AppShell> {
       case _ShellDestination.search:
         return HomePage(key: _homeKey);
       case _ShellDestination.feed:
-        return NetworkScreen(key: _networkKey);
+        return NetworkScreen(
+          key: _networkKey,
+          onPulseUnreadChanged: _handlePulseUnreadChanged,
+        );
       case _ShellDestination.wall:
         return _MyWallTab(
           key: _wallKey,
@@ -250,7 +254,25 @@ class _AppShellState extends State<AppShell> {
       case GrookaiCanonicalRouteKind.set:
         await _pushPage<void>(PublicSetDetailScreen(setCode: route.value));
         break;
+      case GrookaiCanonicalRouteKind.feed:
+        _selectDestination(_ShellDestination.feed);
+        if (route.value == 'pulse') {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              _networkKey.currentState?.openPulse();
+            }
+          });
+        }
+        break;
     }
+  }
+
+  void _handlePulseUnreadChanged(int count) {
+    final normalized = count < 0 ? 0 : count;
+    if (!mounted || _pulseUnreadCount == normalized) {
+      return;
+    }
+    setState(() => _pulseUnreadCount = normalized);
   }
 
   Future<void> _buildCollectorSection(GrookaiCanonicalRoute route) async {
@@ -907,6 +929,7 @@ class _AppShellState extends State<AppShell> {
                         label: 'Feed',
                         icon: Icons.dynamic_feed_rounded,
                         collapsed: collapsed,
+                        badgeCount: _pulseUnreadCount,
                         onPressed: () =>
                             _selectDestination(_ShellDestination.feed),
                       ),
@@ -961,6 +984,7 @@ class _AppShellState extends State<AppShell> {
     required IconData icon,
     required bool collapsed,
     bool isPrimaryAction = false,
+    int badgeCount = 0,
     required VoidCallback onPressed,
   }) {
     final selected = _destination.navIndex == navIndex;
@@ -1012,7 +1036,18 @@ class _AppShellState extends State<AppShell> {
                     ),
                   )
                 else
-                  Icon(icon, size: selected ? 19 : 18, color: foreground),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Icon(icon, size: selected ? 19 : 18, color: foreground),
+                      if (badgeCount > 0)
+                        Positioned(
+                          right: -13,
+                          top: -8,
+                          child: _DockUnreadBadge(count: badgeCount),
+                        ),
+                    ],
+                  ),
                 const SizedBox(height: 2),
                 Text(
                   label,
@@ -1027,6 +1062,40 @@ class _AppShellState extends State<AppShell> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DockUnreadBadge extends StatelessWidget {
+  const _DockUnreadBadge({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final label = count > 99 ? '99+' : count.toString();
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0AF6E),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.82),
+          width: 1.5,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 1.5),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: const Color(0xFF17120A),
+            fontSize: 9,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0,
+            height: 1,
           ),
         ),
       ),

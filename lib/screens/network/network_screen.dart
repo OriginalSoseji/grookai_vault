@@ -11,10 +11,12 @@ import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/diagnostics/app_boot_timing.dart';
 import '../../services/network/network_stream_service.dart';
+import '../../services/network/pulse_service.dart';
 import '../../services/provisional/provisional_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/app_shell_metrics.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
 import '../../widgets/provisional/provisional_card_section.dart';
@@ -36,8 +38,46 @@ ResolvedDisplayIdentity _networkDisplayIdentity(NetworkStreamRow row) {
 String _networkDisplayName(NetworkStreamRow row) =>
     _networkDisplayIdentity(row).displayName;
 
+String _distanceLabel(String value) {
+  final normalized = value.trim().toLowerCase();
+  if (normalized.isEmpty) return '';
+  switch (normalized) {
+    case 'nearby':
+      return 'Nearby';
+    case 'same_region':
+      return 'Same region';
+    case 'same_city':
+      return 'Same city';
+    case 'national':
+      return 'National';
+    default:
+      return normalized
+          .split(RegExp(r'[_\s-]+'))
+          .where((part) => part.isNotEmpty)
+          .map((part) => '${part[0].toUpperCase()}${part.substring(1)}')
+          .join(' ');
+  }
+}
+
+String _relativeTime(DateTime? value) {
+  if (value == null) return '';
+  final now = DateTime.now();
+  final difference = now.difference(value.toLocal());
+  if (difference.inMinutes < 1) return 'now';
+  if (difference.inHours < 1) return '${difference.inMinutes}m';
+  if (difference.inDays < 1) return '${difference.inHours}h';
+  if (difference.inDays < 30) return '${difference.inDays}d';
+  final months = (difference.inDays / 30).floor();
+  if (months < 12) return '${months}mo';
+  return '${(months / 12).floor()}y';
+}
+
+enum _NetworkHomeSegment { pulse, discover, following }
+
 class NetworkScreen extends StatefulWidget {
-  const NetworkScreen({super.key});
+  const NetworkScreen({this.onPulseUnreadChanged, super.key});
+
+  final ValueChanged<int>? onPulseUnreadChanged;
 
   @override
   State<NetworkScreen> createState() => NetworkScreenState();
@@ -55,6 +95,13 @@ class NetworkScreenState extends State<NetworkScreen> {
   static const int _networkNextPageSize = 24;
   static const int _networkInitialOwnershipPrimeRowCount = 6;
 
+  final PulseService _pulseService = PulseService(
+    client: Supabase.instance.client,
+  );
+
+  _NetworkHomeSegment _segment = kPulseSurfaceEnabled
+      ? _NetworkHomeSegment.pulse
+      : _NetworkHomeSegment.discover;
   NetworkFeedMode _feedMode = NetworkFeedMode.collectors;
   String? _intent;
   bool _loading = true;
@@ -66,6 +113,14 @@ class NetworkScreenState extends State<NetworkScreen> {
   List<NetworkStreamRow> _rows = const <NetworkStreamRow>[];
   List<PublicProvisionalCard> _provisionalCards =
       const <PublicProvisionalCard>[];
+  bool _pulseLoading = kPulseSurfaceEnabled;
+  bool _pulseLoadingOlder = false;
+  bool _pulseOlderLoaded = false;
+  String? _pulseError;
+  PulseUnreadSnapshot _pulseUnreadSnapshot = PulseUnreadSnapshot.empty;
+  List<PulseItem> _pulseItems = const <PulseItem>[];
+  DateTime? _pulseNextCursorCreatedAt;
+  String? _pulseNextCursorEventId;
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
       const <String, OwnershipState>{};
   int _loadVersion = 0;
@@ -76,7 +131,12 @@ class NetworkScreenState extends State<NetworkScreen> {
     AppBootTiming.mark('network_screen_init_state');
     _scrollController.addListener(_handleScroll);
     unawaited(_restoreCachedRows());
-    _loadRows(resetSession: true);
+    if (_segment == _NetworkHomeSegment.pulse) {
+      unawaited(_loadPulse(reset: true));
+      unawaited(_refreshPulseUnread());
+    } else {
+      _loadRows(resetSession: true);
+    }
   }
 
   @override
@@ -88,10 +148,25 @@ class NetworkScreenState extends State<NetworkScreen> {
   }
 
   void reload() {
+    if (_segment == _NetworkHomeSegment.pulse) {
+      unawaited(_loadPulse(reset: true));
+      unawaited(_refreshPulseUnread());
+      return;
+    }
     _loadRows(resetSession: true);
   }
 
+  void openPulse() {
+    if (!kPulseSurfaceEnabled) {
+      return;
+    }
+    unawaited(_setSegment(_NetworkHomeSegment.pulse));
+  }
+
   void _handleScroll() {
+    if (_segment == _NetworkHomeSegment.pulse) {
+      return;
+    }
     if (!_scrollController.hasClients ||
         _loading ||
         _loadingMore ||
@@ -243,6 +318,109 @@ class NetworkScreenState extends State<NetworkScreen> {
     }
   }
 
+  Future<void> _refreshPulseUnread() async {
+    if (!kPulseSurfaceEnabled) {
+      return;
+    }
+
+    try {
+      final snapshot = await _pulseService.fetchUnread();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _pulseUnreadSnapshot = snapshot;
+      });
+      widget.onPulseUnreadChanged?.call(snapshot.unreadCount);
+    } catch (error) {
+      debugPrint('[PULSE_E4] unread_failed=$error');
+    }
+  }
+
+  Future<void> _loadPulse({required bool reset, bool older = false}) async {
+    if (!kPulseSurfaceEnabled) {
+      return;
+    }
+
+    final loadVersion = ++_loadVersion;
+    PulseUnreadSnapshot? unreadAtOpen;
+    setState(() {
+      if (older) {
+        _pulseLoadingOlder = true;
+      } else {
+        _pulseLoading = true;
+        _pulseError = null;
+        if (reset) {
+          _pulseOlderLoaded = false;
+          _pulseItems = const <PulseItem>[];
+          _pulseNextCursorCreatedAt = null;
+          _pulseNextCursorEventId = null;
+        }
+      }
+    });
+
+    try {
+      if (!older) {
+        unreadAtOpen = await _pulseService.fetchUnread();
+      }
+      final page = await _pulseService.fetchItems(
+        limit: older ? 20 : 30,
+        afterCreatedAt: older ? _pulseNextCursorCreatedAt : null,
+        afterEventId: older ? _pulseNextCursorEventId : null,
+      );
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
+      setState(() {
+        _pulseItems = older ? [..._pulseItems, ...page.items] : page.items;
+        _pulseNextCursorCreatedAt = page.nextCursorCreatedAt;
+        _pulseNextCursorEventId = page.nextCursorEventId;
+        _pulseLoading = false;
+        _pulseLoadingOlder = false;
+        if (older) {
+          _pulseOlderLoaded = true;
+        }
+        if (unreadAtOpen != null) {
+          _pulseUnreadSnapshot = unreadAtOpen;
+        }
+      });
+
+      if (!older && unreadAtOpen != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted || loadVersion != _loadVersion) {
+            return;
+          }
+          unawaited(_markPulseSeen(unreadAtOpen!));
+        });
+      }
+    } catch (error) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+      setState(() {
+        _pulseError = error is Error ? error.toString() : '$error';
+        _pulseLoading = false;
+        _pulseLoadingOlder = false;
+      });
+    }
+  }
+
+  Future<void> _markPulseSeen(PulseUnreadSnapshot snapshot) async {
+    try {
+      await _pulseService.markSeen(snapshot);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _pulseUnreadSnapshot = PulseUnreadSnapshot.empty;
+      });
+      widget.onPulseUnreadChanged?.call(0);
+    } catch (error) {
+      debugPrint('[PULSE_E4] mark_seen_failed=$error');
+    }
+  }
+
   Future<void> _restoreCachedRows() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -354,6 +532,43 @@ class NetworkScreenState extends State<NetworkScreen> {
     }());
   }
 
+  Future<void> _setSegment(_NetworkHomeSegment segment) async {
+    if (_segment == segment) {
+      if (segment == _NetworkHomeSegment.pulse) {
+        await _loadPulse(reset: true);
+        await _refreshPulseUnread();
+      }
+      return;
+    }
+
+    final nextMode = switch (segment) {
+      _NetworkHomeSegment.pulse => _feedMode,
+      _NetworkHomeSegment.discover => NetworkFeedMode.collectors,
+      _NetworkHomeSegment.following => NetworkFeedMode.following,
+    };
+
+    setState(() {
+      _segment = segment;
+      if (segment != _NetworkHomeSegment.pulse) {
+        _feedMode = nextMode;
+        _error = null;
+        _rows = const <NetworkStreamRow>[];
+        _showingCachedRows = false;
+        _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
+        _emptyState = NetworkStreamEmptyState.none;
+      }
+    });
+
+    if (segment == _NetworkHomeSegment.pulse) {
+      await _loadPulse(reset: true);
+      await _refreshPulseUnread();
+      return;
+    }
+
+    await _restoreCachedRows();
+    await _loadRows(resetSession: true);
+  }
+
   Future<void> _setIntent(String? intent) async {
     if (_intent == intent) {
       return;
@@ -369,23 +584,6 @@ class NetworkScreenState extends State<NetworkScreen> {
     await _loadRows(resetSession: true);
   }
 
-  Future<void> _setFeedMode(NetworkFeedMode mode) async {
-    if (_feedMode == mode) {
-      return;
-    }
-
-    setState(() {
-      _feedMode = mode;
-      _error = null;
-      _rows = const <NetworkStreamRow>[];
-      _showingCachedRows = false;
-      _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
-      _emptyState = NetworkStreamEmptyState.none;
-    });
-    await _restoreCachedRows();
-    await _loadRows(resetSession: true);
-  }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -395,7 +593,9 @@ class NetworkScreenState extends State<NetworkScreen> {
       child: SafeArea(
         bottom: false,
         child: RefreshIndicator(
-          onRefresh: () => _loadRows(resetSession: true),
+          onRefresh: () => _segment == _NetworkHomeSegment.pulse
+              ? _loadPulse(reset: true)
+              : _loadRows(resetSession: true),
           child: CustomScrollView(
             controller: _scrollController,
             physics: const BouncingScrollPhysics(
@@ -408,57 +608,64 @@ class NetworkScreenState extends State<NetworkScreen> {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                  child: _NetworkFeedModeToggle(
-                    value: _feedMode,
-                    onChanged: (mode) {
-                      unawaited(_setFeedMode(mode));
+                  child: _NetworkSegmentToggle(
+                    value: _segment,
+                    pulseUnreadCount: _pulseUnreadSnapshot.unreadCount,
+                    onChanged: (segment) {
+                      unawaited(_setSegment(segment));
                     },
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        _IntentChip(
-                          label: 'All',
-                          selected: _intent == null,
-                          onPressed: () => _setIntent(null),
-                        ),
-                        const SizedBox(width: 8),
-                        _IntentChip(
-                          label: NetworkStreamService.getVaultIntentLabel(
-                            'trade',
+              if (_segment != _NetworkHomeSegment.pulse)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          _IntentChip(
+                            label: 'All',
+                            selected: _intent == null,
+                            onPressed: () => _setIntent(null),
                           ),
-                          selected: _intent == 'trade',
-                          onPressed: () => _setIntent('trade'),
-                        ),
-                        const SizedBox(width: 8),
-                        _IntentChip(
-                          label: NetworkStreamService.getVaultIntentLabel(
-                            'sell',
+                          const SizedBox(width: 8),
+                          _IntentChip(
+                            label: NetworkStreamService.getVaultIntentLabel(
+                              'trade',
+                            ),
+                            selected: _intent == 'trade',
+                            onPressed: () => _setIntent('trade'),
                           ),
-                          selected: _intent == 'sell',
-                          onPressed: () => _setIntent('sell'),
-                        ),
-                        const SizedBox(width: 8),
-                        _IntentChip(
-                          label: NetworkStreamService.getVaultIntentLabel(
-                            'showcase',
+                          const SizedBox(width: 8),
+                          _IntentChip(
+                            label: NetworkStreamService.getVaultIntentLabel(
+                              'sell',
+                            ),
+                            selected: _intent == 'sell',
+                            onPressed: () => _setIntent('sell'),
                           ),
-                          selected: _intent == 'showcase',
-                          onPressed: () => _setIntent('showcase'),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          _IntentChip(
+                            label: NetworkStreamService.getVaultIntentLabel(
+                              'showcase',
+                            ),
+                            selected: _intent == 'showcase',
+                            onPressed: () => _setIntent('showcase'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: _segment == _NetworkHomeSegment.pulse ? 10 : 6,
+                ),
               ),
-              const SliverToBoxAdapter(child: SizedBox(height: 6)),
-              if (_provisionalCards.isNotEmpty)
+              if (_segment != _NetworkHomeSegment.pulse &&
+                  _provisionalCards.isNotEmpty)
                 SliverToBoxAdapter(
                   child: ProvisionalCardSection(
                     cards: _provisionalCards,
@@ -468,17 +675,31 @@ class NetworkScreenState extends State<NetworkScreen> {
               // PERFORMANCE_P1_NETWORK_LAZY_RENDER
               // Uses lazy sliver rendering so Network feed scales without
               // eager whole-page builds in grid or list modes.
-              _NetworkContentSliver(
-                feedMode: _feedMode,
-                rows: _rows,
-                ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
-                loading: _loading,
-                showingCachedRows: _showingCachedRows,
-                error: _error,
-                emptyState: _emptyState,
-                onRetry: () => _loadRows(resetSession: true),
-              ),
-              if (_loadingMore)
+              if (_segment == _NetworkHomeSegment.pulse)
+                _PulseContentSliver(
+                  items: _pulseItems,
+                  loading: _pulseLoading,
+                  loadingOlder: _pulseLoadingOlder,
+                  olderLoaded: _pulseOlderLoaded,
+                  error: _pulseError,
+                  hasOlder:
+                      _pulseNextCursorCreatedAt != null &&
+                      (_pulseNextCursorEventId ?? '').trim().isNotEmpty,
+                  onRetry: () => _loadPulse(reset: true),
+                  onShowOlder: () => _loadPulse(reset: false, older: true),
+                )
+              else
+                _NetworkContentSliver(
+                  feedMode: _feedMode,
+                  rows: _rows,
+                  ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
+                  loading: _loading,
+                  showingCachedRows: _showingCachedRows,
+                  error: _error,
+                  emptyState: _emptyState,
+                  onRetry: () => _loadRows(resetSession: true),
+                ),
+              if (_segment != _NetworkHomeSegment.pulse && _loadingMore)
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
@@ -645,6 +866,509 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
         : null,
     rankingScore: intValue('rankingScore'),
   );
+}
+
+class _PulseContentSliver extends StatelessWidget {
+  const _PulseContentSliver({
+    required this.items,
+    required this.loading,
+    required this.loadingOlder,
+    required this.olderLoaded,
+    required this.error,
+    required this.hasOlder,
+    required this.onRetry,
+    required this.onShowOlder,
+  });
+
+  final List<PulseItem> items;
+  final bool loading;
+  final bool loadingOlder;
+  final bool olderLoaded;
+  final String? error;
+  final bool hasOlder;
+  final Future<void> Function() onRetry;
+  final Future<void> Function() onShowOlder;
+
+  @override
+  Widget build(BuildContext context) {
+    if (loading && items.isEmpty) {
+      return const SliverToBoxAdapter(child: _NetworkFeedSkeleton());
+    }
+
+    if (error != null && items.isEmpty) {
+      return SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        sliver: SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _NetworkEmptyState(title: 'Unable to load Pulse', body: error!),
+              const SizedBox(height: 10),
+              FilledButton.tonal(
+                onPressed: onRetry,
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (items.isEmpty) {
+      return const SliverPadding(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        sliver: SliverToBoxAdapter(
+          child: _NetworkEmptyState(
+            title: 'Caught up',
+            body: 'Nothing new around your collection right now.',
+          ),
+        ),
+      );
+    }
+
+    final childCount = items.length * 2 - 1;
+    return SliverMainAxisGroup(
+      slivers: [
+        if (error != null)
+          SliverToBoxAdapter(child: _NetworkRefreshErrorBanner(error: error!)),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              if (index.isOdd) return const SizedBox(height: 8);
+              return _PulseItemRow(item: items[index ~/ 2]);
+            }, childCount: childCount),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(18, 16, 18, 0),
+            child: _PulseCaughtUpFooter(
+              hasOlder: hasOlder && !olderLoaded,
+              loadingOlder: loadingOlder,
+              onShowOlder: onShowOlder,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PulseItemRow extends StatelessWidget {
+  const _PulseItemRow({required this.item});
+
+  final PulseItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final tone = _PulseTone.forItem(colorScheme, item);
+    final borderColor = item.isWantMatch
+        ? tone.foreground.withValues(alpha: 0.34)
+        : colorScheme.outline.withValues(alpha: 0.10);
+    final background = item.isWantMatch
+        ? tone.foreground.withValues(alpha: 0.055)
+        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            item.isCompletion
+                ? _PulseProgressTile(item: item, tone: tone)
+                : _PulseArtworkTile(item: item),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _PulseKicker(item: item, tone: tone),
+                  const SizedBox(height: 6),
+                  Text(
+                    _primaryLine,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: colorScheme.onSurface,
+                      fontWeight: FontWeight.w700,
+                      height: 1.13,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _secondaryLine,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.62),
+                      fontWeight: FontWeight.w500,
+                      height: 1.25,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _PulseActionPill(
+                        label: item.isCompletion
+                            ? 'View progress'
+                            : 'View card',
+                        icon: item.isCompletion
+                            ? Icons.trending_up_rounded
+                            : Icons.style_outlined,
+                        primary: true,
+                        onPressed: () => _openPrimary(context),
+                      ),
+                      if (item.isWantMatch &&
+                          item.contactVaultItemId.isNotEmpty)
+                        ContactOwnerButton(
+                          vaultItemId: item.contactVaultItemId,
+                          cardPrintId: item.cardPrintId,
+                          ownerUserId: item.actorUserId,
+                          ownerDisplayName: item.displayActorName,
+                          cardName: item.displayCardName,
+                          intent: item.intent,
+                          buttonLabel: 'Message collector',
+                          variant: ContactOwnerButtonVariant.compact,
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String get _primaryLine {
+    if (item.isWantMatch) {
+      return '${item.displayCardName} is available from ${item.displayActorName}';
+    }
+    if (item.isCompletion) {
+      final subject = item.completionSubjectLabel.isNotEmpty
+          ? item.completionSubjectLabel
+          : item.setName.isNotEmpty
+          ? item.setName
+          : 'Progress';
+      final threshold = item.completionThreshold == null
+          ? ''
+          : ' crossed ${item.completionThreshold!.toStringAsFixed(0)}% complete';
+      return '$subject$threshold';
+    }
+    final intent = item.intent.trim().toLowerCase();
+    final action = intent == 'trade'
+        ? 'marked'
+        : intent == 'sell'
+        ? 'listed'
+        : 'shared';
+    final suffix = intent == 'trade'
+        ? ' for trade'
+        : intent == 'sell'
+        ? ' for sale'
+        : '';
+    return '${item.displayActorName} $action ${item.displayCardName}$suffix';
+  }
+
+  String get _secondaryLine {
+    final parts = <String>[
+      if (item.localityLabel.isNotEmpty) item.localityLabel,
+      if (item.distanceBucket.isNotEmpty) _distanceLabel(item.distanceBucket),
+      if (item.setName.isNotEmpty) item.setName,
+      if (item.cardNumber.isNotEmpty) '#${item.cardNumber}',
+      if (item.intent.isNotEmpty)
+        NetworkStreamService.getVaultIntentLabel(item.intent),
+    ];
+    return parts.isEmpty ? 'Collection activity' : parts.join(' • ');
+  }
+
+  void _openPrimary(BuildContext context) {
+    if (item.gvId.isNotEmpty || item.cardPrintId.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => CardDetailScreen(
+            cardPrintId: item.cardPrintId,
+            entrySurface: 'pulse',
+            gvId: item.gvId,
+            name: item.displayCardName,
+            setName: item.setName,
+            setCode: item.setCode,
+            number: item.cardNumber,
+            imageUrl: item.displayImageUrl,
+            contactOwnerDisplayName: item.displayActorName,
+            contactOwnerUserId: item.actorUserId,
+            contactIntent: item.intent,
+            contactVaultItemId: item.contactVaultItemId.isEmpty
+                ? null
+                : item.contactVaultItemId,
+          ),
+        ),
+      );
+      return;
+    }
+
+    final slug = item.actorSlug.trim().toLowerCase();
+    if (slug.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => PublicCollectorScreen(slug: slug),
+        ),
+      );
+    }
+  }
+}
+
+class _PulseTone {
+  const _PulseTone({
+    required this.label,
+    required this.icon,
+    required this.foreground,
+  });
+
+  final String label;
+  final IconData icon;
+  final Color foreground;
+
+  static _PulseTone forItem(ColorScheme colorScheme, PulseItem item) {
+    if (item.isWantMatch) {
+      return const _PulseTone(
+        label: 'Want match',
+        icon: Icons.bolt_rounded,
+        foreground: Color(0xFFF0AF6E),
+      );
+    }
+    if (item.isCompletion) {
+      return _PulseTone(
+        label: 'Milestone',
+        icon: Icons.check_circle_outline_rounded,
+        foreground: colorScheme.tertiary,
+      );
+    }
+    return _PulseTone(
+      label: 'Following',
+      icon: Icons.people_alt_outlined,
+      foreground: colorScheme.primary,
+    );
+  }
+}
+
+class _PulseKicker extends StatelessWidget {
+  const _PulseKicker({required this.item, required this.tone});
+
+  final PulseItem item;
+  final _PulseTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Row(
+      children: [
+        Icon(tone.icon, size: 14, color: tone.foreground),
+        const SizedBox(width: 5),
+        Text(
+          tone.label.toUpperCase(),
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: tone.foreground,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.7,
+            fontSize: 10.5,
+          ),
+        ),
+        const Spacer(),
+        Text(
+          _relativeTime(item.createdAt),
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.48),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PulseArtworkTile extends StatelessWidget {
+  const _PulseArtworkTile({required this.item});
+
+  final PulseItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 58,
+      height: 81,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: CardSurfaceArtwork(
+          label: item.displayCardName,
+          imageUrl: item.displayImageUrl,
+          borderRadius: 0,
+          padding: EdgeInsets.zero,
+          frame: CardArtworkFrame.none,
+          enableTapToZoom: false,
+          filterQuality: FilterQuality.low,
+        ),
+      ),
+    );
+  }
+}
+
+class _PulseProgressTile extends StatelessWidget {
+  const _PulseProgressTile({required this.item, required this.tone});
+
+  final PulseItem item;
+  final _PulseTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    final percent = item.completionThreshold?.clamp(0, 100).toDouble();
+    return Container(
+      width: 58,
+      height: 81,
+      decoration: BoxDecoration(
+        color: tone.foreground.withValues(alpha: 0.10),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: tone.foreground.withValues(alpha: 0.24)),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.trending_up_rounded, color: tone.foreground, size: 20),
+          const SizedBox(height: 6),
+          Text(
+            percent == null ? 'Progress' : '${percent.toStringAsFixed(0)}%',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: tone.foreground,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PulseActionPill extends StatelessWidget {
+  const _PulseActionPill({
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+    this.primary = false,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback onPressed;
+  final bool primary;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 15),
+      label: Text(label),
+      style: TextButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        foregroundColor: primary
+            ? colorScheme.onPrimaryContainer
+            : colorScheme.onSurface.withValues(alpha: 0.72),
+        backgroundColor: primary
+            ? colorScheme.primaryContainer.withValues(alpha: 0.64)
+            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.28),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+      ),
+    );
+  }
+}
+
+class _PulseCaughtUpFooter extends StatelessWidget {
+  const _PulseCaughtUpFooter({
+    required this.hasOlder,
+    required this.loadingOlder,
+    required this.onShowOlder,
+  });
+
+  final bool hasOlder;
+  final bool loadingOlder;
+  final Future<void> Function() onShowOlder;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Divider(
+                color: colorScheme.outline.withValues(alpha: 0.12),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.check_circle_outline_rounded,
+                    size: 15,
+                    color: colorScheme.onSurface.withValues(alpha: 0.52),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    "You're caught up",
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.58),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Divider(
+                color: colorScheme.outline.withValues(alpha: 0.12),
+              ),
+            ),
+          ],
+        ),
+        if (hasOlder) ...[
+          const SizedBox(height: 12),
+          OutlinedButton(
+            onPressed: loadingOlder ? null : () => unawaited(onShowOlder()),
+            style: OutlinedButton.styleFrom(
+              visualDensity: VisualDensity.compact,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(999),
+              ),
+            ),
+            child: loadingOlder
+                ? const SizedBox.square(
+                    dimension: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Text('Show older Pulse'),
+          ),
+        ],
+      ],
+    );
+  }
 }
 
 class _NetworkContentSliver extends StatelessWidget {
@@ -1928,15 +2652,30 @@ class _NetworkCopiesSheet extends StatelessWidget {
   }
 }
 
-class _NetworkFeedModeToggle extends StatelessWidget {
-  const _NetworkFeedModeToggle({required this.value, required this.onChanged});
+class _NetworkSegmentToggle extends StatelessWidget {
+  const _NetworkSegmentToggle({
+    required this.value,
+    required this.pulseUnreadCount,
+    required this.onChanged,
+  });
 
-  final NetworkFeedMode value;
-  final ValueChanged<NetworkFeedMode> onChanged;
+  final _NetworkHomeSegment value;
+  final int pulseUnreadCount;
+  final ValueChanged<_NetworkHomeSegment> onChanged;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final segments = kPulseSurfaceEnabled
+        ? const <_NetworkHomeSegment>[
+            _NetworkHomeSegment.pulse,
+            _NetworkHomeSegment.discover,
+            _NetworkHomeSegment.following,
+          ]
+        : const <_NetworkHomeSegment>[
+            _NetworkHomeSegment.discover,
+            _NetworkHomeSegment.following,
+          ];
 
     return Container(
       padding: const EdgeInsets.all(4),
@@ -1947,49 +2686,50 @@ class _NetworkFeedModeToggle extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(
-            child: _NetworkFeedModeChip(
-              // FEED_MODE_ROW_V1
-              // Top-level feed mode switch: broad collectors feed vs
-              // followed-collectors-only feed.
-              label: 'Collectors',
-              icon: Icons.people_alt_outlined,
-              selected: value == NetworkFeedMode.collectors,
-              onPressed: () => onChanged(NetworkFeedMode.collectors),
+          for (final segment in segments) ...[
+            if (segment != segments.first) const SizedBox(width: 6),
+            Expanded(
+              child: _NetworkSegmentChip(
+                segment: segment,
+                selected: value == segment,
+                pulseUnreadCount: pulseUnreadCount,
+                onPressed: () => onChanged(segment),
+              ),
             ),
-          ),
-          const SizedBox(width: 6),
-          Expanded(
-            child: _NetworkFeedModeChip(
-              label: 'Following',
-              icon: Icons.favorite_border_rounded,
-              selected: value == NetworkFeedMode.following,
-              onPressed: () => onChanged(NetworkFeedMode.following),
-            ),
-          ),
+          ],
         ],
       ),
     );
   }
 }
 
-class _NetworkFeedModeChip extends StatelessWidget {
-  const _NetworkFeedModeChip({
-    required this.label,
-    required this.icon,
+class _NetworkSegmentChip extends StatelessWidget {
+  const _NetworkSegmentChip({
+    required this.segment,
     required this.selected,
+    required this.pulseUnreadCount,
     required this.onPressed,
   });
 
-  final String label;
-  final IconData icon;
+  final _NetworkHomeSegment segment;
   final bool selected;
+  final int pulseUnreadCount;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final label = switch (segment) {
+      _NetworkHomeSegment.pulse => 'Pulse',
+      _NetworkHomeSegment.discover => 'Discover',
+      _NetworkHomeSegment.following => 'Following',
+    };
+    final icon = switch (segment) {
+      _NetworkHomeSegment.pulse => Icons.bolt_rounded,
+      _NetworkHomeSegment.discover => Icons.people_alt_outlined,
+      _NetworkHomeSegment.following => Icons.favorite_border_rounded,
+    };
 
     return Material(
       color: Colors.transparent,
@@ -2037,8 +2777,42 @@ class _NetworkFeedModeChip extends StatelessWidget {
                   ),
                 ),
               ),
+              if (segment == _NetworkHomeSegment.pulse &&
+                  pulseUnreadCount > 0) ...[
+                const SizedBox(width: 6),
+                _PulseUnreadChip(count: pulseUnreadCount),
+              ],
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PulseUnreadChip extends StatelessWidget {
+  const _PulseUnreadChip({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    const amber = Color(0xFFF0AF6E);
+    final label = count > 99 ? '99+' : count.toString();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        color: amber.withValues(alpha: 0.16),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: amber.withValues(alpha: 0.34)),
+      ),
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+          color: amber,
+          fontWeight: FontWeight.w700,
+          height: 1,
         ),
       ),
     );
