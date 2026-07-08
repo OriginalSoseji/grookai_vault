@@ -42,6 +42,7 @@ test("wishlist infrastructure is wired into the v2 nearby feed without private w
   const policySql = readSource("supabase/migrations/20251213153633_baseline_policies.sql");
   const signalSql = readSource("supabase/migrations/20260324091500_card_interaction_network_phase1_v1.sql");
   const rpcSql = readSource("supabase/migrations/20260624120000_local_community_feed_wishlist_match_v2.sql");
+  const sharedPredicateSql = readSource("supabase/migrations/20260708100000_product_evolution_e3_want_match_shared_predicate_v1.sql");
   const webNearby = readSource("apps/web/src/app/network/nearby/page.tsx");
   const webHelper = readSource("apps/web/src/lib/network/getLocalCommunityFeedRows.ts");
   const webCard = readSource("apps/web/src/components/network/LocalCommunityFeedCard.tsx");
@@ -53,14 +54,21 @@ test("wishlist infrastructure is wired into the v2 nearby feed without private w
   assert.match(policySql, /CREATE POLICY wl_rw ON public\.wishlist_items USING \(\(auth\.uid\(\) = user_id\)\)/i);
   assert.match(signalSql, /'wishlist'/i);
 
-  const returnSignature = rpcSql.match(/returns table \([\s\S]*?\)/i)?.[0] ?? "";
-  const nearbySurface = [rpcSql, webNearby, webHelper, webCard, mobileService, mobileScreen].join("\n");
+  const returnSignature = sharedPredicateSql.match(/create or replace function public\.local_community_feed_v2[\s\S]*?returns table \([\s\S]*?\)/i)?.[0] ?? "";
+  const wantMatchSignature = sharedPredicateSql.match(/create or replace function public\.local_community_want_match_candidates_v1\s*\([\s\S]*?\)\s*returns table/i)?.[0] ?? "";
+  const nearbySurface = [sharedPredicateSql, webNearby, webHelper, webCard, mobileService, mobileScreen].join("\n");
   assert.match(rpcSql, /create or replace function public\.local_community_feed_v2/i);
-  assert.match(rpcSql, /from public\.wishlist_items wi/i);
-  assert.match(rpcSql, /wi\.user_id = v_uid/i);
-  assert.match(rpcSql, /wi\.card_id = sr\.card_print_id/i);
-  assert.match(rpcSql, /ranked\.local_viewer_wishlist_match as viewer_wishlist_match/i);
-  assert.match(rpcSql, /then 'viewer_wishlist'/i);
+  assert.match(sharedPredicateSql, /create or replace function public\.local_community_visible_source_cards_v1/i);
+  assert.match(sharedPredicateSql, /create or replace function public\.local_community_want_match_candidates_v1/i);
+  assert.match(sharedPredicateSql, /from public\.wishlist_items wi/i);
+  assert.match(sharedPredicateSql, /wi\.user_id = p_viewer_user_id/i);
+  assert.match(sharedPredicateSql, /wi\.card_id = sr\.card_print_id/i);
+  assert.match(sharedPredicateSql, /from public\.local_community_visible_source_cards_v1\(v_uid\)/i);
+  assert.match(sharedPredicateSql, /from public\.local_community_visible_source_cards_v1\(p_viewer_user_id\)/i);
+  assert.match(sharedPredicateSql, /ranked\.viewer_wishlist_match/i);
+  assert.match(sharedPredicateSql, /then 'viewer_wishlist'/i);
+  assert.match(sharedPredicateSql, /local_community_want_match_candidates_v1\(uuid, integer\) to authenticated, service_role/i);
+  assert.doesNotMatch(wantMatchSignature, /p_include_existing/i);
   assert.match(returnSignature, /viewer_wishlist_match boolean/i);
   assert.match(returnSignature, /match_reason text/i);
   assert.doesNotMatch(returnSignature, /wishlist_item_id|wishlist_note|viewer_user_id|owner_user_id|card_print_id/i);

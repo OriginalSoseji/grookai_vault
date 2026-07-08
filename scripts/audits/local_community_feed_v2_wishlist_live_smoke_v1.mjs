@@ -69,6 +69,15 @@ async function fetchFeedRows(client, viewerUserId, limit = 40) {
   return response.rows;
 }
 
+async function fetchWantMatchCandidates(client, viewerUserId, limit = 100) {
+  await setAuthenticatedViewer(client, viewerUserId);
+  const response = await client.query(
+    'select * from public.local_community_want_match_candidates_v1($1, $2)',
+    [viewerUserId, limit],
+  );
+  return response.rows;
+}
+
 async function resolveViewer(client, slug) {
   const response = await client.query(
     `
@@ -176,6 +185,8 @@ async function main() {
     post_fixture_wishlist_match_count: 0,
     selected_row_matched: false,
     selected_match_reason: null,
+    shared_candidate_count: 0,
+    shared_candidate_agrees_with_feed: false,
     columns: [],
     forbidden_columns: [],
     uuid_like_public_value: null,
@@ -246,7 +257,16 @@ async function main() {
       );
       result.fixture.wishlist_rows_for_candidate_inside_transaction = afterFixture.rows[0]?.count ?? null;
 
-      return fetchFeedRows(client, viewer.user_id, 40);
+      const rows = await fetchFeedRows(client, viewer.user_id, 40);
+      const candidates = await fetchWantMatchCandidates(client, viewer.user_id, 100);
+      result.shared_candidate_count = candidates.length;
+      result.shared_candidate_agrees_with_feed = candidates.some((candidate) => (
+        clean(candidate.owner_slug) === clean(candidateRow.owner_slug)
+        && clean(candidate.gv_id) === clean(candidateRow.gv_id)
+        && clean(candidate.source_type) === clean(candidateRow.source_type)
+        && clean(candidate.intent) === clean(candidateRow.intent)
+      ));
+      return rows;
     });
 
     result.post_fixture_row_count = postRows.length;
@@ -283,6 +303,7 @@ async function main() {
       && result.fixture.wishlist_rows_for_candidate_inside_transaction === 1
       && result.selected_row_matched
       && result.selected_match_reason === 'viewer_wishlist'
+      && result.shared_candidate_agrees_with_feed
       && result.no_raw_user_ids_exposed
       && result.no_exact_location_exposed
       && result.no_private_wishlist_data_exposed
@@ -316,6 +337,8 @@ async function main() {
     `- Post-fixture wishlist matches: ${result.post_fixture_wishlist_match_count}`,
     `- Selected row matched: ${result.selected_row_matched}`,
     `- Selected match reason: ${result.selected_match_reason ?? 'null'}`,
+    `- Shared candidate count: ${result.shared_candidate_count}`,
+    `- Shared candidate agrees with feed: ${result.shared_candidate_agrees_with_feed}`,
     '',
     '## Candidate',
     '',
