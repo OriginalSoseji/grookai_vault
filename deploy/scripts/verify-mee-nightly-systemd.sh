@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="${REPO_DIR:-/opt/grookai_vault}"
+REPO_DIR="${REPO_DIR:-/opt/grookai_vault_mee_nightly}"
 SERVICE_NAME="grookai-mee-nightly.service"
 TIMER_NAME="grookai-mee-nightly.timer"
 

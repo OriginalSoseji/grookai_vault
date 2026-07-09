@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="${REPO_DIR:-/opt/grookai_vault}"
+REPO_DIR="${REPO_DIR:-/opt/grookai_vault_mee_nightly}"
 ENV_DIR="${ENV_DIR:-/etc/grookai}"
 ENV_FILE="${ENV_FILE:-${ENV_DIR}/mee-nightly.env}"
 SERVICE_NAME="grookai-mee-nightly.service"
@@ -87,6 +87,7 @@ sudo cp "${tmp_service}" "/etc/systemd/system/${SERVICE_NAME}"
 rm -f "${tmp_service}"
 sudo cp "deploy/systemd/${TIMER_NAME}" "/etc/systemd/system/${TIMER_NAME}"
 sudo systemctl daemon-reload
+sudo systemctl disable --now grookai-justtcg-refresh.timer grookai-pricing-refresh.timer grookai-mee-post-ingest.timer 2>/dev/null || true
 sudo systemctl enable --now "${TIMER_NAME}"
 
 systemctl list-timers "${TIMER_NAME}" --no-pager

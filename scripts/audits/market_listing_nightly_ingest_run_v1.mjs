@@ -133,9 +133,10 @@ function contractHash() {
 }
 
 async function runSql(sql) {
-  if (process.env.SUPABASE_DB_URL) {
+  const directDbUrl = process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+  if (directDbUrl) {
     const client = new Client({
-      connectionString: process.env.SUPABASE_DB_URL,
+      connectionString: directDbUrl,
       connectionTimeoutMillis: 15_000,
       query_timeout: 60_000,
       statement_timeout: 60_000,
@@ -148,6 +149,9 @@ async function runSql(sql) {
     } finally {
       await client.end();
     }
+  }
+  if (process.env.MEE_NIGHTLY_REQUIRE_DIRECT_DB === "1") {
+    throw new Error("MEE_NIGHTLY_REQUIRE_DIRECT_DB is set but no SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is available");
   }
 
   const targetArgs = process.env.SUPABASE_DB_URL

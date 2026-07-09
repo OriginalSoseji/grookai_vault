@@ -1,13 +1,16 @@
 [Unit]
 Description=Grookai Market Evidence Engine Nightly Worker
 Wants=network-online.target
-After=network-online.target
+After=network-online.target grookai-mee-reference-refresh.service
+Conflicts=grookai-mee-reference-refresh.service grookai-mee-post-ingest.service
 
 [Service]
 Type=oneshot
-WorkingDirectory=/opt/grookai_vault
+User=grookai
+WorkingDirectory=/opt/grookai_vault_mee_nightly
 EnvironmentFile=/etc/grookai/mee-nightly.env
-ExecStart=/usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
+Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1
+ExecStart=/usr/bin/flock -n /tmp/grookai-mee-nightly.lock /usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
 TimeoutStartSec=8h
 Nice=5
 IOSchedulingClass=best-effort

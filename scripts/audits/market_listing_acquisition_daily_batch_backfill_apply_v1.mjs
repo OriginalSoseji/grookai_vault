@@ -336,6 +336,54 @@ async function dynamicRawPayloadCollisions(plan) {
   return collisions;
 }
 
+async function dynamicQueryCacheCollisions(plan) {
+  const queryRows = [];
+  const queryKeys = new Set();
+  for await (const row of readJsonLines(plan.row_files.queryCacheRows)) {
+    if (!row.source || !row.provider_route || !row.query_key) continue;
+    const pageCursor = row.page_cursor ?? "";
+    queryRows.push({
+      planned_id: row.id,
+      source: row.source,
+      provider_route: row.provider_route,
+      query_key: row.query_key,
+      page_cursor: pageCursor,
+    });
+    queryKeys.add(row.query_key);
+  }
+
+  const existingByKey = new Map();
+  const keys = [...queryKeys];
+  for (let index = 0; index < keys.length; index += 5_000) {
+    const chunk = keys.slice(index, index + 5_000);
+    const rows = await queryPgRows(
+      `select id, source, provider_route, query_key, coalesce(page_cursor, '') as page_cursor
+         from public.market_listing_query_cache
+        where source = 'ebay_active'
+          and query_key = any($1::text[])`,
+      [chunk],
+    );
+    for (const row of rows) {
+      const key = `${row.source}:${row.provider_route}:${row.query_key}:${row.page_cursor ?? ""}`;
+      if (!existingByKey.has(key)) existingByKey.set(key, new Set());
+      existingByKey.get(key).add(row.id);
+    }
+  }
+
+  const seen = new Set();
+  const collisions = [];
+  for (const row of queryRows) {
+    const key = `${row.source}:${row.provider_route}:${row.query_key}:${row.page_cursor ?? ""}`;
+    const existingIds = existingByKey.get(key);
+    if (seen.has(key) || (existingIds && !existingIds.has(row.planned_id))) {
+      collisions.push(row.planned_id);
+      continue;
+    }
+    seen.add(key);
+  }
+  return collisions;
+}
+
 async function dynamicSellerCollisions(plan) {
   const seen = new Set();
   const collisions = [];
@@ -357,6 +405,7 @@ async function dynamicCollisionSummary(plan) {
   }
   const runId = await firstRowValue(plan.row_files.acquisitionRunRows, (row) => row.id);
   const idCollisions = await dynamicIdCollisions(plan, runId);
+  const queryCacheUniqueCollisionPlannedIds = await dynamicQueryCacheCollisions(plan);
   const rawPayloadCollisionPlannedIds = await dynamicRawPayloadCollisions(plan);
   const sellerUniqueCollisionPlannedIds = await dynamicSellerCollisions(plan);
   return {
@@ -364,6 +413,9 @@ async function dynamicCollisionSummary(plan) {
     dynamic_collision_check: true,
     id_collisions: idCollisions,
     id_collision_count: Object.values(idCollisions).reduce((sum, rows) => sum + rows.length, 0),
+    query_cache_unique_collision_count: queryCacheUniqueCollisionPlannedIds.length,
+    query_cache_unique_collision_planned_ids: queryCacheUniqueCollisionPlannedIds,
+    query_cache_unique_collision_samples: queryCacheUniqueCollisionPlannedIds.slice(0, 10),
     raw_payload_collision_count: rawPayloadCollisionPlannedIds.length,
     raw_payload_collision_planned_ids: rawPayloadCollisionPlannedIds,
     raw_payload_collision_samples: rawPayloadCollisionPlannedIds.slice(0, 10),
@@ -424,6 +476,10 @@ function buildDynamicSkipState(collision) {
   const idCollisions = Object.fromEntries(
     Object.entries(collision.id_collisions ?? {}).map(([table, ids]) => [table, new Set(ids)]),
   );
+  const queryCacheIds = new Set([
+    ...(idCollisions.market_listing_query_cache ?? []),
+    ...(collision.query_cache_unique_collision_planned_ids ?? []),
+  ]);
   const rawSnapshotIdCollisions = idCollisions.market_listing_raw_snapshots ?? new Set();
   const rawUnavailableIds = new Set(
     (collision.raw_payload_collision_planned_ids ?? [])
@@ -436,6 +492,7 @@ function buildDynamicSkipState(collision) {
   ]);
   return {
     idCollisions,
+    queryCacheIds,
     rawUnavailableIds,
     observationUnavailableIds,
     sellerIds,
@@ -444,9 +501,19 @@ function buildDynamicSkipState(collision) {
 
 function skipRowForTable(table, row, state) {
   if ((state.idCollisions[table] ?? new Set()).has(row.id)) return true;
-  if (table === "market_listing_raw_snapshots" && state.rawUnavailableIds.has(row.id)) return true;
+  if (table === "market_listing_query_cache" && state.queryCacheIds.has(row.id)) return true;
+  if (table === "market_listing_raw_snapshots") {
+    if (state.rawUnavailableIds.has(row.id)) return true;
+    if (row.query_cache_id && state.queryCacheIds.has(row.query_cache_id)) {
+      state.rawUnavailableIds.add(row.id);
+      return true;
+    }
+  }
   if (table === "market_listing_observations") {
-    if (state.rawUnavailableIds.has(row.raw_snapshot_id)) {
+    if (
+      state.rawUnavailableIds.has(row.raw_snapshot_id)
+      || (row.query_cache_id && state.queryCacheIds.has(row.query_cache_id))
+    ) {
       state.observationUnavailableIds.add(row.id);
       return true;
     }
@@ -712,8 +779,10 @@ async function main() {
     readback_counts: report.readback_counts,
     remote_collision_summary: {
       id_collision_count: collision.id_collision_count,
+      query_cache_unique_collision_count: collision.query_cache_unique_collision_count,
       raw_payload_collision_count: collision.raw_payload_collision_count,
       seller_unique_collision_count: collision.seller_unique_collision_count,
+      query_cache_unique_collision_samples: collision.query_cache_unique_collision_samples,
       raw_payload_collision_samples: collision.raw_payload_collision_samples,
       seller_unique_collision_samples: collision.seller_unique_collision_samples,
     },

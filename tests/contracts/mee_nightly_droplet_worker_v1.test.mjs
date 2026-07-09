@@ -116,8 +116,11 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   const verifier = read(verifierPath);
   const pkg = JSON.parse(read("package.json"));
 
-  assert.match(service, /WorkingDirectory=\/opt\/grookai_vault/);
+  assert.match(service, /User=grookai/);
+  assert.match(service, /WorkingDirectory=\/opt\/grookai_vault_mee_nightly/);
   assert.match(service, /EnvironmentFile=\/etc\/grookai\/mee-nightly\.env/);
+  assert.match(service, /Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1/);
+  assert.match(service, /\/usr\/bin\/flock -n \/tmp\/grookai-mee-nightly\.lock/);
   assert.match(service, /mee_nightly_droplet_worker_v1\.mjs --run/);
   assert.match(service, /\$\$\{MEE_NIGHTLY_CALL_CEILING:-4000\}/);
   assert.match(timer, /OnCalendar=\*-\*-\* 03:15:00/);
@@ -131,7 +134,7 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(env, /EBAY_CLIENT_ID/);
   assert.match(env, /EBAY_CLIENT_SECRET/);
   assert.match(installer, /set -euo pipefail/);
-  assert.match(installer, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_vault\}"/);
+  assert.match(installer, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_vault_mee_nightly\}"/);
   assert.match(installer, /require_env_value "SUPABASE_URL"/);
   assert.match(installer, /require_env_value "SUPABASE_DB_URL"/);
   assert.match(installer, /env_value SUPABASE_SECRET_KEY/);
@@ -142,6 +145,8 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
     /node scripts\/workers\/mee_nightly_droplet_worker_v1\.mjs --dry-run --skip-provider --skip-apply/,
   );
   assert.match(installer, /sed "s#\^WorkingDirectory=\.\*#WorkingDirectory=\$\{REPO_DIR\}#"/);
+  assert.match(installer, /grookai-justtcg-refresh\.timer/);
+  assert.match(installer, /grookai-mee-post-ingest\.timer/);
   assert.match(installer, /systemctl enable --now "\$\{TIMER_NAME\}"/);
   assert.match(installer, /MEE_NIGHTLY_ALLOW_RUN=1/);
   assert.match(verifier, /journalctl -u "\$\{SERVICE_NAME\}"/);

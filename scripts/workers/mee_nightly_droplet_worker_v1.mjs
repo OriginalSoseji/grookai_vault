@@ -409,11 +409,15 @@ function runSupabaseSql(sql) {
   const tempSql = path.join(tempDir, "query.sql");
   try {
     writeFileSync(tempSql, sql);
-    if (process.env.SUPABASE_DB_URL) {
+    const directDbUrl = process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+    if (directDbUrl) {
       return runCommand(
-        ["bash", "-lc", 'psql "$SUPABASE_DB_URL" -tA -f "$1"', "mee-nightly-psql", tempSql],
+        ["bash", "-lc", 'psql "${SUPABASE_DB_URL:-${DATABASE_URL:-$POSTGRES_URL}}" -tA -f "$1"', "mee-nightly-psql", tempSql],
         1000 * 60 * 3,
       );
+    }
+    if (process.env.MEE_NIGHTLY_REQUIRE_DIRECT_DB === "1") {
+      throw new Error("MEE_NIGHTLY_REQUIRE_DIRECT_DB is set but no SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is available");
     }
     const targetArgs = ["--linked"];
     return runCommand(["supabase", "db", "query", "--output", "json", ...targetArgs, "-f", tempSql], 1000 * 60 * 3);

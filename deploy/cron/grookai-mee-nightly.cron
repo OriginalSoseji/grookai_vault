@@ -1,4 +1,4 @@
 SHELL=/bin/bash
 PATH=/usr/local/bin:/usr/bin:/bin
 
-15 3 * * * cd /opt/grookai_vault && set -a && source /etc/grookai/mee-nightly.env && set +a && node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=${MEE_NIGHTLY_CALL_CEILING:-4000} >> /var/log/grookai-mee-nightly.log 2>&1
+15 3 * * * cd /opt/grookai_vault_mee_nightly && set -a && source /etc/grookai/mee-nightly.env && set +a && flock -n /tmp/grookai-mee-nightly.lock node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling=${MEE_NIGHTLY_CALL_CEILING:-4000} >> /var/log/grookai-mee-nightly.log 2>&1

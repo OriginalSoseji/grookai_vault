@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-cd /opt/grookai_vault
+cd /opt/grookai_vault_mee_nightly
 npm ci
 supabase --version
 node --version
@@ -39,6 +39,31 @@ sudo bash deploy/scripts/install-mee-nightly-systemd.sh
 
 The worker uses `SUPABASE_DB_URL` for internal readback/apply guards.
 The Supabase CLI is not required for the droplet runtime.
+The systemd unit sets `MEE_NIGHTLY_REQUIRE_DIRECT_DB=1`, so scheduled runs fail
+fast if no direct database URL is available instead of falling back to
+`supabase db query --linked`.
+
+The systemd service must run as `grookai` from `/opt/grookai_vault_mee_nightly`
+and must use `/usr/bin/flock -n /tmp/grookai-mee-nightly.lock`. Do not run this
+worker from the stale `/opt/grookai_vault` checkout or as root.
+
+JustTCG refresh units are retired. They must remain disabled/masked and are not
+part of the nightly pricing path.
+
+Root-only retirement/install step on the droplet:
+
+```bash
+cd /opt/grookai_vault_mee_nightly
+sudo systemctl disable --now grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
+  grookai-pricing-refresh.timer grookai-pricing-refresh.service grookai-mee-post-ingest.timer || true
+for unit in grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
+  grookai-pricing-refresh.timer grookai-pricing-refresh.service; do
+  sudo rm -f "/etc/systemd/system/${unit}"
+  sudo ln -s /dev/null "/etc/systemd/system/${unit}"
+done
+sudo bash deploy/scripts/install-mee-nightly-systemd.sh
+sudo systemctl reset-failed grookai-justtcg-refresh.service grookai-mee-nightly.service || true
+```
 
 ## Dry Run
 
@@ -91,7 +116,7 @@ crontab deploy/cron/grookai-mee-nightly.cron
 Preferred:
 
 ```bash
-cd /opt/grookai_vault
+cd /opt/grookai_vault_mee_nightly
 bash deploy/scripts/verify-mee-nightly-systemd.sh
 ```
 
@@ -120,3 +145,8 @@ sudo systemctl stop grookai-mee-nightly.service
 ## Recovery
 
 If a phase fails, do not rerun blindly. Read the JSON audit artifact, identify the failed phase, then run dry-run mode before a manual `--run`.
+
+If a Supabase readback query is still running more than 30 minutes after the
+worker has stopped, treat it as an orphaned process and kill it before rerunning
+the timer. The nightly service, reference refresh service, and post-ingest
+service must not overlap.
