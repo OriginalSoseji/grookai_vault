@@ -8,6 +8,8 @@ const FIXTURE = {
   ownedCardId: '00000000-0000-4000-8000-00000000e602',
   wantedCardId: '00000000-0000-4000-8000-00000000e603',
   vaultInstanceId: '00000000-0000-4000-8000-00000000e604',
+  candidateVaultItemId: '00000000-0000-4000-8000-00000000e605',
+  candidateVaultInstanceId: '00000000-0000-4000-8000-00000000e606',
   userA: '00000000-0000-4000-8000-00000000e6a1',
   userB: '00000000-0000-4000-8000-00000000e6b2',
 };
@@ -64,6 +66,8 @@ async function cleanup(client) {
     await client.query('delete from public.watches where user_id = any($1::uuid[])', [users]);
     await client.query('delete from public.card_events where actor_user_id = any($1::uuid[]) or subject_user_id = any($1::uuid[])', [users]);
     await client.query('delete from public.vault_item_instances where user_id = any($1::uuid[])', [users]);
+    await client.query('delete from public.vault_items where user_id = any($1::uuid[])', [users]);
+    await client.query('delete from public.collector_local_discovery_settings where user_id = any($1::uuid[])', [users]);
     await client.query('delete from public.public_profiles where user_id = any($1::uuid[])', [users]);
     await client.query('delete from auth.users where id = any($1::uuid[])', [users]);
     await client.query('delete from public.card_prints where id in ($1, $2)', [FIXTURE.ownedCardId, FIXTURE.wantedCardId]);
@@ -98,16 +102,40 @@ async function seed(client) {
   await client.query(
     `
       insert into public.public_profiles (
-        user_id, slug, display_name, public_profile_enabled, vault_sharing_enabled
+        user_id, slug, display_name, public_profile_enabled, vault_sharing_enabled, avatar_path
       )
       values
-        ($1, 'e6-local-a', 'E6 Local A', true, true),
-        ($2, 'e6-local-b', 'E6 Local B', true, true)
+        ($1, 'e6-local-a', 'E6 Local A', true, true, 'https://example.com/e6-a-avatar.png'),
+        ($2, 'e6-local-b', 'E6 Local B', true, true, 'https://example.com/e6-b-avatar.png')
       on conflict (user_id) do update
       set slug = excluded.slug,
           display_name = excluded.display_name,
           public_profile_enabled = true,
           vault_sharing_enabled = true,
+          avatar_path = excluded.avatar_path,
+          updated_at = now()
+    `,
+    [FIXTURE.userA, FIXTURE.userB],
+  );
+
+  await client.query(
+    `
+      insert into public.collector_local_discovery_settings (
+        user_id, local_discovery_enabled, area_label, region_code, country_code,
+        geohash_prefix, radius_miles, location_precision, location_source
+      )
+      values
+        ($1, true, 'E6 Test Area', 'US-CO', 'US', '9xj7', 25, 'coarse', 'manual'),
+        ($2, true, 'E6 Test Area', 'US-CO', 'US', '9xj7', 25, 'coarse', 'manual')
+      on conflict (user_id) do update
+      set local_discovery_enabled = true,
+          area_label = excluded.area_label,
+          region_code = excluded.region_code,
+          country_code = excluded.country_code,
+          geohash_prefix = excluded.geohash_prefix,
+          radius_miles = excluded.radius_miles,
+          location_precision = excluded.location_precision,
+          location_source = excluded.location_source,
           updated_at = now()
     `,
     [FIXTURE.userA, FIXTURE.userB],
@@ -169,6 +197,48 @@ async function seed(client) {
     `,
     [FIXTURE.vaultInstanceId, FIXTURE.userA, FIXTURE.ownedCardId],
   );
+
+  await client.query(
+    `
+      insert into public.vault_items (
+        id, user_id, card_id, gv_id, qty, condition_label, name, set_name, intent, archived_at, image_url
+      )
+      values (
+        $1, $2, $3, 'GV-PK-E6TEST-002', 1, 'NM', 'E6 Wanted Eevee', 'E6 Local Test Set', 'trade', null, 'https://example.com/e6-wanted.png'
+      )
+      on conflict (id) do update
+      set user_id = excluded.user_id,
+          card_id = excluded.card_id,
+          gv_id = excluded.gv_id,
+          qty = excluded.qty,
+          condition_label = excluded.condition_label,
+          name = excluded.name,
+          set_name = excluded.set_name,
+          intent = excluded.intent,
+          archived_at = null,
+          image_url = excluded.image_url
+    `,
+    [FIXTURE.candidateVaultItemId, FIXTURE.userB, FIXTURE.wantedCardId],
+  );
+
+  await client.query(
+    `
+      insert into public.vault_item_instances (
+        id, user_id, gv_vi_id, card_print_id, legacy_vault_item_id,
+        condition_label, intent, created_at
+      )
+      values ($1, $2, 'GVVI-E6-LOCAL-B-001', $3, $4, 'NM', 'trade', now() - interval '2 hours')
+      on conflict (id) do update
+      set user_id = excluded.user_id,
+          card_print_id = excluded.card_print_id,
+          legacy_vault_item_id = excluded.legacy_vault_item_id,
+          condition_label = excluded.condition_label,
+          intent = excluded.intent,
+          archived_at = null,
+          updated_at = now()
+    `,
+    [FIXTURE.candidateVaultInstanceId, FIXTURE.userB, FIXTURE.wantedCardId, FIXTURE.candidateVaultItemId],
+  );
 }
 
 async function scalar(client, sql, params = []) {
@@ -202,6 +272,9 @@ async function main() {
     report.denials.push(await expectDenied('anon call onboarding_ladder_state_v1', () =>
       asAnon(client, () => client.query('select * from public.onboarding_ladder_state_v1()')),
     ));
+    report.denials.push(await expectDenied('anon call onboarding_collector_suggestions_v1', () =>
+      asAnon(client, () => client.query('select * from public.onboarding_collector_suggestions_v1(3)')),
+    ));
 
     await asAuthenticated(client, FIXTURE.userA, () =>
       client.query(
@@ -232,6 +305,16 @@ async function main() {
     report.checks.bootstrap_owned_detected = state.owned_card_print_id === FIXTURE.ownedCardId;
     report.checks.bootstrap_wanted_detected = state.wanted_card_print_id === FIXTURE.wantedCardId;
     report.checks.bootstrap_suggestions_only_for_owned_wanted_no_follow = state.should_show_collector_suggestions === true && state.is_complete === false;
+
+    const suggestionRows = await asAuthenticated(client, FIXTURE.userA, () =>
+      client.query('select * from public.onboarding_collector_suggestions_v1($1)', [3]),
+    );
+    const firstSuggestion = suggestionRows.rows[0] ?? {};
+    report.checks.suggestion_rows = suggestionRows.rows.length;
+    report.checks.suggestion_first_collector_is_b = firstSuggestion.collector_user_id === FIXTURE.userB;
+    report.checks.suggestion_overlap_mentions_wanted_sets = /wanted sets/i.test(firstSuggestion.overlap_summary ?? '');
+    report.checks.suggestion_proximity_label = firstSuggestion.proximity_label ?? null;
+    report.checks.suggestion_sample_image_url = firstSuggestion.sample_image_url ?? null;
 
     await asAuthenticated(client, FIXTURE.userA, () =>
       client.query('select * from public.onboarding_record_rung_v1($1, $2, null, $3, $4::jsonb)', [
@@ -315,6 +398,11 @@ async function main() {
       bootstrap_owned_detected: true,
       bootstrap_wanted_detected: true,
       bootstrap_suggestions_only_for_owned_wanted_no_follow: true,
+      suggestion_rows: 1,
+      suggestion_first_collector_is_b: true,
+      suggestion_overlap_mentions_wanted_sets: true,
+      suggestion_proximity_label: 'E6 Test Area',
+      suggestion_sample_image_url: 'https://example.com/e6-wanted.png',
       rung_1_wanted_event_rows_after_duplicate_calls: 1,
       want_added_events_after_repeat_true: 1,
       user_a_selects_b_state_rows: 0,

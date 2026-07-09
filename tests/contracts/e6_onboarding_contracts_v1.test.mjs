@@ -88,3 +88,22 @@ test("E6 local fixture smoke covers RLS, bootstrap, bridge, and idempotency gate
   assert.match(script, /rung_1_wanted_event_rows_after_duplicate_calls/);
   assert.match(script, /bootstrap_suggestions_only_for_owned_wanted_no_follow/);
 });
+
+test("E6 collector suggestions RPC is authenticated, gated, and non-popularity ranked", () => {
+  const sql = readSource("supabase/migrations/20260709110000_product_evolution_e6_collector_suggestions_v1.sql");
+
+  assert.match(sql, /create or replace function public\.onboarding_collector_suggestions_v1/i);
+  assert.match(sql, /returns table \([\s\S]*collector_user_id uuid[\s\S]*overlap_summary text[\s\S]*sample_image_url text/i);
+  assert.match(sql, /raise exception 'not_authenticated'/i);
+  assert.match(sql, /revoke all on function public\.onboarding_collector_suggestions_v1\(integer\) from public, anon/i);
+  assert.match(sql, /grant execute on function public\.onboarding_collector_suggestions_v1\(integer\) to authenticated, service_role/i);
+  assert.match(sql, /local_community_collector_visible_to_viewer_v1\(v_uid, src\.owner_user_id\) is true/i);
+  assert.match(sql, /src\.owner_user_id <> v_uid/i);
+  assert.match(sql, /from public\.collector_follows cf[\s\S]*cf\.follower_user_id = v_uid[\s\S]*cf\.followed_user_id = pc\.owner_user_id/i);
+  assert.match(sql, /count\(\*\) filter \(where cp\.set_id in \(select vs\.set_id from viewer_sets vs\)\)/i);
+  assert.match(sql, /order by[\s\S]*set_overlap_count desc[\s\S]*proximity_rank desc[\s\S]*latest_activity_at desc/i);
+  assert.doesNotMatch(sql, /follower_count|followers_count|count\(.*collector_follows/i);
+  assert.doesNotMatch(sql, /insert into public\.[a-z_]*pricing/i);
+  assert.doesNotMatch(sql, /update public\.[a-z_]*pricing/i);
+  assert.doesNotMatch(sql, /card_print_identity/i);
+});
