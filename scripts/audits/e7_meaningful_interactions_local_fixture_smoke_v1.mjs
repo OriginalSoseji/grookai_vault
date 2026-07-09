@@ -378,7 +378,9 @@ async function main() {
     const result = await runAssertions(client, connectionString);
     console.log(JSON.stringify({ status: 'PASS', fixture: 'e7_meaningful_interactions_local_fixture_smoke_v1', ...result }, null, 2));
   } finally {
-    await cleanupFixture(client);
+    if (process.env.E7_SKIP_CLEANUP !== '1') {
+      await cleanupFixture(client);
+    }
     await client.end();
   }
 }
