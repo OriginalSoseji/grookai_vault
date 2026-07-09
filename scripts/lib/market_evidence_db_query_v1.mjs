@@ -16,13 +16,22 @@ export async function marketEvidenceQueryRows(sql) {
     throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required for DB query execution.");
   }
 
+  const timeoutMs = Number.parseInt(process.env.MEE_DB_QUERY_TIMEOUT_MS ?? "180000", 10);
+  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    throw new Error("MEE_DB_QUERY_TIMEOUT_MS must be a positive integer when set.");
+  }
+
   const client = new Client({
     connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: timeoutMs,
+    statement_timeout: timeoutMs,
     ssl: { rejectUnauthorized: false },
   });
 
   await client.connect();
   try {
+    await client.query(`set statement_timeout = ${timeoutMs}`);
     const result = await client.query(sql);
     return Array.isArray(result) ? result.flatMap((entry) => entry.rows ?? []) : result.rows ?? [];
   } finally {

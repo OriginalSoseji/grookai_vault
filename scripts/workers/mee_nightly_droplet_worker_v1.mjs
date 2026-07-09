@@ -4,11 +4,13 @@ import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, wr
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 import "../../backend/env.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const { Client } = pg;
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-NIGHTLY-DROPLET-WORKER-V1";
@@ -16,6 +18,13 @@ const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
+const PREFLIGHT_READBACK_TIMEOUT_MS = Number.parseInt(
+  process.env.MEE_PREFLIGHT_READBACK_TIMEOUT_MS ?? String(1000 * 60 * 5),
+  10,
+);
+if (!Number.isFinite(PREFLIGHT_READBACK_TIMEOUT_MS) || PREFLIGHT_READBACK_TIMEOUT_MS <= 0) {
+  throw new Error("MEE_PREFLIGHT_READBACK_TIMEOUT_MS must be a positive integer when set.");
+}
 const REQUIRED_FILES = [
   "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
   "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
@@ -44,6 +53,8 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_fast_post_ingest_review_readback_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    timeoutMs: PREFLIGHT_READBACK_TIMEOUT_MS,
+    nonBlocking: true,
   },
   {
     key: "listing_ingest",
@@ -221,6 +232,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_fast_post_ingest_review_readback_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    timeoutMs: PREFLIGHT_READBACK_TIMEOUT_MS,
   },
   {
     key: "foundation_checkpoint",
@@ -426,18 +438,69 @@ function runSupabaseSql(sql) {
   }
 }
 
-function acquireLock(args) {
-  const sql = `select json_build_object('acquired', pg_try_advisory_lock(hashtext('${LOCK_KEY}')), 'run_key', '${args.runKey}'::text)::text as result;`;
-  const result = runSupabaseSql(sql);
-  const acquired = /"acquired"\s*:\s*true/.test(result.stdout_tail);
-  return { ...result, acquired };
+function directDbUrl() {
+  return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;
 }
 
-function releaseLock(args) {
-  const sql = `select json_build_object('released', pg_advisory_unlock(hashtext('${LOCK_KEY}')), 'run_key', '${args.runKey}'::text)::text as result;`;
-  const result = runSupabaseSql(sql);
-  const released = /"released"\s*:\s*true/.test(result.stdout_tail);
-  return { ...result, released };
+async function acquireLock(args) {
+  const connectionString = directDbUrl();
+  if (!connectionString) {
+    throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required to hold the nightly DB advisory lock.");
+  }
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 30_000,
+    statement_timeout: 30_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  await client.connect();
+  try {
+    const result = await client.query(
+      "select pg_try_advisory_lock(hashtext($1)) as acquired, $2::text as run_key",
+      [LOCK_KEY, args.runKey],
+    );
+    const acquired = result.rows?.[0]?.acquired === true;
+    return {
+      command: "pg_try_advisory_lock(hashtext($1))",
+      actual_command: "node-pg held session advisory lock",
+      status: 0,
+      acquired,
+      run_key: args.runKey,
+      lock_client: acquired ? client : null,
+    };
+  } catch (error) {
+    await client.end().catch(() => {});
+    throw error;
+  }
+}
+
+async function releaseLock(lock, args) {
+  if (!lock?.lock_client) {
+    return {
+      command: "pg_advisory_unlock(hashtext($1))",
+      actual_command: "node-pg held session advisory lock",
+      status: 0,
+      released: false,
+      reason: "lock_client_missing",
+      run_key: args.runKey,
+    };
+  }
+  try {
+    const result = await lock.lock_client.query(
+      "select pg_advisory_unlock(hashtext($1)) as released, $2::text as run_key",
+      [LOCK_KEY, args.runKey],
+    );
+    return {
+      command: "pg_advisory_unlock(hashtext($1))",
+      actual_command: "node-pg held session advisory lock",
+      status: 0,
+      released: result.rows?.[0]?.released === true,
+      run_key: args.runKey,
+    };
+  } finally {
+    await lock.lock_client.end().catch(() => {});
+  }
 }
 
 function phasePlan(args) {
@@ -449,6 +512,8 @@ function phasePlan(args) {
       run_only: Boolean(phase.runOnly),
       provider_calls: phase.providerCalls,
       db_writes: phase.dbWrites,
+      non_blocking: Boolean(phase.nonBlocking),
+      timeout_ms: phase.timeoutMs ?? null,
       skipped_in_dry_run: !args.run && !phase.dryRunCommand,
     };
   });
@@ -459,6 +524,7 @@ function preflight(args) {
   const findings = [];
   if (missingFiles.length) findings.push("required_worker_file_missing");
   if (args.run && process.env.MEE_NIGHTLY_ALLOW_RUN !== "1") findings.push("MEE_NIGHTLY_ALLOW_RUN_not_set_to_1");
+  if (args.run && !directDbUrl()) findings.push("direct_db_url_required_for_held_advisory_lock");
   if (args.run && args.skipProvider && !args.normalizationOnly) findings.push("run_requested_with_skip_provider");
   if (args.run && !args.providerCallsEnabled && !args.normalizationOnly) findings.push("provider_calls_disabled");
   if (args.run && args.providerCallsEnabled && (!Number.isFinite(args.maxCallCeiling) || args.maxCallCeiling <= 0)) {
@@ -541,8 +607,8 @@ let lockRelease = null;
 
 try {
   if (args.run && findings.length === 0) {
-    lock = acquireLock(args);
-    execution.push({ phase: "acquire_lock", ...lock });
+    lock = await acquireLock(args);
+    execution.push({ phase: "acquire_lock", ...Object.fromEntries(Object.entries(lock).filter(([key]) => key !== "lock_client")) });
     if (!lock.acquired) findings.push("nightly_worker_lock_not_acquired");
   }
 
@@ -571,9 +637,17 @@ try {
         continue;
       }
       const command = fillCommand(args.run ? phase.command : phase.dryRunCommand, args);
-      const result = runCommand(command);
+      const result = runCommand(command, phase.timeoutMs);
       execution.push({ phase: phase.key, provider_calls: phase.providerCalls, db_writes: phase.dbWrites, ...result });
       if (result.status !== 0) {
+        if (phase.nonBlocking) {
+          execution.push({
+            phase: `${phase.key}_warning`,
+            skipped: true,
+            reason: "non_blocking_preflight_failed",
+          });
+          continue;
+        }
         findings.push(`phase_failed:${phase.key}`);
         break;
       }
@@ -581,7 +655,7 @@ try {
   }
 } finally {
   if (args.run && lock?.acquired) {
-    lockRelease = releaseLock(args);
+    lockRelease = await releaseLock(lock, args);
     execution.push({ phase: "release_lock", ...lockRelease });
     if (!lockRelease.released) findings.push("nightly_worker_lock_release_failed");
   }

@@ -72,6 +72,12 @@ if [[ -n "$(env_value EBAY_CLIENT_ID)" && -z "$(env_value EBAY_CLIENT_SECRET)" ]
   exit 1
 fi
 
+if [[ "$(env_value MEE_NIGHTLY_NORMALIZATION_ONLY)" != "1" && "$(env_value MEE_NIGHTLY_PROVIDER_CALLS_ENABLED)" != "1" ]]; then
+  echo "${ENV_FILE} must contain MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 for eBay acquisition runs." >&2
+  echo "Set MEE_NIGHTLY_NORMALIZATION_ONLY=1 only when intentionally running no-provider reprocessing." >&2
+  exit 1
+fi
+
 set -a
 # shellcheck disable=SC1090
 source "${ENV_FILE}"
@@ -87,7 +93,23 @@ sudo cp "${tmp_service}" "/etc/systemd/system/${SERVICE_NAME}"
 rm -f "${tmp_service}"
 sudo cp "deploy/systemd/${TIMER_NAME}" "/etc/systemd/system/${TIMER_NAME}"
 sudo systemctl daemon-reload
-sudo systemctl disable --now grookai-justtcg-refresh.timer grookai-pricing-refresh.timer grookai-mee-post-ingest.timer 2>/dev/null || true
+sudo systemctl disable --now \
+  grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
+  grookai-pricing-refresh.timer grookai-pricing-refresh.service \
+  grookai-mee-post-ingest.timer grookai-mee-post-ingest.service 2>/dev/null || true
+for retired_unit in \
+  grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
+  grookai-pricing-refresh.timer grookai-pricing-refresh.service \
+  grookai-mee-post-ingest.timer grookai-mee-post-ingest.service; do
+  sudo rm -f "/etc/systemd/system/${retired_unit}"
+  sudo ln -s /dev/null "/etc/systemd/system/${retired_unit}"
+done
+sudo systemctl daemon-reload
+sudo systemctl reset-failed \
+  grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
+  grookai-pricing-refresh.timer grookai-pricing-refresh.service \
+  grookai-mee-post-ingest.timer grookai-mee-post-ingest.service \
+  "${SERVICE_NAME}" 2>/dev/null || true
 sudo systemctl enable --now "${TIMER_NAME}"
 
 systemctl list-timers "${TIMER_NAME}" --no-pager

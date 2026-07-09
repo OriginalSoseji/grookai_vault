@@ -33,7 +33,7 @@ TCGCSV is included as a nightly free-reference acquisition lane alongside eBay a
 ## Lifecycle
 
 1. Acquire a Postgres advisory lock.
-2. Run fast MEE readback.
+2. Run bounded fast MEE readback. This first readback is a warning-only preflight so stale review/reporting debt cannot block eBay acquisition; the final fast readback remains blocking.
 3. Run bounded market listing ingestion, or skip provider acquisition when running normalization-only.
 4. Build the TCGCSV reference query plan and acquisition batch.
 5. Refresh TCGCSV reference evidence when provider calls are enabled.
@@ -86,7 +86,7 @@ TCGCSV is included as a nightly free-reference acquisition lane alongside eBay a
 - `--normalization-only` or `MEE_NIGHTLY_NORMALIZATION_ONLY=1` runs only no-provider reprocessing phases.
 - `--call-ceiling` must not exceed `MEE_NIGHTLY_MAX_CALL_CEILING`.
 - The worker takes a DB advisory lock before running.
-- Any failed phase stops later phases.
+- Any failed blocking phase stops later phases. The bounded preflight readback is non-blocking and records an execution warning when it fails.
 - Final readback must prove public pricing remains sealed.
 
 ## Current Boundary

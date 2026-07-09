@@ -24,11 +24,13 @@ Fill either:
 
 Leave `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=0` when you are out of provider calls.
 Use `MEE_NIGHTLY_NORMALIZATION_ONLY=1` or `--normalization-only` to reprocess existing warehouse rows without acquisition.
+The systemd installer requires `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1` unless `MEE_NIGHTLY_NORMALIZATION_ONLY=1`; this prevents installing a nightly eBay acquisition timer that will fail every run.
 
 Optional:
 
 - `MEE_NIGHTLY_REFERENCE_LIMIT`, default `5000`, caps the nightly TCGCSV reference target batch.
 - `TCGCSV_REQUEST_DELAY_MS`, default `100`, throttles refreshed TCGCSV product/price requests.
+- `MEE_DB_QUERY_TIMEOUT_MS`, default `180000`, caps shared MEE readback queries so a slow DB check fails visibly instead of hanging the worker.
 
 The nightly worker refreshes TCGCSV alongside the eBay listing ingest when provider calls are enabled. TCGCSV rows are written only through the guarded reference evidence path; they do not publish prices, update app-visible pricing, or write `pricing_observations`.
 The standalone reference refresh timer uses the same `MEE_NIGHTLY_REFERENCE_LIMIT` cap for query planning, acquisition batching, PokemonTCG.io acquisition, and TCGCSV acquisition. Do not let these commands fall back to their script defaults; those defaults are for small local probes.
@@ -44,6 +46,9 @@ The Supabase CLI is not required for the droplet runtime.
 The systemd unit sets `MEE_NIGHTLY_REQUIRE_DIRECT_DB=1`, so scheduled runs fail
 fast if no direct database URL is available instead of falling back to
 `supabase db query --linked`.
+The worker holds a Postgres advisory lock on a live Node `pg` client for the
+duration of a run. Do not replace this with a one-shot `psql` lock probe; a
+session advisory lock is released as soon as that process exits.
 
 The systemd service must run as `grookai` from `/opt/grookai_vault_mee_nightly`
 and must use `/usr/bin/flock -n /tmp/grookai-mee-nightly.lock`. Do not run this
@@ -135,7 +140,7 @@ The final report must show:
 - no `pricing_observations` writes
 - no `ebay_active_prices_latest` writes
 - TCGCSV evidence, if refreshed, stayed in the reference warehouse path
-- no failed phase
+- no failed blocking phase; a bounded `preflight_fast_readback` warning is acceptable only when later blocking boundary checks pass
 
 ## Stop
 
@@ -146,7 +151,8 @@ sudo systemctl stop grookai-mee-nightly.service
 
 ## Recovery
 
-If a phase fails, do not rerun blindly. Read the JSON audit artifact, identify the failed phase, then run dry-run mode before a manual `--run`.
+If a blocking phase fails, do not rerun blindly. Read the JSON audit artifact, identify the failed phase, then run dry-run mode before a manual `--run`.
+The first `preflight_fast_readback` phase is warning-only and bounded so stale reporting debt cannot block eBay acquisition; the final fast readback remains the blocking public-boundary proof.
 
 If a Supabase readback query is still running more than 30 minutes after the
 worker has stopped, treat it as an orphaned process and kill it before rerunning

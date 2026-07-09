@@ -49,12 +49,27 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /MEE_NIGHTLY_PROVIDER_CALLS_ENABLED/);
   assert.match(script, /MEE_NIGHTLY_NORMALIZATION_ONLY/);
   assert.match(script, /call_ceiling_exceeds_max/);
+  assert.match(script, /direct_db_url_required_for_held_advisory_lock/);
+  assert.match(script, /MEE_PREFLIGHT_READBACK_TIMEOUT_MS/);
   assert.match(script, /market_evidence_db_query_v1\.mjs/);
   assert.match(script, /ensureSupabaseShimDir/);
   assert.match(script, /npx --yes supabase/);
   assert.match(script, /nightly_worker_lock_not_acquired/);
+  assert.match(script, /node-pg held session advisory lock/);
   assert.match(script, /pg_try_advisory_lock\(hashtext/);
   assert.match(script, /pg_advisory_unlock\(hashtext/);
+  assert.match(script, /nonBlocking:\s*true/);
+  assert.match(script, /non_blocking_preflight_failed/);
+});
+
+test("MEE DB query helper enforces bounded readback timeouts", () => {
+  const helper = read(dbQueryHelperPath);
+
+  assert.match(helper, /MEE_DB_QUERY_TIMEOUT_MS/);
+  assert.match(helper, /connectionTimeoutMillis:\s*15_000/);
+  assert.match(helper, /query_timeout:\s*timeoutMs/);
+  assert.match(helper, /statement_timeout:\s*timeoutMs/);
+  assert.match(helper, /set statement_timeout = \$\{timeoutMs\}/);
 });
 
 test("MEE nightly droplet worker includes the full internal MEE phase chain", () => {
@@ -139,6 +154,7 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(installer, /require_env_value "SUPABASE_DB_URL"/);
   assert.match(installer, /env_value SUPABASE_SECRET_KEY/);
   assert.match(installer, /env_value EBAY_CLIENT_ID/);
+  assert.match(installer, /MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 for eBay acquisition runs/);
   assert.match(installer, /source "\$\{ENV_FILE\}"/);
   assert.match(
     installer,
@@ -146,7 +162,10 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   );
   assert.match(installer, /sed "s#\^WorkingDirectory=\.\*#WorkingDirectory=\$\{REPO_DIR\}#"/);
   assert.match(installer, /grookai-justtcg-refresh\.timer/);
+  assert.match(installer, /grookai-justtcg-refresh\.service/);
   assert.match(installer, /grookai-mee-post-ingest\.timer/);
+  assert.match(installer, /ln -s \/dev\/null/);
+  assert.match(installer, /systemctl reset-failed/);
   assert.match(installer, /systemctl enable --now "\$\{TIMER_NAME\}"/);
   assert.match(installer, /MEE_NIGHTLY_ALLOW_RUN=1/);
   assert.match(verifier, /journalctl -u "\$\{SERVICE_NAME\}"/);
